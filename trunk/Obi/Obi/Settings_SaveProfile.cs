@@ -83,7 +83,7 @@ namespace Obi
 
            if (prefProfiles == PreferenceProfiles.Project || prefProfiles == PreferenceProfiles.All)
            {
-               newSettings.Project_AutomaticallyDeleteUnusedFilesAfterCleanup = this.Project_AutomaticallyDeleteUnusedFilesAfterCleanup;
+               newSettings.Project_DisableRollBackForCleanUp = this.Project_DisableRollBackForCleanUp;
                newSettings.Project_AutoSave_RecordingEnd = this.Project_AutoSave_RecordingEnd;
                newSettings.Project_AutoSaveTimeInterval = this.Project_AutoSaveTimeInterval;
                newSettings.Project_AutoSaveTimeIntervalEnabled = this.Project_AutoSaveTimeIntervalEnabled;
@@ -443,7 +443,7 @@ namespace Obi
            }
 
                if ((selectedProfile == PreferenceProfiles.Project || selectedProfile == PreferenceProfiles.All)
-                   && this.Project_AutomaticallyDeleteUnusedFilesAfterCleanup == settings.Project_AutomaticallyDeleteUnusedFilesAfterCleanup
+                   && this.Project_DisableRollBackForCleanUp == settings.Project_DisableRollBackForCleanUp
                && this.Project_AutoSave_RecordingEnd == settings.Project_AutoSave_RecordingEnd
                && this.Project_AutoSaveTimeInterval == settings.Project_AutoSaveTimeInterval
                && this.Project_AutoSaveTimeIntervalEnabled == settings.Project_AutoSaveTimeIntervalEnabled

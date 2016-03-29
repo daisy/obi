@@ -1018,7 +1018,7 @@ namespace Obi.Dialogs
 
                 //MessageBox.Show(mSettings.Project_ShowWaveformInContentView.ToString () + " : " +  mSettings.LeftAlignPhrasesInContentView.ToString()); 
                 mSettings.Project_OptimizeMemory = m_CheckBoxListView.Items[3].Checked;
-                mSettings.Project_AutomaticallyDeleteUnusedFilesAfterCleanup = m_CheckBoxListView.Items[4].Checked;
+                mSettings.Project_DisableRollBackForCleanUp = m_CheckBoxListView.Items[4].Checked;
                 mSettings.Project_EnableFreeDiskSpaceCheck= m_CheckBoxListView.Items[5].Checked;
                 mSettings.Project_SaveProjectWhenRecordingEnds= m_CheckBoxListView.Items[6].Checked;
                 mSettings.Project_CheckForUpdates = m_CheckBoxListView.Items[7].Checked;
@@ -1204,7 +1204,7 @@ namespace Obi.Dialogs
                 m_CheckBoxListView.Items.Add(Localizer.Message("ProjectTab_SelectBookmark"));
                 m_CheckBoxListView.Items.Add(Localizer.Message("ProjectTab_FixContentViewWidth"));
                 m_CheckBoxListView.Items.Add(Localizer.Message("ProjectTab_OptimizeMemory"));
-                m_CheckBoxListView.Items.Add(Localizer.Message("ProjectTab_DeleteUnusedFilesAfterCleanUp"));
+                m_CheckBoxListView.Items.Add(Localizer.Message("Project_DisableRollBackForCleanUp"));
                 m_CheckBoxListView.Items.Add(Localizer.Message("ProjectTab_EnableFreeDiskSpaceCheck"));
                 m_CheckBoxListView.Items.Add(Localizer.Message("Project_SaveProjectWhenRecordingEnds"));
                 m_CheckBoxListView.Items.Add(Localizer.Message("Project_CheckForUpdates"));
@@ -1228,8 +1228,8 @@ namespace Obi.Dialogs
                 m_CheckBoxListView.Items[2].ToolTipText = Localizer.Message("ProjectTab_FixContentViewWidth");
                 m_CheckBoxListView.Items[3].Checked = mSettings.Project_OptimizeMemory;
                 m_CheckBoxListView.Items[3].ToolTipText = Localizer.Message("ProjectTab_OptimizeMemory");
-                m_CheckBoxListView.Items[4].Checked = mSettings.Project_AutomaticallyDeleteUnusedFilesAfterCleanup;
-                m_CheckBoxListView.Items[4].ToolTipText = Localizer.Message("ProjectTab_DeleteUnusedFilesAfterCleanUp");
+                m_CheckBoxListView.Items[4].Checked = mSettings.Project_DisableRollBackForCleanUp;
+                m_CheckBoxListView.Items[4].ToolTipText = Localizer.Message("Project_DisableRollBackForCleanUp");
                 m_CheckBoxListView.Items[5].Checked = mSettings.Project_EnableFreeDiskSpaceCheck;
                 m_CheckBoxListView.Items[5].ToolTipText = Localizer.Message("ProjectTab_EnableFreeDiskSpaceCheck");
                 m_CheckBoxListView.Items[6].Checked = mSettings.Project_SaveProjectWhenRecordingEnds;
@@ -1324,8 +1324,8 @@ namespace Obi.Dialogs
                 mSettings.Project_OpenBookmarkNodeOnReopeningProject = m_DefaultSettings.Project_OpenBookmarkNodeOnReopeningProject;
                 mSettings.Project_LeftAlignPhrasesInContentView = m_DefaultSettings.Project_LeftAlignPhrasesInContentView;
                 mSettings.Project_OptimizeMemory = m_DefaultSettings.Project_OptimizeMemory;
-                mSettings.Project_AutomaticallyDeleteUnusedFilesAfterCleanup =
-                    m_DefaultSettings.Project_AutomaticallyDeleteUnusedFilesAfterCleanup;
+                mSettings.Project_DisableRollBackForCleanUp =
+                    m_DefaultSettings.Project_DisableRollBackForCleanUp;
                 mSettings.Project_EnableFreeDiskSpaceCheck=
                     m_DefaultSettings.Project_EnableFreeDiskSpaceCheck;
                 mSettings.Project_SaveProjectWhenRecordingEnds=
