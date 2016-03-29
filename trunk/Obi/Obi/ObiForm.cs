@@ -1397,8 +1397,7 @@ namespace Obi
                 }
                 catch (System.Exception ex)
                 {
-                    MessageBox.Show("Roll back failed" + "\n" + ex.ToString());
-                    MessageBox.Show(String.Format(Localizer.Message("Rollback_Failed"),ex.Message), Localizer.Message("Caption_Rollback_Failed"), MessageBoxButtons.OKCancel,
+                    MessageBox.Show(String.Format(Localizer.Message("Rollback_Failed") + ex.ToString()), Localizer.Message("Caption_Rollback_Failed"), MessageBoxButtons.OKCancel,
                         MessageBoxIcon.Error);
                 }
                 finally
