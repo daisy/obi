@@ -1371,7 +1371,7 @@ namespace Obi
                                                                                          Path.GetFileName(deletedFileNames[i]));
                                                                                      Console.WriteLine("Deleted file name : " + deletedFileNames[i]);
                                                                                      // take precaution for the mapping text file because an old file with same name can exist..
-                                                                                     if (deletedFileNames[i] == m_CleanUpFileNamesMapFile
+                                                                                     if (Path.GetFileName( deletedFileNames[i]) == m_CleanUpFileNamesMapFile
                                                                                          && File.Exists(destinationPath))
                                                                                      {
                                                                                          File.Delete(destinationPath);
