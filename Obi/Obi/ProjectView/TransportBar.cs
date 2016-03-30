@@ -4305,7 +4305,7 @@ SelectionChangedPlaybackEnabled = false;
             if (this.MonitorContinuously) this.MonitorContinuously = false;
             if (this.IsRecorderActive || this.IsPlayerActive) this.Stop();
             Settings saveProfile = Settings.GetSettingsFromSavedProfile(profilePath);
-            saveProfile.CopyPropertiesToExistingSettings(mView.ObiForm.Settings, PreferenceProfiles.Audio);
+            saveProfile.CopyPropertiesToExistingSettings(mView.ObiForm.Settings, PreferenceProfiles.Audio,ProfileName);
             saveProfile.SettingsName = ProfileName;
             string strLoadedProfiles = " ";
             if (saveProfile.Compare(mView.ObiForm.Settings, PreferenceProfiles.All))
