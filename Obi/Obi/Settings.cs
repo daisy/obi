@@ -109,6 +109,7 @@ namespace Obi
         public bool Project_MinimizeObi;
         public double Audio_CleanupMaxFileSizeInMB;
         public string EncodingFileFormat;
+        public bool Project_AutomaticallyDeleteUnusedFilesAfterCleanup;
         [OptionalField]
         public bool Project_RecordingToolbarOpenInPreviousSession;
         
