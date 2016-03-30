@@ -111,13 +111,15 @@ namespace Obi
                newSettings.Project_DisableTOCViewCollapse = this.Project_DisableTOCViewCollapse;
                newSettings.Project_MaximizeObi = this.Project_MaximizeObi;
                newSettings.Project_VAXhtmlExport = this.Project_VAXhtmlExport;
+               newSettings.Project_AutomaticallyDeleteUnusedFilesAfterCleanup =
+                   this.Project_AutomaticallyDeleteUnusedFilesAfterCleanup;
 
                // checks for paths
                //if ( !string.IsNullOrEmpty(this.Project_DefaultPath) && Directory.Exists (this.Project_DefaultPath ))
-                   //newSettings.Project_DefaultPath = this.Project_DefaultPath;
+               //newSettings.Project_DefaultPath = this.Project_DefaultPath;
 
                //if (!string.IsNullOrEmpty(this.Project_PipelineScriptsPath) && Directory.Exists(this.Project_PipelineScriptsPath))
-                   //newSettings.Project_PipelineScriptsPath = this.Project_PipelineScriptsPath;
+               //newSettings.Project_PipelineScriptsPath = this.Project_PipelineScriptsPath;
            }
            if (prefProfiles == PreferenceProfiles.UserProfile || prefProfiles == PreferenceProfiles.All)
            {
