@@ -2433,21 +2433,21 @@ namespace Obi.Dialogs
                 
                 if (m_chkAll.Checked)
                 {
-                    saveProfile.CopyPropertiesToExistingSettings(mForm.Settings, PreferenceProfiles.All);
+                    saveProfile.CopyPropertiesToExistingSettings(mForm.Settings, PreferenceProfiles.All, m_cb_SelectProfile.SelectedItem.ToString());
                 }
                 else
                 {
                     if (m_chkProject.Checked)
-                        saveProfile.CopyPropertiesToExistingSettings(mForm.Settings, PreferenceProfiles.Project);                    
+                        saveProfile.CopyPropertiesToExistingSettings(mForm.Settings, PreferenceProfiles.Project, m_cb_SelectProfile.SelectedItem.ToString());                    
 
                     if (m_chkAudio.Checked)
-                        saveProfile.CopyPropertiesToExistingSettings(mForm.Settings, PreferenceProfiles.Audio);                    
+                        saveProfile.CopyPropertiesToExistingSettings(mForm.Settings, PreferenceProfiles.Audio, m_cb_SelectProfile.SelectedItem.ToString());                    
 
-                    if (m_chkLanguage.Checked ) 
-                        saveProfile.CopyPropertiesToExistingSettings(mForm.Settings, PreferenceProfiles.UserProfile);
+                    if (m_chkLanguage.Checked )
+                        saveProfile.CopyPropertiesToExistingSettings(mForm.Settings, PreferenceProfiles.UserProfile, m_cb_SelectProfile.SelectedItem.ToString());
 
                     if (m_chkColor.Checked )
-                        saveProfile.CopyPropertiesToExistingSettings(mForm.Settings, PreferenceProfiles.Colors);
+                        saveProfile.CopyPropertiesToExistingSettings(mForm.Settings, PreferenceProfiles.Colors, m_cb_SelectProfile.SelectedItem.ToString());
                 }
                     
                     mSettings = mForm.Settings;

@@ -29,7 +29,7 @@ namespace Obi
             
         }
 
-       public Settings CopyPropertiesToExistingSettings(Settings newSettings, PreferenceProfiles prefProfiles)
+       public Settings CopyPropertiesToExistingSettings(Settings newSettings, PreferenceProfiles prefProfiles, string profileName)
        {
            
            if (prefProfiles == PreferenceProfiles.Audio || prefProfiles == PreferenceProfiles.All)
@@ -50,8 +50,11 @@ namespace Obi
                newSettings.Audio_EnablePostRecordingPageRenumbering = this.Audio_EnablePostRecordingPageRenumbering;
                newSettings.Audio_EnforceSingleCursor = this.Audio_EnforceSingleCursor;
                newSettings.Audio_FastPlayWithoutPitchChange = this.Audio_FastPlayWithoutPitchChange;
-               newSettings.Audio_LastInputDevice = this.Audio_LastInputDevice;
-               newSettings.Audio_LastOutputDevice = this.Audio_LastOutputDevice;
+               if (!profileName.Contains("VA") && !profileName.Contains("SBS"))
+               {
+                   newSettings.Audio_LastInputDevice = this.Audio_LastInputDevice;
+                   newSettings.Audio_LastOutputDevice = this.Audio_LastOutputDevice;
+               }
                newSettings.Audio_LevelComboBoxIndex = this.Audio_LevelComboBoxIndex;
                newSettings.Audio_MergeFirstTwoPhrasesAfterPhraseDetection = this.Audio_MergeFirstTwoPhrasesAfterPhraseDetection;
                newSettings.Audio_NoiseLevel = this.Audio_NoiseLevel;
