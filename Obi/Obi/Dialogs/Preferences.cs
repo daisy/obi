@@ -2614,7 +2614,7 @@ namespace Obi.Dialogs
                     }
                 }
             }// directory exists check
-            m_cb_SelectProfile.SelectedIndex = -1;
+            m_cb_SelectProfile.SelectedIndex = 0;
             if (mSettings.Audio_RecordingToolbarProfile1 != null && mSettings.Audio_RecordingToolbarProfile2 != null)
             {
                 int tempIndex = m_cb_Profile1.Items.IndexOf(mSettings.Audio_RecordingToolbarProfile1);
@@ -2638,7 +2638,7 @@ namespace Obi.Dialogs
                     }
                 }
             }// directory exists check
-            m_cb_SelectShorcutsProfile.SelectedIndex = -1;
+            m_cb_SelectShorcutsProfile.SelectedIndex = 0;
         }
 
         private void m_btnAddProfile_Click(object sender, EventArgs e)
