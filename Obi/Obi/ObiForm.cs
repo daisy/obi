@@ -1115,7 +1115,7 @@ namespace Obi
 
                     try
                     {
-
+                        mSession.Save () ;
 
                         string dataFolderPath = mSession.Presentation.DataProviderManager.DataFileDirectoryFullPath;
 
