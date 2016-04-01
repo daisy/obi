@@ -1128,8 +1128,12 @@ namespace Obi
                         Directory.CreateDirectory(deletedDataFolderPath);
 
                         // copy obi project file also
+                        string destinationProjectPath = Path.Combine(deletedDataFolderPath, Path.GetFileName(mSession.Path));
+                        Console.WriteLine("Destination path of Obi project for backup : " + destinationProjectPath);
+                        if (File.Exists(destinationProjectPath)) File.Delete(destinationProjectPath);
+                        
                         File.Copy(mSession.Path,
-                        Path.Combine(deletedDataFolderPath, Path.GetFileName(mSession.Path)),
+                        destinationProjectPath,
                         true);
                         // create text file for cleanup rol back
 
