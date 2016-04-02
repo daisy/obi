@@ -916,6 +916,15 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Clean up operation is complete. Do you want to see the deleted files?.
+        /// </summary>
+        internal static string Cleanup_Complete_ShowDeleteDirectory {
+            get {
+                return ResourceManager.GetString("Cleanup_Complete_ShowDeleteDirectory", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The project directory has long file path which may lead to major problems in cleanup causing loss of important data. It is strongly recommended to move the project directory near to the partition before starting clean up. Do you want to continue inspite of the stated warning?.
         /// </summary>
         internal static string CleanUp_LongFilePath {
@@ -939,6 +948,15 @@ namespace Obi {
         internal static string Cleanup_WaveformLoadingWarning {
             get {
                 return ResourceManager.GetString("Cleanup_WaveformLoadingWarning", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The roll back operation will reinstate obi project and audio files to the state that was before the last cleanup. Please note that you can perform roll back only for the last cleanup operation. Do you want to proceed?.
+        /// </summary>
+        internal static string CleanupRollBack_AskToProceed {
+            get {
+                return ResourceManager.GetString("CleanupRollBack_AskToProceed", resourceCulture);
             }
         }
         

@@ -2866,4 +2866,10 @@ Error text: {1}</value>
   <data name="CleanUp_AreYouSure" xml:space="preserve">
     <value>Please confirm. If these files are deleted, roll back for clean up will not work.</value>
   </data>
+  <data name="Cleanup_Complete_ShowDeleteDirectory" xml:space="preserve">
+    <value>Clean up operation is complete. Do you want to see the deleted files?</value>
+  </data>
+  <data name="CleanupRollBack_AskToProceed" xml:space="preserve">
+    <value>The roll back operation will reinstate obi project and audio files to the state that was before the last cleanup. Please note that you can perform roll back only for the last cleanup operation. Do you want to proceed?</value>
+  </data>
 </root>

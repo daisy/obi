@@ -1239,8 +1239,14 @@ namespace Obi
                                                                                      }
                                                                                      else // show the delete folder
                                                                                      {
+                                                                                         if(MessageBox.Show(Localizer.Message("Cleanup_Complete_ShowDeleteDirectory"),
+                                                                                             Localizer.Message("Caption_Information"),
+                                                                                             MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) == DialogResult.Yes)
+                                                                                         {
                                                                                          System.Diagnostics.Process.
                                                                                              Start(deletedDataFolderPath);
+                                                                                         
+                                                                                         }
                                                                                          isDeleteFolderOpenned = true;
                                                                                      }
                                                                                  }
@@ -1315,6 +1321,12 @@ namespace Obi
                 {
                     MessageBox.Show(Localizer.Message("Rollback_ProjectFile_Missing"), Localizer.Message("Caption_Information"), MessageBoxButtons.OK,
                         MessageBoxIcon.Information);
+                    return;
+                }
+                if (MessageBox.Show(Localizer.Message("CleanupRollBack_AskToProceed"),
+                                                                                             Localizer.Message("Caption_Information"),
+                                                                                             MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1) == DialogResult.No)
+                {
                     return;
                 }
 
