@@ -67,21 +67,22 @@ namespace Obi.Dialogs
             this.m_chkAll = new System.Windows.Forms.CheckBox();
             this.m_btnLoadProfile = new System.Windows.Forms.Button();
             this.mColorPreferencesTab = new System.Windows.Forms.TabPage();
+            this.m_gpBox_Font = new System.Windows.Forms.GroupBox();
             this.m_txtBox_Font = new System.Windows.Forms.TextBox();
-            this.mChooseFontCombo = new System.Windows.Forms.ComboBox();
+            this.m_cb_ChooseFont = new System.Windows.Forms.ComboBox();
             this.m_lblChooseFont = new System.Windows.Forms.Label();
             this.m_txtBox_HighContrast = new System.Windows.Forms.TextBox();
             this.m_txtBox_Color = new System.Windows.Forms.TextBox();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.m_gpBox_ColorsList = new System.Windows.Forms.GroupBox();
             this.m_lv_ColorPref = new System.Windows.Forms.ListView();
             this.columnHeader3 = new System.Windows.Forms.ColumnHeader();
             this.columnHeader4 = new System.Windows.Forms.ColumnHeader();
             this.columnHeader5 = new System.Windows.Forms.ColumnHeader();
-            this.m_btn_Apply = new System.Windows.Forms.Button();
-            this.label11 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
-            this.mHighContrastCombo = new System.Windows.Forms.ComboBox();
+            this.m_lbl_AssignColor = new System.Windows.Forms.Label();
             this.mNormalColorCombo = new System.Windows.Forms.ComboBox();
+            this.m_lbl_AssignHighContrastColor = new System.Windows.Forms.Label();
+            this.mHighContrastCombo = new System.Windows.Forms.ComboBox();
+            this.m_btn_Apply = new System.Windows.Forms.Button();
             this.mKeyboardShortcutTab = new System.Windows.Forms.TabPage();
             this.label12 = new System.Windows.Forms.Label();
             this.m_grpKeyboardShortcutList = new System.Windows.Forms.GroupBox();
@@ -148,7 +149,7 @@ namespace Obi.Dialogs
             this.m_gpBox_SelectProfile.SuspendLayout();
             this.m_gpBox_SelectPreferences.SuspendLayout();
             this.mColorPreferencesTab.SuspendLayout();
-            this.groupBox1.SuspendLayout();
+            this.m_gpBox_ColorsList.SuspendLayout();
             this.mKeyboardShortcutTab.SuspendLayout();
             this.m_grpKeyboardShortcutList.SuspendLayout();
             this.mUserProfileTab.SuspendLayout();
@@ -437,36 +438,39 @@ namespace Obi.Dialogs
             // 
             // mColorPreferencesTab
             // 
+            this.mColorPreferencesTab.Controls.Add(this.m_gpBox_Font);
             this.mColorPreferencesTab.Controls.Add(this.m_txtBox_Font);
-            this.mColorPreferencesTab.Controls.Add(this.mChooseFontCombo);
+            this.mColorPreferencesTab.Controls.Add(this.m_cb_ChooseFont);
             this.mColorPreferencesTab.Controls.Add(this.m_lblChooseFont);
             this.mColorPreferencesTab.Controls.Add(this.m_txtBox_HighContrast);
             this.mColorPreferencesTab.Controls.Add(this.m_txtBox_Color);
-            this.mColorPreferencesTab.Controls.Add(this.groupBox1);
+            this.mColorPreferencesTab.Controls.Add(this.m_gpBox_ColorsList);
             this.mColorPreferencesTab.Controls.Add(this.m_btn_Apply);
-            this.mColorPreferencesTab.Controls.Add(this.label11);
-            this.mColorPreferencesTab.Controls.Add(this.label7);
-            this.mColorPreferencesTab.Controls.Add(this.mHighContrastCombo);
-            this.mColorPreferencesTab.Controls.Add(this.mNormalColorCombo);
             resources.ApplyResources(this.mColorPreferencesTab, "mColorPreferencesTab");
             this.mColorPreferencesTab.Name = "mColorPreferencesTab";
             this.helpProvider1.SetShowHelp(this.mColorPreferencesTab, ((bool)(resources.GetObject("mColorPreferencesTab.ShowHelp"))));
             this.mColorPreferencesTab.UseVisualStyleBackColor = true;
             // 
+            // m_gpBox_Font
+            // 
+            resources.ApplyResources(this.m_gpBox_Font, "m_gpBox_Font");
+            this.m_gpBox_Font.Name = "m_gpBox_Font";
+            this.m_gpBox_Font.TabStop = false;
+            // 
             // m_txtBox_Font
             // 
-            this.m_txtBox_Font.BackColor = System.Drawing.SystemColors.Control;
             resources.ApplyResources(this.m_txtBox_Font, "m_txtBox_Font");
+            this.m_txtBox_Font.BackColor = System.Drawing.SystemColors.Control;
             this.m_txtBox_Font.Name = "m_txtBox_Font";
             this.helpProvider1.SetShowHelp(this.m_txtBox_Font, ((bool)(resources.GetObject("m_txtBox_Font.ShowHelp"))));
             // 
-            // mChooseFontCombo
+            // m_cb_ChooseFont
             // 
-            resources.ApplyResources(this.mChooseFontCombo, "mChooseFontCombo");
-            this.mChooseFontCombo.FormattingEnabled = true;
-            this.mChooseFontCombo.Name = "mChooseFontCombo";
-            this.helpProvider1.SetShowHelp(this.mChooseFontCombo, ((bool)(resources.GetObject("mChooseFontCombo.ShowHelp"))));
-            this.mChooseFontCombo.SelectedIndexChanged += new System.EventHandler(this.mChooseFontCombo_SelectedIndexChanged);
+            resources.ApplyResources(this.m_cb_ChooseFont, "m_cb_ChooseFont");
+            this.m_cb_ChooseFont.FormattingEnabled = true;
+            this.m_cb_ChooseFont.Name = "m_cb_ChooseFont";
+            this.helpProvider1.SetShowHelp(this.m_cb_ChooseFont, ((bool)(resources.GetObject("m_cb_ChooseFont.ShowHelp"))));
+            this.m_cb_ChooseFont.SelectedIndexChanged += new System.EventHandler(this.mChooseFontCombo_SelectedIndexChanged);
             // 
             // m_lblChooseFont
             // 
@@ -490,13 +494,17 @@ namespace Obi.Dialogs
             this.helpProvider1.SetShowHelp(this.m_txtBox_Color, ((bool)(resources.GetObject("m_txtBox_Color.ShowHelp"))));
             this.m_txtBox_Color.TabStop = false;
             // 
-            // groupBox1
+            // m_gpBox_ColorsList
             // 
-            this.groupBox1.Controls.Add(this.m_lv_ColorPref);
-            resources.ApplyResources(this.groupBox1, "groupBox1");
-            this.groupBox1.Name = "groupBox1";
-            this.helpProvider1.SetShowHelp(this.groupBox1, ((bool)(resources.GetObject("groupBox1.ShowHelp"))));
-            this.groupBox1.TabStop = false;
+            this.m_gpBox_ColorsList.Controls.Add(this.m_lv_ColorPref);
+            this.m_gpBox_ColorsList.Controls.Add(this.m_lbl_AssignColor);
+            this.m_gpBox_ColorsList.Controls.Add(this.mNormalColorCombo);
+            this.m_gpBox_ColorsList.Controls.Add(this.m_lbl_AssignHighContrastColor);
+            this.m_gpBox_ColorsList.Controls.Add(this.mHighContrastCombo);
+            resources.ApplyResources(this.m_gpBox_ColorsList, "m_gpBox_ColorsList");
+            this.m_gpBox_ColorsList.Name = "m_gpBox_ColorsList";
+            this.helpProvider1.SetShowHelp(this.m_gpBox_ColorsList, ((bool)(resources.GetObject("m_gpBox_ColorsList.ShowHelp"))));
+            this.m_gpBox_ColorsList.TabStop = false;
             // 
             // m_lv_ColorPref
             // 
@@ -525,25 +533,26 @@ namespace Obi.Dialogs
             // 
             resources.ApplyResources(this.columnHeader5, "columnHeader5");
             // 
-            // m_btn_Apply
+            // m_lbl_AssignColor
             // 
-            resources.ApplyResources(this.m_btn_Apply, "m_btn_Apply");
-            this.m_btn_Apply.Name = "m_btn_Apply";
-            this.helpProvider1.SetShowHelp(this.m_btn_Apply, ((bool)(resources.GetObject("m_btn_Apply.ShowHelp"))));
-            this.m_btn_Apply.UseVisualStyleBackColor = true;
-            this.m_btn_Apply.Click += new System.EventHandler(this.m_btn_Apply_Click);
+            resources.ApplyResources(this.m_lbl_AssignColor, "m_lbl_AssignColor");
+            this.m_lbl_AssignColor.Name = "m_lbl_AssignColor";
+            this.helpProvider1.SetShowHelp(this.m_lbl_AssignColor, ((bool)(resources.GetObject("m_lbl_AssignColor.ShowHelp"))));
             // 
-            // label11
+            // mNormalColorCombo
             // 
-            resources.ApplyResources(this.label11, "label11");
-            this.label11.Name = "label11";
-            this.helpProvider1.SetShowHelp(this.label11, ((bool)(resources.GetObject("label11.ShowHelp"))));
+            this.mNormalColorCombo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            resources.ApplyResources(this.mNormalColorCombo, "mNormalColorCombo");
+            this.mNormalColorCombo.FormattingEnabled = true;
+            this.mNormalColorCombo.Name = "mNormalColorCombo";
+            this.helpProvider1.SetShowHelp(this.mNormalColorCombo, ((bool)(resources.GetObject("mNormalColorCombo.ShowHelp"))));
+            this.mNormalColorCombo.SelectedIndexChanged += new System.EventHandler(this.mNormalColorCombo_SelectedIndexChanged);
             // 
-            // label7
+            // m_lbl_AssignHighContrastColor
             // 
-            resources.ApplyResources(this.label7, "label7");
-            this.label7.Name = "label7";
-            this.helpProvider1.SetShowHelp(this.label7, ((bool)(resources.GetObject("label7.ShowHelp"))));
+            resources.ApplyResources(this.m_lbl_AssignHighContrastColor, "m_lbl_AssignHighContrastColor");
+            this.m_lbl_AssignHighContrastColor.Name = "m_lbl_AssignHighContrastColor";
+            this.helpProvider1.SetShowHelp(this.m_lbl_AssignHighContrastColor, ((bool)(resources.GetObject("m_lbl_AssignHighContrastColor.ShowHelp"))));
             // 
             // mHighContrastCombo
             // 
@@ -554,14 +563,13 @@ namespace Obi.Dialogs
             this.helpProvider1.SetShowHelp(this.mHighContrastCombo, ((bool)(resources.GetObject("mHighContrastCombo.ShowHelp"))));
             this.mHighContrastCombo.SelectedIndexChanged += new System.EventHandler(this.mHighContrastCombo_SelectedIndexChanged);
             // 
-            // mNormalColorCombo
+            // m_btn_Apply
             // 
-            this.mNormalColorCombo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            resources.ApplyResources(this.mNormalColorCombo, "mNormalColorCombo");
-            this.mNormalColorCombo.FormattingEnabled = true;
-            this.mNormalColorCombo.Name = "mNormalColorCombo";
-            this.helpProvider1.SetShowHelp(this.mNormalColorCombo, ((bool)(resources.GetObject("mNormalColorCombo.ShowHelp"))));
-            this.mNormalColorCombo.SelectedIndexChanged += new System.EventHandler(this.mNormalColorCombo_SelectedIndexChanged);
+            resources.ApplyResources(this.m_btn_Apply, "m_btn_Apply");
+            this.m_btn_Apply.Name = "m_btn_Apply";
+            this.helpProvider1.SetShowHelp(this.m_btn_Apply, ((bool)(resources.GetObject("m_btn_Apply.ShowHelp"))));
+            this.m_btn_Apply.UseVisualStyleBackColor = true;
+            this.m_btn_Apply.Click += new System.EventHandler(this.m_btn_Apply_Click);
             // 
             // mKeyboardShortcutTab
             // 
@@ -1149,7 +1157,8 @@ namespace Obi.Dialogs
             this.m_gpBox_SelectPreferences.PerformLayout();
             this.mColorPreferencesTab.ResumeLayout(false);
             this.mColorPreferencesTab.PerformLayout();
-            this.groupBox1.ResumeLayout(false);
+            this.m_gpBox_ColorsList.ResumeLayout(false);
+            this.m_gpBox_ColorsList.PerformLayout();
             this.mKeyboardShortcutTab.ResumeLayout(false);
             this.mKeyboardShortcutTab.PerformLayout();
             this.m_grpKeyboardShortcutList.ResumeLayout(false);
@@ -1179,18 +1188,18 @@ namespace Obi.Dialogs
         private System.Windows.Forms.ToolTip m_Preference_ToolTip;
         private System.Windows.Forms.TabPage mAdvanceTab;
         private System.Windows.Forms.TabPage mColorPreferencesTab;
-        private System.Windows.Forms.ComboBox mChooseFontCombo;
+        private System.Windows.Forms.ComboBox m_cb_ChooseFont;
         private System.Windows.Forms.Label m_lblChooseFont;
         private System.Windows.Forms.TextBox m_txtBox_HighContrast;
         private System.Windows.Forms.TextBox m_txtBox_Color;
-        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.GroupBox m_gpBox_ColorsList;
         private System.Windows.Forms.ListView m_lv_ColorPref;
         private System.Windows.Forms.ColumnHeader columnHeader3;
         private System.Windows.Forms.ColumnHeader columnHeader4;
         private System.Windows.Forms.ColumnHeader columnHeader5;
         private System.Windows.Forms.Button m_btn_Apply;
-        private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label m_lbl_AssignHighContrastColor;
+        private System.Windows.Forms.Label m_lbl_AssignColor;
         private System.Windows.Forms.ComboBox mHighContrastCombo;
         private System.Windows.Forms.ComboBox mNormalColorCombo;
         private System.Windows.Forms.TabPage mKeyboardShortcutTab;
@@ -1282,5 +1291,6 @@ namespace Obi.Dialogs
         private System.Windows.Forms.CheckBox m_chkRecordInLocalDrive;
         private System.Windows.Forms.Button m_btnRecordInLocalDrive;
         private System.Windows.Forms.TextBox m_txtBox_Font;
+        private System.Windows.Forms.GroupBox m_gpBox_Font;
     }
 }
