@@ -126,7 +126,7 @@
   </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="mSelectButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>455, 18</value>
+    <value>465, 18</value>
   </data>
   <data name="mSelectButton.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 4, 4, 4</value>
@@ -190,7 +190,7 @@
     <value>Top, Left, Right</value>
   </data>
   <data name="mLocationTextBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>130, 22</value>
+    <value>140, 22</value>
   </data>
   <data name="mLocationTextBox.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 4, 4, 4</value>
@@ -313,7 +313,7 @@
     <value>2</value>
   </data>
   <data name="m_ProjectNameTextBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>130, 57</value>
+    <value>140, 57</value>
   </data>
   <data name="m_ProjectNameTextBox.Size" type="System.Drawing.Size, System.Drawing">
     <value>137, 22</value>
