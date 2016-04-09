@@ -149,6 +149,7 @@ namespace Obi.Dialogs
             this.m_gpBox_SelectProfile.SuspendLayout();
             this.m_gpBox_SelectPreferences.SuspendLayout();
             this.mColorPreferencesTab.SuspendLayout();
+            this.m_gpBox_Font.SuspendLayout();
             this.m_gpBox_ColorsList.SuspendLayout();
             this.mKeyboardShortcutTab.SuspendLayout();
             this.m_grpKeyboardShortcutList.SuspendLayout();
@@ -439,9 +440,6 @@ namespace Obi.Dialogs
             // mColorPreferencesTab
             // 
             this.mColorPreferencesTab.Controls.Add(this.m_gpBox_Font);
-            this.mColorPreferencesTab.Controls.Add(this.m_txtBox_Font);
-            this.mColorPreferencesTab.Controls.Add(this.m_cb_ChooseFont);
-            this.mColorPreferencesTab.Controls.Add(this.m_lblChooseFont);
             this.mColorPreferencesTab.Controls.Add(this.m_txtBox_HighContrast);
             this.mColorPreferencesTab.Controls.Add(this.m_txtBox_Color);
             this.mColorPreferencesTab.Controls.Add(this.m_gpBox_ColorsList);
@@ -453,6 +451,9 @@ namespace Obi.Dialogs
             // 
             // m_gpBox_Font
             // 
+            this.m_gpBox_Font.Controls.Add(this.m_lblChooseFont);
+            this.m_gpBox_Font.Controls.Add(this.m_txtBox_Font);
+            this.m_gpBox_Font.Controls.Add(this.m_cb_ChooseFont);
             resources.ApplyResources(this.m_gpBox_Font, "m_gpBox_Font");
             this.m_gpBox_Font.Name = "m_gpBox_Font";
             this.m_gpBox_Font.TabStop = false;
@@ -466,6 +467,7 @@ namespace Obi.Dialogs
             // 
             // m_cb_ChooseFont
             // 
+            this.m_cb_ChooseFont.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             resources.ApplyResources(this.m_cb_ChooseFont, "m_cb_ChooseFont");
             this.m_cb_ChooseFont.FormattingEnabled = true;
             this.m_cb_ChooseFont.Name = "m_cb_ChooseFont";
@@ -1157,6 +1159,8 @@ namespace Obi.Dialogs
             this.m_gpBox_SelectPreferences.PerformLayout();
             this.mColorPreferencesTab.ResumeLayout(false);
             this.mColorPreferencesTab.PerformLayout();
+            this.m_gpBox_Font.ResumeLayout(false);
+            this.m_gpBox_Font.PerformLayout();
             this.m_gpBox_ColorsList.ResumeLayout(false);
             this.m_gpBox_ColorsList.PerformLayout();
             this.mKeyboardShortcutTab.ResumeLayout(false);

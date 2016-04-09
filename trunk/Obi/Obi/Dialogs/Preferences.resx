@@ -1455,81 +1455,6 @@
   <data name="&gt;&gt;m_btnLoadProfile.ZOrder" xml:space="preserve">
     <value>10</value>
   </data>
-  <data name="m_gpBox_Font.Location" type="System.Drawing.Point, System.Drawing">
-    <value>55, 238</value>
-  </data>
-  <data name="m_gpBox_Font.Size" type="System.Drawing.Size, System.Drawing">
-    <value>507, 50</value>
-  </data>
-  <data name="m_gpBox_Font.TabIndex" type="System.Int32, mscorlib">
-    <value>11</value>
-  </data>
-  <data name="&gt;&gt;m_gpBox_Font.Name" xml:space="preserve">
-    <value>m_gpBox_Font</value>
-  </data>
-  <data name="&gt;&gt;m_gpBox_Font.Type" xml:space="preserve">
-    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;m_gpBox_Font.Parent" xml:space="preserve">
-    <value>mColorPreferencesTab</value>
-  </data>
-  <data name="&gt;&gt;m_gpBox_Font.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="m_txtBox_Font.AccessibleName" xml:space="preserve">
-    <value>Appearance of selected font</value>
-  </data>
-  <data name="m_txtBox_Font.Location" type="System.Drawing.Point, System.Drawing">
-    <value>464, 290</value>
-  </data>
-  <data name="m_txtBox_Font.ShowHelp" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="m_txtBox_Font.Size" type="System.Drawing.Size, System.Drawing">
-    <value>69, 22</value>
-  </data>
-  <data name="m_txtBox_Font.TabIndex" type="System.Int32, mscorlib">
-    <value>10</value>
-  </data>
-  <data name="&gt;&gt;m_txtBox_Font.Name" xml:space="preserve">
-    <value>m_txtBox_Font</value>
-  </data>
-  <data name="&gt;&gt;m_txtBox_Font.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;m_txtBox_Font.Parent" xml:space="preserve">
-    <value>mColorPreferencesTab</value>
-  </data>
-  <data name="&gt;&gt;m_txtBox_Font.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="m_cb_ChooseFont.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
-    <value>Flat</value>
-  </data>
-  <data name="m_cb_ChooseFont.Location" type="System.Drawing.Point, System.Drawing">
-    <value>250, 290</value>
-  </data>
-  <data name="m_cb_ChooseFont.ShowHelp" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="m_cb_ChooseFont.Size" type="System.Drawing.Size, System.Drawing">
-    <value>191, 24</value>
-  </data>
-  <data name="m_cb_ChooseFont.TabIndex" type="System.Int32, mscorlib">
-    <value>9</value>
-  </data>
-  <data name="&gt;&gt;m_cb_ChooseFont.Name" xml:space="preserve">
-    <value>m_cb_ChooseFont</value>
-  </data>
-  <data name="&gt;&gt;m_cb_ChooseFont.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;m_cb_ChooseFont.Parent" xml:space="preserve">
-    <value>mColorPreferencesTab</value>
-  </data>
-  <data name="&gt;&gt;m_cb_ChooseFont.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
   <data name="m_lblChooseFont.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
@@ -1540,7 +1465,7 @@
     <value>NoControl</value>
   </data>
   <data name="m_lblChooseFont.Location" type="System.Drawing.Point, System.Drawing">
-    <value>152, 290</value>
+    <value>96, 15</value>
   </data>
   <data name="m_lblChooseFont.ShowHelp" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -1561,10 +1486,88 @@
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;m_lblChooseFont.Parent" xml:space="preserve">
-    <value>mColorPreferencesTab</value>
+    <value>m_gpBox_Font</value>
   </data>
   <data name="&gt;&gt;m_lblChooseFont.ZOrder" xml:space="preserve">
-    <value>3</value>
+    <value>0</value>
+  </data>
+  <data name="m_txtBox_Font.AccessibleName" xml:space="preserve">
+    <value>Appearance of selected font</value>
+  </data>
+  <data name="m_txtBox_Font.Location" type="System.Drawing.Point, System.Drawing">
+    <value>410, 15</value>
+  </data>
+  <data name="m_txtBox_Font.ShowHelp" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="m_txtBox_Font.Size" type="System.Drawing.Size, System.Drawing">
+    <value>69, 22</value>
+  </data>
+  <data name="m_txtBox_Font.TabIndex" type="System.Int32, mscorlib">
+    <value>10</value>
+  </data>
+  <data name="&gt;&gt;m_txtBox_Font.Name" xml:space="preserve">
+    <value>m_txtBox_Font</value>
+  </data>
+  <data name="&gt;&gt;m_txtBox_Font.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_txtBox_Font.Parent" xml:space="preserve">
+    <value>m_gpBox_Font</value>
+  </data>
+  <data name="&gt;&gt;m_txtBox_Font.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="m_cb_ChooseFont.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>Flat</value>
+  </data>
+  <data name="m_cb_ChooseFont.Location" type="System.Drawing.Point, System.Drawing">
+    <value>200, 15</value>
+  </data>
+  <data name="m_cb_ChooseFont.ShowHelp" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="m_cb_ChooseFont.Size" type="System.Drawing.Size, System.Drawing">
+    <value>191, 24</value>
+  </data>
+  <data name="m_cb_ChooseFont.TabIndex" type="System.Int32, mscorlib">
+    <value>9</value>
+  </data>
+  <data name="&gt;&gt;m_cb_ChooseFont.Name" xml:space="preserve">
+    <value>m_cb_ChooseFont</value>
+  </data>
+  <data name="&gt;&gt;m_cb_ChooseFont.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_cb_ChooseFont.Parent" xml:space="preserve">
+    <value>m_gpBox_Font</value>
+  </data>
+  <data name="&gt;&gt;m_cb_ChooseFont.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="m_gpBox_Font.Location" type="System.Drawing.Point, System.Drawing">
+    <value>55, 238</value>
+  </data>
+  <data name="m_gpBox_Font.Size" type="System.Drawing.Size, System.Drawing">
+    <value>507, 50</value>
+  </data>
+  <data name="m_gpBox_Font.TabIndex" type="System.Int32, mscorlib">
+    <value>11</value>
+  </data>
+  <data name="m_gpBox_Font.Text" xml:space="preserve">
+    <value>Font List</value>
+  </data>
+  <data name="&gt;&gt;m_gpBox_Font.Name" xml:space="preserve">
+    <value>m_gpBox_Font</value>
+  </data>
+  <data name="&gt;&gt;m_gpBox_Font.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_gpBox_Font.Parent" xml:space="preserve">
+    <value>mColorPreferencesTab</value>
+  </data>
+  <data name="&gt;&gt;m_gpBox_Font.ZOrder" xml:space="preserve">
+    <value>0</value>
   </data>
   <data name="m_txtBox_HighContrast.Location" type="System.Drawing.Point, System.Drawing">
     <value>474, 210</value>
@@ -1588,7 +1591,7 @@
     <value>mColorPreferencesTab</value>
   </data>
   <data name="&gt;&gt;m_txtBox_HighContrast.ZOrder" xml:space="preserve">
-    <value>4</value>
+    <value>1</value>
   </data>
   <data name="m_txtBox_Color.Location" type="System.Drawing.Point, System.Drawing">
     <value>474, 177</value>
@@ -1612,7 +1615,7 @@
     <value>mColorPreferencesTab</value>
   </data>
   <data name="&gt;&gt;m_txtBox_Color.ZOrder" xml:space="preserve">
-    <value>5</value>
+    <value>2</value>
   </data>
   <data name="&gt;&gt;m_lv_ColorPref.Name" xml:space="preserve">
     <value>m_lv_ColorPref</value>
@@ -1699,7 +1702,7 @@
     <value>mColorPreferencesTab</value>
   </data>
   <data name="&gt;&gt;m_gpBox_ColorsList.ZOrder" xml:space="preserve">
-    <value>6</value>
+    <value>3</value>
   </data>
   <data name="m_btn_Apply.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Flat</value>
@@ -1735,7 +1738,7 @@
     <value>mColorPreferencesTab</value>
   </data>
   <data name="&gt;&gt;m_btn_Apply.ZOrder" xml:space="preserve">
-    <value>7</value>
+    <value>4</value>
   </data>
   <data name="mColorPreferencesTab.Location" type="System.Drawing.Point, System.Drawing">
     <value>4, 25</value>
