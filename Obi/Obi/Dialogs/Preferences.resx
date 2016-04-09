@@ -1455,30 +1455,6 @@
   <data name="&gt;&gt;m_btnLoadProfile.ZOrder" xml:space="preserve">
     <value>10</value>
   </data>
-  <data name="m_lblChooseFont.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="m_lblChooseFont.Enabled" type="System.Boolean, mscorlib">
-    <value>False</value>
-  </data>
-  <data name="m_lblChooseFont.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="m_lblChooseFont.Location" type="System.Drawing.Point, System.Drawing">
-    <value>96, 15</value>
-  </data>
-  <data name="m_lblChooseFont.ShowHelp" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="m_lblChooseFont.Size" type="System.Drawing.Size, System.Drawing">
-    <value>90, 16</value>
-  </data>
-  <data name="m_lblChooseFont.TabIndex" type="System.Int32, mscorlib">
-    <value>8</value>
-  </data>
-  <data name="m_lblChooseFont.Text" xml:space="preserve">
-    <value>Choose Font :</value>
-  </data>
   <data name="&gt;&gt;m_lblChooseFont.Name" xml:space="preserve">
     <value>m_lblChooseFont</value>
   </data>
@@ -1491,21 +1467,6 @@
   <data name="&gt;&gt;m_lblChooseFont.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
-  <data name="m_txtBox_Font.AccessibleName" xml:space="preserve">
-    <value>Appearance of selected font</value>
-  </data>
-  <data name="m_txtBox_Font.Location" type="System.Drawing.Point, System.Drawing">
-    <value>410, 15</value>
-  </data>
-  <data name="m_txtBox_Font.ShowHelp" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="m_txtBox_Font.Size" type="System.Drawing.Size, System.Drawing">
-    <value>69, 22</value>
-  </data>
-  <data name="m_txtBox_Font.TabIndex" type="System.Int32, mscorlib">
-    <value>10</value>
-  </data>
   <data name="&gt;&gt;m_txtBox_Font.Name" xml:space="preserve">
     <value>m_txtBox_Font</value>
   </data>
@@ -1517,21 +1478,6 @@
   </data>
   <data name="&gt;&gt;m_txtBox_Font.ZOrder" xml:space="preserve">
     <value>1</value>
-  </data>
-  <data name="m_cb_ChooseFont.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
-    <value>Flat</value>
-  </data>
-  <data name="m_cb_ChooseFont.Location" type="System.Drawing.Point, System.Drawing">
-    <value>200, 15</value>
-  </data>
-  <data name="m_cb_ChooseFont.ShowHelp" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="m_cb_ChooseFont.Size" type="System.Drawing.Size, System.Drawing">
-    <value>191, 24</value>
-  </data>
-  <data name="m_cb_ChooseFont.TabIndex" type="System.Int32, mscorlib">
-    <value>9</value>
   </data>
   <data name="&gt;&gt;m_cb_ChooseFont.Name" xml:space="preserve">
     <value>m_cb_ChooseFont</value>
@@ -1617,6 +1563,21 @@
   <data name="&gt;&gt;m_txtBox_Color.ZOrder" xml:space="preserve">
     <value>2</value>
   </data>
+  <data name="m_lv_ColorPref.AccessibleName" xml:space="preserve">
+    <value>Colors List</value>
+  </data>
+  <data name="m_lv_ColorPref.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 21</value>
+  </data>
+  <data name="m_lv_ColorPref.ShowHelp" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="m_lv_ColorPref.Size" type="System.Drawing.Size, System.Drawing">
+    <value>495, 137</value>
+  </data>
+  <data name="m_lv_ColorPref.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
   <data name="&gt;&gt;m_lv_ColorPref.Name" xml:space="preserve">
     <value>m_lv_ColorPref</value>
   </data>
@@ -1628,6 +1589,27 @@
   </data>
   <data name="&gt;&gt;m_lv_ColorPref.ZOrder" xml:space="preserve">
     <value>0</value>
+  </data>
+  <data name="m_lbl_AssignColor.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="m_lbl_AssignColor.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="m_lbl_AssignColor.Location" type="System.Drawing.Point, System.Drawing">
+    <value>105, 183</value>
+  </data>
+  <data name="m_lbl_AssignColor.ShowHelp" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="m_lbl_AssignColor.Size" type="System.Drawing.Size, System.Drawing">
+    <value>87, 16</value>
+  </data>
+  <data name="m_lbl_AssignColor.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="m_lbl_AssignColor.Text" xml:space="preserve">
+    <value>Assi&amp;gn Color:</value>
   </data>
   <data name="&gt;&gt;m_lbl_AssignColor.Name" xml:space="preserve">
     <value>m_lbl_AssignColor</value>
@@ -1641,6 +1623,21 @@
   <data name="&gt;&gt;m_lbl_AssignColor.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
+  <data name="mNormalColorCombo.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>Flat</value>
+  </data>
+  <data name="mNormalColorCombo.Location" type="System.Drawing.Point, System.Drawing">
+    <value>200, 177</value>
+  </data>
+  <data name="mNormalColorCombo.ShowHelp" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="mNormalColorCombo.Size" type="System.Drawing.Size, System.Drawing">
+    <value>191, 24</value>
+  </data>
+  <data name="mNormalColorCombo.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
   <data name="&gt;&gt;mNormalColorCombo.Name" xml:space="preserve">
     <value>mNormalColorCombo</value>
   </data>
@@ -1653,6 +1650,27 @@
   <data name="&gt;&gt;mNormalColorCombo.ZOrder" xml:space="preserve">
     <value>2</value>
   </data>
+  <data name="m_lbl_AssignHighContrastColor.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="m_lbl_AssignHighContrastColor.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="m_lbl_AssignHighContrastColor.Location" type="System.Drawing.Point, System.Drawing">
+    <value>10, 207</value>
+  </data>
+  <data name="m_lbl_AssignHighContrastColor.ShowHelp" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="m_lbl_AssignHighContrastColor.Size" type="System.Drawing.Size, System.Drawing">
+    <value>166, 16</value>
+  </data>
+  <data name="m_lbl_AssignHighContrastColor.TabIndex" type="System.Int32, mscorlib">
+    <value>3</value>
+  </data>
+  <data name="m_lbl_AssignHighContrastColor.Text" xml:space="preserve">
+    <value>Assign H&amp;igh contrast color:</value>
+  </data>
   <data name="&gt;&gt;m_lbl_AssignHighContrastColor.Name" xml:space="preserve">
     <value>m_lbl_AssignHighContrastColor</value>
   </data>
@@ -1664,6 +1682,21 @@
   </data>
   <data name="&gt;&gt;m_lbl_AssignHighContrastColor.ZOrder" xml:space="preserve">
     <value>3</value>
+  </data>
+  <data name="mHighContrastCombo.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>Flat</value>
+  </data>
+  <data name="mHighContrastCombo.Location" type="System.Drawing.Point, System.Drawing">
+    <value>200, 205</value>
+  </data>
+  <data name="mHighContrastCombo.ShowHelp" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="mHighContrastCombo.Size" type="System.Drawing.Size, System.Drawing">
+    <value>191, 24</value>
+  </data>
+  <data name="mHighContrastCombo.TabIndex" type="System.Int32, mscorlib">
+    <value>4</value>
   </data>
   <data name="&gt;&gt;mHighContrastCombo.Name" xml:space="preserve">
     <value>mHighContrastCombo</value>
@@ -1770,31 +1803,94 @@
   <data name="&gt;&gt;mColorPreferencesTab.ZOrder" xml:space="preserve">
     <value>4</value>
   </data>
-  <data name="m_lv_ColorPref.AccessibleName" xml:space="preserve">
-    <value>Colors List</value>
+  <data name="m_txtBox_Font.AccessibleName" xml:space="preserve">
+    <value>Appearance of selected font</value>
   </data>
-  <data name="m_lv_ColorPref.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 21</value>
+  <data name="m_txtBox_Font.Location" type="System.Drawing.Point, System.Drawing">
+    <value>410, 15</value>
   </data>
-  <data name="m_lv_ColorPref.ShowHelp" type="System.Boolean, mscorlib">
+  <data name="m_txtBox_Font.ShowHelp" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
-  <data name="m_lv_ColorPref.Size" type="System.Drawing.Size, System.Drawing">
-    <value>495, 137</value>
+  <data name="m_txtBox_Font.Size" type="System.Drawing.Size, System.Drawing">
+    <value>69, 22</value>
   </data>
-  <data name="m_lv_ColorPref.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
+  <data name="m_txtBox_Font.TabIndex" type="System.Int32, mscorlib">
+    <value>10</value>
   </data>
-  <data name="&gt;&gt;m_lv_ColorPref.Name" xml:space="preserve">
-    <value>m_lv_ColorPref</value>
+  <data name="&gt;&gt;m_txtBox_Font.Name" xml:space="preserve">
+    <value>m_txtBox_Font</value>
   </data>
-  <data name="&gt;&gt;m_lv_ColorPref.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ListView, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;m_txtBox_Font.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;m_lv_ColorPref.Parent" xml:space="preserve">
-    <value>m_gpBox_ColorsList</value>
+  <data name="&gt;&gt;m_txtBox_Font.Parent" xml:space="preserve">
+    <value>m_gpBox_Font</value>
   </data>
-  <data name="&gt;&gt;m_lv_ColorPref.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;m_txtBox_Font.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="m_cb_ChooseFont.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>Flat</value>
+  </data>
+  <data name="m_cb_ChooseFont.Location" type="System.Drawing.Point, System.Drawing">
+    <value>200, 15</value>
+  </data>
+  <data name="m_cb_ChooseFont.ShowHelp" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="m_cb_ChooseFont.Size" type="System.Drawing.Size, System.Drawing">
+    <value>191, 24</value>
+  </data>
+  <data name="m_cb_ChooseFont.TabIndex" type="System.Int32, mscorlib">
+    <value>9</value>
+  </data>
+  <data name="&gt;&gt;m_cb_ChooseFont.Name" xml:space="preserve">
+    <value>m_cb_ChooseFont</value>
+  </data>
+  <data name="&gt;&gt;m_cb_ChooseFont.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_cb_ChooseFont.Parent" xml:space="preserve">
+    <value>m_gpBox_Font</value>
+  </data>
+  <data name="&gt;&gt;m_cb_ChooseFont.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="m_lblChooseFont.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="m_lblChooseFont.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="m_lblChooseFont.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="m_lblChooseFont.Location" type="System.Drawing.Point, System.Drawing">
+    <value>96, 15</value>
+  </data>
+  <data name="m_lblChooseFont.ShowHelp" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="m_lblChooseFont.Size" type="System.Drawing.Size, System.Drawing">
+    <value>90, 16</value>
+  </data>
+  <data name="m_lblChooseFont.TabIndex" type="System.Int32, mscorlib">
+    <value>8</value>
+  </data>
+  <data name="m_lblChooseFont.Text" xml:space="preserve">
+    <value>Choose Font :</value>
+  </data>
+  <data name="&gt;&gt;m_lblChooseFont.Name" xml:space="preserve">
+    <value>m_lblChooseFont</value>
+  </data>
+  <data name="&gt;&gt;m_lblChooseFont.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_lblChooseFont.Parent" xml:space="preserve">
+    <value>m_gpBox_Font</value>
+  </data>
+  <data name="&gt;&gt;m_lblChooseFont.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
   <data name="columnHeader3.Text" xml:space="preserve">
@@ -1814,126 +1910,6 @@
   </data>
   <data name="columnHeader5.Width" type="System.Int32, mscorlib">
     <value>153</value>
-  </data>
-  <data name="m_lbl_AssignColor.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="m_lbl_AssignColor.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="m_lbl_AssignColor.Location" type="System.Drawing.Point, System.Drawing">
-    <value>105, 183</value>
-  </data>
-  <data name="m_lbl_AssignColor.ShowHelp" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="m_lbl_AssignColor.Size" type="System.Drawing.Size, System.Drawing">
-    <value>87, 16</value>
-  </data>
-  <data name="m_lbl_AssignColor.TabIndex" type="System.Int32, mscorlib">
-    <value>1</value>
-  </data>
-  <data name="m_lbl_AssignColor.Text" xml:space="preserve">
-    <value>Assi&amp;gn Color:</value>
-  </data>
-  <data name="&gt;&gt;m_lbl_AssignColor.Name" xml:space="preserve">
-    <value>m_lbl_AssignColor</value>
-  </data>
-  <data name="&gt;&gt;m_lbl_AssignColor.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;m_lbl_AssignColor.Parent" xml:space="preserve">
-    <value>m_gpBox_ColorsList</value>
-  </data>
-  <data name="&gt;&gt;m_lbl_AssignColor.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="mNormalColorCombo.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
-    <value>Flat</value>
-  </data>
-  <data name="mNormalColorCombo.Location" type="System.Drawing.Point, System.Drawing">
-    <value>200, 177</value>
-  </data>
-  <data name="mNormalColorCombo.ShowHelp" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="mNormalColorCombo.Size" type="System.Drawing.Size, System.Drawing">
-    <value>191, 24</value>
-  </data>
-  <data name="mNormalColorCombo.TabIndex" type="System.Int32, mscorlib">
-    <value>2</value>
-  </data>
-  <data name="&gt;&gt;mNormalColorCombo.Name" xml:space="preserve">
-    <value>mNormalColorCombo</value>
-  </data>
-  <data name="&gt;&gt;mNormalColorCombo.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;mNormalColorCombo.Parent" xml:space="preserve">
-    <value>m_gpBox_ColorsList</value>
-  </data>
-  <data name="&gt;&gt;mNormalColorCombo.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="m_lbl_AssignHighContrastColor.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="m_lbl_AssignHighContrastColor.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="m_lbl_AssignHighContrastColor.Location" type="System.Drawing.Point, System.Drawing">
-    <value>20, 210</value>
-  </data>
-  <data name="m_lbl_AssignHighContrastColor.ShowHelp" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="m_lbl_AssignHighContrastColor.Size" type="System.Drawing.Size, System.Drawing">
-    <value>166, 16</value>
-  </data>
-  <data name="m_lbl_AssignHighContrastColor.TabIndex" type="System.Int32, mscorlib">
-    <value>3</value>
-  </data>
-  <data name="m_lbl_AssignHighContrastColor.Text" xml:space="preserve">
-    <value>Assign H&amp;igh contrast color:</value>
-  </data>
-  <data name="&gt;&gt;m_lbl_AssignHighContrastColor.Name" xml:space="preserve">
-    <value>m_lbl_AssignHighContrastColor</value>
-  </data>
-  <data name="&gt;&gt;m_lbl_AssignHighContrastColor.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;m_lbl_AssignHighContrastColor.Parent" xml:space="preserve">
-    <value>m_gpBox_ColorsList</value>
-  </data>
-  <data name="&gt;&gt;m_lbl_AssignHighContrastColor.ZOrder" xml:space="preserve">
-    <value>3</value>
-  </data>
-  <data name="mHighContrastCombo.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
-    <value>Flat</value>
-  </data>
-  <data name="mHighContrastCombo.Location" type="System.Drawing.Point, System.Drawing">
-    <value>200, 205</value>
-  </data>
-  <data name="mHighContrastCombo.ShowHelp" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="mHighContrastCombo.Size" type="System.Drawing.Size, System.Drawing">
-    <value>191, 24</value>
-  </data>
-  <data name="mHighContrastCombo.TabIndex" type="System.Int32, mscorlib">
-    <value>4</value>
-  </data>
-  <data name="&gt;&gt;mHighContrastCombo.Name" xml:space="preserve">
-    <value>mHighContrastCombo</value>
-  </data>
-  <data name="&gt;&gt;mHighContrastCombo.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;mHighContrastCombo.Parent" xml:space="preserve">
-    <value>m_gpBox_ColorsList</value>
-  </data>
-  <data name="&gt;&gt;mHighContrastCombo.ZOrder" xml:space="preserve">
-    <value>4</value>
   </data>
   <data name="&gt;&gt;label12.Name" xml:space="preserve">
     <value>label12</value>
