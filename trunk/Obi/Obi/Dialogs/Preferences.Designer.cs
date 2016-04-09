@@ -68,9 +68,9 @@ namespace Obi.Dialogs
             this.m_btnLoadProfile = new System.Windows.Forms.Button();
             this.mColorPreferencesTab = new System.Windows.Forms.TabPage();
             this.m_gpBox_Font = new System.Windows.Forms.GroupBox();
+            this.m_lblChooseFont = new System.Windows.Forms.Label();
             this.m_txtBox_Font = new System.Windows.Forms.TextBox();
             this.m_cb_ChooseFont = new System.Windows.Forms.ComboBox();
-            this.m_lblChooseFont = new System.Windows.Forms.Label();
             this.m_txtBox_HighContrast = new System.Windows.Forms.TextBox();
             this.m_txtBox_Color = new System.Windows.Forms.TextBox();
             this.m_gpBox_ColorsList = new System.Windows.Forms.GroupBox();
@@ -458,6 +458,12 @@ namespace Obi.Dialogs
             this.m_gpBox_Font.Name = "m_gpBox_Font";
             this.m_gpBox_Font.TabStop = false;
             // 
+            // m_lblChooseFont
+            // 
+            resources.ApplyResources(this.m_lblChooseFont, "m_lblChooseFont");
+            this.m_lblChooseFont.Name = "m_lblChooseFont";
+            this.helpProvider1.SetShowHelp(this.m_lblChooseFont, ((bool)(resources.GetObject("m_lblChooseFont.ShowHelp"))));
+            // 
             // m_txtBox_Font
             // 
             resources.ApplyResources(this.m_txtBox_Font, "m_txtBox_Font");
@@ -473,12 +479,6 @@ namespace Obi.Dialogs
             this.m_cb_ChooseFont.Name = "m_cb_ChooseFont";
             this.helpProvider1.SetShowHelp(this.m_cb_ChooseFont, ((bool)(resources.GetObject("m_cb_ChooseFont.ShowHelp"))));
             this.m_cb_ChooseFont.SelectedIndexChanged += new System.EventHandler(this.mChooseFontCombo_SelectedIndexChanged);
-            // 
-            // m_lblChooseFont
-            // 
-            resources.ApplyResources(this.m_lblChooseFont, "m_lblChooseFont");
-            this.m_lblChooseFont.Name = "m_lblChooseFont";
-            this.helpProvider1.SetShowHelp(this.m_lblChooseFont, ((bool)(resources.GetObject("m_lblChooseFont.ShowHelp"))));
             // 
             // m_txtBox_HighContrast
             // 
