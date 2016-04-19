@@ -3669,7 +3669,7 @@ SelectionChangedPlaybackEnabled = false;
                     }
                 }
 
-                if (nextToLastPhrase != null && nextToLastPhrase.Index > 0)//@advanceRecording
+                if (nextToLastPhrase != null && nextToLastPhrase.IsRooted && nextToLastPhrase.Index > 0)//@advanceRecording
                 {
                     SectionNode section = nextToLastPhrase.ParentAs<SectionNode>();
                     mView.SelectFromTransportBar( section.PhraseChild(nextToLastPhrase.Index - 1), null);
