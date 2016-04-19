@@ -3763,7 +3763,7 @@ SelectionChangedPlaybackEnabled = false;
             foreach (PhraseNode n in listOfRecordedPhrases)
             {
                 ObiNode nextObiNode = n.FollowingNode;
-                if (nextObiNode != null && nextObiNode is PhraseNode && !listOfRecordedPhrases.Contains((PhraseNode)nextObiNode))
+                if (nextObiNode != null && nextObiNode is PhraseNode && !listOfRecordedPhrases.Contains((PhraseNode)nextObiNode) && nextObiNode.Parent == n.Parent)
                 {
                     PhraseNode nextPhraseNode = (PhraseNode)nextObiNode;
                     Commands.Node.MergeAudio mergeCmd = new Obi.Commands.Node.MergeAudio(mView, n, nextPhraseNode);
