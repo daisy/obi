@@ -3452,7 +3452,7 @@ namespace Obi.ProjectView
                         int interval = 50;
                         for (int i = 0; i < (PreviewDuration * 2) / interval; i++)
                         {
-                            if (mCurrentPlaylist is PreviewPlaylist && mCurrentPlaylist.State == AudioLib.AudioPlayer.State.Paused && ((PreviewPlaylist)mCurrentPlaylist).IsPreviewComplete)
+                            if (mCurrentPlaylist is PreviewPlaylist && ((PreviewPlaylist)mCurrentPlaylist).IsPreviewComplete)
                             {
                                 //System.Media.SystemSounds.Asterisk.Play();
                                 Console.WriteLine(i);
