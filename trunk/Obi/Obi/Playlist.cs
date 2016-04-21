@@ -939,7 +939,7 @@ namespace Obi
         /// <summary>
         /// Stop.
         /// </summary>
-        public void Stop()
+        public virtual void Stop()
         {
             if (mPlaylistState == AudioPlayer.State.Playing || mPlaylistState == AudioPlayer.State.Paused)
             {
@@ -1457,6 +1457,12 @@ namespace Obi
                     base.Pause () ;
                     }
                 }
+
+        public override void Stop()
+        {
+            base.Stop();
+            m_IsPreviewComplete = true;
+        }
 
 
         protected override void Playlist_MoveToNextPhrase(object sender, AudioPlayer.AudioPlaybackFinishEventArgs e)
