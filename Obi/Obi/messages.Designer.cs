@@ -871,7 +871,7 @@ namespace Obi {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Your project will be saved after cleaning. Do you want to continue?.
+        ///   Looks up a localized string similar to Clean up will save your project and will also clear the undo stack. Do you want to continue?.
         /// </summary>
         internal static string clean_save_text {
             get {
