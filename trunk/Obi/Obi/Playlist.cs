@@ -1455,13 +1455,17 @@ namespace Obi
                     mRevertTime = base.CurrentTimeInAsset ;
                     m_PrimaryNode = base.CurrentPhrase;
                     base.Pause () ;
+                    m_IsPreviewComplete = true;
                     }
                 }
 
         public override void Stop()
         {
-            base.Stop();
-            m_IsPreviewComplete = true;
+            if (State == AudioPlayer.State.Playing || State == AudioPlayer.State.Paused)
+            {
+                base.Stop();
+                m_IsPreviewComplete = true;
+            }
         }
 
 
