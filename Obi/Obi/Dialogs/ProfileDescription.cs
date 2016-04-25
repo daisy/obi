@@ -50,19 +50,16 @@ namespace Obi.Dialogs
             {
                 m_ProfileDescription_WebBrowser.DocumentText = m_ProfileDescription_WebBrowser.Document.GetElementById("Advance").InnerHtml;
             }
+            
             else if (m_ProfileSelectedIndex == 3)
-            {
-                m_ProfileDescription_WebBrowser.DocumentText = m_ProfileDescription_WebBrowser.Document.GetElementById("Profile1").InnerHtml;
-            }
-            else if (m_ProfileSelectedIndex == 4)
             {
                 m_ProfileDescription_WebBrowser.DocumentText = m_ProfileDescription_WebBrowser.Document.GetElementById("Profile2").InnerHtml;
             }
-            else if (m_ProfileSelectedIndex == 5)
+            else if (m_ProfileSelectedIndex == 4)
             {
                 m_ProfileDescription_WebBrowser.DocumentText = m_ProfileDescription_WebBrowser.Document.GetElementById("VA-Insert").InnerHtml;
             }
-            else if (m_ProfileSelectedIndex == 6)
+            else if (m_ProfileSelectedIndex == 5)
             {
                 m_ProfileDescription_WebBrowser.DocumentText = m_ProfileDescription_WebBrowser.Document.GetElementById("VA-Overwrite").InnerHtml;
             }
