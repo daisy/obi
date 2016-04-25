@@ -634,7 +634,7 @@ Error text: {1}</value>
     <comment>Command</comment>
   </data>
   <data name="clean_save_text" xml:space="preserve">
-    <value>Clean up will save your project and will also clear the undo stack. Do you want to continue?</value>
+    <value>This operation will save your project, and you will not be able to do undo for the commands executed till now. Do you want to continue?</value>
     <comment>Confirmation dialog</comment>
   </data>
   <data name="delete_unused" xml:space="preserve">
