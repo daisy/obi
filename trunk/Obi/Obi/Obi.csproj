@@ -2780,10 +2780,7 @@
     <Content Include="profiles\Intermediate.XML">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="profiles\Profile-1-VA.XML">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="profiles\Profile-2-SBS.XML">
+    <Content Include="profiles\Profile-SBS.XML">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="profiles\VA-Insert.XML">

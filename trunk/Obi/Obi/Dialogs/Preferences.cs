@@ -2056,7 +2056,7 @@ namespace Obi.Dialogs
                     m_CheckBoxListView.Items[18].Checked = false;
                     UpdateBoolSettings();
                 }
-                else if (Profile == "Profile-2-SBS.xml" || Profile == "Profile-2-SBS.XML")
+                else if (Profile == "Profile-SBS.xml" || Profile == "Profile-SBS.XML")
                 {
                     m_CheckBoxListView.Items[0].Checked = false;
                     m_CheckBoxListView.Items[1].Checked = true;
