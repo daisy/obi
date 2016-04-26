@@ -296,6 +296,21 @@ namespace Obi.Dialogs
             mOrganizationTextbox.Text = mSettings.UserProfile.Organization;
             mCultureBox.Items.AddRange ( CultureInfo.GetCultures ( CultureTypes.AllCultures ) );
             mCultureBox.SelectedItem = mSettings.UserProfile.Culture;
+
+            if (CultureInfo.CurrentCulture.Name.Contains("en-"))
+            {
+                m_gpBox_Font.Visible =
+m_txtBox_Font.Visible =
+m_lblChooseFont.Visible =
+m_cb_ChooseFont.Visible = true;
+            }
+            else
+            {
+                m_gpBox_Font.Visible =
+m_txtBox_Font.Visible =
+m_lblChooseFont.Visible =
+m_cb_ChooseFont.Visible = false;
+            }
             }
 
         private void InitializeKeyboardShortcutsTab()
