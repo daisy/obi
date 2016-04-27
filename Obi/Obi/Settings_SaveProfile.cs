@@ -20,7 +20,8 @@ namespace Obi
         {
             Settings settingsInstance = new Settings();
             Settings.InitializeDefaultSettings(settingsInstance);
-            FileStream fs = new FileStream(profileFilePath, FileMode.OpenOrCreate);
+            FileStream fs = File.OpenRead(profileFilePath);
+                //, FileMode.Open);
             SoapFormatter soap = new SoapFormatter();
             settingsInstance  = (Settings)soap.Deserialize(fs);
             fs.Close();
