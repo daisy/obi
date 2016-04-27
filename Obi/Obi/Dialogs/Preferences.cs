@@ -152,7 +152,7 @@ namespace Obi.Dialogs
                         if (recorder.InputDevice.Name == input.Name)
                             defaultInputName = input.Name;
                     }
-                    if (mSettings.Audio_LastInputDevice == "")
+                    if (string.IsNullOrEmpty (mSettings.Audio_LastInputDevice ))
                         mInputDeviceCombo.SelectedIndex = 0;
                     //  mInputDeviceCombo.SelectedItem = defaultInputName;
                     else
@@ -169,7 +169,7 @@ namespace Obi.Dialogs
                         if (player.OutputDevice.Name == output.Name)
                             defaultOutputName = output.Name;
                     }
-                    if (mSettings.Audio_LastOutputDevice == "")
+                    if ( string.IsNullOrEmpty (mSettings.Audio_LastOutputDevice))
                         mOutputDeviceCombo.SelectedIndex = 0;
                     //mOutputDeviceCombo.SelectedItem = defaultOutputName;
                     else
