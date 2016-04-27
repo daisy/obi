@@ -2629,7 +2629,7 @@ m_cb_ChooseFont.Visible = false;
                     }
                 }
             }// directory exists check
-            m_cb_SelectProfile.SelectedIndex = 0;
+            //m_cb_SelectProfile.SelectedIndex = 0;
             if (mSettings.Audio_RecordingToolbarProfile1 != null && mSettings.Audio_RecordingToolbarProfile2 != null)
             {
                 int tempIndex = m_cb_Profile1.Items.IndexOf(mSettings.Audio_RecordingToolbarProfile1);
