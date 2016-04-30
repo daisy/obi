@@ -2445,24 +2445,30 @@ m_cb_ChooseFont.Visible = false;
             if (profilePath != null && System.IO.File.Exists(profilePath))
             {
                 Settings saveProfile = Settings.GetSettingsFromSavedProfile(profilePath);
-                
+                string profileName = "";
+                if (m_cb_SelectProfile.SelectedIndex >= 0 && m_cb_SelectProfile.SelectedIndex < m_cb_SelectProfile.Items.Count)
+                {
+                    profileName = m_cb_SelectProfile.SelectedItem.ToString();
+                }
+
+
                 if (m_chkAll.Checked)
                 {
-                    saveProfile.CopyPropertiesToExistingSettings(mForm.Settings, PreferenceProfiles.All, m_cb_SelectProfile.SelectedItem.ToString());
+                    saveProfile.CopyPropertiesToExistingSettings(mForm.Settings, PreferenceProfiles.All, profileName);
                 }
                 else
                 {
                     if (m_chkProject.Checked)
-                        saveProfile.CopyPropertiesToExistingSettings(mForm.Settings, PreferenceProfiles.Project, m_cb_SelectProfile.SelectedItem.ToString());                    
+                        saveProfile.CopyPropertiesToExistingSettings(mForm.Settings, PreferenceProfiles.Project, profileName);                    
 
                     if (m_chkAudio.Checked)
-                        saveProfile.CopyPropertiesToExistingSettings(mForm.Settings, PreferenceProfiles.Audio, m_cb_SelectProfile.SelectedItem.ToString());                    
+                        saveProfile.CopyPropertiesToExistingSettings(mForm.Settings, PreferenceProfiles.Audio, profileName);                    
 
                     if (m_chkLanguage.Checked )
-                        saveProfile.CopyPropertiesToExistingSettings(mForm.Settings, PreferenceProfiles.UserProfile, m_cb_SelectProfile.SelectedItem.ToString());
+                        saveProfile.CopyPropertiesToExistingSettings(mForm.Settings, PreferenceProfiles.UserProfile, profileName);
 
                     if (m_chkColor.Checked )
-                        saveProfile.CopyPropertiesToExistingSettings(mForm.Settings, PreferenceProfiles.Colors, m_cb_SelectProfile.SelectedItem.ToString());
+                        saveProfile.CopyPropertiesToExistingSettings(mForm.Settings, PreferenceProfiles.Colors, profileName);
                 }
                     
                     mSettings = mForm.Settings;
