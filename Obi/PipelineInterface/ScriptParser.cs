@@ -111,6 +111,12 @@ namespace PipelineInterface
             }
             // invoke the script
             string PipelineFilePath = Path.Combine(Directory.GetParent(mScriptFilePath).Parent.FullName, "pipeline-lite.bat");
+            if (IntPtr.Size == 8)
+            {
+                PipelineFilePath = Path.Combine(Directory.GetParent(mScriptFilePath).Parent.FullName, "pipeline-lite32.bat");
+                Console.WriteLine("Invoking pipeline in 32 bit, through pipeline.Pipeline-Lite32");
+            }
+            
             Process PipelineProcess = new Process();
             PipelineProcess.StartInfo.CreateNoWindow = true;
             PipelineProcess.StartInfo.ErrorDialog = true;
