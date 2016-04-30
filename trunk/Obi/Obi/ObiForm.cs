@@ -5833,6 +5833,15 @@ ref string exportDirectoryEPUB3)
                     epubCheckProcess.StartInfo.UseShellExecute = false;
                     
                     epubCheckProcess.StartInfo.FileName = "java.exe";
+                    //if (IntPtr.Size == 8) 
+                    //{
+                        //string java32bitPath = Path.Combine (Directory.GetParent (System.Environment.SystemDirectory).FullName, "SysWOW64\\java.exe");
+                        //if (File.Exists(java32bitPath))
+                        //{
+                            //epubCheckProcess.StartInfo.FileName = java32bitPath;
+                            //Console.WriteLine("EPUBCheck invoked in 32 bit: " + epubCheckProcess.StartInfo.FileName);
+                        //}
+                //}
                     //
                     string strMode =Path.GetExtension(epub3Export).ToLower() == ".epub"? "" : "\" -mode exp -v 3.0";
                     
