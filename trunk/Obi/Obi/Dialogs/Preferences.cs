@@ -1426,12 +1426,13 @@ m_cb_ChooseFont.Visible = false;
 
             m_lvShortcutKeysList.Items.Clear();
             LoadListviewAccordingToComboboxSelection();
+            m_cb_SelectShorcutsProfile.SelectedIndex = -1;
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
             ResetPreferences();
-            m_cb_SelectProfile.SelectedIndex = 0;
+            m_cb_SelectProfile.SelectedIndex = -1;
         }
 
         private void m_txtShortcutKeys_Leave(object sender, EventArgs e)
@@ -2389,6 +2390,8 @@ m_cb_ChooseFont.Visible = false;
             }//if (m_rdb_Preferences.Checked)
             else if (m_rdb_KeyboardShortcuts.Checked)
             {
+
+                string shortcutsPath = GetPathOfSelectedShortcutsComboBox();
                 if (m_cb_SelectShorcutsProfile.SelectedIndex == 0)
                 {
                     mForm.LoadDefaultKeyboardShortcuts();
@@ -2396,11 +2399,12 @@ m_cb_ChooseFont.Visible = false;
 
                     m_lvShortcutKeysList.Items.Clear();
                     LoadListviewAccordingToComboboxSelection();
+                    mForm.KeyboardShortcuts.SettingsName = System.IO.Path.GetFileNameWithoutExtension(shortcutsPath);
+                    if (mForm.KeyboardShortcuts != null && !string.IsNullOrEmpty(mForm.KeyboardShortcuts.SettingsName)) m_txtSelectedShortcutsProfile.Text = mForm.KeyboardShortcuts.SettingsName;
                     MessageBox.Show(Localizer.Message("Preferences_ProfilesShortcutsLoaded"), Localizer.Message("Caption_Information"), MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 else if (m_cb_SelectShorcutsProfile.SelectedIndex >= 0 && m_cb_SelectShorcutsProfile.SelectedIndex < m_cb_SelectShorcutsProfile.Items.Count)
-                {   
-                    string shortcutsPath = GetPathOfSelectedShortcutsComboBox();
+                { 
 
                     try
                     {
@@ -2659,7 +2663,7 @@ m_cb_ChooseFont.Visible = false;
                     }
                 }
             }// directory exists check
-            m_cb_SelectShorcutsProfile.SelectedIndex = 0;
+           // m_cb_SelectShorcutsProfile.SelectedIndex = 0;
         }
 
         private void m_btnAddProfile_Click(object sender, EventArgs e)
