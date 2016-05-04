@@ -2369,14 +2369,18 @@ m_cb_ChooseFont.Visible = false;
 
         private void m_btnLoadProfile_Click(object sender, EventArgs e)
         {
+            LoadProfile();
+        }
+
+        private void LoadProfile()
+        {
+
             if (m_rdb_Preferences.Checked)
             {
                 //For Developer uncomment Use below lines to genarate XML
                 //GenerateProfilesForUpdatedSettingsFile();
                 //return;
 
-
-             
                 string profilePath = GetFilePathOfSelectedPreferencesComboBox();
                 try
                 {
@@ -2404,7 +2408,7 @@ m_cb_ChooseFont.Visible = false;
                     MessageBox.Show(Localizer.Message("Preferences_ProfilesShortcutsLoaded"), Localizer.Message("Caption_Information"), MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 else if (m_cb_SelectShorcutsProfile.SelectedIndex >= 0 && m_cb_SelectShorcutsProfile.SelectedIndex < m_cb_SelectShorcutsProfile.Items.Count)
-                { 
+                {
 
                     try
                     {
@@ -2417,7 +2421,7 @@ m_cb_ChooseFont.Visible = false;
 
                 }
             }//else if (m_rdb_KeyboardShortcuts.Checked)
-         }
+        }
 
         private string GetFilePathOfSelectedPreferencesComboBox()
         {
@@ -2437,9 +2441,14 @@ m_cb_ChooseFont.Visible = false;
 
         private string GetPathOfSelectedShortcutsComboBox()
         {
-            string shortcutsFileName = m_cb_SelectShorcutsProfile.Items[m_cb_SelectShorcutsProfile.SelectedIndex].ToString() + ".xml";
-            string shortcutsPath = System.IO.Path.Combine(GetCustomProfilesDirectory(false), shortcutsFileName);
-            return shortcutsPath;
+            if (m_cb_SelectShorcutsProfile.SelectedIndex != -1)
+            {
+                string shortcutsFileName = m_cb_SelectShorcutsProfile.Items[m_cb_SelectShorcutsProfile.SelectedIndex].ToString() + ".xml";
+                string shortcutsPath = System.IO.Path.Combine(GetCustomProfilesDirectory(false), shortcutsFileName);
+                return shortcutsPath;
+            }
+            else
+                return string.Empty;
         }
 
         private Settings m_ProfileLoaded = null;
@@ -2889,6 +2898,18 @@ m_cb_ChooseFont.Visible = false;
                         if (System.IO.File.Exists(profilePath)
                             && MessageBox.Show(Localizer.Message("Preferences_ConfirmForDeletingProfile"),Localizer.Message("Caption_Warning"), MessageBoxButtons.YesNo,MessageBoxIcon.Warning) == DialogResult.Yes)
                         {
+                            string[] tempstring = new string[] { "for" };
+                            string[] tempSettingName = mSettings.SettingsName.Split(tempstring,StringSplitOptions.None);
+                            string tempProfileToBeRemoved = m_cb_SelectProfile.SelectedItem.ToString() + " " + "profile";
+                            if (tempSettingName[0].Trim() == tempProfileToBeRemoved.Trim())
+                            {
+                                if (MessageBox.Show(Localizer.Message("Preferences_ConfirmDeleteLoadedProfile"), Localizer.Message("Caption_Warning"), MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
+                                {
+                                    m_chkAll.Checked = true;
+                                    m_cb_SelectProfile.SelectedIndex = 0;
+                                    LoadProfile();
+                                }
+                            }
                             System.IO.File.Delete(profilePath);
                             m_cb_SelectProfile.Items.RemoveAt(indexOfCombobox);
                             if (m_cb_Profile1.SelectedIndex == indexOfCombobox)
@@ -2917,6 +2938,14 @@ m_cb_ChooseFont.Visible = false;
                         if (System.IO.File.Exists (shortcutsFilePath )
                             && MessageBox.Show(Localizer.Message("Preferences_ConfirmForDeletingProfile"), Localizer.Message("Caption_Warning"), MessageBoxButtons.YesNo,MessageBoxIcon.Warning) == DialogResult.Yes)
                         {
+                            if (mForm.KeyboardShortcuts.SettingsName == m_cb_SelectShorcutsProfile.SelectedItem.ToString())
+                            {
+                                if (MessageBox.Show(Localizer.Message("Preferences_ConfirmDeleteLoadedProfile"), Localizer.Message("Caption_Warning"), MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
+                                {
+                                    m_cb_SelectShorcutsProfile.SelectedIndex = 0;
+                                    LoadProfile();
+                                }
+                            }
                             System.IO.File.Delete(shortcutsFilePath);
                             m_cb_SelectShorcutsProfile.Items.RemoveAt(indexOfCombobox);
                         }

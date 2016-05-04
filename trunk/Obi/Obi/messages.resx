@@ -2872,4 +2872,7 @@ Error text: {1}</value>
   <data name="CleanupRollBack_AskToProceed" xml:space="preserve">
     <value>The roll back operation will reinstate obi project and audio files to the state that was before the last cleanup. Please note that you can perform roll back only for the last cleanup operation. Do you want to proceed?</value>
   </data>
+  <data name="Preferences_ConfirmDeleteLoadedProfile" xml:space="preserve">
+    <value>You are trying to delete loaded profile.If you proceed default profile will be loaded. Do you wish to continue</value>
+  </data>
 </root>
