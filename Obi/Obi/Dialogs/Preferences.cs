@@ -2906,7 +2906,7 @@ m_cb_ChooseFont.Visible = false;
                             string tempProfileToBeRemoved = m_cb_SelectProfile.SelectedItem.ToString() + " " + "profile";
                             if (tempSettingName[0].Trim() == tempProfileToBeRemoved.Trim())
                             {
-                                MessageBox.Show(Localizer.Message("Preferences_ConfirmDeleteLoadedProfile"));
+                                MessageBox.Show(Localizer.Message("Preferences_ConfirmDeleteLoadedProfile"), Localizer.Message("Caption_Information"),MessageBoxButtons.OK,MessageBoxIcon.Information);
                             }
                             System.IO.File.Delete(profilePath);
                             m_cb_SelectProfile.Items.RemoveAt(indexOfCombobox);
