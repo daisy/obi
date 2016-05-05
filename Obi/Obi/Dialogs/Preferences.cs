@@ -2369,10 +2369,10 @@ m_cb_ChooseFont.Visible = false;
 
         private void m_btnLoadProfile_Click(object sender, EventArgs e)
         {
-            LoadProfile();
+            LoadProfile(false);
         }
 
-        private void LoadProfile()
+        private void LoadProfile(bool DefaultProfileLoadedOnRemovalOfLoadedProfile)
         {
 
             if (m_rdb_Preferences.Checked)
@@ -2405,7 +2405,10 @@ m_cb_ChooseFont.Visible = false;
                     LoadListviewAccordingToComboboxSelection();
                     mForm.KeyboardShortcuts.SettingsName = System.IO.Path.GetFileNameWithoutExtension(shortcutsPath);
                     if (mForm.KeyboardShortcuts != null && !string.IsNullOrEmpty(mForm.KeyboardShortcuts.SettingsName)) m_txtSelectedShortcutsProfile.Text = mForm.KeyboardShortcuts.SettingsName;
-                    MessageBox.Show(Localizer.Message("Preferences_ProfilesShortcutsLoaded"), Localizer.Message("Caption_Information"), MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    if (!DefaultProfileLoadedOnRemovalOfLoadedProfile)
+                    {
+                        MessageBox.Show(Localizer.Message("Preferences_ProfilesShortcutsLoaded"), Localizer.Message("Caption_Information"), MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
                 }
                 else if (m_cb_SelectShorcutsProfile.SelectedIndex >= 0 && m_cb_SelectShorcutsProfile.SelectedIndex < m_cb_SelectShorcutsProfile.Items.Count)
                 {
@@ -2903,12 +2906,7 @@ m_cb_ChooseFont.Visible = false;
                             string tempProfileToBeRemoved = m_cb_SelectProfile.SelectedItem.ToString() + " " + "profile";
                             if (tempSettingName[0].Trim() == tempProfileToBeRemoved.Trim())
                             {
-                                if (MessageBox.Show(Localizer.Message("Preferences_ConfirmDeleteLoadedProfile"), Localizer.Message("Caption_Warning"), MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
-                                {
-                                    m_chkAll.Checked = true;
-                                    m_cb_SelectProfile.SelectedIndex = 0;
-                                    LoadProfile();
-                                }
+                                MessageBox.Show(Localizer.Message("Preferences_ConfirmDeleteLoadedProfile"));
                             }
                             System.IO.File.Delete(profilePath);
                             m_cb_SelectProfile.Items.RemoveAt(indexOfCombobox);
@@ -2940,10 +2938,10 @@ m_cb_ChooseFont.Visible = false;
                         {
                             if (mForm.KeyboardShortcuts.SettingsName == m_cb_SelectShorcutsProfile.SelectedItem.ToString())
                             {
-                                if (MessageBox.Show(Localizer.Message("Preferences_ConfirmDeleteLoadedProfile"), Localizer.Message("Caption_Warning"), MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
+                                if (MessageBox.Show(Localizer.Message("Preferences_ConfirmDeleteLoadedKeyboardProfile"), Localizer.Message("Caption_Warning"), MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
                                 {
                                     m_cb_SelectShorcutsProfile.SelectedIndex = 0;
-                                    LoadProfile();
+                                    LoadProfile(true);
                                 }
                             }
                             System.IO.File.Delete(shortcutsFilePath);

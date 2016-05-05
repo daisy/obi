@@ -5164,7 +5164,16 @@ namespace Obi {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to You are trying to delete loaded profile.If you proceed default profile will be loaded. Do you wish to continue.
+        ///   Looks up a localized string similar to You are trying to delete loaded keyboard shortcuts profile.If you proceed default keyboard shortcuts will be loaded. Do you wish to continue ?.
+        /// </summary>
+        internal static string Preferences_ConfirmDeleteLoadedKeyboardProfile {
+            get {
+                return ResourceManager.GetString("Preferences_ConfirmDeleteLoadedKeyboardProfile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You are trying to delete loaded profile.Please select some other profile..
         /// </summary>
         internal static string Preferences_ConfirmDeleteLoadedProfile {
             get {

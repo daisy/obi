@@ -2873,6 +2873,9 @@ Error text: {1}</value>
     <value>The roll back operation will reinstate obi project and audio files to the state that was before the last cleanup. Please note that you can perform roll back only for the last cleanup operation. Do you want to proceed?</value>
   </data>
   <data name="Preferences_ConfirmDeleteLoadedProfile" xml:space="preserve">
-    <value>You are trying to delete loaded profile.If you proceed default profile will be loaded. Do you wish to continue</value>
+    <value>You are trying to delete loaded profile.Please select some other profile.</value>
+  </data>
+  <data name="Preferences_ConfirmDeleteLoadedKeyboardProfile" xml:space="preserve">
+    <value>You are trying to delete loaded keyboard shortcuts profile.If you proceed default keyboard shortcuts will be loaded. Do you wish to continue ?</value>
   </data>
 </root>
