@@ -412,11 +412,16 @@ m_cb_ChooseFont.Visible = false;
             mHighContrastCombo.SelectedIndex = 0;
             mSettings.ColorSettings.PopulateColorSettingsDictionary();
             LoadListViewWithColors();
-
-            m_cb_ChooseFont.SelectedIndex = mSettings.ObiFontIndex; //@fontconfig
-            if (mSettings.ObiFontIndex == -1) 
+            if (mSettings.ObiFontIndex != -1)
             {
-                m_txtBox_Font.Text = ""; //@fontconfig
+                m_cb_ChooseFont.SelectedIndex = mSettings.ObiFontIndex; //@fontconfig
+            }            
+            if (mSettings.ObiFontIndex == -1) 
+            {                
+                    int indexOfFont = m_cb_ChooseFont.Items.IndexOf(mSettings.ObiFont);
+                    m_cb_ChooseFont.SelectedIndex = indexOfFont; //@fontconfig
+                    m_txtBox_Font.Text = "Obi"; //@fontconfig
+                    m_txtBox_Font.Font = new Font(m_cb_ChooseFont.SelectedItem.ToString(), this.Font.Size, FontStyle.Regular);//@fontconfig               
             }
         }        
 
