@@ -117,6 +117,10 @@ namespace Obi.ProjectView
                 m_IsFineNavigationMode = value;
             }
         }
+        public virtual void SetZoomFactorForHigherResolution(float zoom, int height)
+        {
+
+        }
 
         /// <summary>
         /// Set the zoom factor and the height.
