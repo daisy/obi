@@ -19,6 +19,7 @@ namespace Obi.ProjectView
         private bool mWrap;                  // wrap contents
         private bool m_IsBlocksVisibilityProcessActive; // @phraseLimit
         private int m_OffsetForFirstPhrase = 0;//@singleSection
+        private Rectangle m_ScreenResolution; // Stores screen resolution
 
         private StripCursor m_AnimationCursor;// @zoomwaveform 
         private StripCursor m_TempCursor;// @zoomwaveform 
@@ -29,6 +30,7 @@ namespace Obi.ProjectView
         {
             InitializeComponent();
             this.Disposed += new EventHandler(Strip_Disposed);
+            m_ScreenResolution = Screen.PrimaryScreen.Bounds;
             mBlockLayoutBaseHeight = mBlockLayout.Height;
             mBlockHeight = 0;
             mLabel.Editable = false;
@@ -49,6 +51,12 @@ namespace Obi.ProjectView
             mNode = node;
             Label = mNode.Label;
             mContentView = parent;
+            if (m_ScreenResolution.Width > 800 && m_ScreenResolution.Height > 600)
+            {
+                float widthRatio = (float)Screen.PrimaryScreen.Bounds.Width / 800;
+                float heightRatio = (float)Screen.PrimaryScreen.Bounds.Height / 600;
+                mBlockLayoutBaseHeight = (int)(mBlockLayout.Height * heightRatio);
+             }
             mContentView.SizeChanged += new EventHandler(Resize_View);
             ZoomFactor = mContentView.ZoomFactor;
             AudioScale = mContentView.AudioScale;
@@ -476,6 +484,10 @@ namespace Obi.ProjectView
             int blockIndexToSet =node.Index == 0 && OffsetForFirstPhrase == 1 ? 1:  1 + 2 * (node.Index - OffsetForFirstPhrase );
             mBlockLayout.Controls.SetChildIndex(block, blockIndexToSet);
             AddCursorAtBlockLayoutIndex(blockIndexToSet+1);
+            if (m_ScreenResolution.Width > 800 && m_ScreenResolution.Height > 600)
+            {
+                block.SetZoomFactorForHigherResolution(mContentView.ZoomFactor, mBlockHeight);
+            }
             block.SetZoomFactorAndHeight ( mContentView.ZoomFactor, mBlockHeight );
             block.Cursor = Cursor;
             block.SizeChanged += new EventHandler ( Block_SizeChanged );

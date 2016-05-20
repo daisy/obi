@@ -189,6 +189,10 @@ public void SetWaveformForZoom(PhraseNode node)
                 SetWaveform(mNode as PhraseNode); 
             }
         }
+        public override void SetZoomFactorForHigherResolution(float zoom, int height)
+        {
+            base.SetZoomFactorAndHeight(zoom, height);         
+        }
 
         public override void SetZoomFactorAndHeight(float zoom, int height)
         {
@@ -196,9 +200,9 @@ public void SetWaveformForZoom(PhraseNode node)
             base.SetZoomFactorAndHeight(zoom, height);
             mRecordingLabel.Font = new Font(Font.FontFamily, zoom * tempFontSize, FontStyle.Bold);
 
-            if (zoom <0.9)
+            if (zoom < 0.9)
             {
-                mRecordingLabel.Location = new Point(0, mLabel.Height + mLabel.Location.Y + (mWaveform.Height / 6)); 
+                mRecordingLabel.Location = new Point(0, mLabel.Height + mLabel.Location.Y + (mWaveform.Height / 6));
             }
             else if (zoom < 1.5)
             {
