@@ -23,6 +23,7 @@ namespace Obi.ProjectView
 
         private StripCursor m_AnimationCursor;// @zoomwaveform 
         private StripCursor m_TempCursor;// @zoomwaveform 
+        private Block m_PrevRecBlock; // Stores previous recording Block. It is used for removing color of previous recording phrase.
         /// <summary>
         /// This constructor is used by the designer.
         /// </summary>
@@ -56,7 +57,7 @@ namespace Obi.ProjectView
                 float widthRatio = (float)Screen.PrimaryScreen.Bounds.Width / 800;
                 float heightRatio = (float)Screen.PrimaryScreen.Bounds.Height / 600;
                 mBlockLayoutBaseHeight = (int)(mBlockLayout.Height * heightRatio);
-             }
+            }
             mContentView.SizeChanged += new EventHandler(Resize_View);
             ZoomFactor = mContentView.ZoomFactor;
             AudioScale = mContentView.AudioScale;
@@ -474,6 +475,11 @@ namespace Obi.ProjectView
             Block block = node is PhraseNode ? new AudioBlock ( (PhraseNode)node, this, mContentView.Settings.Project_ShowWaveformInContentView ) : new Block ( node, this );
             if (mBlockLayout.Controls.Count <= 5 && mBlockLayout.Width < mContentView.Width - 50) WrapContents = false; // to make more than 3 phrases visible in merge with empty section.
             mBlockLayout.Controls.Add ( block );
+            if (m_PrevRecBlock != null && RecordingNode != null)
+            {
+                m_PrevRecBlock.UpdateColors();
+            }
+            m_PrevRecBlock = block; 
             //@singleSection: following 2 lines replaced
             //mBlockLayout.Controls.SetChildIndex(block, 1 + 2 * node.Index);
             //AddCursorAtBlockLayoutIndex(2 + 2 * node.Index);
