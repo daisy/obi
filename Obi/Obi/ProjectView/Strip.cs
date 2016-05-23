@@ -52,7 +52,7 @@ namespace Obi.ProjectView
             mNode = node;
             Label = mNode.Label;
             mContentView = parent;
-            if (m_ScreenResolution.Width > 800 && m_ScreenResolution.Height > 600)
+            if (mContentView.Settings.Project_IncreasePhraseHightForHigherResolution && m_ScreenResolution.Width > 800 && m_ScreenResolution.Height > 600)
             {
                 float widthRatio = (float)Screen.PrimaryScreen.Bounds.Width / 800;
                 float heightRatio = (float)Screen.PrimaryScreen.Bounds.Height / 600;
@@ -490,7 +490,7 @@ namespace Obi.ProjectView
             int blockIndexToSet =node.Index == 0 && OffsetForFirstPhrase == 1 ? 1:  1 + 2 * (node.Index - OffsetForFirstPhrase );
             mBlockLayout.Controls.SetChildIndex(block, blockIndexToSet);
             AddCursorAtBlockLayoutIndex(blockIndexToSet+1);
-            if (m_ScreenResolution.Width > 800 && m_ScreenResolution.Height > 600)
+            if (mContentView.Settings.Project_IncreasePhraseHightForHigherResolution && m_ScreenResolution.Width > 800 && m_ScreenResolution.Height > 600)
             {
                 block.SetZoomFactorForHigherResolution(mContentView.ZoomFactor, mBlockHeight);
             }
