@@ -248,6 +248,10 @@ namespace Obi
         [OptionalField]
         public int ObiFontIndex; //@fontconfig
 
+        // for Obi 3.9 beta
+        [OptionalField]
+        public bool Project_IncreasePhraseHightForHigherResolution;
+
         protected static void InitializeDefaultSettings(Settings settings)
         {
             settings.Audio_Channels = 1;
@@ -372,6 +376,8 @@ namespace Obi
             settings.Audio_SaveAudioZoom = false;
             settings.ObiFont = "Microsoft Sans Serif"; //@fontconfig
             settings.ObiFontIndex = -1; //@fontconfig
+            // For Obi 3.9 beta
+            settings.Project_IncreasePhraseHightForHigherResolution = false;
         }
 
         /// <summary>

@@ -1064,6 +1064,7 @@ m_cb_ChooseFont.Visible = false;
                 mSettings.Project_DisableTOCViewCollapse = m_CheckBoxListView.Items[16].Checked;
                 mSettings.Project_MaximizeObi = m_CheckBoxListView.Items[17].Checked;
                 mSettings.Project_VAXhtmlExport = m_CheckBoxListView.Items[18].Checked;
+                mSettings.Project_IncreasePhraseHightForHigherResolution = m_CheckBoxListView.Items[19].Checked;
             }
             if (mTab.SelectedTab == mAudioTab)
             {
@@ -1239,6 +1240,7 @@ m_cb_ChooseFont.Visible = false;
                 m_CheckBoxListView.Items.Add(Localizer.Message("Project_DisableTOCViewCollapse"));
                 m_CheckBoxListView.Items.Add(Localizer.Message("Project_MaximizeObi"));
                 m_CheckBoxListView.Items.Add(Localizer.Message("Project_VAXhtmlExport"));
+                m_CheckBoxListView.Items.Add(Localizer.Message("Project_IncreasePhraseHightForHigherResolution"));
                
                 m_CheckBoxListView.Items[0].Checked = mSettings.Project_OpenLastProject;
                 m_CheckBoxListView.Items[0].ToolTipText = Localizer.Message("ProjectTab_OpenLastProject");
@@ -1278,6 +1280,8 @@ m_cb_ChooseFont.Visible = false;
                 m_CheckBoxListView.Items[17].ToolTipText = Localizer.Message("Project_MaximizeObi");
                 m_CheckBoxListView.Items[18].Checked = mSettings.Project_VAXhtmlExport;
                 m_CheckBoxListView.Items[18].ToolTipText = Localizer.Message("Project_VAXhtmlExport");
+                m_CheckBoxListView.Items[19].Checked = mSettings.Project_IncreasePhraseHightForHigherResolution;
+                m_CheckBoxListView.Items[19].ToolTipText = Localizer.Message("Project_IncreasePhraseHightForHigherResolution");
 
             }
             m_CheckBoxListView.View = View.Details;
@@ -1362,6 +1366,7 @@ m_cb_ChooseFont.Visible = false;
                 mSettings.Project_DisableTOCViewCollapse = m_DefaultSettings.Project_DisableTOCViewCollapse;
                 mSettings.Project_MaximizeObi = m_DefaultSettings.Project_MaximizeObi;
                 mSettings.Project_VAXhtmlExport = m_DefaultSettings.Project_VAXhtmlExport;
+                mSettings.Project_IncreasePhraseHightForHigherResolution = m_DefaultSettings.Project_IncreasePhraseHightForHigherResolution;
                 InitializeProjectTab();
             }
             else if (mTab.SelectedTab == mAudioTab) // Default settings for Audio tab

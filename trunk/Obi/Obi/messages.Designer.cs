@@ -5443,6 +5443,15 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Increase Phrase Hight For Higher Resolution.
+        /// </summary>
+        internal static string Project_IncreasePhraseHightForHigherResolution {
+            get {
+                return ResourceManager.GetString("Project_IncreasePhraseHightForHigherResolution", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Could not create lock file for project at &quot;{0}&quot;: {1}.
         /// </summary>
         internal static string project_lock_error {
