@@ -19,7 +19,7 @@ namespace Obi.ProjectView
         private bool mWrap;                  // wrap contents
         private bool m_IsBlocksVisibilityProcessActive; // @phraseLimit
         private int m_OffsetForFirstPhrase = 0;//@singleSection
-        private Rectangle m_ScreenResolution; // Stores screen resolution
+        private Rectangle m_ScreenResolution; // Stores screen resolution @ScreenResolution
 
         private StripCursor m_AnimationCursor;// @zoomwaveform 
         private StripCursor m_TempCursor;// @zoomwaveform 
@@ -55,7 +55,7 @@ namespace Obi.ProjectView
             if (mContentView.Settings.Project_IncreasePhraseHightForHigherResolution && m_ScreenResolution.Height > 600) //@ScreenResolution
             {
                 float heightRatio = (float)Screen.PrimaryScreen.Bounds.Height / 600; 
-                mBlockLayoutBaseHeight = (int)(mBlockLayout.Height * heightRatio); 
+                mBlockLayoutBaseHeight = (int)(mBlockLayout.Height * heightRatio);
             }
             mContentView.SizeChanged += new EventHandler(Resize_View);
             ZoomFactor = mContentView.ZoomFactor;
@@ -491,9 +491,13 @@ namespace Obi.ProjectView
             AddCursorAtBlockLayoutIndex(blockIndexToSet+1);
             if (mContentView.Settings.Project_IncreasePhraseHightForHigherResolution && m_ScreenResolution.Height > 600) //@ScreenResolution
             {
-                block.SetZoomFactorForHigherResolution(mContentView.ZoomFactor, mBlockHeight);
+                float BlockWidthRatio = (float)Screen.PrimaryScreen.Bounds.Height / 600; 
+                block.SetZoomFactorForHigherResolution(mContentView.ZoomFactor, mBlockHeight, BlockWidthRatio);
             }
-            block.SetZoomFactorAndHeight ( mContentView.ZoomFactor, mBlockHeight );
+            else
+            {
+                block.SetZoomFactorAndHeight(mContentView.ZoomFactor, mBlockHeight);
+            }
             block.Cursor = Cursor;
             block.SizeChanged += new EventHandler ( Block_SizeChanged );
 
