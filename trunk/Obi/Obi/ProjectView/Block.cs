@@ -117,7 +117,7 @@ namespace Obi.ProjectView
                 m_IsFineNavigationMode = value;
             }
         }
-        public virtual void SetZoomFactorForHigherResolution(float zoom, int height)
+        public virtual void SetZoomFactorForHigherResolution(float zoom, int height) //@ScreenResolution
         {
 
         }
