@@ -189,7 +189,7 @@ public void SetWaveformForZoom(PhraseNode node)
                 SetWaveform(mNode as PhraseNode); 
             }
         }
-        public override void SetZoomFactorForHigherResolution(float zoom, int height)
+        public override void SetZoomFactorForHigherResolution(float zoom, int height) //@ScreenResolution
         {
             base.SetZoomFactorAndHeight(zoom, height);         
         }
