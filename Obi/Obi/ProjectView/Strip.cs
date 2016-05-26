@@ -24,6 +24,7 @@ namespace Obi.ProjectView
         private StripCursor m_AnimationCursor;// @zoomwaveform 
         private StripCursor m_TempCursor;// @zoomwaveform 
         private Block m_PrevRecBlock; // Stores previous recording Block. It is used for removing color of previous recording phrase.
+        private const int m_BaseScreenResolution = 768; //@ScreenResolution
         /// <summary>
         /// This constructor is used by the designer.
         /// </summary>
@@ -52,9 +53,9 @@ namespace Obi.ProjectView
             mNode = node;
             Label = mNode.Label;
             mContentView = parent;
-            if (mContentView.Settings.Project_IncreasePhraseHightForHigherResolution && m_ScreenResolution.Height > 600) //@ScreenResolution
+            if (mContentView.Settings.Project_IncreasePhraseHightForHigherResolution && m_ScreenResolution.Height > m_BaseScreenResolution) //@ScreenResolution
             {
-                float heightRatio = (float)Screen.PrimaryScreen.Bounds.Height / 600; 
+                float heightRatio = (float)Screen.PrimaryScreen.Bounds.Height / m_BaseScreenResolution; 
                 mBlockLayoutBaseHeight = (int)(mBlockLayout.Height * heightRatio);
             }
             mContentView.SizeChanged += new EventHandler(Resize_View);
@@ -489,9 +490,9 @@ namespace Obi.ProjectView
             int blockIndexToSet =node.Index == 0 && OffsetForFirstPhrase == 1 ? 1:  1 + 2 * (node.Index - OffsetForFirstPhrase );
             mBlockLayout.Controls.SetChildIndex(block, blockIndexToSet);
             AddCursorAtBlockLayoutIndex(blockIndexToSet+1);
-            if (mContentView.Settings.Project_IncreasePhraseHightForHigherResolution && m_ScreenResolution.Height > 600) //@ScreenResolution
+            if (mContentView.Settings.Project_IncreasePhraseHightForHigherResolution && m_ScreenResolution.Height > m_BaseScreenResolution) //@ScreenResolution
             {
-                float BlockWidthRatio = (float)Screen.PrimaryScreen.Bounds.Height / 600; 
+                float BlockWidthRatio = (float)Screen.PrimaryScreen.Bounds.Height / m_BaseScreenResolution; 
                 block.SetZoomFactorForHigherResolution(mContentView.ZoomFactor, mBlockHeight, BlockWidthRatio);
             }
             else
