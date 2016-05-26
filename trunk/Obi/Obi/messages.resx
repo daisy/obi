@@ -2879,6 +2879,6 @@ Error text: {1}</value>
     <value>You are trying to delete loaded keyboard shortcuts profile.If you proceed default keyboard shortcuts will be loaded. Do you wish to continue ?</value>
   </data>
   <data name="Project_IncreasePhraseHightForHigherResolution" xml:space="preserve">
-    <value>Increase Phrase Hight For Higher Resolution</value>
+    <value>Increase phrase size for higher resolution</value>
   </data>
 </root>
