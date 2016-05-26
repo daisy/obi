@@ -5443,7 +5443,7 @@ namespace Obi {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Increase Phrase Hight For Higher Resolution.
+        ///   Looks up a localized string similar to Increase phrase size for higher resolution.
         /// </summary>
         internal static string Project_IncreasePhraseHightForHigherResolution {
             get {
