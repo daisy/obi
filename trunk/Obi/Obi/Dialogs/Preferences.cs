@@ -1975,6 +1975,7 @@ m_cb_ChooseFont.Visible = false;
                     m_CheckBoxListView.Items[16].Checked = false;
                     m_CheckBoxListView.Items[17].Checked = false;
                     m_CheckBoxListView.Items[18].Checked = false;
+                    m_CheckBoxListView.Items[19].Checked = true;
                     UpdateBoolSettings();
                 }
                 else if (Profile == "Intermediate.xml" || Profile == "Intermediate.XML")
@@ -2028,6 +2029,7 @@ m_cb_ChooseFont.Visible = false;
                     m_CheckBoxListView.Items[16].Checked = false;
                     m_CheckBoxListView.Items[17].Checked = false;
                     m_CheckBoxListView.Items[18].Checked = false;
+                    m_CheckBoxListView.Items[19].Checked = true;
                     UpdateBoolSettings();
                 }
                 else if (Profile == "Advance.xml" || Profile == "Advance.XML")
@@ -2057,7 +2059,7 @@ m_cb_ChooseFont.Visible = false;
                     m_CheckBoxListView.Items[22].Checked = false;
                     m_CheckBoxListView.Items[23].Checked = true;
                     m_CheckBoxListView.Items[24].Checked = false;
-      
+
                     UpdateBoolSettings();
                     mTab.SelectedTab = mProjectTab;
                     m_CheckBoxListView.Items[0].Checked = false;
@@ -2080,6 +2082,7 @@ m_cb_ChooseFont.Visible = false;
                     m_CheckBoxListView.Items[16].Checked = false;
                     m_CheckBoxListView.Items[17].Checked = false;
                     m_CheckBoxListView.Items[18].Checked = false;
+                    m_CheckBoxListView.Items[19].Checked = true;
                     UpdateBoolSettings();
                 }
                 else if (Profile == "Profile-SBS.xml" || Profile == "Profile-SBS.XML")
@@ -2132,66 +2135,67 @@ m_cb_ChooseFont.Visible = false;
                     m_CheckBoxListView.Items[16].Checked = false;
                     m_CheckBoxListView.Items[17].Checked = false;
                     m_CheckBoxListView.Items[18].Checked = false;
-                    UpdateBoolSettings();
-
-
-                }
-                else if (Profile == "Profile-1-VA.xml" || Profile == "Profile-1-VA.XML")
-                {
-
-                    m_CheckBoxListView.Items[0].Checked = false;
-                    m_CheckBoxListView.Items[1].Checked = true;
-                    m_CheckBoxListView.Items[2].Checked = false;
-                    m_CheckBoxListView.Items[3].Checked = true;
-                    m_CheckBoxListView.Items[4].Checked = true;
-                    m_CheckBoxListView.Items[5].Checked = true;
-                    m_CheckBoxListView.Items[6].Checked = true;
-                    m_CheckBoxListView.Items[7].Checked = false;
-                    m_CheckBoxListView.Items[8].Checked = true;
-                    m_CheckBoxListView.Items[9].Checked = true;
-                    m_CheckBoxListView.Items[10].Checked = true;
-                    m_CheckBoxListView.Items[11].Checked = true;
-                    m_CheckBoxListView.Items[12].Checked = true;
-                    m_CheckBoxListView.Items[13].Checked = false;
-                    m_CheckBoxListView.Items[14].Checked = false;
-                    m_CheckBoxListView.Items[15].Checked = false;
-                    m_CheckBoxListView.Items[16].Checked = true;
-                    m_CheckBoxListView.Items[17].Checked = false;
-                    m_CheckBoxListView.Items[18].Checked = true;
                     m_CheckBoxListView.Items[19].Checked = true;
-                    m_CheckBoxListView.Items[20].Checked = false;
-                    m_CheckBoxListView.Items[21].Checked = false;
-                    m_CheckBoxListView.Items[22].Checked = true;
-                    m_CheckBoxListView.Items[23].Checked = false;
-                    m_CheckBoxListView.Items[24].Checked = false;
-
-                    mSettings.Audio_PreviewDuration = 7000;
-
                     UpdateBoolSettings();
-                    mTab.SelectedTab = mProjectTab;
-                    m_CheckBoxListView.Items[0].Checked = false;
-                    m_CheckBoxListView.Items[1].Checked = false;
-                    m_CheckBoxListView.Items[2].Checked = true;
-                    m_CheckBoxListView.Items[3].Checked = true;
-                    m_CheckBoxListView.Items[4].Checked = true;
-                    m_CheckBoxListView.Items[5].Checked = true;
-                    m_CheckBoxListView.Items[6].Checked = true;
-                    m_CheckBoxListView.Items[7].Checked = true;
-                    m_CheckBoxListView.Items[8].Checked = true;
-                    m_CheckBoxListView.Items[9].Checked = false;
 
-                    m_CheckBoxListView.Items[10].Checked = false;
-                    m_CheckBoxListView.Items[11].Checked = false;
-                    m_CheckBoxListView.Items[12].Checked = false;
-                    m_CheckBoxListView.Items[13].Checked = true;
-                    m_CheckBoxListView.Items[14].Checked = true;
-                    m_CheckBoxListView.Items[15].Checked = true;
-                    m_CheckBoxListView.Items[16].Checked = true;
-                    m_CheckBoxListView.Items[17].Checked = true;
-                    m_CheckBoxListView.Items[18].Checked = true;
-                    UpdateBoolSettings();
 
                 }
+                //else if (Profile == "Profile-1-VA.xml" || Profile == "Profile-1-VA.XML")
+                //{
+
+                //    m_CheckBoxListView.Items[0].Checked = false;
+                //    m_CheckBoxListView.Items[1].Checked = true;
+                //    m_CheckBoxListView.Items[2].Checked = false;
+                //    m_CheckBoxListView.Items[3].Checked = true;
+                //    m_CheckBoxListView.Items[4].Checked = true;
+                //    m_CheckBoxListView.Items[5].Checked = true;
+                //    m_CheckBoxListView.Items[6].Checked = true;
+                //    m_CheckBoxListView.Items[7].Checked = false;
+                //    m_CheckBoxListView.Items[8].Checked = true;
+                //    m_CheckBoxListView.Items[9].Checked = true;
+                //    m_CheckBoxListView.Items[10].Checked = true;
+                //    m_CheckBoxListView.Items[11].Checked = true;
+                //    m_CheckBoxListView.Items[12].Checked = true;
+                //    m_CheckBoxListView.Items[13].Checked = false;
+                //    m_CheckBoxListView.Items[14].Checked = false;
+                //    m_CheckBoxListView.Items[15].Checked = false;
+                //    m_CheckBoxListView.Items[16].Checked = true;
+                //    m_CheckBoxListView.Items[17].Checked = false;
+                //    m_CheckBoxListView.Items[18].Checked = true;
+                //    m_CheckBoxListView.Items[19].Checked = true;
+                //    m_CheckBoxListView.Items[20].Checked = false;
+                //    m_CheckBoxListView.Items[21].Checked = false;
+                //    m_CheckBoxListView.Items[22].Checked = true;
+                //    m_CheckBoxListView.Items[23].Checked = false;
+                //    m_CheckBoxListView.Items[24].Checked = false;
+
+                //    mSettings.Audio_PreviewDuration = 7000;
+
+                //    UpdateBoolSettings();
+                //    mTab.SelectedTab = mProjectTab;
+                //    m_CheckBoxListView.Items[0].Checked = false;
+                //    m_CheckBoxListView.Items[1].Checked = false;
+                //    m_CheckBoxListView.Items[2].Checked = true;
+                //    m_CheckBoxListView.Items[3].Checked = true;
+                //    m_CheckBoxListView.Items[4].Checked = true;
+                //    m_CheckBoxListView.Items[5].Checked = true;
+                //    m_CheckBoxListView.Items[6].Checked = true;
+                //    m_CheckBoxListView.Items[7].Checked = true;
+                //    m_CheckBoxListView.Items[8].Checked = true;
+                //    m_CheckBoxListView.Items[9].Checked = false;
+
+                //    m_CheckBoxListView.Items[10].Checked = false;
+                //    m_CheckBoxListView.Items[11].Checked = false;
+                //    m_CheckBoxListView.Items[12].Checked = false;
+                //    m_CheckBoxListView.Items[13].Checked = true;
+                //    m_CheckBoxListView.Items[14].Checked = true;
+                //    m_CheckBoxListView.Items[15].Checked = true;
+                //    m_CheckBoxListView.Items[16].Checked = true;
+                //    m_CheckBoxListView.Items[17].Checked = true;
+                //    m_CheckBoxListView.Items[18].Checked = true;
+                //    UpdateBoolSettings();
+
+                //}
                 else if (Profile == "VA-Insert.xml" || Profile == "VA-Insert.XML")
                 {
 
@@ -2243,6 +2247,7 @@ m_cb_ChooseFont.Visible = false;
                     m_CheckBoxListView.Items[16].Checked = true;
                     m_CheckBoxListView.Items[17].Checked = true;
                     m_CheckBoxListView.Items[18].Checked = true;
+                    m_CheckBoxListView.Items[19].Checked = true;
                     UpdateBoolSettings();
 
                 }
@@ -2296,6 +2301,7 @@ m_cb_ChooseFont.Visible = false;
                     m_CheckBoxListView.Items[16].Checked = true;
                     m_CheckBoxListView.Items[17].Checked = true;
                     m_CheckBoxListView.Items[18].Checked = true;
+                    m_CheckBoxListView.Items[19].Checked = true;
                     UpdateBoolSettings();
 
                 }
