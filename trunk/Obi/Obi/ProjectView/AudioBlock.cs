@@ -200,6 +200,7 @@ public void SetWaveformForZoom(PhraseNode node)
         {
             float tempFontSize = mBaseFontSize + 3;
             base.SetZoomFactorAndHeight(zoom, height);
+            if(zoom != 0)
             mRecordingLabel.Font = new Font(Font.FontFamily, zoom * tempFontSize, FontStyle.Bold);
 
             if (zoom < 0.9)
