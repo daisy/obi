@@ -119,9 +119,9 @@ namespace Obi.Dialogs
             try
             {
 
-                if (mTitleBox.Text == "")
+                if (mTitleBox.Text.Trim() == "")
                 {
-                    MessageBox.Show(Localizer.Message("NewProject_EmptyTitle"));
+                    MessageBox.Show(Localizer.Message("NewProject_EmptyTitle"), Localizer.Message("EmptyProjectTitle_error_Caption"),MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
                 ObiForm.CheckProjectPath(mFileBox.Text, true);

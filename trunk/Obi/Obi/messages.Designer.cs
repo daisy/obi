@@ -1999,6 +1999,15 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to No Project Title.
+        /// </summary>
+        internal static string EmptyProjectTitle_error_Caption {
+            get {
+                return ResourceManager.GetString("EmptyProjectTitle_error_Caption", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Enable Advanced Recording .
         /// </summary>
         internal static string EnableAdvancedRecording {
