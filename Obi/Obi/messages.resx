@@ -2881,4 +2881,7 @@ Error text: {1}</value>
   <data name="Project_IncreasePhraseHightForHigherResolution" xml:space="preserve">
     <value>Increase phrase size for higher resolution</value>
   </data>
+  <data name="EmptyProjectTitle_error_Caption" xml:space="preserve">
+    <value>No Project Title</value>
+   </data>
 </root>
