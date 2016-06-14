@@ -2884,4 +2884,13 @@ Error text: {1}</value>
   <data name="EmptyProjectTitle_error_Caption" xml:space="preserve">
     <value>No Project Title</value>
    </data>
+  <data name="no_audio_Caption" xml:space="preserve">
+    <value>No Audio</value>
+   </data>
+    <data name="CheckUpdates_NewVersionNotAvailable_Caption" xml:space="preserve">
+    <value>New Version Available</value>
+  </data>
+  <data name="no_primary_export_directory_Caption" xml:space="preserve">
+    <value>No export directory</value>
+  </data>
 </root>

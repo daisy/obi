@@ -779,7 +779,7 @@ m_cb_ChooseFont.Visible = false;
             {
                 if( m_KeyboardShortcuts.IsDuplicate(m_CapturedKey))
                 {
-                    MessageBox.Show(Localizer.Message("KeyboardShortcut_DuplicateMessage"), Localizer.Message ("Caption_Error"));
+                    MessageBox.Show(Localizer.Message("KeyboardShortcut_DuplicateMessage"), Localizer.Message ("Caption_Error"),MessageBoxButtons.OK,MessageBoxIcon.Warning);
                     m_CapturedKey = Keys.None;
                     ShowSelectedShortcutKeyInKeyboardShortcutTextbox();
                     m_txtShortcutKeys.Focus();

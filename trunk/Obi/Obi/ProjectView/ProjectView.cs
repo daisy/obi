@@ -1085,7 +1085,7 @@ namespace Obi.ProjectView
                         }
                     }
                     MessageBox.Show(phrasesDeleted? Localizer.Message("UnusedPhrasesDeletedFromProject"): Localizer.Message("DeleteUnused_NoUnusedPhraseFoundToDelete"), 
-                        Localizer.Message("UnusedPhrasesDeletedCaption"), MessageBoxButtons.OK);
+                        Localizer.Message("UnusedPhrasesDeletedCaption"), MessageBoxButtons.OK,MessageBoxIcon.Information);
                 }
             }
 
@@ -5411,7 +5411,7 @@ for (int j = 0;
             double durationOfSelection = DurationOfNodeSelected(nodeSelected);
             if (durationOfSelection == 0)
             {
-                MessageBox.Show(Localizer.Message("no_audio"));
+                MessageBox.Show(Localizer.Message("no_audio"),Localizer.Message("no_audio_Caption"),MessageBoxButtons.OK,MessageBoxIcon.Information);
                 return;
             }
             
@@ -5666,7 +5666,7 @@ if (CanExportSelectedNodeAudio)
     double durationOfSelection = DurationOfNodeSelected(nodeToSelect);
     if (durationOfSelection == 0)
     {
-        MessageBox.Show(Localizer.Message("no_audio"));
+        MessageBox.Show(Localizer.Message("no_audio"), Localizer.Message("no_audio_Caption"), MessageBoxButtons.OK, MessageBoxIcon.Information);
         return;
     }
     bool SelectionChangedPlaybackEnabled = mTransportBar.SelectionChangedPlaybackEnabled;
@@ -5756,7 +5756,7 @@ if (CanExportSelectedNodeAudio)
                 double durationOfSelection = DurationOfNodeSelected(nodeToSelect);
                 if (durationOfSelection == 0)
                 {
-                    MessageBox.Show(Localizer.Message("no_audio"));
+                    MessageBox.Show(Localizer.Message("no_audio"), Localizer.Message("no_audio_Caption"), MessageBoxButtons.OK, MessageBoxIcon.Information);
                     return;
                 }
                 Dictionary<ObiNode, string> dictionaryOfFilePaths = new Dictionary<ObiNode, string>();

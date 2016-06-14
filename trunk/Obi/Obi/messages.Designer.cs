@@ -817,6 +817,15 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to New Version Available.
+        /// </summary>
+        internal static string CheckUpdates_NewVersionNotAvailable_Caption {
+            get {
+                return ResourceManager.GetString("CheckUpdates_NewVersionNotAvailable_Caption", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Obi Help.chm.
         /// </summary>
         internal static string CHMhelp_file_name {
@@ -4173,6 +4182,15 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to No Audio.
+        /// </summary>
+        internal static string no_audio_Caption {
+            get {
+                return ResourceManager.GetString("no_audio_Caption", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to No audio devices found.
         /// </summary>
         internal static string no_device_found_caption {
@@ -4278,6 +4296,15 @@ namespace Obi {
         internal static string no_primary_export_directory {
             get {
                 return ResourceManager.GetString("no_primary_export_directory", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to No export directory.
+        /// </summary>
+        internal static string no_primary_export_directory_Caption {
+            get {
+                return ResourceManager.GetString("no_primary_export_directory_Caption", resourceCulture);
             }
         }
         
