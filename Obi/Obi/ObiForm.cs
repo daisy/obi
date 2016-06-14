@@ -5665,7 +5665,7 @@ ref string exportDirectoryEPUB3)
             {
                 if (m_FlagLangUpdate == false)
                 {
-                    MessageBox.Show(Localizer.Message("Language_Pack_Select"), Localizer.Message("Language_Pack_Select_Caption"));
+                    MessageBox.Show(Localizer.Message("Language_Pack_Select"), Localizer.Message("Language_Pack_Select_Caption"),MessageBoxButtons.OK,MessageBoxIcon.Information);
                 }
                 OpenFileDialog select_File = new OpenFileDialog();
                 select_File.Filter = "(*.zip)|*.zip";
@@ -5962,7 +5962,7 @@ ref string exportDirectoryEPUB3)
                 }
                 else
                 {
-                    MessageBox.Show(Localizer.Message("no_primary_export_directory"));
+                    MessageBox.Show(Localizer.Message("no_primary_export_directory"), Localizer.Message("no_primary_export_directory_Caption"),MessageBoxButtons.OK,MessageBoxIcon.Information);
                 }
                 if (epubValidator.ShowDialog() == DialogResult.OK)
                 {

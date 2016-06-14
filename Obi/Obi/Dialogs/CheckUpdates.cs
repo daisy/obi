@@ -89,8 +89,8 @@ namespace Obi.Dialogs
                         Console.WriteLine("New version is available");
                     }
                     else if (!m_IsAutomaticUpdate)
-                    {   
-                        MessageBox.Show(string.Format( Localizer.Message("CheckUpdates_NewVersionNotAvailable"),m_Settings.Project_LatestVersionCheckedByUpdate ));
+                    {
+                        MessageBox.Show(string.Format(Localizer.Message("CheckUpdates_NewVersionNotAvailable"), m_Settings.Project_LatestVersionCheckedByUpdate), Localizer.Message("CheckUpdates_NewVersionNotAvailable_Caption"), MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
                 }
                 catch (System.Exception ex)
