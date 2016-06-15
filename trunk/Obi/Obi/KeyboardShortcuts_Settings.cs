@@ -59,8 +59,8 @@ namespace Obi
         public KeyboardShortcut ZoomPanel_ZoomIn = new KeyboardShortcut(Keys.Alt | Keys.Oemplus, "KeyS_ZoomInWaveform");
         public KeyboardShortcut ZoomPanel_ZoomOut = new KeyboardShortcut(Keys.Alt | Keys.OemMinus, "KeyS_ZoomOutWaveform");
         public KeyboardShortcut ZoomPanel_ZoomSelection = new KeyboardShortcut(Keys.Alt | Keys.S, "KeyS_ZoomSelectedWaveform");
-        public KeyboardShortcut ZoomPanel_NextPhrase = new KeyboardShortcut(Keys.Alt | Keys.N, "KeyS_NextPhrase");
-        public KeyboardShortcut ZoomPanel_PreviousPhrase = new KeyboardShortcut(Keys.Alt | Keys.P, "KeyS_PreviousPhrase");
+        public KeyboardShortcut ZoomPanel_NextPhrase = new KeyboardShortcut(Keys.Alt | Keys.Right, "KeyS_NextPhrase");
+        public KeyboardShortcut ZoomPanel_PreviousPhrase = new KeyboardShortcut(Keys.Alt | Keys.Left, "KeyS_PreviousPhrase");
 
         // playback shortcuts.
 
