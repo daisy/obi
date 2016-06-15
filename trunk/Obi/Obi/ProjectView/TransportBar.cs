@@ -4378,6 +4378,14 @@ SelectionChangedPlaybackEnabled = false;
                 int index = filePathsList.IndexOf(ProfileName);
 
                 LoadProfile(m_filePaths[index],ProfileName);
+                List<string> installedTTSVoices = Obi.Audio.AudioFormatConverter.InstalledTTSVoices;
+                if (installedTTSVoices != null && installedTTSVoices.Count > 0)
+                {
+                    if (!installedTTSVoices.Contains(mView.ObiForm.Settings.Audio_TTSVoice))
+                    {
+                        mView.ObiForm.Settings.Audio_TTSVoice = installedTTSVoices[0];
+                    }
+                }
             }          
         }
         public void InitializeTooltipsForTransportpar()
