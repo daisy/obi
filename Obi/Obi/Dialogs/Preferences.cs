@@ -233,9 +233,17 @@ namespace Obi.Dialogs
                     else
                     {
                         int ttsIndex = installedTTSVoices.IndexOf(mSettings.Audio_TTSVoice);
-                        if (ttsIndex >= 0) mTTSvoiceCombo.SelectedIndex = ttsIndex;
+                        if (ttsIndex >= 0)
+                        {
+                            mTTSvoiceCombo.SelectedIndex = ttsIndex;
+                        }
+                        else
+                        {
+                            if (mTTSvoiceCombo.Items.Count > 0) mTTSvoiceCombo.SelectedIndex = 0;
+                        }
                     }
                 }
+               
                 
             }
             catch (System.Exception ex)
@@ -2385,7 +2393,7 @@ m_cb_ChooseFont.Visible = false;
 
         private void m_btnLoadProfile_Click(object sender, EventArgs e)
         {
-            LoadProfile(false);
+            LoadProfile(false);        
         }
 
         private void LoadProfile(bool DefaultProfileLoadedOnRemovalOfLoadedProfile)
