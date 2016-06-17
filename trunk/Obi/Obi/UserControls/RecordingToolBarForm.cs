@@ -1315,7 +1315,7 @@ namespace Obi.UserControls
         {
             UpdateButtons();
             if (m_ProjectView.ObiForm.Settings.Audio_AllowOverwrite
-                && m_ProjectView.ObiForm.Settings.Audio_AlwaysMonitorRecordingToolBar)
+                && m_ProjectView.ObiForm.Settings.Audio_AlwaysMonitorRecordingToolBar && !m_ProjectView.IsZoomWaveformActive)
             {
                 if (m_ProjectView.Presentation != null)
                 {
