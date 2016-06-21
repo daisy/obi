@@ -1152,6 +1152,18 @@ namespace Obi.ProjectView
                 }
             }
 
+
+        public Strip ActiveStrip
+        {
+            get
+            {
+                if (mContentView.ActiveStrip != null)
+                {
+                    return mContentView.ActiveStrip;
+                }
+                else return null;
+            }
+        }
         /// <summary>
         /// Show the selection (if any) in the TOC view, and focus on this view.
         /// </summary>
