@@ -5524,6 +5524,15 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to  You need to remove check from &quot;Open Obi in maximize state&quot; to save location and size of Obi.So do you want to remove it now?(Recommended).
+        /// </summary>
+        internal static string Project_MessageBoxToCheckMaximizeObi {
+            get {
+                return ResourceManager.GetString("Project_MessageBoxToCheckMaximizeObi", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Do not minimize Obi with activation of Recording Toolbar.
         /// </summary>
         internal static string Project_MinimizeObi {

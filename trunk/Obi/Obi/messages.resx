@@ -2893,4 +2893,7 @@ Error text: {1}</value>
   <data name="no_primary_export_directory_Caption" xml:space="preserve">
     <value>No export directory</value>
   </data>
+  <data name="Project_MessageBoxToCheckMaximizeObi" xml:space="preserve">
+    <value> You need to remove check from "Open Obi in maximize state" to save location and size of Obi.So do you want to remove it now?(Recommended)</value>
+  </data>
 </root>

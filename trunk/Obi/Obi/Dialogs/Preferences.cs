@@ -1019,7 +1019,6 @@ m_cb_ChooseFont.Visible = false;
                 {
                     MessageBox.Show(string.Format(Localizer.Message("AudioPref_LivePhraseDetectionEnable"), mSettings.Audio_DefaultThreshold, mSettings.Audio_DefaultGap,mSettings.Audio_DefaultLeadingSilence )) ;
                 }
-
                 if (e.Item.Text == Localizer.Message("Audio_SaveAudioZoom") && !e.Item.Checked)
                 {
                     mSettings.Audio_AudioScale = 0.01f;
@@ -1064,7 +1063,16 @@ m_cb_ChooseFont.Visible = false;
                 }
                 mSettings.Project_Export_AlwaysIgnoreIndentation= m_CheckBoxListView.Items[9].Checked;
                 mSettings.Project_BackgroundColorForEmptySection = m_CheckBoxListView.Items[10].Checked;
+                bool tempSaveObiLocationAndSize = mSettings.Project_SaveObiLocationAndSize;
                 mSettings.Project_SaveObiLocationAndSize = m_CheckBoxListView.Items[11].Checked;
+                if (!tempSaveObiLocationAndSize && mSettings.Project_SaveObiLocationAndSize)
+                {
+                    DialogResult dr = MessageBox.Show(Localizer.Message("Project_MessageBoxToCheckMaximizeObi"), "?", MessageBoxButtons.YesNo);
+                    if (dr == DialogResult.Yes)
+                    {
+                        m_CheckBoxListView.Items[17].Checked = false;
+                    }
+                }
                 mSettings.Project_PeakMeterChangeLocation = m_CheckBoxListView.Items[12].Checked;
                 mSettings.Project_EPUBCheckTimeOutEnabled = m_CheckBoxListView.Items[13].Checked;
                 mSettings.Project_MinimizeObi = m_CheckBoxListView.Items[14].Checked;
