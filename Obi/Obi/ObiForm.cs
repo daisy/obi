@@ -4782,19 +4782,22 @@ ref string exportDirectoryEPUB3)
                     ProjectView.Strip strip = mProjectView.StripForSelection;
                     if (strip == null)
                     {
-                        AudioScale /= AUDIO_SCALE_INCREMENT;
+                        if (mProjectView.ActiveStrip != null)
+                        {
+                            strip = mProjectView.ActiveStrip;
+                        }
+                        else
+                        {
+                            AudioScale /= AUDIO_SCALE_INCREMENT;
+                        }
                     }
-                    else if (strip.AudioScale > 0.002f)
+                    if (strip.AudioScale > 0.002f)
                     {
                         strip.AudioScale /= AUDIO_SCALE_INCREMENT;
                         if (mSettings.Audio_SaveAudioZoom)
                         {
                             mSettings.Audio_AudioScale = strip.AudioScale;
-                        }
-                        else
-                        {
-                            mSettings.Audio_AudioScale = 0.01f;
-                        }
+                        }            
                     }
                 }
                 else
