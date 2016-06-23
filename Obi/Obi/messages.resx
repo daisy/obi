@@ -2894,6 +2894,6 @@ Error text: {1}</value>
     <value>No export directory</value>
   </data>
   <data name="Project_MessageBoxToCheckMaximizeObi" xml:space="preserve">
-    <value> You need to remove check from "Open Obi in maximize state" to save location and size of Obi.So do you want to remove it now?(Recommended)</value>
+    <value> For enabling this setting you need to uncheck "Open Obi in maximize state". Do you want to continue?(Recommended)</value>
   </data>
 </root>

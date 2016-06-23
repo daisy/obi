@@ -1067,7 +1067,7 @@ m_cb_ChooseFont.Visible = false;
                 mSettings.Project_SaveObiLocationAndSize = m_CheckBoxListView.Items[11].Checked;
                 if (!tempSaveObiLocationAndSize && mSettings.Project_SaveObiLocationAndSize)
                 {
-                    DialogResult dr = MessageBox.Show(Localizer.Message("Project_MessageBoxToCheckMaximizeObi"), "?", MessageBoxButtons.YesNo);
+                    DialogResult dr = MessageBox.Show(Localizer.Message("Project_MessageBoxToCheckMaximizeObi"), Localizer.Message("Caption_Information"), MessageBoxButtons.YesNo,MessageBoxIcon.Information);
                     if (dr == DialogResult.Yes)
                     {
                         m_CheckBoxListView.Items[17].Checked = false;

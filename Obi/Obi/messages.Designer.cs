@@ -5524,7 +5524,7 @@ namespace Obi {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to  You need to remove check from &quot;Open Obi in maximize state&quot; to save location and size of Obi.So do you want to remove it now?(Recommended).
+        ///   Looks up a localized string similar to  For enabling this setting you need to uncheck &quot;Open Obi in maximize state&quot;. Do you want to continue?(Recommended).
         /// </summary>
         internal static string Project_MessageBoxToCheckMaximizeObi {
             get {
