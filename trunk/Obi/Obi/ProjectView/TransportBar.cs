@@ -661,6 +661,7 @@ namespace Obi.ProjectView
             mRecorder.StateChanged += new AudioLib.AudioRecorder.StateChangedHandler(Recorder_StateChanged);
             mVuMeter = new AudioLib.VuMeter(mPlayer, mRecorder);
             mVUMeterPanel.VuMeter = mVuMeter;
+            mRecorder.CircularBufferNotificationTimerMessage += new AudioLib.AudioRecorder.CircularBufferNotificationTimerMessageHandler(LogRecorderMissedNotificationMsg);
         }
 
         // Initialize playlists
@@ -4822,6 +4823,14 @@ m_MonitorContinuouslyWorker.RunWorkerAsync();
         private void mTransportBarTooltip_Popup(object sender, PopupEventArgs e)//@fontconfig
         {
             e.ToolTipSize = TextRenderer.MeasureText(mTransportBarTooltip.ToolTipTitle + "\n" + mTransportBarTooltip.GetToolTip(e.AssociatedControl), new Font(mView.ObiForm.Settings.ObiFont, this.Font.Size));
+        }
+
+        private void LogRecorderMissedNotificationMsg(object sender, AudioLib.AudioRecorder.CircularBufferNotificationTimerMessageEventArgs e)
+        {
+            if (e != null && !string.IsNullOrEmpty(e.Msg))
+            {
+                mView.WriteToLogFile(e.Msg);
+            }
         }
 
     }
