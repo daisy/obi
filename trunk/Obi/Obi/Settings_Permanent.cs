@@ -97,9 +97,10 @@ namespace Obi
 
                 public static string GetSettingFilePath()
         {
-            string appDataDir = System.Environment.GetFolderPath(System.Environment.SpecialFolder.ApplicationData);
-            string obiSettingsDir = System.IO.Path.Combine(appDataDir, "Obi");
-            if (!System.IO.Directory.Exists(obiSettingsDir)) System.IO.Directory.CreateDirectory(obiSettingsDir);
+            //string appDataDir = System.Environment.GetFolderPath(System.Environment.SpecialFolder.ApplicationData);
+            //string obiSettingsDir = System.IO.Path.Combine(appDataDir, "Obi");
+            //if (!System.IO.Directory.Exists(obiSettingsDir)) System.IO.Directory.CreateDirectory(obiSettingsDir);
+            string obiSettingsDir = Program.GetObiRoamingUserDirectory();
             string permanentSettingsPath = System.IO.Path.Combine(obiSettingsDir, SETTINGS_FILE_NAME);
             return permanentSettingsPath;
         }

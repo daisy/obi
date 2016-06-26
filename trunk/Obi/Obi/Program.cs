@@ -128,5 +128,14 @@ namespace Obi
             safe = Regex.Replace ( safe, ",", "_" );
             return safe;
         }
+
+        public static string GetObiRoamingUserDirectory()
+        {
+            string appDataDir = System.Environment.GetFolderPath(System.Environment.SpecialFolder.ApplicationData);
+            string obiRoamingDir = System.IO.Path.Combine(appDataDir, "Obi");
+            if (!System.IO.Directory.Exists(obiRoamingDir)) System.IO.Directory.CreateDirectory(obiRoamingDir);
+            return obiRoamingDir;
+        }
+
     }
 }
