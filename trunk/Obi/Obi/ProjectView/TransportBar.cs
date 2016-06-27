@@ -1673,6 +1673,13 @@ namespace Obi.ProjectView
 
                 // makes phrase blocks invisible if these exceed max. visible blocks count during recording
                 //mView.MakeOldStripsBlocksInvisible ( true); // @phraseLimit :@singleSection: legagy code commented
+
+                // missed recorder notifications messages are written to log, if any
+                if (m_MissedNotificationMessages != null && m_MissedNotificationMessages.Length > 1)
+                {
+                    WriteLogMsgForRecorderMissedNotification();
+                }
+
                 //@MonitorContinuously
                 if (MonitorContinuously)
                 {
@@ -3591,6 +3598,11 @@ SelectionChangedPlaybackEnabled = false;
             mResumeRecordingPhrase = null;
 
             }
+            // missed recorder notification messages are written to log, if any
+            if (m_MissedNotificationMessages != null && m_MissedNotificationMessages.Length > 1)
+            {
+                WriteLogMsgForRecorderMissedNotification();
+            }
 
             if (MonitorContinuously)
             {
@@ -4825,13 +4837,30 @@ m_MonitorContinuouslyWorker.RunWorkerAsync();
             e.ToolTipSize = TextRenderer.MeasureText(mTransportBarTooltip.ToolTipTitle + "\n" + mTransportBarTooltip.GetToolTip(e.AssociatedControl), new Font(mView.ObiForm.Settings.ObiFont, this.Font.Size));
         }
 
+        private System.Text.StringBuilder m_MissedNotificationMessages = new System.Text.StringBuilder();
         private void LogRecorderMissedNotificationMsg(object sender, AudioLib.AudioRecorder.CircularBufferNotificationTimerMessageEventArgs e)
         {
             if (e != null && !string.IsNullOrEmpty(e.Msg))
             {
-                mView.WriteToLogFile(e.Msg);
+                m_MissedNotificationMessages.AppendLine(e.Msg);
+                if (m_MissedNotificationMessages != null &&  m_MissedNotificationMessages.Length > 4000)
+                {
+                    WriteLogMsgForRecorderMissedNotification();
+                }
             }
         }
+
+        private void WriteLogMsgForRecorderMissedNotification ()
+        {
+            if (m_MissedNotificationMessages != null &&  m_MissedNotificationMessages.Length > 0)
+            {
+                m_MissedNotificationMessages.AppendLine("adding next set of missed notification messages");
+                mView.WriteToLogFile(m_MissedNotificationMessages.ToString());
+                m_MissedNotificationMessages = null;
+                m_MissedNotificationMessages = new System.Text.StringBuilder();
+            }
+        }
+
 
     }
 }
