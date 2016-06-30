@@ -1,6 +1,6 @@
 <SOAP-ENV:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/" xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:clr="http://schemas.microsoft.com/soap/encoding/clr/1.0" SOAP-ENV:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">
 <SOAP-ENV:Body>
-<a1:Settings id="ref-1" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.8.3.31258%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
+<a1:Settings id="ref-1" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.8.3.36546%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
 <Audio_AllowOverwrite>true</Audio_AllowOverwrite>
 <Audio_Recording_PreviewBeforeStarting>false</Audio_Recording_PreviewBeforeStarting>
 <Audio_Recording_ReplaceAfterCursor>false</Audio_Recording_ReplaceAfterCursor>
@@ -18,7 +18,7 @@
 <Project_DefaultPath id="ref-7"></Project_DefaultPath>
 <FontSize>10</FontSize>
 <Audio_LastInputDevice id="ref-8">Primary Sound Capture Driver</Audio_LastInputDevice>
-<LastOpenProject id="ref-9">C:\Users\Rohit\Documents\Test pages\project.obi</LastOpenProject>
+<LastOpenProject id="ref-9">C:\Users\Rohit\Documents\For Phrase Detection 3.9\project.obi</LastOpenProject>
 <Audio_LastOutputDevice id="ref-10">Primary Sound Driver</Audio_LastOutputDevice>
 <MaxPhraseDurationMinutes>10</MaxPhraseDurationMinutes>
 <ImportCharCountToTruncateFromStart>4</ImportCharCountToTruncateFromStart>
@@ -36,7 +36,7 @@
 <Project_LatestVersionCheckedByUpdate id="ref-13">3.8.3.24245</Project_LatestVersionCheckedByUpdate>
 <PlayIfNoSelection>true</PlayIfNoSelection>
 <PlayOnNavigate>false</PlayOnNavigate>
-<Audio_PreviewDuration>7000</Audio_PreviewDuration>
+<Audio_PreviewDuration>1500</Audio_PreviewDuration>
 <Audio_ElapseBackTimeInMilliseconds>1500</Audio_ElapseBackTimeInMilliseconds>
 <RecentProjects href="#ref-14"/>
 <Audio_SampleRate>44100</Audio_SampleRate>
@@ -112,14 +112,14 @@
 <Audio_EnsureCursorVisibilityInUndoOfSplitRecording>false</Audio_EnsureCursorVisibilityInUndoOfSplitRecording>
 <Project_VAXhtmlExport>false</Project_VAXhtmlExport>
 <Project_DisableRollBackForCleanUp>true</Project_DisableRollBackForCleanUp>
-<SettingsName id="ref-28">Basic profile for  audio, colors preferences</SettingsName>
+<SettingsName id="ref-28">Basic profile for  project, colors preferences</SettingsName>
 <Audio_PreventSplittingPages>true</Audio_PreventSplittingPages>
 <Audio_SaveAudioZoom>false</Audio_SaveAudioZoom>
 <ObiFont id="ref-29">Microsoft Sans Serif</ObiFont>
 <ObiFontIndex>3</ObiFontIndex>
 <Project_IncreasePhraseHightForHigherResolution>false</Project_IncreasePhraseHightForHigherResolution>
 </a1:Settings>
-<a1:ColorSettings id="ref-5" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.8.3.31258%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
+<a1:ColorSettings id="ref-5" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.8.3.36546%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
 <BlockBackColor_Custom>
 <name xsi:null="1"/>
 <value>0</value>
@@ -433,7 +433,7 @@
 <state>1</state>
 </HighlightedSectionNodeWithoutSelectionColor>
 </a1:ColorSettings>
-<a1:ColorSettings id="ref-6" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.8.3.31258%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
+<a1:ColorSettings id="ref-6" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.8.3.36546%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
 <BlockBackColor_Custom>
 <name xsi:null="1"/>
 <value>0</value>
@@ -750,9 +750,9 @@
 <a3:ArrayList id="ref-14" xmlns:a3="http://schemas.microsoft.com/clr/ns/System.Collections">
 <_items href="#ref-31"/>
 <_size>5</_size>
-<_version>681</_version>
+<_version>705</_version>
 </a3:ArrayList>
-<a1:UserProfile id="ref-15" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.8.3.31258%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
+<a1:UserProfile id="ref-15" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.8.3.36546%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
 <Name href="#ref-7"/>
 <Organization href="#ref-7"/>
 <Culture href="#ref-32"/>
@@ -783,7 +783,7 @@
 </SOAP-ENC:Array>
 <SOAP-ENC:Array id="ref-31" SOAP-ENC:arrayType="xsd:anyType[8]">
 <item href="#ref-9"/>
-<item id="ref-33" xsi:type="SOAP-ENC:string">C:\Users\Rohit\Documents\For Phrase Detection 3.9\project.obi</item>
+<item id="ref-33" xsi:type="SOAP-ENC:string">C:\Users\Rohit\Documents\Test pages\project.obi</item>
 <item id="ref-34" xsi:type="SOAP-ENC:string">C:\Users\Rohit\Documents\The Countries_ New Zealand\project.obi</item>
 <item id="ref-35" xsi:type="SOAP-ENC:string">C:\Users\Rohit\Documents\ARE YOU READY\project.obi</item>
 <item id="ref-36" xsi:type="SOAP-ENC:string">C:\Users\Rohit\Documents\For error message box\project.obi</item>
