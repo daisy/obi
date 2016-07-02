@@ -409,7 +409,7 @@ namespace Obi
             if (!m_Settings.Audio_EnableLivePhraseDetection ) return;//letsverify with on the fly phrase detection first
             // todo : associate this function to recorder VuMeter events
             int overlapLength = 0;
-            int msLentth = Convert.ToInt32(mRecorder.RecordingPCMFormat.SampleRate * mRecorder.RecordingPCMFormat.BlockAlign * 3); // 3 seconds
+            int msLentth = Convert.ToInt32(mRecorder.RecordingPCMFormat.SampleRate * mRecorder.RecordingPCMFormat.BlockAlign * 30); // 30 seconds
             if (mRecorder.RecordingPCMFormat != null )
             {
                 //@overlap: overlapLength = Convert.ToInt32(0.250 * (mRecorder.RecordingPCMFormat.BlockAlign * mRecorder.RecordingPCMFormat.SampleRate));
