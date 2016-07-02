@@ -409,7 +409,7 @@ namespace Obi
             if (!m_Settings.Audio_EnableLivePhraseDetection ) return;//letsverify with on the fly phrase detection first
             // todo : associate this function to recorder VuMeter events
             int overlapLength = 0;
-            int msLentth = Convert.ToInt32(mRecorder.RecordingPCMFormat.SampleRate * mRecorder.RecordingPCMFormat.BlockAlign * 30); // 30 seconds
+            int msLentth = Convert.ToInt32(mRecorder.RecordingPCMFormat.SampleRate * mRecorder.RecordingPCMFormat.BlockAlign * 40); // 40 seconds
             if (mRecorder.RecordingPCMFormat != null )
             {
                 //@overlap: overlapLength = Convert.ToInt32(0.250 * (mRecorder.RecordingPCMFormat.BlockAlign * mRecorder.RecordingPCMFormat.SampleRate));
@@ -450,8 +450,10 @@ namespace Obi
                                 double timeInSession = (mRecorder.RecordingPCMFormat.ConvertBytesToTime(m_PhDetectorBytesRecorded - msLentth) + d) / AudioLib.AudioLibPCMFormat.TIME_UNIT;
                                 //Console.WriteLine("phrase time: " + phraseTime + " : " + timeInSession);
                                 //@event: if (PhraseCreatedEvent != null) PhraseCreatedEvent(this, new Audio.PhraseDetectedEventArgs(timeInSession));
-
-                                m_PhraseMarksOnTheFly.Add(timeInSession);
+                                if (phraseTime != 0)
+                                {
+                                    m_PhraseMarksOnTheFly.Add(timeInSession);
+                                }
                                 //@event: int last = mPhraseMarks.Count - 1;
                                 //@event: double length = mPhraseMarks[last] - (last == 0 ? 0.0 : mPhraseMarks[last - 1]);
                                 //@event: length = length - (length % 100);
