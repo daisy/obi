@@ -62,7 +62,7 @@ namespace Obi
                 {
                     File.Delete(e.RecordedFilePath);
                 }
-                m_PhDetectorBytesRecorded = 0;
+                m_PhDetectorEstimatedBytesRecorded = 0;
         }
 
 
@@ -286,7 +286,8 @@ namespace Obi
 
         private byte[] m_MemStreamArray;
         private int m_PhDetectionMemStreamPosition;
-        private long m_PhDetectorBytesRecorded;
+        private long m_PhDetectorEstimatedBytesRecorded;
+        private long m_PhDetectorBytesReceivedFromRecorder = 0; //  sum of bytes sent by recorder peak meter event
         private List<double> m_PhraseMarksOnTheFly = new List<double>();
         /// <summary>
         /// List of timings for phrases marked with on the fly phrase detection  
@@ -405,9 +406,8 @@ namespace Obi
 
         private void ApplyPhraseDetectionOnTheFly(AudioLib.AudioRecorder.PcmDataBufferAvailableEventArgs e)
         {
-            //m_Settings.Audio_EnableLivePhraseDetection = true;
             if (!m_Settings.Audio_EnableLivePhraseDetection ) return;//letsverify with on the fly phrase detection first
-            // todo : associate this function to recorder VuMeter events
+            
             int overlapLength = 0;
             int msLentth = Convert.ToInt32(mRecorder.RecordingPCMFormat.SampleRate * mRecorder.RecordingPCMFormat.BlockAlign * 40); // 40 seconds
             if (mRecorder.RecordingPCMFormat != null )
@@ -424,8 +424,7 @@ namespace Obi
 
                 if (m_MemStreamArray != null)
                 {//2
-                    //m_PhDetectionMemoryStream.ReadByte();
-                    
+
                     long threshold = (long)m_Settings.Audio_DefaultThreshold;
                     long GapLength = (long)m_Settings.Audio_DefaultGap;
                     long before = (long)m_Settings.Audio_DefaultLeadingSilence;
@@ -447,21 +446,14 @@ namespace Obi
                             if (d >= overlapTime )
                             {//5
                                 double phraseTime = d - overlapTime;
-                                double timeInSession = (mRecorder.RecordingPCMFormat.ConvertBytesToTime(m_PhDetectorBytesRecorded - msLentth) + d) / AudioLib.AudioLibPCMFormat.TIME_UNIT;
+                                double timeInSession = (mRecorder.RecordingPCMFormat.ConvertBytesToTime(m_PhDetectorEstimatedBytesRecorded - msLentth) + d) / AudioLib.AudioLibPCMFormat.TIME_UNIT;
                                 //Console.WriteLine("phrase time: " + phraseTime + " : " + timeInSession);
-                                //@event: if (PhraseCreatedEvent != null) PhraseCreatedEvent(this, new Audio.PhraseDetectedEventArgs(timeInSession));
+                                
                                 if (phraseTime != 0)
                                 {
                                     m_PhraseMarksOnTheFly.Add(timeInSession);
                                 }
-                                //@event: int last = mPhraseMarks.Count - 1;
-                                //@event: double length = mPhraseMarks[last] - (last == 0 ? 0.0 : mPhraseMarks[last - 1]);
-                                //@event: length = length - (length % 100);
-                                //@event: PhraseEventArgs eArg = new PhraseEventArgs(mSessionMedia, mSessionOffset + last, length, timeInSession);
-
-                                //@event: if (FinishingPhrase != null) FinishingPhrase(this, eArg);
-                                //@event: if (StartingPhrase != null)
-                                    //@event: StartingPhrase(this, new PhraseEventArgs(mSessionMedia, mSessionOffset + mPhraseMarks.Count, 0.0));
+                                
 
                             }//-5
                         }//-4
@@ -471,15 +463,15 @@ namespace Obi
                         //Console.WriteLine("timing list is null ");
                     }//-3
                     
-                }//-2
+                }//-2 : MemArray null check ends
                 if (e == null) return;
+
+                // continue with iteration at interval at which MemArray is complete
                 byte[] overlapData = null;
+
                 if (m_MemStreamArray != null)
                 {//2
-                    //@overlap: overlapData = new byte[overlapLength];
-                    //@overlap: Array.Copy(m_MemStreamArray, m_MemStreamArray.Length - overlapLength - 1, overlapData, 0, overlapData.Length);
                     m_MemStreamArray = new byte[msLentth + overlapLength];
-                    //@overlap: overlapData.CopyTo(m_MemStreamArray, 0);
                 }//-2
                 else
                 {//2
@@ -487,16 +479,21 @@ namespace Obi
                     m_MemStreamArray = new byte[msLentth];
                 }//-2
                 //Console.WriteLine("newMemStream length  " + m_MemStreamArray.Length);
+                //Console.WriteLine("Total bytes received from recorder: " + m_PhDetectorBytesReceivedFromRecorder);
+                //Console.WriteLine("Recording bytes estimated: " + m_PhDetectorEstimatedBytesRecorded);
+                long difference = m_PhDetectorEstimatedBytesRecorded - m_PhDetectorBytesReceivedFromRecorder ;
+                Console.WriteLine("Difference in bytes: " + difference + " in MS: " + (difference * 1000 / mRecorder.RecordingPCMFormat.ByteRate));
+
                 m_PhDetectionMemStreamPosition = overlapLength;
-                m_PhDetectorBytesRecorded += msLentth;
+
+                if (m_PhDetectorEstimatedBytesRecorded != m_PhDetectorBytesReceivedFromRecorder) m_PhDetectorEstimatedBytesRecorded = m_PhDetectorBytesReceivedFromRecorder;
+                m_PhDetectorEstimatedBytesRecorded += msLentth;
 
                 
                     //e.PcmDataBuffer.CopyTo(m_MemStreamArray, m_PhDetectionMemStreamPosition);
                 Array.Copy(e.PcmDataBuffer, 0, m_MemStreamArray, m_PhDetectionMemStreamPosition, e.PcmDataBufferLength);
                     m_PhDetectionMemStreamPosition += e.PcmDataBufferLength;
                 
-                //m_PhDetectionMemoryStream.Write(e.PcmDataBuffer, (int)m_PhDetectionMemStreamPosition, e.b);
-                //m_PhDetectionMemStreamPosition = m_PhDetectionMemoryStream.Position;
                 //Console.WriteLine("first writing of recorder buffer " + m_PhDetectionMemStreamPosition);
             }//-1
             else if (m_MemStreamArray != null && e.PcmDataBuffer != null)
@@ -504,10 +501,6 @@ namespace Obi
                 int leftOverLength = Convert.ToInt32(msLentth - m_PhDetectionMemStreamPosition);
                 if (leftOverLength > e.PcmDataBufferLength) leftOverLength = e.PcmDataBufferLength ;
                 //Console.WriteLine("length:position:leftOver " + m_MemStreamArray.Length + " : " + m_PhDetectionMemStreamPosition + " : " + leftOverLength + " : " + e.PcmDataBuffer.Length);
-                //m_PhDetectionMemoryStream.Write(e.PcmDataBuffer,0, leftOverLength);
-                //m_PhDetectionMemStreamPosition = m_PhDetectionMemoryStream.Position;
-                //m_MemStreamArray = new byte[msLentth];
-                //m_PhDetectionMemoryStream.ToArray().CopyTo(m_MemStreamArray, 0); ;
                 if (m_MemStreamArray.Length - m_PhDetectionMemStreamPosition > e.PcmDataBufferLength)
                 {
                     //e.PcmDataBuffer.CopyTo(m_MemStreamArray, m_PhDetectionMemStreamPosition);
@@ -518,12 +511,11 @@ namespace Obi
                 {
                     m_PhDetectionMemStreamPosition = m_MemStreamArray.Length - 1;
                 }
-                    
                 
                 //Console.WriteLine("writing recorder buffer " + m_PhDetectionMemStreamPosition);
 
             }//-1
-
+            if (e != null) m_PhDetectorBytesReceivedFromRecorder += e.PcmDataBufferLength;
         }
 
         
