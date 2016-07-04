@@ -168,6 +168,9 @@ namespace Obi
                 mSectionMarks = new List<int>();
                 mDeletedTime.Clear();
                 m_PhraseIndexesToDelete.Clear();
+                m_PhDetectorBytesReceivedFromRecorder = 0;
+                m_PhDetectorEstimatedBytesRecorded = 0;
+                m_MemStreamArray = null;
                 AudioMediaData asset =
                     (AudioMediaData)mPresentation.MediaDataFactory.Create<WavAudioMediaData>();
                 mSessionMedia = (ManagedAudioMedia)mPresentation.MediaFactory.CreateManagedAudioMedia();
@@ -208,7 +211,7 @@ namespace Obi
         public void Stop()
         {
             bool wasRecording = mRecorder.CurrentState == AudioLib.AudioRecorder.State.Recording;
-            ApplyPhraseDetectionOnTheFly(null); //@onTheFly: before stopping last chunk of memory stream is passed into phrase detection
+            if(wasRecording)  ApplyPhraseDetectionOnTheFly(null); //@onTheFly: before stopping last chunk of memory stream is passed into phrase detection
             if (mRecorder.CurrentState == AudioLib.AudioRecorder.State.Monitoring
                 || wasRecording)
             {
@@ -296,7 +299,7 @@ namespace Obi
 
         private void DetectPhrasesOnTheFly(object sender, AudioLib.AudioRecorder.PcmDataBufferAvailableEventArgs e)
         {
-            ApplyPhraseDetectionOnTheFly(e);
+            if(mRecorder.CurrentState == AudioRecorder.State.Recording) ApplyPhraseDetectionOnTheFly(e);
         }
 
         public int UpdatePhraseTimeList(double time, bool isPage)
