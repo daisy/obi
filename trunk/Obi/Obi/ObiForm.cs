@@ -1613,7 +1613,15 @@ namespace Obi
                 if (mSettings.ShowGraphicalPeakMeterAtStartup) ShowPeakMeter();
                 if (mSettings.Project_RecordingToolbarOpenInPreviousSession) ShowRecordingToolBar();
                 if (mSettings.Project_CheckForUpdates) CheckForNewRelease(true);
-                if (mSettings.Project_MaximizeObi) this.WindowState = FormWindowState.Maximized;
+                if (mSettings.Project_MaximizeObi)
+                {
+                    this.WindowState = FormWindowState.Maximized;
+
+                    if (mProjectView != null && mSettings != null)
+                    {
+                        mProjectView.SetTOCViewWidth = mSettings.TOCViewWidth;
+                    }
+                }
             }
 
 
@@ -3493,7 +3501,7 @@ ref string exportDirectoryEPUB3)
                     }
                     
                     Ready();
-
+                    mProjectView.SetTOCViewWidth = mSettings.TOCViewWidth;
                     if (mSettings.ObiFont != this.Font.Name)
                     {
                         mProjectView.SetFont(); //@fontconfig
@@ -4269,6 +4277,10 @@ ref string exportDirectoryEPUB3)
                 {   
                     mProjectView.TransportBar.Stop();
                     if (mProjectView.TransportBar.MonitorContinuously) mProjectView.TransportBar.MonitorContinuously = false; //@MonitorContinuously
+                }
+                if (mProjectView != null && mSettings != null) 
+                {
+                    mSettings.TOCViewWidth = mProjectView.SetTOCViewWidth;
                 }
                 if (DidCloseProject())
                 {

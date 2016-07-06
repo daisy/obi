@@ -6303,6 +6303,17 @@ public bool ShowOnlySelectedSection
             mContentView.SelectPhraseBlockOrStrip(node);
         }
 
+        public int SetTOCViewWidth
+        {
+            get
+            {
+                return mTOCView.Width;
+            }
+            set
+            {
+                mTOCSplitter.SplitterDistance = value;
+            }
+        }
         public void SetFont() //@fontconfig
         {
             //     this.Font = new Font(this.ObiForm.Settings.ObiFont, this.Font.Size, FontStyle.Regular);
