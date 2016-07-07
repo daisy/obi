@@ -1619,7 +1619,7 @@ namespace Obi
 
                     if (mProjectView != null && mSettings != null && mSettings.TOCViewWidth != 0)
                     {
-                        mProjectView.SetTOCViewWidth = mSettings.TOCViewWidth;
+                        mProjectView.TOCViewWidth = mSettings.TOCViewWidth;
                     }
                 }
             }
@@ -3503,7 +3503,7 @@ ref string exportDirectoryEPUB3)
                     Ready();
                     if (mSettings != null && mProjectView != null && mSettings.TOCViewWidth != 0)
                     {
-                        mProjectView.SetTOCViewWidth = mSettings.TOCViewWidth;
+                        mProjectView.TOCViewWidth = mSettings.TOCViewWidth;
                     }
                     if (mSettings.ObiFont != this.Font.Name)
                     {
@@ -4283,7 +4283,7 @@ ref string exportDirectoryEPUB3)
                 }
                 if (mProjectView != null && mSettings != null) 
                 {
-                    mSettings.TOCViewWidth = mProjectView.SetTOCViewWidth;
+                    mSettings.TOCViewWidth = mProjectView.TOCViewWidth;
                 }
                 if (DidCloseProject())
                 {
