@@ -1617,7 +1617,7 @@ namespace Obi
                 {
                     this.WindowState = FormWindowState.Maximized;
 
-                    if (mProjectView != null && mSettings != null)
+                    if (mProjectView != null && mSettings != null && mSettings.TOCViewWidth != 0)
                     {
                         mProjectView.SetTOCViewWidth = mSettings.TOCViewWidth;
                     }
@@ -3501,7 +3501,10 @@ ref string exportDirectoryEPUB3)
                     }
                     
                     Ready();
-                    mProjectView.SetTOCViewWidth = mSettings.TOCViewWidth;
+                    if (mSettings != null && mProjectView != null && mSettings.TOCViewWidth != 0)
+                    {
+                        mProjectView.SetTOCViewWidth = mSettings.TOCViewWidth;
+                    }
                     if (mSettings.ObiFont != this.Font.Name)
                     {
                         mProjectView.SetFont(); //@fontconfig

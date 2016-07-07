@@ -380,7 +380,7 @@ namespace Obi
             settings.ObiFontIndex = -1; //@fontconfig
             // For Obi 3.9 beta
             settings.Project_IncreasePhraseHightForHigherResolution = false; //@ScreenResolution
-            settings.TOCViewWidth = 302;
+            settings.TOCViewWidth = 0;
         }
 
         /// <summary>
