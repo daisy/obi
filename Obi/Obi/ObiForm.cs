@@ -1138,6 +1138,7 @@ namespace Obi
                         // create text file for cleanup rol back
 
                         mSession.Presentation.UndoRedoManager.FlushCommands();
+                        mProjectView.Clipboard = null;
                         string CleanupRollBackFilesmapPath = Path.Combine(deletedDataFolderPath, m_CleanUpFileNamesMapFile);
                         if (File.Exists(CleanupRollBackFilesmapPath)) File.Delete(CleanupRollBackFilesmapPath);
                         File.CreateText(CleanupRollBackFilesmapPath).Close();
