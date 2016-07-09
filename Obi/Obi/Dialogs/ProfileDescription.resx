@@ -178,7 +178,7 @@
     <value>True</value>
   </metadata>
   <data name="$this.AccessibleName" xml:space="preserve">
-    <value>Audio Profile Description</value>
+    <value>Profile Description</value>
   </data>
   <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
     <value>6, 13</value>
@@ -187,7 +187,7 @@
     <value>606, 517</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
-    <value>Audio Profile Description</value>
+    <value>Profile Description</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
     <value>ProfileDescription</value>
