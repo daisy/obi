@@ -251,8 +251,7 @@ namespace Obi
         // for Obi 3.9 beta
         [OptionalField]
         public bool Project_IncreasePhraseHightForHigherResolution;
-        [OptionalField]
-        public int TOCViewWidth;
+
 
         protected static void InitializeDefaultSettings(Settings settings)
         {
@@ -379,8 +378,7 @@ namespace Obi
             settings.ObiFont = "Microsoft Sans Serif"; //@fontconfig
             settings.ObiFontIndex = -1; //@fontconfig
             // For Obi 3.9 beta
-            settings.Project_IncreasePhraseHightForHigherResolution = false; //@ScreenResolution
-            settings.TOCViewWidth = 0;
+            settings.Project_IncreasePhraseHightForHigherResolution = false; //@ScreenResolution            
         }
 
         /// <summary>
