@@ -1941,6 +1941,7 @@ m_cb_ChooseFont.Visible = false;
                 string Profile =  System.IO.Path.GetFileName(profilePath);
 
                 mTab.SelectedTab = mAudioTab;
+                mSettings.TOCViewWidth = 0;
                 if (Profile == "Basic.xml" || Profile == "Basic.XML")
                 {
                     m_CheckBoxListView.Items[0].Checked = false;
@@ -1969,6 +1970,8 @@ m_cb_ChooseFont.Visible = false;
                     m_CheckBoxListView.Items[23].Checked = true;
                     m_CheckBoxListView.Items[24].Checked = false;
 
+                    mSettings.Audio_DefaultGap = 300;
+
                     UpdateBoolSettings();
                     mTab.SelectedTab = mProjectTab;
                     m_CheckBoxListView.Items[0].Checked = false;
@@ -1991,7 +1994,7 @@ m_cb_ChooseFont.Visible = false;
                     m_CheckBoxListView.Items[16].Checked = false;
                     m_CheckBoxListView.Items[17].Checked = false;
                     m_CheckBoxListView.Items[18].Checked = false;
-                    m_CheckBoxListView.Items[19].Checked = true;
+                    m_CheckBoxListView.Items[19].Checked = false;
                     UpdateBoolSettings();
                 }
                 else if (Profile == "Intermediate.xml" || Profile == "Intermediate.XML")
@@ -2023,6 +2026,9 @@ m_cb_ChooseFont.Visible = false;
                     m_CheckBoxListView.Items[23].Checked = true;
                     m_CheckBoxListView.Items[24].Checked = false;
 
+                    mSettings.Audio_DefaultGap = 300;
+                    mSettings.Audio_PreviewDuration = 1500;
+
                     UpdateBoolSettings();
                     mTab.SelectedTab = mProjectTab;
                     m_CheckBoxListView.Items[0].Checked = false;
@@ -2045,7 +2051,7 @@ m_cb_ChooseFont.Visible = false;
                     m_CheckBoxListView.Items[16].Checked = false;
                     m_CheckBoxListView.Items[17].Checked = false;
                     m_CheckBoxListView.Items[18].Checked = false;
-                    m_CheckBoxListView.Items[19].Checked = true;
+                    m_CheckBoxListView.Items[19].Checked = false;
                     UpdateBoolSettings();
                 }
                 else if (Profile == "Advance.xml" || Profile == "Advance.XML")
@@ -2076,6 +2082,9 @@ m_cb_ChooseFont.Visible = false;
                     m_CheckBoxListView.Items[23].Checked = true;
                     m_CheckBoxListView.Items[24].Checked = false;
 
+                    mSettings.Audio_DefaultGap = 300;
+                    mSettings.Audio_PreviewDuration = 1500;
+
                     UpdateBoolSettings();
                     mTab.SelectedTab = mProjectTab;
                     m_CheckBoxListView.Items[0].Checked = false;
@@ -2098,7 +2107,7 @@ m_cb_ChooseFont.Visible = false;
                     m_CheckBoxListView.Items[16].Checked = false;
                     m_CheckBoxListView.Items[17].Checked = false;
                     m_CheckBoxListView.Items[18].Checked = false;
-                    m_CheckBoxListView.Items[19].Checked = true;
+                    m_CheckBoxListView.Items[19].Checked = false;
                     UpdateBoolSettings();
                 }
                 else if (Profile == "Profile-SBS.xml" || Profile == "Profile-SBS.XML")
@@ -2129,13 +2138,16 @@ m_cb_ChooseFont.Visible = false;
                     m_CheckBoxListView.Items[23].Checked = true;
                     m_CheckBoxListView.Items[24].Checked = true;
 
+                    mSettings.Audio_DefaultGap = 300;
+                    mSettings.Audio_PreviewDuration = 1500;
+
                     UpdateBoolSettings();
                     mTab.SelectedTab = mProjectTab;
                     m_CheckBoxListView.Items[0].Checked = false;
                     m_CheckBoxListView.Items[1].Checked = false;
                     m_CheckBoxListView.Items[2].Checked = true;
                     m_CheckBoxListView.Items[3].Checked = true;
-                    m_CheckBoxListView.Items[4].Checked = true;
+                    m_CheckBoxListView.Items[4].Checked = false;
                     m_CheckBoxListView.Items[5].Checked = true;
                     m_CheckBoxListView.Items[6].Checked = true;
                     m_CheckBoxListView.Items[7].Checked = true;
@@ -2151,7 +2163,7 @@ m_cb_ChooseFont.Visible = false;
                     m_CheckBoxListView.Items[16].Checked = false;
                     m_CheckBoxListView.Items[17].Checked = false;
                     m_CheckBoxListView.Items[18].Checked = false;
-                    m_CheckBoxListView.Items[19].Checked = true;
+                    m_CheckBoxListView.Items[19].Checked = false;
                     UpdateBoolSettings();
 
 
@@ -2241,6 +2253,9 @@ m_cb_ChooseFont.Visible = false;
                     m_CheckBoxListView.Items[23].Checked = false;
                     m_CheckBoxListView.Items[24].Checked = false;
 
+                    mSettings.Audio_DefaultGap = 600;
+                    mSettings.Audio_PreviewDuration = 7000;
+
 
                     UpdateBoolSettings();
                     mTab.SelectedTab = mProjectTab;
@@ -2259,7 +2274,7 @@ m_cb_ChooseFont.Visible = false;
                     m_CheckBoxListView.Items[12].Checked = true;
                     m_CheckBoxListView.Items[13].Checked = true;
                     m_CheckBoxListView.Items[14].Checked = true;
-                    m_CheckBoxListView.Items[15].Checked = true;
+                    m_CheckBoxListView.Items[15].Checked = false;
                     m_CheckBoxListView.Items[16].Checked = true;
                     m_CheckBoxListView.Items[17].Checked = true;
                     m_CheckBoxListView.Items[18].Checked = true;
@@ -2296,6 +2311,9 @@ m_cb_ChooseFont.Visible = false;
                     m_CheckBoxListView.Items[23].Checked = false;
                     m_CheckBoxListView.Items[24].Checked = false;
 
+                    mSettings.Audio_DefaultGap = 600;
+                    mSettings.Audio_PreviewDuration = 7000;
+
                     UpdateBoolSettings();
                     mTab.SelectedTab = mProjectTab;
                     m_CheckBoxListView.Items[0].Checked = true;
@@ -2313,7 +2331,7 @@ m_cb_ChooseFont.Visible = false;
                     m_CheckBoxListView.Items[12].Checked = true;
                     m_CheckBoxListView.Items[13].Checked = true;
                     m_CheckBoxListView.Items[14].Checked = true;
-                    m_CheckBoxListView.Items[15].Checked = true;
+                    m_CheckBoxListView.Items[15].Checked = false;
                     m_CheckBoxListView.Items[16].Checked = true;
                     m_CheckBoxListView.Items[17].Checked = true;
                     m_CheckBoxListView.Items[18].Checked = true;
