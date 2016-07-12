@@ -120,7 +120,7 @@ namespace InstallerFileOperations
             try
                 {
                 System.Media.SystemSounds.Exclamation.Play (); // audio clue to alert.
-                if (MessageBox.Show ( "Obi will need Java runtime environment (JRE) installed on this computer  for some operations. If it is not already installed on this computer, press yes to install it from internet." + "\n" + "Please note that JRE installation will take some time so it may continue even after installation of Obi is finished", "JRE installation?", MessageBoxButtons.YesNo , MessageBoxIcon.Question) 
+                if (MessageBox.Show ( "Obi will need Java runtime environment (JRE version 7) installed on this computer  for some operations. If it is not already installed on this computer, press yes to install it from internet." + "\n" + "Please note that JRE installation will take some time so it may continue even after installation of Obi is finished", "JRE installation?", MessageBoxButtons.YesNo , MessageBoxIcon.Question) 
                     == DialogResult.Yes)
                     {
                     Process JREInstallationProcess = new Process ();
