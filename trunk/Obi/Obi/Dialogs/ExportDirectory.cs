@@ -136,8 +136,10 @@ namespace Obi.Dialogs
             m_checkBoxEncoder.Checked = encodeToMP3;
             m_comboBoxEncodingType.Enabled = m_checkBoxEncoder.Checked;
             m_ComboBoxBitrate.Enabled = m_checkBoxEncoder.Checked;
-            m_btnAdvance.Enabled = m_checkBoxEncoder.Checked;
-            m_btnAdvance.Enabled = encodeToMP3;
+            if (m_encodingType == 0)
+            {
+                m_btnAdvance.Enabled = encodeToMP3;
+            }
             m_checkBoxAddSectionNameToAudioFileName.Checked = appendSectionNameToAudioFile;
             helpProvider1.HelpNamespace = Localizer.Message("CHMhelp_file_name");
             helpProvider1.SetHelpNavigator(this, HelpNavigator.Topic);
