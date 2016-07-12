@@ -222,7 +222,8 @@ private List <string>  FindDirectXPaths(List<string> DirPaths)
         
         if (DXPath == "" || !File.Exists ( DXPath ))
             {
-            DXPath = "http://www.microsoft.com/downloads/details.aspx?familyid=2da43d38-db71-4c1b-bc6a-9b6652cd92a3";
+            //DXPath = "http://www.microsoft.com/downloads/details.aspx?familyid=2da43d38-db71-4c1b-bc6a-9b6652cd92a3"; // old path
+                DXPath = "https://www.microsoft.com/en-us/download/details.aspx?id=35&nowin10"; // updated on July 12, 2016
             messageBoxString = "Installation complete.\n But application may not function properly because Required DirectX version ( ver 9 c managed ) not Installed. \n Do you want to download it from internet?" ;
             }
 
