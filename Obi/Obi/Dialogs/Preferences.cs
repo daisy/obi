@@ -2800,6 +2800,7 @@ m_cb_ChooseFont.Visible = false;
                         m_cb_Profile2.Items.Add(System.IO.Path.GetFileNameWithoutExtension(newCustomFilePath));
                        // mTransportBar.InitializeSwitchProfiles();
                         mTransportBar.AddProfileToSwitchProfile(System.IO.Path.GetFileNameWithoutExtension(newCustomFilePath));
+                        mTransportBar.InitializeSwitchProfiles();
                     }
                 }
                 catch (System.Exception ex)
@@ -2966,13 +2967,14 @@ m_cb_ChooseFont.Visible = false;
                             }
                             if (m_cb_Profile2.SelectedIndex == indexOfCombobox)
                             {
-                                m_cb_Profile2.SelectedIndex = 0;
+                                m_cb_Profile2.SelectedIndex = 2;
                                 mSettings.Audio_RecordingToolbarProfile2 = m_cb_Profile2.SelectedItem.ToString();
                             }
                             m_cb_Profile1.Items.RemoveAt(indexOfCombobox);
                             m_cb_Profile2.Items.RemoveAt(indexOfCombobox);
                            // mTransportBar.InitializeSwitchProfiles();
                             mTransportBar.RemoveProfileFromSwitchProfile(System.IO.Path.GetFileNameWithoutExtension(profilePath));
+                            mTransportBar.InitializeSwitchProfiles();
                         }
                     }
                 }
