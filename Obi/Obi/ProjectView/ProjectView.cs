@@ -66,8 +66,8 @@ namespace Obi.ProjectView
             MaxOverLimitForPhraseVisibility = 300; // @phraseLimit
             m_DisableSectionSelection = false;
             string logDirectory = System.IO.Path.Combine(Program.GetObiRoamingUserDirectory(), "Obi_Log");
-            m_LogFilePath = System.IO.Path.Combine(System.AppDomain.CurrentDomain.BaseDirectory, "ObiSession.log");
-            m_LogFilePathPrev = System.IO.Path.Combine(System.AppDomain.CurrentDomain.BaseDirectory, "ObiSessionPrev.log");
+            //m_LogFilePath = System.IO.Path.Combine(System.AppDomain.CurrentDomain.BaseDirectory, "ObiSession.log");
+            //m_LogFilePathPrev = System.IO.Path.Combine(System.AppDomain.CurrentDomain.BaseDirectory, "ObiSessionPrev.log");
             if (!System.IO.Directory.Exists(logDirectory)) System.IO.Directory.CreateDirectory(logDirectory);
             m_LogFilePath = System.IO.Path.Combine(logDirectory, "ObiSession.log");
             m_LogFilePathPrev= System.IO.Path.Combine(logDirectory, "ObiSessionPrev.log");
