@@ -661,26 +661,34 @@ m_cb_ChooseFont.Visible = false;
             {
             mSettings.UserProfile.Name = mFullNameTextbox.Text;
             mSettings.UserProfile.Organization = mOrganizationTextbox.Text;
-
-            if (mCultureBox.SelectedItem.ToString () == "en-US"
-                || IsResourceForLanguageExist(mCultureBox.SelectedItem.ToString () ) )
-                //|| mCultureBox.SelectedItem.ToString () == "hi-IN"
-                //|| mCultureBox.SelectedItem.ToString () == "fr-FR")
+            bool supportedLanguage = false;
+            if (mCultureBox.SelectedItem.ToString() == "en-US"
+                || IsResourceForLanguageExist(mCultureBox.SelectedItem.ToString()))
+            //|| mCultureBox.SelectedItem.ToString () == "hi-IN"
+            //|| mCultureBox.SelectedItem.ToString () == "fr-FR")
+            {
+                if (mSettings.UserProfile.Culture.ToString() != mCultureBox.SelectedItem.ToString()
+                    || mCultureBox.SelectedItem.ToString() != System.Globalization.CultureInfo.CurrentCulture.ToString())
                 {
-                    if (mSettings.UserProfile.Culture.ToString() != mCultureBox.SelectedItem.ToString()
-                        || mCultureBox.SelectedItem.ToString() != System.Globalization.CultureInfo.CurrentCulture.ToString())
-                    {
-                        MessageBox.Show(Localizer.Message("Preferences_RestartForCultureChange"));
-                    }
+                    MessageBox.Show(Localizer.Message("Preferences_RestartForCultureChange"));
+                    supportedLanguage = true;
+                    mForm.ObiFontName = m_DefaultSettings.ObiFont; //@fontconfig
+                    int indexOfDefaultFont = m_cb_ChooseFont.Items.IndexOf(m_DefaultSettings.ObiFont);
+                    m_cb_ChooseFont.SelectedIndex = indexOfDefaultFont; //@fontconfig
+                    m_txtBox_Font.Text = "Obi"; //@fontconfig
+                    m_txtBox_Font.Font = new Font(m_cb_ChooseFont.SelectedItem.ToString(), this.Font.Size, FontStyle.Regular);//@fontconfig
+                    mSettings.ObiFontIndex = -1; //@fontconfig
                 }
+            }
             else if (mSettings.UserProfile.Culture.Name != ((CultureInfo)mCultureBox.SelectedItem).Name)
-                {
+            {
                 // show this message only if selected culture is different from application's existing culture.
-                MessageBox.Show ( string.Format ( Localizer.Message ( "Peferences_GUIDonotSupportCulture" ),
-                    mCultureBox.SelectedItem.ToString () ) );
-                }
+                MessageBox.Show(string.Format(Localizer.Message("Peferences_GUIDonotSupportCulture"),
+                    mCultureBox.SelectedItem.ToString()));
+                supportedLanguage = false;
+            }
                 if (mCultureBox.SelectedItem.ToString() != "zh-CHT" && mCultureBox.SelectedItem.ToString() != "zh-TW"
-                    && mCultureBox.SelectedItem.ToString() != "zh-CHS")
+                    && mCultureBox.SelectedItem.ToString() != "zh-CHS" && supportedLanguage)
                 {
                     mSettings.UserProfile.Culture = (CultureInfo)mCultureBox.SelectedItem;
                 }
@@ -2967,7 +2975,7 @@ m_cb_ChooseFont.Visible = false;
                             }
                             if (m_cb_Profile2.SelectedIndex == indexOfCombobox)
                             {
-                                m_cb_Profile2.SelectedIndex = 2;
+                                m_cb_Profile2.SelectedIndex = 2 ;
                                 mSettings.Audio_RecordingToolbarProfile2 = m_cb_Profile2.SelectedItem.ToString();
                             }
                             m_cb_Profile1.Items.RemoveAt(indexOfCombobox);
