@@ -2441,13 +2441,7 @@ m_cb_ChooseFont.Visible = false;
                 string profilePath = GetFilePathOfSelectedPreferencesComboBox();
                 try
                 {
-                    if (profilePath != null)
-                    {
-                        LoadPreferenceProfile(profilePath);
-                        mSettings.Audio_RecordingToolbarProfile1 = m_ProfileLoaded.SettingsName;
-                        int tempIndex = m_cb_Profile1.Items.IndexOf(mSettings.Audio_RecordingToolbarProfile1);
-                        m_cb_Profile1.SelectedIndex = tempIndex;
-                    }
+                    if (profilePath != null) LoadPreferenceProfile(profilePath);
                 }
                 catch (System.Exception ex)
                 {
@@ -2562,7 +2556,6 @@ m_cb_ChooseFont.Visible = false;
                     }
                     m_ProfileLoaded = saveProfile;
                 m_ProfileLoaded.SettingsName = System.IO.Path.GetFileNameWithoutExtension (profilePath);
-
                 
                 VerifyChangeInLoadedSettings();
                     MessageBox.Show(Localizer.Message("Preferences_ProfileLoaded"),Localizer.Message("Preference_ProfileCaption"),
@@ -2718,27 +2711,8 @@ m_cb_ChooseFont.Visible = false;
             //m_cb_SelectProfile.SelectedIndex = 0;
             if (mSettings.Audio_RecordingToolbarProfile1 != null && mSettings.Audio_RecordingToolbarProfile2 != null)
             {
-                string[] tempstring = new string[] { "profile for" };
-                string[] tempSettingName = mSettings.SettingsName.Split(tempstring, StringSplitOptions.None);
-                if (tempSettingName[0].Trim() != mSettings.Audio_RecordingToolbarProfile1.Trim())
-                {
-                    if (tempSettingName[0].Trim() != mSettings.Audio_RecordingToolbarProfile2.Trim())
-                    {
-                        m_cb_Profile1.Items.Add(tempSettingName[0]);
-
-                    }
-                }
-                int tempIndex = 0;
-                if (m_cb_Profile1.Items.Count != m_cb_Profile2.Items.Count)
-                {
-                    tempIndex = m_cb_Profile1.Items.IndexOf(tempSettingName[0]);
-                    m_cb_Profile1.SelectedIndex = tempIndex;
-                }
-                else
-                {
-                    tempIndex = m_cb_Profile1.Items.IndexOf(mSettings.Audio_RecordingToolbarProfile1.TrimEnd().TrimStart());
-                    m_cb_Profile1.SelectedIndex = tempIndex;
-                }
+                int tempIndex = m_cb_Profile1.Items.IndexOf(mSettings.Audio_RecordingToolbarProfile1);
+                m_cb_Profile1.SelectedIndex = tempIndex;
                 tempIndex = m_cb_Profile2.Items.IndexOf(mSettings.Audio_RecordingToolbarProfile2);
                 m_cb_Profile2.SelectedIndex = tempIndex;
             }
@@ -2836,9 +2810,6 @@ m_cb_ChooseFont.Visible = false;
                         mTransportBar.AddProfileToSwitchProfile(System.IO.Path.GetFileNameWithoutExtension(newCustomFilePath));
                         mTransportBar.InitializeSwitchProfiles();
                     }
-                    mSettings.Audio_RecordingToolbarProfile1 = m_ProfileLoaded.SettingsName;
-                    int tempIndex = m_cb_Profile1.Items.IndexOf(mSettings.Audio_RecordingToolbarProfile1);
-                    m_cb_Profile1.SelectedIndex = tempIndex;
                 }
                 catch (System.Exception ex)
                 {
@@ -2999,20 +2970,15 @@ m_cb_ChooseFont.Visible = false;
                             m_cb_SelectProfile.Items.RemoveAt(indexOfCombobox);
                             if (m_cb_Profile1.SelectedIndex == indexOfCombobox)
                             {
-                                //  m_cb_Profile1.SelectedIndex = 0;
-                                //mSettings.Audio_RecordingToolbarProfile1 = m_cb_Profile1.SelectedItem.ToString();
-                                mSettings.Audio_RecordingToolbarProfile1 = m_DefaultSettings.SettingsName;
-                            }
-                            else
-                            {
-
-                                m_cb_Profile1.Items.RemoveAt(indexOfCombobox);
+                                m_cb_Profile1.SelectedIndex = 0;
+                                mSettings.Audio_RecordingToolbarProfile1 = m_cb_Profile1.SelectedItem.ToString();                               
                             }
                             if (m_cb_Profile2.SelectedIndex == indexOfCombobox)
                             {
                                 m_cb_Profile2.SelectedIndex = 2 ;
                                 mSettings.Audio_RecordingToolbarProfile2 = m_cb_Profile2.SelectedItem.ToString();
                             }
+                            m_cb_Profile1.Items.RemoveAt(indexOfCombobox);
                             m_cb_Profile2.Items.RemoveAt(indexOfCombobox);
                            // mTransportBar.InitializeSwitchProfiles();
                             mTransportBar.RemoveProfileFromSwitchProfile(System.IO.Path.GetFileNameWithoutExtension(profilePath));
