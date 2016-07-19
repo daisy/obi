@@ -511,23 +511,23 @@ namespace Obi.UserControls
                 Console.WriteLine("event change " + m_chkMonitorContinuously.Checked);
                 m_chkMonitorContinuously.CheckedChanged += new EventHandler(m_chkMonitorContinuously_CheckedChanged);
             }
-            string tempSettingsName = m_ProjectView.ObiForm.Settings.SettingsName;
-            string[] str = tempSettingsName.Split(new string[] { " profile for" }, StringSplitOptions.None);
-    
-            if (str[0].ToLower() == m_ProjectView.ObiForm.Settings.Audio_RecordingToolbarProfile1.ToLower())
+            //string tempSettingsName = m_ProjectView.ObiForm.Settings.SettingsName;
+            //string[] str = tempSettingsName.Split(new string[] { " profile for" }, StringSplitOptions.None);
+
+            if (m_ProjectView.ObiForm.Settings.SettingsNameForManipulation.ToLower() == m_ProjectView.ObiForm.Settings.Audio_RecordingToolbarProfile1.ToLower())
             {
                 m_ToggleProfile.ToolTipText = String.Format(Localizer.Message("RecordingToolbar_SwitchProfile"), m_ProjectView.ObiForm.Settings.Audio_RecordingToolbarProfile1, m_ProjectView.ObiForm.Settings.Audio_RecordingToolbarProfile2);
                 m_ToggleProfile.AccessibleName = String.Format(Localizer.Message("RecordingToolbar_SwitchProfile"), m_ProjectView.ObiForm.Settings.Audio_RecordingToolbarProfile1, m_ProjectView.ObiForm.Settings.Audio_RecordingToolbarProfile2);
             }
-            else if (str[0].ToLower() == m_ProjectView.ObiForm.Settings.Audio_RecordingToolbarProfile2.ToLower())
+            else if (m_ProjectView.ObiForm.Settings.SettingsNameForManipulation.ToLower() == m_ProjectView.ObiForm.Settings.Audio_RecordingToolbarProfile2.ToLower())
             {
                 m_ToggleProfile.ToolTipText = String.Format(Localizer.Message("RecordingToolbar_SwitchProfile"), m_ProjectView.ObiForm.Settings.Audio_RecordingToolbarProfile2, m_ProjectView.ObiForm.Settings.Audio_RecordingToolbarProfile1);
                 m_ToggleProfile.AccessibleName = String.Format(Localizer.Message("RecordingToolbar_SwitchProfile"), m_ProjectView.ObiForm.Settings.Audio_RecordingToolbarProfile2, m_ProjectView.ObiForm.Settings.Audio_RecordingToolbarProfile1);
             }
             else
             {
-                m_ToggleProfile.ToolTipText = String.Format(Localizer.Message("RecordingToolbar_SwitchProfile"), str[0], m_ProjectView.ObiForm.Settings.Audio_RecordingToolbarProfile1);
-                m_ToggleProfile.AccessibleName = String.Format(Localizer.Message("RecordingToolbar_SwitchProfile"), str[0], m_ProjectView.ObiForm.Settings.Audio_RecordingToolbarProfile1);
+                m_ToggleProfile.ToolTipText = String.Format(Localizer.Message("RecordingToolbar_SwitchLoadedProfile"), m_ProjectView.ObiForm.Settings.Audio_RecordingToolbarProfile1);
+                m_ToggleProfile.AccessibleName = String.Format(Localizer.Message("RecordingToolbar_SwitchLoadedProfile"), m_ProjectView.ObiForm.Settings.Audio_RecordingToolbarProfile1);
             }
             
             if (m_ProjectView.TransportBar.IsRecorderActive && !m_ProjectView.TransportBar.IsRecorderActive)
@@ -1352,11 +1352,11 @@ namespace Obi.UserControls
                     filePathsList.Add(System.IO.Path.GetFileNameWithoutExtension(filePaths[i]));
                 }
             }
-            string tempSettingsName = m_ProjectView.ObiForm.Settings.SettingsName;
+           // string tempSettingsName = m_ProjectView.ObiForm.Settings.SettingsName;
 
-            string[] str = tempSettingsName.Split(new string[] { " profile for" }, StringSplitOptions.None);
+            //string[] str = tempSettingsName.Split(new string[] { " profile for" }, StringSplitOptions.None);
             string ProfileName = " ";
-            if (m_ProjectView.ObiForm.Settings.Audio_RecordingToolbarProfile1 == str[0])
+            if (m_ProjectView.ObiForm.Settings.Audio_RecordingToolbarProfile1 == m_ProjectView.ObiForm.Settings.SettingsNameForManipulation)
             {
                 ProfileName = m_ProjectView.ObiForm.Settings.Audio_RecordingToolbarProfile2;
             }
