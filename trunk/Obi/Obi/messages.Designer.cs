@@ -5569,6 +5569,15 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Fix TOC View width.
+        /// </summary>
+        internal static string Project_SaveTOCViewWidth {
+            get {
+                return ResourceManager.GetString("Project_SaveTOCViewWidth", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Show waveforms in content view.
         /// </summary>
         internal static string Project_ShowWaveformsInContentView {
@@ -5925,6 +5934,15 @@ namespace Obi {
         internal static string RecordingToolBar_StatusPlaying {
             get {
                 return ResourceManager.GetString("RecordingToolBar_StatusPlaying", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Switch to {0}.
+        /// </summary>
+        internal static string RecordingToolbar_SwitchLoadedProfile {
+            get {
+                return ResourceManager.GetString("RecordingToolbar_SwitchLoadedProfile", resourceCulture);
             }
         }
         

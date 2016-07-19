@@ -2911,6 +2911,7 @@ m_cb_ChooseFont.Visible = false;
                 }
                 m_txtSelectedProfile.Text = string.Format(Localizer.Message("Preferences_ProfilesStatus"),
                     m_ProfileLoaded.SettingsName, strLoadedProfiles);
+                mSettings.SettingsNameForManipulation = m_ProfileLoaded.SettingsName;
                 mSettings.SettingsName = m_txtSelectedProfile.Text;
                 
             }
@@ -2959,10 +2960,10 @@ m_cb_ChooseFont.Visible = false;
                         if (System.IO.File.Exists(profilePath)
                             && MessageBox.Show(Localizer.Message("Preferences_ConfirmForDeletingProfile"),Localizer.Message("Caption_Warning"), MessageBoxButtons.YesNo,MessageBoxIcon.Warning) == DialogResult.Yes)
                         {
-                            string[] tempstring = new string[] { "for" };
-                            string[] tempSettingName = mSettings.SettingsName.Split(tempstring,StringSplitOptions.None);
-                            string tempProfileToBeRemoved = m_cb_SelectProfile.SelectedItem.ToString() + " " + "profile";
-                            if (tempSettingName[0].Trim() == tempProfileToBeRemoved.Trim())
+                            //string[] tempstring = new string[] { "for" };
+                            //string[] tempSettingName = mSettings.SettingsName.Split(tempstring,StringSplitOptions.None);
+                            //string tempProfileToBeRemoved = m_cb_SelectProfile.SelectedItem.ToString() + " " + "profile";
+                            if (mSettings.SettingsNameForManipulation.Trim() == m_cb_SelectProfile.SelectedItem.ToString().Trim())
                             {
                                 MessageBox.Show(Localizer.Message("Preferences_ConfirmDeleteLoadedProfile"), Localizer.Message("Caption_Information"),MessageBoxButtons.OK,MessageBoxIcon.Information);
                             }

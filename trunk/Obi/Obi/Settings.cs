@@ -251,6 +251,10 @@ namespace Obi
         // for Obi 3.9 beta
         [OptionalField]
         public bool Project_IncreasePhraseHightForHigherResolution;
+        //for post Obi 3.9 beta
+        [OptionalField]
+        public string SettingsNameForManipulation; // It is used only for 
+       
 
 
         protected static void InitializeDefaultSettings(Settings settings)
@@ -378,7 +382,9 @@ namespace Obi
             settings.ObiFont = "Microsoft Sans Serif"; //@fontconfig
             settings.ObiFontIndex = -1; //@fontconfig
             // For Obi 3.9 beta
-            settings.Project_IncreasePhraseHightForHigherResolution = false; //@ScreenResolution            
+            settings.Project_IncreasePhraseHightForHigherResolution = false; //@ScreenResolution    
+            // For Post 3.9 beta
+            settings.SettingsNameForManipulation = "Basic";
         }
 
         /// <summary>
