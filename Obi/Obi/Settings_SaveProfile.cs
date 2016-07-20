@@ -116,6 +116,7 @@ namespace Obi
                newSettings.Project_AutomaticallyDeleteUnusedFilesAfterCleanup =
                    this.Project_AutomaticallyDeleteUnusedFilesAfterCleanup;
                newSettings.Project_IncreasePhraseHightForHigherResolution = this.Project_IncreasePhraseHightForHigherResolution;
+               newSettings.Project_SaveTOCViewWidth = this.Project_SaveTOCViewWidth;
 
                // checks for paths
                //if ( !string.IsNullOrEmpty(this.Project_DefaultPath) && Directory.Exists (this.Project_DefaultPath ))
@@ -475,7 +476,8 @@ namespace Obi
                && this.Project_DisableTOCViewCollapse == settings.Project_DisableTOCViewCollapse
                && this.Project_MaximizeObi == settings.Project_MaximizeObi
                && this.Project_VAXhtmlExport == settings.Project_VAXhtmlExport
-               && this.Project_IncreasePhraseHightForHigherResolution == settings.Project_IncreasePhraseHightForHigherResolution )
+               && this.Project_IncreasePhraseHightForHigherResolution == settings.Project_IncreasePhraseHightForHigherResolution
+               && this.Project_SaveTOCViewWidth == settings.Project_SaveTOCViewWidth )
                {
                    projectPreferencesMatch = true ;
                }

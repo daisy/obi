@@ -253,7 +253,11 @@ namespace Obi
         public bool Project_IncreasePhraseHightForHigherResolution;
         //for post Obi 3.9 beta
         [OptionalField]
-        public string SettingsNameForManipulation; // It is used only for 
+        public int TOCViewWidth;
+        [OptionalField]
+        public bool Project_SaveTOCViewWidth;
+        [OptionalField]
+        public string SettingsNameForManipulation; // It is used only for manipulation.
        
 
 
@@ -384,6 +388,8 @@ namespace Obi
             // For Obi 3.9 beta
             settings.Project_IncreasePhraseHightForHigherResolution = false; //@ScreenResolution    
             // For Post 3.9 beta
+            settings.TOCViewWidth = 0;
+            settings.Project_SaveTOCViewWidth = false;
             settings.SettingsNameForManipulation = "Basic";
         }
 

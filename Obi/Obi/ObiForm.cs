@@ -222,7 +222,23 @@ namespace Obi
                     }
                 }
             }
-
+            /// <summary>
+            /// It is used to fix TOC Splitter in ProjectView.
+            /// </summary>
+            public bool FixTOCViewWidth
+            {
+                set
+                {
+                    mProjectView.FixTocViewWidth = value;
+                }
+            }
+            /// <summary>
+            /// It is used to save TOCView width when checkbox in preferences is checked
+            /// </summary>
+            public void TOCViewWidth()
+            {
+                mSettings.TOCViewWidth = mProjectView.TOCViewWidth;
+            }
             // Update the zoom factor for the form itself after it was set.
             private void UpdateZoomFactor()
             {
@@ -3504,6 +3520,11 @@ ref string exportDirectoryEPUB3)
                         mMenuStrip.Font = new Font(mSettings.ObiFont, this.mMenuStrip.Font.Size, FontStyle.Regular);//@fontconfig    
                         mStatusLabel.Font = new Font(mSettings.ObiFont, this.mStatusLabel.Font.Size, FontStyle.Regular);//@fontconfig    
                     }
+                    if (mSettings != null && mSettings.Project_SaveTOCViewWidth && mProjectView != null && mSettings.TOCViewWidth != 0)
+                    {
+                        mProjectView.TOCViewWidth = mSettings.TOCViewWidth;
+                        this.FixTOCViewWidth = true;
+                    }
                     
                     //CheckSystemSupportForMemoryOptimization();
                  }
@@ -4273,6 +4294,10 @@ ref string exportDirectoryEPUB3)
                 {   
                     mProjectView.TransportBar.Stop();
                     if (mProjectView.TransportBar.MonitorContinuously) mProjectView.TransportBar.MonitorContinuously = false; //@MonitorContinuously
+                }
+                if (mSettings.Project_SaveTOCViewWidth && mProjectView != null && mSettings != null)
+                {
+                    mSettings.TOCViewWidth = mProjectView.TOCViewWidth;
                 }
                if (DidCloseProject())
                 {
@@ -5425,6 +5450,10 @@ ref string exportDirectoryEPUB3)
                         PeakMeterResize();
 
                     }
+                }
+                if (mSettings != null && mSettings.Project_SaveTOCViewWidth && mProjectView != null && mSettings.TOCViewWidth != 0)
+                {
+                    mProjectView.TOCViewWidth = mSettings.TOCViewWidth;
                 }
             }
             public FormWindowState ObiformWindowsState

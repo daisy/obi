@@ -550,6 +550,17 @@ m_cb_ChooseFont.Visible = false;
                 MessageBox.Show(Localizer.Message("InvalidPaths") + " : " + mPipelineTextbox.Text, Localizer.Message("Caption_Error"));
                 returnVal = false;
                 }
+
+
+                if (mSettings.Project_SaveTOCViewWidth)
+                {
+                    mForm.FixTOCViewWidth = true;
+                    mForm.TOCViewWidth();
+                }
+                else
+                {
+                    mForm.FixTOCViewWidth = false;
+                }
                 
           //  mSettings.OpenLastProject = mLastOpenCheckBox.Checked;
           //  mSettings.AutoSave_RecordingEnd = mChkAutoSaveOnRecordingEnd.Checked;
@@ -1089,6 +1100,7 @@ m_cb_ChooseFont.Visible = false;
                 mSettings.Project_MaximizeObi = m_CheckBoxListView.Items[17].Checked;
                 mSettings.Project_VAXhtmlExport = m_CheckBoxListView.Items[18].Checked;
                 mSettings.Project_IncreasePhraseHightForHigherResolution = m_CheckBoxListView.Items[19].Checked;
+                mSettings.Project_SaveTOCViewWidth = m_CheckBoxListView.Items[20].Checked;
             }
             if (mTab.SelectedTab == mAudioTab)
             {
@@ -1265,6 +1277,7 @@ m_cb_ChooseFont.Visible = false;
                 m_CheckBoxListView.Items.Add(Localizer.Message("Project_MaximizeObi"));
                 m_CheckBoxListView.Items.Add(Localizer.Message("Project_VAXhtmlExport"));
                 m_CheckBoxListView.Items.Add(Localizer.Message("Project_IncreasePhraseHightForHigherResolution"));
+                m_CheckBoxListView.Items.Add(Localizer.Message("Project_SaveTOCViewWidth"));
                
                 m_CheckBoxListView.Items[0].Checked = mSettings.Project_OpenLastProject;
                 m_CheckBoxListView.Items[0].ToolTipText = Localizer.Message("ProjectTab_OpenLastProject");
@@ -1306,6 +1319,8 @@ m_cb_ChooseFont.Visible = false;
                 m_CheckBoxListView.Items[18].ToolTipText = Localizer.Message("Project_VAXhtmlExport");
                 m_CheckBoxListView.Items[19].Checked = mSettings.Project_IncreasePhraseHightForHigherResolution;
                 m_CheckBoxListView.Items[19].ToolTipText = Localizer.Message("Project_IncreasePhraseHightForHigherResolution");
+                m_CheckBoxListView.Items[20].Checked = mSettings.Project_SaveTOCViewWidth;
+                m_CheckBoxListView.Items[20].ToolTipText = Localizer.Message("Project_SaveTOCViewWidth");
 
             }
             m_CheckBoxListView.View = View.Details;
@@ -1391,6 +1406,7 @@ m_cb_ChooseFont.Visible = false;
                 mSettings.Project_MaximizeObi = m_DefaultSettings.Project_MaximizeObi;
                 mSettings.Project_VAXhtmlExport = m_DefaultSettings.Project_VAXhtmlExport;
                 mSettings.Project_IncreasePhraseHightForHigherResolution = m_DefaultSettings.Project_IncreasePhraseHightForHigherResolution;
+                mSettings.Project_SaveTOCViewWidth = m_DefaultSettings.Project_SaveTOCViewWidth;
                 InitializeProjectTab();
             }
             else if (mTab.SelectedTab == mAudioTab) // Default settings for Audio tab
@@ -1949,6 +1965,7 @@ m_cb_ChooseFont.Visible = false;
                 string Profile =  System.IO.Path.GetFileName(profilePath);
 
                 mTab.SelectedTab = mAudioTab;
+                mSettings.TOCViewWidth = 0;
                 if (Profile == "Basic.xml" || Profile == "Basic.XML")
                 {
                     m_CheckBoxListView.Items[0].Checked = false;
@@ -2002,6 +2019,7 @@ m_cb_ChooseFont.Visible = false;
                     m_CheckBoxListView.Items[17].Checked = false;
                     m_CheckBoxListView.Items[18].Checked = false;
                     m_CheckBoxListView.Items[19].Checked = false;
+                    m_CheckBoxListView.Items[20].Checked = false;
                     UpdateBoolSettings();
                 }
                 else if (Profile == "Intermediate.xml" || Profile == "Intermediate.XML")
@@ -2059,6 +2077,7 @@ m_cb_ChooseFont.Visible = false;
                     m_CheckBoxListView.Items[17].Checked = false;
                     m_CheckBoxListView.Items[18].Checked = false;
                     m_CheckBoxListView.Items[19].Checked = false;
+                    m_CheckBoxListView.Items[20].Checked = false;
                     UpdateBoolSettings();
                 }
                 else if (Profile == "Advance.xml" || Profile == "Advance.XML")
@@ -2115,6 +2134,7 @@ m_cb_ChooseFont.Visible = false;
                     m_CheckBoxListView.Items[17].Checked = false;
                     m_CheckBoxListView.Items[18].Checked = false;
                     m_CheckBoxListView.Items[19].Checked = false;
+                    m_CheckBoxListView.Items[20].Checked = false;
                     UpdateBoolSettings();
                 }
                 else if (Profile == "Profile-SBS.xml" || Profile == "Profile-SBS.XML")
@@ -2171,6 +2191,7 @@ m_cb_ChooseFont.Visible = false;
                     m_CheckBoxListView.Items[17].Checked = false;
                     m_CheckBoxListView.Items[18].Checked = false;
                     m_CheckBoxListView.Items[19].Checked = false;
+                    m_CheckBoxListView.Items[20].Checked = false;
                     UpdateBoolSettings();
 
 
@@ -2286,6 +2307,7 @@ m_cb_ChooseFont.Visible = false;
                     m_CheckBoxListView.Items[17].Checked = true;
                     m_CheckBoxListView.Items[18].Checked = true;
                     m_CheckBoxListView.Items[19].Checked = true;
+                    m_CheckBoxListView.Items[20].Checked = true;
                     UpdateBoolSettings();
 
                 }
@@ -2343,6 +2365,7 @@ m_cb_ChooseFont.Visible = false;
                     m_CheckBoxListView.Items[17].Checked = true;
                     m_CheckBoxListView.Items[18].Checked = true;
                     m_CheckBoxListView.Items[19].Checked = true;
+                    m_CheckBoxListView.Items[20].Checked = true;
                     UpdateBoolSettings();
 
                 }
