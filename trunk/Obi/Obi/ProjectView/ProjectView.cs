@@ -770,6 +770,28 @@ namespace Obi.ProjectView
         // Yes please don't
         private bool ShouldSerializeColorSettings () { return false; }
 
+        public bool FixTocViewWidth
+        {
+            set
+            {
+                mTOCSplitter.IsSplitterFixed = value;
+            }
+        }
+        public int TOCViewWidth
+        {
+            get
+            {
+                return mTOCView.Width;
+            }
+            set
+            {
+                if (ObiForm.Settings.Project_SaveTOCViewWidth && mTOCView.Width != this.ObiForm.Settings.TOCViewWidth)
+                {
+                    mTOCSplitter.SplitterDistance = value;
+                }
+            }
+        }
+
         /// <summary>
         /// Copy the current selection into the clipboard. Noop if there is no selection.
         /// </summary>
