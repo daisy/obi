@@ -322,7 +322,7 @@
     <value>4</value>
   </data>
   <data name="m_ProjectNameTextBox.Text" xml:space="preserve">
-    <value>project.obi</value>
+    <value>project</value>
   </data>
   <data name="&gt;&gt;m_ProjectNameTextBox.Name" xml:space="preserve">
     <value>m_ProjectNameTextBox</value>
