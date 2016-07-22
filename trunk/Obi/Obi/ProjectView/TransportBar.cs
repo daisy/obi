@@ -4371,6 +4371,7 @@ SelectionChangedPlaybackEnabled = false;
             }
                
             mView.ObiForm.UpdateRecordingToolBarButtons();
+            mView.ObiForm.UpdateTitle();
         }
 
     // Event is subscribed to ToolStripMenu items.
@@ -4400,7 +4401,7 @@ SelectionChangedPlaybackEnabled = false;
                         mView.ObiForm.Settings.Audio_TTSVoice = installedTTSVoices[0];
                     }
                 }
-            }          
+            }
         }
         public void InitializeTooltipsForTransportpar()
         {

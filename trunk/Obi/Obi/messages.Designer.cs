@@ -6967,7 +6967,7 @@ namespace Obi {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {0}{1} ({2}) - {3}.
+        ///   Looks up a localized string similar to {0}{1} ({2}) - {3} ({4}).
         /// </summary>
         internal static string title_bar {
             get {
