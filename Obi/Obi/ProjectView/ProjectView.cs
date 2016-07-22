@@ -785,7 +785,7 @@ namespace Obi.ProjectView
             }
             set
             {
-                if (ObiForm.Settings.Project_SaveTOCViewWidth && mTOCView.Width != this.ObiForm.Settings.TOCViewWidth)
+                if (ObiForm != null && ObiForm.Settings != null && mTOCView != null && ObiForm.Settings.Project_SaveTOCViewWidth && mTOCView.Width != this.ObiForm.Settings.TOCViewWidth)
                 {
                     mTOCSplitter.SplitterDistance = value;
                 }

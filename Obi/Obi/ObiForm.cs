@@ -3520,7 +3520,7 @@ ref string exportDirectoryEPUB3)
                         mMenuStrip.Font = new Font(mSettings.ObiFont, this.mMenuStrip.Font.Size, FontStyle.Regular);//@fontconfig    
                         mStatusLabel.Font = new Font(mSettings.ObiFont, this.mStatusLabel.Font.Size, FontStyle.Regular);//@fontconfig    
                     }
-                    if (mSettings != null && mSettings.Project_SaveTOCViewWidth && mProjectView != null && mSettings.TOCViewWidth != 0)
+                    if (mSettings != null && mProjectView != null && mSettings.Project_SaveTOCViewWidth && mSettings.TOCViewWidth != 0)
                     {
                         mProjectView.TOCViewWidth = mSettings.TOCViewWidth;
                         this.FixTOCViewWidth = true;
@@ -4196,13 +4196,18 @@ ref string exportDirectoryEPUB3)
                 }
                 else
                 {
-                    Text = mSession.HasProject
-                               ? String.Format(Localizer.Message("title_bar"), mSession.Presentation.Title,
-                                               (mSession.CanSave ? "*" : ""), mSession.Path, Localizer.Message("obi"))
-                               : Localizer.Message("obi");
+                    UpdateTitle();
                 }
             }
 
+            //Also used to update Title during profile change 
+            public void UpdateTitle()
+            {
+                Text = mSession.HasProject
+                              ? String.Format(Localizer.Message("title_bar"), mSession.Presentation.Title,
+                                              (mSession.CanSave ? "*" : ""), mSession.Path, Localizer.Message("obi"), mSettings.SettingsNameForManipulation)
+                              : Localizer.Message("obi");
+            }
 
 
             /// <summary>
@@ -4295,7 +4300,7 @@ ref string exportDirectoryEPUB3)
                     mProjectView.TransportBar.Stop();
                     if (mProjectView.TransportBar.MonitorContinuously) mProjectView.TransportBar.MonitorContinuously = false; //@MonitorContinuously
                 }
-                if (mSettings.Project_SaveTOCViewWidth && mProjectView != null && mSettings != null)
+                if ( mProjectView != null && mSettings != null && mSettings.Project_SaveTOCViewWidth)
                 {
                     mSettings.TOCViewWidth = mProjectView.TOCViewWidth;
                 }
@@ -5451,7 +5456,7 @@ ref string exportDirectoryEPUB3)
 
                     }
                 }
-                if (mSettings != null && mSettings.Project_SaveTOCViewWidth && mProjectView != null && mSettings.TOCViewWidth != 0)
+                if (mSettings != null  && mProjectView != null && mSettings.Project_SaveTOCViewWidth && mSettings.TOCViewWidth != 0)
                 {
                     mProjectView.TOCViewWidth = mSettings.TOCViewWidth;
                 }
