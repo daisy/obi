@@ -4811,6 +4811,7 @@ m_MonitorContinuouslyWorker.RunWorkerAsync();
                     m_CurrentCheckedProfile = ProfileSelected;
                     mTransportBarTooltip.SetToolTip(m_btnSwitchProfile, Localizer.Message("Transport_SwitchProfile") + "\n" + mView.ObiForm.Settings.SettingsNameForManipulation + "(" + keyboardShortcuts.FormatKeyboardShorcut(keyboardShortcuts.ContentView_TransportBarExpandSwitchProfile.Value.ToString()) + ")");
                     m_btnSwitchProfile.AccessibleName = Localizer.Message("Transport_SwitchProfile") + mView.ObiForm.Settings.SettingsNameForManipulation + keyboardShortcuts.FormatKeyboardShorcut(keyboardShortcuts.ContentView_TransportBarExpandSwitchProfile.Value.ToString());
+                    mView.ObiForm.UpdateTitle();
 
                 }
             }
