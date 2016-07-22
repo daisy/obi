@@ -45,7 +45,7 @@ namespace Obi.Dialogs
         //    mNewDirectoryTextBox.Text = string.Format(Localizer.Message("save_as_new_directory_name"), mDir);
         //    mNewDirectoryTextBox.SelectionStart = 0;
         //    mNewDirectoryTextBox.SelectionLength = mNewDirectoryTextBox.Text.Length;
-            m_ProjectNameTextBox.Text = mFilename;
+            m_ProjectNameTextBox.Text = mFilename.Remove(mFilename.Length-4);
             GenerateFileName();
             if (settings.ObiFont != this.Font.Name)
             {
@@ -90,7 +90,7 @@ namespace Obi.Dialogs
             
             if (dialog.ShowDialog () == DialogResult.OK )
             {
-                if (Path.GetFullPath(Path.GetDirectoryName(Path.Combine(dialog.SelectedPath, m_ProjectNameTextBox.Text))) ==
+                if (Path.GetFullPath(Path.GetDirectoryName(Path.Combine(dialog.SelectedPath, m_ProjectNameTextBox.Text + ".obi"))) ==
                     Path.GetFullPath(Path.GetDirectoryName(mOriginalProjectPath)))
                 {
                     MessageBox.Show(Localizer.Message("save_as_error_same_directory"));
@@ -104,7 +104,7 @@ namespace Obi.Dialogs
                         return;
                     }
                 }
-                if (ObiForm.CheckProjectPath_Safe(Path.Combine(dialog.SelectedPath, m_ProjectNameTextBox.Text), true))
+                if (ObiForm.CheckProjectPath_Safe(Path.Combine(dialog.SelectedPath, m_ProjectNameTextBox.Text + ".obi"), true))
                 {
                     m_PathChecked = true; 
                     mLocationTextBox.Text = dialog.SelectedPath;
@@ -125,7 +125,7 @@ namespace Obi.Dialogs
         // Validate the chosen location before closing
         private void mOKButton_Click(object sender, EventArgs e)
         {
-            string newPath = Path.Combine(mLocationTextBox.Text, m_ProjectNameTextBox.Text);
+            string newPath = Path.Combine(mLocationTextBox.Text, m_ProjectNameTextBox.Text + ".obi");
             try
             {
                 string[] logicalDrives = System.IO.Directory.GetLogicalDrives();
