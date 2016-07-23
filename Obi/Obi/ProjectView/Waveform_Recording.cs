@@ -501,9 +501,11 @@ namespace Obi.ProjectView
                 //for (int i = 0 ; i < (int)Math.Ceiling(e.PcmDataBufferLength/ (float)frameSize); i += frameSize)
                 for (int i = channel; i < (int)Math.Ceiling(e.PcmDataBufferLength / (float)frameSize); i += channels)
                 {
-
-                    if (samples[i] < minChannel1) minChannel1 = samples[i];
-                    if (samples[i] > maxChannel1) maxChannel1 = samples[i];
+                    if (i >= 0 && i < samples.Length)
+                    {
+                        if (samples[i] < minChannel1) minChannel1 = samples[i];
+                        if (samples[i] > maxChannel1) maxChannel1 = samples[i];
+                    }
                 }
 
                 if (channels > 1)
@@ -513,8 +515,11 @@ namespace Obi.ProjectView
                     channel = 1;
                     for (int i = channel; i < (int)Math.Ceiling(e.PcmDataBufferLength / (float)frameSize); i += channels)
                     {
-                        if (samples[i] < minChannel2) minChannel2 = samples[i];
-                        if (samples[i] > maxChannel2) maxChannel2 = samples[i];
+                        if (i >= 0 && i < samples.Length)
+                        {
+                            if (samples[i] < minChannel2) minChannel2 = samples[i];
+                            if (samples[i] > maxChannel2) maxChannel2 = samples[i];
+                        }
                     }
                 }
                 m_AmpValue = m_Amp[0] + (int)(m_Amp[1] * Math.Pow(8, m_Amp.Length));
