@@ -262,5 +262,8 @@
   </data>
   <data name="Max._number_of_characters_in_output_filename,_excluding_extension._Default_is_60" xml:space="preserve">
     <value>Max. number of characters in output filename, excluding extension. Default is 60.</value>
-  </data>  
+  </data>
+  <data name="no_primary_export_Caption" xml:space="preserve">
+    <value>No export Directory</value>
+  </data>
 </root>

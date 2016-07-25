@@ -32,6 +32,10 @@ namespace PipelineInterface
         public PipelineInterfaceForm(string scriptPath, string inputPath, string ProjectDirectory, string ObiFont) //@fontconfig
             : this()
         {
+            if (ObiFont != this.Font.Name)
+            {
+                this.Font = new Font(ObiFont, this.Font.Size, FontStyle.Regular);//@fontconfig
+            }
             if (!File.Exists(scriptPath)) throw new Exception(string.Format(Localizer.Message("no_script"), scriptPath));
             mParser = new ScriptParser(scriptPath);
             
@@ -42,15 +46,12 @@ namespace PipelineInterface
             else
             {
                 mInputPath = "";
-                MessageBox.Show(Localizer.Message("no_primary_export_directory"));
+                MessageBox.Show(Localizer.Message("no_primary_export_directory"), Localizer.Message("no_primary_export_Caption"), MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             mProjectDirectory = ProjectDirectory;
             Text = mParser.NiceName;
             m_ObiFont = ObiFont;
-            if (ObiFont != this.Font.Name)
-            {
-                this.Font = new Font(ObiFont, this.Font.Size, FontStyle.Regular);//@fontconfig
-            }
+          
         }
 
 
