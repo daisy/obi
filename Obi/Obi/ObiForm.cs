@@ -4608,7 +4608,7 @@ ref string exportDirectoryEPUB3)
                         }
                     }
                     //  return result != DialogResult.Cancel;
-                    return true;
+                    return true;                                        
                 }
                 else
                 {
@@ -5755,6 +5755,7 @@ ref string exportDirectoryEPUB3)
                         MessageBox.Show(Localizer.Message("Language_Pack_WrongFile"), Localizer.Message("Language_Pack_Caption"));
                         m_FlagLangUpdate = true;
                         m_ToolsLangPack_Click(sender, e);
+                        return;
                     }
                   
                     zip.Close();
@@ -5782,7 +5783,6 @@ ref string exportDirectoryEPUB3)
                                 Console.WriteLine("Source {0}", source);
                             }
                         }
-
                     //    foreach(File file
                         MessageBox.Show(Localizer.Message("Language_Pack_Complete"), Localizer.Message("Language_Pack_Complete_Caption"));
                        
