@@ -6418,6 +6418,15 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Project file name cannot be empty.
+        /// </summary>
+        internal static string SaveAsEmptyProjectFileName {
+            get {
+                return ResourceManager.GetString("SaveAsEmptyProjectFileName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Project exported.
         /// </summary>
         internal static string saved_as_daisy_caption {
