@@ -4203,10 +4203,18 @@ ref string exportDirectoryEPUB3)
             //Also used to update Title during profile change 
             public void UpdateTitle()
             {
+                string tempPath = mSession.Path;
+                if (tempPath != null && tempPath.Length > 60)
+                {
+                    string[] tempPathSplit = mSession.Path.Split('\\');
+                    Console.WriteLine(tempPathSplit[0]);
+                    tempPath = tempPathSplit[0] + "\\............................\\" + tempPathSplit[tempPathSplit.Length - 1];             
+                }
                 Text = mSession.HasProject
-                              ? String.Format(Localizer.Message("title_bar"), mSession.Presentation.Title,
-                                              (mSession.CanSave ? "*" : ""), mSession.Path, Localizer.Message("obi"), mSettings.SettingsNameForManipulation)
-                              : Localizer.Message("obi");
+                               ? String.Format(Localizer.Message("title_bar"), mSession.Presentation.Title,
+                                               (mSession.CanSave ? "*" : ""), tempPath, Localizer.Message("obi"), mSettings.SettingsNameForManipulation)
+                               : Localizer.Message("obi");
+
             }
 
 
