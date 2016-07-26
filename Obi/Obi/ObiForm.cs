@@ -4204,7 +4204,7 @@ ref string exportDirectoryEPUB3)
             public void UpdateTitle()
             {
                 string tempPath = mSession.Path;
-                if (tempPath != null && tempPath.Length > 60)
+                if (tempPath != null && tempPath.Length > 90)
                 {
                     string[] tempPathSplit = mSession.Path.Split('\\');
                     Console.WriteLine(tempPathSplit[0]);
