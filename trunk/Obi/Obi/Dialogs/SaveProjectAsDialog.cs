@@ -125,22 +125,30 @@ namespace Obi.Dialogs
         // Validate the chosen location before closing
         private void mOKButton_Click(object sender, EventArgs e)
         {
-            string newPath = Path.Combine(mLocationTextBox.Text, m_ProjectNameTextBox.Text + ".obi");
-            try
+            if (m_ProjectNameTextBox.Text.Trim() == string.Empty)
             {
-                string[] logicalDrives = System.IO.Directory.GetLogicalDrives();
-                foreach (string drive in logicalDrives)
+                MessageBox.Show(Localizer.Message("SaveAsEmptyProjectFileName"), Localizer.Message("Caption_Error"),MessageBoxButtons.OK,MessageBoxIcon.Error);
+                mCanClose = false;
+
+            }
+            else
+            {
+                string newPath = Path.Combine(mLocationTextBox.Text, m_ProjectNameTextBox.Text + ".obi");
+                try
                 {
-                    if ((mLocationTextBox.Text == drive) || (mLocationTextBox.Text == Environment.GetFolderPath(Environment.SpecialFolder.Desktop)) || (mLocationTextBox.Text == Environment.GetFolderPath(Environment.SpecialFolder.MyComputer) || (mLocationTextBox.Text == Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments))))
+                    string[] logicalDrives = System.IO.Directory.GetLogicalDrives();
+                    foreach (string drive in logicalDrives)
                     {
-                        MessageBox.Show(string.Format(Localizer.Message("SaveAs_cannot_save_in_root"), mLocationTextBox.Text));
-                        mCanClose = false;
-                        return;
+                        if ((mLocationTextBox.Text == drive) || (mLocationTextBox.Text == Environment.GetFolderPath(Environment.SpecialFolder.Desktop)) || (mLocationTextBox.Text == Environment.GetFolderPath(Environment.SpecialFolder.MyComputer) || (mLocationTextBox.Text == Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments))))
+                        {
+                            MessageBox.Show(string.Format(Localizer.Message("SaveAs_cannot_save_in_root"), mLocationTextBox.Text));
+                            mCanClose = false;
+                            return;
+                        }
+                        // Must not save in same directory                    
                     }
-                    // Must not save in same directory                    
-                }
-                if (Path.GetFullPath(Path.GetDirectoryName(newPath)) ==
-                        Path.GetFullPath(Path.GetDirectoryName(mOriginalProjectPath)))
+                    if (Path.GetFullPath(Path.GetDirectoryName(newPath)) ==
+                            Path.GetFullPath(Path.GetDirectoryName(mOriginalProjectPath)))
                     {
                         MessageBox.Show(Localizer.Message("save_as_error_same_directory"));
                         mCanClose = false;
@@ -156,14 +164,15 @@ namespace Obi.Dialogs
                         mNewProjectPath = newPath;
                         mCanClose = true;
                     }
-                
-            }
-            catch (Exception x)
-            {
-                MessageBox.Show(string.Format(Localizer.Message("cannot_use_project_path"), newPath, x.Message),
-                    Localizer.Message("cannot_use_project_path_caption"),
-                    MessageBoxButtons.OK, MessageBoxIcon.Error);
-                mCanClose = false;
+
+                }
+                catch (Exception x)
+                {
+                    MessageBox.Show(string.Format(Localizer.Message("cannot_use_project_path"), newPath, x.Message),
+                        Localizer.Message("cannot_use_project_path_caption"),
+                        MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    mCanClose = false;
+                }
             }
         }
 

@@ -2902,4 +2902,7 @@ Error text: {1}</value>
   <data name="RecordingToolbar_SwitchLoadedProfile" xml:space="preserve">
     <value>Switch to {0}</value>
   </data>
+  <data name="SaveAsEmptyProjectFileName" xml:space="preserve">
+    <value>Project file name cannot be empty</value>
+   </data>
 </root>
