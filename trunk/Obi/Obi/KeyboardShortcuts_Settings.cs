@@ -120,6 +120,7 @@ namespace Obi
         public KeyboardShortcut ProjectView_ShowPropertiesOfSelectedNode = new KeyboardShortcut(Keys.Alt | Keys.Enter, "KeyS_ShowPropertiesOfSelectedNode");
         public KeyboardShortcut ProjectView_FocusOnTransportBarTimeDisplay = new KeyboardShortcut(Keys.F8, "KeyS_FocusOnTransportBarTimeDisplay");
         public KeyboardShortcut ProjectView_HardResetAllSettings = new KeyboardShortcut(Keys.Alt | Keys.Control | Keys.F10, "KeyS_HardResetAllSettings");
+        public KeyboardShortcut ProjectView_PlayOnNavigate = new KeyboardShortcut(Keys.Control | Keys.U, "KeyS_PlayOnNavigate");
 
         public KeyboardShortcut[] MenuKeyboardShortCutsList;
 
@@ -411,6 +412,7 @@ namespace Obi
             KeyboardShortcutsDescription.Add(Localizer.Message(ProjectView_ShowPropertiesOfSelectedNode.Description), ProjectView_ShowPropertiesOfSelectedNode);
             KeyboardShortcutsDescription.Add(Localizer.Message(ProjectView_FocusOnTransportBarTimeDisplay.Description), ProjectView_FocusOnTransportBarTimeDisplay);
             KeyboardShortcutsDescription.Add(Localizer.Message(ProjectView_HardResetAllSettings.Description), ProjectView_HardResetAllSettings);
+            KeyboardShortcutsDescription.Add(Localizer.Message(ProjectView_PlayOnNavigate.Description), ProjectView_PlayOnNavigate);
             KeyboardShortcutsDescription.Add(Localizer.Message(ZoomPanel_Close.Description), ZoomPanel_Close);
             KeyboardShortcutsDescription.Add(Localizer.Message(ZoomPanel_NextPhrase.Description), ZoomPanel_NextPhrase);
             KeyboardShortcutsDescription.Add(Localizer.Message(ZoomPanel_PreviousPhrase.Description), ZoomPanel_PreviousPhrase);
