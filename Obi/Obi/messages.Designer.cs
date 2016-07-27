@@ -2802,6 +2802,15 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Play on navigate will be activated.
+        /// </summary>
+        internal static string KeyS_PlayOnNavigate {
+            get {
+                return ResourceManager.GetString("KeyS_PlayOnNavigate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Play/Pause using audio cursor.
         /// </summary>
         internal static string KeyS_PlayPauseUsingAudioCursor_Default {

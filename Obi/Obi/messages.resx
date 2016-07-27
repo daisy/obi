@@ -2905,4 +2905,7 @@ Error text: {1}</value>
   <data name="SaveAsEmptyProjectFileName" xml:space="preserve">
     <value>Project file name cannot be empty</value>
    </data>
+  <data name="KeyS_PlayOnNavigate" xml:space="preserve">
+    <value>Play on navigate will be activated</value>
+  </data>
 </root>

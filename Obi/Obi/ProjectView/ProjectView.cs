@@ -4019,6 +4019,7 @@ for (int j = 0;
             mShortcutKeys[keyboardShortcuts.ContentView_TransportBarExpandPlayOptions.Value] = delegate() { return TransportBar.ExpandPlayOptions(); };
             mShortcutKeys[keyboardShortcuts.ContentView_TransportBarExpandRecordOptions.Value] = delegate() { return TransportBar.ExpandRecordOptions(); };
             mShortcutKeys[keyboardShortcuts.ContentView_TransportBarExpandSwitchProfile.Value] = delegate() { return TransportBar.ExpandSwitchProfile(); };
+            mShortcutKeys[keyboardShortcuts.ProjectView_PlayOnNavigate.Value] = delegate() { return PlayOnNavigateStateChanged(); };
             mTransportBar.InitializeTooltipsForTransportpar();
 
           //  mContentView.AssignShotcutToContextMenu();
@@ -4261,6 +4262,22 @@ for (int j = 0;
                 }
             }
             return false;
+        }
+        // use to check play on navigate using shortcut key
+        private bool PlayOnNavigateStateChanged()
+        {
+            if (!ObiForm.Settings.PlayOnNavigate)
+            {
+                ObiForm.Settings.PlayOnNavigate = true;
+                ObiForm.SetPlayOnNavigateStatus = ObiForm.Settings.PlayOnNavigate;
+                return true;
+            }
+            else
+            {
+                ObiForm.Settings.PlayOnNavigate = false;
+                ObiForm.SetPlayOnNavigateStatus = ObiForm.Settings.PlayOnNavigate;
+                return false;
+            }
         }
 
         private static readonly bool UseSelection = true;
