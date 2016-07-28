@@ -2908,4 +2908,10 @@ Error text: {1}</value>
   <data name="KeyS_PlayOnNavigate" xml:space="preserve">
     <value>Play on navigate will be activated</value>
   </data>
+  <data name="Profile_Audio" xml:space="preserve">
+    <value>Audio</value>
+  </data>
+  <data name="Profile_General" xml:space="preserve">
+    <value>General</value>
+  </data>
 </root>
