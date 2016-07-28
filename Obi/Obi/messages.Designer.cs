@@ -5398,6 +5398,24 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Audio.
+        /// </summary>
+        internal static string Profile_Audio {
+            get {
+                return ResourceManager.GetString("Profile_Audio", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to General.
+        /// </summary>
+        internal static string Profile_General {
+            get {
+                return ResourceManager.GetString("Profile_General", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Profile Saved.
         /// </summary>
         internal static string Profile_Saved {

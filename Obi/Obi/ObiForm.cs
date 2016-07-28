@@ -4215,13 +4215,25 @@ ref string exportDirectoryEPUB3)
                 {
                     string[] tempPathSplit = mSession.Path.Split('\\');
                     Console.WriteLine(tempPathSplit[0]);
-                    tempPath = tempPathSplit[0] + "\\............................\\" + tempPathSplit[tempPathSplit.Length - 1];             
+                    if (tempPathSplit.Length > 3)
+                    {
+                        tempPath = tempPathSplit[0] + tempPathSplit[1] + "\\.....\\" + tempPathSplit[tempPathSplit.Length - 2] + "\\" + tempPathSplit[tempPathSplit.Length - 1];
+                    }
                 }
-                Text = mSession.HasProject
-                               ? String.Format(Localizer.Message("title_bar"), mSession.Presentation.Title,
-                                               (mSession.CanSave ? "*" : ""), tempPath, Localizer.Message("obi"), mSettings.SettingsNameForManipulation)
-                               : Localizer.Message("obi");
+                if (mSettings != null)
+                {
+                    string[] str = mSettings.SettingsNameForManipulation.Split(new string[] { "   " }, StringSplitOptions.None);
+                    string tempSettingsName = str[0];
+                    if (str.Length > 1)
+                    {
+                        tempSettingsName = str[0] + " " + str[1];
+                    }
+                    Text = mSession.HasProject
+                                   ? String.Format(Localizer.Message("title_bar"), mSession.Presentation.Title,
+                                                   (mSession.CanSave ? "*" : ""), tempPath, Localizer.Message("obi"), tempSettingsName)
+                                   : Localizer.Message("obi");
 
+                }
             }
 
 
