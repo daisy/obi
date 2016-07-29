@@ -485,7 +485,7 @@ namespace Obi.ProjectView
 
         public void OnPcmDataBufferAvailable_Recorder(object sender, AudioRecorder.PcmDataBufferAvailableEventArgs e)
         {
-            if (e.PcmDataBuffer != null && e.PcmDataBuffer.Length > 1)
+            if (e.PcmDataBuffer != null && e.PcmDataBufferLength> 1)
             {
                 m_Amp[0] = e.PcmDataBuffer[0];
                 //m_Amp[1] = e.PcmDataBuffer[1];
