@@ -3527,7 +3527,7 @@ ref string exportDirectoryEPUB3)
                         mMenuStrip.Font = new Font(mSettings.ObiFont, this.mMenuStrip.Font.Size, FontStyle.Regular);//@fontconfig    
                         mStatusLabel.Font = new Font(mSettings.ObiFont, this.mStatusLabel.Font.Size, FontStyle.Regular);//@fontconfig    
                     }
-                    if (mSettings != null && mProjectView != null && mSettings.Project_SaveTOCViewWidth && mSettings.TOCViewWidth != 0)
+                    if (mSettings != null && mProjectView != null && mSettings.Project_SaveTOCViewWidth && mSettings.TOCViewWidth != 0 && mSession.Presentation != null)
                     {
                         mProjectView.TOCViewWidth = mSettings.TOCViewWidth;
                         this.FixTOCViewWidth = true;
@@ -5483,7 +5483,7 @@ ref string exportDirectoryEPUB3)
 
                     }
                 }
-                if (mSettings != null  && mProjectView != null && mSettings.Project_SaveTOCViewWidth && mSettings.TOCViewWidth != 0)
+                if (mSettings != null  && mProjectView != null && mSettings.Project_SaveTOCViewWidth && mSettings.TOCViewWidth != 0 && mSession.Presentation != null)
                 {
                     mProjectView.TOCViewWidth = mSettings.TOCViewWidth;
                 }
