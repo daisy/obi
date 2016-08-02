@@ -456,7 +456,8 @@ int SampleValue2 = 0 ;
 
             int iterations = Convert.ToInt32(stream.Length / chunkSizeBytes);
             byte[] chunkArray = new byte[chunkSizeBytes];
-            bool isPrevThresholdZero = false;
+            int referenceVal = 400;
+            int count = 0;
 
             for (int i = 0; i < iterations; i++)
             {
@@ -469,13 +470,15 @@ int SampleValue2 = 0 ;
                     new MemoryStream(chunkArray), 
                     audioPCMFormat);
 
-                if (threshold == 0 && !isPrevThresholdZero)
+                if (threshold <= referenceVal && count >6 )
                 {
-                    long position = chunkSizeBytes * i ;
+                    long position = chunkSizeBytes * (i-5) ;
                     Console.WriteLine("Silence error found at: " + position);
                     errorPositionsList.Add(position);
                 }
-                isPrevThresholdZero = (threshold == 0);
+                count++;
+                if (threshold > referenceVal) count = 0;
+                
             }
 
 
