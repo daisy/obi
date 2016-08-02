@@ -151,6 +151,7 @@ namespace Obi
             this.mPhrases_ApplyPhraseDetectionMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mApplyPhraseDetectionInProjectToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.settingsFromSilencePhraseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.detectSilencePhraseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mPhrases_AudioSelectionMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mPhrases_AudioSelection_BeginAudioSelectionMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mPhrases_AudioSelection_EndAudioSelectionMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -1080,7 +1081,8 @@ namespace Obi
             this.mPhraseDetectionToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.mPhrases_ApplyPhraseDetectionMenuItem,
             this.mApplyPhraseDetectionInProjectToolStripMenuItem,
-            this.settingsFromSilencePhraseToolStripMenuItem});
+            this.settingsFromSilencePhraseToolStripMenuItem,
+            this.detectSilencePhraseToolStripMenuItem});
             this.mPhraseDetectionToolStripMenuItem.Name = "mPhraseDetectionToolStripMenuItem";
             resources.ApplyResources(this.mPhraseDetectionToolStripMenuItem, "mPhraseDetectionToolStripMenuItem");
             // 
@@ -1101,6 +1103,12 @@ namespace Obi
             this.settingsFromSilencePhraseToolStripMenuItem.Name = "settingsFromSilencePhraseToolStripMenuItem";
             resources.ApplyResources(this.settingsFromSilencePhraseToolStripMenuItem, "settingsFromSilencePhraseToolStripMenuItem");
             this.settingsFromSilencePhraseToolStripMenuItem.Click += new System.EventHandler(this.settingsFromSilencePhraseToolStripMenuItem_Click);
+            // 
+            // detectSilencePhraseToolStripMenuItem
+            // 
+            this.detectSilencePhraseToolStripMenuItem.Name = "detectSilencePhraseToolStripMenuItem";
+            resources.ApplyResources(this.detectSilencePhraseToolStripMenuItem, "detectSilencePhraseToolStripMenuItem");
+            this.detectSilencePhraseToolStripMenuItem.Click += new System.EventHandler(this.detectSilencePhraseToolStripMenuItem_Click);
             // 
             // mPhrases_AudioSelectionMenuItem
             // 
@@ -1646,6 +1654,7 @@ namespace Obi
             this.mProjectView.Presentation = null;
             this.mProjectView.Selection = null;
             this.mProjectView.TOCViewVisible = true;
+            this.mProjectView.TOCViewWidth = 263;
             this.mProjectView.TransportBarVisible = false;
             // 
             // ObiForm
@@ -1874,6 +1883,7 @@ namespace Obi
         private System.Windows.Forms.ToolStripMenuItem m_Tools_CompleteCleanupToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem m_Tools_QuickCleanupToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem rollbackToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem detectSilencePhraseToolStripMenuItem;
     }
 }
 
