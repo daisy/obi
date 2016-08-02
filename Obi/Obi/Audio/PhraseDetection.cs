@@ -412,5 +412,76 @@ int SampleValue2 = 0 ;
             }
 */
 
+         //Diagnosis code for detecting silence gaps 
+        public static List<double> GetErrorSilencePositionInAsset(ManagedAudioMedia RefAsset)
+        {
+            
+            AudioLibPCMFormat audioPCMFormat = new AudioLibPCMFormat(RefAsset.AudioMediaData.PCMFormat.Data.NumberOfChannels, RefAsset.AudioMediaData.PCMFormat.Data.SampleRate, RefAsset.AudioMediaData.PCMFormat.Data.BitDepth);
+            
+            List<long> errorPositionsBytesList = null;
+            Stream stream = RefAsset.AudioMediaData.OpenPcmInputStream();
+            try
+            {
+                errorPositionsBytesList = GetErrorSilencePosition(audioPCMFormat, stream);
+            }
+            finally
+            {
+                if(stream != null)  stream.Close();
+            }
+            List<double> errorPositionTimesList = new List<double>();
+            foreach (long positionBytes in errorPositionsBytesList)
+            {
+                double positionTime = Convert.ToDouble(positionBytes / audioPCMFormat.ByteRate) * 1000 ;
+                errorPositionTimesList.Add(positionTime);
+                Console.WriteLine("Position time: " + positionTime);
+            }
+            return errorPositionTimesList;
+        }
+
+        public static List<long> GetErrorSilencePosition(AudioLibPCMFormat audioPCMFormat, Stream stream)
+        {
+            List<long> errorPositionsList = new List<long>();
+            // check in chunks of 100 ms
+            double chunkSizeMS = 100 ;
+            int chunkSizeBytes = Convert.ToInt32( chunkSizeMS * audioPCMFormat.ByteRate / 1000 );
+            chunkSizeBytes =(int) audioPCMFormat.AdjustByteToBlockAlignFrameSize (chunkSizeBytes ) ;
+            Console.WriteLine ("Chunk size bytes: " + chunkSizeBytes ) ;
+
+            if (stream.Length < chunkSizeBytes)
+            {
+                Console.WriteLine("The stream is too short to check silence errors");
+                return errorPositionsList;
+            }
+            Console.WriteLine("Stream length: " + stream.Length);
+
+            int iterations = Convert.ToInt32(stream.Length / chunkSizeBytes);
+            byte[] chunkArray = new byte[chunkSizeBytes];
+            bool isPrevThresholdZero = false;
+
+            for (int i = 0; i < iterations; i++)
+            {
+                int startPos = Convert.ToInt32(i * chunkSizeBytes);
+                Console.WriteLine("Stream offset: " + startPos );
+                stream.Read(chunkArray , 
+                    0, chunkSizeBytes);
+
+                long threshold =  AudioLib.PhraseDetection.GetSilenceAmplitude(
+                    new MemoryStream(chunkArray), 
+                    audioPCMFormat);
+
+                if (threshold == 0 && !isPrevThresholdZero)
+                {
+                    long position = chunkSizeBytes * i ;
+                    Console.WriteLine("Silence error found at: " + position);
+                    errorPositionsList.Add(position);
+                }
+                isPrevThresholdZero = (threshold == 0);
+            }
+
+
+            return errorPositionsList;
+        }
+
+
     }
 }
