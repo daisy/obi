@@ -4612,8 +4612,12 @@ ref string exportDirectoryEPUB3)
                         String.Format(Localizer.Message("really_use_directory_text"), path),
                         Localizer.Message("really_use_directory_caption"),
                         // MessageBoxButtons.YesNoCancel,
-                        MessageBoxButtons.YesNo,
+                        MessageBoxButtons.YesNoCancel,
                         MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
+                    if (result == DialogResult.Cancel)
+                    {
+                        return false;
+                    }
                     if (result == DialogResult.Yes)
                     {
                         try
