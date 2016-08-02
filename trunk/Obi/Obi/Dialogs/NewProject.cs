@@ -124,11 +124,12 @@ namespace Obi.Dialogs
                     MessageBox.Show(Localizer.Message("NewProject_EmptyTitle"), Localizer.Message("EmptyProjectTitle_error_Caption"),MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
-                ObiForm.CheckProjectPath(mFileBox.Text, true);
-
-                m_AudioSettingsDialog.ShowDialog();
-
-                mCanClose = true;
+               bool tempCheckPath = ObiForm.CheckProjectPath(mFileBox.Text, true);
+               if (tempCheckPath)
+               {
+                   m_AudioSettingsDialog.ShowDialog();
+                   mCanClose = true;
+               }
             }
             catch (Exception x)
             {
