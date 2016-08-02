@@ -6352,6 +6352,30 @@ public bool ShowOnlySelectedSection
             mFindInText.SetFont();
         }
 
+        public void DetectSilenceErrors()
+        {
+            if (Selection != null && Selection.Node is PhraseNode)
+            {
+                PhraseNode phrase = (PhraseNode)Selection.Node;
+                try
+                {
+                    List<double> silencePositionsList = Audio.PhraseDetection.GetErrorSilencePositionInAsset(phrase.Audio);
+
+                    for (int i = silencePositionsList.Count - 1; i >= 0; i--)
+                    {
+                        mPresentation.Do(
+                            Commands.Node.SplitAudio.GetSplitCommand(
+                            this, phrase, silencePositionsList[i]));
+                    }
+                }
+                catch (System.Exception ex)
+                {
+                    MessageBox.Show(ex.ToString());
+                }
+
+            }// end of main if
+        }
+
         }
 
     public class ImportingFileEventArgs
