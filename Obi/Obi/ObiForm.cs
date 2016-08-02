@@ -6151,6 +6151,11 @@ ref string exportDirectoryEPUB3)
                 CleanUpRollBack();
             }
 
+            private void detectSilencePhraseToolStripMenuItem_Click(object sender, EventArgs e)
+            {
+                mProjectView.DetectSilenceErrors();
+            }
+
  
         }
     }
