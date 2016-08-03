@@ -353,7 +353,10 @@ namespace Obi.ProjectView
                             if (metadataObj.NameContentAttribute.Name == entryName)
                                 {
                                     mMetadataListView.Items[i].SubItems[1].Text = metadataObj.NameContentAttribute.Value;
-
+                                    if (mSelection != null && mSelection.Item != null && mSelection.Item.Item != null)
+                                    {
+                                        mContentTextbox.Text = mSelection.Item.Item.SubItems[1].Text;
+                                    }
                                 // check if custom entry at last of metadataListView is selected.
                                 // move selection to one item before so as to prevent user from adding more custom entries by pressing enter multiple times there.
                                 if (mMetadataListView.SelectedIndices.Count > 0 && mMetadataListView.SelectedIndices[0] == mMetadataListView.Items.Count - 1
