@@ -2053,7 +2053,7 @@ namespace Obi {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Audio files corresponding to following ids are missing:.
+        ///   Looks up a localized string similar to Audio files corresponding to following ids are missing. This may be due to corruption of audio  or restoration of project from backup after cleanup..
         /// </summary>
         internal static string Error_Message {
             get {
