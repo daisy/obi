@@ -2307,7 +2307,7 @@ m_cb_ChooseFont.Visible = false;
                     m_CheckBoxListView.Items[17].Checked = true;
                     m_CheckBoxListView.Items[18].Checked = true;
                     m_CheckBoxListView.Items[19].Checked = true;
-                    m_CheckBoxListView.Items[20].Checked = true;
+                    m_CheckBoxListView.Items[20].Checked = false;
                     UpdateBoolSettings();
 
                 }
@@ -2365,7 +2365,7 @@ m_cb_ChooseFont.Visible = false;
                     m_CheckBoxListView.Items[17].Checked = true;
                     m_CheckBoxListView.Items[18].Checked = true;
                     m_CheckBoxListView.Items[19].Checked = true;
-                    m_CheckBoxListView.Items[20].Checked = true;
+                    m_CheckBoxListView.Items[20].Checked = false;
                     UpdateBoolSettings();
 
                 }
