@@ -2151,7 +2151,7 @@ Error text: {1}</value>
     <value>Fine navigation:</value>
   </data>
   <data name="Error_Message" xml:space="preserve">
-    <value>Audio files corresponding to following ids are missing. This may be due to corruption of audio  or restoration of project from backup after cleanup.</value>
+    <value>Audio files corresponding to following ids are missing:</value>
   </data>
   <data name="Warning" xml:space="preserve">
     <value>Warning!</value>
