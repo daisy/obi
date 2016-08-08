@@ -442,7 +442,7 @@ namespace Obi.ImportExport
                 // first increment exported section count
                 m_ExportedSectionCount++;
 
-                string strDurTime = TruncateTimeToDecimalPlaces(new TimeSpan(sectionDuration.AsTimeSpanTicks).TotalSeconds.ToString(), 3);
+                string strDurTime = TruncateTimeToDecimalPlaces(new TimeSpan(sectionDuration.AsTimeSpanTicks).TotalSeconds.ToString(System.Globalization.CultureInfo.CreateSpecificCulture("en-US")), 3);
                 //string strDurTime = Math.Round ( sectionDuration.getTime ().TotalSeconds, 3, MidpointRounding.ToEven).ToString ();
                 strDurTime = strDurTime + "s";
                 CreateAppendXmlAttribute ( smilDocument, mainSeq, "dur", strDurTime );
