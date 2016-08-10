@@ -1,0 +1,2653 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="clear_recent_caption" xml:space="preserve">
+    <value>Limpar lista de projetos recentes</value>
+  </data>
+  <data name="clear_recent_text" xml:space="preserve">
+    <value>Tem a certeza que quer limpar a lista de projetos recentes?
+Esta ação é irreversível.</value>
+  </data>
+  <data name="closed_project" xml:space="preserve">
+    <value>Fechado o projeto "{0}".</value>
+  </data>
+  <data name="closed_project_caption" xml:space="preserve">
+    <value>A fechar um projeto modificado</value>
+  </data>
+  <data name="closed_project_text" xml:space="preserve">
+    <value>Está prestes a salvar um projeto com modificações não guardadas.
+Deseja guardar essas modificações antes de salvar o projeto?</value>
+  </data>
+  <data name="default_organization" xml:space="preserve">
+    <value>N/A</value>
+  </data>
+  <data name="default_section_label" xml:space="preserve">
+    <value>Secção sem título</value>
+  </data>
+  <data name="obi" xml:space="preserve">
+    <value>Obi</value>
+  </data>
+  <data name="open_project_error_caption" xml:space="preserve">
+    <value>Erro ao abrir o ficheiro do projeto</value>
+  </data>
+  <data name="open_project_error_text" xml:space="preserve">
+    <value>Impossível ler o ficheiro XUK {0}.</value>
+  </data>
+  <data name="opened_project" xml:space="preserve">
+    <value>Ficheiro aberto "{0}".</value>
+  </data>
+  <data name="ready" xml:space="preserve">
+    <value>Pronto.</value>
+  </data>
+  <data name="redo_label" xml:space="preserve">
+    <value>{0} {1}</value>
+  </data>
+  <data name="save_settings_error_caption" xml:space="preserve">
+    <value>Impossível salvar as configurações</value>
+  </data>
+  <data name="save_settings_error_text" xml:space="preserve">
+    <value>Ocorreu o seguinte erro ao tentar salvar as configurações:
+"{0}"
+Assim, nenhuma configuração foi alterada durante esta sessão.
+Oh então.</value>
+  </data>
+  <data name="saved_project" xml:space="preserve">
+    <value>Projeto salvo para o ficheiro "{0}".</value>
+  </data>
+  <data name="undo_label" xml:space="preserve">
+    <value>{0} {1}</value>
+  </data>
+  <data name="create_directory_text" xml:space="preserve">
+    <value>O diretório {0} não existe. Deseja criá-lo?</value>
+  </data>
+  <data name="redo" xml:space="preserve">
+    <value>Refazer</value>
+  </data>
+  <data name="undo" xml:space="preserve">
+    <value>Desfazer</value>
+  </data>
+  <data name="no_device_found_caption" xml:space="preserve">
+    <value>Nenhum dispositivo áudio foi encontrado</value>
+  </data>
+  <data name="no_device_found_text" xml:space="preserve">
+    <value>Impossível selecionar um dispositivo de entrada e saída de áudio.
+    Por favor, verifique se o DirectX 9c está corretamente instalado.</value>
+  </data>
+  <data name="no_output_device_caption" xml:space="preserve">
+    <value>Nenhum dispositivo de saída de áudio foi encontrado</value>
+  </data>
+  <data name="no_output_device_text" xml:space="preserve">
+    <value>Impossível selecionar dispositivo de saída de áudio: Nenhum destes dispositivos foi localizado.</value>
+  </data>
+  <data name="create_directory_caption" xml:space="preserve">
+    <value>Criar diretório?</value>
+  </data>
+  <data name="mono" xml:space="preserve">
+    <value>Mono</value>
+  </data>
+  <data name="stereo" xml:space="preserve">
+    <value>Stereo</value>
+  </data>
+  <data name="no_input_device_caption" xml:space="preserve">
+    <value>Nenhum dispositivo de entrada foi encontrado</value>
+  </data>
+  <data name="no_input_device_text" xml:space="preserve">
+    <value>Impossível selecionar dispositivo de entrada de áudio: Nenhum destes dispositivos foi localizado.</value>
+  </data>
+  <data name="record" xml:space="preserve">
+    <value>Gravar</value>
+  </data>
+  <data name="obi_filter" xml:space="preserve">
+    <value>Ficheiro de projeto do Obi (*.obi)|*.obi|Qualquer ficheiro|*.*</value>
+  </data>
+  <data name="report_delete_error" xml:space="preserve">
+    <value>Erro ao apagar ficheiro {0}. ({1})</value>
+  </data>
+  <data name="audio_file_filter" xml:space="preserve">
+    <value>Ficheiros de áudio (*.wav;*.mp3;*.mp4;*.m4a)|*.wav;*.mp3;*.mp4;*.m4a|Qualquer ficheiro|*.*</value>
+  </data>
+  <data name="Monitoring" xml:space="preserve">
+    <value>A monitorar entrada de áudio…</value>
+  </data>
+  <data name="page_number" xml:space="preserve">
+    <value>página {0}</value>
+  </data>
+  <data name="normal_phrase" xml:space="preserve">
+    <value>Frase</value>
+  </data>
+  <data name="saved_as_daisy_text" xml:space="preserve">
+    <value>Projeto exportado no diretório {0}</value>
+  </data>
+  <data name="title_bar" xml:space="preserve">
+    <value>{0}{1} ({2}) - {3} ({4})</value>
+  </data>
+  <data name="export_choose_folder" xml:space="preserve">
+    <value>Por favor, selecione a pasta onde salvar o seu livro DAISY.</value>
+  </data>
+  <data name="default_directory_browser" xml:space="preserve">
+    <value>Por favor, escolha abaixo um diretório padrão de projeto.</value>
+  </data>
+  <data name="export_directory_browser" xml:space="preserve">
+    <value>Por favor, escolha abaixo um diretório padrão para exportar.</value>
+  </data>
+  <data name="playback_rate" xml:space="preserve">
+    <value>Taxa de reprodução x{0} em {1}</value>
+  </data>
+  <data name="Recording" xml:space="preserve">
+    <value>A gravar…</value>
+  </data>
+  <data name="cannot_create_file_caption" xml:space="preserve">
+    <value>Impossível criar diretório de projeto</value>
+  </data>
+  <data name="cannot_create_file_text" xml:space="preserve">
+    <value>Impossível criar ficheiro de projeto</value>
+  </data>
+  <data name="cannot_create_directory_caption" xml:space="preserve">
+    <value>Impossível criar o diretório</value>
+  </data>
+  <data name="cannot_create_directory_text" xml:space="preserve">
+    <value>Impossível criar diretório {0}: {1}.</value>
+  </data>
+  <data name="cannot_delete_caption" xml:space="preserve">
+    <value>Impossível apagar ficheiro</value>
+  </data>
+  <data name="cannot_delete_text" xml:space="preserve">
+    <value>O ficheiro {0} não pode ser apagado. Pressione OK para continuar ou Cancelar para abortar. (Motivo: {1})</value>
+  </data>
+  <data name="empty_directory_caption" xml:space="preserve">
+    <value>A exportar para um diretório que não está vazio</value>
+  </data>
+  <data name="empty_directory_text" xml:space="preserve">
+    <value>Está prestes a exportar o seu projeto DAISY para {0}. Este diretório não está vazio (é possível que tenha exportado uma versão anterior do seu projeto para esse diretório.) Deseja esvaziar o diretório antes de exportar?</value>
+  </data>
+  <data name="didnt_save_as_daisy_caption" xml:space="preserve">
+    <value>Erro ao exportar para DAISY/EPUB</value>
+  </data>
+  <data name="didnt_save_as_daisy_text" xml:space="preserve">
+    <value>Impossível exportar o projeto para DAISY/EPUB no diretório {0}. Motivo: {1}</value>
+  </data>
+  <data name="saved_as_daisy_caption" xml:space="preserve">
+    <value>Exportação do projeto concluída</value>
+  </data>
+  <data name="import_phrase_error_caption" xml:space="preserve">
+    <value>Erro ao importar áudio</value>
+  </data>
+  <data name="import_phrase_error_text" xml:space="preserve">
+    <value>O ficheiro áudio "{0}" não pôde ser importado  pois parâmetros como (canais, profundidade de bits, ou taxa de amostragem) não correspondem aos parâmetros do projeto.</value>
+  </data>
+  <data name="dc_publisher_description" xml:space="preserve">
+    <value>A organização responsável pela disponibilização do livro.</value>
+  </data>
+  <data name="dc_title_description" xml:space="preserve">
+    <value>O título do livro, incluindo quaisquer subtítulos.</value>
+  </data>
+  <data name="missing_description" xml:space="preserve">
+    <value>A descrição para este item de metadados está em falta.</value>
+  </data>
+  <data name="help_file_name" xml:space="preserve">
+    <value>help_en.html</value>
+  </data>
+  <data name="error_metadata_name_caption" xml:space="preserve">
+    <value>Impossível criar item de metadados</value>
+  </data>
+  <data name="error_metadata_name_message" xml:space="preserve">
+    <value>Não é possível criar o item de metadados com o nome "{0}": O nome não deve começar com "dtb:"</value>
+  </data>
+  <data name="default_project_title" xml:space="preserve">
+    <value>Projeto do Obi sem título</value>
+  </data>
+  <data name="default_project_filename" xml:space="preserve">
+    <value>project.obi</value>
+  </data>
+  <data name="really_use_directory_caption" xml:space="preserve">
+    <value>Esvaziar diretório antes de usá-lo?</value>
+  </data>
+  <data name="really_use_directory_text" xml:space="preserve">
+    <value>O diretório "{0}"não está vazio. Se deseja esvaziar o diretório antes de o usar, escolha "Sim." Se deseja usar o diretório tal como está, escolha "Não."</value>
+  </data>
+  <data name="cannot_redo" xml:space="preserve">
+    <value>Impossível refazer</value>
+  </data>
+  <data name="cannot_undo" xml:space="preserve">
+    <value>Impossível desfazer</value>
+  </data>
+  <data name="rename_section" xml:space="preserve">
+    <value>Renomear secção</value>
+  </data>
+  <data name="move_section_out" xml:space="preserve">
+    <value>Diminuir nível da secção</value>
+  </data>
+  <data name="move_section_in" xml:space="preserve">
+    <value>Aumentar nível da secção</value>
+  </data>
+  <data name="delete_section" xml:space="preserve">
+    <value>Apagar secção (e todas as dependentes)</value>
+  </data>
+  <data name="copy_section" xml:space="preserve">
+    <value>Copiar secção (e todas as dependentes)</value>
+  </data>
+  <data name="cut_section" xml:space="preserve">
+    <value>Cortar secção (e todas as dependentes)</value>
+  </data>
+  <data name="paste_section" xml:space="preserve">
+    <value>Colar secção</value>
+  </data>
+  <data name="import_phrases" xml:space="preserve">
+    <value>Importar ficheiros áudio</value>
+  </data>
+  <data name="importing_file" xml:space="preserve">
+    <value>A importar o ficheiro "{0}"</value>
+  </data>
+  <data name="init_error_text" xml:space="preserve">
+    <value>Wups! Ocorreu um erro ao iniciar o Obi.
+Por favor, envie um relatório de bug,  incluindo o conteúdo de {0}
+Error text: {1}</value>
+  </data>
+  <data name="init_error_caption" xml:space="preserve">
+    <value>Wups! Erro na inicialização do Obi</value>
+  </data>
+  <data name="created_new_project" xml:space="preserve">
+    <value>Criado novo projeto "{0}".</value>
+  </data>
+  <data name="delete_phrase" xml:space="preserve">
+    <value>Apagar frase</value>
+  </data>
+  <data name="delete_section_shallow" xml:space="preserve">
+    <value>Apagar secção (e não as suas dependentes)</value>
+  </data>
+  <data name="cut_section_shallow" xml:space="preserve">
+    <value>Cortar secção (e não as suas dependentes)</value>
+  </data>
+  <data name="split_section" xml:space="preserve">
+    <value>Dividir secção</value>
+  </data>
+  <data name="merge_sections" xml:space="preserve">
+    <value>Juntar secção</value>
+  </data>
+  <data name="cut_phrase" xml:space="preserve">
+    <value>Cortar frase</value>
+  </data>
+  <data name="copy_phrase" xml:space="preserve">
+    <value>Copiar frase</value>
+  </data>
+  <data name="find_in_text_init" xml:space="preserve">
+    <value>Digite o texto a ser procurado na secção.</value>
+  </data>
+  <data name="find_next_in_text" xml:space="preserve">
+    <value>Procurar adiante</value>
+  </data>
+  <data name="find_prev_in_text" xml:space="preserve">
+    <value>Procurar atrás</value>
+  </data>
+  <data name="finished_searching_all" xml:space="preserve">
+    <value>Pesquisado todo o texto.</value>
+  </data>
+  <data name="found_in_text" xml:space="preserve">
+    <value>Encontrada ocorrência de "{0}".</value>
+  </data>
+  <data name="not_found_in_text" xml:space="preserve">
+    <value>Nenhuma correspondência foi localizada.</value>
+  </data>
+  <data name="nothing_to_search" xml:space="preserve">
+    <value>Nada a pesquisar</value>
+  </data>
+  <data name="searching" xml:space="preserve">
+    <value>A pesquisar…</value>
+  </data>
+  <data name="please_enter_some_text" xml:space="preserve">
+    <value>Por favor digite texto.</value>
+  </data>
+  <data name="recording_command" xml:space="preserve">
+    <value>A gravar</value>
+  </data>
+  <data name="start_recording" xml:space="preserve">
+    <value>Iniciar gravação</value>
+  </data>
+  <data name="split_phrase" xml:space="preserve">
+    <value>Dividir frase</value>
+  </data>
+  <data name="merge_phrase_with_next" xml:space="preserve">
+    <value>Juntar frase com a seguinte</value>
+  </data>
+  <data name="paste_phrase" xml:space="preserve">
+    <value>Colar frase</value>
+  </data>
+  <data name="add_role" xml:space="preserve">
+    <value>Adicionar função</value>
+  </data>
+  <data name="assign_role" xml:space="preserve">
+    <value>Atribuir função</value>
+  </data>
+  <data name="mark_phrase_used" xml:space="preserve">
+    <value>Marcar frase como {0}</value>
+  </data>
+  <data name="set_page_number_" xml:space="preserve">
+    <value>Definir número de página</value>
+  </data>
+  <data name="add_section" xml:space="preserve">
+    <value>Adicionar secção</value>
+  </data>
+  <data name="add_subsection" xml:space="preserve">
+    <value>Adicionar subsecção</value>
+  </data>
+  <data name="mark_section_used" xml:space="preserve">
+    <value>Marcar secção como {0}</value>
+  </data>
+  <data name="cut_audio" xml:space="preserve">
+    <value>Cortar áudio</value>
+  </data>
+  <data name="delete_audio" xml:space="preserve">
+    <value>Apagar áudio</value>
+  </data>
+  <data name="default_custom_class_name" xml:space="preserve">
+    <value>Marcado</value>
+  </data>
+  <data name="no_preceding_silence_phrase" xml:space="preserve">
+    <value>Não havia nenhuma frase de silêncio antes da seleção, por isso serão utilizados os valores padrão. Mesmo assim, pode alterar estas definições livremente, ou cancelar e selecionar uma frase de silêncio.</value>
+  </data>
+  <data name="paste_audio" xml:space="preserve">
+    <value>Colar áudio</value>
+  </data>
+  <data name="copy_audio" xml:space="preserve">
+    <value>Copiar áudio</value>
+  </data>
+  <data name="phrase_detection" xml:space="preserve">
+    <value>Deteção de frases</value>
+  </data>
+  <data name="create_new_project_from_import" xml:space="preserve">
+    <value>Criar novo projeto por importação</value>
+  </data>
+  <data name="import_failed" xml:space="preserve">
+    <value>Impossível criar projeto por importação.</value>
+  </data>
+  <data name="filter" xml:space="preserve">
+    <value>XHTML, Opf, XML, Csv, Txt, ficheiro Epub (*.htm;*.html;*.xhtml;*.opf;*.xml;*.epub;*.csv;*.txt)|*.htm;*.html;*.xhtml;*.opf;*.xml;*.epub;*.csv;*.txt|Quaisquer ficheiros|*.*</value>
+  </data>
+  <data name="blank_phrase" xml:space="preserve">
+    <value>Frase em branco</value>
+  </data>
+  <data name="kind_phrase" xml:space="preserve">
+    <value>{0} frase</value>
+  </data>
+  <data name="insert_section" xml:space="preserve">
+    <value>Inserir secção</value>
+  </data>
+  <data name="clean_failed_caption" xml:space="preserve">
+    <value>Falha na depuração do projeto</value>
+  </data>
+  <data name="clean_failed_text" xml:space="preserve">
+    <value>O Obi não conseguiu depurar este projeto, motivo aparente: {0}</value>
+  </data>
+  <data name="clean_up_ask_for_delete_project" xml:space="preserve">
+    <value>Os ficheiros não usados são movidos para a pasta apagar para a operação descartagem antes da depuração. Pretende apagar estes ficheiros mesmo assim? Atenção! Não poderá fazer a descartagem se estes ficheiros forem apagados.</value>
+  </data>
+  <data name="clean_save_caption" xml:space="preserve">
+    <value>Salvar depois de depurar</value>
+  </data>
+  <data name="Delete_unused_data_caption" xml:space="preserve">
+    <value>Apagar dados não usados ?</value>
+  </data>
+  <data name="UnusedPhrasesDeletedCaption" xml:space="preserve">
+    <value>Apagamento de frases não usadas.</value>
+  </data>
+  <data name="clean_save_text" xml:space="preserve">
+    <value>Esta operação salvará o seu projeto, e não poderá reverter tudo o que fez até agora. Deseja continuar?</value>
+  </data>
+  <data name="delete_unused" xml:space="preserve">
+    <value>Apagar dados não usados ?</value>
+  </data>
+  <data name="delete_metadata_entry" xml:space="preserve">
+    <value>Apagar entrada de metadados</value>
+  </data>
+  <data name="modify_metadata_content" xml:space="preserve">
+    <value>Modificar conteúdo da entrada de metadados</value>
+  </data>
+  <data name="modify_metadata_name" xml:space="preserve">
+    <value>Modificar nome da entrada de metadados</value>
+  </data>
+  <data name="about_file_name" xml:space="preserve">
+    <value>about_pt.html</value>
+  </data>
+  <data name="add_blank_pages" xml:space="preserve">
+    <value>Adicionar páginas em branco</value>
+  </data>
+  <data name="add_blank_phrase" xml:space="preserve">
+    <value>Adicionar frase em branco</value>
+  </data>
+  <data name="add_metadata_entry" xml:space="preserve">
+    <value>Adicionar entrada de metadados</value>
+  </data>
+  <data name="choose_import_file" xml:space="preserve">
+    <value>Escolher ficheiro a importar</value>
+  </data>
+  <data name="copy_section_shallow" xml:space="preserve">
+    <value>Copiar secção (e não as suas dependentes)</value>
+  </data>
+  <data name="monitoring_short" xml:space="preserve">
+    <value>A efetuar monitoração</value>
+  </data>
+  <data name="propose_directory_caption" xml:space="preserve">
+    <value>Diretório não vazio para o novo projeto</value>
+  </data>
+  <data name="propose_directory_text" xml:space="preserve">
+    <value>O diretório que selecionou para guardar o seu projeto não está vazio. Gostaria de selecionar esta localização para o seu novo projeto: "{0}"?</value>
+  </data>
+  <data name="start_monitoring" xml:space="preserve">
+    <value>Iniciar monitoração</value>
+  </data>
+  <data name="content_view" xml:space="preserve">
+    <value>Vista de conteúdo</value>
+  </data>
+  <data name="audio_block_label" xml:space="preserve">
+    <value>{0} {1} of {2}{3}</value>
+  </data>
+  <data name="audio_block_label_unused" xml:space="preserve">
+    <value> , não usado</value>
+  </data>
+  <data name="Paused" xml:space="preserve">
+    <value>Em pausa</value>
+  </data>
+  <data name="Playing" xml:space="preserve">
+    <value>A reproduzir áudio</value>
+  </data>
+  <data name="Stopped" xml:space="preserve">
+    <value>Em stop</value>
+  </data>
+  <data name="transport_bar" xml:space="preserve">
+    <value>Barra de controlo</value>
+  </data>
+  <data name="dc_contributor_description" xml:space="preserve">
+    <value>Um parceiro cuja contribuição  para a publicação seja secundário relativamente aos nomeados em dc:Criador.</value>
+  </data>
+  <data name="dc_coverage_description" xml:space="preserve">
+    <value>A extensão ou abrangência do conteúdo do recurso. Não sendo suposto que essa informação seja usada para DTBs.</value>
+  </data>
+  <data name="dc_creator_description" xml:space="preserve">
+    <value>Nomes dos autores principais do conteúdo intelectual da publicação.</value>
+  </data>
+  <data name="dc_date_description" xml:space="preserve">
+    <value>Data da publicação do livro. (Compare dtb:sourceDate e dtb:producedDate.) No formato de  [ISO8601]; a syntax é AAAA[-MM[-DD]] com um campo obrigatório de 4-dígitos para o ano, um campo opcional de 2-dígitos para o mês, e se o mês estiver presente, um campo opcional de 2-dígitos para o dia do mês.</value>
+  </data>
+  <data name="dc_description_description" xml:space="preserve">
+    <value>Texto simples que descreva o conteúdo da publicação.</value>
+  </data>
+  <data name="dc_format_description" xml:space="preserve">
+    <value>O parâmetro ou especificação para a qual a publicação foi produzida.</value>
+  </data>
+  <data name="dc_identifier_description" xml:space="preserve">
+    <value>Uma linha ou número para identificação do livro.</value>
+  </data>
+  <data name="dc_language_description" xml:space="preserve">
+    <value>Idioma do conteúdo da publicação. Um código de idioma [RFC 3066] a incluir. Para a Suécia: "sv" ou "sv-SE"; para o Reino Unido: "en" ou "en-GB"; para os Estados Unidos: "en" or "en-US"; etc.</value>
+  </data>
+  <data name="dc_relation_description" xml:space="preserve">
+    <value>Uma referência a um recurso relacionado.</value>
+  </data>
+  <data name="dc_rights_description" xml:space="preserve">
+    <value>Informação sobre todos os direitos relacionados com a publicação. (Compare dtb:sourceRights.)</value>
+  </data>
+  <data name="dc_source_description" xml:space="preserve">
+    <value>Referência a um recurso (e.g., um livro original impresso, etc.) do qual a publicação seja derivada. O mais adequado será referir o ISBN quando disponível.</value>
+  </data>
+  <data name="dc_subject_description" xml:space="preserve">
+    <value>O tópico do conteúdo da publicação.</value>
+  </data>
+  <data name="dc_type_description" xml:space="preserve">
+    <value>A natureza do conteúdo do livro (i.e., som, texto, imagem). O mais adequado é especificar desde o Dublin Core's enumerated list [DC-Type].</value>
+  </data>
+  <data name="dtb_audio_format_description" xml:space="preserve">
+    <value>Total do tempo de reprodução para todos os ficheiros SMIL compreendendo o conteúdo do livro. O valor será um Valor de Relógio desde o SMIL 2.0 Timing and Synchronization Module</value>
+  </data>
+  <data name="dtb_multimedia_content_description" xml:space="preserve">
+    <value>Sumário dos vários tipos de suporte usados no conteúdo do livro. O valor é uma vírgula-lista delimitada nos tipos mais utilizados de suporte [RFC2046]. Na versão atual deste parâmetro, os únicos tipos aplicáveis serão audio, texto, e imagem. Tipos de suporte referenciados apenas por NCX, Resource File, or distInfo não devem ser listados aqui.</value>
+  </data>
+  <data name="dtb_multimedia_type_description" xml:space="preserve">
+    <value>Um dos seis tipos de livro definidos nas linhas guias da estrutura. Os valores são: audioOnly, audioNCX, audioPartText, audioFullText, textPartAudio, textNCX.</value>
+  </data>
+  <data name="dtb_narrator_description" xml:space="preserve">
+    <value>Nome da pessoa cuja voz gravada foi incorporada no livro-</value>
+  </data>
+  <data name="dtb_produced_date_description" xml:space="preserve">
+    <value>Data da geração inicial da publicação completa, i.e. Data da conclusão da produção. (Compare dc:Date.) No formato de [ISO8601]; a syntax é AAAA[-MM[-DD]] com um campo obrigatório de 4-dígitos para o ano, um campo opcional de 2-dígitos para o mês, e, se o mês estiver presente, um campo opcional de 2-dígitos para o dia do mês.</value>
+  </data>
+  <data name="dtb_producer_description" xml:space="preserve">
+    <value>Nome da Unidade de Produção que criou o livro. (Compare dc:Publisher.)</value>
+  </data>
+  <data name="dtb_revision_data_description" xml:space="preserve">
+    <value>Data associada com o livro específico:revisão. No formato de [ISO8601]; a syntax é AAAA[-MM[-DD]] com um campo obrigatório de 4-dígitos para o ano, um campo opcional de 2-dígitos para o mês, e, se o mês estiver presente, um campo opcional de 2-dígitos para o dia do mês.</value>
+  </data>
+  <data name="dtb_revision_description" xml:space="preserve">
+    <value>Valor inteiro não negativo da versão específica do livro. Incrementado cada vez que o livro é revisto.</value>
+  </data>
+  <data name="dtb_revision_description_description" xml:space="preserve">
+    <value>Uma linha que descreva as alterações feitas em qualquer área do novro:revisão.</value>
+  </data>
+  <data name="dtb_source_date_description" xml:space="preserve">
+    <value>Data da publicação do recurso (e.g., um livro original impresso, etc.) do qual a publicação é derivada. No formato de [ISO8601]; a syntax é YYYY[-MM[-DD]] com um campo obrigatório de 4-dígitos para o ano, um campo opcional de 2-dígitos para o mês, e, se o mês estiver presente, um campo opcional de 2-dígitos para o dia do mês.</value>
+  </data>
+  <data name="dtb_source_edition_description" xml:space="preserve">
+    <value>Uma linha descrevendo a edição do recurso (e.g., um livro original impresso, etc.) do qual a publicação é derivada. No formato de [ISO8601]; a syntax é YYYY[-MM[-DD]] com um campo obrigatório de 4-dígitos para o ano, um campo opcional de 2-dígitos para o mês, e, se o mês estiver presente, um campo opcional de 2-dígitos para o dia do mês.</value>
+  </data>
+  <data name="dtb_source_publisher_description" xml:space="preserve">
+    <value>A organização responsável pela disponibilização do recurso (e.g., um livro original impresso, etc.) do qual a publicação é derivada. Compare dc:Publisher.</value>
+  </data>
+  <data name="dtb_source_rights_description" xml:space="preserve">
+    <value>A organização responsável pela disponibilização do recurso (e.g., um livro original impresso, etc.) do qual a publicação é derivada. Compare dc:Publisher.</value>
+  </data>
+  <data name="dtb_source_title_description" xml:space="preserve">
+    <value>O título do recurso (e.g., um livro original impresso, etc.) do qual a publicação é derivada. Para ser usado apenas quando diferente de dc:Title.</value>
+  </data>
+  <data name="dtb_total_time_description" xml:space="preserve">
+    <value>Total do tempo de reprodução para todos os ficheiros SMIL compreendendo o conteúdo do livro. O valor será um Valor de Relógio desde o SMIL 2.0 Timing and Synchronization Module</value>
+  </data>
+  <data name="generator_description" xml:space="preserve">
+    <value>Software gerador para o livro.</value>
+  </data>
+  <data name="modify_metadata_entry" xml:space="preserve">
+    <value>Modificar entrada de metadados</value>
+  </data>
+  <data name="obi_xuk_version_description" xml:space="preserve">
+    <value>Obi/XUK version identifier.</value>
+  </data>
+  <data name="metadata_name_error_caption" xml:space="preserve">
+    <value>Erro de nome de metadados</value>
+  </data>
+  <data name="metadata_name_error_text" xml:space="preserve">
+    <value>Impossível mudar o nome desta entrada de metadados para "{0}".</value>
+  </data>
+  <data name="metadata_custom" xml:space="preserve">
+    <value>Personalizar</value>
+  </data>
+  <data name="empty" xml:space="preserve">
+    <value>vazio</value>
+  </data>
+  <data name="node_selection_to_string" xml:space="preserve">
+    <value>Selecionado {0} em {1}</value>
+  </data>
+  <data name="phrase_extra_custom" xml:space="preserve">
+    <value>, {0}</value>
+  </data>
+  <data name="phrase_extra_Heading" xml:space="preserve">
+    <value>, cabeçalho</value>
+  </data>
+  <data name="phrase_extra_page" xml:space="preserve">
+    <value>, número de página</value>
+  </data>
+  <data name="phrase_extra_Plain" xml:space="preserve">
+    <value />
+  </data>
+  <data name="phrase_extra_Silence" xml:space="preserve">
+    <value>, silêncio</value>
+  </data>
+  <data name="phrase_extra_TODO" xml:space="preserve">
+    <value>, para trabalhar</value>
+  </data>
+  <data name="phrase_node_to_string" xml:space="preserve">
+    <value>frase (duração: {1})</value>
+  </data>
+  <data name="phrase_short_custom" xml:space="preserve">
+    <value>"{0}"</value>
+  </data>
+  <data name="phrase_short_Heading" xml:space="preserve">
+    <value>Cabeçalho</value>
+  </data>
+  <data name="phrase_short_page" xml:space="preserve">
+    <value>Página</value>
+  </data>
+  <data name="phrase_short_Plain" xml:space="preserve">
+    <value>Frase</value>
+  </data>
+  <data name="phrase_short_Silence" xml:space="preserve">
+    <value>Silêncio</value>
+  </data>
+  <data name="phrase_short_to_string" xml:space="preserve">
+    <value>{0}{1} ({2})</value>
+  </data>
+  <data name="phrase_short_TODO" xml:space="preserve">
+    <value>*para trabalhar* </value>
+  </data>
+  <data name="phrase_to_string" xml:space="preserve">
+    <value>{0}{1}frase {2} de {3} ({4}){5}</value>
+  </data>
+  <data name="section_level_to_string" xml:space="preserve">
+    <value>, profundidade {0}</value>
+  </data>
+  <data name="section_one_phrase_to_string" xml:space="preserve">
+    <value>, 1 frase</value>
+  </data>
+  <data name="section_phrases_to_string" xml:space="preserve">
+    <value>, {0} frases</value>
+  </data>
+  <data name="section_to_string" xml:space="preserve">
+    <value>{0}secção "{1}" ({2}{3}{4})</value>
+  </data>
+  <data name="strips_view_to_string" xml:space="preserve">
+    <value>Vista de conteúdo</value>
+  </data>
+  <data name="toc_view_to_string" xml:space="preserve">
+    <value>vista TOC</value>
+  </data>
+  <data name="unused" xml:space="preserve">
+    <value>não usado </value>
+  </data>
+  <data name="audio_selection_to_string" xml:space="preserve">
+    <value>Áudio selecionado em {0} em {1} em {2}</value>
+  </data>
+  <data name="strip_cursor_selection_to_string" xml:space="preserve">
+    <value>Index de seleção {0} em {1} em {2}</value>
+  </data>
+  <data name="text_selection_to_string" xml:space="preserve">
+    <value>Texto selecionado em {0} em {1}: "{2}"</value>
+  </data>
+  <data name="obi_url" xml:space="preserve">
+    <value>http://www.daisy.org/obi/</value>
+  </data>
+  <data name="max_phrase_duration_invalid_input" xml:space="preserve">
+    <value>Entrada inválida para a duração de frase. Por favor, especifique um número integral de minutos maior que 0.</value>
+  </data>
+  <data name="rendering_waveform" xml:space="preserve">
+    <value>A renderizar o formato de onda....</value>
+  </data>
+  <data name="duration_h_mm_ss" xml:space="preserve">
+    <value>{0}:{1:00}:{2:00}</value>
+  </data>
+  <data name="duration_mm_ss" xml:space="preserve">
+    <value>{0:00}:{1:00}</value>
+  </data>
+  <data name="duration_s_ms" xml:space="preserve">
+    <value>{0:0.00}s</value>
+  </data>
+  <data name="hour" xml:space="preserve">
+    <value>hora</value>
+  </data>
+  <data name="hours" xml:space="preserve">
+    <value>horas</value>
+  </data>
+  <data name="long_addl_time" xml:space="preserve">
+    <value> {0} {1}</value>
+  </data>
+  <data name="long_h_mm_ss" xml:space="preserve">
+    <value>{0} {1}{2}{3}</value>
+  </data>
+  <data name="long_mm_ss" xml:space="preserve">
+    <value>{0} {1}{2}</value>
+  </data>
+  <data name="long_s_ms" xml:space="preserve">
+    <value>{0:0.00} {1}</value>
+  </data>
+  <data name="minute" xml:space="preserve">
+    <value>minuto</value>
+  </data>
+  <data name="minutes" xml:space="preserve">
+    <value>minutos</value>
+  </data>
+  <data name="node_position" xml:space="preserve">
+    <value>{0} de {1}</value>
+  </data>
+  <data name="second" xml:space="preserve">
+    <value>segundo</value>
+  </data>
+  <data name="seconds" xml:space="preserve">
+    <value>segundos</value>
+  </data>
+  <data name="section_level" xml:space="preserve">
+    <value>{0} (nível {1})</value>
+  </data>
+  <data name="top_level_section" xml:space="preserve">
+    <value>Esta é uma secção de nível de topo.</value>
+  </data>
+  <data name="update_section" xml:space="preserve">
+    <value>atualizar secção</value>
+  </data>
+  <data name="update_phrase" xml:space="preserve">
+    <value>atualizar frase</value>
+  </data>
+  <data name="error_adding_page_number" xml:space="preserve">
+    <value>Erro ao adicionar número de página: Não foi encontrada nenhuma secção principal.</value>
+  </data>
+  <data name="import_failed_caption" xml:space="preserve">
+    <value>Falha na importação</value>
+  </data>
+  <data name="no_headings_found" xml:space="preserve">
+    <value>Nenhum cabeçalho (h1, h2, etc.) foi encontrado no documento XHTML.</value>
+  </data>
+  <data name="wrong_heading_order" xml:space="preserve">
+    <value>Os elementos do cabeçalho não estão na ordem correta.</value>
+  </data>
+  <data name="dtb_encode_error" xml:space="preserve">
+    <value>Wups! Erro durante a compressão do livro: {0}</value>
+  </data>
+  <data name="dtb_encode_error_caption" xml:space="preserve">
+    <value>erro na compressão do livro</value>
+  </data>
+  <data name="dtb_filter" xml:space="preserve">
+    <value>DTB pacakge file (*.opf)|*.opf|Quaisquer ficheiros|*.*</value>
+  </data>
+  <data name="dtb_validate_error" xml:space="preserve">
+    <value>Wups! Erro durante a validação do livro.</value>
+  </data>
+  <data name="dtb_validate_error_caption" xml:space="preserve">
+    <value>Erro de validação do livro</value>
+  </data>
+  <data name="no_script" xml:space="preserve">
+    <value>Nenhum ficheiro de script encontrado em "{0}".</value>
+  </data>
+  <data name="pipeline_path_browser" xml:space="preserve">
+    <value>Por favor escolha a localização dos pipeline scripts abaixo.</value>
+  </data>
+  <data name="xml_filter" xml:space="preserve">
+    <value>Ficheiro XML|*.xml</value>
+  </data>
+  <data name="CannotCreate_InputPath" xml:space="preserve">
+    <value>Impossível criar o caminho do tipo: input</value>
+  </data>
+  <data name="Caption_Error" xml:space="preserve">
+    <value>Wups! ERRO</value>
+  </data>
+  <data name="save_before_save_as_caption" xml:space="preserve">
+    <value>Salvar antes de salvar como?</value>
+  </data>
+  <data name="Choose_OtherDirectory" xml:space="preserve">
+    <value>Escolha um outro diretório</value>
+  </data>
+  <data name="IndexNotInRange" xml:space="preserve">
+    <value>Index fora de escala</value>
+  </data>
+  <data name="Invalid_ScriptParameters" xml:space="preserve">
+    <value>Um ou mais parâmetros são inválidos</value>
+  </data>
+  <data name="No_Path" xml:space="preserve">
+    <value>Caminho inexistente</value>
+  </data>
+  <data name="NotAbleToCreateDirectory" xml:space="preserve">
+    <value>Impossível criar o diretório{0}</value>
+  </data>
+  <data name="NotAbleToSelectItem" xml:space="preserve">
+    <value>Impossível selecionar o item</value>
+  </data>
+  <data name="OutputDirectoryNotFound_Permission_Create" xml:space="preserve">
+    <value>Impossível encontrar o diretório de saída. \n Deseja criá-lo?</value>
+  </data>
+  <data name="Permission_EmptyOutputDirectory" xml:space="preserve">
+    <value>O diretório de saída não está vazio! Deseja esvaziá-lo?</value>
+  </data>
+  <data name="Front_pages" xml:space="preserve">
+    <value>páginas de rosto</value>
+  </data>
+  <data name="Normal_pages" xml:space="preserve">
+    <value>páginas normais</value>
+  </data>
+  <data name="renumber_before_export" xml:space="preserve">
+    <value>Este projeto não pode ser exportado, porque existem pelo menos duas páginas numeradas {0}. Deseja renumerar as páginas automaticamente e continuar a exportação? De contrário, o processo será cancelado.</value>
+  </data>
+  <data name="renumber_before_export_caption" xml:space="preserve">
+    <value>Duplicação na numeração de páginas do projeto.</value>
+  </data>
+  <data name="renumber_pages" xml:space="preserve">
+    <value>renumerar {0}</value>
+  </data>
+  <data name="crop_audio" xml:space="preserve">
+    <value>aparar áudio</value>
+  </data>
+  <data name="save_as_error_same_directory" xml:space="preserve">
+    <value>Impossível salvar no mesmo diretório do projeto original. Por favor, escolha outra localização</value>
+  </data>
+  <data name="save_before_save_as" xml:space="preserve">
+    <value>Deseja guardar as alterações antes de salvar o projeto noutra localização?</value>
+  </data>
+  <data name="no_primary_export_directory" xml:space="preserve">
+    <value>O diretório Epub export não foi encontrado. Por favor, escolha um caminho para exportar, ou exporte o projeto para Epub.</value>
+  </data>
+  <data name="section_unexported" xml:space="preserve">
+    <value>A secção "{0}" não contém nenhum áudio e não será exportada, assim como qualquer das suas subsecções. Deseja continuar?</value>
+  </data>
+  <data name="section_unexported_caption" xml:space="preserve">
+    <value>A secção não será exportada</value>
+  </data>
+  <data name="default_export_dirname" xml:space="preserve">
+    <value>{0}DAISY3 Export</value>
+  </data>
+  <data name="ObiForm_PipelineNotFound" xml:space="preserve">
+    <value>Impossível encontrar pipeline scripts em {0}. Algumas funcionalidades relacionadas poderão não estar disponíveis.</value>
+  </data>
+  <data name="Pipeline_InvalidScriptsParameters" xml:space="preserve">
+    <value>Um ou mais parâmetros são inválidos. Por favor, digite os valores corretos</value>
+  </data>
+  <data name="recording_resume_check" xml:space="preserve">
+    <value>A gravação está a ser reiniciada desde o estado de pausa. Escolha sim  para reiniciar da posição onde pausou, ou escolha não para recomeçar desde a posição atual.</value>
+  </data>
+  <data name="duration_hh_mm_ss" xml:space="preserve">
+    <value>{0:00}:{1:00}:{2:00}</value>
+  </data>
+  <data name="export_progress_dialog_title" xml:space="preserve">
+    <value>A exportar o projeto. Por favor aguarde. A operação poderá demorar alguns minutos</value>
+  </data>
+  <data name="role_Custom" xml:space="preserve">
+    <value>Personalizar</value>
+  </data>
+  <data name="role_Heading" xml:space="preserve">
+    <value>Cabeçalho</value>
+  </data>
+  <data name="role_Page" xml:space="preserve">
+    <value>Página</value>
+  </data>
+  <data name="role_Plain" xml:space="preserve">
+    <value>Pleno</value>
+  </data>
+  <data name="role_Silence" xml:space="preserve">
+    <value>Silêncio</value>
+  </data>
+  <data name="could_not_clean_up" xml:space="preserve">
+    <value>Impossível apagar projeto inválido. {0} Poderá tentar apagá-lo manualmente. Lamentamos.
+</value>
+  </data>
+  <data name="could_not_clean_up_caption" xml:space="preserve">
+    <value>Impossível apagar projeto inválido. {0} Poderá tentar apagá-lo manualmente. Lamentamos.
+</value>
+  </data>
+  <data name="import_progress_dialog_title" xml:space="preserve">
+    <value>A importar…</value>
+  </data>
+  <data name="import_audio_progress_dialog_title" xml:space="preserve">
+    <value>A importar áudio…</value>
+  </data>
+  <data name="cleaning_up" xml:space="preserve">
+    <value>A depurar…</value>
+  </data>
+  <data name="remove_custom_class" xml:space="preserve">
+    <value>remover classe personalizada</value>
+  </data>
+  <data name="strip_cursor_accessible_name" xml:space="preserve">
+    <value>Barrar o  cursor em {0}-{1}</value>
+  </data>
+  <data name="Pipeline_Error_NotExpectedRange" xml:space="preserve">
+    <value>O valor deverá estar entre {0} e {1}</value>
+  </data>
+  <data name="Pipeline_OutOfRange" xml:space="preserve">
+    <value>O valor não se encontra na escala esperada</value>
+  </data>
+  <data name="Pipeline_InvalidString" xml:space="preserve">
+    <value>essa entrada não é válida</value>
+  </data>
+  <data name="save_as_new_directory_name" xml:space="preserve">
+    <value>copiar {0}</value>
+  </data>
+  <data name="cannot_use_project_path" xml:space="preserve">
+    <value>Impossível usar a localização selecionada "{0}" para guardar: {1}</value>
+  </data>
+  <data name="cannot_use_project_path_caption" xml:space="preserve">
+    <value>Impossível usar a localização selecionada</value>
+  </data>
+  <data name="extension_warning" xml:space="preserve">
+    <value>Está prestes a salvar um ficheiro de projeto para {0}. É recomendado que use a extenção .obi para o efeito. Tem a certeza que deseja manter a extensão escolhida?</value>
+  </data>
+  <data name="extension_warning_caption" xml:space="preserve">
+    <value>Aviso de extensão de ficheiro</value>
+  </data>
+  <data name="save_as_failed" xml:space="preserve">
+    <value>Falha. Não foi possível guardar em "{0}": {1}</value>
+  </data>
+  <data name="save_as_failed_caption" xml:space="preserve">
+    <value>Falha ao salvar</value>
+  </data>
+  <data name="cannot_empty_directory" xml:space="preserve">
+    <value>Impossível esvaziar o diretório "{0}": {1}</value>
+  </data>
+  <data name="cannot_empty_directory_caption" xml:space="preserve">
+    <value>Impossível esvaziar diretório</value>
+  </data>
+  <data name="toggle_TODO" xml:space="preserve">
+    <value>alternar para trabalhar</value>
+  </data>
+  <data name="recording_resume_check_caption" xml:space="preserve">
+    <value>Recomeçar gravação desde a posição da pausa?</value>
+  </data>
+  <data name="save_as_progress_dialog_title" xml:space="preserve">
+    <value>A guardar o projeto sob outra localização…</value>
+  </data>
+  <data name="InvalidPaths" xml:space="preserve">
+    <value>Um ou mais caminhos são inválidos!</value>
+  </data>
+  <data name="project_lock_error" xml:space="preserve">
+    <value>Impossível criar um ficheiro de bloqueio para o projeto em "{0}": {1}</value>
+  </data>
+  <data name="project_locked" xml:space="preserve">
+    <value>O projeto está bloqueado, provavelmente porque a última sessão no projeto não foi corretamente terminada, ou há uma outra sessão do Obi em que este projeto está aberto. Se tem a certeza de que não está aberta mais nenhuma sessão do programa, poderá tentar remover o ficheiro de bloqueio "{0}", contudo, procederá por sua conta e risco.</value>
+  </data>
+  <data name="no_preceding_silence_phrase_caption" xml:space="preserve">
+    <value>Nenhuma frase de silêncio precedente</value>
+  </data>
+  <data name="phrase_detection_progress_dialog_title" xml:space="preserve">
+    <value>A aplicar a deteção de frases…</value>
+  </data>
+  <data name="MetadataView_CannotCommitEmptyContent" xml:space="preserve">
+    <value>Os valores para os metadados não podem ficar em branco.</value>
+  </data>
+  <data name="location_error" xml:space="preserve">
+    <value>Wups! Erro na localização do ficheiro</value>
+  </data>
+  <data name="path_not_recognized" xml:space="preserve">
+    <value>O caminho "{0}" não é reconhecido ({1}).</value>
+  </data>
+  <data name="path_not_rooted" xml:space="preserve">
+    <value>O caminho "{0}" não inclui a necessária raíz. Por favor escolha um caminho completo, incluindo a letra da unidade.</value>
+  </data>
+  <data name="CHMhelp_file_name" xml:space="preserve">
+    <value>Obi Help.chm</value>
+  </data>
+  <data name="phrase_detection_progress" xml:space="preserve">
+    <value>Deteção de frases em andamento…</value>
+  </data>
+  <data name="delete_silence_phrases" xml:space="preserve">
+    <value>O seu projeto tem frases em silêncio. Pressione Sim para apagá-las, bem como as outras frases e secções não usadas. Pressione Não para apagar apenas secções e frases não usadas, e manter as frases em silêncio.</value>
+  </data>
+  <data name="delete_silence_phrases_caption" xml:space="preserve">
+    <value>Apagar frases em silêncio?</value>
+  </data>
+  <data name="CannotDeleteAtRoot" xml:space="preserve">
+    <value>A operação de apagamento não pode ser efetuada na partição da unidade</value>
+  </data>
+  <data name="PageDialog_InvalidInput" xml:space="preserve">
+    <value>As entradas de um ou mais campos não são válidas. Por favor digite os valores novamente.</value>
+  </data>
+  <data name="Status_ProjectSaved" xml:space="preserve">
+    <value>Projeto guardado, por favor continue...</value>
+  </data>
+  <data name="TransportBar_PlayerExceptionMsg" xml:space="preserve">
+    <value>Não foi possível iniciar a reprodução. Pressione OK para continuar.... {0} {1}</value>
+  </data>
+  <data name="Preference_InvalidKeyExceptionMsg" xml:space="preserve">
+    <value>Atribuição de tecla inválida. Por favor selecione uma combinação de teclas diferente.... {0} {1}</value>
+  </data>
+  <data name="Player_TryAgain" xml:space="preserve">
+    <value>Por favor volte a tentar... {0} {1}</value>
+  </data>
+  <data name="Metadata_InvalidDateFormat" xml:space="preserve">
+    <value>Formato de data inválido! Recommendamos o formato AAAA-MM-DD ou AAAA.</value>
+  </data>
+  <data name="String1" xml:space="preserve">
+    <value>Wups! Erro ao parar gravação. Por favor pressione o botão Ok para continuar.</value>
+  </data>
+  <data name="TransportBar_ErrorInStartingRecording" xml:space="preserve">
+    <value>Wups! Erro ao iniciar gravação. Por favor pressione o botão Ok para saltar a gravação e continuar.</value>
+  </data>
+  <data name="RecordingSession_SplitError" xml:space="preserve">
+    <value>Detetado um problema na definição de tempo de uma frase. Por favor pressione Ok para continuar.</value>
+  </data>
+  <data name="Block_AccessibleLabel" xml:space="preserve">
+    <value>{0}{1}frase ({2}){3}</value>
+  </data>
+  <data name="Selected_RecordingPhrase" xml:space="preserve">
+    <value>Gravação da frase</value>
+  </data>
+  <data name="Obi_Wiki_Url" xml:space="preserve">
+    <value>http://daisy.trac.cvsdude.com/obi</value>
+  </data>
+  <data name="ErrorInSaving" xml:space="preserve">
+    <value>Wups! Encontrado um erro ao guardar.</value>
+  </data>
+  <data name="OpenError_UseCleanUp" xml:space="preserve">
+    <value>Por favor use a função de depuração de áudio não referenciado, logo que o projeto seja aberto.</value>
+  </data>
+  <data name="ContentHidden_SectionHasOverlimitPhrases" xml:space="preserve">
+    <value>A secção {0} possui um grande número de frases, apenas as iniciais {1} frases estão visíveis. Por favor divida a secção para visualizar todas as frases em conjunto na área de trabalho.</value>
+  </data>
+  <data name="ContentsHidden_PhrasesExceedMaxLimitPerSection" xml:space="preserve">
+    <value>Excedido o limite de frases por secção que é de {0}. </value>
+  </data>
+  <data name="ContentsHidden_StatusMessage" xml:space="preserve">
+    <value> (Conteúdos ocultos, use F5 para desocultar)</value>
+  </data>
+  <data name="Operation_Cancelled" xml:space="preserve">
+    <value>Não foi possível concluir a operação.</value>
+  </data>
+  <data name="footnote" xml:space="preserve">
+    <value>Nota de Roda-pé</value>
+  </data>
+  <data name="sidebar" xml:space="preserve">
+    <value>Barra lateral </value>
+  </data>
+  <data name="prodnote" xml:space="preserve">
+    <value> nota de produtor</value>
+  </data>
+  <data name="note" xml:space="preserve">
+    <value>nota</value>
+  </data>
+  <data name="endnote" xml:space="preserve">
+    <value> nota final</value>
+  </data>
+  <data name="annotation" xml:space="preserve">
+    <value> anotação</value>
+  </data>
+  <data name="ContentsHidden_CannotExecuteCommand" xml:space="preserve">
+    <value>Este comando não pode ser executado numa secção com os conteúdos ocultos. Por favor desoculte os conteúdos da secção e volte a tentar.</value>
+  </data>
+  <data name="ContentsHidden_HideNewPhrases" xml:space="preserve">
+    <value>Operação concluída, esta secção tem os conteúdos ocultos, por isso, as frases adicionadas também serão ocultadas. Por favor pressione F5 para desocultar.</value>
+  </data>
+  <data name="ExportError_EmptyProject" xml:space="preserve">
+    <value>Impossível exportar. O projeto está vazio!</value>
+  </data>
+  <data name="ExportAudioOfSelectedNode_Completed" xml:space="preserve">
+    <value>O ficheiro está exportado em : </value>
+  </data>
+  <data name="ObiFormStatusMsg_ExportingProject" xml:space="preserve">
+    <value>A exportar o projeto para {0}</value>
+  </data>
+  <data name="EachLevel" xml:space="preserve">
+    <value>Cada nível</value>
+  </data>
+  <data name="Level1" xml:space="preserve">
+    <value>Nível 1</value>
+  </data>
+  <data name="Level2" xml:space="preserve">
+    <value>Nível 2</value>
+  </data>
+  <data name="Level3" xml:space="preserve">
+    <value>Nível 3</value>
+  </data>
+  <data name="Level4" xml:space="preserve">
+    <value>Nível 4</value>
+  </data>
+  <data name="Level5" xml:space="preserve">
+    <value>Nível 5</value>
+  </data>
+  <data name="Level6" xml:space="preserve">
+    <value>Nível 6</value>
+  </data>
+  <data name="PageNumber_ReEnterValidNumber" xml:space="preserve">
+    <value>Por favor digite um número de página válido</value>
+  </data>
+  <data name="PhraseProperties_ChangePage" xml:space="preserve">
+    <value>Alterar número de página</value>
+  </data>
+  <data name="Peferences_GUIDonotSupportCulture" xml:space="preserve">
+    <value>O Obi ainda não suporta o idioma{0}. A interface do utilizador não pode ser atualizada para esse idioma.</value>
+  </data>
+  <data name="Preferences_RestartForCultureChange" xml:space="preserve">
+    <value>É necessário reiniciar o Obi para que as alterações de idioma sejam aplicadas. Por favor guarde o seu trabalho e reinicie o programa.</value>
+  </data>
+  <data name="Caption_Warning" xml:space="preserve">
+    <value>Atenção!</value>
+  </data>
+  <data name="Pipeline_DuplicateScript" xml:space="preserve">
+    <value>Duplicação do pipeline script com o nome {0} foi encontrada. Isto não será carregado. Por favor pressione o botão Ok para continuar.</value>
+  </data>
+  <data name="GoToPageOrPhrase_MoreThanPhraseCount" xml:space="preserve">
+    <value>O index da frase {0} é superior ao total das frases na secção. Se deseja ir para o index da última frase: {1} na secção, pressione Sim.</value>
+  </data>
+  <data name="InvalidInput" xml:space="preserve">
+    <value>Essa entrada não é válida. Por favor digite um valor apropriado.</value>
+  </data>
+  <data name="GoToPageOrPhrase_PageNumberLabel" xml:space="preserve">
+    <value>&amp;número de página:</value>
+  </data>
+  <data name="GoToPageOrPhrase_PhraseIndexLabel" xml:space="preserve">
+    <value>&amp;Index da frase:</value>
+  </data>
+  <data name="obi_DAISY2ExportPath_Description" xml:space="preserve">
+    <value>Caminho de exportação DAISY 2.02</value>
+  </data>
+  <data name="obi_DAISY3ExportPath_Description" xml:space="preserve">
+    <value>Caminho de exportação DAISY 3.0</value>
+  </data>
+  <data name="AutoSave_Error" xml:space="preserve">
+    <value>Wups! Erro ao salvar para ficheiro de restauro! Se o problema persistir, poderá desativar a função guardar automaticamente em preferências e reportar este problema.</value>
+  </data>
+  <data name="Default_DAISY2_02export_dirname" xml:space="preserve">
+    <value>{0}DAISY 2.02 export</value>
+  </data>
+  <data name="GoToPageOrPhrase_Title" xml:space="preserve">
+    <value>Ir para…</value>
+  </data>
+  <data name="TextVuMeter_LowIndicator" xml:space="preserve">
+    <value>Baixo:</value>
+  </data>
+  <data name="TextVuMeter_OverloadIndicator" xml:space="preserve">
+    <value>OL</value>
+  </data>
+  <data name="DisableAdvancedRecording" xml:space="preserve">
+    <value>Desativar Gravação Avançada</value>
+  </data>
+  <data name="EnableAdvancedRecording" xml:space="preserve">
+    <value>Ativar Gravação Avançada</value>
+  </data>
+  <data name="ContentViewLabel_NoSection" xml:space="preserve">
+    <value>Nenhuma secção exibida.</value>
+  </data>
+  <data name="Caption_Information" xml:space="preserve">
+    <value>Informação</value>
+  </data>
+  <data name="RecordingResumePhrasesDeleted" xml:space="preserve">
+    <value>Não foi possível encontrar a frase pausada! A iniciar gravação desde a seleção existente.</value>
+  </data>
+  <data name="Find_ReachedInitialPoint" xml:space="preserve">
+    <value>Encontrar ponto alcançado inicial da pesquisa...</value>
+  </data>
+  <data name="RecordingRestriction_CannotCreateStrip" xml:space="preserve">
+    <value>Gravação ativada! Não é possível exibir conteúdos de outra secção além desta.</value>
+  </data>
+  <data name="Delete_RangeOfPhrases" xml:space="preserve">
+    <value>Apagar conjunto de frases</value>
+  </data>
+  <data name="Merge_RangeOfPhrases" xml:space="preserve">
+    <value>Juntar conjunto de frases</value>
+  </data>
+  <data name="GotoPageOrPhrase_EnterNumeric" xml:space="preserve">
+    <value>Entrada não válida. Por favor digite um valor numérico.</value>
+  </data>
+  <data name="GotoPage_MissingVal" xml:space="preserve">
+    <value>Valor em falta</value>
+  </data>
+  <data name="SelectPhraseDetection_EndOrStartValMoreThanSectionCount" xml:space="preserve">
+    <value>O valor inicial ou final é maior que o número total de secções</value>
+  </data>
+  <data name="SelectPhraseDetection_EndValIsSmallerThanStart" xml:space="preserve">
+    <value>O valor final é inferior ao valor inicial.</value>
+  </data>
+  <data name="SelectPhraseDetection_MissingStartOrEndVal" xml:space="preserve">
+    <value>Valor inicial ou valor final em falta</value>
+  </data>
+  <data name="Preferences_PipelineScriptNotFound" xml:space="preserve">
+    <value>Nenhum Pipeline script encontrado nesta localização</value>
+  </data>
+  <data name="StatusBar_NothingSelected" xml:space="preserve">
+    <value>Nada selecionado</value>
+  </data>
+  <data name="Executing {0}" xml:space="preserve">
+    <value />
+  </data>
+  <data name="StatusBar_CommandExecuting" xml:space="preserve">
+    <value>A executar {0}</value>
+  </data>
+  <data name="StatusBar_RecordingInPhrase" xml:space="preserve">
+    <value>A gravar {0}</value>
+  </data>
+  <data name="MergePhrases_SizeLimitMessage" xml:space="preserve">
+    <value>A duração da frase a juntar não pode ser superior a {0} minutos. Por favor selecione um número menor de frases a juntar</value>
+  </data>
+  <data name="Metadata_CreatorNameForInitializing" xml:space="preserve">
+    <value>Nome do criador</value>
+  </data>
+  <data name="Scroll_LoadingScreen" xml:space="preserve">
+    <value>A carregar…</value>
+  </data>
+  <data name="DeleteFollowing_SectionSelection" xml:space="preserve">
+    <value>Isto irá apagar todas as frases da secção selecionada. Pretende continuar?</value>
+  </data>
+  <data name="NewProject_EmptyTitle" xml:space="preserve">
+    <value>O projeto não pode ter o título em branco.</value>
+  </data>
+  <data name="METADATA_DC_CONTRIBUTOR_HELP" xml:space="preserve">
+    <value>Parceiro cuja contribuição para a publicação seja secundária em relação aos nomeados em dc:Creator</value>
+  </data>
+  <data name="METADATA_DC_COVERAGE_HELP" xml:space="preserve">
+    <value>A extensão e abrangência do conteúdo do recurso</value>
+  </data>
+  <data name="METADATA_DC_CREATOR_HELP" xml:space="preserve">
+    <value>Nome do criador ou autor principal do conteúdo intelectual da publicação</value>
+  </data>
+  <data name="METADATA_DC_DATE_HELP" xml:space="preserve">
+    <value>Data da publicação do livro. A syntax é aaaa[-MM[-DD]]</value>
+  </data>
+  <data name="METADATA_DC_DESCRIPTION_HELP" xml:space="preserve">
+    <value>Texto descritivo sobre o conteúdo da publicação.
+</value>
+  </data>
+  <data name="METADATA_DC_IDENTIFIER_HELP" xml:space="preserve">
+    <value>Linha alfanumérica para identificar unicamente o livro</value>
+  </data>
+  <data name="METADATA_DC_LANGUAGE_HELP" xml:space="preserve">
+    <value>Qual o idioma do conteúdo da publicação</value>
+  </data>
+  <data name="METADATA_DC_PUBLISHER_HELP" xml:space="preserve">
+    <value>Agência ou organização responsável pela disponibilização do livro</value>
+  </data>
+  <data name="METADATA_DC_RELATION_HELP" xml:space="preserve">
+    <value>Referenciar conteúdo ou recurso relacionado</value>
+  </data>
+  <data name="METADATA_DC_RIGHTS_HELP" xml:space="preserve">
+    <value>Informação sobre a totalidade dos direitos relacionados com a publicação</value>
+  </data>
+  <data name="METADATA_DC_SOURCE_HELP" xml:space="preserve">
+    <value>Referir um recurso de onde a publicação seja derivada</value>
+  </data>
+  <data name="METADATA_DC_SUBJECT_HELP" xml:space="preserve">
+    <value>Tópico do conteúdo</value>
+  </data>
+  <data name="METADATA_DC_TITLE_HELP" xml:space="preserve">
+    <value>Título do livro incluindo subtítulos</value>
+  </data>
+  <data name="METADATA_DC_TYPE_HELP" xml:space="preserve">
+    <value>Natureza do conteúdo do livro</value>
+  </data>
+  <data name="METADATA_DTB_NARRATOR_HELP" xml:space="preserve">
+    <value>Nome da pessoa que fez a narração do livro</value>
+  </data>
+  <data name="METADATA_DTB_PRODUCED_DATE_HELP" xml:space="preserve">
+    <value>Data da produção do livro. A syntax é AAAA[-MM[-DD]]</value>
+  </data>
+  <data name="METADATA_DTB_PRODUCER_HELP" xml:space="preserve">
+    <value>Nome da organização ou biblioteca que publicou o livro</value>
+  </data>
+  <data name="METADATA_DTB_REVISION_DATE_HELP" xml:space="preserve">
+    <value>Data da revisão do livro. A syntax é AAAA[-MM[-DD]]</value>
+  </data>
+  <data name="METADATA_DTB_REVISION_DESC_HELP" xml:space="preserve">
+    <value>Insira uma breve descrição respeitante às modificações.
+</value>
+  </data>
+  <data name="METADATA_DTB_REVISION_HELP" xml:space="preserve">
+    <value>Número indicador da revisão, caso tenha sido efetuada.
+</value>
+  </data>
+  <data name="METADATA_DTB_SOURCE_DATE_HELP" xml:space="preserve">
+    <value>Data da publicação mencionada no suporte físico. A syntax é AAAA[-MM[-DD]]</value>
+  </data>
+  <data name="METADATA_DTB_SOURCE_EDITION_HELP" xml:space="preserve">
+    <value>Edição do suporte físico</value>
+  </data>
+  <data name="METADATA_DTB_SOURCE_PUBLISHER_HELP" xml:space="preserve">
+    <value>Entidade publicadora do suporte físico</value>
+  </data>
+  <data name="METADATA_DTB_SOURCE_RIGHTS_HELP" xml:space="preserve">
+    <value>Nome da entidade detentora dos direitos sobre o suporte físico</value>
+  </data>
+  <data name="METADATA_DTB_SOURCE_TITLE_HELP" xml:space="preserve">
+    <value>Título do suporte físico</value>
+  </data>
+  <data name="METADATA_GENERATOR_HELP" xml:space="preserve">
+    <value>Software que gerou o livro</value>
+  </data>
+  <data name="METADATA_OBI_XUK_VERSION_HELP" xml:space="preserve">
+    <value>Versão do ficheiro xuk</value>
+  </data>
+  <data name="METADATA_CUSTOM_HELP" xml:space="preserve">
+    <value>Estes dados são definidos pelo utilizador. Por favor digite o nome dos metadados, bem como o seu valor.</value>
+  </data>
+  <data name="Recording_CreateSectionContentsInformation" xml:space="preserve">
+    <value>Conteúdos da secção em gravação: {0} não são exibidos na vista de conteúdo. Pressione enter para exibir os conteúdos da secção e consequentemente começar a gravar.</value>
+  </data>
+  <data name="METADATA_DAISY202_EXPORT_PATH_HELP" xml:space="preserve">
+    <value>Dados específicos do Obi para salvar no caminho  Daisy 2.02 export</value>
+  </data>
+  <data name="METADATA_DAISY3_EXPORT_PATH_HELP" xml:space="preserve">
+    <value>Dados específicos do Obi para salvar no caminho  Daisy 3 export</value>
+  </data>
+  <data name="MergePhrases_CountLimitMessage" xml:space="preserve">
+    <value>A contagem da frase a juntar não pode ser maior que 0. Por favor selecione um número menor de frases para juntar.</value>
+  </data>
+  <data name="Import_Phrase_SizeLimit" xml:space="preserve">
+    <value>O ficheiro tem mais de {0} minutos. Assim, será dividido.</value>
+  </data>
+  <data name="Import_AudioFormat_RenameFile" xml:space="preserve">
+    <value>O ficheiro com o nome {0} é renomeado de {1} pois já existe um ficheiro com o mesmo nome no diretório do projeto</value>
+  </data>
+  <data name="ImportAudio_ConvertingFormat" xml:space="preserve">
+    <value>A processar ficheiros antes de importar</value>
+  </data>
+  <data name="StatusBar_LimitedPhrasesShown" xml:space="preserve">
+    <value>{0} (Frases limitadas para a performance. Clique nas últimas frases para visualizar mais)</value>
+  </data>
+  <data name="UnusedPhrasesDeletedFromProject" xml:space="preserve">
+    <value>As frases não usadas são removidas do projeto.</value>
+  </data>
+  <data name="GoToPageorPhrase_PageDonotExist" xml:space="preserve">
+    <value>Essa página não existe</value>
+  </data>
+  <data name="PerformanceCheck_RAMNearOverflowMsg" xml:space="preserve">
+    <value>O sistema está a funcionar com carga elevada de processamento. Depois de algum tempo, esta operação é recomendada. Pressione Não para cancelar esta operação</value>
+  </data>
+  <data name="SelectPhraseOrSection_ShowSection" xml:space="preserve">
+    <value>A frase desejada não se encontra na secção atual. Pretende visualizar a secção que contém esta frase?</value>
+  </data>
+  <data name="KeyS_FastPlayNormalizeWithElapseBack" xml:space="preserve">
+    <value>Normalizar velocidade de reprodução com pequeno recuo</value>
+  </data>
+  <data name="KeyS_FastPlayRateNormilize" xml:space="preserve">
+    <value>Normalizar a taxa de reprodução a alta velocidade</value>
+  </data>
+  <data name="KeyS_FastPlayStepDown" xml:space="preserve">
+    <value>Alta velocidade diminuir</value>
+  </data>
+  <data name="KeyS_FastPlayStepUp" xml:space="preserve">
+    <value>Alta velocidade aumentar</value>
+  </data>
+  <data name="KeyS_FocusOnTransportBarTimeDisplay" xml:space="preserve">
+    <value>Foco no mostrador de tempo</value>
+  </data>
+  <data name="KeyS_MarkSelectionBeginTime" xml:space="preserve">
+    <value>Marcar tempo de início da seleção</value>
+  </data>
+  <data name="KeyS_MarkSelectionEndTime" xml:space="preserve">
+    <value>Marcar tempo de fim da seleção</value>
+  </data>
+  <data name="KeyS_MarkSelectionFromBeginningToTheCursor" xml:space="preserve">
+    <value>Marcar seleção do começo até ao cursor</value>
+  </data>
+  <data name="KeyS_MarkSelectionFromCursorToTheEnd" xml:space="preserve">
+    <value>Marcar seleção desde o cursor até ao final</value>
+  </data>
+  <data name="KeyS_MoveToNextViewClockwise" xml:space="preserve">
+    <value>Mover para a vista seguinte no sentido do relógio</value>
+  </data>
+  <data name="KeyS_MoveToPreviousViewAnticlockwise" xml:space="preserve">
+    <value>Mover para a vista anterior no sentido inverso</value>
+  </data>
+  <data name="KeyS_PlayPauseUsingAudioCursor_Default" xml:space="preserve">
+    <value>Reproduzir/Pausar com o cursor áudio</value>
+  </data>
+  <data name="KeyS_PlayPauseUsingSelection" xml:space="preserve">
+    <value>Reproduzir/Pausar usando a seleção</value>
+  </data>
+  <data name="KeyS_PlaySelectedWaveform" xml:space="preserve">
+    <value>Reproduzir a forma de onda selecionada</value>
+  </data>
+  <data name="KeyS_ScrollDown_LargeIncrementWithSelection" xml:space="preserve">
+    <value>Um ecrã abaixo</value>
+  </data>
+  <data name="KeyS_ScrollDown_SmallIncrementWithSelection" xml:space="preserve">
+    <value>Uma linha abaixo</value>
+  </data>
+  <data name="KeyS_ScrollUp_LargeIncrementWithSelection" xml:space="preserve">
+    <value>Um ecrã acima</value>
+  </data>
+  <data name="KeyS_ScrollUp_SmallIncrementWithSelection" xml:space="preserve">
+    <value>Uma linha acima</value>
+  </data>
+  <data name="KeyS_SelectCompleteWaveform" xml:space="preserve">
+    <value>Selecionar toda a forma de onda da frase</value>
+  </data>
+  <data name="KeyS_SelectFirstPhraseInStrip" xml:space="preserve">
+    <value>Selecionar primeira frase na secção</value>
+  </data>
+  <data name="KeyS_SelectFirstStrip" xml:space="preserve">
+    <value>Selecionar primeira secção na vista de conteúdo</value>
+  </data>
+  <data name="KeyS_SelectFollowingPhrase" xml:space="preserve">
+    <value>Selecionar frase seguinte</value>
+  </data>
+  <data name="KeyS_SelectFollowingStrip" xml:space="preserve">
+    <value>Selecionar secção seguinte na vista de conteúdo</value>
+  </data>
+  <data name="KeyS_SelectFollowingStripCursor" xml:space="preserve">
+    <value>Mover cursor barrado para diante</value>
+  </data>
+  <data name="KeyS_SelectLastPhraseInStrip" xml:space="preserve">
+    <value>Selecionar última frase na secção</value>
+  </data>
+  <data name="KeyS_SelectLastStrip" xml:space="preserve">
+    <value>Selecionar última secção na vista de conteúdo</value>
+  </data>
+  <data name="KeyS_SelectNextEmptyPhrase" xml:space="preserve">
+    <value>Selecionar frase em branco seguinte</value>
+  </data>
+  <data name="KeyS_SelectNextPagePhrase" xml:space="preserve">
+    <value>Selecionar frase na página seguinte</value>
+  </data>
+  <data name="KeyS_SelectNextSpecialRolePhrase" xml:space="preserve">
+    <value>Selecionar frase seguinte com função</value>
+  </data>
+  <data name="KeyS_SelectPrecedingPagePhrase" xml:space="preserve">
+    <value>Selecionar frase na página anterior</value>
+  </data>
+  <data name="KeyS_SelectPrecedingPhrase" xml:space="preserve">
+    <value>Selecionar frase anterior</value>
+  </data>
+  <data name="KeyS_SelectPrecedingSpecialRolePhrase" xml:space="preserve">
+    <value>Selecionar frase anterior com função</value>
+  </data>
+  <data name="KeyS_SelectPrecedingStrip" xml:space="preserve">
+    <value>Selecionar secção anterior na vista de conteúdo</value>
+  </data>
+  <data name="KeyS_SelectPrecedingStripCursor" xml:space="preserve">
+    <value>Mover cursor barrado para trás</value>
+  </data>
+  <data name="KeyS_SelectUp" xml:space="preserve">
+    <value>Selecionar acima</value>
+  </data>
+  <data name="KeyS_ShowPropertiesOfSelectedNode" xml:space="preserve">
+    <value>Mostrar propriedades do nó selecionado</value>
+  </data>
+  <data name="KeyS_ToggleBetweenContentViewAndTOCView" xml:space="preserve">
+    <value>Alternar entre vista de conteúdo e vista TOC</value>
+  </data>
+  <data name="KeyS_TransportBarNextPage" xml:space="preserve">
+    <value>Página seguinte na lista de reprodução</value>
+  </data>
+  <data name="KeyS_TransportBarNextPhrase" xml:space="preserve">
+    <value>Frase seguinte na lista de reprodução</value>
+  </data>
+  <data name="KeyS_TransportBarNextSection" xml:space="preserve">
+    <value>Secção seguinte na lista de reprodução</value>
+  </data>
+  <data name="KeyS_TransportBarNudgeBackward" xml:space="preserve">
+    <value>Ajustar para trás</value>
+  </data>
+  <data name="KeyS_TransportBarNudgeForward" xml:space="preserve">
+    <value>Ajustar para diante</value>
+  </data>
+  <data name="KeyS_TransportBarPreviewFromAudioCursor" xml:space="preserve">
+    <value>Simular desde o cursor áudio</value>
+  </data>
+  <data name="KeyS_TransportBarPreviewFromSelection" xml:space="preserve">
+    <value>Simular desde a seleção</value>
+  </data>
+  <data name="KeyS_TransportBarPreviewUptoAudioCursor" xml:space="preserve">
+    <value>Simular até ao cursor áudio</value>
+  </data>
+  <data name="KeyS_TransportBarPreviewUptoSelection" xml:space="preserve">
+    <value>Simular até à seleção</value>
+  </data>
+  <data name="KeyS_TransportBarPreviousPage" xml:space="preserve">
+    <value>Página anterior na lista de reprodução</value>
+  </data>
+  <data name="KeyS_TransportBarPreviousPhrase" xml:space="preserve">
+    <value>Frase anterior na lista de reprodução</value>
+  </data>
+  <data name="KeyS_TransportBarPreviousSection" xml:space="preserve">
+    <value>Secção anterior na lista de reprodução</value>
+  </data>
+  <data name="KeyboardShortcut_DuplicateMessage" xml:space="preserve">
+    <value>O atalho de teclado já existe. Por favor atribua uma tecla ou combinação de teclas diferente</value>
+  </data>
+  <data name="KeyboardShortcuts_ErrorInLoadingConfiguredKeys" xml:space="preserve">
+    <value>Falha no carregamento do esquema de teclado configurado. A carregar o esquema padrão.</value>
+  </data>
+  <data name="AudioFileExport_progress_dialog_title" xml:space="preserve">
+    <value>A exportar o ficheiro áudio…</value>
+  </data>
+  <data name="OpenProject_progress_dialog_title" xml:space="preserve">
+    <value>A abrir o projeto...Por favor aguarde</value>
+  </data>
+  <data name="RecordingToolBar_StatusPlaying" xml:space="preserve">
+    <value>A reproduzir {0} {1} </value>
+  </data>
+  <data name="import_output_path" xml:space="preserve">
+    <value>Sucesso! Livro daisy exportado {0}em {1}</value>
+  </data>
+  <data name="RecToolbar_MarkedTODO" xml:space="preserve">
+    <value>Marcado a trabalhar</value>
+  </data>
+  <data name="RecToolbar_NewPage" xml:space="preserve">
+    <value>Nova página</value>
+  </data>
+  <data name="RecToolbar_NewPhrase" xml:space="preserve">
+    <value>Nova frase</value>
+  </data>
+  <data name="RecToolbar_NewSection" xml:space="preserve">
+    <value>Nova secção</value>
+  </data>
+  <data name="RecToolbar_Recording" xml:space="preserve">
+    <value>A gravar {0} {1}</value>
+  </data>
+  <data name="RecToolbar_Title" xml:space="preserve">
+    <value>Barra de gravação do Obi : {0}</value>
+  </data>
+  <data name="bookmark_closed_project_caption" xml:space="preserve">
+    <value>Fechar um projeto</value>
+  </data>
+  <data name="SaveSelectedNodeAsBookmark" xml:space="preserve">
+    <value>O nó selecionado atualmente não é igual ao salvo com marcador. Deseja salvar este nó como marcador?  O projeto será igualmente salvo.</value>
+  </data>
+  <data name="UseDefaultValues" xml:space="preserve">
+    <value>Utilize os Valores Padrão</value>
+  </data>
+  <data name="SelectDeselectAllSections" xml:space="preserve">
+    <value>Selecionar / deselecionar todas as secções</value>
+  </data>
+  <data name="upgrade_obi_to_new_version" xml:space="preserve">
+    <value>O projeto foi criado numa versão anterior do Obi. Será agora atualizado para a versão mais recente. Por favor pressione OK para continuar</value>
+  </data>
+  <data name="upgrading_obi" xml:space="preserve">
+    <value>A atualizar o projeto</value>
+  </data>
+  <data name="Obi_NewFeaturesWebpage" xml:space="preserve">
+    <value>http://daisy.trac.cvsdude.com/obi/wiki/documentation/Obi2.0_FeaturesExplanation</value>
+  </data>
+  <data name="Cleanup_WaveformLoadingWarning" xml:space="preserve">
+    <value>A carregar a forma de onda...algumas fontes de ficheiros de áudio poderão estar abertas. É recomendado tentar depois de algum tempo. Por favor pressione o botão Não para aguardar.</value>
+  </data>
+  <data name="ImportProject_OverwriteProjectMsg" xml:space="preserve">
+    <value>O ficheiro do projeto já existe na localização especificada. Deseja substituir o projeto?</value>
+  </data>
+  <data name="no_audio" xml:space="preserve">
+    <value>O item selecionado não contém nenhum áudio</value>
+  </data>
+  <data name="DAISY3_ObiImport_ErrorsList_error_no_audio" xml:space="preserve">
+    <value>Nenhum áudio na frase</value>
+  </data>
+  <data name="DAISY3_ObiImport_ErrorsList_expected_clip_end" xml:space="preserve">
+    <value>Fim de clip exportado</value>
+  </data>
+  <data name="DAISY3_ObiImport_ErrorsList_imported_clip_end" xml:space="preserve">
+    <value>Fim de clip importado</value>
+  </data>
+  <data name="DAISY3_ObiImport_ErrorsList_in_section" xml:space="preserve">
+    <value>Na secção: </value>
+  </data>
+  <data name="DAISY3_ObiImport_ErrorsList_truncated_audio" xml:space="preserve">
+    <value>Áudio truncado</value>
+  </data>
+  <data name="DAISY3_ObiImport_ErrorsList_truncated_audio_in_phrase" xml:space="preserve">
+    <value>Áudio truncado na frase</value>
+  </data>
+  <data name="import_cancelled" xml:space="preserve">
+    <value>Importação cancelada</value>
+  </data>
+  <data name="Report_for_import" xml:space="preserve">
+    <value>Reportar para importar</value>
+  </data>
+  <data name="AudioFileImport_ProcessingFiles" xml:space="preserve">
+    <value>A processar ficheiros áudio para importação</value>
+  </data>
+  <data name="SaveAs_cannot_save_in_root" xml:space="preserve">
+    <value>Impossível salvar o ficheiro na localização: {0}. Por favor escolha outra localização.</value>
+  </data>
+  <data name="backup_file_missing" xml:space="preserve">
+    <value>Não foi possível restaurar. Não foi encontrado nenhum ficheiro de restauro em :</value>
+  </data>
+  <data name="information_caption" xml:space="preserve">
+    <value>Informação</value>
+  </data>
+  <data name="Save_current_state_caption" xml:space="preserve">
+    <value>Salvar estado atual?</value>
+  </data>
+  <data name="restored_project_name" xml:space="preserve">
+    <value>Restored Project.obi</value>
+  </data>
+  <data name="save_current_state" xml:space="preserve">
+    <value>Esta operação guardará o estado atual do projeto. A ação é irreversível. Deseja continuar?</value>
+  </data>
+  <data name="open_from_backup_file" xml:space="preserve">
+    <value>O projeto será aberto a partir do ficheiro de restauro. Deseja continuar?</value>
+  </data>
+  <data name="AudioFormatConverter_Error_FileExtentionNodSupported" xml:space="preserve">
+    <value>Formato áudio não reconhecido. Apenas .wav, .mp3 and .mp4 são os tipos de ficheiros suportados. A saltar importação de {0}</value>
+  </data>
+  <data name="Load_Original_Project" xml:space="preserve">
+    <value>A carregar o projeto original</value>
+  </data>
+  <data name="Open_Backup_file" xml:space="preserve">
+    <value>A abrir a partir do ficheiro de restauro</value>
+  </data>
+  <data name="Save_Restore_Project" xml:space="preserve">
+    <value>A guardar o projeto restaurado</value>
+  </data>
+  <data name="error_in_opening" xml:space="preserve">
+    <value>Wups! Erro ao abrir</value>
+  </data>
+  <data name="opening_project" xml:space="preserve">
+    <value>A abrir o projeto {0}</value>
+  </data>
+  <data name="waveform_is_truncated" xml:space="preserve">
+    <value>A forma de onda está truncada em {0}s</value>
+  </data>
+  <data name="GoToPageOrPhrase_Time" xml:space="preserve">
+    <value>Tempo em.</value>
+  </data>
+  <data name="no_phrases_in_section" xml:space="preserve">
+    <value>Não existem frases nesta secção</value>
+  </data>
+  <data name="select_phrase" xml:space="preserve">
+    <value>Por favor selecione uma frase</value>
+  </data>
+  <data name="select_phrase_or_section" xml:space="preserve">
+    <value>Por favor selecione qualquer frase ou secção</value>
+  </data>
+  <data name="time_exceeds_duration_phrase" xml:space="preserve">
+    <value>O tempo excede a duração da frase</value>
+  </data>
+  <data name="time_exceeds_duration_section" xml:space="preserve">
+    <value>O tempo excede a duração da secção</value>
+  </data>
+  <data name="AudioTab_AllowOverwrite" xml:space="preserve">
+    <value>Permitir substituição ao gravar</value>
+  </data>
+  <data name="AudioTab_AudioClues" xml:space="preserve">
+    <value>Indicações áudio</value>
+  </data>
+  <data name="AudioTab_PreviewBeforeRecording" xml:space="preserve">
+    <value>Usar o botão gravar para simular antes da gravação</value>
+  </data>
+  <data name="AudioTab_RecordDirectlyFromTransportBar" xml:space="preserve">
+    <value>Gravar sempre a partir da barra de controlo</value>
+  </data>
+  <data name="AudioTab_RetainInitialSilence" xml:space="preserve">
+    <value>Reter silêncio inicial durante a deteção de frases</value>
+  </data>
+  <data name="AudioTab_StartRecordingFromCursor" xml:space="preserve">
+    <value>Iniciar gravação desde o cursor, apagando o áudio a seguir</value>
+  </data>
+  <data name="ProjectTab_AutoSaveWhenRecordingEnds" xml:space="preserve">
+    <value>Salvar automaticamente para restauro quando a gravação terminar</value>
+  </data>
+  <data name="ProjectTab_FixContentViewWidth" xml:space="preserve">
+    <value>Reparar largura da vista de conteúdo</value>
+  </data>
+  <data name="ProjectTab_OpenLastProject" xml:space="preserve">
+    <value>Abrir o último projeto</value>
+  </data>
+  <data name="ProjectTab_SelectBookmark" xml:space="preserve">
+    <value>Selecionar marcador quando o projeto for reaberto</value>
+  </data>
+  <data name="ProjectTab_OptimizeMemory" xml:space="preserve">
+    <value>Otimizar utilização de memória</value>
+  </data>
+  <data name="Project_DisableRollBackForCleanUp" xml:space="preserve">
+    <value>Desativar descartagem para depuração</value>
+  </data>
+  <data name="Preferences_UnableToUpdateProjectAudioFormat" xml:space="preserve">
+    <value>Não foi possível atualizar o formato áudio deste projeto</value>
+  </data>
+  <data name="AudioTab_Limit max phrase duration to 50 minutes" xml:space="preserve">
+    <value>Limite máximo da duração das frases para 50 minutos</value>
+  </data>
+  <data name="Audio_ShowLiveWaveformWhileRecording" xml:space="preserve">
+    <value>Mostrar forma de onda ao vivo durante a gravação</value>
+  </data>
+  <data name="KeyboardShortcuts_TextboxAccessibleName" xml:space="preserve">
+    <value>{0} teclas de atalho: (Pressione a combinação de teclas)</value>
+  </data>
+  <data name="phrase_extra_Anchor" xml:space="preserve">
+    <value>, âncora</value>
+  </data>
+  <data name="phrase_short_Anchor" xml:space="preserve">
+    <value>Âncora</value>
+  </data>
+  <data name="role_Anchor" xml:space="preserve">
+    <value>Âncora</value>
+  </data>
+  <data name="Associate_next_phrase" xml:space="preserve">
+    <value>A frase referida a avançar será apagada. A frase seguinte virá a ser a frase referida. Deseja continuar?</value>
+  </data>
+  <data name="Associate_node_with_anchor_node" xml:space="preserve">
+    <value>Nenhuma frase especial associada com o nó desta âncora. Por favor associe um nó com o nó desta âncora.</value>
+  </data>
+  <data name="Associate_show_all" xml:space="preserve">
+    <value>Mostrar tudo</value>
+  </data>
+  <data name="Associate_show_selected" xml:space="preserve">
+    <value>Mostrar selecionado</value>
+  </data>
+  <data name="List_of_anchor_nodes" xml:space="preserve">
+    <value>Lista de nós de âncora</value>
+  </data>
+  <data name="Selected_node" xml:space="preserve">
+    <value>nó selecionado</value>
+  </data>
+  <data name="Node_between_chunk" xml:space="preserve">
+    <value>Frase especial selecionada está entre a porção. Deseja apagá-la?</value>
+  </data>
+  <data name="Start_node_different_from_end_node" xml:space="preserve">
+    <value>O nó inicial não deve ser o mesmo que o nó final. Por favor selecione um nó final diferente.</value>
+  </data>
+  <data name="Start_node_index_greater_than_end" xml:space="preserve">
+    <value>O index inicial do nó é maior que o index final do nó. Por favor defina novamente.</value>
+  </data>
+  <data name="Export_AnchorErrors" xml:space="preserve">
+    <value>Nome de secção: {0}, Frase: {1}</value>
+  </data>
+  <data name="Export_SkippableWithEmptyNode" xml:space="preserve">
+    <value>As âncoras seguintes referem-se a elementos a avançar com frases em branco que não serão exportadas. Pressione Ok para continuar mesmo assim, e cancele para corrigir estes erros</value>
+  </data>
+  <data name="Anchor_node_error" xml:space="preserve">
+    <value>Existem nós de âncoras vazios, ou estes referem-se a nós vazios.</value>
+  </data>
+  <data name="Anchor_node_not_associated" xml:space="preserve">
+    <value>Nenhum nó associado com este nó de âncora. Por favor associe um nó com este nó de âncora.</value>
+  </data>
+  <data name="Associate" xml:space="preserve">
+    <value>Associar nó</value>
+  </data>
+  <data name="Node_already_associated" xml:space="preserve">
+    <value>O nó está associado com outro nó. Deseja continuar a associar?</value>
+  </data>
+  <data name="Page_not_found" xml:space="preserve">
+    <value>Não foi encontrada nenhuma página na porção.</value>
+  </data>
+  <data name="Report_for_export" xml:space="preserve">
+    <value>Reportar para exportar</value>
+  </data>
+  <data name="Show_details" xml:space="preserve">
+    <value>Mostrar detalhes</value>
+  </data>
+  <data name="Hide_details" xml:space="preserve">
+    <value>Ocultar detalhes</value>
+  </data>
+  <data name="MetadataView_InvalidMetadata" xml:space="preserve">
+    <value>Metadados inválidos</value>
+  </data>
+  <data name="ObiFormMsg_PipelineExtractionFail" xml:space="preserve">
+    <value>Não foi possível extrair o Pipeline.</value>
+  </data>
+  <data name="ObiFormMsg_RedoFail" xml:space="preserve">
+    <value>Não é possível refazer.</value>
+  </data>
+  <data name="ObiFormMsg_UndoFail" xml:space="preserve">
+    <value>Não é possível desfazer.</value>
+  </data>
+  <data name="ProjectViewFormMsg_AddingReferenceFail" xml:space="preserve">
+    <value>Falha ao adicionar referência</value>
+  </data>
+  <data name="ProjectViewFormMsg_AssigningSkippableFail" xml:space="preserve">
+    <value>Falha na atribuição a avançar</value>
+  </data>
+  <data name="ProjectViewFormMsg_CutOperationFail" xml:space="preserve">
+    <value>Falha na operação de corte.</value>
+  </data>
+  <data name="ProjectViewFormMsg_DeassociatingSkippableFail" xml:space="preserve">
+    <value>Falha ao destacar a referência de nó a avançar</value>
+  </data>
+  <data name="ProjectViewFormMsg_DeleteOperationFail" xml:space="preserve">
+    <value>Falha na operação de apagamento.</value>
+  </data>
+  <data name="ProjectViewFormMsg_ExportingAudioFail" xml:space="preserve">
+    <value>Falha ao exportar áudio.</value>
+  </data>
+  <data name="ProjectViewFormMsg_MergeOperationFail" xml:space="preserve">
+    <value>Falha ao juntar.</value>
+  </data>
+  <data name="ProjectViewFormMsg_PasteOperationFail" xml:space="preserve">
+    <value>Falha na operação de colagem.</value>
+  </data>
+  <data name="ProjectViewFormMsg_PhraseDetectionFail" xml:space="preserve">
+    <value>Falha na deteção de frases.</value>
+  </data>
+  <data name="ProjectViewFormMsg_SplitOperationFail" xml:space="preserve">
+    <value>Falha na operação de divisão.</value>
+  </data>
+  <data name="KeyS_SelectFirstSkippableNode" xml:space="preserve">
+    <value>Selecionar primeira frase da nota a avançar atual</value>
+  </data>
+  <data name="KeyS_SelectLastSkippableNode" xml:space="preserve">
+    <value>Selecionar última frase da nota a avançar atual</value>
+  </data>
+  <data name="KeyS_TransportBarFineNavigationOn" xml:space="preserve">
+    <value>Modo navegação fina ativado</value>
+  </data>
+  <data name="KeyS_TransportBarFineNavigationOff" xml:space="preserve">
+    <value>Modo navegação fina desativado</value>
+  </data>
+  <data name="StatusMsg_FineNavigation" xml:space="preserve">
+    <value>Navegação fina:</value>
+  </data>
+  <data name="Error_Message" xml:space="preserve">
+    <value>Os ficheiros áudio correspondentes aos seguintes ids estão em falta:</value>
+  </data>
+  <data name="Warning" xml:space="preserve">
+    <value>Atenção!</value>
+  </data>
+  <data name="ContentView_wrap" xml:space="preserve">
+    <value>Deve selecionar uma secção ou frase para envolver</value>
+  </data>
+  <data name="limited_sections_merge" xml:space="preserve">
+    <value>A contagem total das frases para todas as secções excede 7000. Apenas secções até secção {0} serão juntadas.</value>
+  </data>
+  <data name="merged_sections" xml:space="preserve">
+    <value>As secções selecionadas são de {0} a {1}</value>
+  </data>
+  <data name="not_enough_sections_to_merge" xml:space="preserve">
+    <value>Não há secções suficientes para juntar. Selecione no mínimo duas secções consecutivas</value>
+  </data>
+  <data name="phrase_count_more_than_7000" xml:space="preserve">
+    <value>A contagem total das frases excede 7000. Selecione um número menor de secções.</value>
+  </data>
+  <data name="Preferences_advanced_recording_mode" xml:space="preserve">
+    <value>Modo avançado de gravação</value>
+  </data>
+  <data name="Preferences_Allow_overwrite" xml:space="preserve">
+    <value>As caixas Permitir substituição,Gravar diretamente e Executar deteção de frases durante a gravação da barra de controlo serão marcadas. Deseja prosseguir?</value>
+  </data>
+  <data name="select_one_more_section" xml:space="preserve">
+    <value>Selecionado {0}. Selecione no mínimo mais uma secção se deseja juntar</value>
+  </data>
+  <data name="ProjectViewMsg_LogFileCreatedOnDesktop" xml:space="preserve">
+    <value>A sessão antterior do Obi terminou abruptamente. Consulte o ficheiro ObiSession.log que se encontra no ambiente de trabalho do computador</value>
+  </data>
+  <data name="AssociateNode_Section" xml:space="preserve">
+    <value>Secção </value>
+  </data>
+  <data name="AssociateNode_SelectedSection" xml:space="preserve">
+    <value>=&gt;&gt; Secção </value>
+  </data>
+  <data name="LimitedDiskSpaceWarning" xml:space="preserve">
+    <value>O seu sistema tem menos de {0} Mb de espaço em disco livres. Deseja continuar?</value>
+  </data>
+  <data name="Memory_Warning" xml:space="preserve">
+    <value>Informação de Espaço em Disco</value>
+  </data>
+  <data name="KeyS_ContractAudioSelectionAtLeft" xml:space="preserve">
+    <value>Contrair seleção de áudio à esquerda</value>
+  </data>
+  <data name="KeyS_ExpandAudioSelectionAtLeft" xml:space="preserve">
+    <value>Expandir seleção de áudio à esquerda</value>
+  </data>
+  <data name="Recording_RecordInNextExistingEmptyPage" xml:space="preserve">
+    <value>Gravar na próxima página existente</value>
+  </data>
+  <data name="ProjectView_ClearAnchor" xml:space="preserve">
+    <value>Deseja remover o nó de âncora referente às notas a avançar?</value>
+  </data>
+  <data name="Elapsed" xml:space="preserve">
+    <value>Decorrido</value>
+  </data>
+  <data name="ElapsedInSection" xml:space="preserve">
+    <value>Decorrido na Secção</value>
+  </data>
+  <data name="ElapsedInProject" xml:space="preserve">
+    <value>Decorrido no Projeto</value>
+  </data>
+  <data name="ElapsedInPhrase" xml:space="preserve">
+    <value>Decorrido na Frase</value>
+  </data>
+  <data name="RemainingInPhrase" xml:space="preserve">
+    <value>Restante na Frase</value>
+  </data>
+  <data name="RemainingInSelection" xml:space="preserve">
+    <value>Restante na Seleção</value>
+  </data>
+  <data name="RenumberPagesCaption" xml:space="preserve">
+    <value>Renumerar páginas seguintes?</value>
+  </data>
+  <data name="TransportBar_RenumberPagesAfterRecording" xml:space="preserve">
+    <value>A página a seguir às páginas já gravadas pode precisar de renumeração. Pretende renumerar?</value>
+  </data>
+  <data name="ProjectView_NoEmptyPageFoundForSpeechGeneration" xml:space="preserve">
+    <value>Não foi possível localizar nenhuma página vazia para sínteze de voz</value>
+  </data>
+  <data name="SpeechGenerationProgress" xml:space="preserve">
+    <value>A gerar voz sintetizada…</value>
+  </data>
+  <data name="Audio_DetectPhrasesWhileRecording" xml:space="preserve">
+    <value>Executar deteção de frases durante a gravação</value>
+  </data>
+  <data name="ProjectView_ErrorReplacingAudioDueToTimingMissmatch" xml:space="preserve">
+    <value>Não foi possível substituir o áudio devido a uma divergência na duração do mesmo: A duração original é {0} : a duração do novo ficheiro é {1}</value>
+  </data>
+  <data name="AudioPref_LivePhraseDetectionEnable" xml:space="preserve">
+    <value>Os valores a seguir serão utilizados para a deteção de frases ao vivo; Valor mínimo: {0} ,Intervalo btw Frases: {1} ,Silêncio guia: {2}. Estes parâmetros podem ser modificados a partir das caixas combinadas das preferências de áudio ou extraídos de uma frase de silêncio.</value>
+  </data>
+  <data name="ProjectTab_EnableFreeDiskSpaceCheck" xml:space="preserve">
+    <value>Ativar verificação de espaço em disco</value>
+  </data>
+  <data name="Audio_EnablePostRecordingPageRenumbering" xml:space="preserve">
+    <value>Renumerar páginas seguintes quando a gravação terminar</value>
+  </data>
+  <data name="KeyS_TransportBarRecordSingleKey" xml:space="preserve">
+    <value>Gravar: atalho de tecla única</value>
+  </data>
+  <data name="Audio_MonitorAlways" xml:space="preserve">
+    <value>Monitoração contínua</value>
+  </data>
+  <data name="Audio_MergeFirstTwoPhrasesInPhraseDetection" xml:space="preserve">
+    <value>Juntar as primeiras duas frases detetadas na deteção de frases</value>
+  </data>
+  <data name="KeyS_TransportBarStopSingleKey" xml:space="preserve">
+    <value>Parar: atalho de tecla única</value>
+  </data>
+  <data name="DAISY2_ObiImport_ErrorsList_FrontPageCorrection" xml:space="preserve">
+    <value>A designação não numérica da página de rosto {0} é adicionada como {1}</value>
+  </data>
+  <data name="Audio_FastPlayWithoutPitchChange" xml:space="preserve">
+    <value>Reprodução rápida sem alteração de tom</value>
+  </data>
+  <data name="Project_SaveProjectWhenRecordingEnds" xml:space="preserve">
+    <value>Salvar o projeto quando a gravação terminar</value>
+  </data>
+  <data name="Project_CheckForUpdates" xml:space="preserve">
+    <value>Verificar atualizações</value>
+  </data>
+  <data name="DeleteUnused_NoUnusedPhraseFoundToDelete" xml:space="preserve">
+    <value>Nenhuma frase não usada para apagar.</value>
+  </data>
+  <data name="ImportErrorCorrectionText" xml:space="preserve">
+    <value>com algumas correções de erros</value>
+  </data>
+  <data name="CheckUpdate_Title" xml:space="preserve">
+    <value>Nova versão {0} já disponível</value>
+  </data>
+  <data name="CheckUpdate_LabelText" xml:space="preserve">
+    <value>{0}. Por favor selecione entre as seguintes opções.</value>
+  </data>
+  <data name="CheckUpdate_UpdateProcessActive" xml:space="preserve">
+    <value>A verificação de atualizações já está ativa.</value>
+  </data>
+  <data name="HardReset_Caption" xml:space="preserve">
+    <value>Preferências de restauro para valores de fábrica</value>
+  </data>
+  <data name="HardResetSettings_ConfirmAgain" xml:space="preserve">
+    <value>Por favor confirme novamente.</value>
+  </data>
+  <data name="HardResetSettings_Question" xml:space="preserve">
+    <value>Esta operação fará um restauro para os valores de fábrica de todas as preferências, incluindo atalhos de teclado. Deseja continuar?</value>
+  </data>
+  <data name="String2" xml:space="preserve">
+    <value>Restauro para valores de fábrica de todas as preferências</value>
+  </data>
+  <data name="KeyS_HardResetAllSettings" xml:space="preserve">
+    <value>Restauro para valores de fábrica de todas as configurações</value>
+  </data>
+  <data name="ReplaceCorruptPhrasesWithEmptyNode_Question" xml:space="preserve">
+    <value>O número total de frases é {0}, fora das quais, frases com áudio desnecessário ou sem referéncia, são {1}. É recomendável substituir essas frases por frases em branco com marcadores para trabalhar. Pretende continuar?</value>
+  </data>
+  <data name="ReplacePhrasesWithEmptyNode" xml:space="preserve">
+    <value>Substituir frases com áudio corrompido por frases em branco</value>
+  </data>
+  <data name="ReplaceCorruptPhrasesWithEmptyNode_NothingFound" xml:space="preserve">
+    <value>Não foi encontrada nenhuma frase com áudio corrompido-</value>
+  </data>
+  <data name="Obi_UserInformationText" xml:space="preserve">
+    <value>Por favor preencha o seguinte formulário e registe-se como utilizador do Obi (ferramenta gratuita de código aberto para produção de conteúdos DAISY). Este registo permite-lhe receber em primeira mão, as atualizações dos nossos produtos diretamente na sua caixa de correio. Para mais, terá a oportunidade de desempenhar um papel fundamental em providenciar as diretrizes futuras para um melhor entendimento das suas necessidades específicas no uso do software. Por favor certifique-se de que o seu computador está ligado à internet. Os utilizadores registados são convidados a efetuar um novo registo, para que os dados fornecidos fiquem armazenados e sejam utilizados na nova versão do Obi.</value>
+  </data>
+  <data name="CleanUp_LongFilePath" xml:space="preserve">
+    <value>O caminho para o ficheiro do projeto é muito longo, o que pode provocar problemas no processo de depuração, e levar à perda de dados importantes. Recomendamos mover o projeto para uma localização com um caminho mais curto, antes de iniciar a depuração. Deseja continuar mesmo assim?</value>
+  </data>
+  <data name="UserRegistration_SendEmailMsg" xml:space="preserve">
+    <value>Impossível fazer o upload da informação para registo do utilizador em {0} tentativas. Por favor envie e-mail para obi.feedback@gmail.com no sentido de efetuar o registo.</value>
+  </data>
+  <data name="UserRegistrationBtn_DoNotRemind" xml:space="preserve">
+    <value>Não voltar a lembrar</value>
+  </data>
+  <data name="CheckUpdates_NewVersionNotAvailable" xml:space="preserve">
+    <value>A última verificação de atualização foi para a versão {0}. Não existe qualquer atualização posterior..</value>
+  </data>
+  <data name="CheckUpdates_GoToDownloadPage" xml:space="preserve">
+    <value>Visite a página de download</value>
+  </data>
+  <data name="Confirm_Setting" xml:space="preserve">
+    <value>Sucesso! Operação concluída. Por favor reinicie o Obi para que as configurações padrão sejam carregadas</value>
+  </data>
+  <data name="StatusForMergeSection" xml:space="preserve">
+    <value>A mostrar secções {0} até {1}. Por favor selecione as secções a unir ou alterar de nível.</value>
+  </data>
+  <data name="KeyS_ZoomWaveformPanel" xml:space="preserve">
+    <value>Mostrar painel de zoom da forma de onda</value>
+  </data>
+  <data name="KeyS_CloseZoomPanel" xml:space="preserve">
+    <value>Fechar painel de zoom</value>
+  </data>
+  <data name="KeyS_ResetZoomPanel" xml:space="preserve">
+    <value>Restaurar painel de zoom</value>
+  </data>
+  <data name="KeyS_ZoomInWaveform" xml:space="preserve">
+    <value>Zoom na forma de onda</value>
+  </data>
+  <data name="KeyS_ZoomOutWaveform" xml:space="preserve">
+    <value>Zoom fora da forma de onda</value>
+  </data>
+  <data name="KeyS_ZoomSelectedWaveform" xml:space="preserve">
+    <value>Zoom na forma de onda selecionada</value>
+  </data>
+  <data name="KeyS_NextPhrase" xml:space="preserve">
+    <value>Mostrar frase seguinte</value>
+  </data>
+  <data name="KeyS_PreviousPhrase" xml:space="preserve">
+    <value>Mostrar frase anterior</value>
+  </data>
+  <data name="Project_ShowWaveformsInContentView" xml:space="preserve">
+    <value>Mostrar formas de onda na vista de conteúdo</value>
+  </data>
+  <data name="Project_AlwaysIgnoreIndentationForExportFiles" xml:space="preserve">
+    <value>Sempre ignorar indentação para ficheiros DAISY exportados</value>
+  </data>
+  <data name="ZoomAudioTT_ShowNextPhrase" xml:space="preserve">
+    <value>Mostrar frase seguinte</value>
+  </data>
+  <data name="ZoomAudioTT_ShowPreviousPhrase" xml:space="preserve">
+    <value>Mostrar frase anterior</value>
+  </data>
+  <data name="ZoomAudioTT_ZoomIn" xml:space="preserve">
+    <value>Zoom In</value>
+  </data>
+  <data name="ZoomAudioTT_ZoomOut" xml:space="preserve">
+    <value>Zoom Out</value>
+  </data>
+  <data name="ZoomAudioTT_ZoomSelection" xml:space="preserve">
+    <value>Seleção do zoom</value>
+  </data>
+  <data name="ZoomAudioTT_Close" xml:space="preserve">
+    <value>Fechar</value>
+  </data>
+  <data name="ZoomAudioTT_Reset" xml:space="preserve">
+    <value>Fazer reset</value>
+  </data>
+  <data name="ProjectView_GenarteSpeechForAllPages" xml:space="preserve">
+    <value>Voz é gerada para as páginas</value>
+  </data>
+  <data name="EditAudioTT_Cut" xml:space="preserve">
+    <value>Cortar</value>
+  </data>
+  <data name="EditAudioTT_Copy" xml:space="preserve">
+    <value>Copiar</value>
+  </data>
+  <data name="EditAudioTT_Paste" xml:space="preserve">
+    <value>Colar</value>
+  </data>
+  <data name="EditAudioTT_Delete" xml:space="preserve">
+    <value>Apagar</value>
+  </data>
+  <data name="EditAudioTT_Merge" xml:space="preserve">
+    <value>Juntar com a frase seguinte</value>
+  </data>
+  <data name="EditAudioTT_Split" xml:space="preserve">
+    <value>Dividir frase</value>
+  </data>
+  <data name="EditAudioTT_PhraseDetect" xml:space="preserve">
+    <value>Deteção de frase</value>
+  </data>
+  <data name="Metadata_SetDefaults" xml:space="preserve">
+    <value>Definir metadados padrão</value>
+  </data>
+  <data name="Audio_UseRecordingPauseShortcutForStopping" xml:space="preserve">
+    <value>Usar a barra de espaços para parar gravação</value>
+  </data>
+  <data name="MergeProjectCommand" xml:space="preserve">
+    <value>Juntar o projeto</value>
+  </data>
+  <data name="MergeProject_NoSectionToMerge" xml:space="preserve">
+    <value>O projeto fonte não tem nenhuma secção</value>
+  </data>
+  <data name="MergeProject_progress_dialog_title" xml:space="preserve">
+    <value>A juntar o projeto {0} de {1}...</value>
+  </data>
+  <data name="MergeProject_SectionProgress" xml:space="preserve">
+    <value>A juntar a secção</value>
+  </data>
+  <data name="Project_BackgroundColorForEmptySection" xml:space="preserve">
+    <value>Realsar secções vazias na vista TOC</value>
+  </data>
+  <data name="Obi_ProjectMerge" xml:space="preserve">
+    <value>Por favor selecione o projeto a juntar</value>
+  </data>
+  <data name="Obi_ProjectMergeFilter" xml:space="preserve">
+    <value>Ficheiro de projeto do Obi (*.obi)|*.obi</value>
+  </data>
+  <data name="MergeProject_Information" xml:space="preserve">
+    <value>Por favor certifique-se de que os projetos a juntar têm o mesmo formato áudio.</value>
+  </data>
+  <data name="UserRegistration_Name" xml:space="preserve">
+    <value>Nome</value>
+  </data>
+  <data name="UserRegistration_Email" xml:space="preserve">
+    <value>Email</value>
+  </data>
+  <data name="UserRegistration_Org_Name" xml:space="preserve">
+    <value>Nome da organização ou biblioteca que publicou o livro</value>
+  </data>
+  <data name="UserRegistration_City" xml:space="preserve">
+    <value>Cidade</value>
+  </data>
+  <data name="UserRegistration_Country" xml:space="preserve">
+    <value>País</value>
+  </data>
+  <data name="UserRegistration_WrongEmail" xml:space="preserve">
+    <value>O e-mail está incorreto</value>
+  </data>
+  <data name="UserRegistration_NoMatchEmail" xml:space="preserve">
+    <value>Os e-mails digitados não correspondem. Por favor volte a digitá-los.</value>
+  </data>
+  <data name="UserRegistration_IndiacateUsage" xml:space="preserve">
+    <value>Por favor, indique-nos como pretende utilizar o Obi, selecionando as seguintes opções </value>
+  </data>
+  <data name="HardResetPermanentSettings_Question" xml:space="preserve">
+    <value>Fazer reset do registo de utilizadorPretende também fazer o reset do registo de utilizador? Será necessário um novo registo se continuar.</value>
+  </data>
+  <data name="RenumberPages" xml:space="preserve">
+    <value>Renumerar Páginas</value>
+  </data>
+  <data name="Transport_PreviousPhrase" xml:space="preserve">
+    <value>Frase anterior na lista de reprodução</value>
+  </data>
+  <data name="Transport_PreviousSection" xml:space="preserve">
+    <value>Secção anterior na lista de reprodução</value>
+  </data>
+  <data name="Transport_PreviousPage" xml:space="preserve">
+    <value>Página anterior na lista de reprodução</value>
+  </data>
+  <data name="Transport_FastPlayBackward" xml:space="preserve">
+    <value>Reproduzir em reverso a mais velocidade</value>
+  </data>
+  <data name="Transport_StartPlayback" xml:space="preserve">
+    <value>Começar ou reiniciar reprodução</value>
+  </data>
+  <data name="Transport_StopPlayback" xml:space="preserve">
+    <value>Parar gravação ou reprodução de áudio</value>
+  </data>
+  <data name="Transport_StartRecording" xml:space="preserve">
+    <value>Iniciar monitoração ou gravação</value>
+  </data>
+  <data name="Transport_FastPlayForward" xml:space="preserve">
+    <value>Reproduzir a mais velocidade</value>
+  </data>
+  <data name="Transport_NextPhrase" xml:space="preserve">
+    <value>Próxima frase</value>
+  </data>
+  <data name="Transport_NextPage" xml:space="preserve">
+    <value>Próxima página</value>
+  </data>
+  <data name="Transport_NextSection" xml:space="preserve">
+    <value>Próxima secção</value>
+  </data>
+  <data name="Transport_AddTodo" xml:space="preserve">
+    <value>Adicionar marca para trabalhar durante a gravação</value>
+  </data>
+  <data name="Transport_PreviousPhraseAcc" xml:space="preserve">
+    <value>Frase precedente</value>
+  </data>
+  <data name="Transport_PreviousSectionAcc" xml:space="preserve">
+    <value>Secção precedente</value>
+  </data>
+  <data name="Transport_PreviousPageAcc" xml:space="preserve">
+    <value>Página precedente</value>
+  </data>
+  <data name="Transport_FastPlayBackwardAcc" xml:space="preserve">
+    <value>Rebobinar</value>
+  </data>
+  <data name="Transport_StartPlaybackAcc" xml:space="preserve">
+    <value>Reproduzir</value>
+  </data>
+  <data name="Transport_StartPausebackAcc" xml:space="preserve">
+    <value>Pausar</value>
+  </data>
+  <data name="Transport_StopPlaybackAcc" xml:space="preserve">
+    <value>Parar</value>
+  </data>
+  <data name="Transport_FastPlayForwardAcc" xml:space="preserve">
+    <value>Rápido para diante</value>
+  </data>
+  <data name="Transport_AddTodoAcc" xml:space="preserve">
+    <value>Marcar frase</value>
+  </data>
+  <data name="Language_Pack_WrongFile" xml:space="preserve">
+    <value>Selecionou o ficheiro incorreto</value>
+  </data>
+  <data name="Language_Pack_Select" xml:space="preserve">
+    <value>Por favor selecione o ficheiro zip do pacote de idiomas</value>
+  </data>
+  <data name="Language_Pack_Complete" xml:space="preserve">
+    <value>Sucesso! Pacote de idiomas atualizado. Por favor reinicie o Obi para aplicar as alterações.</value>
+  </data>
+  <data name="Language_Pack_Caption" xml:space="preserve">
+    <value>Wups! Ficheiro incorreto</value>
+  </data>
+  <data name="Language_Pack_Select_Caption" xml:space="preserve">
+    <value>Selecione o ficheiro zip</value>
+  </data>
+  <data name="Language_Pack_Complete_Caption" xml:space="preserve">
+    <value>Sucesso! Atualização concluída.</value>
+  </data>
+  <data name="Preferences_Advance_Mode" xml:space="preserve">
+    <value>As caixas de verificação seguintes serão marcadas. Deseja continuar?</value>
+  </data>
+  <data name="Preferences_Intermediate_recording_mode" xml:space="preserve">
+    <value>Modo de gravação intermédio</value>
+  </data>
+  <data name="Preferences_Level_ComboBox_Basic" xml:space="preserve">
+    <value>Básico</value>
+  </data>
+  <data name="Preferences_Level_ComboBox_Intermediate" xml:space="preserve">
+    <value>Intermédio</value>
+  </data>
+  <data name="Preferences_Level_ComboBox_Advance" xml:space="preserve">
+    <value>Avançado</value>
+  </data>
+  <data name="Preferences_Level_ComboBox_Custom" xml:space="preserve">
+    <value>Personalizar</value>
+  </data>
+  <data name="Audio_RecordSubsequentPhrases" xml:space="preserve">
+    <value>Use o botão gravar para efetuar gravação sobre um áudio subsequente</value>
+  </data>
+  <data name="Audio_EnforceSingleCursor" xml:space="preserve">
+    <value>Forçar cursor único de áudio</value>
+  </data>
+  <data name="VUMeter_Reset" xml:space="preserve">
+    <value>Fazer reset</value>
+  </data>
+  <data name="VUMeter_Right" xml:space="preserve">
+    <value>Direito</value>
+  </data>
+  <data name="VUMeter_Left" xml:space="preserve">
+    <value>Esquerdo</value>
+  </data>
+  <data name="KeysS_TransportBarExpandPlayOptions" xml:space="preserve">
+    <value>Expandir opções de reprodução</value>
+  </data>
+  <data name="KeysS_TransportBarExpandRecordOptions" xml:space="preserve">
+    <value>Expandir opções de gravação</value>
+  </data>
+  <data name="Transport_PlayingOptions" xml:space="preserve">
+    <value>Opções de reprodução</value>
+  </data>
+  <data name="Transport_RecordingOptions" xml:space="preserve">
+    <value>Opções de gravação</value>
+  </data>
+  <data name="Audio_DeleteFollowingPhrasesOfSectionAfterRecording" xml:space="preserve">
+    <value>Depois de gravar, apagar frases subsequentes</value>
+  </data>
+  <data name="ProfileDesc_file_name" xml:space="preserve">
+    <value>ProfileDesc_pt.html</value>
+  </data>
+  <data name="Preferences_Level_ComboBox_Profile_1" xml:space="preserve">
+    <value>Perfil 1 (VA)</value>
+  </data>
+  <data name="Preferences_Level_ComboBox_Profile_2" xml:space="preserve">
+    <value>Perfil 2 (SBS)</value>
+  </data>
+  <data name="Preferences_AudioProfileDesc" xml:space="preserve">
+    <value>Descrição do perfil</value>
+  </data>
+  <data name="Audio_DisableDeselectionOnStop" xml:space="preserve">
+    <value>Não deselecionar ao pressionar stop duas vezes</value>
+  </data>
+  <data name="KeyS_FastPlayWithElapseForward" xml:space="preserve">
+    <value>Avanço adiante</value>
+  </data>
+  <data name="NoAdministrativePrivilege" xml:space="preserve">
+    <value>Não possui direitos de administrador para copiar. Poderá copiar manualmente o conteúdo da subpasta "Obi_Language_Pack" localizada na pasta Temp (que será aberta quando fechar esta mensagem. Se pretender abrir a pasta manualmente, abra uma linha de comandos e digite "%temp%" ou execute o  Obi com privilégios de administrador. Esta opção está disponível no menu de contexto do icon do programa.</value>
+  </data>
+  <data name="Project_MessageBoxToCheckFixContentView" xml:space="preserve">
+    <value>Deseja também verificar "Reparar largura da vista de conteúdo"?(Recomendado)</value>
+  </data>
+  <data name="default_EpubExport_dirname" xml:space="preserve">
+    <value>{0}Epub3 Export</value>
+  </data>
+  <data name="progress_EpubValidating" xml:space="preserve">
+    <value>O validador Epub Check está em execução. Por favor aguarde.</value>
+  </data>
+  <data name="METADATA_EPUB3_EXPORT_PATH_HELP" xml:space="preserve">
+    <value>Caminho de exportação para dados específicos de conversão para EPUB 3</value>
+  </data>
+  <data name="obi_EPUB3ExportPath_Description" xml:space="preserve">
+    <value>Caminho de exportação para EPUB 3</value>
+  </data>
+  <data name="obi_EPUB3ValidationSuccessfull" xml:space="preserve">
+    <value>Sucesso! O seu livro foi validado.</value>
+  </data>
+  <data name="obi_EPUB3ValidationFailed" xml:space="preserve">
+    <value>Falha na validação.</value>
+  </data>
+  <data name="obi_EPUB3ValidatorNotInstalled" xml:space="preserve">
+    <value>O validador EPUB check não está instalado</value>
+  </data>
+  <data name="obi_EPUB3CheckNotFound" xml:space="preserve">
+    <value>Wups! Erro: EPUB check não encontrado</value>
+  </data>
+  <data name="obi_EPUB3ValidationSuccessfullWithWarnings" xml:space="preserve">
+    <value>Validação concluída com avisos</value>
+  </data>
+  <data name="OperationFailed" xml:space="preserve">
+    <value>Falha na operação</value>
+  </data>
+  <data name="AssociateNode_SelectedNodeGroupBox" xml:space="preserve">
+    <value>Nó selecionado</value>
+  </data>
+  <data name="Project_SaveObiLocationAndSize" xml:space="preserve">
+    <value>Salvar localização e tamanho de Obi</value>
+  </data>
+  <data name="Project_PeakMeterChangeLocation" xml:space="preserve">
+    <value>Manter medidor de pico alinhado com a margem direita do Obi</value>
+  </data>
+  <data name="AudioProcessing_progress_dialog_title" xml:space="preserve">
+    <value>A processar o áudio…</value>
+  </data>
+  <data name="AudioProcessing_InfoText" xml:space="preserve">
+    <value>O valor 1.0 significa que o áudio se mantém inalterado.</value>
+  </data>
+  <data name="ValidatorTimeOutMsg" xml:space="preserve">
+    <value>Tempo esgotado para o validador</value>
+  </data>
+  <data name="Project_EPUBCheckTimeOutEnabled" xml:space="preserve">
+    <value>Tempo esgotado para o processo EPUB Check após 3 minutos</value>
+  </data>
+  <data name="UserRegistration_EnterFollowing" xml:space="preserve">
+    <value>Por favor digite os seguintes dados corretamente :</value>
+  </data>
+  <data name="Audio_PreservePage" xml:space="preserve">
+    <value>Preservar páginas ao gravar sobre áudio subsequente</value>
+  </data>
+  <data name="MergeOptions_IncreaseLevel" xml:space="preserve">
+    <value>Aumentar nível da secção</value>
+  </data>
+  <data name="MergeOptions_DecreaseLevel" xml:space="preserve">
+    <value>Diminuir nível da secção</value>
+  </data>
+  <data name="MergeOptions_Merge" xml:space="preserve">
+    <value>Juntar secções</value>
+  </data>
+  <data name="ProjectViewFormMsg_SectionLevelChangeOperationFail" xml:space="preserve">
+    <value>Falha ao alterar nível da secção.</value>
+  </data>
+  <data name="MergeOptions_NoSelectionForLevelChange" xml:space="preserve">
+    <value>Nenhuma secção selecionada para alterar o nível</value>
+  </data>
+  <data name="Metadata_Empty" xml:space="preserve">
+    <value>Vazio</value>
+  </data>
+  <data name="MergeOptions_LevelString" xml:space="preserve">
+    <value>Nível</value>
+  </data>
+  <data name="Profile_Saved" xml:space="preserve">
+    <value>Perfil guardado</value>
+  </data>
+  <data name="MergeProject_CannotMerge" xml:space="preserve">
+    <value>Impossível salvar o projeto selecionado</value>
+  </data>
+  <data name="Project_MinimizeObi" xml:space="preserve">
+    <value>Não é conveniente minimizar o Obi quando a barra de ferramentas de gravação está ativa</value>
+  </data>
+  <data name="Phrase_IndexString" xml:space="preserve">
+    <value>{0} de {1}</value>
+  </data>
+  <data name="Preferences_ProfileLoaded" xml:space="preserve">
+    <value>O perfil selecionado de preferências está carregado</value>
+  </data>
+  <data name="Preference_ProfileCaption" xml:space="preserve">
+    <value>Perfil de preferências carregado</value>
+  </data>
+  <data name="Preferences_ProfilesShortcutsLoaded" xml:space="preserve">
+    <value>As teclas de atalho estão carregadas a partir do item selecionado</value>
+  </data>
+  <data name="Preferences_ProfilesStatus" xml:space="preserve">
+    <value>{0} perfiles para {1} preferências</value>
+  </data>
+  <data name="Preferences_ConfirmForDeletingProfile" xml:space="preserve">
+    <value>Isto apagará o perfil selecionado. Deseja continuar?</value>
+  </data>
+  <data name="String3" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Audio_AlwaysMonitoringRecordingToolBar" xml:space="preserve">
+    <value>Sempre monitorar na barra de ferramentas da gravação</value>
+  </data>
+  <data name="KeysS_TransportBarExpandSwitchProfile" xml:space="preserve">
+    <value>Expandir mudar perfil</value>
+  </data>
+  <data name="Transport_SwitchProfile" xml:space="preserve">
+    <value>Mudar perfil de áudio de</value>
+  </data>
+  <data name="RecordingToolbar_SwitchProfile" xml:space="preserve">
+    <value>Mudar de {0} para {1}</value>
+  </data>
+  <data name="RecordingToolbar_SwitchProfileStatusBar" xml:space="preserve">
+    <value>Mudou para o perfil {0}</value>
+  </data>
+  <data name="Audio_ColorFlickerPreviewBeforeRecording" xml:space="preserve">
+    <value>Realsar etiqueta para simular antes de gravar</value>
+  </data>
+  <data name="Audio_PlaySectionUsingPlayBtn" xml:space="preserve">
+    <value>Usar o botão reproduzir e a barra de espaços para reproduzir secção</value>
+  </data>
+  <data name="TransportBar_PlaySelection" xml:space="preserve">
+    <value>Reproduzir seleção</value>
+  </data>
+  <data name="TransportBar_PlayAll" xml:space="preserve">
+    <value>Reproduzir tudo</value>
+  </data>
+  <data name="SetPageNumber_PrecedingPageNotFound" xml:space="preserve">
+    <value>Nenhuma página precedente foi encontrada. Por favor digite os valores.</value>
+  </data>
+  <data name="SetPageNumber_NextPageNotFound" xml:space="preserve">
+    <value>Impossível encontrar a próxima página. Por favor digite os valores.</value>
+  </data>
+  <data name="SetPageNumber_PageOutOfOrder" xml:space="preserve">
+    <value>Impossível continuar. Os valores fornecidos para a página anterior e para a página seguinte não estão corretos.</value>
+  </data>
+  <data name="SetPageNumber_PageInConsecutiveOrder" xml:space="preserve">
+    <value>Impossível continuar. As páginas já estão em ordem consecutiva.</value>
+  </data>
+  <data name="LocalDirectoryToSaveRecording" xml:space="preserve">
+    <value>Por favor escolha um diretório local para guardar a gravação.</value>
+  </data>
+  <data name="Project_EnableMouseScrolling" xml:space="preserve">
+    <value>Ativar movimento do botão redondo do rato</value>
+  </data>
+  <data name="CleanUp_Complete" xml:space="preserve">
+    <value>Sucesso! A depuração está concluída.</value>
+  </data>
+  <data name="MergeOptions_CannotSelect" xml:space="preserve">
+    <value>Impossível selecionar. Os níveis das secções selecionadas nunca devem ser menores que a primeira secção</value>
+  </data>
+  <data name="SectionLevel_IncrementError" xml:space="preserve">
+    <value>Não pode aumentar o nível de uma secção nesta posição</value>
+  </data>
+  <data name="SectionLevel_DecrementError" xml:space="preserve">
+    <value>Não pode diminuir o nível de uma secção nesta posição</value>
+  </data>
+  <data name="KeyS_SelectStartOfThePhrase" xml:space="preserve">
+    <value>Selecionar início da frase</value>
+  </data>
+  <data name="KeyS_SelectEndOfPhrase" xml:space="preserve">
+    <value>Selecionar fim da frase</value>
+  </data>
+  <data name="default_XHTMLExport_dirname" xml:space="preserve">
+    <value>{0}Xhtml Export</value>
+  </data>
+  <data name="Preferences_ProfileExists" xml:space="preserve">
+    <value>Já existe um perfil com esse nome.Deseja substituí-lo ?</value>
+  </data>
+  <data name="Audio_EnableFileDataProviderPreservation" xml:space="preserve">
+    <value>Ativar depuração rápida (para distribuição baseada em rede)</value>
+  </data>
+  <data name="Project_DisableTOCViewCollapse" xml:space="preserve">
+    <value>Desativar fecho da secção selecionada na vista TOC</value>
+  </data>
+  <data name="Preferences_DefaultProfileExists" xml:space="preserve">
+    <value>Existe um perfil padrão com esse nome.Por favor renomeie o seu perfil.</value>
+  </data>
+  <data name="Project_MaximizeObi" xml:space="preserve">
+    <value>Abrir o Obi em estado maximizado</value>
+  </data>
+  <data name="Audio_EnsureCursorVisibilityInUndoOfSplitRecording" xml:space="preserve">
+    <value>Assegurar visibilidade do cursor ao simular antes de a gravação ser desfeita</value>
+  </data>
+  <data name="Audio_DisableCreationOfNewHeadingsAndPagesWhileRecording" xml:space="preserve">
+    <value>Desativar criação de cabeçalhos e páginas durante a gravação</value>
+  </data>
+  <data name="Project_VAXhtmlExport" xml:space="preserve">
+    <value>Usar regras Vision Australia para exportação em XHTML</value>
+  </data>
+  <data name="PreviewBeforeRecording_SelectionChanged" xml:space="preserve">
+    <value>Seleção alterada. Impossível iniciar a gravação.</value>
+  </data>
+  <data name="Audio_PreventSplittingPages" xml:space="preserve">
+    <value>Prevenir deteção de frases em tempo real nas páginas</value>
+  </data>
+  <data name="Audio_SaveAudioZoom" xml:space="preserve">
+    <value>Guardar zoom do áudio</value>
+  </data>
+  <data name="Preferences_RestartForFontChange" xml:space="preserve">
+    <value>O Obi tem de ser reiniciado para alterar os tipos de letra. Por favor guarde o seu trabalho e reinicie o Obi.</value>
+  </data>
+  <data name="CleanUp_Rollback_Progress" xml:space="preserve">
+    <value>Descartagem da depuração em andamento</value>
+  </data>
+  <data name="Rollback_DataDirectory_Missing" xml:space="preserve">
+    <value>Impossível continuar com a descartagem. Não foi localizado o diretório de dados do projeto</value>
+  </data>
+  <data name="Rollback_No_DataFound" xml:space="preserve">
+    <value>Impossível continuar com a descartagem. Nenhuns dados localizados para a operação</value>
+  </data>
+  <data name="Rollback_MappingFile_Missing" xml:space="preserve">
+    <value>Impossível continuar com a descartagem. Não foi encontrado o ficheiro de mapeamento</value>
+  </data>
+  <data name="Rollback_ProjectFile_Missing" xml:space="preserve">
+    <value>Impossível continuar com a descartagem. Não foi encontrado o ficheiro do projeto</value>
+  </data>
+  <data name="Rollback_Complete" xml:space="preserve">
+    <value>Sucesso! A descartagem da depuração está concluída</value>
+  </data>
+  <data name="Rollback_Failed" xml:space="preserve">
+    <value>Falha na descartagem.</value>
+  </data>
+  <data name="Caption_Rollback_Failed" xml:space="preserve">
+    <value>A operação de descartagem falhou</value>
+  </data>
+  <data name="CleanUp_AreYouSure" xml:space="preserve">
+    <value>Por favor confirme. Se estes ficheiros forem removidos, a descartagem para depuração não vai funcionar.</value>
+  </data>
+  <data name="Cleanup_Complete_ShowDeleteDirectory" xml:space="preserve">
+    <value>Sucesso! A depuração está concluída. Deseja visualizar os ficheiros removidos?</value>
+  </data>
+  <data name="CleanupRollBack_AskToProceed" xml:space="preserve">
+    <value>A operação de descartagem colocará o projeto e os ficheiros áudio no estado anterior à última depuração. Por favor note que apenas pode efetuar uma descartagem para a última depuração. Deseja continuar?</value>
+  </data>
+  <data name="Preferences_ConfirmDeleteLoadedProfile" xml:space="preserve">
+    <value>Está a tentar apagar um perfil em execução.Por favor selecione um outro perfil para apagar.</value>
+  </data>
+  <data name="Preferences_ConfirmDeleteLoadedKeyboardProfile" xml:space="preserve">
+    <value>Está a tentar apagar o perfil de esquema de teclado em execução no momento.Se prosseguir, dará lugar ao perfil de esquema de teclado padrão. Deseja continuar ?</value>
+  </data>
+  <data name="Project_IncreasePhraseHightForHigherResolution" xml:space="preserve">
+    <value>Alargar frases segundo aumento da resolução no ecrã</value>
+  </data>
+  <data name="EmptyProjectTitle_error_Caption" xml:space="preserve">
+    <value>Nenhum Título de Projeto</value>
+  </data>
+  <data name="no_audio_Caption" xml:space="preserve">
+    <value>Nenhum áudio na frase</value>
+  </data>
+  <data name="CheckUpdates_NewVersionNotAvailable_Caption" xml:space="preserve">
+    <value>Nova versão disponível</value>
+  </data>
+  <data name="no_primary_export_directory_Caption" xml:space="preserve">
+    <value>Nenhum diretório de exportação</value>
+  </data>
+  <data name="Project_MessageBoxToCheckMaximizeObi" xml:space="preserve">
+    <value>Para ativar esta definição é necessário desmarcar a caixa "Abrir o Obi maximizado". Deseja continuar?(Recomendado)</value>
+  </data>
+  <data name="Project_SaveTOCViewWidth" xml:space="preserve">
+    <value>Reparar largura da vista TOC</value>
+  </data>
+  <data name="RecordingToolbar_SwitchLoadedProfile" xml:space="preserve">
+    <value>Mudar para {0}</value>
+  </data>
+  <data name="SaveAsEmptyProjectFileName" xml:space="preserve">
+    <value>Project file name cannot be empty</value>
+  </data>
+  <data name="KeyS_PlayOnNavigate" xml:space="preserve">
+    <value>Play on navigate will be activated</value>
+  </data>
+  <data name="Profile_Audio" xml:space="preserve">
+    <value>Audio</value>
+  </data>
+  <data name="Profile_General" xml:space="preserve">
+    <value>General</value>
+  </data>
+</root>
