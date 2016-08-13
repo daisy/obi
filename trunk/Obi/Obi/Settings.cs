@@ -258,6 +258,8 @@ namespace Obi
         public bool Project_SaveTOCViewWidth;
         [OptionalField]
         public string SettingsNameForManipulation; // It is used only for manipulation.
+        [OptionalField]
+        public bool Audio_SelectLastPhrasePlayed;
        
 
 
@@ -391,6 +393,7 @@ namespace Obi
             settings.TOCViewWidth = 0;
             settings.Project_SaveTOCViewWidth = false;
             settings.SettingsNameForManipulation = "Basic";
+            settings.Audio_SelectLastPhrasePlayed = false;
         }
 
         /// <summary>

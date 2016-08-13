@@ -809,6 +809,10 @@ namespace Obi.ProjectView
             }
             else
             {
+                if (mView.ObiForm.Settings.Audio_SelectLastPhrasePlayed && mCurrentPlaylist != null && mCurrentPlaylist.CurrentPhraseOnReachingEndOfPlaylist != null)
+                {
+                    mView.Selection = new NodeSelection(mCurrentPlaylist.CurrentPhraseOnReachingEndOfPlaylist, mView.Selection.Control);
+                }
                 if (mCurrentPlaylist != null && mCurrentPlaylist is PreviewPlaylist)
                 {
                     mView.UpdateCursorPosition(mAfterPreviewRestoreTime);
