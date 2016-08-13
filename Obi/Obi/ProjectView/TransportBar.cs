@@ -818,13 +818,19 @@ namespace Obi.ProjectView
                 {
                     mView.SetPlaybackPhraseAndTime(null, 0.0);
                     if (CurrentState == State.Stopped)//@masternewbehaviour
+                    {
                         if (mView.ObiForm.Settings.Audio_SelectLastPhrasePlayed
                     && mCurrentPlaylist != null
-                    && mCurrentPlaylist.LastPhrase != null)
+                    && mCurrentPlaylist.LastPhrase != null
+                    && mView.Selection != null
+                            && mView.Selection.Node != mCurrentPlaylist.LastPhrase)
                         {
+                            bool isPlayOnSelectionChange = SelectionChangedPlaybackEnabled;
+                            SelectionChangedPlaybackEnabled = false;
                             mView.SelectFromTransportBar(mCurrentPlaylist.LastPhrase, null);
+                            SelectionChangedPlaybackEnabled = isPlayOnSelectionChange;
                         }
-                        {
+                        
                         mCurrentPlaylist = mMasterPlaylist;
                         Console.WriteLine("Master Plalist is assigned aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
                         PhraseNode currentPhrase = FindPlaybackStartNode(mView.Selection == null ? null : mView.Selection.Node);
