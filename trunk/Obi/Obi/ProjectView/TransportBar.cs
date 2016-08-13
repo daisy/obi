@@ -808,7 +808,8 @@ namespace Obi.ProjectView
                 this.Invoke(new Playlist_PlayerStopped_Delegate(Playlist_PlayerStopped), sender, e);
             }
             else
-            {
+            {   
+                
                 if (mCurrentPlaylist != null && mCurrentPlaylist is PreviewPlaylist)
                 {
                     mView.UpdateCursorPosition(mAfterPreviewRestoreTime);
@@ -817,6 +818,12 @@ namespace Obi.ProjectView
                 {
                     mView.SetPlaybackPhraseAndTime(null, 0.0);
                     if (CurrentState == State.Stopped)//@masternewbehaviour
+                        if (mView.ObiForm.Settings.Audio_SelectLastPhrasePlayed
+                    && mCurrentPlaylist != null
+                    && mCurrentPlaylist.LastPhrase != null)
+                        {
+                            mView.SelectFromTransportBar(mCurrentPlaylist.LastPhrase, null);
+                        }
                         {
                         mCurrentPlaylist = mMasterPlaylist;
                         Console.WriteLine("Master Plalist is assigned aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
