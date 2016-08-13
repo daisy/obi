@@ -343,6 +343,12 @@ namespace Obi
         public PhraseNode FirstPhrase { get { return mPhrases.Count > 0 ? mPhrases[0] : null; } }
 
         /// <summary>
+        /// Last phrase in the playlist, or null if empty.
+        /// </summary>
+        public PhraseNode LastPhrase { get { return mPhrases.Count > 0 ? mPhrases[mPhrases.Count-1] : null; } }
+
+
+        /// <summary>
         /// Play from the current phrase.
         /// </summary>
         public void Play()
