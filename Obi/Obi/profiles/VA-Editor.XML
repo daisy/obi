@@ -1,10 +1,10 @@
 <SOAP-ENV:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/" xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:clr="http://schemas.microsoft.com/soap/encoding/clr/1.0" SOAP-ENV:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">
 <SOAP-ENV:Body>
 <a1:Settings id="ref-1" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.8.7.22188%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
-<Audio_AllowOverwrite>false</Audio_AllowOverwrite>
+<Audio_AllowOverwrite>true</Audio_AllowOverwrite>
 <Audio_Recording_PreviewBeforeStarting>false</Audio_Recording_PreviewBeforeStarting>
 <Audio_Recording_ReplaceAfterCursor>false</Audio_Recording_ReplaceAfterCursor>
-<Audio_RecordDirectlyWithRecordButton>false</Audio_RecordDirectlyWithRecordButton>
+<Audio_RecordDirectlyWithRecordButton>true</Audio_RecordDirectlyWithRecordButton>
 <Audio_Channels>1</Audio_Channels>
 <Audio_AudioClues>false</Audio_AudioClues>
 <Audio_AudioScale>0.01</Audio_AudioScale>
@@ -25,18 +25,18 @@
 <ImportCharsToReplaceWithSpaces id="ref-11">_</ImportCharsToReplaceWithSpaces>
 <ImportPageIdentificationString id="ref-12">page</ImportPageIdentificationString>
 <MaxAllowedPhraseDurationInMinutes>50</MaxAllowedPhraseDurationInMinutes>
-<Audio_ShowLiveWaveformWhileRecording>false</Audio_ShowLiveWaveformWhileRecording>
-<Audio_EnableLivePhraseDetection>false</Audio_EnableLivePhraseDetection>
+<Audio_ShowLiveWaveformWhileRecording>true</Audio_ShowLiveWaveformWhileRecording>
+<Audio_EnableLivePhraseDetection>true</Audio_EnableLivePhraseDetection>
 <Audio_NoiseLevel>Medium</Audio_NoiseLevel>
 <Audio_NudgeTimeMs>200</Audio_NudgeTimeMs>
 <ShowGraphicalPeakMeterAtStartup>false</ShowGraphicalPeakMeterAtStartup>
-<Project_OpenLastProject>false</Project_OpenLastProject>
+<Project_OpenLastProject>true</Project_OpenLastProject>
 <Project_PipelineScriptsPath href="#ref-7"/>
 <Project_CheckForUpdates>true</Project_CheckForUpdates>
 <Project_LatestVersionCheckedByUpdate id="ref-13">3.8.7.24056</Project_LatestVersionCheckedByUpdate>
 <PlayIfNoSelection>true</PlayIfNoSelection>
 <PlayOnNavigate>false</PlayOnNavigate>
-<Audio_PreviewDuration>1500</Audio_PreviewDuration>
+<Audio_PreviewDuration>7000</Audio_PreviewDuration>
 <Audio_ElapseBackTimeInMilliseconds>1500</Audio_ElapseBackTimeInMilliseconds>
 <RecentProjects href="#ref-14"/>
 <Audio_SampleRate>44100</Audio_SampleRate>
@@ -59,35 +59,35 @@
 <Project_Export_AlwaysIgnoreIndentation>false</Project_Export_AlwaysIgnoreIndentation>
 <Export_EPUBFileNameLengthLimit>12</Export_EPUBFileNameLengthLimit>
 <Export_EPUBCreateDummyText>true</Export_EPUBCreateDummyText>
-<Project_OpenBookmarkNodeOnReopeningProject>false</Project_OpenBookmarkNodeOnReopeningProject>
+<Project_OpenBookmarkNodeOnReopeningProject>true</Project_OpenBookmarkNodeOnReopeningProject>
 <BookMarkNodeHierarchy xsi:null="1"/>
 <Audio_RetainInitialSilenceInPhraseDetection>true</Audio_RetainInitialSilenceInPhraseDetection>
-<Audio_MergeFirstTwoPhrasesAfterPhraseDetection>false</Audio_MergeFirstTwoPhrasesAfterPhraseDetection>
+<Audio_MergeFirstTwoPhrasesAfterPhraseDetection>true</Audio_MergeFirstTwoPhrasesAfterPhraseDetection>
 <Project_ImportToleranceForAudioInMs>100</Project_ImportToleranceForAudioInMs>
 <Project_LeftAlignPhrasesInContentView>true</Project_LeftAlignPhrasesInContentView>
 <Project_OptimizeMemory>true</Project_OptimizeMemory>
 <Project_ShowWaveformInContentView>true</Project_ShowWaveformInContentView>
 <Font id="ref-17">Times New Roman</Font>
-<Audio_DefaultGap>300</Audio_DefaultGap>
+<Audio_DefaultGap>600</Audio_DefaultGap>
 <Audio_DefaultLeadingSilence>50</Audio_DefaultLeadingSilence>
 <Audio_DefaultThreshold>280</Audio_DefaultThreshold>
 <RecordingToolBarIncrementVal>0</RecordingToolBarIncrementVal>
 <Project_EnableFreeDiskSpaceCheck>true</Project_EnableFreeDiskSpaceCheck>
 <Audio_EnablePostRecordingPageRenumbering>true</Audio_EnablePostRecordingPageRenumbering>
 <ImportAudioCreateSectionCheck>true</ImportAudioCreateSectionCheck>
-<Audio_UseRecordingPauseShortcutForStopping>false</Audio_UseRecordingPauseShortcutForStopping>
-<Project_BackgroundColorForEmptySection>false</Project_BackgroundColorForEmptySection>
+<Audio_UseRecordingPauseShortcutForStopping>true</Audio_UseRecordingPauseShortcutForStopping>
+<Project_BackgroundColorForEmptySection>true</Project_BackgroundColorForEmptySection>
 <Audio_LevelComboBoxIndex>0</Audio_LevelComboBoxIndex>
 <Audio_UseRecordBtnToRecordOverSubsequentAudio>false</Audio_UseRecordBtnToRecordOverSubsequentAudio>
 <Audio_PreservePagesWhileRecordOverSubsequentAudio>false</Audio_PreservePagesWhileRecordOverSubsequentAudio>
-<Audio_EnforceSingleCursor>false</Audio_EnforceSingleCursor>
+<Audio_EnforceSingleCursor>true</Audio_EnforceSingleCursor>
 <Audio_DeleteFollowingPhrasesOfSectionAfterRecording>false</Audio_DeleteFollowingPhrasesOfSectionAfterRecording>
 <Audio_DisableDeselectionOnStop>false</Audio_DisableDeselectionOnStop>
-<Project_SaveObiLocationAndSize>false</Project_SaveObiLocationAndSize>
+<Project_SaveObiLocationAndSize>true</Project_SaveObiLocationAndSize>
 <Project_EPUBCheckTimeOutEnabled>true</Project_EPUBCheckTimeOutEnabled>
 <Project_ObiConfigFileName id="ref-18">obiconfig.xml</Project_ObiConfigFileName>
-<Project_PeakMeterChangeLocation>false</Project_PeakMeterChangeLocation>
-<Project_MinimizeObi>false</Project_MinimizeObi>
+<Project_PeakMeterChangeLocation>true</Project_PeakMeterChangeLocation>
+<Project_MinimizeObi>true</Project_MinimizeObi>
 <Audio_CleanupMaxFileSizeInMB>100</Audio_CleanupMaxFileSizeInMB>
 <EncodingFileFormat id="ref-19">MP3</EncodingFileFormat>
 <Project_AutomaticallyDeleteUnusedFilesAfterCleanup>true</Project_AutomaticallyDeleteUnusedFilesAfterCleanup>
@@ -102,26 +102,26 @@
 <Audio_RecordingToolbarProfile1 id="ref-26">Basic</Audio_RecordingToolbarProfile1>
 <Audio_RecordingToolbarProfile2 id="ref-27">Advance</Audio_RecordingToolbarProfile2>
 <Audio_ColorFlickerPreviewBeforeRecording>false</Audio_ColorFlickerPreviewBeforeRecording>
-<Audio_PlaySectionUsingPlayBtn>false</Audio_PlaySectionUsingPlayBtn>
+<Audio_PlaySectionUsingPlayBtn>true</Audio_PlaySectionUsingPlayBtn>
 <Audio_LocalRecordingDirectory href="#ref-7"/>
-<Project_EnableMouseScrolling>true</Project_EnableMouseScrolling>
+<Project_EnableMouseScrolling>false</Project_EnableMouseScrolling>
 <Audio_EnableFileDataProviderPreservation>false</Audio_EnableFileDataProviderPreservation>
-<Project_DisableTOCViewCollapse>false</Project_DisableTOCViewCollapse>
-<Project_MaximizeObi>false</Project_MaximizeObi>
-<Audio_DisableCreationOfNewHeadingsAndPagesWhileRecording>false</Audio_DisableCreationOfNewHeadingsAndPagesWhileRecording>
+<Project_DisableTOCViewCollapse>true</Project_DisableTOCViewCollapse>
+<Project_MaximizeObi>true</Project_MaximizeObi>
+<Audio_DisableCreationOfNewHeadingsAndPagesWhileRecording>true</Audio_DisableCreationOfNewHeadingsAndPagesWhileRecording>
 <Audio_EnsureCursorVisibilityInUndoOfSplitRecording>false</Audio_EnsureCursorVisibilityInUndoOfSplitRecording>
-<Project_VAXhtmlExport>false</Project_VAXhtmlExport>
+<Project_VAXhtmlExport>true</Project_VAXhtmlExport>
 <Project_DisableRollBackForCleanUp>true</Project_DisableRollBackForCleanUp>
 <SettingsName id="ref-28">Basic profile for audio, colors preferences</SettingsName>
-<Audio_PreventSplittingPages>true</Audio_PreventSplittingPages>
+<Audio_PreventSplittingPages>false</Audio_PreventSplittingPages>
 <Audio_SaveAudioZoom>false</Audio_SaveAudioZoom>
 <ObiFont id="ref-29">Microsoft Sans Serif</ObiFont>
 <ObiFontIndex>-1</ObiFontIndex>
-<Project_IncreasePhraseHightForHigherResolution>false</Project_IncreasePhraseHightForHigherResolution>
+<Project_IncreasePhraseHightForHigherResolution>true</Project_IncreasePhraseHightForHigherResolution>
 <TOCViewWidth>0</TOCViewWidth>
 <Project_SaveTOCViewWidth>false</Project_SaveTOCViewWidth>
 <SettingsNameForManipulation id="ref-30">Basic   Audio</SettingsNameForManipulation>
-<Audio_SelectLastPhrasePlayed>false</Audio_SelectLastPhrasePlayed>
+<Audio_SelectLastPhrasePlayed>true</Audio_SelectLastPhrasePlayed>
 </a1:Settings>
 <a1:ColorSettings id="ref-5" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.8.7.22188%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
 <BlockBackColor_Custom>
@@ -807,7 +807,7 @@
 </a6:CompareInfo>
 </SOAP-ENV:Body>
 </SOAP-ENV:Envelope>
-mas.microsoft.com/clr/ns/System.Globalization">
+emas.microsoft.com/clr/ns/System.Globalization">
 <cultureID>1033</cultureID>
 <m_isReadOnly>false</m_isReadOnly>
 <compareInfo href="#ref-40"/>

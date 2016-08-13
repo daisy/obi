@@ -38,6 +38,7 @@ namespace Obi
         private PhraseNode m_LastPage;
         private PhraseNode m_FirstSectionPhrase;
         private PhraseNode m_LastSectionPhrase;
+        private PhraseNode m_CurrentPhraseOnReachingEndOfPlaylist; 
 
         private enum PlayBackState { Normal, Forward, Rewind };
         private static readonly int[] PlaybackRates = { 1, 2, 4, 8 };
@@ -894,10 +895,18 @@ namespace Obi
             }
         }
 
+        public PhraseNode CurrentPhraseOnReachingEndOfPlaylist
+        {            
+            get
+            {
+                return m_CurrentPhraseOnReachingEndOfPlaylist;
+            }
+        }
         // What to do when the end of the playlist has been reached?
         // In the normal case we just stop.
         protected virtual void ReachedEndOfPlaylist()
-        {
+        {            
+            m_CurrentPhraseOnReachingEndOfPlaylist = this.CurrentPhrase;
             //Audioplayer.AudioPlaybackFinished -= new AudioPlayer.AudioPlaybackFinishHandler(Playlist_MoveToNextPhrase);
             Stop();
             if (EndOfPlaylist != null) EndOfPlaylist(this, new EventArgs());

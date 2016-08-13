@@ -430,6 +430,15 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Select the last phrase played.
+        /// </summary>
+        internal static string Audio_SelectLastPhrasePlayed {
+            get {
+                return ResourceManager.GetString("Audio_SelectLastPhrasePlayed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Show live waveform while recording .
         /// </summary>
         internal static string Audio_ShowLiveWaveformWhileRecording {
@@ -2053,7 +2062,7 @@ namespace Obi {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Audio files corresponding to following ids are missing. This may be due to corruption of audio  or restoration of project from backup after cleanup..
+        ///   Looks up a localized string similar to Audio files corresponding to following ids are missing:.
         /// </summary>
         internal static string Error_Message {
             get {
