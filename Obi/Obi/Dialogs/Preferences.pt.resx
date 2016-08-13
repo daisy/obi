@@ -400,7 +400,7 @@
     <value>27</value>
   </data>
   <data name="m_lblProfile2.Text" xml:space="preserve">
-    <value>Perfil 2</value>
+    <value>Perfil 2:</value>
   </data>
   <data name="&gt;&gt;m_lblProfile2.Name" xml:space="preserve">
     <value>m_lblProfile2</value>
@@ -490,7 +490,7 @@
     <value>25</value>
   </data>
   <data name="m_lblProfile1.Text" xml:space="preserve">
-    <value>Perfil 1</value>
+    <value>Perfil 1:</value>
   </data>
   <data name="&gt;&gt;m_lblProfile1.Name" xml:space="preserve">
     <value>m_lblProfile1</value>
@@ -1357,7 +1357,7 @@
     <value>1</value>
   </data>
   <data name="m_lbl_AssignColor.Text" xml:space="preserve">
-    <value>Atribuir &amp;cor</value>
+    <value>Atribuir &amp;cor:</value>
   </data>
   <data name="&gt;&gt;m_lbl_AssignColor.Name" xml:space="preserve">
     <value>m_lbl_AssignColor</value>
@@ -1417,7 +1417,7 @@
     <value>3</value>
   </data>
   <data name="m_lbl_AssignHighContrastColor.Text" xml:space="preserve">
-    <value>Atribuir cor de &amp;alto contraste</value>
+    <value>Atribuir cor de &amp;alto contraste:</value>
   </data>
   <data name="&gt;&gt;m_lbl_AssignHighContrastColor.Name" xml:space="preserve">
     <value>m_lbl_AssignHighContrastColor</value>
@@ -1558,7 +1558,7 @@
     <value>NoControl</value>
   </data>
   <data name="label12.Location" type="System.Drawing.Point, System.Drawing">
-    <value>48, 21</value>
+    <value>38, 21</value>
   </data>
   <data name="label12.ShowHelp" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -1570,7 +1570,7 @@
     <value>34</value>
   </data>
   <data name="label12.Text" xml:space="preserve">
-    <value>Selecione lista de teclas</value>
+    <value>Selecione lista de teclas:</value>
   </data>
   <data name="&gt;&gt;label12.Name" xml:space="preserve">
     <value>label12</value>
@@ -2466,7 +2466,7 @@
     <value>23</value>
   </data>
   <data name="label8.Text" xml:space="preserve">
-    <value>Nível de &amp;ruído</value>
+    <value>Nível de &amp;ruído:</value>
   </data>
   <data name="&gt;&gt;label8.Name" xml:space="preserve">
     <value>label8</value>
@@ -3303,7 +3303,7 @@
     <value>1</value>
   </data>
   <data name="label2.Text" xml:space="preserve">
-    <value>&amp;Diretório padrão do projeto</value>
+    <value>&amp;Diretório padrão do projeto:</value>
   </data>
   <data name="&gt;&gt;label2.Name" xml:space="preserve">
     <value>label2</value>
