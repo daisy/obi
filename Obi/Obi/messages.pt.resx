@@ -708,7 +708,7 @@ Error text: {1}</value>
     <value>Cabeçalho</value>
   </data>
   <data name="phrase_short_page" xml:space="preserve">
-    <value>Página</value>
+    <value>Página {0}</value>
   </data>
   <data name="phrase_short_Plain" xml:space="preserve">
     <value>Frase</value>
