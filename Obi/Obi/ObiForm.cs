@@ -6160,6 +6160,18 @@ ref string exportDirectoryEPUB3)
                 mProjectView.DetectSilenceErrors();
             }
 
+            private void navigationToolStripMenuItem_DropDownOpened(object sender, EventArgs e)
+            {
+                if (mSettings.PlayOnNavigate)
+                {
+                    mPlayOnNavigateToolStripMenuItem.Checked = true;
+                }
+                else
+                {
+                    mPlayOnNavigateToolStripMenuItem.Checked = false;
+                }
+            }
+
  
         }
     }

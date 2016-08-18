@@ -1408,6 +1408,7 @@ namespace Obi
             this.mFineNavigationToolStripMenuItem});
             this.navigationToolStripMenuItem.Name = "navigationToolStripMenuItem";
             resources.ApplyResources(this.navigationToolStripMenuItem, "navigationToolStripMenuItem");
+            this.navigationToolStripMenuItem.DropDownOpened += new System.EventHandler(this.navigationToolStripMenuItem_DropDownOpened);
             // 
             // mPreviousSectionToolStripMenuItem
             // 
