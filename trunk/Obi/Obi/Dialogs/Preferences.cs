@@ -2002,6 +2002,7 @@ m_cb_ChooseFont.Visible = false;
 
                     mSettings.Audio_DefaultGap = 300;
                     mSettings.Audio_PreviewDuration = 1500;
+                    mSettings.PlayOnNavigate = false;
 
                     UpdateBoolSettings();
                     mTab.SelectedTab = mProjectTab;
@@ -2061,6 +2062,7 @@ m_cb_ChooseFont.Visible = false;
 
                     mSettings.Audio_DefaultGap = 300;
                     mSettings.Audio_PreviewDuration = 1500;
+                    mSettings.PlayOnNavigate = false;
 
                     UpdateBoolSettings();
                     mTab.SelectedTab = mProjectTab;
@@ -2119,6 +2121,7 @@ m_cb_ChooseFont.Visible = false;
 
                     mSettings.Audio_DefaultGap = 300;
                     mSettings.Audio_PreviewDuration = 1500;
+                    mSettings.PlayOnNavigate = false;
 
                     UpdateBoolSettings();
                     mTab.SelectedTab = mProjectTab;
@@ -2177,6 +2180,7 @@ m_cb_ChooseFont.Visible = false;
 
                     mSettings.Audio_DefaultGap = 300;
                     mSettings.Audio_PreviewDuration = 1500;
+                    mSettings.PlayOnNavigate = false;
 
                     UpdateBoolSettings();
                     mTab.SelectedTab = mProjectTab;
@@ -2238,6 +2242,7 @@ m_cb_ChooseFont.Visible = false;
 
                     mSettings.Audio_DefaultGap = 600;
                     mSettings.Audio_PreviewDuration = 7000;
+                    mSettings.PlayOnNavigate = false;
 
 
                     UpdateBoolSettings();
@@ -2298,6 +2303,7 @@ m_cb_ChooseFont.Visible = false;
 
                     mSettings.Audio_DefaultGap = 600;
                     mSettings.Audio_PreviewDuration = 7000;
+                    mSettings.PlayOnNavigate = false;
 
 
                     UpdateBoolSettings();
@@ -2358,6 +2364,7 @@ m_cb_ChooseFont.Visible = false;
 
                     mSettings.Audio_DefaultGap = 600;
                     mSettings.Audio_PreviewDuration = 7000;
+                    mSettings.PlayOnNavigate = false;
 
                     UpdateBoolSettings();
                     mTab.SelectedTab = mProjectTab;

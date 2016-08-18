@@ -81,6 +81,7 @@ namespace Obi
                newSettings.Audio_PreventSplittingPages = this.Audio_PreventSplittingPages;
                newSettings.Audio_SaveAudioZoom = this.Audio_SaveAudioZoom;
                newSettings.Audio_SelectLastPhrasePlayed = this.Audio_SelectLastPhrasePlayed;
+               newSettings.PlayOnNavigate = this.PlayOnNavigate;
                if (!string.IsNullOrEmpty(this.Audio_LocalRecordingDirectory) && System.IO.Directory.Exists(this.Audio_LocalRecordingDirectory))
                {
                    newSettings.Audio_LocalRecordingDirectory = this.Audio_LocalRecordingDirectory;
@@ -261,7 +262,7 @@ namespace Obi
                //newSettings.ObiLastLocation = this.ObiLastLocation;
                newSettings.PeakmeterSize = this.PeakmeterSize;
                newSettings.PlayIfNoSelection = this.PlayIfNoSelection;
-               newSettings.PlayOnNavigate = this.PlayOnNavigate;
+               //newSettings.PlayOnNavigate = this.PlayOnNavigate;
                newSettings.RecordingToolBarIncrementVal = this.RecordingToolBarIncrementVal;
                //newSettings.ShowGraphicalPeakMeterAtStartup = this.ShowGraphicalPeakMeterAtStartup;
                newSettings.SplitPhrasesOnImport = this.SplitPhrasesOnImport;
@@ -448,7 +449,8 @@ namespace Obi
                && this.Audio_DisableCreationOfNewHeadingsAndPagesWhileRecording == settings.Audio_DisableCreationOfNewHeadingsAndPagesWhileRecording
                && this.Audio_PreventSplittingPages == settings.Audio_PreventSplittingPages
                && this.Audio_SaveAudioZoom == settings.Audio_SaveAudioZoom
-               && this.Audio_SelectLastPhrasePlayed == settings.Audio_SelectLastPhrasePlayed)
+               && this.Audio_SelectLastPhrasePlayed == settings.Audio_SelectLastPhrasePlayed
+               && this.PlayOnNavigate == settings.PlayOnNavigate)
            {
                audioPreferencesMatch = true ;
            }
