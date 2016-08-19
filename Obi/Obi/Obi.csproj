@@ -2988,6 +2988,9 @@
     <Content Include="profiles\Profile-SBS.XML">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="profiles\VA-Editing.XML">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="profiles\VA-Insert.XML">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
