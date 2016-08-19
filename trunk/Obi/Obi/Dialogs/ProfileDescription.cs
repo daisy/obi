@@ -57,9 +57,13 @@ namespace Obi.Dialogs
             }
             else if (m_ProfileSelectedIndex == 4)
             {
-                m_ProfileDescription_WebBrowser.DocumentText = m_ProfileDescription_WebBrowser.Document.GetElementById("VA-Insert").InnerHtml;
+                m_ProfileDescription_WebBrowser.DocumentText = m_ProfileDescription_WebBrowser.Document.GetElementById("VA-Editing").InnerHtml;
             }
             else if (m_ProfileSelectedIndex == 5)
+            {
+                m_ProfileDescription_WebBrowser.DocumentText = m_ProfileDescription_WebBrowser.Document.GetElementById("VA-Insert").InnerHtml;
+            }
+            else if (m_ProfileSelectedIndex == 6)
             {
                 m_ProfileDescription_WebBrowser.DocumentText = m_ProfileDescription_WebBrowser.Document.GetElementById("VA-Overwrite").InnerHtml;
             }
