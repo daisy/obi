@@ -88,6 +88,15 @@ namespace Obi.ProjectView
                     {
                         mWaveform.Block = this;
                         Size = new Size(WaveformFullWidth, Height);
+                        // @miminumblock size. Block's width should not go below 10 pixels to maintain visibility.
+                        if (WaveformFullWidth >= 10)
+                        {
+                            Size = new Size(WaveformFullWidth, Height);
+                        }
+                        else
+                        {
+                            Size = new Size(10, Height);
+                        }
                     }
                 }
                 else
