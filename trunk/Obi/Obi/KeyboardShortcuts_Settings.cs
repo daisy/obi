@@ -120,6 +120,7 @@ namespace Obi
         public KeyboardShortcut ProjectView_ShowPropertiesOfSelectedNode = new KeyboardShortcut(Keys.Alt | Keys.Enter, "KeyS_ShowPropertiesOfSelectedNode");
         public KeyboardShortcut ProjectView_FocusOnTransportBarTimeDisplay = new KeyboardShortcut(Keys.F8, "KeyS_FocusOnTransportBarTimeDisplay");
         public KeyboardShortcut ProjectView_HardResetAllSettings = new KeyboardShortcut(Keys.Alt | Keys.Control | Keys.F10, "KeyS_HardResetAllSettings");
+        [OptionalField]
         public KeyboardShortcut ProjectView_PlayOnNavigate = new KeyboardShortcut(Keys.Control | Keys.U, "KeyS_PlayOnNavigate");
 
         public KeyboardShortcut[] MenuKeyboardShortCutsList;
