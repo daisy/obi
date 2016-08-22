@@ -944,13 +944,13 @@ namespace Obi.ProjectView
                     }
 
                 // Horizontal scrolling is the same
-                if (l < 0 || (r > vw && w > vw))
+                    if ((l < 0 || (r > vw && w > vw)) && left >= 0 && h_max >= 0)
                     {
-                    mHScrollBar.Value = Math.Min ( left, h_max );
+                        mHScrollBar.Value = Math.Min(left, h_max);
                     }
-                else if (r > vw)
+                    else if (r > vw && (right - vw) >= 0 && h_max >= 0)
                     {
-                    mHScrollBar.Value = Math.Min ( right - vw, h_max );
+                        mHScrollBar.Value = Math.Min(right - vw, h_max);
                     }
                 }
             else
