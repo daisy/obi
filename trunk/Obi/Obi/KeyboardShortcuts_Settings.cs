@@ -413,6 +413,7 @@ namespace Obi
             KeyboardShortcutsDescription.Add(Localizer.Message(ProjectView_ShowPropertiesOfSelectedNode.Description), ProjectView_ShowPropertiesOfSelectedNode);
             KeyboardShortcutsDescription.Add(Localizer.Message(ProjectView_FocusOnTransportBarTimeDisplay.Description), ProjectView_FocusOnTransportBarTimeDisplay);
             KeyboardShortcutsDescription.Add(Localizer.Message(ProjectView_HardResetAllSettings.Description), ProjectView_HardResetAllSettings);
+            if (ProjectView_PlayOnNavigate == null) ProjectView_PlayOnNavigate = new KeyboardShortcut(Keys.Control | Keys.U, "KeyS_PlayOnNavigate");
             KeyboardShortcutsDescription.Add(Localizer.Message(ProjectView_PlayOnNavigate.Description), ProjectView_PlayOnNavigate);
             KeyboardShortcutsDescription.Add(Localizer.Message(ZoomPanel_Close.Description), ZoomPanel_Close);
             KeyboardShortcutsDescription.Add(Localizer.Message(ZoomPanel_NextPhrase.Description), ZoomPanel_NextPhrase);
