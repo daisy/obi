@@ -45,6 +45,7 @@ namespace Obi.ProjectView
         private ToolStripMenuItem m_CurrentCheckedProfile;
         private Dictionary<string, ToolStripMenuItem> m_ListOfSwitchProfiles = new Dictionary<string, ToolStripMenuItem>();
         private bool m_PreviewBeforeRecordingActive = false;
+        private bool m_IsElapsedInProjectSelectedBeforeStop = false; 
         //public variables
         //private bool IsPreviewBeforeRec = false;
 
@@ -63,6 +64,7 @@ namespace Obi.ProjectView
         private KeyboardShortcuts_Settings keyboardShortcuts=null;
         private double m_ElapseBackInterval;
         private double m_CursorTime=0.0;
+        private double m_TotalCursorTime; // used for Total Cursor time to Update Time desplay during stop stage
 
         //private ContextMenuStrip m_RecordingOptionsContextMenuStrip;
         //private ToolStripMenuItem m_MoniteringtoolStripMenuItem;
@@ -689,6 +691,7 @@ namespace Obi.ProjectView
             mTransportBarTooltip.SetToolTip(mDisplayBox, mDisplayBox.SelectedItem.ToString());
             // selected index should go in settings only when presentation is not null because it is assigned only when new presentation is set
             if (mView != null && mView.ObiForm.Settings != null && mView.Presentation != null) mView.ObiForm.Settings.TransportBarCounterIndex = mDisplayBox.SelectedIndex;
+            m_IsElapsedInProjectSelectedBeforeStop = false;
         }
 
         // Update the time display immediatly when the display mode changes.
@@ -1108,6 +1111,10 @@ namespace Obi.ProjectView
                      }
                      else if (mState == State.Recording && mRecordingSession.AudioRecorder.RecordingPCMFormat != null)
                      {
+                         if (mView.ObiForm.Settings.Project_ShowSelectionTimeInTransportBar && m_IsElapsedInProjectSelectedBeforeStop)
+                         {
+                             mDisplayBox.SelectedIndex = selectedIndex = ELAPSED_TOTAL_INDEX;
+                         }
                          if(mRecordingSession == null ) return;
                          //mRecordingSession.AudioRecorder.TimeOfAsset
                          double timeOfAssetMilliseconds =
@@ -1127,10 +1134,48 @@ namespace Obi.ProjectView
                      }
                      else if (mState == State.Stopped)
                      {
-                         mTimeDisplayBox.Text = FormatDuration_hh_mm_ss(0.0);
+                         if (mView.ObiForm.Settings.Project_ShowSelectionTimeInTransportBar && mView.Selection is AudioSelection)
+                         {
+                             PhraseNode phraseNode = (PhraseNode)mView.Selection.Node;
+                             m_TotalCursorTime = 0.0;
+                             if (((AudioSelection)mView.Selection).AudioRange != null && ((AudioSelection)mView.Selection).AudioRange.HasCursor)
+                             {
+                                 if (selectedIndex == ELAPSED_INDEX || selectedIndex == ELAPSED_SECTION || selectedIndex == ELAPSED_TOTAL_INDEX)
+                                 {
+                                     m_TotalCursorTime += ((AudioSelection)mView.Selection).AudioRange.CursorTime;
+                                     if (selectedIndex == ELAPSED_SECTION || selectedIndex == ELAPSED_TOTAL_INDEX)
+                                     {
+                                         if (phraseNode.PrecedingNode != null && phraseNode.PrecedingNode is PhraseNode && phraseNode.Parent == phraseNode.PrecedingNode.Parent)
+                                         {
+                                             CalculateCursorTime((PhraseNode)phraseNode.PrecedingNode);
+                                         }
+                                     }
+                                     if (selectedIndex == ELAPSED_TOTAL_INDEX)
+                                     {
+                                         mDisplayBox.SelectedIndex = ELAPSED_SECTION;
+                                         m_IsElapsedInProjectSelectedBeforeStop = true;                                        
+                                     }
+                                 }
+
+                                 else if (selectedIndex == REMAIN_INDEX || selectedIndex == REMAIN_INDEX + 1)
+                                 {
+                                     m_TotalCursorTime = ((AudioSelection)mView.Selection).AudioRange.CursorTime;
+                                     m_TotalCursorTime = mView.Selection.Node.Duration - m_TotalCursorTime;
+                                 }
+                             }
+                             mTimeDisplayBox.Text = FormatDuration_hh_mm_ss(m_TotalCursorTime);
+                         }
+                         else
+                         {
+                             mTimeDisplayBox.Text = FormatDuration_hh_mm_ss(0.0);
+                         }
                      }
                      else
                      {
+                         if (mView.ObiForm.Settings.Project_ShowSelectionTimeInTransportBar && m_IsElapsedInProjectSelectedBeforeStop)
+                         {
+                             mDisplayBox.SelectedIndex = selectedIndex = ELAPSED_TOTAL_INDEX;
+                         }
                          mTimeDisplayBox.Text = FormatDuration_hh_mm_ss(
                              selectedIndex == ELAPSED_INDEX ?
                                  mCurrentPlaylist.CurrentTimeInAsset :
@@ -1150,6 +1195,26 @@ namespace Obi.ProjectView
              }
          }
 
+        private void CalculateCursorTime(PhraseNode phraseNode)
+        {
+
+            m_TotalCursorTime += phraseNode.Duration;
+
+            if (phraseNode.PrecedingNode != null && phraseNode.PrecedingNode is PhraseNode && (phraseNode.PrecedingNode.Parent == phraseNode.Parent))
+            {
+                CalculateCursorTime((PhraseNode)phraseNode.PrecedingNode);
+            }
+
+        }
+         private void CalculateSectionTime(SectionNode secNode)
+         {
+
+             m_TotalCursorTime += secNode.Duration;
+             if (secNode.PrecedingSection != null && secNode.PrecedingSection is SectionNode)
+             {
+                 CalculateSectionTime((SectionNode)secNode.PrecedingSection);
+             }
+         }
          private double m_ElapsedTime_Book = -1;
          public double RecordingTimeElapsedTotal
          {
@@ -3973,6 +4038,7 @@ SelectionChangedPlaybackEnabled = false;
                     else if (mView.Selection.Node is PhraseNode)
                         PlayOrResume();
                 }
+                UpdateTimeDisplay();
                                         }// end of selection null check
 
         }

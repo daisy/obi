@@ -2917,4 +2917,7 @@ Error text: {1}</value>
   <data name="Audio_SelectLastPhrasePlayed" xml:space="preserve">
     <value>Select the last phrase played</value>
   </data>
+  <data name="Project_ShowSelectionTimeInTransportBar" xml:space="preserve">
+    <value>Show selection time in Transport Bar in stop state</value>
+  </data>
 </root>
