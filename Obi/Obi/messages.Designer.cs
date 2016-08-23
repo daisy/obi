@@ -5614,6 +5614,15 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Show selection time in Transport Bar in stop state.
+        /// </summary>
+        internal static string Project_ShowSelectionTimeInTransportBar {
+            get {
+                return ResourceManager.GetString("Project_ShowSelectionTimeInTransportBar", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Show waveforms in content view.
         /// </summary>
         internal static string Project_ShowWaveformsInContentView {
