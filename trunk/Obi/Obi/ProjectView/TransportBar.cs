@@ -1134,11 +1134,11 @@ namespace Obi.ProjectView
                      }
                      else if (mState == State.Stopped)
                      {
-                         if (mView.ObiForm.Settings.Project_ShowSelectionTimeInTransportBar && (mView.Selection is AudioSelection || mView.Selection.Node is PhraseNode))
+                         if (mView != null && mView.Selection != null && mView.ObiForm.Settings.Project_ShowSelectionTimeInTransportBar && (mView.Selection is AudioSelection || mView.Selection.Node is PhraseNode))
                          {
                              PhraseNode phraseNode = (PhraseNode)mView.Selection.Node;
                              m_TotalCursorTime = 0.0;
-                             if (mView.Selection is AudioSelection &&((AudioSelection)mView.Selection).AudioRange != null)
+                             if (mView.Selection is AudioSelection && ((AudioSelection)mView.Selection).AudioRange != null)
                              {
                                  if (selectedIndex == ELAPSED_INDEX || selectedIndex == ELAPSED_SECTION || selectedIndex == ELAPSED_TOTAL_INDEX)
                                  {
