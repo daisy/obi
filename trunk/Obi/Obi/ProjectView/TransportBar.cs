@@ -1134,37 +1134,74 @@ namespace Obi.ProjectView
                      }
                      else if (mState == State.Stopped)
                      {
-                         if (mView.ObiForm.Settings.Project_ShowSelectionTimeInTransportBar && mView.Selection is AudioSelection)
+                         if (mView.ObiForm.Settings.Project_ShowSelectionTimeInTransportBar && (mView.Selection is AudioSelection || mView.Selection.Node is PhraseNode))
                          {
                              PhraseNode phraseNode = (PhraseNode)mView.Selection.Node;
                              m_TotalCursorTime = 0.0;
-                             if (((AudioSelection)mView.Selection).AudioRange != null && ((AudioSelection)mView.Selection).AudioRange.HasCursor)
+                             if (mView.Selection is AudioSelection &&((AudioSelection)mView.Selection).AudioRange != null)
                              {
                                  if (selectedIndex == ELAPSED_INDEX || selectedIndex == ELAPSED_SECTION || selectedIndex == ELAPSED_TOTAL_INDEX)
                                  {
-                                     m_TotalCursorTime += ((AudioSelection)mView.Selection).AudioRange.CursorTime;
-                                     if (selectedIndex == ELAPSED_SECTION || selectedIndex == ELAPSED_TOTAL_INDEX)
+                                     if (((AudioSelection)mView.Selection).AudioRange.HasCursor)
                                      {
-                                         if (phraseNode.PrecedingNode != null && phraseNode.PrecedingNode is PhraseNode && phraseNode.Parent == phraseNode.PrecedingNode.Parent)
-                                         {
-                                             CalculateCursorTime((PhraseNode)phraseNode.PrecedingNode);
-                                         }
+                                         m_TotalCursorTime += ((AudioSelection)mView.Selection).AudioRange.CursorTime;
                                      }
-                                     if (selectedIndex == ELAPSED_TOTAL_INDEX)
+                                     else
                                      {
-                                         mDisplayBox.SelectedIndex = ELAPSED_SECTION;
-                                         m_IsElapsedInProjectSelectedBeforeStop = true;                                        
+                                         m_TotalCursorTime += ((AudioSelection)mView.Selection).AudioRange.SelectionBeginTime;
                                      }
+
                                  }
 
-                                 else if (selectedIndex == REMAIN_INDEX || selectedIndex == REMAIN_INDEX + 1)
+                                 else if (selectedIndex == REMAIN_INDEX)
                                  {
-                                     m_TotalCursorTime = ((AudioSelection)mView.Selection).AudioRange.CursorTime;
+                                     if (((AudioSelection)mView.Selection).AudioRange.HasCursor)
+                                     {
+                                         m_TotalCursorTime = ((AudioSelection)mView.Selection).AudioRange.CursorTime;
+                                     }
+                                     else
+                                     {
+                                         m_TotalCursorTime += ((AudioSelection)mView.Selection).AudioRange.SelectionEndTime;
+                                     }
                                      m_TotalCursorTime = mView.Selection.Node.Duration - m_TotalCursorTime;
+
                                  }
                              }
+
+                             if (selectedIndex == ELAPSED_SECTION || selectedIndex == ELAPSED_TOTAL_INDEX)
+                             {
+                                 if (phraseNode.PrecedingNode != null && phraseNode.PrecedingNode is PhraseNode && phraseNode.Parent == phraseNode.PrecedingNode.Parent)
+                                 {
+                                     CalculateCursorTime((PhraseNode)phraseNode.PrecedingNode);
+                                 }
+                             }
+                             if (selectedIndex == ELAPSED_TOTAL_INDEX)
+                             {
+                                 mDisplayBox.SelectedIndex = ELAPSED_SECTION;
+                                 m_IsElapsedInProjectSelectedBeforeStop = true;
+                             }
+
                              mTimeDisplayBox.Text = FormatDuration_hh_mm_ss(m_TotalCursorTime);
                          }
+                         //else if (mView.ObiForm.Settings.Project_ShowSelectionTimeInTransportBar && mView.Selection.Node is PhraseNode)
+                         //{
+                         //    PhraseNode phraseNode = (PhraseNode)mView.Selection.Node;
+                         //    m_TotalCursorTime = 0.0;
+                         //    if (selectedIndex == ELAPSED_SECTION || selectedIndex == ELAPSED_TOTAL_INDEX)
+                         //    {
+                         //        if (phraseNode.PrecedingNode != null && phraseNode.PrecedingNode is PhraseNode && phraseNode.Parent == phraseNode.PrecedingNode.Parent)
+                         //        {
+                         //            CalculateCursorTime((PhraseNode)phraseNode.PrecedingNode);
+                         //        }
+                         //    }
+
+                         //    if (selectedIndex == ELAPSED_TOTAL_INDEX)
+                         //    {
+                         //        mDisplayBox.SelectedIndex = ELAPSED_SECTION;
+                         //        m_IsElapsedInProjectSelectedBeforeStop = true;
+                         //    }
+                         //    mTimeDisplayBox.Text = FormatDuration_hh_mm_ss(m_TotalCursorTime);
+                         //}
                          else
                          {
                              mTimeDisplayBox.Text = FormatDuration_hh_mm_ss(0.0);
