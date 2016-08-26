@@ -1,6 +1,6 @@
 <SOAP-ENV:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/" xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:clr="http://schemas.microsoft.com/soap/encoding/clr/1.0" SOAP-ENV:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">
 <SOAP-ENV:Body>
-<a1:Settings id="ref-1" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.8.7.21352%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
+<a1:Settings id="ref-1" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.8.7.30707%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
 <Audio_AllowOverwrite>true</Audio_AllowOverwrite>
 <Audio_Recording_PreviewBeforeStarting>false</Audio_Recording_PreviewBeforeStarting>
 <Audio_Recording_ReplaceAfterCursor>false</Audio_Recording_ReplaceAfterCursor>
@@ -18,7 +18,7 @@
 <Project_DefaultPath id="ref-7"></Project_DefaultPath>
 <FontSize>10</FontSize>
 <Audio_LastInputDevice id="ref-8">Primary Sound Capture Driver</Audio_LastInputDevice>
-<LastOpenProject id="ref-9">C:\Users\Rohit\Documents\Chimpanzees\project.obi</LastOpenProject>
+<LastOpenProject id="ref-9">C:\Users\Rohit\Documents\ARE YOU READY\project.obi</LastOpenProject>
 <Audio_LastOutputDevice id="ref-10">Primary Sound Driver</Audio_LastOutputDevice>
 <MaxPhraseDurationMinutes>10</MaxPhraseDurationMinutes>
 <ImportCharCountToTruncateFromStart>4</ImportCharCountToTruncateFromStart>
@@ -29,11 +29,11 @@
 <Audio_EnableLivePhraseDetection>true</Audio_EnableLivePhraseDetection>
 <Audio_NoiseLevel>Medium</Audio_NoiseLevel>
 <Audio_NudgeTimeMs>200</Audio_NudgeTimeMs>
-<ShowGraphicalPeakMeterAtStartup>false</ShowGraphicalPeakMeterAtStartup>
+<ShowGraphicalPeakMeterAtStartup>true</ShowGraphicalPeakMeterAtStartup>
 <Project_OpenLastProject>true</Project_OpenLastProject>
 <Project_PipelineScriptsPath href="#ref-7"/>
 <Project_CheckForUpdates>true</Project_CheckForUpdates>
-<Project_LatestVersionCheckedByUpdate id="ref-13">3.8.7.24056</Project_LatestVersionCheckedByUpdate>
+<Project_LatestVersionCheckedByUpdate id="ref-13">3.8.7.30475</Project_LatestVersionCheckedByUpdate>
 <PlayIfNoSelection>true</PlayIfNoSelection>
 <PlayOnNavigate>false</PlayOnNavigate>
 <Audio_PreviewDuration>7000</Audio_PreviewDuration>
@@ -63,7 +63,7 @@
 <BookMarkNodeHierarchy xsi:null="1"/>
 <Audio_RetainInitialSilenceInPhraseDetection>true</Audio_RetainInitialSilenceInPhraseDetection>
 <Audio_MergeFirstTwoPhrasesAfterPhraseDetection>true</Audio_MergeFirstTwoPhrasesAfterPhraseDetection>
-<Project_ImportToleranceForAudioInMs>100</Project_ImportToleranceForAudioInMs>
+<Project_ImportToleranceForAudioInMs>0</Project_ImportToleranceForAudioInMs>
 <Project_LeftAlignPhrasesInContentView>true</Project_LeftAlignPhrasesInContentView>
 <Project_OptimizeMemory>true</Project_OptimizeMemory>
 <Project_ShowWaveformInContentView>true</Project_ShowWaveformInContentView>
@@ -112,18 +112,19 @@
 <Audio_EnsureCursorVisibilityInUndoOfSplitRecording>false</Audio_EnsureCursorVisibilityInUndoOfSplitRecording>
 <Project_VAXhtmlExport>true</Project_VAXhtmlExport>
 <Project_DisableRollBackForCleanUp>true</Project_DisableRollBackForCleanUp>
-<SettingsName id="ref-28">VA-Editing profile for audio, colors preferences</SettingsName>
+<SettingsName href="#ref-26"/>
 <Audio_PreventSplittingPages>false</Audio_PreventSplittingPages>
 <Audio_SaveAudioZoom>false</Audio_SaveAudioZoom>
-<ObiFont id="ref-29">Microsoft Sans Serif</ObiFont>
+<ObiFont id="ref-28">Microsoft Sans Serif</ObiFont>
 <ObiFontIndex>-1</ObiFontIndex>
 <Project_IncreasePhraseHightForHigherResolution>true</Project_IncreasePhraseHightForHigherResolution>
 <TOCViewWidth>0</TOCViewWidth>
 <Project_SaveTOCViewWidth>false</Project_SaveTOCViewWidth>
-<SettingsNameForManipulation id="ref-30">VA-Editing   Audio</SettingsNameForManipulation>
+<SettingsNameForManipulation href="#ref-26"/>
 <Audio_SelectLastPhrasePlayed>false</Audio_SelectLastPhrasePlayed>
+<Project_ShowSelectionTimeInTransportBar>true</Project_ShowSelectionTimeInTransportBar>
 </a1:Settings>
-<a1:ColorSettings id="ref-5" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.8.7.21352%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
+<a1:ColorSettings id="ref-5" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.8.7.30707%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
 <BlockBackColor_Custom>
 <name xsi:null="1"/>
 <value>0</value>
@@ -437,7 +438,7 @@
 <state>1</state>
 </HighlightedSectionNodeWithoutSelectionColor>
 </a1:ColorSettings>
-<a1:ColorSettings id="ref-6" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.8.7.21352%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
+<a1:ColorSettings id="ref-6" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.8.7.30707%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
 <BlockBackColor_Custom>
 <name xsi:null="1"/>
 <value>0</value>
@@ -752,79 +753,111 @@
 </HighlightedSectionNodeWithoutSelectionColor>
 </a1:ColorSettings>
 <a3:ArrayList id="ref-14" xmlns:a3="http://schemas.microsoft.com/clr/ns/System.Collections">
-<_items href="#ref-32"/>
+<_items href="#ref-30"/>
 <_size>1</_size>
-<_version>335</_version>
+<_version>15</_version>
 </a3:ArrayList>
-<a1:UserProfile id="ref-15" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.8.7.21352%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
+<a1:UserProfile id="ref-15" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.8.7.30707%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
 <Name href="#ref-7"/>
 <Organization href="#ref-7"/>
-<Culture href="#ref-33"/>
+<Culture href="#ref-31"/>
 </a1:UserProfile>
 <SOAP-ENC:Array id="ref-20" SOAP-ENC:arrayType="xsd:int[2]">
-<item>-8</item>
-<item>-8</item>
+<item>0</item>
+<item>0</item>
 </SOAP-ENC:Array>
 <SOAP-ENC:Array id="ref-21" SOAP-ENC:arrayType="xsd:int[2]">
-<item>805</item>
-<item>274</item>
+<item>0</item>
+<item>0</item>
 </SOAP-ENC:Array>
 <SOAP-ENC:Array id="ref-22" SOAP-ENC:arrayType="xsd:int[2]">
 <item>892</item>
 <item>581</item>
 </SOAP-ENC:Array>
 <SOAP-ENC:Array id="ref-23" SOAP-ENC:arrayType="xsd:int[2]">
-<item>170</item>
-<item>641</item>
+<item>0</item>
+<item>0</item>
 </SOAP-ENC:Array>
 <SOAP-ENC:Array id="ref-24" SOAP-ENC:arrayType="xsd:int[2]">
-<item>154</item>
-<item>580</item>
+<item>0</item>
+<item>0</item>
 </SOAP-ENC:Array>
 <SOAP-ENC:Array id="ref-25" SOAP-ENC:arrayType="xsd:int[2]">
-<item>481</item>
-<item>301</item>
+<item>0</item>
+<item>0</item>
 </SOAP-ENC:Array>
-<SOAP-ENC:Array id="ref-32" SOAP-ENC:arrayType="xsd:anyType[4]">
+<SOAP-ENC:Array id="ref-30" SOAP-ENC:arrayType="xsd:anyType[4]">
 <item href="#ref-9"/>
 </SOAP-ENC:Array>
-<a6:CultureInfo id="ref-33" xmlns:a6="http://schemas.microsoft.com/clr/ns/System.Globalization">
+<a6:CultureInfo id="ref-31" xmlns:a6="http://schemas.microsoft.com/clr/ns/System.Globalization">
 <cultureID>1033</cultureID>
 <m_isReadOnly>false</m_isReadOnly>
-<compareInfo href="#ref-34"/>
+<compareInfo href="#ref-32"/>
 <textInfo xsi:null="1"/>
-<numInfo xsi:null="1"/>
+<numInfo href="#ref-33"/>
 <dateTimeInfo xsi:null="1"/>
 <calendar xsi:null="1"/>
+<m_name id="ref-34">en-US</m_name>
+<m_dataItem>41</m_dataItem>
+<m_useUserOverride>true</m_useUserOverride>
+</a6:CultureInfo>
+<a6:CompareInfo id="ref-32" xmlns:a6="http://schemas.microsoft.com/clr/ns/System.Globalization">
+<win32LCID>1033</win32LCID>
+<culture>1033</culture>
 <m_name id="ref-35">en-US</m_name>
-<m_dataItem>41</m_dataItem>
-<m_useUserOverride>true</m_useUserOverride>
-</a6:CultureInfo>
-<a6:CompareInfo id="ref-34" xmlns:a6="http://schemas.microsoft.com/clr/ns/System.Globalization">
-<win32LCID>1033</win32LCID>
-<culture>1033</culture>
-<m_name id="ref-36">en-US</m_name>
 </a6:CompareInfo>
+<a6:NumberFormatInfo id="ref-33" xmlns:a6="http://schemas.microsoft.com/clr/ns/System.Globalization">
+<numberGroupSizes href="#ref-36"/>
+<currencyGroupSizes href="#ref-37"/>
+<percentGroupSizes href="#ref-36"/>
+<positiveSign id="ref-38">+</positiveSign>
+<negativeSign id="ref-39">-</negativeSign>
+<numberDecimalSeparator id="ref-40">.</numberDecimalSeparator>
+<numberGroupSeparator id="ref-41">,</numberGroupSeparator>
+<currencyGroupSeparator id="ref-42">,</currencyGroupSeparator>
+<currencyDecimalSeparator id="ref-43">.</currencyDecimalSeparator>
+<currencySymbol id="ref-44">$</currencySymbol>
+<ansiCurrencySymbol xsi:null="1"/>
+<nanSymbol id="ref-45">NaN</nanSymbol>
+<positiveInfinitySymbol id="ref-46">Infinity</positiveInfinitySymbol>
+<negativeInfinitySymbol id="ref-47">-Infinity</negativeInfinitySymbol>
+<percentDecimalSeparator href="#ref-40"/>
+<percentGroupSeparator href="#ref-41"/>
+<percentSymbol id="ref-48">%</percentSymbol>
+<perMilleSymbol id="ref-49">‰</perMilleSymbol>
+<nativeDigits href="#ref-50"/>
+<m_dataItem>0</m_dataItem>
+<numberDecimalDigits>2</numberDecimalDigits>
+<currencyDecimalDigits>2</currencyDecimalDigits>
+<currencyPositivePattern>0</currencyPositivePattern>
+<currencyNegativePattern>0</currencyNegativePattern>
+<numberNegativePattern>1</numberNegativePattern>
+<percentPositivePattern>0</percentPositivePattern>
+<percentNegativePattern>0</percentNegativePattern>
+<percentDecimalDigits>2</percentDecimalDigits>
+<digitSubstitution>1</digitSubstitution>
+<isReadOnly>false</isReadOnly>
+<m_useUserOverride>false</m_useUserOverride>
+<validForParseAsNumber>true</validForParseAsNumber>
+<validForParseAsCurrency>true</validForParseAsCurrency>
+</a6:NumberFormatInfo>
+<SOAP-ENC:Array id="ref-36" SOAP-ENC:arrayType="xsd:int[1]">
+<item>3</item>
+</SOAP-ENC:Array>
+<SOAP-ENC:Array id="ref-37" SOAP-ENC:arrayType="xsd:int[1]">
+<item>3</item>
+</SOAP-ENC:Array>
+<SOAP-ENC:Array id="ref-50" SOAP-ENC:arrayType="xsd:string[10]">
+<item id="ref-51">0</item>
+<item id="ref-52">1</item>
+<item id="ref-53">2</item>
+<item id="ref-54">3</item>
+<item id="ref-55">4</item>
+<item id="ref-56">5</item>
+<item id="ref-57">6</item>
+<item id="ref-58">7</item>
+<item id="ref-59">8</item>
+<item id="ref-60">9</item>
+</SOAP-ENC:Array>
 </SOAP-ENV:Body>
-</SOAP-ENV:Envelope>
-t.com/clr/ns/System.Globalization">
-<cultureID>1033</cultureID>
-<m_isReadOnly>false</m_isReadOnly>
-<compareInfo href="#ref-40"/>
-<textInfo xsi:null="1"/>
-<numInfo xsi:null="1"/>
-<dateTimeInfo xsi:null="1"/>
-<calendar xsi:null="1"/>
-<m_name id="ref-41">en-US</m_name>
-<m_dataItem>41</m_dataItem>
-<m_useUserOverride>true</m_useUserOverride>
-</a6:CultureInfo>
-<a6:CompareInfo id="ref-40" xmlns:a6="http://schemas.microsoft.com/clr/ns/System.Globalization">
-<win32LCID>1033</win32LCID>
-<culture>1033</culture>
-<m_name id="ref-42">en-US</m_name>
-</a6:CompareInfo>
-</SOAP-ENV:Body>
-</SOAP-ENV:Envelope>
-y>
 </SOAP-ENV:Envelope>

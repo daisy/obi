@@ -2033,6 +2033,7 @@ m_cb_ChooseFont.Visible = false;
                     m_CheckBoxListView.Items[18].Checked = false;
                     m_CheckBoxListView.Items[19].Checked = false;
                     m_CheckBoxListView.Items[20].Checked = false;
+                    m_CheckBoxListView.Items[21].Checked = false;
                     UpdateBoolSettings();
                 }
                 else if (Profile == "Intermediate.xml" || Profile == "Intermediate.XML")
@@ -2093,6 +2094,7 @@ m_cb_ChooseFont.Visible = false;
                     m_CheckBoxListView.Items[18].Checked = false;
                     m_CheckBoxListView.Items[19].Checked = false;
                     m_CheckBoxListView.Items[20].Checked = false;
+                    m_CheckBoxListView.Items[21].Checked = false;
                     UpdateBoolSettings();
                 }
                 else if (Profile == "Advance.xml" || Profile == "Advance.XML")
@@ -2152,6 +2154,7 @@ m_cb_ChooseFont.Visible = false;
                     m_CheckBoxListView.Items[18].Checked = false;
                     m_CheckBoxListView.Items[19].Checked = false;
                     m_CheckBoxListView.Items[20].Checked = false;
+                    m_CheckBoxListView.Items[21].Checked = false;
                     UpdateBoolSettings();
                 }
                 else if (Profile == "Profile-SBS.xml" || Profile == "Profile-SBS.XML")
@@ -2211,6 +2214,7 @@ m_cb_ChooseFont.Visible = false;
                     m_CheckBoxListView.Items[18].Checked = false;
                     m_CheckBoxListView.Items[19].Checked = false;
                     m_CheckBoxListView.Items[20].Checked = false;
+                    m_CheckBoxListView.Items[21].Checked = false;
                     UpdateBoolSettings();
 
 
@@ -2272,6 +2276,7 @@ m_cb_ChooseFont.Visible = false;
                     m_CheckBoxListView.Items[18].Checked = true;
                     m_CheckBoxListView.Items[19].Checked = true;
                     m_CheckBoxListView.Items[20].Checked = false;
+                    m_CheckBoxListView.Items[21].Checked = true;
                     UpdateBoolSettings();
 
                 }
@@ -2333,6 +2338,7 @@ m_cb_ChooseFont.Visible = false;
                     m_CheckBoxListView.Items[18].Checked = true;
                     m_CheckBoxListView.Items[19].Checked = true;
                     m_CheckBoxListView.Items[20].Checked = false;
+                    m_CheckBoxListView.Items[21].Checked = true;
                     UpdateBoolSettings();
 
                 }
@@ -2393,6 +2399,7 @@ m_cb_ChooseFont.Visible = false;
                     m_CheckBoxListView.Items[18].Checked = true;
                     m_CheckBoxListView.Items[19].Checked = true;
                     m_CheckBoxListView.Items[20].Checked = false;
+                    m_CheckBoxListView.Items[21].Checked = true;
                     UpdateBoolSettings();
 
                 }
