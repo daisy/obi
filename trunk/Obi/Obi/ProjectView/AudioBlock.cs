@@ -88,12 +88,12 @@ namespace Obi.ProjectView
                     {
                         mWaveform.Block = this;
                         Size = new Size(WaveformFullWidth, Height);
-                        // @miminumblock size. Block's width should not go below 10 pixels to maintain visibility.
+                        // @miminumblock size. Block's width should not go below 10 pixels to maintain visibility. It is applied to only pages
                         if (WaveformFullWidth >= 10)
                         {
                             Size = new Size(WaveformFullWidth, Height);
                         }
-                        else
+                        else if (node.Role_ == EmptyNode.Role.Page )
                         {
                             Size = new Size(10, Height);
                         }
