@@ -826,7 +826,8 @@ namespace Obi.ProjectView
                     && mCurrentPlaylist != null
                     && mCurrentPlaylist.LastPhrase != null
                     && mView.Selection != null
-                            && mView.Selection.Node != mCurrentPlaylist.LastPhrase)
+                            && mView.Selection.Node != mCurrentPlaylist.LastPhrase
+                            && mView.Selection.Control is ContentView)
                         {
                             bool isPlayOnSelectionChange = SelectionChangedPlaybackEnabled;
                             SelectionChangedPlaybackEnabled = false;
