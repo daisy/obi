@@ -262,6 +262,18 @@ namespace Obi
         public bool Audio_SelectLastPhrasePlayed;
         [OptionalField]
         public bool Audio_ShowSelectionTimeInTransportBar;
+        [OptionalField]
+        private int[] m_PreferencesDialogSize;        
+        public Size PreferencesDialogSize      // size of the preferences dialog
+        {
+            get { return new Size(m_PreferencesDialogSize[0], m_PreferencesDialogSize[1]); }
+            set
+            {
+                m_PreferencesDialogSize = new int[2];
+                m_PreferencesDialogSize[0] = value.Width;
+                m_PreferencesDialogSize[1] = value.Height;
+            }
+        }
        
 
 
@@ -397,6 +409,7 @@ namespace Obi
             settings.SettingsNameForManipulation = "Basic";
             settings.Audio_SelectLastPhrasePlayed = false;
             settings.Audio_ShowSelectionTimeInTransportBar = false;
+            settings.PreferencesDialogSize= new Size(0, 0);
         }
 
         /// <summary>

@@ -46,7 +46,7 @@ namespace Obi.Dialogs
         /// <summary>
         /// Initialize the preferences with the user settings.
         /// </summary>
-        public Preferences ( ObiForm form, Settings settings, ObiPresentation presentation, ProjectView.TransportBar transportbar, Settings defaultSettings)
+        public Preferences ( ObiForm form, Settings settings, ObiPresentation presentation, ProjectView.TransportBar transportbar, Settings defaultSettings,Size size)
             {
             InitializeComponent ();
             mForm = form;
@@ -95,6 +95,7 @@ namespace Obi.Dialogs
             {
                 this.Font = new Font(mSettings.ObiFont, this.Font.Size, FontStyle.Regular);//@fontconfig
             }
+            if (size.Width >= MinimumSize.Width && size.Height >= MinimumSize.Height) Size = size;
            }
 
         public bool IsColorChanged
