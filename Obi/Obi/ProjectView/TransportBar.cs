@@ -1112,7 +1112,7 @@ namespace Obi.ProjectView
                      }
                      else if (mState == State.Recording && mRecordingSession.AudioRecorder.RecordingPCMFormat != null)
                      {
-                         if (mView.ObiForm.Settings.Project_ShowSelectionTimeInTransportBar && m_IsElapsedInProjectSelectedBeforeStop)
+                         if (mView.ObiForm.Settings.Audio_ShowSelectionTimeInTransportBar && m_IsElapsedInProjectSelectedBeforeStop)
                          {
                              mDisplayBox.SelectedIndex = selectedIndex = ELAPSED_TOTAL_INDEX;
                          }
@@ -1135,7 +1135,7 @@ namespace Obi.ProjectView
                      }
                      else if (mState == State.Stopped)
                      {
-                         if (mView != null && mView.Selection != null && mView.ObiForm.Settings.Project_ShowSelectionTimeInTransportBar && (mView.Selection is AudioSelection || mView.Selection.Node is PhraseNode))
+                         if (mView != null && mView.Selection != null && mView.ObiForm.Settings.Audio_ShowSelectionTimeInTransportBar && (mView.Selection is AudioSelection || mView.Selection.Node is PhraseNode))
                          {
                              PhraseNode phraseNode = (PhraseNode)mView.Selection.Node;
                              m_TotalCursorTime = 0.0;
@@ -1210,7 +1210,7 @@ namespace Obi.ProjectView
                      }
                      else
                      {
-                         if (mView.ObiForm.Settings.Project_ShowSelectionTimeInTransportBar && m_IsElapsedInProjectSelectedBeforeStop)
+                         if (mView.ObiForm.Settings.Audio_ShowSelectionTimeInTransportBar && m_IsElapsedInProjectSelectedBeforeStop)
                          {
                              mDisplayBox.SelectedIndex = selectedIndex = ELAPSED_TOTAL_INDEX;
                          }

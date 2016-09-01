@@ -261,7 +261,7 @@ namespace Obi
         [OptionalField]
         public bool Audio_SelectLastPhrasePlayed;
         [OptionalField]
-        public bool Project_ShowSelectionTimeInTransportBar;
+        public bool Audio_ShowSelectionTimeInTransportBar;
        
 
 
@@ -396,7 +396,7 @@ namespace Obi
             settings.Project_SaveTOCViewWidth = false;
             settings.SettingsNameForManipulation = "Basic";
             settings.Audio_SelectLastPhrasePlayed = false;
-            settings.Project_ShowSelectionTimeInTransportBar = false;
+            settings.Audio_ShowSelectionTimeInTransportBar = false;
         }
 
         /// <summary>

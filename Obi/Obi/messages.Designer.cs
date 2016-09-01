@@ -448,6 +448,15 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Show selection time in Transport Bar in stop state.
+        /// </summary>
+        internal static string Audio_ShowSelectionTimeInTransportBar {
+            get {
+                return ResourceManager.GetString("Audio_ShowSelectionTimeInTransportBar", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Use Space key to stop recording.
         /// </summary>
         internal static string Audio_UseRecordingPauseShortcutForStopping {
@@ -5610,15 +5619,6 @@ namespace Obi {
         internal static string Project_SaveTOCViewWidth {
             get {
                 return ResourceManager.GetString("Project_SaveTOCViewWidth", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Show selection time in Transport Bar in stop state.
-        /// </summary>
-        internal static string Project_ShowSelectionTimeInTransportBar {
-            get {
-                return ResourceManager.GetString("Project_ShowSelectionTimeInTransportBar", resourceCulture);
             }
         }
         

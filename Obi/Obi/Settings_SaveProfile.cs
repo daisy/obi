@@ -81,6 +81,7 @@ namespace Obi
                newSettings.Audio_PreventSplittingPages = this.Audio_PreventSplittingPages;
                newSettings.Audio_SaveAudioZoom = this.Audio_SaveAudioZoom;
                newSettings.Audio_SelectLastPhrasePlayed = this.Audio_SelectLastPhrasePlayed;
+               newSettings.Audio_ShowSelectionTimeInTransportBar = this.Audio_ShowSelectionTimeInTransportBar;
                newSettings.PlayOnNavigate = this.PlayOnNavigate;
                if (!string.IsNullOrEmpty(this.Audio_LocalRecordingDirectory) && System.IO.Directory.Exists(this.Audio_LocalRecordingDirectory))
                {
@@ -119,7 +120,6 @@ namespace Obi
                    this.Project_AutomaticallyDeleteUnusedFilesAfterCleanup;
                newSettings.Project_IncreasePhraseHightForHigherResolution = this.Project_IncreasePhraseHightForHigherResolution;
                newSettings.Project_SaveTOCViewWidth = this.Project_SaveTOCViewWidth;
-               newSettings.Project_ShowSelectionTimeInTransportBar = this.Project_ShowSelectionTimeInTransportBar;
 
                // checks for paths
                //if ( !string.IsNullOrEmpty(this.Project_DefaultPath) && Directory.Exists (this.Project_DefaultPath ))
@@ -451,7 +451,8 @@ namespace Obi
                && this.Audio_PreventSplittingPages == settings.Audio_PreventSplittingPages
                && this.Audio_SaveAudioZoom == settings.Audio_SaveAudioZoom
                && this.Audio_SelectLastPhrasePlayed == settings.Audio_SelectLastPhrasePlayed
-               && this.PlayOnNavigate == settings.PlayOnNavigate)
+               && this.PlayOnNavigate == settings.PlayOnNavigate
+               && this.Audio_ShowSelectionTimeInTransportBar == settings.Audio_ShowSelectionTimeInTransportBar)
            {
                audioPreferencesMatch = true ;
            }
@@ -482,8 +483,7 @@ namespace Obi
                && this.Project_MaximizeObi == settings.Project_MaximizeObi
                && this.Project_VAXhtmlExport == settings.Project_VAXhtmlExport
                && this.Project_IncreasePhraseHightForHigherResolution == settings.Project_IncreasePhraseHightForHigherResolution
-               && this.Project_SaveTOCViewWidth == settings.Project_SaveTOCViewWidth
-               && this.Project_ShowSelectionTimeInTransportBar == settings.Project_ShowSelectionTimeInTransportBar)
+               && this.Project_SaveTOCViewWidth == settings.Project_SaveTOCViewWidth)
                {
                    projectPreferencesMatch = true ;
                }
