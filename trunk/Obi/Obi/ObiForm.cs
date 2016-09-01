@@ -231,14 +231,7 @@ namespace Obi
                 {
                     mProjectView.FixTocViewWidth = value;
                 }
-            }
-            public bool SetPlayOnNavigateStatus
-            {
-                set
-                {
-                    mPlayOnNavigateToolStripMenuItem.Checked = value;
-                }
-            }
+            }          
             /// <summary>
             /// It is used to save TOCView width when checkbox in preferences is checked
             /// </summary>
