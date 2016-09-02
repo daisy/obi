@@ -2361,6 +2361,7 @@ namespace Obi.ProjectView
 
                 if (emptyNodesToPreserve.Count > 0)
                 {
+                    EmptyNode nodeToSelect = Selection != null && Selection.Node is EmptyNode ? (EmptyNode)Selection.Node : null;
                     // the list is in right order so iterate from start to end
                     for (int i = 0; i < emptyNodesToPreserve.Count; i++)
                     {
@@ -2368,6 +2369,10 @@ namespace Obi.ProjectView
                         newNode.CopyAttributes(emptyNodesToPreserve[i]);
                         Commands.Node.AddEmptyNode addCmd = new Obi.Commands.Node.AddEmptyNode(this, newNode, section, startIndex + i);
                         command.ChildCommands.Insert(command.ChildCommands.Count, addCmd);
+                    }
+                    if (nodeToSelect != null && nodeToSelect.IsRooted && Selection != null)
+                    {
+                        command.ChildCommands.Insert(command.ChildCommands.Count, new Commands.UpdateSelection(this, new NodeSelection(nodeToSelect, Selection.Control)));
                     }
                 }
             
