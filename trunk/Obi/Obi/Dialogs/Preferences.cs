@@ -1976,6 +1976,7 @@ m_cb_ChooseFont.Visible = false;
 
                 mTab.SelectedTab = mAudioTab;
                 mSettings.TOCViewWidth = 0;
+                mSettings.NewProjectDialogSize = new Size(0, 0);
                 if (Profile == "Basic.xml" || Profile == "Basic.XML")
                 {
                     m_CheckBoxListView.Items[0].Checked = false;
