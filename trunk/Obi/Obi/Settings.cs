@@ -266,7 +266,17 @@ namespace Obi
         private int[] m_PreferencesDialogSize;        
         public Size PreferencesDialogSize      // size of the preferences dialog
         {
-            get { return new Size(m_PreferencesDialogSize[0], m_PreferencesDialogSize[1]); }
+            get
+            {
+                if (m_PreferencesDialogSize != null)
+                {
+                    return new Size(m_PreferencesDialogSize[0], m_PreferencesDialogSize[1]);
+                }
+                else
+                {
+                    return new Size(0, 0);
+                }
+            }
             set
             {
                 m_PreferencesDialogSize = new int[2];

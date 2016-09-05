@@ -273,7 +273,8 @@ namespace Obi
                
                //newSettings.UsersInfoToUpload = this.UsersInfoToUpload;
                //newSettings.WrapStripContents = this.WrapStripContents;
-               newSettings.ZoomFactor = this.ZoomFactor;           
+               newSettings.ZoomFactor = this.ZoomFactor;
+               newSettings.PreferencesDialogSize = this.PreferencesDialogSize;
            }
            return newSettings;
        }
