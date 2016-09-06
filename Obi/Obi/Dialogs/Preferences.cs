@@ -49,8 +49,11 @@ namespace Obi.Dialogs
         public Preferences ( ObiForm form, Settings settings, ObiPresentation presentation, ProjectView.TransportBar transportbar, Settings defaultSettings)
             {
             InitializeComponent ();
-            Size size = settings.PreferencesDialogSize;
-            if (size.Width >= MinimumSize.Width && size.Height >= MinimumSize.Height) Size = size;
+            if (settings.UserProfile.Culture.Name == "en-US")
+            {
+                Size size = settings.PreferencesDialogSize;
+                if (size.Width >= MinimumSize.Width && size.Height >= MinimumSize.Height) Size = size;
+            }
             mForm = form;
             mSettings = settings;
             mPresentation = presentation;
@@ -1978,6 +1981,7 @@ m_cb_ChooseFont.Visible = false;
                 mTab.SelectedTab = mAudioTab;
                 mSettings.TOCViewWidth = 0;
                 mSettings.NewProjectDialogSize = new Size(0, 0);
+                mSettings.PreferencesDialogSize = new Size(0, 0);
                 if (Profile == "Basic.xml" || Profile == "Basic.XML")
                 {
                     m_CheckBoxListView.Items[0].Checked = false;
