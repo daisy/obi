@@ -3416,6 +3416,9 @@
   <data name="&gt;&gt;mTab.ZOrder" xml:space="preserve">
     <value>4</value>
   </data>
+  <data name="m_ApplyButton.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Bottom</value>
+  </data>
   <data name="m_ApplyButton.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Flat</value>
   </data>
