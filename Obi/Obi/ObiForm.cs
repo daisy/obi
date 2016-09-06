@@ -2657,7 +2657,7 @@ namespace Obi
                 bool showWaveform = mSettings.Project_ShowWaveformInContentView;
                 bool enableEmptySectionColorInTOC = mSettings.Project_BackgroundColorForEmptySection;
                 Dialogs.Preferences prefs = new Dialogs.Preferences(this, mSettings, mSession.Presentation,
-                                                                    mProjectView.TransportBar, m_DefaultSettings,mSettings.PreferencesDialogSize);
+                                                                    mProjectView.TransportBar, m_DefaultSettings);
                 prefs.ShowDialog();
                 mSettings.NewProjectDialogSize = prefs.Size;
                 if (prefs.IsColorChanged)
