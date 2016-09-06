@@ -430,7 +430,7 @@ namespace Obi {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Select the last phrase played.
+        ///   Looks up a localized string similar to After playback, select the last phrase played.
         /// </summary>
         internal static string Audio_SelectLastPhrasePlayed {
             get {
@@ -448,7 +448,7 @@ namespace Obi {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Show selection time in Transport Bar in stop state.
+        ///   Looks up a localized string similar to Show cursor time in Transport Bar in stop state.
         /// </summary>
         internal static string Audio_ShowSelectionTimeInTransportBar {
             get {

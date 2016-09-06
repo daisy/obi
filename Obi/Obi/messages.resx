@@ -2883,11 +2883,11 @@ Error text: {1}</value>
   </data>
   <data name="EmptyProjectTitle_error_Caption" xml:space="preserve">
     <value>No Project Title</value>
-   </data>
+  </data>
   <data name="no_audio_Caption" xml:space="preserve">
     <value>No Audio</value>
-   </data>
-    <data name="CheckUpdates_NewVersionNotAvailable_Caption" xml:space="preserve">
+  </data>
+  <data name="CheckUpdates_NewVersionNotAvailable_Caption" xml:space="preserve">
     <value>New Version Available</value>
   </data>
   <data name="no_primary_export_directory_Caption" xml:space="preserve">
@@ -2898,13 +2898,13 @@ Error text: {1}</value>
   </data>
   <data name="Project_SaveTOCViewWidth" xml:space="preserve">
     <value>Fix TOC View width</value>
-   </data>
+  </data>
   <data name="RecordingToolbar_SwitchLoadedProfile" xml:space="preserve">
     <value>Switch to {0}</value>
   </data>
   <data name="SaveAsEmptyProjectFileName" xml:space="preserve">
     <value>Project file name cannot be empty</value>
-   </data>
+  </data>
   <data name="KeyS_PlayOnNavigate" xml:space="preserve">
     <value>Play on navigate will be activated</value>
   </data>
@@ -2915,9 +2915,9 @@ Error text: {1}</value>
     <value>General</value>
   </data>
   <data name="Audio_SelectLastPhrasePlayed" xml:space="preserve">
-    <value>Select the last phrase played</value>
+    <value>After playback, select the last phrase played</value>
   </data>
   <data name="Audio_ShowSelectionTimeInTransportBar" xml:space="preserve">
-    <value>Show selection time in Transport Bar in stop state</value>
+    <value>Show cursor time in Transport Bar in stop state</value>
   </data>
 </root>
