@@ -4076,7 +4076,10 @@ SelectionChangedPlaybackEnabled = false;
                     else if (mView.Selection.Node is PhraseNode)
                         PlayOrResume();
                 }
-                UpdateTimeDisplay();
+                if (mView.ObiForm.Settings.Audio_ShowSelectionTimeInTransportBar && mState == State.Stopped)
+                {
+                    UpdateTimeDisplay();
+                }
                                         }// end of selection null check
 
         }
