@@ -49,7 +49,7 @@ namespace Obi.Dialogs
         public Preferences ( ObiForm form, Settings settings, ObiPresentation presentation, ProjectView.TransportBar transportbar, Settings defaultSettings)
             {
             InitializeComponent ();
-            if (settings.UserProfile.Culture.Name.Contains("en-"))
+            if (settings.UserProfile.Culture.Name.StartsWith("en-"))
             {
                 Size size = settings.PreferencesDialogSize;
                 if (size.Width >= MinimumSize.Width && size.Height >= MinimumSize.Height) Size = size;
