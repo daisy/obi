@@ -5114,7 +5114,14 @@ ref string exportDirectoryEPUB3)
 
             private void nextPageToolStripMenuItem_Click_1(object sender, EventArgs e)
             {
-                mProjectView.GoToPageOrPhrase();
+                try
+                {
+                    mProjectView.GoToPageOrPhrase();
+                }
+                catch (System.Exception ex)
+                {
+                    MessageBox.Show(ex.ToString());
+                }
             }
 
             private void mMergePhraseWithFollowingPhrasesToolStripMenuItem_Click(object sender, EventArgs e)
