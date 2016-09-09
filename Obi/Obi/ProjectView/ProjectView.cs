@@ -4966,8 +4966,11 @@ for (int j = 0;
                                 else
                                     break;
                             }
-                            this.Selection = new AudioSelection((PhraseNode)phrNode, mContentView,
-                                                   new AudioRange(GoToDialog.TimeInSeconds - (time - phrNode.Duration)));
+                            if (phrNode != null)
+                            {
+                                this.Selection = new AudioSelection((PhraseNode)phrNode, mContentView,
+                                                       new AudioRange(GoToDialog.TimeInSeconds - (time - phrNode.Duration)));
+                            }
                                            
                         }
                         else if (GoToDialog.SelectedIndex == 2)
