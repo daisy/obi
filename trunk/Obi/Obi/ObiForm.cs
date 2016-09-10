@@ -2659,7 +2659,6 @@ namespace Obi
                 Dialogs.Preferences prefs = new Dialogs.Preferences(this, mSettings, mSession.Presentation,
                                                                     mProjectView.TransportBar, m_DefaultSettings);
                 prefs.ShowDialog();
-                mSettings.NewProjectDialogSize = prefs.Size;
                 if (prefs.IsColorChanged)
                     UpdateColors();
                 if (mRecordingToolBarForm != null) mRecordingToolBarForm.UpdateForChangeInObi();
