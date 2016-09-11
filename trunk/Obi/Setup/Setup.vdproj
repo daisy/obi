@@ -94,6 +94,12 @@
         "Entry"
         {
         "MsmKey" = "8:_178FFB7CD2DAF2FA02932A9EB4039CD2"
+        "OwnerKey" = "8:_41F6C1461D495523E98D25300C0F62DC"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_178FFB7CD2DAF2FA02932A9EB4039CD2"
         "OwnerKey" = "8:_D8D84DB8CB9E4AF390D6AF810CE6D609"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -507,24 +513,6 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_B01B675269AFE792858E28BBEE881422"
-        "OwnerKey" = "8:_41F6C1461D495523E98D25300C0F62DC"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_B01B675269AFE792858E28BBEE881422"
-        "OwnerKey" = "8:_D8D84DB8CB9E4AF390D6AF810CE6D609"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_B01B675269AFE792858E28BBEE881422"
-        "OwnerKey" = "8:_5D74C0D378D74D17BD753426073D0BF5"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
         "MsmKey" = "8:_B2961A24F1354D98B8184266FE775BA8"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -737,30 +725,6 @@
         {
         "MsmKey" = "8:_F802ED65D38142089F6E4E1746261B34"
         "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_F8AB51EF6F5D7975A07E87F97A536966"
-        "OwnerKey" = "8:_B01B675269AFE792858E28BBEE881422"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_F8AB51EF6F5D7975A07E87F97A536966"
-        "OwnerKey" = "8:_D8D84DB8CB9E4AF390D6AF810CE6D609"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_F8AB51EF6F5D7975A07E87F97A536966"
-        "OwnerKey" = "8:_5D74C0D378D74D17BD753426073D0BF5"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_F8AB51EF6F5D7975A07E87F97A536966"
-        "OwnerKey" = "8:_41F6C1461D495523E98D25300C0F62DC"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -989,18 +953,6 @@
         {
         "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_FFA0686B663AFC2826E51B6E7E6DB4EA"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_B01B675269AFE792858E28BBEE881422"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_F8AB51EF6F5D7975A07E87F97A536966"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -1659,7 +1611,7 @@
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:Obi.resources, Version=3.8.7.21794, Culture=es, processorArchitecture=x86"
+            "AssemblyAsmDisplayName" = "8:Obi.resources, Version=3.8.7.33973, Culture=es, processorArchitecture=x86"
                 "ScatterAssemblies"
                 {
                     "_33F88AFE9C6644899BDABB2712D99DAF"
@@ -1883,7 +1835,7 @@
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:Obi.resources, Version=3.8.7.21794, Culture=zh-HK, processorArchitecture=x86"
+            "AssemblyAsmDisplayName" = "8:Obi.resources, Version=3.8.7.33973, Culture=zh-HK, processorArchitecture=x86"
                 "ScatterAssemblies"
                 {
                     "_6B0F051C91E7428FAC3C9D26B058C87C"
@@ -1996,7 +1948,7 @@
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:Obi.resources, Version=3.8.7.21794, Culture=fr, processorArchitecture=x86"
+            "AssemblyAsmDisplayName" = "8:Obi.resources, Version=3.8.7.33973, Culture=fr, processorArchitecture=x86"
                 "ScatterAssemblies"
                 {
                     "_70370FB39F0442789BD93F85452E2341"
@@ -2078,7 +2030,7 @@
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:Obi.resources, Version=3.8.7.21794, Culture=ta, processorArchitecture=x86"
+            "AssemblyAsmDisplayName" = "8:Obi.resources, Version=3.8.7.33973, Culture=ta, processorArchitecture=x86"
                 "ScatterAssemblies"
                 {
                     "_77D6C14B820045D9BB3A81F345542694"
@@ -2200,7 +2152,7 @@
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:Obi.resources, Version=3.8.7.21794, Culture=fi, processorArchitecture=x86"
+            "AssemblyAsmDisplayName" = "8:Obi.resources, Version=3.8.7.33973, Culture=fi, processorArchitecture=x86"
                 "ScatterAssemblies"
                 {
                     "_7DF90530D5E14B07883BEC5E1CFCE7E5"
@@ -2282,7 +2234,7 @@
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:Obi.resources, Version=3.8.7.21794, Culture=pt, processorArchitecture=x86"
+            "AssemblyAsmDisplayName" = "8:Obi.resources, Version=3.8.7.33973, Culture=pt, processorArchitecture=x86"
                 "ScatterAssemblies"
                 {
                     "_83B9F6EEEB3B478591C26F16C9CF5B47"
@@ -2395,7 +2347,7 @@
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:Obi.resources, Version=3.8.7.21794, Culture=ar, processorArchitecture=x86"
+            "AssemblyAsmDisplayName" = "8:Obi.resources, Version=3.8.7.33973, Culture=ar, processorArchitecture=x86"
                 "ScatterAssemblies"
                 {
                     "_8CC111DFE2714A7FA2782A536B43971C"
@@ -2446,7 +2398,7 @@
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:Obi.resources, Version=3.8.7.21794, Culture=zh-CN, processorArchitecture=x86"
+            "AssemblyAsmDisplayName" = "8:Obi.resources, Version=3.8.7.33973, Culture=zh-CN, processorArchitecture=x86"
                 "ScatterAssemblies"
                 {
                     "_95E418DFCC2447B480DA996853ED0EDE"
@@ -2477,7 +2429,7 @@
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:Obi.resources, Version=3.8.7.21794, Culture=hi, processorArchitecture=x86"
+            "AssemblyAsmDisplayName" = "8:Obi.resources, Version=3.8.7.33973, Culture=hi, processorArchitecture=x86"
                 "ScatterAssemblies"
                 {
                     "_9756CC4034584C5C8FF7E061127F117C"
@@ -2790,37 +2742,6 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_B01B675269AFE792858E28BBEE881422"
-            {
-            "AssemblyRegister" = "3:1"
-            "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:SharpDX.DirectSound, Version=2.4.1.0, Culture=neutral, processorArchitecture=MSIL"
-                "ScatterAssemblies"
-                {
-                    "_B01B675269AFE792858E28BBEE881422"
-                    {
-                    "Name" = "8:SharpDX.DirectSound.dll"
-                    "Attributes" = "3:512"
-                    }
-                }
-            "SourcePath" = "8:SharpDX.DirectSound.dll"
-            "TargetName" = "8:"
-            "Tag" = "8:"
-            "Folder" = "8:_4D3BED1A25304BAD92EA81B4D13F5EF1"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:TRUE"
-            "IsolateTo" = "8:"
-            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_B2961A24F1354D98B8184266FE775BA8"
             {
             "SourcePath" = "8:..\\Obi\\ProfileDesc_en.html"
@@ -2989,7 +2910,7 @@
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:Obi.resources, Version=3.8.7.21794, Culture=ja, processorArchitecture=x86"
+            "AssemblyAsmDisplayName" = "8:Obi.resources, Version=3.8.7.33973, Culture=ja, processorArchitecture=x86"
                 "ScatterAssemblies"
                 {
                     "_BE3ADF6CF9B942F49C32A273D1D33937"
@@ -3438,37 +3359,6 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_F8AB51EF6F5D7975A07E87F97A536966"
-            {
-            "AssemblyRegister" = "3:1"
-            "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:SharpDX, Version=2.4.1.0, Culture=neutral, processorArchitecture=MSIL"
-                "ScatterAssemblies"
-                {
-                    "_F8AB51EF6F5D7975A07E87F97A536966"
-                    {
-                    "Name" = "8:SharpDX.dll"
-                    "Attributes" = "3:512"
-                    }
-                }
-            "SourcePath" = "8:SharpDX.dll"
-            "TargetName" = "8:"
-            "Tag" = "8:"
-            "Folder" = "8:_4D3BED1A25304BAD92EA81B4D13F5EF1"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:TRUE"
-            "IsolateTo" = "8:"
-            }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_FFA0686B663AFC2826E51B6E7E6DB4EA"
             {
             "AssemblyRegister" = "3:1"
@@ -3736,8 +3626,8 @@
         {
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:Obi 3.9 beta"
-        "ProductCode" = "8:{EDCD3362-5B23-4005-AB33-3484F4D9F29F}"
-        "PackageCode" = "8:{F81DB32D-4388-4B30-BD59-5BDBEB02E6CD}"
+        "ProductCode" = "8:{5C16CCBC-EE54-41E7-A38D-947EE3E6A05F}"
+        "PackageCode" = "8:{113463F3-12DB-4226-9BB8-73450618590A}"
         "UpgradeCode" = "8:{358C2C3A-3686-4461-A8BA-9D766218CC5E}"
         "RestartWWWService" = "11:FALSE"
         "RemovePreviousVersions" = "11:FALSE"
