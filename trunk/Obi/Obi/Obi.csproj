@@ -868,7 +868,9 @@
     <Content Include="about_ja.html">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="about_pt.html" />
+    <Content Include="about_pt.html">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="about_ta.html">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -2969,7 +2971,9 @@
     <Content Include="ProfileDesc_fr.html">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="ProfileDesc_pt.html" />
+    <Content Include="ProfileDesc_pt.html">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="ProfileDesc_zh-CN.html">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
