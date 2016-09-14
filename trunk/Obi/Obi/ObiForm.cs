@@ -4211,7 +4211,14 @@ ref string exportDirectoryEPUB3)
                     Console.WriteLine(tempPathSplit[0]);
                     if (tempPathSplit.Length > 3)
                     {
-                        tempPath = tempPathSplit[0] + tempPathSplit[1] + "\\.....\\" + tempPathSplit[tempPathSplit.Length - 2] + "\\" + tempPathSplit[tempPathSplit.Length - 1];
+                        if (tempPathSplit[tempPathSplit.Length - 2].Length < 70)
+                        {
+                            tempPath = tempPathSplit[0] + tempPathSplit[1] + "\\.....\\" + tempPathSplit[tempPathSplit.Length - 2] + "\\" + tempPathSplit[tempPathSplit.Length - 1];
+                        }
+                        else
+                        {
+                            tempPath = tempPathSplit[0] + tempPathSplit[1] + "\\.....\\" + tempPathSplit[tempPathSplit.Length - 2] + "\\...";
+                        }
                     }
                 }
                 if (mSettings != null)
