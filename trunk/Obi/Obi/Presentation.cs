@@ -822,6 +822,25 @@ namespace Obi
                 return times;
             }
         }
+        /// <summary>
+        /// Returns the file names of wav files managed by the presentation
+        /// </summary>
+        /// <returns></returns>
+        public List<string> GetAudioFileNames()
+        {
+            List<string> fileNames = new List<string>();
+            foreach (DataProvider provider in this.DataProviderManager.ManagedFileDataProviders)
+            {
+                if (provider != null &&
+                    provider is FileDataProvider)
+                {
+                    string name =  ((FileDataProvider)provider).DataFileRelativePath;
+                    fileNames.Add(name);
+                }
+            }
+            return fileNames;
+        }
+
     }
 
     public class NodeEventArgs<T> : EventArgs
