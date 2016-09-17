@@ -42,6 +42,7 @@ namespace Obi.ProjectView
         private int m_InitialPanelHeight = 0;
         private double m_PhraseDuration = 0;
         private double m_ZoomIncrementFactor = 0;
+        private CheckBox m_cbPreserveZoom;
            
 
         private KeyboardShortcuts_Settings keyboardShortcuts;
@@ -354,8 +355,13 @@ namespace Obi.ProjectView
 
         }
 
-       public ZoomWaveform(ContentView contentView, Strip strip,EmptyNode node,ProjectView mProjectView ):this    ()
+       public ZoomWaveform(ContentView contentView, Strip strip,EmptyNode node,ProjectView mProjectView):this    ()
         {
+            m_cbPreserveZoom = new CheckBox();
+            m_cbPreserveZoom.Text = Localizer.Message("ZoomWaveform_PreserveZoom");
+           // m_cbPreserveZoom.CheckStateChanged += new EventHandler(m_cbPreserveZoom_CheckStateChanged);
+            ToolStripControlHost host = new ToolStripControlHost(m_cbPreserveZoom);
+            toolStripZoomPanel.Items.Insert(7, host);
             
             m_ContentView = contentView;
             m_ProjectView = mProjectView;
@@ -371,6 +377,11 @@ namespace Obi.ProjectView
             m_Strip = strip;
             m_Node = node;
             ZoomPanelToolTipInit();
+            if (m_ProjectView.SaveZoomWaveformZoomLevel)
+            {
+                m_cbPreserveZoom.Checked = true;
+                m_ZoomIncrementFactor = m_ProjectView.ZoomWaveformIncrementFactor;
+            }
             m_ZoomFactor = 0;
             if (m_ProjectView.ObiForm.Settings.ObiFont != this.Font.Name) //@fontconfig
             {
@@ -495,9 +506,12 @@ namespace Obi.ProjectView
                 m_ZoomFactor = zoomFactor;
               
                 m_AudioBlock.SetZoomFactorAndHeight(zoomFactor, Height);
-                
-                
+
                 initialWaveformWidth = m_AudioBlock.Waveform.Width;
+                if (m_cbPreserveZoom.Checked)
+                {
+                    m_AudioBlock.Waveform.Width = m_AudioBlock.Waveform.Width + (int)(initialWaveformWidth * m_ZoomIncrementFactor);
+                }
                 if (m_ProjectView != null && m_ProjectView.Selection != null && m_ProjectView.Selection is AudioSelection)
                 {
                     m_audioSel = (AudioSelection)m_ProjectView.Selection;
@@ -550,6 +564,16 @@ namespace Obi.ProjectView
             this.Load += new EventHandler(ZoomWaveform_Load);
             //btntxtZoomSelected.Focus ();
             //Console.WriteLine("constructor " + (m_ProjectView.Selection is AudioSelection? "audio selection": "") +  m_ProjectView.Selection);
+        }
+
+        void m_cbPreserveZoom_CheckStateChanged(object sender, EventArgs e)
+        {
+            if (m_cbPreserveZoom.Checked)
+            {
+                m_ProjectView.ZoomWaveformIncrementFactor = m_ZoomIncrementFactor;
+                //m_ZoomFactor = m_ZoomIncrementFactor
+            }
+            //throw new Exception("The method or operation is not implemented.");
         }
 
         void ZoomWaveform_Load(object sender, EventArgs e)
@@ -866,12 +890,23 @@ namespace Obi.ProjectView
           private void Close()
           {
                 m_buttonSizeinit = false;
+                if (m_cbPreserveZoom.Checked)
+                {
+                    m_ProjectView.SaveZoomWaveformZoomLevel = true;
+                    m_ProjectView.ZoomWaveformIncrementFactor = m_ZoomIncrementFactor;
+                }
+                else
+                {
+                    m_ProjectView.SaveZoomWaveformZoomLevel = false;
+                    m_ProjectView.ZoomWaveformIncrementFactor = 0;
+                }
                 m_ContentView.RemovePanel();
 
                 m_ProjectView.SelectionChanged -= new EventHandler(ProjectViewSelectionChanged);
                 m_ProjectView.Presentation.UndoRedoManager.CommandDone -= new EventHandler<urakawa.events.undo.DoneEventArgs>(ProjectviewUpdated);
                 m_ProjectView.Presentation.UndoRedoManager.CommandUnDone -= new EventHandler<urakawa.events.undo.UnDoneEventArgs>(ProjectviewUpdated);
                 m_ProjectView.Presentation.UndoRedoManager.CommandReDone -= new EventHandler<urakawa.events.undo.ReDoneEventArgs>(ProjectviewUpdated);
+              
                 
                 
                 
