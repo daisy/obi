@@ -2920,4 +2920,7 @@ Error text: {1}</value>
   <data name="Audio_ShowSelectionTimeInTransportBar" xml:space="preserve">
     <value>Show cursor time in Transport Bar in stop state</value>
   </data>
+  <data name="ZoomWaveform_PreserveZoom" xml:space="preserve">
+    <value>Preserve zoom in zoom waveform</value>
+  </data>
 </root>

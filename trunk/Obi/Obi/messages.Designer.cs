@@ -7649,5 +7649,14 @@ namespace Obi {
                 return ResourceManager.GetString("ZoomAudioTT_ZoomSelection", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Preserve zoom in zoom waveform.
+        /// </summary>
+        internal static string ZoomWaveform_PreserveZoom {
+            get {
+                return ResourceManager.GetString("ZoomWaveform_PreserveZoom", resourceCulture);
+            }
+        }
     }
 }

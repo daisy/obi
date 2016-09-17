@@ -39,6 +39,8 @@ namespace Obi.ProjectView
         public event ProgressChangedEventHandler ProgressChanged; //Updates the toolstrip progress bar on obi form
         private KeyboardShortcuts_Settings keyboardShortcuts;
         private bool m_IsAudioProcessingChecked = false;
+        private double m_ZoomWaveformIncrementFactor;
+        private bool m_SaveZoomWaveformZoomLevel;
         
     
         /// <summary>
@@ -4659,6 +4661,29 @@ for (int j = 0;
                 {
                     return true;
                 }
+            }
+        }
+
+        public double ZoomWaveformIncrementFactor
+        {
+            set
+            {
+                m_ZoomWaveformIncrementFactor = value;
+            }
+            get
+            {
+                return m_ZoomWaveformIncrementFactor;
+            }
+        }
+        public bool SaveZoomWaveformZoomLevel
+        {
+            set
+            {
+                m_SaveZoomWaveformZoomLevel = value;
+            }
+            get
+            {
+                return m_SaveZoomWaveformZoomLevel;
             }
         }
 
