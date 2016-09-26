@@ -41,10 +41,11 @@ namespace Obi.Dialogs
             }
             m_txtTitle.Text = mView.Presentation.Title;
             m_txtDuration.Text = Program.FormatDuration_Long((totalDuration));
-            m_txtSectionsCount.Text = sectionsList.Count.ToString ();;
+            m_txtSectionsCount.Text = sectionsList.Count.ToString();
             m_txtPhraseCount.Text = ((ObiRootNode)mView.Presentation.RootNode).PhraseCount.ToString();
             m_txtPageCount.Text = ((ObiRootNode)mView.Presentation.RootNode).PageCount.ToString();
             m_txtMaxDepth.Text = maxDepth.ToString ();
+            m_txtProjectFileCount.Text = mView.Presentation.GetAudioFileNames().Count.ToString();
         }
 
         private int GetSectionDepth(SectionNode section)

@@ -44,6 +44,8 @@ namespace Obi.Dialogs
             this.helpProvider1 = new System.Windows.Forms.HelpProvider();
             this.m_lblMaxDepth = new System.Windows.Forms.Label();
             this.m_txtMaxDepth = new System.Windows.Forms.TextBox();
+            this.m_lblProjectFileCount = new System.Windows.Forms.Label();
+            this.m_txtProjectFileCount = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // m_lblDuration
@@ -135,12 +137,26 @@ namespace Obi.Dialogs
             this.m_txtMaxDepth.Name = "m_txtMaxDepth";
             this.m_txtMaxDepth.ReadOnly = true;
             // 
+            // m_lblProjectFileCount
+            // 
+            resources.ApplyResources(this.m_lblProjectFileCount, "m_lblProjectFileCount");
+            this.m_lblProjectFileCount.Name = "m_lblProjectFileCount";
+            // 
+            // m_txtProjectFileCount
+            // 
+            this.m_txtProjectFileCount.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            resources.ApplyResources(this.m_txtProjectFileCount, "m_txtProjectFileCount");
+            this.m_txtProjectFileCount.Name = "m_txtProjectFileCount";
+            this.m_txtProjectFileCount.ReadOnly = true;
+            // 
             // ProjectProperties
             // 
             this.AcceptButton = this.m_btnOk;
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.mCancelButton;
+            this.Controls.Add(this.m_txtProjectFileCount);
+            this.Controls.Add(this.m_lblProjectFileCount);
             this.Controls.Add(this.m_txtMaxDepth);
             this.Controls.Add(this.m_lblMaxDepth);
             this.Controls.Add(this.mCancelButton);
@@ -181,5 +197,7 @@ namespace Obi.Dialogs
         private System.Windows.Forms.HelpProvider helpProvider1;
         private System.Windows.Forms.Label m_lblMaxDepth;
         private System.Windows.Forms.TextBox m_txtMaxDepth;
+        private System.Windows.Forms.Label m_lblProjectFileCount;
+        private System.Windows.Forms.TextBox m_txtProjectFileCount;
     }
 }
