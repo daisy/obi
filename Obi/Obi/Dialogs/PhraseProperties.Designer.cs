@@ -53,6 +53,8 @@ namespace Obi.Dialogs
             this.helpProvider1 = new System.Windows.Forms.HelpProvider();
             this.m_lblCurrentCursorPosition = new System.Windows.Forms.Label();
             this.m_txtCurrentCursorPosition = new System.Windows.Forms.TextBox();
+            this.m_lbl_EditFileName = new System.Windows.Forms.Label();
+            this.m_txt_EditFileName = new System.Windows.Forms.TextBox();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -150,6 +152,7 @@ namespace Obi.Dialogs
             this.groupBox1.Controls.Add(this.m_lbParentsList);
             resources.ApplyResources(this.groupBox1, "groupBox1");
             this.groupBox1.Name = "groupBox1";
+            this.helpProvider1.SetShowHelp(this.groupBox1, ((bool)(resources.GetObject("groupBox1.ShowHelp"))));
             this.groupBox1.TabStop = false;
             // 
             // m_lbParentsList
@@ -158,6 +161,7 @@ namespace Obi.Dialogs
             this.m_lbParentsList.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.m_lbParentsList.FormattingEnabled = true;
             this.m_lbParentsList.Name = "m_lbParentsList";
+            this.helpProvider1.SetShowHelp(this.m_lbParentsList, ((bool)(resources.GetObject("m_lbParentsList.ShowHelp"))));
             this.m_lbParentsList.SelectedIndexChanged += new System.EventHandler(this.m_lbParentsList_SelectedIndexChanged);
             // 
             // m_lblPageNumberDetails
@@ -197,12 +201,25 @@ namespace Obi.Dialogs
             this.m_txtCurrentCursorPosition.Name = "m_txtCurrentCursorPosition";
             this.m_txtCurrentCursorPosition.ReadOnly = true;
             // 
+            // m_lbl_EditFileName
+            // 
+            resources.ApplyResources(this.m_lbl_EditFileName, "m_lbl_EditFileName");
+            this.m_lbl_EditFileName.Name = "m_lbl_EditFileName";
+            // 
+            // m_txt_EditFileName
+            // 
+            resources.ApplyResources(this.m_txt_EditFileName, "m_txt_EditFileName");
+            this.m_txt_EditFileName.Name = "m_txt_EditFileName";
+            this.m_txt_EditFileName.ReadOnly = true;
+            // 
             // PhraseProperties
             // 
             this.AcceptButton = this.m_btnOk;
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.m_btnCancel;
+            this.Controls.Add(this.m_txt_EditFileName);
+            this.Controls.Add(this.m_lbl_EditFileName);
             this.Controls.Add(this.m_txtCurrentCursorPosition);
             this.Controls.Add(this.m_lblCurrentCursorPosition);
             this.Controls.Add(this.m_lbl_ReferredNote);
@@ -263,5 +280,7 @@ namespace Obi.Dialogs
         private System.Windows.Forms.HelpProvider helpProvider1;
         private System.Windows.Forms.Label m_lblCurrentCursorPosition;
         private System.Windows.Forms.TextBox m_txtCurrentCursorPosition;
+        private System.Windows.Forms.Label m_lbl_EditFileName;
+        private System.Windows.Forms.TextBox m_txt_EditFileName;
     }
 }
