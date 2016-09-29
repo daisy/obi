@@ -12,10 +12,11 @@ namespace Obi.Dialogs
     {
         private ProjectView.ProjectView mView;
 
-        public ProjectProperties(ProjectView.ProjectView View)
+        public ProjectProperties(ProjectView.ProjectView View, bool showAdvanceProperties)
         {
             InitializeComponent();
             mView = View;
+            m_txtProjectFileCount.Visible = showAdvanceProperties;
             helpProvider1.HelpNamespace = Localizer.Message("CHMhelp_file_name");
             helpProvider1.SetHelpNavigator(this, HelpNavigator.Topic);
             helpProvider1.SetHelpKeyword(this, "HTML Files/Creating a DTB/Creating and Working with Projects/Project Properties.htm");

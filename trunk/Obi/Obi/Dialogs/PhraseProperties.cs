@@ -21,10 +21,10 @@ namespace Obi.Dialogs
         /// <summary>
         /// Create the dialog to be shown by ShowDialog() for the given view.
         /// </summary>
-        public PhraseProperties(ProjectView.ProjectView view, bool SetCustomClass)
+        public PhraseProperties(ProjectView.ProjectView view, bool SetCustomClass, bool showAdvanceProperties)
         {
             InitializeComponent();
-            
+            m_txtFileName.Visible = showAdvanceProperties;
             mView = view;
             mNode = view.SelectedNodeAs<EmptyNode>();
 
