@@ -54,7 +54,7 @@ namespace Obi.Dialogs
             this.m_lblCurrentCursorPosition = new System.Windows.Forms.Label();
             this.m_txtCurrentCursorPosition = new System.Windows.Forms.TextBox();
             this.m_lbl_EditFileName = new System.Windows.Forms.Label();
-            this.m_txt_EditFileName = new System.Windows.Forms.TextBox();
+            this.m_txtFileName = new System.Windows.Forms.TextBox();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -208,9 +208,9 @@ namespace Obi.Dialogs
             // 
             // m_txt_EditFileName
             // 
-            resources.ApplyResources(this.m_txt_EditFileName, "m_txt_EditFileName");
-            this.m_txt_EditFileName.Name = "m_txt_EditFileName";
-            this.m_txt_EditFileName.ReadOnly = true;
+            resources.ApplyResources(this.m_txtFileName, "m_txt_EditFileName");
+            this.m_txtFileName.Name = "m_txt_EditFileName";
+            this.m_txtFileName.ReadOnly = true;
             // 
             // PhraseProperties
             // 
@@ -218,7 +218,7 @@ namespace Obi.Dialogs
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.m_btnCancel;
-            this.Controls.Add(this.m_txt_EditFileName);
+            this.Controls.Add(this.m_txtFileName);
             this.Controls.Add(this.m_lbl_EditFileName);
             this.Controls.Add(this.m_txtCurrentCursorPosition);
             this.Controls.Add(this.m_lblCurrentCursorPosition);
@@ -281,6 +281,6 @@ namespace Obi.Dialogs
         private System.Windows.Forms.Label m_lblCurrentCursorPosition;
         private System.Windows.Forms.TextBox m_txtCurrentCursorPosition;
         private System.Windows.Forms.Label m_lbl_EditFileName;
-        private System.Windows.Forms.TextBox m_txt_EditFileName;
+        private System.Windows.Forms.TextBox m_txtFileName;
     }
 }
