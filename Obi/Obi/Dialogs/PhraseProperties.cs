@@ -25,6 +25,7 @@ namespace Obi.Dialogs
         {
             InitializeComponent();
             m_txtFileName.Visible = showAdvanceProperties;
+            m_lbl_EditFileName.Visible = showAdvanceProperties;
             mView = view;
             mNode = view.SelectedNodeAs<EmptyNode>();
 
