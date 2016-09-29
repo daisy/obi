@@ -4445,7 +4445,7 @@ for (int j = 0;
         /// </summary>
         public bool ShowProjectPropertiesDialog ()
             {
-            Dialogs.ProjectProperties dialog = new Dialogs.ProjectProperties ( this );
+            Dialogs.ProjectProperties dialog = new Dialogs.ProjectProperties ( this, ObiForm.Settings.Project_ShowAdvancePropertiesInPropertiesDialogs );
             if (dialog.ShowDialog () == DialogResult.OK && dialog.ProjectTitle != mPresentation.Title &&
                 dialog.ProjectTitle != null && dialog.ProjectTitle != "")
                 {
@@ -4516,7 +4516,7 @@ for (int j = 0;
             bool selectionChangedPlaybackEnabled = TransportBar.SelectionChangedPlaybackEnabled;
             TransportBar.SelectionChangedPlaybackEnabled = false;
             if (TransportBar.IsPlayerActive) TransportBar.Pause();
-            Dialogs.PhraseProperties dialog = new Dialogs.PhraseProperties ( this, SetCustomClassName );
+            Dialogs.PhraseProperties dialog = new Dialogs.PhraseProperties ( this, SetCustomClassName , ObiForm.Settings.Project_ShowAdvancePropertiesInPropertiesDialogs);
             if (dialog.ShowDialog () == DialogResult.OK)
                 {
                 CompositeCommand command =

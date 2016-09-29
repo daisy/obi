@@ -238,7 +238,7 @@ namespace Obi
         [OptionalField]
         public string SettingsName;
 
-        // for post Obi 3.8
+        // for Obi 3.9 alpha
         [OptionalField]
         public bool Audio_PreventSplittingPages;
         [OptionalField]
@@ -251,7 +251,8 @@ namespace Obi
         // for Obi 3.9 beta
         [OptionalField]
         public bool Project_IncreasePhraseHightForHigherResolution;
-        //for post Obi 3.9 beta
+
+        //for Obi 3.9 beta2
         [OptionalField]
         public int TOCViewWidth;
         [OptionalField]
@@ -286,6 +287,9 @@ namespace Obi
         }
        
 
+        // Obi 3.9
+        [OptionalField]
+        public bool Project_ShowAdvancePropertiesInPropertiesDialogs; // Shows advance properties in project & phrase, section properties dialog 
 
         protected static void InitializeDefaultSettings(Settings settings)
         {
@@ -420,6 +424,7 @@ namespace Obi
             settings.Audio_SelectLastPhrasePlayed = false;
             settings.Audio_ShowSelectionTimeInTransportBar = false;
             settings.PreferencesDialogSize= new Size(0, 0);
+            settings.Project_ShowAdvancePropertiesInPropertiesDialogs = false;
         }
 
         /// <summary>
