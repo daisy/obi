@@ -187,8 +187,31 @@ namespace Obi.Dialogs
 
             EnableCustomClassField();
             if (m_IsSetCustomClass) SetCustomClassOnLoad();
-        }
 
+            try
+            {
+                if (mNode is PhraseNode)
+                {//1
+                    PhraseNode phrase = (PhraseNode)mNode;
+                    if (phrase.Audio.AudioMediaData is urakawa.media.data.audio.codec.WavAudioMediaData)
+                    {//2
+                        urakawa.media.data.audio.codec.WavAudioMediaData wavMedia = (urakawa.media.data.audio.codec.WavAudioMediaData)phrase.Audio.AudioMediaData;
+                        string textboxString = "";
+                        for (int i = 0; i < wavMedia.mWavClips.Count; i++)
+                        {//3
+                            if (i > 0) textboxString += ", ";
+                            textboxString += ((urakawa.data.FileDataProvider)wavMedia.mWavClips[i].DataProvider).DataFileRelativePath;
+                        }//-3
+                        m_txtFileName.Text = textboxString;
+                    }//-2
+                }//-1
+            }
+            catch (System.Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+        }
+        
         private void CalculateCursorTime(PhraseNode phraseNode)
         {
             //if (m_IsPause && mView.Selection != null && mView.Selection is AudioSelection)
