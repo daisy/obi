@@ -2923,4 +2923,7 @@ Error text: {1}</value>
   <data name="ZoomWaveform_PreserveZoom" xml:space="preserve">
     <value>Preserve zoom in zoom waveform</value>
   </data>
+  <data name="Project_ShowAdvancePropertiesInPropertiesDialogs" xml:space="preserve">
+    <value>Show advance properties in properties dialog</value>
+  </data>
 </root>

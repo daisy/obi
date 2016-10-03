@@ -1108,6 +1108,7 @@ m_cb_ChooseFont.Visible = false;
                 mSettings.Project_VAXhtmlExport = m_CheckBoxListView.Items[18].Checked;
                 mSettings.Project_IncreasePhraseHightForHigherResolution = m_CheckBoxListView.Items[19].Checked;
                 mSettings.Project_SaveTOCViewWidth = m_CheckBoxListView.Items[20].Checked;
+                mSettings.Project_ShowAdvancePropertiesInPropertiesDialogs = m_CheckBoxListView.Items[21].Checked;
             }
             if (mTab.SelectedTab == mAudioTab)
             {
@@ -1293,6 +1294,7 @@ m_cb_ChooseFont.Visible = false;
                 m_CheckBoxListView.Items.Add(Localizer.Message("Project_VAXhtmlExport"));
                 m_CheckBoxListView.Items.Add(Localizer.Message("Project_IncreasePhraseHightForHigherResolution"));
                 m_CheckBoxListView.Items.Add(Localizer.Message("Project_SaveTOCViewWidth"));
+                m_CheckBoxListView.Items.Add(Localizer.Message("Project_ShowAdvancePropertiesInPropertiesDialogs"));
                
                 m_CheckBoxListView.Items[0].Checked = mSettings.Project_OpenLastProject;
                 m_CheckBoxListView.Items[0].ToolTipText = Localizer.Message("ProjectTab_OpenLastProject");
@@ -1336,6 +1338,8 @@ m_cb_ChooseFont.Visible = false;
                 m_CheckBoxListView.Items[19].ToolTipText = Localizer.Message("Project_IncreasePhraseHightForHigherResolution");
                 m_CheckBoxListView.Items[20].Checked = mSettings.Project_SaveTOCViewWidth;
                 m_CheckBoxListView.Items[20].ToolTipText = Localizer.Message("Project_SaveTOCViewWidth");
+                m_CheckBoxListView.Items[21].Checked = mSettings.Project_ShowAdvancePropertiesInPropertiesDialogs;
+                m_CheckBoxListView.Items[21].ToolTipText = Localizer.Message("Project_ShowAdvancePropertiesInPropertiesDialogs");
 
             }
             m_CheckBoxListView.View = View.Details;
@@ -1422,6 +1426,7 @@ m_cb_ChooseFont.Visible = false;
                 mSettings.Project_VAXhtmlExport = m_DefaultSettings.Project_VAXhtmlExport;
                 mSettings.Project_IncreasePhraseHightForHigherResolution = m_DefaultSettings.Project_IncreasePhraseHightForHigherResolution;
                 mSettings.Project_SaveTOCViewWidth = m_DefaultSettings.Project_SaveTOCViewWidth;
+                mSettings.Project_ShowAdvancePropertiesInPropertiesDialogs = m_DefaultSettings.Project_ShowAdvancePropertiesInPropertiesDialogs;
                 InitializeProjectTab();
             }
             else if (mTab.SelectedTab == mAudioTab) // Default settings for Audio tab
