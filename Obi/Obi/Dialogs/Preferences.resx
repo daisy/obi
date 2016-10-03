@@ -2817,13 +2817,13 @@
     <value>Audio cleanup max file size</value>
   </data>
   <data name="m_CleanUpFileSizeNumericUpDown.Location" type="System.Drawing.Point, System.Drawing">
-    <value>210, 89</value>
+    <value>210, 91</value>
   </data>
   <data name="m_CleanUpFileSizeNumericUpDown.ShowHelp" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
   <data name="m_CleanUpFileSizeNumericUpDown.Size" type="System.Drawing.Size, System.Drawing">
-    <value>100, 22</value>
+    <value>76, 22</value>
   </data>
   <data name="m_CleanUpFileSizeNumericUpDown.TabIndex" type="System.Int32, mscorlib">
     <value>22</value>
@@ -2883,7 +2883,7 @@
     <value>NoControl</value>
   </data>
   <data name="m_btn_speak.Location" type="System.Drawing.Point, System.Drawing">
-    <value>353, 121</value>
+    <value>516, 123</value>
   </data>
   <data name="m_btn_speak.ShowHelp" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -2955,7 +2955,7 @@
     <value>True</value>
   </data>
   <data name="mTTSvoiceCombo.Size" type="System.Drawing.Size, System.Drawing">
-    <value>149, 24</value>
+    <value>337, 24</value>
   </data>
   <data name="mTTSvoiceCombo.TabIndex" type="System.Int32, mscorlib">
     <value>26</value>
@@ -2982,7 +2982,7 @@
     <value>True</value>
   </data>
   <data name="m_OperationDurationUpDown.Size" type="System.Drawing.Size, System.Drawing">
-    <value>120, 22</value>
+    <value>87, 22</value>
   </data>
   <data name="m_OperationDurationUpDown.TabIndex" type="System.Int32, mscorlib">
     <value>30</value>
@@ -3090,7 +3090,7 @@
     <value>High</value>
   </data>
   <data name="mNoiseLevelComboBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>464, 89</value>
+    <value>499, 89</value>
   </data>
   <data name="mNoiseLevelComboBox.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 4, 4, 4</value>
@@ -3099,7 +3099,7 @@
     <value>True</value>
   </data>
   <data name="mNoiseLevelComboBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>139, 24</value>
+    <value>103, 24</value>
   </data>
   <data name="mNoiseLevelComboBox.TabIndex" type="System.Int32, mscorlib">
     <value>24</value>
@@ -3123,7 +3123,7 @@
     <value>NoControl</value>
   </data>
   <data name="label8.Location" type="System.Drawing.Point, System.Drawing">
-    <value>380, 93</value>
+    <value>415, 93</value>
   </data>
   <data name="label8.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 0, 4, 0</value>
@@ -3156,7 +3156,7 @@
     <value>NoControl</value>
   </data>
   <data name="label3.Location" type="System.Drawing.Point, System.Drawing">
-    <value>448, 156</value>
+    <value>415, 156</value>
   </data>
   <data name="label3.ShowHelp" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -3189,7 +3189,7 @@
     <value>Top, Left, Right</value>
   </data>
   <data name="mChannelsTextbox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>464, 63</value>
+    <value>499, 63</value>
   </data>
   <data name="mChannelsTextbox.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 4, 4, 4</value>
@@ -3198,7 +3198,7 @@
     <value>True</value>
   </data>
   <data name="mChannelsTextbox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>120, 22</value>
+    <value>84, 22</value>
   </data>
   <data name="mChannelsTextbox.TabIndex" type="System.Int32, mscorlib">
     <value>20</value>
@@ -3225,7 +3225,7 @@
     <value>Top, Left, Right</value>
   </data>
   <data name="mSampleRateTextbox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>160, 64</value>
+    <value>161, 66</value>
   </data>
   <data name="mSampleRateTextbox.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 4, 4, 4</value>
@@ -3234,7 +3234,7 @@
     <value>True</value>
   </data>
   <data name="mSampleRateTextbox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>134, 22</value>
+    <value>107, 22</value>
   </data>
   <data name="mSampleRateTextbox.TabIndex" type="System.Int32, mscorlib">
     <value>18</value>
@@ -3264,7 +3264,7 @@
     <value>Flat</value>
   </data>
   <data name="mChannelsCombo.Location" type="System.Drawing.Point, System.Drawing">
-    <value>466, 61</value>
+    <value>501, 61</value>
   </data>
   <data name="mChannelsCombo.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 4, 4, 4</value>
@@ -3273,7 +3273,7 @@
     <value>True</value>
   </data>
   <data name="mChannelsCombo.Size" type="System.Drawing.Size, System.Drawing">
-    <value>138, 24</value>
+    <value>102, 24</value>
   </data>
   <data name="mChannelsCombo.TabIndex" type="System.Int32, mscorlib">
     <value>20</value>
@@ -3297,7 +3297,7 @@
     <value>NoControl</value>
   </data>
   <data name="labelChannels.Location" type="System.Drawing.Point, System.Drawing">
-    <value>356, 66</value>
+    <value>392, 66</value>
   </data>
   <data name="labelChannels.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 0, 4, 0</value>
@@ -3345,7 +3345,7 @@
     <value>True</value>
   </data>
   <data name="mSampleRateCombo.Size" type="System.Drawing.Size, System.Drawing">
-    <value>153, 24</value>
+    <value>126, 24</value>
   </data>
   <data name="mSampleRateCombo.TabIndex" type="System.Int32, mscorlib">
     <value>18</value>
