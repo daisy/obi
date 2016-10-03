@@ -4217,7 +4217,7 @@ ref string exportDirectoryEPUB3)
                         }
                         else
                         {
-                            tempPath = tempPathSplit[0] + tempPathSplit[1] + "\\.....\\" + tempPathSplit[tempPathSplit.Length - 2] + "\\...";
+                            tempPath = tempPathSplit[0] + tempPathSplit[1] + "\\.....\\" + tempPathSplit[tempPathSplit.Length - 2] + "\\.. .obi";
                         }
                     }
                 }
