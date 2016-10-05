@@ -6368,25 +6368,70 @@ public bool ShowOnlySelectedSection
 
         public void DetectSilenceErrors()
         {
-            if (Selection != null && Selection.Node is PhraseNode)
+            List<PhraseNode> phrasesList = new List<PhraseNode>();
+            if (Selection != null )
             {
-                PhraseNode phrase = (PhraseNode)Selection.Node;
+                if (Selection.Node is PhraseNode)
+                {
+                    phrasesList.Add((PhraseNode)Selection.Node);
+                }
+                else if (Selection.Node is SectionNode)
+                {
+                    SectionNode section = (SectionNode)Selection.Node;
+                    for (int i = 0; i < section.PhraseChildCount; i++)
+                    {
+                        if (section.PhraseChild(i) is PhraseNode)
+                        {
+                            phrasesList.Add((PhraseNode)section.PhraseChild(i));
+                        }
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Selected node is not section or phrase");
+                    return;
+                }
+                // start detection of silence error from here
+                List<PhraseNode> errorPhraseList = new List<PhraseNode>();
+                bool enableSplit = false;
+                if (MessageBox.Show("Do you want to split the phrases at position of error silence?", "?",
+                    MessageBoxButtons.YesNo) == DialogResult.Yes)
+                {
+                    enableSplit = true;
+                }
                 try
                 {
-                    List<double> silencePositionsList = Audio.PhraseDetection.GetErrorSilencePositionInAsset(phrase.Audio);
-
-                    for (int i = silencePositionsList.Count - 1; i >= 0; i--)
+                    for (int j = 0; j < phrasesList.Count; j++)
                     {
-                        mPresentation.Do(
-                            Commands.Node.SplitAudio.GetSplitCommand(
-                            this, phrase, silencePositionsList[i]));
+                        PhraseNode phrase = phrasesList[j];
+
+                        List<double> silencePositionsList = Audio.PhraseDetection.GetErrorSilencePositionInAsset(phrase.Audio);
+                        if (silencePositionsList.Count > 0)
+                        {
+                            errorPhraseList.Add(phrase);
+                            if (!phrase.TODO)
+                            {
+                                Presentation.Do(new Commands.Node.ToggleNodeTODO(this, phrase));
+                            }
+                            if (enableSplit)
+                            {
+                                for (int i = silencePositionsList.Count - 1; i >= 0; i--)
+                                {
+                                    mPresentation.Do(
+                                        Commands.Node.SplitAudio.GetSplitCommand(
+                                        this, phrase, silencePositionsList[i]));
+                                }
+                            }
+                        }
+
                     }
+
                 }
                 catch (System.Exception ex)
                 {
                     MessageBox.Show(ex.ToString());
                 }
-
+                MessageBox.Show("Number of error phrases found: " + errorPhraseList.Count.ToString());
             }// end of main if
         }
 
