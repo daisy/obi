@@ -6394,8 +6394,8 @@ public bool ShowOnlySelectedSection
                 // start detection of silence error from here
                 List<PhraseNode> errorPhraseList = new List<PhraseNode>();
                 bool enableSplit = false;
-                if (MessageBox.Show("Do you want to split the phrases at position of error silence?", "?",
-                    MessageBoxButtons.YesNo) == DialogResult.Yes)
+                if (MessageBox.Show(Localizer.Message("SplitPhrases_ErrorSilence"),Localizer.Message("Caption_SplitPhrase"),
+                    MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) == DialogResult.Yes)
                 {
                     enableSplit = true;
                 }
@@ -6431,7 +6431,7 @@ public bool ShowOnlySelectedSection
                 {
                     MessageBox.Show(ex.ToString());
                 }
-                MessageBox.Show("Number of error phrases found: " + errorPhraseList.Count.ToString());
+                MessageBox.Show(Localizer.Message("NumberOfErrorPhrase") + errorPhraseList.Count.ToString());
             }// end of main if
         }
 

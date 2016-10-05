@@ -2926,4 +2926,16 @@ Error text: {1}</value>
   <data name="Project_ShowAdvancePropertiesInPropertiesDialogs" xml:space="preserve">
     <value>Show advance properties in properties dialog</value>
   </data>
+  <data name="SplitPhrases_ErrorSilence" xml:space="preserve">
+    <value>Do you want to split the phrases at position of error silence?</value>
+    <comment>Confirmation dialog</comment>
+  </data>
+  <data name="Caption_SplitPhrase" xml:space="preserve">
+    <value>Split the Phrase?</value>
+    <comment>Confirmation dialog</comment>
+  </data>
+  <data name="NumberOfErrorPhrase" xml:space="preserve">
+    <value>Number of error phrases found: </value>
+    <comment>Status message</comment>
+  </data>
 </root>
