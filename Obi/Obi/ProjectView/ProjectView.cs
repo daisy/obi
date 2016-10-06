@@ -6404,7 +6404,7 @@ public bool ShowOnlySelectedSection
                     for (int j = 0; j < phrasesList.Count; j++)
                     {
                         PhraseNode phrase = phrasesList[j];
-                        if (phrase.Audio == null) continue;
+                        if (phrase.Audio == null || phrase.Audio.Duration.AsMilliseconds < 500  ) continue;
                         List<double> silencePositionsList = Audio.PhraseDetection.GetErrorSilencePositionInAsset(phrase.Audio);
                         if (silencePositionsList.Count > 0)
                         {
