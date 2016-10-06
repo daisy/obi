@@ -456,20 +456,20 @@ int SampleValue2 = 0 ;
 
             int iterations = Convert.ToInt32(stream.Length / chunkSizeBytes);
             byte[] chunkArray = new byte[chunkSizeBytes];
-            int referenceVal = 400;
+            int referenceVal = 10;
             int count = 0;
 
-            for (int i = 0; i < iterations; i++)
+                        for (int i = 0; i < iterations; i++)
             {
                 int startPos = Convert.ToInt32(i * chunkSizeBytes);
-                Console.WriteLine("Stream offset: " + startPos );
+                //Console.WriteLine("Stream offset: " + startPos );
                 stream.Read(chunkArray , 
                     0, chunkSizeBytes);
 
                 long threshold =  AudioLib.PhraseDetection.GetSilenceAmplitude(
                     new MemoryStream(chunkArray), 
                     audioPCMFormat);
-
+                
                 if (threshold <= referenceVal && count >6 )
                 {
                     long position = chunkSizeBytes * (i-5) ;
@@ -477,7 +477,15 @@ int SampleValue2 = 0 ;
                     errorPositionsList.Add(position);
                 }
                 count++;
-                if (threshold > referenceVal) count = 0;
+                if (threshold > referenceVal) 
+                {
+                    if (count > 9 && errorPositionsList.Count > 0)
+                    {
+                        Console.WriteLine("Removing last value from list");
+                        errorPositionsList.RemoveAt (errorPositionsList.Count - 1 );
+                    }
+                    count = 0;
+                    }
                 
             }
 
