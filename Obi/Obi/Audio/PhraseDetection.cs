@@ -419,9 +419,10 @@ int SampleValue2 = 0 ;
             AudioLibPCMFormat audioPCMFormat = new AudioLibPCMFormat(RefAsset.AudioMediaData.PCMFormat.Data.NumberOfChannels, RefAsset.AudioMediaData.PCMFormat.Data.SampleRate, RefAsset.AudioMediaData.PCMFormat.Data.BitDepth);
             
             List<long> errorPositionsBytesList = null;
-            Stream stream = RefAsset.AudioMediaData.OpenPcmInputStream();
+            Stream stream = null;
             try
             {
+                stream  = RefAsset.AudioMediaData.OpenPcmInputStream();
                 errorPositionsBytesList = GetErrorSilencePosition(audioPCMFormat, stream);
             }
             finally
