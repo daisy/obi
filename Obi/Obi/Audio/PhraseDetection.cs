@@ -456,7 +456,7 @@ int SampleValue2 = 0 ;
 
             int iterations = Convert.ToInt32(stream.Length / chunkSizeBytes);
             byte[] chunkArray = new byte[chunkSizeBytes];
-            int referenceVal = 10;
+            int referenceVal = 0;
             int count = 0;
 
                         for (int i = 0; i < iterations; i++)
@@ -470,16 +470,18 @@ int SampleValue2 = 0 ;
                     new MemoryStream(chunkArray), 
                     audioPCMFormat);
                 
-                if (threshold <= referenceVal && count >6 )
+                if (threshold <= referenceVal && count >= 7 )
                 {
-                    long position = chunkSizeBytes * (i-5) ;
+                    long position = chunkSizeBytes * (i-7) ;
+                    if (position < 0) position = 0;
                     Console.WriteLine("Silence error found at: " + position);
                     errorPositionsList.Add(position);
                 }
                 count++;
                 if (threshold > referenceVal) 
                 {
-                    if (count > 9 && errorPositionsList.Count > 0)
+                    if (errorPositionsList.Count > 0
+                        && (count > 9 || errorPositionsList[errorPositionsList.Count - 1] <= chunkSizeBytes ))
                     {
                         Console.WriteLine("Removing last value from list");
                         errorPositionsList.RemoveAt (errorPositionsList.Count - 1 );
