@@ -1325,9 +1325,23 @@ namespace Obi.ProjectView
         {
             if (mLabel.Label.Trim ()  != "")
             {
-                // update the label for the node
-                mContentView.RenameStrip(this);
-                mContentView.SelectionFromStrip = new NodeSelection(mNode, mContentView);
+                DialogResult dialogResult = DialogResult.None;
+                if (ContentView.Settings.Project_DisplayWarningsForEditOperations)
+                {
+                    dialogResult = MessageBox.Show(Localizer.Message("ConfirmSectionRename"), Localizer.Message("Caption_Warning"), MessageBoxButtons.OKCancel);
+                }
+                if (dialogResult == DialogResult.None || dialogResult == DialogResult.OK)
+                {
+                    // update the label for the node
+                    mContentView.RenameStrip(this);
+                    mContentView.SelectionFromStrip = new NodeSelection(mNode, mContentView);
+                }
+                else
+                {
+                    // restore the previous label from the node
+                    mLabel.Label = mNode.Label;
+                }
+                
             }
             else
             {

@@ -2938,4 +2938,16 @@ Error text: {1}</value>
     <value>Number of error phrases found: </value>
     <comment>Status message</comment>
   </data>
+  <data name="Project_DisplayWarningsForEditOperations" xml:space="preserve">
+    <value>Warn before section manipulation</value>
+  </data>
+  <data name="ConfirmSectionDelete" xml:space="preserve">
+    <value>You are about to delete section. Do you want to continue?</value>
+  </data>
+  <data name="ConfirmSectionRename" xml:space="preserve">
+    <value>You are about to rename section. Do you want to continue?</value>
+  </data>
+  <data name="ConfirmSectionCut" xml:space="preserve">
+    <value>You are about to cut section. Do you want to continue?</value>
+  </data>
 </root>

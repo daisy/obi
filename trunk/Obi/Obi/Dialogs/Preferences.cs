@@ -1109,6 +1109,7 @@ m_cb_ChooseFont.Visible = false;
                 mSettings.Project_IncreasePhraseHightForHigherResolution = m_CheckBoxListView.Items[19].Checked;
                 mSettings.Project_SaveTOCViewWidth = m_CheckBoxListView.Items[20].Checked;
                 mSettings.Project_ShowAdvancePropertiesInPropertiesDialogs = m_CheckBoxListView.Items[21].Checked;
+                mSettings.Project_DisplayWarningsForEditOperations = m_CheckBoxListView.Items[22].Checked;
             }
             if (mTab.SelectedTab == mAudioTab)
             {
@@ -1295,6 +1296,7 @@ m_cb_ChooseFont.Visible = false;
                 m_CheckBoxListView.Items.Add(Localizer.Message("Project_IncreasePhraseHightForHigherResolution"));
                 m_CheckBoxListView.Items.Add(Localizer.Message("Project_SaveTOCViewWidth"));
                 m_CheckBoxListView.Items.Add(Localizer.Message("Project_ShowAdvancePropertiesInPropertiesDialogs"));
+                m_CheckBoxListView.Items.Add(Localizer.Message("Project_DisplayWarningsForEditOperations"));
                
                 m_CheckBoxListView.Items[0].Checked = mSettings.Project_OpenLastProject;
                 m_CheckBoxListView.Items[0].ToolTipText = Localizer.Message("ProjectTab_OpenLastProject");
@@ -1340,6 +1342,8 @@ m_cb_ChooseFont.Visible = false;
                 m_CheckBoxListView.Items[20].ToolTipText = Localizer.Message("Project_SaveTOCViewWidth");
                 m_CheckBoxListView.Items[21].Checked = mSettings.Project_ShowAdvancePropertiesInPropertiesDialogs;
                 m_CheckBoxListView.Items[21].ToolTipText = Localizer.Message("Project_ShowAdvancePropertiesInPropertiesDialogs");
+                m_CheckBoxListView.Items[22].Checked = mSettings.Project_DisplayWarningsForEditOperations;
+                m_CheckBoxListView.Items[22].ToolTipText = Localizer.Message("Project_DisplayWarningsForEditOperations");
 
             }
             m_CheckBoxListView.View = View.Details;
@@ -1427,6 +1431,7 @@ m_cb_ChooseFont.Visible = false;
                 mSettings.Project_IncreasePhraseHightForHigherResolution = m_DefaultSettings.Project_IncreasePhraseHightForHigherResolution;
                 mSettings.Project_SaveTOCViewWidth = m_DefaultSettings.Project_SaveTOCViewWidth;
                 mSettings.Project_ShowAdvancePropertiesInPropertiesDialogs = m_DefaultSettings.Project_ShowAdvancePropertiesInPropertiesDialogs;
+                mSettings.Project_DisplayWarningsForEditOperations = m_DefaultSettings.Project_DisplayWarningsForEditOperations;
                 InitializeProjectTab();
             }
             else if (mTab.SelectedTab == mAudioTab) // Default settings for Audio tab
