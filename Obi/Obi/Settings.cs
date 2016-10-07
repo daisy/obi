@@ -285,6 +285,8 @@ namespace Obi
                 m_PreferencesDialogSize[1] = value.Height;
             }
         }
+        [OptionalField]
+        public bool Project_DisplayWarningsForEditOperations;
        
 
         // Obi 3.9
@@ -425,6 +427,7 @@ namespace Obi
             settings.Audio_ShowSelectionTimeInTransportBar = false;
             settings.PreferencesDialogSize= new Size(0, 0);
             settings.Project_ShowAdvancePropertiesInPropertiesDialogs = false;
+            settings.Project_DisplayWarningsForEditOperations = false;
         }
 
         /// <summary>

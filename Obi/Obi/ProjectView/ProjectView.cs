@@ -837,48 +837,56 @@ namespace Obi.ProjectView
 
             try
                 {
-            if (CanRemoveSection || CanRemoveStrip)
-                {
-                bool isSection = mSelection.Control is TOCView;
-                CompositeCommand command = Presentation.CreateCompositeCommand (
-                    Localizer.Message ( isSection ? "cut_section" : "cut_section_shallow" ) );
-                
-                    command.ChildCommands.Insert(command.ChildCommands.Count, new Commands.Node.Copy(this, isSection));
-                    if (CanRemoveStrip)
-                        command.ChildCommands.Insert(command.ChildCommands.Count, mContentView.DeleteStripCommand());
-                    else
-                        command.ChildCommands.Insert(command.ChildCommands.Count, new Commands.Node.Delete(this, mSelection.Node));
-                    mPresentation.Do(command);
-                
-                // quick fix for null selection problem while cutting single section ins single section project
-                if (mPresentation.FirstSection == null) Selection = null;
-                }
-            else if (CanRemoveBlock)
-                {
-                    EmptyNode anchor = null;
-                    if (CanDeleteSpecialNode(out anchor)) //@AssociateNode
+                    if (CanRemoveSection || CanRemoveStrip)
+                    {
+                        DialogResult dialogResult = DialogResult.None;
+                        if (this.ObiForm.Settings.Project_DisplayWarningsForEditOperations)
+                        {
+                            dialogResult = MessageBox.Show(Localizer.Message("ConfirmSectionCut"), Localizer.Message("Caption_Warning"), MessageBoxButtons.OKCancel);
+                        }
+                        if (dialogResult == DialogResult.None || dialogResult == DialogResult.OK)
+                        {
+                            bool isSection = mSelection.Control is TOCView;
+                            CompositeCommand command = Presentation.CreateCompositeCommand(
+                                Localizer.Message(isSection ? "cut_section" : "cut_section_shallow"));
+
+                            command.ChildCommands.Insert(command.ChildCommands.Count, new Commands.Node.Copy(this, isSection));
+                            if (CanRemoveStrip)
+                                command.ChildCommands.Insert(command.ChildCommands.Count, mContentView.DeleteStripCommand());
+                            else
+                                command.ChildCommands.Insert(command.ChildCommands.Count, new Commands.Node.Delete(this, mSelection.Node));
+                            mPresentation.Do(command);
+
+                            // quick fix for null selection problem while cutting single section ins single section project
+                            if (mPresentation.FirstSection == null) Selection = null;
+                        }
+                    }
+                    else if (CanRemoveBlock)
+                    {
+                        EmptyNode anchor = null;
+                        if (CanDeleteSpecialNode(out anchor)) //@AssociateNode
+                        {
+                            CompositeCommand command = mPresentation.CommandFactory.CreateCompositeCommand();
+                            command.ShortDescription = Localizer.Message("cut_phrase");
+
+                            command.ChildCommands.Insert(command.ChildCommands.Count, new Commands.Node.Copy(this, true));
+                            if (anchor != null) command.ChildCommands.Insert(command.ChildCommands.Count, new Commands.Node.AssociateAnchorNode(this, anchor, (EmptyNode)Selection.Node.FollowingNode));
+                            command.ChildCommands.Insert(command.ChildCommands.Count, new Commands.Node.Delete(this, mSelection.Node));
+                            mPresentation.Do(command);
+                        }
+                    }
+                    else if (CanRemoveAudio)
                     {
                         CompositeCommand command = mPresentation.CommandFactory.CreateCompositeCommand();
-                        command.ShortDescription = Localizer.Message("cut_phrase");
-                        
-                        command.ChildCommands.Insert(command.ChildCommands.Count, new Commands.Node.Copy(this, true));
-                        if (anchor != null) command.ChildCommands.Insert(command.ChildCommands.Count, new Commands.Node.AssociateAnchorNode(this, anchor, (EmptyNode)Selection.Node.FollowingNode));
-                        command.ChildCommands.Insert(command.ChildCommands.Count, new Commands.Node.Delete(this, mSelection.Node));
-                        mPresentation.Do(command);                       
+                        command.ShortDescription = Localizer.Message("cut_audio");
+                        urakawa.command.Command delete = Commands.Audio.Delete.GetCommand(this);
+                        PhraseNode deleted = delete is Commands.Audio.Delete ?
+                            ((Commands.Audio.Delete)delete).Deleted : (PhraseNode)Selection.Node;
+                        command.ChildCommands.Insert(command.ChildCommands.Count, new Commands.Audio.Copy(this, deleted,
+                            new AudioRange(0.0, deleted.Audio.Duration.AsMilliseconds)));
+                        command.ChildCommands.Insert(command.ChildCommands.Count, delete);
+                        mPresentation.Do(command);
                     }
-                }
-            else if (CanRemoveAudio)
-                {
-                CompositeCommand command = mPresentation.CommandFactory.CreateCompositeCommand ();
-                command.ShortDescription = Localizer.Message ( "cut_audio" ) ;
-                urakawa.command.Command delete = Commands.Audio.Delete.GetCommand ( this );
-                PhraseNode deleted = delete is Commands.Audio.Delete ?
-                    ((Commands.Audio.Delete)delete).Deleted : (PhraseNode)Selection.Node;
-                command.ChildCommands.Insert(command.ChildCommands.Count, new Commands.Audio.Copy ( this, deleted,
-                    new AudioRange ( 0.0, deleted.Audio.Duration.AsMilliseconds ) ) );
-                command.ChildCommands.Insert(command.ChildCommands.Count, delete );
-                mPresentation.Do ( command );
-                }
             }
             catch (System.Exception ex)
             {
@@ -900,22 +908,43 @@ namespace Obi.ProjectView
             {
                 if (CanRemoveSection)
                 {
-                    mPresentation.Do(new Commands.Node.Delete(this, mTOCView.Selection.Section,
-                        Localizer.Message("delete_section")));
+                    DialogResult dialogResult = DialogResult.None;
+                    if (this.ObiForm.Settings.Project_DisplayWarningsForEditOperations)
+                    {
+                        dialogResult = MessageBox.Show(Localizer.Message("ConfirmSectionDelete"), Localizer.Message("Caption_Warning"), MessageBoxButtons.OKCancel);
+                    }
+                    if (dialogResult == DialogResult.None || dialogResult == DialogResult.OK)
+                    {
+                        mPresentation.Do(new Commands.Node.Delete(this, mTOCView.Selection.Section,
+                            Localizer.Message("delete_section")));
+                    }
                 }
                 else if (CanRemoveStrip)
                 {
                     // first create landing strip
                     if (Selection != null && Selection.Node is SectionNode) //@singleSection: begin
                     {
-                        SectionNode section = (SectionNode)Selection.Node;
-                        SectionNode landingSectionNode = section.FollowingSection;
-                        if (landingSectionNode == null) landingSectionNode = section.PrecedingSection;
-
-                        if (landingSectionNode != null)
+                        DialogResult dialogResult = DialogResult.None;
+                        if (this.ObiForm.Settings.Project_DisplayWarningsForEditOperations)
                         {
-                            mContentView.CreateStripForSelectedSection(landingSectionNode, false);
+                            dialogResult = MessageBox.Show(Localizer.Message("ConfirmSectionDelete"), Localizer.Message("Caption_Warning"), MessageBoxButtons.OKCancel);
                         }
+                        if (dialogResult == DialogResult.None || dialogResult == DialogResult.OK)
+                        {
+                            SectionNode section = (SectionNode)Selection.Node;
+                            SectionNode landingSectionNode = section.FollowingSection;
+                            if (landingSectionNode == null) landingSectionNode = section.PrecedingSection;
+
+                            if (landingSectionNode != null)
+                            {
+                                mContentView.CreateStripForSelectedSection(landingSectionNode, false);
+                            }
+                        }
+                        else
+                        {
+                            return;
+                        }
+
                     }//@singleSection: end
 
                     mPresentation.Do(mContentView.DeleteStripCommand());
@@ -927,7 +956,7 @@ namespace Obi.ProjectView
                     {
                         urakawa.command.CompositeCommand deleteCmd = mPresentation.CreateCompositeCommand("Delete command");
 
-                        if (anchor != null) deleteCmd.ChildCommands.Insert(deleteCmd.ChildCommands.Count, new Commands.Node.AssociateAnchorNode(this, anchor, (EmptyNode) Selection.Node.FollowingNode));
+                        if (anchor != null) deleteCmd.ChildCommands.Insert(deleteCmd.ChildCommands.Count, new Commands.Node.AssociateAnchorNode(this, anchor, (EmptyNode)Selection.Node.FollowingNode));
                         deleteCmd.ChildCommands.Insert(deleteCmd.ChildCommands.Count, new Commands.Node.Delete(this, SelectedNodeAs<EmptyNode>(),
                            Localizer.Message("delete_phrase")));
                         mPresentation.Do(deleteCmd);

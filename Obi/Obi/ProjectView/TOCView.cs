@@ -697,15 +697,29 @@ namespace Obi.ProjectView
         // Cancel if the text is empty.
         private void TOCTree_AfterLabelEdit(object sender, NodeLabelEditEventArgs e)
         {
-            if (e.Node.Tag != null && e.Label != null && e.Label.Trim ()  != "")
+            DialogResult dialogResult = DialogResult.None;
+            if (mProjectView.ObiForm.Settings.Project_DisplayWarningsForEditOperations)
             {
-                mProjectView.RenameSectionNode((SectionNode)e.Node.Tag, e.Label);
+                dialogResult = MessageBox.Show(Localizer.Message("ConfirmSectionRename"), Localizer.Message("Caption_Warning"), MessageBoxButtons.OKCancel);
+            }
+            if (dialogResult == DialogResult.None || dialogResult == DialogResult.OK)
+            {
+                if (e.Node.Tag != null && e.Label != null && e.Label.Trim() != "")
+                {
+                    mProjectView.RenameSectionNode((SectionNode)e.Node.Tag, e.Label);
+                }
+                else
+                {
+                    e.CancelEdit = true;
+                    mProjectView.Selection = new NodeSelection((SectionNode)e.Node.Tag, this);
+                }
             }
             else
             {
                 e.CancelEdit = true;
                 mProjectView.Selection = new NodeSelection((SectionNode)e.Node.Tag, this);
             }
+          
         }
 
         // Pass a new selection to the main view.
