@@ -844,22 +844,21 @@ namespace Obi.ProjectView
                         {
                             dialogResult = MessageBox.Show(Localizer.Message("ConfirmSectionCut"), Localizer.Message("Caption_Warning"), MessageBoxButtons.OKCancel);
                         }
-                        if (dialogResult == DialogResult.None || dialogResult == DialogResult.OK)
-                        {
-                            bool isSection = mSelection.Control is TOCView;
-                            CompositeCommand command = Presentation.CreateCompositeCommand(
-                                Localizer.Message(isSection ? "cut_section" : "cut_section_shallow"));
+                        if (dialogResult == DialogResult.Cancel) return;
 
-                            command.ChildCommands.Insert(command.ChildCommands.Count, new Commands.Node.Copy(this, isSection));
-                            if (CanRemoveStrip)
-                                command.ChildCommands.Insert(command.ChildCommands.Count, mContentView.DeleteStripCommand());
-                            else
-                                command.ChildCommands.Insert(command.ChildCommands.Count, new Commands.Node.Delete(this, mSelection.Node));
-                            mPresentation.Do(command);
+                        bool isSection = mSelection.Control is TOCView;
+                        CompositeCommand command = Presentation.CreateCompositeCommand(
+                            Localizer.Message(isSection ? "cut_section" : "cut_section_shallow"));
 
-                            // quick fix for null selection problem while cutting single section ins single section project
-                            if (mPresentation.FirstSection == null) Selection = null;
-                        }
+                        command.ChildCommands.Insert(command.ChildCommands.Count, new Commands.Node.Copy(this, isSection));
+                        if (CanRemoveStrip)
+                            command.ChildCommands.Insert(command.ChildCommands.Count, mContentView.DeleteStripCommand());
+                        else
+                            command.ChildCommands.Insert(command.ChildCommands.Count, new Commands.Node.Delete(this, mSelection.Node));
+                        mPresentation.Do(command);
+
+                        // quick fix for null selection problem while cutting single section ins single section project
+                        if (mPresentation.FirstSection == null) Selection = null;
                     }
                     else if (CanRemoveBlock)
                     {
@@ -913,11 +912,9 @@ namespace Obi.ProjectView
                     {
                         dialogResult = MessageBox.Show(Localizer.Message("ConfirmSectionDelete"), Localizer.Message("Caption_Warning"), MessageBoxButtons.OKCancel);
                     }
-                    if (dialogResult == DialogResult.None || dialogResult == DialogResult.OK)
-                    {
-                        mPresentation.Do(new Commands.Node.Delete(this, mTOCView.Selection.Section,
-                            Localizer.Message("delete_section")));
-                    }
+                    if (dialogResult == DialogResult.Cancel) return;
+                    mPresentation.Do(new Commands.Node.Delete(this, mTOCView.Selection.Section,
+                        Localizer.Message("delete_section")));
                 }
                 else if (CanRemoveStrip)
                 {

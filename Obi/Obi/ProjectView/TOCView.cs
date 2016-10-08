@@ -702,24 +702,22 @@ namespace Obi.ProjectView
             {
                 dialogResult = MessageBox.Show(Localizer.Message("ConfirmSectionRename"), Localizer.Message("Caption_Warning"), MessageBoxButtons.OKCancel);
             }
-            if (dialogResult == DialogResult.None || dialogResult == DialogResult.OK)
+            if (dialogResult == DialogResult.Cancel)
             {
-                if (e.Node.Tag != null && e.Label != null && e.Label.Trim() != "")
-                {
-                    mProjectView.RenameSectionNode((SectionNode)e.Node.Tag, e.Label);
-                }
-                else
-                {
-                    e.CancelEdit = true;
-                    mProjectView.Selection = new NodeSelection((SectionNode)e.Node.Tag, this);
-                }
+                e.CancelEdit = true;
+                mProjectView.Selection = new NodeSelection((SectionNode)e.Node.Tag, this);
+                return;
+            } 
+
+            if (e.Node.Tag != null && e.Label != null && e.Label.Trim() != "")
+            {
+                mProjectView.RenameSectionNode((SectionNode)e.Node.Tag, e.Label);
             }
             else
             {
                 e.CancelEdit = true;
                 mProjectView.Selection = new NodeSelection((SectionNode)e.Node.Tag, this);
             }
-          
         }
 
         // Pass a new selection to the main view.
