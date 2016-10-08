@@ -1979,6 +1979,7 @@ m_cb_ChooseFont.Visible = false;
         {
             string preDefinedProfilesDirectory = GetPredefinedProfilesDirectory();
             string[] filePaths = System.IO.Directory.GetFiles(preDefinedProfilesDirectory, "*.xml");
+            ColorSettings defaultColorsettings = ColorSettings.DefaultColorSettings();
             for (int i = 0; i < filePaths.Length; i++)
             {
                // m_cb_SelectProfile.SelectedIndex = index;
@@ -2025,6 +2026,7 @@ m_cb_ChooseFont.Visible = false;
                     mSettings.Audio_DefaultGap = 300;
                     mSettings.Audio_PreviewDuration = 1500;
                     mSettings.PlayOnNavigate = false;
+                    mSettings.ColorSettings.WaveformBackColor = defaultColorsettings.WaveformBackColor;
 
                     UpdateBoolSettings();
                     mTab.SelectedTab = mProjectTab;
@@ -2050,6 +2052,8 @@ m_cb_ChooseFont.Visible = false;
                     m_CheckBoxListView.Items[18].Checked = false;
                     m_CheckBoxListView.Items[19].Checked = false;
                     m_CheckBoxListView.Items[20].Checked = false;
+                    m_CheckBoxListView.Items[21].Checked = false;
+                    m_CheckBoxListView.Items[22].Checked = false;
                     UpdateBoolSettings();
                 }
                 else if (Profile == "Intermediate.xml" || Profile == "Intermediate.XML")
@@ -2086,6 +2090,7 @@ m_cb_ChooseFont.Visible = false;
                     mSettings.Audio_DefaultGap = 300;
                     mSettings.Audio_PreviewDuration = 1500;
                     mSettings.PlayOnNavigate = false;
+                    mSettings.ColorSettings.WaveformBackColor = defaultColorsettings.WaveformBackColor;
 
                     UpdateBoolSettings();
                     mTab.SelectedTab = mProjectTab;
@@ -2111,6 +2116,8 @@ m_cb_ChooseFont.Visible = false;
                     m_CheckBoxListView.Items[18].Checked = false;
                     m_CheckBoxListView.Items[19].Checked = false;
                     m_CheckBoxListView.Items[20].Checked = false;
+                    m_CheckBoxListView.Items[21].Checked = false;
+                    m_CheckBoxListView.Items[22].Checked = false;
                     UpdateBoolSettings();
                 }
                 else if (Profile == "Advance.xml" || Profile == "Advance.XML")
@@ -2146,6 +2153,7 @@ m_cb_ChooseFont.Visible = false;
                     mSettings.Audio_DefaultGap = 300;
                     mSettings.Audio_PreviewDuration = 1500;
                     mSettings.PlayOnNavigate = false;
+                    mSettings.ColorSettings.WaveformBackColor = defaultColorsettings.WaveformBackColor;
 
                     UpdateBoolSettings();
                     mTab.SelectedTab = mProjectTab;
@@ -2171,6 +2179,8 @@ m_cb_ChooseFont.Visible = false;
                     m_CheckBoxListView.Items[18].Checked = false;
                     m_CheckBoxListView.Items[19].Checked = false;
                     m_CheckBoxListView.Items[20].Checked = false;
+                    m_CheckBoxListView.Items[21].Checked = false;
+                    m_CheckBoxListView.Items[22].Checked = false;
                     UpdateBoolSettings();
                 }
                 else if (Profile == "Profile-SBS.xml" || Profile == "Profile-SBS.XML")
@@ -2206,6 +2216,7 @@ m_cb_ChooseFont.Visible = false;
                     mSettings.Audio_DefaultGap = 300;
                     mSettings.Audio_PreviewDuration = 1500;
                     mSettings.PlayOnNavigate = false;
+                    mSettings.ColorSettings.WaveformBackColor = defaultColorsettings.WaveformBackColor;
 
                     UpdateBoolSettings();
                     mTab.SelectedTab = mProjectTab;
@@ -2231,6 +2242,8 @@ m_cb_ChooseFont.Visible = false;
                     m_CheckBoxListView.Items[18].Checked = false;
                     m_CheckBoxListView.Items[19].Checked = false;
                     m_CheckBoxListView.Items[20].Checked = false;
+                    m_CheckBoxListView.Items[21].Checked = true;
+                    m_CheckBoxListView.Items[22].Checked = false;
                     UpdateBoolSettings();
 
 
@@ -2269,6 +2282,7 @@ m_cb_ChooseFont.Visible = false;
                     mSettings.Audio_DefaultGap = 600;
                     mSettings.Audio_PreviewDuration = 7000;
                     mSettings.PlayOnNavigate = false;
+                    mSettings.ColorSettings.WaveformBackColor = Color.LightGreen;
 
                     UpdateBoolSettings();
                     mTab.SelectedTab = mProjectTab;
@@ -2293,6 +2307,8 @@ m_cb_ChooseFont.Visible = false;
                     m_CheckBoxListView.Items[18].Checked = true;
                     m_CheckBoxListView.Items[19].Checked = true;
                     m_CheckBoxListView.Items[20].Checked = false;
+                    m_CheckBoxListView.Items[21].Checked = true;
+                    m_CheckBoxListView.Items[22].Checked = false;
                     UpdateBoolSettings();
 
                 }
@@ -2330,6 +2346,7 @@ m_cb_ChooseFont.Visible = false;
                     mSettings.Audio_DefaultGap = 600;
                     mSettings.Audio_PreviewDuration = 7000;
                     mSettings.PlayOnNavigate = false;
+                    mSettings.ColorSettings.WaveformBackColor = Color.LightPink;
 
 
                     UpdateBoolSettings();
@@ -2355,6 +2372,8 @@ m_cb_ChooseFont.Visible = false;
                     m_CheckBoxListView.Items[18].Checked = true;
                     m_CheckBoxListView.Items[19].Checked = true;
                     m_CheckBoxListView.Items[20].Checked = false;
+                    m_CheckBoxListView.Items[21].Checked = true;
+                    m_CheckBoxListView.Items[22].Checked = true;
                     UpdateBoolSettings();
 
                 }
@@ -2392,6 +2411,7 @@ m_cb_ChooseFont.Visible = false;
                     mSettings.Audio_DefaultGap = 600;
                     mSettings.Audio_PreviewDuration = 7000;
                     mSettings.PlayOnNavigate = false;
+                    mSettings.ColorSettings.WaveformBackColor = Color.AntiqueWhite;
 
                     UpdateBoolSettings();
                     mTab.SelectedTab = mProjectTab;
@@ -2416,6 +2436,8 @@ m_cb_ChooseFont.Visible = false;
                     m_CheckBoxListView.Items[18].Checked = true;
                     m_CheckBoxListView.Items[19].Checked = true;
                     m_CheckBoxListView.Items[20].Checked = false;
+                    m_CheckBoxListView.Items[21].Checked = true;
+                    m_CheckBoxListView.Items[22].Checked = true;
                     UpdateBoolSettings();
 
                 }
