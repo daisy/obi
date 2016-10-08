@@ -842,7 +842,7 @@ namespace Obi.ProjectView
                         DialogResult dialogResult = DialogResult.None;
                         if (this.ObiForm.Settings.Project_DisplayWarningsForEditOperations)
                         {
-                            dialogResult = MessageBox.Show(Localizer.Message("ConfirmSectionCut"), Localizer.Message("Caption_Warning"), MessageBoxButtons.OKCancel);
+                            dialogResult = MessageBox.Show(Localizer.Message("ConfirmSectionCut"), Localizer.Message("Caption_Warning"), MessageBoxButtons.OKCancel,MessageBoxIcon.Warning);
                         }
                         if (dialogResult == DialogResult.Cancel) return;
 
@@ -910,7 +910,7 @@ namespace Obi.ProjectView
                     DialogResult dialogResult = DialogResult.None;
                     if (this.ObiForm.Settings.Project_DisplayWarningsForEditOperations)
                     {
-                        dialogResult = MessageBox.Show(Localizer.Message("ConfirmSectionDelete"), Localizer.Message("Caption_Warning"), MessageBoxButtons.OKCancel);
+                        dialogResult = MessageBox.Show(Localizer.Message("ConfirmSectionDelete"), Localizer.Message("Caption_Warning"), MessageBoxButtons.OKCancel,MessageBoxIcon.Warning);
                     }
                     if (dialogResult == DialogResult.Cancel) return;
                     mPresentation.Do(new Commands.Node.Delete(this, mTOCView.Selection.Section,
@@ -924,22 +924,17 @@ namespace Obi.ProjectView
                         DialogResult dialogResult = DialogResult.None;
                         if (this.ObiForm.Settings.Project_DisplayWarningsForEditOperations)
                         {
-                            dialogResult = MessageBox.Show(Localizer.Message("ConfirmSectionDelete"), Localizer.Message("Caption_Warning"), MessageBoxButtons.OKCancel);
+                            dialogResult = MessageBox.Show(Localizer.Message("ConfirmSectionDelete"), Localizer.Message("Caption_Warning"), MessageBoxButtons.OKCancel,MessageBoxIcon.Warning);
                         }
-                        if (dialogResult == DialogResult.None || dialogResult == DialogResult.OK)
-                        {
-                            SectionNode section = (SectionNode)Selection.Node;
-                            SectionNode landingSectionNode = section.FollowingSection;
-                            if (landingSectionNode == null) landingSectionNode = section.PrecedingSection;
+                        if (dialogResult == DialogResult.Cancel) return;
 
-                            if (landingSectionNode != null)
-                            {
-                                mContentView.CreateStripForSelectedSection(landingSectionNode, false);
-                            }
-                        }
-                        else
+                        SectionNode section = (SectionNode)Selection.Node;
+                        SectionNode landingSectionNode = section.FollowingSection;
+                        if (landingSectionNode == null) landingSectionNode = section.PrecedingSection;
+
+                        if (landingSectionNode != null)
                         {
-                            return;
+                            mContentView.CreateStripForSelectedSection(landingSectionNode, false);
                         }
 
                     }//@singleSection: end
