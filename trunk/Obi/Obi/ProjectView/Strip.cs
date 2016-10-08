@@ -1330,17 +1330,18 @@ namespace Obi.ProjectView
                 {
                     dialogResult = MessageBox.Show(Localizer.Message("ConfirmSectionRename"), Localizer.Message("Caption_Warning"), MessageBoxButtons.OKCancel);
                 }
+                if (dialogResult == DialogResult.Cancel) return;
                 if (dialogResult == DialogResult.None || dialogResult == DialogResult.OK)
                 {
                     // update the label for the node
                     mContentView.RenameStrip(this);
                     mContentView.SelectionFromStrip = new NodeSelection(mNode, mContentView);
                 }
-                else
-                {
-                    // restore the previous label from the node
-                    mLabel.Label = mNode.Label;
-                }
+                //else
+                //{
+                //    // restore the previous label from the node
+                //    mLabel.Label = mNode.Label;
+                //}
                 
             }
             else
