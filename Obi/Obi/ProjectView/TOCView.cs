@@ -700,7 +700,7 @@ namespace Obi.ProjectView
             DialogResult dialogResult = DialogResult.None;
             if (mProjectView.ObiForm.Settings.Project_DisplayWarningsForEditOperations)
             {
-                dialogResult = MessageBox.Show(Localizer.Message("ConfirmSectionRename"), Localizer.Message("Caption_Warning"), MessageBoxButtons.OKCancel);
+                dialogResult = MessageBox.Show(Localizer.Message("ConfirmSectionRename"), Localizer.Message("Caption_Warning"), MessageBoxButtons.OKCancel,MessageBoxIcon.Warning);
             }
             if (dialogResult == DialogResult.Cancel)
             {
