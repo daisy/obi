@@ -285,13 +285,14 @@ namespace Obi
                 m_PreferencesDialogSize[1] = value.Height;
             }
         }
-        [OptionalField]
-        public bool Project_DisplayWarningsForEditOperations;
+
        
 
         // Obi 3.9
         [OptionalField]
         public bool Project_ShowAdvancePropertiesInPropertiesDialogs; // Shows advance properties in project & phrase, section properties dialog 
+        [OptionalField]
+        public bool Project_DisplayWarningsForEditOperations;
 
         protected static void InitializeDefaultSettings(Settings settings)
         {
