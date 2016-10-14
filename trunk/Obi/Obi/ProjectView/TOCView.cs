@@ -653,7 +653,7 @@ namespace Obi.ProjectView
             else if (mProjectView.ObiForm.Settings.Project_BackgroundColorForEmptySection && e is urakawa.events.media.data.audio.AudioDataInsertedEventArgs)
             {
                 TreeNode TreeNode = FindTreeNodeWithoutLabel((SectionNode)m_HighlightedSectionNodeWithoutSelection);
-                if (TreeNode.BackColor == mProjectView.ObiForm.Settings.ColorSettings.EmptySectionBackgroundColor)
+                if (TreeNode != null && mProjectView != null &&  TreeNode.BackColor == mProjectView.ObiForm.Settings.ColorSettings.EmptySectionBackgroundColor)
                 {
                     TreeNode.BackColor = mProjectView.ColorSettings.HighlightedSectionNodeWithoutSelectionColor;
                     TreeNode.ForeColor = SystemColors.ControlText;
