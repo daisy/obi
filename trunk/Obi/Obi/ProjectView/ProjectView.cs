@@ -6397,8 +6397,10 @@ public bool ShowOnlySelectedSection
                     phrasesList.Add((PhraseNode)Selection.Node);
                 }
                 else if (Selection.Node is SectionNode)
-                {
+                {   
                     SectionNode section = (SectionNode)Selection.Node;
+                    DetectErrorSilenceInSection(section);
+                    return;
                     for (int i = 0; i < section.PhraseChildCount; i++)
                     {
                         if (section.PhraseChild(i) is PhraseNode)
@@ -6455,8 +6457,64 @@ public bool ShowOnlySelectedSection
                 MessageBox.Show(Localizer.Message("NumberOfErrorPhrase") + errorPhraseList.Count.ToString());
             }// end of main if
         }
+        public void DetectErrorSilenceInSection(SectionNode section)
+        {
+            List<PhraseNode> errorPhraseList = new List<PhraseNode>();
+            PhraseNode phrase = null;
+            try
+            {
+                for (int i = 0; i < section.PhraseChildCount; i++)
+                {
+                    EmptyNode empty = section.PhraseChild(i);
+                    if (empty is PhraseNode && ((PhraseNode)empty).Audio != null)
+                    {
+                        PhraseNode p = (PhraseNode)section.PhraseChild(i);
+                        if (phrase == null)
+                        {
+                            phrase =(PhraseNode)  p.Copy ();
+                        }
+                        else
+                        {
+                            phrase.MergeAudioWith(p.Audio.Copy());
+                        }
+                    }
+                }
 
+                List<double> silencePositionsList = Audio.PhraseDetection.GetErrorSilencePositionInAsset(phrase.Audio);
+                double phraseInitialTime = 0;
+
+                for (int i = 0; i < section.PhraseChildCount; i++)
+                {
+                    if (section.PhraseChild(i) is PhraseNode && ((PhraseNode)section.PhraseChild(i)).Audio != null)
+                    {
+                        PhraseNode p = (PhraseNode)section.PhraseChild(i);
+                        double endTime = phraseInitialTime + p.Duration;
+                        for (int j = 0; j < silencePositionsList.Count; j++)
+                        {
+                            if (silencePositionsList[j] > phraseInitialTime && silencePositionsList[j] < endTime)
+                            {
+                                if (!p.TODO)
+                                {
+                                    errorPhraseList.Add(p);
+                                    Presentation.Do(new Commands.Node.ToggleNodeTODO(this, p));
+                                }
+                                Console.WriteLine("Removing time: " + silencePositionsList[j]);
+                                silencePositionsList.RemoveAt(j);
+                                j--;
+                            }// time check
+                        } // j iteration
+                        phraseInitialTime = endTime;
+                    }
+                }
+            } //try block
+            catch (System.Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+            MessageBox.Show(Localizer.Message("NumberOfErrorPhrase") + errorPhraseList.Count.ToString());
         }
+
+    }
 
     public class ImportingFileEventArgs
         {
