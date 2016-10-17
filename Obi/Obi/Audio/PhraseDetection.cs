@@ -482,7 +482,7 @@ int SampleValue2 = 0 ;
                 if (threshold > referenceVal) 
                 {
                     if (errorPositionsList.Count > 0
-                        && (count > 10 || errorPositionsList[errorPositionsList.Count - 1] <= chunkSizeBytes ))
+                        && (count > 9 || errorPositionsList[errorPositionsList.Count - 1] <= chunkSizeBytes ))
                     {
                         Console.WriteLine("Removing last value from list");
                         errorPositionsList.RemoveAt (errorPositionsList.Count - 1 );
