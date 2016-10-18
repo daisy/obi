@@ -293,6 +293,8 @@ namespace Obi
         public bool Project_ShowAdvancePropertiesInPropertiesDialogs; // Shows advance properties in project & phrase, section properties dialog 
         [OptionalField]
         public bool Project_DisplayWarningsForEditOperations;
+        [OptionalField]
+        public bool Audio_RecordInFirstEmptyPhraseWithRecordSectionCommand; // if first phrase of section is empty phrase then record section will record on it
 
         protected static void InitializeDefaultSettings(Settings settings)
         {
@@ -427,8 +429,10 @@ namespace Obi
             settings.Audio_SelectLastPhrasePlayed = false;
             settings.Audio_ShowSelectionTimeInTransportBar = false;
             settings.PreferencesDialogSize= new Size(0, 0);
+            // obi 3.9
             settings.Project_ShowAdvancePropertiesInPropertiesDialogs = false;
             settings.Project_DisplayWarningsForEditOperations = false;
+            settings.Audio_RecordInFirstEmptyPhraseWithRecordSectionCommand = false;
         }
 
         /// <summary>
