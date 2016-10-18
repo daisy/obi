@@ -2047,6 +2047,16 @@ namespace Obi.ProjectView
                                 }
             //@singleSection: if phrases till recording phrases are hidden, remove existing phrases to enable content view start from phrases near to recording phrase
             mView.RecreateContentsWhileInitializingRecording ( mResumeRecordingPhrase);
+            // if record section from first empty phrase is checked, do accordingly.
+            if (mView.Selection != null && mView.Selection.Node is SectionNode && mResumeRecordingPhrase == null)
+            {
+                SectionNode section = mView.GetSelectedPhraseSection;
+                if ( mView.ObiForm.Settings.Audio_RecordInFirstEmptyPhraseWithRecordSectionCommand
+                    && section.PhraseChildCount > 0 && !(section.PhraseChild(0) is PhraseNode) && section.PhraseChild(0).Role_ == EmptyNode.Role.Plain)
+            {
+                mView.SelectFromTransportBar(mView.GetSelectedPhraseSection.PhraseChild(0), null);
+            }
+            }
             if (deleteFollowingPhrases && CurrentState == State.Paused && PlaybackPhrase != null
                 && mView.Selection != null && mView.Selection.Control is TOCView)
             {
