@@ -52,11 +52,11 @@ namespace Obi
         public Color BlockLayoutSelectedColor;
         public Color WaveformBaseLineColor;
 
-        private Color mWaveformChannel1Color;
-        private Color mWaveformChannel2Color;
+        public Color mWaveformChannel1Color;
+        public Color mWaveformChannel2Color;
         private Color mWaveformCursorColor;
         private Color mWaveFormHighlightedForeColor;
-        private Color mWaveformMonoColor;
+        public Color mWaveformMonoColor;
         private Color mWaveformSelectionColor;
         public Color FineNavigationColor;
         public Color RecordingHighlightPhraseColor;
@@ -234,6 +234,9 @@ namespace Obi
             ColorSetting.Add("TransportBarLabelBackColor", TransportBarLabelBackColor);
             ColorSetting.Add("TransportBarLabelForeColor", TransportBarLabelForeColor);
             ColorSetting.Add("WaveformBackColor", WaveformBackColor);
+            ColorSetting.Add("mWaveformMonoColor", mWaveformMonoColor);
+            ColorSetting.Add("mWaveformChannel1Color", mWaveformChannel1Color);
+            ColorSetting.Add("mWaveformChannel2Color", mWaveformChannel2Color);
             ColorSetting.Add("WaveformBaseLineColor", WaveformBaseLineColor);
             ColorSetting.Add("WaveformHighlightedBackColor", WaveformHighlightedBackColor);
             ColorSetting.Add("FineNavigationColor", FineNavigationColor);
