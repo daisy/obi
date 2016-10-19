@@ -403,6 +403,15 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Record in first empty phrase with record section command.
+        /// </summary>
+        internal static string Audio_RecordInFirstEmptyPhraseWithRecordSectionCommand {
+            get {
+                return ResourceManager.GetString("Audio_RecordInFirstEmptyPhraseWithRecordSectionCommand", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Use Record Button to record over subsequent audio.
         /// </summary>
         internal static string Audio_RecordSubsequentPhrases {

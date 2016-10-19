@@ -4453,6 +4453,7 @@ SelectionChangedPlaybackEnabled = false;
             if (this.IsRecorderActive || this.IsPlayerActive) this.Stop();
             Settings saveProfile = Settings.GetSettingsFromSavedProfile(profilePath);
             saveProfile.CopyPropertiesToExistingSettings(mView.ObiForm.Settings, PreferenceProfiles.Audio,ProfileName);
+            saveProfile.CopyPropertiesToExistingSettings(mView.ObiForm.Settings, PreferenceProfiles.Colors,ProfileName);
             saveProfile.SettingsName = ProfileName;
             string strLoadedProfiles = " ";
             if (saveProfile.Compare(mView.ObiForm.Settings, PreferenceProfiles.All))
@@ -4506,6 +4507,7 @@ SelectionChangedPlaybackEnabled = false;
                
             mView.ObiForm.UpdateRecordingToolBarButtons();
             mView.ObiForm.UpdateTitle();
+            mView.ObiForm.UpdateColors();
         }
 
     // Event is subscribed to ToolStripMenu items.
