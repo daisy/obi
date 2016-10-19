@@ -4569,7 +4569,7 @@ ref string exportDirectoryEPUB3)
                 UpdateColors();
             }
 
-            private void UpdateColors()
+            public void UpdateColors()
             {
                 UpdateZoomFactor();
                 mProjectView.ColorSettings = SystemInformation.HighContrast
