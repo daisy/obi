@@ -80,11 +80,6 @@ namespace Obi.ProjectView
 
         public void UpdateCursorTime (double time ) 
         {
-            Console.WriteLine("Cursor time is {0}", time);
-            if (time == 0)
-            {
-                MessageBox.Show("hi");
-            }
             if (m_AudioBlock != null)
             {
                 if (m_audioSel!=null && m_audioSel.AudioRange.SelectionBeginTime != m_audioSel.AudioRange.SelectionEndTime)
