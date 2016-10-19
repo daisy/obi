@@ -42,7 +42,7 @@ namespace Obi.ProjectView
         private int m_InitialPanelHeight = 0;
         private double m_PhraseDuration = 0;
         private double m_ZoomIncrementFactor = 0;
-        private CheckBox m_cbPreserveZoom;
+        private CheckBox m_chkPreserveZoom;
            
 
         private KeyboardShortcuts_Settings keyboardShortcuts;
@@ -380,10 +380,10 @@ namespace Obi.ProjectView
 
        public ZoomWaveform(ContentView contentView, Strip strip,EmptyNode node,ProjectView mProjectView):this    ()
         {
-            m_cbPreserveZoom = new CheckBox();
-            m_cbPreserveZoom.Text = Localizer.Message("ZoomWaveform_PreserveZoom");
+            m_chkPreserveZoom = new CheckBox();
+            m_chkPreserveZoom.Text = Localizer.Message("ZoomWaveform_PreserveZoom");
            // m_cbPreserveZoom.CheckStateChanged += new EventHandler(m_cbPreserveZoom_CheckStateChanged);
-            ToolStripControlHost host = new ToolStripControlHost(m_cbPreserveZoom);
+            ToolStripControlHost host = new ToolStripControlHost(m_chkPreserveZoom);
             toolStripZoomPanel.Items.Insert(7, host);
             
             m_ContentView = contentView;
@@ -402,7 +402,7 @@ namespace Obi.ProjectView
             ZoomPanelToolTipInit();
             if (m_ProjectView.SaveZoomWaveformZoomLevel)
             {
-                m_cbPreserveZoom.Checked = true;
+                m_chkPreserveZoom.Checked = true;
                 m_ZoomIncrementFactor = m_ProjectView.ZoomWaveformIncrementFactor;
             }
             m_ZoomFactor = 0;
@@ -531,7 +531,7 @@ namespace Obi.ProjectView
                 m_AudioBlock.SetZoomFactorAndHeight(zoomFactor, Height);
 
                 initialWaveformWidth = m_AudioBlock.Waveform.Width;
-                if (m_cbPreserveZoom.Checked)
+                if (m_chkPreserveZoom.Checked)
                 {
                     m_AudioBlock.Waveform.Width = m_AudioBlock.Waveform.Width + (int)(initialWaveformWidth * m_ZoomIncrementFactor);
                 }
@@ -591,7 +591,7 @@ namespace Obi.ProjectView
 
         void m_cbPreserveZoom_CheckStateChanged(object sender, EventArgs e)
         {
-            if (m_cbPreserveZoom.Checked)
+            if (m_chkPreserveZoom.Checked)
             {
                 m_ProjectView.ZoomWaveformIncrementFactor = m_ZoomIncrementFactor;
                 //m_ZoomFactor = m_ZoomIncrementFactor
@@ -676,6 +676,10 @@ namespace Obi.ProjectView
      string g=keyboardShortcuts.ZoomPanel_Close.Value.ToString();
      string p=g;
             //this.Focus();
+     if (keyData == Keys.Space && this.ActiveControl == m_chkPreserveZoom)
+     {
+         return false;
+     }
              if (keyData == keyboardShortcuts.ContentView_TransportBarRecordSingleKey.Value)
              {
                  return true;
@@ -913,7 +917,7 @@ namespace Obi.ProjectView
           private void Close()
           {
                 m_buttonSizeinit = false;
-                if (m_cbPreserveZoom.Checked)
+                if (m_chkPreserveZoom.Checked)
                 {
                     m_ProjectView.SaveZoomWaveformZoomLevel = true;
                     m_ProjectView.ZoomWaveformIncrementFactor = m_ZoomIncrementFactor;
