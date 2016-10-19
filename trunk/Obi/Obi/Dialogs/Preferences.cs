@@ -299,6 +299,7 @@ namespace Obi.Dialogs
                 m_CheckBoxListView.Items[24].Checked = mSettings.Audio_SaveAudioZoom;
                 m_CheckBoxListView.Items[25].Checked = mSettings.Audio_SelectLastPhrasePlayed;
                 m_CheckBoxListView.Items[26].Checked = mSettings.Audio_ShowSelectionTimeInTransportBar;
+                m_CheckBoxListView.Items[27].Checked = mSettings.Audio_RecordInFirstEmptyPhraseWithRecordSectionCommand;
                 m_IsComplete = true;
 
             }
@@ -1141,6 +1142,7 @@ m_cb_ChooseFont.Visible = false;
                 mSettings.Audio_SaveAudioZoom = m_CheckBoxListView.Items[24].Checked;
                 mSettings.Audio_SelectLastPhrasePlayed = m_CheckBoxListView.Items[25].Checked;
                 mSettings.Audio_ShowSelectionTimeInTransportBar = m_CheckBoxListView.Items[26].Checked;
+                mSettings.Audio_RecordInFirstEmptyPhraseWithRecordSectionCommand = m_CheckBoxListView.Items[27].Checked;
                 
             }
             //if (mTab.SelectedTab == mAdvanceTab)
@@ -1202,6 +1204,7 @@ m_cb_ChooseFont.Visible = false;
                 m_CheckBoxListView.Items.Add(Localizer.Message("Audio_SaveAudioZoom"));
                 m_CheckBoxListView.Items.Add(Localizer.Message("Audio_SelectLastPhrasePlayed"));
                 m_CheckBoxListView.Items.Add(Localizer.Message("Audio_ShowSelectionTimeInTransportBar"));
+                m_CheckBoxListView.Items.Add(Localizer.Message("Audio_RecordInFirstEmptyPhraseWithRecordSectionCommand"));
                
                 m_CheckBoxListView.Items[0].Checked = mSettings.Audio_AudioClues;
                 m_CheckBoxListView.Items[0].ToolTipText = Localizer.Message("AudioTab_AudioClues");                
@@ -1257,6 +1260,8 @@ m_cb_ChooseFont.Visible = false;
                 m_CheckBoxListView.Items[25].ToolTipText = Localizer.Message("Audio_SelectLastPhrasePlayed");
                 m_CheckBoxListView.Items[26].Checked = mSettings.Audio_ShowSelectionTimeInTransportBar;
                 m_CheckBoxListView.Items[26].ToolTipText = Localizer.Message("Audio_ShowSelectionTimeInTransportBar");
+                m_CheckBoxListView.Items[27].Checked = mSettings.Audio_RecordInFirstEmptyPhraseWithRecordSectionCommand;
+                m_CheckBoxListView.Items[27].ToolTipText = Localizer.Message("Audio_RecordInFirstEmptyPhraseWithRecordSectionCommand");
 
               
             }

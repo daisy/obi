@@ -2950,4 +2950,7 @@ Error text: {1}</value>
   <data name="ConfirmSectionCut" xml:space="preserve">
     <value>You are about to cut section. Do you want to continue?</value>
   </data>
+  <data name="Audio_RecordInFirstEmptyPhraseWithRecordSectionCommand" xml:space="preserve">
+    <value>Record in first empty phrase with record section command</value>
+  </data>
 </root>
