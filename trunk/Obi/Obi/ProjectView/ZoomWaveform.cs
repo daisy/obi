@@ -202,24 +202,18 @@ namespace Obi.ProjectView
                 if (m_ProjectView.Selection.Node.Duration != m_PhraseDuration)
                 {
                     Point tempScrollPosition = panelZooomWaveform.AutoScrollPosition;
-                   // panelZooomWaveform.AutoScroll = false;
-                    //double tempCurrentTimeInAsset = m_ProjectView.TransportBar.CurrentPlaylist.CurrentTimeInAsset;
                     PhraseLoad((EmptyNode)m_ProjectView.Selection.Node, false);
-                    if (m_AudioBlock != null && m_AudioBlock.Waveform != null && m_AudioBlock.Waveform.Selection != null)
+                }
+                if (m_AudioBlock != null && m_AudioBlock.Waveform != null && m_AudioBlock.Waveform.Selection != null)
+                {
+                    if (m_AudioBlock.Waveform.Selection.HasCursor)
                     {
-                        if (m_AudioBlock.Waveform.Selection.HasCursor)
-                        {
-                            UpdateCursorTime(m_AudioBlock.Waveform.Selection.CursorTime);
-                        }
-                        else
-                        {
-                            UpdateCursorTime(m_AudioBlock.Waveform.Selection.SelectionBeginTime);
-                        }
+                        UpdateCursorTime(m_AudioBlock.Waveform.Selection.CursorTime);
                     }
-                   // if (m_ProjectView.TransportBar.IsPlayerActive) UpdateCursorTime(tempCurrentTimeInAsset);
-                 //   panelZooomWaveform.AutoScroll = true;
-                   // panelZooomWaveform.AutoScrollPosition = new Point(tempScrollPosition.X, tempScrollPosition.Y);
-                  //  panelZooomWaveform. = tempScrollPosition;
+                    else
+                    {
+                        UpdateCursorTime(m_AudioBlock.Waveform.Selection.SelectionBeginTime);
+                    }
                 }
 
              }
