@@ -183,6 +183,9 @@ namespace Obi
                newSettings.ColorSettings.TransportBarLabelBackColor = this.ColorSettings.TransportBarLabelBackColor;
                newSettings.ColorSettings.TransportBarLabelForeColor = this.ColorSettings.TransportBarLabelForeColor;
                newSettings.ColorSettings.WaveformBackColor = this.ColorSettings.WaveformBackColor;
+               newSettings.ColorSettings.mWaveformMonoColor = this.ColorSettings.mWaveformMonoColor;
+               newSettings.ColorSettings.mWaveformChannel1Color = this.ColorSettings.mWaveformChannel1Color;
+               newSettings.ColorSettings.mWaveformChannel2Color = this.ColorSettings.mWaveformChannel2Color;
                newSettings.ColorSettings.WaveformBaseLineColor = this.ColorSettings.WaveformBaseLineColor;
                newSettings.ColorSettings.WaveformHighlightedBackColor = this.ColorSettings.WaveformHighlightedBackColor;
                newSettings.ColorSettings.FineNavigationColor = this.ColorSettings.FineNavigationColor;
@@ -230,6 +233,9 @@ namespace Obi
                newSettings.ColorSettingsHC.TransportBarLabelBackColor = this.ColorSettingsHC.TransportBarLabelBackColor;
                newSettings.ColorSettingsHC.TransportBarLabelForeColor = this.ColorSettingsHC.TransportBarLabelForeColor;
                newSettings.ColorSettingsHC.WaveformBackColor = this.ColorSettingsHC.WaveformBackColor;
+               newSettings.ColorSettingsHC.mWaveformMonoColor = this.ColorSettingsHC.mWaveformMonoColor;
+               newSettings.ColorSettingsHC.mWaveformChannel1Color = this.ColorSettingsHC.mWaveformChannel1Color;
+               newSettings.ColorSettingsHC.mWaveformChannel2Color = this.ColorSettingsHC.mWaveformChannel2Color;
                newSettings.ColorSettingsHC.WaveformBaseLineColor = this.ColorSettingsHC.WaveformBaseLineColor;
                newSettings.ColorSettingsHC.WaveformHighlightedBackColor = this.ColorSettingsHC.WaveformHighlightedBackColor;
                newSettings.ColorSettingsHC.FineNavigationColor = this.ColorSettingsHC.FineNavigationColor;
@@ -534,6 +540,9 @@ namespace Obi
                && this.ColorSettings.TransportBarLabelBackColor == settings.ColorSettings.TransportBarLabelBackColor
                && this.ColorSettings.TransportBarLabelForeColor == settings.ColorSettings.TransportBarLabelForeColor
                && this.ColorSettings.WaveformBackColor == settings.ColorSettings.WaveformBackColor
+               && this.ColorSettings.mWaveformMonoColor == settings.ColorSettings.mWaveformMonoColor
+               && this.ColorSettings.mWaveformChannel1Color == settings.ColorSettings.mWaveformChannel1Color
+               && this.ColorSettings.mWaveformChannel2Color == settings.ColorSettings.mWaveformChannel2Color
                && this.ColorSettings.WaveformBaseLineColor == settings.ColorSettings.WaveformBaseLineColor
                && this.ColorSettings.WaveformHighlightedBackColor == settings.ColorSettings.WaveformHighlightedBackColor
                && this.ColorSettings.FineNavigationColor == settings.ColorSettings.FineNavigationColor
@@ -581,6 +590,9 @@ namespace Obi
                && this.ColorSettingsHC.TransportBarLabelBackColor == settings.ColorSettingsHC.TransportBarLabelBackColor
                && this.ColorSettingsHC.TransportBarLabelForeColor == settings.ColorSettingsHC.TransportBarLabelForeColor
                && this.ColorSettingsHC.WaveformBackColor == settings.ColorSettingsHC.WaveformBackColor
+               && this.ColorSettingsHC.mWaveformMonoColor == settings.ColorSettingsHC.mWaveformMonoColor
+               && this.ColorSettingsHC.mWaveformChannel1Color == settings.ColorSettingsHC.mWaveformChannel1Color
+               && this.ColorSettingsHC.mWaveformChannel2Color == settings.ColorSettingsHC.mWaveformChannel2Color
                && this.ColorSettingsHC.WaveformBaseLineColor == settings.ColorSettingsHC.WaveformBaseLineColor
                && this.ColorSettingsHC.WaveformHighlightedBackColor == settings.ColorSettingsHC.WaveformHighlightedBackColor
                && this.ColorSettingsHC.FineNavigationColor == settings.ColorSettingsHC.FineNavigationColor
