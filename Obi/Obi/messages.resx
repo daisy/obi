@@ -2953,4 +2953,7 @@ Error text: {1}</value>
   <data name="Audio_RecordInFirstEmptyPhraseWithRecordSectionCommand" xml:space="preserve">
     <value>Record in first empty phrase with record section command</value>
   </data>
+  <data name="Profile_AudioAndColor" xml:space="preserve">
+    <value>Audio &amp; Color</value>
+  </data>
 </root>
