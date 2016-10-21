@@ -63,6 +63,7 @@ namespace Obi.Dialogs
             {
                 this.Font = new Font(settings.ObiFont, this.Font.Size, FontStyle.Regular);//@fontconfig
             }
+            if(settings.Project_ShowAdvancePropertiesInPropertiesDialogs) base.mNumberBox.Select(); // just for convenience of VA
             }
 
         public override PageNumber Number
