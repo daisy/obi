@@ -4488,7 +4488,7 @@ SelectionChangedPlaybackEnabled = false;
                 if (strLoadedProfiles.EndsWith(",")) strLoadedProfiles = strLoadedProfiles.Remove(strLoadedProfiles.Length - 2);
             }
             string text = string.Format(Localizer.Message("Preferences_ProfilesStatus"), saveProfile.SettingsName, strLoadedProfiles);
-            mView.ObiForm.Settings.SettingsNameForManipulation = saveProfile.SettingsName + "   " + Localizer.Message("Profile_AudioAndColor");
+            mView.ObiForm.Settings.SettingsNameForManipulation = saveProfile.SettingsName + "   " + Localizer.Message("Profile_Audio");
             mView.ObiForm.Settings.SettingsName = text;
             UpdateButtons();
             mTransportBarTooltip.SetToolTip(m_btnSwitchProfile, Localizer.Message("Transport_SwitchProfile") + "\n" + ProfileName + "(" + keyboardShortcuts.FormatKeyboardShorcut(keyboardShortcuts.ContentView_TransportBarExpandSwitchProfile.Value.ToString()) + ")");
