@@ -83,6 +83,7 @@ namespace Obi
                newSettings.Audio_SelectLastPhrasePlayed = this.Audio_SelectLastPhrasePlayed;
                newSettings.Audio_ShowSelectionTimeInTransportBar = this.Audio_ShowSelectionTimeInTransportBar;
                newSettings.PlayOnNavigate = this.PlayOnNavigate;
+               newSettings.Audio_RecordInFirstEmptyPhraseWithRecordSectionCommand = this.Audio_RecordInFirstEmptyPhraseWithRecordSectionCommand;
                if (!string.IsNullOrEmpty(this.Audio_LocalRecordingDirectory) && System.IO.Directory.Exists(this.Audio_LocalRecordingDirectory))
                {
                    newSettings.Audio_LocalRecordingDirectory = this.Audio_LocalRecordingDirectory;
@@ -461,7 +462,8 @@ namespace Obi
                && this.Audio_SaveAudioZoom == settings.Audio_SaveAudioZoom
                && this.Audio_SelectLastPhrasePlayed == settings.Audio_SelectLastPhrasePlayed
                && this.PlayOnNavigate == settings.PlayOnNavigate
-               && this.Audio_ShowSelectionTimeInTransportBar == settings.Audio_ShowSelectionTimeInTransportBar)
+               && this.Audio_ShowSelectionTimeInTransportBar == settings.Audio_ShowSelectionTimeInTransportBar
+               && this.Audio_RecordInFirstEmptyPhraseWithRecordSectionCommand == settings.Audio_RecordInFirstEmptyPhraseWithRecordSectionCommand)
            {
                audioPreferencesMatch = true ;
            }
