@@ -5479,15 +5479,6 @@ namespace Obi {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Audio &amp; Color.
-        /// </summary>
-        internal static string Profile_AudioAndColor {
-            get {
-                return ResourceManager.GetString("Profile_AudioAndColor", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to General.
         /// </summary>
         internal static string Profile_General {
