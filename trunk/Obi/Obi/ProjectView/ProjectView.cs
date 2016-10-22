@@ -4969,7 +4969,7 @@ for (int j = 0;
 
                         if (GoToDialog.SelectedIndex == 0)
                         {
-                            if (this.Selection.Node is StripIndexSelection || this.Selection.Node is SectionNode)
+                            if (this.Selection.Node is StripIndexSelection || this.Selection.Node is SectionNode || this.Selection == null)
                             {
                                 MessageBox.Show(Localizer.Message("select_phrase"));
                                 return;
@@ -5044,12 +5044,21 @@ for (int j = 0;
                                     return true;
                                 },
                                 delegate(urakawa.core.TreeNode n) { });
-                            if (nodeToBeSelected == null) MessageBox.Show("Time value exceeds the project");
+                            
 
-                            mContentView.SelectPhraseBlockOrStrip(nodeToBeSelected);
-                            Selection = new AudioSelection((PhraseNode)nodeToBeSelected, mContentView,
-                                                     new AudioRange(GoToDialog.TimeInSeconds - dTime));
-                         }
+                            if (nodeToBeSelected != null)
+                            {
+                                mContentView.SelectPhraseBlockOrStrip(nodeToBeSelected);
+                                Selection = new AudioSelection((PhraseNode)nodeToBeSelected, mContentView,
+                                                         new AudioRange(GoToDialog.TimeInSeconds - dTime));
+                            }
+                            else
+                            {
+                                MessageBox.Show("Time value exceeds the project");
+                            }
+
+
+                                                     }
                     }
                       
                     else
