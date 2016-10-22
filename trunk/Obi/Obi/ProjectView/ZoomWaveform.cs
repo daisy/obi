@@ -96,7 +96,7 @@ namespace Obi.ProjectView
                 {
                     m_ProjectView.TransportBar.Stop();
                 }
-                if ((XVal >= m_ContentView.Width + Math.Abs(m_AudioBlock.Location.X)) || (XVal < Math.Abs(m_AudioBlock.Location.X)))
+                if ((XVal >= m_ContentView.Width-50 + Math.Abs(m_AudioBlock.Location.X)) || (XVal < Math.Abs(m_AudioBlock.Location.X)))
                 {
                     panelZooomWaveform.AutoScrollPosition = new Point(XVal, panelZooomWaveform.AutoScrollPosition.Y);
 
