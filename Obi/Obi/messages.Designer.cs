@@ -421,7 +421,7 @@ namespace Obi {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Save Audio Zoom.
+        ///   Looks up a localized string similar to Preserve Audio Zoom.
         /// </summary>
         internal static string Audio_SaveAudioZoom {
             get {
@@ -7732,7 +7732,7 @@ namespace Obi {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Preserve zoom in zoom waveform.
+        ///   Looks up a localized string similar to Preserve zoom.
         /// </summary>
         internal static string ZoomWaveform_PreserveZoom {
             get {
