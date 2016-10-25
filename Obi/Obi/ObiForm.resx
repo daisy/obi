@@ -457,7 +457,7 @@
     <value>Detect Silence Errors</value>
   </data>
   <data name="detectSilencePhraseToolStripMenuItem.Visible" type="System.Boolean, mscorlib">
-    <value>True</value>
+    <value>False</value>
   </data>
   <data name="mPhraseDetectionToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>240, 22</value>
@@ -2050,7 +2050,7 @@
     <value>mProjectView</value>
   </data>
   <data name="&gt;&gt;mProjectView.Type" xml:space="preserve">
-    <value>Obi.ProjectView.ProjectView, Obi, Version=3.8.7.24649, Culture=neutral, PublicKeyToken=null</value>
+    <value>Obi.ProjectView.ProjectView, Obi, Version=3.8.8.21219, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;mProjectView.Parent" xml:space="preserve">
     <value>$this</value>
