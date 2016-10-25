@@ -2834,7 +2834,7 @@ Error text: {1}</value>
     <value>Prevent on the fly phrase detection on pages</value>
   </data>
   <data name="Audio_SaveAudioZoom" xml:space="preserve">
-    <value>Preserve Audio Zoom</value>
+    <value>Preserve Audio Zoom for Content View</value>
   </data>
   <data name="Preferences_RestartForFontChange" xml:space="preserve">
     <value>Obi has to be restarted for Font changes to take effect. Please save your work and restart Obi.</value>
@@ -2952,5 +2952,8 @@ Error text: {1}</value>
   </data>
   <data name="Audio_RecordInFirstEmptyPhraseWithRecordSectionCommand" xml:space="preserve">
     <value>Record in first empty phrase with record section command</value>
+  </data>
+  <data name="ZoomWaveform_PreserveZoomToolTip" xml:space="preserve">
+    <value>Preserve zoom for the zoom panel</value>
   </data>
 </root>
