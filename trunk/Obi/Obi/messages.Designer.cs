@@ -421,7 +421,7 @@ namespace Obi {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Preserve Audio Zoom.
+        ///   Looks up a localized string similar to Preserve Audio Zoom for Content View.
         /// </summary>
         internal static string Audio_SaveAudioZoom {
             get {
@@ -7737,6 +7737,15 @@ namespace Obi {
         internal static string ZoomWaveform_PreserveZoom {
             get {
                 return ResourceManager.GetString("ZoomWaveform_PreserveZoom", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Preserve zoom for the zoom panel.
+        /// </summary>
+        internal static string ZoomWaveform_PreserveZoomToolTip {
+            get {
+                return ResourceManager.GetString("ZoomWaveform_PreserveZoomToolTip", resourceCulture);
             }
         }
     }
