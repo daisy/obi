@@ -371,6 +371,7 @@ namespace Obi.ProjectView
         {
             m_chkPreserveZoom = new CheckBox();
             m_chkPreserveZoom.Text = Localizer.Message("ZoomWaveform_PreserveZoom");
+            m_chkPreserveZoom.Checked = true;
            // m_cbPreserveZoom.CheckStateChanged += new EventHandler(m_cbPreserveZoom_CheckStateChanged);
             ToolStripControlHost host = new ToolStripControlHost(m_chkPreserveZoom);
             toolStripZoomPanel.Items.Insert(7, host);
