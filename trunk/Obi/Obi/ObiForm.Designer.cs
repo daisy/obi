@@ -1653,10 +1653,12 @@ namespace Obi
             this.mProjectView.Name = "mProjectView";
             this.mProjectView.ObiForm = null;
             this.mProjectView.Presentation = null;
+            this.mProjectView.SaveZoomWaveformZoomLevel = false;
             this.mProjectView.Selection = null;
             this.mProjectView.TOCViewVisible = true;
             this.mProjectView.TOCViewWidth = 263;
             this.mProjectView.TransportBarVisible = false;
+            this.mProjectView.ZoomWaveformIncrementFactor = 0;
             // 
             // ObiForm
             // 
