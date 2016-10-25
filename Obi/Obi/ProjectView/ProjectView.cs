@@ -2810,8 +2810,13 @@ namespace Obi.ProjectView
                                 this.ObiForm.Cursor = Cursors.WaitCursor;
                                 bool selectionChangePlaybackEnabled = TransportBar.SelectionChangedPlaybackEnabled;
                                 TransportBar.SelectionChangedPlaybackEnabled = false;
+                                bool tempDisplayWarnings = this.ObiForm.Settings.Project_DisplayWarningsForEditOperations;
                                 try
                                 {
+                                    if (this.ObiForm.Settings.Project_DisplayWarningsForEditOperations)
+                                    {
+                                        this.ObiForm.Settings.Project_DisplayWarningsForEditOperations = false;
+                                    }
                                     if (createSectionForEachPhrase)
                                     {
                                         CompositeCommand createSectionsCommand = GetImportSectionsFromAudioCommands(phraseNodes, phrase_SectionNameMap, dialog.CharacterCountToTruncateFromStart, dialog.CharactersToBeReplacedWithSpaces, dialog.PageIdentificationString);
@@ -2826,6 +2831,10 @@ namespace Obi.ProjectView
                                 catch (System.Exception ex)
                                 {
                                     MessageBox.Show(ex.ToString());
+                                }
+                                finally
+                                {
+                                    this.ObiForm.Settings.Project_DisplayWarningsForEditOperations = tempDisplayWarnings;
                                 }
 //phrase detection
                                     
