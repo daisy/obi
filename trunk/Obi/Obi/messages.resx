@@ -2834,7 +2834,7 @@ Error text: {1}</value>
     <value>Prevent on the fly phrase detection on pages</value>
   </data>
   <data name="Audio_SaveAudioZoom" xml:space="preserve">
-    <value>Save Audio Zoom</value>
+    <value>Preserve Audio Zoom</value>
   </data>
   <data name="Preferences_RestartForFontChange" xml:space="preserve">
     <value>Obi has to be restarted for Font changes to take effect. Please save your work and restart Obi.</value>
@@ -2921,7 +2921,7 @@ Error text: {1}</value>
     <value>Show cursor time in Transport Bar in stop state</value>
   </data>
   <data name="ZoomWaveform_PreserveZoom" xml:space="preserve">
-    <value>Preserve zoom in zoom waveform</value>
+    <value>Preserve zoom</value>
   </data>
   <data name="Project_ShowAdvancePropertiesInPropertiesDialogs" xml:space="preserve">
     <value>Show advance properties in properties dialog</value>
