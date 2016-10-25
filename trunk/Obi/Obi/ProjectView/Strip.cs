@@ -1330,7 +1330,11 @@ namespace Obi.ProjectView
                 {
                     dialogResult = MessageBox.Show(Localizer.Message("ConfirmSectionRename"), Localizer.Message("Caption_Warning"), MessageBoxButtons.OKCancel,MessageBoxIcon.Warning);
                 }
-                if (dialogResult == DialogResult.Cancel) return;
+                if (dialogResult == DialogResult.Cancel)
+                {
+                    mLabel.Label = mNode.Label;
+                    return;
+                }
                 if (dialogResult == DialogResult.None || dialogResult == DialogResult.OK)
                 {
                     // update the label for the node
