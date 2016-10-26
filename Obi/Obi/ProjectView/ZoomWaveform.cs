@@ -976,6 +976,8 @@ namespace Obi.ProjectView
                 }
             }
             this.UpdateCursorTime(0);
+            m_audioSel.AudioRange.SelectionBeginTime = 0;
+            m_audioSel.AudioRange.SelectionEndTime = 0;
         }
 
           private void btnPreviousPhrasetoolStrip_Click(object sender, EventArgs e)
@@ -1028,6 +1030,8 @@ namespace Obi.ProjectView
                 }
             }
             this.UpdateCursorTime(0);
+            m_audioSel.AudioRange.SelectionBeginTime = 0;
+            m_audioSel.AudioRange.SelectionEndTime = 0;
         }
 
           private void btnZoomIntoolStrip_Click(object sender, EventArgs e)
