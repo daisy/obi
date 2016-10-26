@@ -2911,9 +2911,6 @@ Error text: {1}</value>
   <data name="Profile_Audio" xml:space="preserve">
     <value>Audio</value>
   </data>
-  <data name="Profile_General" xml:space="preserve">
-    <value>General</value>
-  </data>
   <data name="Audio_SelectLastPhrasePlayed" xml:space="preserve">
     <value>After playback, select the last phrase played</value>
   </data>
