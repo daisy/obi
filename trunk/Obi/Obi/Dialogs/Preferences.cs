@@ -3015,6 +3015,11 @@ m_cb_ChooseFont.Visible = false;
                     if (m_ProfileLoaded.Compare(mSettings, PreferenceProfiles.Audio))
                     {
                         strLoadedProfiles += "audio, ";
+                        mSettings.SettingsNameForManipulation = m_ProfileLoaded.SettingsName + "   " + Localizer.Message("Profile_Audio");
+                    }
+                    else
+                    {
+                        mSettings.SettingsNameForManipulation = m_ProfileLoaded.SettingsName;
                     }
                     if (m_ProfileLoaded.Compare(mSettings, PreferenceProfiles.UserProfile))
                     {
@@ -3037,14 +3042,7 @@ m_cb_ChooseFont.Visible = false;
                 }
                 m_txtSelectedProfile.Text = string.Format(Localizer.Message("Preferences_ProfilesStatus"),
                     m_ProfileLoaded.SettingsName, strLoadedProfiles);
-                if (strLoadedProfiles.Contains("audio"))
-                {
-                    mSettings.SettingsNameForManipulation = m_ProfileLoaded.SettingsName + "   " + Localizer.Message("Profile_Audio");
-                }
-                else
-                {
-                    mSettings.SettingsNameForManipulation = m_ProfileLoaded.SettingsName + "   " + Localizer.Message("Profile_General");
-                }
+            
                 mSettings.SettingsName = m_txtSelectedProfile.Text;
                 
             }
