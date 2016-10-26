@@ -2909,7 +2909,7 @@ Error text: {1}</value>
     <value>Play on navigate will be activated</value>
   </data>
   <data name="Profile_Audio" xml:space="preserve">
-    <value>Audio</value>
+    <value>Audio:</value>
   </data>
   <data name="Audio_SelectLastPhrasePlayed" xml:space="preserve">
     <value>After playback, select the last phrase played</value>

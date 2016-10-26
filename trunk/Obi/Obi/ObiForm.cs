@@ -4227,7 +4227,7 @@ ref string exportDirectoryEPUB3)
                     string tempSettingsName = str[0];
                     if (str.Length > 1)
                     {
-                        tempSettingsName = str[0] + " " + str[1];
+                        tempSettingsName = str[1] + " " + str[0];
                     }
                     Text = mSession.HasProject
                                    ? String.Format(Localizer.Message("title_bar"), mSession.Presentation.Title,
