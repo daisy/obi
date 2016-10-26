@@ -5470,7 +5470,7 @@ namespace Obi {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Audio.
+        ///   Looks up a localized string similar to Audio:.
         /// </summary>
         internal static string Profile_Audio {
             get {
