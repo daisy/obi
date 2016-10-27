@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
   <!-- 
     Microsoft ResX Schema 
@@ -117,6 +117,12 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <metadata name="helpProvider1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 17</value>
+  </metadata>
+  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
   <assembly alias="mscorlib" name="mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="m_lblDuration.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -148,7 +154,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;m_lblDuration.ZOrder" xml:space="preserve">
-    <value>13</value>
+    <value>15</value>
   </data>
   <data name="m_txtDuration.AccessibleName" xml:space="preserve">
     <value>Durée totale:</value>
@@ -178,7 +184,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;m_txtDuration.ZOrder" xml:space="preserve">
-    <value>12</value>
+    <value>14</value>
   </data>
   <data name="m_lblSectionCount.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -208,7 +214,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;m_lblSectionCount.ZOrder" xml:space="preserve">
-    <value>11</value>
+    <value>13</value>
   </data>
   <data name="m_txtSectionsCount.AccessibleName" xml:space="preserve">
     <value>Total sections:</value>
@@ -238,7 +244,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;m_txtSectionsCount.ZOrder" xml:space="preserve">
-    <value>10</value>
+    <value>12</value>
   </data>
   <data name="m_lblPhraseCount.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -268,7 +274,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;m_lblPhraseCount.ZOrder" xml:space="preserve">
-    <value>9</value>
+    <value>11</value>
   </data>
   <data name="m_txtPhraseCount.AccessibleName" xml:space="preserve">
     <value>Total phrases:</value>
@@ -298,7 +304,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;m_txtPhraseCount.ZOrder" xml:space="preserve">
-    <value>8</value>
+    <value>10</value>
   </data>
   <data name="m_lblPageCount.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -328,7 +334,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;m_lblPageCount.ZOrder" xml:space="preserve">
-    <value>7</value>
+    <value>9</value>
   </data>
   <data name="m_txtPageCount.AccessibleName" xml:space="preserve">
     <value>Total pages:</value>
@@ -358,7 +364,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;m_txtPageCount.ZOrder" xml:space="preserve">
-    <value>6</value>
+    <value>8</value>
   </data>
   <data name="m_btnOk.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom</value>
@@ -367,7 +373,7 @@
     <value>Flat</value>
   </data>
   <data name="m_btnOk.Location" type="System.Drawing.Point, System.Drawing">
-    <value>104, 219</value>
+    <value>104, 252</value>
   </data>
   <data name="m_btnOk.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 4, 4, 4</value>
@@ -391,7 +397,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;m_btnOk.ZOrder" xml:space="preserve">
-    <value>5</value>
+    <value>7</value>
   </data>
   <data name="m_lblTitle.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -424,7 +430,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;m_lblTitle.ZOrder" xml:space="preserve">
-    <value>4</value>
+    <value>6</value>
   </data>
   <data name="m_txtTitle.AccessibleName" xml:space="preserve">
     <value>Titre du Projet:</value>
@@ -454,7 +460,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;m_txtTitle.ZOrder" xml:space="preserve">
-    <value>3</value>
+    <value>5</value>
   </data>
   <data name="mCancelButton.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom</value>
@@ -463,7 +469,7 @@
     <value>Flat</value>
   </data>
   <data name="mCancelButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>225, 219</value>
+    <value>225, 252</value>
   </data>
   <data name="mCancelButton.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 4, 4, 4</value>
@@ -487,11 +493,8 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;mCancelButton.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>4</value>
   </data>
-  <metadata name="helpProvider1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 17</value>
-  </metadata>
   <data name="helpProvider1.HelpNamespace" xml:space="preserve">
     <value>Obi Help.fr.chm</value>
   </data>
@@ -520,7 +523,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;m_lblMaxDepth.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>3</value>
   </data>
   <data name="m_txtMaxDepth.AccessibleName" xml:space="preserve">
     <value>Profondeur Max:</value>
@@ -544,16 +547,61 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;m_txtMaxDepth.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="m_lblProjectFileCount.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="m_lblProjectFileCount.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 215</value>
+  </data>
+  <data name="m_lblProjectFileCount.Size" type="System.Drawing.Size, System.Drawing">
+    <value>125, 18</value>
+  </data>
+  <data name="m_lblProjectFileCount.TabIndex" type="System.Int32, mscorlib">
+    <value>14</value>
+  </data>
+  <data name="m_lblProjectFileCount.Text" xml:space="preserve">
+    <value>Project &amp;file Count:</value>
+  </data>
+  <data name="&gt;&gt;m_lblProjectFileCount.Name" xml:space="preserve">
+    <value>m_lblProjectFileCount</value>
+  </data>
+  <data name="&gt;&gt;m_lblProjectFileCount.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_lblProjectFileCount.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;m_lblProjectFileCount.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="m_txtProjectFileCount.Location" type="System.Drawing.Point, System.Drawing">
+    <value>130, 212</value>
+  </data>
+  <data name="m_txtProjectFileCount.Size" type="System.Drawing.Size, System.Drawing">
+    <value>296, 24</value>
+  </data>
+  <data name="m_txtProjectFileCount.TabIndex" type="System.Int32, mscorlib">
+    <value>15</value>
+  </data>
+  <data name="&gt;&gt;m_txtProjectFileCount.Name" xml:space="preserve">
+    <value>m_txtProjectFileCount</value>
+  </data>
+  <data name="&gt;&gt;m_txtProjectFileCount.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_txtProjectFileCount.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;m_txtProjectFileCount.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
-  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
   <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
     <value>9, 18</value>
   </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>441, 266</value>
+    <value>441, 299</value>
   </data>
   <data name="$this.Font" type="System.Drawing.Font, System.Drawing">
     <value>Microsoft Sans Serif, 11pt</value>
