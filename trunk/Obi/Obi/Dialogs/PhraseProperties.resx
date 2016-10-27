@@ -831,55 +831,55 @@
   <data name="&gt;&gt;m_txtCurrentCursorPosition.ZOrder" xml:space="preserve">
     <value>2</value>
   </data>
-  <data name="m_lbl_EditFileName.AutoSize" type="System.Boolean, mscorlib">
+  <data name="m_lbl_FileName.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
-  <data name="m_lbl_EditFileName.Location" type="System.Drawing.Point, System.Drawing">
-    <value>52, 382</value>
+  <data name="m_lbl_FileName.Location" type="System.Drawing.Point, System.Drawing">
+    <value>74, 382</value>
   </data>
-  <data name="m_lbl_EditFileName.Size" type="System.Drawing.Size, System.Drawing">
-    <value>91, 16</value>
+  <data name="m_lbl_FileName.Size" type="System.Drawing.Size, System.Drawing">
+    <value>70, 16</value>
   </data>
-  <data name="m_lbl_EditFileName.TabIndex" type="System.Int32, mscorlib">
+  <data name="m_lbl_FileName.TabIndex" type="System.Int32, mscorlib">
     <value>16</value>
   </data>
-  <data name="m_lbl_EditFileName.Text" xml:space="preserve">
-    <value>&amp;Edit file name:</value>
+  <data name="m_lbl_FileName.Text" xml:space="preserve">
+    <value>&amp;File name:</value>
   </data>
-  <data name="&gt;&gt;m_lbl_EditFileName.Name" xml:space="preserve">
-    <value>m_lbl_EditFileName</value>
+  <data name="&gt;&gt;m_lbl_FileName.Name" xml:space="preserve">
+    <value>m_lbl_FileName</value>
   </data>
-  <data name="&gt;&gt;m_lbl_EditFileName.Type" xml:space="preserve">
+  <data name="&gt;&gt;m_lbl_FileName.Type" xml:space="preserve">
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;m_lbl_EditFileName.Parent" xml:space="preserve">
+  <data name="&gt;&gt;m_lbl_FileName.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="&gt;&gt;m_lbl_EditFileName.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;m_lbl_FileName.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
-  <data name="m_txt_EditFileName.AccessibleName" xml:space="preserve">
+  <data name="m_txtFileName.AccessibleName" xml:space="preserve">
     <value>Edit file name</value>
   </data>
-  <data name="m_txt_EditFileName.Location" type="System.Drawing.Point, System.Drawing">
+  <data name="m_txtFileName.Location" type="System.Drawing.Point, System.Drawing">
     <value>160, 382</value>
   </data>
-  <data name="m_txt_EditFileName.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="m_txtFileName.Size" type="System.Drawing.Size, System.Drawing">
     <value>355, 22</value>
   </data>
-  <data name="m_txt_EditFileName.TabIndex" type="System.Int32, mscorlib">
+  <data name="m_txtFileName.TabIndex" type="System.Int32, mscorlib">
     <value>17</value>
   </data>
-  <data name="&gt;&gt;m_txt_EditFileName.Name" xml:space="preserve">
-    <value>m_txt_EditFileName</value>
+  <data name="&gt;&gt;m_txtFileName.Name" xml:space="preserve">
+    <value>m_txtFileName</value>
   </data>
-  <data name="&gt;&gt;m_txt_EditFileName.Type" xml:space="preserve">
+  <data name="&gt;&gt;m_txtFileName.Type" xml:space="preserve">
     <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;m_txt_EditFileName.Parent" xml:space="preserve">
+  <data name="&gt;&gt;m_txtFileName.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="&gt;&gt;m_txt_EditFileName.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;m_txtFileName.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
@@ -896,9 +896,6 @@
   </data>
   <data name="$this.Font" type="System.Drawing.Font, System.Drawing">
     <value>Microsoft Sans Serif, 9.75pt</value>
-  </data>
-  <data name="$this.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
   </data>
   <data name="$this.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 4, 4, 4</value>

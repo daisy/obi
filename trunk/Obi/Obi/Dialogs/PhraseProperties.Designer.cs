@@ -53,7 +53,7 @@ namespace Obi.Dialogs
             this.helpProvider1 = new System.Windows.Forms.HelpProvider();
             this.m_lblCurrentCursorPosition = new System.Windows.Forms.Label();
             this.m_txtCurrentCursorPosition = new System.Windows.Forms.TextBox();
-            this.m_lbl_EditFileName = new System.Windows.Forms.Label();
+            this.m_lbl_FileName = new System.Windows.Forms.Label();
             this.m_txtFileName = new System.Windows.Forms.TextBox();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -201,15 +201,15 @@ namespace Obi.Dialogs
             this.m_txtCurrentCursorPosition.Name = "m_txtCurrentCursorPosition";
             this.m_txtCurrentCursorPosition.ReadOnly = true;
             // 
-            // m_lbl_EditFileName
+            // m_lbl_FileName
             // 
-            resources.ApplyResources(this.m_lbl_EditFileName, "m_lbl_EditFileName");
-            this.m_lbl_EditFileName.Name = "m_lbl_EditFileName";
+            resources.ApplyResources(this.m_lbl_FileName, "m_lbl_FileName");
+            this.m_lbl_FileName.Name = "m_lbl_FileName";
             // 
-            // m_txt_EditFileName
+            // m_txtFileName
             // 
-            resources.ApplyResources(this.m_txtFileName, "m_txt_EditFileName");
-            this.m_txtFileName.Name = "m_txt_EditFileName";
+            resources.ApplyResources(this.m_txtFileName, "m_txtFileName");
+            this.m_txtFileName.Name = "m_txtFileName";
             this.m_txtFileName.ReadOnly = true;
             // 
             // PhraseProperties
@@ -219,7 +219,7 @@ namespace Obi.Dialogs
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.m_btnCancel;
             this.Controls.Add(this.m_txtFileName);
-            this.Controls.Add(this.m_lbl_EditFileName);
+            this.Controls.Add(this.m_lbl_FileName);
             this.Controls.Add(this.m_txtCurrentCursorPosition);
             this.Controls.Add(this.m_lblCurrentCursorPosition);
             this.Controls.Add(this.m_lbl_ReferredNote);
@@ -280,7 +280,7 @@ namespace Obi.Dialogs
         private System.Windows.Forms.HelpProvider helpProvider1;
         private System.Windows.Forms.Label m_lblCurrentCursorPosition;
         private System.Windows.Forms.TextBox m_txtCurrentCursorPosition;
-        private System.Windows.Forms.Label m_lbl_EditFileName;
+        private System.Windows.Forms.Label m_lbl_FileName;
         private System.Windows.Forms.TextBox m_txtFileName;
     }
 }
