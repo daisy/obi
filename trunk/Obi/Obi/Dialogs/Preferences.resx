@@ -3056,6 +3056,9 @@
   <data name="&gt;&gt;m_lblImportTolerance.ZOrder" xml:space="preserve">
     <value>4</value>
   </data>
+  <data name="m_NumImportTolerance.AccessibleName" xml:space="preserve">
+    <value>Import Tolerance In MS</value>
+  </data>
   <data name="m_NumImportTolerance.Location" type="System.Drawing.Point, System.Drawing">
     <value>172, 165</value>
   </data>
