@@ -129,7 +129,7 @@
   </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="m_lblDuration.Location" type="System.Drawing.Point, System.Drawing">
-    <value>17, 46</value>
+    <value>0, 46</value>
   </data>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="m_lblDuration.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
@@ -163,13 +163,13 @@
     <value>Top, Left, Right</value>
   </data>
   <data name="m_txtDuration.Location" type="System.Drawing.Point, System.Drawing">
-    <value>130, 44</value>
+    <value>190, 44</value>
   </data>
   <data name="m_txtDuration.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 4, 4, 4</value>
   </data>
   <data name="m_txtDuration.Size" type="System.Drawing.Size, System.Drawing">
-    <value>296, 24</value>
+    <value>236, 24</value>
   </data>
   <data name="m_txtDuration.TabIndex" type="System.Int32, mscorlib">
     <value>5</value>
@@ -190,7 +190,7 @@
     <value>True</value>
   </data>
   <data name="m_lblSectionCount.Location" type="System.Drawing.Point, System.Drawing">
-    <value>15, 81</value>
+    <value>0, 81</value>
   </data>
   <data name="m_lblSectionCount.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 0, 4, 0</value>
@@ -223,13 +223,13 @@
     <value>Top, Left, Right</value>
   </data>
   <data name="m_txtSectionsCount.Location" type="System.Drawing.Point, System.Drawing">
-    <value>130, 78</value>
+    <value>190, 78</value>
   </data>
   <data name="m_txtSectionsCount.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 4, 4, 4</value>
   </data>
   <data name="m_txtSectionsCount.Size" type="System.Drawing.Size, System.Drawing">
-    <value>296, 24</value>
+    <value>236, 24</value>
   </data>
   <data name="m_txtSectionsCount.TabIndex" type="System.Int32, mscorlib">
     <value>7</value>
@@ -250,7 +250,7 @@
     <value>True</value>
   </data>
   <data name="m_lblPhraseCount.Location" type="System.Drawing.Point, System.Drawing">
-    <value>16, 151</value>
+    <value>0, 151</value>
   </data>
   <data name="m_lblPhraseCount.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 0, 4, 0</value>
@@ -283,13 +283,13 @@
     <value>Top, Left, Right</value>
   </data>
   <data name="m_txtPhraseCount.Location" type="System.Drawing.Point, System.Drawing">
-    <value>130, 147</value>
+    <value>190, 147</value>
   </data>
   <data name="m_txtPhraseCount.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 4, 4, 4</value>
   </data>
   <data name="m_txtPhraseCount.Size" type="System.Drawing.Size, System.Drawing">
-    <value>296, 24</value>
+    <value>236, 24</value>
   </data>
   <data name="m_txtPhraseCount.TabIndex" type="System.Int32, mscorlib">
     <value>11</value>
@@ -310,7 +310,7 @@
     <value>True</value>
   </data>
   <data name="m_lblPageCount.Location" type="System.Drawing.Point, System.Drawing">
-    <value>27, 184</value>
+    <value>0, 184</value>
   </data>
   <data name="m_lblPageCount.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 0, 4, 0</value>
@@ -343,13 +343,13 @@
     <value>Top, Left, Right</value>
   </data>
   <data name="m_txtPageCount.Location" type="System.Drawing.Point, System.Drawing">
-    <value>130, 181</value>
+    <value>190, 181</value>
   </data>
   <data name="m_txtPageCount.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 4, 4, 4</value>
   </data>
   <data name="m_txtPageCount.Size" type="System.Drawing.Size, System.Drawing">
-    <value>296, 24</value>
+    <value>236, 24</value>
   </data>
   <data name="m_txtPageCount.TabIndex" type="System.Int32, mscorlib">
     <value>13</value>
@@ -406,7 +406,7 @@
     <value>Microsoft Sans Serif, 11.25pt</value>
   </data>
   <data name="m_lblTitle.Location" type="System.Drawing.Point, System.Drawing">
-    <value>36, 12</value>
+    <value>0, 12</value>
   </data>
   <data name="m_lblTitle.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 0, 4, 0</value>
@@ -439,13 +439,13 @@
     <value>Top, Left, Right</value>
   </data>
   <data name="m_txtTitle.Location" type="System.Drawing.Point, System.Drawing">
-    <value>130, 10</value>
+    <value>190, 10</value>
   </data>
   <data name="m_txtTitle.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 4, 4, 4</value>
   </data>
   <data name="m_txtTitle.Size" type="System.Drawing.Size, System.Drawing">
-    <value>296, 24</value>
+    <value>236, 24</value>
   </data>
   <data name="m_txtTitle.TabIndex" type="System.Int32, mscorlib">
     <value>3</value>
@@ -502,7 +502,7 @@
     <value>True</value>
   </data>
   <data name="m_lblMaxDepth.Location" type="System.Drawing.Point, System.Drawing">
-    <value>35, 114</value>
+    <value>0, 114</value>
   </data>
   <data name="m_lblMaxDepth.Size" type="System.Drawing.Size, System.Drawing">
     <value>83, 18</value>
@@ -529,10 +529,10 @@
     <value>Max Depth:</value>
   </data>
   <data name="m_txtMaxDepth.Location" type="System.Drawing.Point, System.Drawing">
-    <value>130, 114</value>
+    <value>190, 114</value>
   </data>
   <data name="m_txtMaxDepth.Size" type="System.Drawing.Size, System.Drawing">
-    <value>296, 24</value>
+    <value>236, 24</value>
   </data>
   <data name="m_txtMaxDepth.TabIndex" type="System.Int32, mscorlib">
     <value>9</value>
@@ -577,10 +577,10 @@
     <value>1</value>
   </data>
   <data name="m_txtProjectFileCount.Location" type="System.Drawing.Point, System.Drawing">
-    <value>130, 212</value>
+    <value>190, 212</value>
   </data>
   <data name="m_txtProjectFileCount.Size" type="System.Drawing.Size, System.Drawing">
-    <value>296, 24</value>
+    <value>236, 24</value>
   </data>
   <data name="m_txtProjectFileCount.TabIndex" type="System.Int32, mscorlib">
     <value>15</value>

@@ -259,7 +259,7 @@
     <value>True</value>
   </data>
   <data name="m_lblPhraseRole.Location" type="System.Drawing.Point, System.Drawing">
-    <value>92, 439</value>
+    <value>52, 439</value>
   </data>
   <data name="m_lblPhraseRole.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>6, 0, 6, 0</value>
@@ -301,13 +301,13 @@
     <value>25</value>
   </data>
   <data name="m_comboPhraseRole.Location" type="System.Drawing.Point, System.Drawing">
-    <value>242, 489</value>
+    <value>342, 489</value>
   </data>
   <data name="m_comboPhraseRole.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>6, 6, 6, 6</value>
   </data>
   <data name="m_comboPhraseRole.Size" type="System.Drawing.Size, System.Drawing">
-    <value>530, 33</value>
+    <value>430, 33</value>
   </data>
   <data name="m_comboPhraseRole.TabIndex" type="System.Int32, mscorlib">
     <value>13</value>
@@ -664,7 +664,7 @@
     <value>True</value>
   </data>
   <data name="m_lblPageNumberDetails.Location" type="System.Drawing.Point, System.Drawing">
-    <value>12, 541</value>
+    <value>0, 541</value>
   </data>
   <data name="m_lblPageNumberDetails.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 0, 4, 0</value>
@@ -697,13 +697,13 @@
     <value>பக்க எண் விவரங்கள்:</value>
   </data>
   <data name="m_txtPageNumberDetails.Location" type="System.Drawing.Point, System.Drawing">
-    <value>240, 541</value>
+    <value>210, 541</value>
   </data>
   <data name="m_txtPageNumberDetails.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 5, 4, 5</value>
   </data>
   <data name="m_txtPageNumberDetails.Size" type="System.Drawing.Size, System.Drawing">
-    <value>346, 30</value>
+    <value>316, 30</value>
   </data>
   <data name="m_txtPageNumberDetails.TabIndex" type="System.Int32, mscorlib">
     <value>15</value>
@@ -730,7 +730,7 @@
     <value>True</value>
   </data>
   <data name="m_chkChangePageNumber.Location" type="System.Drawing.Point, System.Drawing">
-    <value>597, 544</value>
+    <value>557, 544</value>
   </data>
   <data name="m_chkChangePageNumber.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 5, 4, 5</value>
