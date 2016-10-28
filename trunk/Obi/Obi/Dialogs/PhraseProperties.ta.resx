@@ -367,7 +367,7 @@
     <value>Flat</value>
   </data>
   <data name="m_chkUsed.Location" type="System.Drawing.Point, System.Drawing">
-    <value>240, 643</value>
+    <value>140, 643</value>
   </data>
   <data name="m_chkUsed.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>6, 6, 6, 6</value>
