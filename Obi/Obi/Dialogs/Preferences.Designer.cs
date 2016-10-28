@@ -1022,12 +1022,12 @@ namespace Obi.Dialogs
             // 
             // m_NumImportTolerance
             // 
+            resources.ApplyResources(this.m_NumImportTolerance, "m_NumImportTolerance");
             this.m_NumImportTolerance.Increment = new decimal(new int[] {
             50,
             0,
             0,
             0});
-            resources.ApplyResources(this.m_NumImportTolerance, "m_NumImportTolerance");
             this.m_NumImportTolerance.Maximum = new decimal(new int[] {
             10000,
             0,
