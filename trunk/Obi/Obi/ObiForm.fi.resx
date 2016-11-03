@@ -293,6 +293,211 @@
   <data name="mSectionsToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Kappaleet</value>
   </data>
+  <data name="mAddBlankPhraseToolStripMenuItem.AccessibleName" xml:space="preserve">
+    <value>Lisää tyhjä lause Ctrl+B</value>
+  </data>
+  <data name="mAddBlankPhraseToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
+    <value>Ctrl+B</value>
+  </data>
+  <data name="mAddBlankPhraseToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>240, 22</value>
+  </data>
+  <data name="mAddBlankPhraseToolStripMenuItem.Text" xml:space="preserve">
+    <value>Lisää &amp;tyhjä lause</value>
+  </data>
+  <data name="mAddEmptyPagesToolStripMenuItem.AccessibleName" xml:space="preserve">
+    <value>Lisää tyhjiä sivuja Ctrl+Shift+B</value>
+  </data>
+  <data name="mAddEmptyPagesToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
+    <value>Ctrl+Shift+B</value>
+  </data>
+  <data name="mAddEmptyPagesToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>240, 22</value>
+  </data>
+  <data name="mAddEmptyPagesToolStripMenuItem.Text" xml:space="preserve">
+    <value>Lisää tyhjiä si&amp;vuja</value>
+  </data>
+  <data name="mImportAudioFileToolStripMenuItem.AccessibleName" xml:space="preserve">
+    <value>Tuo äänitiedostoja Ctrl+I</value>
+  </data>
+  <data name="mImportAudioFileToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
+    <value>Ctrl+I</value>
+  </data>
+  <data name="mImportAudioFileToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>240, 22</value>
+  </data>
+  <data name="mImportAudioFileToolStripMenuItem.Text" xml:space="preserve">
+    <value>Tuo ään&amp;itiedostoja</value>
+  </data>
+  <data name="mSplitPhraseToolStripMenuItem.AccessibleName" xml:space="preserve">
+    <value>Jaa lause Ctrl+Q</value>
+  </data>
+  <data name="mSplitPhraseToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
+    <value>Ctrl+Q</value>
+  </data>
+  <data name="mSplitPhraseToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>240, 22</value>
+  </data>
+  <data name="mSplitPhraseToolStripMenuItem.Text" xml:space="preserve">
+    <value>Jaa laus&amp;e</value>
+  </data>
+  <data name="mMergeToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>240, 22</value>
+  </data>
+  <data name="mMergeToolStripMenuItem.Text" xml:space="preserve">
+    <value>Yh&amp;distä</value>
+  </data>
+  <data name="mCropAudiotoolStripMenuItem.AccessibleName" xml:space="preserve">
+    <value>Rajaa äänitiedosto Ctrl+Alt+Q</value>
+  </data>
+  <data name="mCropAudiotoolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
+    <value>Ctrl+Alt+Q</value>
+  </data>
+  <data name="mCropAudiotoolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>240, 22</value>
+  </data>
+  <data name="mCropAudiotoolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;Rajaa äänitiedosto</value>
+  </data>
+  <data name="mPhrases_PhraseIsTODOMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
+    <value>F9</value>
+  </data>
+  <data name="mPhrases_PhraseIsTODOMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>240, 22</value>
+  </data>
+  <data name="mPhrases_PhraseIsTODOMenuItem.Text" xml:space="preserve">
+    <value>Lause on keskener&amp;äinen</value>
+  </data>
+  <data name="mPhraseIsUsedToolStripMenuItem.AccessibleName" xml:space="preserve">
+    <value>Lause on käytössä Ctrl+K</value>
+  </data>
+  <data name="mPhraseIsUsedToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
+    <value>Ctrl+K</value>
+  </data>
+  <data name="mPhraseIsUsedToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>240, 22</value>
+  </data>
+  <data name="mPhraseIsUsedToolStripMenuItem.Text" xml:space="preserve">
+    <value>Lause on kä&amp;ytössä</value>
+  </data>
+  <data name="MultiPhraseOperationMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>240, 22</value>
+  </data>
+  <data name="MultiPhraseOperationMenuItem.Text" xml:space="preserve">
+    <value>Toiminnot useille lauseille/sivuille</value>
+  </data>
+  <data name="mSkippableNoteToolStripMenuItem.AccessibleName" xml:space="preserve">
+    <value>Ohitettava kommentti</value>
+  </data>
+  <data name="mSkippableNoteToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>240, 22</value>
+  </data>
+  <data name="mSkippableNoteToolStripMenuItem.Text" xml:space="preserve">
+    <value>Ohitettava kommentti</value>
+  </data>
+  <data name="toolStripSeparator6.Size" type="System.Drawing.Size, System.Drawing">
+    <value>237, 6</value>
+  </data>
+  <data name="mPhrases_AssignRoleMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>240, 22</value>
+  </data>
+  <data name="mPhrases_AssignRoleMenuItem.Text" xml:space="preserve">
+    <value>&amp;Määritä rooli</value>
+  </data>
+  <data name="mPhrases_ClearRoleMenuItem.AccessibleName" xml:space="preserve">
+    <value>Poista rooli Ctrl+Shift+C</value>
+  </data>
+  <data name="mPhrases_ClearRoleMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
+    <value>Ctrl+Shift+C</value>
+  </data>
+  <data name="mPhrases_ClearRoleMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>240, 22</value>
+  </data>
+  <data name="mPhrases_ClearRoleMenuItem.Text" xml:space="preserve">
+    <value>&amp;Poista rooli</value>
+  </data>
+  <data name="mPhrases_EditRolesMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>240, 22</value>
+  </data>
+  <data name="mPhrases_EditRolesMenuItem.Text" xml:space="preserve">
+    <value>Mu&amp;okkaa roolimäärittelyjä...</value>
+  </data>
+  <assembly alias="mscorlib" name="mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="mPhrases_EditRolesMenuItem.Visible" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="toolStripSeparator19.Size" type="System.Drawing.Size, System.Drawing">
+    <value>237, 6</value>
+  </data>
+  <data name="mPhrases_ApplyPhraseDetectionMenuItem.AccessibleName" xml:space="preserve">
+    <value>Valittu kohde Ctrl+Shift+P</value>
+  </data>
+  <data name="mPhrases_ApplyPhraseDetectionMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
+    <value>Ctrl+Shift+P</value>
+  </data>
+  <data name="mPhrases_ApplyPhraseDetectionMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>285, 22</value>
+  </data>
+  <data name="mPhrases_ApplyPhraseDetectionMenuItem.Text" xml:space="preserve">
+    <value>Valittu &amp;kohde</value>
+  </data>
+  <data name="mApplyPhraseDetectionInProjectToolStripMenuItem.AccessibleName" xml:space="preserve">
+    <value>Useita kappaleita</value>
+  </data>
+  <data name="mApplyPhraseDetectionInProjectToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>285, 22</value>
+  </data>
+  <data name="mApplyPhraseDetectionInProjectToolStripMenuItem.Text" xml:space="preserve">
+    <value>U&amp;seita kappaleita</value>
+  </data>
+  <data name="settingsFromSilencePhraseToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>285, 22</value>
+  </data>
+  <data name="settingsFromSilencePhraseToolStripMenuItem.Text" xml:space="preserve">
+    <value>Parametrit valituista &amp;äänettömistä lauseista</value>
+  </data>
+  <data name="detectSilencePhraseToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>285, 22</value>
+  </data>
+  <data name="detectSilencePhraseToolStripMenuItem.Text" xml:space="preserve">
+    <value>Detect Silence Errors</value>
+  </data>
+  <data name="detectSilencePhraseToolStripMenuItem.Visible" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="mPhraseDetectionToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>240, 22</value>
+  </data>
+  <data name="mPhraseDetectionToolStripMenuItem.Text" xml:space="preserve">
+    <value>Toteuta lauseen &amp;tunnistus...</value>
+  </data>
+  <data name="mPhrases_AudioSelectionMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>240, 22</value>
+  </data>
+  <data name="mPhrases_AudioSelectionMenuItem.Text" xml:space="preserve">
+    <value>Äänen &amp;valinta</value>
+  </data>
+  <data name="mGoToToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>240, 22</value>
+  </data>
+  <data name="mGoToToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;Siirry...</value>
+  </data>
+  <data name="mCheckForPhrasesWithImproperAudioMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>240, 22</value>
+  </data>
+  <data name="mCheckForPhrasesWithImproperAudioMenuItem.Text" xml:space="preserve">
+    <value>&amp;Tarkista vioittunut ääni</value>
+  </data>
+  <data name="mDeleteFollowingPhrasesToolStripMenuItem.AccessibleName" xml:space="preserve">
+    <value>Poista seuraavat lauseet</value>
+  </data>
+  <data name="mDeleteFollowingPhrasesToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>240, 22</value>
+  </data>
+  <data name="mDeleteFollowingPhrasesToolStripMenuItem.Text" xml:space="preserve">
+    <value>P&amp;oista seuraavat lauseet</value>
+  </data>
   <data name="mPhrasesToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>59, 20</value>
   </data>
@@ -300,85 +505,13 @@
     <value>&amp;Lauseet</value>
   </data>
   <data name="transportToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>70, 20</value>
+    <value>69, 20</value>
   </data>
   <data name="transportToolStripMenuItem.Text" xml:space="preserve">
     <value>Sii&amp;rto</value>
   </data>
-  <data name="mTools_PreferencesMenuItem.AccessibleName" xml:space="preserve">
-    <value>Esiasetukset Ctrl+Alt+F</value>
-  </data>
-  <data name="mTools_PreferencesMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
-    <value>Ctrl+Alt+F</value>
-  </data>
-  <data name="mTools_PreferencesMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>250, 22</value>
-  </data>
-  <data name="mTools_PreferencesMenuItem.Text" xml:space="preserve">
-    <value>&amp;Esiasetukset</value>
-  </data>
-  <data name="m_ToolsLangPack.Size" type="System.Drawing.Size, System.Drawing">
-    <value>250, 22</value>
-  </data>
-  <data name="m_ToolsLangPack.Text" xml:space="preserve">
-    <value>Päivitä kielipaketti</value>
-  </data>
-  <data name="toolStripSeparator16.Size" type="System.Drawing.Size, System.Drawing">
-    <value>247, 6</value>
-  </data>
-  <data name="mTools_AudioProcessing.Size" type="System.Drawing.Size, System.Drawing">
-    <value>250, 22</value>
-  </data>
-  <data name="mTools_AudioProcessing.Text" xml:space="preserve">
-    <value>Äänen käsittely</value>
-  </data>
-  <data name="mTools_ExportSelectedAudioMenuItem.AccessibleName" xml:space="preserve">
-    <value>Vie äänitiedosto Ctrl-Alt+E</value>
-  </data>
-  <data name="mTools_ExportSelectedAudioMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
-    <value>Ctrl+Alt+E</value>
-  </data>
-  <data name="mTools_ExportSelectedAudioMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>250, 22</value>
-  </data>
-  <data name="mTools_ExportSelectedAudioMenuItem.Text" xml:space="preserve">
-    <value>Vie &amp;äänitiedosto</value>
-  </data>
-  <data name="mTools_CleanUnreferencedAudioMenuItem.AccessibleName" xml:space="preserve">
-    <value>Tyhjennä viittaamattomat äänitiedostot Ctrl+I</value>
-  </data>
-  <data name="mTools_CleanUnreferencedAudioMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
-    <value>Ctrl+L</value>
-  </data>
-  <data name="mTools_CleanUnreferencedAudioMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>250, 22</value>
-  </data>
-  <data name="mTools_CleanUnreferencedAudioMenuItem.Text" xml:space="preserve">
-    <value>T&amp;yhjennä viittaamattomat äänitiedostot</value>
-  </data>
-  <data name="mTools_ExportAsDAISYMenuItem.AccessibleName" xml:space="preserve">
-    <value>Vie DAISY-muotoon Ctrl+E</value>
-  </data>
-  <data name="mTools_ExportAsDAISYMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
-    <value>Ctrl+E</value>
-  </data>
-  <data name="mTools_ExportAsDAISYMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>250, 22</value>
-  </data>
-  <data name="mTools_ExportAsDAISYMenuItem.Text" xml:space="preserve">
-    <value>Vie &amp;DAISY/EPUB-muotoon</value>
-  </data>
-  <data name="toolStripSeparator18.Size" type="System.Drawing.Size, System.Drawing">
-    <value>247, 6</value>
-  </data>
-  <data name="m_EPUB3ValidatorToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>250, 22</value>
-  </data>
-  <data name="m_EPUB3ValidatorToolStripMenuItem.Text" xml:space="preserve">
-    <value>EPUB 3 Validator</value>
-  </data>
   <data name="mToolsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>48, 20</value>
+    <value>47, 20</value>
   </data>
   <data name="mToolsToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Työkalut</value>
@@ -395,7 +528,6 @@
   <data name="mMenuStrip.Size" type="System.Drawing.Size, System.Drawing">
     <value>876, 24</value>
   </data>
-  <assembly alias="mscorlib" name="mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="mMenuStrip.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
   </data>
@@ -613,10 +745,10 @@
     <value>Ctrl+Alt+T</value>
   </data>
   <data name="mShowTOCViewToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>274, 22</value>
+    <value>273, 22</value>
   </data>
   <data name="mShowTOCViewToolStripMenuItem.Text" xml:space="preserve">
-    <value>Näytä TOC-näkymä</value>
+    <value>Näytä TOC-näkymä Ctrl+Alt+T</value>
   </data>
   <data name="mShowMetadataViewToolStripMenuItem.AccessibleName" xml:space="preserve">
     <value>Näytä &amp;TOC-näkymä</value>
@@ -625,10 +757,10 @@
     <value>Ctrl+Alt+M</value>
   </data>
   <data name="mShowMetadataViewToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>274, 22</value>
+    <value>273, 22</value>
   </data>
   <data name="mShowMetadataViewToolStripMenuItem.Text" xml:space="preserve">
-    <value>Näytä metadata-näyttö</value>
+    <value>Näytä metadata-näyttö Ctrl+Alt+M</value>
   </data>
   <data name="mShowTransportBarToolStripMenuItem.AccessibleName" xml:space="preserve">
     <value>Näytä &amp;metadata-näyttö</value>
@@ -637,10 +769,10 @@
     <value>Ctrl+Alt+B</value>
   </data>
   <data name="mShowTransportBarToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>274, 22</value>
+    <value>273, 22</value>
   </data>
   <data name="mShowTransportBarToolStripMenuItem.Text" xml:space="preserve">
-    <value>Näytä siirtopalkki</value>
+    <value>Näytä siirtopalkki Ctrl+Alt+B</value>
   </data>
   <data name="mShowStatusBarToolStripMenuItem.AccessibleName" xml:space="preserve">
     <value>Näytä siirto&amp;palkki</value>
@@ -649,13 +781,13 @@
     <value>Ctrl+Alt+U</value>
   </data>
   <data name="mShowStatusBarToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>274, 22</value>
+    <value>273, 22</value>
   </data>
   <data name="mShowStatusBarToolStripMenuItem.Text" xml:space="preserve">
-    <value>Näytä tilarivi</value>
+    <value>Näytä tilarivi Ctrl+Alt+R</value>
   </data>
   <data name="toolStripSeparator12.Size" type="System.Drawing.Size, System.Drawing">
-    <value>271, 6</value>
+    <value>270, 6</value>
   </data>
   <data name="mFocusOnTOCViewToolStripMenuItem.AccessibleName" xml:space="preserve">
     <value>Näytä tila&amp;rivi</value>
@@ -664,10 +796,10 @@
     <value>F6</value>
   </data>
   <data name="mFocusOnTOCViewToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>274, 22</value>
+    <value>273, 22</value>
   </data>
   <data name="mFocusOnTOCViewToolStripMenuItem.Text" xml:space="preserve">
-    <value>valinta TOC näyttöön / Sisällysluetteloon</value>
+    <value>valinta TOC näyttöön / Sisällysluetteloon F6</value>
   </data>
   <data name="mFocusOnStripsViewToolStripMenuItem.AccessibleName" xml:space="preserve">
     <value>valinta TO&amp;C näyttöön / Sisällysluetteloon</value>
@@ -676,10 +808,10 @@
     <value>F6</value>
   </data>
   <data name="mFocusOnStripsViewToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>274, 22</value>
+    <value>273, 22</value>
   </data>
   <data name="mFocusOnStripsViewToolStripMenuItem.Text" xml:space="preserve">
-    <value>Valinta sisällysluetteloon</value>
+    <value>Valinta sisällysluetteloon F6</value>
   </data>
   <data name="mFocusOnStripsViewToolStripMenuItem.Visible" type="System.Boolean, mscorlib">
     <value>False</value>
@@ -691,10 +823,10 @@
     <value>Ctrl+F6</value>
   </data>
   <data name="mFocusOnTransportBarToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>274, 22</value>
+    <value>273, 22</value>
   </data>
   <data name="mFocusOnTransportBarToolStripMenuItem.Text" xml:space="preserve">
-    <value>Valinta siirtopalkkiin</value>
+    <value>Valinta siirtopalkkiin Ctrl+F6</value>
   </data>
   <data name="mSynchronizeViewsToolStripMenuItem.AccessibleName" xml:space="preserve">
     <value>Valinta siirt&amp;opalkkiin</value>
@@ -703,16 +835,16 @@
     <value>Ctrl+Alt+Y</value>
   </data>
   <data name="mSynchronizeViewsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>274, 22</value>
+    <value>273, 22</value>
   </data>
   <data name="mSynchronizeViewsToolStripMenuItem.Text" xml:space="preserve">
-    <value>Synkronoi näytöt</value>
+    <value>Synkronoi näytöt Ctrl+Alt+Y</value>
   </data>
   <data name="mSynchronizeViewsToolStripMenuItem.Visible" type="System.Boolean, mscorlib">
     <value>False</value>
   </data>
   <data name="toolStripSeparator10.Size" type="System.Drawing.Size, System.Drawing">
-    <value>271, 6</value>
+    <value>270, 6</value>
   </data>
   <data name="mShowPeakMeterMenuItem.AccessibleName" xml:space="preserve">
     <value>S&amp;ynkronoi näytöt</value>
@@ -721,10 +853,10 @@
     <value>Ctrl+Alt+P</value>
   </data>
   <data name="mShowPeakMeterMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>274, 22</value>
+    <value>273, 22</value>
   </data>
   <data name="mShowPeakMeterMenuItem.Text" xml:space="preserve">
-    <value>Näytä huippuarvomittari</value>
+    <value>Näytä huippuarvomittari Ctrl+Alt+P</value>
   </data>
   <data name="mShowSourceToolStripMenuItem.AccessibleName" xml:space="preserve">
     <value>Näytä hui&amp;ppuarvomittari</value>
@@ -733,34 +865,34 @@
     <value>Ctrl+Alt+O</value>
   </data>
   <data name="mShowSourceToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>274, 22</value>
+    <value>273, 22</value>
   </data>
   <data name="mShowSourceToolStripMenuItem.Text" xml:space="preserve">
-    <value>Näytä lähdenäyttö </value>
+    <value>Näytä lähdenäyttö Ctrl+Alt+D</value>
   </data>
   <data name="mView_RecordingToolBarMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>Ctrl+Alt+R</value>
   </data>
   <data name="mView_RecordingToolBarMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>274, 22</value>
+    <value>273, 22</value>
   </data>
   <data name="mView_RecordingToolBarMenuItem.Text" xml:space="preserve">
-    <value>Näytä läh&amp;denäyttö</value>
+    <value>Näytä äänityspalkki</value>
   </data>
   <data name="toolStripSeparator15.Size" type="System.Drawing.Size, System.Drawing">
-    <value>271, 6</value>
+    <value>270, 6</value>
   </data>
   <data name="mView_ZoomInMenuItem.AccessibleName" xml:space="preserve">
     <value>Näytä &amp;äänitystyökalupalkki</value>
   </data>
   <data name="mView_ZoomInMenuItem.ShortcutKeyDisplayString" xml:space="preserve">
-    <value>Ctrl+Alt++</value>
+    <value>Zoomaa suuremmaksi Ctrl+Alt+plus</value>
   </data>
   <data name="mView_ZoomInMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>Ctrl+Alt+Oemplus</value>
   </data>
   <data name="mView_ZoomInMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>274, 22</value>
+    <value>273, 22</value>
   </data>
   <data name="mView_ZoomInMenuItem.Text" xml:space="preserve">
     <value>Zoomaa s&amp;uuremmaksi</value>
@@ -775,7 +907,7 @@
     <value>Ctrl+Alt+OemMinus</value>
   </data>
   <data name="mView_ZoomOutMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>274, 22</value>
+    <value>273, 22</value>
   </data>
   <data name="mView_ZoomOutMenuItem.Text" xml:space="preserve">
     <value>Zoomaa p&amp;ienemmäksi</value>
@@ -787,7 +919,7 @@
     <value>Ctrl+Alt+0</value>
   </data>
   <data name="mView_NormalSizeMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>274, 22</value>
+    <value>273, 22</value>
   </data>
   <data name="mView_NormalSizeMenuItem.Text" xml:space="preserve">
     <value>Normaali&amp;koko</value>
@@ -802,7 +934,7 @@
     <value>Ctrl+Alt+Shift+Oemplus</value>
   </data>
   <data name="mView_AudioZoomInMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>274, 22</value>
+    <value>273, 22</value>
   </data>
   <data name="mView_AudioZoomInMenuItem.Text" xml:space="preserve">
     <value>Äänen zoomaus suur&amp;emmaksi</value>
@@ -817,7 +949,7 @@
     <value>Ctrl+Alt+Shift+OemMinus</value>
   </data>
   <data name="mView_AudioZoomOutMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>274, 22</value>
+    <value>273, 22</value>
   </data>
   <data name="mView_AudioZoomOutMenuItem.Text" xml:space="preserve">
     <value>Äänen zoomaus pienemmäksi (&amp;q)</value>
@@ -829,10 +961,10 @@
     <value>Ctrl+Alt+Shift+0</value>
   </data>
   <data name="mView_ResetAudioSizeMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>274, 22</value>
+    <value>273, 22</value>
   </data>
   <data name="mView_ResetAudioSizeMenuItem.Text" xml:space="preserve">
-    <value>Paluta äänen zoomaus (&amp;h)</value>
+    <value>Palauta äänen zoomaus (&amp;h)</value>
   </data>
   <data name="mView_RefreshContentViewMenuItem.AccessibleName" xml:space="preserve">
     <value>Päivitä sisällysluettelo (Debug)</value>
@@ -841,7 +973,7 @@
     <value>F5</value>
   </data>
   <data name="mView_RefreshContentViewMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>274, 22</value>
+    <value>273, 22</value>
   </data>
   <data name="mView_RefreshContentViewMenuItem.Text" xml:space="preserve">
     <value>Päivitä sisällysluettelo (Debug)</value>
@@ -850,7 +982,7 @@
     <value>False</value>
   </data>
   <data name="toolStripSeparator17.Size" type="System.Drawing.Size, System.Drawing">
-    <value>271, 6</value>
+    <value>270, 6</value>
   </data>
   <data name="mView_PhrasePropertiesMenuItem.AccessibleName" xml:space="preserve">
     <value>Lauseen ominaisuudet Alt+Enter</value>
@@ -859,7 +991,7 @@
     <value>Alt+Enter</value>
   </data>
   <data name="mView_PhrasePropertiesMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>274, 22</value>
+    <value>273, 22</value>
   </data>
   <data name="mView_PhrasePropertiesMenuItem.Text" xml:space="preserve">
     <value>Laus&amp;een ominaisuudet</value>
@@ -871,7 +1003,7 @@
     <value>Alt+Enter</value>
   </data>
   <data name="mView_SectionPropertiesMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>274, 22</value>
+    <value>273, 22</value>
   </data>
   <data name="mView_SectionPropertiesMenuItem.Text" xml:space="preserve">
     <value>Ka&amp;ppaleen ominaisuudet</value>
@@ -880,7 +1012,7 @@
     <value>Projektin ominaisuudet</value>
   </data>
   <data name="mView_ProjectPropertiesMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>274, 22</value>
+    <value>273, 22</value>
   </data>
   <data name="mView_ProjectPropertiesMenuItem.Text" xml:space="preserve">
     <value>Pro&amp;jektin ominaisuudet</value>
@@ -972,35 +1104,26 @@
   <data name="mSplitSectionToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Jaa kappale</value>
   </data>
-  <data name="mMergeSectionWithNextToolStripMenuItem.AccessibleName" xml:space="preserve">
+  <data name="mMergeWithNextSectionToolStripMenuItem.AccessibleName" xml:space="preserve">
     <value>Yhdistä kappaleet</value>
   </data>
-  <data name="mMergeSectionWithNextToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
+  <data name="mMergeWithNextSectionToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>Ctrl+Shift+M</value>
   </data>
-  <data name="mMergeSectionWithNextToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="mMergeWithNextSectionToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>279, 22</value>
   </data>
-  <data name="mMergeSectionWithNextToolStripMenuItem.Text" xml:space="preserve">
+  <data name="mMergeWithNextSectionToolStripMenuItem.Text" xml:space="preserve">
     <value>Yhdistä kappale seuraavaan</value>
   </data>
-  <data name="mergeSectionWithNextToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>Yhdistä kappale &amp;seuraavaan</value>
+  <data name="mMultiSectionOperations.AccessibleName" xml:space="preserve">
+    <value>Toiminnot useille kappaleille</value>
   </data>
-  <data name="mergeSectionWithNextToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
-    <value>Ctrl+Shift+M</value>
+  <data name="mMultiSectionOperations.Size" type="System.Drawing.Size, System.Drawing">
+    <value>279, 22</value>
   </data>
-  <data name="mergeSectionWithNextToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>277, 22</value>
-  </data>
-  <data name="mergeSectionWithNextToolStripMenuItem.Text" xml:space="preserve">
-    <value>Yhdistä &amp;useita kappaleita</value>
-  </data>
-  <data name="mergeMultipleSectionsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>277, 22</value>
-  </data>
-  <data name="mergeMultipleSectionsToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;Yhdistä kappale</value>
+  <data name="mMultiSectionOperations.Text" xml:space="preserve">
+    <value>Toiminnot &amp;useille kappaleille</value>
   </data>
   <data name="toolStripSeparator13.Size" type="System.Drawing.Size, System.Drawing">
     <value>276, 6</value>
@@ -1016,60 +1139,6 @@
   </data>
   <data name="mSectionIsUsedToolStripMenuItem.Text" xml:space="preserve">
     <value>Kappale on käyt&amp;össä</value>
-  </data>
-  <data name="mAddBlankPhraseToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>Lisää tyhjä lause Ctrl+B</value>
-  </data>
-  <data name="mAddBlankPhraseToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
-    <value>Ctrl+B</value>
-  </data>
-  <data name="mAddBlankPhraseToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>240, 22</value>
-  </data>
-  <data name="mAddBlankPhraseToolStripMenuItem.Text" xml:space="preserve">
-    <value>Lisää &amp;tyhjä lause</value>
-  </data>
-  <data name="mAddEmptyPagesToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>Lisää tyhjiä sivuja Ctrl+Shift+B</value>
-  </data>
-  <data name="mAddEmptyPagesToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
-    <value>Ctrl+Shift+B</value>
-  </data>
-  <data name="mAddEmptyPagesToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>240, 22</value>
-  </data>
-  <data name="mAddEmptyPagesToolStripMenuItem.Text" xml:space="preserve">
-    <value>Lisää tyhjiä si&amp;vuja</value>
-  </data>
-  <data name="mImportAudioFileToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>Tuo äänitiedostoja Ctrl+I</value>
-  </data>
-  <data name="mImportAudioFileToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
-    <value>Ctrl+I</value>
-  </data>
-  <data name="mImportAudioFileToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>240, 22</value>
-  </data>
-  <data name="mImportAudioFileToolStripMenuItem.Text" xml:space="preserve">
-    <value>Tuo ään&amp;itiedostoja</value>
-  </data>
-  <data name="mSplitPhraseToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>Jaa lause Ctrl+Q</value>
-  </data>
-  <data name="mSplitPhraseToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
-    <value>Ctrl+Q</value>
-  </data>
-  <data name="mSplitPhraseToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>240, 22</value>
-  </data>
-  <data name="mSplitPhraseToolStripMenuItem.Text" xml:space="preserve">
-    <value>Jaa laus&amp;e</value>
-  </data>
-  <data name="mMergeToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>240, 22</value>
-  </data>
-  <data name="mMergeToolStripMenuItem.Text" xml:space="preserve">
-    <value>Yh&amp;distä</value>
   </data>
   <data name="mMergePhraseWithNextToolStripMenuItem.AccessibleName" xml:space="preserve">
     <value>Yhdistä seuraavaan lauseeseen Ctrl+M</value>
@@ -1113,47 +1182,32 @@
   <data name="mMergePhraseWithPrecedingPhrasesToolStripMenuItem.Text" xml:space="preserve">
     <value>Yhdistä ede&amp;ltäviin lauseisiin</value>
   </data>
-  <data name="mCropAudiotoolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>Rajaa äänitiedosto Ctrl+Alt+Q</value>
+  <data name="beginMarkToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>216, 22</value>
   </data>
-  <data name="mCropAudiotoolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
-    <value>Ctrl+Alt+Q</value>
+  <data name="beginMarkToolStripMenuItem.Text" xml:space="preserve">
+    <value>Alkumerkki</value>
   </data>
-  <data name="mCropAudiotoolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>240, 22</value>
+  <data name="endMarkToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>216, 22</value>
   </data>
-  <data name="mCropAudiotoolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;Rajaa äänitiedosto</value>
+  <data name="endMarkToolStripMenuItem.Text" xml:space="preserve">
+    <value>Loppumerkki</value>
   </data>
-  <data name="mPhrases_PhraseIsTODOMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
-    <value>F9</value>
+  <data name="mPhrases_RenumberPagesMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>216, 22</value>
   </data>
-  <data name="mPhrases_PhraseIsTODOMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>240, 22</value>
+  <data name="mPhrases_RenumberPagesMenuItem.Text" xml:space="preserve">
+    <value>Numeroi uudelleen seuraavat sivut</value>
   </data>
-  <data name="mPhrases_PhraseIsTODOMenuItem.Text" xml:space="preserve">
-    <value>Lause on keskener&amp;äinen</value>
+  <data name="m_AutoFillMissingPagesMenuItem.AccessibleName" xml:space="preserve">
+    <value>Automaattinen täyttö tyhjille sivuille</value>
   </data>
-  <data name="mPhraseIsUsedToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>Lause on käytössä Ctrl+K</value>
+  <data name="m_AutoFillMissingPagesMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>216, 22</value>
   </data>
-  <data name="mPhraseIsUsedToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
-    <value>Ctrl+K</value>
-  </data>
-  <data name="mPhraseIsUsedToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>240, 22</value>
-  </data>
-  <data name="mPhraseIsUsedToolStripMenuItem.Text" xml:space="preserve">
-    <value>Lause on kä&amp;ytössä</value>
-  </data>
-  <data name="mSkippableNoteToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>Ohitettava kommentti</value>
-  </data>
-  <data name="mSkippableNoteToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>240, 22</value>
-  </data>
-  <data name="mSkippableNoteToolStripMenuItem.Text" xml:space="preserve">
-    <value>Ohitettava kommentti</value>
+  <data name="m_AutoFillMissingPagesMenuItem.Text" xml:space="preserve">
+    <value>&amp;Automaattinen täyttö puuttuville sivuille</value>
   </data>
   <data name="mSkippableBeginNoteToolStripMenuItem.AccessibleName" xml:space="preserve">
     <value>Aloita kommentti</value>
@@ -1174,7 +1228,7 @@
     <value>Päätä kommentti</value>
   </data>
   <data name="mSkippableEndNoteToolStripMenuItem.ShortcutKeyDisplayString" xml:space="preserve">
-    <value>Ctrl+Alt+]</value>
+    <value>&amp;Päätä kommentti</value>
   </data>
   <data name="mSkippableEndNoteToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>Ctrl+Alt+Oem6</value>
@@ -1257,15 +1311,6 @@
   <data name="mSkippableClearRoleFromNoteToolStripMenuItem.Text" xml:space="preserve">
     <value>Poista &amp;rooli kommentista</value>
   </data>
-  <data name="toolStripSeparator6.Size" type="System.Drawing.Size, System.Drawing">
-    <value>237, 6</value>
-  </data>
-  <data name="mPhrases_AssignRoleMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>240, 22</value>
-  </data>
-  <data name="mPhrases_AssignRoleMenuItem.Text" xml:space="preserve">
-    <value>&amp;Määritä rooli</value>
-  </data>
   <data name="mPhrases_AssignRole_PlainMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>193, 22</value>
   </data>
@@ -1285,7 +1330,7 @@
     <value>Otsikko</value>
   </data>
   <data name="mPhrases_AssignRole_PageMenuItem.AccessibleName" xml:space="preserve">
-    <value>Sivu Vtrl+Shift+G</value>
+    <value>Sivu Ctrl+Shift+G</value>
   </data>
   <data name="mPhrases_AssignRole_PageMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>Ctrl+Shift+G</value>
@@ -1323,75 +1368,6 @@
   <data name="mPhrases_AssignRole_NewCustomRoleMenuItem.Text" xml:space="preserve">
     <value>(&amp;Uusi roolimäärittely...)</value>
   </data>
-  <data name="mPhrases_ClearRoleMenuItem.AccessibleName" xml:space="preserve">
-    <value>Poista rooli</value>
-  </data>
-  <data name="mPhrases_ClearRoleMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
-    <value>Ctrl+Shift+C</value>
-  </data>
-  <data name="mPhrases_ClearRoleMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>240, 22</value>
-  </data>
-  <data name="mPhrases_ClearRoleMenuItem.Text" xml:space="preserve">
-    <value>&amp;Poista rooli</value>
-  </data>
-  <data name="mPhrases_EditRolesMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>240, 22</value>
-  </data>
-  <data name="mPhrases_EditRolesMenuItem.Text" xml:space="preserve">
-    <value>Mu&amp;okkaa roolimäärittelyjä...</value>
-  </data>
-  <data name="mPhrases_EditRolesMenuItem.Visible" type="System.Boolean, mscorlib">
-    <value>False</value>
-  </data>
-  <data name="mPhrases_RenumberPagesMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>240, 22</value>
-  </data>
-  <data name="mPhrases_RenumberPagesMenuItem.Text" xml:space="preserve">
-    <value>Numeroi uudelleen seuraavat sivut</value>
-  </data>
-  <data name="toolStripSeparator19.Size" type="System.Drawing.Size, System.Drawing">
-    <value>237, 6</value>
-  </data>
-  <data name="mPhraseDetectionToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>240, 22</value>
-  </data>
-  <data name="mPhraseDetectionToolStripMenuItem.Text" xml:space="preserve">
-    <value>Toteuta lauseen &amp;tunnistus...</value>
-  </data>
-  <data name="mPhrases_ApplyPhraseDetectionMenuItem.AccessibleName" xml:space="preserve">
-    <value>Valittu kohde Ctrl+Shift+P</value>
-  </data>
-  <data name="mPhrases_ApplyPhraseDetectionMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
-    <value>Ctrl+Shift+P</value>
-  </data>
-  <data name="mPhrases_ApplyPhraseDetectionMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>285, 22</value>
-  </data>
-  <data name="mPhrases_ApplyPhraseDetectionMenuItem.Text" xml:space="preserve">
-    <value>Valittu &amp;kohde</value>
-  </data>
-  <data name="mApplyPhraseDetectionInProjectToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>Useita kappaleita</value>
-  </data>
-  <data name="mApplyPhraseDetectionInProjectToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>285, 22</value>
-  </data>
-  <data name="mApplyPhraseDetectionInProjectToolStripMenuItem.Text" xml:space="preserve">
-    <value>U&amp;seita kappaleita</value>
-  </data>
-  <data name="settingsFromSilencePhraseToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>285, 22</value>
-  </data>
-  <data name="settingsFromSilencePhraseToolStripMenuItem.Text" xml:space="preserve">
-    <value>Parametrit valituista &amp;äänettömistä lauseista</value>
-  </data>
-  <data name="mPhrases_AudioSelectionMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>240, 22</value>
-  </data>
-  <data name="mPhrases_AudioSelectionMenuItem.Text" xml:space="preserve">
-    <value>Äänen &amp;valinta</value>
-  </data>
   <data name="mPhrases_AudioSelection_BeginAudioSelectionMenuItem.AccessibleName" xml:space="preserve">
     <value>Aloita äänen valinta Ctrl+[</value>
   </data>
@@ -1422,12 +1398,6 @@
   <data name="mPhrases_AudioSelection_EndAudioSelectionMenuItem.Text" xml:space="preserve">
     <value>&amp;Lopeta äänen valinta</value>
   </data>
-  <data name="mGoToToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>240, 22</value>
-  </data>
-  <data name="mGoToToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;Siirry...</value>
-  </data>
   <data name="mNextTODOPhraseToolStripMenuItem.AccessibleName" xml:space="preserve">
     <value>Seuraava keskeneräinen lause Ctrl+F9</value>
   </data>
@@ -1435,7 +1405,7 @@
     <value>Ctrl+F9</value>
   </data>
   <data name="mNextTODOPhraseToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>271, 22</value>
+    <value>270, 22</value>
   </data>
   <data name="mNextTODOPhraseToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Seuraava keskeneräinen lause</value>
@@ -1447,7 +1417,7 @@
     <value>Ctrl+Shift+F9</value>
   </data>
   <data name="mPreviousTODOPhraseToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>271, 22</value>
+    <value>270, 22</value>
   </data>
   <data name="mPreviousTODOPhraseToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Edellinen keskeneräinen lause</value>
@@ -1459,7 +1429,7 @@
     <value>Ctrl+G</value>
   </data>
   <data name="m_GoToPageToolStrip.Size" type="System.Drawing.Size, System.Drawing">
-    <value>271, 22</value>
+    <value>270, 22</value>
   </data>
   <data name="m_GoToPageToolStrip.Text" xml:space="preserve">
     <value>Sivu / Lause / Aika</value>
@@ -1474,25 +1444,10 @@
     <value>Ctrl+F3</value>
   </data>
   <data name="m_GoToCollectSpecialPhrasesToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>271, 22</value>
+    <value>270, 22</value>
   </data>
   <data name="m_GoToCollectSpecialPhrasesToolStripMenuItem.Text" xml:space="preserve">
     <value>Kokoa e&amp;rikoislauseet</value>
-  </data>
-  <data name="mCheckForPhrasesWithImproperAudioMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>240, 22</value>
-  </data>
-  <data name="mCheckForPhrasesWithImproperAudioMenuItem.Text" xml:space="preserve">
-    <value>&amp;Tarkista vioittunut ääni</value>
-  </data>
-  <data name="mDeleteFollowingPhrasesToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>Poista seuraavat lauseet</value>
-  </data>
-  <data name="mDeleteFollowingPhrasesToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>240, 22</value>
-  </data>
-  <data name="mDeleteFollowingPhrasesToolStripMenuItem.Text" xml:space="preserve">
-    <value>P&amp;oista seuraavat lauseet</value>
   </data>
   <data name="mPlayToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>176, 22</value>
@@ -1693,7 +1648,7 @@
     <value>&amp;Aloita äänitys</value>
   </data>
   <data name="mStartRecordingDirectlyToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>Aloita äänitys heti Ctrl+Shift+R</value>
+    <value>Aloita äänitys Ctrl+Shift+R</value>
   </data>
   <data name="mStartRecordingDirectlyToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>Ctrl+Shift+R</value>
@@ -1702,28 +1657,28 @@
     <value>267, 22</value>
   </data>
   <data name="mStartRecordingDirectlyToolStripMenuItem.Text" xml:space="preserve">
-    <value>Aloita &amp;äänitys heti</value>
+    <value>&amp;Aloita suoraan äänitys</value>
   </data>
   <data name="m_DeletePhrasesWhileRecordingtoolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>267, 22</value>
   </data>
   <data name="m_DeletePhrasesWhileRecordingtoolStripMenuItem.Text" xml:space="preserve">
-    <value>Äänitä seuraavaien lauseiden päälle</value>
+    <value>Äänitä seuraavien lauseiden päälle</value>
   </data>
   <data name="m_PreviewBeforeRecordingToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>Esikatsel ennen äänitystä</value>
+    <value>&amp;Aloita äänitys</value>
   </data>
   <data name="m_PreviewBeforeRecordingToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>267, 22</value>
   </data>
   <data name="m_PreviewBeforeRecordingToolStripMenuItem.Text" xml:space="preserve">
-    <value>Esikatsel ennen äänitystä</value>
+    <value>Aloita äänitys heti Ctrl+Shift+R</value>
   </data>
   <data name="m_MonitorContinuouslyToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>267, 22</value>
   </data>
   <data name="m_MonitorContinuouslyToolStripMenuItem.Text" xml:space="preserve">
-    <value>Jatkuva monitorointi</value>
+    <value>Aloita &amp;äänitys heti</value>
   </data>
   <data name="mAllowOverwriteToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>267, 22</value>
@@ -1750,7 +1705,7 @@
     <value>&amp;Valittu sivu</value>
   </data>
   <data name="allEmptyPagesToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>Tuota puhetta jokaiselle tyhjälle sívulle</value>
+    <value>Tuota puhetta jokaiselle tyhjälle sivulle</value>
   </data>
   <data name="allEmptyPagesToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>159, 22</value>
@@ -1765,7 +1720,7 @@
     <value>176, 22</value>
   </data>
   <data name="navigationToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;Tuota puhetta</value>
+    <value>&amp;Navigointi</value>
   </data>
   <data name="mPreviousSectionToolStripMenuItem.AccessibleName" xml:space="preserve">
     <value>Edellinen kappale Alt+Ylös</value>
@@ -1854,6 +1809,9 @@
   <data name="toolStripSeparator14.Size" type="System.Drawing.Size, System.Drawing">
     <value>204, 6</value>
   </data>
+  <data name="mPlayOnNavigateToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
+    <value>Ctrl+U</value>
+  </data>
   <data name="mPlayOnNavigateToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>207, 22</value>
   </data>
@@ -1895,6 +1853,105 @@
   </data>
   <data name="mFastForwardToolStripMenuItem.Text" xml:space="preserve">
     <value>Pikakelaus eteenp&amp;äin</value>
+  </data>
+  <data name="mTools_PreferencesMenuItem.AccessibleName" xml:space="preserve">
+    <value>Esiasetukset Ctrl+Alt+F</value>
+  </data>
+  <data name="mTools_PreferencesMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
+    <value>Ctrl+Alt+F</value>
+  </data>
+  <data name="mTools_PreferencesMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>229, 22</value>
+  </data>
+  <data name="mTools_PreferencesMenuItem.Text" xml:space="preserve">
+    <value>&amp;Esiasetukset</value>
+  </data>
+  <data name="m_ToolsLangPack.Size" type="System.Drawing.Size, System.Drawing">
+    <value>229, 22</value>
+  </data>
+  <data name="m_ToolsLangPack.Text" xml:space="preserve">
+    <value>Päivitä kielipaketti</value>
+  </data>
+  <data name="toolStripSeparator16.Size" type="System.Drawing.Size, System.Drawing">
+    <value>226, 6</value>
+  </data>
+  <data name="mTools_AudioProcessing.Size" type="System.Drawing.Size, System.Drawing">
+    <value>229, 22</value>
+  </data>
+  <data name="mTools_AudioProcessing.Text" xml:space="preserve">
+    <value>Äänen käsittely</value>
+  </data>
+  <data name="mTools_ExportSelectedAudioMenuItem.AccessibleName" xml:space="preserve">
+    <value>Vie äänitiedosto Ctrl-Alt+E</value>
+  </data>
+  <data name="mTools_ExportSelectedAudioMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
+    <value>Ctrl+Alt+E</value>
+  </data>
+  <data name="mTools_ExportSelectedAudioMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>229, 22</value>
+  </data>
+  <data name="mTools_ExportSelectedAudioMenuItem.Text" xml:space="preserve">
+    <value>Vie &amp;äänitiedosto</value>
+  </data>
+  <data name="mTools_CleanUnreferencedAudioMenuItem.AccessibleName" xml:space="preserve">
+    <value>Tyhjennä viittaamattomat äänitiedostot</value>
+  </data>
+  <data name="mTools_CleanUnreferencedAudioMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>229, 22</value>
+  </data>
+  <data name="mTools_CleanUnreferencedAudioMenuItem.Text" xml:space="preserve">
+    <value>T&amp;yhjennä viittaamattomat äänitiedostot</value>
+  </data>
+  <data name="m_Tools_CompleteCleanupToolStripMenuItem.AccessibleName" xml:space="preserve">
+    <value>Täydellinen siistiminen</value>
+  </data>
+  <data name="m_Tools_CompleteCleanupToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
+    <value>Ctrl+L</value>
+  </data>
+  <data name="m_Tools_CompleteCleanupToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>215, 22</value>
+  </data>
+  <data name="m_Tools_CompleteCleanupToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;Täydellinen siistiminen</value>
+  </data>
+  <data name="m_Tools_QuickCleanupToolStripMenuItem.AccessibleName" xml:space="preserve">
+    <value>Nopea siistiminen</value>
+  </data>
+  <data name="m_Tools_QuickCleanupToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
+    <value>Ctrl+Alt+L</value>
+  </data>
+  <data name="m_Tools_QuickCleanupToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>215, 22</value>
+  </data>
+  <data name="m_Tools_QuickCleanupToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;Nopea siistiminen</value>
+  </data>
+  <data name="rollbackToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>215, 22</value>
+  </data>
+  <data name="rollbackToolStripMenuItem.Text" xml:space="preserve">
+    <value>Palautus</value>
+  </data>
+  <data name="mTools_ExportAsDAISYMenuItem.AccessibleName" xml:space="preserve">
+    <value>Vie DAISY-muotoon Ctrl+E</value>
+  </data>
+  <data name="mTools_ExportAsDAISYMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
+    <value>Ctrl+E</value>
+  </data>
+  <data name="mTools_ExportAsDAISYMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>229, 22</value>
+  </data>
+  <data name="mTools_ExportAsDAISYMenuItem.Text" xml:space="preserve">
+    <value>Vie &amp;DAISY/EPUB-muotoon</value>
+  </data>
+  <data name="toolStripSeparator18.Size" type="System.Drawing.Size, System.Drawing">
+    <value>226, 6</value>
+  </data>
+  <data name="m_EPUB3ValidatorToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>229, 22</value>
+  </data>
+  <data name="m_EPUB3ValidatorToolStripMenuItem.Text" xml:space="preserve">
+    <value>EPUB 3 Validator</value>
   </data>
   <data name="mHelp_WhatsNewMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>238, 22</value>
@@ -1996,7 +2053,7 @@
     <value>mProjectView</value>
   </data>
   <data name="&gt;&gt;mProjectView.Type" xml:space="preserve">
-    <value>Obi.ProjectView.ProjectView, Obi, Version=3.3.4.29114, Culture=neutral, PublicKeyToken=null</value>
+    <value>Obi.ProjectView.ProjectView, Obi, Version=3.8.8.21219, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;mProjectView.Parent" xml:space="preserve">
     <value>$this</value>
@@ -2707,22 +2764,16 @@
   <data name="&gt;&gt;mSplitSectionToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;mMergeSectionWithNextToolStripMenuItem.Name" xml:space="preserve">
-    <value>mMergeSectionWithNextToolStripMenuItem</value>
+  <data name="&gt;&gt;mMergeWithNextSectionToolStripMenuItem.Name" xml:space="preserve">
+    <value>mMergeWithNextSectionToolStripMenuItem</value>
   </data>
-  <data name="&gt;&gt;mMergeSectionWithNextToolStripMenuItem.Type" xml:space="preserve">
+  <data name="&gt;&gt;mMergeWithNextSectionToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;mergeSectionWithNextToolStripMenuItem.Name" xml:space="preserve">
-    <value>mergeSectionWithNextToolStripMenuItem</value>
+  <data name="&gt;&gt;mMultiSectionOperations.Name" xml:space="preserve">
+    <value>mMultiSectionOperations</value>
   </data>
-  <data name="&gt;&gt;mergeSectionWithNextToolStripMenuItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;mergeMultipleSectionsToolStripMenuItem.Name" xml:space="preserve">
-    <value>mergeMultipleSectionsToolStripMenuItem</value>
-  </data>
-  <data name="&gt;&gt;mergeMultipleSectionsToolStripMenuItem.Type" xml:space="preserve">
+  <data name="&gt;&gt;mMultiSectionOperations.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;toolStripSeparator13.Name" xml:space="preserve">
@@ -2819,6 +2870,36 @@
     <value>mPhraseIsUsedToolStripMenuItem</value>
   </data>
   <data name="&gt;&gt;mPhraseIsUsedToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;MultiPhraseOperationMenuItem.Name" xml:space="preserve">
+    <value>MultiPhraseOperationMenuItem</value>
+  </data>
+  <data name="&gt;&gt;MultiPhraseOperationMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;beginMarkToolStripMenuItem.Name" xml:space="preserve">
+    <value>beginMarkToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;beginMarkToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;endMarkToolStripMenuItem.Name" xml:space="preserve">
+    <value>endMarkToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;endMarkToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;mPhrases_RenumberPagesMenuItem.Name" xml:space="preserve">
+    <value>mPhrases_RenumberPagesMenuItem</value>
+  </data>
+  <data name="&gt;&gt;mPhrases_RenumberPagesMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_AutoFillMissingPagesMenuItem.Name" xml:space="preserve">
+    <value>m_AutoFillMissingPagesMenuItem</value>
+  </data>
+  <data name="&gt;&gt;m_AutoFillMissingPagesMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;mSkippableNoteToolStripMenuItem.Name" xml:space="preserve">
@@ -2941,12 +3022,6 @@
   <data name="&gt;&gt;mPhrases_EditRolesMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;mPhrases_RenumberPagesMenuItem.Name" xml:space="preserve">
-    <value>mPhrases_RenumberPagesMenuItem</value>
-  </data>
-  <data name="&gt;&gt;mPhrases_RenumberPagesMenuItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
   <data name="&gt;&gt;toolStripSeparator19.Name" xml:space="preserve">
     <value>toolStripSeparator19</value>
   </data>
@@ -2975,6 +3050,12 @@
     <value>settingsFromSilencePhraseToolStripMenuItem</value>
   </data>
   <data name="&gt;&gt;settingsFromSilencePhraseToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;detectSilencePhraseToolStripMenuItem.Name" xml:space="preserve">
+    <value>detectSilencePhraseToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;detectSilencePhraseToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;mPhrases_AudioSelectionMenuItem.Name" xml:space="preserve">
@@ -3313,10 +3394,10 @@
   <data name="&gt;&gt;mTools_PreferencesMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;mTools_AudioProcessing.Name" xml:space="preserve">
-    <value>mTools_AudioProcessing</value>
+  <data name="&gt;&gt;m_ToolsLangPack.Name" xml:space="preserve">
+    <value>m_ToolsLangPack</value>
   </data>
-  <data name="&gt;&gt;mTools_AudioProcessing.Type" xml:space="preserve">
+  <data name="&gt;&gt;m_ToolsLangPack.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;toolStripSeparator16.Name" xml:space="preserve">
@@ -3325,10 +3406,10 @@
   <data name="&gt;&gt;toolStripSeparator16.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripSeparator, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;m_ToolsLangPack.Name" xml:space="preserve">
-    <value>m_ToolsLangPack</value>
+  <data name="&gt;&gt;mTools_AudioProcessing.Name" xml:space="preserve">
+    <value>mTools_AudioProcessing</value>
   </data>
-  <data name="&gt;&gt;m_ToolsLangPack.Type" xml:space="preserve">
+  <data name="&gt;&gt;mTools_AudioProcessing.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;mTools_ExportSelectedAudioMenuItem.Name" xml:space="preserve">
@@ -3337,16 +3418,34 @@
   <data name="&gt;&gt;mTools_ExportSelectedAudioMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;mTools_ExportAsDAISYMenuItem.Name" xml:space="preserve">
-    <value>mTools_ExportAsDAISYMenuItem</value>
-  </data>
-  <data name="&gt;&gt;mTools_ExportAsDAISYMenuItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
   <data name="&gt;&gt;mTools_CleanUnreferencedAudioMenuItem.Name" xml:space="preserve">
     <value>mTools_CleanUnreferencedAudioMenuItem</value>
   </data>
   <data name="&gt;&gt;mTools_CleanUnreferencedAudioMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_Tools_CompleteCleanupToolStripMenuItem.Name" xml:space="preserve">
+    <value>m_Tools_CompleteCleanupToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;m_Tools_CompleteCleanupToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_Tools_QuickCleanupToolStripMenuItem.Name" xml:space="preserve">
+    <value>m_Tools_QuickCleanupToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;m_Tools_QuickCleanupToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;rollbackToolStripMenuItem.Name" xml:space="preserve">
+    <value>rollbackToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;rollbackToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;mTools_ExportAsDAISYMenuItem.Name" xml:space="preserve">
+    <value>mTools_ExportAsDAISYMenuItem</value>
+  </data>
+  <data name="&gt;&gt;mTools_ExportAsDAISYMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;toolStripSeparator18.Name" xml:space="preserve">
