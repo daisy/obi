@@ -179,7 +179,7 @@
     <value>208, 22</value>
   </data>
   <data name="Context_GenerateSpeechForPageMenuItem.Text" xml:space="preserve">
-    <value>Tuota &amp;puhe sivusta</value>
+    <value>Tuota &amp;puhe sivulle</value>
   </data>
   <data name="Context_ImportAudioFilesMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>208, 22</value>
@@ -215,7 +215,7 @@
     <value>208, 22</value>
   </data>
   <data name="Context_PhraseIsTODOMenuItem.Text" xml:space="preserve">
-    <value>Lause on keske&amp;eräinen</value>
+    <value>Lause on kesken&amp;eräinen</value>
   </data>
   <data name="Context_PhraseIsUsedMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>208, 22</value>
@@ -245,13 +245,13 @@
     <value>Sovella &amp;lauseentunnistusta</value>
   </data>
   <data name="Context_SkippablesMenuItem.AccessibleName" xml:space="preserve">
-    <value>Ohitettavat lauseet</value>
+    <value>Ohitettavat kommentit</value>
   </data>
   <data name="Context_SkippablesMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>208, 22</value>
   </data>
   <data name="Context_SkippablesMenuItem.Text" xml:space="preserve">
-    <value>Ohitettavat lauseet</value>
+    <value>Ohitettavat kommentit</value>
   </data>
   <data name="Context_AudioSelectionMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>208, 22</value>
@@ -505,22 +505,22 @@
     <value>P&amp;oista viite</value>
   </data>
   <data name="Context_Skippable_MoveToStartNoteToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>Siirry kommentin aloitukseen</value>
+    <value>Siirry aloituskommentin</value>
   </data>
   <data name="Context_Skippable_MoveToStartNoteToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>180, 22</value>
   </data>
   <data name="Context_Skippable_MoveToStartNoteToolStripMenuItem.Text" xml:space="preserve">
-    <value>Siirry kommentin &amp;aloitukseen</value>
+    <value>Siirry &amp;aloituskommentin</value>
   </data>
   <data name="Context_Skippable_MoveToEndNoteToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>Siirry kommentin lopetukseen</value>
+    <value>Siirry lopetuskommentin</value>
   </data>
   <data name="Context_Skippable_MoveToEndNoteToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>180, 22</value>
   </data>
   <data name="Context_Skippable_MoveToEndNoteToolStripMenuItem.Text" xml:space="preserve">
-    <value>Siirry kommentin &amp;lopetukseen</value>
+    <value>Siirry &amp;lopetuskommentin</value>
   </data>
   <data name="Context_Skippable_ClearRoleFromNoteToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>180, 22</value>
@@ -1112,5 +1112,26 @@
   </data>
   <data name="Context_AudioProcessing.Text" xml:space="preserve">
     <value>Äänen käsittely</value>
+  </data>
+  <data name="Context_MergeWithNextSectionMenuItem.AccessibleName" xml:space="preserve">
+    <value>Yhdistä kappaleet seuraavaan</value>
+  </data>
+  <data name="Context_MergeWithNextSectionMenuItem.Text" xml:space="preserve">
+    <value>Yhdistä kappaleet &amp;seuraavaan</value>
+  </data>
+  <data name="Context_MultiSectionOperations.AccessibleName" xml:space="preserve">
+    <value>Toiminnot kappalejoukolle</value>
+  </data>
+  <data name="Context_MultiSectionOperations.Text" xml:space="preserve">
+    <value>Toiminnot kappale&amp;joukolle</value>
+  </data>
+  <data name="ContextBeginMarkToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;Alkumerkki</value>
+  </data>
+  <data name="ContextEndMarkToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;Loppumerkki</value>
+  </data>
+  <data name="toolStripMenuItem1.Text" xml:space="preserve">
+    <value>Toiminto lausejoukolle</value>
   </data>
 </root>
