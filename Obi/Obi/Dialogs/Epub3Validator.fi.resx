@@ -352,7 +352,7 @@
     <value>534, 255</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
-    <value>Epub 3 oikeellisuuden tarkistin</value>
+    <value>Epub 3 validointi</value>
   </data>
   <data name="&gt;&gt;m_openFileDialogBrowse.Name" xml:space="preserve">
     <value>m_openFileDialogBrowse</value>

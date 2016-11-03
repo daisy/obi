@@ -205,7 +205,7 @@
     <value>2</value>
   </data>
   <data name="m_lblLevel.Text" xml:space="preserve">
-    <value>&amp;Taso (syvyys)</value>
+    <value>&amp;Taso (syvyys):</value>
   </data>
   <data name="&gt;&gt;m_lblLevel.Name" xml:space="preserve">
     <value>m_lblLevel</value>
@@ -220,7 +220,7 @@
     <value>11</value>
   </data>
   <data name="m_comboLevel.AccessibleName" xml:space="preserve">
-    <value>Taso/Syvyys</value>
+    <value>Taso/Syvyys:</value>
   </data>
   <data name="m_comboLevel.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Left, Right</value>
@@ -508,7 +508,7 @@
     <value>6</value>
   </data>
   <data name="groupBox1.Text" xml:space="preserve">
-    <value>Yläpuoliset kappaleet</value>
+    <value>Yläpuoliset kappaleet:</value>
   </data>
   <data name="&gt;&gt;groupBox1.Name" xml:space="preserve">
     <value>groupBox1</value>
@@ -559,7 +559,7 @@
     <value>4</value>
   </data>
   <data name="m_lblSectionTimePosition.Text" xml:space="preserve">
-    <value>Section Time Position:</value>
+    <value>Kappaleen aikasijainti:</value>
   </data>
   <data name="&gt;&gt;m_lblSectionTimePosition.Name" xml:space="preserve">
     <value>m_lblSectionTimePosition</value>
@@ -574,7 +574,7 @@
     <value>1</value>
   </data>
   <data name="m_txtSectionTimePosition.AccessibleName" xml:space="preserve">
-    <value>Section Time Position</value>
+    <value>Kappaleen aikasijainti</value>
   </data>
   <data name="m_txtSectionTimePosition.Location" type="System.Drawing.Point, System.Drawing">
     <value>147, 76</value>

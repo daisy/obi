@@ -247,7 +247,7 @@
     <value>7</value>
   </data>
   <data name="m_grpArrangeAudioFiles.Text" xml:space="preserve">
-    <value>Järjestele tiedostot</value>
+    <value>Järjestele tiedostot:</value>
   </data>
   <data name="&gt;&gt;m_grpArrangeAudioFiles.Name" xml:space="preserve">
     <value>m_grpArrangeAudioFiles</value>

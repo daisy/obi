@@ -238,7 +238,7 @@
     <value>4</value>
   </data>
   <data name="label2.Text" xml:space="preserve">
-    <value>&amp;Virkkeiden välinen aika:</value>
+    <value>&amp;Lauseiden välinen aika:</value>
   </data>
   <data name="&gt;&gt;label2.Name" xml:space="preserve">
     <value>label2</value>
@@ -307,7 +307,7 @@
     <value>2</value>
   </data>
   <data name="mGapNumericBox.AccessibleName" xml:space="preserve">
-    <value>Virkkeiden välinen aika:</value>
+    <value>Lauseiden välinen aika:</value>
   </data>
   <data name="mGapNumericBox.Location" type="System.Drawing.Point, System.Drawing">
     <value>177, 40</value>

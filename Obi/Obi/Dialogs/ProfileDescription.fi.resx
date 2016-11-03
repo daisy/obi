@@ -163,7 +163,7 @@
     <value>3</value>
   </data>
   <data name="m_btnClose.Text" xml:space="preserve">
-    <value>&amp;Sulje</value>
+    <value>&amp;Sulje:</value>
   </data>
   <data name="&gt;&gt;m_btnClose.Name" xml:space="preserve">
     <value>m_btnClose</value>
@@ -178,7 +178,7 @@
     <value>0</value>
   </data>
   <data name="$this.AccessibleName" xml:space="preserve">
-    <value>Ääniprofiilin kuvaus</value>
+    <value>Profiilin kuvaus</value>
   </data>
   <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
     <value>6, 13</value>
@@ -187,7 +187,7 @@
     <value>606, 517</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
-    <value>Ääniprofiilin kuvaus</value>
+    <value>Profiilin kuvaus</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
     <value>ProfileDescription</value>

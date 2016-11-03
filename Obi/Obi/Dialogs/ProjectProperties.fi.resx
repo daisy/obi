@@ -142,7 +142,7 @@
     <value>4</value>
   </data>
   <data name="m_lblDuration.Text" xml:space="preserve">
-    <value>Kokonaiskesto&amp;aika</value>
+    <value>Kokonaiskesto&amp;aika:</value>
   </data>
   <data name="&gt;&gt;m_lblDuration.Name" xml:space="preserve">
     <value>m_lblDuration</value>
@@ -157,7 +157,7 @@
     <value>15</value>
   </data>
   <data name="m_txtDuration.AccessibleName" xml:space="preserve">
-    <value>Kokonaiskestoaika</value>
+    <value>Kokonaiskestoaika:</value>
   </data>
   <data name="m_txtDuration.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Left, Right</value>
@@ -202,7 +202,7 @@
     <value>6</value>
   </data>
   <data name="m_lblSectionCount.Text" xml:space="preserve">
-    <value>&amp;Kappaleiden kokonaismäärä</value>
+    <value>&amp;Kappaleiden kokonaismäärä:</value>
   </data>
   <data name="&gt;&gt;m_lblSectionCount.Name" xml:space="preserve">
     <value>m_lblSectionCount</value>
@@ -217,7 +217,7 @@
     <value>13</value>
   </data>
   <data name="m_txtSectionsCount.AccessibleName" xml:space="preserve">
-    <value>Kappaleiden kokonaismäärä</value>
+    <value>Kappaleiden kokonaismäärä:</value>
   </data>
   <data name="m_txtSectionsCount.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Left, Right</value>
@@ -262,7 +262,7 @@
     <value>10</value>
   </data>
   <data name="m_lblPhraseCount.Text" xml:space="preserve">
-    <value>&amp;Lauseiden kokonaismäärä</value>
+    <value>&amp;Lauseiden kokonaismäärä:</value>
   </data>
   <data name="&gt;&gt;m_lblPhraseCount.Name" xml:space="preserve">
     <value>m_lblPhraseCount</value>
@@ -277,7 +277,7 @@
     <value>11</value>
   </data>
   <data name="m_txtPhraseCount.AccessibleName" xml:space="preserve">
-    <value>Lauseiden kokonaismäärä</value>
+    <value>Lauseiden kokonaismäärä:</value>
   </data>
   <data name="m_txtPhraseCount.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Left, Right</value>
@@ -322,7 +322,7 @@
     <value>12</value>
   </data>
   <data name="m_lblPageCount.Text" xml:space="preserve">
-    <value>&amp;Sivujen kokonaismäärä</value>
+    <value>&amp;Sivujen kokonaismäärä:</value>
   </data>
   <data name="&gt;&gt;m_lblPageCount.Name" xml:space="preserve">
     <value>m_lblPageCount</value>
@@ -337,7 +337,7 @@
     <value>9</value>
   </data>
   <data name="m_txtPageCount.AccessibleName" xml:space="preserve">
-    <value>Sivujen kokonaismäärä</value>
+    <value>Sivujen kokonaismäärä:</value>
   </data>
   <data name="m_txtPageCount.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Left, Right</value>
@@ -418,7 +418,7 @@
     <value>2</value>
   </data>
   <data name="m_lblTitle.Text" xml:space="preserve">
-    <value>Pro&amp;jektin otsikko</value>
+    <value>Pro&amp;jektin otsikko:</value>
   </data>
   <data name="&gt;&gt;m_lblTitle.Name" xml:space="preserve">
     <value>m_lblTitle</value>
@@ -433,7 +433,7 @@
     <value>6</value>
   </data>
   <data name="m_txtTitle.AccessibleName" xml:space="preserve">
-    <value>Projektin otsikko</value>
+    <value>Projektin otsikko:</value>
   </data>
   <data name="m_txtTitle.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Left, Right</value>
@@ -511,7 +511,7 @@
     <value>8</value>
   </data>
   <data name="m_lblMaxDepth.Text" xml:space="preserve">
-    <value>&amp;Max Depth:</value>
+    <value>&amp;Max Syvyys:</value>
   </data>
   <data name="&gt;&gt;m_lblMaxDepth.Name" xml:space="preserve">
     <value>m_lblMaxDepth</value>
@@ -526,7 +526,7 @@
     <value>3</value>
   </data>
   <data name="m_txtMaxDepth.AccessibleName" xml:space="preserve">
-    <value>Max Depth:</value>
+    <value>Max Syvyys:</value>
   </data>
   <data name="m_txtMaxDepth.Location" type="System.Drawing.Point, System.Drawing">
     <value>200, 114</value>
