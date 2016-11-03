@@ -1,0 +1,830 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xml:lang="en" xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <title>Profile Description</title>
+    <link rel="stylesheet" href="help.css" type="text/css"/>
+  </head>
+<body style="background-color: white; color: black">
+
+<div id="Advance">
+<p>No modo avançado, as seguintes caixas de verificação estão marcadas:-</p>
+<p>Separador áudio:-</p>
+<table border="3">
+<tr>
+  <td>Reter silêncio inicial durante a deteção de frases</td>
+  <td>Se marcado, retém silêncio inicial durante a deteção de frases; se desmarcado, elimina esse silêncio.</td>   
+</tr>
+<tr>
+  <td>Permitir substituição sobre a gravação</td>
+  <td>Se marcado, o Obi abre um espaço na frase para inserir a nova gravação, segundo as regras definidas; se desmarcado, cria uma nova frase a seguir à frase selecionada.</td>
+</tr>
+<tr>
+  <td>Sempre gravar diretamente desde a barra de controlos</td>
+  <td>Se marcado, é desativada a possibilidade de monitorar o áudio. Como resultado, cada click no botão iniciará a gravação de imediato.</td>
+</tr>
+<tr>
+  <td>Limitar duração máx. das frases a 50 minutos</td>
+  <td>Se marcado, limita a duração das frases a 50 minutos; se desmarcado, permite frases de qualquer duração.</td>
+</tr>
+<tr>
+  <td>Mostrar forma de onda ao vivo durante a gravação</td>
+  <td>Se marcado, descreve a forma de onda durante a gravação.</td>
+</tr>
+<tr>
+  <td>Executar deteção de frases durante a gravação</td>
+  <td>Se marcado, o Obi aplica a deteção de frases enquanto a gravação decorre. No final da gravação, faz as divisões nos pontos detetados.</td>
+</tr>
+<tr>
+  <td>Renumerar as páginas seguintes quando a gravação terminar</td>
+  <td>Se marcado, o Obi renumera as páginas a seguir ao áudio gravado, logo que a gravação é finalizada.</td>
+</tr>
+<tr>
+  <td>Juntar as duas primeiras frases detetadas pelo processo de deteção de frases</td>
+  <td>Se marcado, as duas primeiras frases detetadas automaticamente, ficam juntas.</td>
+</tr>
+<tr>
+  <td>Reprodução rápida sem mudança de tom</td>
+  <td>Se marcado, o Obi preserva o tom ou pitch do áudio, à medida que reproduz a maior velocidade.</td>
+</tr>
+<tr>
+  <td>Forçar cursor único do áudio</td>
+  <td>Se marcado, o Obi usará apenas um cursor na vez de dois; o cursor vermelho será mapeado para a posição do azul.</td>
+</tr>
+<tr>
+  <td>Prevenir deteção de frases ao vivo em páginas</td>
+  <td>Se marcado, a deteção automática de frases não será aplicada nas páginas, durante a gravação ao vivo.</td>
+</tr>
+</table>
+<p>Separador Projeto:- </p>
+<table  border="3">
+<tr>
+  <td>Reparar largura da vista de conteúdo</td>
+  <td>Se marcado, o Obi não alterará a orientação de outras frases visíveis, mesmo que o comprimento de uma frase exceda a largura atual da vista de conteúdo. Se não marcado, a largura da vista de conteúdo será alterada consoante o tamanho da frase sob o foco, alterando também o tamanho das outras frases.</td>
+</tr>
+<tr>
+  <td>Otimizar utilização de memória</td>
+  <td>Se marcado, otimiza o uso de memória por parte do Obi.</td>
+</tr>
+<tr>
+  <td>Desativar a descartagem para depuração</td>
+    <td>Se marcado, o Obi não permitirá que o utilizador descarte ou elimine o histórico de depuração.  </td>
+</tr>
+<tr>
+  <td>Ativar verificação de espaço em disco</td>
+  <td>Se marcado, pesquisa e informa o utilizador sobre o espaço disponível em disco durante as diversas operações.</td>
+</tr>
+<tr>
+  <td>Salvar projeto quando a gravação terminar</td>
+  <td>Se marcado, o Obi guarda todas as modificações feitas sempre que a gravação é pausada ou finalizada.</td>
+</tr>
+<tr>
+  <td>Verificar atualizações</td>
+  <td>Se marcado, o Obi procura e informa o utilizador sobre novas atualizações.</td>
+</tr>
+<tr>
+  <td>Mostrar formas de onda na vista de conteúdo</td>
+  <td>Se marcado, a forma de onda será exibida por baixo da etiqueta da frase; se não marcado, apenas será exibido o comprimento do áudio.</td>
+</tr>
+<tr>
+  <td>Alargar tempo de validação para EPUB além de 3 minutos</td>
+  <td>Se marcado, o Obi assegura que a validação para EPUB possa decorrer em tempo superior a 3 minutos, o que costuma ser suficiente, mesmo em caso de um livro extenso. Isto impede que a validação seja abruptamente interrompida por qualquer fator alheio ao programa.</td>
+</tr>
+<tr>
+  <td>Ativar movimento do botão redondo do rato</td>
+  <td>Ativa e desativa o movimento deste botão do rato na vista de conteúdo.</td>
+</tr>
+</table>
+</div>
+<div id="Intermidate">
+<p>No modo intermédio, as seguintes caixas de verificação estão marcadas</p>
+<p>Separador áudio:-</p>
+<table border="3" >
+<tr>
+  <td>Reter silêncio inicial durante a deteção de frases</td>
+  <td>Se marcado, retém silêncio inicial durante a deteção de frases; se desmarcado, elimina esse silêncio.</td>   
+</tr>
+<tr>
+  <td>Permitir substituição sobre a gravação</td>
+  <td>Se marcado, o Obi abre um espaço na frase para inserir a nova gravação, segundo as regras definidas; se desmarcado, cria uma nova frase a seguir à frase selecionada.</td>
+</tr>
+<tr>
+  <td>Sempre gravar diretamente desde a barra de controlos</td>
+  <td>Se marcado, é desativada a possibilidade de monitorar o áudio. Como resultado, cada click no botão iniciará a gravação de imediato.</td>
+</tr>
+<tr>
+  <td>Limitar duração máx. das frases a 50 minutos</td>
+  <td>Se marcado, limita a duração das frases a 50 minutos; se desmarcado, permite frases de qualquer duração.</td>
+</tr>
+<tr>
+  <td>Executar deteção de frases durante a gravação</td>
+  <td>Se marcado, o Obi aplica a deteção de frases enquanto a gravação decorre. No final da gravação, faz as divisões nos pontos detetados.</td>
+</tr>
+<tr>
+  <td>Renumerar as páginas seguintes quando a gravação terminar</td>
+  <td>Se marcado, o Obi renumera as páginas a seguir ao áudio gravado, logo que a gravação é finalizada.</td>
+</tr>
+<tr>
+  <td>Reprodução rápida sem mudança de tom</td>
+  <td>Se marcado, o Obi preserva o tom ou pitch do áudio, à medida que reproduz a maior velocidade.</td>
+</tr>
+<tr>
+  <td>Prevenir deteção de frases ao vivo em páginas</td>
+  <td>Se marcado, a deteção automática de frases não será aplicada nas páginas, durante a gravação ao vivo.</td>
+</tr>
+</table>
+<p>Separador Projeto:- </p>
+<table  border="3">
+<tr>
+  <td>Reparar largura da vista de conteúdo</td>
+  <td>Se marcado, o Obi não alterará a orientação de outras frases visíveis, mesmo que o comprimento de uma frase exceda a largura atual da vista de conteúdo. Se não marcado, a largura da vista de conteúdo será alterada consoante o tamanho da frase sob o foco, alterando também o tamanho das outras frases.</td>
+</tr>
+<tr>
+  <td>Otimizar utilização de memória</td>
+  <td>Se marcado, otimiza o uso de memória por parte do Obi.</td>
+</tr>
+<tr>
+  <td>Desativar a descartagem para depuração</td>
+    <td>Se marcado, o Obi não permitirá que o utilizador descarte ou elimine o histórico de depuração.  </td>
+</tr>
+<tr>
+  <td>Ativar verificação de espaço em disco</td>
+  <td>Se marcado, pesquisa e informa o utilizador sobre o espaço disponível em disco durante as diversas operações.</td>
+</tr>
+<tr>
+  <td>Salvar projeto quando a gravação terminar</td>
+  <td>Se marcado, o Obi guarda todas as modificações feitas sempre que a gravação é pausada ou finalizada.</td>
+</tr>
+<tr>
+  <td>Verificar atualizações</td>
+  <td>Se marcado, o Obi procura e informa o utilizador sobre novas atualizações.</td>
+</tr>
+<tr>
+  <td>Mostrar formas de onda na vista de conteúdo</td>
+  <td>Se marcado, a forma de onda será exibida por baixo da etiqueta da frase; se não marcado, apenas será exibido o comprimento do áudio.</td>
+</tr>
+<tr>
+  <td>Alargar tempo de validação para EPUB além de 3 minutos</td>
+  <td>Se marcado, o Obi assegura que a validação para EPUB possa decorrer em tempo superior a 3 minutos, o que costuma ser suficiente, mesmo em caso de um livro extenso. Isto impede que a validação seja abruptamente interrompida por qualquer fator alheio ao programa.</td>
+</tr>
+<tr>
+  <td>Ativar movimento do botão redondo do rato</td>
+  <td>Ativa e desativa o movimento deste botão do rato na vista de conteúdo.</td>
+</tr>
+</table>
+</div>
+<div id="Basic">
+<p>No modo básico, as seguintes caixas de verificação estão marcadas:-</p>
+<p>Separador áudio:-</p>
+<table border="3" >
+
+<tr>
+  <td>Reter silêncio inicial durante a deteção de frases</td>
+  <td>Se marcado, retém silêncio inicial durante a deteção de frases; se desmarcado, elimina esse silêncio.</td>   
+</tr>
+<tr>
+  <td>Limitar duração máx. das frases a 50 minutos</td>
+  <td>Se marcado, limita a duração das frases a 50 minutos; se desmarcado, permite frases de qualquer duração.</td>
+</tr>
+<tr>
+  <td>Renumerar as páginas seguintes quando a gravação terminar</td>
+  <td>Se marcado, o Obi renumera as páginas a seguir ao áudio gravado, logo que a gravação é finalizada.</td>
+</tr>
+<tr>
+  <td>Reprodução rápida sem mudança de tom</td>
+  <td>Se marcado, o Obi preserva o tom ou pitch do áudio, à medida que reproduz a maior velocidade.</td>
+</tr>
+<tr>
+  <td>Prevenir deteção de frases ao vivo em páginas</td>
+  <td>Se marcado, a deteção automática de frases não será aplicada nas páginas, durante a gravação ao vivo.</td>
+</tr>
+</table>
+<p>Separador Projeto:- </p>
+<table  border="3">
+<tr>
+  <td>Reparar largura da vista de conteúdo</td>
+  <td>Se marcado, o Obi não alterará a orientação de outras frases visíveis, mesmo que o comprimento de uma frase exceda a largura atual da vista de conteúdo. Se não marcado, a largura da vista de conteúdo será alterada consoante o tamanho da frase sob o foco, alterando também o tamanho das outras frases.</td>
+</tr>
+<tr>
+  <td>Otimizar utilização de memória</td>
+  <td>Se marcado, otimiza o uso de memória por parte do Obi.</td>
+</tr>
+<tr>
+  <td>Desativar a descartagem para depuração</td>
+    <td>Se marcado, o Obi não permitirá que o utilizador descarte ou elimine o histórico de depuração.  </td>
+</tr>
+<tr>
+  <td>Ativar verificação de espaço em disco</td>
+  <td>Se marcado, pesquisa e informa o utilizador sobre o espaço disponível em disco durante as diversas operações.</td>
+</tr>
+<tr>
+  <td>Salvar projeto quando a gravação terminar</td>
+  <td>Se marcado, o Obi guarda todas as modificações feitas sempre que a gravação é pausada ou finalizada.</td>
+</tr>
+<tr>
+  <td>Verificar atualizações</td>
+  <td>Se marcado, o Obi procura e informa o utilizador sobre novas atualizações.</td>
+</tr>
+<tr>
+  <td>Mostrar formas de onda na vista de conteúdo</td>
+  <td>Se marcado, a forma de onda será exibida por baixo da etiqueta da frase; se não marcado, apenas será exibido o comprimento do áudio.</td>
+</tr>
+<tr>
+  <td>Alargar tempo de validação para EPUB além de 3 minutos</td>
+  <td>Se marcado, o Obi assegura que a validação para EPUB possa decorrer em tempo superior a 3 minutos, o que costuma ser suficiente, mesmo em caso de um livro extenso. Isto impede que a validação seja abruptamente interrompida por qualquer fator alheio ao programa.</td>
+</tr>
+<tr>
+  <td>Ativar movimento do botão redondo do rato</td>
+  <td>Ativa e desativa o movimento deste botão do rato na vista de conteúdo.</td>
+</tr>
+</table>
+</div>
+<div id="Custom">
+<p>Personalize o seu perfil. De acordo com a sua preferência, marque ou desmarque as caixas de verificação exibidas.:-</p>
+<p>Separador áudio:-</p>
+<table border="3" >
+<tr>
+  <td>Indicações áudio</td>
+  <td>Ativa e desativa indicações de áudio que mostram se o nível de entrada de som está alto, bom, ou baixo. Útil para utilizadores com deficiência da visão.</td>   
+</tr>
+<tr>
+  <td>Reter silêncio inicial durante a deteção de frases</td>
+  <td>Se marcado, retém silêncio inicial durante a deteção de frases; se desmarcado, elimina esse silêncio.</td>   
+</tr>
+<tr>
+  <td>Usar botão de gravação para simular antes da gravação</td>
+  <td>Se marcado, reproduz um pouco do áudio até ao cursor antes de gravar; se desmarcado, inicia a gravação diretamente.</td>
+</tr>
+<tr>
+  <td>Usar barra de espaços para parar gravação</td>
+  <td>Se marcado, o Obi pára a gravação; se desmarcado, o comportamento é o padrão, ou seja, apenas faz uma pausa.</td>
+</tr>
+<tr>
+  <td>Permitir substituição sobre a gravação</td>
+  <td>Se marcado, o Obi abre um espaço na frase para inserir a nova gravação, segundo as regras definidas; se desmarcado, cria uma nova frase a seguir à frase selecionada.</td>
+</tr>
+<tr>
+  <td>Sempre gravar diretamente desde a barra de controlos</td>
+  <td>Se marcado, é desativada a possibilidade de monitorar o áudio. Como resultado, cada click no botão iniciará a gravação de imediato.</td>
+</tr>
+<tr>
+  <td>Limitar duração máx. das frases a 50 minutos</td>
+  <td>Se marcado, limita a duração das frases a 50 minutos; se desmarcado, permite frases de qualquer duração.</td>
+</tr>
+<tr>
+  <td>Mostrar forma de onda ao vivo durante a gravação</td>
+  <td>Se marcado, descreve a forma de onda durante a gravação.</td>
+</tr>
+<tr>
+  <td>Executar deteção de frases durante a gravação</td>
+  <td>Se marcado, o Obi aplica a deteção de frases enquanto a gravação decorre. No final da gravação, faz as divisões nos pontos detetados.</td>
+</tr>
+<tr>
+  <td>Renumerar as páginas seguintes quando a gravação terminar</td>
+  <td>Se marcado, o Obi renumera as páginas a seguir ao áudio gravado, logo que a gravação é finalizada.</td>
+</tr>
+<tr>
+  <td>Juntar as duas primeiras frases detetadas pelo processo de deteção de frases</td>
+  <td>Se marcado, as duas primeiras frases detetadas automaticamente, ficam juntas.</td>
+</tr>
+<tr>
+  <td>Reprodução rápida sem mudança de tom</td>
+  <td>Se marcado, o Obi preserva o tom ou pitch do áudio, à medida que reproduz a maior velocidade.</td>
+</tr>
+<tr>
+  <td>Usar botão de gravação para gravar sobre áudio subsequente</td>
+  <td>Se marcado, substitui o áudio gravado pela nova gravação, cada vez que o comando é executado. Neste caso, também deverá estar marcada a caixa sempre gravar a partir da barra de controlos.</td>
+</tr>
+<tr>
+  <td>Forçar cursor único do áudio</td>
+  <td>Se marcado, o Obi usará apenas um cursor na vez de dois; o cursor vermelho será mapeado para a posição do azul.</td>
+</tr>
+<tr>
+  <td>Depois de gravar, apagar frases subsequentes</td>
+  <td>Se marcado, o Obi apaga as frases a seguir à que está a ser gravada na secção, logo que a gravação termina.</td>
+</tr>
+<tr>
+  <td>Não deselecionar ao pressionar stop duas vezes</td>
+  <td>Se marcado, o Obi não desfaz a seleção ao parar de reproduzir; se não marcado, desfaz a seleção.</td>
+</tr>
+<tr>
+  <td>Preservar páginas ao gravar sobre áudio subsequente</td>
+  <td>Se marcado, as frases de páginas na secção são preservadas.</td>
+</tr>
+<tr>
+  <td>Sempre monitorar na barra de ferramentas da gravação</td>
+  <td>Se marcado, resulta na monitoração permanente da entrada de som.</td>
+</tr>
+<tr>
+  <td>Realsar etiqueta para simular antes da gravação</td>
+  <td>Se marcado, o Obi realsa a etiqueta da frase em simulação, antes de começar a gravar.</td>
+</tr>
+<tr>
+  <td>Usar botão reproduzir e barra de espaços para reproduzir secção</td>
+  <td>Se marcado, o conteúdo é reproduzido por secção.</td>
+</tr>
+<tr>
+  <td>Ativar depuração rápida para distribuição baseada em rede</td>
+  <td>Se marcado, é ativado o item da depuração rápida no menu Ferramentas. A depuração rápida avança o áudio já depurado.</td>
+</tr>
+<tr>
+  <td>Assegurar visibilidade do cursor ao simular, antes da gravação ser desfeita</td>
+  <td>Se marcado, o cursor fica sempre visível durante a simulação, antes de a gravação ser desfeita.</td>
+</tr>
+<tr>
+  <td>Desativar criação de novos cabeçalhos e páginas ao gravar</td>
+  <td>Se marcado, os comandos de novo cabeçalho e nova página serão deslocados para o respetivo item, a gravação prossegue, mas nenhum cabeçalho ou página novo é criado.</td>
+</tr>
+<tr>
+  <td>Prevenir deteção de frases ao vivo em páginas</td>
+  <td>Se marcado, a deteção automática de frases não será aplicada nas páginas, durante a gravação ao vivo.</td>
+</tr>
+<tr>
+  <td>Guardar zoom do áudio</td>
+  <td>Se marcado, o zoom do áudio será preservado mesmo em sessões diferentes. </td>
+</tr>
+</table>
+<p>Separador Projeto:- </p>
+<table  border="3">
+<tr>
+  <td>Abrir o último projeto</td>
+  <td>Se marcado, o Obi abrirá sempre o projeto da última sessão.</td>
+</tr>
+<tr>
+  <td>Selecionar marcador quando o projeto é reaberto</td>
+  <td>Se marcado, o Obi abrirá o projeto posicionando o cursor no marcador definido; se não marcado, o projeto será aberto em modo padrão, ou seja, na vista de conteúdo, com o cursor sobre a primeira secção.</td>
+</tr>
+<tr>
+  <td>Reparar largura da vista de conteúdo</td>
+  <td>Se marcado, o Obi não alterará a orientação de outras frases visíveis, mesmo que o comprimento de uma frase exceda a largura atual da vista de conteúdo. Se não marcado, a largura da vista de conteúdo será alterada consoante o tamanho da frase sob o foco, alterando também o tamanho das outras frases.</td>
+</tr>
+<tr>
+  <td>Otimizar utilização de memória</td>
+  <td>Se marcado, otimiza o uso de memória por parte do Obi.</td>
+</tr>
+<tr>
+  <td>Desativar a descartagem para depuração</td>
+    <td>Se marcado, o Obi não permitirá que o utilizador descarte ou elimine o histórico de depuração.</td>
+</tr>
+<tr>
+  <td>Ativar verificação de espaço em disco</td>
+  <td>Se marcado, pesquisa e informa o utilizador sobre o espaço disponível em disco durante as diversas operações.</td>
+</tr>
+<tr>
+  <td>Salvar projeto quando a gravação terminar</td>
+  <td>Se marcado, o Obi guarda todas as modificações feitas sempre que a gravação é pausada ou finalizada.</td>
+</tr>
+<tr>
+  <td>Verificar atualizações</td>
+  <td>Se marcado, o Obi procura e informa o utilizador sobre novas atualizações.</td>
+</tr>
+<tr>
+  <td>Mostrar formas de onda na vista de conteúdo</td>
+  <td>Se marcado, a forma de onda será exibida por baixo da etiqueta da frase; se não marcado, apenas será exibido o comprimento do áudio.</td>
+</tr>
+<tr>
+  <td>Sempre ignorar indentação para ficheiros DAISY exportados</td>
+  <td>Se marcado, os ficheiros exportados (tais como SMIL, OPF, etc.) não serão indentados para leitura humana.</td>
+</tr>
+<tr>
+  <td>Realsar secções vazias na vista TOC</td>
+  <td>Se marcado, o Obi exibirá as secções vazias em fundo rosa, para serem distinguidas das outras.</td>
+</tr>
+<tr>
+  <td>Guardar localização e tamanho do Obi</td>
+  <td>Se marcado, o Obi regista o tamanho da janela da aplicação no ecrã, reabrindo cada nova sessão com as mesmas definições.</td>
+</tr>
+<tr>
+  <td>Manter medidor de pico alinhado à margem direita do Obi</td>
+  <td>Se marcado, o medidor gráfico de pico manter-se-á sempre do lado direito da janela do programa, mesmo que o utilizador tente deslocá-lo. Esta opção não funciona se a janela do Obi estiver maximizada.</td>
+</tr>
+<tr>
+  <td>Alargar tempo de validação para EPUB além de 3 minutos</td>
+  <td>Se marcado, o Obi assegura que a validação para EPUB possa decorrer em tempo superior a 3 minutos, o que costuma ser suficiente, mesmo em caso de um livro extenso. Isto impede que a validação seja abruptamente interrompida por qualquer fator alheio ao programa.</td>
+</tr>
+<tr>
+  <td>Não minimizar com ativação da barra de ferramentas de gravação</td>
+  <td>Se marcado, a janela do Obi não será minimizada quando a barra de ferramentas de gravação for aberta.</td>
+</tr>
+<tr>
+  <td>Ativar movimento do botão redondo do rato</td>
+  <td>Ativa e desativa o movimento deste botão do rato na vista de conteúdo.</td>
+</tr>
+<tr>
+  <td>Desativar colapso da secção selecionada na vista TOC</td>
+  <td>Se marcado, o duplo click sobre a secção na vista TOC não colapsa nem expande a referida secção.</td>
+</tr>
+<tr>
+  <td>Abrir o Obi no estado maximizado</td>
+  <td>Abre a janela do programa no estado maximizado.</td>
+</tr>
+<tr>
+  <td>Usar a norma Vision Australia para exportação XHTML</td>
+  <td>Se marcado, os ficheiros exportados no formato XHTML serão criados segundo esta norma.</td>
+</tr>
+<tr>
+  <td>Aumentar frases como se por aumento da resolução do ecrã</td>
+  <td>Se marcado, a orientação das frases é determinada para aumentar a eficiência e evitar acumulação de formas de onda na vista de conteúdo.</td>
+</tr>
+</table>
+</div>   
+<div id="Profile2">
+<p>NO perfil-SBS, as seguintes caixas de verificação estão marcadas:-</p>
+<p>Separador áudio:-</p>
+<table border="3" >
+<tr>
+  <td>Reter silêncio inicial durante a deteção de frases</td>
+  <td>Se marcado, retém silêncio inicial durante a deteção de frases; se desmarcado, elimina esse silêncio.</td>   
+</tr>
+<tr>
+  <td>Usar botão de gravação para simular antes da gravação</td>
+  <td>Se marcado, reproduz um pouco do áudio até ao cursor antes de gravar; se desmarcado, inicia a gravação diretamente.</td>
+</tr>
+<tr>
+  <td>Permitir substituição sobre a gravação</td>
+  <td>Se marcado, o Obi abre um espaço na frase para inserir a nova gravação, segundo as regras definidas; se desmarcado, cria uma nova frase a seguir à frase selecionada.</td>
+</tr>
+<tr>
+  <td>Sempre gravar diretamente desde a barra de controlos</td>
+  <td>Se marcado, é desativada a possibilidade de monitorar o áudio. Como resultado, cada click no botão iniciará a gravação de imediato.</td>
+</tr>
+<tr>
+  <td>Limitar duração máx. das frases a 50 minutos</td>
+  <td>Se marcado, limita a duração das frases a 50 minutos; se desmarcado, permite frases de qualquer duração.</td>
+</tr>
+<tr>
+  <td>Executar deteção de frases durante a gravação</td>
+  <td>Se marcado, o Obi aplica a deteção de frases enquanto a gravação decorre. No final da gravação, faz as divisões nos pontos detetados.</td>
+</tr>
+<tr>
+  <td>Renumerar as páginas seguintes quando a gravação terminar</td>
+  <td>Se marcado, o Obi renumera as páginas a seguir ao áudio gravado, logo que a gravação é finalizada.</td>
+</tr>
+<tr>
+  <td>Reprodução rápida sem mudança de tom</td>
+  <td>Se marcado, o Obi preserva o tom ou pitch do áudio, à medida que reproduz a maior velocidade.</td>
+</tr>
+<tr>
+  <td>Forçar cursor único do áudio</td>
+  <td>Se marcado, o Obi usará apenas um cursor na vez de dois; o cursor vermelho será mapeado para a posição do azul.</td>
+</tr>
+<tr>
+  <td>Não deselecionar ao pressionar stop duas vezes</td>
+  <td>Se marcado, o Obi não desfaz a seleção ao parar de reproduzir; se não marcado, desfaz a seleção.</td>
+</tr>
+<tr>
+  <td>Sempre monitorar na barra de ferramentas da gravação</td>
+  <td>Se marcado, resulta na monitoração permanente da entrada de som.</td>
+</tr>
+<tr>
+  <td>Realsar etiqueta para simular antes da gravação</td>
+  <td>Se marcado, o Obi realsa a etiqueta da frase em simulação, antes de começar a gravar.</td>
+</tr>
+<tr>
+  <td>Ativar depuração rápida para distribuição baseada em rede</td>
+  <td>Se marcado, é ativado o item da depuração rápida no menu Ferramentas. A depuração rápida avança o áudio já depurado.</td>
+</tr>
+<tr>
+  <td>Assegurar visibilidade do cursor ao simular, antes da gravação ser desfeita</td>
+  <td>Se marcado, o cursor fica sempre visível durante a simulação, antes de a gravação ser desfeita.</td>
+</tr>
+<tr>
+  <td>Prevenir deteção de frases ao vivo em páginas</td>
+  <td>Se marcado, a deteção automática de frases não será aplicada nas páginas, durante a gravação ao vivo.</td>
+</tr>
+<tr>
+  <td>Guardar zoom do áudio</td>
+  <td>Se marcado, o zoom do áudio será preservado mesmo em sessões diferentes. </td>
+</tr>
+</table>
+<p>Separador Projeto:- </p>
+<table  border="3">
+<tr>
+  <td>Reparar largura da vista de conteúdo</td>
+  <td>Se marcado, o Obi não alterará a orientação de outras frases visíveis, mesmo que o comprimento de uma frase exceda a largura atual da vista de conteúdo. Se não marcado, a largura da vista de conteúdo será alterada consoante o tamanho da frase sob o foco, alterando também o tamanho das outras frases.</td>
+</tr>
+<tr>
+  <td>Otimizar utilização de memória</td>
+  <td>Se marcado, otimiza o uso de memória por parte do Obi.</td>
+</tr>
+<tr>
+  <td>Ativar verificação de espaço em disco</td>
+  <td>Se marcado, pesquisa e informa o utilizador sobre o espaço disponível em disco durante as diversas operações.</td>
+</tr>
+<tr>
+  <td>Salvar projeto quando a gravação terminar</td>
+  <td>Se marcado, o Obi guarda todas as modificações feitas sempre que a gravação é pausada ou finalizada.</td>
+</tr>
+<tr>
+  <td>Verificar atualizações</td>
+  <td>Se marcado, o Obi procura e informa o utilizador sobre novas atualizações.</td>
+</tr>
+<tr>
+  <td>Mostrar formas de onda na vista de conteúdo</td>
+  <td>Se marcado, a forma de onda será exibida por baixo da etiqueta da frase; se não marcado, apenas será exibido o comprimento do áudio.</td>
+</tr>
+<tr>
+  <td>Realsar secções vazias na vista TOC</td>
+  <td>Se marcado, o Obi exibirá as secções vazias em fundo rosa, para serem distinguidas das outras.</td>
+</tr>
+<tr>
+  <td>Guardar localização e tamanho do Obi</td>
+  <td>Se marcado, o Obi regista o tamanho da janela da aplicação no ecrã, reabrindo cada nova sessão com as mesmas definições.</td>
+</tr>
+<tr>
+  <td>Manter medidor de pico alinhado à margem direita do Obi</td>
+  <td>Se marcado, o medidor gráfico de pico manter-se-á sempre do lado direito da janela do programa, mesmo que o utilizador tente deslocá-lo. Esta opção não funciona se a janela do Obi estiver maximizada.</td>
+</tr>
+<tr>
+  <td>Alargar tempo de validação para EPUB além de 3 minutos</td>
+  <td>Se marcado, o Obi assegura que a validação para EPUB possa decorrer em tempo superior a 3 minutos, o que costuma ser suficiente, mesmo em caso de um livro extenso. Isto impede que a validação seja abruptamente interrompida por qualquer fator alheio ao programa.</td>
+</tr>
+</table>
+</div> 
+
+
+<div id="VA-Insert">
+<p>Em VA-Insert as seguintes caixas de verificação estão marcadas:-</p>
+<p>Separador áudio:-</p>
+<table border="3" >
+<tr>
+  <td>Reter silêncio inicial durante a deteção de frases</td>
+  <td>Se marcado, retém silêncio inicial durante a deteção de frases; se desmarcado, elimina esse silêncio.</td>   
+</tr>
+<tr>
+  <td>Usar barra de espaços para parar gravação</td>
+  <td>Se marcado, o Obi pára a gravação; se desmarcado, o comportamento é o padrão, ou seja, apenas faz uma pausa.</td>
+</tr>
+<tr>
+  <td>Permitir substituição sobre a gravação</td>
+  <td>Se marcado, o Obi abre um espaço na frase para inserir a nova gravação, segundo as regras definidas; se desmarcado, cria uma nova frase a seguir à frase selecionada.</td>
+</tr>
+<tr>
+  <td>Sempre gravar diretamente desde a barra de controlos</td>
+  <td>Se marcado, é desativada a possibilidade de monitorar o áudio. Como resultado, cada click no botão iniciará a gravação de imediato.</td>
+</tr>
+<tr>
+  <td>Limitar duração máx. das frases a 50 minutos</td>
+  <td>Se marcado, limita a duração das frases a 50 minutos; se desmarcado, permite frases de qualquer duração.</td>
+</tr>
+<tr>
+  <td>Mostrar forma de onda ao vivo durante a gravação</td>
+  <td>Se marcado, descreve a forma de onda durante a gravação.</td>
+</tr>
+<tr>
+  <td>Executar deteção de frases durante a gravação</td>
+  <td>Se marcado, o Obi aplica a deteção de frases enquanto a gravação decorre. No final da gravação, faz as divisões nos pontos detetados.</td>
+</tr>
+<tr>
+  <td>Renumerar as páginas seguintes quando a gravação terminar</td>
+  <td>Se marcado, o Obi renumera as páginas a seguir ao áudio gravado, logo que a gravação é finalizada.</td>
+</tr>
+<tr>
+  <td>Juntar as duas primeiras frases detetadas pelo processo de deteção de frases</td>
+  <td>Se marcado, as duas primeiras frases detetadas automaticamente, ficam juntas.</td>
+</tr>
+<tr>
+  <td>Reprodução rápida sem mudança de tom</td>
+  <td>Se marcado, o Obi preserva o tom ou pitch do áudio, à medida que reproduz a maior velocidade.</td>
+</tr>
+<tr>
+  <td>Forçar cursor único do áudio</td>
+  <td>Se marcado, o Obi usará apenas um cursor na vez de dois; o cursor vermelho será mapeado para a posição do azul.</td>
+</tr>
+<tr>
+  <td>Usar botão reproduzir e barra de espaços para reproduzir secção</td>
+  <td>Se marcado, o conteúdo é reproduzido por secção.</td>
+</tr>
+<tr>
+  <td>Desativar criação de novos cabeçalhos e páginas ao gravar</td>
+  <td>Se marcado, os comandos de novo cabeçalho e nova página serão deslocados para o respetivo item, a gravação prossegue, mas nenhum cabeçalho ou página novo é criado.</td>
+</tr>
+</table>
+<p>Separador Projeto:- </p>
+<table  border="3">
+<tr>
+  <td>Abrir o último projeto</td>
+  <td>Se marcado, o Obi abrirá sempre o projeto da última sessão.</td>
+</tr>
+<tr>
+  <td>Selecionar marcador quando o projeto é reaberto</td>
+  <td>Se marcado, o Obi abrirá o projeto posicionando o cursor no marcador definido; se não marcado, o projeto será aberto em modo padrão, ou seja, na vista de conteúdo, com o cursor sobre a primeira secção.</td>
+</tr>
+<tr>
+  <td>Reparar largura da vista de conteúdo</td>
+  <td>Se marcado, o Obi não alterará a orientação de outras frases visíveis, mesmo que o comprimento de uma frase exceda a largura atual da vista de conteúdo. Se não marcado, a largura da vista de conteúdo será alterada consoante o tamanho da frase sob o foco, alterando também o tamanho das outras frases.</td>
+</tr>
+<tr>
+  <td>Otimizar utilização de memória</td>
+  <td>Se marcado, otimiza o uso de memória por parte do Obi.</td>
+</tr>
+<tr>
+  <td>Desativar a descartagem para depuração</td>
+    <td>Se marcado, o Obi não permitirá que o utilizador descarte ou elimine o histórico de depuração.  </td>
+</tr>
+<tr>
+  <td>Ativar verificação de espaço em disco</td>
+  <td>Se marcado, pesquisa e informa o utilizador sobre o espaço disponível em disco durante as diversas operações.</td>
+</tr>
+<tr>
+  <td>Salvar projeto quando a gravação terminar</td>
+  <td>Se marcado, o Obi guarda todas as modificações feitas sempre que a gravação é pausada ou finalizada.</td>
+</tr>
+<tr>
+  <td>Verificar atualizações</td>
+  <td>Se marcado, o Obi procura e informa o utilizador sobre novas atualizações.</td>
+</tr>
+<tr>
+  <td>Mostrar formas de onda na vista de conteúdo</td>
+  <td>Se marcado, a forma de onda será exibida por baixo da etiqueta da frase; se não marcado, apenas será exibido o comprimento do áudio.</td>
+</tr>
+<tr>
+  <td>Realsar secções vazias na vista TOC</td>
+  <td>Se marcado, o Obi exibirá as secções vazias em fundo rosa, para serem distinguidas das outras.</td>
+</tr>
+<tr>
+  <td>Guardar localização e tamanho do Obi</td>
+  <td>Se marcado, o Obi regista o tamanho da janela da aplicação no ecrã, reabrindo cada nova sessão com as mesmas definições.</td>
+</tr>
+<tr>
+  <td>Manter medidor de pico alinhado à margem direita do Obi</td>
+  <td>Se marcado, o medidor gráfico de pico manter-se-á sempre do lado direito da janela do programa, mesmo que o utilizador tente deslocá-lo. Esta opção não funciona se a janela do Obi estiver maximizada.</td>
+</tr>
+<tr>
+  <td>Alargar tempo de validação para EPUB além de 3 minutos</td>
+  <td>Se marcado, o Obi assegura que a validação para EPUB possa decorrer em tempo superior a 3 minutos, o que costuma ser suficiente, mesmo em caso de um livro extenso. Isto impede que a validação seja abruptamente interrompida por qualquer fator alheio ao programa.</td>
+</tr>
+<tr>
+  <td>Não minimizar com ativação da barra de ferramentas de gravação</td>
+  <td>Se marcado, a janela do Obi não será minimizada quando a barra de ferramentas de gravação for aberta.</td>
+</tr>
+<tr>
+  <td>Desativar colapso da secção selecionada na vista TOC</td>
+  <td>Se marcado, o duplo click sobre a secção na vista TOC não colapsa nem expande a referida secção.</td>
+</tr>
+<tr>
+  <td>Abrir o Obi no estado maximizado</td>
+  <td>Abre a janela do programa no estado maximizado.</td>
+</tr>
+<tr>
+  <td>Usar a norma Vision Australia para exportação XHTML</td>
+  <td>Se marcado, os ficheiros exportados no formato XHTML serão criados segundo esta norma.</td>
+</tr>
+<tr>
+  <td>Aumentar frases como se por aumento da resolução do ecrã</td>
+  <td>Se marcado, a orientação das frases é determinada para aumentar a eficiência e evitar acumulação de formas de onda na vista de conteúdo.</td>
+</tr>
+</table>
+</div> 
+<div id="VA-Overwrite">
+<p>Em VA-Overwrite as seguintes caixas de verificação estão marcadas:-</p>
+<p>Separador áudio:-</p>
+<table border="3" >
+<tr>
+  <td>Reter silêncio inicial durante a deteção de frases</td>
+  <td>Se marcado, retém silêncio inicial durante a deteção de frases; se desmarcado, elimina esse silêncio.</td>   
+</tr>
+<tr>
+  <td>Usar barra de espaços para parar gravação</td>
+  <td>Se marcado, o Obi pára a gravação; se desmarcado, o comportamento é o padrão, ou seja, apenas faz uma pausa.</td>
+</tr>
+<tr>
+  <td>Permitir substituição sobre a gravação</td>
+  <td>Se marcado, o Obi abre um espaço na frase para inserir a nova gravação, segundo as regras definidas; se desmarcado, cria uma nova frase a seguir à frase selecionada.</td>
+</tr>
+<tr>
+  <td>Sempre gravar diretamente desde a barra de controlos</td>
+  <td>Se marcado, é desativada a possibilidade de monitorar o áudio. Como resultado, cada click no botão iniciará a gravação de imediato.</td>
+</tr>
+<tr>
+  <td>Limitar duração máx. das frases a 50 minutos</td>
+  <td>Se marcado, limita a duração das frases a 50 minutos; se desmarcado, permite frases de qualquer duração.</td>
+</tr>
+<tr>
+  <td>Mostrar forma de onda ao vivo durante a gravação</td>
+  <td>Se marcado, descreve a forma de onda durante a gravação.</td>
+</tr>
+<tr>
+  <td>Executar deteção de frases durante a gravação</td>
+  <td>Se marcado, o Obi aplica a deteção de frases enquanto a gravação decorre. No final da gravação, faz as divisões nos pontos detetados.</td>
+</tr>
+<tr>
+  <td>Renumerar as páginas seguintes quando a gravação terminar</td>
+  <td>Se marcado, o Obi renumera as páginas a seguir ao áudio gravado, logo que a gravação é finalizada.</td>
+</tr>
+<tr>
+  <td>Juntar as duas primeiras frases detetadas pelo processo de deteção de frases</td>
+  <td>Se marcado, as duas primeiras frases detetadas automaticamente, ficam juntas.</td>
+</tr>
+<tr>
+  <td>Reprodução rápida sem mudança de tom</td>
+  <td>Se marcado, o Obi preserva o tom ou pitch do áudio, à medida que reproduz a maior velocidade.</td>
+</tr>
+<tr>
+  <td>Usar botão de gravação para gravar sobre áudio subsequente</td>
+  <td>Se marcado, substitui o áudio gravado pela nova gravação, cada vez que o comando é executado. Neste caso, também deverá estar marcada a caixa sempre gravar a partir da barra de controlos.</td>
+</tr>
+<tr>
+  <td>Forçar cursor único do áudio</td>
+  <td>Se marcado, o Obi usará apenas um cursor na vez de dois; o cursor vermelho será mapeado para a posição do azul.</td>
+</tr>
+<tr>
+  <td>Depois de gravar, apagar frases subsequentes</td>
+  <td>Se marcado, o Obi apaga as frases a seguir à que está a ser gravada na secção, logo que a gravação termina.</td>
+</tr>
+<tr>
+  <td>Não deselecionar ao pressionar stop duas vezes</td>
+  <td>Se marcado, o Obi não desfaz a seleção ao parar de reproduzir; se não marcado, desfaz a seleção.</td>
+</tr>
+<tr>
+  <td>Preservar páginas ao gravar sobre áudio subsequente</td>
+  <td>Se marcado, as frases de páginas na secção são preservadas.</td>
+</tr>
+<tr>
+  <td>Usar botão reproduzir e barra de espaços para reproduzir secção</td>
+  <td>Se marcado, o conteúdo é reproduzido por secção.</td>
+</tr>
+<tr>
+  <td>Desativar criação de novos cabeçalhos e páginas ao gravar</td>
+  <td>Se marcado, os comandos de novo cabeçalho e nova página serão deslocados para o respetivo item, a gravação prossegue, mas nenhum cabeçalho ou página novo é criado.</td>
+</tr>
+</table>
+<p>Separador Projeto:- </p>
+<table  border="3">
+<tr>
+  <td>Abrir o último projeto</td>
+  <td>Se marcado, o Obi abrirá sempre o projeto da última sessão.</td>
+</tr>
+<tr>
+  <td>Selecionar marcador quando o projeto é reaberto</td>
+  <td>Se marcado, o Obi abrirá o projeto posicionando o cursor no marcador definido; se não marcado, o projeto será aberto em modo padrão, ou seja, na vista de conteúdo, com o cursor sobre a primeira secção.</td>
+</tr>
+<tr>
+  <td>Reparar largura da vista de conteúdo</td>
+  <td>Se marcado, o Obi não alterará a orientação de outras frases visíveis, mesmo que o comprimento de uma frase exceda a largura atual da vista de conteúdo. Se não marcado, a largura da vista de conteúdo será alterada consoante o tamanho da frase sob o foco, alterando também o tamanho das outras frases.</td>
+</tr>
+<tr>
+  <td>Otimizar utilização de memória</td>
+  <td>Se marcado, otimiza o uso de memória por parte do Obi.</td>
+</tr>
+<tr>
+  <td>Desativar a descartagem para depuração</td>
+    <td>Se marcado, o Obi não permitirá que o utilizador descarte ou elimine o histórico de depuração.  </td>
+</tr>
+<tr>
+  <td>Ativar verificação de espaço em disco</td>
+  <td>Se marcado, pesquisa e informa o utilizador sobre o espaço disponível em disco durante as diversas operações.</td>
+</tr>
+<tr>
+  <td>Salvar projeto quando a gravação terminar</td>
+  <td>Se marcado, o Obi guarda todas as modificações feitas sempre que a gravação é pausada ou finalizada.</td>
+</tr>
+<tr>
+  <td>Verificar atualizações</td>
+  <td>Se marcado, o Obi procura e informa o utilizador sobre novas atualizações.</td>
+</tr>
+<tr>
+  <td>Mostrar formas de onda na vista de conteúdo</td>
+  <td>Se marcado, a forma de onda será exibida por baixo da etiqueta da frase; se não marcado, apenas será exibido o comprimento do áudio.</td>
+</tr>
+<tr>
+  <td>Realsar secções vazias na vista TOC</td>
+  <td>Se marcado, o Obi exibirá as secções vazias em fundo rosa, para serem distinguidas das outras.</td>
+</tr>
+<tr>
+  <td>Guardar localização e tamanho do Obi</td>
+  <td>Se marcado, o Obi regista o tamanho da janela da aplicação no ecrã, reabrindo cada nova sessão com as mesmas definições.</td>
+</tr>
+<tr>
+  <td>Manter medidor de pico alinhado à margem direita do Obi</td>
+  <td>Se marcado, o medidor gráfico de pico manter-se-á sempre do lado direito da janela do programa, mesmo que o utilizador tente deslocá-lo. Esta opção não funciona se a janela do Obi estiver maximizada.</td>
+</tr>
+<tr>
+  <td>Alargar tempo de validação para EPUB além de 3 minutos</td>
+  <td>Se marcado, o Obi assegura que a validação para EPUB possa decorrer em tempo superior a 3 minutos, o que costuma ser suficiente, mesmo em caso de um livro extenso. Isto impede que a validação seja abruptamente interrompida por qualquer fator alheio ao programa.</td>
+</tr>
+<tr>
+  <td>Não minimizar com ativação da barra de ferramentas de gravação</td>
+  <td>Se marcado, a janela do Obi não será minimizada quando a barra de ferramentas de gravação for aberta.</td>
+</tr>
+<tr>
+  <td>Desativar colapso da secção selecionada na vista TOC</td>
+  <td>Se marcado, o duplo click sobre a secção na vista TOC não colapsa nem expande a referida secção.</td>
+</tr>
+<tr>
+  <td>Abrir o Obi no estado maximizado</td>
+  <td>Abre a janela do programa no estado maximizado.</td>
+</tr>
+<tr>
+  <td>Usar a norma Vision Australia para exportação XHTML</td>
+  <td>Se marcado, os ficheiros exportados no formato XHTML serão criados segundo esta norma.</td>
+</tr>
+<tr>
+  <td>Aumentar frases como se por aumento da resolução do ecrã</td>
+  <td>Se marcado, a orientação das frases é determinada para aumentar a eficiência e evitar acumulação de formas de onda na vista de conteúdo.</td>
+</tr>
+</table>
+</div>    
+  </body>
+</html>
