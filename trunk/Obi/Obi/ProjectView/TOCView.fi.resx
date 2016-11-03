@@ -143,13 +143,13 @@
     <value>189, 22</value>
   </data>
   <data name="Context_AddSectionMenuItem.Text" xml:space="preserve">
-    <value>Li&amp;sää kappale</value>
+    <value>Lis&amp;ää kappale</value>
   </data>
   <data name="Context_AddSubsectionMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>189, 22</value>
   </data>
   <data name="Context_AddSubsectionMenuItem.Text" xml:space="preserve">
-    <value>Lisää &amp;alikappale</value>
+    <value>Lisää &amp;alakappale</value>
   </data>
   <data name="Context_InsertSectionMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>189, 22</value>
@@ -200,7 +200,7 @@
     <value>189, 22</value>
   </data>
   <data name="Context_IncreaseSectionLevelMenuItem.Text" xml:space="preserve">
-    <value>N&amp;osta kappaleen taso</value>
+    <value>K&amp;orota kappaleen taso</value>
   </data>
   <data name="Context_SectionIsUsedMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>189, 22</value>
@@ -221,7 +221,7 @@
     <value>189, 22</value>
   </data>
   <data name="Context_CopyMenuItem.Text" xml:space="preserve">
-    <value>&amp;Kopio</value>
+    <value>&amp;Kopioi</value>
   </data>
   <data name="Context_PasteMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>189, 22</value>
@@ -254,7 +254,7 @@
     <value>189, 22</value>
   </data>
   <data name="Context_PropertiesMenuItem.Text" xml:space="preserve">
-    <value>Ominaisuude&amp;t</value>
+    <value>O&amp;minaisuudet</value>
   </data>
   <data name="mContextMenuStrip.Size" type="System.Drawing.Size, System.Drawing">
     <value>190, 368</value>
@@ -393,5 +393,29 @@
   </data>
   <data name="&gt;&gt;$this.Type" xml:space="preserve">
     <value>System.Windows.Forms.TreeView, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Context_MergeWithNextMenuItem.AccessibleName" xml:space="preserve">
+    <value>Yhdistä seuraavaan</value>
+  </data>
+  <data name="Context_MergeWithNextMenuItem.Text" xml:space="preserve">
+    <value>Yh&amp;distä seuraavaan</value>
+  </data>
+  <data name="Context_MultipleOperationsMenuItem.AccessibleName" xml:space="preserve">
+    <value>Toiminnot kappeleryhmälle</value>
+  </data>
+  <data name="Context_MultipleOperationsMenuItem.Text" xml:space="preserve">
+    <value>Toiminnot kappale&amp;ryhmälle</value>
+  </data>
+  <data name="Context_AddBlankPhraseMenuItem.AccessibleName" xml:space="preserve">
+    <value>Lisää tyhjä lause</value>
+  </data>
+  <data name="Context_AddBlankPhraseMenuItem.Text" xml:space="preserve">
+    <value>L&amp;isää tyhjä lause</value>
+  </data>
+  <data name="Context_AddEmptyPagesMenuItem.AccessibleName" xml:space="preserve">
+    <value>Lisää tyhjiä sivuja</value>
+  </data>
+  <data name="Context_AddEmptyPagesMenuItem.Text" xml:space="preserve">
+    <value>Lisää tyhjiä &amp;sivuja</value>
   </data>
 </root>

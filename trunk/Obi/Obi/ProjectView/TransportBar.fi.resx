@@ -169,7 +169,7 @@
     <value>16</value>
   </data>
   <data name="mPreviousPageButton.AccessibleDescription" xml:space="preserve">
-    <value>button</value>
+    <value>painike</value>
   </data>
   <data name="mPreviousPageButton.AccessibleName" xml:space="preserve">
     <value>Edellinen sivu</value>
@@ -239,10 +239,10 @@
     <value>3</value>
   </data>
   <data name="mRewindButton.AccessibleDescription" xml:space="preserve">
-    <value>button</value>
+    <value>painike</value>
   </data>
   <data name="mRewindButton.AccessibleName" xml:space="preserve">
-    <value>Kelaa taaksepäin</value>
+    <value>Takaisinkelaus</value>
   </data>
   <data name="mRewindButton.BackgroundImageLayout" type="System.Windows.Forms.ImageLayout, System.Windows.Forms">
     <value>Center</value>
@@ -287,7 +287,7 @@
     <value>3</value>
   </data>
   <data name="mRewindButton.ToolTip" xml:space="preserve">
-    <value>Toista taaksepäin suuremmalla nopeudella.</value>
+    <value>Toista taaksepäin suremmalla nopeudella</value>
   </data>
   <data name="&gt;&gt;mRewindButton.Name" xml:space="preserve">
     <value>mRewindButton</value>
@@ -302,7 +302,7 @@
     <value>4</value>
   </data>
   <data name="mToDo_CustomClassMarkButton.AccessibleDescription" xml:space="preserve">
-    <value>button</value>
+    <value>painike</value>
   </data>
   <data name="mToDo_CustomClassMarkButton.AccessibleName" xml:space="preserve">
     <value>Merkitse lause</value>
@@ -372,7 +372,7 @@
     <value>21</value>
   </data>
   <data name="mNextPageButton.AccessibleDescription" xml:space="preserve">
-    <value>button</value>
+    <value>painike</value>
   </data>
   <data name="mNextPageButton.AccessibleName" xml:space="preserve">
     <value>Seuraava sivu</value>
@@ -443,7 +443,7 @@
     <value>painike</value>
   </data>
   <data name="mPlayButton.AccessibleName" xml:space="preserve">
-    <value>Toista</value>
+    <value>Toista taaksepäin suremmalla nopeudella</value>
   </data>
   <data name="mPlayButton.BackgroundImageLayout" type="System.Windows.Forms.ImageLayout, System.Windows.Forms">
     <value>Center</value>
@@ -503,10 +503,10 @@
     <value>9</value>
   </data>
   <data name="mPauseButton.AccessibleDescription" xml:space="preserve">
-    <value>button</value>
+    <value>painike</value>
   </data>
   <data name="mPauseButton.AccessibleName" xml:space="preserve">
-    <value>Keskytä</value>
+    <value>Keskytys</value>
   </data>
   <data name="mPauseButton.BackgroundImageLayout" type="System.Windows.Forms.ImageLayout, System.Windows.Forms">
     <value>Center</value>
@@ -544,7 +544,7 @@
     <value>5</value>
   </data>
   <data name="mPauseButton.ToolTip" xml:space="preserve">
-    <value>Pysätä äänen toisto tai äänitys (Välilyönti)</value>
+    <value>Keskeytä toisto tai äänitys (Välilyönti)</value>
   </data>
   <data name="&gt;&gt;mPauseButton.Name" xml:space="preserve">
     <value>mPauseButton</value>
@@ -559,10 +559,10 @@
     <value>11</value>
   </data>
   <data name="mStopButton.AccessibleDescription" xml:space="preserve">
-    <value>button</value>
+    <value>painike</value>
   </data>
   <data name="mStopButton.AccessibleName" xml:space="preserve">
-    <value>Lopeta</value>
+    <value>Seis</value>
   </data>
   <data name="mStopButton.BackgroundImageLayout" type="System.Windows.Forms.ImageLayout, System.Windows.Forms">
     <value>Center</value>
@@ -602,7 +602,7 @@
     <value>6</value>
   </data>
   <data name="mStopButton.ToolTip" xml:space="preserve">
-    <value>Lopeta äänen toisto tai äänitys (Ctrl+Välilyönti)</value>
+    <value>Pysäytä toisto tai äänitys. (Ctrl +Välilyönti)</value>
   </data>
   <data name="&gt;&gt;mStopButton.Name" xml:space="preserve">
     <value>mStopButton</value>
@@ -617,7 +617,7 @@
     <value>10</value>
   </data>
   <data name="mNextPhrase.AccessibleDescription" xml:space="preserve">
-    <value>button</value>
+    <value>painike</value>
   </data>
   <data name="mNextPhrase.AccessibleName" xml:space="preserve">
     <value>Seuraava lause</value>
@@ -688,10 +688,10 @@
     <value>15</value>
   </data>
   <data name="mPrevPhraseButton.AccessibleDescription" xml:space="preserve">
-    <value>button</value>
+    <value>painike</value>
   </data>
   <data name="mPrevPhraseButton.AccessibleName" xml:space="preserve">
-    <value>Äskeinen lause</value>
+    <value>Edellinen lause</value>
   </data>
   <data name="mPrevPhraseButton.BackgroundImageLayout" type="System.Windows.Forms.ImageLayout, System.Windows.Forms">
     <value>Center</value>
@@ -759,7 +759,7 @@
     <value>8</value>
   </data>
   <data name="mNextSectionButton.AccessibleDescription" xml:space="preserve">
-    <value>button</value>
+    <value>painike</value>
   </data>
   <data name="mNextSectionButton.AccessibleName" xml:space="preserve">
     <value>Seuraava kappale</value>
@@ -813,7 +813,7 @@
     <value>12</value>
   </data>
   <data name="mNextSectionButton.ToolTip" xml:space="preserve">
-    <value>Seuraava kappale. (H)</value>
+    <value>Seuraava kappale. (K)</value>
   </data>
   <data name="&gt;&gt;mNextSectionButton.Name" xml:space="preserve">
     <value>mNextSectionButton</value>
@@ -828,10 +828,10 @@
     <value>22</value>
   </data>
   <data name="mPrevSectionButton.AccessibleDescription" xml:space="preserve">
-    <value>button</value>
+    <value>painike</value>
   </data>
   <data name="mPrevSectionButton.AccessibleName" xml:space="preserve">
-    <value>Edeltävä kappale</value>
+    <value>Edellinen kappale</value>
   </data>
   <data name="mPrevSectionButton.BackgroundImageLayout" type="System.Windows.Forms.ImageLayout, System.Windows.Forms">
     <value>Center</value>
@@ -897,10 +897,10 @@
     <value>7</value>
   </data>
   <data name="mRecordButton.AccessibleDescription" xml:space="preserve">
-    <value>button</value>
+    <value>painike</value>
   </data>
   <data name="mRecordButton.AccessibleName" xml:space="preserve">
-    <value>Äänitä</value>
+    <value>Äänitys</value>
   </data>
   <data name="mRecordButton.BackgroundImageLayout" type="System.Windows.Forms.ImageLayout, System.Windows.Forms">
     <value>Center</value>
@@ -965,10 +965,10 @@
     <value>12</value>
   </data>
   <data name="mFastForwardButton.AccessibleDescription" xml:space="preserve">
-    <value>button</value>
+    <value>painike</value>
   </data>
   <data name="mFastForwardButton.AccessibleName" xml:space="preserve">
-    <value>Pikakelaus eteenpäin</value>
+    <value>Nopeutettu toisto</value>
   </data>
   <data name="mFastForwardButton.BackgroundImageLayout" type="System.Windows.Forms.ImageLayout, System.Windows.Forms">
     <value>Center</value>
@@ -1015,7 +1015,7 @@
     <value>9</value>
   </data>
   <data name="mFastForwardButton.ToolTip" xml:space="preserve">
-    <value>Toista eteenpäin suuremmalla nopeudella.</value>
+    <value>Toista eteenpäin suremmalla nopeudella</value>
   </data>
   <data name="&gt;&gt;mFastForwardButton.Name" xml:space="preserve">
     <value>mFastForwardButton</value>
@@ -1153,7 +1153,7 @@
     <value>14</value>
   </data>
   <data name="m_btnSwitchProfile.ToolTip" xml:space="preserve">
-    <value>Switch Audio Profile</value>
+    <value>Vaihda ääniprofiilia</value>
   </data>
   <data name="&gt;&gt;m_btnSwitchProfile.Name" xml:space="preserve">
     <value>m_btnSwitchProfile</value>
@@ -1207,7 +1207,7 @@
     <value>18</value>
   </data>
   <data name="mFastPlayRateCombobox.AccessibleName" xml:space="preserve">
-    <value>Nopean toistot kerroin</value>
+    <value>Nopean toiston kerroin</value>
   </data>
   <data name="mFastPlayRateCombobox.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Flat</value>

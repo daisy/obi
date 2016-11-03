@@ -169,7 +169,7 @@
     <value>2</value>
   </data>
   <data name="mPreviousButton.Text" xml:space="preserve">
-    <value>E&amp;dellinen</value>
+    <value>&amp;Edellinen</value>
   </data>
   <data name="&gt;&gt;mPreviousButton.Name" xml:space="preserve">
     <value>mPreviousButton</value>
@@ -202,7 +202,7 @@
     <value>3</value>
   </data>
   <data name="mNextButton.Text" xml:space="preserve">
-    <value>Se&amp;uraava</value>
+    <value>Seu&amp;raava</value>
   </data>
   <data name="&gt;&gt;mNextButton.Name" xml:space="preserve">
     <value>mNextButton</value>
@@ -265,7 +265,7 @@
     <value>5</value>
   </data>
   <data name="label1.Text" xml:space="preserve">
-    <value>&amp;Etsi</value>
+    <value>Et&amp;si</value>
   </data>
   <data name="&gt;&gt;label1.Name" xml:space="preserve">
     <value>label1</value>

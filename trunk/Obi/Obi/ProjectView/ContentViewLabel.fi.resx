@@ -175,7 +175,7 @@
     <value>1</value>
   </data>
   <data name="m_lblSectionName.Text" xml:space="preserve">
-    <value>Ei valittua kappaletta</value>
+    <value>Ei valittua kappaletta.</value>
   </data>
   <data name="&gt;&gt;m_lblSectionName.Name" xml:space="preserve">
     <value>m_lblSectionName</value>

@@ -124,7 +124,7 @@
     <value>True</value>
   </metadata>
   <data name="toolStrip1.AccessibleName" xml:space="preserve">
-    <value>Editoi äänitiedosto</value>
+    <value>Muokkaa ääntä</value>
   </data>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="toolStrip1.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
@@ -156,7 +156,7 @@
     <value>47, 22</value>
   </data>
   <data name="mbtnSplittoolStrip.Text" xml:space="preserve">
-    <value>Jaottele</value>
+    <value>Jaa</value>
   </data>
   <data name="mbtnMergetoolStrip.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -452,7 +452,7 @@
     <value>51, 22</value>
   </data>
   <data name="mbtnCopytoolStrip.Text" xml:space="preserve">
-    <value>Koipioi</value>
+    <value>Kopioi</value>
   </data>
   <data name="mbtnPastetoolStrip.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -581,7 +581,7 @@
     <value>54, 22</value>
   </data>
   <data name="mbtnPastetoolStrip.Text" xml:space="preserve">
-    <value>Liimaa</value>
+    <value>Liitä</value>
   </data>
   <data name="mbtnDeletetoolStrip.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -776,7 +776,7 @@
     <value>109, 22</value>
   </data>
   <data name="mbtnPraseDetectiontoolStrip.Text" xml:space="preserve">
-    <value>Lauseen tunnistus</value>
+    <value>Lauseentunnistus</value>
   </data>
   <data name="toolStrip1.Location" type="System.Drawing.Point, System.Drawing">
     <value>0, 0</value>
