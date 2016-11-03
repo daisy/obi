@@ -580,7 +580,7 @@
     <value>True</value>
   </data>
   <data name="m_lblSelectedShortcuts.Location" type="System.Drawing.Point, System.Drawing">
-    <value>11, 42</value>
+    <value>0, 42</value>
   </data>
   <data name="m_lblSelectedShortcuts.Size" type="System.Drawing.Size, System.Drawing">
     <value>152, 16</value>
@@ -604,10 +604,10 @@
     <value>2</value>
   </data>
   <data name="m_txtSelectedShortcutsProfile.Location" type="System.Drawing.Point, System.Drawing">
-    <value>172, 36</value>
+    <value>192, 36</value>
   </data>
   <data name="m_txtSelectedShortcutsProfile.Size" type="System.Drawing.Size, System.Drawing">
-    <value>438, 22</value>
+    <value>418, 22</value>
   </data>
   <data name="m_txtSelectedShortcutsProfile.TabIndex" type="System.Int32, mscorlib">
     <value>4</value>
@@ -625,10 +625,10 @@
     <value>3</value>
   </data>
   <data name="m_txtSelectedProfile.Location" type="System.Drawing.Point, System.Drawing">
-    <value>172, 8</value>
+    <value>192, 8</value>
   </data>
   <data name="m_txtSelectedProfile.Size" type="System.Drawing.Size, System.Drawing">
-    <value>438, 22</value>
+    <value>418, 22</value>
   </data>
   <data name="m_txtSelectedProfile.TabIndex" type="System.Int32, mscorlib">
     <value>2</value>
@@ -2883,10 +2883,10 @@
     <value>False</value>
   </data>
   <data name="m_txtRecordInLocalDrive.Location" type="System.Drawing.Point, System.Drawing">
-    <value>171, 97</value>
+    <value>201, 97</value>
   </data>
   <data name="m_txtRecordInLocalDrive.Size" type="System.Drawing.Size, System.Drawing">
-    <value>330, 22</value>
+    <value>300, 22</value>
   </data>
   <data name="m_txtRecordInLocalDrive.TabIndex" type="System.Int32, mscorlib">
     <value>8</value>
@@ -2907,7 +2907,7 @@
     <value>True</value>
   </data>
   <data name="m_chkRecordInLocalDrive.Location" type="System.Drawing.Point, System.Drawing">
-    <value>12, 99</value>
+    <value>0, 99</value>
   </data>
   <data name="m_chkRecordInLocalDrive.Size" type="System.Drawing.Size, System.Drawing">
     <value>153, 20</value>
