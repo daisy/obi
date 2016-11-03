@@ -247,7 +247,7 @@
     <value>2</value>
   </data>
   <data name="m_btnSaveProfile.AccessibleName" xml:space="preserve">
-    <value>Save current settings as a profile</value>
+    <value>Tallenna nykyiset asetukset profiiliksi</value>
   </data>
   <data name="m_btnSaveProfile.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Flat</value>
@@ -268,10 +268,10 @@
     <value>22</value>
   </data>
   <data name="m_btnSaveProfile.Text" xml:space="preserve">
-    <value>&amp;Save</value>
+    <value>&amp;Tallenna nimellä</value>
   </data>
   <data name="m_btnSaveProfile.ToolTip" xml:space="preserve">
-    <value>Save current settings as a profile</value>
+    <value>Tallenna nykyiset asetukset profiiliksi</value>
   </data>
   <data name="&gt;&gt;m_btnSaveProfile.Name" xml:space="preserve">
     <value>m_btnSaveProfile</value>
@@ -286,7 +286,7 @@
     <value>1</value>
   </data>
   <data name="m_btnAddProfile.AccessibleName" xml:space="preserve">
-    <value>Add an existing profile</value>
+    <value>Tuo tallennettu profiili</value>
   </data>
   <data name="m_btnAddProfile.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Flat</value>
@@ -301,10 +301,10 @@
     <value>21</value>
   </data>
   <data name="m_btnAddProfile.Text" xml:space="preserve">
-    <value>&amp;Add</value>
+    <value>&amp;Import</value>
   </data>
   <data name="m_btnAddProfile.ToolTip" xml:space="preserve">
-    <value>Add an existing profile</value>
+    <value>Lisää olemassa oleva profiili </value>
   </data>
   <data name="&gt;&gt;m_btnAddProfile.Name" xml:space="preserve">
     <value>m_btnAddProfile</value>
@@ -352,7 +352,7 @@
     <value>1</value>
   </data>
   <data name="m_gpBox_SelectProfileRecordingToolbar.AccessibleName" xml:space="preserve">
-    <value>Assign audio profiles to Recording Toolbar groupbox</value>
+    <value>Liitä ääniprofiilit Äänityksen työkalupalkin valintaruutuun</value>
   </data>
   <data name="m_btnAssignProfile.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Flat</value>
@@ -370,7 +370,7 @@
     <value>29</value>
   </data>
   <data name="m_btnAssignProfile.Text" xml:space="preserve">
-    <value>Assi&amp;gn</value>
+    <value>&amp;Liitä</value>
   </data>
   <data name="&gt;&gt;m_btnAssignProfile.Name" xml:space="preserve">
     <value>m_btnAssignProfile</value>
@@ -397,7 +397,7 @@
     <value>27</value>
   </data>
   <data name="m_lblProfile2.Text" xml:space="preserve">
-    <value>Profile 2 :</value>
+    <value>Profiili 2 :</value>
   </data>
   <data name="&gt;&gt;m_lblProfile2.Name" xml:space="preserve">
     <value>m_lblProfile2</value>
@@ -412,7 +412,7 @@
     <value>1</value>
   </data>
   <data name="m_cb_Profile2.AccessibleName" xml:space="preserve">
-    <value>Profile 2</value>
+    <value>Profiili 2 Äänityspalille</value>
   </data>
   <data name="m_cb_Profile2.Location" type="System.Drawing.Point, System.Drawing">
     <value>240, 46</value>
@@ -439,7 +439,7 @@
     <value>2</value>
   </data>
   <data name="m_cb_Profile1.AccessibleName" xml:space="preserve">
-    <value>Profile 1 for U</value>
+    <value>Profiili 1 Äänityspalille</value>
   </data>
   <data name="m_cb_Profile1.Location" type="System.Drawing.Point, System.Drawing">
     <value>18, 46</value>
@@ -484,7 +484,7 @@
     <value>25</value>
   </data>
   <data name="m_lblProfile1.Text" xml:space="preserve">
-    <value>Profile 1 :</value>
+    <value>Profiili 1 :</value>
   </data>
   <data name="&gt;&gt;m_lblProfile1.Name" xml:space="preserve">
     <value>m_lblProfile1</value>
@@ -508,7 +508,7 @@
     <value>24</value>
   </data>
   <data name="m_gpBox_SelectProfileRecordingToolbar.Text" xml:space="preserve">
-    <value>Assign audio profiles to Recording Toolbar</value>
+    <value>Liitä ääniprofiilit Äänityksen työkalupalkiin</value>
   </data>
   <data name="&gt;&gt;m_gpBox_SelectProfileRecordingToolbar.Name" xml:space="preserve">
     <value>m_gpBox_SelectProfileRecordingToolbar</value>
@@ -523,7 +523,7 @@
     <value>0</value>
   </data>
   <data name="m_btnRemoveProfile.AccessibleName" xml:space="preserve">
-    <value>Remove an existing profile</value>
+    <value>Poista profiili</value>
   </data>
   <data name="m_btnRemoveProfile.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Flat</value>
@@ -538,10 +538,10 @@
     <value>23</value>
   </data>
   <data name="m_btnRemoveProfile.Text" xml:space="preserve">
-    <value>&amp;Remove</value>
+    <value>&amp;Poista</value>
   </data>
   <data name="m_btnRemoveProfile.ToolTip" xml:space="preserve">
-    <value>Remove existing profile.</value>
+    <value>Poista profiili</value>
   </data>
   <data name="&gt;&gt;m_btnRemoveProfile.Name" xml:space="preserve">
     <value>m_btnRemoveProfile</value>
@@ -589,7 +589,7 @@
     <value>3</value>
   </data>
   <data name="m_lblSelectedShortcuts.Text" xml:space="preserve">
-    <value>Current Shorcuts Profile :</value>
+    <value>Nykyinen pikavalintaprofiili :</value>
   </data>
   <data name="&gt;&gt;m_lblSelectedShortcuts.Name" xml:space="preserve">
     <value>m_lblSelectedShortcuts</value>
@@ -658,7 +658,7 @@
     <value>7</value>
   </data>
   <data name="m_rdb_KeyboardShortcuts.Text" xml:space="preserve">
-    <value>&amp;Keyboard Shortcuts</value>
+    <value>&amp;Näppäimistön pikavalinnat</value>
   </data>
   <data name="&gt;&gt;m_rdb_KeyboardShortcuts.Name" xml:space="preserve">
     <value>m_rdb_KeyboardShortcuts</value>
@@ -685,7 +685,7 @@
     <value>6</value>
   </data>
   <data name="m_rdb_Preferences.Text" xml:space="preserve">
-    <value>Pre&amp;ferences</value>
+    <value>Esiasetukset</value>
   </data>
   <data name="&gt;&gt;m_rdb_Preferences.Name" xml:space="preserve">
     <value>m_rdb_Preferences</value>
@@ -709,7 +709,7 @@
     <value>5</value>
   </data>
   <data name="m_gpBox_SelectProfile.Text" xml:space="preserve">
-    <value>Select Profile Options</value>
+    <value>Valitse Profiilivalinnat </value>
   </data>
   <data name="&gt;&gt;m_gpBox_SelectProfile.Name" xml:space="preserve">
     <value>m_gpBox_SelectProfile</value>
@@ -736,7 +736,7 @@
     <value>1</value>
   </data>
   <data name="m_lblSelectedProfile.Text" xml:space="preserve">
-    <value>Current Profile :</value>
+    <value>Nykyinen profiili :</value>
   </data>
   <data name="&gt;&gt;m_lblSelectedProfile.Name" xml:space="preserve">
     <value>m_lblSelectedProfile</value>
@@ -769,7 +769,7 @@
     <value>12</value>
   </data>
   <data name="m_lblShortcutsProfile.Text" xml:space="preserve">
-    <value>Select Shortcuts Profile :</value>
+    <value>Valitse pikavalintaprofiili :</value>
   </data>
   <data name="&gt;&gt;m_lblShortcutsProfile.Name" xml:space="preserve">
     <value>m_lblShortcutsProfile</value>
@@ -784,7 +784,7 @@
     <value>0</value>
   </data>
   <data name="m_btnProfileDiscription.AccessibleName" xml:space="preserve">
-    <value>Audio Profile Description</value>
+    <value>Profiilin kuvaus</value>
   </data>
   <data name="m_btnProfileDiscription.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Flat</value>
@@ -892,7 +892,7 @@
     <value>9</value>
   </data>
   <data name="m_lblSelectProfile.Text" xml:space="preserve">
-    <value>Select Profile :</value>
+    <value>Valitse profiili :</value>
   </data>
   <data name="&gt;&gt;m_lblSelectProfile.Name" xml:space="preserve">
     <value>m_lblSelectProfile</value>
@@ -919,7 +919,7 @@
     <value>17</value>
   </data>
   <data name="m_chkColor.Text" xml:space="preserve">
-    <value>&amp;Color</value>
+    <value>&amp;Väri</value>
   </data>
   <data name="&gt;&gt;m_chkColor.Name" xml:space="preserve">
     <value>m_chkColor</value>
@@ -946,7 +946,7 @@
     <value>14</value>
   </data>
   <data name="m_chkProject.Text" xml:space="preserve">
-    <value>&amp;Project</value>
+    <value>&amp;Projekti</value>
   </data>
   <data name="&gt;&gt;m_chkProject.Name" xml:space="preserve">
     <value>m_chkProject</value>
@@ -973,7 +973,7 @@
     <value>15</value>
   </data>
   <data name="m_chkAudio.Text" xml:space="preserve">
-    <value>A&amp;udio</value>
+    <value>&amp;Ääni</value>
   </data>
   <data name="&gt;&gt;m_chkAudio.Name" xml:space="preserve">
     <value>m_chkAudio</value>
@@ -1000,7 +1000,7 @@
     <value>16</value>
   </data>
   <data name="m_chkLanguage.Text" xml:space="preserve">
-    <value>La&amp;nguage</value>
+    <value>&amp;Kieli</value>
   </data>
   <data name="&gt;&gt;m_chkLanguage.Name" xml:space="preserve">
     <value>m_chkLanguage</value>
@@ -1027,7 +1027,7 @@
     <value>18</value>
   </data>
   <data name="m_chkAll.Text" xml:space="preserve">
-    <value>Selec&amp;t All</value>
+    <value>&amp;Valitse kaikki</value>
   </data>
   <data name="&gt;&gt;m_chkAll.Name" xml:space="preserve">
     <value>m_chkAll</value>
@@ -1042,7 +1042,7 @@
     <value>9</value>
   </data>
   <data name="m_btnLoadProfile.AccessibleName" xml:space="preserve">
-    <value>Load the current selected  profile</value>
+    <value>Lataa valittu profiili</value>
   </data>
   <data name="m_btnLoadProfile.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Flat</value>
@@ -1057,10 +1057,10 @@
     <value>19</value>
   </data>
   <data name="m_btnLoadProfile.Text" xml:space="preserve">
-    <value>&amp;Load</value>
+    <value>L&amp;ataa</value>
   </data>
   <data name="m_btnLoadProfile.ToolTip" xml:space="preserve">
-    <value>Load current settings as a profile.</value>
+    <value>Lataa nykyiset asetukset profiiliksi</value>
   </data>
   <data name="&gt;&gt;m_btnLoadProfile.Name" xml:space="preserve">
     <value>m_btnLoadProfile</value>
@@ -1111,7 +1111,7 @@
     <value>5</value>
   </data>
   <data name="mAdvanceTab.Text" xml:space="preserve">
-    <value>Advance</value>
+    <value>Lisäasetukset </value>
   </data>
   <data name="&gt;&gt;mAdvanceTab.Name" xml:space="preserve">
     <value>mAdvanceTab</value>
@@ -1177,7 +1177,7 @@
     <value>8</value>
   </data>
   <data name="m_lblChooseFont.Text" xml:space="preserve">
-    <value>Valitse kirjasintyyppi:</value>
+    <value>Valitse kirjasin :</value>
   </data>
   <data name="&gt;&gt;m_lblChooseFont.Name" xml:space="preserve">
     <value>m_lblChooseFont</value>
@@ -1243,7 +1243,7 @@
     <value>Värit lista</value>
   </data>
   <data name="columnHeader3.Text" xml:space="preserve">
-    <value>Kontrollin nimi</value>
+    <value>Asetuksen nimi</value>
   </data>
   <data name="columnHeader3.Width" type="System.Int32, mscorlib">
     <value>190</value>
@@ -1483,7 +1483,7 @@
     <value>4</value>
   </data>
   <data name="mColorPreferencesTab.Text" xml:space="preserve">
-    <value>Värien esiasetukset</value>
+    <value>Väri ja kirjasin</value>
   </data>
   <data name="&gt;&gt;mColorPreferencesTab.Name" xml:space="preserve">
     <value>mColorPreferencesTab</value>
@@ -1531,7 +1531,7 @@
     <value>0</value>
   </data>
   <data name="columnHeader1.Text" xml:space="preserve">
-    <value>Operaatio:</value>
+    <value>Operaatio</value>
   </data>
   <data name="columnHeader1.Width" type="System.Int32, mscorlib">
     <value>190</value>
@@ -2088,7 +2088,7 @@
     <value>2</value>
   </data>
   <data name="m_CleanUpFileSizeNumericUpDown.AccessibleName" xml:space="preserve">
-    <value>Audio cleanup max file size</value>
+    <value>Äänitteen uudelleenjärjestämisen max tiedostokoko </value>
   </data>
   <data name="m_CleanUpFileSizeNumericUpDown.Location" type="System.Drawing.Point, System.Drawing">
     <value>209, 92</value>
@@ -2133,7 +2133,7 @@
     <value>21</value>
   </data>
   <data name="mlblCleanupFileSize.Text" xml:space="preserve">
-    <value>Audio cleanup max file size(MB):</value>
+    <value>Äänitteen uudelleenjärjestämisen max tiedostokoko(MB):</value>
   </data>
   <data name="&gt;&gt;mlblCleanupFileSize.Name" xml:space="preserve">
     <value>mlblCleanupFileSize</value>
@@ -2658,7 +2658,7 @@
     <value>17</value>
   </data>
   <data name="labelSampleRate.Text" xml:space="preserve">
-    <value>&amp;Näytteenottotaajuus:</value>
+    <value>&amp;Näytteistystaajuus:</value>
   </data>
   <data name="&gt;&gt;labelSampleRate.Name" xml:space="preserve">
     <value>labelSampleRate</value>
@@ -2865,7 +2865,7 @@
     <value>9</value>
   </data>
   <data name="m_btnRecordInLocalDrive.Text" xml:space="preserve">
-    <value>&amp;Browse</value>
+    <value>&amp;Selaa</value>
   </data>
   <data name="&gt;&gt;m_btnRecordInLocalDrive.Name" xml:space="preserve">
     <value>m_btnRecordInLocalDrive</value>
@@ -2916,7 +2916,7 @@
     <value>7</value>
   </data>
   <data name="m_chkRecordInLocalDrive.Text" xml:space="preserve">
-    <value>Record in local drive:</value>
+    <value>Tallenna paikalliselle levylle:</value>
   </data>
   <data name="&gt;&gt;m_chkRecordInLocalDrive.Name" xml:space="preserve">
     <value>m_chkRecordInLocalDrive</value>
@@ -2964,10 +2964,10 @@
     <value>3</value>
   </data>
   <data name="m_lblImportTolerance.AccessibleDescription" xml:space="preserve">
-    <value>Import-toleranssi</value>
+    <value>Import toleranssi</value>
   </data>
   <data name="m_lblImportTolerance.AccessibleName" xml:space="preserve">
-    <value>Import-toleranssi</value>
+    <value>Import toleranssi</value>
   </data>
   <data name="m_lblImportTolerance.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -2988,7 +2988,7 @@
     <value>10</value>
   </data>
   <data name="m_lblImportTolerance.Text" xml:space="preserve">
-    <value>Import-to&amp;leranssi</value>
+    <value>Import to&amp;leranssi</value>
   </data>
   <data name="&gt;&gt;m_lblImportTolerance.Name" xml:space="preserve">
     <value>m_lblImportTolerance</value>
@@ -3045,7 +3045,7 @@
     <value>9</value>
   </data>
   <data name="m_ChkAutoSaveInterval.Text" xml:space="preserve">
-    <value>Automaattinen &amp;tallennusväli minuuteissa</value>
+    <value>Automaattinen &amp;tallennusväli minuuteissa:</value>
   </data>
   <data name="&gt;&gt;m_ChkAutoSaveInterval.Name" xml:space="preserve">
     <value>m_ChkAutoSaveInterval</value>
@@ -3060,7 +3060,7 @@
     <value>6</value>
   </data>
   <data name="MnumAutoSaveInterval.AccessibleName" xml:space="preserve">
-    <value>tallenusväli minuuteissa</value>
+    <value>Tallenusväli minuuteissa</value>
   </data>
   <data name="MnumAutoSaveInterval.Location" type="System.Drawing.Point, System.Drawing">
     <value>372, 138</value>
@@ -3120,7 +3120,7 @@
     <value>8</value>
   </data>
   <data name="mDirectoryTextbox.AccessibleName" xml:space="preserve">
-    <value>Oletus projektihakemisto</value>
+    <value>Oletus projektihakemisto:</value>
   </data>
   <data name="mDirectoryTextbox.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Left, Right</value>
@@ -3210,7 +3210,7 @@
     <value>4</value>
   </data>
   <data name="label9.Text" xml:space="preserve">
-    <value>Pipeline-ko&amp;mentosarjan hakemisto</value>
+    <value>Pipeline-komentosarjan hakemisto</value>
   </data>
   <data name="&gt;&gt;label9.Name" xml:space="preserve">
     <value>label9</value>
@@ -3246,7 +3246,7 @@
     <value>1</value>
   </data>
   <data name="label2.Text" xml:space="preserve">
-    <value>Oletus projekti&amp;hakemisto</value>
+    <value>Pipeline-ko&amp;mentosarjan hakemisto</value>
   </data>
   <data name="&gt;&gt;label2.Name" xml:space="preserve">
     <value>label2</value>
@@ -3375,7 +3375,7 @@
     <value>13</value>
   </data>
   <data name="m_ApplyButton.Text" xml:space="preserve">
-    <value>Appl&amp;y</value>
+    <value>Ota käytt&amp;öön</value>
   </data>
   <data name="&gt;&gt;m_ApplyButton.Name" xml:space="preserve">
     <value>m_ApplyButton</value>
@@ -3713,5 +3713,26 @@
   </data>
   <data name="&gt;&gt;$this.Type" xml:space="preserve">
     <value>System.Windows.Forms.Form, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="m_lblProfile2.AccessibleName" xml:space="preserve">
+    <value>Äänityspalkki Profiili 2</value>
+  </data>
+  <data name="m_lblProfile1.AccessibleName" xml:space="preserve">
+    <value>Äänityspalkki Profiili 1</value>
+  </data>
+  <data name="m_txtBox_Font.AccessibleName" xml:space="preserve">
+    <value>Valitun kirjasimen ulkonäkö</value>
+  </data>
+  <data name="m_gpBox_Font.Text" xml:space="preserve">
+    <value>Kirjasin</value>
+  </data>
+  <data name="m_lbl_AssignColor.Text" xml:space="preserve">
+    <value>Määritä &amp;väri:</value>
+  </data>
+  <data name="m_lbl_AssignHighContrastColor.Text" xml:space="preserve">
+    <value>Määritä suur&amp;ikontrastinen väri:</value>
+  </data>
+  <data name="m_gpBox_ColorsList.Text" xml:space="preserve">
+    <value>Värit lista</value>
   </data>
 </root>

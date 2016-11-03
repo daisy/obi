@@ -163,7 +163,7 @@
     <value>22</value>
   </data>
   <data name="m_txtParentSection.AccessibleName" xml:space="preserve">
-    <value>Ylemmän tason kappaleen otsikko:</value>
+    <value>Ylemmän tason kappaleen otsikko</value>
   </data>
   <data name="m_txtParentSection.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Left, Right</value>
@@ -208,7 +208,7 @@
     <value>2</value>
   </data>
   <data name="m_lblLocationInsideSection.Text" xml:space="preserve">
-    <value>&amp;Asema</value>
+    <value>&amp;Asema:</value>
   </data>
   <data name="&gt;&gt;m_lblLocationInsideSection.Name" xml:space="preserve">
     <value>m_lblLocationInsideSection</value>
@@ -223,7 +223,7 @@
     <value>20</value>
   </data>
   <data name="m_txtLocationInsideSection.AccessibleName" xml:space="preserve">
-    <value>Asema</value>
+    <value>Asema:</value>
   </data>
   <data name="m_txtLocationInsideSection.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Left, Right</value>
@@ -589,7 +589,7 @@
     <value>9</value>
   </data>
   <data name="m_lbParentsList.AccessibleName" xml:space="preserve">
-    <value>P&amp;eriytyvät kappale(et):</value>
+    <value>Periytyvät kappaleet:</value>
   </data>
   <data name="m_lbParentsList.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Bottom, Left, Right</value>
@@ -646,7 +646,7 @@
     <value>6</value>
   </data>
   <data name="groupBox1.Text" xml:space="preserve">
-    <value>Periytyvät kappaleet:</value>
+    <value>P&amp;eriytyvät kappale(et):</value>
   </data>
   <data name="&gt;&gt;groupBox1.Name" xml:space="preserve">
     <value>groupBox1</value>
@@ -676,7 +676,7 @@
     <value>14</value>
   </data>
   <data name="m_lblPageNumberDetails.Text" xml:space="preserve">
-    <value>Sivunumeron tarkenteet;</value>
+    <value>Sivunumeron tarkenteet:</value>
   </data>
   <data name="m_lblPageNumberDetails.Visible" type="System.Boolean, mscorlib">
     <value>False</value>
@@ -694,7 +694,7 @@
     <value>7</value>
   </data>
   <data name="m_txtPageNumberDetails.AccessibleName" xml:space="preserve">
-    <value>Sivunumeron tarkenteet;</value>
+    <value>Sivunumeron tarkenteet:</value>
   </data>
   <data name="m_txtPageNumberDetails.Location" type="System.Drawing.Point, System.Drawing">
     <value>240, 541</value>
@@ -808,7 +808,7 @@
     <value>4</value>
   </data>
   <data name="m_lblCurrentCursorPosition.Text" xml:space="preserve">
-    <value>Current cursor position:</value>
+    <value>Nykyinen kursorin kohta:</value>
   </data>
   <data name="&gt;&gt;m_lblCurrentCursorPosition.Name" xml:space="preserve">
     <value>m_lblCurrentCursorPosition</value>
@@ -823,7 +823,7 @@
     <value>3</value>
   </data>
   <data name="m_txtCurrentCursorPosition.AccessibleName" xml:space="preserve">
-    <value>Current cursor position</value>
+    <value>Nykyinen kursorin kohta</value>
   </data>
   <data name="m_txtCurrentCursorPosition.Location" type="System.Drawing.Point, System.Drawing">
     <value>240, 138</value>

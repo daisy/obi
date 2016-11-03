@@ -223,7 +223,7 @@
     <value>joint strereo</value>
   </data>
   <data name="m_ComboBoxStereoMode.Items3" xml:space="preserve">
-    <value>pakotettu joint  stereo</value>
+    <value>pakotettu joint stereo</value>
   </data>
   <data name="m_ComboBoxStereoMode.Items4" xml:space="preserve">
     <value>kaksikanavainen</value>
@@ -316,7 +316,7 @@
     <value>Oletusarvo</value>
   </data>
   <data name="m_comboBoxReplayGain.Items1" xml:space="preserve">
-    <value>Toistovahvistus pois</value>
+    <value>Ei toistovahvistusta</value>
   </data>
   <data name="m_comboBoxReplayGain.Items2" xml:space="preserve">
     <value>Toistovahvistus tarkka</value>
@@ -352,7 +352,7 @@
     <value>255, 198</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
-    <value>Vienti ennakkoon</value>
+    <value>Lisäasetukset</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
     <value>ExportAdvance</value>

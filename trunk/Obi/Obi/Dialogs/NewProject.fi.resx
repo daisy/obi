@@ -142,7 +142,7 @@
     <value>0</value>
   </data>
   <data name="label1.Text" xml:space="preserve">
-    <value>O&amp;tsikko</value>
+    <value>O&amp;tsikko:</value>
   </data>
   <data name="&gt;&gt;label1.Name" xml:space="preserve">
     <value>label1</value>
@@ -202,7 +202,7 @@
     <value>6</value>
   </data>
   <data name="label2.Text" xml:space="preserve">
-    <value>&amp;Sijainti</value>
+    <value>&amp;Sijainti:</value>
   </data>
   <data name="&gt;&gt;label2.Name" xml:space="preserve">
     <value>label2</value>
@@ -394,7 +394,7 @@
     <value>3</value>
   </data>
   <data name="label3.Text" xml:space="preserve">
-    <value>&amp;ID</value>
+    <value>&amp;ID:</value>
   </data>
   <data name="&gt;&gt;label3.Name" xml:space="preserve">
     <value>label3</value>
@@ -409,7 +409,7 @@
     <value>2</value>
   </data>
   <data name="mIDBox.AccessibleName" xml:space="preserve">
-    <value>ID</value>
+    <value>ID:</value>
   </data>
   <data name="mIDBox.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Left, Right</value>

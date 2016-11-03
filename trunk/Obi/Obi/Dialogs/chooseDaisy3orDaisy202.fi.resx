@@ -196,7 +196,7 @@
     <value>0</value>
   </data>
   <data name="m_cbDaisy3.Text" xml:space="preserve">
-    <value>DAISY 3</value>
+    <value>[DAISY book structure term]</value>
   </data>
   <data name="&gt;&gt;m_cbDaisy3.Name" xml:space="preserve">
     <value>m_cbDaisy3</value>
@@ -223,7 +223,7 @@
     <value>1</value>
   </data>
   <data name="m_cbDaisy202.Text" xml:space="preserve">
-    <value>DAISY 2.02</value>
+    <value>[DAISY book structure term]</value>
   </data>
   <data name="&gt;&gt;m_cbDaisy202.Name" xml:space="preserve">
     <value>m_cbDaisy202</value>
@@ -277,7 +277,7 @@
     <value>3</value>
   </data>
   <data name="m_cbXhtml.Text" xml:space="preserve">
-    <value>Xhtml Structure</value>
+    <value>Xhtml rakenne</value>
   </data>
   <data name="&gt;&gt;m_cbXhtml.Name" xml:space="preserve">
     <value>m_cbXhtml</value>

@@ -295,7 +295,7 @@
     <value>3</value>
   </data>
   <data name="m_rtb_btn_AudioProcessing.Text" xml:space="preserve">
-    <value>Audio Processing</value>
+    <value>Äänen käsittely</value>
   </data>
   <data name="&gt;&gt;m_rtb_btn_AudioProcessing.Name" xml:space="preserve">
     <value>m_rtb_btn_AudioProcessing</value>
