@@ -703,7 +703,7 @@
     <value>9, 64</value>
   </data>
   <data name="m_gpBox_SelectProfile.Size" type="System.Drawing.Size, System.Drawing">
-    <value>160, 148</value>
+    <value>210, 148</value>
   </data>
   <data name="m_gpBox_SelectProfile.TabIndex" type="System.Int32, mscorlib">
     <value>5</value>
@@ -1075,7 +1075,7 @@
     <value>10</value>
   </data>
   <data name="m_gpBox_SelectPreferences.Location" type="System.Drawing.Point, System.Drawing">
-    <value>175, 64</value>
+    <value>225, 64</value>
   </data>
   <data name="m_gpBox_SelectPreferences.Size" type="System.Drawing.Size, System.Drawing">
     <value>435, 148</value>
@@ -2091,7 +2091,7 @@
     <value>Äänitteen uudelleenjärjestämisen max tiedostokoko </value>
   </data>
   <data name="m_CleanUpFileSizeNumericUpDown.Location" type="System.Drawing.Point, System.Drawing">
-    <value>209, 92</value>
+    <value>359, 92</value>
   </data>
   <data name="m_CleanUpFileSizeNumericUpDown.ShowHelp" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -2364,7 +2364,7 @@
     <value>High</value>
   </data>
   <data name="mNoiseLevelComboBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>464, 89</value>
+    <value>564, 89</value>
   </data>
   <data name="mNoiseLevelComboBox.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 4, 4, 4</value>
@@ -2373,7 +2373,7 @@
     <value>True</value>
   </data>
   <data name="mNoiseLevelComboBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>139, 24</value>
+    <value>89, 24</value>
   </data>
   <data name="mNoiseLevelComboBox.TabIndex" type="System.Int32, mscorlib">
     <value>24</value>
@@ -2397,7 +2397,7 @@
     <value>NoControl</value>
   </data>
   <data name="label8.Location" type="System.Drawing.Point, System.Drawing">
-    <value>381, 94</value>
+    <value>481, 94</value>
   </data>
   <data name="label8.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 0, 4, 0</value>
@@ -3246,7 +3246,7 @@
     <value>1</value>
   </data>
   <data name="label2.Text" xml:space="preserve">
-    <value>Pipeline-ko&amp;mentosarjan hakemisto</value>
+    <value>Oletus projekti&amp;hakemisto</value>
   </data>
   <data name="&gt;&gt;label2.Name" xml:space="preserve">
     <value>label2</value>
@@ -3345,7 +3345,7 @@
     <value>True</value>
   </data>
   <data name="mTab.Size" type="System.Drawing.Size, System.Drawing">
-    <value>624, 402</value>
+    <value>674, 402</value>
   </data>
   <data name="mTab.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
@@ -3393,7 +3393,7 @@
     <value>8, 16</value>
   </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>656, 473</value>
+    <value>706, 473</value>
   </data>
   <data name="$this.Font" type="System.Drawing.Font, System.Drawing">
     <value>Microsoft Sans Serif, 9.75pt</value>
