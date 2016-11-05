@@ -1228,7 +1228,7 @@
     <value>Päätä kommentti</value>
   </data>
   <data name="mSkippableEndNoteToolStripMenuItem.ShortcutKeyDisplayString" xml:space="preserve">
-    <value>&amp;Päätä kommentti</value>
+    <value>&amp;Ctrl+Alt+]</value>
   </data>
   <data name="mSkippableEndNoteToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>Ctrl+Alt+Oem6</value>
@@ -1672,7 +1672,7 @@
     <value>267, 22</value>
   </data>
   <data name="m_PreviewBeforeRecordingToolStripMenuItem.Text" xml:space="preserve">
-    <value>Aloita äänitys heti Ctrl+Shift+R</value>
+    <value> Aloita äänitys heti</value>
   </data>
   <data name="m_MonitorContinuouslyToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>267, 22</value>

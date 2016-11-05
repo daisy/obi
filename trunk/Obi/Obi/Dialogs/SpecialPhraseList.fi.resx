@@ -133,7 +133,7 @@
     <value>Tyhjennä lauseet</value>
   </data>
   <data name="m_cb_SpecialPhrases.Items2" xml:space="preserve">
-    <value>[DAISY book structure term]</value>
+    <value>Heading</value>
   </data>
   <data name="m_cb_SpecialPhrases.Items3" xml:space="preserve">
     <value>Hiljaisuus</value>

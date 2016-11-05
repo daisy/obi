@@ -1066,7 +1066,7 @@
     <value>已使用句 &amp;U</value>
   </data>
   <data name="mSkippableNoteToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>[DAISY book structure term]可跳过注释</value>
+    <value>可跳过注释</value>
   </data>
   <data name="mSkippableNoteToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>240, 22</value>
@@ -1192,7 +1192,7 @@
     <value>无 &amp;L</value>
   </data>
   <data name="mPhrases_AssignRole_HeadingMenuItem.AccessibleName" xml:space="preserve">
-    <value>[DAISY book structure term]标题 Ctrl+Shift+D</value>
+    <value>标题 Ctrl+Shift+D</value>
   </data>
   <data name="mPhrases_AssignRole_HeadingMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>Ctrl+Shift+D</value>
@@ -1201,7 +1201,7 @@
     <value>193, 22</value>
   </data>
   <data name="mPhrases_AssignRole_HeadingMenuItem.Text" xml:space="preserve">
-    <value>[DAISY book structure term]标题 &amp;H</value>
+    <value>标题 &amp;H</value>
   </data>
   <data name="mPhrases_AssignRole_PageMenuItem.AccessibleName" xml:space="preserve">
     <value>页 Ctrl+Shift+G</value>
@@ -1213,7 +1213,7 @@
     <value>193, 22</value>
   </data>
   <data name="mPhrases_AssignRole_PageMenuItem.Text" xml:space="preserve">
-    <value>[DAISY book structure term]页 &amp;P</value>
+    <value>页 &amp;P</value>
   </data>
   <data name="mPhrases_AssignRole_SilenceMenuItem.AccessibleName" xml:space="preserve">
     <value>静音 Ctrl+Shift+E</value>
@@ -1231,7 +1231,7 @@
     <value>193, 22</value>
   </data>
   <data name="mPhrases_AssignRole_AnchorMenuItem.Text" xml:space="preserve">
-    <value>[DAISY book structure term]锚定 &amp;C</value>
+    <value>锚定 &amp;C</value>
   </data>
   <data name="mCustomRoleToolStripSeparator.Size" type="System.Drawing.Size, System.Drawing">
     <value>190, 6</value>
