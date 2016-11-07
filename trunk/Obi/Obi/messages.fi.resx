@@ -2340,7 +2340,7 @@ Error text: {1}</value>
     <value>Äänityksen jälkeen poista seuraavat lauseet</value>
   </data>
   <data name="ProfileDesc_file_name" xml:space="preserve">
-    <value>ProfileDesc_en.html</value>
+    <value>ProfileDesc_fi.html</value>
   </data>
   <data name="Preferences_Level_ComboBox_Profile_1" xml:space="preserve">
     <value>Profiili 1 (VA)</value>
