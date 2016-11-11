@@ -162,7 +162,9 @@
     <value>Asetuksia ei voitu tallentaa</value>
   </data>
   <data name="save_settings_error_text" xml:space="preserve">
-    <value>Seuraava virhe tapahtui yritettäessä tallentaa asetuksia:"{0}"
+    <value>Seuraava virhe tapahtui yritettäessä tallentaa asetuksia:
+
+"{0}"
 Seurauksena, että nyt tehdyt asetusmuutokset eivät tallentuneet.
  No hyvä on.</value>
   </data>
@@ -2649,13 +2651,13 @@ Error text: {1}</value>
     <value>After playback, select the last phrase played</value>
   </data>
   <data name="Audio_ShowSelectionTimeInTransportBar" xml:space="preserve">
-    <value>Show cursor time in Transport Bar in stop state</value>
+    <value>Näytä pysäytystilassa kursorikohdan aika Siirtopalkissa</value>
   </data>
   <data name="ZoomWaveform_PreserveZoom" xml:space="preserve">
     <value>Preserve zoom</value>
   </data>
   <data name="Project_ShowAdvancePropertiesInPropertiesDialogs" xml:space="preserve">
-    <value>Show advance properties in properties dialog</value>
+    <value>Näytä lisäominaisuudet Ominaisuudet -valintaikkunassa</value>
   </data>
   <data name="SplitPhrases_ErrorSilence" xml:space="preserve">
     <value>Do you want to split the phrases at position of error silence?</value>
@@ -2667,7 +2669,7 @@ Error text: {1}</value>
     <value>Number of error phrases found: </value>
   </data>
   <data name="Project_DisplayWarningsForEditOperations" xml:space="preserve">
-    <value>Warn before section manipulation</value>
+    <value>Varoita ennen kappaleen käsittelyä</value>
   </data>
   <data name="ConfirmSectionDelete" xml:space="preserve">
     <value>You are about to delete section. Do you want to continue?</value>
@@ -2679,7 +2681,7 @@ Error text: {1}</value>
     <value>You are about to cut section. Do you want to continue?</value>
   </data>
   <data name="Audio_RecordInFirstEmptyPhraseWithRecordSectionCommand" xml:space="preserve">
-    <value>Record in first empty phrase with record section command</value>
+    <value>Äänitä ensimmäiseen tyhjään lauseeseen Äänitä kappale -komennolla</value>
   </data>
   <data name="ZoomWaveform_PreserveZoomToolTip" xml:space="preserve">
     <value>Preserve zoom for the zoom panel</value>
