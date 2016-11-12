@@ -562,7 +562,7 @@
     <value>14</value>
   </data>
   <data name="m_lblProjectFileCount.Text" xml:space="preserve">
-    <value>Project &amp;file Count:</value>
+    <value>Projektitiedostojen lukumäärä:</value>
   </data>
   <data name="&gt;&gt;m_lblProjectFileCount.Name" xml:space="preserve">
     <value>m_lblProjectFileCount</value>
