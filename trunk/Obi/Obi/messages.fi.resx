@@ -2639,51 +2639,51 @@ Error text: {1}</value>
     <value>Vaihda tilalle {0}</value>
   </data>
   <data name="SaveAsEmptyProjectFileName" xml:space="preserve">
-    <value>Project file name cannot be empty</value>
+    <value>Projektin tiedostonimi ei voi olla tyhjä</value>
   </data>
   <data name="KeyS_PlayOnNavigate" xml:space="preserve">
-    <value>Play on navigate will be activated</value>
+    <value>Toisto navigoinnista aktivoidaan</value>
   </data>
   <data name="Profile_Audio" xml:space="preserve">
-    <value>Audio:</value>
+    <value>Ääni:</value>
   </data>
   <data name="Audio_SelectLastPhrasePlayed" xml:space="preserve">
-    <value>After playback, select the last phrase played</value>
+    <value>Toiston jälkeen valitse viimeksi toistettu</value>
   </data>
   <data name="Audio_ShowSelectionTimeInTransportBar" xml:space="preserve">
     <value>Näytä pysäytystilassa kursorikohdan aika Siirtopalkissa</value>
   </data>
   <data name="ZoomWaveform_PreserveZoom" xml:space="preserve">
-    <value>Preserve zoom</value>
+    <value>Säilytä zoomaus</value>
   </data>
   <data name="Project_ShowAdvancePropertiesInPropertiesDialogs" xml:space="preserve">
     <value>Näytä lisäominaisuudet Ominaisuudet -valintaikkunassa</value>
   </data>
   <data name="SplitPhrases_ErrorSilence" xml:space="preserve">
-    <value>Do you want to split the phrases at position of error silence?</value>
+    <value>Haluatko jakaa lauseet virheellisistä äänettömistä kohdista</value>
   </data>
   <data name="Caption_SplitPhrase" xml:space="preserve">
-    <value>Split the Phrase?</value>
+    <value>Jaetaanko lause?</value>
   </data>
   <data name="NumberOfErrorPhrase" xml:space="preserve">
-    <value>Number of error phrases found: </value>
+    <value>Löydettyjen virheellisten lauseiden lukumäärä: </value>
   </data>
   <data name="Project_DisplayWarningsForEditOperations" xml:space="preserve">
     <value>Varoita ennen kappaleen käsittelyä</value>
   </data>
   <data name="ConfirmSectionDelete" xml:space="preserve">
-    <value>You are about to delete section. Do you want to continue?</value>
+    <value>Olet poistamassa kappaletta. Haluatko jatkaa?</value>
   </data>
   <data name="ConfirmSectionRename" xml:space="preserve">
-    <value>You are about to rename section. Do you want to continue?</value>
+    <value>Olet nimeämässä kappaletta uudelleen. Haluatko jatkaa?</value>
   </data>
   <data name="ConfirmSectionCut" xml:space="preserve">
-    <value>You are about to cut section. Do you want to continue?</value>
+    <value>Olet leikkaamassa kappaletta. Haluatko jatkaa?</value>
   </data>
   <data name="Audio_RecordInFirstEmptyPhraseWithRecordSectionCommand" xml:space="preserve">
     <value>Äänitä ensimmäiseen tyhjään lauseeseen Äänitä kappale -komennolla</value>
   </data>
   <data name="ZoomWaveform_PreserveZoomToolTip" xml:space="preserve">
-    <value>Preserve zoom for the zoom panel</value>
+    <value>Säilytä zoomausasetus zoomauspaneliin</value>
   </data>
 </root>
