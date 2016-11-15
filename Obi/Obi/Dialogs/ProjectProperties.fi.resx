@@ -163,13 +163,13 @@
     <value>Top, Left, Right</value>
   </data>
   <data name="m_txtDuration.Location" type="System.Drawing.Point, System.Drawing">
-    <value>200, 44</value>
+    <value>210, 44</value>
   </data>
   <data name="m_txtDuration.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 4, 4, 4</value>
   </data>
   <data name="m_txtDuration.Size" type="System.Drawing.Size, System.Drawing">
-    <value>236, 24</value>
+    <value>226, 24</value>
   </data>
   <data name="m_txtDuration.TabIndex" type="System.Int32, mscorlib">
     <value>5</value>
@@ -223,13 +223,13 @@
     <value>Top, Left, Right</value>
   </data>
   <data name="m_txtSectionsCount.Location" type="System.Drawing.Point, System.Drawing">
-    <value>200, 78</value>
+    <value>210, 78</value>
   </data>
   <data name="m_txtSectionsCount.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 4, 4, 4</value>
   </data>
   <data name="m_txtSectionsCount.Size" type="System.Drawing.Size, System.Drawing">
-    <value>236, 24</value>
+    <value>226, 24</value>
   </data>
   <data name="m_txtSectionsCount.TabIndex" type="System.Int32, mscorlib">
     <value>7</value>
@@ -283,13 +283,13 @@
     <value>Top, Left, Right</value>
   </data>
   <data name="m_txtPhraseCount.Location" type="System.Drawing.Point, System.Drawing">
-    <value>200, 147</value>
+    <value>210, 147</value>
   </data>
   <data name="m_txtPhraseCount.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 4, 4, 4</value>
   </data>
   <data name="m_txtPhraseCount.Size" type="System.Drawing.Size, System.Drawing">
-    <value>236, 24</value>
+    <value>226, 24</value>
   </data>
   <data name="m_txtPhraseCount.TabIndex" type="System.Int32, mscorlib">
     <value>11</value>
@@ -343,13 +343,13 @@
     <value>Top, Left, Right</value>
   </data>
   <data name="m_txtPageCount.Location" type="System.Drawing.Point, System.Drawing">
-    <value>200, 181</value>
+    <value>210, 181</value>
   </data>
   <data name="m_txtPageCount.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 4, 4, 4</value>
   </data>
   <data name="m_txtPageCount.Size" type="System.Drawing.Size, System.Drawing">
-    <value>236, 24</value>
+    <value>226, 24</value>
   </data>
   <data name="m_txtPageCount.TabIndex" type="System.Int32, mscorlib">
     <value>13</value>
@@ -439,13 +439,13 @@
     <value>Top, Left, Right</value>
   </data>
   <data name="m_txtTitle.Location" type="System.Drawing.Point, System.Drawing">
-    <value>200, 10</value>
+    <value>210, 10</value>
   </data>
   <data name="m_txtTitle.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 4, 4, 4</value>
   </data>
   <data name="m_txtTitle.Size" type="System.Drawing.Size, System.Drawing">
-    <value>236, 24</value>
+    <value>226, 24</value>
   </data>
   <data name="m_txtTitle.TabIndex" type="System.Int32, mscorlib">
     <value>3</value>
@@ -529,10 +529,10 @@
     <value>Max Syvyys:</value>
   </data>
   <data name="m_txtMaxDepth.Location" type="System.Drawing.Point, System.Drawing">
-    <value>200, 114</value>
+    <value>210, 114</value>
   </data>
   <data name="m_txtMaxDepth.Size" type="System.Drawing.Size, System.Drawing">
-    <value>236, 24</value>
+    <value>226, 24</value>
   </data>
   <data name="m_txtMaxDepth.TabIndex" type="System.Int32, mscorlib">
     <value>9</value>
@@ -577,10 +577,10 @@
     <value>1</value>
   </data>
   <data name="m_txtProjectFileCount.Location" type="System.Drawing.Point, System.Drawing">
-    <value>200, 212</value>
+    <value>210, 212</value>
   </data>
   <data name="m_txtProjectFileCount.Size" type="System.Drawing.Size, System.Drawing">
-    <value>236, 24</value>
+    <value>226, 24</value>
   </data>
   <data name="m_txtProjectFileCount.TabIndex" type="System.Int32, mscorlib">
     <value>15</value>
