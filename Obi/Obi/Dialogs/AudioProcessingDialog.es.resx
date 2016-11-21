@@ -135,7 +135,7 @@
     <value>4</value>
   </data>
   <data name="m_txt_info.Text" xml:space="preserve">
-    <value>El valor 1 significa que no hay cambios en el audio</value>
+    <value>El valor 1.0 significa sin cambios en el audio</value>
   </data>
   <data name="&gt;&gt;m_txt_info.Name" xml:space="preserve">
     <value>m_txt_info</value>
@@ -186,7 +186,7 @@
     <value>2</value>
   </data>
   <data name="m_lbl_Parameters.Text" xml:space="preserve">
-    <value>Configurar parámetros:</value>
+    <value>Establecer Parametros:</value>
   </data>
   <data name="&gt;&gt;m_lbl_Parameters.Name" xml:space="preserve">
     <value>m_lbl_Parameters</value>
@@ -207,7 +207,7 @@
     <value>Normalizar</value>
   </data>
   <data name="m_cb_Process.Items2" xml:space="preserve">
-    <value>Velocidad de la voz</value>
+    <value>Velocidad</value>
   </data>
   <data name="m_cb_Process.Location" type="System.Drawing.Point, System.Drawing">
     <value>112, 39</value>
@@ -243,7 +243,7 @@
     <value>0</value>
   </data>
   <data name="m_lbl_Process.Text" xml:space="preserve">
-    <value>Proceso:</value>
+    <value>Proceso</value>
   </data>
   <data name="&gt;&gt;m_lbl_Process.Name" xml:space="preserve">
     <value>m_lbl_Process</value>
@@ -295,7 +295,7 @@
     <value>1</value>
   </data>
   <data name="m_btn_OK.Text" xml:space="preserve">
-    <value>&amp;Aceptar</value>
+    <value>A&amp;ceptar</value>
   </data>
   <data name="&gt;&gt;m_btn_OK.Name" xml:space="preserve">
     <value>m_btn_OK</value>
@@ -349,7 +349,7 @@
     <value>Microsoft Sans Serif, 9pt</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
-    <value>Procesando el audio (funcionalidad básica)</value>
+    <value>Procesando Audio (funcionalidad básica)</value>
   </data>
   <data name="&gt;&gt;helpProvider1.Name" xml:space="preserve">
     <value>helpProvider1</value>

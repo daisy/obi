@@ -238,7 +238,7 @@
     <value>15</value>
   </data>
   <data name="mOKButton.Text" xml:space="preserve">
-    <value>&amp;Aceptar</value>
+    <value>A&amp;ceptar</value>
   </data>
   <data name="&gt;&gt;mOKButton.Name" xml:space="preserve">
     <value>mOKButton</value>
@@ -337,7 +337,7 @@
     <value>4</value>
   </data>
   <data name="m_checkBoxEncoder.AccessibleDescription" xml:space="preserve">
-    <value>Codificar archivos de Audio</value>
+    <value>Confirmar codificacion archivos audio</value>
   </data>
   <data name="m_checkBoxEncoder.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -352,7 +352,7 @@
     <value>6</value>
   </data>
   <data name="m_checkBoxEncoder.Text" xml:space="preserve">
-    <value>&amp;Codificar archivos de Audio</value>
+    <value>C&amp;odificar archivos de audio</value>
   </data>
   <data name="&gt;&gt;m_checkBoxEncoder.Name" xml:space="preserve">
     <value>m_checkBoxEncoder</value>
@@ -382,7 +382,7 @@
     <value>8</value>
   </data>
   <data name="m_Bitrate.Text" xml:space="preserve">
-    <value>Bit&amp;rate</value>
+    <value>Bit&amp;rate:</value>
   </data>
   <data name="&gt;&gt;m_Bitrate.Name" xml:space="preserve">
     <value>m_Bitrate</value>
@@ -487,7 +487,7 @@
     <value>8</value>
   </data>
   <data name="m_btnEncodingOptions.Text" xml:space="preserve">
-    <value>&amp;Más opciones de codificacións</value>
+    <value>&amp;Mas opciones de codificación</value>
   </data>
   <data name="&gt;&gt;m_btnEncodingOptions.Name" xml:space="preserve">
     <value>m_btnEncodingOptions</value>
@@ -502,7 +502,7 @@
     <value>0</value>
   </data>
   <data name="m_comboBoxEncodingType.AccessibleDescription" xml:space="preserve">
-    <value>Tipo de codificación</value>
+    <value>Opciones tipo de codificación</value>
   </data>
   <data name="m_comboBoxEncodingType.Items" xml:space="preserve">
     <value>MP3</value>
@@ -607,7 +607,7 @@
     <value>10</value>
   </data>
   <data name="m_chkBoxFilenameLengthLimit.Text" xml:space="preserve">
-    <value>&amp;Longitud máxima del nombre del archivo</value>
+    <value>&amp;Longitud máxima del nombre del archivo :</value>
   </data>
   <data name="&gt;&gt;m_chkBoxFilenameLengthLimit.Name" xml:space="preserve">
     <value>m_chkBoxFilenameLengthLimit</value>
@@ -661,7 +661,7 @@
     <value>8</value>
   </data>
   <data name="m_grpBoxSectionNameOperation.Text" xml:space="preserve">
-    <value>Nombre de la sección operativa</value>
+    <value>Nombre de la sección operativa :</value>
   </data>
   <data name="&gt;&gt;m_grpBoxSectionNameOperation.Name" xml:space="preserve">
     <value>m_grpBoxSectionNameOperation</value>
@@ -697,7 +697,7 @@
     <value>15</value>
   </data>
   <data name="m_chkBoxDummyTextHTMLfiles.Text" xml:space="preserve">
-    <value>Crear texto de relleno en archivos HTML</value>
+    <value>Crear texto ficticio en los archivos HTML</value>
   </data>
   <data name="&gt;&gt;m_chkBoxDummyTextHTMLfiles.Name" xml:space="preserve">
     <value>m_chkBoxDummyTextHTMLfiles</value>
@@ -712,7 +712,7 @@
     <value>0</value>
   </data>
   <data name="m_numericUpDownEpubFilenameLengthLimit.AccessibleName" xml:space="preserve">
-    <value>Límites superior e inferior de la longitud del nombre del archivo EPUB</value>
+    <value>Límite numérico superior e inferior de la longitud del nombre del archivo EPUB</value>
   </data>
   <data name="m_numericUpDownEpubFilenameLengthLimit.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
@@ -739,7 +739,7 @@
     <value>0</value>
   </data>
   <data name="m_chkBoxEpubFilenameLengthLimit.AccessibleName" xml:space="preserve">
-    <value>Límite de la longitud del nombre del archivo EPUB</value>
+    <value>Longitud máxima del nombre del archivo EPUB</value>
   </data>
   <data name="m_chkBoxEpubFilenameLengthLimit.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -757,7 +757,7 @@
     <value>12</value>
   </data>
   <data name="m_chkBoxEpubFilenameLengthLimit.Text" xml:space="preserve">
-    <value>Límite de la longitud del nombre del archivo EPUB</value>
+    <value>Longitud máxima del nombre del archivo EPUB</value>
   </data>
   <data name="&gt;&gt;m_chkBoxEpubFilenameLengthLimit.Name" xml:space="preserve">
     <value>m_chkBoxEpubFilenameLengthLimit</value>
@@ -787,7 +787,7 @@
     <value>14</value>
   </data>
   <data name="m_EpubFileNamegroupBox.Text" xml:space="preserve">
-    <value>Longitud del nombre del archivo EPUB</value>
+    <value>Longitud del nombre del archivo EPUB :</value>
   </data>
   <data name="&gt;&gt;m_EpubFileNamegroupBox.Name" xml:space="preserve">
     <value>m_EpubFileNamegroupBox</value>
@@ -814,7 +814,7 @@
     <value>4, 4, 4, 4</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
-    <value>Seleccione el directorio de exportación</value>
+    <value>Seleccionar directorio de salida</value>
   </data>
   <data name="&gt;&gt;helpProvider1.Name" xml:space="preserve">
     <value>helpProvider1</value>

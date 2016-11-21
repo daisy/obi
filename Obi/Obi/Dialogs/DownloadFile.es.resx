@@ -132,17 +132,16 @@
     <value>0</value>
   </data>
   <data name="richTextBox1.Text" xml:space="preserve">
-    <value>Necesita obtener ffmpeg en el enlace siguiente o haciendo clic en el botón "Download ffmpeg" para codificar en mp4, amr y 3gp.
-http://www.daisy.org/obi/download
-Después de bajarlo siga los pasos siguientes:-
+    <value>Necesita descargar ffmpeg desde el enlace siguiente o haciendo clic en el botón "Descargar ffmpeg" para codificar en mp4, amr y 3gp.
+http: //www.daisy.org/obi/download 
+Después de descargar siga los siguientes pasos:-
 
-1) Localice la carpeta Archivos de Programa en la unidad C .
-2) Dentro de esta, localice la carpeta "The Urakawa Project".
-3)En la carpeta "The Urakawa Project" abra el directorio "Obi x.x".
-4)Copie el archivo bajado "ffmpeg.exe" en "Obi x.x" 
+1) Localice la carpeta Archivos de programa en la unidad C.
+2) Localice la carpeta "The Urakawa Project" dentro de la carpeta "Archivos de programa".
+3) Dentro de la carpeta " The Urakawa Project " abra la carpeta "Obi xx".
+4)Copie en ella el archivo "ffmpeg.exe"
 
-También puede abrir la carpeta "Obi x.x" haciendo clic en el botón "Abrir carpeta de Obi" y entonces copie "ffmpeg.exe" dentro de ella.
-Precaución: Esta característica sólo es para usuarios avanzados, el libro exportado en estos nuevos formatos, no puede validarse.</value>
+También puede abrir la carpeta "Obi xx" simplemente haciendo clic en el botón "Abrir directorio Obi" y luego copiar el archivo descargado "ffmpeg.exe" en su interior. \ NPrecaución: Esta característica es sólo para usuarios avanzados, los libros DAISY / EPUB exportados pueden no validarse con estos formatos de audio más recientes.</value>
   </data>
   <data name="&gt;&gt;richTextBox1.Name" xml:space="preserve">
     <value>richTextBox1</value>
@@ -218,7 +217,7 @@ Precaución: Esta característica sólo es para usuarios avanzados, el libro exp
     <value>1</value>
   </data>
   <data name="m_btnFolder.AccessibleName" xml:space="preserve">
-    <value>Abrir el directorio de Obi</value>
+    <value>Abrir directorio Obi</value>
   </data>
   <data name="m_btnFolder.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Flat</value>
@@ -233,7 +232,7 @@ Precaución: Esta característica sólo es para usuarios avanzados, el libro exp
     <value>2</value>
   </data>
   <data name="m_btnFolder.Text" xml:space="preserve">
-    <value>&amp;Abrir el directorio de Obi</value>
+    <value>&amp;Abrir directorio Obi</value>
   </data>
   <data name="&gt;&gt;m_btnFolder.Name" xml:space="preserve">
     <value>m_btnFolder</value>
@@ -254,7 +253,7 @@ Precaución: Esta característica sólo es para usuarios avanzados, el libro exp
     <value>415, 289</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
-    <value>DescargarArchivo</value>
+    <value>DownloadFile</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
     <value>DownloadFile</value>
