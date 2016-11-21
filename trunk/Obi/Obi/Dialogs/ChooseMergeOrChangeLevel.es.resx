@@ -153,7 +153,7 @@
     <value>3</value>
   </data>
   <data name="m_rbChangeLevel.AccessibleName" xml:space="preserve">
-    <value>Aumentar/Disminuir nivel de sección</value>
+    <value>Aumentar/Disminuir nivel de la sección</value>
   </data>
   <data name="m_rbChangeLevel.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -168,7 +168,7 @@
     <value>1</value>
   </data>
   <data name="m_rbChangeLevel.Text" xml:space="preserve">
-    <value>Au&amp;mentar/Disminuir nivel de sección</value>
+    <value>&amp;Aumentar/Disminuir nivel de la sección</value>
   </data>
   <data name="&gt;&gt;m_rbChangeLevel.Name" xml:space="preserve">
     <value>m_rbChangeLevel</value>
@@ -199,7 +199,7 @@
     <value>2</value>
   </data>
   <data name="m_btnOk.Text" xml:space="preserve">
-    <value>&amp;Aceptar</value>
+    <value>A&amp;ceptar</value>
   </data>
   <data name="&gt;&gt;m_btnOk.Name" xml:space="preserve">
     <value>m_btnOk</value>
@@ -250,7 +250,7 @@
     <value>363, 128</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
-    <value>Elegir operación con sección</value>
+    <value>Elija operación en la Sección</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
     <value>ChooseMergeOrChangeLevel</value>

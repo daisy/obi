@@ -138,7 +138,7 @@
     <value>0</value>
   </data>
   <data name="m_lblSelectInputFile.Text" xml:space="preserve">
-    <value>Seleccionar el archivo EPUB 3</value>
+    <value>Seleccione el archivo EPUB 3</value>
   </data>
   <data name="&gt;&gt;m_lblSelectInputFile.Name" xml:space="preserve">
     <value>m_lblSelectInputFile</value>
@@ -156,7 +156,7 @@
     <value>True</value>
   </data>
   <data name="m_lblInputEPUB.Location" type="System.Drawing.Point, System.Drawing">
-    <value>27, 57</value>
+    <value>0, 57</value>
   </data>
   <data name="m_lblInputEPUB.Size" type="System.Drawing.Size, System.Drawing">
     <value>76, 16</value>
@@ -165,7 +165,7 @@
     <value>1</value>
   </data>
   <data name="m_lblInputEPUB.Text" xml:space="preserve">
-    <value>Incluir EPUB</value>
+    <value>Entrada EPUB</value>
   </data>
   <data name="&gt;&gt;m_lblInputEPUB.Name" xml:space="preserve">
     <value>m_lblInputEPUB</value>
@@ -180,7 +180,7 @@
     <value>6</value>
   </data>
   <data name="m_txtInputEPUB.AccessibleName" xml:space="preserve">
-    <value>Incluir Epub</value>
+    <value>Entrada Epub</value>
   </data>
   <data name="m_txtInputEPUB.Location" type="System.Drawing.Point, System.Drawing">
     <value>114, 57</value>
@@ -244,7 +244,7 @@
     <value>8</value>
   </data>
   <data name="m_btnOk.Text" xml:space="preserve">
-    <value>&amp;Aceptar</value>
+    <value>A&amp;ceptar</value>
   </data>
   <data name="&gt;&gt;m_btnOk.Name" xml:space="preserve">
     <value>m_btnOk</value>
@@ -286,7 +286,7 @@
     <value>2</value>
   </data>
   <data name="m_epubCheckRichTextBox.AccessibleName" xml:space="preserve">
-    <value>Informe de error de validación</value>
+    <value>Informe errores validación</value>
   </data>
   <data name="m_epubCheckRichTextBox.Location" type="System.Drawing.Point, System.Drawing">
     <value>27, 31</value>
@@ -298,7 +298,7 @@
     <value>5</value>
   </data>
   <data name="m_epubCheckRichTextBox.Text" xml:space="preserve">
-    <value>Informe Error de Validación</value>
+    <value>Informe errores validación</value>
   </data>
   <data name="&gt;&gt;m_epubCheckRichTextBox.Name" xml:space="preserve">
     <value>m_epubCheckRichTextBox</value>
@@ -352,7 +352,7 @@
     <value>534, 255</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
-    <value>Validador EPUB 3</value>
+    <value>Validador Epub 3</value>
   </data>
   <data name="&gt;&gt;m_openFileDialogBrowse.Name" xml:space="preserve">
     <value>m_openFileDialogBrowse</value>

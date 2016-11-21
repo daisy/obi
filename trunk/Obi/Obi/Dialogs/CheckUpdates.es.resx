@@ -352,7 +352,7 @@
     <value>397, 242</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
-    <value>ComprobarActualizaciones</value>
+    <value>CheckUpdates</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
     <value>CheckUpdates</value>
