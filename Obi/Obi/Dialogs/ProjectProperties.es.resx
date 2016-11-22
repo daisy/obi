@@ -385,7 +385,7 @@
     <value>0</value>
   </data>
   <data name="m_btnOk.Text" xml:space="preserve">
-    <value>&amp;Aceptar</value>
+    <value>A&amp;ceptar</value>
   </data>
   <data name="&gt;&gt;m_btnOk.Name" xml:space="preserve">
     <value>m_btnOk</value>
@@ -511,7 +511,7 @@
     <value>8</value>
   </data>
   <data name="m_lblMaxDepth.Text" xml:space="preserve">
-    <value>&amp;Max Depth:</value>
+    <value>Nivel &amp;Máximo:</value>
   </data>
   <data name="&gt;&gt;m_lblMaxDepth.Name" xml:space="preserve">
     <value>m_lblMaxDepth</value>
@@ -526,7 +526,7 @@
     <value>3</value>
   </data>
   <data name="m_txtMaxDepth.AccessibleName" xml:space="preserve">
-    <value>Max Depth:</value>
+    <value>Nivel máximo.</value>
   </data>
   <data name="m_txtMaxDepth.Location" type="System.Drawing.Point, System.Drawing">
     <value>130, 114</value>
@@ -553,7 +553,7 @@
     <value>True</value>
   </data>
   <data name="m_lblProjectFileCount.Location" type="System.Drawing.Point, System.Drawing">
-    <value>5, 215</value>
+    <value>0, 215</value>
   </data>
   <data name="m_lblProjectFileCount.Size" type="System.Drawing.Size, System.Drawing">
     <value>125, 18</value>
@@ -562,7 +562,8 @@
     <value>14</value>
   </data>
   <data name="m_lblProjectFileCount.Text" xml:space="preserve">
-    <value>Project &amp;file Count:</value>
+    <value>Contador archivos
+    del pro&amp;yecto:</value>
   </data>
   <data name="&gt;&gt;m_lblProjectFileCount.Name" xml:space="preserve">
     <value>m_lblProjectFileCount</value>

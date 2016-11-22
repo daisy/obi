@@ -186,7 +186,7 @@
     <value>True</value>
   </data>
   <data name="startSectionRange.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 107</value>
+    <value>3, 107</value>
   </data>
   <data name="startSectionRange.Size" type="System.Drawing.Size, System.Drawing">
     <value>96, 13</value>
@@ -213,7 +213,7 @@
     <value>True</value>
   </data>
   <data name="endSectionRange.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 139</value>
+    <value>3, 139</value>
   </data>
   <data name="endSectionRange.Size" type="System.Drawing.Size, System.Drawing">
     <value>93, 13</value>
@@ -285,7 +285,7 @@
     <value>10</value>
   </data>
   <data name="m_btn_OK.Text" xml:space="preserve">
-    <value>&amp;Aceptar</value>
+    <value>&amp;OK</value>
   </data>
   <data name="&gt;&gt;m_btn_OK.Name" xml:space="preserve">
     <value>m_btn_OK</value>
@@ -300,7 +300,7 @@
     <value>4</value>
   </data>
   <data name="m_lv_ListOfSelectedSectionsForPhraseDetection.AccessibleDescription" xml:space="preserve">
-    <value>Cuadro que contiene la lista de secciones seleccionadas para aplicar la detección de frases</value>
+    <value>ListView que contiene la lista de secciones seleccionadas para aplicar la detección de frases</value>
   </data>
   <data name="m_lv_ListOfSelectedSectionsForPhraseDetection.Alignment" type="System.Windows.Forms.ListViewAlignment, System.Windows.Forms">
     <value>Default</value>
@@ -354,7 +354,7 @@
     <value>3</value>
   </data>
   <data name="m_rb_loadSelectedOnwards.AccessibleName" xml:space="preserve">
-    <value>Botón de opción de cargar desde la seleccionada en adelante</value>
+    <value>Cargar a partir de la selección</value>
   </data>
   <data name="m_rb_loadSelectedOnwards.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -369,7 +369,7 @@
     <value>1</value>
   </data>
   <data name="m_rb_loadSelectedOnwards.Text" xml:space="preserve">
-    <value>Cargar desde la selecci&amp;onada en adelante</value>
+    <value>Cargar a partir de la selecc&amp;ión</value>
   </data>
   <data name="&gt;&gt;m_rb_loadSelectedOnwards.Name" xml:space="preserve">
     <value>m_rb_loadSelectedOnwards</value>
@@ -414,7 +414,7 @@
     <value>2</value>
   </data>
   <data name="m_rb_loadAllSections.AccessibleDescription" xml:space="preserve">
-    <value>Botón de opción de cargar todas las secciones</value>
+    <value>Cargar todas las secciones</value>
   </data>
   <data name="m_rb_loadAllSections.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -453,7 +453,7 @@
     <value>0</value>
   </data>
   <data name="m_grpSelectRange.Text" xml:space="preserve">
-    <value>Ver secciones seleccionadas</value>
+    <value>Ver las secciones seleccionadas</value>
   </data>
   <data name="&gt;&gt;m_grpSelectRange.Name" xml:space="preserve">
     <value>m_grpSelectRange</value>

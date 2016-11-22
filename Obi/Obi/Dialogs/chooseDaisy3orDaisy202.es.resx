@@ -250,7 +250,7 @@
     <value>2</value>
   </data>
   <data name="m_cbEpub3.Text" xml:space="preserve">
-    <value>Audio Libro EPUB 3</value>
+    <value>Libro EPUB 3</value>
   </data>
   <data name="&gt;&gt;m_cbEpub3.Name" xml:space="preserve">
     <value>m_cbEpub3</value>
@@ -277,7 +277,7 @@
     <value>3</value>
   </data>
   <data name="m_cbXhtml.Text" xml:space="preserve">
-    <value>Xhtml Structure</value>
+    <value>Estructura Xhtml</value>
   </data>
   <data name="&gt;&gt;m_cbXhtml.Name" xml:space="preserve">
     <value>m_cbXhtml</value>
@@ -301,7 +301,7 @@
     <value>True</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
-    <value>Seleccionar estándar del libro accesible</value>
+    <value>Seleccione el estándar del libro accesible</value>
   </data>
   <data name="&gt;&gt;helpProvider1.Name" xml:space="preserve">
     <value>helpProvider1</value>

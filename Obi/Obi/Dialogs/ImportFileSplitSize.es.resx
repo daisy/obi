@@ -129,7 +129,7 @@
   </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="label1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>13, 51</value>
+    <value>0, 51</value>
   </data>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="label1.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
@@ -142,7 +142,7 @@
     <value>20</value>
   </data>
   <data name="label1.Text" xml:space="preserve">
-    <value>Phrase si&amp;ze in minutes:</value>
+    <value>Tamaño de la frase en minutos:</value>
   </data>
   <data name="&gt;&gt;label1.Name" xml:space="preserve">
     <value>label1</value>
@@ -157,16 +157,16 @@
     <value>2</value>
   </data>
   <data name="mPhraseSizeTextBox.AccessibleName" xml:space="preserve">
-    <value>Phrase size in minutes textbox</value>
+    <value>Cuadro de texto Tamaño de la frase en minutos</value>
   </data>
   <data name="mPhraseSizeTextBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>162, 51</value>
+    <value>202, 51</value>
   </data>
   <data name="mPhraseSizeTextBox.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 4, 4, 4</value>
   </data>
   <data name="mPhraseSizeTextBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>132, 22</value>
+    <value>112, 22</value>
   </data>
   <data name="mPhraseSizeTextBox.TabIndex" type="System.Int32, mscorlib">
     <value>21</value>
@@ -199,7 +199,7 @@
     <value>22</value>
   </data>
   <data name="mOKButton.Text" xml:space="preserve">
-    <value>&amp;Aceptar</value>
+    <value>A&amp;ceptar</value>
   </data>
   <data name="&gt;&gt;mOKButton.Name" xml:space="preserve">
     <value>mOKButton</value>
@@ -259,7 +259,7 @@
     <value>10</value>
   </data>
   <data name="mCreateAudioFilePerSectionCheckBox.Text" xml:space="preserve">
-    <value>C&amp;rear sección para cada archivo de audio</value>
+    <value>&amp;Crear sección para cada archivo de audio</value>
   </data>
   <data name="&gt;&gt;mCreateAudioFilePerSectionCheckBox.Name" xml:space="preserve">
     <value>mCreateAudioFilePerSectionCheckBox</value>
@@ -313,7 +313,7 @@
     <value>3</value>
   </data>
   <data name="m_btnMoveUp.Text" xml:space="preserve">
-    <value>Mov. &amp;arriba</value>
+    <value>Mover &amp;arriba</value>
   </data>
   <data name="&gt;&gt;m_btnMoveUp.Name" xml:space="preserve">
     <value>m_btnMoveUp</value>
@@ -337,7 +337,7 @@
     <value>4</value>
   </data>
   <data name="m_btnMoveDown.Text" xml:space="preserve">
-    <value>Mov. a&amp;bajo</value>
+    <value>Mover a&amp;bajo</value>
   </data>
   <data name="&gt;&gt;m_btnMoveDown.Name" xml:space="preserve">
     <value>m_btnMoveDown</value>
@@ -361,7 +361,7 @@
     <value>5</value>
   </data>
   <data name="m_btnAdd.Text" xml:space="preserve">
-    <value>Aña&amp;dir</value>
+    <value>&amp;Añadir</value>
   </data>
   <data name="&gt;&gt;m_btnAdd.Name" xml:space="preserve">
     <value>m_btnAdd</value>
@@ -415,7 +415,7 @@
     <value>8</value>
   </data>
   <data name="mbtnDesendingOrder.Text" xml:space="preserve">
-    <value>O. D&amp;escendente</value>
+    <value>Orden D&amp;escendente</value>
   </data>
   <data name="&gt;&gt;mbtnDesendingOrder.Name" xml:space="preserve">
     <value>mbtnDesendingOrder</value>
@@ -439,7 +439,7 @@
     <value>7</value>
   </data>
   <data name="mbtnAscendingOrder.Text" xml:space="preserve">
-    <value>Orden &amp;A&amp;scendiente</value>
+    <value>Orden &amp;A&amp;scendente</value>
   </data>
   <data name="&gt;&gt;mbtnAscendingOrder.Name" xml:space="preserve">
     <value>mbtnAscendingOrder</value>
@@ -658,7 +658,7 @@
     <value>11</value>
   </data>
   <data name="mchkToReplaceWithSpace.Text" xml:space="preserve">
-    <value>Para ree&amp;mplazar con espacio</value>
+    <value>Para &amp;reemplazar con espacio</value>
   </data>
   <data name="&gt;&gt;mchkToReplaceWithSpace.Name" xml:space="preserve">
     <value>mchkToReplaceWithSpace</value>
@@ -769,7 +769,7 @@
     <value>0</value>
   </data>
   <data name="helpProvider1.HelpNamespace" xml:space="preserve">
-    <value>Obi Help.chm</value>
+    <value>Orden &amp;A&amp;scendiente</value>
   </data>
   <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
     <value>8, 16</value>

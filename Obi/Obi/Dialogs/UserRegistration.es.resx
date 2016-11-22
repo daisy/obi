@@ -223,7 +223,7 @@
     <value>6</value>
   </data>
   <data name="m_lblRetypeEmail.Text" xml:space="preserve">
-    <value>&amp;Reescribir Email :</value>
+    <value>&amp;Reescribir correo electrónico.</value>
   </data>
   <data name="&gt;&gt;m_lblRetypeEmail.Name" xml:space="preserve">
     <value>m_lblRetypeEmail</value>
@@ -271,7 +271,7 @@
     <value>14</value>
   </data>
   <data name="m_lblWinVer.Text" xml:space="preserve">
-    <value>Versión de Windows:</value>
+    <value>Versión de windows:</value>
   </data>
   <data name="&gt;&gt;m_lblWinVer.Name" xml:space="preserve">
     <value>m_lblWinVer</value>
@@ -458,7 +458,7 @@
   </data>
   <data name="m_lblOrgName.Text" xml:space="preserve">
     <value>Nombre de la &amp;Organización: 
-Utilice "Personal" para usuario particular</value>
+ Utilice "Personal" para usuario particular</value>
   </data>
   <data name="&gt;&gt;m_lblOrgName.Name" xml:space="preserve">
     <value>m_lblOrgName</value>
@@ -485,7 +485,7 @@ Utilice "Personal" para usuario particular</value>
     <value>4</value>
   </data>
   <data name="m_lblEmail.Text" xml:space="preserve">
-    <value>&amp;Correo electrónico:</value>
+    <value>Corr&amp;eo electrónico:</value>
   </data>
   <data name="&gt;&gt;m_lblEmail.Name" xml:space="preserve">
     <value>m_lblEmail</value>
