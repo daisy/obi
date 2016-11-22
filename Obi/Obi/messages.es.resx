@@ -2338,7 +2338,7 @@ Texto de error: {1}</value>
     <value>Después de grabar, borrar las frases siguientes restantes</value>
   </data>
   <data name="ProfileDesc_file_name" xml:space="preserve">
-    <value>ProfileDesc_en.html</value>
+    <value>ProfileDesc_es.html</value>
   </data>
   <data name="Preferences_Level_ComboBox_Profile_1" xml:space="preserve">
     <value>Perfil 1 (VA)</value>
