@@ -130,14 +130,14 @@
     <value>Mostrar el contenido de la sección</value>
   </data>
   <data name="Context_ShowContentsMenuItem.AccessibleName" xml:space="preserve">
-    <value>Mostrar contenido</value>
+    <value>Mostrar contenidos</value>
   </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="Context_ShowContentsMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>207, 22</value>
   </data>
   <data name="Context_ShowContentsMenuItem.Text" xml:space="preserve">
-    <value>Mos&amp;trar contenido</value>
+    <value>Mos&amp;trar contenidos</value>
   </data>
   <data name="Context_AddSectionMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>207, 22</value>
@@ -158,22 +158,22 @@
     <value>&amp;Insertar sección</value>
   </data>
   <data name="Context_MergeWithNextMenuItem.AccessibleName" xml:space="preserve">
-    <value>Unir con la siguiente</value>
+    <value>Combinar con la siguiente</value>
   </data>
   <data name="Context_MergeWithNextMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>207, 22</value>
   </data>
   <data name="Context_MergeWithNextMenuItem.Text" xml:space="preserve">
-    <value>Uni&amp;r con la siguiente</value>
+    <value>Combina&amp;r sección con la siguiente</value>
   </data>
   <data name="Context_MultipleOperationsMenuItem.AccessibleName" xml:space="preserve">
-    <value>Operaciones Multi-Secciones</value>
+    <value>Operaciones con varias secciones</value>
   </data>
   <data name="Context_MultipleOperationsMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>207, 22</value>
   </data>
   <data name="Context_MultipleOperationsMenuItem.Text" xml:space="preserve">
-    <value>Operaciones M&amp;ulti-Secciones</value>
+    <value>Operaciones con &amp;varias secciones</value>
   </data>
   <data name="Context_RenameSectionMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>207, 22</value>
@@ -378,5 +378,17 @@
   </data>
   <data name="&gt;&gt;$this.Type" xml:space="preserve">
     <value>System.Windows.Forms.TreeView, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Context_AddBlankPhraseMenuItem.AccessibleName" xml:space="preserve">
+    <value>Añadir frase vacía</value>
+  </data>
+  <data name="Context_AddBlankPhraseMenuItem.Text" xml:space="preserve">
+    <value>Añadir &amp;frase en blanco</value>
+  </data>
+  <data name="Context_AddEmptyPagesMenuItem.AccessibleName" xml:space="preserve">
+    <value>Añadir páginas vacías</value>
+  </data>
+  <data name="Context_AddEmptyPagesMenuItem.Text" xml:space="preserve">
+    <value>Añadir &amp;páginas vacías</value>
   </data>
 </root>

@@ -155,22 +155,22 @@
     <value>Di&amp;vidir sección</value>
   </data>
   <data name="Context_MergeWithNextSectionMenuItem.AccessibleName" xml:space="preserve">
-    <value>Unir la sección con la siguiente</value>
+    <value>Unir secciones con la siguiente</value>
   </data>
   <data name="Context_MergeWithNextSectionMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>208, 22</value>
   </data>
   <data name="Context_MergeWithNextSectionMenuItem.Text" xml:space="preserve">
-    <value>Uni&amp;r la sección con la siguiente</value>
+    <value>Uni&amp;r secciones con la siguiente</value>
   </data>
   <data name="Context_MultiSectionOperations.AccessibleName" xml:space="preserve">
-    <value>Operaciones Multi-Secciones</value>
+    <value>Operaciones con varias secciones</value>
   </data>
   <data name="Context_MultiSectionOperations.Size" type="System.Drawing.Size, System.Drawing">
     <value>208, 22</value>
   </data>
   <data name="Context_MultiSectionOperations.Text" xml:space="preserve">
-    <value>Operaciones Multi-Se&amp;cciones</value>
+    <value>Operaciones con varias se&amp;cciones</value>
   </data>
   <data name="toolStripSeparator1.Size" type="System.Drawing.Size, System.Drawing">
     <value>205, 6</value>
@@ -221,25 +221,25 @@
     <value>233, 22</value>
   </data>
   <data name="Context_SplitMergeWithNextMenuItem.Text" xml:space="preserve">
-    <value>Dividir y unir con siguien&amp;te</value>
+    <value>Dividir y unir con la frase siguien&amp;te</value>
   </data>
   <data name="Context_SplitMergeWithPreviousMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>233, 22</value>
   </data>
   <data name="Context_SplitMergeWithPreviousMenuItem.Text" xml:space="preserve">
-    <value>Dividir y unir con anteri&amp;or</value>
+    <value>Dividir y &amp;unir con la anterior </value>
   </data>
   <data name="Context_Merge_MergeWithFollowingPhrasesMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>233, 22</value>
   </data>
   <data name="Context_Merge_MergeWithFollowingPhrasesMenuItem.Text" xml:space="preserve">
-    <value>Unir con las frases &amp;siguientes</value>
+    <value>Unir con &amp;las frases siguientes</value>
   </data>
   <data name="Context_Merge_MergeWithPrecedingPhrasesMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>233, 22</value>
   </data>
   <data name="Context_Merge_MergeWithPrecedingPhrasesMenuItem.Text" xml:space="preserve">
-    <value>Unir con las frases ante&amp;riores</value>
+    <value>Unir con las fra&amp;ses anteriores</value>
   </data>
   <data name="Context_MergeMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>208, 22</value>
@@ -257,7 +257,7 @@
     <value>208, 22</value>
   </data>
   <data name="Context_PhraseIsTODOMenuItem.Text" xml:space="preserve">
-    <value>Frase &amp;pendiente</value>
+    <value>Frase &amp;para revisar</value>
   </data>
   <data name="Context_PhraseIsUsedMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>208, 22</value>
@@ -278,13 +278,13 @@
     <value>181, 22</value>
   </data>
   <data name="Context_AssignRole_HeadingMenuItem.Text" xml:space="preserve">
-    <value>&amp;Heading</value>
+    <value>[DAISY book structure term]</value>
   </data>
   <data name="Context_AssignRole_PageMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>181, 22</value>
   </data>
   <data name="Context_AssignRole_PageMenuItem.Text" xml:space="preserve">
-    <value>&amp;Page</value>
+    <value>[DAISY book structure term]</value>
   </data>
   <data name="Context_AssignRole_SilenceMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>181, 22</value>
@@ -296,7 +296,7 @@
     <value>181, 22</value>
   </data>
   <data name="Context_AssignRole_AnchorMenuItem.Text" xml:space="preserve">
-    <value>Anch&amp;or</value>
+    <value>[DAISY book structure term]</value>
   </data>
   <data name="toolStripSeparator3.Size" type="System.Drawing.Size, System.Drawing">
     <value>178, 6</value>
@@ -344,7 +344,7 @@
     <value>Aplicar &amp;detección de frases</value>
   </data>
   <data name="Context_SkippablesMenuItem.AccessibleName" xml:space="preserve">
-    <value>Nota omisible</value>
+    <value>[DAISY book structure term]</value>
   </data>
   <data name="Context_Skippable_BeginSpecialNodeMarkToolStripMenuItem.AccessibleName" xml:space="preserve">
     <value>Inicio de nota</value>
@@ -419,7 +419,7 @@
     <value>208, 22</value>
   </data>
   <data name="Context_SkippablesMenuItem.Text" xml:space="preserve">
-    <value>Nota Omis&amp;ible</value>
+    <value>[DAISY book structure term]</value>
   </data>
   <data name="Context_AudioSelection_BeginMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>187, 22</value>
@@ -483,7 +483,7 @@
     <value>203, 22</value>
   </data>
   <data name="Context_Delete_deleteSelectionMenuItem.Text" xml:space="preserve">
-    <value>Borrar &amp;selección</value>
+    <value>Bo&amp;rrar selección</value>
   </data>
   <data name="Context_Delete_deleteFollowingPhrasesMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>203, 22</value>
@@ -532,13 +532,13 @@
     <value>208, 22</value>
   </data>
   <data name="Context_ExportReplaceAudioMenuItem.Text" xml:space="preserve">
-    <value>&amp;Exportar o reemplazar audio</value>
+    <value>Exportar o reemplazar Audio</value>
   </data>
   <data name="Context_PropertiesMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>208, 22</value>
   </data>
   <data name="Context_PropertiesMenuItem.Text" xml:space="preserve">
-    <value>Pro&amp;piedades</value>
+    <value>&amp;Exportar o reemplazar audio</value>
   </data>
   <data name="mContextMenuStrip.Size" type="System.Drawing.Size, System.Drawing">
     <value>209, 710</value>
@@ -1106,5 +1106,14 @@
   </data>
   <data name="&gt;&gt;$this.Type" xml:space="preserve">
     <value>System.Windows.Forms.UserControl, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="ContextBeginMarkToolStripMenuItem.Text" xml:space="preserve">
+    <value>I&amp;nicio de marca</value>
+  </data>
+  <data name="ContextEndMarkToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;Fin de marca</value>
+  </data>
+  <data name="toolStripMenuItem1.Text" xml:space="preserve">
+    <value>Operaciones con &amp;varias frases</value>
   </data>
 </root>

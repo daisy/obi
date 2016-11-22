@@ -125,7 +125,7 @@
  No podrá deshacer esta operación.</value>
   </data>
   <data name="closed_project" xml:space="preserve">
-    <value>Proyecto cerrado {0}</value>
+    <value>Proyecto cerrado "{0}".</value>
   </data>
   <data name="closed_project_caption" xml:space="preserve">
     <value>Cerrando el proyecto modificado</value>
@@ -199,7 +199,7 @@
     <value>Mono</value>
   </data>
   <data name="stereo" xml:space="preserve">
-    <value>Stereo</value>
+    <value>Estéreo</value>
   </data>
   <data name="no_input_device_caption" xml:space="preserve">
     <value>No se ha encontrado ningún dispositivo de entrada</value>
@@ -217,7 +217,7 @@
     <value>Error al eliminar el archivo {0}.({1})</value>
   </data>
   <data name="audio_file_filter" xml:space="preserve">
-    <value>Archivo WAVE (*.wav;*.mp3;*.mp4;*.m4a)|*.wav;*.mp3;*.mp4;*.m4a | Todos los archivos | *.*</value>
+    <value>Archivos Audio (*.wav;*.mp3;*.mp4)|*.wav;*.mp3;*.mp4 | Todos los archivos | *.*</value>
   </data>
   <data name="Monitoring" xml:space="preserve">
     <value>Monitorizando la entrada de audio...</value>
@@ -504,13 +504,13 @@ Texto de error: {1}</value>
     <value>Borrado de frases sin usar.</value>
   </data>
   <data name="clean_save_text" xml:space="preserve">
-    <value>Su proyecto se guardará después de la limpieza. ¿Quiere continuar?</value>
+    <value>Esta operación guardará su proyecto y no podrá deshacer los comandos ejecutados hasta ahora. ¿Quiere continuar?</value>
   </data>
   <data name="delete_unused" xml:space="preserve">
-    <value>eliminar los datos no utilizados</value>
+    <value>borrar los datos no utilizados</value>
   </data>
   <data name="delete_metadata_entry" xml:space="preserve">
-    <value>eliminar entrada de metadatos</value>
+    <value>borrar entrada de metadatos</value>
   </data>
   <data name="modify_metadata_content" xml:space="preserve">
     <value>modificar el contenido de los metadatos</value>
@@ -552,10 +552,10 @@ Texto de error: {1}</value>
     <value>Vista de contenido</value>
   </data>
   <data name="audio_block_label" xml:space="preserve">
-    <value>, {0} {1} of {2}{3}</value>
+    <value>{0} {1} de {2}{3}</value>
   </data>
   <data name="audio_block_label_unused" xml:space="preserve">
-    <value>sin usar</value>
+    <value>, sin usar</value>
   </data>
   <data name="Paused" xml:space="preserve">
     <value>Pausado</value>
@@ -939,13 +939,13 @@ Texto de error: {1}</value>
     <value>Personalizar</value>
   </data>
   <data name="role_Heading" xml:space="preserve">
-    <value>Encabezado</value>
+    <value>Heading</value>
   </data>
   <data name="role_Page" xml:space="preserve">
-    <value>Página</value>
+    <value>Page</value>
   </data>
   <data name="role_Plain" xml:space="preserve">
-    <value>Limpiar</value>
+    <value>Aplanar</value>
   </data>
   <data name="role_Silence" xml:space="preserve">
     <value>Silencio</value>
@@ -1114,22 +1114,22 @@ Texto de error: {1}</value>
     <value>No es posible completar la operación.</value>
   </data>
   <data name="footnote" xml:space="preserve">
-    <value>nota a pie de página</value>
+    <value>footnote </value>
   </data>
   <data name="sidebar" xml:space="preserve">
-    <value>barra lateral</value>
+    <value>sidebar </value>
   </data>
   <data name="prodnote" xml:space="preserve">
-    <value> nota de producción</value>
+    <value> prodnote</value>
   </data>
   <data name="note" xml:space="preserve">
-    <value>nota</value>
+    <value>note</value>
   </data>
   <data name="endnote" xml:space="preserve">
-    <value>nota final</value>
+    <value> endnote</value>
   </data>
   <data name="annotation" xml:space="preserve">
-    <value> anotación</value>
+    <value> annotation</value>
   </data>
   <data name="ContentsHidden_CannotExecuteCommand" xml:space="preserve">
     <value>Este comando no se puede ejecutar en secciones con contenido oculto. Por favor, haga visibles los contenidos de la sección y vuelva a intentarlo.</value>
@@ -1750,7 +1750,7 @@ Texto de error: {1}</value>
     <value>Borrar los archivos no utilizados después de limpiar</value>
   </data>
   <data name="Preferences_UnableToUpdateProjectAudioFormat" xml:space="preserve">
-    <value>No se puede actualizar el formato de audio del proyecto actual</value>
+    <value>Imposible actualizar el formato de audio en el proyecto actual</value>
   </data>
   <data name="AudioTab_Limit max phrase duration to 50 minutes" xml:space="preserve">
     <value>Limitar la duración de la frase a un máximo de 50 minutos</value>
@@ -2173,7 +2173,7 @@ Texto de error: {1}</value>
     <value>Seleccione por favor, el proyecto a unir</value>
   </data>
   <data name="Obi_ProjectMergeFilter" xml:space="preserve">
-    <value>Obi project file (*.obi)|*.obi</value>
+    <value>Archivo de proyecto Obi (*.obi)|*.obi</value>
   </data>
   <data name="MergeProject_Information" xml:space="preserve">
     <value>Asegúrese por favor, que los proyectos a unir tienen el mismo formato de audio.</value>
@@ -2338,7 +2338,7 @@ Texto de error: {1}</value>
     <value>Después de grabar, borrar las frases siguientes restantes</value>
   </data>
   <data name="ProfileDesc_file_name" xml:space="preserve">
-    <value>ProfileDesc_es.html</value>
+    <value>ProfileDesc_en.html</value>
   </data>
   <data name="Preferences_Level_ComboBox_Profile_1" xml:space="preserve">
     <value>Perfil 1 (VA)</value>
@@ -2416,21 +2416,273 @@ Texto de error: {1}</value>
     <value>Por favor, introduzca correctamente lo siguiente:</value>
   </data>
   <data name="Audio_PreservePage" xml:space="preserve">
-    <value>Conservar las páginas al sobre escribir el audio</value>
+    <value>Conservar las páginas al sobreescribir el audio</value>
   </data>
   <data name="MergeOptions_IncreaseLevel" xml:space="preserve">
-    <value>Aumentar nivel sección</value>
+    <value>Aumentar el nivel de la sección</value>
   </data>
   <data name="MergeOptions_DecreaseLevel" xml:space="preserve">
-    <value>Disminuir nivel sección</value>
+    <value>Disminuir el nivel de la sección</value>
   </data>
   <data name="MergeOptions_Merge" xml:space="preserve">
     <value>Unir secciones</value>
   </data>
   <data name="ProjectViewFormMsg_SectionLevelChangeOperationFail" xml:space="preserve">
-    <value>Operación de cambio de nivel de sección fallida.</value>
+    <value>Operación de cambio de nivel de la sección ha fallado</value>
   </data>
   <data name="MergeOptions_NoSelectionForLevelChange" xml:space="preserve">
-    <value>No section is selected to perform level change operation </value>
+    <value>No hay seleccionada ninguna sección para realizar el cambio de nivel</value>
+  </data>
+  <data name="Delete_unused_data_caption" xml:space="preserve">
+    <value>¿Borrar los datos no utilizados?</value>
+  </data>
+  <data name="Project_DisableRollBackForCleanUp" xml:space="preserve">
+    <value>Deshabilitar retroceder al limpiar</value>
+  </data>
+  <data name="Metadata_Empty" xml:space="preserve">
+    <value>Vacío</value>
+  </data>
+  <data name="MergeOptions_LevelString" xml:space="preserve">
+    <value>Nivel</value>
+  </data>
+  <data name="Profile_Saved" xml:space="preserve">
+    <value>Perfil guardado</value>
+  </data>
+  <data name="MergeProject_CannotMerge" xml:space="preserve">
+    <value>No puedo seleccionar el proyecto abierto</value>
+  </data>
+  <data name="Project_MinimizeObi" xml:space="preserve">
+    <value>No minimice Obi con la Barra de Grabación activada</value>
+  </data>
+  <data name="Phrase_IndexString" xml:space="preserve">
+    <value>{0} de {1}</value>
+  </data>
+  <data name="Preferences_ProfileLoaded" xml:space="preserve">
+    <value>Se ha cargado el perfil de preferencias seleccionado</value>
+  </data>
+  <data name="Preference_ProfileCaption" xml:space="preserve">
+    <value>Cargado el Perfil de Preferencias</value>
+  </data>
+  <data name="Preferences_ProfilesShortcutsLoaded" xml:space="preserve">
+    <value>Cargados los Atajos de teclado desde el elemento seleccionado</value>
+  </data>
+  <data name="Preferences_ProfilesStatus" xml:space="preserve">
+    <value>{0} perfil para {1} preferencias</value>
+  </data>
+  <data name="Preferences_ConfirmForDeletingProfile" xml:space="preserve">
+    <value>Esto borrará el perfil seleccionado. ¿Quiere continuar?</value>
+  </data>
+  <data name="Audio_AlwaysMonitoringRecordingToolBar" xml:space="preserve">
+    <value>Monitorizar siempre en la Barra de herramientas de Grabación</value>
+  </data>
+  <data name="KeysS_TransportBarExpandSwitchProfile" xml:space="preserve">
+    <value>Ampliar el botón de cambio de perfil</value>
+  </data>
+  <data name="Transport_SwitchProfile" xml:space="preserve">
+    <value>Cambiar el perfil de audio desde</value>
+  </data>
+  <data name="RecordingToolbar_SwitchProfile" xml:space="preserve">
+    <value>Cambiar de {0} a {1}</value>
+  </data>
+  <data name="RecordingToolbar_SwitchProfileStatusBar" xml:space="preserve">
+    <value>cambiado a Perfil {0}</value>
+  </data>
+  <data name="Audio_ColorFlickerPreviewBeforeRecording" xml:space="preserve">
+    <value>Resalte la etiqueta para vista previa antes de grabar</value>
+  </data>
+  <data name="Audio_PlaySectionUsingPlayBtn" xml:space="preserve">
+    <value>Utilice el botón y la tecla espacio para reproducir la sección</value>
+  </data>
+  <data name="TransportBar_PlaySelection" xml:space="preserve">
+    <value>Reproducir la selección</value>
+  </data>
+  <data name="TransportBar_PlayAll" xml:space="preserve">
+    <value>Reproducir todo</value>
+  </data>
+  <data name="SetPageNumber_PrecedingPageNotFound" xml:space="preserve">
+    <value>No se encuentra la página anterior. Por favor, introduzca su valor</value>
+  </data>
+  <data name="SetPageNumber_NextPageNotFound" xml:space="preserve">
+    <value>Imposible encontrar la página siguiente. Introduzca su valor por favor.</value>
+  </data>
+  <data name="SetPageNumber_PageOutOfOrder" xml:space="preserve">
+    <value>No puedo proceder. Los números de página anterior y posterior están fuera de rango.</value>
+  </data>
+  <data name="SetPageNumber_PageInConsecutiveOrder" xml:space="preserve">
+    <value>No puedo proceder. Las páginas ya son consecutivas.</value>
+  </data>
+  <data name="LocalDirectoryToSaveRecording" xml:space="preserve">
+    <value>Elija por favor, un directorio local para guardar la grabación.</value>
+  </data>
+  <data name="Project_EnableMouseScrolling" xml:space="preserve">
+    <value>Habilitar el desplazamiento de la rueda del ratón</value>
+  </data>
+  <data name="CleanUp_Complete" xml:space="preserve">
+    <value>Completada la operación de limpieza.</value>
+  </data>
+  <data name="MergeOptions_CannotSelect" xml:space="preserve">
+    <value>No se puede realizar la selección. Los niveles de las secciones seleccionadas no pueden ser nunca inferiores al nivel de la primera sección seleccionada.</value>
+  </data>
+  <data name="SectionLevel_IncrementError" xml:space="preserve">
+    <value>No se puede aumentar el nivel de las secciones en esta posición</value>
+  </data>
+  <data name="SectionLevel_DecrementError" xml:space="preserve">
+    <value>No se puede disminuir el nivel de las secciones en esta posición</value>
+  </data>
+  <data name="KeyS_SelectStartOfThePhrase" xml:space="preserve">
+    <value>Seleccionar el inicio de la frase</value>
+  </data>
+  <data name="KeyS_SelectEndOfPhrase" xml:space="preserve">
+    <value>Seleccionar el final de la frase</value>
+  </data>
+  <data name="default_XHTMLExport_dirname" xml:space="preserve">
+    <value>Exportar {0}Xhtml</value>
+  </data>
+  <data name="Preferences_ProfileExists" xml:space="preserve">
+    <value>Ya existe un perfil con este nombre. ¿Quiere sobreescribirlo?</value>
+  </data>
+  <data name="Audio_EnableFileDataProviderPreservation" xml:space="preserve">
+    <value>Habilitar la limpieza rápida (para implementaciones basadas en red)</value>
+  </data>
+  <data name="Project_DisableTOCViewCollapse" xml:space="preserve">
+    <value>Deshabilitar el colapso de la sección seleccionada en la vista TOC</value>
+  </data>
+  <data name="Preferences_DefaultProfileExists" xml:space="preserve">
+    <value>Ya existe un perfil por defecto con el mismo nombre. Cambielo, por favor.</value>
+  </data>
+  <data name="Project_MaximizeObi" xml:space="preserve">
+    <value>Abrir OBI maximizado</value>
+  </data>
+  <data name="Audio_EnsureCursorVisibilityInUndoOfSplitRecording" xml:space="preserve">
+    <value>Asegurar la vista del cursor cuando esté deshabilitada la vista previa antes de grabar</value>
+  </data>
+  <data name="Audio_DisableCreationOfNewHeadingsAndPagesWhileRecording" xml:space="preserve">
+    <value>Deshabilitar la creación de nueva sección y páginas durante la grabación</value>
+  </data>
+  <data name="Project_VAXhtmlExport" xml:space="preserve">
+    <value>Usar las reglas de Vision Australia para exportar XHTML</value>
+  </data>
+  <data name="PreviewBeforeRecording_SelectionChanged" xml:space="preserve">
+    <value>Cambiada la selección. No se puede iniciar la grabación</value>
+  </data>
+  <data name="Audio_PreventSplittingPages" xml:space="preserve">
+    <value>Evitar la detección de frases al vuelo en las páginas</value>
+  </data>
+  <data name="Audio_SaveAudioZoom" xml:space="preserve">
+    <value>Mantener el zoom del audio en la vista Contenido</value>
+  </data>
+  <data name="Preferences_RestartForFontChange" xml:space="preserve">
+    <value>Obi debe reiniciarse para que los cambios de Funete tengan efecto. Por favor, reinicielo</value>
+  </data>
+  <data name="CleanUp_Rollback_Progress" xml:space="preserve">
+    <value>Limpiar la restauración en proceso</value>
+  </data>
+  <data name="Rollback_DataDirectory_Missing" xml:space="preserve">
+    <value>La restauración no puede continuar. No se encuentran los datos del proyecto en el directorio</value>
+  </data>
+  <data name="Rollback_No_DataFound" xml:space="preserve">
+    <value>La restauración no puede continuar. No se encuentran datos para revertir</value>
+  </data>
+  <data name="Rollback_MappingFile_Missing" xml:space="preserve">
+    <value>La restauración no puede continuar. No se encuentran datos para revertir. (No encontrado el archivo de asignación)</value>
+  </data>
+  <data name="Rollback_ProjectFile_Missing" xml:space="preserve">
+    <value>La restauración no puede continuar. No se encuentran datos para revertir (No se encuentra el archivo del proyecto)</value>
+  </data>
+  <data name="Rollback_Complete" xml:space="preserve">
+    <value>La restauración de la limpieza está completada</value>
+  </data>
+  <data name="Rollback_Failed" xml:space="preserve">
+    <value>Restauración fallida.</value>
+  </data>
+  <data name="Caption_Rollback_Failed" xml:space="preserve">
+    <value>Restauración fallida.</value>
+  </data>
+  <data name="CleanUp_AreYouSure" xml:space="preserve">
+    <value>Por favor, confirme. Si se eliminan estos archivos, el proceso de restauración para la limpieza no funcionará.</value>
+  </data>
+  <data name="Cleanup_Complete_ShowDeleteDirectory" xml:space="preserve">
+    <value>Completada la operación de limpieza. ¿Quiere ver los archivos borrados?</value>
+  </data>
+  <data name="CleanupRollBack_AskToProceed" xml:space="preserve">
+    <value>La operación de retrotracción restaurará los archivos de proyecto y audio de obi al estado anterior a la última limpieza. Tenga en cuenta que sólo puede realizar el retroceso para la última operación de limpieza. ¿Quiere proceder?</value>
+  </data>
+  <data name="Preferences_ConfirmDeleteLoadedProfile" xml:space="preserve">
+    <value>Está intentando eliminar el perfil cargado. Seleccione otro perfil, por favor.</value>
+  </data>
+  <data name="Preferences_ConfirmDeleteLoadedKeyboardProfile" xml:space="preserve">
+    <value>Está intentando eliminar el perfil de atajos de teclado cargado. Si continúa, se cargarán los atajos de teclado predeterminados. ¿Desea continuar ?</value>
+  </data>
+  <data name="Project_IncreasePhraseHightForHigherResolution" xml:space="preserve">
+    <value>Agrandar las frases conforme aumente la resolución de pantalla</value>
+  </data>
+  <data name="EmptyProjectTitle_error_Caption" xml:space="preserve">
+    <value>Sin Título de proyecto</value>
+  </data>
+  <data name="no_audio_Caption" xml:space="preserve">
+    <value>Sin audio</value>
+  </data>
+  <data name="CheckUpdates_NewVersionNotAvailable_Caption" xml:space="preserve">
+    <value>Disponible una nueva versión</value>
+  </data>
+  <data name="no_primary_export_directory_Caption" xml:space="preserve">
+    <value>No hay directorio de exportación</value>
+  </data>
+  <data name="Project_MessageBoxToCheckMaximizeObi" xml:space="preserve">
+    <value>  Para habilitar esta configuración, debe desmarcar "Abrir Obi en estado de maximización". ¿Desea continuar? (Recomendado)</value>
+  </data>
+  <data name="Project_SaveTOCViewWidth" xml:space="preserve">
+    <value>Anchura de la vista TOC fija</value>
+  </data>
+  <data name="RecordingToolbar_SwitchLoadedProfile" xml:space="preserve">
+    <value>Cambiar a {0}</value>
+  </data>
+  <data name="SaveAsEmptyProjectFileName" xml:space="preserve">
+    <value>El nombre del archivo del proyecto no puede quedar vacío.</value>
+  </data>
+  <data name="KeyS_PlayOnNavigate" xml:space="preserve">
+    <value>Se activará la reproducción al navegar</value>
+  </data>
+  <data name="Profile_Audio" xml:space="preserve">
+    <value>Audio:</value>
+  </data>
+  <data name="Audio_SelectLastPhrasePlayed" xml:space="preserve">
+    <value>Después de reproducir, seleccionar la última frase reproducida.</value>
+  </data>
+  <data name="Audio_ShowSelectionTimeInTransportBar" xml:space="preserve">
+    <value>Mostrar el cursor de tiempo en la barra de transporte en estado de parada</value>
+  </data>
+  <data name="ZoomWaveform_PreserveZoom" xml:space="preserve">
+    <value>Preservar zoom</value>
+  </data>
+  <data name="Project_ShowAdvancePropertiesInPropertiesDialogs" xml:space="preserve">
+    <value>Mostrar propiedades avanzadas en el diálogo de propiedades</value>
+  </data>
+  <data name="SplitPhrases_ErrorSilence" xml:space="preserve">
+    <value>¿Quiere dividir la frase en la posición de error de silenci?</value>
+  </data>
+  <data name="Caption_SplitPhrase" xml:space="preserve">
+    <value>¿Dividir la frase?</value>
+  </data>
+  <data name="NumberOfErrorPhrase" xml:space="preserve">
+    <value>Número de errores encontrados en las frases:</value>
+  </data>
+  <data name="Project_DisplayWarningsForEditOperations" xml:space="preserve">
+    <value>Advertir antes de manipular la sección</value>
+  </data>
+  <data name="ConfirmSectionDelete" xml:space="preserve">
+    <value>Está a punto de borrar la sección. ¿Quiere continuar?</value>
+  </data>
+  <data name="ConfirmSectionRename" xml:space="preserve">
+    <value>Está apunto de renombrar la sección. ¿Quiere continuar?</value>
+  </data>
+  <data name="ConfirmSectionCut" xml:space="preserve">
+    <value>Está a punto de cortar la sección. ¿Quiere continuar?</value>
+  </data>
+  <data name="Audio_RecordInFirstEmptyPhraseWithRecordSectionCommand" xml:space="preserve">
+    <value>Grabar en la primera frase vacía con el comando grabar sección.</value>
+  </data>
+  <data name="ZoomWaveform_PreserveZoomToolTip" xml:space="preserve">
+    <value>Preservar el zoom del panel zoom</value>
   </data>
 </root>

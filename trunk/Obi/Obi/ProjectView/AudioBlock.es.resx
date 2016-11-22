@@ -178,7 +178,7 @@
     <value>3</value>
   </data>
   <data name="mRecordingLabel.Text" xml:space="preserve">
-    <value>Grabando...</value>
+    <value>Grabando…</value>
   </data>
   <data name="&gt;&gt;mRecordingLabel.Name" xml:space="preserve">
     <value>mRecordingLabel</value>
