@@ -145,7 +145,7 @@
     <value>0</value>
   </data>
   <data name="lblLeft.Text" xml:space="preserve">
-    <value>&amp;L</value>
+    <value>&amp;L:</value>
   </data>
   <data name="&gt;&gt;lblLeft.Name" xml:space="preserve">
     <value>lblLeft</value>
@@ -202,7 +202,7 @@
     <value>2</value>
   </data>
   <data name="lblRight.Text" xml:space="preserve">
-    <value>&amp;R</value>
+    <value>&amp;R:</value>
   </data>
   <data name="&gt;&gt;lblRight.Name" xml:space="preserve">
     <value>lblRight</value>
@@ -244,7 +244,7 @@
     <value>1</value>
   </data>
   <data name="mResetButton.AccessibleName" xml:space="preserve">
-    <value>Reset Button</value>
+    <value>Botón R&amp;establecer</value>
   </data>
   <data name="mResetButton.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
