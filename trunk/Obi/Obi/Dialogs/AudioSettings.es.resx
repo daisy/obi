@@ -141,7 +141,7 @@
     <value>0</value>
   </data>
   <data name="mlbSampleRate.Text" xml:space="preserve">
-    <value>Frecuencia de mue&amp;streo</value>
+    <value>Frecuencia de mue&amp;streo:</value>
   </data>
   <data name="&gt;&gt;mlbSampleRate.Name" xml:space="preserve">
     <value>mlbSampleRate</value>
@@ -205,7 +205,7 @@
     <value>4</value>
   </data>
   <data name="mbtnOK.Text" xml:space="preserve">
-    <value>&amp;Aceptar</value>
+    <value>A&amp;ceptar</value>
   </data>
   <data name="&gt;&gt;mbtnOK.Name" xml:space="preserve">
     <value>mbtnOK</value>
@@ -220,7 +220,7 @@
     <value>2</value>
   </data>
   <data name="mcbSampleRate.AccessibleName" xml:space="preserve">
-    <value>Cuadro combinado frecuencia de muestreo</value>
+    <value>Cuadro combinado velocidad de muestreo</value>
   </data>
   <data name="mcbSampleRate.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Left, Right</value>

@@ -163,7 +163,7 @@
     <value>9</value>
   </data>
   <data name="m_btn_OK.Text" xml:space="preserve">
-    <value>&amp;Aceptar</value>
+    <value>A&amp;ceptar</value>
   </data>
   <data name="&gt;&gt;m_btn_OK.Name" xml:space="preserve">
     <value>m_btn_OK</value>
@@ -190,7 +190,7 @@
     <value>10</value>
   </data>
   <data name="m_btn_Cancel.Text" xml:space="preserve">
-    <value>Canc&amp;elar</value>
+    <value>&amp;Cancelar</value>
   </data>
   <data name="&gt;&gt;m_btn_Cancel.Name" xml:space="preserve">
     <value>m_btn_Cancel</value>
@@ -370,7 +370,7 @@
     <value>3</value>
   </data>
   <data name="groupBox2.Text" xml:space="preserve">
-    <value>Lista de &amp;notas opcionales</value>
+    <value>Lista de &amp;notas omisibles</value>
   </data>
   <data name="&gt;&gt;groupBox2.Name" xml:space="preserve">
     <value>groupBox2</value>

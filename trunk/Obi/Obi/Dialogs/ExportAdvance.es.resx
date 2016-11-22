@@ -217,16 +217,16 @@
     <value>mono</value>
   </data>
   <data name="m_ComboBoxStereoMode.Items1" xml:space="preserve">
-    <value>estéreo</value>
+    <value>estereo</value>
   </data>
   <data name="m_ComboBoxStereoMode.Items2" xml:space="preserve">
-    <value>unir estéreo</value>
+    <value>estereo conjunto</value>
   </data>
   <data name="m_ComboBoxStereoMode.Items3" xml:space="preserve">
-    <value>forzar unir estéreo</value>
+    <value>forzar estereo conjunto</value>
   </data>
   <data name="m_ComboBoxStereoMode.Items4" xml:space="preserve">
-    <value>canales duales</value>
+    <value>canales dobles</value>
   </data>
   <data name="m_ComboBoxStereoMode.Location" type="System.Drawing.Point, System.Drawing">
     <value>113, 97</value>
@@ -250,7 +250,7 @@
     <value>3</value>
   </data>
   <data name="mLblStereoMode.AccessibleName" xml:space="preserve">
-    <value>Modo Estéreo</value>
+    <value>Modo Estereo</value>
   </data>
   <data name="mLblStereoMode.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -265,7 +265,7 @@
     <value>6</value>
   </data>
   <data name="mLblStereoMode.Text" xml:space="preserve">
-    <value>Modo Estéreo</value>
+    <value>Modo Estereo</value>
   </data>
   <data name="&gt;&gt;mLblStereoMode.Name" xml:space="preserve">
     <value>mLblStereoMode</value>
@@ -280,7 +280,7 @@
     <value>2</value>
   </data>
   <data name="m_LblReplayGain.AccessibleName" xml:space="preserve">
-    <value>Ganancia Reproducción</value>
+    <value>ReplayGain</value>
   </data>
   <data name="m_LblReplayGain.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -316,13 +316,13 @@
     <value>Por defecto</value>
   </data>
   <data name="m_comboBoxReplayGain.Items1" xml:space="preserve">
-    <value>Sin ganancia en la Reproducción</value>
+    <value>No ReplayGain</value>
   </data>
   <data name="m_comboBoxReplayGain.Items2" xml:space="preserve">
-    <value>Aumento exacto de la velocidad de reproducción</value>
+    <value>ReplayGain Exacta</value>
   </data>
   <data name="m_comboBoxReplayGain.Items3" xml:space="preserve">
-    <value>Aumento de la velocidad de reproducción</value>
+    <value>ReplayGain Rapida</value>
   </data>
   <data name="m_comboBoxReplayGain.Location" type="System.Drawing.Point, System.Drawing">
     <value>113, 57</value>
@@ -352,7 +352,7 @@
     <value>255, 198</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
-    <value>Avance de la exportación</value>
+    <value>Exportacion avanzada</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
     <value>ExportAdvance</value>
