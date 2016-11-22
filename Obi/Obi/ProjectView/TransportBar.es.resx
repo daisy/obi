@@ -169,7 +169,7 @@
     <value>16</value>
   </data>
   <data name="mPreviousPageButton.AccessibleDescription" xml:space="preserve">
-    <value>button</value>
+    <value>botón</value>
   </data>
   <data name="mPreviousPageButton.AccessibleName" xml:space="preserve">
     <value>Página anterior</value>
@@ -224,7 +224,7 @@
     <value>1</value>
   </data>
   <data name="mPreviousPageButton.ToolTip" xml:space="preserve">
-    <value>Página anterior. (May+P)</value>
+    <value>Página anterior. (Mayús + P)</value>
   </data>
   <data name="&gt;&gt;mPreviousPageButton.Name" xml:space="preserve">
     <value>mPreviousPageButton</value>
@@ -239,7 +239,7 @@
     <value>3</value>
   </data>
   <data name="mRewindButton.AccessibleDescription" xml:space="preserve">
-    <value>button</value>
+    <value>botón</value>
   </data>
   <data name="mRewindButton.AccessibleName" xml:space="preserve">
     <value>Retroceder</value>
@@ -302,7 +302,7 @@
     <value>4</value>
   </data>
   <data name="mToDo_CustomClassMarkButton.AccessibleDescription" xml:space="preserve">
-    <value>button</value>
+    <value>botón</value>
   </data>
   <data name="mToDo_CustomClassMarkButton.AccessibleName" xml:space="preserve">
     <value>Marcar frase</value>
@@ -357,7 +357,7 @@
     <value>13</value>
   </data>
   <data name="mToDo_CustomClassMarkButton.ToolTip" xml:space="preserve">
-    <value>Añadir marca PENDIENTE a la grabación. (F9)</value>
+    <value>Añadir marca A REVISAR a la grabación. (F9)</value>
   </data>
   <data name="&gt;&gt;mToDo_CustomClassMarkButton.Name" xml:space="preserve">
     <value>mToDo_CustomClassMarkButton</value>
@@ -372,7 +372,7 @@
     <value>21</value>
   </data>
   <data name="mNextPageButton.AccessibleDescription" xml:space="preserve">
-    <value>button</value>
+    <value>botón</value>
   </data>
   <data name="mNextPageButton.AccessibleName" xml:space="preserve">
     <value>Página siguiente</value>
@@ -440,7 +440,7 @@
     <value>14</value>
   </data>
   <data name="mPlayButton.AccessibleDescription" xml:space="preserve">
-    <value>button</value>
+    <value>botón</value>
   </data>
   <data name="mPlayButton.AccessibleName" xml:space="preserve">
     <value>Reproducir</value>
@@ -503,7 +503,7 @@
     <value>9</value>
   </data>
   <data name="mPauseButton.AccessibleDescription" xml:space="preserve">
-    <value>button</value>
+    <value>botón</value>
   </data>
   <data name="mPauseButton.AccessibleName" xml:space="preserve">
     <value>Pausa</value>
@@ -559,7 +559,7 @@
     <value>11</value>
   </data>
   <data name="mStopButton.AccessibleDescription" xml:space="preserve">
-    <value>button</value>
+    <value>botón</value>
   </data>
   <data name="mStopButton.AccessibleName" xml:space="preserve">
     <value>Detener</value>
@@ -602,7 +602,7 @@
     <value>6</value>
   </data>
   <data name="mStopButton.ToolTip" xml:space="preserve">
-    <value>Detener la reproducción o grabación del audio (Barra espaciadora)</value>
+    <value>Detener la reproducción o grabación del audio (Ctrl+Barra espaciadora)</value>
   </data>
   <data name="&gt;&gt;mStopButton.Name" xml:space="preserve">
     <value>mStopButton</value>
@@ -617,7 +617,7 @@
     <value>10</value>
   </data>
   <data name="mNextPhrase.AccessibleDescription" xml:space="preserve">
-    <value>button</value>
+    <value>botón</value>
   </data>
   <data name="mNextPhrase.AccessibleName" xml:space="preserve">
     <value>Siguiente frase</value>
@@ -688,7 +688,7 @@
     <value>15</value>
   </data>
   <data name="mPrevPhraseButton.AccessibleDescription" xml:space="preserve">
-    <value>button</value>
+    <value>botón</value>
   </data>
   <data name="mPrevPhraseButton.AccessibleName" xml:space="preserve">
     <value>Frase anterior</value>
@@ -759,7 +759,7 @@
     <value>8</value>
   </data>
   <data name="mNextSectionButton.AccessibleDescription" xml:space="preserve">
-    <value>button</value>
+    <value>botón</value>
   </data>
   <data name="mNextSectionButton.AccessibleName" xml:space="preserve">
     <value>Siguiente sección</value>
@@ -828,7 +828,7 @@
     <value>22</value>
   </data>
   <data name="mPrevSectionButton.AccessibleDescription" xml:space="preserve">
-    <value>button</value>
+    <value>botón</value>
   </data>
   <data name="mPrevSectionButton.AccessibleName" xml:space="preserve">
     <value>Sección anterior</value>
@@ -882,7 +882,7 @@
     <value>0</value>
   </data>
   <data name="mPrevSectionButton.ToolTip" xml:space="preserve">
-    <value>Sección anterior. (May+R)</value>
+    <value>Sección anterior. (Mayús + R)</value>
   </data>
   <data name="&gt;&gt;mPrevSectionButton.Name" xml:space="preserve">
     <value>mPrevSectionButton</value>
@@ -897,7 +897,7 @@
     <value>7</value>
   </data>
   <data name="mRecordButton.AccessibleDescription" xml:space="preserve">
-    <value>button</value>
+    <value>botón</value>
   </data>
   <data name="mRecordButton.AccessibleName" xml:space="preserve">
     <value>Grabar</value>
@@ -965,7 +965,7 @@
     <value>12</value>
   </data>
   <data name="mFastForwardButton.AccessibleDescription" xml:space="preserve">
-    <value>button</value>
+    <value>botón</value>
   </data>
   <data name="mFastForwardButton.AccessibleName" xml:space="preserve">
     <value>Avance rápido</value>
@@ -1153,7 +1153,7 @@
     <value>14</value>
   </data>
   <data name="m_btnSwitchProfile.ToolTip" xml:space="preserve">
-    <value>Switch Audio Profile</value>
+    <value>Cambiar perfil de audio</value>
   </data>
   <data name="&gt;&gt;m_btnSwitchProfile.Name" xml:space="preserve">
     <value>m_btnSwitchProfile</value>
@@ -1333,7 +1333,7 @@
     <value>186, 22</value>
   </data>
   <data name="m_PreviewFromtoolStripMenuItem.Text" xml:space="preserve">
-    <value>Vista pre&amp;via Desde </value>
+    <value>Vista pre&amp;via desde </value>
   </data>
   <data name="m_PreviewUptotoolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>186, 22</value>
