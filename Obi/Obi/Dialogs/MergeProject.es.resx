@@ -211,7 +211,7 @@
     <value>4, 4, 4, 4</value>
   </data>
   <data name="mbtnAscendingOrder.Size" type="System.Drawing.Size, System.Drawing">
-    <value>125, 32</value>
+    <value>140, 32</value>
   </data>
   <data name="mbtnAscendingOrder.TabIndex" type="System.Int32, mscorlib">
     <value>8</value>
