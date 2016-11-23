@@ -409,7 +409,7 @@
     <value>168, 34</value>
   </data>
   <data name="mbtnDesendingOrder.Size" type="System.Drawing.Size, System.Drawing">
-    <value>132, 26</value>
+    <value>140, 26</value>
   </data>
   <data name="mbtnDesendingOrder.TabIndex" type="System.Int32, mscorlib">
     <value>8</value>
@@ -433,7 +433,7 @@
     <value>10, 34</value>
   </data>
   <data name="mbtnAscendingOrder.Size" type="System.Drawing.Size, System.Drawing">
-    <value>118, 26</value>
+    <value>140, 26</value>
   </data>
   <data name="mbtnAscendingOrder.TabIndex" type="System.Int32, mscorlib">
     <value>7</value>
