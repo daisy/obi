@@ -400,7 +400,7 @@
     <value>100, 28</value>
   </data>
   <data name="m_btnOk.TabIndex" type="System.Int32, mscorlib">
-    <value>13</value>
+    <value>15</value>
   </data>
   <data name="m_btnOk.Text" xml:space="preserve">
     <value>&amp;OK</value>
@@ -433,7 +433,7 @@
     <value>100, 28</value>
   </data>
   <data name="m_btnCancel.TabIndex" type="System.Int32, mscorlib">
-    <value>14</value>
+    <value>16</value>
   </data>
   <data name="m_btnCancel.Text" xml:space="preserve">
     <value>&amp;Peruuta</value>
@@ -469,7 +469,7 @@
     <value>57, 20</value>
   </data>
   <data name="m_chkUsed.TabIndex" type="System.Int32, mscorlib">
-    <value>12</value>
+    <value>14</value>
   </data>
   <data name="m_chkUsed.Text" xml:space="preserve">
     <value>K&amp;äytetty</value>
@@ -607,7 +607,7 @@
     <value>110, 16</value>
   </data>
   <data name="m_lblPagesInSection.TabIndex" type="System.Int32, mscorlib">
-    <value>15</value>
+    <value>12</value>
   </data>
   <data name="m_lblPagesInSection.Text" xml:space="preserve">
     <value>Sivut jaksossa:</value>
@@ -624,6 +624,9 @@
   <data name="&gt;&gt;m_lblPagesInSection.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
+  <data name="m_txtPagesInSection.AccessibleName" xml:space="preserve">
+    <value>Sivut jaksossa</value>
+  </data>
   <data name="m_txtPagesInSection.Location" type="System.Drawing.Point, System.Drawing">
     <value>148, 311</value>
   </data>
@@ -631,7 +634,7 @@
     <value>370, 22</value>
   </data>
   <data name="m_txtPagesInSection.TabIndex" type="System.Int32, mscorlib">
-    <value>12</value>
+    <value>13</value>
   </data>
   <data name="&gt;&gt;m_txtPagesInSection.Name" xml:space="preserve">
     <value>m_txtPagesInSection</value>
