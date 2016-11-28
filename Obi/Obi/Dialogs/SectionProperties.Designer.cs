@@ -45,6 +45,8 @@ namespace Obi.Dialogs
             this.helpProvider1 = new System.Windows.Forms.HelpProvider();
             this.m_lblSectionTimePosition = new System.Windows.Forms.Label();
             this.m_txtSectionTimePosition = new System.Windows.Forms.TextBox();
+            this.m_lblPagesInSection = new System.Windows.Forms.Label();
+            this.m_txtPagesInSection = new System.Windows.Forms.TextBox();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -145,12 +147,25 @@ namespace Obi.Dialogs
             this.m_txtSectionTimePosition.Name = "m_txtSectionTimePosition";
             this.m_txtSectionTimePosition.ReadOnly = true;
             // 
+            // m_lblPagesInSection
+            // 
+            resources.ApplyResources(this.m_lblPagesInSection, "m_lblPagesInSection");
+            this.m_lblPagesInSection.Name = "m_lblPagesInSection";
+            // 
+            // m_txtPagesInSection
+            // 
+            resources.ApplyResources(this.m_txtPagesInSection, "m_txtPagesInSection");
+            this.m_txtPagesInSection.Name = "m_txtPagesInSection";
+            this.m_txtPagesInSection.ReadOnly = true;
+            // 
             // SectionProperties
             // 
             this.AcceptButton = this.m_btnOk;
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.m_btnCancel;
+            this.Controls.Add(this.m_txtPagesInSection);
+            this.Controls.Add(this.m_lblPagesInSection);
             this.Controls.Add(this.m_txtSectionTimePosition);
             this.Controls.Add(this.m_lblSectionTimePosition);
             this.Controls.Add(this.groupBox1);
@@ -195,5 +210,7 @@ namespace Obi.Dialogs
         private System.Windows.Forms.HelpProvider helpProvider1;
         private System.Windows.Forms.Label m_lblSectionTimePosition;
         private System.Windows.Forms.TextBox m_txtSectionTimePosition;
+        private System.Windows.Forms.Label m_lblPagesInSection;
+        private System.Windows.Forms.TextBox m_txtPagesInSection;
     }
 }
