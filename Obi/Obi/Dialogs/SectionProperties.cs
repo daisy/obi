@@ -94,11 +94,11 @@ namespace Obi.Dialogs
                 {
                     if (m_txtPagesInSection.Text.Trim() == string.Empty)
                     {
-                        m_txtPagesInSection.Text +=  "#"+((EmptyNode)n).PageNumber.Number.ToString();
+                        m_txtPagesInSection.Text +=  "#"+((EmptyNode)n).PageNumber.ToString();
                     }
                     else
                     {
-                        m_txtPagesInSection.Text += ", #" + ((EmptyNode)n).PageNumber.Number.ToString();
+                        m_txtPagesInSection.Text += ", #" + ((EmptyNode)n).PageNumber.ToString();
                     }
                 }
                 if (n.Parent != n.FollowingNode.Parent)
