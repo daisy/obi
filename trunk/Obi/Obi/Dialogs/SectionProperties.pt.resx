@@ -610,7 +610,7 @@
     <value>12</value>
   </data>
   <data name="m_lblPagesInSection.Text" xml:space="preserve">
-    <value>Páginas na seção:</value>
+    <value>&amp;Páginas na secção:</value>
   </data>
   <data name="&gt;&gt;m_lblPagesInSection.Name" xml:space="preserve">
     <value>m_lblPagesInSection</value>

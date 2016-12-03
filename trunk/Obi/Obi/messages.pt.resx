@@ -2639,15 +2639,54 @@ Error text: {1}</value>
     <value>Mudar para {0}</value>
   </data>
   <data name="SaveAsEmptyProjectFileName" xml:space="preserve">
-    <value>Project file name cannot be empty</value>
+    <value>O nome do ficheiro de projeto não pode estar em branco</value>
   </data>
   <data name="KeyS_PlayOnNavigate" xml:space="preserve">
-    <value>Play on navigate will be activated</value>
+    <value>Reprodução durante a navegação será ativada</value>
   </data>
   <data name="Profile_Audio" xml:space="preserve">
-    <value>Audio</value>
+    <value>Áudio:</value>
   </data>
-  <data name="Profile_General" xml:space="preserve">
-    <value>General</value>
+  <data name="Audio_SelectLastPhrasePlayed" xml:space="preserve">
+    <value>Depois da reprodução, selecione a última frase reproduzida</value>
+  </data>
+  <data name="Audio_ShowSelectionTimeInTransportBar" xml:space="preserve">
+    <value>Mostrar tempo do cursor na barra de controlos em stop</value>
+  </data>
+  <data name="ZoomWaveform_PreserveZoom" xml:space="preserve">
+    <value>Preservar zoom</value>
+  </data>
+  <data name="Project_ShowAdvancePropertiesInPropertiesDialogs" xml:space="preserve">
+    <value>Mostrar propriedades avançadas no diálogo propriedades</value>
+  </data>
+  <data name="SplitPhrases_ErrorSilence" xml:space="preserve">
+    <value>Deseja dividir a frase nesta posição?</value>
+    <comment>Confirmation dialog</comment>
+  </data>
+  <data name="Caption_SplitPhrase" xml:space="preserve">
+    <value>Dividir Frase?</value>
+    <comment>Confirmation dialog</comment>
+  </data>
+  <data name="NumberOfErrorPhrase" xml:space="preserve">
+    <value>Número de frases com erro encontradas:</value>
+    <comment>Status message</comment>
+  </data>
+  <data name="Project_DisplayWarningsForEditOperations" xml:space="preserve">
+    <value>Avisar antes de manipular secção</value>
+  </data>
+  <data name="ConfirmSectionDelete" xml:space="preserve">
+    <value>Está prestes a apagar a secção. Deseja continuar?</value>
+  </data>
+  <data name="ConfirmSectionRename" xml:space="preserve">
+    <value>Está prestes a renomear a secção. Deseja continuar?</value>
+  </data>
+  <data name="ConfirmSectionCut" xml:space="preserve">
+    <value>Está prestes a cortar a secção. Deseja continuar?</value>
+  </data>
+  <data name="Audio_RecordInFirstEmptyPhraseWithRecordSectionCommand" xml:space="preserve">
+    <value>Gravar na primeira frase vazia com comando gravar secção</value>
+  </data>
+  <data name="ZoomWaveform_PreserveZoomToolTip" xml:space="preserve">
+    <value>Preservar zoom para o painel do zoom</value>
   </data>
 </root>

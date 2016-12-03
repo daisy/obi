@@ -565,7 +565,7 @@
     <value>4</value>
   </data>
   <data name="m_lblSectionTimePosition.Text" xml:space="preserve">
-    <value>Section Time Position:</value>
+    <value>&amp;Section Time Position:</value>
   </data>
   <data name="&gt;&gt;m_lblSectionTimePosition.Name" xml:space="preserve">
     <value>m_lblSectionTimePosition</value>
@@ -616,7 +616,7 @@
     <value>12</value>
   </data>
   <data name="m_lblPagesInSection.Text" xml:space="preserve">
-    <value>Pages in section:</value>
+    <value>&amp;Pages in section:</value>
   </data>
   <data name="&gt;&gt;m_lblPagesInSection.Name" xml:space="preserve">
     <value>m_lblPagesInSection</value>

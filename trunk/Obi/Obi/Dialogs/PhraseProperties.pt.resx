@@ -835,7 +835,7 @@
     <value>16</value>
   </data>
   <data name="m_lbl_FileName.Text" xml:space="preserve">
-    <value>&amp;Nome do arquivo:</value>
+    <value>&amp;Nome do ficheiro:</value>
   </data>
   <data name="&gt;&gt;m_lbl_FileName.Name" xml:space="preserve">
     <value>m_lbl_FileName</value>
