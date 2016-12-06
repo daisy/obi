@@ -577,10 +577,10 @@
     <value>1</value>
   </data>
   <data name="m_txtProjectFileCount.Location" type="System.Drawing.Point, System.Drawing">
-    <value>150, 212</value>
+    <value>230, 212</value>
   </data>
   <data name="m_txtProjectFileCount.Size" type="System.Drawing.Size, System.Drawing">
-    <value>276, 24</value>
+    <value>196, 24</value>
   </data>
   <data name="m_txtProjectFileCount.TabIndex" type="System.Int32, mscorlib">
     <value>15</value>
