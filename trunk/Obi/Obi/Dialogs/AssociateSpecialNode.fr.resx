@@ -370,7 +370,7 @@
     <value>3</value>
   </data>
   <data name="groupBox2.Text" xml:space="preserve">
-    <value>&amp;Liste des notes</value>
+    <value>&amp;Liste des notes sur demande</value>
   </data>
   <data name="&gt;&gt;groupBox2.Name" xml:space="preserve">
     <value>groupBox2</value>
@@ -409,7 +409,7 @@
     <value>Obi Help.chm</value>
   </data>
   <data name="$this.AccessibleName" xml:space="preserve">
-    <value>Associate Special Node</value>
+    <value>Associé un élément spécifique</value>
   </data>
   <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
     <value>6, 13</value>
@@ -418,7 +418,7 @@
     <value>745, 252</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
-    <value>Ajouter/Enlever référence (Associer/Dissocier)</value>
+    <value>Ajouter/Retirer la référence (Associer/Dissocier)</value>
   </data>
   <data name="&gt;&gt;helpProvider1.Name" xml:space="preserve">
     <value>helpProvider1</value>

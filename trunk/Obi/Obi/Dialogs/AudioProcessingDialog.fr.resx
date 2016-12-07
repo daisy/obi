@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
   <!-- 
     Microsoft ResX Schema 
@@ -117,6 +117,15 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <metadata name="helpProvider1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 17</value>
+  </metadata>
+  <metadata name="m_InfoToolTip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>144, 17</value>
+  </metadata>
+  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
   <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="m_txt_info.Location" type="System.Drawing.Point, System.Drawing">
     <value>10, 125</value>
@@ -147,7 +156,7 @@
     <value>Microsoft Sans Serif, 9pt</value>
   </data>
   <data name="m_numericUpDown1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>112, 76</value>
+    <value>122, 76</value>
   </data>
   <data name="m_numericUpDown1.Size" type="System.Drawing.Size, System.Drawing">
     <value>61, 21</value>
@@ -171,7 +180,7 @@
     <value>True</value>
   </data>
   <data name="m_lbl_Parameters.Location" type="System.Drawing.Point, System.Drawing">
-    <value>7, 78</value>
+    <value>0, 78</value>
   </data>
   <data name="m_lbl_Parameters.Size" type="System.Drawing.Size, System.Drawing">
     <value>92, 15</value>
@@ -180,7 +189,7 @@
     <value>2</value>
   </data>
   <data name="m_lbl_Parameters.Text" xml:space="preserve">
-    <value>Paramètre :</value>
+    <value>Définir le paramètre:</value>
   </data>
   <data name="&gt;&gt;m_lbl_Parameters.Name" xml:space="preserve">
     <value>m_lbl_Parameters</value>
@@ -204,7 +213,7 @@
     <value>Débit de la voix</value>
   </data>
   <data name="m_cb_Process.Location" type="System.Drawing.Point, System.Drawing">
-    <value>112, 39</value>
+    <value>122, 39</value>
   </data>
   <data name="m_cb_Process.Size" type="System.Drawing.Size, System.Drawing">
     <value>168, 23</value>
@@ -333,15 +342,6 @@
   <data name="&gt;&gt;m_btn_Cancel.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
-  <metadata name="helpProvider1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 17</value>
-  </metadata>
-  <metadata name="m_InfoToolTip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>144, 17</value>
-  </metadata>
-  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
   <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
     <value>7, 15</value>
   </data>

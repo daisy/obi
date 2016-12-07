@@ -127,19 +127,19 @@
     <value>annotation</value>
   </data>
   <data name="m_cmbBoxSpecialNode.Items1" xml:space="preserve">
-    <value>endnote</value>
+    <value>note de fin</value>
   </data>
   <data name="m_cmbBoxSpecialNode.Items2" xml:space="preserve">
-    <value>footnote</value>
+    <value>note de pied de page</value>
   </data>
   <data name="m_cmbBoxSpecialNode.Items3" xml:space="preserve">
     <value>note</value>
   </data>
   <data name="m_cmbBoxSpecialNode.Items4" xml:space="preserve">
-    <value>prodnote</value>
+    <value>note du producteur</value>
   </data>
   <data name="m_cmbBoxSpecialNode.Items5" xml:space="preserve">
-    <value>sidebar</value>
+    <value>barre latérale</value>
   </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="m_cmbBoxSpecialNode.Location" type="System.Drawing.Point, System.Drawing">
@@ -211,7 +211,7 @@
     <value>6</value>
   </data>
   <data name="m_btn_Cancel.Text" xml:space="preserve">
-    <value>Annuler</value>
+    <value>annuler</value>
   </data>
   <data name="&gt;&gt;m_btn_Cancel.Name" xml:space="preserve">
     <value>m_btn_Cancel</value>
@@ -238,7 +238,7 @@
     <value>1</value>
   </data>
   <data name="m_rdb_btn_SpecialPhrase.Text" xml:space="preserve">
-    <value>Notes facultatives</value>
+    <value>Notes sur demande</value>
   </data>
   <data name="&gt;&gt;m_rdb_btn_SpecialPhrase.Name" xml:space="preserve">
     <value>m_rdb_btn_SpecialPhrase</value>
@@ -265,7 +265,7 @@
     <value>2</value>
   </data>
   <data name="m_rdb_btn_RenumberPages.Text" xml:space="preserve">
-    <value>Renuméroter pages</value>
+    <value>Renuméroter les pages</value>
   </data>
   <data name="&gt;&gt;m_rdb_btn_RenumberPages.Name" xml:space="preserve">
     <value>m_rdb_btn_RenumberPages</value>
@@ -295,7 +295,7 @@
     <value>3</value>
   </data>
   <data name="m_rtb_btn_AudioProcessing.Text" xml:space="preserve">
-    <value>Audio Processing</value>
+    <value>Traitement audio</value>
   </data>
   <data name="&gt;&gt;m_rtb_btn_AudioProcessing.Name" xml:space="preserve">
     <value>m_rtb_btn_AudioProcessing</value>
@@ -337,7 +337,7 @@
     <value>418, 162</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
-    <value>Assigner note/Renuméroter pages</value>
+    <value>Attribuer une note/Renuméroter les pages</value>
   </data>
   <data name="&gt;&gt;helpProvider1.Name" xml:space="preserve">
     <value>helpProvider1</value>

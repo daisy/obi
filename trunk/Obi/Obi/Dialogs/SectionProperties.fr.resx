@@ -559,7 +559,7 @@
     <value>4</value>
   </data>
   <data name="m_lblSectionTimePosition.Text" xml:space="preserve">
-    <value>Section Time Position:</value>
+    <value>Position de lecture dans la section:</value>
   </data>
   <data name="&gt;&gt;m_lblSectionTimePosition.Name" xml:space="preserve">
     <value>m_lblSectionTimePosition</value>
@@ -574,13 +574,13 @@
     <value>3</value>
   </data>
   <data name="m_txtSectionTimePosition.AccessibleName" xml:space="preserve">
-    <value>Section Time Position</value>
+    <value>Position de lecture dans la section:</value>
   </data>
   <data name="m_txtSectionTimePosition.Location" type="System.Drawing.Point, System.Drawing">
-    <value>147, 76</value>
+    <value>217, 76</value>
   </data>
   <data name="m_txtSectionTimePosition.Size" type="System.Drawing.Size, System.Drawing">
-    <value>367, 22</value>
+    <value>300, 22</value>
   </data>
   <data name="m_txtSectionTimePosition.TabIndex" type="System.Int32, mscorlib">
     <value>5</value>

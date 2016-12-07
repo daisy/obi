@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
   <!-- 
     Microsoft ResX Schema 
@@ -117,6 +117,12 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <metadata name="helpProvider1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 17</value>
+  </metadata>
+  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
   <assembly alias="mscorlib" name="mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="mlbSampleRate.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -180,7 +186,7 @@
     <value>3</value>
   </data>
   <data name="mbtnOK.AccessibleDescription" xml:space="preserve">
-    <value>ok button</value>
+    <value>bouton ok</value>
   </data>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="mbtnOK.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
@@ -214,7 +220,7 @@
     <value>2</value>
   </data>
   <data name="mcbSampleRate.AccessibleName" xml:space="preserve">
-    <value>Sample rate combo box</value>
+    <value>Zone de liste pour l'échantillonnage</value>
   </data>
   <data name="mcbSampleRate.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Left, Right</value>
@@ -253,7 +259,7 @@
     <value>1</value>
   </data>
   <data name="mcbAudioChannel.AccessibleName" xml:space="preserve">
-    <value>Audio channel combo box</value>
+    <value>Zone de liste pour les canaux audio</value>
   </data>
   <data name="mcbAudioChannel.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Left, Right</value>
@@ -288,15 +294,9 @@
   <data name="&gt;&gt;mcbAudioChannel.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
-  <metadata name="helpProvider1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 17</value>
-  </metadata>
   <data name="helpProvider1.HelpNamespace" xml:space="preserve">
     <value>Obi Help.fr.chm</value>
   </data>
-  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
   <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
     <value>6, 13</value>
   </data>
@@ -304,7 +304,7 @@
     <value>289, 119</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
-    <value>Réglages audio pour le projet</value>
+    <value>Paramètres audio du projet</value>
   </data>
   <data name="&gt;&gt;helpProvider1.Name" xml:space="preserve">
     <value>helpProvider1</value>

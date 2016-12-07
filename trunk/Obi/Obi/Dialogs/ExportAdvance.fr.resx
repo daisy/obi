@@ -220,13 +220,13 @@
     <value>stéréo</value>
   </data>
   <data name="m_ComboBoxStereoMode.Items2" xml:space="preserve">
-    <value>stéréo combinée</value>
+    <value>join stereo</value>
   </data>
   <data name="m_ComboBoxStereoMode.Items3" xml:space="preserve">
-    <value>stéréo combinée forcée</value>
+    <value>passer en joint stereo</value>
   </data>
   <data name="m_ComboBoxStereoMode.Items4" xml:space="preserve">
-    <value>deux canaux</value>
+    <value>sur les deux canaux</value>
   </data>
   <data name="m_ComboBoxStereoMode.Location" type="System.Drawing.Point, System.Drawing">
     <value>113, 97</value>
@@ -280,7 +280,7 @@
     <value>2</value>
   </data>
   <data name="m_LblReplayGain.AccessibleName" xml:space="preserve">
-    <value>Niveler Gain</value>
+    <value>Niveler</value>
   </data>
   <data name="m_LblReplayGain.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -295,7 +295,7 @@
     <value>4</value>
   </data>
   <data name="m_LblReplayGain.Text" xml:space="preserve">
-    <value>Niveler Gain</value>
+    <value>Niveler</value>
   </data>
   <data name="&gt;&gt;m_LblReplayGain.Name" xml:space="preserve">
     <value>m_LblReplayGain</value>
@@ -310,19 +310,19 @@
     <value>1</value>
   </data>
   <data name="m_comboBoxReplayGain.AccessibleName" xml:space="preserve">
-    <value>Niveler Gain</value>
+    <value>Niveler</value>
   </data>
   <data name="m_comboBoxReplayGain.Items" xml:space="preserve">
-    <value>Défaut</value>
+    <value>Par défaut</value>
   </data>
   <data name="m_comboBoxReplayGain.Items1" xml:space="preserve">
     <value>Ne pas niveler</value>
   </data>
   <data name="m_comboBoxReplayGain.Items2" xml:space="preserve">
-    <value>Gain précis</value>
+    <value>Niveler précisément</value>
   </data>
   <data name="m_comboBoxReplayGain.Items3" xml:space="preserve">
-    <value>Gain rapide</value>
+    <value>Niveler rapidement</value>
   </data>
   <data name="m_comboBoxReplayGain.Location" type="System.Drawing.Point, System.Drawing">
     <value>113, 57</value>

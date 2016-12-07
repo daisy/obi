@@ -220,7 +220,7 @@
     <value>5</value>
   </data>
   <data name="textBox1.Text" xml:space="preserve">
-    <value>Le morceau contient déjà des phrases personnalisée. Les convertir vers le rôle personnalisé courant?</value>
+    <value>Le bloc contient déjà des phrases personnalisée. Voulez-vous leur attribuer le rôle personnalisé actuel ?</value>
   </data>
   <data name="&gt;&gt;textBox1.Name" xml:space="preserve">
     <value>textBox1</value>

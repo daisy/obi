@@ -127,7 +127,7 @@
     <value>True</value>
   </metadata>
   <data name="m_cb_StartRangeForNumberOfSections.AccessibleName" xml:space="preserve">
-    <value>Start Section Range</value>
+    <value>Début de la plage des sections</value>
   </data>
   <assembly alias="mscorlib" name="mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="m_cb_StartRangeForNumberOfSections.Enabled" type="System.Boolean, mscorlib">
@@ -135,7 +135,7 @@
   </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="m_cb_StartRangeForNumberOfSections.Location" type="System.Drawing.Point, System.Drawing">
-    <value>124, 104</value>
+    <value>160, 104</value>
   </data>
   <data name="m_cb_StartRangeForNumberOfSections.Size" type="System.Drawing.Size, System.Drawing">
     <value>57, 21</value>
@@ -156,13 +156,13 @@
     <value>6</value>
   </data>
   <data name="m_cb_EndRangeForNumberOfSections.AccessibleName" xml:space="preserve">
-    <value>End Section Range</value>
+    <value>Fin de la plage des sections</value>
   </data>
   <data name="m_cb_EndRangeForNumberOfSections.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
   </data>
   <data name="m_cb_EndRangeForNumberOfSections.Location" type="System.Drawing.Point, System.Drawing">
-    <value>124, 136</value>
+    <value>140, 136</value>
   </data>
   <data name="m_cb_EndRangeForNumberOfSections.Size" type="System.Drawing.Size, System.Drawing">
     <value>57, 21</value>
@@ -186,7 +186,7 @@
     <value>True</value>
   </data>
   <data name="startSectionRange.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 107</value>
+    <value>4, 107</value>
   </data>
   <data name="startSectionRange.Size" type="System.Drawing.Size, System.Drawing">
     <value>96, 13</value>
@@ -195,7 +195,7 @@
     <value>2</value>
   </data>
   <data name="startSectionRange.Text" xml:space="preserve">
-    <value>&amp;Début de la plage</value>
+    <value>&amp;Début de la plage des sections</value>
   </data>
   <data name="&gt;&gt;startSectionRange.Name" xml:space="preserve">
     <value>startSectionRange</value>
@@ -213,7 +213,7 @@
     <value>True</value>
   </data>
   <data name="endSectionRange.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 139</value>
+    <value>4, 139</value>
   </data>
   <data name="endSectionRange.Size" type="System.Drawing.Size, System.Drawing">
     <value>93, 13</value>
@@ -222,7 +222,7 @@
     <value>4</value>
   </data>
   <data name="endSectionRange.Text" xml:space="preserve">
-    <value>&amp;Fin de la plage</value>
+    <value>&amp;Fin de la plage des sections</value>
   </data>
   <data name="&gt;&gt;endSectionRange.Name" xml:space="preserve">
     <value>endSectionRange</value>
@@ -244,7 +244,7 @@
     <value>Microsoft Sans Serif, 9pt</value>
   </data>
   <data name="m_btn_Display.Location" type="System.Drawing.Point, System.Drawing">
-    <value>203, 129</value>
+    <value>210, 129</value>
   </data>
   <data name="m_btn_Display.Size" type="System.Drawing.Size, System.Drawing">
     <value>100, 28</value>
@@ -300,7 +300,7 @@
     <value>4</value>
   </data>
   <data name="m_lv_ListOfSelectedSectionsForPhraseDetection.AccessibleDescription" xml:space="preserve">
-    <value>ListView containing list of sections selected for phrase detection</value>
+    <value>Affichage contenant la liste des sections sur lesquelles la détection de phrases sera appliquée</value>
   </data>
   <data name="m_lv_ListOfSelectedSectionsForPhraseDetection.Alignment" type="System.Windows.Forms.ListViewAlignment, System.Windows.Forms">
     <value>Default</value>
@@ -354,7 +354,7 @@
     <value>3</value>
   </data>
   <data name="m_rb_loadSelectedOnwards.AccessibleName" xml:space="preserve">
-    <value>Charger à partir de la sélection</value>
+    <value>Charger à partir de</value>
   </data>
   <data name="m_rb_loadSelectedOnwards.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -369,7 +369,7 @@
     <value>1</value>
   </data>
   <data name="m_rb_loadSelectedOnwards.Text" xml:space="preserve">
-    <value>Charger à partir de la &amp;sélection</value>
+    <value>Charger &amp;à partir de</value>
   </data>
   <data name="&gt;&gt;m_rb_loadSelectedOnwards.Name" xml:space="preserve">
     <value>m_rb_loadSelectedOnwards</value>
@@ -384,7 +384,7 @@
     <value>0</value>
   </data>
   <data name="m_rb_loadFromRange.AccessibleDescription" xml:space="preserve">
-    <value>Charger dans l'étendue </value>
+    <value>Charger depuis l'intervalle</value>
   </data>
   <data name="m_rb_loadFromRange.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -399,7 +399,7 @@
     <value>1</value>
   </data>
   <data name="m_rb_loadFromRange.Text" xml:space="preserve">
-    <value>Charger dans l'&amp;étendue</value>
+    <value>Charger depuis l'inter&amp;valle</value>
   </data>
   <data name="&gt;&gt;m_rb_loadFromRange.Name" xml:space="preserve">
     <value>m_rb_loadFromRange</value>
@@ -453,7 +453,7 @@
     <value>0</value>
   </data>
   <data name="m_grpSelectRange.Text" xml:space="preserve">
-    <value>Sections sélectionnées</value>
+    <value>Afficher les sections sélectionnées</value>
   </data>
   <data name="&gt;&gt;m_grpSelectRange.Name" xml:space="preserve">
     <value>m_grpSelectRange</value>
@@ -495,7 +495,7 @@
     <value>1</value>
   </data>
   <data name="m_cb_SilencePhrase.AccessibleName" xml:space="preserve">
-    <value>Sélectionner la phrase silence</value>
+    <value>Sélectionner une phrase silence</value>
   </data>
   <data name="m_cb_SilencePhrase.Location" type="System.Drawing.Point, System.Drawing">
     <value>89, 19</value>
@@ -579,7 +579,7 @@
     <value>581, 294</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
-    <value>Choix des sections pour la détection de phrase</value>
+    <value>Sélectionner les sections en vue de la détection de phrases</value>
   </data>
   <data name="&gt;&gt;columnHeader1.Name" xml:space="preserve">
     <value>columnHeader1</value>

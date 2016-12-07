@@ -268,7 +268,7 @@
     <value>6</value>
   </data>
   <data name="label3.Text" xml:space="preserve">
-    <value>&amp;Principal silence:</value>
+    <value>Silence &amp;initial :</value>
   </data>
   <data name="&gt;&gt;label3.Name" xml:space="preserve">
     <value>label3</value>
@@ -331,7 +331,7 @@
     <value>1</value>
   </data>
   <data name="mLeadingNumericBox.AccessibleName" xml:space="preserve">
-    <value>Principal silence:</value>
+    <value>Silence initial :</value>
   </data>
   <data name="mLeadingNumericBox.Location" type="System.Drawing.Point, System.Drawing">
     <value>177, 68</value>
@@ -626,7 +626,7 @@
     <value>4, 4, 4, 4</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
-    <value>Paramétres de détection de phrase</value>
+    <value>Paramètres de détection de phrases</value>
   </data>
   <data name="&gt;&gt;helpProvider1.Name" xml:space="preserve">
     <value>helpProvider1</value>

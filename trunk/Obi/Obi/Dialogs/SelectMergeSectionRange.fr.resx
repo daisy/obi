@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
   <!-- 
     Microsoft ResX Schema 
@@ -120,6 +120,18 @@
   <metadata name="m_statusStripForMergeSection.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>0, 0</value>
   </metadata>
+  <metadata name="helpProvider1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>107, 17</value>
+  </metadata>
+  <metadata name="toolTip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 17</value>
+  </metadata>
+  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="$this.TrayHeight" type="System.Int32, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>54</value>
+  </metadata>
   <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="m_StatusLabelForMergeSection.Size" type="System.Drawing.Size, System.Drawing">
     <value>0, 0</value>
@@ -135,7 +147,7 @@
     <value>14</value>
   </data>
   <data name="m_statusStripForMergeSection.Text" xml:space="preserve">
-    <value>MergeSectionStatusStrip</value>
+    <value>Masquer l'état du fusionnement de sections</value>
   </data>
   <data name="m_statusStripForMergeSection.Visible" type="System.Boolean, mscorlib">
     <value>False</value>
@@ -207,9 +219,6 @@
   <data name="&gt;&gt;groupBox2.ZOrder" xml:space="preserve">
     <value>4</value>
   </data>
-  <metadata name="helpProvider1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>107, 17</value>
-  </metadata>
   <data name="helpProvider1.HelpNamespace" xml:space="preserve">
     <value>Obi Help.fr.chm</value>
   </data>
@@ -322,7 +331,7 @@
     <value>0</value>
   </data>
   <data name="m_btn_Undo.AccessibleName" xml:space="preserve">
-    <value>Annuler</value>
+    <value>Rétablir</value>
   </data>
   <data name="m_btn_Undo.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Flat</value>
@@ -337,7 +346,7 @@
     <value>11</value>
   </data>
   <data name="m_btn_Undo.Text" xml:space="preserve">
-    <value>&amp;Annuler</value>
+    <value>&amp;Rétablir</value>
   </data>
   <data name="&gt;&gt;m_btn_Undo.Name" xml:space="preserve">
     <value>m_btn_Undo</value>
@@ -448,7 +457,7 @@
     <value>0</value>
   </data>
   <data name="m_btn_Stop.AccessibleName" xml:space="preserve">
-    <value>Stop</value>
+    <value>Arrêt</value>
   </data>
   <data name="m_btn_Stop.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Flat</value>
@@ -463,7 +472,7 @@
     <value>4</value>
   </data>
   <data name="m_btn_Stop.Text" xml:space="preserve">
-    <value>&amp;Stop</value>
+    <value>&amp;Arrêt</value>
   </data>
   <data name="&gt;&gt;m_btn_Stop.Name" xml:space="preserve">
     <value>m_btn_Stop</value>
@@ -478,7 +487,7 @@
     <value>1</value>
   </data>
   <data name="m_btn_Play.AccessibleName" xml:space="preserve">
-    <value>Lire</value>
+    <value>Lecture</value>
   </data>
   <data name="m_btn_Play.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Flat</value>
@@ -493,7 +502,7 @@
     <value>3</value>
   </data>
   <data name="m_btn_Play.Text" xml:space="preserve">
-    <value>&amp;Lire</value>
+    <value>&amp;Lecture</value>
   </data>
   <data name="&gt;&gt;m_btn_Play.Name" xml:space="preserve">
     <value>m_btn_Play</value>
@@ -573,15 +582,6 @@
   <data name="&gt;&gt;m_tb_SectionsSelected.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
-  <metadata name="toolTip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 17</value>
-  </metadata>
-  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="$this.TrayHeight" type="System.Int32, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>54</value>
-  </metadata>
   <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
     <value>6, 13</value>
   </data>
@@ -589,7 +589,7 @@
     <value>735, 403</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
-    <value>Modification sur Section</value>
+    <value>Modification de section</value>
   </data>
   <data name="&gt;&gt;m_StatusLabelForMergeSection.Name" xml:space="preserve">
     <value>m_StatusLabelForMergeSection</value>

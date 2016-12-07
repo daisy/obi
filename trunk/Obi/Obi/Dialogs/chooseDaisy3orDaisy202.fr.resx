@@ -181,7 +181,7 @@
     <value>4</value>
   </data>
   <data name="helpProvider1.HelpNamespace" xml:space="preserve">
-    <value>Obi Help.chm</value>
+    <value>Obi Help.fr.chm</value>
   </data>
   <data name="m_cbDaisy3.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -250,7 +250,7 @@
     <value>2</value>
   </data>
   <data name="m_cbEpub3.Text" xml:space="preserve">
-    <value>EPUB 3 livre Audio</value>
+    <value>Livre audio EPUB 3</value>
   </data>
   <data name="&gt;&gt;m_cbEpub3.Name" xml:space="preserve">
     <value>m_cbEpub3</value>
@@ -277,7 +277,7 @@
     <value>3</value>
   </data>
   <data name="m_cbXhtml.Text" xml:space="preserve">
-    <value>Xhtml Structure</value>
+    <value>Structure Xhtml</value>
   </data>
   <data name="&gt;&gt;m_cbXhtml.Name" xml:space="preserve">
     <value>m_cbXhtml</value>
@@ -301,7 +301,7 @@
     <value>True</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
-    <value>sélection de la norme DAISY</value>
+    <value>Sélectionner la norme à appliquer à l'adaptation</value>
   </data>
   <data name="&gt;&gt;helpProvider1.Name" xml:space="preserve">
     <value>helpProvider1</value>

@@ -142,7 +142,7 @@
     <value>18</value>
   </data>
   <data name="m_btnOk.Text" xml:space="preserve">
-    <value>Enre&amp;gistrer</value>
+    <value>S'&amp;inscrire</value>
   </data>
   <data name="&gt;&gt;m_btnOk.Name" xml:space="preserve">
     <value>m_btnOk</value>
@@ -172,7 +172,7 @@
     <value>19</value>
   </data>
   <data name="m_btnRemindMeLater.Text" xml:space="preserve">
-    <value>&amp;Rappel ultérieur</value>
+    <value>&amp;Rappelez-le-moi ultérieurement</value>
   </data>
   <data name="&gt;&gt;m_btnRemindMeLater.Name" xml:space="preserve">
     <value>m_btnRemindMeLater</value>
@@ -187,10 +187,10 @@
     <value>3</value>
   </data>
   <data name="m_txtRetypeEmail.Location" type="System.Drawing.Point, System.Drawing">
-    <value>111, 82</value>
+    <value>116, 82</value>
   </data>
   <data name="m_txtRetypeEmail.Size" type="System.Drawing.Size, System.Drawing">
-    <value>200, 20</value>
+    <value>195, 20</value>
   </data>
   <data name="m_txtRetypeEmail.TabIndex" type="System.Int32, mscorlib">
     <value>7</value>
@@ -214,7 +214,7 @@
     <value>NoControl</value>
   </data>
   <data name="m_lblRetypeEmail.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 89</value>
+    <value>0, 89</value>
   </data>
   <data name="m_lblRetypeEmail.Size" type="System.Drawing.Size, System.Drawing">
     <value>75, 13</value>
@@ -223,7 +223,7 @@
     <value>6</value>
   </data>
   <data name="m_lblRetypeEmail.Text" xml:space="preserve">
-    <value>Confirmer votre Email :</value>
+    <value>Confirmer votre courriel:</value>
   </data>
   <data name="&gt;&gt;m_lblRetypeEmail.Name" xml:space="preserve">
     <value>m_lblRetypeEmail</value>
@@ -271,7 +271,7 @@
     <value>14</value>
   </data>
   <data name="m_lblWinVer.Text" xml:space="preserve">
-    <value>Version Windows :</value>
+    <value>Version de Windows :</value>
   </data>
   <data name="&gt;&gt;m_lblWinVer.Name" xml:space="preserve">
     <value>m_lblWinVer</value>
@@ -485,7 +485,7 @@
     <value>4</value>
   </data>
   <data name="m_lblEmail.Text" xml:space="preserve">
-    <value>&amp;Email :</value>
+    <value>&amp;Courriel:</value>
   </data>
   <data name="&gt;&gt;m_lblEmail.Name" xml:space="preserve">
     <value>m_lblEmail</value>
@@ -560,7 +560,7 @@
     <value>17</value>
   </data>
   <data name="m_rdbTryingObi.Text" xml:space="preserve">
-    <value>J'essaie de &amp;tester Obi.</value>
+    <value>J'essaie et je &amp;teste Obi.</value>
   </data>
   <data name="&gt;&gt;m_rdbTryingObi.Name" xml:space="preserve">
     <value>m_rdbTryingObi</value>
@@ -683,7 +683,7 @@
     <value>341, 453</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
-    <value>Enregistrement de l'utilisateur</value>
+    <value>Inscription de l'utilisateur</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
     <value>UserRegistration</value>
