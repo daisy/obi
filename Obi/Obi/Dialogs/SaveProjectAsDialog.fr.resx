@@ -132,7 +132,7 @@
   </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="mSelectButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>455, 18</value>
+    <value>465, 18</value>
   </data>
   <data name="mSelectButton.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 4, 4, 4</value>
@@ -145,7 +145,7 @@
     <value>2</value>
   </data>
   <data name="mSelectButton.Text" xml:space="preserve">
-    <value>&amp;Choisir</value>
+    <value>&amp;Sélectionner</value>
   </data>
   <data name="&gt;&gt;mSelectButton.Name" xml:space="preserve">
     <value>mSelectButton</value>
@@ -160,13 +160,13 @@
     <value>7</value>
   </data>
   <data name="m_lblParentDirectoryPath.AccessibleName" xml:space="preserve">
-    <value>Location</value>
+    <value>Emplacement</value>
   </data>
   <data name="m_lblParentDirectoryPath.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
   <data name="m_lblParentDirectoryPath.Location" type="System.Drawing.Point, System.Drawing">
-    <value>60, 24</value>
+    <value>30, 24</value>
   </data>
   <data name="m_lblParentDirectoryPath.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 0, 4, 0</value>
@@ -178,7 +178,7 @@
     <value>0</value>
   </data>
   <data name="m_lblParentDirectoryPath.Text" xml:space="preserve">
-    <value>&amp;Che&amp;min:</value>
+    <value>Em&amp;placement:</value>
   </data>
   <data name="&gt;&gt;m_lblParentDirectoryPath.Name" xml:space="preserve">
     <value>m_lblParentDirectoryPath</value>
@@ -196,7 +196,7 @@
     <value>Top, Left, Right</value>
   </data>
   <data name="mLocationTextBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>130, 22</value>
+    <value>140, 22</value>
   </data>
   <data name="mLocationTextBox.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 4, 4, 4</value>
@@ -304,7 +304,7 @@
     <value>5</value>
   </data>
   <data name="mSwitchToNewCheckBox.Text" xml:space="preserve">
-    <value>&amp;Bascule vers nouvelle copie</value>
+    <value>&amp;Basculer vers la nouvelle copie</value>
   </data>
   <data name="&gt;&gt;mSwitchToNewCheckBox.Name" xml:space="preserve">
     <value>mSwitchToNewCheckBox</value>
@@ -319,7 +319,7 @@
     <value>2</value>
   </data>
   <data name="m_ProjectNameTextBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>130, 57</value>
+    <value>140, 57</value>
   </data>
   <data name="m_ProjectNameTextBox.Size" type="System.Drawing.Size, System.Drawing">
     <value>137, 22</value>
@@ -346,7 +346,7 @@
     <value>True</value>
   </data>
   <data name="m_lbl_ProjectName.Location" type="System.Drawing.Point, System.Drawing">
-    <value>12, 60</value>
+    <value>0, 60</value>
   </data>
   <data name="m_lbl_ProjectName.Size" type="System.Drawing.Size, System.Drawing">
     <value>110, 16</value>
@@ -355,7 +355,7 @@
     <value>3</value>
   </data>
   <data name="m_lbl_ProjectName.Text" xml:space="preserve">
-    <value>Nom du &amp;fichier:</value>
+    <value>Nom du &amp;fichier projet :</value>
   </data>
   <data name="&gt;&gt;m_lbl_ProjectName.Name" xml:space="preserve">
     <value>m_lbl_ProjectName</value>
@@ -385,7 +385,7 @@
     <value>4, 4, 4, 4</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
-    <value>Enregistrer le projet sous</value>
+    <value>Sauvegarder le projet sous</value>
   </data>
   <data name="&gt;&gt;helpProvider1.Name" xml:space="preserve">
     <value>helpProvider1</value>

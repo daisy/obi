@@ -265,7 +265,7 @@
     <value>8</value>
   </data>
   <data name="mSelectButton.Text" xml:space="preserve">
-    <value>&amp;Choisir</value>
+    <value>&amp;Sélectionner</value>
   </data>
   <data name="&gt;&gt;mSelectButton.Name" xml:space="preserve">
     <value>mSelectButton</value>
@@ -364,7 +364,7 @@
     <value>2</value>
   </data>
   <data name="mAutoTitleCheckBox.Text" xml:space="preserve">
-    <value>Cré&amp;er automatiquement un titre de &amp;section avec ce titre</value>
+    <value>Créer automatiquement un titre de &amp;section à partir de ce titre</value>
   </data>
   <data name="&gt;&gt;mAutoTitleCheckBox.Name" xml:space="preserve">
     <value>mAutoTitleCheckBox</value>
@@ -457,7 +457,7 @@
     <value>5</value>
   </data>
   <data name="mGenerateIDButton.Text" xml:space="preserve">
-    <value>&amp;Générer</value>
+    <value>&amp;Produire</value>
   </data>
   <data name="&gt;&gt;mGenerateIDButton.Name" xml:space="preserve">
     <value>mGenerateIDButton</value>
@@ -472,7 +472,7 @@
     <value>0</value>
   </data>
   <data name="helpProvider1.HelpNamespace" xml:space="preserve">
-    <value>Obi Help.chm</value>
+    <value>Obi Help.fr.chm</value>
   </data>
   <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
     <value>8, 16</value>

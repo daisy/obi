@@ -157,7 +157,7 @@
     <value>2</value>
   </data>
   <data name="mPhraseSizeTextBox.AccessibleName" xml:space="preserve">
-    <value>Zone de texte taille de la phrase en minutes</value>
+    <value>Champ de texte contenant la taille de la phrase en minutes</value>
   </data>
   <data name="mPhraseSizeTextBox.Location" type="System.Drawing.Point, System.Drawing">
     <value>212, 51</value>
@@ -259,7 +259,7 @@
     <value>10</value>
   </data>
   <data name="mCreateAudioFilePerSectionCheckBox.Text" xml:space="preserve">
-    <value>&amp;Créer une section pour chaque fichier</value>
+    <value>&amp;Créer une section pour chaque fichier audio</value>
   </data>
   <data name="&gt;&gt;mCreateAudioFilePerSectionCheckBox.Name" xml:space="preserve">
     <value>mCreateAudioFilePerSectionCheckBox</value>
@@ -274,7 +274,7 @@
     <value>3</value>
   </data>
   <data name="lstManualArrange.AccessibleName" xml:space="preserve">
-    <value>Zone de liste fichiers audio.</value>
+    <value>Boîte de liste des fichiers audio.</value>
   </data>
   <data name="lstManualArrange.HorizontalScrollbar" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -376,7 +376,7 @@
     <value>3</value>
   </data>
   <data name="m_grpAddFiles.AccessibleName" xml:space="preserve">
-    <value>Zone de groupe pour ajouter et organiser les fichiers.</value>
+    <value>Boîte de groupe pour ajouter et organiser les fichiers.</value>
   </data>
   <data name="m_btnRemove.Location" type="System.Drawing.Point, System.Drawing">
     <value>223, 101</value>
@@ -388,7 +388,7 @@
     <value>6</value>
   </data>
   <data name="m_btnRemove.Text" xml:space="preserve">
-    <value>&amp;Enlever</value>
+    <value>&amp;Retirer</value>
   </data>
   <data name="&gt;&gt;m_btnRemove.Name" xml:space="preserve">
     <value>m_btnRemove</value>
@@ -499,7 +499,7 @@
     <value>2</value>
   </data>
   <data name="m_txtCharToReplaceWithSpace.AccessibleName" xml:space="preserve">
-    <value>À remplacer par espace</value>
+    <value>À remplacer par du vide</value>
   </data>
   <data name="m_txtCharToReplaceWithSpace.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
@@ -580,10 +580,10 @@
     <value>5</value>
   </data>
   <data name="m_grpCreateSectionForEachAudioFile.AccessibleName" xml:space="preserve">
-    <value>Zone de groupe création d'une section pour chaque fichier audio.</value>
+    <value>Boîte de groupe pour créer une section pour chaque fichier audio.</value>
   </data>
   <data name="mchktPageIdentificationString.AccessibleName" xml:space="preserve">
-    <value>Page d'identification</value>
+    <value>Identification de page</value>
   </data>
   <data name="mchktPageIdentificationString.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -598,7 +598,7 @@
     <value>15</value>
   </data>
   <data name="mchktPageIdentificationString.Text" xml:space="preserve">
-    <value>Page d'&amp;identification</value>
+    <value>&amp;Identification de page</value>
   </data>
   <data name="&gt;&gt;mchktPageIdentificationString.Name" xml:space="preserve">
     <value>mchktPageIdentificationString</value>
@@ -643,7 +643,7 @@
     <value>1</value>
   </data>
   <data name="mchkToReplaceWithSpace.AccessibleName" xml:space="preserve">
-    <value>À remplacer par espace</value>
+    <value>À remplacer par du vide</value>
   </data>
   <data name="mchkToReplaceWithSpace.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -658,7 +658,7 @@
     <value>11</value>
   </data>
   <data name="mchkToReplaceWithSpace.Text" xml:space="preserve">
-    <value>&amp;À remplacer par espace</value>
+    <value>&amp;À remplacer par du vide</value>
   </data>
   <data name="&gt;&gt;mchkToReplaceWithSpace.Name" xml:space="preserve">
     <value>mchkToReplaceWithSpace</value>
@@ -706,7 +706,7 @@
     <value>18</value>
   </data>
   <data name="m_rdbPhraseDetectionOnImportedFiles.Text" xml:space="preserve">
-    <value>&amp;Détection de phrase sur les fichiers importés</value>
+    <value>&amp;Détection de phrases sur les fichiers importés</value>
   </data>
   <data name="&gt;&gt;m_rdbPhraseDetectionOnImportedFiles.Name" xml:space="preserve">
     <value>m_rdbPhraseDetectionOnImportedFiles</value>
@@ -784,7 +784,7 @@
     <value>4, 4, 4, 4</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
-    <value>Paramètres d'importation audio</value>
+    <value>Paramètres d'importation des fichiers audio</value>
   </data>
   <data name="&gt;&gt;helpProvider1.Name" xml:space="preserve">
     <value>helpProvider1</value>

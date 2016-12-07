@@ -135,7 +135,7 @@
   </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="m_lblParentSection.Location" type="System.Drawing.Point, System.Drawing">
-    <value>22, 17</value>
+    <value>0, 17</value>
   </data>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="m_lblParentSection.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
@@ -148,7 +148,7 @@
     <value>0</value>
   </data>
   <data name="m_lblParentSection.Text" xml:space="preserve">
-    <value>&amp;Titre section parente:</value>
+    <value>&amp;Titre de la section parente:</value>
   </data>
   <data name="&gt;&gt;m_lblParentSection.Name" xml:space="preserve">
     <value>m_lblParentSection</value>
@@ -169,13 +169,13 @@
     <value>Top, Left, Right</value>
   </data>
   <data name="m_txtParentSection.Location" type="System.Drawing.Point, System.Drawing">
-    <value>160, 15</value>
+    <value>170, 15</value>
   </data>
   <data name="m_txtParentSection.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 4, 4, 4</value>
   </data>
   <data name="m_txtParentSection.Size" type="System.Drawing.Size, System.Drawing">
-    <value>355, 22</value>
+    <value>345, 22</value>
   </data>
   <data name="m_txtParentSection.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
@@ -301,13 +301,13 @@
     <value>16</value>
   </data>
   <data name="m_comboPhraseRole.Location" type="System.Drawing.Point, System.Drawing">
-    <value>211, 313</value>
+    <value>231, 313</value>
   </data>
   <data name="m_comboPhraseRole.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 4, 4, 4</value>
   </data>
   <data name="m_comboPhraseRole.Size" type="System.Drawing.Size, System.Drawing">
-    <value>305, 24</value>
+    <value>285, 24</value>
   </data>
   <data name="m_comboPhraseRole.TabIndex" type="System.Int32, mscorlib">
     <value>13</value>
@@ -343,7 +343,7 @@
     <value>12</value>
   </data>
   <data name="m_lblCustomClassName.Text" xml:space="preserve">
-    <value>Nom de &amp;catégorie personnalisée:</value>
+    <value>nom de la &amp;catégorie personnalisée:</value>
   </data>
   <data name="&gt;&gt;m_lblCustomClassName.Name" xml:space="preserve">
     <value>m_lblCustomClassName</value>
@@ -415,7 +415,7 @@
     <value>19</value>
   </data>
   <data name="m_chkToDo.Text" xml:space="preserve">
-    <value>À &amp;faire</value>
+    <value>À&amp;FAIRE</value>
   </data>
   <data name="&gt;&gt;m_chkToDo.Name" xml:space="preserve">
     <value>m_chkToDo</value>
@@ -559,7 +559,7 @@
     <value>10</value>
   </data>
   <data name="m_comboCustomClassName.AccessibleName" xml:space="preserve">
-    <value>Nom de classe personnalisée:</value>
+    <value>Nom de catégorie personnalisée:</value>
   </data>
   <data name="m_comboCustomClassName.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Flat</value>
@@ -655,7 +655,7 @@
     <value>True</value>
   </data>
   <data name="m_lblPageNumberDetails.Location" type="System.Drawing.Point, System.Drawing">
-    <value>38, 346</value>
+    <value>18, 346</value>
   </data>
   <data name="m_lblPageNumberDetails.Size" type="System.Drawing.Size, System.Drawing">
     <value>135, 16</value>
@@ -664,7 +664,7 @@
     <value>14</value>
   </data>
   <data name="m_lblPageNumberDetails.Text" xml:space="preserve">
-    <value>Détails n° page:</value>
+    <value>Détails n° de page:</value>
   </data>
   <data name="m_lblPageNumberDetails.Visible" type="System.Boolean, mscorlib">
     <value>False</value>
@@ -682,10 +682,10 @@
     <value>7</value>
   </data>
   <data name="m_txtPageNumberDetails.AccessibleName" xml:space="preserve">
-    <value>Détails sur le numéro de page:</value>
+    <value>Détails n° de page:</value>
   </data>
   <data name="m_txtPageNumberDetails.Location" type="System.Drawing.Point, System.Drawing">
-    <value>160, 346</value>
+    <value>140, 346</value>
   </data>
   <data name="m_txtPageNumberDetails.Size" type="System.Drawing.Size, System.Drawing">
     <value>232, 22</value>
@@ -715,7 +715,7 @@
     <value>True</value>
   </data>
   <data name="m_chkChangePageNumber.Location" type="System.Drawing.Point, System.Drawing">
-    <value>398, 348</value>
+    <value>378, 348</value>
   </data>
   <data name="m_chkChangePageNumber.Size" type="System.Drawing.Size, System.Drawing">
     <value>130, 20</value>
@@ -724,7 +724,7 @@
     <value>15</value>
   </data>
   <data name="m_chkChangePageNumber.Text" xml:space="preserve">
-    <value>Changer n° page.</value>
+    <value>Changer n° de page.</value>
   </data>
   <data name="m_chkChangePageNumber.Visible" type="System.Boolean, mscorlib">
     <value>False</value>
@@ -754,7 +754,7 @@
     <value>16</value>
   </data>
   <data name="m_lbl_ReferredNote.Text" xml:space="preserve">
-    <value>Note visée:</value>
+    <value>Note en référence :</value>
   </data>
   <data name="m_lbl_ReferredNote.Visible" type="System.Boolean, mscorlib">
     <value>False</value>
@@ -784,7 +784,7 @@
     <value>4</value>
   </data>
   <data name="m_lblCurrentCursorPosition.Text" xml:space="preserve">
-    <value>Current cursor position:</value>
+    <value>Position actuelle du curseur :</value>
   </data>
   <data name="&gt;&gt;m_lblCurrentCursorPosition.Name" xml:space="preserve">
     <value>m_lblCurrentCursorPosition</value>
@@ -799,13 +799,13 @@
     <value>3</value>
   </data>
   <data name="m_txtCurrentCursorPosition.AccessibleName" xml:space="preserve">
-    <value>Current cursor position</value>
+    <value>Position actuelle du curseur</value>
   </data>
   <data name="m_txtCurrentCursorPosition.Location" type="System.Drawing.Point, System.Drawing">
-    <value>160, 88</value>
+    <value>180, 88</value>
   </data>
   <data name="m_txtCurrentCursorPosition.Size" type="System.Drawing.Size, System.Drawing">
-    <value>355, 22</value>
+    <value>335, 22</value>
   </data>
   <data name="m_txtCurrentCursorPosition.TabIndex" type="System.Int32, mscorlib">
     <value>5</value>
@@ -826,7 +826,7 @@
     <value>True</value>
   </data>
   <data name="m_lbl_FileName.Location" type="System.Drawing.Point, System.Drawing">
-    <value>74, 382</value>
+    <value>34, 382</value>
   </data>
   <data name="m_lbl_FileName.Size" type="System.Drawing.Size, System.Drawing">
     <value>70, 16</value>
@@ -835,7 +835,7 @@
     <value>16</value>
   </data>
   <data name="m_lbl_FileName.Text" xml:space="preserve">
-    <value>&amp;File name:</value>
+    <value>Nom de &amp;fichier :</value>
   </data>
   <data name="&gt;&gt;m_lbl_FileName.Name" xml:space="preserve">
     <value>m_lbl_FileName</value>
@@ -850,7 +850,7 @@
     <value>1</value>
   </data>
   <data name="m_txtFileName.AccessibleName" xml:space="preserve">
-    <value>file name</value>
+    <value>nom de fichier</value>
   </data>
   <data name="m_txtFileName.Location" type="System.Drawing.Point, System.Drawing">
     <value>160, 382</value>

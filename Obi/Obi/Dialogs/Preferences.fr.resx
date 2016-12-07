@@ -196,7 +196,7 @@
     <value>5</value>
   </data>
   <data name="m_CheckBoxListView.AccessibleName" xml:space="preserve">
-    <value>Boîte de liste, utilisez les flèches haut et &amp;bas pour se déplacer dans les cases � cocher</value>
+    <value>Boîte de liste, utilisez les flèches haut et &amp;bas pour se déplacer dans les cases à cocher</value>
   </data>
   <data name="m_CheckBoxListView.Location" type="System.Drawing.Point, System.Drawing">
     <value>195, 307</value>
@@ -247,7 +247,7 @@
     <value>2</value>
   </data>
   <data name="m_btnSaveProfile.AccessibleName" xml:space="preserve">
-    <value>Enregistrer les paramètres actuels en tant que profil</value>
+    <value>Sauvegarder les paramètres actuels en tant que profil</value>
   </data>
   <data name="m_btnSaveProfile.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Flat</value>
@@ -268,10 +268,10 @@
     <value>22</value>
   </data>
   <data name="m_btnSaveProfile.Text" xml:space="preserve">
-    <value>Enregistrer &amp;sous</value>
+    <value>Sauvegarder &amp;sous</value>
   </data>
   <data name="m_btnSaveProfile.ToolTip" xml:space="preserve">
-    <value>Enregistrer les paramètres actuels en tant que profil</value>
+    <value>Sauvegarder les paramètres actuels en tant que profil</value>
   </data>
   <data name="&gt;&gt;m_btnSaveProfile.Name" xml:space="preserve">
     <value>m_btnSaveProfile</value>
@@ -301,7 +301,7 @@
     <value>21</value>
   </data>
   <data name="m_btnAddProfile.Text" xml:space="preserve">
-    <value>A&amp;jouter</value>
+    <value>&amp;Importer</value>
   </data>
   <data name="m_btnAddProfile.ToolTip" xml:space="preserve">
     <value>Ajouter un profil existant</value>
@@ -337,7 +337,7 @@
     <value>14</value>
   </data>
   <data name="m_ResetButton.Text" xml:space="preserve">
-    <value>&amp;RAZ</value>
+    <value>&amp;Réinitialiser</value>
   </data>
   <data name="&gt;&gt;m_ResetButton.Name" xml:space="preserve">
     <value>m_ResetButton</value>
@@ -352,7 +352,7 @@
     <value>1</value>
   </data>
   <data name="m_gpBox_SelectProfileRecordingToolbar.AccessibleName" xml:space="preserve">
-    <value>Assign audio profiles to Recording Toolbar groupbox</value>
+    <value>Assign audio profiles to Recording Toolbar groupboxAttribuer un profil audio à la barre d'enregistrement</value>
   </data>
   <data name="m_btnAssignProfile.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Flat</value>
@@ -370,7 +370,7 @@
     <value>29</value>
   </data>
   <data name="m_btnAssignProfile.Text" xml:space="preserve">
-    <value>Assi&amp;gn</value>
+    <value>At&amp;tribuer</value>
   </data>
   <data name="&gt;&gt;m_btnAssignProfile.Name" xml:space="preserve">
     <value>m_btnAssignProfile</value>
@@ -412,7 +412,7 @@
     <value>1</value>
   </data>
   <data name="m_cb_Profile2.AccessibleName" xml:space="preserve">
-    <value>Profile 2</value>
+    <value>Profile 2 pour la barre d'enregistrement</value>
   </data>
   <data name="m_cb_Profile2.Location" type="System.Drawing.Point, System.Drawing">
     <value>240, 46</value>
@@ -439,7 +439,7 @@
     <value>2</value>
   </data>
   <data name="m_cb_Profile1.AccessibleName" xml:space="preserve">
-    <value>Profile 1 for U</value>
+    <value>Profile 1 pour la barre d'enregistrement</value>
   </data>
   <data name="m_cb_Profile1.Location" type="System.Drawing.Point, System.Drawing">
     <value>18, 46</value>
@@ -508,7 +508,7 @@
     <value>24</value>
   </data>
   <data name="m_gpBox_SelectProfileRecordingToolbar.Text" xml:space="preserve">
-    <value>Assign audio profiles to Recording Toolbar</value>
+    <value>Attribuer un profil audio à la barre d'enregistrement</value>
   </data>
   <data name="&gt;&gt;m_gpBox_SelectProfileRecordingToolbar.Name" xml:space="preserve">
     <value>m_gpBox_SelectProfileRecordingToolbar</value>
@@ -580,7 +580,7 @@
     <value>True</value>
   </data>
   <data name="m_lblSelectedShortcuts.Location" type="System.Drawing.Point, System.Drawing">
-    <value>11, 42</value>
+    <value>0, 42</value>
   </data>
   <data name="m_lblSelectedShortcuts.Size" type="System.Drawing.Size, System.Drawing">
     <value>152, 16</value>
@@ -589,7 +589,7 @@
     <value>3</value>
   </data>
   <data name="m_lblSelectedShortcuts.Text" xml:space="preserve">
-    <value>Profil raccourcis actuel :</value>
+    <value>Profil actuel des raccourcis :</value>
   </data>
   <data name="&gt;&gt;m_lblSelectedShortcuts.Name" xml:space="preserve">
     <value>m_lblSelectedShortcuts</value>
@@ -604,10 +604,10 @@
     <value>2</value>
   </data>
   <data name="m_txtSelectedShortcutsProfile.Location" type="System.Drawing.Point, System.Drawing">
-    <value>172, 36</value>
+    <value>182, 36</value>
   </data>
   <data name="m_txtSelectedShortcutsProfile.Size" type="System.Drawing.Size, System.Drawing">
-    <value>438, 22</value>
+    <value>428, 22</value>
   </data>
   <data name="m_txtSelectedShortcutsProfile.TabIndex" type="System.Int32, mscorlib">
     <value>4</value>
@@ -625,10 +625,10 @@
     <value>3</value>
   </data>
   <data name="m_txtSelectedProfile.Location" type="System.Drawing.Point, System.Drawing">
-    <value>172, 8</value>
+    <value>182, 8</value>
   </data>
   <data name="m_txtSelectedProfile.Size" type="System.Drawing.Size, System.Drawing">
-    <value>438, 22</value>
+    <value>428, 22</value>
   </data>
   <data name="m_txtSelectedProfile.TabIndex" type="System.Int32, mscorlib">
     <value>2</value>
@@ -709,7 +709,7 @@
     <value>5</value>
   </data>
   <data name="m_gpBox_SelectProfile.Text" xml:space="preserve">
-    <value>Options du Profil</value>
+    <value>Sélectionner les options pour le profil</value>
   </data>
   <data name="&gt;&gt;m_gpBox_SelectProfile.Name" xml:space="preserve">
     <value>m_gpBox_SelectProfile</value>
@@ -769,7 +769,7 @@
     <value>12</value>
   </data>
   <data name="m_lblShortcutsProfile.Text" xml:space="preserve">
-    <value>Choix du profil raccourcis :</value>
+    <value>Choix du profil des raccourcis :</value>
   </data>
   <data name="&gt;&gt;m_lblShortcutsProfile.Name" xml:space="preserve">
     <value>m_lblShortcutsProfile</value>
@@ -892,7 +892,7 @@
     <value>9</value>
   </data>
   <data name="m_lblSelectProfile.Text" xml:space="preserve">
-    <value>Choix du Profil :</value>
+    <value>Sélectionner un profil :</value>
   </data>
   <data name="&gt;&gt;m_lblSelectProfile.Name" xml:space="preserve">
     <value>m_lblSelectProfile</value>
@@ -1027,7 +1027,7 @@
     <value>18</value>
   </data>
   <data name="m_chkAll.Text" xml:space="preserve">
-    <value>Cocher &amp;tout</value>
+    <value>Sélectionner &amp;tout</value>
   </data>
   <data name="&gt;&gt;m_chkAll.Name" xml:space="preserve">
     <value>m_chkAll</value>
@@ -1042,7 +1042,7 @@
     <value>9</value>
   </data>
   <data name="m_btnLoadProfile.AccessibleName" xml:space="preserve">
-    <value>Chargez le profil sélectionné</value>
+    <value>Chargez le profil sélectionné actuellement</value>
   </data>
   <data name="m_btnLoadProfile.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Flat</value>
@@ -1243,19 +1243,19 @@
     <value>Liste des couleurs</value>
   </data>
   <data name="columnHeader3.Text" xml:space="preserve">
-    <value>Control name</value>
+    <value>Nom de contrôle</value>
   </data>
   <data name="columnHeader3.Width" type="System.Int32, mscorlib">
     <value>190</value>
   </data>
   <data name="columnHeader4.Text" xml:space="preserve">
-    <value>Couleur actuelle normale</value>
+    <value>Couleur standard</value>
   </data>
   <data name="columnHeader4.Width" type="System.Int32, mscorlib">
     <value>136</value>
   </data>
   <data name="columnHeader5.Text" xml:space="preserve">
-    <value>Contraste élevé actuel</value>
+    <value>Contraste élevé standard</value>
   </data>
   <data name="columnHeader5.Width" type="System.Int32, mscorlib">
     <value>153</value>
@@ -1483,7 +1483,7 @@
     <value>4</value>
   </data>
   <data name="mColorPreferencesTab.Text" xml:space="preserve">
-    <value>Préférences de couleur</value>
+    <value>Couleur &amp; police</value>
   </data>
   <data name="&gt;&gt;mColorPreferencesTab.Name" xml:space="preserve">
     <value>mColorPreferencesTab</value>
@@ -1648,7 +1648,7 @@
     <value>41</value>
   </data>
   <data name="m_btnRemove.Text" xml:space="preserve">
-    <value>&amp;Retirer raccourci</value>
+    <value>&amp;Retirer le raccourci</value>
   </data>
   <data name="&gt;&gt;m_btnRemove.Name" xml:space="preserve">
     <value>m_btnRemove</value>
@@ -1681,7 +1681,7 @@
     <value>40</value>
   </data>
   <data name="m_btnAssign.Text" xml:space="preserve">
-    <value>A&amp;ssigner</value>
+    <value>A&amp;ttribuer</value>
   </data>
   <data name="&gt;&gt;m_btnAssign.Name" xml:space="preserve">
     <value>m_btnAssign</value>
@@ -1758,10 +1758,10 @@
     <value> Sélectionner les raccourcis à afficher.</value>
   </data>
   <data name="m_cbShortcutKeys.Items" xml:space="preserve">
-    <value>Raccourcis Contenu/vue TDM</value>
+    <value>Raccourcis volet du contenu/TDM</value>
   </data>
   <data name="m_cbShortcutKeys.Items1" xml:space="preserve">
-    <value>Raccourcis éléments de menu</value>
+    <value>Raccourcis pour les éléments de menu</value>
   </data>
   <data name="m_cbShortcutKeys.Location" type="System.Drawing.Point, System.Drawing">
     <value>204, 17</value>
@@ -2004,7 +2004,7 @@
     <value>30</value>
   </data>
   <data name="label4.Text" xml:space="preserve">
-    <value>&amp;Organisation:</value>
+    <value>&amp;Organisme:</value>
   </data>
   <data name="&gt;&gt;label4.Name" xml:space="preserve">
     <value>label4</value>
@@ -2088,16 +2088,16 @@
     <value>2</value>
   </data>
   <data name="m_CleanUpFileSizeNumericUpDown.AccessibleName" xml:space="preserve">
-    <value>Nettoyage de l'audio taille max. du fichier</value>
+    <value>Taille maximum du fichier pour le nettoyage audio</value>
   </data>
   <data name="m_CleanUpFileSizeNumericUpDown.Location" type="System.Drawing.Point, System.Drawing">
-    <value>209, 92</value>
+    <value>359, 92</value>
   </data>
   <data name="m_CleanUpFileSizeNumericUpDown.ShowHelp" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
   <data name="m_CleanUpFileSizeNumericUpDown.Size" type="System.Drawing.Size, System.Drawing">
-    <value>100, 22</value>
+    <value>70, 22</value>
   </data>
   <data name="m_CleanUpFileSizeNumericUpDown.TabIndex" type="System.Int32, mscorlib">
     <value>22</value>
@@ -2121,7 +2121,7 @@
     <value>NoControl</value>
   </data>
   <data name="mlblCleanupFileSize.Location" type="System.Drawing.Point, System.Drawing">
-    <value>4, 92</value>
+    <value>0, 92</value>
   </data>
   <data name="mlblCleanupFileSize.ShowHelp" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -2133,7 +2133,7 @@
     <value>21</value>
   </data>
   <data name="mlblCleanupFileSize.Text" xml:space="preserve">
-    <value>Taille max. fichier audio (MB):</value>
+    <value>Taille maximum du fichier pour le nettoyage audio (en Mo):</value>
   </data>
   <data name="&gt;&gt;mlblCleanupFileSize.Name" xml:space="preserve">
     <value>mlblCleanupFileSize</value>
@@ -2148,7 +2148,7 @@
     <value>1</value>
   </data>
   <data name="m_btn_speak.AccessibleName" xml:space="preserve">
-    <value> Bouton lire pour vérifier la voix TTS</value>
+    <value> Bouton Parler pour vérifier la voix TTS</value>
   </data>
   <data name="m_btn_speak.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Flat</value>
@@ -2157,7 +2157,7 @@
     <value>NoControl</value>
   </data>
   <data name="m_btn_speak.Location" type="System.Drawing.Point, System.Drawing">
-    <value>467, 123</value>
+    <value>507, 123</value>
   </data>
   <data name="m_btn_speak.ShowHelp" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -2169,7 +2169,7 @@
     <value>27</value>
   </data>
   <data name="m_btn_speak.Text" xml:space="preserve">
-    <value>Lire</value>
+    <value>Parler</value>
   </data>
   <data name="&gt;&gt;m_btn_speak.Name" xml:space="preserve">
     <value>m_btn_speak</value>
@@ -2184,7 +2184,7 @@
     <value>2</value>
   </data>
   <data name="labelTTSvoice.AccessibleName" xml:space="preserve">
-    <value>Choix du TTS</value>
+    <value>Définir la voix de synthèse</value>
   </data>
   <data name="labelTTSvoice.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -2205,7 +2205,7 @@
     <value>25</value>
   </data>
   <data name="labelTTSvoice.Text" xml:space="preserve">
-    <value>Choix du TTS :</value>
+    <value>Définissez la voix de synthèse :</value>
   </data>
   <data name="&gt;&gt;labelTTSvoice.Name" xml:space="preserve">
     <value>labelTTSvoice</value>
@@ -2223,7 +2223,7 @@
     <value>Flat</value>
   </data>
   <data name="mTTSvoiceCombo.Location" type="System.Drawing.Point, System.Drawing">
-    <value>160, 123</value>
+    <value>200, 123</value>
   </data>
   <data name="mTTSvoiceCombo.ShowHelp" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -2283,13 +2283,13 @@
     <value>Durée retour</value>
   </data>
   <data name="m_cbOperation.Items3" xml:space="preserve">
-    <value>Silence principal (Détection phrase)</value>
+    <value>Silence initial (Détection de phrases)</value>
   </data>
   <data name="m_cbOperation.Items4" xml:space="preserve">
-    <value>Seuil (Détection phrase)</value>
+    <value>Seuil (Détection de phrases)</value>
   </data>
   <data name="m_cbOperation.Items5" xml:space="preserve">
-    <value>Intervalle (Détection phrase)</value>
+    <value>Écart (Détection phrase)</value>
   </data>
   <data name="m_cbOperation.Location" type="System.Drawing.Point, System.Drawing">
     <value>160, 153</value>
@@ -2361,10 +2361,10 @@
     <value>Moyen</value>
   </data>
   <data name="mNoiseLevelComboBox.Items2" xml:space="preserve">
-    <value>Élévé</value>
+    <value>Élevé</value>
   </data>
   <data name="mNoiseLevelComboBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>464, 89</value>
+    <value>544, 89</value>
   </data>
   <data name="mNoiseLevelComboBox.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 4, 4, 4</value>
@@ -2373,7 +2373,7 @@
     <value>True</value>
   </data>
   <data name="mNoiseLevelComboBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>139, 24</value>
+    <value>109, 24</value>
   </data>
   <data name="mNoiseLevelComboBox.TabIndex" type="System.Int32, mscorlib">
     <value>24</value>
@@ -2397,7 +2397,7 @@
     <value>NoControl</value>
   </data>
   <data name="label8.Location" type="System.Drawing.Point, System.Drawing">
-    <value>351, 94</value>
+    <value>431, 94</value>
   </data>
   <data name="label8.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 0, 4, 0</value>
@@ -2673,7 +2673,7 @@
     <value>16</value>
   </data>
   <data name="mOutputDeviceCombo.AccessibleName" xml:space="preserve">
-    <value>Dispositif de sortie:</value>
+    <value>Périphérique de sortie:</value>
   </data>
   <data name="mOutputDeviceCombo.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Left, Right</value>
@@ -2709,7 +2709,7 @@
     <value>17</value>
   </data>
   <data name="mInputDeviceCombo.AccessibleName" xml:space="preserve">
-    <value>Dispositif d'entrée:</value>
+    <value>Périphérique d'entrée:</value>
   </data>
   <data name="mInputDeviceCombo.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Left, Right</value>
@@ -2766,7 +2766,7 @@
     <value>15</value>
   </data>
   <data name="labelOutputDeviceName.Text" xml:space="preserve">
-    <value>Dispositif de s&amp;ortie:</value>
+    <value>Périphérique de s&amp;ortie:</value>
   </data>
   <data name="&gt;&gt;labelOutputDeviceName.Name" xml:space="preserve">
     <value>labelOutputDeviceName</value>
@@ -2802,7 +2802,7 @@
     <value>13</value>
   </data>
   <data name="labelInputDeviceName.Text" xml:space="preserve">
-    <value>Dispositif d'&amp;entrée:</value>
+    <value>Périphérique d'&amp;entrée:</value>
   </data>
   <data name="&gt;&gt;labelInputDeviceName.Name" xml:space="preserve">
     <value>labelInputDeviceName</value>
@@ -2865,7 +2865,7 @@
     <value>9</value>
   </data>
   <data name="m_btnRecordInLocalDrive.Text" xml:space="preserve">
-    <value>&amp;Browse</value>
+    <value>&amp;Parcourir</value>
   </data>
   <data name="&gt;&gt;m_btnRecordInLocalDrive.Name" xml:space="preserve">
     <value>m_btnRecordInLocalDrive</value>
@@ -2883,10 +2883,10 @@
     <value>False</value>
   </data>
   <data name="m_txtRecordInLocalDrive.Location" type="System.Drawing.Point, System.Drawing">
-    <value>171, 97</value>
+    <value>201, 97</value>
   </data>
   <data name="m_txtRecordInLocalDrive.Size" type="System.Drawing.Size, System.Drawing">
-    <value>330, 22</value>
+    <value>300, 22</value>
   </data>
   <data name="m_txtRecordInLocalDrive.TabIndex" type="System.Int32, mscorlib">
     <value>8</value>
@@ -2907,7 +2907,7 @@
     <value>True</value>
   </data>
   <data name="m_chkRecordInLocalDrive.Location" type="System.Drawing.Point, System.Drawing">
-    <value>12, 99</value>
+    <value>0, 99</value>
   </data>
   <data name="m_chkRecordInLocalDrive.Size" type="System.Drawing.Size, System.Drawing">
     <value>153, 20</value>
@@ -2916,7 +2916,7 @@
     <value>7</value>
   </data>
   <data name="m_chkRecordInLocalDrive.Text" xml:space="preserve">
-    <value>Record in local drive:</value>
+    <value>Enregistrer sur le disque local: </value>
   </data>
   <data name="&gt;&gt;m_chkRecordInLocalDrive.Name" xml:space="preserve">
     <value>m_chkRecordInLocalDrive</value>
@@ -2964,10 +2964,10 @@
     <value>3</value>
   </data>
   <data name="m_lblImportTolerance.AccessibleDescription" xml:space="preserve">
-    <value>Tolérance à l'import</value>
+    <value>Tolérance à l'importation</value>
   </data>
   <data name="m_lblImportTolerance.AccessibleName" xml:space="preserve">
-    <value>Tolérance à l'import</value>
+    <value>Tolérance à l'importation</value>
   </data>
   <data name="m_lblImportTolerance.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -2976,7 +2976,7 @@
     <value>NoControl</value>
   </data>
   <data name="m_lblImportTolerance.Location" type="System.Drawing.Point, System.Drawing">
-    <value>34, 166</value>
+    <value>0, 166</value>
   </data>
   <data name="m_lblImportTolerance.ShowHelp" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -2988,7 +2988,7 @@
     <value>10</value>
   </data>
   <data name="m_lblImportTolerance.Text" xml:space="preserve">
-    <value>Tolérance à &amp;l'import:</value>
+    <value>Tolérance à &amp;l'importation :</value>
   </data>
   <data name="&gt;&gt;m_lblImportTolerance.Name" xml:space="preserve">
     <value>m_lblImportTolerance</value>
@@ -3033,7 +3033,7 @@
     <value>NoControl</value>
   </data>
   <data name="m_ChkAutoSaveInterval.Location" type="System.Drawing.Point, System.Drawing">
-    <value>152, 139</value>
+    <value>0, 139</value>
   </data>
   <data name="m_ChkAutoSaveInterval.ShowHelp" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -3045,7 +3045,7 @@
     <value>9</value>
   </data>
   <data name="m_ChkAutoSaveInterval.Text" xml:space="preserve">
-    <value>&amp;Sauvegarde auto en minutes:</value>
+    <value>&amp;Sauvegardee automatiquement toutes les (en minutes) :</value>
   </data>
   <data name="&gt;&gt;m_ChkAutoSaveInterval.Name" xml:space="preserve">
     <value>m_ChkAutoSaveInterval</value>
@@ -3087,13 +3087,13 @@
     <value>7</value>
   </data>
   <data name="mPipelineTextbox.AccessibleName" xml:space="preserve">
-    <value>Répertoire des scripts</value>
+    <value>Répertoire des scripts Pipeline</value>
   </data>
   <data name="mPipelineTextbox.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Left, Right</value>
   </data>
   <data name="mPipelineTextbox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>172, 55</value>
+    <value>192, 55</value>
   </data>
   <data name="mPipelineTextbox.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 4, 4, 4</value>
@@ -3102,7 +3102,7 @@
     <value>True</value>
   </data>
   <data name="mPipelineTextbox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>328, 22</value>
+    <value>308, 22</value>
   </data>
   <data name="mPipelineTextbox.TabIndex" type="System.Int32, mscorlib">
     <value>5</value>
@@ -3120,13 +3120,13 @@
     <value>8</value>
   </data>
   <data name="mDirectoryTextbox.AccessibleName" xml:space="preserve">
-    <value>Dossier du projet par défaut:</value>
+    <value>Répertoire par défaut du projet :</value>
   </data>
   <data name="mDirectoryTextbox.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Left, Right</value>
   </data>
   <data name="mDirectoryTextbox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>172, 13</value>
+    <value>192, 13</value>
   </data>
   <data name="mDirectoryTextbox.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 4, 4, 4</value>
@@ -3135,7 +3135,7 @@
     <value>True</value>
   </data>
   <data name="mDirectoryTextbox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>328, 22</value>
+    <value>308, 22</value>
   </data>
   <data name="mDirectoryTextbox.TabIndex" type="System.Int32, mscorlib">
     <value>2</value>
@@ -3198,7 +3198,7 @@
     <value>NoControl</value>
   </data>
   <data name="label9.Location" type="System.Drawing.Point, System.Drawing">
-    <value>8, 57</value>
+    <value>0, 57</value>
   </data>
   <data name="label9.ShowHelp" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -3210,7 +3210,7 @@
     <value>4</value>
   </data>
   <data name="label9.Text" xml:space="preserve">
-    <value>Répertoire des scri&amp;pts:</value>
+    <value>Répertoire des scripts &amp;Pipeline:</value>
   </data>
   <data name="&gt;&gt;label9.Name" xml:space="preserve">
     <value>label9</value>
@@ -3231,7 +3231,7 @@
     <value>NoControl</value>
   </data>
   <data name="label2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>12, 15</value>
+    <value>0, 15</value>
   </data>
   <data name="label2.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 0, 4, 0</value>
@@ -3246,7 +3246,7 @@
     <value>1</value>
   </data>
   <data name="label2.Text" xml:space="preserve">
-    <value>&amp;Dossier projet par défaut:</value>
+    <value>&amp;Répertoire par défaut du projet :</value>
   </data>
   <data name="&gt;&gt;label2.Name" xml:space="preserve">
     <value>label2</value>
@@ -3345,7 +3345,7 @@
     <value>True</value>
   </data>
   <data name="mTab.Size" type="System.Drawing.Size, System.Drawing">
-    <value>624, 402</value>
+    <value>674, 402</value>
   </data>
   <data name="mTab.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
@@ -3393,7 +3393,7 @@
     <value>8, 16</value>
   </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>656, 473</value>
+    <value>706, 473</value>
   </data>
   <data name="$this.Font" type="System.Drawing.Font, System.Drawing">
     <value>Microsoft Sans Serif, 9.75pt</value>
@@ -3713,5 +3713,29 @@
   </data>
   <data name="&gt;&gt;$this.Type" xml:space="preserve">
     <value>System.Windows.Forms.Form, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="m_lblProfile2.AccessibleName" xml:space="preserve">
+    <value>Profil 2 pour la barre d'enregistrement</value>
+  </data>
+  <data name="m_lblProfile1.AccessibleName" xml:space="preserve">
+    <value>Profil 1 pour la barre d'enregistrement</value>
+  </data>
+  <data name="m_txtBox_Font.AccessibleName" xml:space="preserve">
+    <value>Apparence de la police sélectionnée</value>
+  </data>
+  <data name="m_gpBox_Font.Text" xml:space="preserve">
+    <value>Police</value>
+  </data>
+  <data name="m_lbl_AssignColor.Text" xml:space="preserve">
+    <value>Attribuer une &amp;couleur :</value>
+  </data>
+  <data name="m_lbl_AssignHighContrastColor.Text" xml:space="preserve">
+    <value>Attribuer une couleur à contraste &amp;élevé</value>
+  </data>
+  <data name="m_gpBox_ColorsList.Text" xml:space="preserve">
+    <value>Couleur</value>
+  </data>
+  <data name="m_NumImportTolerance.AccessibleName" xml:space="preserve">
+    <value>Tolérance à l'importation en MS</value>
   </data>
 </root>

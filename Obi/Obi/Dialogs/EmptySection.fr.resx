@@ -169,7 +169,7 @@
     <value>0</value>
   </data>
   <data name="mMessageLabel.Text" xml:space="preserve">
-    <value>La section "{0}" n'a pas de contenu audio et ne sera pas exportés, ni aucune de ses sous-sections. Voulez-vous continuer?</value>
+    <value>La section "{0}" ne comporte pas de contenu audio et ne sera, tout comme ses sous-sections, pas exportée. Voulez-vous continuer?</value>
   </data>
   <data name="&gt;&gt;mMessageLabel.Name" xml:space="preserve">
     <value>mMessageLabel</value>
@@ -229,7 +229,7 @@
     <value>1</value>
   </data>
   <data name="mKeepWarningCheckbox.Text" xml:space="preserve">
-    <value>Prenez garde aux sections vides dans ce projet</value>
+    <value>Continuer à m'alerter sur les sections vides de ce projet</value>
   </data>
   <data name="&gt;&gt;mKeepWarningCheckbox.Name" xml:space="preserve">
     <value>mKeepWarningCheckbox</value>
@@ -259,7 +259,7 @@
     <value>4, 4, 4, 4</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
-    <value>La section ne sera pas exportés</value>
+    <value>La section ne sera pas exportée</value>
   </data>
   <data name="&gt;&gt;helpProvider1.Name" xml:space="preserve">
     <value>helpProvider1</value>

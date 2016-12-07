@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
   <!-- 
     Microsoft ResX Schema 
@@ -117,13 +117,19 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <metadata name="helpProvider1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 17</value>
+  </metadata>
+  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
   <assembly alias="mscorlib" name="mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="m_lblDirectoryPath.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="m_lblDirectoryPath.Location" type="System.Drawing.Point, System.Drawing">
-    <value>13, 19</value>
+    <value>0, 19</value>
   </data>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="m_lblDirectoryPath.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
@@ -136,7 +142,7 @@
     <value>0</value>
   </data>
   <data name="m_lblDirectoryPath.Text" xml:space="preserve">
-    <value>E&amp;xporter dossier:</value>
+    <value>Répertoire pour l'e&amp;xportation:</value>
   </data>
   <data name="&gt;&gt;m_lblDirectoryPath.Name" xml:space="preserve">
     <value>m_lblDirectoryPath</value>
@@ -151,19 +157,19 @@
     <value>10</value>
   </data>
   <data name="mPathTextBox.AccessibleName" xml:space="preserve">
-    <value>Dossier d'exportation:</value>
+    <value>Répertoire pour l'exportation:</value>
   </data>
   <data name="mPathTextBox.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Left, Right</value>
   </data>
   <data name="mPathTextBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>125, 17</value>
+    <value>180, 17</value>
   </data>
   <data name="mPathTextBox.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 4, 4, 4</value>
   </data>
   <data name="mPathTextBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>328, 22</value>
+    <value>280, 22</value>
   </data>
   <data name="mPathTextBox.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
@@ -187,7 +193,7 @@
     <value>Flat</value>
   </data>
   <data name="mSelectButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>461, 13</value>
+    <value>466, 13</value>
   </data>
   <data name="mSelectButton.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 4, 4, 4</value>
@@ -199,7 +205,7 @@
     <value>2</value>
   </data>
   <data name="mSelectButton.Text" xml:space="preserve">
-    <value>&amp;Choisir</value>
+    <value>&amp;Sélectionner</value>
   </data>
   <data name="&gt;&gt;mSelectButton.Name" xml:space="preserve">
     <value>mSelectButton</value>
@@ -331,7 +337,7 @@
     <value>4</value>
   </data>
   <data name="m_checkBoxEncoder.AccessibleDescription" xml:space="preserve">
-    <value>Case à cocher encodage fichiers audio</value>
+    <value>Case à cocher pour l'encodage des fichiers audio</value>
   </data>
   <data name="m_checkBoxEncoder.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -346,7 +352,7 @@
     <value>6</value>
   </data>
   <data name="m_checkBoxEncoder.Text" xml:space="preserve">
-    <value>&amp;Encodage Audio</value>
+    <value>&amp;Encoder les fichiers audio</value>
   </data>
   <data name="&gt;&gt;m_checkBoxEncoder.Name" xml:space="preserve">
     <value>m_checkBoxEncoder</value>
@@ -361,7 +367,7 @@
     <value>5</value>
   </data>
   <data name="m_Bitrate.AccessibleDescription" xml:space="preserve">
-    <value>Bitrate</value>
+    <value>Débit</value>
   </data>
   <data name="m_Bitrate.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -376,7 +382,7 @@
     <value>8</value>
   </data>
   <data name="m_Bitrate.Text" xml:space="preserve">
-    <value>Bit&amp;rate:</value>
+    <value>Dé&amp;bit</value>
   </data>
   <data name="&gt;&gt;m_Bitrate.Name" xml:space="preserve">
     <value>m_Bitrate</value>
@@ -481,7 +487,7 @@
     <value>8</value>
   </data>
   <data name="m_btnEncodingOptions.Text" xml:space="preserve">
-    <value>&amp;Plus d'options</value>
+    <value>&amp;Plus d'options d'encodage</value>
   </data>
   <data name="&gt;&gt;m_btnEncodingOptions.Name" xml:space="preserve">
     <value>m_btnEncodingOptions</value>
@@ -496,7 +502,7 @@
     <value>0</value>
   </data>
   <data name="m_comboBoxEncodingType.AccessibleDescription" xml:space="preserve">
-    <value>Zone de liste déroulante Type d'encodage</value>
+    <value>Zone de liste déroulante pour le Type d'encodage</value>
   </data>
   <data name="m_comboBoxEncodingType.Items" xml:space="preserve">
     <value>MP3</value>
@@ -558,9 +564,6 @@
   <data name="m_grpBoxMP3Encoding.Location" type="System.Drawing.Point, System.Drawing">
     <value>15, 76</value>
   </data>
-  <metadata name="helpProvider1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 17</value>
-  </metadata>
   <data name="helpProvider1.HelpNamespace" xml:space="preserve">
     <value>Obi Help.fr.chm</value>
   </data>
@@ -658,7 +661,7 @@
     <value>8</value>
   </data>
   <data name="m_grpBoxSectionNameOperation.Text" xml:space="preserve">
-    <value>Nom de la section :</value>
+    <value>Opération sur nom de section :</value>
   </data>
   <data name="&gt;&gt;m_grpBoxSectionNameOperation.Name" xml:space="preserve">
     <value>m_grpBoxSectionNameOperation</value>
@@ -715,7 +718,7 @@
     <value>False</value>
   </data>
   <data name="m_numericUpDownEpubFilenameLengthLimit.Location" type="System.Drawing.Point, System.Drawing">
-    <value>273, 29</value>
+    <value>293, 29</value>
   </data>
   <data name="m_numericUpDownEpubFilenameLengthLimit.Size" type="System.Drawing.Size, System.Drawing">
     <value>120, 22</value>
@@ -754,7 +757,7 @@
     <value>12</value>
   </data>
   <data name="m_chkBoxEpubFilenameLengthLimit.Text" xml:space="preserve">
-    <value>Limite longueur du nom de fichier EPUB:</value>
+    <value>Limite de longueur du nom de fichier EPUB:</value>
   </data>
   <data name="&gt;&gt;m_chkBoxEpubFilenameLengthLimit.Name" xml:space="preserve">
     <value>m_chkBoxEpubFilenameLengthLimit</value>
@@ -784,7 +787,7 @@
     <value>14</value>
   </data>
   <data name="m_EpubFileNamegroupBox.Text" xml:space="preserve">
-    <value>Limite de longueur du nom de fichier EPUB:</value>
+    <value>Longueur du nom de fichier EPUB:</value>
   </data>
   <data name="&gt;&gt;m_EpubFileNamegroupBox.Name" xml:space="preserve">
     <value>m_EpubFileNamegroupBox</value>
@@ -798,9 +801,6 @@
   <data name="&gt;&gt;m_EpubFileNamegroupBox.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
-  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
   <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
     <value>8, 16</value>
   </data>
@@ -814,7 +814,7 @@
     <value>4, 4, 4, 4</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
-    <value>Choisir un dossier d'exportation</value>
+    <value>Sélectionner un répertoire pour l'exportation</value>
   </data>
   <data name="&gt;&gt;helpProvider1.Name" xml:space="preserve">
     <value>helpProvider1</value>
