@@ -148,7 +148,7 @@
     <value>Horizontal</value>
   </data>
   <data name="mTOCSplitter.AccessibleName" xml:space="preserve">
-    <value>Panneau de s&amp;paration</value>
+    <value>Volet de fractionnement</value>
   </data>
   <data name="mTOCSplitter.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
@@ -268,7 +268,7 @@
     <value>0</value>
   </data>
   <data name="mPanelInfoLabelButton.AccessibleName" xml:space="preserve">
-    <value>Panneau de s&amp;paration</value>
+    <value>Volet de &amp;fractionnement</value>
   </data>
   <data name="mPanelInfoLabelButton.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Right</value>

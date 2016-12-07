@@ -776,7 +776,7 @@
     <value>109, 22</value>
   </data>
   <data name="mbtnPraseDetectiontoolStrip.Text" xml:space="preserve">
-    <value>Détection de phrase</value>
+    <value>Détection de phrases</value>
   </data>
   <data name="toolStrip1.Location" type="System.Drawing.Point, System.Drawing">
     <value>0, 0</value>
