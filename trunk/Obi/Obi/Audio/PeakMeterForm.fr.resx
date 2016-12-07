@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
   <!-- 
     Microsoft ResX Schema 
@@ -117,6 +117,9 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
   <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="mGraphicalPeakMeter.Location" type="System.Drawing.Point, System.Drawing">
     <value>0, 0</value>
@@ -153,7 +156,7 @@
     <value>1</value>
   </data>
   <data name="chkOnTop.Text" xml:space="preserve">
-    <value>Toujours au-dessus</value>
+    <value>Toujours à l'écran</value>
   </data>
   <data name="&gt;&gt;chkOnTop.Name" xml:space="preserve">
     <value>chkOnTop</value>
@@ -167,9 +170,6 @@
   <data name="&gt;&gt;chkOnTop.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
-  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
   <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
     <value>6, 13</value>
   </data>
@@ -433,7 +433,7 @@
 </value>
   </data>
   <data name="$this.Text" xml:space="preserve">
-    <value>Vu-Mtres</value>
+    <value>Vu-Mètre</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
     <value>PeakMeterForm</value>
