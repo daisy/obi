@@ -118,108 +118,106 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="CannotCreate_InputPath" xml:space="preserve">
-    <value>Impossible de cr&#233;er le chemin de type: input</value>
+    <value>Impossible de créer le chemin d'accès de type: source</value>
   </data>
   <data name="Caption_Error" xml:space="preserve">
     <value>ERREUR</value>
   </data>
   <data name="Caption_Warning" xml:space="preserve">
-    <value>Avertissement!</value>
+    <value>Attention!</value>
   </data>
   <data name="Choose_OtherDirectory" xml:space="preserve">
-    <value>Choisir un autre r&#233;pertoire</value>
-    <comment>Pipeline</comment>
+    <value>Choisissez un autre répertoire</value>
   </data>
   <data name="IndexNotInRange" xml:space="preserve">
-    <value>Index en dehors de la plage</value>
+    <value>Index en dehors de l'intervalle</value>
   </data>
   <data name="No_Path" xml:space="preserve">
-    <value>Le chemin n'existe pas</value>
+    <value>Le chemin d'accès n'existe pas</value>
   </data>
   <data name="no_primary_export_directory" xml:space="preserve">
-    <value>Le r&#233;pertoire d'exportation DAISY n'a pas &#233;t&#233; trouv&#233;. Veuillez s&#233;lectionner un chemin d'exportation ou exportez le projet au format DAISY.</value>
+    <value>Le répertoire d'exportation DAISY n'a pas été trouvé. Veuillez sélectionner un chemin d'accès pour l'exportation ou exportez le projet au format DAISY.</value>
   </data>
   <data name="no_script" xml:space="preserve">
-    <value>Pas de fichier script trouv&#233; &#224; "{0}".</value>
+    <value>Aucun fichier script n'a été trouvé dans "{0}".</value>
   </data>
   <data name="NotAbleToCreateDirectory" xml:space="preserve">
-    <value>Ne peut cr&#233;er le r&#233;pertoire{0}</value>
+    <value>Incapable de créer le répertoire{0}</value>
   </data>
   <data name="NotAbleToSelectItem" xml:space="preserve">
-    <value>Ne peut s&#233;lectionner un &#233;l&#233;ment</value>
+    <value>Incapable de sélectionner l'élément</value>
   </data>
   <data name="OutputDirectoryNotFound_Permission_Create" xml:space="preserve">
-    <value>Ne peut trouver le r&#233;pertoire de sortie. \n Voulez-vous le cr&#233;er?</value>
-    <comment>Pipeline</comment>
+    <value>Incapable de trouver le répertoire de destination. \n Voulez-vous le créer?</value>
   </data>
   <data name="Permission_EmptyOutputDirectory" xml:space="preserve">
-    <value>Le r&#233;pertoire de sortie n'est pas vide! Voulez-vous le vider?</value>
+    <value>Le répertoire de destination n'est pas vide! Voulez-vous le vider?</value>
   </data>
   <data name="Pipeline_DuplicateScript" xml:space="preserve">
-    <value>Script pipeline en double nomm&#233; {0}trouv&#233;. Celui-ci ne sera pas charg&#233;. Veuillez appuyer sur le bouton Ok pour continuer.</value>
+    <value>Le script pipeline nommé {0} est en double. Il ne sera donc pas chargé. Veuillez appuyer sur le bouton Ok pour continuer.</value>
   </data>
   <data name="Pipeline_Error_NotExpectedRange" xml:space="preserve">
     <value>La valeur devrait se situer entre{0} et {1}</value>
   </data>
   <data name="Pipeline_InvalidScriptsParameters" xml:space="preserve">
-    <value>Un ou plusieurs paramètres ne sont pas valides. Veuillez entrer les bonnes valeurs</value>
+    <value>Un ou plusieurs paramètres sont erronés. Veuillez saisir des valeurs correctes</value>
   </data>
   <data name="Pipeline_InvalidString" xml:space="preserve">
-    <value>Entr&#233;e invalide</value>
+    <value>Saisie incorrecte</value>
   </data>
   <data name="Pipeline_OutOfRange" xml:space="preserve">
-    <value>La valeur ne se trouve pas dans la fourchette pr&#233;vue</value>
+    <value>La valeur ne se trouve pas dans l'intervalle prévu</value>
   </data>
   <data name="really_use_directory_caption" xml:space="preserve">
-    <value>Vider le r&#233;pertoire avant de l'utiliser?</value>
+    <value>Voulez-vous vider le répertoire avant de l'utiliser?</value>
   </data>
   <data name="really_use_directory_text" xml:space="preserve">
-    <value>Le r&#233;pertoire "{0}"n'est pas vide. Si vous d&#233;sirez vider ce r&#233;pertoire avant de l'utiliser, choisissez "Oui." Si vous voulez utiliser ce r&#233;pertoire tel quel, choisissez, choisissez "Non."</value>
+    <value>Le répertoire "{0}"n'est pas vide. Si vous désirez vider ce répertoire avant de l'utiliser, choisissez "Oui." Si vous voulez utiliser ce répertoire tel quel, choisissez "Non."</value>
   </data>
   <data name="Z3986DTBValidator" xml:space="preserve">
-    <value>DAISY 3 Validator</value>
+    <value>Validateur DAISY 3</value>
   </data>
   <data name="Daisy202DTBValidator" xml:space="preserve">
-    <value>DAISY 2.02 Light Validator</value>
+    <value>Validateur DAISY 2.02</value>
   </data>
   <data name="DTBAudioEncoder" xml:space="preserve">
     <value>Convertir l’audio en MP3</value>
   </data>
   <data name="FilesetRenamer" xml:space="preserve">
-    <value>Renommer fichiers</value>
+    <value>Renommer les fichiers</value>
   </data>
   <data name="PrettyPrinter" xml:space="preserve">
     <value>Pretty Printer</value>
   </data>
   <data name="Input_NCC" xml:space="preserve">
-    <value>Entrée NCC</value>
+    <value>Source NCC</value>
   </data>
   <data name="Select_the_input_NCC_document" xml:space="preserve">
-    <value>Sélectionner le document d’entrée NCC</value>
+    <value>Sélectionner le document source NCC</value>
   </data>
   <data name="Validation_Report" xml:space="preserve">
     <value>Rapport de validation</value>
   </data>
   <data name="Select_a_file_to_store_a_Validation_XML_report_in" xml:space="preserve">
-    <value>Sélectionner un fichier pour enregistrer le rapport de validation</value>
+    <value>Sélectionner un fichier pour stocké le rapport de validation XML</value>
   </data>
   <data name="Time_Tolerance" xml:space="preserve">
-    <value>Marge de temps</value>
+    <value>Tolérance de durée</value>
   </data>
   <data name="Set_the_time_tolerance_threshold_in_milliseconds" xml:space="preserve">
-    <value>Régler le seuil de tolérance de temps en millisecondes</value>
+    <value>Définir le seuil de tolérance de durée en millisecondes</value>
   </data>
   <data name="Input_OPF" xml:space="preserve">
-    <value>Entrée OPF</value>
+    <value>Source OPF</value>
   </data>
   <data name="Select_the_input_Package_file_(OPF)_document" xml:space="preserve">
     <value>Sélectionner le fichier document OPF</value>
   </data>
   <data name="Output_directory" xml:space="preserve">
-    <value>Dossier de sortie</value>
+    <value>Répertoire de destination</value>
   </data>
   <data name="Select_the_output_directory" xml:space="preserve">
-    <value>Sélectionner le dossier de sortie</value>
+    <value>Sélectionner le répertoire de destination</value>
   </data>
   <data name="Bitrate" xml:space="preserve">
     <value>Débit</value>
@@ -228,33 +226,36 @@
     <value>Sélectionner le débit des fichiers encodés</value>
   </data>
   <data name="Input_file" xml:space="preserve">
-    <value>fichier d’entrée</value>
+    <value>fichier source</value>
   </data>
   <data name="Select_the_input_manifest_file_(NCC,_OPF,_etc)" xml:space="preserve">
-    <value>Sélectionner le fichier d’entrée (NCC, OPF, etc)</value>
+    <value>Sélectionner le fichier source (NCC, OPF, etc)</value>
   </data>
   <data name="Base_Name" xml:space="preserve">
-    <value>Nom de base</value>
+    <value>Nom par défaut</value>
   </data>
   <data name="The_base_name_used_for_renaming" xml:space="preserve">
-    <value>Le nom de base utilisé pour renommer</value>
+    <value>Le nom par défaut utilisé pour renommer</value>
   </data>
   <data name="File_types_to_exclude" xml:space="preserve">
-    <value>Fichier à exclure</value>
+    <value>Types de fichiers à exclure</value>
   </data>
   <data name="comma_separated_list_of_file_types_to_exclude_from_renaming" xml:space="preserve">
-    <value>Liste des types de fichiers à exclure du renommage, séparés par des virgules</value>
+    <value>Liste des types de fichiers à exclure du renommage, à séparer par des virgules</value>
   </data>
   <data name="Use_only_the_characters_A-Z,a-z,0-9,_hyphen_and_underscore_in_output_filenames" xml:space="preserve">
-    <value>Utiliser uniquement les caractères, A-Z, 0-9, les traits d’union ou de soulignement</value>
+    <value>Utiliser uniquement les caractères, A-Z, a-z, 0-9, traits d’union ou de soulignement</value>
   </data>
   <data name="Use_filesystem_safe_names" xml:space="preserve">
-    <value>Utiliser les noms de fichiers sécurisés</value>
+    <value>Utiliser des noms compatibles avec votre système de fichiers</value>
   </data>
   <data name="Max_filename_length" xml:space="preserve">
-    <value>Longueur max</value>
+    <value>Longueur maximum des noms de fichiers</value>
   </data>
   <data name="Max._number_of_characters_in_output_filename,_excluding_extension._Default_is_60" xml:space="preserve">
-    <value>Nombre max de caractères dans le fichier de sortie, sans l’extension. Par défaut 60.</value>
-  </data> 
+    <value>Nombre maximum de caractères pour le fichier de destination, sans l’extension. Par défaut 60.</value>
+  </data>
+  <data name="no_primary_export_Caption" xml:space="preserve">
+    <value>Aucun répertoire d'exportation</value>
+  </data>
 </root>
