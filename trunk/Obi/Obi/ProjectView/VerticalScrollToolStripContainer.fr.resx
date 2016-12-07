@@ -220,10 +220,10 @@
     <value>27, 44</value>
   </data>
   <data name="m_BtnLargeIncrementUp.Text" xml:space="preserve">
-    <value>Grand incrément vers le haut</value>
+    <value>Saut important vers le haut</value>
   </data>
   <data name="m_BtnLargeIncrementUp.ToolTipText" xml:space="preserve">
-    <value>Grand incrément vers le haut</value>
+    <value>Saut important vers le haut</value>
   </data>
   <data name="m_BtnSmallIncrementUp.AutoSize" type="System.Boolean, mscorlib">
     <value>False</value>
@@ -319,10 +319,10 @@
     <value>27, 44</value>
   </data>
   <data name="m_BtnLargeIncrementDown.Text" xml:space="preserve">
-    <value>Grand incrément vers le bas</value>
+    <value>Saut important vers le bas</value>
   </data>
   <data name="m_BtnLargeIncrementDown.ToolTipText" xml:space="preserve">
-    <value>Grand incrément vers le bas</value>
+    <value>Saut important vers le bas</value>
   </data>
   <data name="m_BtnGoToEnd.AutoSize" type="System.Boolean, mscorlib">
     <value>False</value>

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
   <!-- 
     Microsoft ResX Schema 
@@ -120,18 +120,24 @@
   <metadata name="mContextMenuStrip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
   </metadata>
+  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="$this.TrayLargeIcon" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>False</value>
+  </metadata>
   <data name="Context_ShowContentsMenuItem.AccessibleDescription" xml:space="preserve">
     <value>Afficher les contenus de la Section</value>
   </data>
   <data name="Context_ShowContentsMenuItem.AccessibleName" xml:space="preserve">
-    <value>Afficher contenus</value>
+    <value>Afficher les contenus</value>
   </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="Context_ShowContentsMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>207, 22</value>
   </data>
   <data name="Context_ShowContentsMenuItem.Text" xml:space="preserve">
-    <value> A&amp;fficher contenus</value>
+    <value> A&amp;fficher les contenus</value>
   </data>
   <data name="Context_AddSectionMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>207, 22</value>
@@ -161,13 +167,13 @@
     <value>Fusionner avec la sui&amp;vante</value>
   </data>
   <data name="Context_MultipleOperationsMenuItem.AccessibleName" xml:space="preserve">
-    <value>Opérations Multi-Section</value>
+    <value>Opérations sur plusieurs sections</value>
   </data>
   <data name="Context_MultipleOperationsMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>207, 22</value>
   </data>
   <data name="Context_MultipleOperationsMenuItem.Text" xml:space="preserve">
-    <value>Opérations M&amp;ulti-Section</value>
+    <value>Opérations sur &amp;plusieurs sections</value>
   </data>
   <data name="Context_RenameSectionMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>207, 22</value>
@@ -250,12 +256,6 @@
   <data name="&gt;&gt;mContextMenuStrip.Type" xml:space="preserve">
     <value>System.Windows.Forms.ContextMenuStrip, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="$this.TrayLargeIcon" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>False</value>
-  </metadata>
   <data name="$this.Font" type="System.Drawing.Font, System.Drawing">
     <value>Microsoft Sans Serif, 9.75pt</value>
   </data>
@@ -378,5 +378,17 @@
   </data>
   <data name="&gt;&gt;$this.Type" xml:space="preserve">
     <value>System.Windows.Forms.TreeView, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Context_AddBlankPhraseMenuItem.AccessibleName" xml:space="preserve">
+    <value>Ajouter une phrase vide</value>
+  </data>
+  <data name="Context_AddBlankPhraseMenuItem.Text" xml:space="preserve">
+    <value>Ajouter une p&amp;hrase vide</value>
+  </data>
+  <data name="Context_AddEmptyPagesMenuItem.AccessibleName" xml:space="preserve">
+    <value>Ajouter une page vide</value>
+  </data>
+  <data name="Context_AddEmptyPagesMenuItem.Text" xml:space="preserve">
+    <value>Ajouter une &amp;page vide</value>
   </data>
 </root>

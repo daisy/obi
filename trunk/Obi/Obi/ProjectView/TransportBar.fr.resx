@@ -169,7 +169,7 @@
     <value>16</value>
   </data>
   <data name="mPreviousPageButton.AccessibleDescription" xml:space="preserve">
-    <value>button</value>
+    <value>bouton</value>
   </data>
   <data name="mPreviousPageButton.AccessibleName" xml:space="preserve">
     <value>Page précédente</value>
@@ -239,7 +239,7 @@
     <value>3</value>
   </data>
   <data name="mRewindButton.AccessibleDescription" xml:space="preserve">
-    <value>button</value>
+    <value>bouton</value>
   </data>
   <data name="mRewindButton.AccessibleName" xml:space="preserve">
     <value>Rembobinage</value>
@@ -287,7 +287,7 @@
     <value>3</value>
   </data>
   <data name="mRewindButton.ToolTip" xml:space="preserve">
-    <value>Lecture vers l'arrière plus rapide.</value>
+    <value>Lecture vers l'arrière en accéléré.</value>
   </data>
   <data name="&gt;&gt;mRewindButton.Name" xml:space="preserve">
     <value>mRewindButton</value>
@@ -302,7 +302,7 @@
     <value>4</value>
   </data>
   <data name="mToDo_CustomClassMarkButton.AccessibleDescription" xml:space="preserve">
-    <value>button</value>
+    <value>bouton</value>
   </data>
   <data name="mToDo_CustomClassMarkButton.AccessibleName" xml:space="preserve">
     <value>Marquer la phrase</value>
@@ -357,7 +357,7 @@
     <value>13</value>
   </data>
   <data name="mToDo_CustomClassMarkButton.ToolTip" xml:space="preserve">
-    <value>Ajouter une marque AFAIRE lors de l'enregistrement. (F9)</value>
+    <value>Ajouter une marque ÀFAIRE lors de l'enregistrement. (F9)</value>
   </data>
   <data name="&gt;&gt;mToDo_CustomClassMarkButton.Name" xml:space="preserve">
     <value>mToDo_CustomClassMarkButton</value>
@@ -372,7 +372,7 @@
     <value>21</value>
   </data>
   <data name="mNextPageButton.AccessibleDescription" xml:space="preserve">
-    <value>button</value>
+    <value>bouton</value>
   </data>
   <data name="mNextPageButton.AccessibleName" xml:space="preserve">
     <value>Page suivante</value>
@@ -440,7 +440,7 @@
     <value>14</value>
   </data>
   <data name="mPlayButton.AccessibleDescription" xml:space="preserve">
-    <value>button</value>
+    <value>bouton</value>
   </data>
   <data name="mPlayButton.AccessibleName" xml:space="preserve">
     <value>Lecture</value>
@@ -503,7 +503,7 @@
     <value>9</value>
   </data>
   <data name="mPauseButton.AccessibleDescription" xml:space="preserve">
-    <value>button</value>
+    <value>bouton</value>
   </data>
   <data name="mPauseButton.AccessibleName" xml:space="preserve">
     <value>Pause</value>
@@ -559,10 +559,10 @@
     <value>11</value>
   </data>
   <data name="mStopButton.AccessibleDescription" xml:space="preserve">
-    <value>button</value>
+    <value>bouton</value>
   </data>
   <data name="mStopButton.AccessibleName" xml:space="preserve">
-    <value>Stop</value>
+    <value>Arrêt</value>
   </data>
   <data name="mStopButton.BackgroundImageLayout" type="System.Windows.Forms.ImageLayout, System.Windows.Forms">
     <value>Center</value>
@@ -617,7 +617,7 @@
     <value>10</value>
   </data>
   <data name="mNextPhrase.AccessibleDescription" xml:space="preserve">
-    <value>button</value>
+    <value>bouton</value>
   </data>
   <data name="mNextPhrase.AccessibleName" xml:space="preserve">
     <value>Phrase suivante</value>
@@ -688,7 +688,7 @@
     <value>15</value>
   </data>
   <data name="mPrevPhraseButton.AccessibleDescription" xml:space="preserve">
-    <value>button</value>
+    <value>bouton</value>
   </data>
   <data name="mPrevPhraseButton.AccessibleName" xml:space="preserve">
     <value>Phrase précédente</value>
@@ -759,7 +759,7 @@
     <value>8</value>
   </data>
   <data name="mNextSectionButton.AccessibleDescription" xml:space="preserve">
-    <value>button</value>
+    <value>bouton</value>
   </data>
   <data name="mNextSectionButton.AccessibleName" xml:space="preserve">
     <value>Section suivante</value>
@@ -828,7 +828,7 @@
     <value>22</value>
   </data>
   <data name="mPrevSectionButton.AccessibleDescription" xml:space="preserve">
-    <value>button</value>
+    <value>bouton</value>
   </data>
   <data name="mPrevSectionButton.AccessibleName" xml:space="preserve">
     <value>Section précédente</value>
@@ -897,7 +897,7 @@
     <value>7</value>
   </data>
   <data name="mRecordButton.AccessibleDescription" xml:space="preserve">
-    <value>button</value>
+    <value>bouton</value>
   </data>
   <data name="mRecordButton.AccessibleName" xml:space="preserve">
     <value>Enregistrement</value>
@@ -965,7 +965,7 @@
     <value>12</value>
   </data>
   <data name="mFastForwardButton.AccessibleDescription" xml:space="preserve">
-    <value>button</value>
+    <value>bouton</value>
   </data>
   <data name="mFastForwardButton.AccessibleName" xml:space="preserve">
     <value>Avance rapide</value>
@@ -1015,7 +1015,7 @@
     <value>9</value>
   </data>
   <data name="mFastForwardButton.ToolTip" xml:space="preserve">
-    <value>Lecture vers l'avant plus rapide.</value>
+    <value>Lecture en accélérée.</value>
   </data>
   <data name="&gt;&gt;mFastForwardButton.Name" xml:space="preserve">
     <value>mFastForwardButton</value>
@@ -1153,7 +1153,7 @@
     <value>14</value>
   </data>
   <data name="m_btnSwitchProfile.ToolTip" xml:space="preserve">
-    <value>Switch Audio Profile</value>
+    <value>Changer de profil audio</value>
   </data>
   <data name="&gt;&gt;m_btnSwitchProfile.Name" xml:space="preserve">
     <value>m_btnSwitchProfile</value>
@@ -1174,16 +1174,16 @@
     <value>Microsoft Sans Serif, 9.75pt</value>
   </data>
   <data name="mDisplayBox.Items" xml:space="preserve">
-    <value>passé</value>
+    <value>écoulé</value>
   </data>
   <data name="mDisplayBox.Items1" xml:space="preserve">
-    <value>passé (total)</value>
+    <value>écoulé (au total)</value>
   </data>
   <data name="mDisplayBox.Items2" xml:space="preserve">
     <value>restant</value>
   </data>
   <data name="mDisplayBox.Items3" xml:space="preserve">
-    <value>restant (total)</value>
+    <value>restant (au total)</value>
   </data>
   <data name="mDisplayBox.Location" type="System.Drawing.Point, System.Drawing">
     <value>629, 4</value>
@@ -1288,7 +1288,7 @@
     <value>244, 22</value>
   </data>
   <data name="m_DeletePhrasestoolStripMenuItem.Text" xml:space="preserve">
-    <value>Enregistrer sur les phrases suivantes</value>
+    <value>Enregistrer par-dessus les phrases qui suivent</value>
   </data>
   <data name="mPreviewBeforeRecToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>244, 22</value>
@@ -1300,7 +1300,7 @@
     <value>244, 22</value>
   </data>
   <data name="mMonitorContinuouslyToolStripMenuItem.Text" xml:space="preserve">
-    <value>Monitoring &amp;Continu</value>
+    <value>Monitoring en &amp;Continu</value>
   </data>
   <data name="m_PlayingOptionsContextMenuStrip.Size" type="System.Drawing.Size, System.Drawing">
     <value>187, 114</value>
@@ -1327,13 +1327,13 @@
     <value>186, 22</value>
   </data>
   <data name="m_playHeadingToolStripMenuItem.Text" xml:space="preserve">
-    <value>Lire la Section &amp;Titre</value>
+    <value>Lire le &amp;titre de Section</value>
   </data>
   <data name="m_PreviewFromtoolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>186, 22</value>
   </data>
   <data name="m_PreviewFromtoolStripMenuItem.Text" xml:space="preserve">
-    <value>Aperçu &amp;de</value>
+    <value>Aperçu &amp;à partir de</value>
   </data>
   <data name="m_PreviewUptotoolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>186, 22</value>

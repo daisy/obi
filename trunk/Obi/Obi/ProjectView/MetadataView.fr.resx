@@ -172,7 +172,7 @@
     <value>4</value>
   </data>
   <data name="mContentTextbox.AccessibleName" xml:space="preserve">
-    <value>Contenu des Métadonnées:</value>
+    <value>Contenu de la Métadonnée:</value>
   </data>
   <data name="mContentTextbox.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom, Left, Right</value>
@@ -226,7 +226,7 @@
     <value>5</value>
   </data>
   <data name="mUpdateButton.Text" xml:space="preserve">
-    <value>&amp;Mise à jour</value>
+    <value>&amp;Mettre à jour</value>
   </data>
   <data name="&gt;&gt;mUpdateButton.Name" xml:space="preserve">
     <value>mUpdateButton</value>
@@ -383,19 +383,19 @@
     <value>244, 22</value>
   </data>
   <data name="SetDefaultMetadataStripMenuItem.Text" xml:space="preserve">
-    <value>Insérer des métadonnées par défaut</value>
+    <value>Insérer les métadonnées par défaut</value>
   </data>
   <data name="SetDefaultMetadataOverwriteToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>244, 22</value>
   </data>
   <data name="SetDefaultMetadataOverwriteToolStripMenuItem.Text" xml:space="preserve">
-    <value>Ecraser les métadonnées par défaut</value>
+    <value>Remplacer par les métadonnées par défaut</value>
   </data>
   <data name="SaveAsDefaultMetadataToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>244, 22</value>
   </data>
   <data name="SaveAsDefaultMetadataToolStripMenuItem.Text" xml:space="preserve">
-    <value>Enregistrer en tant que métadonnées par défaut</value>
+    <value>Conserver comme métadonnées par défaut</value>
   </data>
   <data name="mMetadataContextMenuStrip.Size" type="System.Drawing.Size, System.Drawing">
     <value>245, 92</value>
