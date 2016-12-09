@@ -2689,9 +2689,9 @@ tester "Figer la largeur du volet du contenu" ?(Recommandé)</value>
     <value>Conserver le niveau de zoom pour le volet du zoom</value>
   </data>
   <data name="ProjectView_FillEmptyPagesInGaps" xml:space="preserve">
-    <value>Pages vides remplies dans les intervales</value>
+    <value>Pages vides complétées</value>
   </data>
   <data name="ProjectView_NoGapInPages" xml:space="preserve">
-    <value>Fin d’intervales trouvés dans les pages</value>
+    <value>Aucune lacune trouvée dans les pages</value>
   </data>
 </root>
