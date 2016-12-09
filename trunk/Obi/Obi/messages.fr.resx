@@ -2688,4 +2688,10 @@ tester "Figer la largeur du volet du contenu" ?(Recommandé)</value>
   <data name="ZoomWaveform_PreserveZoomToolTip" xml:space="preserve">
     <value>Conserver le niveau de zoom pour le volet du zoom</value>
   </data>
+  <data name="ProjectView_FillEmptyPagesInGaps" xml:space="preserve">
+    <value>Pages vides remplies dans les intervales</value>
+  </data>
+  <data name="ProjectView_NoGapInPages" xml:space="preserve">
+    <value>Fin d’intervales trouvés dans les pages</value>
+  </data>
 </root>
