@@ -253,7 +253,7 @@
     <value>Longueur maximum des noms de fichiers</value>
   </data>
   <data name="Max._number_of_characters_in_output_filename,_excluding_extension._Default_is_60" xml:space="preserve">
-    <value>Nombre maximum de caractères pour le fichier de destination, sans l’extension. Par défaut 60.</value>
+    <value>Nombre max. de caractères, hors extension, pour le nom de fichier (60/défaut)</value>
   </data>
   <data name="no_primary_export_Caption" xml:space="preserve">
     <value>Aucun répertoire d'exportation</value>
