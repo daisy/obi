@@ -938,7 +938,7 @@ Motif invoqué : {1}</value>
     <value>{0:00}:{1:00}:{2:00}</value>
   </data>
   <data name="export_progress_dialog_title" xml:space="preserve">
-    <value>Exportation du projet en cours...  Veuillez patienter, cela peut prendre quelques minutes</value>
+    <value>Progression de l’exportation</value>
   </data>
   <data name="role_Custom" xml:space="preserve">
     <value>Personnaliser</value>

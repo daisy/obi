@@ -147,7 +147,7 @@
     <value>&amp;Nouveau projet</value>
   </data>
   <data name="mFile_NewProjectFromImportMenuItem.AccessibleName" xml:space="preserve">
-    <value>Nouveau projet par importation Ctrl+Maj+N</value>
+    <value>Nouveau projet par importation Ctrl+Shift+N</value>
   </data>
   <data name="mFile_NewProjectFromImportMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>Ctrl+Shift+N</value>
@@ -192,7 +192,7 @@
     <value>Sauvegard&amp;er le projet</value>
   </data>
   <data name="mFile_SaveProjectAsMenuItem.AccessibleName" xml:space="preserve">
-    <value>Sauvegarder le projet sous... Ctrl+Maj+S</value>
+    <value>Sauvegarder le projet sous... Ctrl+Shift+S</value>
   </data>
   <data name="mFile_SaveProjectAsMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>Ctrl+Shift+S</value>
@@ -306,7 +306,7 @@
     <value>Ajouter une phrase &amp;vide</value>
   </data>
   <data name="mAddEmptyPagesToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>Ajouter des pages vides Ctrl+Maj+B</value>
+    <value>Ajouter des pages vides Ctrl+Shift+B</value>
   </data>
   <data name="mAddEmptyPagesToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>Ctrl+Shift+B</value>
@@ -405,7 +405,7 @@
     <value>Assigner un &amp;rôle</value>
   </data>
   <data name="mPhrases_ClearRoleMenuItem.AccessibleName" xml:space="preserve">
-    <value>Enever le rôle Ctrl+Maj+C</value>
+    <value>Enever le rôle Ctrl+Shift+C</value>
   </data>
   <data name="mPhrases_ClearRoleMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>Ctrl+Shift+C</value>
@@ -430,7 +430,7 @@
     <value>237, 6</value>
   </data>
   <data name="mPhrases_ApplyPhraseDetectionMenuItem.AccessibleName" xml:space="preserve">
-    <value>Élément sélectionné Ctrl+Maj+P</value>
+    <value>Élément sélectionné Ctrl+Shift+P</value>
   </data>
   <data name="mPhrases_ApplyPhraseDetectionMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>Ctrl+Shift+P</value>
@@ -631,7 +631,7 @@
     <value>Coller ava&amp;nt</value>
   </data>
   <data name="mPasteInsideToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>Coller dans Ctrl+Maj+V</value>
+    <value>Coller dans Ctrl+Shift+V</value>
   </data>
   <data name="mPasteInsideToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>Ctrl+Shift+V</value>
@@ -700,7 +700,7 @@
     <value>Recherche en a&amp;vant</value>
   </data>
   <data name="mFindPreviousToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>Recherche en arrière Maj+F3</value>
+    <value>Recherche en arrière Shift+F3</value>
   </data>
   <data name="mFindPreviousToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>Shift+F3</value>
@@ -925,10 +925,10 @@
     <value>Ta&amp;ille normale</value>
   </data>
   <data name="mView_AudioZoomInMenuItem.AccessibleName" xml:space="preserve">
-    <value>Zoomer l'audio Ctrl+Alt+Maj+plus</value>
+    <value>Zoomer l'audio Ctrl+Alt+Shift+plus</value>
   </data>
   <data name="mView_AudioZoomInMenuItem.ShortcutKeyDisplayString" xml:space="preserve">
-    <value>Ctrl+Alt+Maj++</value>
+    <value>Ctrl+Alt+Shift++</value>
   </data>
   <data name="mView_AudioZoomInMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>Ctrl+Alt+Shift+Oemplus</value>
@@ -943,7 +943,7 @@
     <value>Dézoomer l'audio</value>
   </data>
   <data name="mView_AudioZoomOutMenuItem.ShortcutKeyDisplayString" xml:space="preserve">
-    <value>Ctrl+Alt+Maj+-</value>
+    <value>Ctrl+Alt+Shift+-</value>
   </data>
   <data name="mView_AudioZoomOutMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>Ctrl+Alt+Shift+OemMinus</value>
@@ -955,7 +955,7 @@
     <value>&amp;Dézommer l'audio</value>
   </data>
   <data name="mView_ResetAudioSizeMenuItem.AccessibleName" xml:space="preserve">
-    <value>Taille audio normale Ctrl+Alt+Maj+0</value>
+    <value>Taille audio normale Ctrl+Alt+Shift+0</value>
   </data>
   <data name="mView_ResetAudioSizeMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>Ctrl+Alt+Shift+0</value>
@@ -1030,7 +1030,7 @@
     <value>&amp;Ajouter une section</value>
   </data>
   <data name="mAddSubsectionToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>Ajouter une sous-section Ctrl+Maj+H</value>
+    <value>Ajouter une sous-section Ctrl+Shift+H</value>
   </data>
   <data name="mAddSubsectionToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>Ctrl+Shift+H</value>
@@ -1069,7 +1069,7 @@
     <value>276, 6</value>
   </data>
   <data name="mDecreaseSectionLevelToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>Diminuer le niveau de section Ctrl+Maj+Gauche</value>
+    <value>Diminuer le niveau de section Ctrl+Shift+Gauche</value>
   </data>
   <data name="mDecreaseSectionLevelToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>Ctrl+Shift+Left</value>
@@ -1081,7 +1081,7 @@
     <value>&amp;Diminuer le niveau de section</value>
   </data>
   <data name="mIncreaseSectionLevelToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>Augmenter le niveau de section Ctrl+Maj+Droite</value>
+    <value>Augmenter le niveau de section Ctrl+Shift+Droite</value>
   </data>
   <data name="mIncreaseSectionLevelToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>Ctrl+Shift+Right</value>
@@ -1093,7 +1093,7 @@
     <value>Au&amp;gmenter le niveau de section</value>
   </data>
   <data name="mSplitSectionToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>Fractionner la section Ctrl+Maj+Q</value>
+    <value>Fractionner la section Ctrl+Shift+Q</value>
   </data>
   <data name="mSplitSectionToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>Ctrl+Shift+Q</value>
@@ -1318,7 +1318,7 @@
     <value>Stan&amp;dard</value>
   </data>
   <data name="mPhrases_AssignRole_HeadingMenuItem.AccessibleName" xml:space="preserve">
-    <value>Titre Ctrl+Maj+D</value>
+    <value>Titre Ctrl+Shift+D</value>
   </data>
   <data name="mPhrases_AssignRole_HeadingMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>Ctrl+Shift+D</value>
@@ -1330,7 +1330,7 @@
     <value>&amp;Titre</value>
   </data>
   <data name="mPhrases_AssignRole_PageMenuItem.AccessibleName" xml:space="preserve">
-    <value>Page Ctrl+Maj+G</value>
+    <value>Page Ctrl+Shift+G</value>
   </data>
   <data name="mPhrases_AssignRole_PageMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>Ctrl+Shift+G</value>
@@ -1342,7 +1342,7 @@
     <value>&amp;Page</value>
   </data>
   <data name="mPhrases_AssignRole_SilenceMenuItem.AccessibleName" xml:space="preserve">
-    <value>Silence Ctrl+Maj+E</value>
+    <value>Silence Ctrl+Shift+E</value>
   </data>
   <data name="mPhrases_AssignRole_SilenceMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>Ctrl+Shift+E</value>
@@ -1411,7 +1411,7 @@
     <value>Phrase ÀFAIRE &amp;suivante</value>
   </data>
   <data name="mPreviousTODOPhraseToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>Phrase ÀFAIRE précédente Ctrl+Maj+F9</value>
+    <value>Phrase ÀFAIRE précédente Ctrl+Shift+F9</value>
   </data>
   <data name="mPreviousTODOPhraseToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>Ctrl+Shift+F9</value>
@@ -1456,7 +1456,7 @@
     <value>&amp;Lecture</value>
   </data>
   <data name="mPlayAllToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>Lire tout Ctrl+Maj+Espace</value>
+    <value>Lire tout Ctrl+Shift+Space</value>
   </data>
   <data name="mPlayAllToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>Ctrl+Shift+Space</value>
@@ -1468,10 +1468,10 @@
     <value>Lire &amp;tout</value>
   </data>
   <data name="mPlaySelectionToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>Lire la sélection Espace</value>
+    <value>Lire la sélection Space</value>
   </data>
   <data name="mPlaySelectionToolStripMenuItem.ShortcutKeyDisplayString" xml:space="preserve">
-    <value>Espace</value>
+    <value>Space</value>
   </data>
   <data name="mPlaySelectionToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>208, 22</value>
@@ -1498,10 +1498,10 @@
     <value>Lire le titre de la section</value>
   </data>
   <data name="mPauseToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>Pause Espace</value>
+    <value>Pause Space</value>
   </data>
   <data name="mPauseToolStripMenuItem.ShortcutKeyDisplayString" xml:space="preserve">
-    <value>Espace</value>
+    <value>Space</value>
   </data>
   <data name="mPauseToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>176, 22</value>
@@ -1510,10 +1510,10 @@
     <value>&amp;Pause</value>
   </data>
   <data name="mResumeToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>Reprendre Espace</value>
+    <value>Reprendre Space</value>
   </data>
   <data name="mResumeToolStripMenuItem.ShortcutKeyDisplayString" xml:space="preserve">
-    <value>Espace</value>
+    <value>Space</value>
   </data>
   <data name="mResumeToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>176, 22</value>
@@ -1522,7 +1522,7 @@
     <value>Re&amp;prendre</value>
   </data>
   <data name="mStopToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>Arrét Ctrl+Espace</value>
+    <value>Arrét Ctrl+Space</value>
   </data>
   <data name="mStopToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>Ctrl+Space</value>
