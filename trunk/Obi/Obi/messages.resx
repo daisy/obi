@@ -2953,4 +2953,7 @@ Error text: {1}</value>
   <data name="ZoomWaveform_PreserveZoomToolTip" xml:space="preserve">
     <value>Preserve zoom for the zoom panel</value>
   </data>
+  <data name="Rollback_Disabled" xml:space="preserve">
+    <value>Cleanup rollback is disabled. To use this functionality, please uncheck the checkbox Disable rollback for cleanup in project preferences, and use cleanup command again.</value>
+  </data>
 </root>

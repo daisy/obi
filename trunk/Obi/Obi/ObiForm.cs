@@ -1312,10 +1312,16 @@ namespace Obi
             public void CleanUpRollBack()
             {
                 if (!Directory.Exists(mSession.Presentation.DataProviderManager.DataFileDirectoryFullPath))
-                {
+                {       
                     MessageBox.Show(Localizer.Message("Rollback_DataDirectory_Missing"), Localizer.Message("Caption_Information"), MessageBoxButtons.OK, MessageBoxIcon.Information);
                     return;
                 }
+
+                if (mSettings.Project_DisableRollBackForCleanUp)
+                    {
+                        MessageBox.Show(Localizer.Message("Rollback_Disabled"), Localizer.Message("Caption_Information"), MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    return ;
+                    }
 
                 string deleteDirectoryPath = Path.Combine(mSession.Presentation.DataProviderManager.DataFileDirectoryFullPath,
                     m_CleanUpDeleteDirectoryName);
