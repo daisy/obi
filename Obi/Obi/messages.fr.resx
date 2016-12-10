@@ -987,7 +987,7 @@ Motif invoqué : {1}</value>
     <value>Saisie incorrecte</value>
   </data>
   <data name="save_as_new_directory_name" xml:space="preserve">
-    <value>Copie de {0}</value>
+    <value>{0}Copie de</value>
   </data>
   <data name="cannot_use_project_path" xml:space="preserve">
     <value>Impossible d'utiliser l'emplacement sélectionné "{0}" pour sauvegarder: {1}</value>

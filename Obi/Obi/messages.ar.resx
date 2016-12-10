@@ -984,7 +984,7 @@
     <value>داخل غير سليم</value>
   </data>
   <data name="save_as_new_directory_name" xml:space="preserve">
-    <value>نسخ {0}</value>
+    <value>{0}نسخ </value>
   </data>
   <data name="cannot_use_project_path" xml:space="preserve">
     <value>لا يمكن استخدام الموقع المختار {0} لحفظ: {1}</value>
