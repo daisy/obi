@@ -1232,7 +1232,7 @@ Error text: {1}</value>
     <value>Ei yhtään kappaletta näytössä</value>
   </data>
   <data name="Caption_Information" xml:space="preserve">
-    <value>Tiedot julkaisuun (DTB) liittyvistä oikeuksista. (Vertaa dtb:sourceRights.)</value>
+    <value>Tiedot</value>
   </data>
   <data name="RecordingResumePhrasesDeleted" xml:space="preserve">
     <value>Keskeytettyä lausetta ei löydy! Äänitys alkaa nykyisestä valinnasta.</value>
