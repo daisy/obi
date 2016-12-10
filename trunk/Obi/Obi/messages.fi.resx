@@ -2686,4 +2686,7 @@ Error text: {1}</value>
   <data name="ZoomWaveform_PreserveZoomToolTip" xml:space="preserve">
     <value>Säilytä zoomausasetus zoomauspaneliin</value>
   </data>
+  <data name="Rollback_Disabled" xml:space="preserve">
+    <value>Siistiminen Palautus on poistettu käytöstä. Salli alkaen projekti esiasetukset.</value>
+  </data>
 </root>
