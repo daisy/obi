@@ -2689,4 +2689,7 @@ Error text: {1}</value>
   <data name="ZoomWaveform_PreserveZoomToolTip" xml:space="preserve">
     <value>Preservar zoom para o painel do zoom</value>
   </data>
+  <data name="Rollback_Disabled" xml:space="preserve">
+    <value>Depuração Descartagem está desabilitado. Ativar a partir de projeto preferências.</value>
+  </data>
 </root>

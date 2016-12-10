@@ -2685,4 +2685,7 @@ Texto de error: {1}</value>
   <data name="ZoomWaveform_PreserveZoomToolTip" xml:space="preserve">
     <value>Preservar el zoom del panel zoom</value>
   </data>
+  <data name="Rollback_Disabled" xml:space="preserve">
+    <value>CLimpieza Revertir está desactivado.Habilitar desde proyecto preferencias.</value>
+  </data>
 </root>
