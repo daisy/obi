@@ -986,7 +986,7 @@ Error text: {1}</value>
     <value>essa entrada não é válida</value>
   </data>
   <data name="save_as_new_directory_name" xml:space="preserve">
-    <value>copiar {0}</value>
+    <value>{0}copiar</value>
   </data>
   <data name="cannot_use_project_path" xml:space="preserve">
     <value>Impossível usar a localização selecionada "{0}" para guardar: {1}</value>

@@ -1582,7 +1582,7 @@
     <value>267, 22</value>
   </data>
   <data name="mStartMonitoringToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;Iniciar monitoração Ctrl+R</value>
+    <value>&amp;Iniciar monitoração</value>
   </data>
   <data name="mStartRecordingToolStripMenuItem.AccessibleName" xml:space="preserve">
     <value>Iniciar gravação Ctrl+R</value>

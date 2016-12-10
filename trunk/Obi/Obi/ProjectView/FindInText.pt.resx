@@ -126,13 +126,13 @@
   </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="mString.Location" type="System.Drawing.Point, System.Drawing">
-    <value>42, 4</value>
+    <value>62, 4</value>
   </data>
   <data name="mString.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 4, 4, 4</value>
   </data>
   <data name="mString.Size" type="System.Drawing.Size, System.Drawing">
-    <value>299, 22</value>
+    <value>279, 22</value>
   </data>
   <assembly alias="mscorlib" name="mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="mString.TabIndex" type="System.Int32, mscorlib">

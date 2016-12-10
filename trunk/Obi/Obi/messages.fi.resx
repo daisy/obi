@@ -215,7 +215,7 @@ Seurauksena, että nyt tehdyt asetusmuutokset eivät tallentuneet.
     <value>&amp;Äänitys</value>
   </data>
   <data name="obi_filter" xml:space="preserve">
-    <value>Obi projektitiedosto  (*.oobi)|*.obi|Any file|*.*</value>
+    <value>Obi projektitiedosto  (*.obi)|*.obi|Any file|*.*</value>
   </data>
   <data name="report_delete_error" xml:space="preserve">
     <value>Virhe poistettaessa tiedostoa {0}. ({1})</value>

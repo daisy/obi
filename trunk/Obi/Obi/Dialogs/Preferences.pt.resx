@@ -2340,7 +2340,7 @@
     <value>Silêncio guia (Deteção de frases)</value>
   </data>
   <data name="m_cbOperation.Items4" xml:space="preserve">
-    <value>Valor mínimo (Deteção de frases(</value>
+    <value>Valor mínimo (Deteção de frases)</value>
   </data>
   <data name="m_cbOperation.Items5" xml:space="preserve">
     <value>Intervalo (Duração de frases)</value>
