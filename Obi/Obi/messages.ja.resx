@@ -921,7 +921,7 @@
     <value>見出しは出力されません</value>
   </data>
   <data name="default_export_dirname" xml:space="preserve">
-    <value>{0}DAISY3 出力</value>
+    <value>{0}DAISY3 Export</value>
   </data>
   <data name="ObiForm_PipelineNotFound" xml:space="preserve">
     <value>{0}にPipelineスクリプトが見つかりません。関係する機能が動かない可能性があります</value>
@@ -1210,7 +1210,7 @@
     <value>バックアップファイルの保存でエラー！このメッセージが何度も出るようであれば、設定で自動保存を無効にして、バグを報告してください。</value>
   </data>
   <data name="Default_DAISY2_02export_dirname" xml:space="preserve">
-    <value>{0}DAISY 2.02 出力</value>
+    <value>{0}DAISY 2.02 export</value>
   </data>
   <data name="GoToPageOrPhrase_Title" xml:space="preserve">
     <value>…へ移動</value>

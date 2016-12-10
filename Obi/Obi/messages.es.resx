@@ -918,7 +918,7 @@ Texto de error: {1}</value>
     <value>La sección no se exportará</value>
   </data>
   <data name="default_export_dirname" xml:space="preserve">
-    <value>{0}Exportar DAISY3 </value>
+    <value>{0}DAISY3 Export</value>
   </data>
   <data name="ObiForm_PipelineNotFound" xml:space="preserve">
     <value>Imposible encontrar scripts del pipeline en {0}. Las características que dependen de él no funcionarán.</value>
@@ -1207,7 +1207,7 @@ Texto de error: {1}</value>
     <value>¡Fallo al guardar el archivo de copia de seguridad! Si este mensaje sigue apareciendo, puede desactivar la grabación automática en las preferencias e informar del problema.</value>
   </data>
   <data name="Default_DAISY2_02export_dirname" xml:space="preserve">
-    <value>Exportar {0}DAISY 2.02</value>
+    <value>{0}DAISY 2.02 export</value>
   </data>
   <data name="GoToPageOrPhrase_Title" xml:space="preserve">
     <value>Ir a...</value>
@@ -2362,7 +2362,7 @@ Texto de error: {1}</value>
     <value>¿Quiere activar tambien "Fijar el ancho de la vista contenido? (Recomendado)</value>
   </data>
   <data name="default_EpubExport_dirname" xml:space="preserve">
-    <value>{0}Exportar Epub3</value>
+    <value>{0}Epub3 Export</value>
   </data>
   <data name="progress_EpubValidating" xml:space="preserve">
     <value>Validador Epub ejecutandose. Espere por favor…</value>
@@ -2536,7 +2536,7 @@ Texto de error: {1}</value>
     <value>Seleccionar el final de la frase</value>
   </data>
   <data name="default_XHTMLExport_dirname" xml:space="preserve">
-    <value>Exportar {0}Xhtml</value>
+    <value>{0}Xhtml Export</value>
   </data>
   <data name="Preferences_ProfileExists" xml:space="preserve">
     <value>Ya existe un perfil con este nombre. ¿Quiere sobreescribirlo?</value>

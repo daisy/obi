@@ -1211,7 +1211,7 @@ Error text: {1}</value>
     <value>Virhe tallennettaessa backup tiedostoon! Jos tämä ilmoitus tulee uudelleen ja uudelleen, voit poistaa automaattitallennuksen asetuksista ja raportoida tästä virheestä.</value>
   </data>
   <data name="Default_DAISY2_02export_dirname" xml:space="preserve">
-    <value>DAISY 2.02 expoxt-toiminto</value>
+    <value>{0}DAISY 2.02 export</value>
   </data>
   <data name="GoToPageOrPhrase_Title" xml:space="preserve">
     <value>Siirry...</value>
@@ -2366,7 +2366,7 @@ Error text: {1}</value>
     <value>Haluatko suorittaa samalla tarkistuksen ”Korjaa sisältönäkymän leveys”? (Suositeltavaa)</value>
   </data>
   <data name="default_EpubExport_dirname" xml:space="preserve">
-    <value>{0} Epub3 tallennus</value>
+    <value>{0}Epub3 Export</value>
   </data>
   <data name="progress_EpubValidating" xml:space="preserve">
     <value>Epub oikeellisuuden tarkistus meneillään. Odota...</value>
