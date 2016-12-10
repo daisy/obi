@@ -923,7 +923,7 @@ Motif invoqué : {1}</value>
     <value>La section ne sera pas exportée</value>
   </data>
   <data name="default_export_dirname" xml:space="preserve">
-    <value>Exportation DAISY3 de {0}</value>
+    <value>{0}DAISY3 Export</value>
   </data>
   <data name="ObiForm_PipelineNotFound" xml:space="preserve">
     <value>Impossible de trouver les scripts pipeline à {0}. Les fonctions qui en découlent ne pourront être exécutées.</value>
@@ -1212,7 +1212,7 @@ Motif invoqué : {1}</value>
     <value>Erreur pendant la création du jeu de sauvegarde! Si ce message s'affiche régulièrement, vous pouvez désactiver la fonction sauvegarde automatique dans les préférences et remonter ce bug.</value>
   </data>
   <data name="Default_DAISY2_02export_dirname" xml:space="preserve">
-    <value>Exportation de {0} vers un format DAISY 2.02</value>
+    <value>{0}DAISY 2.02 export</value>
   </data>
   <data name="GoToPageOrPhrase_Title" xml:space="preserve">
     <value>Aller à...</value>
@@ -2368,7 +2368,7 @@ Motif invoqué : {1}</value>
 tester "Figer la largeur du volet du contenu" ?(Recommandé)</value>
   </data>
   <data name="default_EpubExport_dirname" xml:space="preserve">
-    <value>Exportation au format Epub3 de {0}</value>
+    <value>{0}Epub3 Export</value>
   </data>
   <data name="progress_EpubValidating" xml:space="preserve">
     <value>Le validateur Epub Check est en cours d'exécution. Veuillez patienter....</value>
@@ -2539,7 +2539,7 @@ tester "Figer la largeur du volet du contenu" ?(Recommandé)</value>
     <value>Sélectionner la fin de la phrase</value>
   </data>
   <data name="default_XHTMLExport_dirname" xml:space="preserve">
-    <value>Exportation Xhtml de {0}</value>
+    <value>{0}Xhtml Export</value>
   </data>
   <data name="Preferences_ProfileExists" xml:space="preserve">
     <value>Un profil possédant ce nom existe déjà. Voulez-vous le remplacer ?</value>
