@@ -88,13 +88,13 @@ namespace Obi.Dialogs
             m_txtTimeLength.Text = Program.FormatDuration_Long(mNode.Duration);
             m_txtPhraseCount.Text = mNode.PhraseChildCount.ToString();
             m_chkUsed.Checked = mNode.Used;
-            for (ObiNode n = mNode.FirstLeaf; n != null; n = n.FollowingNode)
+            for (ObiNode n = mNode.FirstLeaf; n != null && n.FollowingNode != null; n = n.FollowingNode)
             {
                 if (n is EmptyNode && ((EmptyNode)n).Role_ == EmptyNode.Role.Page)
                 {
                     if (m_txtPagesInSection.Text.Trim() == string.Empty)
                     {
-                        m_txtPagesInSection.Text +=  "#"+((EmptyNode)n).PageNumber.ToString();
+                        m_txtPagesInSection.Text += "#" + ((EmptyNode)n).PageNumber.ToString();
                     }
                     else
                     {
