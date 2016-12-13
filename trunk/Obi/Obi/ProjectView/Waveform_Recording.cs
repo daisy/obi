@@ -1360,9 +1360,9 @@ namespace Obi.ProjectView
             else
             {
                 if (startSelection < endSelection)
-                    g.FillRectangle(Brushes.White, startSelection, 0 + m_TopMargin, endSelection - startSelection, this.WaveformHeight);
+                    g.FillRectangle(new System.Drawing.SolidBrush(this.BackColor), startSelection, 0 + m_TopMargin, endSelection - startSelection, this.WaveformHeight);
                 else
-                    g.FillRectangle(Brushes.White, startSelection, 0 + m_TopMargin, startSelection - endSelection, this.WaveformHeight);
+                    g.FillRectangle(new System.Drawing.SolidBrush(this.BackColor), startSelection, 0 + m_TopMargin, startSelection - endSelection, this.WaveformHeight);
             }
 
             for (int i = startSelection; i <= endSelection; i++)
