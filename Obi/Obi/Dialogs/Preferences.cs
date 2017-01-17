@@ -9,6 +9,7 @@ using System.Windows.Forms;
 using System.Collections;
 using AudioLib;
 using Obi.Audio;
+using System.Linq;
 
 namespace Obi.Dialogs
     {
@@ -42,6 +43,7 @@ namespace Obi.Dialogs
         private List<string> m_FontPermissible; //@fontconfig
       //  private bool m_IsComboBoxExpanded = false;
       //  private bool m_LeaveOnEscape = false;
+        private Dictionary<string, CultureInfo> m_Culture_Dictionary = new Dictionary<string, CultureInfo>();
 
         /// <summary>
         /// Initialize the preferences with the user settings.
@@ -310,8 +312,21 @@ namespace Obi.Dialogs
             {
             mFullNameTextbox.Text = mSettings.UserProfile.Name;
             mOrganizationTextbox.Text = mSettings.UserProfile.Organization;
-            mCultureBox.Items.AddRange ( CultureInfo.GetCultures ( CultureTypes.AllCultures ) );
-            mCultureBox.SelectedItem = mSettings.UserProfile.Culture;
+            CultureInfo[] allCultures = CultureInfo.GetCultures(CultureTypes.AllCultures);
+            foreach (CultureInfo ci in allCultures) 
+            {
+                if (!m_Culture_Dictionary.ContainsKey(ci.DisplayName))
+                {
+                    m_Culture_Dictionary.Add(ci.DisplayName, ci);
+                    mCultureBox.Items.Add(ci.DisplayName);
+                }
+            }
+            //mCultureBox.Items.AddRange ( CultureInfo.GetCultures ( CultureTypes.AllCultures ) );
+          //  mCultureBox.SelectedItem = mSettings.UserProfile.Culture; 
+            //mCultureBox.SelectedItem =  m_Culture_Dictionary.[mSettings.UserProfile.Culture.ToString()]; 
+
+           string mySelectedItemKey = m_Culture_Dictionary.FirstOrDefault(x => x.Value.ToString().Trim() == mSettings.UserProfile.Culture.ToString().Trim()).Key;
+           mCultureBox.SelectedItem = mySelectedItemKey; 
 
             if (CultureInfo.CurrentCulture.Name.Contains("en-"))
             {
@@ -681,13 +696,14 @@ m_cb_ChooseFont.Visible = false;
             mSettings.UserProfile.Name = mFullNameTextbox.Text;
             mSettings.UserProfile.Organization = mOrganizationTextbox.Text;
             bool supportedLanguage = false;
-            if (mCultureBox.SelectedItem.ToString() == "en-US"
-                || IsResourceForLanguageExist(mCultureBox.SelectedItem.ToString()))
+            CultureInfo tempSelectedItem = m_Culture_Dictionary[mCultureBox.SelectedItem.ToString()];
+            if (tempSelectedItem.ToString() == "en-US"
+                || IsResourceForLanguageExist(tempSelectedItem.ToString()))
             //|| mCultureBox.SelectedItem.ToString () == "hi-IN"
             //|| mCultureBox.SelectedItem.ToString () == "fr-FR")
             {
-                if (mSettings.UserProfile.Culture.ToString() != mCultureBox.SelectedItem.ToString()
-                    || mCultureBox.SelectedItem.ToString() != System.Globalization.CultureInfo.CurrentCulture.ToString())
+                if (mSettings.UserProfile.Culture.ToString() != tempSelectedItem.ToString()
+                    || tempSelectedItem.ToString() != System.Globalization.CultureInfo.CurrentCulture.ToString())
                 {
                     MessageBox.Show(Localizer.Message("Preferences_RestartForCultureChange"));
                     supportedLanguage = true;
@@ -699,26 +715,26 @@ m_cb_ChooseFont.Visible = false;
                     mSettings.ObiFontIndex = -1; //@fontconfig
                 }
             }
-            else if (mSettings.UserProfile.Culture.Name != ((CultureInfo)mCultureBox.SelectedItem).Name)
+            else if (mSettings.UserProfile.Culture.Name != (tempSelectedItem.Name))
             {
                 // show this message only if selected culture is different from application's existing culture.
                 MessageBox.Show(string.Format(Localizer.Message("Peferences_GUIDonotSupportCulture"),
-                    mCultureBox.SelectedItem.ToString()));
+                    tempSelectedItem.ToString()));
                 supportedLanguage = false;
             }
-                if (mCultureBox.SelectedItem.ToString() != "zh-CHT" && mCultureBox.SelectedItem.ToString() != "zh-TW"
-                    && mCultureBox.SelectedItem.ToString() != "zh-CHS" && supportedLanguage)
+            if (tempSelectedItem.ToString() != "zh-CHT" && tempSelectedItem.ToString() != "zh-TW"
+                    && tempSelectedItem.ToString() != "zh-CHS" && supportedLanguage)
                 {
-                    mSettings.UserProfile.Culture = (CultureInfo)mCultureBox.SelectedItem;
+                    mSettings.UserProfile.Culture = tempSelectedItem;
                 }
                 else
                 {
-                    if (mCultureBox.SelectedItem.ToString() == "zh-CHT" || mCultureBox.SelectedItem.ToString() == "zh-TW")
+                    if (tempSelectedItem.ToString() == "zh-CHT" || tempSelectedItem.ToString() == "zh-TW")
                     {
                         CultureInfo temp = new CultureInfo("zh-HK");
                         mSettings.UserProfile.Culture = temp;
                     }
-                    else if (mCultureBox.SelectedItem.ToString() == "zh-CHS")
+                    else if (tempSelectedItem.ToString() == "zh-CHS")
                     {
                         CultureInfo temp = new CultureInfo("zh-CN");
                         mSettings.UserProfile.Culture = temp;
