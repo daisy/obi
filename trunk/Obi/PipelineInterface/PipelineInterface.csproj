@@ -125,12 +125,7 @@
     <EmbeddedResource Include="messages.ta.resx">
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="messages.zh-CN.resx">
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="messages.zh-HK.resx">
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
+    <EmbeddedResource Include="messages.zh-Hans.resx" />
     <EmbeddedResource Include="ParameterControls\BaseUserControl.resx">
       <DependentUpon>BaseUserControl.cs</DependentUpon>
       <SubType>Designer</SubType>
@@ -183,13 +178,11 @@
       <DependentUpon>PathBrowserControl.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="ParameterControls\PathBrowserControl.zh-CN.resx">
+    <EmbeddedResource Include="ParameterControls\PathBrowserControl.zh-Hans.resx">
       <DependentUpon>PathBrowserControl.cs</DependentUpon>
-      <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="ParameterControls\PathBrowserControl.zh-HK.resx">
+    <EmbeddedResource Include="ParameterControls\PathBrowserControl.zh-Hant.resx">
       <DependentUpon>PathBrowserControl.cs</DependentUpon>
-      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="ParameterControls\StringControl.ar.resx">
       <DependentUpon>StringControl.cs</DependentUpon>
@@ -259,13 +252,11 @@
       <DependentUpon>PipelineInterfaceForm.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="PipelineInterfaceForm.zh-CN.resx">
+    <EmbeddedResource Include="PipelineInterfaceForm.zh-Hans.resx">
       <DependentUpon>PipelineInterfaceForm.cs</DependentUpon>
-      <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="PipelineInterfaceForm.zh-HK.resx">
+    <EmbeddedResource Include="PipelineInterfaceForm.zh-Hant.resx">
       <DependentUpon>PipelineInterfaceForm.cs</DependentUpon>
-      <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
