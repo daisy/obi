@@ -722,24 +722,24 @@ m_cb_ChooseFont.Visible = false;
                     tempSelectedItem.ToString()));
                 supportedLanguage = false;
             }
-            if (tempSelectedItem.ToString() != "zh-CHT" && tempSelectedItem.ToString() != "zh-TW"
-                    && tempSelectedItem.ToString() != "zh-CHS" && supportedLanguage)
+            if (tempSelectedItem.ToString() != "zh-CHT" && tempSelectedItem.ToString() != "zh-TW" && tempSelectedItem.ToString() != "zh-MO"
+                    && tempSelectedItem.ToString() != "zh-CHS" && tempSelectedItem.ToString() != "zh-SG" && supportedLanguage)
                 {
                     mSettings.UserProfile.Culture = tempSelectedItem;
                 }
-                else
+            else
+            {
+                if (tempSelectedItem.ToString() == "zh-CHT" || tempSelectedItem.ToString() == "zh-TW" || tempSelectedItem.ToString() == "zh-HK" || tempSelectedItem.ToString() == "zh-MO")
                 {
-                    if (tempSelectedItem.ToString() == "zh-CHT" || tempSelectedItem.ToString() == "zh-TW")
-                    {
-                        CultureInfo temp = new CultureInfo("zh-HK");
-                        mSettings.UserProfile.Culture = temp;
-                    }
-                    else if (tempSelectedItem.ToString() == "zh-CHS")
-                    {
-                        CultureInfo temp = new CultureInfo("zh-CN");
-                        mSettings.UserProfile.Culture = temp;
-                    }
+                    CultureInfo temp = new CultureInfo("zh-Hant");
+                    mSettings.UserProfile.Culture = temp;
                 }
+                else if (tempSelectedItem.ToString() == "zh-CHS" || tempSelectedItem.ToString() == "zh-CN" || tempSelectedItem.ToString() != "zh-SG")
+                {
+                    CultureInfo temp = new CultureInfo("zh-Hans");
+                    mSettings.UserProfile.Culture = temp;
+                }
+            }
                 VerifyChangeInLoadedSettings();
             return true;
             }
@@ -747,17 +747,30 @@ m_cb_ChooseFont.Visible = false;
         private bool IsResourceForLanguageExist(string cultureName)
         {
             string cultureDirName = "";
-            if (cultureName != "zh-HK"  && cultureName != "zh-TW" && cultureName != "zh-CHT" && cultureName != "zh-CN" && cultureName!="zh-CHS")
+            if (!cultureName.Contains("zh-Hans") && !cultureName.Contains("zh-Hant") && cultureName != "zh-HK" && cultureName != "zh-TW" && cultureName != "zh-CHT" && cultureName != "zh-MO"
+                && cultureName != "zh-CN" && cultureName != "zh-CHS" && cultureName != "zh-SG")
             {
                 cultureDirName = cultureName.Split('-')[0];
             }
+            else if(cultureName.Contains("zh-Hans") && cultureName.Contains("zh-Hant"))
+            {
+                string []tempcultureDirName = cultureName.Split('-');
+                if (tempcultureDirName.Length > 2)
+                {
+                    cultureDirName = tempcultureDirName[0] + "-" + tempcultureDirName[1];
+                }
+                else
+                {
+                    cultureDirName = cultureName;
+                }
+            }
             else if (cultureName != "zh-CN" && cultureName != "zh-CHS")
             {
-                cultureDirName = "zh-HK";
+                cultureDirName = "zh-Hant";
             }
-            else 
+            else if( cultureName != "zh-HK" && cultureName != "zh-TW" && cultureName != "zh-CHT")
             {
-                cultureDirName = "zh-CN";
+                cultureDirName = "zh-Hans";
             }
                   
             string[] dirList = System.IO.Directory.GetDirectories(System.AppDomain.CurrentDomain.BaseDirectory, cultureDirName, System.IO.SearchOption.TopDirectoryOnly);
