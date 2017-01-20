@@ -1187,6 +1187,9 @@
     <EmbeddedResource Include="UserControls\TextVUMeterPanel.ar.resx">
       <DependentUpon>TextVUMeterPanel.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\TextVUMeterPanel.fr.resx">
+      <DependentUpon>TextVUMeterPanel.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UserControls\TextVUMeterPanel.hi.resx">
       <SubType>Designer</SubType>
       <DependentUpon>TextVUMeterPanel.cs</DependentUpon>
