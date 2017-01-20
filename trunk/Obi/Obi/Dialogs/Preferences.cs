@@ -697,7 +697,7 @@ m_cb_ChooseFont.Visible = false;
             mSettings.UserProfile.Organization = mOrganizationTextbox.Text;
             bool supportedLanguage = false;
             CultureInfo tempSelectedItem = m_Culture_Dictionary[mCultureBox.SelectedItem.ToString()];
-            if (tempSelectedItem.ToString() == "en-US"
+            if (tempSelectedItem.ToString() == "en-US" || tempSelectedItem.ToString() == "en" 
                 || IsResourceForLanguageExist(tempSelectedItem.ToString()))
             //|| mCultureBox.SelectedItem.ToString () == "hi-IN"
             //|| mCultureBox.SelectedItem.ToString () == "fr-FR")
@@ -734,7 +734,7 @@ m_cb_ChooseFont.Visible = false;
                     CultureInfo temp = new CultureInfo("zh-Hant");
                     mSettings.UserProfile.Culture = temp;
                 }
-                else if (tempSelectedItem.ToString() == "zh-CHS" || tempSelectedItem.ToString() == "zh-CN" || tempSelectedItem.ToString() != "zh-SG")
+                else if (tempSelectedItem.ToString() == "zh-CHS" || tempSelectedItem.ToString() == "zh-CN" || tempSelectedItem.ToString() == "zh-SG")
                 {
                     CultureInfo temp = new CultureInfo("zh-Hans");
                     mSettings.UserProfile.Culture = temp;
