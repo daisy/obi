@@ -40,36 +40,58 @@ namespace Obi.Dialogs
             }
             if (m_ProfileSelectedIndex == 0)
             {
+                if(m_ProfileDescription_WebBrowser.Document.GetElementById("Basic")!= null)
                 m_ProfileDescription_WebBrowser.DocumentText = m_ProfileDescription_WebBrowser.Document.GetElementById("Basic").InnerHtml;
             }
             else  if (m_ProfileSelectedIndex == 1)
             {
-                m_ProfileDescription_WebBrowser.DocumentText = m_ProfileDescription_WebBrowser.Document.GetElementById("Intermidate").InnerHtml;
+                if (m_ProfileDescription_WebBrowser.Document.GetElementById("Intermidate") != null)
+                {
+                    m_ProfileDescription_WebBrowser.DocumentText = m_ProfileDescription_WebBrowser.Document.GetElementById("Intermidate").InnerHtml;
+                }
             }
             else if (m_ProfileSelectedIndex == 2)
             {
-                m_ProfileDescription_WebBrowser.DocumentText = m_ProfileDescription_WebBrowser.Document.GetElementById("Advance").InnerHtml;
+                if (m_ProfileDescription_WebBrowser.Document.GetElementById("Advance") != null)
+                {
+                    m_ProfileDescription_WebBrowser.DocumentText = m_ProfileDescription_WebBrowser.Document.GetElementById("Advance").InnerHtml;
+                }
             }
             
             else if (m_ProfileSelectedIndex == 3)
             {
-                m_ProfileDescription_WebBrowser.DocumentText = m_ProfileDescription_WebBrowser.Document.GetElementById("Profile2").InnerHtml;
+                if (m_ProfileDescription_WebBrowser.Document.GetElementById("Profile2")!= null)
+                {
+                    m_ProfileDescription_WebBrowser.DocumentText = m_ProfileDescription_WebBrowser.Document.GetElementById("Profile2").InnerHtml;
+                }
             }
             else if (m_ProfileSelectedIndex == 4)
             {
-                m_ProfileDescription_WebBrowser.DocumentText = m_ProfileDescription_WebBrowser.Document.GetElementById("VA-Editing").InnerHtml;
+                if (m_ProfileDescription_WebBrowser.Document.GetElementById("VA-Editing") != null)
+                {
+                    m_ProfileDescription_WebBrowser.DocumentText = m_ProfileDescription_WebBrowser.Document.GetElementById("VA-Editing").InnerHtml;
+                }
             }
             else if (m_ProfileSelectedIndex == 5)
             {
-                m_ProfileDescription_WebBrowser.DocumentText = m_ProfileDescription_WebBrowser.Document.GetElementById("VA-Insert").InnerHtml;
+                if (m_ProfileDescription_WebBrowser.Document.GetElementById("VA-Insert") != null)
+                {
+                    m_ProfileDescription_WebBrowser.DocumentText = m_ProfileDescription_WebBrowser.Document.GetElementById("VA-Insert").InnerHtml;
+                }
             }
             else if (m_ProfileSelectedIndex == 6)
             {
-                m_ProfileDescription_WebBrowser.DocumentText = m_ProfileDescription_WebBrowser.Document.GetElementById("VA-Overwrite").InnerHtml;
+                if (m_ProfileDescription_WebBrowser.Document.GetElementById("VA-Overwrite") != null)
+                {
+                    m_ProfileDescription_WebBrowser.DocumentText = m_ProfileDescription_WebBrowser.Document.GetElementById("VA-Overwrite").InnerHtml;
+                }
             }
             else
             {
-                m_ProfileDescription_WebBrowser.DocumentText = m_ProfileDescription_WebBrowser.Document.GetElementById("Custom").InnerHtml;
+                if (m_ProfileDescription_WebBrowser.Document.GetElementById("Custom") != null)
+                {
+                    m_ProfileDescription_WebBrowser.DocumentText = m_ProfileDescription_WebBrowser.Document.GetElementById("Custom").InnerHtml;
+                }
             }
         }
 
