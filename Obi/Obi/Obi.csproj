@@ -564,6 +564,18 @@
       <DependentUpon>ZoomWaveform.cs</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Audio\PeakMeterForm.pt.resx">
+      <DependentUpon>PeakMeterForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Audio\PeakMeterForm.ta.resx">
+      <DependentUpon>PeakMeterForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Audio\PeakMeterForm.zh-Hans.resx">
+      <DependentUpon>PeakMeterForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Audio\PeakMeterForm.zh-Hant.resx">
+      <DependentUpon>PeakMeterForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\About.zh-Hans.resx">
       <DependentUpon>About.cs</DependentUpon>
     </EmbeddedResource>
@@ -1160,14 +1172,26 @@
       <DependentUpon>GraphicalVuMeter.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\RecordingToolBarForm.ar.resx">
+      <DependentUpon>RecordingToolBarForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\RecordingToolBarForm.pt.resx">
+      <DependentUpon>RecordingToolBarForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UserControls\RecordingToolBarForm.zh-Hans.resx">
       <DependentUpon>RecordingToolBarForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\RecordingToolBarForm.zh-Hant.resx">
       <DependentUpon>RecordingToolBarForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\TextVUMeterPanel.ar.resx">
+      <DependentUpon>TextVUMeterPanel.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UserControls\TextVUMeterPanel.hi.resx">
       <SubType>Designer</SubType>
+      <DependentUpon>TextVUMeterPanel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\TextVUMeterPanel.pt.resx">
       <DependentUpon>TextVUMeterPanel.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\TextVUMeterPanel.resx">
