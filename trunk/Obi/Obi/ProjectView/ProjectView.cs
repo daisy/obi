@@ -842,7 +842,7 @@ namespace Obi.ProjectView
                         DialogResult dialogResult = DialogResult.None;
                         if (this.ObiForm.Settings.Project_DisplayWarningsForEditOperations)
                         {
-                            dialogResult = MessageBox.Show(Localizer.Message("ConfirmSectionCut"), Localizer.Message("Caption_Warning"), MessageBoxButtons.OKCancel,MessageBoxIcon.Warning);
+                            dialogResult = MessageBox.Show(Localizer.Message("ConfirmSectionCut"), Localizer.Message("Caption_Warning"), MessageBoxButtons.OKCancel,MessageBoxIcon.Warning,MessageBoxDefaultButton.Button2);
                         }
                         if (dialogResult == DialogResult.Cancel) return;
 
@@ -910,7 +910,7 @@ namespace Obi.ProjectView
                     DialogResult dialogResult = DialogResult.None;
                     if (this.ObiForm.Settings.Project_DisplayWarningsForEditOperations)
                     {
-                        dialogResult = MessageBox.Show(Localizer.Message("ConfirmSectionDelete"), Localizer.Message("Caption_Warning"), MessageBoxButtons.OKCancel,MessageBoxIcon.Warning);
+                        dialogResult = MessageBox.Show(Localizer.Message("ConfirmSectionDelete"), Localizer.Message("Caption_Warning"), MessageBoxButtons.OKCancel,MessageBoxIcon.Warning,MessageBoxDefaultButton.Button2);
                     }
                     if (dialogResult == DialogResult.Cancel) return;
                     mPresentation.Do(new Commands.Node.Delete(this, mTOCView.Selection.Section,
@@ -924,7 +924,7 @@ namespace Obi.ProjectView
                         DialogResult dialogResult = DialogResult.None;
                         if (this.ObiForm.Settings.Project_DisplayWarningsForEditOperations)
                         {
-                            dialogResult = MessageBox.Show(Localizer.Message("ConfirmSectionDelete"), Localizer.Message("Caption_Warning"), MessageBoxButtons.OKCancel,MessageBoxIcon.Warning);
+                            dialogResult = MessageBox.Show(Localizer.Message("ConfirmSectionDelete"), Localizer.Message("Caption_Warning"), MessageBoxButtons.OKCancel,MessageBoxIcon.Warning,MessageBoxDefaultButton.Button2);
                         }
                         if (dialogResult == DialogResult.Cancel) return;
 
