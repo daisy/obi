@@ -1780,7 +1780,7 @@
     <value>207, 22</value>
   </data>
   <data name="mNextPhraseToolStripMenuItem.Text" xml:space="preserve">
-    <value>Nächste Ph&amp;rase</value>
+    <value>Nächste Ph&amp;rase </value>
   </data>
   <data name="mNextPageToolStripMenuItem.AccessibleName" xml:space="preserve">
     <value>Nächste Seite Alt+BildRunter</value>
