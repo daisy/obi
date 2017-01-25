@@ -2339,7 +2339,7 @@ Fehlertext: {1}</value>
     <value>Nachfolgende Phrasen nach Aufnahme löschen</value>
   </data>
   <data name="ProfileDesc_file_name" xml:space="preserve">
-    <value>ProfileDesc_en.html</value>
+    <value>ProfileDesc_de.html</value>
   </data>
   <data name="Preferences_Level_ComboBox_Profile_1" xml:space="preserve">
     <value>Profil 1 (VA)</value>
