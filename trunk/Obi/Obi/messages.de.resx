@@ -2636,60 +2636,60 @@ Fehlertext: {1}</value>
     <value>Wechseln zu {0}</value>
   </data>
   <data name="SaveAsEmptyProjectFileName" xml:space="preserve">
-    <value>Project file name cannot be empty</value>
+    <value>Projektname darf nicht leer sein</value>
   </data>
   <data name="KeyS_PlayOnNavigate" xml:space="preserve">
-    <value>Play on navigate will be activated</value>
+    <value>Wiedergabe bei Navigation wird aktiviert</value>
   </data>
   <data name="Profile_Audio" xml:space="preserve">
     <value>Audio:</value>
   </data>
   <data name="Audio_SelectLastPhrasePlayed" xml:space="preserve">
-    <value>After playback, select the last phrase played</value>
+    <value>Nach Wiedergabe letzte abgespielte Phrase anzeigen</value>
   </data>
   <data name="Audio_ShowSelectionTimeInTransportBar" xml:space="preserve">
-    <value>Show cursor time in Transport Bar in stop state</value>
+    <value>Nach Stoppen Zeit in Transportleiste anzeigen</value>
   </data>
   <data name="ZoomWaveform_PreserveZoom" xml:space="preserve">
-    <value>Preserve zoom</value>
+    <value>Größe speichern</value>
   </data>
   <data name="Project_ShowAdvancePropertiesInPropertiesDialogs" xml:space="preserve">
-    <value>Show advance properties in properties dialog</value>
+    <value>Erweiterte Einstellungen im Einstellungen-Dialog anzeigen</value>
   </data>
   <data name="SplitPhrases_ErrorSilence" xml:space="preserve">
-    <value>Do you want to split the phrases at position of error silence?</value>
+    <value>Phrase trennen bei Fehler-Stille?</value>
   </data>
   <data name="Caption_SplitPhrase" xml:space="preserve">
-    <value>Split the Phrase?</value>
+    <value>Pharse trennen?</value>
   </data>
   <data name="NumberOfErrorPhrase" xml:space="preserve">
-    <value>Number of error phrases found: </value>
+    <value>Anzahl fehlerhafter Phrasen:</value>
   </data>
   <data name="Project_DisplayWarningsForEditOperations" xml:space="preserve">
-    <value>Warn before section manipulation</value>
+    <value>Warnung vor Sektionen-Änderungen</value>
   </data>
   <data name="ConfirmSectionDelete" xml:space="preserve">
-    <value>You are about to delete section. Do you want to continue?</value>
+    <value>Sie wollen eine Sektion löschen. Sind Sie sicher?</value>
   </data>
   <data name="ConfirmSectionRename" xml:space="preserve">
-    <value>You are about to rename section. Do you want to continue?</value>
+    <value>Sie wollen eine Sektion unbenennen. Sind Sie sicher?</value>
   </data>
   <data name="ConfirmSectionCut" xml:space="preserve">
-    <value>You are about to cut section. Do you want to continue?</value>
+    <value>Sie wollen eine Sektion ausschneiden. Sind Sie sicher?</value>
   </data>
   <data name="Audio_RecordInFirstEmptyPhraseWithRecordSectionCommand" xml:space="preserve">
-    <value>Record in first empty phrase with record section command</value>
+    <value>Bei Aufnahme in Sektion in erster leerer Phrase aufnehmen</value>
   </data>
   <data name="ZoomWaveform_PreserveZoomToolTip" xml:space="preserve">
-    <value>Preserve zoom for the zoom panel</value>
+    <value>Verhindert Größenänderung</value>
   </data>
   <data name="Rollback_Disabled" xml:space="preserve">
-    <value>Cleanup rollback is disabled. To use this functionality, please uncheck the checkbox Disable rollback for cleanup in project preferences, and use cleanup command again.</value>
+    <value>Rückgängigmachen der Bereinigung ist gesperrt. Sie müssen zunächst "Rückgängigmachen verhindern" in den Projekteinstellungen deaktivieren und die Bereinigung erneut starten.</value>
   </data>
   <data name="ProjectView_FillEmptyPagesInGaps" xml:space="preserve">
-    <value>Empty pages filled in the gaps</value>
+    <value>Leere Seiten für fehlende Seitenzahlen eingefügt.</value>
   </data>
   <data name="ProjectView_NoGapInPages" xml:space="preserve">
-    <value>No gaps found in pages</value>
+    <value>Keine fehlenden Seitenzahlen gefunden</value>
   </data>
 </root>

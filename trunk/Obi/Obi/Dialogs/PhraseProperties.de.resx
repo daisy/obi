@@ -117,16 +117,6 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="m_lblParentSection.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
-  <data name="m_lblParentSection.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
-    <value>AssociateIndex</value>
-  </data>
-  <data name="m_lblParentSection.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="m_lblParentSection.Location" type="System.Drawing.Point, System.Drawing">
     <value>8, 17</value>
@@ -140,41 +130,8 @@
   <data name="m_txtParentSection.AccessibleName" xml:space="preserve">
     <value> Titel der Eltern-Sektion:</value>
   </data>
-  <data name="m_txtParentSection.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
-  <data name="m_txtParentSection.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
-    <value>AssociateIndex</value>
-  </data>
-  <data name="m_txtParentSection.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
-  <data name="m_lblLocationInsideSection.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
-  <data name="m_lblLocationInsideSection.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
-    <value>AssociateIndex</value>
-  </data>
-  <data name="m_lblLocationInsideSection.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
-  <data name="m_txtLocationInsideSection.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
-  <data name="m_txtLocationInsideSection.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
-    <value>AssociateIndex</value>
-  </data>
-  <data name="m_txtLocationInsideSection.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
-  <data name="m_lblPhraseRole.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
-  <data name="m_lblPhraseRole.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
-    <value>AssociateIndex</value>
-  </data>
-  <data name="m_lblPhraseRole.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
+  <data name="m_lblLocationInsideSection.AccessibleName" xml:space="preserve">
+    <value>Position:</value>
   </data>
   <data name="m_lblPhraseRole.Location" type="System.Drawing.Point, System.Drawing">
     <value>8, 280</value>
@@ -188,33 +145,11 @@
   <data name="m_comboPhraseRole.AccessibleName" xml:space="preserve">
     <value>Eigenschaft der Phrase:</value>
   </data>
-  <data name="m_comboPhraseRole.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
-  <data name="m_comboPhraseRole.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
-    <value>AssociateIndex</value>
-  </data>
-  <data name="m_comboPhraseRole.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
   <data name="m_comboPhraseRole.Location" type="System.Drawing.Point, System.Drawing">
     <value>234, 313</value>
   </data>
-  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="m_comboPhraseRole.ShowHelp" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
   <data name="m_comboPhraseRole.Size" type="System.Drawing.Size, System.Drawing">
     <value>282, 24</value>
-  </data>
-  <data name="m_lblCustomClassName.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
-  <data name="m_lblCustomClassName.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
-    <value>AssociateIndex</value>
-  </data>
-  <data name="m_lblCustomClassName.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
   </data>
   <data name="m_lblCustomClassName.Location" type="System.Drawing.Point, System.Drawing">
     <value>2, 316</value>
@@ -225,29 +160,11 @@
   <data name="m_lblCustomClassName.Text" xml:space="preserve">
     <value>Name der ben&amp;utzerdefinierten Klasse:</value>
   </data>
-  <data name="m_chkUsed.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
-  <data name="m_chkUsed.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
-    <value>AssociateIndex</value>
-  </data>
-  <data name="m_chkUsed.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
   <data name="m_chkUsed.Size" type="System.Drawing.Size, System.Drawing">
     <value>67, 20</value>
   </data>
   <data name="m_chkUsed.Text" xml:space="preserve">
     <value>Ben&amp;utzt</value>
-  </data>
-  <data name="m_chkToDo.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
-  <data name="m_chkToDo.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
-    <value>AssociateIndex</value>
-  </data>
-  <data name="m_chkToDo.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
   </data>
   <data name="m_chkToDo.Size" type="System.Drawing.Size, System.Drawing">
     <value>59, 20</value>
@@ -255,35 +172,8 @@
   <data name="m_chkToDo.Text" xml:space="preserve">
     <value>&amp;ToDo</value>
   </data>
-  <data name="m_btnOk.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
-  <data name="m_btnOk.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
-    <value>AssociateIndex</value>
-  </data>
-  <data name="m_btnOk.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
-  <data name="m_btnCancel.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
-  <data name="m_btnCancel.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
-    <value>AssociateIndex</value>
-  </data>
-  <data name="m_btnCancel.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
   <data name="m_btnCancel.Text" xml:space="preserve">
     <value>A&amp;bbrechen</value>
-  </data>
-  <data name="m_lblTimeLength.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
-  <data name="m_lblTimeLength.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
-    <value>AssociateIndex</value>
-  </data>
-  <data name="m_lblTimeLength.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
   </data>
   <data name="m_lblTimeLength.Size" type="System.Drawing.Size, System.Drawing">
     <value>48, 16</value>
@@ -294,59 +184,14 @@
   <data name="m_txtTimeLength.AccessibleName" xml:space="preserve">
     <value>Dauer</value>
   </data>
-  <data name="m_txtTimeLength.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
-  <data name="m_txtTimeLength.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
-    <value>AssociateIndex</value>
-  </data>
-  <data name="m_txtTimeLength.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
   <data name="m_comboCustomClassName.AccessibleName" xml:space="preserve">
     <value>Name der benutzerdefinierten Klasse:</value>
-  </data>
-  <data name="m_comboCustomClassName.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
-  <data name="m_comboCustomClassName.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
-    <value>AssociateIndex</value>
-  </data>
-  <data name="m_comboCustomClassName.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
-  <data name="m_lbParentsList.AccessibleName" xml:space="preserve">
-    <value>Herkunfts-Sektionen:</value>
-  </data>
-  <data name="m_lbParentsList.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
-  <data name="m_lbParentsList.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
-    <value>AssociateIndex</value>
-  </data>
-  <data name="m_lbParentsList.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
-  <data name="groupBox1.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
-  <data name="groupBox1.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
-    <value>AssociateIndex</value>
-  </data>
-  <data name="groupBox1.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
   </data>
   <data name="groupBox1.Text" xml:space="preserve">
     <value>Herkunfts-Se&amp;ktion(en):</value>
   </data>
-  <data name="m_lblPageNumberDetails.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
-  <data name="m_lblPageNumberDetails.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
-    <value>AssociateIndex</value>
-  </data>
-  <data name="m_lblPageNumberDetails.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
+  <data name="m_lbParentsList.AccessibleName" xml:space="preserve">
+    <value>Herkunfts-Sektionen:</value>
   </data>
   <data name="m_lblPageNumberDetails.Size" type="System.Drawing.Size, System.Drawing">
     <value>125, 16</value>
@@ -357,26 +202,8 @@
   <data name="m_txtPageNumberDetails.AccessibleName" xml:space="preserve">
     <value>Seitenzahl - Details:</value>
   </data>
-  <data name="m_txtPageNumberDetails.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
-  <data name="m_txtPageNumberDetails.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
-    <value>AssociateIndex</value>
-  </data>
-  <data name="m_txtPageNumberDetails.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
   <data name="m_chkChangePageNumber.AccessibleName" xml:space="preserve">
     <value>Seitenzahl ändern</value>
-  </data>
-  <data name="m_chkChangePageNumber.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
-  <data name="m_chkChangePageNumber.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
-    <value>AssociateIndex</value>
-  </data>
-  <data name="m_chkChangePageNumber.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
   </data>
   <data name="m_chkChangePageNumber.Size" type="System.Drawing.Size, System.Drawing">
     <value>134, 20</value>
@@ -384,29 +211,11 @@
   <data name="m_chkChangePageNumber.Text" xml:space="preserve">
     <value>Seiten&amp;zahl ändern</value>
   </data>
-  <data name="m_lbl_ReferredNote.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
-  <data name="m_lbl_ReferredNote.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
-    <value>AssociateIndex</value>
-  </data>
-  <data name="m_lbl_ReferredNote.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
   <data name="m_lbl_ReferredNote.Size" type="System.Drawing.Size, System.Drawing">
     <value>56, 16</value>
   </data>
   <data name="m_lbl_ReferredNote.Text" xml:space="preserve">
     <value>Verweis</value>
-  </data>
-  <data name="m_lblCurrentCursorPosition.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
-  <data name="m_lblCurrentCursorPosition.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
-    <value>AssociateIndex</value>
-  </data>
-  <data name="m_lblCurrentCursorPosition.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
   </data>
   <data name="m_lblCurrentCursorPosition.Size" type="System.Drawing.Size, System.Drawing">
     <value>148, 16</value>
@@ -417,44 +226,14 @@
   <data name="m_txtCurrentCursorPosition.AccessibleName" xml:space="preserve">
     <value>Aktuelle Cursorposition</value>
   </data>
-  <data name="m_txtCurrentCursorPosition.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
+  <data name="m_lbl_FileName.AccessibleName" xml:space="preserve">
+    <value>Dateiname</value>
   </data>
-  <data name="m_txtCurrentCursorPosition.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
-    <value>AssociateIndex</value>
+  <data name="m_lbl_FileName.Size" type="System.Drawing.Size, System.Drawing">
+    <value>77, 16</value>
   </data>
-  <data name="m_txtCurrentCursorPosition.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
-  <data name="m_lbl_FileName.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
-  <data name="m_lbl_FileName.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
-    <value>AssociateIndex</value>
-  </data>
-  <data name="m_lbl_FileName.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
-  <data name="m_txtFileName.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
-  <data name="m_txtFileName.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
-    <value>AssociateIndex</value>
-  </data>
-  <data name="m_txtFileName.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
-  <data name="$this.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
-  <data name="$this.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
-    <value>AssociateIndex</value>
-  </data>
-  <data name="$this.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
-  <data name="$this.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
+  <data name="m_lbl_FileName.Text" xml:space="preserve">
+    <value>&amp;Dateiname:</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
     <value>Eigenschaften der Phrase</value>
