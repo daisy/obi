@@ -127,6 +127,10 @@
   <data name="m_lblDuration.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
   </data>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="m_lblDuration.Location" type="System.Drawing.Point, System.Drawing">
+    <value>20, 46</value>
+  </data>
   <data name="m_lblDuration.Text" xml:space="preserve">
     <value>Gesamt&amp;dauer:</value>
   </data>
@@ -142,7 +146,6 @@
   <data name="m_txtDuration.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
   </data>
-  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="m_txtDuration.Location" type="System.Drawing.Point, System.Drawing">
     <value>153, 44</value>
   </data>
@@ -231,7 +234,7 @@
     <value />
   </data>
   <data name="m_lblPageCount.Location" type="System.Drawing.Point, System.Drawing">
-    <value>5, 187</value>
+    <value>5, 181</value>
   </data>
   <data name="m_lblPageCount.Size" type="System.Drawing.Size, System.Drawing">
     <value>125, 18</value>
@@ -274,9 +277,6 @@
   </data>
   <data name="m_lblTitle.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
-  </data>
-  <data name="m_lblTitle.Location" type="System.Drawing.Point, System.Drawing">
-    <value>27, 12</value>
   </data>
   <data name="m_lblTitle.Size" type="System.Drawing.Size, System.Drawing">
     <value>81, 18</value>
@@ -323,6 +323,9 @@
   <data name="m_lblMaxDepth.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
   </data>
+  <data name="m_lblMaxDepth.Location" type="System.Drawing.Point, System.Drawing">
+    <value>27, 114</value>
+  </data>
   <data name="m_lblMaxDepth.Size" type="System.Drawing.Size, System.Drawing">
     <value>98, 18</value>
   </data>
@@ -355,6 +358,15 @@
   </data>
   <data name="m_lblProjectFileCount.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
+  </data>
+  <data name="m_lblProjectFileCount.Location" type="System.Drawing.Point, System.Drawing">
+    <value>2, 214</value>
+  </data>
+  <data name="m_lblProjectFileCount.Size" type="System.Drawing.Size, System.Drawing">
+    <value>153, 18</value>
+  </data>
+  <data name="m_lblProjectFileCount.Text" xml:space="preserve">
+    <value>Projektdateien z&amp;ählen:</value>
   </data>
   <data name="m_txtProjectFileCount.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />

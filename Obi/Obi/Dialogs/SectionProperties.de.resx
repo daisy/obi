@@ -129,13 +129,13 @@
   </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="m_lblName.Location" type="System.Drawing.Point, System.Drawing">
-    <value>49, 13</value>
+    <value>39, 13</value>
   </data>
   <data name="m_lblName.Size" type="System.Drawing.Size, System.Drawing">
-    <value>86, 16</value>
+    <value>83, 16</value>
   </data>
   <data name="m_lblName.Text" xml:space="preserve">
-    <value>Sektion-&amp;Titel:</value>
+    <value>Sektion-&amp;Titel</value>
   </data>
   <data name="m_txtName.AccessibleName" xml:space="preserve">
     <value>Sektion-Titel:</value>
@@ -159,10 +159,10 @@
     <value />
   </data>
   <data name="m_lblLevel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>51, 16</value>
+    <value>48, 16</value>
   </data>
   <data name="m_lblLevel.Text" xml:space="preserve">
-    <value>&amp;Ebene:</value>
+    <value>&amp;Ebene</value>
   </data>
   <data name="m_comboLevel.AccessibleName" xml:space="preserve">
     <value>Ebene</value>
@@ -325,6 +325,18 @@
   </data>
   <data name="m_lblPagesInSection.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
+  </data>
+  <data name="m_lblPagesInSection.Location" type="System.Drawing.Point, System.Drawing">
+    <value>12, 311</value>
+  </data>
+  <data name="m_lblPagesInSection.Size" type="System.Drawing.Size, System.Drawing">
+    <value>133, 16</value>
+  </data>
+  <data name="m_lblPagesInSection.Text" xml:space="preserve">
+    <value>Se&amp;iten in der Sektion:</value>
+  </data>
+  <data name="m_txtPagesInSection.AccessibleName" xml:space="preserve">
+    <value>Seiten in der Sektion:</value>
   </data>
   <data name="m_txtPagesInSection.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
