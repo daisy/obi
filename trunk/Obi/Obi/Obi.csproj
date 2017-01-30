@@ -941,11 +941,17 @@
     <EmbeddedResource Include="ObiForm.zh-Hant.resx">
       <DependentUpon>ObiForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ProjectView\AudioBlock.de.resx">
+      <DependentUpon>AudioBlock.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ProjectView\AudioBlock.zh-Hans.resx">
       <DependentUpon>AudioBlock.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ProjectView\AudioBlock.zh-Hant.resx">
       <DependentUpon>AudioBlock.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ProjectView\ContentView.de.resx">
+      <DependentUpon>ContentView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ProjectView\ContentView.zh-Hans.resx">
       <DependentUpon>ContentView.cs</DependentUpon>
@@ -953,11 +959,17 @@
     <EmbeddedResource Include="ProjectView\ContentView.zh-Hant.resx">
       <DependentUpon>ContentView.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ProjectView\ContentViewLabel.de.resx">
+      <DependentUpon>ContentViewLabel.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ProjectView\ContentViewLabel.zh-Hans.resx">
       <DependentUpon>ContentViewLabel.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ProjectView\ContentViewLabel.zh-Hant.resx">
       <DependentUpon>ContentViewLabel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ProjectView\EditableLabel.de.resx">
+      <DependentUpon>EditableLabel.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ProjectView\EditableLabel.zh-Hans.resx">
       <DependentUpon>EditableLabel.cs</DependentUpon>
@@ -965,11 +977,17 @@
     <EmbeddedResource Include="ProjectView\EditableLabel.zh-Hant.resx">
       <DependentUpon>EditableLabel.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ProjectView\FindInText.de.resx">
+      <DependentUpon>FindInText.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ProjectView\FindInText.zh-Hans.resx">
       <DependentUpon>FindInText.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ProjectView\FindInText.zh-Hant.resx">
       <DependentUpon>FindInText.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ProjectView\MetadataView.de.resx">
+      <DependentUpon>MetadataView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ProjectView\MetadataView.zh-Hans.resx">
       <DependentUpon>MetadataView.cs</DependentUpon>
@@ -983,11 +1001,17 @@
     <EmbeddedResource Include="ProjectView\ProjectView.zh-Hant.resx">
       <DependentUpon>ProjectView.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ProjectView\TOCView.de.resx">
+      <DependentUpon>TOCView.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ProjectView\TOCView.zh-Hans.resx">
       <DependentUpon>TOCView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ProjectView\TOCView.zh-Hant.resx">
       <DependentUpon>TOCView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ProjectView\Toolbar_EditAudio.de.resx">
+      <DependentUpon>Toolbar_EditAudio.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ProjectView\Toolbar_EditAudio.zh-Hans.resx">
       <DependentUpon>Toolbar_EditAudio.cs</DependentUpon>
@@ -995,17 +1019,26 @@
     <EmbeddedResource Include="ProjectView\Toolbar_EditAudio.zh-Hant.resx">
       <DependentUpon>Toolbar_EditAudio.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ProjectView\TransportBar.de.resx">
+      <DependentUpon>TransportBar.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ProjectView\TransportBar.zh-Hans.resx">
       <DependentUpon>TransportBar.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ProjectView\TransportBar.zh-Hant.resx">
       <DependentUpon>TransportBar.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ProjectView\VerticalScrollToolStripContainer.de.resx">
+      <DependentUpon>VerticalScrollToolStripContainer.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ProjectView\VerticalScrollToolStripContainer.zh-Hans.resx">
       <DependentUpon>VerticalScrollToolStripContainer.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ProjectView\VerticalScrollToolStripContainer.zh-Hant.resx">
       <DependentUpon>VerticalScrollToolStripContainer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ProjectView\ZoomWaveform.de.resx">
+      <DependentUpon>ZoomWaveform.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ProjectView\ZoomWaveform.zh-Hans.resx">
       <DependentUpon>ZoomWaveform.cs</DependentUpon>
