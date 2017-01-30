@@ -564,6 +564,9 @@
       <DependentUpon>ZoomWaveform.cs</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Audio\PeakMeterForm.de.resx">
+      <DependentUpon>PeakMeterForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Audio\PeakMeterForm.pt.resx">
       <DependentUpon>PeakMeterForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -576,11 +579,17 @@
     <EmbeddedResource Include="Audio\PeakMeterForm.zh-Hant.resx">
       <DependentUpon>PeakMeterForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\About.de.resx">
+      <DependentUpon>About.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\About.zh-Hans.resx">
       <DependentUpon>About.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\About.zh-Hant.resx">
       <DependentUpon>About.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\AssignSpecialNodeMark.de.resx">
+      <DependentUpon>AssignSpecialNodeMark.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\AssignSpecialNodeMark.zh-Hans.resx">
       <DependentUpon>AssignSpecialNodeMark.cs</DependentUpon>
@@ -588,11 +597,17 @@
     <EmbeddedResource Include="Dialogs\AssignSpecialNodeMark.zh-Hant.resx">
       <DependentUpon>AssignSpecialNodeMark.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\AssociateSpecialNode.de.resx">
+      <DependentUpon>AssociateSpecialNode.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\AssociateSpecialNode.zh-Hans.resx">
       <DependentUpon>AssociateSpecialNode.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\AssociateSpecialNode.zh-Hant.resx">
       <DependentUpon>AssociateSpecialNode.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\AudioProcessingDialog.de.resx">
+      <DependentUpon>AudioProcessingDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\AudioProcessingDialog.zh-Hans.resx">
       <DependentUpon>AudioProcessingDialog.cs</DependentUpon>
@@ -600,11 +615,17 @@
     <EmbeddedResource Include="Dialogs\AudioProcessingDialog.zh-Hant.resx">
       <DependentUpon>AudioProcessingDialog.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\AudioSettings.de.resx">
+      <DependentUpon>AudioSettings.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\AudioSettings.zh-Hans.resx">
       <DependentUpon>AudioSettings.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\AudioSettings.zh-Hant.resx">
       <DependentUpon>AudioSettings.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\CheckUpdates.de.resx">
+      <DependentUpon>CheckUpdates.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\CheckUpdates.zh-Hans.resx">
       <DependentUpon>CheckUpdates.cs</DependentUpon>
@@ -612,11 +633,17 @@
     <EmbeddedResource Include="Dialogs\CheckUpdates.zh-Hant.resx">
       <DependentUpon>CheckUpdates.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\chooseDaisy3orDaisy202.de.resx">
+      <DependentUpon>chooseDaisy3orDaisy202.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\chooseDaisy3orDaisy202.zh-Hans.resx">
       <DependentUpon>chooseDaisy3orDaisy202.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\chooseDaisy3orDaisy202.zh-Hant.resx">
       <DependentUpon>chooseDaisy3orDaisy202.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\ChooseMergeOrChangeLevel.de.resx">
+      <DependentUpon>ChooseMergeOrChangeLevel.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\ChooseMergeOrChangeLevel.zh-Hans.resx">
       <DependentUpon>ChooseMergeOrChangeLevel.cs</DependentUpon>
@@ -624,11 +651,17 @@
     <EmbeddedResource Include="Dialogs\ChooseMergeOrChangeLevel.zh-Hant.resx">
       <DependentUpon>ChooseMergeOrChangeLevel.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\DownloadFile.de.resx">
+      <DependentUpon>DownloadFile.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\DownloadFile.zh-Hans.resx">
       <DependentUpon>DownloadFile.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\DownloadFile.zh-Hant.resx">
       <DependentUpon>DownloadFile.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\EditRoles.de.resx">
+      <DependentUpon>EditRoles.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\EditRoles.zh-Hans.resx">
       <DependentUpon>EditRoles.cs</DependentUpon>
@@ -636,11 +669,17 @@
     <EmbeddedResource Include="Dialogs\EditRoles.zh-Hant.resx">
       <DependentUpon>EditRoles.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\EmptySection.de.resx">
+      <DependentUpon>EmptySection.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\EmptySection.zh-Hans.resx">
       <DependentUpon>EmptySection.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\EmptySection.zh-Hant.resx">
       <DependentUpon>EmptySection.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\Epub3Validator.de.resx">
+      <DependentUpon>Epub3Validator.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\Epub3Validator.zh-Hans.resx">
       <DependentUpon>Epub3Validator.cs</DependentUpon>
@@ -648,11 +687,17 @@
     <EmbeddedResource Include="Dialogs\Epub3Validator.zh-Hant.resx">
       <DependentUpon>Epub3Validator.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\ExportAdvance.de.resx">
+      <DependentUpon>ExportAdvance.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\ExportAdvance.zh-Hans.resx">
       <DependentUpon>ExportAdvance.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\ExportAdvance.zh-Hant.resx">
       <DependentUpon>ExportAdvance.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\ExportDirectory.de.resx">
+      <DependentUpon>ExportDirectory.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\ExportDirectory.zh-Hans.resx">
       <DependentUpon>ExportDirectory.cs</DependentUpon>
@@ -660,11 +705,17 @@
     <EmbeddedResource Include="Dialogs\ExportDirectory.zh-Hant.resx">
       <DependentUpon>ExportDirectory.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\ExtendedMessageToAssociate.de.resx">
+      <DependentUpon>ExtendedMessageToAssociate.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\ExtendedMessageToAssociate.zh-Hans.resx">
       <DependentUpon>ExtendedMessageToAssociate.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\ExtendedMessageToAssociate.zh-Hant.resx">
       <DependentUpon>ExtendedMessageToAssociate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\GoToPageOrPhrase.de.resx">
+      <DependentUpon>GoToPageOrPhrase.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\GoToPageOrPhrase.zh-Hans.resx">
       <DependentUpon>GoToPageOrPhrase.cs</DependentUpon>
@@ -672,11 +723,17 @@
     <EmbeddedResource Include="Dialogs\GoToPageOrPhrase.zh-Hant.resx">
       <DependentUpon>GoToPageOrPhrase.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\Help.de.resx">
+      <DependentUpon>Help.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\Help.zh-Hans.resx">
       <DependentUpon>Help.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\Help.zh-Hant.resx">
       <DependentUpon>Help.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\ImportFileSplitSize.de.resx">
+      <DependentUpon>ImportFileSplitSize.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\ImportFileSplitSize.zh-Hans.resx">
       <DependentUpon>ImportFileSplitSize.cs</DependentUpon>
@@ -684,17 +741,26 @@
     <EmbeddedResource Include="Dialogs\ImportFileSplitSize.zh-Hant.resx">
       <DependentUpon>ImportFileSplitSize.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\MergeProject.de.resx">
+      <DependentUpon>MergeProject.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\MergeProject.zh-Hans.resx">
       <DependentUpon>MergeProject.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\MergeProject.zh-Hant.resx">
       <DependentUpon>MergeProject.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\MultipleOptionDialog.de.resx">
+      <DependentUpon>MultipleOptionDialog.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\MultipleOptionDialog.zh-Hans.resx">
       <DependentUpon>MultipleOptionDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\MultipleOptionDialog.zh-Hant.resx">
       <DependentUpon>MultipleOptionDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\NewProject.de.resx">
+      <DependentUpon>NewProject.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\NewProject.resx">
       <SubType>Designer</SubType>
@@ -706,11 +772,17 @@
     <EmbeddedResource Include="Dialogs\NewProject.zh-Hant.resx">
       <DependentUpon>NewProject.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\PhraseProperties.de.resx">
+      <DependentUpon>PhraseProperties.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\PhraseProperties.zh-HANS.resx">
       <DependentUpon>PhraseProperties.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\PhraseProperties.zh-Hant.resx">
       <DependentUpon>PhraseProperties.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\Preferences.de.resx">
+      <DependentUpon>Preferences.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\Preferences.resx">
       <SubType>Designer</SubType>
@@ -722,11 +794,17 @@
     <EmbeddedResource Include="Dialogs\Preferences.zh-Hant.resx">
       <DependentUpon>Preferences.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\ProfileDescription.de.resx">
+      <DependentUpon>ProfileDescription.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\ProfileDescription.zh-Hans.resx">
       <DependentUpon>ProfileDescription.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\ProfileDescription.zh-Hant.resx">
       <DependentUpon>ProfileDescription.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\ProgressDialog.de.resx">
+      <DependentUpon>ProgressDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\ProgressDialog.zh-Hans.resx">
       <DependentUpon>ProgressDialog.cs</DependentUpon>
@@ -734,11 +812,17 @@
     <EmbeddedResource Include="Dialogs\ProgressDialog.zh-Hant.resx">
       <DependentUpon>ProgressDialog.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\ProjectProperties.de.resx">
+      <DependentUpon>ProjectProperties.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\ProjectProperties.zh-Hans.resx">
       <DependentUpon>ProjectProperties.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\ProjectProperties.zh-Hant.resx">
       <DependentUpon>ProjectProperties.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\ReportDialog.de.resx">
+      <DependentUpon>ReportDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\ReportDialog.zh-Hans.resx">
       <DependentUpon>ReportDialog.cs</DependentUpon>
@@ -746,11 +830,17 @@
     <EmbeddedResource Include="Dialogs\ReportDialog.zh-Hant.resx">
       <DependentUpon>ReportDialog.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\SaveProjectAsDialog.de.resx">
+      <DependentUpon>SaveProjectAsDialog.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\SaveProjectAsDialog.zh-Hans.resx">
       <DependentUpon>SaveProjectAsDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\SaveProjectAsDialog.zh-Hant.resx">
       <DependentUpon>SaveProjectAsDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\SectionProperties.de.resx">
+      <DependentUpon>SectionProperties.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\SectionProperties.zh-Hans.resx">
       <DependentUpon>SectionProperties.cs</DependentUpon>
@@ -758,11 +848,17 @@
     <EmbeddedResource Include="Dialogs\SectionProperties.zh-Hant.resx">
       <DependentUpon>SectionProperties.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\SelectMergeSectionRange.de.resx">
+      <DependentUpon>SelectMergeSectionRange.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\SelectMergeSectionRange.zh-Hans.resx">
       <DependentUpon>SelectMergeSectionRange.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\SelectMergeSectionRange.zh-Hant.resx">
       <DependentUpon>SelectMergeSectionRange.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\SelectPhraseDetectionSections.de.resx">
+      <DependentUpon>SelectPhraseDetectionSections.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\SelectPhraseDetectionSections.zh-Hans.resx">
       <DependentUpon>SelectPhraseDetectionSections.cs</DependentUpon>
@@ -770,11 +866,17 @@
     <EmbeddedResource Include="Dialogs\SelectPhraseDetectionSections.zh-Hant.resx">
       <DependentUpon>SelectPhraseDetectionSections.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\SentenceDetection.de.resx">
+      <DependentUpon>SentenceDetection.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\SentenceDetection.zh-Hans.resx">
       <DependentUpon>SentenceDetection.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\SentenceDetection.zh-Hant.resx">
       <DependentUpon>SentenceDetection.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\SetPageNumber.de.resx">
+      <DependentUpon>SetPageNumber.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\SetPageNumber.zh-Hans.resx">
       <DependentUpon>SetPageNumber.cs</DependentUpon>
@@ -782,11 +884,17 @@
     <EmbeddedResource Include="Dialogs\SetPageNumber.zh-Hant.resx">
       <DependentUpon>SetPageNumber.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\ShowSource.de.resx">
+      <DependentUpon>ShowSource.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\ShowSource.zh-Hans.resx">
       <DependentUpon>ShowSource.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\ShowSource.zh-Hant.resx">
       <DependentUpon>ShowSource.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\SpecialPhraseList.de.resx">
+      <DependentUpon>SpecialPhraseList.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\SpecialPhraseList.zh-Hans.resx">
       <DependentUpon>SpecialPhraseList.cs</DependentUpon>
@@ -794,11 +902,17 @@
     <EmbeddedResource Include="Dialogs\SpecialPhraseList.zh-Hant.resx">
       <DependentUpon>SpecialPhraseList.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\UserRegistration.de.resx">
+      <DependentUpon>UserRegistration.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\UserRegistration.zh-Hans.resx">
       <DependentUpon>UserRegistration.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\UserRegistration.zh-Hant.resx">
       <DependentUpon>UserRegistration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\WelcomeDialog.de.resx">
+      <DependentUpon>WelcomeDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\WelcomeDialog.zh-Hans.resx">
       <DependentUpon>WelcomeDialog.cs</DependentUpon>
@@ -806,6 +920,7 @@
     <EmbeddedResource Include="Dialogs\WelcomeDialog.zh-Hant.resx">
       <DependentUpon>WelcomeDialog.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="messages.de.resx" />
     <EmbeddedResource Include="messages.resx">
       <SubType>Designer</SubType>
       <Generator>ResXFileCodeGenerator</Generator>
@@ -813,6 +928,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="messages.zh-Hans.resx" />
     <EmbeddedResource Include="messages.zh-Hant.resx" />
+    <EmbeddedResource Include="ObiForm.de.resx">
+      <DependentUpon>ObiForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ObiForm.resx">
       <SubType>Designer</SubType>
       <DependentUpon>ObiForm.cs</DependentUpon>
@@ -1175,6 +1293,9 @@
     <EmbeddedResource Include="UserControls\RecordingToolBarForm.ar.resx">
       <DependentUpon>RecordingToolBarForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\RecordingToolBarForm.de.resx">
+      <DependentUpon>RecordingToolBarForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UserControls\RecordingToolBarForm.pt.resx">
       <DependentUpon>RecordingToolBarForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -1185,6 +1306,9 @@
       <DependentUpon>RecordingToolBarForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\TextVUMeterPanel.ar.resx">
+      <DependentUpon>TextVUMeterPanel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\TextVUMeterPanel.de.resx">
       <DependentUpon>TextVUMeterPanel.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\TextVUMeterPanel.fr.resx">
@@ -1205,6 +1329,9 @@
   <ItemGroup>
     <Content Include="about_ar.html">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="about_de.html">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="about_en.html">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -2918,6 +3045,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="obi.ico" />
+    <Content Include="ProfileDesc_de.html">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="ProfileDesc_en.html">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
