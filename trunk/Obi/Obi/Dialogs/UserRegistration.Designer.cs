@@ -57,7 +57,6 @@ namespace Obi.Dialogs
             // 
             // m_btnOk
             // 
-            //this.m_btnOk.DialogResult = System.Windows.Forms.DialogResult.OK;
             resources.ApplyResources(this.m_btnOk, "m_btnOk");
             this.m_btnOk.Name = "m_btnOk";
             this.m_btnOk.UseVisualStyleBackColor = true;

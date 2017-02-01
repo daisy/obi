@@ -112,16 +112,16 @@
     <value>2.0</value>
   </resheader>
   <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="m_btnOk.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Flat</value>
   </data>
-  <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="m_btnOk.Font" type="System.Drawing.Font, System.Drawing">
     <value>Microsoft Sans Serif, 8.25pt</value>
   </data>
@@ -129,12 +129,12 @@
     <value>NoControl</value>
   </data>
   <data name="m_btnOk.Location" type="System.Drawing.Point, System.Drawing">
-    <value>58, 416</value>
+    <value>68, 480</value>
   </data>
   <data name="m_btnOk.Size" type="System.Drawing.Size, System.Drawing">
-    <value>95, 30</value>
+    <value>111, 35</value>
   </data>
-  <assembly alias="mscorlib" name="mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="m_btnOk.TabIndex" type="System.Int32, mscorlib">
     <value>18</value>
   </data>
@@ -145,7 +145,7 @@
     <value>m_btnOk</value>
   </data>
   <data name="&gt;&gt;m_btnOk.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;m_btnOk.Parent" xml:space="preserve">
     <value>$this</value>
@@ -160,10 +160,10 @@
     <value>Microsoft Sans Serif, 8.25pt</value>
   </data>
   <data name="m_btnRemindMeLater.Location" type="System.Drawing.Point, System.Drawing">
-    <value>193, 416</value>
+    <value>225, 480</value>
   </data>
   <data name="m_btnRemindMeLater.Size" type="System.Drawing.Size, System.Drawing">
-    <value>95, 30</value>
+    <value>111, 35</value>
   </data>
   <data name="m_btnRemindMeLater.TabIndex" type="System.Int32, mscorlib">
     <value>19</value>
@@ -175,7 +175,7 @@
     <value>m_btnRemindMeLater</value>
   </data>
   <data name="&gt;&gt;m_btnRemindMeLater.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;m_btnRemindMeLater.Parent" xml:space="preserve">
     <value>$this</value>
@@ -184,10 +184,10 @@
     <value>3</value>
   </data>
   <data name="m_txtRetypeEmail.Location" type="System.Drawing.Point, System.Drawing">
-    <value>111, 82</value>
+    <value>129, 95</value>
   </data>
   <data name="m_txtRetypeEmail.Size" type="System.Drawing.Size, System.Drawing">
-    <value>200, 20</value>
+    <value>233, 21</value>
   </data>
   <data name="m_txtRetypeEmail.TabIndex" type="System.Int32, mscorlib">
     <value>7</value>
@@ -196,7 +196,7 @@
     <value>m_txtRetypeEmail</value>
   </data>
   <data name="&gt;&gt;m_txtRetypeEmail.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;m_txtRetypeEmail.Parent" xml:space="preserve">
     <value>m_grpBoxUserInformation</value>
@@ -211,10 +211,10 @@
     <value>NoControl</value>
   </data>
   <data name="m_lblRetypeEmail.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 89</value>
+    <value>7, 103</value>
   </data>
   <data name="m_lblRetypeEmail.Size" type="System.Drawing.Size, System.Drawing">
-    <value>75, 13</value>
+    <value>86, 15</value>
   </data>
   <data name="m_lblRetypeEmail.TabIndex" type="System.Int32, mscorlib">
     <value>6</value>
@@ -226,7 +226,7 @@
     <value>m_lblRetypeEmail</value>
   </data>
   <data name="&gt;&gt;m_lblRetypeEmail.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;m_lblRetypeEmail.Parent" xml:space="preserve">
     <value>m_grpBoxUserInformation</value>
@@ -235,10 +235,10 @@
     <value>1</value>
   </data>
   <data name="m_txtWinVer.Location" type="System.Drawing.Point, System.Drawing">
-    <value>111, 226</value>
+    <value>129, 261</value>
   </data>
   <data name="m_txtWinVer.Size" type="System.Drawing.Size, System.Drawing">
-    <value>200, 20</value>
+    <value>233, 21</value>
   </data>
   <data name="m_txtWinVer.TabIndex" type="System.Int32, mscorlib">
     <value>15</value>
@@ -247,7 +247,7 @@
     <value>m_txtWinVer</value>
   </data>
   <data name="&gt;&gt;m_txtWinVer.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;m_txtWinVer.Parent" xml:space="preserve">
     <value>m_grpBoxUserInformation</value>
@@ -259,10 +259,10 @@
     <value>True</value>
   </data>
   <data name="m_lblWinVer.Location" type="System.Drawing.Point, System.Drawing">
-    <value>2, 227</value>
+    <value>2, 262</value>
   </data>
   <data name="m_lblWinVer.Size" type="System.Drawing.Size, System.Drawing">
-    <value>95, 13</value>
+    <value>107, 15</value>
   </data>
   <data name="m_lblWinVer.TabIndex" type="System.Int32, mscorlib">
     <value>14</value>
@@ -274,7 +274,7 @@
     <value>m_lblWinVer</value>
   </data>
   <data name="&gt;&gt;m_lblWinVer.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;m_lblWinVer.Parent" xml:space="preserve">
     <value>m_grpBoxUserInformation</value>
@@ -283,10 +283,10 @@
     <value>3</value>
   </data>
   <data name="m_txtName.Location" type="System.Drawing.Point, System.Drawing">
-    <value>111, 13</value>
+    <value>129, 15</value>
   </data>
   <data name="m_txtName.Size" type="System.Drawing.Size, System.Drawing">
-    <value>200, 20</value>
+    <value>233, 21</value>
   </data>
   <data name="m_txtName.TabIndex" type="System.Int32, mscorlib">
     <value>3</value>
@@ -295,7 +295,7 @@
     <value>m_txtName</value>
   </data>
   <data name="&gt;&gt;m_txtName.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;m_txtName.Parent" xml:space="preserve">
     <value>m_grpBoxUserInformation</value>
@@ -304,10 +304,10 @@
     <value>4</value>
   </data>
   <data name="m_txtCountry.Location" type="System.Drawing.Point, System.Drawing">
-    <value>111, 193</value>
+    <value>129, 223</value>
   </data>
   <data name="m_txtCountry.Size" type="System.Drawing.Size, System.Drawing">
-    <value>200, 20</value>
+    <value>233, 21</value>
   </data>
   <data name="m_txtCountry.TabIndex" type="System.Int32, mscorlib">
     <value>13</value>
@@ -316,7 +316,7 @@
     <value>m_txtCountry</value>
   </data>
   <data name="&gt;&gt;m_txtCountry.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;m_txtCountry.Parent" xml:space="preserve">
     <value>m_grpBoxUserInformation</value>
@@ -325,10 +325,10 @@
     <value>5</value>
   </data>
   <data name="m_txtCity.Location" type="System.Drawing.Point, System.Drawing">
-    <value>111, 157</value>
+    <value>129, 181</value>
   </data>
   <data name="m_txtCity.Size" type="System.Drawing.Size, System.Drawing">
-    <value>200, 20</value>
+    <value>233, 21</value>
   </data>
   <data name="m_txtCity.TabIndex" type="System.Int32, mscorlib">
     <value>11</value>
@@ -337,7 +337,7 @@
     <value>m_txtCity</value>
   </data>
   <data name="&gt;&gt;m_txtCity.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;m_txtCity.Parent" xml:space="preserve">
     <value>m_grpBoxUserInformation</value>
@@ -346,10 +346,10 @@
     <value>6</value>
   </data>
   <data name="m_txtOrganizationName.Location" type="System.Drawing.Point, System.Drawing">
-    <value>111, 118</value>
+    <value>129, 136</value>
   </data>
   <data name="m_txtOrganizationName.Size" type="System.Drawing.Size, System.Drawing">
-    <value>200, 20</value>
+    <value>233, 21</value>
   </data>
   <data name="m_txtOrganizationName.TabIndex" type="System.Int32, mscorlib">
     <value>9</value>
@@ -358,7 +358,7 @@
     <value>m_txtOrganizationName</value>
   </data>
   <data name="&gt;&gt;m_txtOrganizationName.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;m_txtOrganizationName.Parent" xml:space="preserve">
     <value>m_grpBoxUserInformation</value>
@@ -367,10 +367,10 @@
     <value>7</value>
   </data>
   <data name="m_txtEmail.Location" type="System.Drawing.Point, System.Drawing">
-    <value>111, 45</value>
+    <value>129, 52</value>
   </data>
   <data name="m_txtEmail.Size" type="System.Drawing.Size, System.Drawing">
-    <value>200, 20</value>
+    <value>233, 21</value>
   </data>
   <data name="m_txtEmail.TabIndex" type="System.Int32, mscorlib">
     <value>5</value>
@@ -379,7 +379,7 @@
     <value>m_txtEmail</value>
   </data>
   <data name="&gt;&gt;m_txtEmail.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;m_txtEmail.Parent" xml:space="preserve">
     <value>m_grpBoxUserInformation</value>
@@ -391,10 +391,10 @@
     <value>True</value>
   </data>
   <data name="m_lblCountry.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 196</value>
+    <value>7, 226</value>
   </data>
   <data name="m_lblCountry.Size" type="System.Drawing.Size, System.Drawing">
-    <value>49, 13</value>
+    <value>54, 15</value>
   </data>
   <data name="m_lblCountry.TabIndex" type="System.Int32, mscorlib">
     <value>12</value>
@@ -406,7 +406,7 @@
     <value>m_lblCountry</value>
   </data>
   <data name="&gt;&gt;m_lblCountry.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;m_lblCountry.Parent" xml:space="preserve">
     <value>m_grpBoxUserInformation</value>
@@ -418,10 +418,10 @@
     <value>True</value>
   </data>
   <data name="m_lblCity.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 160</value>
+    <value>7, 185</value>
   </data>
   <data name="m_lblCity.Size" type="System.Drawing.Size, System.Drawing">
-    <value>107, 13</value>
+    <value>113, 15</value>
   </data>
   <data name="m_lblCity.TabIndex" type="System.Int32, mscorlib">
     <value>10</value>
@@ -433,7 +433,7 @@
     <value>m_lblCity</value>
   </data>
   <data name="&gt;&gt;m_lblCity.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;m_lblCity.Parent" xml:space="preserve">
     <value>m_grpBoxUserInformation</value>
@@ -445,10 +445,10 @@
     <value>True</value>
   </data>
   <data name="m_lblOrgName.Location" type="System.Drawing.Point, System.Drawing">
-    <value>2, 122</value>
+    <value>2, 141</value>
   </data>
   <data name="m_lblOrgName.Size" type="System.Drawing.Size, System.Drawing">
-    <value>144, 26</value>
+    <value>162, 30</value>
   </data>
   <data name="m_lblOrgName.TabIndex" type="System.Int32, mscorlib">
     <value>8</value>
@@ -461,7 +461,7 @@ Use "Home" For Private user</value>
     <value>m_lblOrgName</value>
   </data>
   <data name="&gt;&gt;m_lblOrgName.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;m_lblOrgName.Parent" xml:space="preserve">
     <value>m_grpBoxUserInformation</value>
@@ -473,10 +473,10 @@ Use "Home" For Private user</value>
     <value>True</value>
   </data>
   <data name="m_lblEmail.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 48</value>
+    <value>7, 55</value>
   </data>
   <data name="m_lblEmail.Size" type="System.Drawing.Size, System.Drawing">
-    <value>38, 13</value>
+    <value>45, 15</value>
   </data>
   <data name="m_lblEmail.TabIndex" type="System.Int32, mscorlib">
     <value>4</value>
@@ -488,7 +488,7 @@ Use "Home" For Private user</value>
     <value>m_lblEmail</value>
   </data>
   <data name="&gt;&gt;m_lblEmail.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;m_lblEmail.Parent" xml:space="preserve">
     <value>m_grpBoxUserInformation</value>
@@ -500,10 +500,10 @@ Use "Home" For Private user</value>
     <value>True</value>
   </data>
   <data name="m_lblName.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 16</value>
+    <value>7, 18</value>
   </data>
   <data name="m_lblName.Size" type="System.Drawing.Size, System.Drawing">
-    <value>38, 13</value>
+    <value>44, 15</value>
   </data>
   <data name="m_lblName.TabIndex" type="System.Int32, mscorlib">
     <value>2</value>
@@ -515,7 +515,7 @@ Use "Home" For Private user</value>
     <value>m_lblName</value>
   </data>
   <data name="&gt;&gt;m_lblName.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;m_lblName.Parent" xml:space="preserve">
     <value>m_grpBoxUserInformation</value>
@@ -524,10 +524,10 @@ Use "Home" For Private user</value>
     <value>13</value>
   </data>
   <data name="m_grpBoxUserInformation.Location" type="System.Drawing.Point, System.Drawing">
-    <value>12, 68</value>
+    <value>14, 78</value>
   </data>
   <data name="m_grpBoxUserInformation.Size" type="System.Drawing.Size, System.Drawing">
-    <value>317, 252</value>
+    <value>370, 291</value>
   </data>
   <data name="m_grpBoxUserInformation.TabIndex" type="System.Int32, mscorlib">
     <value>2</value>
@@ -536,7 +536,7 @@ Use "Home" For Private user</value>
     <value>m_grpBoxUserInformation</value>
   </data>
   <data name="&gt;&gt;m_grpBoxUserInformation.Type" xml:space="preserve">
-    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;m_grpBoxUserInformation.Parent" xml:space="preserve">
     <value>$this</value>
@@ -548,10 +548,10 @@ Use "Home" For Private user</value>
     <value>True</value>
   </data>
   <data name="m_rdbTryingObi.Location" type="System.Drawing.Point, System.Drawing">
-    <value>9, 60</value>
+    <value>10, 69</value>
   </data>
   <data name="m_rdbTryingObi.Size" type="System.Drawing.Size, System.Drawing">
-    <value>150, 17</value>
+    <value>169, 19</value>
   </data>
   <data name="m_rdbTryingObi.TabIndex" type="System.Int32, mscorlib">
     <value>17</value>
@@ -563,7 +563,7 @@ Use "Home" For Private user</value>
     <value>m_rdbTryingObi</value>
   </data>
   <data name="&gt;&gt;m_rdbTryingObi.Type" xml:space="preserve">
-    <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;m_rdbTryingObi.Parent" xml:space="preserve">
     <value>m_grpBoxObiUse</value>
@@ -575,10 +575,10 @@ Use "Home" For Private user</value>
     <value>True</value>
   </data>
   <data name="m_rdbDaisyProduction.Location" type="System.Drawing.Point, System.Drawing">
-    <value>9, 38</value>
+    <value>10, 44</value>
   </data>
   <data name="m_rdbDaisyProduction.Size" type="System.Drawing.Size, System.Drawing">
-    <value>264, 17</value>
+    <value>298, 19</value>
   </data>
   <data name="m_rdbDaisyProduction.TabIndex" type="System.Int32, mscorlib">
     <value>16</value>
@@ -590,7 +590,7 @@ Use "Home" For Private user</value>
     <value>m_rdbDaisyProduction</value>
   </data>
   <data name="&gt;&gt;m_rdbDaisyProduction.Type" xml:space="preserve">
-    <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;m_rdbDaisyProduction.Parent" xml:space="preserve">
     <value>m_grpBoxObiUse</value>
@@ -602,10 +602,10 @@ Use "Home" For Private user</value>
     <value>True</value>
   </data>
   <data name="m_lblSelectRadioButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 19</value>
+    <value>7, 22</value>
   </data>
   <data name="m_lblSelectRadioButton.Size" type="System.Drawing.Size, System.Drawing">
-    <value>170, 13</value>
+    <value>193, 15</value>
   </data>
   <data name="m_lblSelectRadioButton.TabIndex" type="System.Int32, mscorlib">
     <value>15</value>
@@ -617,7 +617,7 @@ Use "Home" For Private user</value>
     <value>m_lblSelectRadioButton</value>
   </data>
   <data name="&gt;&gt;m_lblSelectRadioButton.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;m_lblSelectRadioButton.Parent" xml:space="preserve">
     <value>m_grpBoxObiUse</value>
@@ -626,10 +626,10 @@ Use "Home" For Private user</value>
     <value>2</value>
   </data>
   <data name="m_grpBoxObiUse.Location" type="System.Drawing.Point, System.Drawing">
-    <value>12, 326</value>
+    <value>14, 376</value>
   </data>
   <data name="m_grpBoxObiUse.Size" type="System.Drawing.Size, System.Drawing">
-    <value>317, 84</value>
+    <value>370, 97</value>
   </data>
   <data name="m_grpBoxObiUse.TabIndex" type="System.Int32, mscorlib">
     <value>3</value>
@@ -638,7 +638,7 @@ Use "Home" For Private user</value>
     <value>m_grpBoxObiUse</value>
   </data>
   <data name="&gt;&gt;m_grpBoxObiUse.Type" xml:space="preserve">
-    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;m_grpBoxObiUse.Parent" xml:space="preserve">
     <value>$this</value>
@@ -650,13 +650,13 @@ Use "Home" For Private user</value>
     <value>use arrow keys to read</value>
   </data>
   <data name="m_txtBoxObiInformation.Location" type="System.Drawing.Point, System.Drawing">
-    <value>12, 7</value>
+    <value>14, 8</value>
   </data>
   <data name="m_txtBoxObiInformation.Multiline" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
   <data name="m_txtBoxObiInformation.Size" type="System.Drawing.Size, System.Drawing">
-    <value>317, 66</value>
+    <value>369, 76</value>
   </data>
   <data name="m_txtBoxObiInformation.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
@@ -665,7 +665,7 @@ Use "Home" For Private user</value>
     <value>m_txtBoxObiInformation</value>
   </data>
   <data name="&gt;&gt;m_txtBoxObiInformation.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;m_txtBoxObiInformation.Parent" xml:space="preserve">
     <value>$this</value>
@@ -673,14 +673,17 @@ Use "Home" For Private user</value>
   <data name="&gt;&gt;m_txtBoxObiInformation.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
-  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
   <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
-    <value>6, 13</value>
+    <value>7, 15</value>
   </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>341, 453</value>
+    <value>398, 523</value>
+  </data>
+  <data name="$this.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 9pt</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
     <value>User Registration</value>
@@ -689,6 +692,6 @@ Use "Home" For Private user</value>
     <value>UserRegistration</value>
   </data>
   <data name="&gt;&gt;$this.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Form, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Windows.Forms.Form, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
 </root>
