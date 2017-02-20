@@ -141,6 +141,9 @@ namespace Obi
         [NonSerialized()]
         private Dictionary<Keys, string> UserFriendlyNameDirectory;
 
+        [NonSerialized()]
+        private static Dictionary<string, string> MenuShortcutsDescription = new Dictionary<string,string>();
+
         /// <summary>
         /// Read the settings from the settings file; missing values are replaced with defaults.
         /// </summary>
@@ -206,6 +209,7 @@ namespace Obi
             settings.KeyboardShortcutsDescription = new Dictionary<string, KeyboardShortcut>();
 
             settings.PopulateKeyboardShortcutsDictionary();
+            settings.PopulateMenuShortcuts();
 
             return settings;
         }
@@ -299,16 +303,28 @@ namespace Obi
         
         public bool AddMenuShortcut(string name,string text,Keys keyData)
         {
+            if (!MenuShortcutsDescription.ContainsKey(text))
+            {
+                MenuShortcutsDescription.Add(text, name);
+            }
+
             if (!MenuNameDictionary.ContainsKey(name))
             {
                 KeyboardShortcut k = new KeyboardShortcut(keyData, name) ;
                 k.IsMenuShortcut = true;
                 MenuNameDictionary.Add(name, k);
-                
-                KeyboardShortcutsDescription.Add(text, k);
+
+                if (!KeyboardShortcutsDescription.ContainsKey(text))
+                {
+                    KeyboardShortcutsDescription.Add(text, k);
+                }
+           
                 return true;
             }
-            KeyboardShortcutsDescription.Add(text, MenuNameDictionary[name]);
+            if (!KeyboardShortcutsDescription.ContainsKey(text))
+            {
+                KeyboardShortcutsDescription.Add(text, MenuNameDictionary[name]);
+            }
             return false;
         }
 
@@ -448,6 +464,17 @@ namespace Obi
                 UserFriendlyNameDirectory.Add(Keys.OemOpenBrackets, "[");
                 UserFriendlyNameDirectory.Add(Keys.Oem6, "]");
                 
+            }
+        }
+
+        private void PopulateMenuShortcuts()
+        {
+            foreach (string shortcutDesc in MenuShortcutsDescription.Keys)
+            {
+                if(!KeyboardShortcutsDescription.ContainsKey(shortcutDesc))
+                {
+                    KeyboardShortcutsDescription.Add(shortcutDesc,MenuNameDictionary[MenuShortcutsDescription[shortcutDesc]]);
+                }
             }
         }
         public string FormatKeyboardShorcut(string str)

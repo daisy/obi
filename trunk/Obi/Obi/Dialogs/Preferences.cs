@@ -2662,10 +2662,17 @@ m_cb_ChooseFont.Visible = false;
 
         private string GetPathOfSelectedShortcutsComboBox()
         {
-            if (m_cb_SelectShorcutsProfile.SelectedIndex != -1)
+            string shortcutsPath = null;
+            if (m_cb_SelectShorcutsProfile.SelectedIndex == 1)
             {
                 string shortcutsFileName = m_cb_SelectShorcutsProfile.Items[m_cb_SelectShorcutsProfile.SelectedIndex].ToString() + ".xml";
-                string shortcutsPath = System.IO.Path.Combine(GetCustomProfilesDirectory(false), shortcutsFileName);
+                shortcutsPath = System.IO.Path.Combine(GetPredefinedShortCutProfilesDirectory(), shortcutsFileName);
+                return shortcutsPath;
+            }
+            else if (m_cb_SelectShorcutsProfile.SelectedIndex != -1)
+            {
+                string shortcutsFileName = m_cb_SelectShorcutsProfile.Items[m_cb_SelectShorcutsProfile.SelectedIndex].ToString() + ".xml";
+                shortcutsPath = System.IO.Path.Combine(GetCustomProfilesDirectory(false), shortcutsFileName);
                 return shortcutsPath;
             }
             else
@@ -2787,6 +2794,12 @@ m_cb_ChooseFont.Visible = false;
             return defaultProfilesDirectory;
         }
 
+        private string GetPredefinedShortCutProfilesDirectory()
+        {
+            string appDirectory = System.AppDomain.CurrentDomain.BaseDirectory;
+            string defaultProfilesDirectory = System.IO.Path.Combine(appDirectory, "ShortcutsProfile");
+            return defaultProfilesDirectory;
+        }
         private string GetCustomProfilesDirectory(bool preferencesProfile)
         {
             string permanentSettingsDirectory = System.IO.Directory.GetParent(Settings_Permanent.GetSettingFilePath()).ToString();
@@ -2880,6 +2893,19 @@ m_cb_ChooseFont.Visible = false;
 
             // now add keyboard shortcuts profile to the respective combobox
             m_cb_SelectShorcutsProfile.Items.Add("Default Shortcuts");
+            string preDefinedShortCutProfilesDirectory = GetPredefinedShortCutProfilesDirectory();
+            if (System.IO.Directory.Exists(preDefinedShortCutProfilesDirectory))
+            {
+                filePaths = System.IO.Directory.GetFiles(preDefinedShortCutProfilesDirectory, "*.xml");
+                if (filePaths != null && filePaths.Length > 0)
+                {
+                    for (int i = 0; i < filePaths.Length; i++)
+                    {
+                        m_cb_SelectShorcutsProfile.Items.Add(System.IO.Path.GetFileNameWithoutExtension(filePaths[i]));
+
+                    }
+                }
+            }
             string shortcutsProfilesDirectory = GetCustomProfilesDirectory(false);
             if (System.IO.Directory.Exists(shortcutsProfilesDirectory))
             {
@@ -3091,7 +3117,7 @@ m_cb_ChooseFont.Visible = false;
                 KeyboardShortcuts_Settings shortCuts = KeyboardShortcuts_Settings.GetKeyboardShortcuts_SettingsFromFile(filePath);
                 List<string> descriptions = new List<string> () ;
                 descriptions.AddRange(mForm.KeyboardShortcuts.KeyboardShortcutsDescription.Keys);
-
+                
                 foreach (string desc in descriptions)
                 {
                     if (shortCuts.KeyboardShortcutsDescription.ContainsKey(desc))
