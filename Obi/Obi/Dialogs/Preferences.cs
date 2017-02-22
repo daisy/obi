@@ -3125,7 +3125,16 @@ m_cb_ChooseFont.Visible = false;
                         mForm.KeyboardShortcuts.KeyboardShortcutsDescription[desc].Value = shortCuts.KeyboardShortcutsDescription[desc].Value;
                     }
                 }
-                
+                descriptions.Clear();
+                descriptions.AddRange(mForm.KeyboardShortcuts.MenuNameDictionary.Keys);
+
+                foreach (string desc in descriptions)
+                {
+                    if (shortCuts.MenuNameDictionary.ContainsKey(desc))
+                    {
+                        mForm.KeyboardShortcuts.MenuNameDictionary[desc].Value = shortCuts.MenuNameDictionary[desc].Value;
+                    }
+                }
                 mForm.KeyboardShortcuts.SaveSettings();
                 mForm.InitializeKeyboardShortcuts(false);
                 
