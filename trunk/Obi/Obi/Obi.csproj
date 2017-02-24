@@ -3129,7 +3129,7 @@
     <Content Include="SelectionEnd.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="ShortcutsProfile\VA-Shortcuts.XML">
+    <Content Include="ProfilesShortcuts\VA-Shortcuts.XML">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="ShowBlocksCompleted.wav">
