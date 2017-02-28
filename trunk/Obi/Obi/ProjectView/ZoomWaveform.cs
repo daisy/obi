@@ -278,6 +278,7 @@ namespace Obi.ProjectView
             {
                 this.AutoScroll = false;
             }
+            EnsureCursorVisibility();
          
         }
          public void ZoomAudioFocus()
@@ -536,9 +537,27 @@ namespace Obi.ProjectView
                 }
                 m_AudioBlock.Size = new Size(m_AudioBlock.Waveform.Width, panelZooomWaveform.Height-10);
                 m_AudioBlock.Waveform.Size = new Size(m_AudioBlock.Waveform.Width, panelZooomWaveform.Height-10);
+                //int audioCursorPosition;
+                //int selectionStartPosition;
+                //int selectionEndPosition;
+                //m_AudioBlock.GetLocationXForAudioCursorAndSelection(out audioCursorPosition, out selectionStartPosition, out selectionEndPosition);
+                //Console.WriteLine("Audio Cursor Position is ------------------------------------------ {0}", audioCursorPosition);
+                //Console.WriteLine("Selection Start  {0} and Selection End  {1}", selectionStartPosition, selectionEndPosition); 
+                //string strTemp = m_audioSel.AudioRange.ToString();
+                //int tempLength = strTemp.Length;
+                //string strTEmpInt = strTemp.TrimEnd('s');
+                //Console.WriteLine("Time of Selection --------------------{0}", strTEmpInt);
+                //int numVal = Int32.Parse("strTEmpInt");
+                if (m_audioSel != null && m_audioSel.AudioRange.HasCursor)
+                {
+                    m_AudioBlock.InitCursor(m_audioSel.AudioRange.CursorTime);
 
-
-                m_AudioBlock.InitCursor(0);
+                   // UpdateCursorTime(m_audioSel.AudioRange.CursorTime);
+                }
+                else
+                {
+                    m_AudioBlock.InitCursor(0);
+                }
                 if (m_ProjectView.TransportBar.IsPlayerActive) UpdateCursorTime(m_ProjectView.TransportBar.CurrentPlaylist.CurrentTimeInAsset);
                 btntxtZoomSelected.Focus();
                 //m_AudioBlock.Focus();
@@ -575,9 +594,11 @@ namespace Obi.ProjectView
             {
                 this.AutoScroll = true;
             }
+          
             this.Load += new EventHandler(ZoomWaveform_Load);
             //btntxtZoomSelected.Focus ();
             //Console.WriteLine("constructor " + (m_ProjectView.Selection is AudioSelection? "audio selection": "") +  m_ProjectView.Selection);
+
         }
 
         void m_cbPreserveZoom_CheckStateChanged(object sender, EventArgs e)
@@ -593,6 +614,7 @@ namespace Obi.ProjectView
         void ZoomWaveform_Load(object sender, EventArgs e)
         {
             btntxtZoomSelected.Focus();
+            EnsureCursorVisibility();
         }
 
 
@@ -1040,10 +1062,36 @@ namespace Obi.ProjectView
             }
         }
 
-          private void btnZoomIntoolStrip_Click(object sender, EventArgs e)
-          {
-              ZoomIn();
-          }
+        private void EnsureCursorVisibility()
+        {
+            if (m_ProjectView.Selection is AudioSelection)
+            {
+                AudioSelection ZoomAudioSelect = (AudioSelection)m_ProjectView.Selection;
+
+                if (ZoomAudioSelect != null && ZoomAudioSelect.AudioRange != null && ZoomAudioSelect.AudioRange.HasCursor)
+                {
+                    this.AutoScroll = true;
+                    if (ZoomAudioSelect.AudioRange.HasCursor)
+                    {
+                        XVal = m_AudioBlock.UpdateCursorTime(ZoomAudioSelect.AudioRange.CursorTime);
+                    }
+                    else
+                    {
+                        XVal = m_AudioBlock.UpdateCursorTime(ZoomAudioSelect.AudioRange.SelectionBeginTime);
+                    }
+                    if ((XVal >= m_ContentView.Width - 50 + Math.Abs(m_AudioBlock.Location.X)) || (XVal < Math.Abs(m_AudioBlock.Location.X)))
+                    {
+                        m_ContentView.Selection = m_ProjectView.Selection;
+                        panelZooomWaveform.AutoScrollPosition = new Point(XVal - 100, panelZooomWaveform.AutoScrollPosition.Y);
+
+                    }
+                }               
+            }
+        }
+        private void btnZoomIntoolStrip_Click(object sender, EventArgs e)
+        {
+            ZoomIn();
+        }
         public void ZoomIn()
         {
             
@@ -1068,6 +1116,8 @@ namespace Obi.ProjectView
                     m_AudioBlock.Waveform.Size = new Size(m_AudioBlock.Waveform.Width, panelZooomWaveform.Height - 10);
                 }
             }
+
+            EnsureCursorVisibility();
         }
 
           private void btnZoomOuttoolStrip_Click(object sender, EventArgs e)
@@ -1098,6 +1148,7 @@ namespace Obi.ProjectView
                     m_AudioBlock.Waveform.Size = new Size(m_AudioBlock.Waveform.Width, panelZooomWaveform.Height - 10);
                 }
             }
+            EnsureCursorVisibility();
         }
 
           private void btnResettoolStrip_Click(object sender, EventArgs e)
@@ -1127,6 +1178,7 @@ namespace Obi.ProjectView
                 m_AudioBlock.Waveform.Size = new Size(m_AudioBlock.Waveform.Width, panelZooomWaveform.Height - 10);
                 m_AudioBlock.ResetTimeBoundsForWaveformDisplay();
             }
+            EnsureCursorVisibility();
         }
 
         private void mbtnZoomSelectiontoolStrip_Click(object sender, EventArgs e)
