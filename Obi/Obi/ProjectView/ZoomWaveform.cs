@@ -1068,16 +1068,17 @@ namespace Obi.ProjectView
             {
                 AudioSelection ZoomAudioSelect = (AudioSelection)m_ProjectView.Selection;
 
-                if (ZoomAudioSelect != null && ZoomAudioSelect.AudioRange != null && ZoomAudioSelect.AudioRange.HasCursor)
+                if (ZoomAudioSelect != null && ZoomAudioSelect.AudioRange != null)
                 {
                     this.AutoScroll = true;
                     if (ZoomAudioSelect.AudioRange.HasCursor)
                     {
-                        XVal = m_AudioBlock.UpdateCursorTime(ZoomAudioSelect.AudioRange.CursorTime);
+                      //  XVal = m_AudioBlock.UpdateCursorTime(ZoomAudioSelect.AudioRange.CursorTime);
+                        XVal = m_AudioBlock.UpdateSelectionTime(ZoomAudioSelect.AudioRange.CursorTime);
                     }
                     else
                     {
-                        XVal = m_AudioBlock.UpdateCursorTime(ZoomAudioSelect.AudioRange.SelectionBeginTime);
+                        XVal = m_AudioBlock.UpdateSelectionTime(ZoomAudioSelect.AudioRange.SelectionBeginTime);
                     }
                     if ((XVal >= m_ContentView.Width - 50 + Math.Abs(m_AudioBlock.Location.X)) || (XVal < Math.Abs(m_AudioBlock.Location.X)))
                     {
