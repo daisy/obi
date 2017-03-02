@@ -372,7 +372,7 @@ namespace Obi.ProjectView
         {
             m_chkPreserveZoom = new CheckBox();
             m_chkPreserveZoom.Text = Localizer.Message("ZoomWaveform_PreserveZoom");
-            m_chkPreserveZoom.Checked = true;
+            m_chkPreserveZoom.Checked = mProjectView.SaveZoomWaveformZoomLevel;
            // m_cbPreserveZoom.CheckStateChanged += new EventHandler(m_cbPreserveZoom_CheckStateChanged);
             ToolStripControlHost host = new ToolStripControlHost(m_chkPreserveZoom);
             toolStripZoomPanel.Items.Insert(7, host);
@@ -394,7 +394,7 @@ namespace Obi.ProjectView
             ZoomPanelToolTipInit();
             if (m_ProjectView.SaveZoomWaveformZoomLevel)
             {
-                m_chkPreserveZoom.Checked = true;
+                m_chkPreserveZoom.Checked = m_ProjectView.SaveZoomWaveformZoomLevel;
                 m_ZoomIncrementFactor = m_ProjectView.ZoomWaveformIncrementFactor;
             }
             m_ZoomFactor = 0;
