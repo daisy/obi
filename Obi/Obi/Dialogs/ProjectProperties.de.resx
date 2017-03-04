@@ -127,10 +127,6 @@
   <data name="m_lblDuration.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
   </data>
-  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="m_lblDuration.Location" type="System.Drawing.Point, System.Drawing">
-    <value>20, 46</value>
-  </data>
   <data name="m_lblDuration.Text" xml:space="preserve">
     <value>Gesamt&amp;dauer:</value>
   </data>
@@ -146,11 +142,12 @@
   <data name="m_txtDuration.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
   </data>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="m_txtDuration.Location" type="System.Drawing.Point, System.Drawing">
-    <value>153, 44</value>
+    <value>163, 44</value>
   </data>
   <data name="m_txtDuration.Size" type="System.Drawing.Size, System.Drawing">
-    <value>273, 24</value>
+    <value>263, 24</value>
   </data>
   <data name="m_lblSectionCount.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
@@ -162,7 +159,7 @@
     <value />
   </data>
   <data name="m_lblSectionCount.Location" type="System.Drawing.Point, System.Drawing">
-    <value>2, 80</value>
+    <value>5, 80</value>
   </data>
   <data name="m_lblSectionCount.Size" type="System.Drawing.Size, System.Drawing">
     <value>150, 18</value>
@@ -183,10 +180,10 @@
     <value />
   </data>
   <data name="m_txtSectionsCount.Location" type="System.Drawing.Point, System.Drawing">
-    <value>153, 78</value>
+    <value>163, 78</value>
   </data>
   <data name="m_txtSectionsCount.Size" type="System.Drawing.Size, System.Drawing">
-    <value>273, 24</value>
+    <value>263, 24</value>
   </data>
   <data name="m_lblPhraseCount.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
@@ -198,7 +195,7 @@
     <value />
   </data>
   <data name="m_lblPhraseCount.Location" type="System.Drawing.Point, System.Drawing">
-    <value>2, 149</value>
+    <value>5, 149</value>
   </data>
   <data name="m_lblPhraseCount.Size" type="System.Drawing.Size, System.Drawing">
     <value>139, 18</value>
@@ -219,10 +216,10 @@
     <value />
   </data>
   <data name="m_txtPhraseCount.Location" type="System.Drawing.Point, System.Drawing">
-    <value>153, 147</value>
+    <value>163, 147</value>
   </data>
   <data name="m_txtPhraseCount.Size" type="System.Drawing.Size, System.Drawing">
-    <value>273, 24</value>
+    <value>263, 24</value>
   </data>
   <data name="m_lblPageCount.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
@@ -234,7 +231,7 @@
     <value />
   </data>
   <data name="m_lblPageCount.Location" type="System.Drawing.Point, System.Drawing">
-    <value>5, 181</value>
+    <value>8, 183</value>
   </data>
   <data name="m_lblPageCount.Size" type="System.Drawing.Size, System.Drawing">
     <value>125, 18</value>
@@ -255,10 +252,10 @@
     <value />
   </data>
   <data name="m_txtPageCount.Location" type="System.Drawing.Point, System.Drawing">
-    <value>153, 181</value>
+    <value>163, 181</value>
   </data>
   <data name="m_txtPageCount.Size" type="System.Drawing.Size, System.Drawing">
-    <value>273, 24</value>
+    <value>263, 24</value>
   </data>
   <data name="m_btnOk.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
@@ -297,10 +294,10 @@
     <value />
   </data>
   <data name="m_txtTitle.Location" type="System.Drawing.Point, System.Drawing">
-    <value>153, 10</value>
+    <value>163, 10</value>
   </data>
   <data name="m_txtTitle.Size" type="System.Drawing.Size, System.Drawing">
-    <value>273, 24</value>
+    <value>263, 24</value>
   </data>
   <data name="mCancelButton.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
@@ -323,9 +320,6 @@
   <data name="m_lblMaxDepth.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
   </data>
-  <data name="m_lblMaxDepth.Location" type="System.Drawing.Point, System.Drawing">
-    <value>27, 114</value>
-  </data>
   <data name="m_lblMaxDepth.Size" type="System.Drawing.Size, System.Drawing">
     <value>98, 18</value>
   </data>
@@ -345,10 +339,10 @@
     <value />
   </data>
   <data name="m_txtMaxDepth.Location" type="System.Drawing.Point, System.Drawing">
-    <value>153, 114</value>
+    <value>163, 114</value>
   </data>
   <data name="m_txtMaxDepth.Size" type="System.Drawing.Size, System.Drawing">
-    <value>273, 24</value>
+    <value>263, 24</value>
   </data>
   <data name="m_lblProjectFileCount.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
@@ -358,9 +352,6 @@
   </data>
   <data name="m_lblProjectFileCount.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
-  </data>
-  <data name="m_lblProjectFileCount.Location" type="System.Drawing.Point, System.Drawing">
-    <value>2, 214</value>
   </data>
   <data name="m_lblProjectFileCount.Size" type="System.Drawing.Size, System.Drawing">
     <value>153, 18</value>
@@ -378,10 +369,10 @@
     <value />
   </data>
   <data name="m_txtProjectFileCount.Location" type="System.Drawing.Point, System.Drawing">
-    <value>153, 212</value>
+    <value>163, 212</value>
   </data>
   <data name="m_txtProjectFileCount.Size" type="System.Drawing.Size, System.Drawing">
-    <value>273, 24</value>
+    <value>263, 24</value>
   </data>
   <data name="$this.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />

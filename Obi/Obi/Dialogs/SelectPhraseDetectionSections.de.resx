@@ -112,244 +112,480 @@
     <value>2.0</value>
   </resheader>
   <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <metadata name="m_lv_ListOfSelectedSectionsForPhraseDetection.Locked" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="helpProvider1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 17</value>
+  </metadata>
+  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
   <data name="m_cb_StartRangeForNumberOfSections.AccessibleName" xml:space="preserve">
-    <value>Anfang Sektion-Markierung</value>
+    <value>Anfangs-Sektion</value>
   </data>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="m_cb_StartRangeForNumberOfSections.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
+  <assembly alias="mscorlib" name="mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="m_cb_StartRangeForNumberOfSections.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
   </data>
-  <data name="m_cb_StartRangeForNumberOfSections.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
-    <value>AssociateIndex</value>
-  </data>
-  <data name="m_cb_StartRangeForNumberOfSections.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
-  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="m_cb_StartRangeForNumberOfSections.Location" type="System.Drawing.Point, System.Drawing">
-    <value>148, 104</value>
+    <value>124, 104</value>
+  </data>
+  <data name="m_cb_StartRangeForNumberOfSections.Size" type="System.Drawing.Size, System.Drawing">
+    <value>57, 21</value>
+  </data>
+  <data name="m_cb_StartRangeForNumberOfSections.TabIndex" type="System.Int32, mscorlib">
+    <value>3</value>
+  </data>
+  <data name="&gt;&gt;m_cb_StartRangeForNumberOfSections.Name" xml:space="preserve">
+    <value>m_cb_StartRangeForNumberOfSections</value>
+  </data>
+  <data name="&gt;&gt;m_cb_StartRangeForNumberOfSections.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_cb_StartRangeForNumberOfSections.Parent" xml:space="preserve">
+    <value>m_grpSelectRange</value>
+  </data>
+  <data name="&gt;&gt;m_cb_StartRangeForNumberOfSections.ZOrder" xml:space="preserve">
+    <value>6</value>
   </data>
   <data name="m_cb_EndRangeForNumberOfSections.AccessibleName" xml:space="preserve">
-    <value>Ende Sektion-Markierung</value>
+    <value>End-Sektion</value>
   </data>
-  <data name="m_cb_EndRangeForNumberOfSections.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
-  <data name="m_cb_EndRangeForNumberOfSections.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
-    <value>AssociateIndex</value>
-  </data>
-  <data name="m_cb_EndRangeForNumberOfSections.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
+  <data name="m_cb_EndRangeForNumberOfSections.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
   </data>
   <data name="m_cb_EndRangeForNumberOfSections.Location" type="System.Drawing.Point, System.Drawing">
-    <value>139, 134</value>
+    <value>124, 136</value>
   </data>
-  <data name="startSectionRange.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
+  <data name="m_cb_EndRangeForNumberOfSections.Size" type="System.Drawing.Size, System.Drawing">
+    <value>57, 21</value>
   </data>
-  <data name="startSectionRange.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
-    <value>AssociateIndex</value>
+  <data name="m_cb_EndRangeForNumberOfSections.TabIndex" type="System.Int32, mscorlib">
+    <value>5</value>
   </data>
-  <data name="startSectionRange.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
+  <data name="&gt;&gt;m_cb_EndRangeForNumberOfSections.Name" xml:space="preserve">
+    <value>m_cb_EndRangeForNumberOfSections</value>
+  </data>
+  <data name="&gt;&gt;m_cb_EndRangeForNumberOfSections.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_cb_EndRangeForNumberOfSections.Parent" xml:space="preserve">
+    <value>m_grpSelectRange</value>
+  </data>
+  <data name="&gt;&gt;m_cb_EndRangeForNumberOfSections.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="startSectionRange.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="startSectionRange.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 107</value>
   </data>
   <data name="startSectionRange.Size" type="System.Drawing.Size, System.Drawing">
-    <value>136, 13</value>
+    <value>96, 13</value>
+  </data>
+  <data name="startSectionRange.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
   </data>
   <data name="startSectionRange.Text" xml:space="preserve">
-    <value>Anfang &amp;Sektion-Markierung</value>
+    <value>Anfangs-&amp;Sektion</value>
   </data>
-  <data name="endSectionRange.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
+  <data name="&gt;&gt;startSectionRange.Name" xml:space="preserve">
+    <value>startSectionRange</value>
   </data>
-  <data name="endSectionRange.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
-    <value>AssociateIndex</value>
+  <data name="&gt;&gt;startSectionRange.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="endSectionRange.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
+  <data name="&gt;&gt;startSectionRange.Parent" xml:space="preserve">
+    <value>m_grpSelectRange</value>
+  </data>
+  <data name="&gt;&gt;startSectionRange.ZOrder" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <data name="endSectionRange.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="endSectionRange.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 139</value>
   </data>
   <data name="endSectionRange.Size" type="System.Drawing.Size, System.Drawing">
-    <value>127, 13</value>
+    <value>93, 13</value>
+  </data>
+  <data name="endSectionRange.TabIndex" type="System.Int32, mscorlib">
+    <value>4</value>
   </data>
   <data name="endSectionRange.Text" xml:space="preserve">
-    <value>Ende Se&amp;ktion-Markierung</value>
+    <value>End-Se&amp;ktion</value>
   </data>
-  <data name="m_btn_Display.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
+  <data name="&gt;&gt;endSectionRange.Name" xml:space="preserve">
+    <value>endSectionRange</value>
   </data>
-  <data name="m_btn_Display.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
-    <value>AssociateIndex</value>
+  <data name="&gt;&gt;endSectionRange.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="m_btn_Display.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
+  <data name="&gt;&gt;endSectionRange.Parent" xml:space="preserve">
+    <value>m_grpSelectRange</value>
+  </data>
+  <data name="&gt;&gt;endSectionRange.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="m_btn_Display.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>Flat</value>
+  </data>
+  <data name="m_btn_Display.Location" type="System.Drawing.Point, System.Drawing">
+    <value>203, 129</value>
+  </data>
+  <data name="m_btn_Display.Size" type="System.Drawing.Size, System.Drawing">
+    <value>100, 28</value>
+  </data>
+  <data name="m_btn_Display.TabIndex" type="System.Int32, mscorlib">
+    <value>6</value>
   </data>
   <data name="m_btn_Display.Text" xml:space="preserve">
-    <value>Anze&amp;ige
-
-</value>
+    <value>Anze&amp;igen</value>
   </data>
-  <data name="m_btn_OK.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
+  <data name="&gt;&gt;m_btn_Display.Name" xml:space="preserve">
+    <value>m_btn_Display</value>
   </data>
-  <data name="m_btn_OK.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
-    <value>AssociateIndex</value>
+  <data name="&gt;&gt;m_btn_Display.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="m_btn_OK.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
+  <data name="&gt;&gt;m_btn_Display.Parent" xml:space="preserve">
+    <value>m_grpSelectRange</value>
+  </data>
+  <data name="&gt;&gt;m_btn_Display.ZOrder" xml:space="preserve">
+    <value>7</value>
+  </data>
+  <data name="m_btn_OK.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>Flat</value>
+  </data>
+  <data name="m_btn_OK.Location" type="System.Drawing.Point, System.Drawing">
+    <value>294, 251</value>
+  </data>
+  <data name="m_btn_OK.Size" type="System.Drawing.Size, System.Drawing">
+    <value>100, 28</value>
+  </data>
+  <data name="m_btn_OK.TabIndex" type="System.Int32, mscorlib">
+    <value>10</value>
+  </data>
+  <data name="m_btn_OK.Text" xml:space="preserve">
+    <value>&amp;OK</value>
+  </data>
+  <data name="&gt;&gt;m_btn_OK.Name" xml:space="preserve">
+    <value>m_btn_OK</value>
+  </data>
+  <data name="&gt;&gt;m_btn_OK.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_btn_OK.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;m_btn_OK.ZOrder" xml:space="preserve">
+    <value>4</value>
   </data>
   <data name="m_lv_ListOfSelectedSectionsForPhraseDetection.AccessibleDescription" xml:space="preserve">
     <value>Listenfeld für Sektionenauswahl zur Phrasenerkennung</value>
   </data>
-  <data name="m_lv_ListOfSelectedSectionsForPhraseDetection.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
+  <data name="m_lv_ListOfSelectedSectionsForPhraseDetection.Alignment" type="System.Windows.Forms.ListViewAlignment, System.Windows.Forms">
+    <value>Default</value>
   </data>
-  <data name="m_lv_ListOfSelectedSectionsForPhraseDetection.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
-    <value>AssociateIndex</value>
+  <data name="columnHeader1.Width" type="System.Int32, mscorlib">
+    <value>200</value>
   </data>
-  <data name="m_lv_ListOfSelectedSectionsForPhraseDetection.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
+  <data name="m_lv_ListOfSelectedSectionsForPhraseDetection.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 19</value>
   </data>
-  <data name="m_grpListOfSections.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
+  <data name="m_lv_ListOfSelectedSectionsForPhraseDetection.Size" type="System.Drawing.Size, System.Drawing">
+    <value>239, 254</value>
   </data>
-  <data name="m_grpListOfSections.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
-    <value>AssociateIndex</value>
+  <data name="m_lv_ListOfSelectedSectionsForPhraseDetection.TabIndex" type="System.Int32, mscorlib">
+    <value>7</value>
   </data>
-  <data name="m_grpListOfSections.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
+  <data name="&gt;&gt;m_lv_ListOfSelectedSectionsForPhraseDetection.Name" xml:space="preserve">
+    <value>m_lv_ListOfSelectedSectionsForPhraseDetection</value>
+  </data>
+  <data name="&gt;&gt;m_lv_ListOfSelectedSectionsForPhraseDetection.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ListView, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_lv_ListOfSelectedSectionsForPhraseDetection.Parent" xml:space="preserve">
+    <value>m_grpListOfSections</value>
+  </data>
+  <data name="&gt;&gt;m_lv_ListOfSelectedSectionsForPhraseDetection.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="m_grpListOfSections.Location" type="System.Drawing.Point, System.Drawing">
+    <value>1, 6</value>
+  </data>
+  <data name="m_grpListOfSections.Size" type="System.Drawing.Size, System.Drawing">
+    <value>251, 279</value>
+  </data>
+  <data name="m_grpListOfSections.TabIndex" type="System.Int32, mscorlib">
+    <value>7</value>
   </data>
   <data name="m_grpListOfSections.Text" xml:space="preserve">
     <value>Lis&amp;te der Sektionen</value>
   </data>
+  <data name="&gt;&gt;m_grpListOfSections.Name" xml:space="preserve">
+    <value>m_grpListOfSections</value>
+  </data>
+  <data name="&gt;&gt;m_grpListOfSections.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_grpListOfSections.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;m_grpListOfSections.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
   <data name="m_rb_loadSelectedOnwards.AccessibleName" xml:space="preserve">
     <value>Lade ausgewählte ab hier</value>
   </data>
-  <data name="m_rb_loadSelectedOnwards.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
+  <data name="m_rb_loadSelectedOnwards.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
   </data>
-  <data name="m_rb_loadSelectedOnwards.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
-    <value>AssociateIndex</value>
-  </data>
-  <data name="m_rb_loadSelectedOnwards.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
+  <data name="m_rb_loadSelectedOnwards.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 47</value>
   </data>
   <data name="m_rb_loadSelectedOnwards.Size" type="System.Drawing.Size, System.Drawing">
-    <value>147, 17</value>
+    <value>139, 17</value>
+  </data>
+  <data name="m_rb_loadSelectedOnwards.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
   </data>
   <data name="m_rb_loadSelectedOnwards.Text" xml:space="preserve">
     <value>&amp;Lade ausgewählte ab hier</value>
   </data>
+  <data name="&gt;&gt;m_rb_loadSelectedOnwards.Name" xml:space="preserve">
+    <value>m_rb_loadSelectedOnwards</value>
+  </data>
+  <data name="&gt;&gt;m_rb_loadSelectedOnwards.Type" xml:space="preserve">
+    <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_rb_loadSelectedOnwards.Parent" xml:space="preserve">
+    <value>m_grpSelectRange</value>
+  </data>
+  <data name="&gt;&gt;m_rb_loadSelectedOnwards.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
   <data name="m_rb_loadFromRange.AccessibleDescription" xml:space="preserve">
-    <value>Lade Auswahl</value>
+    <value>Lade Bereich</value>
   </data>
-  <data name="m_rb_loadFromRange.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
+  <data name="m_rb_loadFromRange.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
   </data>
-  <data name="m_rb_loadFromRange.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
-    <value>AssociateIndex</value>
-  </data>
-  <data name="m_rb_loadFromRange.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
+  <data name="m_rb_loadFromRange.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 78</value>
   </data>
   <data name="m_rb_loadFromRange.Size" type="System.Drawing.Size, System.Drawing">
-    <value>92, 17</value>
+    <value>110, 17</value>
+  </data>
+  <data name="m_rb_loadFromRange.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
   </data>
   <data name="m_rb_loadFromRange.Text" xml:space="preserve">
-    <value>Lade Aus&amp;wahl</value>
+    <value>Lade &amp;Bereich</value>
+  </data>
+  <data name="&gt;&gt;m_rb_loadFromRange.Name" xml:space="preserve">
+    <value>m_rb_loadFromRange</value>
+  </data>
+  <data name="&gt;&gt;m_rb_loadFromRange.Type" xml:space="preserve">
+    <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_rb_loadFromRange.Parent" xml:space="preserve">
+    <value>m_grpSelectRange</value>
+  </data>
+  <data name="&gt;&gt;m_rb_loadFromRange.ZOrder" xml:space="preserve">
+    <value>2</value>
   </data>
   <data name="m_rb_loadAllSections.AccessibleDescription" xml:space="preserve">
     <value>Lade alle Sektionen</value>
   </data>
-  <data name="m_rb_loadAllSections.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
+  <data name="m_rb_loadAllSections.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
   </data>
-  <data name="m_rb_loadAllSections.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
-    <value>AssociateIndex</value>
-  </data>
-  <data name="m_rb_loadAllSections.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
+  <data name="m_rb_loadAllSections.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 20</value>
   </data>
   <data name="m_rb_loadAllSections.Size" type="System.Drawing.Size, System.Drawing">
-    <value>119, 17</value>
+    <value>107, 17</value>
+  </data>
+  <data name="m_rb_loadAllSections.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
   </data>
   <data name="m_rb_loadAllSections.Text" xml:space="preserve">
     <value>Lade &amp;alle Sektionen</value>
   </data>
-  <data name="m_grpSelectRange.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
+  <data name="&gt;&gt;m_rb_loadAllSections.Name" xml:space="preserve">
+    <value>m_rb_loadAllSections</value>
   </data>
-  <data name="m_grpSelectRange.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
-    <value>AssociateIndex</value>
+  <data name="&gt;&gt;m_rb_loadAllSections.Type" xml:space="preserve">
+    <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="m_grpSelectRange.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
+  <data name="&gt;&gt;m_rb_loadAllSections.Parent" xml:space="preserve">
+    <value>m_grpSelectRange</value>
+  </data>
+  <data name="&gt;&gt;m_rb_loadAllSections.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="m_grpSelectRange.Location" type="System.Drawing.Point, System.Drawing">
+    <value>258, 6</value>
+  </data>
+  <data name="m_grpSelectRange.Size" type="System.Drawing.Size, System.Drawing">
+    <value>315, 167</value>
+  </data>
+  <data name="m_grpSelectRange.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
   </data>
   <data name="m_grpSelectRange.Text" xml:space="preserve">
     <value>Zeige ausgewählte Sektionen</value>
   </data>
-  <data name="m_lbl_SelectSilencePhrase.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
+  <data name="&gt;&gt;m_grpSelectRange.Name" xml:space="preserve">
+    <value>m_grpSelectRange</value>
   </data>
-  <data name="m_lbl_SelectSilencePhrase.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
-    <value>AssociateIndex</value>
+  <data name="&gt;&gt;m_grpSelectRange.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="m_lbl_SelectSilencePhrase.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
+  <data name="&gt;&gt;m_grpSelectRange.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;m_grpSelectRange.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="m_lbl_SelectSilencePhrase.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="m_lbl_SelectSilencePhrase.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 22</value>
   </data>
   <data name="m_lbl_SelectSilencePhrase.Size" type="System.Drawing.Size, System.Drawing">
-    <value>65, 13</value>
+    <value>77, 13</value>
+  </data>
+  <data name="m_lbl_SelectSilencePhrase.TabIndex" type="System.Int32, mscorlib">
+    <value>8</value>
   </data>
   <data name="m_lbl_SelectSilencePhrase.Text" xml:space="preserve">
     <value>Still&amp;e Phrase</value>
   </data>
+  <data name="&gt;&gt;m_lbl_SelectSilencePhrase.Name" xml:space="preserve">
+    <value>m_lbl_SelectSilencePhrase</value>
+  </data>
+  <data name="&gt;&gt;m_lbl_SelectSilencePhrase.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_lbl_SelectSilencePhrase.Parent" xml:space="preserve">
+    <value>m_grpSilencePhrase</value>
+  </data>
+  <data name="&gt;&gt;m_lbl_SelectSilencePhrase.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
   <data name="m_cb_SilencePhrase.AccessibleName" xml:space="preserve">
     <value>Wähle stille Phrase aus</value>
   </data>
-  <data name="m_cb_SilencePhrase.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
+  <data name="m_cb_SilencePhrase.Location" type="System.Drawing.Point, System.Drawing">
+    <value>89, 19</value>
   </data>
-  <data name="m_cb_SilencePhrase.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
-    <value>AssociateIndex</value>
+  <data name="m_cb_SilencePhrase.Size" type="System.Drawing.Size, System.Drawing">
+    <value>214, 21</value>
   </data>
-  <data name="m_cb_SilencePhrase.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
+  <data name="m_cb_SilencePhrase.TabIndex" type="System.Int32, mscorlib">
+    <value>9</value>
   </data>
-  <data name="m_btn_Cancel.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
+  <data name="&gt;&gt;m_cb_SilencePhrase.Name" xml:space="preserve">
+    <value>m_cb_SilencePhrase</value>
   </data>
-  <data name="m_btn_Cancel.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
-    <value>AssociateIndex</value>
+  <data name="&gt;&gt;m_cb_SilencePhrase.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="m_btn_Cancel.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
+  <data name="&gt;&gt;m_cb_SilencePhrase.Parent" xml:space="preserve">
+    <value>m_grpSilencePhrase</value>
+  </data>
+  <data name="&gt;&gt;m_cb_SilencePhrase.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="m_btn_Cancel.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>Flat</value>
+  </data>
+  <data name="m_btn_Cancel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>461, 251</value>
+  </data>
+  <data name="m_btn_Cancel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>100, 28</value>
+  </data>
+  <data name="m_btn_Cancel.TabIndex" type="System.Int32, mscorlib">
+    <value>11</value>
   </data>
   <data name="m_btn_Cancel.Text" xml:space="preserve">
     <value>A&amp;bbrechen</value>
   </data>
-  <data name="m_grpSilencePhrase.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
+  <data name="&gt;&gt;m_btn_Cancel.Name" xml:space="preserve">
+    <value>m_btn_Cancel</value>
   </data>
-  <data name="m_grpSilencePhrase.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
-    <value>AssociateIndex</value>
+  <data name="&gt;&gt;m_btn_Cancel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="m_grpSilencePhrase.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
+  <data name="&gt;&gt;m_btn_Cancel.Parent" xml:space="preserve">
+    <value>$this</value>
   </data>
-  <data name="$this.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
+  <data name="&gt;&gt;m_btn_Cancel.ZOrder" xml:space="preserve">
+    <value>1</value>
   </data>
-  <data name="$this.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
-    <value>AssociateIndex</value>
+  <data name="m_grpSilencePhrase.Location" type="System.Drawing.Point, System.Drawing">
+    <value>258, 174</value>
   </data>
-  <data name="$this.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
+  <data name="m_grpSilencePhrase.Size" type="System.Drawing.Size, System.Drawing">
+    <value>315, 55</value>
+  </data>
+  <data name="m_grpSilencePhrase.TabIndex" type="System.Int32, mscorlib">
+    <value>9</value>
+  </data>
+  <data name="&gt;&gt;m_grpSilencePhrase.Name" xml:space="preserve">
+    <value>m_grpSilencePhrase</value>
+  </data>
+  <data name="&gt;&gt;m_grpSilencePhrase.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_grpSilencePhrase.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;m_grpSilencePhrase.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="helpProvider1.HelpNamespace" xml:space="preserve">
+    <value>Obi Help.chm</value>
+  </data>
+  <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
+    <value>6, 13</value>
+  </data>
+  <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
+    <value>581, 294</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
     <value>Wähle Sektionen zur Phrasenerkennung</value>
+  </data>
+  <data name="&gt;&gt;columnHeader1.Name" xml:space="preserve">
+    <value>columnHeader1</value>
+  </data>
+  <data name="&gt;&gt;columnHeader1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ColumnHeader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;helpProvider1.Name" xml:space="preserve">
+    <value>helpProvider1</value>
+  </data>
+  <data name="&gt;&gt;helpProvider1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.HelpProvider, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;$this.Name" xml:space="preserve">
+    <value>SelectPhraseDetectionSections</value>
+  </data>
+  <data name="&gt;&gt;$this.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Form, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
 </root>

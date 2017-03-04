@@ -157,7 +157,7 @@
     <value>6</value>
   </data>
   <data name="mNewCustomRole.AccessibleName" xml:space="preserve">
-    <value>Neue Eigenschaft hinzufügen oder aus Liste unten wählen</value>
+    <value>Neue Funktion hinzufügen oder aus Liste unten wählen</value>
   </data>
   <data name="mNewCustomRole.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Left, Right</value>
@@ -202,7 +202,7 @@
     <value>3</value>
   </data>
   <data name="mInstructions.Text" xml:space="preserve">
-    <value>Neue Eigenschaft hinzufügen oder aus Liste wählen</value>
+    <value>Neue Funktion hinzufügen oder aus Liste wählen</value>
   </data>
   <data name="&gt;&gt;mInstructions.Name" xml:space="preserve">
     <value>mInstructions</value>
@@ -620,7 +620,7 @@
     <value>4, 4, 4, 4</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
-    <value>Eigenschaften bearbeiten</value>
+    <value>Funktionen bearbeiten</value>
   </data>
   <data name="&gt;&gt;helpProvider1.Name" xml:space="preserve">
     <value>helpProvider1</value>

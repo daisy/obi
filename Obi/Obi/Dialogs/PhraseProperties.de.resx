@@ -119,7 +119,7 @@
   </resheader>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="m_lblParentSection.Location" type="System.Drawing.Point, System.Drawing">
-    <value>8, 17</value>
+    <value>3, 17</value>
   </data>
   <data name="m_lblParentSection.Size" type="System.Drawing.Size, System.Drawing">
     <value>149, 16</value>
@@ -130,35 +130,32 @@
   <data name="m_txtParentSection.AccessibleName" xml:space="preserve">
     <value> Titel der Eltern-Sektion:</value>
   </data>
-  <data name="m_lblLocationInsideSection.AccessibleName" xml:space="preserve">
-    <value>Position:</value>
-  </data>
   <data name="m_lblPhraseRole.Location" type="System.Drawing.Point, System.Drawing">
-    <value>8, 280</value>
+    <value>20, 280</value>
   </data>
   <data name="m_lblPhraseRole.Size" type="System.Drawing.Size, System.Drawing">
-    <value>150, 16</value>
+    <value>130, 16</value>
   </data>
   <data name="m_lblPhraseRole.Text" xml:space="preserve">
-    <value>Eigenschaft der Ph&amp;rase:</value>
+    <value>Funktion der Ph&amp;rase:</value>
   </data>
   <data name="m_comboPhraseRole.AccessibleName" xml:space="preserve">
-    <value>Eigenschaft der Phrase:</value>
+    <value>Funktion der Phrase:</value>
   </data>
   <data name="m_comboPhraseRole.Location" type="System.Drawing.Point, System.Drawing">
-    <value>234, 313</value>
+    <value>250, 313</value>
   </data>
   <data name="m_comboPhraseRole.Size" type="System.Drawing.Size, System.Drawing">
-    <value>282, 24</value>
+    <value>266, 24</value>
   </data>
   <data name="m_lblCustomClassName.Location" type="System.Drawing.Point, System.Drawing">
     <value>2, 316</value>
   </data>
   <data name="m_lblCustomClassName.Size" type="System.Drawing.Size, System.Drawing">
-    <value>231, 16</value>
+    <value>240, 16</value>
   </data>
   <data name="m_lblCustomClassName.Text" xml:space="preserve">
-    <value>Name der ben&amp;utzerdefinierten Klasse:</value>
+    <value>Name der ben&amp;utzerdefinierten Funktion:</value>
   </data>
   <data name="m_chkUsed.Size" type="System.Drawing.Size, System.Drawing">
     <value>67, 20</value>
@@ -185,7 +182,7 @@
     <value>Dauer</value>
   </data>
   <data name="m_comboCustomClassName.AccessibleName" xml:space="preserve">
-    <value>Name der benutzerdefinierten Klasse:</value>
+    <value>Name der benutzerdefinierten Funktion:</value>
   </data>
   <data name="groupBox1.Text" xml:space="preserve">
     <value>Herkunfts-Se&amp;ktion(en):</value>
@@ -212,10 +209,10 @@
     <value>Seiten&amp;zahl ändern</value>
   </data>
   <data name="m_lbl_ReferredNote.Size" type="System.Drawing.Size, System.Drawing">
-    <value>56, 16</value>
+    <value>59, 16</value>
   </data>
   <data name="m_lbl_ReferredNote.Text" xml:space="preserve">
-    <value>Verweis</value>
+    <value>Verweis:</value>
   </data>
   <data name="m_lblCurrentCursorPosition.Size" type="System.Drawing.Size, System.Drawing">
     <value>148, 16</value>
@@ -226,14 +223,14 @@
   <data name="m_txtCurrentCursorPosition.AccessibleName" xml:space="preserve">
     <value>Aktuelle Cursorposition</value>
   </data>
-  <data name="m_lbl_FileName.AccessibleName" xml:space="preserve">
-    <value>Dateiname</value>
-  </data>
   <data name="m_lbl_FileName.Size" type="System.Drawing.Size, System.Drawing">
     <value>77, 16</value>
   </data>
   <data name="m_lbl_FileName.Text" xml:space="preserve">
     <value>&amp;Dateiname:</value>
+  </data>
+  <data name="m_txtFileName.AccessibleName" xml:space="preserve">
+    <value>Dateiname</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
     <value>Eigenschaften der Phrase</value>

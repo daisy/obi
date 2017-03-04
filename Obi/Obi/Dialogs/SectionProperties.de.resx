@@ -128,9 +128,6 @@
     <value />
   </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="m_lblName.Location" type="System.Drawing.Point, System.Drawing">
-    <value>39, 13</value>
-  </data>
   <data name="m_lblName.Size" type="System.Drawing.Size, System.Drawing">
     <value>83, 16</value>
   </data>
@@ -157,6 +154,9 @@
   </data>
   <data name="m_lblLevel.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
+  </data>
+  <data name="m_lblLevel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>59, 46</value>
   </data>
   <data name="m_lblLevel.Size" type="System.Drawing.Size, System.Drawing">
     <value>48, 16</value>
@@ -299,14 +299,17 @@
   <data name="m_lblSectionTimePosition.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
   </data>
+  <data name="m_lblSectionTimePosition.Location" type="System.Drawing.Point, System.Drawing">
+    <value>59, 78</value>
+  </data>
   <data name="m_lblSectionTimePosition.Size" type="System.Drawing.Size, System.Drawing">
-    <value>122, 16</value>
+    <value>84, 16</value>
   </data>
   <data name="m_lblSectionTimePosition.Text" xml:space="preserve">
-    <value>Aktuelle Zeitmarke:</value>
+    <value>Aktuelle Zeit:</value>
   </data>
   <data name="m_txtSectionTimePosition.AccessibleName" xml:space="preserve">
-    <value>Aktuelle Zeitmarke </value>
+    <value>Aktuelle Zeit</value>
   </data>
   <data name="m_txtSectionTimePosition.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
@@ -325,18 +328,6 @@
   </data>
   <data name="m_lblPagesInSection.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
-  </data>
-  <data name="m_lblPagesInSection.Location" type="System.Drawing.Point, System.Drawing">
-    <value>12, 311</value>
-  </data>
-  <data name="m_lblPagesInSection.Size" type="System.Drawing.Size, System.Drawing">
-    <value>133, 16</value>
-  </data>
-  <data name="m_lblPagesInSection.Text" xml:space="preserve">
-    <value>Se&amp;iten in der Sektion:</value>
-  </data>
-  <data name="m_txtPagesInSection.AccessibleName" xml:space="preserve">
-    <value>Seiten in der Sektion:</value>
   </data>
   <data name="m_txtPagesInSection.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
