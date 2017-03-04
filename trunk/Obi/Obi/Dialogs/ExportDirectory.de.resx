@@ -207,7 +207,7 @@
     <value />
   </data>
   <data name="m_checkBoxEncoder.AccessibleDescription" xml:space="preserve">
-    <value>Audio-Encodieren-Box</value>
+    <value>Audio-Encodieren-Kontrollkästchen</value>
   </data>
   <data name="m_checkBoxEncoder.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
@@ -219,10 +219,10 @@
     <value />
   </data>
   <data name="m_checkBoxEncoder.Size" type="System.Drawing.Size, System.Drawing">
-    <value>198, 20</value>
+    <value>172, 20</value>
   </data>
   <data name="m_checkBoxEncoder.Text" xml:space="preserve">
-    <value>&amp;Endodiere Audiodateien neu</value>
+    <value>&amp;Encodiere Audiodateien</value>
   </data>
   <data name="m_Bitrate.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
@@ -273,7 +273,7 @@
     <value />
   </data>
   <data name="m_btnEncodingOptions.Text" xml:space="preserve">
-    <value>Weitere Optionen bei&amp;m Encodieren</value>
+    <value>&amp;mehr …</value>
   </data>
   <data name="m_comboBoxEncodingType.AccessibleDescription" xml:space="preserve">
     <value>Encodieren: Auswahl</value>
@@ -288,7 +288,7 @@
     <value />
   </data>
   <data name="m_btnAdvance.AccessibleName" xml:space="preserve">
-    <value>Fortschritt</value>
+    <value>erweitert</value>
   </data>
   <data name="m_btnAdvance.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
@@ -299,8 +299,15 @@
   <data name="m_btnAdvance.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
   </data>
+  <data name="m_btnAdvance.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="m_btnAdvance.ShowHelp" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
   <data name="m_btnAdvance.Text" xml:space="preserve">
-    <value>For&amp;tschritt</value>
+    <value>er&amp;weitert</value>
   </data>
   <data name="m_grpBoxMP3Encoding.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
@@ -381,7 +388,7 @@
     <value />
   </data>
   <data name="m_numericUpDownEpubFilenameLengthLimit.Location" type="System.Drawing.Point, System.Drawing">
-    <value>240, 29</value>
+    <value>247, 29</value>
   </data>
   <data name="m_chkBoxEpubFilenameLengthLimit.AccessibleName" xml:space="preserve">
     <value>Max. Länge der EPUB Dateinamen</value>

@@ -265,7 +265,7 @@
     <value>1</value>
   </data>
   <data name="mcbAudioChannel.AccessibleName" xml:space="preserve">
-    <value>Audiokanäle Auswahl</value>
+    <value>Tonkanäle Auswahl</value>
   </data>
   <data name="mcbAudioChannel.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Left, Right</value>
@@ -319,7 +319,7 @@
     <value>4, 4, 4, 4</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
-    <value>Audio-Einstellungen des Projektes</value>
+    <value>Ton-Einstellungen des Projektes</value>
   </data>
   <data name="&gt;&gt;helpProvider1.Name" xml:space="preserve">
     <value>helpProvider1</value>

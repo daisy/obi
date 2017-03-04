@@ -2797,7 +2797,7 @@ m_cb_ChooseFont.Visible = false;
         private string GetPredefinedShortCutProfilesDirectory()
         {
             string appDirectory = System.AppDomain.CurrentDomain.BaseDirectory;
-            string defaultProfilesDirectory = System.IO.Path.Combine(appDirectory, "ShortcutsProfile");
+            string defaultProfilesDirectory = System.IO.Path.Combine(appDirectory, "ProfilesShortcuts");
             return defaultProfilesDirectory;
         }
         private string GetCustomProfilesDirectory(bool preferencesProfile)

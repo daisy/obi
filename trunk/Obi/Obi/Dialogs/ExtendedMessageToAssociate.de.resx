@@ -220,7 +220,7 @@
     <value>5</value>
   </data>
   <data name="textBox1.Text" xml:space="preserve">
-    <value>Das Element enthält bereits ein benutzerdefinierte Phrasen. Sollen alle in die aktuelle benutzerdefinierte Eigenschaft geändert werden?</value>
+    <value>Das Element enthält bereits  benutzerdefinierte Funktionen. Sollen alle in zur aktuellen benutzerdefinierten Funktion umgewandelt werden?</value>
   </data>
   <data name="&gt;&gt;textBox1.Name" xml:space="preserve">
     <value>textBox1</value>

@@ -127,7 +127,7 @@
     <value>Phrasen nach Eigenschaften zur Anzeige auswählen</value>
   </data>
   <data name="m_cb_SpecialPhrases.Items" xml:space="preserve">
-    <value>Als TODO markierte Phrasen</value>
+    <value>Als ToDo markierte Phrasen</value>
   </data>
   <data name="m_cb_SpecialPhrases.Items1" xml:space="preserve">
     <value>Leere Phrasen</value>
@@ -451,7 +451,7 @@
     <value>423, 493</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
-    <value>Liste der Phrasen mit Eigenschaften</value>
+    <value>Liste der Phrasen mit Funktionen</value>
   </data>
   <data name="&gt;&gt;helpProvider1.Name" xml:space="preserve">
     <value>helpProvider1</value>

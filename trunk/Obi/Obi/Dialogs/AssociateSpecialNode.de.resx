@@ -457,7 +457,7 @@
     <value>Obi Help.chm</value>
   </data>
   <data name="$this.AccessibleName" xml:space="preserve">
-    <value>Verknüpfung anfügen</value>
+    <value>Verweis herstellen</value>
   </data>
   <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
     <value>8, 16</value>
@@ -472,7 +472,7 @@
     <value>4, 4, 4, 4</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
-    <value>Verknüpfung hinzu/weg</value>
+    <value>Verweis hinzu/weg</value>
   </data>
   <data name="&gt;&gt;helpProvider1.Name" xml:space="preserve">
     <value>helpProvider1</value>
