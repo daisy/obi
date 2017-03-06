@@ -2648,7 +2648,7 @@ Fehlertext: {1}</value>
     <value>Nach Wiedergabe letzte abgespielte Phrase anzeigen</value>
   </data>
   <data name="Audio_ShowSelectionTimeInTransportBar" xml:space="preserve">
-    <value>Nach Stoppen Zeit in Transportleiste anzeigen</value>
+    <value>Nach Stoppen Zeit in Navigationsleiste anzeigen</value>
   </data>
   <data name="ZoomWaveform_PreserveZoom" xml:space="preserve">
     <value>Größe speichern</value>
