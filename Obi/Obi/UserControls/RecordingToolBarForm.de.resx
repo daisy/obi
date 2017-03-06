@@ -291,7 +291,7 @@
     <value>Schaltfläche</value>
   </data>
   <data name="m_recordingToolBarRecordingBtn.AccessibleName" xml:space="preserve">
-    <value>Test/Aufnahme</value>
+    <value>Überwachung/Aufnahme</value>
   </data>
   <data name="m_recordingToolBarRecordingBtn.AutoSize" type="System.Boolean, mscorlib">
     <value>False</value>
@@ -645,7 +645,7 @@
     <value>40, 40</value>
   </data>
   <data name="m_TODOBtn.Text" xml:space="preserve">
-    <value>TODO</value>
+    <value>ToDo</value>
   </data>
   <data name="m_ToggleProfile.AutoSize" type="System.Boolean, mscorlib">
     <value>False</value>
@@ -845,7 +845,7 @@
     <value>442, 111</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
-    <value>Obi Aufnahmeanzeige </value>
+    <value>Obi Aufnahmeleiste</value>
   </data>
   <data name="&gt;&gt;m_recordingToolBarElapseBackBtn.Name" xml:space="preserve">
     <value>m_recordingToolBarElapseBackBtn</value>

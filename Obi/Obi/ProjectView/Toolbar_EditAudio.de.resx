@@ -124,7 +124,7 @@
     <value>True</value>
   </metadata>
   <data name="toolStrip1.AccessibleName" xml:space="preserve">
-    <value>Audio bearbeiten</value>
+    <value>Ton bearbeiten</value>
   </data>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="toolStrip1.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">

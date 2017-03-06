@@ -175,13 +175,13 @@
     <value>Ordner "{0}" ist nicht leer. "Ja" zum Leeren drücken, "Nein" zum unveränderten Benutzen.</value>
   </data>
   <data name="Z3986DTBValidator" xml:space="preserve">
-    <value>Daisy 3 Validation</value>
+    <value>Daisy 3 Validierung</value>
   </data>
   <data name="Daisy202DTBValidator" xml:space="preserve">
-    <value>Daisy 2.02 Standard-Validation</value>
+    <value>Daisy 2.02 Grund-Validierung</value>
   </data>
   <data name="DTBAudioEncoder" xml:space="preserve">
-    <value>Konvertiere Audio in MP3</value>
+    <value>Konvertiere Ton in MP3</value>
   </data>
   <data name="FilesetRenamer" xml:space="preserve">
     <value>Dateien-Umbenner</value>
@@ -226,10 +226,10 @@
     <value>Wähle Bitrate der encodierten Dateien</value>
   </data>
   <data name="Input_file" xml:space="preserve">
-    <value>Eingabe-Name</value>
+    <value>Eingangs-Dateiname</value>
   </data>
   <data name="Select_the_input_manifest_file_(NCC,_OPF,_etc)" xml:space="preserve">
-    <value>Wähle Eingabei-Hauptname (NCC, OPF etc.) </value>
+    <value>Wähle Eingangs-Datei (NCC, OPF etc.) </value>
   </data>
   <data name="Base_Name" xml:space="preserve">
     <value>Basisname</value>
