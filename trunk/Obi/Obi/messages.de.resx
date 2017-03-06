@@ -186,7 +186,7 @@ Tut mir leid ...</value>
     <value>Keine Audiogeräte gefunden</value>
   </data>
   <data name="no_device_found_text" xml:space="preserve">
-    <value>Kann kein Aufnahme-/ Wiedergabegerät asuwählen.
+    <value>Kann kein Aufnahme-/ Wiedergabegerät auswählen.
 Bitte DirectX 9c prüfen.</value>
   </data>
   <data name="no_output_device_caption" xml:space="preserve">
@@ -289,7 +289,7 @@ Bitte DirectX 9c prüfen.</value>
     <value>Fehler beim Audio-Import</value>
   </data>
   <data name="import_phrase_error_text" xml:space="preserve">
-    <value>Audio-Datei "{0}" kann nicht importiert werden. Einstellungen passen nicht zum aktuellen Projekt (z. B. Kanäle, Bitrate, Samplerate)-</value>
+    <value>Audio-Datei "{0}" kann nicht importiert werden. Einstellungen passen nicht zum aktuellen Projekt (z. B. Kanäle, Bitrate, Samplerate).</value>
   </data>
   <data name="dc_publisher_description" xml:space="preserve">
     <value>Herausgeber des Hörbuches</value>
@@ -301,7 +301,7 @@ Bitte DirectX 9c prüfen.</value>
     <value>Beschreibung für diesen Metaeintrag fehlt.</value>
   </data>
   <data name="help_file_name" xml:space="preserve">
-    <value>help_en.html</value>
+    <value>help_de.html</value>
   </data>
   <data name="error_metadata_name_caption" xml:space="preserve">
     <value>Kann Metaeintrag nicht herstellen</value>
@@ -310,7 +310,7 @@ Bitte DirectX 9c prüfen.</value>
     <value>Kann keinen Metaeintrag "{0}" herstellen: Name darf nicht mit "dtb:" beginnen.</value>
   </data>
   <data name="default_project_title" xml:space="preserve">
-    <value>Unbenanntes Obi-Projekt</value>
+    <value>Neues Obi-Projekt</value>
   </data>
   <data name="default_project_filename" xml:space="preserve">
     <value>projekt.obi</value>
@@ -328,7 +328,7 @@ Bitte DirectX 9c prüfen.</value>
     <value>Rückgängig nicht möglich.</value>
   </data>
   <data name="rename_section" xml:space="preserve">
-    <value>Sektion Umbenennen</value>
+    <value>Sektion umbenennen</value>
   </data>
   <data name="move_section_out" xml:space="preserve">
     <value>Sektion: Level tiefer</value>
@@ -429,10 +429,10 @@ Fehlertext: {1}</value>
     <value>Phrase einfügen</value>
   </data>
   <data name="add_role" xml:space="preserve">
-    <value>(Attribut hinzufügen)</value>
+    <value>(Funktion hinzufügen)</value>
   </data>
   <data name="assign_role" xml:space="preserve">
-    <value>Attribut hinzufügen</value>
+    <value>Funktion hinzufügen</value>
   </data>
   <data name="mark_phrase_used" xml:space="preserve">
     <value>Phrase als {0} kennzeichnen</value>
@@ -450,10 +450,10 @@ Fehlertext: {1}</value>
     <value>Sektion als {0} kennzeichnen</value>
   </data>
   <data name="cut_audio" xml:space="preserve">
-    <value>Audio schneiden</value>
+    <value>Ton schneiden</value>
   </data>
   <data name="delete_audio" xml:space="preserve">
-    <value>Audio löschen</value>
+    <value>Ton löschen</value>
   </data>
   <data name="default_custom_class_name" xml:space="preserve">
     <value>Markiert</value>
@@ -462,7 +462,7 @@ Fehlertext: {1}</value>
     <value>Keine stille Phrase zu Beginn der Sektion. Die Standardeinstellung wird verwendet. Sie können diese ändern. Oder Sie brechen hier ab nd wählen eine stille Phrase.</value>
   </data>
   <data name="paste_audio" xml:space="preserve">
-    <value>Audio einfügen</value>
+    <value>Ton einfügen</value>
   </data>
   <data name="copy_audio" xml:space="preserve">
     <value>Audio kopieren</value>
@@ -501,7 +501,7 @@ Fehlertext: {1}</value>
     <value>Sichern nach Bereinigen</value>
   </data>
   <data name="Delete_unused_data_caption" xml:space="preserve">
-    <value>Unbenutzte Daten löschen?</value>
+    <value>Unbenutzte Elemente löschen?</value>
   </data>
   <data name="UnusedPhrasesDeletedCaption" xml:space="preserve">
     <value>Unbenutzte Phrasen löschen</value>
@@ -510,7 +510,7 @@ Fehlertext: {1}</value>
     <value>Dieser Vorgang speichert Ihr Projekt. Sie können frühere Vorgänge danach nicht mehr rückgängig machen. Wollen Sie fortfahren?</value>
   </data>
   <data name="delete_unused" xml:space="preserve">
-    <value>Unbenutzte Daten löschen</value>
+    <value>Unbenutzte Elemente löschen</value>
   </data>
   <data name="delete_metadata_entry" xml:space="preserve">
     <value>Metaeintrag löschen</value>
@@ -525,10 +525,10 @@ Fehlertext: {1}</value>
     <value>about_de.html</value>
   </data>
   <data name="add_blank_pages" xml:space="preserve">
-    <value>Leere Seite hinzufügen</value>
+    <value>Leere Seite anfügen</value>
   </data>
   <data name="add_blank_phrase" xml:space="preserve">
-    <value>Leere Phrase hinzufügen</value>
+    <value>Leere Phrase anfügen</value>
   </data>
   <data name="add_metadata_entry" xml:space="preserve">
     <value>Metaeintrag hinzufügen</value>
@@ -570,7 +570,7 @@ Fehlertext: {1}</value>
     <value>angehalten</value>
   </data>
   <data name="transport_bar" xml:space="preserve">
-    <value>Transportanzeige</value>
+    <value>Navigationsleiste</value>
   </data>
   <data name="dc_contributor_description" xml:space="preserve">
     <value>Weitere Mitwirkende nebendem Urheber cd:Creator</value>
@@ -696,7 +696,7 @@ Fehlertext: {1}</value>
     <value>, Stille</value>
   </data>
   <data name="phrase_extra_TODO" xml:space="preserve">
-    <value>, TODO</value>
+    <value>, ToDo</value>
   </data>
   <data name="phrase_node_to_string" xml:space="preserve">
     <value>Phrase (Länge: {1})</value>
@@ -705,10 +705,10 @@ Fehlertext: {1}</value>
     <value>"{0}"</value>
   </data>
   <data name="phrase_short_Heading" xml:space="preserve">
-    <value>Heading</value>
+    <value>Überschrift</value>
   </data>
   <data name="phrase_short_page" xml:space="preserve">
-    <value>Page {0}</value>
+    <value>Seite {0}</value>
   </data>
   <data name="phrase_short_Plain" xml:space="preserve">
     <value>Phrase</value>
@@ -720,13 +720,13 @@ Fehlertext: {1}</value>
     <value>{0}{1} ({2})</value>
   </data>
   <data name="phrase_short_TODO" xml:space="preserve">
-    <value>*TODO*</value>
+    <value>*ToDo*</value>
   </data>
   <data name="phrase_to_string" xml:space="preserve">
     <value>{0}{1} Phrase {2} von {3} ({4}){5}</value>
   </data>
   <data name="section_level_to_string" xml:space="preserve">
-    <value>, Tiefe {0}</value>
+    <value>, Ebenen {0}</value>
   </data>
   <data name="section_one_phrase_to_string" xml:space="preserve">
     <value>, 1 Phrase</value>
@@ -930,7 +930,7 @@ Fehlertext: {1}</value>
     <value>Unzulässige Parameter. Bitte richtige Werte eintragen.</value>
   </data>
   <data name="recording_resume_check" xml:space="preserve">
-    <value>Aufnahme nach Pause gestartet. Mit "Ja" beginne ich an der Pause-Position. Mit "Nein" beginne ich an der aktuell markierten Stelle.</value>
+    <value>Aufnahme wird nach Pause fortgesetzt: Mit "Ja" an der Pause-Position. Mit "Nein" an der aktuell markierten Stelle.</value>
   </data>
   <data name="duration_hh_mm_ss" xml:space="preserve">
     <value>{0:00}:{1:00}:{2:00}</value>
@@ -1011,7 +1011,7 @@ Fehlertext: {1}</value>
     <value>Kann Ordner nicht leeren</value>
   </data>
   <data name="toggle_TODO" xml:space="preserve">
-    <value>TODO ein-/ausschalten</value>
+    <value>ToDo ein-/ausschalten</value>
   </data>
   <data name="recording_resume_check_caption" xml:space="preserve">
     <value>Aufnahme ab Pause-Position fortsetzen?</value>
@@ -1116,22 +1116,22 @@ Fehlertext: {1}</value>
     <value>Kann diesen Vorgang nicht beenden</value>
   </data>
   <data name="footnote" xml:space="preserve">
-    <value>footnote </value>
+    <value>[DAISY book structure term]</value>
   </data>
   <data name="sidebar" xml:space="preserve">
-    <value>sidebar </value>
+    <value>[DAISY book structure term]</value>
   </data>
   <data name="prodnote" xml:space="preserve">
-    <value> prodnote</value>
+    <value>[DAISY book structure term]</value>
   </data>
   <data name="note" xml:space="preserve">
-    <value>note</value>
+    <value>[DAISY book structure term]</value>
   </data>
   <data name="endnote" xml:space="preserve">
-    <value> endnote</value>
+    <value>[DAISY book structure term]</value>
   </data>
   <data name="annotation" xml:space="preserve">
-    <value> annotation</value>
+    <value>[DAISY book structure term]</value>
   </data>
   <data name="ContentsHidden_CannotExecuteCommand" xml:space="preserve">
     <value>Nicht möglich in Sektionen mit verstecktem Inhalt. Bitte erst sichtbar machen, dann neu versuchen.</value>
@@ -1221,10 +1221,10 @@ Fehlertext: {1}</value>
     <value>OL</value>
   </data>
   <data name="DisableAdvancedRecording" xml:space="preserve">
-    <value>Experten-Aufnahme Aus</value>
+    <value>Erweiterter Aufnahmemodus Aus</value>
   </data>
   <data name="EnableAdvancedRecording" xml:space="preserve">
-    <value>Experten-Aufnahme Ein</value>
+    <value>Erweiterter Aufnahmemodus Ein</value>
   </data>
   <data name="ContentViewLabel_NoSection" xml:space="preserve">
     <value>Es wird keine Sektion angezeigt</value>
@@ -1412,7 +1412,7 @@ Fehlertext: {1}</value>
     <value>Der Computer ist stark belastet. Es könnte sinnvoll sein, diesen Vorgang später auszuführen. Abbrechen mit "Nein".</value>
   </data>
   <data name="SelectPhraseOrSection_ShowSection" xml:space="preserve">
-    <value>Die gewünschte Phrase befindet sich nicht in dieser Sektion? Soll ich zur richtigen Sektion springen?</value>
+    <value>Die gesuchte Phrase befindet sich nicht in dieser Sektion. Soll ich zur richtigen Sektion springen?</value>
   </data>
   <data name="KeyS_FastPlayNormalizeWithElapseBack" xml:space="preserve">
     <value>Wiedergabetempo normal mit Sprung zurück</value>
@@ -1454,7 +1454,7 @@ Fehlertext: {1}</value>
     <value>Wiedergabe/Pause mit Auswahl</value>
   </data>
   <data name="KeyS_PlaySelectedWaveform" xml:space="preserve">
-    <value>Wiedergabe ausgewählte Audiografikl</value>
+    <value>Wiedergabe ausgewählter Ton</value>
   </data>
   <data name="KeyS_ScrollDown_LargeIncrementWithSelection" xml:space="preserve">
     <value>Ein Fenster runter</value>
@@ -1499,7 +1499,7 @@ Fehlertext: {1}</value>
     <value>Nächste Seiten-Phrase wählen</value>
   </data>
   <data name="KeyS_SelectNextSpecialRolePhrase" xml:space="preserve">
-    <value>Wähle nächste Phrase mit Attribut</value>
+    <value>Wähle nächste Phrase mit Funktion</value>
   </data>
   <data name="KeyS_SelectPrecedingPagePhrase" xml:space="preserve">
     <value>Vorherige Seiten-Phrase wählen</value>
@@ -1508,7 +1508,7 @@ Fehlertext: {1}</value>
     <value>Vorherige Phrase wählen</value>
   </data>
   <data name="KeyS_SelectPrecedingSpecialRolePhrase" xml:space="preserve">
-    <value>Wähle vorherige Phrase mit Attribut</value>
+    <value>Wähle vorherige Phrase mit Funktion</value>
   </data>
   <data name="KeyS_SelectPrecedingStrip" xml:space="preserve">
     <value>Vorherige Sektion im Inhaltsfenster</value>
@@ -1580,7 +1580,7 @@ Fehlertext: {1}</value>
     <value>Daisybuch erfolgreich importiert {0} - {1}</value>
   </data>
   <data name="RecToolbar_MarkedTODO" xml:space="preserve">
-    <value>Als TODO markiert</value>
+    <value>Als ToDo markiert</value>
   </data>
   <data name="RecToolbar_NewPage" xml:space="preserve">
     <value>Neue Seite</value>
@@ -1619,7 +1619,7 @@ Fehlertext: {1}</value>
     <value>http://daisy.trac.cvsdude.com/obi/wiki/documentation/Obi2.0_FeaturesExplanation</value>
   </data>
   <data name="Cleanup_WaveformLoadingWarning" xml:space="preserve">
-    <value>Lade Audiografik … Es können Audiodateien geöffnet sein; warten Sie den Vorgang bitte ab. Drücken Sie NEIN zum abwarten.</value>
+    <value>Lade Audiografik … Es können Audiodateien geöffnet sein; warten Sie den Vorgang bitte ab. Drücken Sie NEIN zum Abwarten.</value>
   </data>
   <data name="ImportProject_OverwriteProjectMsg" xml:space="preserve">
     <value>Projektdatei am genannten Ort schon vorhanden. Bestehendes Projekt überschreiben?</value>
@@ -1694,7 +1694,7 @@ Fehlertext: {1}</value>
     <value>Öffne Projekt {0}</value>
   </data>
   <data name="waveform_is_truncated" xml:space="preserve">
-    <value>Grafik beschnitten auf {0} s</value>
+    <value>Tonanzeige beschnitten auf {0} s</value>
   </data>
   <data name="GoToPageOrPhrase_Time" xml:space="preserve">
     <value>Zeit:</value>
@@ -1724,7 +1724,7 @@ Fehlertext: {1}</value>
     <value>Aufnahmetaste benutzen zum Vorhören</value>
   </data>
   <data name="AudioTab_RecordDirectlyFromTransportBar" xml:space="preserve">
-    <value>Immer direkt aufnehmen aus Transportleiste</value>
+    <value>Immer direkt aufnehmen aus Navigationsleiste</value>
   </data>
   <data name="AudioTab_RetainInitialSilence" xml:space="preserve">
     <value>Stille zu Beginn bei Phrasenerkennung erhalten</value>
@@ -1736,7 +1736,7 @@ Fehlertext: {1}</value>
     <value>Automatische Sicherung nach Aufnahme-Ende</value>
   </data>
   <data name="ProjectTab_FixContentViewWidth" xml:space="preserve">
-    <value>Inhaltsfenster - Breite fixieren</value>
+    <value>Inhaltsfenster: Breite fixieren</value>
   </data>
   <data name="ProjectTab_OpenLastProject" xml:space="preserve">
     <value>Letztes Projekt öffnen</value>
@@ -1748,7 +1748,7 @@ Fehlertext: {1}</value>
     <value>Speichernutzung optimieren.</value>
   </data>
   <data name="Project_DisableRollBackForCleanUp" xml:space="preserve">
-    <value>Rückgängigmachen der Bereinigung verbieten</value>
+    <value>Rückgängigmachen der Bereinigung verhindern</value>
   </data>
   <data name="Preferences_UnableToUpdateProjectAudioFormat" xml:space="preserve">
     <value>Kann das Audioformat des Projektes nicht aktualisieren</value>
@@ -1772,7 +1772,7 @@ Fehlertext: {1}</value>
     <value>Anker</value>
   </data>
   <data name="Associate_next_phrase" xml:space="preserve">
-    <value>Die zugehörige ergänzende Bezeichnung wird gelöscht. Nächste Phrase wird angebunden. Sind Sie sicher?</value>
+    <value>Die Anmerkungs-Phrase wird gelöscht. Die nächste Phrase übernimmt den Verweis. Sind Sie sicher?</value>
   </data>
   <data name="Associate_node_with_anchor_node" xml:space="preserve">
     <value>Mit dieser Phrase ist kein Anker verknüpft. Bitte verbinden Sie ein Element mit diesem Anker.</value>
@@ -1802,7 +1802,7 @@ Fehlertext: {1}</value>
     <value>Sektion {0}, Phrase {1}</value>
   </data>
   <data name="Export_SkippableWithEmptyNode" xml:space="preserve">
-    <value>Folgende Anker verweisen auf ergänzende Bezeichnungen in leeren Phrasen, die beim Export verloren gehen. Fortfahren mit OK, Abbrechen zum Korrigieren.</value>
+    <value>Folgende Anker verweisen auf Anmerkungen in leeren Phrasen, die beim Export verloren gehen. Fortfahren mit OK, Abbrechen zum Korrigieren.</value>
   </data>
   <data name="Anchor_node_error" xml:space="preserve">
     <value>Anker für leere oder fehlende Elemente vorhaben</value>
@@ -1844,13 +1844,13 @@ Fehlertext: {1}</value>
     <value>Bezug herstellen fehlgeschlagen</value>
   </data>
   <data name="ProjectViewFormMsg_AssigningSkippableFail" xml:space="preserve">
-    <value>Anfügen einer ergänzende Bezeichnung fehlgeschlagen</value>
+    <value>Anfügen einer Anmerkung fehlgeschlagen</value>
   </data>
   <data name="ProjectViewFormMsg_CutOperationFail" xml:space="preserve">
     <value>Schneiden fehlgeschlagen</value>
   </data>
   <data name="ProjectViewFormMsg_DeassociatingSkippableFail" xml:space="preserve">
-    <value>Abtrennenn einer ergänzende Bezeichnung fehlgeschlagen.</value>
+    <value>Abtrennenn einer Anmerkung fehlgeschlagen.</value>
   </data>
   <data name="ProjectViewFormMsg_DeleteOperationFail" xml:space="preserve">
     <value>Löschen fehlgeschlagen.</value>
@@ -1871,10 +1871,10 @@ Fehlertext: {1}</value>
     <value>Trennen fehlgeschlagen.</value>
   </data>
   <data name="KeyS_SelectFirstSkippableNode" xml:space="preserve">
-    <value>Wähle erste Phrase der ergänzenden Bezeichnung</value>
+    <value>Wähle erste Phrase der Anmerkung</value>
   </data>
   <data name="KeyS_SelectLastSkippableNode" xml:space="preserve">
-    <value>Wähle letzte Phrase der ergänzenden Bezeichnung</value>
+    <value>Wähle letzte Phrase der Anmerkung</value>
   </data>
   <data name="KeyS_TransportBarFineNavigationOn" xml:space="preserve">
     <value>Feinnavigation EIN</value>
@@ -1931,16 +1931,16 @@ Fehlertext: {1}</value>
     <value>Speicherplatzmeldung</value>
   </data>
   <data name="KeyS_ContractAudioSelectionAtLeft" xml:space="preserve">
-    <value>Audio-Auswahl links kontrahieren</value>
+    <value>Ton-Auswahl links kontrahieren</value>
   </data>
   <data name="KeyS_ExpandAudioSelectionAtLeft" xml:space="preserve">
-    <value>Audio-Auswahl links erweitern</value>
+    <value>Ton-Auswahl links erweitern</value>
   </data>
   <data name="Recording_RecordInNextExistingEmptyPage" xml:space="preserve">
     <value>Aufnahme auf nächster leerer Seite</value>
   </data>
   <data name="ProjectView_ClearAnchor" xml:space="preserve">
-    <value>Anker zur ergänzenden Bezeichnung bereinigen?</value>
+    <value>Anker zur Anmerkung bereinigen?</value>
   </data>
   <data name="Elapsed" xml:space="preserve">
     <value>vergangen …</value>
@@ -1976,19 +1976,19 @@ Fehlertext: {1}</value>
     <value>Phrasenerkennung während der Aufnahme</value>
   </data>
   <data name="ProjectView_ErrorReplacingAudioDueToTimingMissmatch" xml:space="preserve">
-    <value>Audio kann wegen Laufzeitproblem nicht ersetzt werden. Originallänge {0}. Länge der neuen Datei {1}</value>
+    <value>Ton kann wegen unterschiedlicher Längen  nicht ersetzt werden. Originallänge {0}. Länge der neuen Datei {1}</value>
   </data>
   <data name="AudioPref_LivePhraseDetectionEnable" xml:space="preserve">
-    <value>Werte für Phrasenerkennung: Leerlaufpegel {0}, Pausenlänge {1}, Stille zu Beginn {2}. Kann in den Audioeinstellungen oder durch Import einer stillen Phrase geändert werden.</value>
+    <value>Werte für Phrasenerkennung: Leerlaufpegel {0}, Pausenlänge {1}, Stille zu Beginn {2}. Kann in den Toneinstellungen oder durch Import einer stillen Phrase geändert werden.</value>
   </data>
   <data name="ProjectTab_EnableFreeDiskSpaceCheck" xml:space="preserve">
-    <value>Speicherplatzkontrolle möglich.</value>
+    <value>Speicherplatzkontrolle erlauben.</value>
   </data>
   <data name="Audio_EnablePostRecordingPageRenumbering" xml:space="preserve">
     <value>Folgeseiten nach der Aufnahme neu nummerieren</value>
   </data>
   <data name="KeyS_TransportBarRecordSingleKey" xml:space="preserve">
-    <value>Aufnahme mit Eine-Taste-Bedienung</value>
+    <value>Aufnahme mit Ein-Tasten-Bedienung</value>
   </data>
   <data name="Audio_MonitorAlways" xml:space="preserve">
     <value>Laufende Überwachung</value>
@@ -2006,7 +2006,7 @@ Fehlertext: {1}</value>
     <value>Schnelle Wiedergabe ohne Tonhöhenänderung</value>
   </data>
   <data name="Project_SaveProjectWhenRecordingEnds" xml:space="preserve">
-    <value>Projekt sicher nach Aufnahme</value>
+    <value>Projekt sichern nach Aufnahme</value>
   </data>
   <data name="Project_CheckForUpdates" xml:space="preserve">
     <value>Nach Updates suchen</value>
@@ -2042,7 +2042,7 @@ Fehlertext: {1}</value>
     <value>Zurücksetzen aller Einstellungen</value>
   </data>
   <data name="ReplaceCorruptPhrasesWithEmptyNode_Question" xml:space="preserve">
-    <value>Gesamtzahl der Phrasen: {0}; darin sind {1} Phrasen mit unnötigem oder fehlenden Ton. Sollen diese durch TODO-Markierungen ersetzt werden?</value>
+    <value>Gesamtzahl der Phrasen: {0}; darin sind {1} Phrasen mit unbenutzem oder fehlenden Ton. Sollen diese durch leere ToDo-Phrasen ersetzt werden?</value>
   </data>
   <data name="ReplacePhrasesWithEmptyNode" xml:space="preserve">
     <value>Ersetze defekte Phrasen durch leere Phrasen.</value>
@@ -2051,7 +2051,7 @@ Fehlertext: {1}</value>
     <value>Keine Phrasen mit defektem Ton gefunden.</value>
   </data>
   <data name="Obi_UserInformationText" xml:space="preserve">
-    <value>Füllem Sie das Formular aus, um sich bei obi, dem freien/open-source DAISY-Produktionswerkzeug, zu registrieren. Wir informieren Sie dann über Neuigkeiten und Updates per E-Mail und Sie nehmen Einfluss auf die zukünftige Entwicklung des Produktes, indem wir Ihre Wünsche besser kennen lernen. - Zur Registrierung benötigen Sie eine Internetverbindung. Sie wird dauerhaft - unabhängig von Obi-Versionen - gespeichert.</value>
+    <value>Füllen Sie das Formular aus, um sich bei OBI, dem freien (open-source) DAISY-Produktionsprogramm, zu registrieren. Wir informieren Sie dann über Neuigkeiten und Updates per E-Mail. Ihre Rückmeldungen helfen uns bei der Weiterentwicklung des Programms. - Internetverbindung nötig. - Die Registrierung wird dauerhaft - unabhängig von Obi-Versionen - gespeichert.</value>
   </data>
   <data name="CleanUp_LongFilePath" xml:space="preserve">
     <value>ACHTUNG ! Der lange und verschachtelte Dateipfad kann zu Problemen führen. Ein Speicherplatz, der näher am Laufwerksbuchstaben liegt, wäre sinnvoll. Wollen Sie trotzdem weitermachen?</value>
@@ -2063,7 +2063,7 @@ Fehlertext: {1}</value>
     <value>Nicht mehr erinnern</value>
   </data>
   <data name="CheckUpdates_NewVersionNotAvailable" xml:space="preserve">
-    <value>Letzter Update-Check bracht Version {0}. Keine neuen Updates vorhanden.</value>
+    <value>Letzter Update-Check ergab Version {0}. Keine neuen Updates vorhanden.</value>
   </data>
   <data name="CheckUpdates_GoToDownloadPage" xml:space="preserve">
     <value>&amp;gehe zur Download-Seite</value>
@@ -2075,7 +2075,7 @@ Fehlertext: {1}</value>
     <value>Zeige Sektion {0} bis {1}. Bitte Sektionen auswählen zum Zusammenfassen oder Ändern der Ebenen.</value>
   </data>
   <data name="KeyS_ZoomWaveformPanel" xml:space="preserve">
-    <value>Audiografik zoomen</value>
+    <value>Tongrafik zoomen</value>
   </data>
   <data name="KeyS_CloseZoomPanel" xml:space="preserve">
     <value>Zoom beenden</value>
@@ -2084,10 +2084,10 @@ Fehlertext: {1}</value>
     <value>Zoom zurücksetzen</value>
   </data>
   <data name="KeyS_ZoomInWaveform" xml:space="preserve">
-    <value>Audiografik vergrößern</value>
+    <value>Tongrafik vergrößern</value>
   </data>
   <data name="KeyS_ZoomOutWaveform" xml:space="preserve">
-    <value>Audiografik verkleinern</value>
+    <value>Tongrafik verkleinern</value>
   </data>
   <data name="KeyS_ZoomSelectedWaveform" xml:space="preserve">
     <value>Auswahl vergrößern</value>
@@ -2099,10 +2099,10 @@ Fehlertext: {1}</value>
     <value>Vorherige Phrase</value>
   </data>
   <data name="Project_ShowWaveformsInContentView" xml:space="preserve">
-    <value>Audio grafisch anzeigen</value>
+    <value>Ton grafisch anzeigen</value>
   </data>
   <data name="Project_AlwaysIgnoreIndentationForExportFiles" xml:space="preserve">
-    <value>Anmerkungen für daisy-Export-Dateien ignorieren</value>
+    <value>Keine Einrückungen in Daisy-Export-Dateien</value>
   </data>
   <data name="ZoomAudioTT_ShowNextPhrase" xml:space="preserve">
     <value>Nächste Phrase</value>
@@ -2219,7 +2219,7 @@ Fehlertext: {1}</value>
     <value>vorherige Seite</value>
   </data>
   <data name="Transport_FastPlayBackward" xml:space="preserve">
-    <value>Schneller Abspielen (zurück)</value>
+    <value>Schnell Zurückspulen</value>
   </data>
   <data name="Transport_StartPlayback" xml:space="preserve">
     <value>Wiedergabe starten/stoppen</value>
@@ -2231,7 +2231,7 @@ Fehlertext: {1}</value>
     <value>startet Überwachung/Aufnahme</value>
   </data>
   <data name="Transport_FastPlayForward" xml:space="preserve">
-    <value>Schneller Abspielen (weiter)</value>
+    <value>Schnell Vorspulen</value>
   </data>
   <data name="Transport_NextPhrase" xml:space="preserve">
     <value>Nächste Phrase</value>
@@ -2243,7 +2243,7 @@ Fehlertext: {1}</value>
     <value>Nächste Sektion</value>
   </data>
   <data name="Transport_AddTodo" xml:space="preserve">
-    <value>TODO-Markierung bei Aufnahme anlegen</value>
+    <value>ToDo-Markierung bei Aufnahme </value>
   </data>
   <data name="Transport_PreviousPhraseAcc" xml:space="preserve">
     <value>vorige Phrase</value>
@@ -2267,10 +2267,10 @@ Fehlertext: {1}</value>
     <value>Stop</value>
   </data>
   <data name="Transport_FastPlayForwardAcc" xml:space="preserve">
-    <value>Schnell vorwärts</value>
+    <value>Schnell vorspulen</value>
   </data>
   <data name="Transport_AddTodoAcc" xml:space="preserve">
-    <value>Pharse markieren</value>
+    <value>Phrase markieren</value>
   </data>
   <data name="Language_Pack_WrongFile" xml:space="preserve">
     <value>Falsche Datei ausgewählt</value>
@@ -2297,13 +2297,13 @@ Fehlertext: {1}</value>
     <value>Aufnahme im "mittleren" Modus</value>
   </data>
   <data name="Preferences_Level_ComboBox_Basic" xml:space="preserve">
-    <value>Basis</value>
+    <value>Standard</value>
   </data>
   <data name="Preferences_Level_ComboBox_Intermediate" xml:space="preserve">
-    <value>Mittel</value>
+    <value>Experten</value>
   </data>
   <data name="Preferences_Level_ComboBox_Advance" xml:space="preserve">
-    <value>Fortgeschritten</value>
+    <value>Profi</value>
   </data>
   <data name="Preferences_Level_ComboBox_Custom" xml:space="preserve">
     <value>Benutzerdefiniert </value>
@@ -2381,7 +2381,7 @@ Fehlertext: {1}</value>
     <value>Validierungsfehler </value>
   </data>
   <data name="obi_EPUB3ValidatorNotInstalled" xml:space="preserve">
-    <value>EPBUB-3-Validator nicht vorhanden</value>
+    <value>EPUB-3-Validator nicht vorhanden</value>
   </data>
   <data name="obi_EPUB3CheckNotFound" xml:space="preserve">
     <value>FEHLER: EPUB-3-Validierung nicht gefunden</value>
@@ -2402,22 +2402,22 @@ Fehlertext: {1}</value>
     <value>Aussteuerungsanzeige rechts oben fixieren</value>
   </data>
   <data name="AudioProcessing_progress_dialog_title" xml:space="preserve">
-    <value>Verarbeite Audio ...</value>
+    <value>Bearbeite Ton ...</value>
   </data>
   <data name="AudioProcessing_InfoText" xml:space="preserve">
-    <value>Wert 1.0 bedeutet: Audio bleibt unverändert</value>
+    <value>Wert 1.0 bedeutet: Ton bleibt unverändert</value>
   </data>
   <data name="ValidatorTimeOutMsg" xml:space="preserve">
     <value>Zeitfehler bei der Validierung</value>
   </data>
   <data name="Project_EPUBCheckTimeOutEnabled" xml:space="preserve">
-    <value>EPBUB-3-Prüfung nach 3 Minuten abgebrochen</value>
+    <value>EPUB-3-Prüfung nach 3 Minuten abbrechen</value>
   </data>
   <data name="UserRegistration_EnterFollowing" xml:space="preserve">
     <value>Bitte geben Sie sorgfältig ein:</value>
   </data>
   <data name="Audio_PreservePage" xml:space="preserve">
-    <value>Seiten erhalten bei Aufname im Übersprech-Modus</value>
+    <value>Seiten beibehalten bei Aufnahme im Übersprech-Modus</value>
   </data>
   <data name="MergeOptions_IncreaseLevel" xml:space="preserve">
     <value>Ebene höher</value>
@@ -2477,7 +2477,7 @@ Fehlertext: {1}</value>
     <value>Erweitern: Profil wechseln</value>
   </data>
   <data name="Transport_SwitchProfile" xml:space="preserve">
-    <value>Audioprofil wechseln von</value>
+    <value>Tonprofil wechseln von</value>
   </data>
   <data name="RecordingToolbar_SwitchProfile" xml:space="preserve">
     <value>Wechsel von {0} zu {1}</value>
@@ -2612,7 +2612,7 @@ Fehlertext: {1}</value>
     <value>Dieses Tastaturprofil ist derzeit geladen. Wenn Sie es löschen, werden die Standardeinstellungen wiederhergestellt. Sind Sie sicher?</value>
   </data>
   <data name="Project_IncreasePhraseHightForHigherResolution" xml:space="preserve">
-    <value>Phrasen vergrößern entsprechend der Bildschirmeinstellungen.</value>
+    <value>Phrasen vergrößern entsprechend der Bildschirmauflösung.</value>
   </data>
   <data name="EmptyProjectTitle_error_Caption" xml:space="preserve">
     <value>Kein Projekttitel</value>
@@ -2630,7 +2630,7 @@ Fehlertext: {1}</value>
     <value> Diese Einstellung ist nur möglich, wenn Sie die Option "Obi in Vollbildansicht starten" ausschalten. Weitermachen (empfohlen) ?</value>
   </data>
   <data name="Project_SaveTOCViewWidth" xml:space="preserve">
-    <value>Inhaltsverzeichnis: feste Breite</value>
+    <value>Inhaltsverzeichnis: Breite fixieren</value>
   </data>
   <data name="RecordingToolbar_SwitchLoadedProfile" xml:space="preserve">
     <value>Wechseln zu {0}</value>

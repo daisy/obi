@@ -356,7 +356,7 @@
     <value>13</value>
   </data>
   <data name="mToDo_CustomClassMarkButton.ToolTip" xml:space="preserve">
-    <value>TODO-Markierung bei Aufnahme. (F9)</value>
+    <value>ToDo-Markierung bei Aufnahme. (F9)</value>
   </data>
   <data name="&gt;&gt;mToDo_CustomClassMarkButton.Name" xml:space="preserve">
     <value>mToDo_CustomClassMarkButton</value>
@@ -1211,29 +1211,26 @@
   <data name="mFastPlayRateCombobox.Items" xml:space="preserve">
     <value>Schaltfläche</value>
   </data>
-  <data name="mFastPlayRateCombobox.Items" xml:space="preserve">
-    <value>1</value>
-  </data>
   <data name="mFastPlayRateCombobox.Items1" xml:space="preserve">
-    <value>1.125</value>
+    <value>Schaltfläche</value>
   </data>
   <data name="mFastPlayRateCombobox.Items2" xml:space="preserve">
-    <value>1.25</value>
+    <value>Schaltfläche</value>
   </data>
   <data name="mFastPlayRateCombobox.Items3" xml:space="preserve">
-    <value>1.5</value>
+    <value>Schaltfläche</value>
   </data>
   <data name="mFastPlayRateCombobox.Items4" xml:space="preserve">
-    <value>1.75</value>
+    <value>Schaltfläche</value>
   </data>
   <data name="mFastPlayRateCombobox.Items5" xml:space="preserve">
-    <value>2</value>
+    <value>Schaltfläche</value>
   </data>
   <data name="mFastPlayRateCombobox.Items6" xml:space="preserve">
-    <value>2.25</value>
+    <value>Schaltfläche</value>
   </data>
   <data name="mFastPlayRateCombobox.Items7" xml:space="preserve">
-    <value>2.5</value>
+    <value>Schaltfläche</value>
   </data>
   <data name="mFastPlayRateCombobox.Location" type="System.Drawing.Point, System.Drawing">
     <value>809, 4</value>

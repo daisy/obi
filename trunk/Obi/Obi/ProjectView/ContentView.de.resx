@@ -125,43 +125,43 @@
     <value>208, 22</value>
   </data>
   <data name="Context_ZoomPhrase.Text" xml:space="preserve">
-    <value>Phrase vergößern</value>
+    <value>Phrase vergrö&amp;ßern</value>
   </data>
   <data name="Context_AddSectionMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>208, 22</value>
   </data>
   <data name="Context_AddSectionMenuItem.Text" xml:space="preserve">
-    <value>&amp;Sektion hinzufügen </value>
+    <value>&amp;Sektion anfügen </value>
   </data>
   <data name="Context_InsertSectionMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>208, 22</value>
   </data>
   <data name="Context_InsertSectionMenuItem.Text" xml:space="preserve">
-    <value>Sektion E&amp;infügen</value>
+    <value>Sektion Einf&amp;ügen</value>
   </data>
   <data name="Context_SplitSectionMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>208, 22</value>
   </data>
   <data name="Context_SplitSectionMenuItem.Text" xml:space="preserve">
-    <value>Sektion teil&amp;len</value>
+    <value>Sekt&amp;ion teilen</value>
   </data>
   <data name="Context_MergeWithNextSectionMenuItem.AccessibleName" xml:space="preserve">
-    <value>Sektionen mit folgender verbinden</value>
+    <value>Sektion mit folgender verbinden</value>
   </data>
   <data name="Context_MergeWithNextSectionMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>208, 22</value>
   </data>
   <data name="Context_MergeWithNextSectionMenuItem.Text" xml:space="preserve">
-    <value>Sektionen mit folgende&amp;r verbinden</value>
+    <value>Sektion mit &amp;folgender verbinden</value>
   </data>
   <data name="Context_MultiSectionOperations.AccessibleName" xml:space="preserve">
-    <value>Mehr-Sektion-Aktionen</value>
+    <value>Mehrere Sektionen ändern</value>
   </data>
   <data name="Context_MultiSectionOperations.Size" type="System.Drawing.Size, System.Drawing">
     <value>208, 22</value>
   </data>
   <data name="Context_MultiSectionOperations.Text" xml:space="preserve">
-    <value>Mehr-Sektion-Aktionen (&amp;c)</value>
+    <value>&amp;Mehrere Sektionen ändern</value>
   </data>
   <data name="toolStripSeparator1.Size" type="System.Drawing.Size, System.Drawing">
     <value>205, 6</value>
@@ -170,43 +170,43 @@
     <value>208, 22</value>
   </data>
   <data name="Context_AddBlankPhraseMenuItem.Text" xml:space="preserve">
-    <value>Leere Phr&amp;ase hinzufügen</value>
+    <value>Leere &amp;Phrase anfügen</value>
   </data>
   <data name="Context_AddEmptyPagesMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>208, 22</value>
   </data>
   <data name="Context_AddEmptyPagesMenuItem.Text" xml:space="preserve">
-    <value>L&amp;eere Seiten hinzufügen</value>
+    <value>&amp;Leere Seiten anfügen</value>
   </data>
   <data name="Context_GenerateSpeechForPageMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>208, 22</value>
   </data>
   <data name="Context_GenerateSpeechForPageMenuItem.Text" xml:space="preserve">
-    <value>Stimme für Sei&amp;te erzeugen</value>
+    <value>S&amp;ynth. Stimme für Seitenzahlen</value>
   </data>
   <data name="Context_ImportAudioFilesMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>208, 22</value>
   </data>
   <data name="Context_ImportAudioFilesMenuItem.Text" xml:space="preserve">
-    <value>Audiodateien i&amp;mportieren</value>
+    <value>T&amp;on importieren</value>
   </data>
   <data name="Context_FineNavigationMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>208, 22</value>
   </data>
   <data name="Context_FineNavigationMenuItem.Text" xml:space="preserve">
-    <value>Feinna&amp;vigation</value>
+    <value>Fei&amp;nnavigation</value>
   </data>
   <data name="Context_SplitPhraseMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>208, 22</value>
   </data>
   <data name="Context_SplitPhraseMenuItem.Text" xml:space="preserve">
-    <value>P&amp;hrase teilen</value>
+    <value>Phrase &amp;teilen</value>
   </data>
   <data name="Context_MergePhraseWithNextMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>233, 22</value>
   </data>
   <data name="Context_MergePhraseWithNextMenuItem.Text" xml:space="preserve">
-    <value>Mit nächster Phrase verbinden (&amp;x)</value>
+    <value>Mit &amp;nächster Phrase verbinden</value>
   </data>
   <data name="Context_SplitMergeWithNextMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>233, 22</value>
@@ -218,19 +218,19 @@
     <value>233, 22</value>
   </data>
   <data name="Context_SplitMergeWithPreviousMenuItem.Text" xml:space="preserve">
-    <value>Teilen &amp;und mit vorheriger verbinden</value>
+    <value>Teilen und mit &amp;vorheriger verbinden</value>
   </data>
   <data name="Context_Merge_MergeWithFollowingPhrasesMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>233, 22</value>
   </data>
   <data name="Context_Merge_MergeWithFollowingPhrasesMenuItem.Text" xml:space="preserve">
-    <value>Mit fo&amp;lgenden Phrasen verbinden</value>
+    <value>Mit &amp;folgenden Phrasen verbinden</value>
   </data>
   <data name="Context_Merge_MergeWithPrecedingPhrasesMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>233, 22</value>
   </data>
   <data name="Context_Merge_MergeWithPrecedingPhrasesMenuItem.Text" xml:space="preserve">
-    <value>Mit vorherigen Phra&amp;se verbinden</value>
+    <value>Mit v&amp;orherigen Phrasen verbinden</value>
   </data>
   <data name="Context_MergeMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>208, 22</value>
@@ -242,19 +242,19 @@
     <value>208, 22</value>
   </data>
   <data name="Context_CropAudioMenuItem.Text" xml:space="preserve">
-    <value>Au&amp;dio bereinigen</value>
+    <value>Ton bes&amp;chneiden</value>
   </data>
   <data name="Context_PhraseIsTODOMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>208, 22</value>
   </data>
   <data name="Context_PhraseIsTODOMenuItem.Text" xml:space="preserve">
-    <value>Phrase als T&amp;oDo markiert</value>
+    <value>Phrase ist To&amp;Do</value>
   </data>
   <data name="Context_PhraseIsUsedMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>208, 22</value>
   </data>
   <data name="Context_PhraseIsUsedMenuItem.Text" xml:space="preserve">
-    <value>Phras&amp;e in Benutzung</value>
+    <value>Phrase ist &amp;benutzt</value>
   </data>
   <data name="toolStripSeparator2.Size" type="System.Drawing.Size, System.Drawing">
     <value>205, 6</value>
@@ -263,7 +263,7 @@
     <value>181, 22</value>
   </data>
   <data name="Context_AssignRole_PlainMenuItem.Text" xml:space="preserve">
-    <value>E&amp;infach</value>
+    <value>&amp;Einfach</value>
   </data>
   <data name="Context_AssignRole_HeadingMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>181, 22</value>
@@ -281,7 +281,7 @@
     <value>181, 22</value>
   </data>
   <data name="Context_AssignRole_SilenceMenuItem.Text" xml:space="preserve">
-    <value>&amp;Stille</value>
+    <value>St&amp;ille</value>
   </data>
   <data name="Context_AssignRole_AnchorMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>181, 22</value>
@@ -296,37 +296,37 @@
     <value>181, 22</value>
   </data>
   <data name="Context_AssignRole_NewCustomRoleMenuItem.Text" xml:space="preserve">
-    <value>(Neues benutzer-definiertes Attribut …)</value>
+    <value>(Neue &amp;benutzer-definierte Funktion …)</value>
   </data>
   <data name="Context_AssignRoleMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>208, 22</value>
   </data>
   <data name="Context_AssignRoleMenuItem.Text" xml:space="preserve">
-    <value>Attribut zuordnen (&amp;l)</value>
+    <value>Funktion &amp;zufordnen</value>
   </data>
   <data name="Context_ClearRoleMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>208, 22</value>
   </data>
   <data name="Context_ClearRoleMenuItem.Text" xml:space="preserve">
-    <value>Attribut entfernen</value>
+    <value>F&amp;unktion entfernen</value>
   </data>
   <data name="Context_ApplyPhraseDetectionMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>285, 22</value>
   </data>
   <data name="Context_ApplyPhraseDetectionMenuItem.Text" xml:space="preserve">
-    <value>Ausgewähltes Elemen&amp;t </value>
+    <value>Ausgewähl&amp;tes Element </value>
   </data>
   <data name="Context_PhraseDetection_ApplyPhraseDetectionInProjectMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>285, 22</value>
   </data>
   <data name="Context_PhraseDetection_ApplyPhraseDetectionInProjectMenuItem.Text" xml:space="preserve">
-    <value>Mehrfach Sektionen (&amp;l)</value>
+    <value>Mehrere &amp;Sektionen</value>
   </data>
   <data name="Context_SettingsFromsilencePhraseToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>285, 22</value>
   </data>
   <data name="Context_SettingsFromsilencePhraseToolStripMenuItem.Text" xml:space="preserve">
-    <value>Parameter der ausgewählten &amp;Stille-Phrase</value>
+    <value>Parameter der ausgewählten &amp;St&amp;ille-Phrase</value>
   </data>
   <data name="Context_PhraseDetectionMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>208, 22</value>
@@ -350,46 +350,46 @@
     <value>208, 22</value>
   </data>
   <data name="toolStripMenuItem1.Text" xml:space="preserve">
-    <value>Mehrfach-&amp;Phrasen-Vorgang</value>
+    <value>Mehrere Phrasen &amp;ändern</value>
   </data>
   <data name="Context_SkippablesMenuItem.AccessibleName" xml:space="preserve">
-    <value>Ergänzende Bezeichnung</value>
+    <value>Anmerkung</value>
   </data>
   <data name="Context_Skippable_BeginSpecialNodeMarkToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>Beginn  Bezeichnung</value>
+    <value>Anfang Anmerkung</value>
   </data>
   <data name="Context_Skippable_BeginSpecialNodeMarkToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>180, 22</value>
   </data>
   <data name="Context_Skippable_BeginSpecialNodeMarkToolStripMenuItem.Text" xml:space="preserve">
-    <value>Be&amp;ginn  Bezeichnung</value>
+    <value>&amp;Anfang Anmerkung</value>
   </data>
   <data name="Context_Skippable_EndSpecialNodeMarkToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>Ende Bezeichnung</value>
+    <value>Ende Anmerkung</value>
   </data>
   <data name="Context_Skippable_EndSpecialNodeMarkToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>180, 22</value>
   </data>
   <data name="Context_Skippable_EndSpecialNodeMarkToolStripMenuItem.Text" xml:space="preserve">
-    <value>En&amp;de Bezeichnung</value>
+    <value>&amp;Ende Anmerkung</value>
   </data>
   <data name="Context_Skippable_AssociateSpecialNodeMarkToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>Verweis herstellen</value>
+    <value>Verweis anfügen</value>
   </data>
   <data name="Context_Skippable_AssociateSpecialNodeMarkToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>180, 22</value>
   </data>
   <data name="Context_Skippable_AssociateSpecialNodeMarkToolStripMenuItem.Text" xml:space="preserve">
-    <value>Verweis herstellen (&amp;f)</value>
+    <value>&amp;Verweis anfügen</value>
   </data>
   <data name="Context_Skippable_GotoAssociatedNodeToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>Gehe zu verbundener Bezeichnung</value>
+    <value>Gehe zu verbundener Anmerkung</value>
   </data>
   <data name="Context_Skippable_GotoAssociatedNodeToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>180, 22</value>
   </data>
   <data name="Context_Skippable_GotoAssociatedNodeToolStripMenuItem.Text" xml:space="preserve">
-    <value>Gehe zu ve&amp;rbundener Bezeichnung</value>
+    <value>Gehe zu ve&amp;rbundener Anmerkung</value>
   </data>
   <data name="Context_Skippable_RemoveAssociatedNodeToolStripMenuItem.AccessibleName" xml:space="preserve">
     <value>Verweis löschen</value>
@@ -401,52 +401,52 @@
     <value>Verweis lösche&amp;n</value>
   </data>
   <data name="Context_Skippable_MoveToStartNoteToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>Zu erster Bezeichnung</value>
+    <value>Zu erster Anmerkung</value>
   </data>
   <data name="Context_Skippable_MoveToStartNoteToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>180, 22</value>
   </data>
   <data name="Context_Skippable_MoveToStartNoteToolStripMenuItem.Text" xml:space="preserve">
-    <value>Zu ers&amp;ter Bezeichnung</value>
+    <value>Zu ers&amp;ter Anmerkung</value>
   </data>
   <data name="Context_Skippable_MoveToEndNoteToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>Zu letzter Bezeichnung</value>
+    <value>Zu letzter Anmerkung</value>
   </data>
   <data name="Context_Skippable_MoveToEndNoteToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>180, 22</value>
   </data>
   <data name="Context_Skippable_MoveToEndNoteToolStripMenuItem.Text" xml:space="preserve">
-    <value>Zu letzter Bezeichnun&amp;g</value>
+    <value>Zu &amp;letzter Anmerkung</value>
   </data>
   <data name="Context_Skippable_ClearRoleFromNoteToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>180, 22</value>
   </data>
   <data name="Context_Skippable_ClearRoleFromNoteToolStripMenuItem.Text" xml:space="preserve">
-    <value>Lös&amp;che Bezeichnung aus Eigenschaft</value>
+    <value>L&amp;ösche Anmerkung aus Funktion</value>
   </data>
   <data name="Context_SkippablesMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>208, 22</value>
   </data>
   <data name="Context_SkippablesMenuItem.Text" xml:space="preserve">
-    <value>Ergänzende Bezeichnung</value>
+    <value>Anme&amp;rkung</value>
   </data>
   <data name="Context_AudioSelection_BeginMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>187, 22</value>
   </data>
   <data name="Context_AudioSelection_BeginMenuItem.Text" xml:space="preserve">
-    <value>&amp;Beginn Audio-Auswahl</value>
+    <value>&amp;Beginn Ton-Auswahl</value>
   </data>
   <data name="Context_AudioSelection_EndMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>187, 22</value>
   </data>
   <data name="Context_AudioSelection_EndMenuItem.Text" xml:space="preserve">
-    <value>&amp;Ende Audio-Auswahl</value>
+    <value>&amp;Ende Ton-Auswahl</value>
   </data>
   <data name="Context_AudioSelectionMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>208, 22</value>
   </data>
   <data name="Context_AudioSelectionMenuItem.Text" xml:space="preserve">
-    <value>&amp;Audi&amp;o Auswahl</value>
+    <value>Ton-Aus&amp;wahl</value>
   </data>
   <data name="toolStripSeparator4.Size" type="System.Drawing.Size, System.Drawing">
     <value>205, 6</value>
@@ -473,7 +473,7 @@
     <value>208, 22</value>
   </data>
   <data name="Context_PasteBeforeMenuItem.Text" xml:space="preserve">
-    <value>Davor einfügen (&amp;b)</value>
+    <value>&amp;Davor einfügen</value>
   </data>
   <assembly alias="mscorlib" name="mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="Context_PasteBeforeMenuItem.Visible" type="System.Boolean, mscorlib">
@@ -492,19 +492,19 @@
     <value>203, 22</value>
   </data>
   <data name="Context_Delete_deleteSelectionMenuItem.Text" xml:space="preserve">
-    <value>Au&amp;swahl löschen</value>
+    <value>Aus&amp;wahl löschen</value>
   </data>
   <data name="Context_Delete_deleteFollowingPhrasesMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>203, 22</value>
   </data>
   <data name="Context_Delete_deleteFollowingPhrasesMenuItem.Text" xml:space="preserve">
-    <value>Nächs&amp;te Phrasen löschen</value>
+    <value>&amp;Nächste Phrasen löschen</value>
   </data>
   <data name="Context_DeleteMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>208, 22</value>
   </data>
   <data name="Context_DeleteMenuItem.Text" xml:space="preserve">
-    <value>Löschen (&amp;d)</value>
+    <value>L&amp;öschen</value>
   </data>
   <data name="toolStripSeparator5.Size" type="System.Drawing.Size, System.Drawing">
     <value>205, 6</value>
@@ -513,13 +513,13 @@
     <value>208, 22</value>
   </data>
   <data name="Context_AudioProcessing.Text" xml:space="preserve">
-    <value>Audiobearbeitung</value>
+    <value>Audio&amp;qualität bearbeiten</value>
   </data>
   <data name="Context_ExportReplaceAudioMenuItem.AccessibleName" xml:space="preserve">
     <value>Audio exportieren oder ersetzen</value>
   </data>
   <data name="Context_ExportAudioMenuItem.AccessibleName" xml:space="preserve">
-    <value>Audio Exportieren  Strg+Alt+E</value>
+    <value>Audio exportieren  Strg+Alt+E</value>
   </data>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="Context_ExportAudioMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
@@ -529,7 +529,7 @@
     <value>205, 22</value>
   </data>
   <data name="Context_ExportAudioMenuItem.Text" xml:space="preserve">
-    <value>Audio E&amp;xportieren</value>
+    <value>Audio e&amp;xportieren</value>
   </data>
   <data name="Context_ReplaceAudioMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>205, 22</value>
@@ -541,13 +541,13 @@
     <value>208, 22</value>
   </data>
   <data name="Context_ExportReplaceAudioMenuItem.Text" xml:space="preserve">
-    <value>Audio &amp;exportieren oder ersetzen</value>
+    <value>Audio e&amp;xportieren oder ersetzen</value>
   </data>
   <data name="Context_PropertiesMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>208, 22</value>
   </data>
   <data name="Context_PropertiesMenuItem.Text" xml:space="preserve">
-    <value>Einstellungen (&amp;o)</value>
+    <value>Ei&amp;genschaften</value>
   </data>
   <data name="mContextMenuStrip.Size" type="System.Drawing.Size, System.Drawing">
     <value>209, 688</value>
