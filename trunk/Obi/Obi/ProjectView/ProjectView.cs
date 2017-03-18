@@ -41,7 +41,7 @@ namespace Obi.ProjectView
         private bool m_IsAudioProcessingChecked = false;
         private double m_ZoomWaveformIncrementFactor;
         private bool m_SaveZoomWaveformZoomLevel;
-        
+                
     
         /// <summary>
         /// Create a new project view with no project yet.
@@ -134,6 +134,105 @@ namespace Obi.ProjectView
                 dialog.AutoFillPagesEnable = true;
                 if (dialog.ShowDialog() == DialogResult.OK) AddPageRange(dialog.Number, dialog.NumberOfPages, dialog.Renumber);
             }
+        }
+
+        /// <summary>
+        /// Add new  pages at regualar gaps.
+        /// </summary>
+        private void AddEmptyPagesAutomated(bool GenerateSpeech)
+        {
+           if (CanAddEmptyBlock)
+            {
+                if (TransportBar.IsActive) TransportBar.Stop();
+
+                ObiNode selectedNode = Selection.Node;
+                if (Selection is StripIndexSelection)
+                {
+                    StripIndexSelection indexSelection = (StripIndexSelection)Selection;
+                    if (indexSelection.EmptyNodeForSelection != null)
+                    {
+                        selectedNode = indexSelection.EmptyNodeForSelection;
+                    }
+                    else
+                    {
+                        selectedNode = indexSelection.Section.PhraseChildCount > 0 ? indexSelection.Section.PhraseChild(indexSelection.Section.PhraseChildCount - 1) :
+                            Selection.Node;
+                    }
+                }
+                AddPageRange(NextPageNumber, 1, true);
+                if (GenerateSpeech)
+                {
+                    this.GenerateSpeechForPage(false);
+                }
+            }
+        }
+
+        public void AddPageAutomatically(int GapsInPages,bool GenereateSpeech)
+        {
+
+            if (Selection != null && this.Selection.Node is SectionNode)
+            {
+                this.Selection = new NodeSelection(this.Selection.Node, mContentView);
+                if (this.Selection.Node is SectionNode)
+                {
+                    if (this.Selection.Node.PhraseChildCount > 0)
+                    {
+                        double tempDurationFromLeft = this.Selection.Node.FirstUsedPhrase.Duration;
+                        double tempDurationFromRight = this.Selection.Node.LastUsedPhrase.Duration;
+                        SectionNode secNode = (SectionNode)this.Selection.Node;
+                        this.Selection.Node = this.Selection.Node.LastUsedPhrase;
+                        this.AddEmptyPagesAutomated(GenereateSpeech);
+                        this.Selection.Node = secNode.FirstUsedPhrase;
+                        double DurationOfPhrase = this.Selection.Node.Duration;
+                        double TotalDurationFromLeft = this.Selection.Node.Duration;
+                        AddPagesFromLeft(secNode, DurationOfPhrase, TotalDurationFromLeft,GapsInPages,GenereateSpeech);
+
+                    }
+                    else if (this.Selection.Node.PhraseChildCount == 0)
+                    {
+                        this.AddEmptyPagesAutomated(GenereateSpeech);
+                    }
+
+
+                }
+            }
+
+        }
+
+        private void AddPagesFromLeft(SectionNode secNode, double DurationOfPhrase, double TotalDurationFromLeft, int GapsInPages, bool GenereateSpeech)
+        {
+
+            if (secNode != null && ((secNode.Duration - TotalDurationFromLeft) > GapsInPages) && DurationOfPhrase >= GapsInPages && this.Selection.Node != secNode.LastUsedPhrase)
+            {
+                this.AddEmptyPagesAutomated(GenereateSpeech);
+                DurationOfPhrase = 0;
+                this.Selection.Node = this.Selection.Node.FollowingNode;
+                DurationOfPhrase += this.Selection.Node.Duration;
+                TotalDurationFromLeft += this.Selection.Node.Duration;
+                AddPagesFromLeft(secNode, DurationOfPhrase, TotalDurationFromLeft, GapsInPages,GenereateSpeech);
+            }
+            else if (secNode != null && this.Selection.Node != secNode.LastUsedPhrase && this.Selection.Node.FollowingNode != null)
+            {
+                this.Selection.Node = this.Selection.Node.FollowingNode;
+                DurationOfPhrase += this.Selection.Node.Duration;
+                TotalDurationFromLeft += this.Selection.Node.Duration;
+                AddPagesFromLeft(secNode, DurationOfPhrase, TotalDurationFromLeft, GapsInPages,GenereateSpeech);
+            }
+
+            else if (secNode != null && this.Selection.Node == secNode.LastUsedPhrase)
+            {
+            
+                DurationOfPhrase = TotalDurationFromLeft = 0;
+                secNode = secNode.FollowingSection;
+                this.Selection.Node = secNode;
+                this.AddPageAutomatically(GapsInPages,GenereateSpeech);
+            }
+        }
+        public void AutoPageGeneration()
+        {
+            Obi.Dialogs.AutoPageGeneration autoPageGeneration = new Dialogs.AutoPageGeneration(this);
+
+            autoPageGeneration.Show();
         }
 
         /// <summary>
