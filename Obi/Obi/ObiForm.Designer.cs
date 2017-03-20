@@ -135,6 +135,7 @@ namespace Obi
             this.mSkippableMoveToStartNoteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mSkippableMoveToEndNoteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mSkippableClearRoleFromNoteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mAutoPageGenerationMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator6 = new System.Windows.Forms.ToolStripSeparator();
             this.mPhrases_AssignRoleMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mPhrases_AssignRole_PlainMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -802,6 +803,7 @@ namespace Obi
             this.mPhraseIsUsedToolStripMenuItem,
             this.MultiPhraseOperationMenuItem,
             this.mSkippableNoteToolStripMenuItem,
+            this.mAutoPageGenerationMenuItem,
             this.toolStripSeparator6,
             this.mPhrases_AssignRoleMenuItem,
             this.mPhrases_ClearRoleMenuItem,
@@ -999,6 +1001,12 @@ namespace Obi
             resources.ApplyResources(this.mSkippableClearRoleFromNoteToolStripMenuItem, "mSkippableClearRoleFromNoteToolStripMenuItem");
             this.mSkippableClearRoleFromNoteToolStripMenuItem.Name = "mSkippableClearRoleFromNoteToolStripMenuItem";
             this.mSkippableClearRoleFromNoteToolStripMenuItem.Click += new System.EventHandler(this.mSkippableClearRoleFromNoteToolStripMenuItem_Click);
+            // 
+            // mAutoPageGenerationMenuItem
+            // 
+            this.mAutoPageGenerationMenuItem.Name = "mAutoPageGenerationMenuItem";
+            resources.ApplyResources(this.mAutoPageGenerationMenuItem, "mAutoPageGenerationMenuItem");
+            this.mAutoPageGenerationMenuItem.Click += new System.EventHandler(this.mAutoPageGenerationMenuItem_Click);
             // 
             // toolStripSeparator6
             // 
@@ -1656,9 +1664,9 @@ namespace Obi
             this.mProjectView.SaveZoomWaveformZoomLevel = false;
             this.mProjectView.Selection = null;
             this.mProjectView.TOCViewVisible = true;
-            this.mProjectView.TOCViewWidth = 263;
+            this.mProjectView.TOCViewWidth = 302;
             this.mProjectView.TransportBarVisible = false;
-            this.mProjectView.ZoomWaveformIncrementFactor = 0;
+            this.mProjectView.ZoomWaveformIncrementFactor = 0D;
             // 
             // ObiForm
             // 
@@ -1672,10 +1680,10 @@ namespace Obi
             this.KeyPreview = true;
             this.MainMenuStrip = this.mMenuStrip;
             this.Name = "ObiForm";
-            this.Load += new System.EventHandler(this.ObiForm_Load);
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ObiForm_FormClosing);
-            this.Resize += new System.EventHandler(this.ObiForm_Resize);
+            this.Load += new System.EventHandler(this.ObiForm_Load);
             this.ResizeEnd += new System.EventHandler(this.ObiForm_ResizeEnd);
+            this.Resize += new System.EventHandler(this.ObiForm_Resize);
             this.mMenuStrip.ResumeLayout(false);
             this.mMenuStrip.PerformLayout();
             this.mStatusStrip.ResumeLayout(false);
@@ -1887,6 +1895,7 @@ namespace Obi
         private System.Windows.Forms.ToolStripMenuItem m_Tools_QuickCleanupToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem rollbackToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem detectSilencePhraseToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem mAutoPageGenerationMenuItem;
     }
 }
 
