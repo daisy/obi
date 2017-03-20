@@ -2252,6 +2252,8 @@ namespace Obi
                 mPhrases_RenumberPagesMenuItem.Enabled = mProjectView.Presentation != null && !mProjectView.TransportBar.IsRecorderActive;
                 beginMarkToolStripMenuItem.Enabled = mProjectView.CanBeginSpecialNote;
                 endMarkToolStripMenuItem.Enabled = mProjectView.CanEndSpecialNote;
+                mAutoPageGenerationMenuItem.Enabled = mProjectView.CanAddEmptyPage
+                                                          && !mProjectView.TransportBar.IsRecorderActive;
             }
 
             private void UpdateAudioSelectionBlockMenuItems()
@@ -6183,6 +6185,11 @@ ref string exportDirectoryEPUB3)
                 {
                     mPlayOnNavigateToolStripMenuItem.Checked = false;
                 }
+            }
+
+            private void mAutoPageGenerationMenuItem_Click(object sender, EventArgs e)
+            {
+                mProjectView.AutoPageGeneration();
             }
 
  
