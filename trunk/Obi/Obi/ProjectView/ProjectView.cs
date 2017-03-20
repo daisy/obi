@@ -173,7 +173,7 @@ namespace Obi.ProjectView
             if (Selection != null && this.Selection.Node != null && this.Selection.Node is SectionNode)
             {
                 this.Selection = new NodeSelection(this.Selection.Node, mContentView);
-                if (this.Selection.Node.PhraseChildCount > 0)
+                if (this.Selection != null && this.Selection.Node != null && this.Selection.Node.PhraseChildCount > 0)
                 {
                     double tempDurationFromLeft = 0;
                     if (this.Selection.Node.FirstUsedPhrase != null)
@@ -189,8 +189,13 @@ namespace Obi.ProjectView
                     this.Selection.Node = this.Selection.Node.LastUsedPhrase;
                     this.AddEmptyPagesAutomated(GenereateSpeech);
                     this.Selection.Node = secNode.FirstUsedPhrase;
-                    double DurationOfPhrase = this.Selection.Node.Duration;
-                    double TotalDurationFromLeft = this.Selection.Node.Duration;
+                    double DurationOfPhrase = 0;
+                    double TotalDurationFromLeft = 0;
+                    if (this.Selection != null && this.Selection.Node != null)
+                    {
+                        DurationOfPhrase = this.Selection.Node.Duration;
+                        TotalDurationFromLeft = this.Selection.Node.Duration;
+                    }
                     AddPagesFromLeft(secNode, DurationOfPhrase, TotalDurationFromLeft, GapsInPages, GenereateSpeech);
 
                 }
