@@ -214,7 +214,7 @@ namespace Obi.ProjectView
         private void AddPagesFromLeft(SectionNode secNode, double DurationOfPhrase, double TotalDurationFromLeft, int GapsInPages, bool GenereateSpeech)
         {
 
-            if (secNode != null && ((secNode.Duration - TotalDurationFromLeft) > GapsInPages) && DurationOfPhrase >= GapsInPages && this.Selection.Node != secNode.LastUsedPhrase)
+            if (secNode != null && ((secNode.Duration - TotalDurationFromLeft) > GapsInPages) && DurationOfPhrase >= GapsInPages && this.Selection != null && this.Selection.Node != null && this.Selection.Node != secNode.LastUsedPhrase)
             {
                 this.AddEmptyPagesAutomated(GenereateSpeech);
                 DurationOfPhrase = 0;
@@ -223,7 +223,7 @@ namespace Obi.ProjectView
                 TotalDurationFromLeft += this.Selection.Node.Duration;
                 AddPagesFromLeft(secNode, DurationOfPhrase, TotalDurationFromLeft, GapsInPages,GenereateSpeech);
             }
-            else if (secNode != null && this.Selection.Node != secNode.LastUsedPhrase && this.Selection.Node.FollowingNode != null)
+            else if (secNode != null && this.Selection != null && this.Selection.Node != null && this.Selection.Node != secNode.LastUsedPhrase && this.Selection.Node.FollowingNode != null)
             {
                 this.Selection.Node = this.Selection.Node.FollowingNode;
                 DurationOfPhrase += this.Selection.Node.Duration;
@@ -231,7 +231,7 @@ namespace Obi.ProjectView
                 AddPagesFromLeft(secNode, DurationOfPhrase, TotalDurationFromLeft, GapsInPages,GenereateSpeech);
             }
 
-            else if (secNode != null && this.Selection.Node == secNode.LastUsedPhrase)
+            else if (secNode != null && this.Selection != null && this.Selection.Node != null && this.Selection.Node == secNode.LastUsedPhrase)
             {
             
                 DurationOfPhrase = TotalDurationFromLeft = 0;
