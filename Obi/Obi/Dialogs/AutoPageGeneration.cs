@@ -48,7 +48,7 @@ namespace Obi.Dialogs
                 return;
             }
             StartingSection();
-            AddPage();
+            AddPage();          
             this.Close();            
 
         }
@@ -69,14 +69,21 @@ namespace Obi.Dialogs
             try
             {
                 tempGapsInPages = Convert.ToInt32(m_txtGapsInPages.Text);
+                if (tempGapsInPages <= 0)
+                {
+                    MessageBox.Show("Please enter Value greater than 0");
+                    return;
+                }
             }
             catch (System.FormatException)
             {
-                MessageBox.Show("Please enter Integer Value");
+                MessageBox.Show("Please enter Value greater than 0");
                 return;
             }
             tempGapsInPages = (tempGapsInPages * 60 * 1000);
-            m_ProjectView.AddPageAutomatically(tempGapsInPages, m_rbGenerateTTS.Checked);
+            m_ProjectView.AddPageAutomatically(tempGapsInPages);
+            if (m_rbGenerateTTS.Checked)
+                m_ProjectView.GenerateSpeechForPage(true);
         }
 
         private void m_btnCancel_Click(object sender, EventArgs e)
