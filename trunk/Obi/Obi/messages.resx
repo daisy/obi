@@ -2962,4 +2962,8 @@ Error text: {1}</value>
   <data name="ProjectView_NoGapInPages" xml:space="preserve">
     <value>No gaps found in pages</value>
   </data>
+  <data name="Mints_invalid_input" xml:space="preserve">
+    <value>Please specify an integral number of minutes higher than 0.</value>
+    <comment>Error message</comment>
+  </data>
 </root>
