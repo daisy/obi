@@ -44,7 +44,7 @@ namespace Obi.Dialogs
             }
             catch (System.FormatException)
             {
-                MessageBox.Show("Please enter Integer Value");
+                MessageBox.Show(Localizer.Message("GotoPageOrPhrase_EnterNumeric"),Localizer.Message("Caption_Error"),MessageBoxButtons.OK,MessageBoxIcon.Error);
                 return;
             }
             StartingSection();
@@ -71,13 +71,14 @@ namespace Obi.Dialogs
                 tempGapsInPages = Convert.ToInt32(m_txtGapsInPages.Text);
                 if (tempGapsInPages <= 0)
                 {
-                    MessageBox.Show("Please enter Value greater than 0");
+                    MessageBox.Show(Localizer.Message("Mints_invalid_input"), Localizer.Message("Caption_Error"), MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
             }
             catch (System.FormatException)
             {
-                MessageBox.Show("Please enter Value greater than 0");
+               MessageBox.Show(Localizer.Message("Mints_invalid_input"), Localizer.Message("Caption_Error"), MessageBoxButtons.OK, MessageBoxIcon.Error);
+                m_txtGapsInPages.FindForm();
                 return;
             }
             tempGapsInPages = (tempGapsInPages * 60 * 1000);

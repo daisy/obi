@@ -4137,6 +4137,15 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Please specify an integral number of minutes higher than 0..
+        /// </summary>
+        internal static string Mints_invalid_input {
+            get {
+                return ResourceManager.GetString("Mints_invalid_input", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to minute.
         /// </summary>
         internal static string minute {
