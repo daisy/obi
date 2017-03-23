@@ -20,8 +20,8 @@ namespace Obi.Dialogs
             InitializeComponent();
 
             m_ProjectView = ProjectView;
-
             m_sectionsList = ((ObiRootNode)m_ProjectView.Presentation.RootNode).GetListOfAllSections();
+         
             for (int i = 1; i <= m_sectionsList.Count; i++)
             {
                 m_cbStartingSectionIndex.Items.Add(i);
@@ -46,6 +46,22 @@ namespace Obi.Dialogs
             {
                 MessageBox.Show(Localizer.Message("GotoPageOrPhrase_EnterNumeric"),Localizer.Message("Caption_Error"),MessageBoxButtons.OK,MessageBoxIcon.Error);
                 return;
+            }
+            for (int i = m_StartingSectionIndex; i < m_sectionsList.Count;i++ )
+            {
+                SectionNode tempSection = m_sectionsList[m_StartingSectionIndex];
+                for (ObiNode n = tempSection.FirstLeaf; n != null && n.FollowingNode != null; n = n.FollowingNode)
+                {
+                    if (n is EmptyNode && ((EmptyNode)n).Role_ == EmptyNode.Role.Page)
+                    {
+                        MessageBox.Show(Localizer.Message("PagesInSectionsDetected"), Localizer.Message("Caption_Warning"), MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        this.Close();
+                        return;
+                    }
+                    if (n.Parent != n.FollowingNode.Parent)
+                        break;
+                }
+
             }
             StartingSection();
             AddPage();          

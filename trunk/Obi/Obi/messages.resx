@@ -2966,4 +2966,7 @@ Error text: {1}</value>
     <value>Please specify an integral number of minutes higher than 0.</value>
     <comment>Error message</comment>
   </data>
+  <data name="PagesInSectionsDetected" xml:space="preserve">
+    <value>There are some pages in the sections</value>
+  </data>
 </root>
