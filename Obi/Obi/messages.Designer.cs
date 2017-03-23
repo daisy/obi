@@ -4858,6 +4858,15 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to There are some pages in the sections.
+        /// </summary>
+        internal static string PagesInSectionsDetected {
+            get {
+                return ResourceManager.GetString("PagesInSectionsDetected", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to paste audio.
         /// </summary>
         internal static string paste_audio {
