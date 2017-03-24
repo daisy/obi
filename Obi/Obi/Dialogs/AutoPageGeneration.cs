@@ -49,7 +49,7 @@ namespace Obi.Dialogs
             }
             for (int i = m_StartingSectionIndex; i < m_sectionsList.Count;i++ )
             {
-                SectionNode tempSection = m_sectionsList[m_StartingSectionIndex];
+                SectionNode tempSection = m_sectionsList[i];
                 for (ObiNode n = tempSection.FirstLeaf; n != null && n.FollowingNode != null; n = n.FollowingNode)
                 {
                     if (n is EmptyNode && ((EmptyNode)n).Role_ == EmptyNode.Role.Page)
