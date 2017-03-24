@@ -64,8 +64,15 @@ namespace Obi.Dialogs
 
             }
             StartingSection();
-            AddPage();          
-            this.Close();            
+            bool addPageStatus = AddPage();
+            if (addPageStatus)
+            {
+                this.Close();
+            }
+            else
+            {
+                m_txtGapsInPages.Focus();
+            }
 
         }
 
@@ -79,7 +86,7 @@ namespace Obi.Dialogs
              }
      
         }
-        private void AddPage()
+        private bool AddPage()
         {
             int tempGapsInPages;
             try
@@ -88,19 +95,20 @@ namespace Obi.Dialogs
                 if (tempGapsInPages <= 0)
                 {
                     MessageBox.Show(Localizer.Message("Mints_invalid_input"), Localizer.Message("Caption_Error"), MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
+                    return false;
                 }
             }
             catch (System.FormatException)
             {
                MessageBox.Show(Localizer.Message("Mints_invalid_input"), Localizer.Message("Caption_Error"), MessageBoxButtons.OK, MessageBoxIcon.Error);
                 m_txtGapsInPages.FindForm();
-                return;
+                return false;
             }
             tempGapsInPages = (tempGapsInPages * 60 * 1000);
             m_ProjectView.AddPageAutomatically(tempGapsInPages);
             if (m_rbGenerateTTS.Checked)
                 m_ProjectView.GenerateSpeechForPage(true);
+            return true;
         }
 
         private void m_btnCancel_Click(object sender, EventArgs e)
