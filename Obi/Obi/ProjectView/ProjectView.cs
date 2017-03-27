@@ -239,8 +239,21 @@ namespace Obi.ProjectView
         public void AutoPageGeneration()
         {
             Obi.Dialogs.AutoPageGeneration autoPageGeneration = new Dialogs.AutoPageGeneration(this);
+           if (autoPageGeneration.ShowDialog() == DialogResult.OK && autoPageGeneration.CanAddPage)
+            {               
+                    autoPageGeneration.Close();
+                    this.AddPageAutomatically(autoPageGeneration.GapsInPages);
 
-            autoPageGeneration.Show();
+                    if (autoPageGeneration.GenerateSpeech)
+                    {
+                        this.GenerateSpeechForPage(true);
+                    }                
+            }
+            else
+            {
+                autoPageGeneration.Show();
+                autoPageGeneration.FocusGapsInPages();
+            }
         }
 
         /// <summary>

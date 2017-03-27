@@ -16,6 +16,7 @@ namespace Obi.Dialogs
         private int m_StartingSectionIndex = 0;
         private List<SectionNode> m_sectionsList;
         private int m_GapsInPages = 0;
+        private bool m_CanAddPage = false;
         public AutoPageGeneration(ProjectView.ProjectView ProjectView)
         {
             InitializeComponent();
@@ -35,16 +36,43 @@ namespace Obi.Dialogs
             
         }
 
+        public int GapsInPages
+        {
+            get
+            {
+                return m_GapsInPages;
+            }
+        }
+
+        public int StartingSectionIndex
+        {
+            get
+            {
+                return m_StartingSectionIndex;
+            }
+        }
+        public bool GenerateSpeech
+        {
+            get
+            {
+                return m_rbGenerateTTS.Checked;
+            }
+        }
+        public bool CanAddPage
+        {
+            get
+            {
+                return m_CanAddPage;
+            }
+        }
+
+        public void FocusGapsInPages()
+        {
+            m_txtGapsInPages.Focus();
+        }
         private void m_btnOk_Click(object sender, EventArgs e)
         {           
-            bool addPageStatus = AddPage();
-            if (addPageStatus)
-            {
-                this.Close();
-                m_ProjectView.AddPageAutomatically(m_GapsInPages); // Adding of pages will be done in projectview
-                if (m_rbGenerateTTS.Checked)
-                    m_ProjectView.GenerateSpeechForPage(true); // To Generte speech if option is checked 
-            }
+            m_CanAddPage = AddPage();
         }
 
 
