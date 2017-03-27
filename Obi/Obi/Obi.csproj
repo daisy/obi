@@ -167,6 +167,12 @@
     <Compile Include="Dialogs\AudioSettings.Designer.cs">
       <DependentUpon>AudioSettings.cs</DependentUpon>
     </Compile>
+    <Compile Include="Dialogs\AutoPageGeneration.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\AutoPageGeneration.Designer.cs">
+      <DependentUpon>AutoPageGeneration.cs</DependentUpon>
+    </Compile>
     <Compile Include="Dialogs\CheckUpdates.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -623,6 +629,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\AudioSettings.zh-Hant.resx">
       <DependentUpon>AudioSettings.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\AutoPageGeneration.resx">
+      <DependentUpon>AutoPageGeneration.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\CheckUpdates.de.resx">
       <DependentUpon>CheckUpdates.cs</DependentUpon>
