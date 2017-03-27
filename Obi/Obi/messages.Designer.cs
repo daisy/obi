@@ -4858,7 +4858,7 @@ namespace Obi {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to There are some pages in the sections.
+        ///   Looks up a localized string similar to Pages are marked from the starting section index but there are some pages in sections. This functionality cannot be used for sections with pages.
         /// </summary>
         internal static string PagesInSectionsDetected {
             get {

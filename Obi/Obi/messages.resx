@@ -2967,6 +2967,6 @@ Error text: {1}</value>
     <comment>Error message</comment>
   </data>
   <data name="PagesInSectionsDetected" xml:space="preserve">
-    <value>There are some pages in the sections</value>
+    <value>Pages are marked from the starting section index but there are some pages in sections. This functionality cannot be used for sections with pages</value>
   </data>
 </root>
