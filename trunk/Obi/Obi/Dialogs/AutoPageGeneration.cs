@@ -15,6 +15,7 @@ namespace Obi.Dialogs
         private ProjectView.ProjectView m_ProjectView;
         private int m_StartingSectionIndex = 0;
         private List<SectionNode> m_sectionsList;
+        private int m_GapsInPages = 0;
         public AutoPageGeneration(ProjectView.ProjectView ProjectView)
         {
             InitializeComponent();
@@ -35,57 +36,18 @@ namespace Obi.Dialogs
         }
 
         private void m_btnOk_Click(object sender, EventArgs e)
-        {
-            
-            try
-            {
-                m_StartingSectionIndex = Convert.ToInt32(m_cbStartingSectionIndex.Text);
-                m_StartingSectionIndex = m_StartingSectionIndex - 1;
-            }
-            catch (System.FormatException)
-            {
-                MessageBox.Show(Localizer.Message("GotoPageOrPhrase_EnterNumeric"),Localizer.Message("Caption_Error"),MessageBoxButtons.OK,MessageBoxIcon.Error);
-                return;
-            }
-            for (int i = m_StartingSectionIndex; i < m_sectionsList.Count;i++ )
-            {
-                SectionNode tempSection = m_sectionsList[i];
-                for (ObiNode n = tempSection.FirstLeaf; n != null && n.FollowingNode != null; n = n.FollowingNode)
-                {
-                    if (n is EmptyNode && ((EmptyNode)n).Role_ == EmptyNode.Role.Page)
-                    {
-                        MessageBox.Show(Localizer.Message("PagesInSectionsDetected"), Localizer.Message("Caption_Warning"), MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                        this.Close();
-                        return;
-                    }
-                    if (n.Parent != n.FollowingNode.Parent)
-                        break;
-                }
-
-            }
-            StartingSection();
+        {           
             bool addPageStatus = AddPage();
             if (addPageStatus)
             {
                 this.Close();
+                m_ProjectView.AddPageAutomatically(m_GapsInPages); // Adding of pages will be done in projectview
+                if (m_rbGenerateTTS.Checked)
+                    m_ProjectView.GenerateSpeechForPage(true); // To Generte speech if option is checked 
             }
-            else
-            {
-                m_txtGapsInPages.Focus();
-            }
-
         }
 
-        private void StartingSection()
-        {
-            if (m_ProjectView != null && m_ProjectView.Selection != null )
-            {
 
-                m_ProjectView.Selection.Node = m_sectionsList[m_StartingSectionIndex];
-
-             }
-     
-        }
         private bool AddPage()
         {
             int tempGapsInPages;
@@ -95,19 +57,53 @@ namespace Obi.Dialogs
                 if (tempGapsInPages <= 0)
                 {
                     MessageBox.Show(Localizer.Message("Mints_invalid_input"), Localizer.Message("Caption_Error"), MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    m_txtGapsInPages.Focus();
                     return false;
                 }
             }
             catch (System.FormatException)
             {
-               MessageBox.Show(Localizer.Message("Mints_invalid_input"), Localizer.Message("Caption_Error"), MessageBoxButtons.OK, MessageBoxIcon.Error);
-                m_txtGapsInPages.FindForm();
+                MessageBox.Show(Localizer.Message("Mints_invalid_input"), Localizer.Message("Caption_Error"), MessageBoxButtons.OK, MessageBoxIcon.Error);
+                m_txtGapsInPages.Focus();
                 return false;
             }
-            tempGapsInPages = (tempGapsInPages * 60 * 1000);
-            m_ProjectView.AddPageAutomatically(tempGapsInPages);
-            if (m_rbGenerateTTS.Checked)
-                m_ProjectView.GenerateSpeechForPage(true);
+            m_GapsInPages = (tempGapsInPages * 60 * 1000); // time is converted into ms
+
+            try
+            {
+                m_StartingSectionIndex = Convert.ToInt32(m_cbStartingSectionIndex.Text); // Starting section index is assigned from combo box
+                m_StartingSectionIndex = m_StartingSectionIndex - 1;
+            }
+            catch (System.FormatException)
+            {
+                MessageBox.Show(Localizer.Message("GotoPageOrPhrase_EnterNumeric"), Localizer.Message("Caption_Error"), MessageBoxButtons.OK, MessageBoxIcon.Error);
+                m_cbStartingSectionIndex.Focus();
+                return false;
+            }
+            for (int i = m_StartingSectionIndex; i < m_sectionsList.Count; i++)
+            {
+                SectionNode tempSection = m_sectionsList[i];
+                for (ObiNode n = tempSection.FirstLeaf; n != null && n.FollowingNode != null; n = n.FollowingNode)
+                {
+                    if (n is EmptyNode && ((EmptyNode)n).Role_ == EmptyNode.Role.Page)
+                    {
+                        MessageBox.Show(Localizer.Message("PagesInSectionsDetected"), Localizer.Message("Caption_Warning"), MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        m_cbStartingSectionIndex.Focus();
+                        return false;
+                    }
+                    if (n.Parent != n.FollowingNode.Parent)
+                        break;
+                }
+
+            }
+            if (m_ProjectView != null && m_ProjectView.Selection != null)
+            {
+
+                m_ProjectView.Selection.Node = m_sectionsList[m_StartingSectionIndex]; // Starting Index assigned 
+
+            }
+
+
             return true;
         }
 
