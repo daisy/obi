@@ -66,10 +66,6 @@ namespace Obi.Dialogs
             }
         }
 
-        public void FocusGapsInPages()
-        {
-            m_txtGapsInPages.Focus();
-        }
         private void m_btnOk_Click(object sender, EventArgs e)
         {           
             m_CanAddPage = AddPage();

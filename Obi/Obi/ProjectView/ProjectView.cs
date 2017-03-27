@@ -249,11 +249,6 @@ namespace Obi.ProjectView
                         this.GenerateSpeechForPage(true);
                     }                
             }
-            else
-            {
-                autoPageGeneration.Show();
-                autoPageGeneration.FocusGapsInPages();
-            }
         }
 
         /// <summary>
