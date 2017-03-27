@@ -69,6 +69,10 @@ namespace Obi.Dialogs
         private void m_btnOk_Click(object sender, EventArgs e)
         {           
             m_CanAddPage = AddPage();
+            if (!m_CanAddPage)
+            {
+                this.DialogResult = DialogResult.None;
+            }
         }
 
 
