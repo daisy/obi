@@ -4840,6 +4840,15 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Pages are deleted sucessfully. You can now proceed to mark new pages..
+        /// </summary>
+        internal static string PageDeletionSucessfull {
+            get {
+                return ResourceManager.GetString("PageDeletionSucessfull", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to One or more fields have invalid entries. Please re-enter values..
         /// </summary>
         internal static string PageDialog_InvalidInput {
@@ -4858,7 +4867,7 @@ namespace Obi {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Pages are marked from the starting section index but there are some pages in sections. This functionality cannot be used for sections with pages.
+        ///   Looks up a localized string similar to Some Pages are detected in the project. You need to delete them if you want to continue. Do you want to delete them now ?.
         /// </summary>
         internal static string PagesInSectionsDetected {
             get {

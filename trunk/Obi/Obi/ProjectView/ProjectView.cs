@@ -169,6 +169,7 @@ namespace Obi.ProjectView
             if (Selection != null && this.Selection.Node != null && this.Selection.Node is SectionNode)
             {
                 this.Selection = new NodeSelection(this.Selection.Node, mContentView);
+                SectionNode secNode = (SectionNode)this.Selection.Node;
                 if (this.Selection != null && this.Selection.Node != null && this.Selection.Node.PhraseChildCount > 0)
                 {
                     double tempDurationFromLeft = 0;
@@ -181,7 +182,7 @@ namespace Obi.ProjectView
                     {
                         tempDurationFromRight = this.Selection.Node.LastUsedPhrase.Duration;
                     }
-                    SectionNode secNode = (SectionNode)this.Selection.Node;
+                    
                     this.Selection.Node = this.Selection.Node.LastUsedPhrase;
                     this.AddEmptyPagesAutomated();
                     this.Selection.Node = secNode.FirstUsedPhrase;
@@ -192,12 +193,19 @@ namespace Obi.ProjectView
                         DurationOfPhrase = this.Selection.Node.Duration;
                         TotalDurationFromLeft = this.Selection.Node.Duration;
                     }
-                    AddPagesFromLeft(secNode, DurationOfPhrase, TotalDurationFromLeft, GapsInPages);
+                    AddIntermediatePages(secNode, DurationOfPhrase, TotalDurationFromLeft, GapsInPages);
 
                 }
                 else if (this.Selection.Node.PhraseChildCount == 0)
                 {
                     this.AddEmptyPagesAutomated();
+                    if (secNode.FollowingSection != null)
+                    {
+                        secNode = secNode.FollowingSection;
+                        this.Selection.Node = secNode;
+                        this.AddPageAutomatically(GapsInPages);
+                    }
+
                 }
             }
 
@@ -207,7 +215,7 @@ namespace Obi.ProjectView
 
         }
 
-        private void AddPagesFromLeft(SectionNode secNode, double DurationOfPhrase, double TotalDurationFromLeft, int GapsInPages)
+        private void AddIntermediatePages(SectionNode secNode, double DurationOfPhrase, double TotalDurationFromLeft, int GapsInPages)
         {
 
             if (secNode != null && ((secNode.Duration - TotalDurationFromLeft) > GapsInPages) && DurationOfPhrase >= GapsInPages && this.Selection != null && this.Selection.Node != null && this.Selection.Node != secNode.LastUsedPhrase)
@@ -217,14 +225,14 @@ namespace Obi.ProjectView
                 this.Selection.Node = this.Selection.Node.FollowingNode;
                 DurationOfPhrase += this.Selection.Node.Duration;
                 TotalDurationFromLeft += this.Selection.Node.Duration;
-                AddPagesFromLeft(secNode, DurationOfPhrase, TotalDurationFromLeft, GapsInPages);
+                AddIntermediatePages(secNode, DurationOfPhrase, TotalDurationFromLeft, GapsInPages);
             }
             else if (secNode != null && this.Selection != null && this.Selection.Node != null && this.Selection.Node != secNode.LastUsedPhrase && this.Selection.Node.FollowingNode != null)
             {
                 this.Selection.Node = this.Selection.Node.FollowingNode;
                 DurationOfPhrase += this.Selection.Node.Duration;
                 TotalDurationFromLeft += this.Selection.Node.Duration;
-                AddPagesFromLeft(secNode, DurationOfPhrase, TotalDurationFromLeft, GapsInPages);
+                AddIntermediatePages(secNode, DurationOfPhrase, TotalDurationFromLeft, GapsInPages);
             }
 
             else if (secNode != null && this.Selection != null)
@@ -239,7 +247,7 @@ namespace Obi.ProjectView
         public void AutoPageGeneration()
         {
             Obi.Dialogs.AutoPageGeneration autoPageGeneration = new Dialogs.AutoPageGeneration(this);
-           if (autoPageGeneration.ShowDialog() == DialogResult.OK && autoPageGeneration.CanAddPage)
+            if (autoPageGeneration.ShowDialog() == DialogResult.OK && autoPageGeneration.CanAddPage)
             {               
                     autoPageGeneration.Close();
                     this.AddPageAutomatically(autoPageGeneration.GapsInPages);
@@ -248,6 +256,68 @@ namespace Obi.ProjectView
                     {
                         this.GenerateSpeechForPage(true);
                     }                
+            }
+            else if (autoPageGeneration.DeletePages)
+            {
+                DeletePagesForAutoPageGeneration(autoPageGeneration);
+            }
+            
+
+        }
+        public void ChangeSelection()
+        {
+            if (this.Selection.Node is SectionNode)
+            {
+                SectionNode tempSecnode = (SectionNode)this.Selection.Node;
+                this.Selection = new NodeSelection(tempSecnode.FirstLeaf, mContentView);
+            }
+        }
+
+        public void DeletePagesForAutoPageGeneration(Obi.Dialogs.AutoPageGeneration autoPageGeneration)
+        {
+          
+            List<SectionNode> m_sectionsList = ((ObiRootNode)this.Presentation.RootNode).GetListOfAllSections();
+            for (int i = 0; i < m_sectionsList.Count; i++)
+            {
+                SectionNode tempSection = m_sectionsList[i];
+                this.Selection.Node = m_sectionsList[i];
+                this.Selection = new NodeSelection(tempSection.FirstLeaf, mContentView);               
+               
+
+                for (ObiNode n = tempSection.FirstLeaf; n != null && n.Parent != null && n.FollowingNode != null; n = n.FollowingNode)
+                {
+
+                    if (n is EmptyNode && ((EmptyNode)n).Role_ == EmptyNode.Role.Page)
+                    {
+                        if (!(this.Selection.Node is SectionNode))
+                        {
+                            this.Selection.Node = n;
+                            if (n.FollowingNode != null)
+                            {
+                                n = n.FollowingNode;
+                            }
+                            this.Delete();
+                        }
+
+                    }
+
+                    if (n != null && n.Parent != null && n.Parent != n.FollowingNode.Parent)
+                        break;
+
+                }
+
+            }
+            MessageBox.Show(Localizer.Message("PageDeletionSucessfull"), Localizer.Message("Caption_Information"), MessageBoxButtons.OK, MessageBoxIcon.Information);
+            autoPageGeneration.ShowDialog(); 
+            if (autoPageGeneration.CanAddPage)
+            {
+                autoPageGeneration.Close();
+                this.AddPageAutomatically(autoPageGeneration.GapsInPages);
+
+                if (autoPageGeneration.GenerateSpeech)
+                {
+                    this.GenerateSpeechForPage(true);
+                }
             }
         }
 
