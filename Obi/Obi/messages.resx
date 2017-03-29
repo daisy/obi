@@ -2967,6 +2967,9 @@ Error text: {1}</value>
     <comment>Error message</comment>
   </data>
   <data name="PagesInSectionsDetected" xml:space="preserve">
-    <value>Pages are marked from the starting section index but there are some pages in sections. This functionality cannot be used for sections with pages</value>
+    <value>Some Pages are detected in the project. You need to delete them if you want to continue. Do you want to delete them now ?</value>
+  </data>
+  <data name="PageDeletionSucessfull" xml:space="preserve">
+    <value>Pages are deleted sucessfully. You can now proceed to mark new pages.</value>
   </data>
 </root>

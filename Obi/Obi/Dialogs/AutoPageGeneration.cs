@@ -8,6 +8,7 @@ using System.Text;
 using System.Windows.Forms;
 
 
+
 namespace Obi.Dialogs
 {
     public partial class AutoPageGeneration : Form
@@ -17,11 +18,13 @@ namespace Obi.Dialogs
         private List<SectionNode> m_sectionsList;
         private int m_GapsInPages = 0;
         private bool m_CanAddPage = false;
+        private DialogResult m_DeleteExistingPages = DialogResult.No;
         public AutoPageGeneration(ProjectView.ProjectView ProjectView)
         {
             InitializeComponent();
 
             m_ProjectView = ProjectView;
+            
             m_sectionsList = ((ObiRootNode)m_ProjectView.Presentation.RootNode).GetListOfAllSections();
          
             for (int i = 1; i <= m_sectionsList.Count; i++)
@@ -65,14 +68,22 @@ namespace Obi.Dialogs
                 return m_CanAddPage;
             }
         }
+        public bool DeletePages
+        {
+            get
+            {
+                return (m_DeleteExistingPages == DialogResult.Yes);
+            }
+        }
 
         private void m_btnOk_Click(object sender, EventArgs e)
         {           
             m_CanAddPage = AddPage();
-            if (!m_CanAddPage)
+            if (!m_CanAddPage && m_DeleteExistingPages == DialogResult.No)
             {
                 this.DialogResult = DialogResult.None;
-            }
+
+            }  
         }
 
 
@@ -108,22 +119,13 @@ namespace Obi.Dialogs
                 m_cbStartingSectionIndex.Focus();
                 return false;
             }
-            for (int i = m_StartingSectionIndex; i < m_sectionsList.Count; i++)
+            if (((ObiRootNode)m_ProjectView.Presentation.RootNode).PageCount > 0)
             {
-                SectionNode tempSection = m_sectionsList[i];
-                for (ObiNode n = tempSection.FirstLeaf; n != null && n.FollowingNode != null; n = n.FollowingNode)
-                {
-                    if (n is EmptyNode && ((EmptyNode)n).Role_ == EmptyNode.Role.Page)
-                    {
-                        MessageBox.Show(Localizer.Message("PagesInSectionsDetected"), Localizer.Message("Caption_Warning"), MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                        m_cbStartingSectionIndex.Focus();
-                        return false;
-                    }
-                    if (n.Parent != n.FollowingNode.Parent)
-                        break;
-                }
-
+                m_DeleteExistingPages = MessageBox.Show(Localizer.Message("PagesInSectionsDetected"), Localizer.Message("Caption_Warning"), MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                m_cbStartingSectionIndex.Focus();
+                return false;
             }
+
             if (m_ProjectView != null && m_ProjectView.Selection != null)
             {
 
