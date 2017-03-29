@@ -264,14 +264,7 @@ namespace Obi.ProjectView
             
 
         }
-        public void ChangeSelection()
-        {
-            if (this.Selection.Node is SectionNode)
-            {
-                SectionNode tempSecnode = (SectionNode)this.Selection.Node;
-                this.Selection = new NodeSelection(tempSecnode.FirstLeaf, mContentView);
-            }
-        }
+
 
         public void DeletePagesForAutoPageGeneration(Obi.Dialogs.AutoPageGeneration autoPageGeneration)
         {
