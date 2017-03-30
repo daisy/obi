@@ -207,11 +207,7 @@ namespace Obi.ProjectView
                     }
 
                 }
-            }
-
-
-                
-            
+            }           
 
         }
 
@@ -277,7 +273,7 @@ namespace Obi.ProjectView
                 this.Selection = new NodeSelection(tempSection.FirstLeaf, mContentView);               
                
 
-                for (ObiNode n = tempSection.FirstLeaf; n != null && n.Parent != null && n.FollowingNode != null; n = n.FollowingNode)
+                for (ObiNode n = tempSection.FirstLeaf; n != null && n.Parent != null ; n = n.FollowingNode)
                 {
 
                     if (n is EmptyNode && ((EmptyNode)n).Role_ == EmptyNode.Role.Page)
@@ -285,17 +281,27 @@ namespace Obi.ProjectView
                         if (!(this.Selection.Node is SectionNode))
                         {
                             this.Selection.Node = n;
-                            if (n.FollowingNode != null)
+                            if (n.PrecedingNode != null && n.Parent == n.PrecedingNode.Parent)
+                            {
+                                n = n.PrecedingNode;
+                            }
+                            else if (n.FollowingNode != null && n.Parent == n.FollowingNode.Parent)
                             {
                                 n = n.FollowingNode;
                             }
+                            else
+                            {
+                                n = null;
+                            }
                             this.Delete();
+                            
                         }
 
                     }
 
-                    if (n != null && n.Parent != null && n.Parent != n.FollowingNode.Parent)
+                    if (n == null || (n != null && n.Parent != null && n.FollowingNode != null && n.Parent != n.FollowingNode.Parent)) 
                         break;
+                    
 
                 }
 
