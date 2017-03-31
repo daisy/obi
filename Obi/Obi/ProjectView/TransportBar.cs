@@ -3799,6 +3799,7 @@ SelectionChangedPlaybackEnabled = false;
                     && mRecordingSession.PhraseMarksOnTheFly.Count > 1)
                 {
                     mRecordingSession.PhraseMarksOnTheFly.RemoveAt(0);
+                    Console.WriteLine("Merging first 2 phrases aftre recording");
                 }
 
                 mView.Presentation.Do(GetSplitCommandForOnTheFlyDetectedPhrases(listOfRecordedPhrases, mRecordingSession.PhraseMarksOnTheFly, mView.ObiForm.Settings.Audio_PreventSplittingPages));
