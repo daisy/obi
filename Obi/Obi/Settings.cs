@@ -296,6 +296,10 @@ namespace Obi
         [OptionalField]
         public bool Audio_RecordInFirstEmptyPhraseWithRecordSectionCommand; // if first phrase of section is empty phrase then record section will record on it
 
+        // for Obi 4.0
+        [OptionalField]
+        public bool Audio_MergeFirstTwoPhrasesAfterPhraseDetectionWhileRecording;
+
         protected static void InitializeDefaultSettings(Settings settings)
         {
             settings.Audio_Channels = 1;
@@ -433,6 +437,8 @@ namespace Obi
             settings.Project_ShowAdvancePropertiesInPropertiesDialogs = false;
             settings.Project_DisplayWarningsForEditOperations = false;
             settings.Audio_RecordInFirstEmptyPhraseWithRecordSectionCommand = false;
+            // Obi 4.0
+            settings.Audio_MergeFirstTwoPhrasesAfterPhraseDetectionWhileRecording = false;
         }
 
         /// <summary>
