@@ -3795,7 +3795,11 @@ SelectionChangedPlaybackEnabled = false;
                     nextToLastPhrase = lastPhrase.Index < lastPhrase.ParentAs<SectionNode>().PhraseChildCount - 1 ? (EmptyNode)lastPhrase.FollowingNode :
                         null;//@AdvanceRecording
                 }
-
+                if (mView.ObiForm.Settings.Audio_MergeFirstTwoPhrasesAfterPhraseDetectionWhileRecording
+                    && mRecordingSession.PhraseMarksOnTheFly.Count > 1)
+                {
+                    mRecordingSession.PhraseMarksOnTheFly.RemoveAt(0);
+                }
 
                 mView.Presentation.Do(GetSplitCommandForOnTheFlyDetectedPhrases(listOfRecordedPhrases, mRecordingSession.PhraseMarksOnTheFly, mView.ObiForm.Settings.Audio_PreventSplittingPages));
 

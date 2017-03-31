@@ -358,6 +358,15 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Merge first 2 phrases after recording with phrase detection.
+        /// </summary>
+        internal static string Audio_MergeFirstTwoPhrasesAfterPhraseDetectionWhileRecording {
+            get {
+                return ResourceManager.GetString("Audio_MergeFirstTwoPhrasesAfterPhraseDetectionWhileRecording", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Merge first 2 phrases detected by phrase detection.
         /// </summary>
         internal static string Audio_MergeFirstTwoPhrasesInPhraseDetection {
