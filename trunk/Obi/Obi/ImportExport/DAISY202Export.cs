@@ -829,12 +829,25 @@ namespace Obi.ImportExport
             {
             int decimalIndex = strTime.IndexOf ( "." );
             if (strTime.Length > decimalIndex + decimalPlaces + 1)
-                {
+            {
                 if (decimalIndex == 0)
-                    return strTime.Split ( '.' )[0];
-
-                strTime = strTime.Substring ( 0, decimalIndex + decimalPlaces + 1 );
+                {
+                    strTime = strTime.Split('.')[0] ;
+                    return strTime;
                 }
+                strTime = strTime.Substring(0, decimalIndex + decimalPlaces + 1);
+            }
+            else
+            {
+                // if decimal places in string are less, then use padding.
+                string padding = "";
+                if (strTime.Length - decimalIndex == 3) padding = "0";
+                if (strTime.Length - decimalIndex == 4) padding = "00";
+                if (strTime.Length - decimalIndex == 5) padding = "000";
+                Console.WriteLine("Time without padding: " + strTime);
+                strTime = strTime + padding;
+                Console.WriteLine("StrTime with padding: " + strTime );
+            }
             return strTime;
             }
 
