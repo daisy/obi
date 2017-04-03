@@ -120,7 +120,19 @@ namespace Obi.ImportExport
         {
             try
             {
-                XmlDocument nccDocument = XmlReaderWriterHelper.ParseXmlDocument(m_NccPath, false, false);
+                XmlDocument nccDocument = null;
+                if (m_Settings.Project_ImportNCCFileWithWindows1252Encoding)
+                {
+                    // some old files may have 7 bit encoding.
+                    StreamReader sr = new StreamReader(m_NccPath, Encoding.GetEncoding(1252), false);
+                    string xmlData = sr.ReadToEnd();
+                    nccDocument = XmlReaderWriterHelper.ParseXmlDocumentFromString(xmlData, false, false);
+                }
+                else
+                {
+                    nccDocument = XmlReaderWriterHelper.ParseXmlDocument(m_NccPath, false, false);
+                }
+                
                 XmlNode headNode = XmlDocumentHelper.GetFirstChildElementOrSelfWithName(nccDocument.DocumentElement, true, "head", nccDocument.DocumentElement.NamespaceURI);
                 PopulateMetadataFromNcc(headNode);
                 XmlNode bodyNode = XmlDocumentHelper.GetFirstChildElementOrSelfWithName(nccDocument.DocumentElement, true, "body", nccDocument.DocumentElement.NamespaceURI);

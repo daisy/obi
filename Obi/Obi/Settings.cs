@@ -300,6 +300,9 @@ namespace Obi
         [OptionalField]
         public bool Audio_MergeFirstTwoPhrasesAfterPhraseDetectionWhileRecording;
 
+        [OptionalField]
+public bool Project_ImportNCCFileWithWindows1252Encoding ; // useful for importing old books with 7 bit encoding.
+
         protected static void InitializeDefaultSettings(Settings settings)
         {
             settings.Audio_Channels = 1;
@@ -439,6 +442,7 @@ namespace Obi
             settings.Audio_RecordInFirstEmptyPhraseWithRecordSectionCommand = false;
             // Obi 4.0
             settings.Audio_MergeFirstTwoPhrasesAfterPhraseDetectionWhileRecording = false;
+            settings.Project_ImportNCCFileWithWindows1252Encoding = false;
         }
 
         /// <summary>
