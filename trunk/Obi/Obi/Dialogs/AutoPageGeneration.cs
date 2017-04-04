@@ -18,6 +18,7 @@ namespace Obi.Dialogs
         private List<SectionNode> m_sectionsList;
         private int m_GapsInPages = 0;
         private bool m_CanAddPage = false;
+        private bool m_DeletePages = true;
         private DialogResult m_DeleteExistingPages = DialogResult.No;
         public AutoPageGeneration(ProjectView.ProjectView ProjectView)
         {
@@ -79,10 +80,19 @@ namespace Obi.Dialogs
         private void m_btnOk_Click(object sender, EventArgs e)
         {           
             m_CanAddPage = AddPage();
+           
             if (!m_CanAddPage && m_DeleteExistingPages == DialogResult.No)
             {
-                this.DialogResult = DialogResult.None;
-
+                if (!m_DeletePages)
+                {
+                    this.Close();
+                    m_DeletePages = true; 
+                }
+                else
+                {
+                    this.DialogResult = DialogResult.None;
+                }
+                            
             }  
         }
 
@@ -122,6 +132,14 @@ namespace Obi.Dialogs
             if (((ObiRootNode)m_ProjectView.Presentation.RootNode).PageCount > 0)
             {
                 m_DeleteExistingPages = MessageBox.Show(Localizer.Message("PagesInSectionsDetected"), Localizer.Message("Caption_Warning"), MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                if (m_DeleteExistingPages == DialogResult.Yes)
+                {
+                    m_DeletePages = true;
+                }
+                else if (m_DeleteExistingPages == DialogResult.No)
+                {
+                    m_DeletePages = false;
+                }
                 m_cbStartingSectionIndex.Focus();
                 return false;
             }
