@@ -141,7 +141,7 @@ namespace Obi.ProjectView
         /// </summary>
         private void AddEmptyPagesAutomated()
         {
-           if (CanAddEmptyBlock)
+            if (CanAddEmptyBlock)
             {
                 if (TransportBar.IsActive) TransportBar.Stop();
 
@@ -159,86 +159,94 @@ namespace Obi.ProjectView
                             Selection.Node;
                     }
                 }
-                AddPageRange(NextPageNumber, 1, true);
+                if (selectedNode != null)
+                {
+                    Command cmd = AddEmptyPagesAutomated(selectedNode);
+                    if (cmd != null)
+                    {
+                        mPresentation.Do(cmd);
+                    }
+                }
+
             }
         }
 
-        public void AddPageAutomatically(int GapsInPages)
-        {
 
-            if (Selection != null && this.Selection.Node != null && this.Selection.Node is SectionNode)
+        private CompositeCommand AddEmptyPagesAutomated(ObiNode nodeSelected)
+        {
+            CompositeCommand cmd = Presentation.CreateCompositeCommand(Localizer.Message("add_blank_pages"));
+            int index = -1;
+            EmptyNode node = Presentation.TreeNodeFactory.Create<EmptyNode>();
+            ObiNode parent = null;
+
+            if (nodeSelected != null)
             {
-                this.Selection = new NodeSelection(this.Selection.Node, mContentView);
-                SectionNode secNode = (SectionNode)this.Selection.Node;
-                if (this.Selection != null && this.Selection.Node != null && this.Selection.Node.PhraseChildCount > 0)
+                parent = nodeSelected is SectionNode ? nodeSelected : nodeSelected.ParentAs<ObiNode>();
+                index = nodeSelected is SectionNode ? nodeSelected.PhraseChildCount : (nodeSelected.Index + 1);
+            }
+            if(parent != null)
+            cmd.ChildCommands.Insert(cmd.ChildCommands.Count, new Commands.Node.AddEmptyNode(this, node, parent, index));
+            cmd.ChildCommands.Insert(cmd.ChildCommands.Count, new Commands.Node.SetPageNumber(this, node, this.NextPageNumber));
+            return cmd;
+        }
+
+        private void AddIntermediatePages(SectionNode secNode, double DurationOfPhrase, double TotalDurationFromLeft, int GapsInPages)
+        {
+           if (this.Selection != null && this.Selection.Node != null && (this.Selection.Node is EmptyNode  || (this.Selection.Node is SectionNode && this.Selection.Node.PhraseChildCount > 0)))
+            {
+                if (this.Selection.Node is SectionNode && ((EmptyNode)secNode.LastUsedPhrase).Role_ != EmptyNode.Role.Page)
                 {
-                    double tempDurationFromLeft = 0;
-                    if (this.Selection.Node.FirstUsedPhrase != null)
-                    {
-                        tempDurationFromLeft = this.Selection.Node.FirstUsedPhrase.Duration;
-                    }
-                    double tempDurationFromRight = 0;
-                    if (this.Selection.Node.LastUsedPhrase != null)
-                    {
-                        tempDurationFromRight = this.Selection.Node.LastUsedPhrase.Duration;
-                    }
-                    
-                    this.Selection.Node = this.Selection.Node.LastUsedPhrase;
-                    this.AddEmptyPagesAutomated();
+                    this.Selection.Node = secNode.LastUsedPhrase;
                     this.Selection.Node = secNode.FirstUsedPhrase;
-                    double DurationOfPhrase = 0;
-                    double TotalDurationFromLeft = 0;
+                    DurationOfPhrase = 0;
+                    TotalDurationFromLeft = 0;
                     if (this.Selection != null && this.Selection.Node != null)
                     {
                         DurationOfPhrase = this.Selection.Node.Duration;
                         TotalDurationFromLeft = this.Selection.Node.Duration;
                     }
-                    AddIntermediatePages(secNode, DurationOfPhrase, TotalDurationFromLeft, GapsInPages);
-
                 }
-                else if (this.Selection.Node.PhraseChildCount == 0)
+                if (secNode != null && ((secNode.Duration - TotalDurationFromLeft) > GapsInPages) && DurationOfPhrase >= GapsInPages && this.Selection != null && this.Selection.Node != null && this.Selection.Node != secNode.LastUsedPhrase)
                 {
                     this.AddEmptyPagesAutomated();
-                    if (secNode.FollowingSection != null)
-                    {
-                        secNode = secNode.FollowingSection;
-                        this.Selection.Node = secNode;
-                        this.AddPageAutomatically(GapsInPages);
-                    }
-
+                    DurationOfPhrase = 0;
+                    this.Selection.Node = this.Selection.Node.FollowingNode;
+                    DurationOfPhrase += this.Selection.Node.Duration;
+                    TotalDurationFromLeft += this.Selection.Node.Duration;
+                    AddIntermediatePages(secNode, DurationOfPhrase, TotalDurationFromLeft, GapsInPages);
                 }
-            }           
+                else if (secNode != null && this.Selection != null && this.Selection.Node != null && this.Selection.Node != secNode.LastUsedPhrase && this.Selection.Node.FollowingNode != null)
+                {
+                    this.Selection.Node = this.Selection.Node.FollowingNode;
+                    DurationOfPhrase += this.Selection.Node.Duration;
+                    TotalDurationFromLeft += this.Selection.Node.Duration;
+                    AddIntermediatePages(secNode, DurationOfPhrase, TotalDurationFromLeft, GapsInPages);
+                }
 
-        }
+                else if (secNode != null && this.Selection != null)
+                {
 
-        private void AddIntermediatePages(SectionNode secNode, double DurationOfPhrase, double TotalDurationFromLeft, int GapsInPages)
-        {
-
-            if (secNode != null && ((secNode.Duration - TotalDurationFromLeft) > GapsInPages) && DurationOfPhrase >= GapsInPages && this.Selection != null && this.Selection.Node != null && this.Selection.Node != secNode.LastUsedPhrase)
-            {
-                this.AddEmptyPagesAutomated();
-                DurationOfPhrase = 0;
-                this.Selection.Node = this.Selection.Node.FollowingNode;
-                DurationOfPhrase += this.Selection.Node.Duration;
-                TotalDurationFromLeft += this.Selection.Node.Duration;
-                AddIntermediatePages(secNode, DurationOfPhrase, TotalDurationFromLeft, GapsInPages);
+                    this.AddEmptyPagesAutomated();
+                    DurationOfPhrase = TotalDurationFromLeft = 0;
+                    secNode = secNode.FollowingSection;
+                    this.Selection.Node = secNode;
+                    this.Selection = new NodeSelection(this.Selection.Node, mContentView);
+                    AddIntermediatePages(secNode, DurationOfPhrase, TotalDurationFromLeft, GapsInPages);
+                }
             }
-            else if (secNode != null && this.Selection != null && this.Selection.Node != null && this.Selection.Node != secNode.LastUsedPhrase && this.Selection.Node.FollowingNode != null)
-            {
-                this.Selection.Node = this.Selection.Node.FollowingNode;
-                DurationOfPhrase += this.Selection.Node.Duration;
-                TotalDurationFromLeft += this.Selection.Node.Duration;
-                AddIntermediatePages(secNode, DurationOfPhrase, TotalDurationFromLeft, GapsInPages);
-            }
+           else if (this.Selection.Node is SectionNode && this.Selection.Node.PhraseChildCount == 0)
+           {
+               this.AddEmptyPagesAutomated();
+               if (secNode.FollowingSection != null)
+               {
+                   DurationOfPhrase = TotalDurationFromLeft = 0;
+                   secNode = secNode.FollowingSection;
+                   this.Selection.Node = secNode;
+                   this.Selection = new NodeSelection(this.Selection.Node, mContentView);
+                   AddIntermediatePages(secNode, DurationOfPhrase, TotalDurationFromLeft, GapsInPages);
+               }
 
-            else if (secNode != null && this.Selection != null)
-            {
-            
-                DurationOfPhrase = TotalDurationFromLeft = 0;
-                secNode = secNode.FollowingSection;
-                this.Selection.Node = secNode;
-                this.AddPageAutomatically(GapsInPages);
-            }
+           }
         }
         public void AutoPageGeneration()
         {
@@ -246,7 +254,12 @@ namespace Obi.ProjectView
             if (autoPageGeneration.ShowDialog() == DialogResult.OK && autoPageGeneration.CanAddPage)
             {               
                     autoPageGeneration.Close();
-                    this.AddPageAutomatically(autoPageGeneration.GapsInPages);
+                    if (Selection != null && this.Selection.Node != null && this.Selection.Node is SectionNode)
+                    {
+                        this.Selection = new NodeSelection(this.Selection.Node, mContentView);
+                        SectionNode secNode = (SectionNode)this.Selection.Node;
+                        AddIntermediatePages(secNode, 0, 0, autoPageGeneration.GapsInPages);
+                    }   
 
                     if (autoPageGeneration.GenerateSpeech)
                     {
@@ -311,7 +324,13 @@ namespace Obi.ProjectView
             if (autoPageGeneration.CanAddPage)
             {
                 autoPageGeneration.Close();
-                this.AddPageAutomatically(autoPageGeneration.GapsInPages);
+              //  this.AddPageAutomatically(autoPageGeneration.GapsInPages);
+                if (Selection != null && this.Selection.Node != null && this.Selection.Node is SectionNode)
+                {
+                    this.Selection = new NodeSelection(this.Selection.Node, mContentView);
+                    SectionNode secNode = (SectionNode)this.Selection.Node;
+                    AddIntermediatePages(secNode, 0, 0, autoPageGeneration.GapsInPages);
+                }  
 
                 if (autoPageGeneration.GenerateSpeech)
                 {
