@@ -119,7 +119,8 @@ namespace Obi.ProjectView
         }
         public virtual void SetZoomFactorForHigherResolution(float zoom, int height, float widthRatio) //@ScreenResolution
         {
-
+            SetZoomFactorAndHeight(zoom, height);
+            this.Width = (int)(this.Width * widthRatio);
         }
 
         /// <summary>
