@@ -3736,6 +3736,11 @@ SelectionChangedPlaybackEnabled = false;
                 //StartMonitorContinuouslyWithDelay();
                 StartMonitorContinuously();
             }
+            else if (mView.ObiForm.Settings.Audio_AutoPlayAfterRecordingStops)
+            {
+                // if monitoring is not enabled and auto play after recording is checked.
+                PlayOrResume_Safe();
+            }
         }
 
         private void UpdateRecordedPhrasesAlongWithPostRecordingOperations(List<PhraseNode> listOfRecordedPhrases,ref EmptyNode firstRecordedPage)

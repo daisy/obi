@@ -85,6 +85,7 @@ namespace Obi
                newSettings.PlayOnNavigate = this.PlayOnNavigate;
                newSettings.Audio_RecordInFirstEmptyPhraseWithRecordSectionCommand = this.Audio_RecordInFirstEmptyPhraseWithRecordSectionCommand;
                newSettings.Audio_MergeFirstTwoPhrasesAfterPhraseDetectionWhileRecording= this.Audio_MergeFirstTwoPhrasesAfterPhraseDetectionWhileRecording;
+               newSettings.Audio_AutoPlayAfterRecordingStops = this.Audio_AutoPlayAfterRecordingStops;
 
                if (!string.IsNullOrEmpty(this.Audio_LocalRecordingDirectory) && System.IO.Directory.Exists(this.Audio_LocalRecordingDirectory))
                {
@@ -125,7 +126,7 @@ namespace Obi
                newSettings.Project_SaveTOCViewWidth = this.Project_SaveTOCViewWidth;
                newSettings.Project_DisplayWarningsForEditOperations = this.Project_DisplayWarningsForEditOperations;
                newSettings.Project_ShowAdvancePropertiesInPropertiesDialogs = this.Project_ShowAdvancePropertiesInPropertiesDialogs;
-
+               newSettings.Project_ImportNCCFileWithWindows1252Encoding= this.Project_ImportNCCFileWithWindows1252Encoding;
                // checks for paths
                //if ( !string.IsNullOrEmpty(this.Project_DefaultPath) && Directory.Exists (this.Project_DefaultPath ))
                //newSettings.Project_DefaultPath = this.Project_DefaultPath;
@@ -466,7 +467,8 @@ namespace Obi
                && this.PlayOnNavigate == settings.PlayOnNavigate
                && this.Audio_ShowSelectionTimeInTransportBar == settings.Audio_ShowSelectionTimeInTransportBar
                && this.Audio_RecordInFirstEmptyPhraseWithRecordSectionCommand == settings.Audio_RecordInFirstEmptyPhraseWithRecordSectionCommand
-               && this.Audio_MergeFirstTwoPhrasesAfterPhraseDetectionWhileRecording == settings.Audio_MergeFirstTwoPhrasesAfterPhraseDetectionWhileRecording)
+               && this.Audio_MergeFirstTwoPhrasesAfterPhraseDetectionWhileRecording == settings.Audio_MergeFirstTwoPhrasesAfterPhraseDetectionWhileRecording
+               && this.Audio_AutoPlayAfterRecordingStops== settings.Audio_AutoPlayAfterRecordingStops)
            {
                audioPreferencesMatch = true ;
            }
@@ -499,7 +501,8 @@ namespace Obi
                && this.Project_IncreasePhraseHightForHigherResolution == settings.Project_IncreasePhraseHightForHigherResolution
                && this.Project_SaveTOCViewWidth == settings.Project_SaveTOCViewWidth
                && this.Project_DisplayWarningsForEditOperations ==  settings.Project_DisplayWarningsForEditOperations
-               && this.Project_ShowAdvancePropertiesInPropertiesDialogs == settings.Project_ShowAdvancePropertiesInPropertiesDialogs)
+               && this.Project_ShowAdvancePropertiesInPropertiesDialogs == settings.Project_ShowAdvancePropertiesInPropertiesDialogs
+                                  && this.Project_ImportNCCFileWithWindows1252Encoding == settings.Project_ImportNCCFileWithWindows1252Encoding)
                {
                    projectPreferencesMatch = true ;
                }

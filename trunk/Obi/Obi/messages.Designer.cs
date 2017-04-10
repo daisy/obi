@@ -241,6 +241,15 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Play the recorded phrase as recording stops.
+        /// </summary>
+        internal static string Audio_AutoPlayAfterRecordingStops {
+            get {
+                return ResourceManager.GetString("Audio_AutoPlayAfterRecordingStops", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to {0} {1} of {2}{3}.
         /// </summary>
         internal static string audio_block_label {
@@ -5610,6 +5619,15 @@ namespace Obi {
         internal static string Project_EPUBCheckTimeOutEnabled {
             get {
                 return ResourceManager.GetString("Project_EPUBCheckTimeOutEnabled", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Import NCC files with Windows 1252 encoding.
+        /// </summary>
+        internal static string Project_ImportNCCFileWithWindows1252Encoding {
+            get {
+                return ResourceManager.GetString("Project_ImportNCCFileWithWindows1252Encoding", resourceCulture);
             }
         }
         

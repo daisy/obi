@@ -2975,4 +2975,10 @@ Error text: {1}</value>
   <data name="Audio_MergeFirstTwoPhrasesAfterPhraseDetectionWhileRecording" xml:space="preserve">
     <value>Merge first 2 phrases after recording with phrase detection</value>
   </data>
+  <data name="Audio_AutoPlayAfterRecordingStops" xml:space="preserve">
+    <value>Play the recorded phrase as recording stops</value>
+  </data>
+  <data name="Project_ImportNCCFileWithWindows1252Encoding" xml:space="preserve">
+    <value>Import NCC files with Windows 1252 encoding</value>
+  </data>
 </root>
