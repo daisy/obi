@@ -303,6 +303,9 @@ namespace Obi
         [OptionalField]
 public bool Project_ImportNCCFileWithWindows1252Encoding ; // useful for importing old books with 7 bit encoding.
 
+        [OptionalField]
+        public bool Audio_AutoPlayAfterRecordingStops; // plays the recorded phrase when recording stops.
+
         protected static void InitializeDefaultSettings(Settings settings)
         {
             settings.Audio_Channels = 1;
@@ -443,6 +446,7 @@ public bool Project_ImportNCCFileWithWindows1252Encoding ; // useful for importi
             // Obi 4.0
             settings.Audio_MergeFirstTwoPhrasesAfterPhraseDetectionWhileRecording = false;
             settings.Project_ImportNCCFileWithWindows1252Encoding = false;
+            settings.Audio_AutoPlayAfterRecordingStops = false;
         }
 
         /// <summary>

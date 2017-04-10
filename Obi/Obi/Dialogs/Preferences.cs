@@ -303,6 +303,7 @@ namespace Obi.Dialogs
                 m_CheckBoxListView.Items[26].Checked = mSettings.Audio_ShowSelectionTimeInTransportBar;
                 m_CheckBoxListView.Items[27].Checked = mSettings.Audio_RecordInFirstEmptyPhraseWithRecordSectionCommand;
                 m_CheckBoxListView.Items[28].Checked = mSettings.Audio_MergeFirstTwoPhrasesAfterPhraseDetectionWhileRecording;
+                m_CheckBoxListView.Items[29].Checked = mSettings.Audio_AutoPlayAfterRecordingStops;
 
                 m_IsComplete = true;
 
@@ -1142,6 +1143,7 @@ m_cb_ChooseFont.Visible = false;
                 mSettings.Project_SaveTOCViewWidth = m_CheckBoxListView.Items[20].Checked;
                 mSettings.Project_ShowAdvancePropertiesInPropertiesDialogs = m_CheckBoxListView.Items[21].Checked;
                 mSettings.Project_DisplayWarningsForEditOperations = m_CheckBoxListView.Items[22].Checked;
+                mSettings.Project_ImportNCCFileWithWindows1252Encoding= m_CheckBoxListView.Items[23].Checked;
             }
             if (mTab.SelectedTab == mAudioTab)
             {
@@ -1175,6 +1177,7 @@ m_cb_ChooseFont.Visible = false;
                 mSettings.Audio_ShowSelectionTimeInTransportBar = m_CheckBoxListView.Items[26].Checked;
                 mSettings.Audio_RecordInFirstEmptyPhraseWithRecordSectionCommand = m_CheckBoxListView.Items[27].Checked;
                 mSettings.Audio_MergeFirstTwoPhrasesAfterPhraseDetectionWhileRecording= m_CheckBoxListView.Items[28].Checked;
+                mSettings.Audio_AutoPlayAfterRecordingStops= m_CheckBoxListView.Items[29].Checked;
 
             }
             //if (mTab.SelectedTab == mAdvanceTab)
@@ -1238,6 +1241,7 @@ m_cb_ChooseFont.Visible = false;
                 m_CheckBoxListView.Items.Add(Localizer.Message("Audio_ShowSelectionTimeInTransportBar"));
                 m_CheckBoxListView.Items.Add(Localizer.Message("Audio_RecordInFirstEmptyPhraseWithRecordSectionCommand"));
                 m_CheckBoxListView.Items.Add(Localizer.Message("Audio_MergeFirstTwoPhrasesAfterPhraseDetectionWhileRecording"));
+                m_CheckBoxListView.Items.Add(Localizer.Message("Audio_AutoPlayAfterRecordingStops"));
                
                 m_CheckBoxListView.Items[0].Checked = mSettings.Audio_AudioClues;
                 m_CheckBoxListView.Items[0].ToolTipText = Localizer.Message("AudioTab_AudioClues");                
@@ -1297,6 +1301,8 @@ m_cb_ChooseFont.Visible = false;
                 m_CheckBoxListView.Items[27].ToolTipText = Localizer.Message("Audio_RecordInFirstEmptyPhraseWithRecordSectionCommand");
                 m_CheckBoxListView.Items[28].Checked = mSettings.Audio_MergeFirstTwoPhrasesAfterPhraseDetectionWhileRecording;
 
+                m_CheckBoxListView.Items[29].Checked = mSettings.Audio_AutoPlayAfterRecordingStops;
+
               
             }
             if (this.mTab.SelectedTab == this.mProjectTab)
@@ -1336,6 +1342,7 @@ m_cb_ChooseFont.Visible = false;
                 m_CheckBoxListView.Items.Add(Localizer.Message("Project_SaveTOCViewWidth"));
                 m_CheckBoxListView.Items.Add(Localizer.Message("Project_ShowAdvancePropertiesInPropertiesDialogs"));
                 m_CheckBoxListView.Items.Add(Localizer.Message("Project_DisplayWarningsForEditOperations"));
+                m_CheckBoxListView.Items.Add(Localizer.Message("Project_ImportNCCFileWithWindows1252Encoding"));
                
                 m_CheckBoxListView.Items[0].Checked = mSettings.Project_OpenLastProject;
                 m_CheckBoxListView.Items[0].ToolTipText = Localizer.Message("ProjectTab_OpenLastProject");
@@ -1383,6 +1390,7 @@ m_cb_ChooseFont.Visible = false;
                 m_CheckBoxListView.Items[21].ToolTipText = Localizer.Message("Project_ShowAdvancePropertiesInPropertiesDialogs");
                 m_CheckBoxListView.Items[22].Checked = mSettings.Project_DisplayWarningsForEditOperations;
                 m_CheckBoxListView.Items[22].ToolTipText = Localizer.Message("Project_DisplayWarningsForEditOperations");
+                m_CheckBoxListView.Items[23].Checked = mSettings.Project_ImportNCCFileWithWindows1252Encoding;
 
             }
             m_CheckBoxListView.View = View.Details;
@@ -1471,6 +1479,7 @@ m_cb_ChooseFont.Visible = false;
                 mSettings.Project_SaveTOCViewWidth = m_DefaultSettings.Project_SaveTOCViewWidth;
                 mSettings.Project_ShowAdvancePropertiesInPropertiesDialogs = m_DefaultSettings.Project_ShowAdvancePropertiesInPropertiesDialogs;
                 mSettings.Project_DisplayWarningsForEditOperations = m_DefaultSettings.Project_DisplayWarningsForEditOperations;
+                mSettings.Project_ImportNCCFileWithWindows1252Encoding= m_DefaultSettings.Project_ImportNCCFileWithWindows1252Encoding;
                 InitializeProjectTab();
             }
             else if (mTab.SelectedTab == mAudioTab) // Default settings for Audio tab
