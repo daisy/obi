@@ -79,8 +79,8 @@
             // 
             // m_lbSpecialPhrasesList
             // 
-            this.m_lbSpecialPhrasesList.FormattingEnabled = true;
             resources.ApplyResources(this.m_lbSpecialPhrasesList, "m_lbSpecialPhrasesList");
+            this.m_lbSpecialPhrasesList.FormattingEnabled = true;
             this.m_lbSpecialPhrasesList.Name = "m_lbSpecialPhrasesList";
             this.m_lbSpecialPhrasesList.SelectedIndexChanged += new System.EventHandler(this.m_lbSpecialPhrasesList_SelectedIndexChanged);
             // 
