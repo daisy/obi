@@ -6691,49 +6691,78 @@ public bool ShowOnlySelectedSection
         {
 
             List<SectionNode> m_sectionsList = ((ObiRootNode)this.Presentation.RootNode).GetListOfAllSections();
-            for (int i = 0; i < m_sectionsList.Count; i++)
+            List<int> PhraseIndexOfDeletedPage = new List<int>();
+            List<int> TotalPagesDeletedInSection = new List<int>();
+            int CountOfPagesDeletedInSection = 0;
+            this.Selection = new NodeSelection(this.Selection.Node, mContentView);
+            //SectionNode secNode = (SectionNode)this.Selection.Node;
+            SectionNode secNode = null;
+            if (m_sectionsList.Count > 0)
+                secNode = m_sectionsList[0];
+            if (secNode != null)
             {
-                SectionNode tempSection = m_sectionsList[i];
-                this.Selection.Node = m_sectionsList[i];
-                this.Selection = new NodeSelection(tempSection.FirstLeaf, mContentView);
-
-
-                for (ObiNode n = tempSection.FirstLeaf; n != null && n.Parent != null; n = n.FollowingNode)
+                for (int i = 0; i < m_sectionsList.Count; i++)
                 {
-
-                    if (n is EmptyNode && ((EmptyNode)n).Role_ == EmptyNode.Role.Page)
+                    SectionNode tempSection = m_sectionsList[i];
+                    this.Selection.Node = m_sectionsList[i];
+                    if (tempSection.LastUsedPhrase != null)
                     {
-                        if (!(this.Selection.Node is SectionNode))
-                        {
-                            this.Selection.Node = n;
-                            if (n.PrecedingNode != null && n.Parent == n.PrecedingNode.Parent)
-                            {
-                                n = n.PrecedingNode;
-                            }
-                            else if (n.FollowingNode != null && n.Parent == n.FollowingNode.Parent)
-                            {
-                                n = n.FollowingNode;
-                            }
-                            else
-                            {
-                                n = null;
-                            }
-                            this.Delete();
+                        this.Selection = new NodeSelection(tempSection.LastUsedPhrase, mContentView);
+                    }
+                    CountOfPagesDeletedInSection = 0;
+                    for (ObiNode n = tempSection.LastUsedPhrase; n != null && n.Parent != null; n = n.PrecedingNode)
+                    {
 
+                        if (n is EmptyNode && ((EmptyNode)n).Role_ == EmptyNode.Role.Page)
+                        {
+                            if (!(this.Selection.Node is SectionNode))
+                            {
+                                this.Selection.Node = n;
+                                PhraseIndexOfDeletedPage.Add(this.Selection.Node.Index);                         
+                                CountOfPagesDeletedInSection++;
+                            }
                         }
 
+                        if (n == null || (n != null && n.Parent != null && n.PrecedingNode != null && n.Parent != n.PrecedingNode.Parent))
+                            break;
                     }
-
-                    if (n == null || (n != null && n.Parent != null && n.FollowingNode != null && n.Parent != n.FollowingNode.Parent))
-                        break;
-
-
+                    TotalPagesDeletedInSection.Add(CountOfPagesDeletedInSection);
                 }
 
+                Command cmd = DeletePagesCommand(PhraseIndexOfDeletedPage, TotalPagesDeletedInSection, m_sectionsList, secNode);
+                if (cmd != null)
+                {
+                    if (secNode != null && this.Selection != null && this.Selection.Node == null)
+                    {
+                        this.Selection = new NodeSelection((ObiNode)secNode, mContentView);
+                    }
+                    mPresentation.Do(cmd);
+                }
             }
-
         }
+        /// <summary>
+        /// Delete Pages before applying Auto Page generation.
+        /// </summary>
+        private CompositeCommand DeletePagesCommand(List<int> PhraseIndexOfDeletedPage, List<int> TotalPagesDeletedInSection, List<SectionNode> m_sectionsList,SectionNode secNode)
+        {
+            CompositeCommand cmd = Presentation.CreateCompositeCommand(Localizer.Message("Delete_pages"));
+            int pageCount = 0;
+            this.Selection.Node = secNode;
+            foreach (int TotalPages in TotalPagesDeletedInSection)
+            {
+                for (int i = 0; i < TotalPages; i++)
+                {
 
+                    cmd.ChildCommands.Insert(cmd.ChildCommands.Count, new Commands.Node.Delete(this, secNode.PhraseChild(PhraseIndexOfDeletedPage[pageCount]), false));
+                    pageCount++;
+
+                }
+                secNode = secNode.FollowingSection;
+            }
+                
+                            
+            return cmd;
+        }
     }
 
     public class ImportingFileEventArgs
