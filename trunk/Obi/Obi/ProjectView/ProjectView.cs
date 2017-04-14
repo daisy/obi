@@ -6729,7 +6729,7 @@ public bool ShowOnlySelectedSection
                     TotalPagesDeletedInSection.Add(CountOfPagesDeletedInSection);
                 }
 
-                Command cmd = DeletePagesCommand(PhraseIndexOfDeletedPage, TotalPagesDeletedInSection, m_sectionsList, secNode);
+                Command cmd = DeletePagesCommand(PhraseIndexOfDeletedPage, TotalPagesDeletedInSection, secNode);
                 if (cmd != null)
                 {
                     if (secNode != null && this.Selection != null && this.Selection.Node == null)
@@ -6743,7 +6743,7 @@ public bool ShowOnlySelectedSection
         /// <summary>
         /// Delete Pages before applying Auto Page generation.
         /// </summary>
-        private CompositeCommand DeletePagesCommand(List<int> PhraseIndexOfDeletedPage, List<int> TotalPagesDeletedInSection, List<SectionNode> m_sectionsList,SectionNode secNode)
+        private CompositeCommand DeletePagesCommand(List<int> PhraseIndexOfDeletedPage, List<int> TotalPagesDeletedInSection, SectionNode secNode)
         {
             CompositeCommand cmd = Presentation.CreateCompositeCommand(Localizer.Message("Delete_pages"));
             int pageCount = 0;
