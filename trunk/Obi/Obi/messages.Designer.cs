@@ -1621,6 +1621,15 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Delete pages.
+        /// </summary>
+        internal static string Delete_pages {
+            get {
+                return ResourceManager.GetString("Delete_pages", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to delete phrase.
         /// </summary>
         internal static string delete_phrase {
