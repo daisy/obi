@@ -877,7 +877,7 @@
     <value>273, 22</value>
   </data>
   <data name="mView_RecordingToolBarMenuItem.Text" xml:space="preserve">
-    <value>Aufnahme&amp;werkzeuge</value>
+    <value>Aufnahme&amp;leiste</value>
   </data>
   <data name="toolStripSeparator15.Size" type="System.Drawing.Size, System.Drawing">
     <value>270, 6</value>
