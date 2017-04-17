@@ -3009,7 +3009,7 @@ for (int j = 0;
                         if (pageNum > 0)
                         {
                             
-                            PhraseNode node = CreatePagePhraseWithNegligibleAudio( new PageNumber(pageNum, PageKind.Normal));
+                            PhraseNode node = CreatePagePhraseWithNegligibleAudio( new PageNumber(pageNum, PageKind.Normal), 0.75);
                             pagePhrases.Insert(0, node);
                         }
                         pagePhrases.Insert(0, phraseNodes[i]) ;
@@ -3062,7 +3062,7 @@ for (int j = 0;
                         int.TryParse(pageNumberString, out pageNum);
                         if (pageNum > 0)
                         {
-                            PhraseNode node = CreatePagePhraseWithNegligibleAudio(new PageNumber(pageNum, PageKind.Normal));
+                            PhraseNode node = CreatePagePhraseWithNegligibleAudio(new PageNumber(pageNum, PageKind.Normal), 0.75);
                             
                             phraseInsertIndex++;
                             command.ChildCommands.Insert(command.ChildCommands.Count, new Commands.Node.AddNode(this, node, newSectionNode, phraseInsertIndex));
@@ -3087,13 +3087,13 @@ for (int j = 0;
             return command;
             }
 
-        private PhraseNode CreatePagePhraseWithNegligibleAudio(PageNumber pgNumber)
+        private PhraseNode CreatePagePhraseWithNegligibleAudio(PageNumber pgNumber, double durationInSeconds)
         {
             PhraseNode node = mPresentation.CreatePhraseNode();
             node.Audio = mPresentation.MediaFactory.CreateManagedAudioMedia();
             node.Audio.AudioMediaData = mPresentation.MediaDataFactory.Create<urakawa.media.data.audio.codec.WavAudioMediaData>();
             //byte [] zeroAudio = new byte[4096] ;\
-            int audioLength = Convert.ToInt32(mPresentation.MediaDataManager.DefaultPCMFormat.Data.ByteRate * 0.75);
+            int audioLength = Convert.ToInt32(mPresentation.MediaDataManager.DefaultPCMFormat.Data.ByteRate * durationInSeconds);
             byte[] zeroAudio = new byte[audioLength];
             node.Audio.AudioMediaData.AppendPcmData(new System.IO.MemoryStream(zeroAudio), new urakawa.media.timing.Time(mPresentation.MediaDataManager.DefaultPCMFormat.Data.ConvertBytesToTime(zeroAudio.Length)));
             node.Role_ = EmptyNode.Role.Page;
@@ -6559,7 +6559,7 @@ public bool ShowOnlySelectedSection
                 }
                 else
                 {
-                    node = CreatePagePhraseWithNegligibleAudio(PageNumber);
+                    node = CreatePagePhraseWithNegligibleAudio(PageNumber, 0.25);
             }
                 if (nodeSelected != null)
                 {
