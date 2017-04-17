@@ -6539,7 +6539,7 @@ public bool ShowOnlySelectedSection
         /// <summary>
         /// Add new  pages at regualar gaps.
         /// </summary>
-        private CompositeCommand AddEmptyPagesCommand(List<int> PageIndexTobeMarked, List<int> TotalPagesInSection)
+        private CompositeCommand AddEmptyPagesCommand(List<int> PageIndexTobeMarked, List<int> TotalPagesInSection, bool createEmptyPages)
         {
             CompositeCommand cmd = Presentation.CreateCompositeCommand(Localizer.Message("add_blank_pages"));
             int index = -1;
@@ -6552,8 +6552,15 @@ public bool ShowOnlySelectedSection
             foreach (int phraseIndex in PageIndexTobeMarked)
             {
                 PageNumber = new PageNumber(++PageNumberCount);
-                EmptyNode node = Presentation.TreeNodeFactory.Create<EmptyNode>();
-
+                EmptyNode node = null;
+                if (createEmptyPages)
+                {
+                    node = Presentation.TreeNodeFactory.Create<EmptyNode>();
+                }
+                else
+                {
+                    node = CreatePagePhraseWithNegligibleAudio(PageNumber);
+            }
                 if (nodeSelected != null)
                 {
                     parent = nodeSelected is SectionNode ? nodeSelected : nodeSelected.ParentAs<ObiNode>();
@@ -6652,7 +6659,7 @@ public bool ShowOnlySelectedSection
                 SectionNode secNode = (SectionNode)this.Selection.Node;
                 AddIntermediatePages(secNode, 0, 0, autoPageGeneration.GapsInPages, PageIndexTobeMarked, TotalPagesInSection, 1);
                 this.Selection = new NodeSelection(secNode, mContentView);
-                Command cmd = this.AddEmptyPagesCommand(PageIndexTobeMarked, TotalPagesInSection);
+                Command cmd = this.AddEmptyPagesCommand(PageIndexTobeMarked, TotalPagesInSection, autoPageGeneration.GenerateSpeech);
                 if (cmd != null)
                 {
                     mPresentation.Do(cmd);
