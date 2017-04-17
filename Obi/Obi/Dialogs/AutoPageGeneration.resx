@@ -249,13 +249,13 @@
     <value>15, 183</value>
   </data>
   <data name="m_rbKeepEmptyPages.Size" type="System.Drawing.Size, System.Drawing">
-    <value>113, 17</value>
+    <value>151, 17</value>
   </data>
   <data name="m_rbKeepEmptyPages.TabIndex" type="System.Int32, mscorlib">
     <value>5</value>
   </data>
   <data name="m_rbKeepEmptyPages.Text" xml:space="preserve">
-    <value>Keep &amp;empty pages</value>
+    <value>&amp;Keep pages  with no audio</value>
   </data>
   <data name="&gt;&gt;m_rbKeepEmptyPages.Name" xml:space="preserve">
     <value>m_rbKeepEmptyPages</value>

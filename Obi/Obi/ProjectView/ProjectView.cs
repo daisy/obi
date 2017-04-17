@@ -6673,20 +6673,23 @@ public bool ShowOnlySelectedSection
         }
         public void AutoPageGeneration()
         {
-            Obi.Dialogs.AutoPageGeneration autoPageGeneration = new Dialogs.AutoPageGeneration(this);
+            if (((ObiRootNode)this.Presentation.RootNode).PageCount == 0)
+            {
+                Obi.Dialogs.AutoPageGeneration autoPageGeneration = new Dialogs.AutoPageGeneration(this);
 
-            if (autoPageGeneration.ShowDialog() == DialogResult.OK && autoPageGeneration.CanAddPage)
-            {
-                AutoPageGeneration(autoPageGeneration);
-            }
-            else if (autoPageGeneration.DeletePages)
-            {
-                DeletePagesForAutoPageGeneration(autoPageGeneration);
-                MessageBox.Show(Localizer.Message("PageDeletionSucessfull"), Localizer.Message("Caption_Information"), MessageBoxButtons.OK, MessageBoxIcon.Information);
-                autoPageGeneration.ShowDialog();
-                if (autoPageGeneration.CanAddPage)
+                if (autoPageGeneration.ShowDialog() == DialogResult.OK && autoPageGeneration.CanAddPage)
                 {
                     AutoPageGeneration(autoPageGeneration);
+                }             
+            }
+            else if (((ObiRootNode)this.Presentation.RootNode).PageCount > 0)
+            {
+                DialogResult DeletePages = MessageBox.Show(Localizer.Message("PagesInSectionsDetected"), Localizer.Message("Caption_Warning"), MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                if (DeletePages == DialogResult.Yes)
+                {
+                    DeletePagesForAutoPageGeneration();
+                    MessageBox.Show(Localizer.Message("PageDeletionSucessfull"), Localizer.Message("Caption_Information"), MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    this.AutoPageGeneration();
                 }
             }
 
@@ -6694,7 +6697,7 @@ public bool ShowOnlySelectedSection
         }
 
 
-        public void DeletePagesForAutoPageGeneration(Obi.Dialogs.AutoPageGeneration autoPageGeneration)
+        public void DeletePagesForAutoPageGeneration()
         {
 
             List<SectionNode> m_sectionsList = ((ObiRootNode)this.Presentation.RootNode).GetListOfAllSections();

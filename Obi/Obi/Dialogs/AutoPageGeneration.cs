@@ -18,8 +18,6 @@ namespace Obi.Dialogs
         private List<SectionNode> m_sectionsList;
         private int m_GapsInPages = 0;
         private bool m_CanAddPage = false;
-        private bool m_DeletePages = true;
-        private DialogResult m_DeleteExistingPages = DialogResult.No;
         public AutoPageGeneration(ProjectView.ProjectView ProjectView)
         {
             InitializeComponent();
@@ -69,30 +67,15 @@ namespace Obi.Dialogs
                 return m_CanAddPage;
             }
         }
-        public bool DeletePages
-        {
-            get
-            {
-                return (m_DeleteExistingPages == DialogResult.Yes);
-            }
-        }
-
+   
         private void m_btnOk_Click(object sender, EventArgs e)
         {           
             m_CanAddPage = AddPage();
-           
-            if (!m_CanAddPage && m_DeleteExistingPages == DialogResult.No)
+
+            if (!m_CanAddPage)
             {
-                if (!m_DeletePages)
-                {
-                    this.Close();
-                    m_DeletePages = true; 
-                }
-                else
-                {
-                    this.DialogResult = DialogResult.None;
-                }
-                            
+
+                this.DialogResult = DialogResult.None;
             }  
         }
 
@@ -129,21 +112,7 @@ namespace Obi.Dialogs
                 m_cbStartingSectionIndex.Focus();
                 return false;
             }
-            if (((ObiRootNode)m_ProjectView.Presentation.RootNode).PageCount > 0)
-            {
-                m_DeleteExistingPages = MessageBox.Show(Localizer.Message("PagesInSectionsDetected"), Localizer.Message("Caption_Warning"), MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
-                if (m_DeleteExistingPages == DialogResult.Yes)
-                {
-                    m_DeletePages = true;
-                }
-                else if (m_DeleteExistingPages == DialogResult.No)
-                {
-                    m_DeletePages = false;
-                }
-                m_cbStartingSectionIndex.Focus();
-                return false;
-            }
-
+ 
             if (m_ProjectView != null && m_ProjectView.Selection != null)
             {
 
