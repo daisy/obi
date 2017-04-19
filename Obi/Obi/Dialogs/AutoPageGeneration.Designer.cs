@@ -29,30 +29,32 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AutoPageGeneration));
-            this.label1 = new System.Windows.Forms.Label();
+            this.m_lbGapsInPages = new System.Windows.Forms.Label();
             this.m_txtGapsInPages = new System.Windows.Forms.TextBox();
-            this.label2 = new System.Windows.Forms.Label();
+            this.m_lbStartingSectionIndex = new System.Windows.Forms.Label();
             this.m_cbStartingSectionIndex = new System.Windows.Forms.ComboBox();
             this.m_rbGenerateTTS = new System.Windows.Forms.RadioButton();
             this.m_rbKeepEmptyPages = new System.Windows.Forms.RadioButton();
             this.m_btnOk = new System.Windows.Forms.Button();
             this.m_btnCancel = new System.Windows.Forms.Button();
+            this.m_gpPages = new System.Windows.Forms.GroupBox();
+            this.m_gpPages.SuspendLayout();
             this.SuspendLayout();
             // 
-            // label1
+            // m_lbGapsInPages
             // 
-            resources.ApplyResources(this.label1, "label1");
-            this.label1.Name = "label1";
+            resources.ApplyResources(this.m_lbGapsInPages, "m_lbGapsInPages");
+            this.m_lbGapsInPages.Name = "m_lbGapsInPages";
             // 
             // m_txtGapsInPages
             // 
             resources.ApplyResources(this.m_txtGapsInPages, "m_txtGapsInPages");
             this.m_txtGapsInPages.Name = "m_txtGapsInPages";
             // 
-            // label2
+            // m_lbStartingSectionIndex
             // 
-            resources.ApplyResources(this.label2, "label2");
-            this.label2.Name = "label2";
+            resources.ApplyResources(this.m_lbStartingSectionIndex, "m_lbStartingSectionIndex");
+            this.m_lbStartingSectionIndex.Name = "m_lbStartingSectionIndex";
             // 
             // m_cbStartingSectionIndex
             // 
@@ -91,23 +93,32 @@
             this.m_btnCancel.UseVisualStyleBackColor = true;
             this.m_btnCancel.Click += new System.EventHandler(this.m_btnCancel_Click);
             // 
+            // m_gpPages
+            // 
+            this.m_gpPages.Controls.Add(this.m_rbGenerateTTS);
+            this.m_gpPages.Controls.Add(this.m_rbKeepEmptyPages);
+            resources.ApplyResources(this.m_gpPages, "m_gpPages");
+            this.m_gpPages.Name = "m_gpPages";
+            this.m_gpPages.TabStop = false;
+            // 
             // AutoPageGeneration
             // 
             this.AcceptButton = this.m_btnOk;
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.m_btnCancel;
+            this.Controls.Add(this.m_gpPages);
             this.Controls.Add(this.m_btnCancel);
             this.Controls.Add(this.m_btnOk);
-            this.Controls.Add(this.m_rbKeepEmptyPages);
-            this.Controls.Add(this.m_rbGenerateTTS);
             this.Controls.Add(this.m_cbStartingSectionIndex);
-            this.Controls.Add(this.label2);
+            this.Controls.Add(this.m_lbStartingSectionIndex);
             this.Controls.Add(this.m_txtGapsInPages);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.m_lbGapsInPages);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.MaximizeBox = false;
             this.Name = "AutoPageGeneration";
+            this.m_gpPages.ResumeLayout(false);
+            this.m_gpPages.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -115,13 +126,14 @@
 
         #endregion
 
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label m_lbGapsInPages;
         private System.Windows.Forms.TextBox m_txtGapsInPages;
-        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label m_lbStartingSectionIndex;
         private System.Windows.Forms.ComboBox m_cbStartingSectionIndex;
         private System.Windows.Forms.RadioButton m_rbGenerateTTS;
         private System.Windows.Forms.RadioButton m_rbKeepEmptyPages;
         private System.Windows.Forms.Button m_btnOk;
         private System.Windows.Forms.Button m_btnCancel;
+        private System.Windows.Forms.GroupBox m_gpPages;
     }
 }

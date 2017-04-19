@@ -4867,7 +4867,7 @@ namespace Obi {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Pages are deleted sucessfully. You can now proceed to mark new pages..
+        ///   Looks up a localized string similar to Pages are deleted successfully. You can now proceed to mark new pages..
         /// </summary>
         internal static string PageDeletionSucessfull {
             get {
