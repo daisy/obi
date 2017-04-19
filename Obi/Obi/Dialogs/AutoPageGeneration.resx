@@ -149,6 +149,9 @@
   <data name="m_txtGapsInPages.Location" type="System.Drawing.Point, System.Drawing">
     <value>140, 35</value>
   </data>
+  <data name="m_txtGapsInPages.MaxLength" type="System.Int32, mscorlib">
+    <value>5</value>
+  </data>
   <data name="m_txtGapsInPages.Size" type="System.Drawing.Size, System.Drawing">
     <value>100, 20</value>
   </data>
