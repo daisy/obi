@@ -5632,7 +5632,7 @@ namespace Obi {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Import NCC files with Windows 1252 encoding.
+        ///   Looks up a localized string similar to Import old NCC files with Windows 1252 encoding.
         /// </summary>
         internal static string Project_ImportNCCFileWithWindows1252Encoding {
             get {
