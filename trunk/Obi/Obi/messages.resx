@@ -2970,7 +2970,7 @@ Error text: {1}</value>
     <value>Some Pages are detected in the project. You need to delete them if you want to continue. Do you want to delete them now ?</value>
   </data>
   <data name="PageDeletionSucessfull" xml:space="preserve">
-    <value>Pages are deleted sucessfully. You can now proceed to mark new pages.</value>
+    <value>Pages are deleted successfully. You can now proceed to mark new pages.</value>
   </data>
   <data name="Audio_MergeFirstTwoPhrasesAfterPhraseDetectionWhileRecording" xml:space="preserve">
     <value>Merge first 2 phrases after recording with phrase detection</value>
