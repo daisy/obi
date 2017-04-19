@@ -241,7 +241,7 @@ namespace Obi {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Play the recorded phrase as recording stops.
+        ///   Looks up a localized string similar to Play the recorded phrase when recording stops.
         /// </summary>
         internal static string Audio_AutoPlayAfterRecordingStops {
             get {
