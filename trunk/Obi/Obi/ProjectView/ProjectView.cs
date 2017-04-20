@@ -6559,7 +6559,7 @@ public bool ShowOnlySelectedSection
                 }
                 else
                 {
-                    node = CreatePagePhraseWithNegligibleAudio(PageNumber, 0.25);
+                    node = CreatePagePhraseWithNegligibleAudio(PageNumber, 0.25 );
             }
                 if (nodeSelected != null)
                 {
@@ -6673,6 +6673,7 @@ public bool ShowOnlySelectedSection
         }
         public void AutoPageGeneration()
         {
+            if (TransportBar.IsActive) TransportBar.Stop();
             if (((ObiRootNode)this.Presentation.RootNode).PageCount == 0)
             {
                 Obi.Dialogs.AutoPageGeneration autoPageGeneration = new Dialogs.AutoPageGeneration(this);
