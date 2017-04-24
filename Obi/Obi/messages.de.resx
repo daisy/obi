@@ -2692,4 +2692,27 @@ Fehlertext: {1}</value>
   <data name="ProjectView_NoGapInPages" xml:space="preserve">
     <value>Keine fehlenden Seitenzahlen gefunden</value>
   </data>
+  <data name="Mints_invalid_input" xml:space="preserve">
+    <value>Geben Sie eine Minutenzahl (gößer als 0) an.</value>
+    <comment>Error message</comment>
+  </data>
+  <data name="PagesInSectionsDetected" xml:space="preserve">
+    <value>Es sind Seiten vorhanden, die zunächst gelöscht werden müssen. Wollen Sie sie löschen und fortfahren?</value>
+  </data>
+  <data name="PageDeletionSucessfull" xml:space="preserve">
+    <value>Seiten gelöscht. Sie können nun weitere Seiten definieren.</value>
+  </data>
+  <data name="Audio_MergeFirstTwoPhrasesAfterPhraseDetectionWhileRecording" xml:space="preserve">
+    <value>Die ersten beiden Phrasen nach Aufnahme mit Phrasenerkennung verbinden</value>
+  </data>
+  <data name="Audio_AutoPlayAfterRecordingStops" xml:space="preserve">
+    <value>Spielt die letzte aufgenommene Phrase ab, wenn Sie die Aufnahme beenden.</value>
+  </data>
+  <data name="Project_ImportNCCFileWithWindows1252Encoding" xml:space="preserve">
+    <value>NCC-Strukturdatei mit Windows-1252-Zeichensatz importieren</value>
+  </data>
+  <data name="Delete_pages" xml:space="preserve">
+    <value>Seiten löschen</value>
+    <comment>Command</comment>
+  </data>
 </root>
