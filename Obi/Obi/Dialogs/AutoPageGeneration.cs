@@ -85,18 +85,18 @@ namespace Obi.Dialogs
             int tempGapsInPages;
             try
             {
-                tempGapsInPages = Convert.ToInt32(m_txtGapsInPages.Text);
+                tempGapsInPages = Convert.ToInt32(m_nudGapsInPages.Text);
                 if (tempGapsInPages <= 0)
                 {
                     MessageBox.Show(Localizer.Message("Mints_invalid_input"), Localizer.Message("Caption_Error"), MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    m_txtGapsInPages.Focus();
+                    m_nudGapsInPages.Focus();
                     return false;
                 }
             }
             catch (System.FormatException)
             {
                 MessageBox.Show(Localizer.Message("Mints_invalid_input"), Localizer.Message("Caption_Error"), MessageBoxButtons.OK, MessageBoxIcon.Error);
-                m_txtGapsInPages.Focus();
+                m_nudGapsInPages.Focus();
                 return false;
             }
             m_GapsInPages = (tempGapsInPages * 60 * 1000); // time is converted into ms

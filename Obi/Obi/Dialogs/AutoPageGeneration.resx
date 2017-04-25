@@ -146,30 +146,6 @@
   <data name="&gt;&gt;m_lbGapsInPages.ZOrder" xml:space="preserve">
     <value>6</value>
   </data>
-  <data name="m_txtGapsInPages.Location" type="System.Drawing.Point, System.Drawing">
-    <value>140, 35</value>
-  </data>
-  <data name="m_txtGapsInPages.MaxLength" type="System.Int32, mscorlib">
-    <value>5</value>
-  </data>
-  <data name="m_txtGapsInPages.Size" type="System.Drawing.Size, System.Drawing">
-    <value>100, 20</value>
-  </data>
-  <data name="m_txtGapsInPages.TabIndex" type="System.Int32, mscorlib">
-    <value>1</value>
-  </data>
-  <data name="&gt;&gt;m_txtGapsInPages.Name" xml:space="preserve">
-    <value>m_txtGapsInPages</value>
-  </data>
-  <data name="&gt;&gt;m_txtGapsInPages.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;m_txtGapsInPages.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;m_txtGapsInPages.ZOrder" xml:space="preserve">
-    <value>5</value>
-  </data>
   <data name="m_lbStartingSectionIndex.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
@@ -195,13 +171,13 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;m_lbStartingSectionIndex.ZOrder" xml:space="preserve">
-    <value>4</value>
+    <value>5</value>
   </data>
   <data name="m_cbStartingSectionIndex.Location" type="System.Drawing.Point, System.Drawing">
     <value>140, 80</value>
   </data>
   <data name="m_cbStartingSectionIndex.Size" type="System.Drawing.Size, System.Drawing">
-    <value>100, 21</value>
+    <value>76, 21</value>
   </data>
   <data name="m_cbStartingSectionIndex.TabIndex" type="System.Int32, mscorlib">
     <value>3</value>
@@ -216,7 +192,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;m_cbStartingSectionIndex.ZOrder" xml:space="preserve">
-    <value>3</value>
+    <value>4</value>
   </data>
   <data name="m_rbGenerateTTS.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -280,7 +256,7 @@
     <value>Microsoft Sans Serif, 9pt</value>
   </data>
   <data name="m_btnOk.Location" type="System.Drawing.Point, System.Drawing">
-    <value>40, 220</value>
+    <value>32, 220</value>
   </data>
   <data name="m_btnOk.Size" type="System.Drawing.Size, System.Drawing">
     <value>88, 29</value>
@@ -301,7 +277,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;m_btnOk.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>3</value>
   </data>
   <data name="m_btnCancel.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Flat</value>
@@ -310,7 +286,7 @@
     <value>Microsoft Sans Serif, 9pt</value>
   </data>
   <data name="m_btnCancel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>140, 220</value>
+    <value>128, 220</value>
   </data>
   <data name="m_btnCancel.Size" type="System.Drawing.Size, System.Drawing">
     <value>88, 29</value>
@@ -331,7 +307,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;m_btnCancel.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>2</value>
   </data>
   <data name="m_gpPages.Location" type="System.Drawing.Point, System.Drawing">
     <value>15, 114</value>
@@ -352,6 +328,27 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;m_gpPages.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="m_nudGapsInPages.Location" type="System.Drawing.Point, System.Drawing">
+    <value>140, 36</value>
+  </data>
+  <data name="m_nudGapsInPages.Size" type="System.Drawing.Size, System.Drawing">
+    <value>76, 20</value>
+  </data>
+  <data name="m_nudGapsInPages.TabIndex" type="System.Int32, mscorlib">
+    <value>9</value>
+  </data>
+  <data name="&gt;&gt;m_nudGapsInPages.Name" xml:space="preserve">
+    <value>m_nudGapsInPages</value>
+  </data>
+  <data name="&gt;&gt;m_nudGapsInPages.Type" xml:space="preserve">
+    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_nudGapsInPages.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;m_nudGapsInPages.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
@@ -364,7 +361,7 @@
     <value>6, 13</value>
   </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>264, 261</value>
+    <value>249, 261</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
     <value>Auto Page Generation</value>

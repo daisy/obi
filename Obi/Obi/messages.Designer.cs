@@ -4164,7 +4164,7 @@ namespace Obi {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Please specify an integral number of minutes higher than 0..
+        ///   Looks up a localized string similar to Please specify time interval in minutes.
         /// </summary>
         internal static string Mints_invalid_input {
             get {
