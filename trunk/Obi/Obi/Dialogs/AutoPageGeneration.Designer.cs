@@ -30,7 +30,6 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AutoPageGeneration));
             this.m_lbGapsInPages = new System.Windows.Forms.Label();
-            this.m_txtGapsInPages = new System.Windows.Forms.TextBox();
             this.m_lbStartingSectionIndex = new System.Windows.Forms.Label();
             this.m_cbStartingSectionIndex = new System.Windows.Forms.ComboBox();
             this.m_rbGenerateTTS = new System.Windows.Forms.RadioButton();
@@ -38,18 +37,15 @@
             this.m_btnOk = new System.Windows.Forms.Button();
             this.m_btnCancel = new System.Windows.Forms.Button();
             this.m_gpPages = new System.Windows.Forms.GroupBox();
+            this.m_nudGapsInPages = new System.Windows.Forms.NumericUpDown();
             this.m_gpPages.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.m_nudGapsInPages)).BeginInit();
             this.SuspendLayout();
             // 
             // m_lbGapsInPages
             // 
             resources.ApplyResources(this.m_lbGapsInPages, "m_lbGapsInPages");
             this.m_lbGapsInPages.Name = "m_lbGapsInPages";
-            // 
-            // m_txtGapsInPages
-            // 
-            resources.ApplyResources(this.m_txtGapsInPages, "m_txtGapsInPages");
-            this.m_txtGapsInPages.Name = "m_txtGapsInPages";
             // 
             // m_lbStartingSectionIndex
             // 
@@ -101,24 +97,41 @@
             this.m_gpPages.Name = "m_gpPages";
             this.m_gpPages.TabStop = false;
             // 
+            // m_nudGapsInPages
+            // 
+            resources.ApplyResources(this.m_nudGapsInPages, "m_nudGapsInPages");
+            this.m_nudGapsInPages.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.m_nudGapsInPages.Name = "m_nudGapsInPages";
+            this.m_nudGapsInPages.ReadOnly = true;
+            this.m_nudGapsInPages.Value = new decimal(new int[] {
+            3,
+            0,
+            0,
+            0});
+            // 
             // AutoPageGeneration
             // 
             this.AcceptButton = this.m_btnOk;
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.m_btnCancel;
+            this.Controls.Add(this.m_nudGapsInPages);
             this.Controls.Add(this.m_gpPages);
             this.Controls.Add(this.m_btnCancel);
             this.Controls.Add(this.m_btnOk);
             this.Controls.Add(this.m_cbStartingSectionIndex);
             this.Controls.Add(this.m_lbStartingSectionIndex);
-            this.Controls.Add(this.m_txtGapsInPages);
             this.Controls.Add(this.m_lbGapsInPages);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.MaximizeBox = false;
             this.Name = "AutoPageGeneration";
             this.m_gpPages.ResumeLayout(false);
             this.m_gpPages.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.m_nudGapsInPages)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -127,7 +140,6 @@
         #endregion
 
         private System.Windows.Forms.Label m_lbGapsInPages;
-        private System.Windows.Forms.TextBox m_txtGapsInPages;
         private System.Windows.Forms.Label m_lbStartingSectionIndex;
         private System.Windows.Forms.ComboBox m_cbStartingSectionIndex;
         private System.Windows.Forms.RadioButton m_rbGenerateTTS;
@@ -135,5 +147,6 @@
         private System.Windows.Forms.Button m_btnOk;
         private System.Windows.Forms.Button m_btnCancel;
         private System.Windows.Forms.GroupBox m_gpPages;
+        private System.Windows.Forms.NumericUpDown m_nudGapsInPages;
     }
 }

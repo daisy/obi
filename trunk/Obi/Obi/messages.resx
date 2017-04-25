@@ -2963,7 +2963,7 @@ Error text: {1}</value>
     <value>No gaps found in pages</value>
   </data>
   <data name="Mints_invalid_input" xml:space="preserve">
-    <value>Please specify an integral number of minutes higher than 0.</value>
+    <value>Please specify time interval in minutes</value>
     <comment>Error message</comment>
   </data>
   <data name="PagesInSectionsDetected" xml:space="preserve">
