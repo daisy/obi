@@ -337,7 +337,7 @@
     <value>76, 20</value>
   </data>
   <data name="m_nudGapsInPages.TabIndex" type="System.Int32, mscorlib">
-    <value>9</value>
+    <value>1</value>
   </data>
   <data name="&gt;&gt;m_nudGapsInPages.Name" xml:space="preserve">
     <value>m_nudGapsInPages</value>
