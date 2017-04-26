@@ -1300,9 +1300,9 @@ m_cb_ChooseFont.Visible = false;
                 m_CheckBoxListView.Items[27].Checked = mSettings.Audio_RecordInFirstEmptyPhraseWithRecordSectionCommand;
                 m_CheckBoxListView.Items[27].ToolTipText = Localizer.Message("Audio_RecordInFirstEmptyPhraseWithRecordSectionCommand");
                 m_CheckBoxListView.Items[28].Checked = mSettings.Audio_MergeFirstTwoPhrasesAfterPhraseDetectionWhileRecording;
-
+                m_CheckBoxListView.Items[28].ToolTipText = Localizer.Message("Audio_MergeFirstTwoPhrasesAfterPhraseDetectionWhileRecording");
                 m_CheckBoxListView.Items[29].Checked = mSettings.Audio_AutoPlayAfterRecordingStops;
-
+                m_CheckBoxListView.Items[29].ToolTipText = Localizer.Message("Audio_AutoPlayAfterRecordingStops");
               
             }
             if (this.mTab.SelectedTab == this.mProjectTab)
@@ -1391,6 +1391,7 @@ m_cb_ChooseFont.Visible = false;
                 m_CheckBoxListView.Items[22].Checked = mSettings.Project_DisplayWarningsForEditOperations;
                 m_CheckBoxListView.Items[22].ToolTipText = Localizer.Message("Project_DisplayWarningsForEditOperations");
                 m_CheckBoxListView.Items[23].Checked = mSettings.Project_ImportNCCFileWithWindows1252Encoding;
+                m_CheckBoxListView.Items[23].ToolTipText = Localizer.Message("Project_ImportNCCFileWithWindows1252Encoding");
 
             }
             m_CheckBoxListView.View = View.Details;
