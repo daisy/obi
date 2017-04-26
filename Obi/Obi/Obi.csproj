@@ -630,6 +630,9 @@
     <EmbeddedResource Include="Dialogs\AudioSettings.zh-Hant.resx">
       <DependentUpon>AudioSettings.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\AutoPageGeneration.de.resx">
+      <DependentUpon>AutoPageGeneration.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\AutoPageGeneration.resx">
       <DependentUpon>AutoPageGeneration.cs</DependentUpon>
     </EmbeddedResource>
