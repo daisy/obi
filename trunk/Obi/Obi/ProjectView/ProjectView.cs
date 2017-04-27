@@ -6600,7 +6600,7 @@ public bool ShowOnlySelectedSection
                         TotalDurationFromLeft = this.Selection.Node.Duration;
                     }
                 }
-                if (secNode != null && ((secNode.Duration - TotalDurationFromLeft) > GapsInPages) && DurationOfPhrase >= GapsInPages && this.Selection != null && this.Selection.Node != null && this.Selection.Node != secNode.LastUsedPhrase)
+                if (secNode != null && (((secNode.Duration - TotalDurationFromLeft) > GapsInPages) || secNode.FollowingSection == null) && DurationOfPhrase >= GapsInPages && this.Selection != null && this.Selection.Node != null && this.Selection.Node != secNode.LastUsedPhrase)
                 {
                     PageIndexTobeMarked.Add(this.Selection.Node.Index + CountOfPagesAddedInSection);
                     CountOfPagesAddedInSection++;
@@ -6620,9 +6620,17 @@ public bool ShowOnlySelectedSection
 
                 else if (secNode != null && this.Selection != null)
                 {
-
-                    PageIndexTobeMarked.Add(secNode.PhraseChildCount - 1 + CountOfPagesAddedInSection);
-                    TotalPagesInSection.Add(CountOfPagesAddedInSection);
+                    if (secNode.FollowingSection != null)
+                    {
+                        PageIndexTobeMarked.Add(secNode.PhraseChildCount - 1 + CountOfPagesAddedInSection);
+                        TotalPagesInSection.Add(CountOfPagesAddedInSection);
+                    }
+                    else
+                    {
+                        if (CountOfPagesAddedInSection > 1)
+                            CountOfPagesAddedInSection--;
+                        TotalPagesInSection.Add(CountOfPagesAddedInSection);
+                    }
                     CountOfPagesAddedInSection = 1;
                     DurationOfPhrase = TotalDurationFromLeft = 0;
                     secNode = secNode.FollowingSection;
@@ -6633,10 +6641,10 @@ public bool ShowOnlySelectedSection
             }
             else if (this.Selection.Node is SectionNode && this.Selection.Node.PhraseChildCount == 0)
             {
-                PageIndexTobeMarked.Add(0);
-                TotalPagesInSection.Add(1);
                 if (secNode.FollowingSection != null)
                 {
+                    PageIndexTobeMarked.Add(0);
+                    TotalPagesInSection.Add(1);
                     CountOfPagesAddedInSection = 1;
                     DurationOfPhrase = TotalDurationFromLeft = 0;
                     secNode = secNode.FollowingSection;
