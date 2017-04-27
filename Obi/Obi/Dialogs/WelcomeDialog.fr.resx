@@ -112,211 +112,121 @@
     <value>2.0</value>
   </resheader>
   <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <metadata name="helpProvider1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 17</value>
-  </metadata>
-  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="mNewProjectButton.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
-    <value>Flat</value>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="mNewProjectButton.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
   </data>
-  <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="mNewProjectButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>13, 13</value>
+  <data name="mNewProjectButton.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
+    <value>AssociateIndex</value>
   </data>
-  <data name="mNewProjectButton.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 4, 4, 4</value>
+  <data name="mNewProjectButton.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
   </data>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="mNewProjectButton.Size" type="System.Drawing.Size, System.Drawing">
-    <value>230, 28</value>
-  </data>
-  <assembly alias="mscorlib" name="mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="mNewProjectButton.TabIndex" type="System.Int32, mscorlib">
-    <value>1</value>
+    <value>252, 28</value>
   </data>
   <data name="mNewProjectButton.Text" xml:space="preserve">
     <value>Créer un &amp;nouveau projet</value>
   </data>
-  <data name="&gt;&gt;mNewProjectButton.Name" xml:space="preserve">
-    <value>mNewProjectButton</value>
+  <data name="mOpenProjectButton.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
   </data>
-  <data name="&gt;&gt;mNewProjectButton.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="mOpenProjectButton.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
+    <value>AssociateIndex</value>
   </data>
-  <data name="&gt;&gt;mNewProjectButton.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;mNewProjectButton.ZOrder" xml:space="preserve">
-    <value>5</value>
-  </data>
-  <data name="mOpenProjectButton.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
-    <value>Flat</value>
-  </data>
-  <data name="mOpenProjectButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>13, 85</value>
-  </data>
-  <data name="mOpenProjectButton.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 4, 4, 4</value>
+  <data name="mOpenProjectButton.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
   </data>
   <data name="mOpenProjectButton.Size" type="System.Drawing.Size, System.Drawing">
-    <value>230, 28</value>
-  </data>
-  <data name="mOpenProjectButton.TabIndex" type="System.Int32, mscorlib">
-    <value>3</value>
+    <value>252, 28</value>
   </data>
   <data name="mOpenProjectButton.Text" xml:space="preserve">
     <value>&amp;Ouvrir un projet existant</value>
   </data>
-  <data name="&gt;&gt;mOpenProjectButton.Name" xml:space="preserve">
-    <value>mOpenProjectButton</value>
+  <data name="mOpenLastProjectButton.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
   </data>
-  <data name="&gt;&gt;mOpenProjectButton.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="mOpenLastProjectButton.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
+    <value>AssociateIndex</value>
   </data>
-  <data name="&gt;&gt;mOpenProjectButton.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;mOpenProjectButton.ZOrder" xml:space="preserve">
-    <value>4</value>
-  </data>
-  <data name="mOpenLastProjectButton.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
-    <value>Flat</value>
-  </data>
-  <data name="mOpenLastProjectButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>13, 121</value>
-  </data>
-  <data name="mOpenLastProjectButton.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 4, 4, 4</value>
+  <data name="mOpenLastProjectButton.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
   </data>
   <data name="mOpenLastProjectButton.Size" type="System.Drawing.Size, System.Drawing">
-    <value>230, 28</value>
-  </data>
-  <data name="mOpenLastProjectButton.TabIndex" type="System.Int32, mscorlib">
-    <value>4</value>
+    <value>252, 28</value>
   </data>
   <data name="mOpenLastProjectButton.Text" xml:space="preserve">
     <value>Ouvrir le &amp;dernier projet</value>
   </data>
-  <data name="&gt;&gt;mOpenLastProjectButton.Name" xml:space="preserve">
-    <value>mOpenLastProjectButton</value>
+  <data name="mOpenEmptyButton.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
   </data>
-  <data name="&gt;&gt;mOpenLastProjectButton.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="mOpenEmptyButton.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
+    <value>AssociateIndex</value>
   </data>
-  <data name="&gt;&gt;mOpenLastProjectButton.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;mOpenLastProjectButton.ZOrder" xml:space="preserve">
-    <value>3</value>
-  </data>
-  <data name="mOpenEmptyButton.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
-    <value>Flat</value>
-  </data>
-  <data name="mOpenEmptyButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>13, 157</value>
-  </data>
-  <data name="mOpenEmptyButton.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 4, 4, 4</value>
+  <data name="mOpenEmptyButton.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
   </data>
   <data name="mOpenEmptyButton.Size" type="System.Drawing.Size, System.Drawing">
-    <value>230, 28</value>
-  </data>
-  <data name="mOpenEmptyButton.TabIndex" type="System.Int32, mscorlib">
-    <value>5</value>
+    <value>252, 28</value>
   </data>
   <data name="mOpenEmptyButton.Text" xml:space="preserve">
     <value>Ou&amp;vrir Obi sans projet</value>
   </data>
-  <data name="&gt;&gt;mOpenEmptyButton.Name" xml:space="preserve">
-    <value>mOpenEmptyButton</value>
+  <data name="mImportButton.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
   </data>
-  <data name="&gt;&gt;mOpenEmptyButton.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="mImportButton.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
+    <value>AssociateIndex</value>
   </data>
-  <data name="&gt;&gt;mOpenEmptyButton.Parent" xml:space="preserve">
-    <value>$this</value>
+  <data name="mImportButton.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
   </data>
-  <data name="&gt;&gt;mOpenEmptyButton.ZOrder" xml:space="preserve">
-    <value>2</value>
+  <data name="mImportButton.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
-  <data name="mImportButton.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
-    <value>Flat</value>
-  </data>
-  <data name="mImportButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>13, 49</value>
-  </data>
-  <data name="mImportButton.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 4, 4, 4</value>
+  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="mImportButton.ShowHelp" type="System.Boolean, mscorlib">
+    <value>True</value>
   </data>
   <data name="mImportButton.Size" type="System.Drawing.Size, System.Drawing">
-    <value>230, 28</value>
-  </data>
-  <data name="mImportButton.TabIndex" type="System.Int32, mscorlib">
-    <value>2</value>
+    <value>252, 28</value>
   </data>
   <data name="mImportButton.Text" xml:space="preserve">
     <value>Créer un nouveau projet par &amp;importation</value>
   </data>
-  <data name="&gt;&gt;mImportButton.Name" xml:space="preserve">
-    <value>mImportButton</value>
+  <data name="mViewManualButton.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
   </data>
-  <data name="&gt;&gt;mImportButton.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="mViewManualButton.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
+    <value>AssociateIndex</value>
   </data>
-  <data name="&gt;&gt;mImportButton.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;mImportButton.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="mViewManualButton.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
-    <value>Flat</value>
-  </data>
-  <data name="mViewManualButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>13, 193</value>
-  </data>
-  <data name="mViewManualButton.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 4, 4, 4</value>
+  <data name="mViewManualButton.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
   </data>
   <data name="mViewManualButton.Size" type="System.Drawing.Size, System.Drawing">
-    <value>230, 28</value>
-  </data>
-  <data name="mViewManualButton.TabIndex" type="System.Int32, mscorlib">
-    <value>6</value>
+    <value>252, 28</value>
   </data>
   <data name="mViewManualButton.Text" xml:space="preserve">
     <value>Afficher le &amp;manuel</value>
   </data>
-  <data name="&gt;&gt;mViewManualButton.Name" xml:space="preserve">
-    <value>mViewManualButton</value>
-  </data>
-  <data name="&gt;&gt;mViewManualButton.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;mViewManualButton.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;mViewManualButton.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="helpProvider1.HelpNamespace" xml:space="preserve">
-    <value>Obi Help.chm</value>
-  </data>
-  <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
-    <value>8, 16</value>
-  </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>248, 223</value>
+    <value>278, 222</value>
   </data>
-  <data name="$this.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Microsoft Sans Serif, 9.75pt</value>
+  <data name="$this.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="$this.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
+    <value>AssociateIndex</value>
+  </data>
+  <data name="$this.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
   </data>
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -574,28 +484,19 @@
         CjyAD09DwA9QRcAfbGngHyBQ8H9MSf//Ii0=
 </value>
   </data>
-  <data name="$this.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 4, 4, 4</value>
+  <data name="$this.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
   <data name="$this.MaximumSize" type="System.Drawing.Size, System.Drawing">
-    <value>264, 261</value>
+    <value>294, 261</value>
   </data>
   <data name="$this.MinimumSize" type="System.Drawing.Size, System.Drawing">
-    <value>264, 261</value>
+    <value>294, 261</value>
+  </data>
+  <data name="$this.ShowHelp" type="System.Boolean, mscorlib">
+    <value>True</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
     <value>Bienvenue dans Obi</value>
-  </data>
-  <data name="&gt;&gt;helpProvider1.Name" xml:space="preserve">
-    <value>helpProvider1</value>
-  </data>
-  <data name="&gt;&gt;helpProvider1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.HelpProvider, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;$this.Name" xml:space="preserve">
-    <value>WelcomeDialog</value>
-  </data>
-  <data name="&gt;&gt;$this.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Form, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
 </root>
