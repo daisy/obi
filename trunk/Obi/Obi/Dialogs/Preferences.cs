@@ -331,7 +331,7 @@ namespace Obi.Dialogs
            string mySelectedItemKey = m_Culture_Dictionary.FirstOrDefault(x => x.Value.ToString().Trim() == mSettings.UserProfile.Culture.ToString().Trim()).Key;
            mCultureBox.SelectedItem = mySelectedItemKey; 
 
-            if (CultureInfo.CurrentCulture.Name.Contains("en-"))
+            if (CultureInfo.CurrentCulture.Name.Contains("en"))
             {
                 m_gpBox_Font.Visible =
 m_txtBox_Font.Visible =
