@@ -6682,6 +6682,11 @@ public bool ShowOnlySelectedSection
         public void AutoPageGeneration()
         {
             if (TransportBar.IsActive) TransportBar.Stop();
+            bool IsPlayOnNavigateActive = ObiForm.Settings.PlayOnNavigate;
+            if (ObiForm.Settings.PlayOnNavigate)
+            {
+                ObiForm.Settings.PlayOnNavigate = false;
+            }
             if (((ObiRootNode)this.Presentation.RootNode).PageCount == 0)
             {
                 Obi.Dialogs.AutoPageGeneration autoPageGeneration = new Dialogs.AutoPageGeneration(this);
@@ -6698,10 +6703,18 @@ public bool ShowOnlySelectedSection
                 {
                     DeletePagesForAutoPageGeneration();
                     MessageBox.Show(Localizer.Message("PageDeletionSucessfull"), Localizer.Message("Caption_Information"), MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    if (IsPlayOnNavigateActive)
+                    {
+                        ObiForm.Settings.PlayOnNavigate = true;
+                    }
                     this.AutoPageGeneration();
                 }
             }
 
+            if (IsPlayOnNavigateActive)
+            {
+                ObiForm.Settings.PlayOnNavigate = true;
+            }
 
         }
 
