@@ -6784,8 +6784,9 @@ public bool ShowOnlySelectedSection
             {
                 for (int i = 0; i < TotalPages; i++)
                 {
-
-                    cmd.ChildCommands.Insert(cmd.ChildCommands.Count, new Commands.Node.Delete(this, secNode.PhraseChild(PhraseIndexOfDeletedPage[pageCount]), false));
+                    Commands.Node.Delete delCommand = new Commands.Node.Delete(this, secNode.PhraseChild(PhraseIndexOfDeletedPage[pageCount]), false) ;
+                    delCommand.UpdateSelection = false;
+                    cmd.ChildCommands.Insert(cmd.ChildCommands.Count, delCommand);
                     pageCount++;
 
                 }
