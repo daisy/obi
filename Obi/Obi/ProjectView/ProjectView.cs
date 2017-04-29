@@ -6693,7 +6693,15 @@ public bool ShowOnlySelectedSection
 
                 if (autoPageGeneration.ShowDialog() == DialogResult.OK && autoPageGeneration.CanAddPage)
                 {
-                    AutoPageGeneration(autoPageGeneration);
+                    try
+                    {
+                        AutoPageGeneration(autoPageGeneration);
+                    }
+                    catch (System.Exception ex)
+                    {
+                        this.WriteToLogFile(ex.ToString());
+                        MessageBox.Show(ex.ToString());
+                    }
                 }             
             }
             else if (((ObiRootNode)this.Presentation.RootNode).PageCount > 0)
@@ -6722,46 +6730,59 @@ public bool ShowOnlySelectedSection
         public void DeletePagesForAutoPageGeneration()
         {
 
-            List<SectionNode> m_sectionsList = ((ObiRootNode)this.Presentation.RootNode).GetListOfAllSections();
+            List<SectionNode> sectionsList = ((ObiRootNode)this.Presentation.RootNode).GetListOfAllSections();
             List<int> PhraseIndexOfDeletedPage = new List<int>();
             List<int> TotalPagesDeletedInSection = new List<int>();
             int CountOfPagesDeletedInSection = 0;
             this.Selection = new NodeSelection(this.Selection.Node, mContentView);
-            //SectionNode secNode = (SectionNode)this.Selection.Node;
+          //SectionNode secNode = (SectionNode)this.Selection.Node;
             SectionNode secNode = null;
-            if (m_sectionsList.Count > 0)
-                secNode = m_sectionsList[0];
+            if (sectionsList.Count > 0)
+                secNode = sectionsList[0];
             if (secNode != null)
-            {
-                for (int i = 0; i < m_sectionsList.Count; i++)
-                {
-                    SectionNode tempSection = m_sectionsList[i];
-                    this.Selection.Node = m_sectionsList[i];
-                    if (tempSection.LastUsedPhrase != null)
-                    {
-                        this.Selection = new NodeSelection(tempSection.LastUsedPhrase, mContentView);
-                    }
-                    CountOfPagesDeletedInSection = 0;
-                    for (ObiNode n = tempSection.LastUsedPhrase; n != null && n.Parent != null; n = n.PrecedingNode)
-                    {
+            {//1
+                CompositeCommand cmd = Presentation.CreateCompositeCommand(Localizer.Message("Delete_pages"));
+                for (int i = 0; i < sectionsList.Count; i++)
+                {//2
+                    SectionNode tempSection = sectionsList[i];
+                    //this.Selection.Node = m_sectionsList[i];
+                    //if (tempSection.LastUsedPhrase != null)
+                    //{
+                        //this.Selection = new NodeSelection(tempSection.LastUsedPhrase, mContentView);
+                    //}
+                    //CountOfPagesDeletedInSection = 0;
+                    //for (ObiNode n = tempSection.LastUsedPhrase; n != null && n.Parent != null; n = n.PrecedingNode)
+                    //{
 
-                        if (n is EmptyNode && ((EmptyNode)n).Role_ == EmptyNode.Role.Page)
+                        //if (n is EmptyNode && ((EmptyNode)n).Role_ == EmptyNode.Role.Page)
+                        //{
+                            //if (!(this.Selection.Node is SectionNode))
+                            //{
+                                //this.Selection.Node = n;
+                                //PhraseIndexOfDeletedPage.Add(this.Selection.Node.Index);                         
+                                //CountOfPagesDeletedInSection++;
+                            //}
+                        //}
+
+                        //if (n == null || (n != null && n.Parent != null && n.PrecedingNode != null && n.Parent != n.PrecedingNode.Parent))
+                            //break;
+                    //}
+                    //TotalPagesDeletedInSection.Add(CountOfPagesDeletedInSection);
+                    for (int j = tempSection.PhraseChildCount - 1; j >= 0; j--)
+                    {
+                        EmptyNode n = tempSection.PhraseChild(j);
+                        if (n.IsRooted && n.Role_ == EmptyNode.Role.Page)
                         {
-                            if (!(this.Selection.Node is SectionNode))
-                            {
-                                this.Selection.Node = n;
-                                PhraseIndexOfDeletedPage.Add(this.Selection.Node.Index);                         
-                                CountOfPagesDeletedInSection++;
-                            }
+                            Commands.Node.Delete deleteCmd = new Commands.Node.Delete(this, n, false);
+                            cmd.ChildCommands.Insert(cmd.ChildCommands.Count, deleteCmd);
                         }
-
-                        if (n == null || (n != null && n.Parent != null && n.PrecedingNode != null && n.Parent != n.PrecedingNode.Parent))
-                            break;
                     }
-                    TotalPagesDeletedInSection.Add(CountOfPagesDeletedInSection);
-                }
 
-                Command cmd = DeletePagesCommand(PhraseIndexOfDeletedPage, TotalPagesDeletedInSection, secNode);
+                }               //-2
+
+                //Command cmd = DeletePagesCommand(PhraseIndexOfDeletedPage, TotalPagesDeletedInSection, secNode);
+                    
+                
                 if (cmd != null)
                 {
                     if (secNode != null && this.Selection != null && this.Selection.Node == null)
@@ -6769,9 +6790,15 @@ public bool ShowOnlySelectedSection
                         this.Selection = new NodeSelection((ObiNode)secNode, mContentView);
                     }
                     mPresentation.Do(cmd);
+                    if (secNode != null && this.Selection != null && this.Selection.Node == null)
+                    {
+                        this.Selection = new NodeSelection((ObiNode)secNode, mContentView);
+                    }
                 }
-            }
+            }//-1
+
         }
+
         /// <summary>
         /// Delete Pages before applying Auto Page generation.
         /// </summary>
