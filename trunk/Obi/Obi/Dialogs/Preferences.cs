@@ -3225,7 +3225,7 @@ m_cb_ChooseFont.Visible = false;
                 }
                 else if (m_rdb_KeyboardShortcuts.Checked)
                 {
-                    if (m_cb_SelectShorcutsProfile.SelectedIndex > 0 && m_cb_SelectShorcutsProfile.SelectedIndex < m_cb_SelectShorcutsProfile.Items.Count)
+                    if (m_cb_SelectShorcutsProfile.SelectedIndex > 1 && m_cb_SelectShorcutsProfile.SelectedIndex < m_cb_SelectShorcutsProfile.Items.Count)
                     {
                         int indexOfCombobox = m_cb_SelectShorcutsProfile.SelectedIndex;
                         string shortcutsFilePath = GetPathOfSelectedShortcutsComboBox();
