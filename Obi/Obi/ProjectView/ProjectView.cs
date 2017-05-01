@@ -6785,10 +6785,10 @@ public bool ShowOnlySelectedSection
                 
                 if (cmd != null)
                 {
-                    if (secNode != null && this.Selection != null && this.Selection.Node == null)
-                    {
-                        this.Selection = new NodeSelection((ObiNode)secNode, mContentView);
-                    }
+                    //if (secNode != null && this.Selection != null && this.Selection.Node == null)
+                    //{
+                        //this.Selection = new NodeSelection((ObiNode)secNode, mContentView);
+//                    }
                     mPresentation.Do(cmd);
                     if (secNode != null && this.Selection != null && this.Selection.Node == null)
                     {
