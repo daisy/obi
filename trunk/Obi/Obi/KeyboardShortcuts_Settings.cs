@@ -183,7 +183,7 @@ namespace Obi
             FileStream stream = null;
             try
             {
-                stream = new FileStream(filePath, FileMode.OpenOrCreate);
+                stream = File.OpenRead(filePath);
 
                 SoapFormatter soap = new SoapFormatter();
                 settings = (KeyboardShortcuts_Settings)soap.Deserialize(stream);
