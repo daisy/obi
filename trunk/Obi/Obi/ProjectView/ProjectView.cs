@@ -6576,9 +6576,13 @@ public bool ShowOnlySelectedSection
                         parent = sectionsList[selectedSectionIndex];
                         index = phraseIndex;
                         if (parent != null)
-                        cmd.ChildCommands.Insert(cmd.ChildCommands.Count, new Commands.Node.AddEmptyNode(this, node, parent, index));
-                        cmd.ChildCommands.Insert(cmd.ChildCommands.Count, new Commands.Node.SetPageNumber(this, node, PageNumber));
-                        tempCount++;
+                        {
+                            node.PageNumber = PageNumber;
+                            Commands.Node.AddEmptyNode addCommand = new Commands.Node.AddEmptyNode(this, node, parent, index);
+                            addCommand.UpdateSelection = false;
+                            cmd.ChildCommands.Insert(cmd.ChildCommands.Count, addCommand);
+                            tempCount++;
+                        }
                         if (parent != null && TotalPagesInSection[tempIndexOfTotalPages] == tempCount)
                         {
                             selectedSectionIndex++;
@@ -6685,7 +6689,6 @@ public bool ShowOnlySelectedSection
                 {
                     AddIntermediatePages(sectionsList[i], 0, 0, autoPageGeneration.GapsInPages, PageIndexTobeMarked, TotalPagesInSection, 1);
                 }
-                MessageBox.Show("Now Command will be executed");
                 this.Selection = new NodeSelection(secNode, mContentView);
                 Command cmd = this.AddEmptyPagesCommand(PageIndexTobeMarked, TotalPagesInSection, autoPageGeneration.GenerateSpeech);
                 if (cmd != null)
