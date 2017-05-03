@@ -6685,6 +6685,7 @@ public bool ShowOnlySelectedSection
                 {
                     AddIntermediatePages(sectionsList[i], 0, 0, autoPageGeneration.GapsInPages, PageIndexTobeMarked, TotalPagesInSection, 1);
                 }
+                MessageBox.Show("Now Command will be executed");
                 this.Selection = new NodeSelection(secNode, mContentView);
                 Command cmd = this.AddEmptyPagesCommand(PageIndexTobeMarked, TotalPagesInSection, autoPageGeneration.GenerateSpeech);
                 if (cmd != null)
