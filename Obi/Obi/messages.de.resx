@@ -459,7 +459,7 @@ Fehlertext: {1}</value>
     <value>Markiert</value>
   </data>
   <data name="no_preceding_silence_phrase" xml:space="preserve">
-    <value>Keine stille Phrase zu Beginn der Sektion. Die Standardeinstellung wird verwendet. Sie können diese ändern. Oder Sie brechen hier ab nd wählen eine stille Phrase.</value>
+    <value>Keine stille Phrase zu Beginn der Sektion. Die Standardeinstellung wird verwendet. Sie können diese ändern. Oder Sie brechen hier ab und wählen eine stille Phrase.</value>
   </data>
   <data name="paste_audio" xml:space="preserve">
     <value>Ton einfügen</value>
