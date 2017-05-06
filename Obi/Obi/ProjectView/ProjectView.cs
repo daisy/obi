@@ -6578,7 +6578,7 @@ public bool ShowOnlySelectedSection
                         if (parent != null)
                         {
                             node.PageNumber = PageNumber;
-                            Commands.Node.AddEmptyNode addCommand = new Commands.Node.AddEmptyNode(this, node, parent, index);
+                            Commands.Node.AddNode addCommand = new Commands.Node.AddNode (this, node, parent, index, false);
                             addCommand.UpdateSelection = false;
                             cmd.ChildCommands.Insert(cmd.ChildCommands.Count, addCommand);
                             tempCount++;
@@ -6689,6 +6689,7 @@ public bool ShowOnlySelectedSection
                 {
                     AddIntermediatePages(sectionsList[i], 0, 0, autoPageGeneration.GapsInPages, PageIndexTobeMarked, TotalPagesInSection, 1);
                 }
+                
                 this.Selection = new NodeSelection(secNode, mContentView);
                 Command cmd = this.AddEmptyPagesCommand(PageIndexTobeMarked, TotalPagesInSection, autoPageGeneration.GenerateSpeech);
                 if (cmd != null)
