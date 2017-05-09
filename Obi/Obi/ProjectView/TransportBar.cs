@@ -1171,9 +1171,24 @@ namespace Obi.ProjectView
 
                              if (selectedIndex == ELAPSED_SECTION || selectedIndex == ELAPSED_TOTAL_INDEX)
                              {
-                                 if (phraseNode.PrecedingNode != null && phraseNode.PrecedingNode is PhraseNode && phraseNode.Parent == phraseNode.PrecedingNode.Parent)
+                                 if (phraseNode.PrecedingNode != null && phraseNode.Parent == phraseNode.PrecedingNode.Parent)
                                  {
-                                     CalculateCursorTime((PhraseNode)phraseNode.PrecedingNode);
+                                     if (phraseNode.PrecedingNode is PhraseNode)
+                                     {
+                                         CalculateCursorTime((PhraseNode)phraseNode.PrecedingNode);
+                                     }
+                                     else if (phraseNode.PrecedingNode is EmptyNode)
+                                     {
+                                         ObiNode tempNode = phraseNode.PrecedingNode;
+                                         while (tempNode != null && !(tempNode is PhraseNode) && tempNode.Parent == tempNode.PrecedingNode.Parent)
+                                         {
+                                             tempNode = tempNode.PrecedingNode;
+                                         }
+                                         if (tempNode is PhraseNode)
+                                         {
+                                             CalculateCursorTime((PhraseNode)tempNode);
+                                         }
+                                     }
                                  }
                              }
                              if (selectedIndex == ELAPSED_TOTAL_INDEX)
@@ -1238,9 +1253,24 @@ namespace Obi.ProjectView
 
             m_TotalCursorTime += phraseNode.Duration;
 
-            if (phraseNode.PrecedingNode != null && phraseNode.PrecedingNode is PhraseNode && (phraseNode.PrecedingNode.Parent == phraseNode.Parent))
+            if (phraseNode.PrecedingNode != null && (phraseNode.PrecedingNode.Parent == phraseNode.Parent))
             {
-                CalculateCursorTime((PhraseNode)phraseNode.PrecedingNode);
+                if (phraseNode.PrecedingNode is PhraseNode)
+                {
+                    CalculateCursorTime((PhraseNode)phraseNode.PrecedingNode);
+                }
+                else if (phraseNode.PrecedingNode is EmptyNode)
+                {
+                    ObiNode tempNode = phraseNode.PrecedingNode;
+                    while (tempNode != null && !(tempNode is PhraseNode) && tempNode.PrecedingNode.Parent == tempNode.Parent)
+                    {
+                        tempNode = tempNode.PrecedingNode;
+                    }
+                    if (tempNode is PhraseNode)
+                    {
+                        CalculateCursorTime((PhraseNode)tempNode);
+                    }
+                }
             }
 
         }
