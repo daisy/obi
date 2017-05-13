@@ -4894,6 +4894,15 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Pages:.
+        /// </summary>
+        internal static string Pages {
+            get {
+                return ResourceManager.GetString("Pages", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Some Pages are detected in the project. You need to delete them if you want to continue. Do you want to delete them now ?.
         /// </summary>
         internal static string PagesInSectionsDetected {
