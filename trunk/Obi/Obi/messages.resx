@@ -2985,4 +2985,7 @@ Error text: {1}</value>
     <value>Delete pages</value>
     <comment>Command</comment>
   </data>
+  <data name="Pages" xml:space="preserve">
+    <value>Pages:</value>
+  </data>
 </root>

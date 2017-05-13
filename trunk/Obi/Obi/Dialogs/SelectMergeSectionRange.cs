@@ -261,11 +261,11 @@ namespace Obi.Dialogs
                 {
                     if (PagesInSection.Trim() == string.Empty)
                     {
-                        PagesInSection += "  Pages: #" + ((EmptyNode)n).PageNumber.ToString();
+                        PagesInSection +=  " "+Localizer.Message("Pages")+" # " + ((EmptyNode)n).PageNumber.ToString();
                     }
                     else
                     {
-                        PagesInSection += ", #" + ((EmptyNode)n).PageNumber.ToString();
+                        PagesInSection += ", # " + ((EmptyNode)n).PageNumber.ToString();
                     }
                 }
                 if (n.Parent != n.FollowingNode.Parent)
