@@ -608,17 +608,9 @@ namespace Obi.Dialogs
                 if (m_SelectedSectionList.Count != 0)
                 {
                      m_tempSectionNode = m_SelectedSectionList[m_SelectedSectionList.Count - 1];
-                    //     m_ProjectView.Selection = new NodeSelection(m_tempSectionNode, m_ContentView);
                     m_ProjectView.Selection = null;
-                  //  m_ProjectView.TransportBar.PlayOrResume(m_SelectedSectionList[m_SelectedSectionList.Count - 1]);
                     m_ProjectView.TransportBar.PlayHeadingPhrase(m_SelectedSectionList[m_SelectedSectionList.Count - 1]);
                 }
-            }
-            if (m_SelectedSectionList.Count != 0 && m_SelectedSectionList[m_SelectedSectionList.Count - 1] != null
-                && m_SelectedSectionList[m_SelectedSectionList.Count - 1].Duration > 0)
-            {
-                m_btnPause.Visible = true;
-                m_btn_Play.Visible = false;
             }
         }
 
