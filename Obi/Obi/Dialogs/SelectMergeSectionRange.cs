@@ -134,7 +134,10 @@ namespace Obi.Dialogs
              // if (m_SectionList[i].Level >= firstSection.Level)
                 {
                     m_SectionList[i].Label = m_SectionList[i].Label.Replace("\n", string.Empty);
-                    m_lb_listofSectionsToMerge.Items.Add(m_SectionList[i].Label + " " + Localizer.Message("MergeOptions_LevelString") + m_SectionList[i].Level);
+                  
+                    string PagesInSection = String.Empty;
+                    PagesInSection = GetPagesInSection(i);
+                    m_lb_listofSectionsToMerge.Items.Add(m_SectionList[i].Label + " " + Localizer.Message("MergeOptions_LevelString") + m_SectionList[i].Level + PagesInSection);
                    // m_SectionListAfterLevelChange.Add(m_SectionList[i]);
                 }
                 //else
@@ -159,8 +162,10 @@ namespace Obi.Dialogs
                 {
                     if ((m_SectionList[i].IsRooted))
                     {
+                        string PagesInSection = String.Empty;
+                        PagesInSection = GetPagesInSection(i);
                         m_SectionList[i].Label = m_SectionList[i].Label.Replace("\n", string.Empty);
-                        m_lb_listofSectionsToMerge.Items.Add(m_SectionList[i].Label + " " + Localizer.Message("MergeOptions_LevelString") + m_SectionList[i].Level);
+                        m_lb_listofSectionsToMerge.Items.Add(m_SectionList[i].Label + " " + Localizer.Message("MergeOptions_LevelString") + m_SectionList[i].Level + PagesInSection);
                         if (m_IndexOfSectionSelected.Contains(i))
                         {
                             m_lb_listofSectionsToMerge.SelectedIndex = i;
@@ -185,9 +190,11 @@ namespace Obi.Dialogs
             {
                 if ((m_SectionList[i].IsRooted))
                 {
+                    string PagesInSection = String.Empty;
+                    PagesInSection = GetPagesInSection(i);
                     int n = m_SectionList.IndexOf(m_SectionList[i]);
                     m_SectionList[n].Label = m_SectionList[n].Label.Replace("\n", string.Empty);
-                    m_lb_listofSectionsToMerge.Items.Add(m_SectionList[n].Label + " " + Localizer.Message("MergeOptions_LevelString") + m_SectionList[n].Level);
+                    m_lb_listofSectionsToMerge.Items.Add(m_SectionList[n].Label + " " + Localizer.Message("MergeOptions_LevelString") + m_SectionList[n].Level + PagesInSection);
                     if (m_SectionList[i] == m_ProjectView.GetSelectedPhraseSection)
                     {
                         m_lb_listofSectionsToMerge.SelectedIndex = i;
@@ -215,8 +222,11 @@ namespace Obi.Dialogs
 
                     if (m_SectionList[i].IsRooted)
                     {
+
+                        string PagesInSection = String.Empty;
+                        PagesInSection =  GetPagesInSection(i);
                         m_SectionList[i].Label = m_SectionList[i].Label.Replace("\n", string.Empty);
-                        m_lb_listofSectionsToMerge.Items.Add(m_SectionList[i].Label + " " + Localizer.Message("MergeOptions_LevelString") + m_SectionList[i].Level);
+                        m_lb_listofSectionsToMerge.Items.Add(m_SectionList[i].Label + " " + Localizer.Message("MergeOptions_LevelString") + m_SectionList[i].Level + PagesInSection);
 
                     }
                     if (m_IndexOfSectionSelected[0] == i)
@@ -240,6 +250,28 @@ namespace Obi.Dialogs
 
             m_IndexOfSectionSelected.Clear();
 
+        }
+
+        private string GetPagesInSection(int i)
+        {
+            string PagesInSection = String.Empty;
+            for (ObiNode n = m_SectionList[i].FirstLeaf; n != null && n.FollowingNode != null; n = n.FollowingNode)
+            {
+                if (n is EmptyNode && ((EmptyNode)n).Role_ == EmptyNode.Role.Page)
+                {
+                    if (PagesInSection.Trim() == string.Empty)
+                    {
+                        PagesInSection += "  Pages: #" + ((EmptyNode)n).PageNumber.ToString();
+                    }
+                    else
+                    {
+                        PagesInSection += ", #" + ((EmptyNode)n).PageNumber.ToString();
+                    }
+                }
+                if (n.Parent != n.FollowingNode.Parent)
+                    break;
+            }
+            return PagesInSection;
         }
 
         private void m_lb_listofSectionsToMerge_SelectedIndexChanged(object sender, EventArgs e)
