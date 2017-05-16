@@ -232,7 +232,7 @@
     <value>Proyecto exportado a DAISY en el directorio {0}</value>
   </data>
   <data name="title_bar" xml:space="preserve">
-    <value>{0}{1} ({2}) - {3}.</value>
+    <value>{0}{1} ({2}) - {3} ({4}).</value>
   </data>
   <data name="export_choose_folder" xml:space="preserve">
     <value>Seleccione, por favor, la carpeta donde guardar su libro DAISY.</value>

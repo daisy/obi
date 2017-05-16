@@ -235,7 +235,7 @@
     <value>プロジェクトをDAISYに変換して、{0}に保存。</value>
   </data>
   <data name="title_bar" xml:space="preserve">
-    <value>{0}{1} ({2}) - {3}</value>
+    <value>{0}{1} ({2}) - {3} ({4})</value>
   </data>
   <data name="export_choose_folder" xml:space="preserve">
     <value>DAISY図書を保存するフォルダを選択してください。</value>
