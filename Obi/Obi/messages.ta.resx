@@ -229,7 +229,7 @@
     <value>கோப்பகத்தில் திட்டபணியை டைசியில் ஏற்றுமதி {0}</value>
   </data>
   <data name="title_bar" xml:space="preserve">
-    <value>{0}{1} ({2}) - {3}</value>
+    <value>{0}{1} ({2}) - {3} ({4})</value>
   </data>
   <data name="export_choose_folder" xml:space="preserve">
     <value>உங்கள் டெய்சி புத்தகத்தை சேமிக்க இங்கு கோப்புறையை தேர்ந்தெடுக்கவும்..</value>

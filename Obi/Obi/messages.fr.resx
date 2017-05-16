@@ -235,7 +235,7 @@ En conséquence, les modifications apportées aux réglages effectués lors de c
     <value>Projet exporté dans le répertoire {0}</value>
   </data>
   <data name="title_bar" xml:space="preserve">
-    <value>{0}{1} ({2}) - {3}</value>
+    <value>{0}{1} ({2}) - {3} ({4}).</value>
   </data>
   <data name="export_choose_folder" xml:space="preserve">
     <value>Veuillez sélectionner le répertoire dans lequel votre livre DAISY sera sauvegardé.</value>
@@ -2647,7 +2647,7 @@ tester "Figer la largeur du volet du contenu" ?(Recommandé)</value>
     <value>La lecture en cours de navigation sera activée</value>
   </data>
   <data name="Profile_Audio" xml:space="preserve">
-    <value>Audio</value>
+    <value>Audio:</value>
   </data>
   <data name="Audio_SelectLastPhrasePlayed" xml:space="preserve">
     <value>Sélectionner la dernière phrase lue une fois écoutée</value>

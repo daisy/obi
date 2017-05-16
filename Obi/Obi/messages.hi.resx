@@ -229,7 +229,7 @@
     <value>डायरेक्टरी में डेज़ी का प्रोजेक्ट एक्सपोर्ट करें {0}</value>
   </data>
   <data name="title_bar" xml:space="preserve">
-    <value>{0}{1} ({2 }) - {3}</value>
+    <value>{0}{1} ({2 }) - {3} ({4}).</value>
   </data>
   <data name="export_choose_folder" xml:space="preserve">
     <value>कृपया वो फोल्डर चुने जिसमे आपकी डेज़ी पुस्तक सेव होनी है.</value>

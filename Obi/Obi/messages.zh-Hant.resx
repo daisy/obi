@@ -234,7 +234,7 @@
     <value>已在 {0} 輸出成DAISY</value>
   </data>
   <data name="title_bar" xml:space="preserve">
-    <value>{0}{1} ({2}) - {3}</value>
+    <value>{0}{1} ({2}) - {3} ({4})</value>
   </data>
   <data name="export_choose_folder" xml:space="preserve">
     <value>請選擇要在那個資料夾儲存DAISY書。</value>

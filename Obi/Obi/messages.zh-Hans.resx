@@ -234,7 +234,7 @@
     <value>项目导出到目录{0}</value>
   </data>
   <data name="title_bar" xml:space="preserve">
-    <value>{0}{1} ({2}) - {3}</value>
+    <value>{0}{1} ({2}) - {3} ({4})</value>
   </data>
   <data name="export_choose_folder" xml:space="preserve">
     <value>请选择文件夹用以保存你的DAISY书</value>
