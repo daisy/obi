@@ -3021,7 +3021,7 @@ for (int j = 0;
                             pagePhrases.Insert(0,phraseNodes[j]);
                         }
                         if (pagePhrases.Count > 0
-                            && i == 0)
+                            && i == 0 && firstSection != null && firstSection.PhraseChildCount != null)
                         {
                             phraseInsertIndex = firstSection.PhraseChildCount;
                             for (int pageCount = 0; pageCount < pagePhrases.Count; pageCount++)
