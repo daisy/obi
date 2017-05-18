@@ -462,7 +462,7 @@ namespace Obi.Dialogs
                     else
                     {
                         m_tb_SectionsSelected.Text = m_StatusLabelForMergeSection.Text = String.Format(Localizer.Message("merged_sections"), listOfLargestNumberOfSections[0].Label, listOfLargestNumberOfSections[listOfLargestNumberOfSections.Count - 1].Label);
-                      
+
                     }
 
                     //    MessageBox.Show(String.Format("Merged sections will be from {0} to {1} ", newList[0], newList[newList.Count - 1]));
@@ -473,6 +473,10 @@ namespace Obi.Dialogs
                     m_tb_SectionsSelected.Text = m_StatusLabelForMergeSection.Text = String.Format(Localizer.Message("phrase_count_more_than_7000"));
                     listOfLargestNumberOfSections = null;
                 }
+            }
+            else
+            {
+                m_tb_SectionsSelected.Text = m_StatusLabelForMergeSection.Text = String.Format(Localizer.Message("StatusForMergeSection"), m_SectionList[0].Label, m_SectionList[m_SectionList.Count - 1].Label);
             }
 
             //if (m_lb_listofSectionsToMerge.SelectedIndices.Count > 0)
