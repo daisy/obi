@@ -3720,7 +3720,7 @@ namespace Obi {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to No section is selected to perform level change operation .
+        ///   Looks up a localized string similar to No section is selected to perform  operation .
         /// </summary>
         internal static string MergeOptions_NoSelectionForLevelChange {
             get {

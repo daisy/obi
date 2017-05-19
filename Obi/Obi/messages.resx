@@ -2698,7 +2698,7 @@ Error text: {1}</value>
     <value>Section level change operation failed.</value>
   </data>
   <data name="MergeOptions_NoSelectionForLevelChange" xml:space="preserve">
-    <value>No section is selected to perform level change operation </value>
+    <value>No section is selected to perform  operation </value>
   </data>
   <data name="Metadata_Empty" xml:space="preserve">
     <value>Empty</value>
