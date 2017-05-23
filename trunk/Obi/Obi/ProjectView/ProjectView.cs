@@ -1237,15 +1237,11 @@ namespace Obi.ProjectView
 
         public bool SetPlaybackBlockIfRequired ()
             {
-                //Console.WriteLine("TransportBar.PlaybackPhrase is mmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm {0}", TransportBar.PlaybackPhrase);
-                //Console.WriteLine("mContentView.PlaybackBlock.Node is ssssssssssssssssssssssssssssssssss {0}", mContentView.PlaybackBlock.Node);
+           
                 if (TransportBar.IsPlayerActive
                             && (mContentView.PlaybackBlock == null || mContentView.PlaybackBlock.Node != TransportBar.PlaybackPhrase))
                 {
-                    //Console.WriteLine("TransportBar.PlaybackPhrase is mmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm {0}", TransportBar.PlaybackPhrase);
-                    //Console.WriteLine("mContentView.PlaybackBlock.Node is ssssssssssssssssssssssssssssssssss {0}", mContentView.PlaybackBlock.Node);
                     Console.WriteLine("TRansportBar Current Playlist total time is {0}", TransportBar.CurrentPlaylist.TotalTime);
-                  //  Console.WriteLine("ContentView Current Playlist total time is {0}", mContentView.);
                     this.SetPlaybackPhraseAndTime(TransportBar.PlaybackPhrase, TransportBar.CurrentPlaylist.CurrentTimeInAsset);
                     this.UpdateCursorPosition(TransportBar.CurrentPlaylist.CurrentTimeInAsset);
                     return true;
