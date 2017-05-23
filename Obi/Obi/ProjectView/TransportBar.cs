@@ -723,8 +723,6 @@ namespace Obi.ProjectView
             }
             else
             {
-                Console.WriteLine("Node name for cursor////////////////////////////////////{0}", e.Node.ToString());
-                //Console.WriteLine(" mCurrentPlaylist.CurrentTimeInAsset for update cursor ????????????????????? {0}", mCurrentPlaylist.CurrentTimeInAsset);
                 mView.SetPlaybackPhraseAndTime(e.Node, mCurrentPlaylist.CurrentTimeInAsset);
                 UpdateTimeDisplay();
             }
@@ -1568,8 +1566,8 @@ namespace Obi.ProjectView
                 }
                 SetPlaylistEvents(mLocalPlaylist);
                 if (mCurrentPlaylist is PreviewPlaylist && !((PreviewPlaylist)mCurrentPlaylist).IsPreviewComplete) ((PreviewPlaylist)mCurrentPlaylist).EnsureDisAssociationEvents(); //added on Oct 29, 2015, precautionary for beta release, will be reviewed after release 
+                mCurrentPlaylist.EnsureDisAssociationEventsinPlaylist();
                 mCurrentPlaylist = mLocalPlaylist;
-                Console.WriteLine("Current Playlist is assigned local Playlist PlayYYYYYYYYYYYYYYYYYYYYYYYYYYYYY");
                 if (neglectSelection && !m_IsPlaySectionInspiteOfPhraseSelection)
                 {
                     mCurrentPlaylist.Play () ;
@@ -1682,9 +1680,7 @@ namespace Obi.ProjectView
             else if (mView.Selection is NodeSelection)
             {
                 mCurrentPlaylist.CurrentPhrase = FindPlaybackStartNode(mView.Selection.Node);
-                Console.WriteLine("Current phrase in the playlist CCCCCCCCUUUUUUUUUUUUUUUUUUUUUUU{0}", mCurrentPlaylist.CurrentPhrase);
-                if (mCurrentPlaylist.State != AudioLib.AudioPlayer.State.Playing) mCurrentPlaylist.Play();
-                Console.WriteLine("Total time in the Playlist is ??????????/////////////????????????/////////////// {0}", mCurrentPlaylist.TotalTime);
+                if (mCurrentPlaylist.State != AudioLib.AudioPlayer.State.Playing) mCurrentPlaylist.Play();               
             }
             else
             {
