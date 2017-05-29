@@ -67,6 +67,14 @@ namespace Obi.Dialogs
                 return m_CanAddPage;
             }
         }
+
+        public bool CreatePagesAtTheEndOfSection
+        {
+            get
+            {
+                return m_cbCreatePagesAtEnd.Checked;
+            }
+        }
    
         private void m_btnOk_Click(object sender, EventArgs e)
         {           
@@ -127,6 +135,18 @@ namespace Obi.Dialogs
         private void m_btnCancel_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void m_cbCreatePagesAtEnd_CheckedChanged(object sender, EventArgs e)
+        {
+            if (m_cbCreatePagesAtEnd.Checked)
+            {
+                m_nudGapsInPages.Enabled = false;
+            }
+            else
+            {
+                m_nudGapsInPages.Enabled = true;
+            }
         }
     }
 }

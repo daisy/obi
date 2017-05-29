@@ -38,6 +38,7 @@
             this.m_btnCancel = new System.Windows.Forms.Button();
             this.m_gpPages = new System.Windows.Forms.GroupBox();
             this.m_nudGapsInPages = new System.Windows.Forms.NumericUpDown();
+            this.m_cbCreatePagesAtEnd = new System.Windows.Forms.CheckBox();
             this.m_gpPages.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.m_nudGapsInPages)).BeginInit();
             this.SuspendLayout();
@@ -99,6 +100,7 @@
             // 
             // m_nudGapsInPages
             // 
+            this.m_nudGapsInPages.BackColor = System.Drawing.SystemColors.HighlightText;
             resources.ApplyResources(this.m_nudGapsInPages, "m_nudGapsInPages");
             this.m_nudGapsInPages.Minimum = new decimal(new int[] {
             1,
@@ -113,12 +115,20 @@
             0,
             0});
             // 
+            // m_cbCreatePagesAtEnd
+            // 
+            resources.ApplyResources(this.m_cbCreatePagesAtEnd, "m_cbCreatePagesAtEnd");
+            this.m_cbCreatePagesAtEnd.Name = "m_cbCreatePagesAtEnd";
+            this.m_cbCreatePagesAtEnd.UseVisualStyleBackColor = true;
+            this.m_cbCreatePagesAtEnd.CheckedChanged += new System.EventHandler(this.m_cbCreatePagesAtEnd_CheckedChanged);
+            // 
             // AutoPageGeneration
             // 
             this.AcceptButton = this.m_btnOk;
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.m_btnCancel;
+            this.Controls.Add(this.m_cbCreatePagesAtEnd);
             this.Controls.Add(this.m_nudGapsInPages);
             this.Controls.Add(this.m_gpPages);
             this.Controls.Add(this.m_btnCancel);
@@ -148,5 +158,6 @@
         private System.Windows.Forms.Button m_btnCancel;
         private System.Windows.Forms.GroupBox m_gpPages;
         private System.Windows.Forms.NumericUpDown m_nudGapsInPages;
+        private System.Windows.Forms.CheckBox m_cbCreatePagesAtEnd;
     }
 }

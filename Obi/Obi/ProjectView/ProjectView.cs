@@ -6592,7 +6592,7 @@ public bool ShowOnlySelectedSection
             return cmd;
         }
 
-        private void AddIntermediatePages(SectionNode secNode,double DurationOfPhrase, double TotalDurationFromLeft, int GapsInPages, List<int> PageIndexTobeMarked, List<int> TotalPagesInSection, int CountOfPagesAddedInSection)
+        private void AddIntermediatePages(SectionNode secNode,double DurationOfPhrase, double TotalDurationFromLeft, int GapsInPages, List<int> PageIndexTobeMarked, List<int> TotalPagesInSection, int CountOfPagesAddedInSection,bool AddPagesAtTheEndOfSection)
         {
             int IndexOfPhrase = 0;
             if (secNode != null && secNode.PhraseChildCount > 0)
@@ -6618,7 +6618,7 @@ public bool ShowOnlySelectedSection
                         DurationOfPhrase = TotalDurationFromLeft = node.Duration;
                      
                     }
-                    if (secNode != null && (((secNode.Duration - TotalDurationFromLeft) > GapsInPages) || secNode.FollowingSection == null) && DurationOfPhrase >= GapsInPages && IndexOfPhrase < secNode.LastUsedPhrase.Index)
+                    if (secNode != null && !AddPagesAtTheEndOfSection && (((secNode.Duration - TotalDurationFromLeft) > GapsInPages) || secNode.FollowingSection == null) && DurationOfPhrase >= GapsInPages && IndexOfPhrase < secNode.LastUsedPhrase.Index)
                     {
                         PageIndexTobeMarked.Add(IndexOfPhrase + CountOfPagesAddedInSection);
                         CountOfPagesAddedInSection++;
@@ -6628,7 +6628,7 @@ public bool ShowOnlySelectedSection
                         DurationOfPhrase += node.Duration;
                         TotalDurationFromLeft += node.Duration;
                     }
-                    else if (secNode != null && IndexOfPhrase < secNode.LastUsedPhrase.Index && node.FollowingNode != null)
+                    else if (secNode != null && !AddPagesAtTheEndOfSection && IndexOfPhrase < secNode.LastUsedPhrase.Index && node.FollowingNode != null)
                     {
                         IndexOfPhrase = node.FollowingNode.Index;
                         node = secNode.PhraseChild(IndexOfPhrase);
@@ -6638,6 +6638,10 @@ public bool ShowOnlySelectedSection
 
                     else if (secNode != null && this.Selection != null)
                     {
+                        if (AddPagesAtTheEndOfSection)
+                        {
+                            i = tempPhraseCount;
+                        }
                         if (secNode.FollowingSection != null)
                         {
                             PageIndexTobeMarked.Add(secNode.PhraseChildCount - 1 + CountOfPagesAddedInSection);
@@ -6683,7 +6687,7 @@ public bool ShowOnlySelectedSection
                 List<SectionNode> sectionsList = ((ObiRootNode)this.Presentation.RootNode).GetListOfAllSections();
                 for (int i = secNode.Index; i < sectionsList.Count; i++)
                 {
-                    AddIntermediatePages(sectionsList[i], 0, 0, autoPageGeneration.GapsInPages, PageIndexTobeMarked, TotalPagesInSection, 1);
+                    AddIntermediatePages(sectionsList[i], 0, 0, autoPageGeneration.GapsInPages, PageIndexTobeMarked, TotalPagesInSection, 1,autoPageGeneration.CreatePagesAtTheEndOfSection);
                 }
                 
                 this.Selection = new NodeSelection(secNode, mContentView);
