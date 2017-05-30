@@ -156,7 +156,7 @@
     <value>111, 13</value>
   </data>
   <data name="m_lbStartingSectionIndex.TabIndex" type="System.Int32, mscorlib">
-    <value>2</value>
+    <value>3</value>
   </data>
   <data name="m_lbStartingSectionIndex.Text" xml:space="preserve">
     <value>Starting section &amp;index:</value>
@@ -180,7 +180,7 @@
     <value>76, 21</value>
   </data>
   <data name="m_cbStartingSectionIndex.TabIndex" type="System.Int32, mscorlib">
-    <value>3</value>
+    <value>4</value>
   </data>
   <data name="&gt;&gt;m_cbStartingSectionIndex.Name" xml:space="preserve">
     <value>m_cbStartingSectionIndex</value>
@@ -204,7 +204,7 @@
     <value>160, 17</value>
   </data>
   <data name="m_rbGenerateTTS.TabIndex" type="System.Int32, mscorlib">
-    <value>5</value>
+    <value>6</value>
   </data>
   <data name="m_rbGenerateTTS.Text" xml:space="preserve">
     <value>Pages with synthetic &amp;speech</value>
@@ -231,7 +231,7 @@
     <value>113, 17</value>
   </data>
   <data name="m_rbKeepEmptyPages.TabIndex" type="System.Int32, mscorlib">
-    <value>6</value>
+    <value>7</value>
   </data>
   <data name="m_rbKeepEmptyPages.Text" xml:space="preserve">
     <value>Pages with si&amp;lence</value>
@@ -262,7 +262,7 @@
     <value>88, 29</value>
   </data>
   <data name="m_btnOk.TabIndex" type="System.Int32, mscorlib">
-    <value>7</value>
+    <value>8</value>
   </data>
   <data name="m_btnOk.Text" xml:space="preserve">
     <value>&amp;OK</value>
@@ -292,7 +292,7 @@
     <value>88, 29</value>
   </data>
   <data name="m_btnCancel.TabIndex" type="System.Int32, mscorlib">
-    <value>8</value>
+    <value>9</value>
   </data>
   <data name="m_btnCancel.Text" xml:space="preserve">
     <value>&amp;Cancel</value>
@@ -316,7 +316,7 @@
     <value>225, 100</value>
   </data>
   <data name="m_gpPages.TabIndex" type="System.Int32, mscorlib">
-    <value>4</value>
+    <value>5</value>
   </data>
   <data name="&gt;&gt;m_gpPages.Name" xml:space="preserve">
     <value>m_gpPages</value>
@@ -361,7 +361,7 @@
     <value>230, 17</value>
   </data>
   <data name="m_cbCreatePagesAtEnd.TabIndex" type="System.Int32, mscorlib">
-    <value>9</value>
+    <value>2</value>
   </data>
   <data name="m_cbCreatePagesAtEnd.Text" xml:space="preserve">
     <value>Create Pages at the end of the section only</value>
