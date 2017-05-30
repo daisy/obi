@@ -2704,18 +2704,8 @@ namespace Obi.ProjectView
                 }
                 else
                 {
-                    mCurrentPlaylist.CurrentTimeInAsset = 0;
                     mCurrentPlaylist.NavigateToNextPhrase();
-                    if (mState == State.Paused)
-                    {
-                        if (mView.Selection.Node is PhraseNode)
-                        {
-                            PhraseNode startPhrase = (PhraseNode)(mView.Selection.Node);
-                            PhraseNode destinationPhrase = mCurrentPlaylist.NextPhrase(startPhrase);
-                            mView.SelectPhraseInContentView(destinationPhrase);
-                            mCurrentPlaylist.CurrentPhrase = destinationPhrase;                        
-                        }
-                    }
+                  
                 }
                 return true;
             }
