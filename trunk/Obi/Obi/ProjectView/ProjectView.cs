@@ -6535,7 +6535,7 @@ public bool ShowOnlySelectedSection
         /// <summary>
         /// Add new  pages at regualar gaps.
         /// </summary>
-        private CompositeCommand AddEmptyPagesCommand(List<int> PageIndexTobeMarked, List<int> TotalPagesInSection, bool createEmptyPages)
+        private CompositeCommand AddEmptyPagesCommand(List<int> PageIndexTobeMarked, List<int> TotalPagesInSection, bool createEmptyPages,int StartingSectionIndex)
         {
             CompositeCommand cmd = Presentation.CreateCompositeCommand(Localizer.Message("add_blank_pages"));
             int index = -1;
@@ -6553,7 +6553,7 @@ public bool ShowOnlySelectedSection
             }
             if (selectedSection != null)
             {
-                int selectedSectionIndex = selectedSection.Index;
+                int selectedSectionIndex = StartingSectionIndex;
 
                 foreach (int phraseIndex in PageIndexTobeMarked)
                 {
@@ -6685,13 +6685,13 @@ public bool ShowOnlySelectedSection
                 this.Selection = new NodeSelection(this.Selection.Node, mContentView);
                 SectionNode secNode = (SectionNode)this.Selection.Node;
                 List<SectionNode> sectionsList = ((ObiRootNode)this.Presentation.RootNode).GetListOfAllSections();
-                for (int i = secNode.Index; i < sectionsList.Count; i++)
+                for (int i = autoPageGeneration.StartingSectionIndex; i < sectionsList.Count; i++)
                 {
                     AddIntermediatePages(sectionsList[i], 0, 0, autoPageGeneration.GapsInPages, PageIndexTobeMarked, TotalPagesInSection, 1,autoPageGeneration.CreatePagesAtTheEndOfSection);
                 }
                 
                 this.Selection = new NodeSelection(secNode, mContentView);
-                Command cmd = this.AddEmptyPagesCommand(PageIndexTobeMarked, TotalPagesInSection, autoPageGeneration.GenerateSpeech);
+                Command cmd = this.AddEmptyPagesCommand(PageIndexTobeMarked, TotalPagesInSection, autoPageGeneration.GenerateSpeech, autoPageGeneration.StartingSectionIndex);
                 if (cmd != null)
                 {
                     mPresentation.Do(cmd);
