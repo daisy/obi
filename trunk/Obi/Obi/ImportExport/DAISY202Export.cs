@@ -867,7 +867,7 @@ namespace Obi.ImportExport
                 }
                 else
                 {
-                    return time.ToString().Split('.')[0];
+                    return time.ToString("c", System.Globalization.CultureInfo.CreateSpecificCulture("en-US")).Split('.')[0];
                 }
             }
 
@@ -875,8 +875,8 @@ namespace Obi.ImportExport
         {
             if (time.Days >= 1)
             {
-                string [] timeStringArray = time    .ToString().Split ( ':' ) ;
-                string strTIME = time.TotalHours.ToString().Split('.')[0];
+                string[] timeStringArray = time.ToString("c", System.Globalization.CultureInfo.CreateSpecificCulture("en-US")).Split(':');
+                string strTIME = time.TotalHours.ToString("c", System.Globalization.CultureInfo.CreateSpecificCulture("en-US")).Split('.')[0];
                 for ( int i  = 1 ; i < timeStringArray.Length ; i++ )
                 {
                     strTIME += ":" + timeStringArray[i];
@@ -885,7 +885,7 @@ namespace Obi.ImportExport
             }
             else
             {
-                return time.ToString () ;
+                return time.ToString("c", System.Globalization.CultureInfo.CreateSpecificCulture("en-US"));
             }
         }
 
