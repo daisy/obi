@@ -60,6 +60,7 @@ namespace Obi
             private bool m_NormalAfterMax = false;    //Used to revert back to the window of the original size from max obi window
             private bool m_FlagLangUpdate = false;
             private string m_ObiFont;//@fontconfig
+            private int m_TotalTimeIntervalSinceLastBackup = 0;
 
 
             /// <summary>
@@ -869,6 +870,32 @@ namespace Obi
                 }
             }
 
+            public void CopyToBackup()
+            {
+                DateTime currentDateTime = DateTime.Now;
+                string postFix = currentDateTime.Year.ToString() + "-"
+                    + (currentDateTime.Month.ToString().Length > 1 ? currentDateTime.Month.ToString() : "0" + currentDateTime.Month.ToString()) + "-"
+                    + (currentDateTime.Day.ToString().Length > 1 ? currentDateTime.Day.ToString() : "0" + currentDateTime.Day.ToString())
+                    + "-" + currentDateTime.Hour.ToString() + "hr";
+                string backUpFileCopyAtInterval = Path.Combine(Path.GetDirectoryName(mSession.BackUpPath), postFix + Path.GetFileName(mSession.BackUpPath));
+             //   string projectDirPath = Directory.GetParent(mSession.Path).FullName;
+                if (File.Exists(mSession.Path) && !File.Exists(backUpFileCopyAtInterval))
+                {
+                    try
+                    {
+                        File.Copy(mSession.Path, backUpFileCopyAtInterval);
+                        m_TotalTimeIntervalSinceLastBackup = 0;
+                    }
+                    catch (System.Exception ex)
+                    {
+                        mProjectView.WriteToLogFile(ex.ToString());
+                    }
+                }
+                else
+                {
+                    m_TotalTimeIntervalSinceLastBackup = 0;
+                }
+            }
 
             // Save the current project under a different name; ask for a new path first.
             private void SaveAs()
@@ -3573,16 +3600,24 @@ ref string exportDirectoryEPUB3)
                 {
                     mAutoSaveTimer.Interval = mSettings.Project_AutoSaveTimeInterval;
                 }
+                m_TotalTimeIntervalSinceLastBackup += mAutoSaveTimer.Interval;
 
                 if (mSession != null && mSession.Presentation != null
-                    && mSettings.Project_AutoSaveTimeIntervalEnabled && m_CanAutoSave && mSession.CanSave)
+                    && mSettings.Project_AutoSaveTimeIntervalEnabled && m_CanAutoSave)
                 {
                     //if (mProjectView.TransportBar.CurrentState != Obi.ProjectView.TransportBar.State.Recording)
                     //{
                     m_IsAutoSaveActive = true;
-                    SaveToBackup();
+                    if (mSession.CanSave)
+                    {
+                        SaveToBackup();
+                    }
+                    else if(m_TotalTimeIntervalSinceLastBackup >= 7200000)
+                    {
+                        CopyToBackup();
+                    }
                     m_IsAutoSaveActive = false;
-                    Console.WriteLine("auto save executed ");
+                    //Console.WriteLine("auto save executed ");
                     //}
                     //else
                     //{
