@@ -867,7 +867,7 @@ namespace Obi.ImportExport
                 }
                 else
                 {
-                    return time.ToString("g", System.Globalization.CultureInfo.CreateSpecificCulture("en-US")).Split('.')[0];
+                    return time.ToString("", System.Globalization.CultureInfo.CreateSpecificCulture("en-US")).Split('.')[0];
                 }
             }
 
@@ -875,17 +875,18 @@ namespace Obi.ImportExport
         {
             if (time.Days >= 1)
             {
-                string[] timeStringArray = time.ToString("g", System.Globalization.CultureInfo.CreateSpecificCulture("en-US")).Split(':');
-                string strTIME = time.TotalHours.ToString("g", System.Globalization.CultureInfo.CreateSpecificCulture("en-US")).Split('.')[0];
-                for ( int i  = 1 ; i < timeStringArray.Length ; i++ )
+                string[] timeStringArray = time.ToString("G", System.Globalization.CultureInfo.CreateSpecificCulture("en-US")).Split(':');
+                string strTIME = time.TotalHours.ToString("G", System.Globalization.CultureInfo.CreateSpecificCulture("en-US")).Split('.')[0];
+                for ( int i  = 2 ; i < timeStringArray.Length ; i++ )
                 {
                     strTIME += ":" + timeStringArray[i];
                 }
+                //Console.WriteLine("Day time: " + strTIME);
                 return TruncateTimeToDecimalPlaces (strTIME,3);
             }
             else
             {
-                return time.ToString("g", System.Globalization.CultureInfo.CreateSpecificCulture("en-US"));
+                return time.ToString("", System.Globalization.CultureInfo.CreateSpecificCulture("en-US"));
             }
         }
 
