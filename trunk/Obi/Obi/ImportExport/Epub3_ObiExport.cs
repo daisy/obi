@@ -33,20 +33,25 @@ namespace Obi.ImportExport
         private List<string> m_FilesList_Html = null;
         private List<string> m_SmilDurationForOpfMetadata = null;
         private bool m_CreateDummyText = false; //@dummytext
+        private bool m_CreateSmilForNavDoc = false; //@smilNavDoc: creates smil file for Navigation Document
         private readonly string m_OutputDirectoryName = null;
         private string m_EpubParentDirectoryPath = null;
-        private readonly string m_Filename_NavigationHtml = null;        
+        private readonly string m_Filename_NavigationHtml = null;
+        private readonly string m_FilenameSmilForNavDoc = null; //@smilNavDoc       
         private readonly string m_Meta_infFileName = null;
         public const string NS_URL_EPUB = "http://www.idpf.org/2007/ops";
 
+        private Dictionary<string, urakawa.media.ExternalAudioMedia> m_NavIDToExternalAudioMediaMap; //@smilNavDoc
+
         public Epub3_ObiExport(ObiPresentation presentation, string exportDirectory, List<string> navListElementNamesList, bool encodeToMp3,double bitRate_Encoding ,
-            SampleRate sampleRate, bool stereo, bool skipACM, int audioFileSectionLevel, int EPUBFileNameLengthLimit, bool createDummyText):
+            SampleRate sampleRate, bool stereo, bool skipACM, int audioFileSectionLevel, int EPUBFileNameLengthLimit, bool createDummyText, bool createMediaOverlaysForNavDoc):
             base (presentation, exportDirectory, navListElementNamesList, encodeToMp3,bitRate_Encoding ,
             sampleRate, stereo, skipACM, audioFileSectionLevel)
         {
             
             m_EPUBFileNameLengthLimit = EPUBFileNameLengthLimit;
             m_Filename_NavigationHtml = "navigation.html";
+            m_FilenameSmilForNavDoc = "NavDoc.smil";
             string parentDirectoryName = Program.SafeName(presentation.Title);
             m_EpubParentDirectoryPath = 
                 Path.Combine(m_OutputDirectory,
@@ -61,6 +66,7 @@ namespace Obi.ImportExport
             }
               m_Meta_infFileName = "META-INF" ;
               m_CreateDummyText = createDummyText; //@dummytext
+              m_CreateSmilForNavDoc = createMediaOverlaysForNavDoc; //@smilNavDoc
         }
 
 
@@ -69,7 +75,7 @@ namespace Obi.ImportExport
 
         protected override void CreateNcxAndSmilDocuments()
         {
-            
+            m_NavIDToExternalAudioMediaMap = new Dictionary<string, ExternalAudioMedia>(); //@smilNavDoc
 
                         XmlDocument navigationDocument = CreateStub_NavigationDocument();
 
@@ -758,7 +764,7 @@ namespace Obi.ImportExport
                         
                         //if (currentHeadingTreeNode != null) XmlDocumentHelper.CreateAppendXmlAttribute(navigationDocument, navPointNode, "class", "heading");
                         string strNavPointID = GetNextID(ID_NcxPrefix);
-                        XmlDocumentHelper.CreateAppendXmlAttribute(navigationDocument, olHeadingsNode, "id", strNavPointID);
+//                        XmlDocumentHelper.CreateAppendXmlAttribute(navigationDocument, olHeadingsNode, "id", strNavPointID); // commented for creating smil for NavDoc
                         //XmlDocumentHelper.CreateAppendXmlAttribute(navigationDocument, navPointNode, "playOrder", "");
 
 
@@ -823,6 +829,11 @@ namespace Obi.ImportExport
                             }
                         }
 
+                        if (liHeadingNode != null) //@smilNavDoc: for adding smil to NavDoc
+                        {
+                            XmlDocumentHelper.CreateAppendXmlAttribute(navigationDocument, liHeadingNode, "id", strNavPointID);
+                            m_NavIDToExternalAudioMediaMap.Add(strNavPointID, externalAudio); 
+                        }
 
                         treeNode_NavNodeMap.Add(urakawaNode, liHeadingNode);
                         
@@ -1019,7 +1030,50 @@ namespace Obi.ImportExport
             m_TotalTime = new Time(smilElapseTime);
             m_SmilDurationForOpfMetadata.Add(m_TotalTime.ToString ());
             AddMetadata_Ncx(navigationDocument, totalPageCount.ToString(), maxNormalPageNumber.ToString(), maxDepth.ToString(), null);
+            if (m_CreateSmilForNavDoc) CreateSmilForNavDoc(); //@smilNavDoc
             XmlReaderWriterHelper.WriteXmlDocument(navigationDocument, Path.Combine(m_OutputDirectory, m_Filename_NavigationHtml ), AlwaysIgnoreIndentation ? GetXmlWriterSettings(false) : null);
+        }
+
+        //@smilNavDoc
+        private void CreateSmilForNavDoc()
+        {
+            XmlDocument smilDocument = CreateStub_SmilDocument();
+            XmlNode mainSeq = XmlDocumentHelper.GetFirstChildElementOrSelfWithName(smilDocument, true, "body", null).FirstChild;
+            XmlDocumentHelper.CreateAppendXmlAttribute(smilDocument, mainSeq, "id", GetNextID(ID_SmilPrefix));
+
+            XmlDocumentHelper.CreateAppendXmlAttribute(smilDocument, mainSeq, "epub:textref", m_Filename_NavigationHtml, NS_URL_EPUB);
+
+
+            foreach (string strID in m_NavIDToExternalAudioMediaMap.Keys)
+            {
+                XmlNode parNode = smilDocument.CreateElement(null, "par", mainSeq.NamespaceURI);
+                mainSeq.AppendChild(parNode);
+                string par_id = GetNextID(ID_SmilPrefix);
+                XmlDocumentHelper.CreateAppendXmlAttribute(smilDocument, parNode, "id", par_id);
+                XmlNode SmilTextNode = smilDocument.CreateElement(null, "text", mainSeq.NamespaceURI);
+                XmlDocumentHelper.CreateAppendXmlAttribute(smilDocument, SmilTextNode, "id", GetNextID(ID_SmilPrefix));
+                XmlDocumentHelper.CreateAppendXmlAttribute(smilDocument, SmilTextNode, "src", m_Filename_NavigationHtml + "#" + strID );
+                parNode.AppendChild(SmilTextNode);
+
+                urakawa.media.ExternalAudioMedia externalAudio = m_NavIDToExternalAudioMediaMap[strID];
+                if (externalAudio != null)
+                {
+                    string audioFileName = Path.GetFileName(externalAudio.Src);
+                    XmlNode audioNode = smilDocument.CreateElement(null, "audio", mainSeq.NamespaceURI);
+                    XmlDocumentHelper.CreateAppendXmlAttribute(smilDocument, audioNode, "clipBegin", FormatTimeString(externalAudio.ClipBegin));
+                    XmlDocumentHelper.CreateAppendXmlAttribute(smilDocument, audioNode, "clipEnd", FormatTimeString(externalAudio.ClipEnd));
+                    XmlDocumentHelper.CreateAppendXmlAttribute(smilDocument, audioNode, "src", audioFileName);
+                    parNode.AppendChild(audioNode);
+                }
+
+                //string audioSRC = "null";
+                //if (m_NavIDToExternalAudioMediaMap[strID] != null)
+                    //audioSRC =  m_NavIDToExternalAudioMediaMap[strID].Src;
+
+                //System.Windows.Forms.MessageBox.Show(strID + " : " + audioSRC);
+            }
+
+            XmlReaderWriterHelper.WriteXmlDocument(smilDocument, Path.Combine(m_OutputDirectory, m_FilenameSmilForNavDoc), AlwaysIgnoreIndentation ? GetXmlWriterSettings(false) : null);
         }
 
         protected XmlDocument CreateStub_NavigationDocument()
@@ -1429,8 +1483,14 @@ namespace Obi.ImportExport
             m_DtbAllowedInXMetadata.Add(SupportedMetadata_Z39862005.DTB_TOTAL_TIME);
             m_DtbAllowedInXMetadata.Add(SupportedMetadata_Z39862005.DTB_AUDIO_FORMAT);
 
-            XmlNode navNode =  AddFilenameToManifest(opfDocument, manifestNode, m_Filename_NavigationHtml , "ncx", DataProviderFactory.XHTML_MIME_TYPE);
+            XmlNode navNode = AddFilenameToManifest(opfDocument, manifestNode, m_Filename_NavigationHtml , "ncx", DataProviderFactory.XHTML_MIME_TYPE); //@smilNavDoc: stored NavDoc for use in smil file
             XmlDocumentHelper.CreateAppendXmlAttribute(opfDocument, navNode, "properties", "nav");
+
+            if (m_CreateSmilForNavDoc) //@smilNavDoc
+            {
+                AddFilenameToManifest(opfDocument, manifestNode, m_FilenameSmilForNavDoc, "smilnav", @"application/smil+xml");
+                XmlDocumentHelper.CreateAppendXmlAttribute(opfDocument, navNode, "media-overlay", "smilnav");
+            }
 
             if (m_Filename_Content != null)
             {

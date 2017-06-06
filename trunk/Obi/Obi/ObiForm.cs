@@ -3114,7 +3114,7 @@ ref string exportDirectoryDAISY3,
                             mProjectView.Presentation.MediaDataManager.DefaultPCMFormat.Data.NumberOfChannels == 2,
                             false, ExportDialogEPUB3.LevelSelection,
                             ExportDialogEPUB3.EpubLengthCheckboxEnabled ? mSettings.Export_EPUBFileNameLengthLimit : 0,
-                            ExportDialogEPUB3.CreateDummyTextCheckboxEnabled);
+                            ExportDialogEPUB3.CreateDummyTextCheckboxEnabled, ExportDialogEPUB3.CreateMediaOverlaysForNavigationDocChecked);
 
                         EPUB3_ExportInstance.AddSectionNameToAudioFile = ExportDialogEPUB3.AppendSectionNameToAudioFileName;
                         EPUB3_ExportInstance.AudioFileNameCharsLimit = ExportDialogEPUB3.AudioFileNameCharsLimit;
@@ -3226,7 +3226,8 @@ ref string exportDirectoryEPUB3)
                             configInstance.EPUB3ExportParameters.ExportChannels == 2,
                             false, 100,
                             0,
-                            true);
+                            true,
+                            false);
 
                     EPUB3_ExportInstance.AddSectionNameToAudioFile = false;
                     EPUB3_ExportInstance.AudioFileNameCharsLimit = 100;
