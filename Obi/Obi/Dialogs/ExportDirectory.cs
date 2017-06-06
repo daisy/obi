@@ -237,6 +237,14 @@ namespace Obi.Dialogs
             }
                         
         }
+        public bool CreateMediaOverlaysForNavigationDocChecked
+        {
+            get { return m_chkBoxCreateMediaOverlays.Checked; }
+            set
+            {
+                m_chkBoxCreateMediaOverlays.Enabled = value;
+            }
+        }
         public bool XhtmlElmentsEnabled
         {
             set
@@ -254,6 +262,7 @@ namespace Obi.Dialogs
                 m_chkBoxEpubFilenameLengthLimit.Enabled = value;
                 m_numericUpDownEpubFilenameLengthLimit.Enabled = value;
                 m_chkBoxDummyTextHTMLfiles.Enabled = value;
+                m_chkBoxCreateMediaOverlays.Enabled = value;
                 m_grpBoxSectionNameOperation.Enabled = value;
                 m_grpBoxMP3Encoding.Enabled = false;
                 m_EpubFileNamegroupBox.Enabled = false;

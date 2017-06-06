@@ -52,6 +52,7 @@ namespace Obi.Dialogs
             this.m_EpubFileNamegroupBox = new System.Windows.Forms.GroupBox();
             this.m_numericUpDownEpubFilenameLengthLimit = new System.Windows.Forms.NumericUpDown();
             this.m_chkBoxEpubFilenameLengthLimit = new System.Windows.Forms.CheckBox();
+            this.m_chkBoxCreateMediaOverlays = new System.Windows.Forms.CheckBox();
             this.m_grpBoxMP3Encoding.SuspendLayout();
             this.m_grpBoxSectionNameOperation.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.m_numericUpDownFilenameLengthLimit)).BeginInit();
@@ -228,12 +229,19 @@ namespace Obi.Dialogs
             this.m_chkBoxEpubFilenameLengthLimit.UseVisualStyleBackColor = true;
             this.m_chkBoxEpubFilenameLengthLimit.CheckedChanged += new System.EventHandler(this.m_chkBoxEpubFilenameLengthLimit_CheckedChanged);
             // 
+            // m_chkBoxCreateMediaOverlays
+            // 
+            resources.ApplyResources(this.m_chkBoxCreateMediaOverlays, "m_chkBoxCreateMediaOverlays");
+            this.m_chkBoxCreateMediaOverlays.Name = "m_chkBoxCreateMediaOverlays";
+            this.m_chkBoxCreateMediaOverlays.UseVisualStyleBackColor = true;
+            // 
             // ExportDirectory
             // 
             this.AcceptButton = this.mOKButton;
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.mCancelButton;
+            this.Controls.Add(this.m_chkBoxCreateMediaOverlays);
             this.Controls.Add(this.m_chkBoxDummyTextHTMLfiles);
             this.Controls.Add(this.m_EpubFileNamegroupBox);
             this.Controls.Add(this.m_grpBoxSectionNameOperation);
@@ -290,5 +298,6 @@ namespace Obi.Dialogs
         private System.Windows.Forms.CheckBox m_chkBoxDummyTextHTMLfiles;
         private System.Windows.Forms.ComboBox m_comboBoxEncodingType;
         private System.Windows.Forms.Button m_btnEncodingOptions;
+        private System.Windows.Forms.CheckBox m_chkBoxCreateMediaOverlays;
     }
 }
