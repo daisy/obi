@@ -3007,6 +3007,7 @@ ref string exportDirectoryDAISY3,
                     //   null string temprorarily used instead of -mProjectView.Presentation.Title- to avoid unicode character problem in path for pipeline
                     ExportDialogEPUB3.EpubLengthCheckboxEnabled = true;
                     ExportDialogEPUB3.CreateDummyTextCheckboxEnabled = true;
+                    ExportDialogEPUB3.CreateMediaOverlaysForNavigationDocChecked = true;
                     ExportDialogEPUB3.EPUB_CreateDummyTextInHtml = mSettings.Export_EPUBCreateDummyText;
                     ExportDialogEPUB3.AdditionalTextForTitle = "Epub 3";
                     ExportDialogEPUB3.LimitLengthOfAudioFileNames = mSettings.Export_LimitAudioFilesLength &&
