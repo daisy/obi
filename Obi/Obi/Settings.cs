@@ -306,6 +306,9 @@ public bool Project_ImportNCCFileWithWindows1252Encoding ; // useful for importi
         [OptionalField]
         public bool Audio_AutoPlayAfterRecordingStops; // plays the recorded phrase when recording stops.
 
+        [OptionalField]
+        public bool Export_EpubCreateMediaOverlays;
+
         protected static void InitializeDefaultSettings(Settings settings)
         {
             settings.Audio_Channels = 1;
@@ -447,6 +450,7 @@ public bool Project_ImportNCCFileWithWindows1252Encoding ; // useful for importi
             settings.Audio_MergeFirstTwoPhrasesAfterPhraseDetectionWhileRecording = false;
             settings.Project_ImportNCCFileWithWindows1252Encoding = false;
             settings.Audio_AutoPlayAfterRecordingStops = false;
+            settings.Export_EpubCreateMediaOverlays = false;
         }
 
         /// <summary>
