@@ -34,6 +34,7 @@ namespace Obi.ImportExport
         private List<string> m_SmilDurationForOpfMetadata = null;
         private bool m_CreateDummyText = false; //@dummytext
         private bool m_CreateSmilForNavDoc = false; //@smilNavDoc: creates smil file for Navigation Document
+        private string m_DurationOfNavSmil; //@smilNavDoc
         private readonly string m_OutputDirectoryName = null;
         private string m_EpubParentDirectoryPath = null;
         private readonly string m_Filename_NavigationHtml = null;
@@ -1037,6 +1038,7 @@ namespace Obi.ImportExport
         //@smilNavDoc
         private void CreateSmilForNavDoc()
         {
+            Time durationOfSmil = new Time();
             XmlDocument smilDocument = CreateStub_SmilDocument();
             XmlNode mainSeq = XmlDocumentHelper.GetFirstChildElementOrSelfWithName(smilDocument, true, "body", null).FirstChild;
             XmlDocumentHelper.CreateAppendXmlAttribute(smilDocument, mainSeq, "id", GetNextID(ID_SmilPrefix));
@@ -1064,8 +1066,9 @@ namespace Obi.ImportExport
                     XmlDocumentHelper.CreateAppendXmlAttribute(smilDocument, audioNode, "clipEnd", FormatTimeString(externalAudio.ClipEnd));
                     XmlDocumentHelper.CreateAppendXmlAttribute(smilDocument, audioNode, "src", audioFileName);
                     parNode.AppendChild(audioNode);
+                    durationOfSmil.Add(externalAudio.Duration);
                 }
-
+                m_DurationOfNavSmil = FormatTimeString(durationOfSmil);
                 //string audioSRC = "null";
                 //if (m_NavIDToExternalAudioMediaMap[strID] != null)
                     //audioSRC =  m_NavIDToExternalAudioMediaMap[strID].Src;
@@ -1490,6 +1493,13 @@ namespace Obi.ImportExport
             {
                 AddFilenameToManifest(opfDocument, manifestNode, m_FilenameSmilForNavDoc, "smilnav", @"application/smil+xml");
                 XmlDocumentHelper.CreateAppendXmlAttribute(opfDocument, navNode, "media-overlay", "smilnav");
+
+                XmlNode metadataNodeForNav = opfDocument.GetElementsByTagName("metadata")[0];
+                XmlNode metaNode = opfDocument.CreateElement("meta", metadataNodeForNav.NamespaceURI);
+                metadataNodeForNav.AppendChild(metaNode);
+                XmlDocumentHelper.CreateAppendXmlAttribute(opfDocument, metaNode, "property", "media:duration");
+                XmlDocumentHelper.CreateAppendXmlAttribute(opfDocument, metaNode, "refines", "#" + "smilnav");
+                metaNode.AppendChild(opfDocument.CreateTextNode(m_DurationOfNavSmil));
             }
 
             if (m_Filename_Content != null)
