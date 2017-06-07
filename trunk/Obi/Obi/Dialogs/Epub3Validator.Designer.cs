@@ -81,7 +81,9 @@ namespace Obi.Dialogs
             // m_epubCheckRichTextBox
             // 
             resources.ApplyResources(this.m_epubCheckRichTextBox, "m_epubCheckRichTextBox");
+            this.m_epubCheckRichTextBox.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.m_epubCheckRichTextBox.Name = "m_epubCheckRichTextBox";
+            this.m_epubCheckRichTextBox.ReadOnly = true;
             // 
             // m_lblEpubCompletionStatus
             // 
