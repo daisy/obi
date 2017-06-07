@@ -310,6 +310,10 @@ namespace Obi.Dialogs
         private void mOKButton_Click(object sender, EventArgs e)
         {
             mCanClose = ObiForm.CheckProjectDirectory_Safe(DirectoryPath, true);
+            if (mCanClose && m_chkBoxCreateMediaOverlays.Enabled)
+            {
+                mSettings.Export_EpubCreateMediaOverlays = m_chkBoxCreateMediaOverlays.Checked;
+            }
         }
 
         private void SelectDirectoryPath_FormClosing(object sender, FormClosingEventArgs e)
@@ -427,6 +431,14 @@ namespace Obi.Dialogs
         {          
                 DownloadFile download = new DownloadFile(mSettings); //@fontconfig
                 download.ShowDialog();
+        }
+
+        private void m_chkBoxCreateMediaOverlays_EnabledChanged(object sender, EventArgs e)
+        {
+            if (m_chkBoxCreateMediaOverlays.Enabled)
+            {
+                m_chkBoxCreateMediaOverlays.Checked = mSettings.Export_EpubCreateMediaOverlays;
+            }
         }              
     }
 }

@@ -234,6 +234,7 @@ namespace Obi.Dialogs
             resources.ApplyResources(this.m_chkBoxCreateMediaOverlays, "m_chkBoxCreateMediaOverlays");
             this.m_chkBoxCreateMediaOverlays.Name = "m_chkBoxCreateMediaOverlays";
             this.m_chkBoxCreateMediaOverlays.UseVisualStyleBackColor = true;
+            this.m_chkBoxCreateMediaOverlays.EnabledChanged += new System.EventHandler(this.m_chkBoxCreateMediaOverlays_EnabledChanged);
             // 
             // ExportDirectory
             // 
