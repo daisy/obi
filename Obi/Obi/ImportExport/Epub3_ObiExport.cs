@@ -1722,6 +1722,12 @@ namespace Obi.ImportExport
             // create spine
             XmlNode spineNode = XmlDocumentHelper.GetFirstChildElementOrSelfWithName(opfDocument, true, "spine", null); //opfDocument.GetElementsByTagName("spine")[0];
 
+            //@smilNavDoc: add to spine as non-lenear
+            XmlNode navRefNode = opfDocument.CreateElement(null, "itemref", spineNode.NamespaceURI);
+            spineNode.AppendChild(navRefNode);
+            XmlDocumentHelper.CreateAppendXmlAttribute(opfDocument, navRefNode, "idref", "ncx");
+            XmlDocumentHelper.CreateAppendXmlAttribute(opfDocument, navRefNode, "linear", "no");
+
             foreach (string strHtmlID in htmlIDListInPlayOrder)
             {
                 XmlNode itemRefNode = opfDocument.CreateElement(null, "itemref", spineNode.NamespaceURI);
