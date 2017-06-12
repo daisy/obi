@@ -6611,6 +6611,7 @@ public bool ShowOnlySelectedSection
                         if (secNode.FirstUsedPhrase != null)
                         {
                             IndexOfPhrase = secNode.FirstUsedPhrase.Index;
+                            i = IndexOfPhrase;
                             node = secNode.PhraseChild(IndexOfPhrase);
                         }
                         DurationOfPhrase = 0;
