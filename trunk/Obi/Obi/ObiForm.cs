@@ -872,6 +872,9 @@ namespace Obi
 
             public void CopyToBackup()
             {
+                mFile_SaveProjectMenuItem.Enabled = false;
+                mFile_SaveProjectAsMenuItem.Enabled = false;
+
                 DateTime currentDateTime = DateTime.Now;
                 string postFix = currentDateTime.Year.ToString() + "-"
                     + (currentDateTime.Month.ToString().Length > 1 ? currentDateTime.Month.ToString() : "0" + currentDateTime.Month.ToString()) + "-"
@@ -895,6 +898,8 @@ namespace Obi
                 {
                     m_TotalTimeIntervalSinceLastBackup = 0;
                 }
+                mFile_SaveProjectMenuItem.Enabled = true;
+                mFile_SaveProjectAsMenuItem.Enabled = true;
             }
 
             // Save the current project under a different name; ask for a new path first.
