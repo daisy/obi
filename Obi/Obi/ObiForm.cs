@@ -872,8 +872,18 @@ namespace Obi
 
             public void CopyToBackup()
             {
-                mFile_SaveProjectMenuItem.Enabled = false;
-                mFile_SaveProjectAsMenuItem.Enabled = false;
+                bool isSaveProjectEnabled = false;
+                bool isSaveProjectAsEnabled = false;
+                if (mFile_SaveProjectMenuItem.Enabled)
+                {
+                    isSaveProjectEnabled = true;
+                    mFile_SaveProjectMenuItem.Enabled = false;
+                }
+                if (mFile_SaveProjectAsMenuItem.Enabled)
+                {
+                    isSaveProjectAsEnabled = true;
+                    mFile_SaveProjectAsMenuItem.Enabled = false;
+                }
 
                 DateTime currentDateTime = DateTime.Now;
                 string postFix = currentDateTime.Year.ToString() + "-"
@@ -898,7 +908,9 @@ namespace Obi
                 {
                     m_TotalTimeIntervalSinceLastBackup = 0;
                 }
+                if(isSaveProjectEnabled)
                 mFile_SaveProjectMenuItem.Enabled = true;
+                if(isSaveProjectAsEnabled)
                 mFile_SaveProjectAsMenuItem.Enabled = true;
             }
 
