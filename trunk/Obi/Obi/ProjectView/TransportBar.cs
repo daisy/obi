@@ -3382,7 +3382,8 @@ namespace Obi.ProjectView
                 else if (mView.Selection is AudioSelection)
                 {
                 if (mState == State.Playing) Pause ();
-                
+                if (!(mView.Selection is AudioSelection)) return false;
+
                                     AudioSelection s = (AudioSelection)mView.Selection;
                                     if (mState == State.Stopped && s.AudioRange != null && !s.AudioRange.HasCursor && !useSelection) 
                                         return false ;
