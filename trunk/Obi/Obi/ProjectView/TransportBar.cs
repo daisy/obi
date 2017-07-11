@@ -2975,6 +2975,13 @@ namespace Obi.ProjectView
             if (mCurrentPlaylist != null && mView.Selection is AudioSelection && mCurrentPlaylist is PreviewPlaylist && CurrentState == State.Paused) Stop();
             if (IsPlayerActive)
             {
+                // if current playback phrase is not selected, hthen select it.
+                if (mView.Selection == null
+                    || (CurrentPlaylist.CurrentPhrase != null &&  CurrentPlaylist.CurrentPhrase != mView.Selection.Node))
+                {
+                    mView.SelectFromTransportBar(mCurrentPlaylist.CurrentPhrase, null);
+                }
+
 
                 if (((IsPaused && mCurrentPlaylist.CurrentTimeInAsset <= 10) || (mView.ObiForm.Settings.PlayOnNavigate && CurrentState == State.Playing && mCurrentPlaylist.CurrentTimeInAsset <= 800))
                     && (mView.Selection.Node.PrecedingNode is PhraseNode || mView.Selection.Node.PrecedingNode is EmptyNode) && !mView.IsZoomWaveformActive)
@@ -3032,6 +3039,7 @@ namespace Obi.ProjectView
             }
             return false;
         }
+
         public bool StepForward()
         {
             m_ElapseBackInterval = mView.ObiForm.Settings.Audio_ElapseBackTimeInMilliseconds;
