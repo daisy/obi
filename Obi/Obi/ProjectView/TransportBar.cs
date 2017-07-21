@@ -767,7 +767,7 @@ namespace Obi.ProjectView
                     {   
                         bool playbackOnSelection = this.SelectionChangedPlaybackEnabled;
                         this.SelectionChangedPlaybackEnabled = false;
-                       // mView.Selection = new NodeSelection (mView.Selection.Node, mView.Selection.Control ) ;
+                        mView.Selection = new NodeSelection (mView.Selection.Node, mView.Selection.Control ) ;
                         this.SelectionChangedPlaybackEnabled = playbackOnSelection ;
                 }
                 }
