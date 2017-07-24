@@ -142,4 +142,16 @@
   <data name="m_rbKeepEmptyPages.Text" xml:space="preserve">
     <value>Seiten mit &amp;Stille</value>
   </data>
+  <data name="m_cbCreatePagesAtEnd.Size" type="System.Drawing.Size, System.Drawing">
+    <value>205, 17</value>
+  </data>
+  <data name="m_cbCreatePagesAtEnd.Text" xml:space="preserve">
+    <value>Neue Seiten nur am Ende der Sektion</value>
+  </data>
+  <data name="$this.AccessibleName" xml:space="preserve">
+    <value>Automatisch Seiten erzeugen</value>
+  </data>
+  <data name="$this.Text" xml:space="preserve">
+    <value>Automatisch Seiten erzeugen</value>
+  </data>
 </root>
