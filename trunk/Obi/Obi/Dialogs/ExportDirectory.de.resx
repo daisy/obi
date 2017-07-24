@@ -302,10 +302,6 @@
   <data name="m_btnAdvance.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
-  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="m_btnAdvance.ShowHelp" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
   <data name="m_btnAdvance.Text" xml:space="preserve">
     <value>er&amp;weitert</value>
   </data>
@@ -390,6 +386,10 @@
   <data name="m_numericUpDownEpubFilenameLengthLimit.Location" type="System.Drawing.Point, System.Drawing">
     <value>247, 29</value>
   </data>
+  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="m_numericUpDownEpubFilenameLengthLimit.ShowHelp" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
   <data name="m_chkBoxEpubFilenameLengthLimit.AccessibleName" xml:space="preserve">
     <value>Max. Länge der EPUB Dateinamen</value>
   </data>
@@ -401,6 +401,9 @@
   </data>
   <data name="m_chkBoxEpubFilenameLengthLimit.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
+  </data>
+  <data name="m_chkBoxEpubFilenameLengthLimit.ShowHelp" type="System.Boolean, mscorlib">
+    <value>True</value>
   </data>
   <data name="m_chkBoxEpubFilenameLengthLimit.Size" type="System.Drawing.Size, System.Drawing">
     <value>235, 20</value>
@@ -419,6 +422,21 @@
   </data>
   <data name="m_EpubFileNamegroupBox.Text" xml:space="preserve">
     <value>Länge  EPUB Dateinamen</value>
+  </data>
+  <data name="m_chkBoxCreateMediaOverlays.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="m_chkBoxCreateMediaOverlays.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
+    <value>AssociateIndex</value>
+  </data>
+  <data name="m_chkBoxCreateMediaOverlays.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="m_chkBoxCreateMediaOverlays.Size" type="System.Drawing.Size, System.Drawing">
+    <value>365, 20</value>
+  </data>
+  <data name="m_chkBoxCreateMediaOverlays.Text" xml:space="preserve">
+    <value>Erstelle Media Overlay-Elemente in der Navigationsdatei</value>
   </data>
   <data name="$this.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
