@@ -6683,8 +6683,8 @@ public bool ShowOnlySelectedSection
             autoPageGeneration.Close();
             if (Selection != null && this.Selection.Node != null && this.Selection.Node is SectionNode)
             {
-                this.Selection = new NodeSelection(this.Selection.Node, mContentView);
-                SectionNode secNode = (SectionNode)this.Selection.Node;
+                //this.Selection = new NodeSelection(this.Selection.Node, mContentView);
+                //SectionNode secNode = (SectionNode)this.Selection.Node;
                 List<SectionNode> sectionsList = ((ObiRootNode)this.Presentation.RootNode).GetListOfAllSections();
 
                                         Dialogs.ProgressDialog progress_AutoPageGeneration= new Obi.Dialogs.ProgressDialog(Localizer.Message("AutoPageGeneration_Progress"),
@@ -6702,7 +6702,7 @@ public bool ShowOnlySelectedSection
                                         if (progress_AutoPageGeneration.Exception != null) throw progress_AutoPageGeneration.Exception;
 
 
-                                        this.Selection = new NodeSelection(secNode, mContentView);
+                                        //this.Selection = new NodeSelection(secNode, mContentView);
                 Command cmd = this.AddEmptyPagesCommand(PageIndexTobeMarked, TotalPagesInSection, autoPageGeneration.GenerateSpeech, autoPageGeneration.StartingSectionIndex);
                 if (cmd != null)
                 {
