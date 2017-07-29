@@ -1161,6 +1161,12 @@
   <data name="mSkippableNoteToolStripMenuItem.Text" xml:space="preserve">
     <value>Nota a &amp;avançar</value>
   </data>
+  <data name="mAutoPageGenerationMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>240, 22</value>
+  </data>
+  <data name="mAutoPageGenerationMenuItem.Text" xml:space="preserve">
+    <value>Geração Automática de Página</value>
+  </data>
   <data name="toolStripSeparator6.Size" type="System.Drawing.Size, System.Drawing">
     <value>237, 6</value>
   </data>
@@ -2949,6 +2955,12 @@
   </data>
   <data name="&gt;&gt;mSkippableClearRoleFromNoteToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;mAutoPageGenerationMenuItem.Name" xml:space="preserve">
+    <value>mAutoPageGenerationMenuItem</value>
+  </data>
+  <data name="&gt;&gt;mAutoPageGenerationMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;toolStripSeparator6.Name" xml:space="preserve">
     <value>toolStripSeparator6</value>
