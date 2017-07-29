@@ -6683,10 +6683,11 @@ public bool ShowOnlySelectedSection
             autoPageGeneration.Close();
             if (Selection != null && this.Selection.Node != null && this.Selection.Node is SectionNode)
             {
-                //this.Selection = new NodeSelection(this.Selection.Node, mContentView);
-                //SectionNode secNode = (SectionNode)this.Selection.Node;
+                this.Selection = new NodeSelection(this.Selection.Node, mContentView);
+                SectionNode secNode = (SectionNode)this.Selection.Node;
                 List<SectionNode> sectionsList = ((ObiRootNode)this.Presentation.RootNode).GetListOfAllSections();
 
+                Command cmd = null; 
                                         Dialogs.ProgressDialog progress_AutoPageGeneration= new Obi.Dialogs.ProgressDialog(Localizer.Message("AutoPageGeneration_Progress"),
                         delegate(Dialogs.ProgressDialog progress1)
                         {
@@ -6695,15 +6696,16 @@ public bool ShowOnlySelectedSection
                 {
                     AddIntermediatePages(sectionsList[i], 0, 0, autoPageGeneration.GapsInPages, PageIndexTobeMarked, TotalPagesInSection, 1,autoPageGeneration.CreatePagesAtTheEndOfSection);
                 }
-                
+                cmd = this.AddEmptyPagesCommand(PageIndexTobeMarked, TotalPagesInSection, autoPageGeneration.GenerateSpeech, autoPageGeneration.StartingSectionIndex);
+
                         });
                                         progress_AutoPageGeneration.OperationCancelled += new Obi.Dialogs.OperationCancelledHandler(delegate(object sender, EventArgs e) { });
                                         progress_AutoPageGeneration.ShowDialog();
                                         if (progress_AutoPageGeneration.Exception != null) throw progress_AutoPageGeneration.Exception;
 
 
-                                        //this.Selection = new NodeSelection(secNode, mContentView);
-                Command cmd = this.AddEmptyPagesCommand(PageIndexTobeMarked, TotalPagesInSection, autoPageGeneration.GenerateSpeech, autoPageGeneration.StartingSectionIndex);
+                                        this.Selection = new NodeSelection(secNode, mContentView);
+                //Command cmd = this.AddEmptyPagesCommand(PageIndexTobeMarked, TotalPagesInSection, autoPageGeneration.GenerateSpeech, autoPageGeneration.StartingSectionIndex);
                 if (cmd != null)
                 {
                     mPresentation.Do(cmd);
