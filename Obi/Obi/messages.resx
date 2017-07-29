@@ -2988,4 +2988,7 @@ Error text: {1}</value>
   <data name="Pages" xml:space="preserve">
     <value>Pages:</value>
   </data>
+  <data name="AutoPageGeneration_Progress" xml:space="preserve">
+    <value>Auto page generation in progress. Please wait..</value>
+  </data>
 </root>
