@@ -610,6 +610,15 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Auto page generation in progress. Please wait...
+        /// </summary>
+        internal static string AutoPageGeneration_Progress {
+            get {
+                return ResourceManager.GetString("AutoPageGeneration_Progress", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Error in saving to backup file! If this message comes again and again, you may disable auto save from preferences and report this bugg..
         /// </summary>
         internal static string AutoSave_Error {
