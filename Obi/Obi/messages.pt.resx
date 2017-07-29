@@ -2692,4 +2692,36 @@ Error text: {1}</value>
   <data name="Rollback_Disabled" xml:space="preserve">
     <value>Depuração Descartagem está desabilitado. Ativar a partir de projeto preferências.</value>
   </data>
+  <data name="ProjectView_FillEmptyPagesInGaps" xml:space="preserve">
+    <value>As páginas vazias preencheram as lacunas</value>
+  </data>
+  <data name="ProjectView_NoGapInPages" xml:space="preserve">
+    <value>Nenhuma lacuna encontrada nas páginas</value>
+  </data>
+  <data name="Mints_invalid_input" xml:space="preserve">
+    <value>Por favor especifique o intervalo de tempo em minutos</value>
+    <comment>Error message</comment>
+  </data>
+  <data name="PagesInSectionsDetected" xml:space="preserve">
+    <value>Algumas páginas foram detetadas no projeto. É necessário apagá-las para continuar. Deseja apagá-las agora?</value>
+  </data>
+  <data name="PageDeletionSucessfull" xml:space="preserve">
+    <value>Sucesso! As páginas foram apagadas. Pode prosseguir com a marcação de páginas</value>
+  </data>
+  <data name="Audio_MergeFirstTwoPhrasesAfterPhraseDetectionWhileRecording" xml:space="preserve">
+    <value>Juntar as primeiras duas frases depois de gravar com deteção de frase</value>
+  </data>
+  <data name="Audio_AutoPlayAfterRecordingStops" xml:space="preserve">
+    <value>Reproduzir a frase gravada ao parar a gravação</value>
+  </data>
+  <data name="Project_ImportNCCFileWithWindows1252Encoding" xml:space="preserve">
+    <value>Importar ficheiros NCC antigos com a conversão Windows 1252</value>
+  </data>
+  <data name="Delete_pages" xml:space="preserve">
+    <value>Apagar páginas</value>
+    <comment>Command</comment>
+  </data>
+  <data name="Pages" xml:space="preserve">
+    <value>Páginas:</value>
+  </data>
 </root>
