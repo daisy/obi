@@ -112,160 +112,94 @@
     <value>2.0</value>
   </resheader>
   <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <metadata name="helpProvider1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 17</value>
-  </metadata>
-  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <assembly alias="mscorlib" name="mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="m_lblDirectoryPath.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
+  <data name="helpProvider1.HelpNamespace" xml:space="preserve">
+    <value>Obi Help.fr.chm</value>
   </data>
-  <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="m_lblDirectoryPath.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="m_lblDirectoryPath.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
+    <value>AssociateIndex</value>
+  </data>
+  <data name="m_lblDirectoryPath.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="m_lblDirectoryPath.Location" type="System.Drawing.Point, System.Drawing">
     <value>0, 19</value>
   </data>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="m_lblDirectoryPath.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 0, 4, 0</value>
-  </data>
   <data name="m_lblDirectoryPath.Size" type="System.Drawing.Size, System.Drawing">
-    <value>104, 16</value>
-  </data>
-  <data name="m_lblDirectoryPath.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
+    <value>180, 16</value>
   </data>
   <data name="m_lblDirectoryPath.Text" xml:space="preserve">
     <value>Répertoire pour l'e&amp;xportation:</value>
   </data>
-  <data name="&gt;&gt;m_lblDirectoryPath.Name" xml:space="preserve">
-    <value>m_lblDirectoryPath</value>
-  </data>
-  <data name="&gt;&gt;m_lblDirectoryPath.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;m_lblDirectoryPath.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;m_lblDirectoryPath.ZOrder" xml:space="preserve">
-    <value>10</value>
-  </data>
   <data name="mPathTextBox.AccessibleName" xml:space="preserve">
     <value>Répertoire pour l'exportation:</value>
   </data>
-  <data name="mPathTextBox.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Top, Left, Right</value>
+  <data name="mPathTextBox.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="mPathTextBox.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
+    <value>AssociateIndex</value>
+  </data>
+  <data name="mPathTextBox.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
   </data>
   <data name="mPathTextBox.Location" type="System.Drawing.Point, System.Drawing">
     <value>180, 17</value>
   </data>
-  <data name="mPathTextBox.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 4, 4, 4</value>
-  </data>
   <data name="mPathTextBox.Size" type="System.Drawing.Size, System.Drawing">
     <value>280, 22</value>
   </data>
-  <data name="mPathTextBox.TabIndex" type="System.Int32, mscorlib">
-    <value>1</value>
+  <data name="mSelectButton.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
   </data>
-  <data name="&gt;&gt;mPathTextBox.Name" xml:space="preserve">
-    <value>mPathTextBox</value>
+  <data name="mSelectButton.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
+    <value>AssociateIndex</value>
   </data>
-  <data name="&gt;&gt;mPathTextBox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;mPathTextBox.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;mPathTextBox.ZOrder" xml:space="preserve">
-    <value>9</value>
-  </data>
-  <data name="mSelectButton.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Top, Right</value>
-  </data>
-  <data name="mSelectButton.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
-    <value>Flat</value>
+  <data name="mSelectButton.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
   </data>
   <data name="mSelectButton.Location" type="System.Drawing.Point, System.Drawing">
     <value>466, 13</value>
   </data>
-  <data name="mSelectButton.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 4, 4, 4</value>
-  </data>
-  <data name="mSelectButton.Size" type="System.Drawing.Size, System.Drawing">
-    <value>100, 28</value>
-  </data>
-  <data name="mSelectButton.TabIndex" type="System.Int32, mscorlib">
-    <value>2</value>
-  </data>
   <data name="mSelectButton.Text" xml:space="preserve">
     <value>&amp;Sélectionner</value>
   </data>
-  <data name="&gt;&gt;mSelectButton.Name" xml:space="preserve">
-    <value>mSelectButton</value>
+  <data name="mOKButton.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
   </data>
-  <data name="&gt;&gt;mSelectButton.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="mOKButton.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
+    <value>AssociateIndex</value>
   </data>
-  <data name="&gt;&gt;mSelectButton.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;mSelectButton.ZOrder" xml:space="preserve">
-    <value>8</value>
-  </data>
-  <data name="mOKButton.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Bottom</value>
-  </data>
-  <data name="mOKButton.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
-    <value>Flat</value>
+  <data name="mOKButton.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
   </data>
   <data name="mOKButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>125, 363</value>
+    <value>125, 379</value>
   </data>
-  <data name="mOKButton.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 4, 4, 4</value>
-  </data>
-  <data name="mOKButton.Size" type="System.Drawing.Size, System.Drawing">
-    <value>100, 28</value>
-  </data>
+  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="mOKButton.TabIndex" type="System.Int32, mscorlib">
     <value>15</value>
   </data>
-  <data name="mOKButton.Text" xml:space="preserve">
-    <value>&amp;OK</value>
+  <data name="mCancelButton.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
   </data>
-  <data name="&gt;&gt;mOKButton.Name" xml:space="preserve">
-    <value>mOKButton</value>
+  <data name="mCancelButton.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
+    <value>AssociateIndex</value>
   </data>
-  <data name="&gt;&gt;mOKButton.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;mOKButton.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;mOKButton.ZOrder" xml:space="preserve">
-    <value>7</value>
-  </data>
-  <data name="mCancelButton.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Bottom</value>
-  </data>
-  <data name="mCancelButton.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
-    <value>Flat</value>
+  <data name="mCancelButton.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
   </data>
   <data name="mCancelButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>276, 363</value>
-  </data>
-  <data name="mCancelButton.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 4, 4, 4</value>
-  </data>
-  <data name="mCancelButton.Size" type="System.Drawing.Size, System.Drawing">
-    <value>100, 28</value>
+    <value>276, 379</value>
   </data>
   <data name="mCancelButton.TabIndex" type="System.Int32, mscorlib">
     <value>16</value>
@@ -273,559 +207,280 @@
   <data name="mCancelButton.Text" xml:space="preserve">
     <value>&amp;Annuler</value>
   </data>
-  <data name="&gt;&gt;mCancelButton.Name" xml:space="preserve">
-    <value>mCancelButton</value>
+  <data name="m_lblSelectLevelForAudioFiles.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
   </data>
-  <data name="&gt;&gt;mCancelButton.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="m_lblSelectLevelForAudioFiles.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
+    <value>AssociateIndex</value>
   </data>
-  <data name="&gt;&gt;mCancelButton.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;mCancelButton.ZOrder" xml:space="preserve">
-    <value>6</value>
-  </data>
-  <data name="m_lblSelectLevelForAudioFiles.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="m_lblSelectLevelForAudioFiles.Location" type="System.Drawing.Point, System.Drawing">
-    <value>12, 54</value>
+  <data name="m_lblSelectLevelForAudioFiles.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
   </data>
   <data name="m_lblSelectLevelForAudioFiles.Size" type="System.Drawing.Size, System.Drawing">
-    <value>218, 16</value>
-  </data>
-  <data name="m_lblSelectLevelForAudioFiles.TabIndex" type="System.Int32, mscorlib">
-    <value>3</value>
+    <value>251, 16</value>
   </data>
   <data name="m_lblSelectLevelForAudioFiles.Text" xml:space="preserve">
     <value>Créer &amp;un fichier audio par section jusqu'à:</value>
   </data>
-  <data name="&gt;&gt;m_lblSelectLevelForAudioFiles.Name" xml:space="preserve">
-    <value>m_lblSelectLevelForAudioFiles</value>
-  </data>
-  <data name="&gt;&gt;m_lblSelectLevelForAudioFiles.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;m_lblSelectLevelForAudioFiles.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;m_lblSelectLevelForAudioFiles.ZOrder" xml:space="preserve">
-    <value>5</value>
-  </data>
   <data name="m_ComboSelectLevelForAudioFiles.AccessibleName" xml:space="preserve">
     <value>Créer un fichier audio par section jusqu'à:</value>
+  </data>
+  <data name="m_ComboSelectLevelForAudioFiles.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="m_ComboSelectLevelForAudioFiles.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
+    <value>AssociateIndex</value>
+  </data>
+  <data name="m_ComboSelectLevelForAudioFiles.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
   </data>
   <data name="m_ComboSelectLevelForAudioFiles.Location" type="System.Drawing.Point, System.Drawing">
     <value>269, 52</value>
   </data>
-  <data name="m_ComboSelectLevelForAudioFiles.Size" type="System.Drawing.Size, System.Drawing">
-    <value>121, 24</value>
-  </data>
-  <data name="m_ComboSelectLevelForAudioFiles.TabIndex" type="System.Int32, mscorlib">
-    <value>4</value>
-  </data>
-  <data name="&gt;&gt;m_ComboSelectLevelForAudioFiles.Name" xml:space="preserve">
-    <value>m_ComboSelectLevelForAudioFiles</value>
-  </data>
-  <data name="&gt;&gt;m_ComboSelectLevelForAudioFiles.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;m_ComboSelectLevelForAudioFiles.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;m_ComboSelectLevelForAudioFiles.ZOrder" xml:space="preserve">
-    <value>4</value>
-  </data>
   <data name="m_checkBoxEncoder.AccessibleDescription" xml:space="preserve">
     <value>Case à cocher pour l'encodage des fichiers audio</value>
   </data>
-  <data name="m_checkBoxEncoder.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
+  <data name="m_checkBoxEncoder.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
   </data>
-  <data name="m_checkBoxEncoder.Location" type="System.Drawing.Point, System.Drawing">
-    <value>9, 23</value>
+  <data name="m_checkBoxEncoder.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
+    <value>AssociateIndex</value>
+  </data>
+  <data name="m_checkBoxEncoder.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
   </data>
   <data name="m_checkBoxEncoder.Size" type="System.Drawing.Size, System.Drawing">
-    <value>139, 20</value>
-  </data>
-  <data name="m_checkBoxEncoder.TabIndex" type="System.Int32, mscorlib">
-    <value>6</value>
+    <value>181, 20</value>
   </data>
   <data name="m_checkBoxEncoder.Text" xml:space="preserve">
     <value>&amp;Encoder les fichiers audio</value>
   </data>
-  <data name="&gt;&gt;m_checkBoxEncoder.Name" xml:space="preserve">
-    <value>m_checkBoxEncoder</value>
-  </data>
-  <data name="&gt;&gt;m_checkBoxEncoder.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;m_checkBoxEncoder.Parent" xml:space="preserve">
-    <value>m_grpBoxMP3Encoding</value>
-  </data>
-  <data name="&gt;&gt;m_checkBoxEncoder.ZOrder" xml:space="preserve">
-    <value>5</value>
-  </data>
   <data name="m_Bitrate.AccessibleDescription" xml:space="preserve">
     <value>Débit</value>
   </data>
-  <data name="m_Bitrate.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
+  <data name="m_Bitrate.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
   </data>
-  <data name="m_Bitrate.Location" type="System.Drawing.Point, System.Drawing">
-    <value>165, 57</value>
+  <data name="m_Bitrate.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
+    <value>AssociateIndex</value>
+  </data>
+  <data name="m_Bitrate.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
   </data>
   <data name="m_Bitrate.Size" type="System.Drawing.Size, System.Drawing">
-    <value>49, 16</value>
-  </data>
-  <data name="m_Bitrate.TabIndex" type="System.Int32, mscorlib">
-    <value>8</value>
+    <value>40, 16</value>
   </data>
   <data name="m_Bitrate.Text" xml:space="preserve">
     <value>Dé&amp;bit</value>
   </data>
-  <data name="&gt;&gt;m_Bitrate.Name" xml:space="preserve">
-    <value>m_Bitrate</value>
+  <data name="m_ComboBoxBitrate.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
   </data>
-  <data name="&gt;&gt;m_Bitrate.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="m_ComboBoxBitrate.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
+    <value>AssociateIndex</value>
   </data>
-  <data name="&gt;&gt;m_Bitrate.Parent" xml:space="preserve">
-    <value>m_grpBoxMP3Encoding</value>
-  </data>
-  <data name="&gt;&gt;m_Bitrate.ZOrder" xml:space="preserve">
-    <value>3</value>
-  </data>
-  <data name="m_ComboBoxBitrate.Items" xml:space="preserve">
-    <value>32</value>
-  </data>
-  <data name="m_ComboBoxBitrate.Items1" xml:space="preserve">
-    <value>40</value>
-  </data>
-  <data name="m_ComboBoxBitrate.Items2" xml:space="preserve">
-    <value>48</value>
-  </data>
-  <data name="m_ComboBoxBitrate.Items3" xml:space="preserve">
-    <value>56</value>
-  </data>
-  <data name="m_ComboBoxBitrate.Items4" xml:space="preserve">
-    <value>64</value>
-  </data>
-  <data name="m_ComboBoxBitrate.Items5" xml:space="preserve">
-    <value>128</value>
-  </data>
-  <data name="m_ComboBoxBitrate.Items6" xml:space="preserve">
-    <value>196</value>
-  </data>
-  <data name="m_ComboBoxBitrate.Items7" xml:space="preserve">
-    <value>256</value>
-  </data>
-  <data name="m_ComboBoxBitrate.Location" type="System.Drawing.Point, System.Drawing">
-    <value>223, 51</value>
-  </data>
-  <data name="m_ComboBoxBitrate.Size" type="System.Drawing.Size, System.Drawing">
-    <value>121, 24</value>
-  </data>
-  <data name="m_ComboBoxBitrate.TabIndex" type="System.Int32, mscorlib">
-    <value>9</value>
-  </data>
-  <data name="&gt;&gt;m_ComboBoxBitrate.Name" xml:space="preserve">
-    <value>m_ComboBoxBitrate</value>
-  </data>
-  <data name="&gt;&gt;m_ComboBoxBitrate.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;m_ComboBoxBitrate.Parent" xml:space="preserve">
-    <value>m_grpBoxMP3Encoding</value>
-  </data>
-  <data name="&gt;&gt;m_ComboBoxBitrate.ZOrder" xml:space="preserve">
-    <value>4</value>
+  <data name="m_ComboBoxBitrate.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
   </data>
   <data name="m_checkBoxAddSectionNameToAudioFileName.AccessibleName" xml:space="preserve">
     <value>Ajouter le nom de la section au nom de fichier audio </value>
   </data>
-  <data name="m_checkBoxAddSectionNameToAudioFileName.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
+  <data name="m_checkBoxAddSectionNameToAudioFileName.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
   </data>
-  <data name="m_checkBoxAddSectionNameToAudioFileName.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 21</value>
+  <data name="m_checkBoxAddSectionNameToAudioFileName.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
+    <value>AssociateIndex</value>
+  </data>
+  <data name="m_checkBoxAddSectionNameToAudioFileName.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
   </data>
   <data name="m_checkBoxAddSectionNameToAudioFileName.Size" type="System.Drawing.Size, System.Drawing">
-    <value>269, 20</value>
-  </data>
-  <data name="m_checkBoxAddSectionNameToAudioFileName.TabIndex" type="System.Int32, mscorlib">
-    <value>9</value>
+    <value>335, 20</value>
   </data>
   <data name="m_checkBoxAddSectionNameToAudioFileName.Text" xml:space="preserve">
     <value>&amp;Ajouter le nom de la section au nom de fichier audio </value>
   </data>
-  <data name="&gt;&gt;m_checkBoxAddSectionNameToAudioFileName.Name" xml:space="preserve">
-    <value>m_checkBoxAddSectionNameToAudioFileName</value>
-  </data>
-  <data name="&gt;&gt;m_checkBoxAddSectionNameToAudioFileName.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;m_checkBoxAddSectionNameToAudioFileName.Parent" xml:space="preserve">
-    <value>m_grpBoxSectionNameOperation</value>
-  </data>
-  <data name="&gt;&gt;m_checkBoxAddSectionNameToAudioFileName.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
   <data name="m_btnEncodingOptions.AccessibleName" xml:space="preserve">
     <value>Plus d'options d'encodage</value>
   </data>
-  <data name="m_btnEncodingOptions.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
-    <value>Flat</value>
+  <data name="m_btnEncodingOptions.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
   </data>
-  <data name="m_btnEncodingOptions.Location" type="System.Drawing.Point, System.Drawing">
-    <value>304, 16</value>
+  <data name="m_btnEncodingOptions.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
+    <value>AssociateIndex</value>
   </data>
-  <data name="m_btnEncodingOptions.Size" type="System.Drawing.Size, System.Drawing">
-    <value>165, 27</value>
-  </data>
-  <data name="m_btnEncodingOptions.TabIndex" type="System.Int32, mscorlib">
-    <value>8</value>
+  <data name="m_btnEncodingOptions.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
   </data>
   <data name="m_btnEncodingOptions.Text" xml:space="preserve">
     <value>&amp;Plus d'options d'encodage</value>
   </data>
-  <data name="&gt;&gt;m_btnEncodingOptions.Name" xml:space="preserve">
-    <value>m_btnEncodingOptions</value>
-  </data>
-  <data name="&gt;&gt;m_btnEncodingOptions.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;m_btnEncodingOptions.Parent" xml:space="preserve">
-    <value>m_grpBoxMP3Encoding</value>
-  </data>
-  <data name="&gt;&gt;m_btnEncodingOptions.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
   <data name="m_comboBoxEncodingType.AccessibleDescription" xml:space="preserve">
     <value>Zone de liste déroulante pour le Type d'encodage</value>
   </data>
-  <data name="m_comboBoxEncodingType.Items" xml:space="preserve">
-    <value>MP3</value>
+  <data name="m_comboBoxEncodingType.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
   </data>
-  <data name="m_comboBoxEncodingType.Location" type="System.Drawing.Point, System.Drawing">
-    <value>9, 51</value>
+  <data name="m_comboBoxEncodingType.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
+    <value>AssociateIndex</value>
   </data>
-  <data name="m_comboBoxEncodingType.Size" type="System.Drawing.Size, System.Drawing">
-    <value>101, 24</value>
-  </data>
-  <data name="m_comboBoxEncodingType.TabIndex" type="System.Int32, mscorlib">
-    <value>7</value>
-  </data>
-  <data name="m_comboBoxEncodingType.Text" xml:space="preserve">
-    <value>MP3</value>
-  </data>
-  <data name="&gt;&gt;m_comboBoxEncodingType.Name" xml:space="preserve">
-    <value>m_comboBoxEncodingType</value>
-  </data>
-  <data name="&gt;&gt;m_comboBoxEncodingType.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;m_comboBoxEncodingType.Parent" xml:space="preserve">
-    <value>m_grpBoxMP3Encoding</value>
-  </data>
-  <data name="&gt;&gt;m_comboBoxEncodingType.ZOrder" xml:space="preserve">
-    <value>1</value>
+  <data name="m_comboBoxEncodingType.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
   </data>
   <data name="m_btnAdvance.AccessibleName" xml:space="preserve">
     <value>Avancer</value>
   </data>
-  <data name="m_btnAdvance.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
-    <value>Flat</value>
+  <data name="m_btnAdvance.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
   </data>
-  <data name="m_btnAdvance.Location" type="System.Drawing.Point, System.Drawing">
-    <value>368, 51</value>
+  <data name="m_btnAdvance.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
+    <value>AssociateIndex</value>
   </data>
-  <data name="m_btnAdvance.Size" type="System.Drawing.Size, System.Drawing">
-    <value>100, 23</value>
-  </data>
-  <data name="m_btnAdvance.TabIndex" type="System.Int32, mscorlib">
-    <value>10</value>
+  <data name="m_btnAdvance.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
   </data>
   <data name="m_btnAdvance.Text" xml:space="preserve">
     <value>&amp;Avancer</value>
   </data>
-  <data name="&gt;&gt;m_btnAdvance.Name" xml:space="preserve">
-    <value>m_btnAdvance</value>
+  <data name="m_grpBoxMP3Encoding.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
   </data>
-  <data name="&gt;&gt;m_btnAdvance.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="m_grpBoxMP3Encoding.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
+    <value>AssociateIndex</value>
   </data>
-  <data name="&gt;&gt;m_btnAdvance.Parent" xml:space="preserve">
-    <value>m_grpBoxMP3Encoding</value>
-  </data>
-  <data name="&gt;&gt;m_btnAdvance.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="m_grpBoxMP3Encoding.Location" type="System.Drawing.Point, System.Drawing">
-    <value>15, 76</value>
-  </data>
-  <data name="helpProvider1.HelpNamespace" xml:space="preserve">
-    <value>Obi Help.fr.chm</value>
-  </data>
-  <data name="m_grpBoxMP3Encoding.ShowHelp" type="System.Boolean, mscorlib">
-    <value>False</value>
-  </data>
-  <data name="m_grpBoxMP3Encoding.Size" type="System.Drawing.Size, System.Drawing">
-    <value>477, 81</value>
-  </data>
-  <data name="m_grpBoxMP3Encoding.TabIndex" type="System.Int32, mscorlib">
-    <value>5</value>
-  </data>
-  <data name="&gt;&gt;m_grpBoxMP3Encoding.Name" xml:space="preserve">
-    <value>m_grpBoxMP3Encoding</value>
-  </data>
-  <data name="&gt;&gt;m_grpBoxMP3Encoding.Type" xml:space="preserve">
-    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;m_grpBoxMP3Encoding.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;m_grpBoxMP3Encoding.ZOrder" xml:space="preserve">
-    <value>3</value>
+  <data name="m_grpBoxMP3Encoding.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
   </data>
   <data name="m_chkBoxFilenameLengthLimit.AccessibleName" xml:space="preserve">
     <value>Limite de longueur du nom de fichier</value>
   </data>
-  <data name="m_chkBoxFilenameLengthLimit.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
+  <data name="m_chkBoxFilenameLengthLimit.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
   </data>
-  <data name="m_chkBoxFilenameLengthLimit.Enabled" type="System.Boolean, mscorlib">
-    <value>False</value>
+  <data name="m_chkBoxFilenameLengthLimit.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
+    <value>AssociateIndex</value>
   </data>
-  <data name="m_chkBoxFilenameLengthLimit.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 48</value>
+  <data name="m_chkBoxFilenameLengthLimit.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
   </data>
   <data name="m_chkBoxFilenameLengthLimit.Size" type="System.Drawing.Size, System.Drawing">
-    <value>165, 20</value>
-  </data>
-  <data name="m_chkBoxFilenameLengthLimit.TabIndex" type="System.Int32, mscorlib">
-    <value>10</value>
+    <value>220, 20</value>
   </data>
   <data name="m_chkBoxFilenameLengthLimit.Text" xml:space="preserve">
     <value>&amp;limite longueur du nom de fichier:</value>
   </data>
-  <data name="&gt;&gt;m_chkBoxFilenameLengthLimit.Name" xml:space="preserve">
-    <value>m_chkBoxFilenameLengthLimit</value>
-  </data>
-  <data name="&gt;&gt;m_chkBoxFilenameLengthLimit.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;m_chkBoxFilenameLengthLimit.Parent" xml:space="preserve">
-    <value>m_grpBoxSectionNameOperation</value>
-  </data>
-  <data name="&gt;&gt;m_chkBoxFilenameLengthLimit.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
   <data name="m_numericUpDownFilenameLengthLimit.AccessibleName" xml:space="preserve">
     <value>Limite numérique de la longueur du nom de fichier</value>
   </data>
-  <data name="m_numericUpDownFilenameLengthLimit.Enabled" type="System.Boolean, mscorlib">
-    <value>False</value>
+  <data name="m_numericUpDownFilenameLengthLimit.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
   </data>
-  <data name="m_numericUpDownFilenameLengthLimit.Location" type="System.Drawing.Point, System.Drawing">
-    <value>227, 47</value>
+  <data name="m_numericUpDownFilenameLengthLimit.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
+    <value>AssociateIndex</value>
   </data>
-  <data name="m_numericUpDownFilenameLengthLimit.Size" type="System.Drawing.Size, System.Drawing">
-    <value>120, 22</value>
+  <data name="m_numericUpDownFilenameLengthLimit.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
   </data>
-  <data name="m_numericUpDownFilenameLengthLimit.TabIndex" type="System.Int32, mscorlib">
-    <value>11</value>
+  <data name="m_grpBoxSectionNameOperation.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
   </data>
-  <data name="&gt;&gt;m_numericUpDownFilenameLengthLimit.Name" xml:space="preserve">
-    <value>m_numericUpDownFilenameLengthLimit</value>
+  <data name="m_grpBoxSectionNameOperation.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
+    <value>AssociateIndex</value>
   </data>
-  <data name="&gt;&gt;m_numericUpDownFilenameLengthLimit.Type" xml:space="preserve">
-    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;m_numericUpDownFilenameLengthLimit.Parent" xml:space="preserve">
-    <value>m_grpBoxSectionNameOperation</value>
-  </data>
-  <data name="&gt;&gt;m_numericUpDownFilenameLengthLimit.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="m_grpBoxSectionNameOperation.Location" type="System.Drawing.Point, System.Drawing">
-    <value>17, 163</value>
-  </data>
-  <data name="m_grpBoxSectionNameOperation.ShowHelp" type="System.Boolean, mscorlib">
-    <value>False</value>
-  </data>
-  <data name="m_grpBoxSectionNameOperation.Size" type="System.Drawing.Size, System.Drawing">
-    <value>475, 74</value>
-  </data>
-  <data name="m_grpBoxSectionNameOperation.TabIndex" type="System.Int32, mscorlib">
-    <value>8</value>
+  <data name="m_grpBoxSectionNameOperation.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
   </data>
   <data name="m_grpBoxSectionNameOperation.Text" xml:space="preserve">
     <value>Opération sur nom de section :</value>
   </data>
-  <data name="&gt;&gt;m_grpBoxSectionNameOperation.Name" xml:space="preserve">
-    <value>m_grpBoxSectionNameOperation</value>
+  <data name="m_chkBoxDummyTextHTMLfiles.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
   </data>
-  <data name="&gt;&gt;m_grpBoxSectionNameOperation.Type" xml:space="preserve">
-    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="m_chkBoxDummyTextHTMLfiles.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
+    <value>AssociateIndex</value>
   </data>
-  <data name="&gt;&gt;m_grpBoxSectionNameOperation.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;m_grpBoxSectionNameOperation.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="m_chkBoxDummyTextHTMLfiles.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="m_chkBoxDummyTextHTMLfiles.Enabled" type="System.Boolean, mscorlib">
-    <value>False</value>
-  </data>
-  <data name="m_chkBoxDummyTextHTMLfiles.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="m_chkBoxDummyTextHTMLfiles.Location" type="System.Drawing.Point, System.Drawing">
-    <value>20, 315</value>
-  </data>
-  <data name="m_chkBoxDummyTextHTMLfiles.ShowHelp" type="System.Boolean, mscorlib">
-    <value>True</value>
+  <data name="m_chkBoxDummyTextHTMLfiles.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
   </data>
   <data name="m_chkBoxDummyTextHTMLfiles.Size" type="System.Drawing.Size, System.Drawing">
-    <value>217, 20</value>
-  </data>
-  <data name="m_chkBoxDummyTextHTMLfiles.TabIndex" type="System.Int32, mscorlib">
-    <value>15</value>
+    <value>255, 20</value>
   </data>
   <data name="m_chkBoxDummyTextHTMLfiles.Text" xml:space="preserve">
     <value>Créer texte fictif dans les fichiers HTML</value>
   </data>
-  <data name="&gt;&gt;m_chkBoxDummyTextHTMLfiles.Name" xml:space="preserve">
-    <value>m_chkBoxDummyTextHTMLfiles</value>
-  </data>
-  <data name="&gt;&gt;m_chkBoxDummyTextHTMLfiles.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;m_chkBoxDummyTextHTMLfiles.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;m_chkBoxDummyTextHTMLfiles.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
   <data name="m_numericUpDownEpubFilenameLengthLimit.AccessibleName" xml:space="preserve">
     <value>Limite numérique de la longueur du nom de fichier EPUB</value>
   </data>
-  <data name="m_numericUpDownEpubFilenameLengthLimit.Enabled" type="System.Boolean, mscorlib">
-    <value>False</value>
+  <data name="m_numericUpDownEpubFilenameLengthLimit.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="m_numericUpDownEpubFilenameLengthLimit.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
+    <value>AssociateIndex</value>
+  </data>
+  <data name="m_numericUpDownEpubFilenameLengthLimit.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
   </data>
   <data name="m_numericUpDownEpubFilenameLengthLimit.Location" type="System.Drawing.Point, System.Drawing">
     <value>293, 29</value>
   </data>
-  <data name="m_numericUpDownEpubFilenameLengthLimit.Size" type="System.Drawing.Size, System.Drawing">
-    <value>120, 22</value>
-  </data>
-  <data name="m_numericUpDownEpubFilenameLengthLimit.TabIndex" type="System.Int32, mscorlib">
-    <value>13</value>
-  </data>
-  <data name="&gt;&gt;m_numericUpDownEpubFilenameLengthLimit.Name" xml:space="preserve">
-    <value>m_numericUpDownEpubFilenameLengthLimit</value>
-  </data>
-  <data name="&gt;&gt;m_numericUpDownEpubFilenameLengthLimit.Type" xml:space="preserve">
-    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;m_numericUpDownEpubFilenameLengthLimit.Parent" xml:space="preserve">
-    <value>m_EpubFileNamegroupBox</value>
-  </data>
-  <data name="&gt;&gt;m_numericUpDownEpubFilenameLengthLimit.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
   <data name="m_chkBoxEpubFilenameLengthLimit.AccessibleName" xml:space="preserve">
     <value>Limite de longueur du nom de fichier EPUB</value>
   </data>
-  <data name="m_chkBoxEpubFilenameLengthLimit.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
+  <data name="m_chkBoxEpubFilenameLengthLimit.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
   </data>
-  <data name="m_chkBoxEpubFilenameLengthLimit.Enabled" type="System.Boolean, mscorlib">
-    <value>False</value>
+  <data name="m_chkBoxEpubFilenameLengthLimit.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
+    <value>AssociateIndex</value>
   </data>
-  <data name="m_chkBoxEpubFilenameLengthLimit.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 31</value>
+  <data name="m_chkBoxEpubFilenameLengthLimit.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
   </data>
   <data name="m_chkBoxEpubFilenameLengthLimit.Size" type="System.Drawing.Size, System.Drawing">
-    <value>196, 20</value>
-  </data>
-  <data name="m_chkBoxEpubFilenameLengthLimit.TabIndex" type="System.Int32, mscorlib">
-    <value>12</value>
+    <value>283, 20</value>
   </data>
   <data name="m_chkBoxEpubFilenameLengthLimit.Text" xml:space="preserve">
     <value>Limite de longueur du nom de fichier EPUB:</value>
   </data>
-  <data name="&gt;&gt;m_chkBoxEpubFilenameLengthLimit.Name" xml:space="preserve">
-    <value>m_chkBoxEpubFilenameLengthLimit</value>
+  <data name="m_EpubFileNamegroupBox.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
   </data>
-  <data name="&gt;&gt;m_chkBoxEpubFilenameLengthLimit.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="m_EpubFileNamegroupBox.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
+    <value>AssociateIndex</value>
   </data>
-  <data name="&gt;&gt;m_chkBoxEpubFilenameLengthLimit.Parent" xml:space="preserve">
-    <value>m_EpubFileNamegroupBox</value>
-  </data>
-  <data name="&gt;&gt;m_chkBoxEpubFilenameLengthLimit.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="m_EpubFileNamegroupBox.Enabled" type="System.Boolean, mscorlib">
-    <value>False</value>
-  </data>
-  <data name="m_EpubFileNamegroupBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>16, 243</value>
-  </data>
-  <data name="m_EpubFileNamegroupBox.ShowHelp" type="System.Boolean, mscorlib">
-    <value>False</value>
-  </data>
-  <data name="m_EpubFileNamegroupBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>476, 57</value>
-  </data>
-  <data name="m_EpubFileNamegroupBox.TabIndex" type="System.Int32, mscorlib">
-    <value>14</value>
+  <data name="m_EpubFileNamegroupBox.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
   </data>
   <data name="m_EpubFileNamegroupBox.Text" xml:space="preserve">
     <value>Longueur du nom de fichier EPUB:</value>
   </data>
-  <data name="&gt;&gt;m_EpubFileNamegroupBox.Name" xml:space="preserve">
-    <value>m_EpubFileNamegroupBox</value>
+  <data name="m_chkBoxCreateMediaOverlays.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
   </data>
-  <data name="&gt;&gt;m_EpubFileNamegroupBox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="m_chkBoxCreateMediaOverlays.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
+    <value>AssociateIndex</value>
   </data>
-  <data name="&gt;&gt;m_EpubFileNamegroupBox.Parent" xml:space="preserve">
-    <value>$this</value>
+  <data name="m_chkBoxCreateMediaOverlays.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
   </data>
-  <data name="&gt;&gt;m_EpubFileNamegroupBox.ZOrder" xml:space="preserve">
-    <value>1</value>
+  <data name="m_chkBoxCreateMediaOverlays.Size" type="System.Drawing.Size, System.Drawing">
+    <value>302, 20</value>
   </data>
-  <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
-    <value>8, 16</value>
+  <data name="m_chkBoxCreateMediaOverlays.Text" xml:space="preserve">
+    <value>Créer du Media Overlays pour Navigation Doc</value>
   </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>574, 395</value>
+    <value>574, 411</value>
   </data>
-  <data name="$this.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Microsoft Sans Serif, 9.75pt</value>
+  <data name="$this.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
   </data>
-  <data name="$this.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 4, 4, 4</value>
+  <data name="$this.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
+    <value>AssociateIndex</value>
+  </data>
+  <data name="$this.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
   </data>
   <data name="$this.Text" xml:space="preserve">
     <value>Sélectionner un répertoire pour l'exportation</value>
-  </data>
-  <data name="&gt;&gt;helpProvider1.Name" xml:space="preserve">
-    <value>helpProvider1</value>
-  </data>
-  <data name="&gt;&gt;helpProvider1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.HelpProvider, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;$this.Name" xml:space="preserve">
-    <value>ExportDirectory</value>
-  </data>
-  <data name="&gt;&gt;$this.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Form, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
 </root>

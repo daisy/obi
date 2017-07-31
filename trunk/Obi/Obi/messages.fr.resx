@@ -2697,4 +2697,31 @@ tester "Figer la largeur du volet du contenu" ?(Recommandé)</value>
   <data name="ProjectView_NoGapInPages" xml:space="preserve">
     <value>Aucune lacune trouvée dans les pages</value>
   </data>
+  <data name="Mints_invalid_input" xml:space="preserve">
+    <value>Veuillez spécifier la plage en minutes</value>
+  </data>
+  <data name="PagesInSectionsDetected" xml:space="preserve">
+    <value>Des pages existent dans le projet. Vous devez les supprimer pour continuer. Voulez-vous les supprimer maintenant ?</value>
+  </data>
+  <data name="PageDeletionSucessfull" xml:space="preserve">
+    <value>Les pages ont été supprimées avec succès. Vous pouvez dès à présent marquer de nouvelles pages.</value>
+  </data>
+  <data name="Audio_MergeFirstTwoPhrasesAfterPhraseDetectionWhileRecording" xml:space="preserve">
+    <value>Fusionner les 2 premières phrases après l'enregistrement lors de la détection de phrases</value>
+  </data>
+  <data name="Audio_AutoPlayAfterRecordingStops" xml:space="preserve">
+    <value>Lire la phrase enregistrée à l'arrêt de l'enregistrement</value>
+  </data>
+  <data name="Project_ImportNCCFileWithWindows1252Encoding" xml:space="preserve">
+    <value>Importer d'anciens fichiers NCC encodés en Windows 1252</value>
+  </data>
+  <data name="Delete_pages" xml:space="preserve">
+    <value>Supprimer des pages</value>
+  </data>
+  <data name="Pages" xml:space="preserve">
+    <value>Pages:</value>
+  </data>
+  <data name="AutoPageGeneration_Progress" xml:space="preserve">
+    <value>Auto page generation in progress. Please wait..</value>
+  </data>
 </root>
