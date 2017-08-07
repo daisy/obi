@@ -3794,11 +3794,11 @@ for (int j = 0;
                     if (pagesCreated)
                     {
                         mPresentation.Do(cmd);
-                        MessageBox.Show("Empty pages filled in the gaps");
+                        MessageBox.Show(Localizer.Message("EmptyPagesFilledInGaps"));
                     }
                     else
                     {
-                        MessageBox.Show("No gaps found in pages");
+                        MessageBox.Show(Localizer.Message("NoGapsFoundInPages"));
                     }
                 }
                 catch (System.Exception ex)
@@ -6683,8 +6683,8 @@ public bool ShowOnlySelectedSection
             autoPageGeneration.Close();
             if (Selection != null && this.Selection.Node != null && this.Selection.Node is SectionNode)
             {
-                this.Selection = new NodeSelection(this.Selection.Node, mContentView);
-                SectionNode secNode = (SectionNode)this.Selection.Node;
+                //this.Selection = new NodeSelection(this.Selection.Node, mContentView);
+                //SectionNode secNode = (SectionNode)this.Selection.Node;
                 List<SectionNode> sectionsList = ((ObiRootNode)this.Presentation.RootNode).GetListOfAllSections();
 
                 Command cmd = null; 
@@ -6704,7 +6704,7 @@ public bool ShowOnlySelectedSection
                                         if (progress_AutoPageGeneration.Exception != null) throw progress_AutoPageGeneration.Exception;
 
 
-                                        this.Selection = new NodeSelection(secNode, mContentView);
+                                        //this.Selection = new NodeSelection(secNode, mContentView);
                 //Command cmd = this.AddEmptyPagesCommand(PageIndexTobeMarked, TotalPagesInSection, autoPageGeneration.GenerateSpeech, autoPageGeneration.StartingSectionIndex);
                 if (cmd != null)
                 {
