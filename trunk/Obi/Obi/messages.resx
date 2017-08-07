@@ -2991,4 +2991,10 @@ Error text: {1}</value>
   <data name="AutoPageGeneration_Progress" xml:space="preserve">
     <value>Auto page generation in progress. Please wait..</value>
   </data>
+  <data name="NoGapsFoundInPages" xml:space="preserve">
+    <value>No gaps found in pages</value>
+  </data>
+  <data name="EmptyPagesFilledInGaps" xml:space="preserve">
+    <value>Empty pages filled in the gaps</value>
+  </data>
 </root>

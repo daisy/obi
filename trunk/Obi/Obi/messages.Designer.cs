@@ -2107,6 +2107,15 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Empty pages filled in the gaps.
+        /// </summary>
+        internal static string EmptyPagesFilledInGaps {
+            get {
+                return ResourceManager.GetString("EmptyPagesFilledInGaps", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to No Project Title.
         /// </summary>
         internal static string EmptyProjectTitle_error_Caption {
@@ -4476,6 +4485,15 @@ namespace Obi {
         internal static string node_selection_to_string {
             get {
                 return ResourceManager.GetString("node_selection_to_string", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to No gaps found in pages.
+        /// </summary>
+        internal static string NoGapsFoundInPages {
+            get {
+                return ResourceManager.GetString("NoGapsFoundInPages", resourceCulture);
             }
         }
         
