@@ -1405,7 +1405,7 @@
     <value>270, 22</value>
   </data>
   <data name="m_GoToPageToolStrip.Text" xml:space="preserve">
-    <value>Page / Phrase/ &amp;Temps</value>
+    <value>Page / Phrase / &amp;Temps</value>
   </data>
   <data name="m_GoToCollectSpecialPhrasesToolStripMenuItem.AccessibleName" xml:space="preserve">
     <value>Inventorier les phrases spéciales</value>
@@ -1687,7 +1687,7 @@
     <value>176, 22</value>
   </data>
   <data name="mGenerateSpeechToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;Générer de la parole</value>
+    <value>&amp;Production de narration</value>
   </data>
   <data name="selectedPageToolStripMenuItem.AccessibleName" xml:space="preserve">
     <value>Générer la parole pour la page sélectionnée.</value>
