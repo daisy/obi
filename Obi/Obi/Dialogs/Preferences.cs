@@ -166,6 +166,10 @@ namespace Obi.Dialogs
                             mInputDeviceCombo.SelectedIndex = 0;
                             //  mInputDeviceCombo.SelectedItem = defaultInputName;
                         }
+                        else
+                        {
+                            MessageBox.Show(Localizer.Message("no_device_found_text"), Localizer.Message("no_device_found_caption"), MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
                     }
                     else
                         mInputDeviceCombo.SelectedIndex = mInputDeviceCombo.Items.IndexOf(mSettings.Audio_LastInputDevice);
@@ -187,6 +191,10 @@ namespace Obi.Dialogs
                         {
                             mOutputDeviceCombo.SelectedIndex = 0;
                             //mOutputDeviceCombo.SelectedItem = defaultOutputName;
+                        }
+                        else
+                        {
+                            MessageBox.Show(Localizer.Message("no_output_device_text"), Localizer.Message("no_output_device_caption"), MessageBoxButtons.OK, MessageBoxIcon.Error);
                         }
                     }
                     else
