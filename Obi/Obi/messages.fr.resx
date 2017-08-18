@@ -2130,7 +2130,7 @@ Motif invoqué : {1}</value>
     <value>Réinitialiser</value>
   </data>
   <data name="ProjectView_GenarteSpeechForAllPages" xml:space="preserve">
-    <value>Le discours est généré pour les pagesLa narration est produite pour les pages</value>
+    <value>La narration est produite pour les pages</value>
   </data>
   <data name="EditAudioTT_Cut" xml:space="preserve">
     <value>Couper</value>

@@ -241,6 +241,10 @@
   <data name="m_lblProfile2.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
   </data>
+  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="m_lblProfile2.ShowHelp" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
   <data name="m_cb_Profile2.AccessibleName" xml:space="preserve">
     <value>Profile 2 pour la barre d'enregistrement</value>
   </data>
@@ -286,6 +290,9 @@
   <data name="m_gpBox_SelectProfileRecordingToolbar.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
   </data>
+  <data name="m_gpBox_SelectProfileRecordingToolbar.ShowHelp" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
   <data name="m_gpBox_SelectProfileRecordingToolbar.Text" xml:space="preserve">
     <value>Attribuer un profil audio à la barre d'enregistrement</value>
   </data>
@@ -300,6 +307,9 @@
   </data>
   <data name="m_btnRemoveProfile.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
+  </data>
+  <data name="m_btnRemoveProfile.ShowHelp" type="System.Boolean, mscorlib">
+    <value>True</value>
   </data>
   <data name="m_btnRemoveProfile.Text" xml:space="preserve">
     <value>R&amp;etirer</value>
@@ -316,6 +326,9 @@
   <data name="m_gpBox_Buttons.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
   </data>
+  <data name="m_gpBox_Buttons.ShowHelp" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
   <data name="m_lblSelectedShortcuts.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
   </data>
@@ -328,6 +341,9 @@
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="m_lblSelectedShortcuts.Location" type="System.Drawing.Point, System.Drawing">
     <value>0, 42</value>
+  </data>
+  <data name="m_lblSelectedShortcuts.ShowHelp" type="System.Boolean, mscorlib">
+    <value>True</value>
   </data>
   <data name="m_lblSelectedShortcuts.Size" type="System.Drawing.Size, System.Drawing">
     <value>174, 16</value>
@@ -347,6 +363,9 @@
   <data name="m_txtSelectedShortcutsProfile.Location" type="System.Drawing.Point, System.Drawing">
     <value>182, 36</value>
   </data>
+  <data name="m_txtSelectedShortcutsProfile.ShowHelp" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
   <data name="m_txtSelectedShortcutsProfile.Size" type="System.Drawing.Size, System.Drawing">
     <value>428, 22</value>
   </data>
@@ -362,6 +381,9 @@
   <data name="m_txtSelectedProfile.Location" type="System.Drawing.Point, System.Drawing">
     <value>182, 8</value>
   </data>
+  <data name="m_txtSelectedProfile.ShowHelp" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
   <data name="m_txtSelectedProfile.Size" type="System.Drawing.Size, System.Drawing">
     <value>428, 22</value>
   </data>
@@ -373,6 +395,9 @@
   </data>
   <data name="m_rdb_KeyboardShortcuts.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
+  </data>
+  <data name="m_rdb_KeyboardShortcuts.ShowHelp" type="System.Boolean, mscorlib">
+    <value>True</value>
   </data>
   <data name="m_rdb_KeyboardShortcuts.Size" type="System.Drawing.Size, System.Drawing">
     <value>137, 20</value>
@@ -389,6 +414,9 @@
   <data name="m_rdb_Preferences.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
   </data>
+  <data name="m_rdb_Preferences.ShowHelp" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
   <data name="m_rdb_Preferences.Text" xml:space="preserve">
     <value>Pré&amp;férences</value>
   </data>
@@ -401,6 +429,9 @@
   <data name="m_gpBox_SelectProfile.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
   </data>
+  <data name="m_gpBox_SelectProfile.ShowHelp" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
   <data name="m_gpBox_SelectProfile.Text" xml:space="preserve">
     <value>Sélectionner les options pour le profil</value>
   </data>
@@ -412,6 +443,9 @@
   </data>
   <data name="m_lblSelectedProfile.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
+  </data>
+  <data name="m_lblSelectedProfile.ShowHelp" type="System.Boolean, mscorlib">
+    <value>True</value>
   </data>
   <data name="m_lblSelectedProfile.Size" type="System.Drawing.Size, System.Drawing">
     <value>83, 16</value>
@@ -488,6 +522,9 @@
   <data name="m_chkColor.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
   </data>
+  <data name="m_chkColor.ShowHelp" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
   <data name="m_chkColor.Size" type="System.Drawing.Size, System.Drawing">
     <value>73, 20</value>
   </data>
@@ -502,6 +539,9 @@
   </data>
   <data name="m_chkProject.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
+  </data>
+  <data name="m_chkProject.ShowHelp" type="System.Boolean, mscorlib">
+    <value>True</value>
   </data>
   <data name="m_chkProject.Size" type="System.Drawing.Size, System.Drawing">
     <value>62, 20</value>
@@ -518,6 +558,9 @@
   <data name="m_chkAudio.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
   </data>
+  <data name="m_chkAudio.ShowHelp" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
   <data name="m_chkLanguage.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
   </data>
@@ -526,6 +569,9 @@
   </data>
   <data name="m_chkLanguage.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
+  </data>
+  <data name="m_chkLanguage.ShowHelp" type="System.Boolean, mscorlib">
+    <value>True</value>
   </data>
   <data name="m_chkLanguage.Size" type="System.Drawing.Size, System.Drawing">
     <value>72, 20</value>
@@ -541,6 +587,9 @@
   </data>
   <data name="m_chkAll.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
+  </data>
+  <data name="m_chkAll.ShowHelp" type="System.Boolean, mscorlib">
+    <value>True</value>
   </data>
   <data name="m_chkAll.Size" type="System.Drawing.Size, System.Drawing">
     <value>126, 20</value>
@@ -560,6 +609,9 @@
   <data name="m_btnLoadProfile.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
   </data>
+  <data name="m_btnLoadProfile.ShowHelp" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
   <data name="m_btnLoadProfile.Text" xml:space="preserve">
     <value>Ch&amp;arger</value>
   </data>
@@ -574,6 +626,9 @@
   </data>
   <data name="m_gpBox_SelectPreferences.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
+  </data>
+  <data name="m_gpBox_SelectPreferences.ShowHelp" type="System.Boolean, mscorlib">
+    <value>True</value>
   </data>
   <data name="mAdvanceTab.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
@@ -637,6 +692,9 @@
   </data>
   <data name="m_gpBox_Font.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
+  </data>
+  <data name="m_gpBox_Font.ShowHelp" type="System.Boolean, mscorlib">
+    <value>True</value>
   </data>
   <data name="m_gpBox_Font.Text" xml:space="preserve">
     <value>Police</value>
@@ -1058,7 +1116,7 @@
     <value>Taille maximum du fichier pour le nettoyage audio (en Mo):</value>
   </data>
   <data name="m_btn_speak.AccessibleName" xml:space="preserve">
-    <value> Bouton Parler pour vérifier la voix TTS</value>
+    <value> Bouton Tester la voix de synthèse</value>
   </data>
   <data name="m_btn_speak.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
@@ -1381,6 +1439,9 @@
   <data name="m_btnRecordInLocalDrive.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
   </data>
+  <data name="m_btnRecordInLocalDrive.ShowHelp" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
   <data name="m_btnRecordInLocalDrive.Text" xml:space="preserve">
     <value>&amp;Parcourir</value>
   </data>
@@ -1410,6 +1471,9 @@
   </data>
   <data name="m_chkRecordInLocalDrive.Location" type="System.Drawing.Point, System.Drawing">
     <value>0, 99</value>
+  </data>
+  <data name="m_chkRecordInLocalDrive.ShowHelp" type="System.Boolean, mscorlib">
+    <value>True</value>
   </data>
   <data name="m_chkRecordInLocalDrive.Size" type="System.Drawing.Size, System.Drawing">
     <value>209, 20</value>
@@ -1478,13 +1542,13 @@
     <value />
   </data>
   <data name="m_ChkAutoSaveInterval.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 139</value>
+    <value>16, 139</value>
   </data>
   <data name="m_ChkAutoSaveInterval.Size" type="System.Drawing.Size, System.Drawing">
-    <value>357, 20</value>
+    <value>350, 20</value>
   </data>
   <data name="m_ChkAutoSaveInterval.Text" xml:space="preserve">
-    <value>&amp;Sauvegardee automatiquement toutes les (en minutes) :</value>
+    <value>&amp;Sauvegarder automatiquement toutes les (en minutes):</value>
   </data>
   <data name="MnumAutoSaveInterval.AccessibleName" xml:space="preserve">
     <value>Intervalle en minutes</value>
@@ -1629,6 +1693,9 @@
   </data>
   <data name="m_ApplyButton.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
+  </data>
+  <data name="m_ApplyButton.ShowHelp" type="System.Boolean, mscorlib">
+    <value>True</value>
   </data>
   <data name="m_ApplyButton.Text" xml:space="preserve">
     <value>A&amp;ppliquer</value>
