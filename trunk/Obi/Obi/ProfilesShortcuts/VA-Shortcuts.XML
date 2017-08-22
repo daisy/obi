@@ -1,6 +1,6 @@
 <SOAP-ENV:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/" xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:clr="http://schemas.microsoft.com/soap/encoding/clr/1.0" SOAP-ENV:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">
 <SOAP-ENV:Body>
-<a1:KeyboardShortcuts_Settings id="ref-1" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.1.24708%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
+<a1:KeyboardShortcuts_Settings id="ref-1" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.7.22011%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
 <ContentView_SelectCompleteWaveform href="#ref-3"/>
 <ContentView_PlaySelectedWaveform href="#ref-4"/>
 <ContentView_TransportBarNextSection href="#ref-5"/>
@@ -76,367 +76,367 @@
 <MenuKeyboardShortCutsList href="#ref-75"/>
 <SettingsName id="ref-76">VA-Shortcuts</SettingsName>
 </a1:KeyboardShortcuts_Settings>
-<a1:KeyboardShortcut id="ref-3" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.1.24708%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
+<a1:KeyboardShortcut id="ref-3" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.7.22011%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
 <Value>A</Value>
 <Description id="ref-78">KeyS_SelectCompleteWaveform</Description>
 <IsMenuShortcut>false</IsMenuShortcut>
 </a1:KeyboardShortcut>
-<a1:KeyboardShortcut id="ref-4" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.1.24708%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
+<a1:KeyboardShortcut id="ref-4" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.7.22011%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
 <Value>C</Value>
 <Description id="ref-79">KeyS_PlaySelectedWaveform</Description>
 <IsMenuShortcut>false</IsMenuShortcut>
 </a1:KeyboardShortcut>
-<a1:KeyboardShortcut id="ref-5" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.1.24708%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
+<a1:KeyboardShortcut id="ref-5" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.7.22011%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
 <Value>H</Value>
 <Description id="ref-80">KeyS_TransportBarNextSection</Description>
 <IsMenuShortcut>false</IsMenuShortcut>
 </a1:KeyboardShortcut>
-<a1:KeyboardShortcut id="ref-6" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.1.24708%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
+<a1:KeyboardShortcut id="ref-6" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.7.22011%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
 <Value>H, Shift</Value>
 <Description id="ref-81">KeyS_TransportBarPreviousSection</Description>
 <IsMenuShortcut>false</IsMenuShortcut>
 </a1:KeyboardShortcut>
-<a1:KeyboardShortcut id="ref-7" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.1.24708%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
+<a1:KeyboardShortcut id="ref-7" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.7.22011%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
 <Value>J</Value>
 <Description id="ref-82">KeyS_TransportBarPreviousPhrase</Description>
 <IsMenuShortcut>false</IsMenuShortcut>
 </a1:KeyboardShortcut>
-<a1:KeyboardShortcut id="ref-8" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.1.24708%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
+<a1:KeyboardShortcut id="ref-8" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.7.22011%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
 <Value>K</Value>
 <Description id="ref-83">KeyS_TransportBarNextPhrase</Description>
 <IsMenuShortcut>false</IsMenuShortcut>
 </a1:KeyboardShortcut>
-<a1:KeyboardShortcut id="ref-9" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.1.24708%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
+<a1:KeyboardShortcut id="ref-9" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.7.22011%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
 <Value>N</Value>
 <Description id="ref-84">KeyS_TransportBarNudgeForward</Description>
 <IsMenuShortcut>false</IsMenuShortcut>
 </a1:KeyboardShortcut>
-<a1:KeyboardShortcut id="ref-10" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.1.24708%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
+<a1:KeyboardShortcut id="ref-10" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.7.22011%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
 <Value>N, Shift</Value>
 <Description id="ref-85">KeyS_TransportBarNudgeBackward</Description>
 <IsMenuShortcut>false</IsMenuShortcut>
 </a1:KeyboardShortcut>
-<a1:KeyboardShortcut id="ref-11" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.1.24708%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
+<a1:KeyboardShortcut id="ref-11" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.7.22011%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
 <Value>F2</Value>
 <Description id="ref-86">KeyS_TransportBarFineNavigationOn</Description>
 <IsMenuShortcut>false</IsMenuShortcut>
 </a1:KeyboardShortcut>
-<a1:KeyboardShortcut id="ref-12" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.1.24708%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
+<a1:KeyboardShortcut id="ref-12" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.7.22011%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
 <Value>F2, Shift</Value>
 <Description id="ref-87">KeyS_TransportBarFineNavigationOff</Description>
 <IsMenuShortcut>false</IsMenuShortcut>
 </a1:KeyboardShortcut>
-<a1:KeyboardShortcut id="ref-13" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.1.24708%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
+<a1:KeyboardShortcut id="ref-13" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.7.22011%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
 <Value>R</Value>
 <Description id="ref-88">KeyS_TransportBarRecordSingleKey</Description>
 <IsMenuShortcut>false</IsMenuShortcut>
 </a1:KeyboardShortcut>
-<a1:KeyboardShortcut id="ref-14" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.1.24708%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
+<a1:KeyboardShortcut id="ref-14" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.7.22011%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
 <Value>T</Value>
 <Description id="ref-89">KeyS_TransportBarStopSingleKey</Description>
 <IsMenuShortcut>false</IsMenuShortcut>
 </a1:KeyboardShortcut>
-<a1:KeyboardShortcut id="ref-15" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.1.24708%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
+<a1:KeyboardShortcut id="ref-15" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.7.22011%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
 <Value>OemOpenBrackets</Value>
 <Description id="ref-90">KeyS_MarkSelectionBeginTime</Description>
 <IsMenuShortcut>false</IsMenuShortcut>
 </a1:KeyboardShortcut>
-<a1:KeyboardShortcut id="ref-16" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.1.24708%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
+<a1:KeyboardShortcut id="ref-16" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.7.22011%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
 <Value>Oem6</Value>
 <Description id="ref-91">KeyS_MarkSelectionEndTime</Description>
 <IsMenuShortcut>false</IsMenuShortcut>
 </a1:KeyboardShortcut>
-<a1:KeyboardShortcut id="ref-17" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.1.24708%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
+<a1:KeyboardShortcut id="ref-17" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.7.22011%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
 <Value>Left, Shift</Value>
 <Description id="ref-92">KeyS_ExpandAudioSelectionAtLeft</Description>
 <IsMenuShortcut>false</IsMenuShortcut>
 </a1:KeyboardShortcut>
-<a1:KeyboardShortcut id="ref-18" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.1.24708%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
+<a1:KeyboardShortcut id="ref-18" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.7.22011%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
 <Value>Right, Shift</Value>
 <Description id="ref-93">KeyS_ContractAudioSelectionAtLeft</Description>
 <IsMenuShortcut>false</IsMenuShortcut>
 </a1:KeyboardShortcut>
-<a1:KeyboardShortcut id="ref-19" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.1.24708%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
+<a1:KeyboardShortcut id="ref-19" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.7.22011%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
 <Value>P</Value>
 <Description id="ref-94">KeyS_TransportBarNextPage</Description>
 <IsMenuShortcut>false</IsMenuShortcut>
 </a1:KeyboardShortcut>
-<a1:KeyboardShortcut id="ref-20" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.1.24708%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
+<a1:KeyboardShortcut id="ref-20" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.7.22011%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
 <Value>P, Shift</Value>
 <Description id="ref-95">KeyS_TransportBarPreviousPage</Description>
 <IsMenuShortcut>false</IsMenuShortcut>
 </a1:KeyboardShortcut>
-<a1:KeyboardShortcut id="ref-21" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.1.24708%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
+<a1:KeyboardShortcut id="ref-21" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.7.22011%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
 <Value>V</Value>
 <Description id="ref-96">KeyS_TransportBarPreviewFromAudioCursor</Description>
 <IsMenuShortcut>false</IsMenuShortcut>
 </a1:KeyboardShortcut>
-<a1:KeyboardShortcut id="ref-22" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.1.24708%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
+<a1:KeyboardShortcut id="ref-22" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.7.22011%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
 <Value>V, Shift</Value>
 <Description id="ref-97">KeyS_TransportBarPreviewFromSelection</Description>
 <IsMenuShortcut>false</IsMenuShortcut>
 </a1:KeyboardShortcut>
-<a1:KeyboardShortcut id="ref-23" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.1.24708%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
+<a1:KeyboardShortcut id="ref-23" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.7.22011%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
 <Value>X</Value>
 <Description id="ref-98">KeyS_TransportBarPreviewUptoAudioCursor</Description>
 <IsMenuShortcut>false</IsMenuShortcut>
 </a1:KeyboardShortcut>
-<a1:KeyboardShortcut id="ref-24" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.1.24708%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
+<a1:KeyboardShortcut id="ref-24" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.7.22011%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
 <Value>X, Shift</Value>
 <Description id="ref-99">KeyS_TransportBarPreviewUptoSelection</Description>
 <IsMenuShortcut>false</IsMenuShortcut>
 </a1:KeyboardShortcut>
-<a1:KeyboardShortcut id="ref-25" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.1.24708%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
+<a1:KeyboardShortcut id="ref-25" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.7.22011%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
 <Value>F7, Control</Value>
 <Description id="ref-100">KeysS_TransportBarExpandPlayOptions</Description>
 <IsMenuShortcut>false</IsMenuShortcut>
 </a1:KeyboardShortcut>
-<a1:KeyboardShortcut id="ref-26" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.1.24708%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
+<a1:KeyboardShortcut id="ref-26" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.7.22011%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
 <Value>F8, Control</Value>
 <Description id="ref-101">KeysS_TransportBarExpandRecordOptions</Description>
 <IsMenuShortcut>false</IsMenuShortcut>
 </a1:KeyboardShortcut>
-<a1:KeyboardShortcut id="ref-27" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.1.24708%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
+<a1:KeyboardShortcut id="ref-27" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.7.22011%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
 <Value>F5, Control</Value>
 <Description id="ref-102">KeysS_TransportBarExpandSwitchProfile</Description>
 <IsMenuShortcut>false</IsMenuShortcut>
 </a1:KeyboardShortcut>
-<a1:KeyboardShortcut id="ref-28" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.1.24708%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
+<a1:KeyboardShortcut id="ref-28" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.7.22011%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
 <Value>Z</Value>
 <Description id="ref-103">KeyS_ZoomWaveformPanel</Description>
 <IsMenuShortcut>false</IsMenuShortcut>
 </a1:KeyboardShortcut>
-<a1:KeyboardShortcut id="ref-29" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.1.24708%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
+<a1:KeyboardShortcut id="ref-29" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.7.22011%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
 <Value>C, Alt</Value>
 <Description id="ref-104">KeyS_CloseZoomPanel</Description>
 <IsMenuShortcut>false</IsMenuShortcut>
 </a1:KeyboardShortcut>
-<a1:KeyboardShortcut id="ref-30" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.1.24708%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
+<a1:KeyboardShortcut id="ref-30" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.7.22011%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
 <Value>D0, Alt</Value>
 <Description id="ref-105">KeyS_ResetZoomPanel</Description>
 <IsMenuShortcut>false</IsMenuShortcut>
 </a1:KeyboardShortcut>
-<a1:KeyboardShortcut id="ref-31" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.1.24708%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
+<a1:KeyboardShortcut id="ref-31" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.7.22011%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
 <Value>Oemplus, Alt</Value>
 <Description id="ref-106">KeyS_ZoomInWaveform</Description>
 <IsMenuShortcut>false</IsMenuShortcut>
 </a1:KeyboardShortcut>
-<a1:KeyboardShortcut id="ref-32" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.1.24708%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
+<a1:KeyboardShortcut id="ref-32" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.7.22011%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
 <Value>OemMinus, Alt</Value>
 <Description id="ref-107">KeyS_ZoomOutWaveform</Description>
 <IsMenuShortcut>false</IsMenuShortcut>
 </a1:KeyboardShortcut>
-<a1:KeyboardShortcut id="ref-33" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.1.24708%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
+<a1:KeyboardShortcut id="ref-33" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.7.22011%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
 <Value>S, Alt</Value>
 <Description id="ref-108">KeyS_ZoomSelectedWaveform</Description>
 <IsMenuShortcut>false</IsMenuShortcut>
 </a1:KeyboardShortcut>
-<a1:KeyboardShortcut id="ref-34" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.1.24708%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
+<a1:KeyboardShortcut id="ref-34" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.7.22011%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
 <Value>Right, Alt</Value>
 <Description id="ref-109">KeyS_NextPhrase</Description>
 <IsMenuShortcut>false</IsMenuShortcut>
 </a1:KeyboardShortcut>
-<a1:KeyboardShortcut id="ref-35" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.1.24708%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
+<a1:KeyboardShortcut id="ref-35" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.7.22011%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
 <Value>Left, Alt</Value>
 <Description id="ref-110">KeyS_PreviousPhrase</Description>
 <IsMenuShortcut>false</IsMenuShortcut>
 </a1:KeyboardShortcut>
-<a1:KeyboardShortcut id="ref-36" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.1.24708%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
+<a1:KeyboardShortcut id="ref-36" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.7.22011%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
 <Value>S</Value>
 <Description id="ref-111">KeyS_FastPlayStepDown</Description>
 <IsMenuShortcut>false</IsMenuShortcut>
 </a1:KeyboardShortcut>
-<a1:KeyboardShortcut id="ref-37" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.1.24708%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
+<a1:KeyboardShortcut id="ref-37" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.7.22011%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
 <Value>F</Value>
 <Description id="ref-112">KeyS_FastPlayStepUp</Description>
 <IsMenuShortcut>false</IsMenuShortcut>
 </a1:KeyboardShortcut>
-<a1:KeyboardShortcut id="ref-38" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.1.24708%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
+<a1:KeyboardShortcut id="ref-38" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.7.22011%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
 <Value>D</Value>
 <Description id="ref-113">KeyS_FastPlayRateNormilize</Description>
 <IsMenuShortcut>false</IsMenuShortcut>
 </a1:KeyboardShortcut>
-<a1:KeyboardShortcut id="ref-39" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.1.24708%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
+<a1:KeyboardShortcut id="ref-39" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.7.22011%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
 <Value>E</Value>
 <Description id="ref-114">KeyS_FastPlayNormalizeWithElapseBack</Description>
 <IsMenuShortcut>false</IsMenuShortcut>
 </a1:KeyboardShortcut>
-<a1:KeyboardShortcut id="ref-40" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.1.24708%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
+<a1:KeyboardShortcut id="ref-40" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.7.22011%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
 <Value>Y</Value>
 <Description id="ref-115">KeyS_FastPlayWithElapseForward</Description>
 <IsMenuShortcut>false</IsMenuShortcut>
 </a1:KeyboardShortcut>
-<a1:KeyboardShortcut id="ref-41" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.1.24708%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
+<a1:KeyboardShortcut id="ref-41" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.7.22011%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
 <Value>Home, Shift</Value>
 <Description id="ref-116">KeyS_MarkSelectionFromBeginningToTheCursor</Description>
 <IsMenuShortcut>false</IsMenuShortcut>
 </a1:KeyboardShortcut>
-<a1:KeyboardShortcut id="ref-42" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.1.24708%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
+<a1:KeyboardShortcut id="ref-42" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.7.22011%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
 <Value>End, Shift</Value>
 <Description id="ref-117">KeyS_MarkSelectionFromCursorToTheEnd</Description>
 <IsMenuShortcut>false</IsMenuShortcut>
 </a1:KeyboardShortcut>
-<a1:KeyboardShortcut id="ref-43" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.1.24708%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
+<a1:KeyboardShortcut id="ref-43" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.7.22011%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
 <Value>Left</Value>
 <Description id="ref-118">KeyS_SelectPrecedingPhrase</Description>
 <IsMenuShortcut>false</IsMenuShortcut>
 </a1:KeyboardShortcut>
-<a1:KeyboardShortcut id="ref-44" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.1.24708%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
+<a1:KeyboardShortcut id="ref-44" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.7.22011%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
 <Value>Right</Value>
 <Description id="ref-119">KeyS_SelectFollowingPhrase</Description>
 <IsMenuShortcut>false</IsMenuShortcut>
 </a1:KeyboardShortcut>
-<a1:KeyboardShortcut id="ref-45" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.1.24708%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
+<a1:KeyboardShortcut id="ref-45" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.7.22011%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
 <Value>End</Value>
 <Description id="ref-120">KeyS_SelectLastPhraseInStrip</Description>
 <IsMenuShortcut>false</IsMenuShortcut>
 </a1:KeyboardShortcut>
-<a1:KeyboardShortcut id="ref-46" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.1.24708%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
+<a1:KeyboardShortcut id="ref-46" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.7.22011%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
 <Value>Home</Value>
 <Description id="ref-121">KeyS_SelectFirstPhraseInStrip</Description>
 <IsMenuShortcut>false</IsMenuShortcut>
 </a1:KeyboardShortcut>
-<a1:KeyboardShortcut id="ref-47" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.1.24708%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
+<a1:KeyboardShortcut id="ref-47" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.7.22011%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
 <Value>Next, Control</Value>
 <Description id="ref-122">KeyS_SelectNextPagePhrase</Description>
 <IsMenuShortcut>false</IsMenuShortcut>
 </a1:KeyboardShortcut>
-<a1:KeyboardShortcut id="ref-48" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.1.24708%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
+<a1:KeyboardShortcut id="ref-48" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.7.22011%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
 <Value>PageUp, Control</Value>
 <Description id="ref-123">KeyS_SelectPrecedingPagePhrase</Description>
 <IsMenuShortcut>false</IsMenuShortcut>
 </a1:KeyboardShortcut>
-<a1:KeyboardShortcut id="ref-49" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.1.24708%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
+<a1:KeyboardShortcut id="ref-49" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.7.22011%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
 <Value>F4</Value>
 <Description id="ref-124">KeyS_SelectNextSpecialRolePhrase</Description>
 <IsMenuShortcut>false</IsMenuShortcut>
 </a1:KeyboardShortcut>
-<a1:KeyboardShortcut id="ref-50" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.1.24708%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
+<a1:KeyboardShortcut id="ref-50" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.7.22011%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
 <Value>F4, Shift</Value>
 <Description id="ref-125">KeyS_SelectPrecedingSpecialRolePhrase</Description>
 <IsMenuShortcut>false</IsMenuShortcut>
 </a1:KeyboardShortcut>
-<a1:KeyboardShortcut id="ref-51" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.1.24708%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
+<a1:KeyboardShortcut id="ref-51" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.7.22011%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
 <Value>F4, Control, Alt</Value>
 <Description id="ref-126">KeyS_SelectNextEmptyPhrase</Description>
 <IsMenuShortcut>false</IsMenuShortcut>
 </a1:KeyboardShortcut>
-<a1:KeyboardShortcut id="ref-52" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.1.24708%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
+<a1:KeyboardShortcut id="ref-52" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.7.22011%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
 <Value>Home, Alt</Value>
 <Description id="ref-127">KeyS_SelectFirstSkippableNode</Description>
 <IsMenuShortcut>false</IsMenuShortcut>
 </a1:KeyboardShortcut>
-<a1:KeyboardShortcut id="ref-53" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.1.24708%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
+<a1:KeyboardShortcut id="ref-53" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.7.22011%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
 <Value>End, Alt</Value>
 <Description id="ref-128">KeyS_SelectLastSkippableNode</Description>
 <IsMenuShortcut>false</IsMenuShortcut>
 </a1:KeyboardShortcut>
-<a1:KeyboardShortcut id="ref-54" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.1.24708%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
+<a1:KeyboardShortcut id="ref-54" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.7.22011%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
 <Value>Up, Shift, Control</Value>
 <Description id="ref-129">KeyS_SelectPrecedingStrip</Description>
 <IsMenuShortcut>false</IsMenuShortcut>
 </a1:KeyboardShortcut>
-<a1:KeyboardShortcut id="ref-55" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.1.24708%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
+<a1:KeyboardShortcut id="ref-55" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.7.22011%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
 <Value>Down, Shift, Control</Value>
 <Description id="ref-130">KeyS_SelectFollowingStrip</Description>
 <IsMenuShortcut>false</IsMenuShortcut>
 </a1:KeyboardShortcut>
-<a1:KeyboardShortcut id="ref-56" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.1.24708%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
+<a1:KeyboardShortcut id="ref-56" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.7.22011%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
 <Value>Home, Control</Value>
 <Description id="ref-131">KeyS_SelectFirstStrip</Description>
 <IsMenuShortcut>false</IsMenuShortcut>
 </a1:KeyboardShortcut>
-<a1:KeyboardShortcut id="ref-57" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.1.24708%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
+<a1:KeyboardShortcut id="ref-57" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.7.22011%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
 <Value>End, Control</Value>
 <Description id="ref-132">KeyS_SelectLastStrip</Description>
 <IsMenuShortcut>false</IsMenuShortcut>
 </a1:KeyboardShortcut>
-<a1:KeyboardShortcut id="ref-58" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.1.24708%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
+<a1:KeyboardShortcut id="ref-58" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.7.22011%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
 <Value>Escape</Value>
 <Description id="ref-133">KeyS_SelectUp</Description>
 <IsMenuShortcut>false</IsMenuShortcut>
 </a1:KeyboardShortcut>
-<a1:KeyboardShortcut id="ref-59" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.1.24708%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
+<a1:KeyboardShortcut id="ref-59" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.7.22011%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
 <Value>Left, Control</Value>
 <Description id="ref-134">KeyS_SelectPrecedingStripCursor</Description>
 <IsMenuShortcut>false</IsMenuShortcut>
 </a1:KeyboardShortcut>
-<a1:KeyboardShortcut id="ref-60" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.1.24708%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
+<a1:KeyboardShortcut id="ref-60" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.7.22011%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
 <Value>Right, Control</Value>
 <Description id="ref-135">KeyS_SelectFollowingStripCursor</Description>
 <IsMenuShortcut>false</IsMenuShortcut>
 </a1:KeyboardShortcut>
-<a1:KeyboardShortcut id="ref-61" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.1.24708%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
+<a1:KeyboardShortcut id="ref-61" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.7.22011%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
 <Value>Next</Value>
 <Description id="ref-136">KeyS_ScrollDown_LargeIncrementWithSelection</Description>
 <IsMenuShortcut>false</IsMenuShortcut>
 </a1:KeyboardShortcut>
-<a1:KeyboardShortcut id="ref-62" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.1.24708%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
+<a1:KeyboardShortcut id="ref-62" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.7.22011%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
 <Value>PageUp</Value>
 <Description id="ref-137">KeyS_ScrollUp_LargeIncrementWithSelection</Description>
 <IsMenuShortcut>false</IsMenuShortcut>
 </a1:KeyboardShortcut>
-<a1:KeyboardShortcut id="ref-63" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.1.24708%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
+<a1:KeyboardShortcut id="ref-63" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.7.22011%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
 <Value>Down</Value>
 <Description id="ref-138">KeyS_ScrollDown_SmallIncrementWithSelection</Description>
 <IsMenuShortcut>false</IsMenuShortcut>
 </a1:KeyboardShortcut>
-<a1:KeyboardShortcut id="ref-64" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.1.24708%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
+<a1:KeyboardShortcut id="ref-64" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.7.22011%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
 <Value>Up</Value>
 <Description id="ref-139">KeyS_ScrollUp_SmallIncrementWithSelection</Description>
 <IsMenuShortcut>false</IsMenuShortcut>
 </a1:KeyboardShortcut>
-<a1:KeyboardShortcut id="ref-65" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.1.24708%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
+<a1:KeyboardShortcut id="ref-65" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.7.22011%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
 <Value>Home, Control, Alt</Value>
 <Description id="ref-140">KeyS_SelectStartOfThePhrase</Description>
 <IsMenuShortcut>false</IsMenuShortcut>
 </a1:KeyboardShortcut>
-<a1:KeyboardShortcut id="ref-66" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.1.24708%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
+<a1:KeyboardShortcut id="ref-66" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.7.22011%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
 <Value>End, Control, Alt</Value>
 <Description id="ref-141">KeyS_SelectEndOfPhrase</Description>
 <IsMenuShortcut>false</IsMenuShortcut>
 </a1:KeyboardShortcut>
-<a1:KeyboardShortcut id="ref-67" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.1.24708%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
+<a1:KeyboardShortcut id="ref-67" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.7.22011%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
 <Value>Tab, Control</Value>
 <Description id="ref-142">KeyS_MoveToNextViewClockwise</Description>
 <IsMenuShortcut>false</IsMenuShortcut>
 </a1:KeyboardShortcut>
-<a1:KeyboardShortcut id="ref-68" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.1.24708%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
+<a1:KeyboardShortcut id="ref-68" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.7.22011%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
 <Value>Tab, Shift, Control</Value>
 <Description id="ref-143">KeyS_MoveToPreviousViewAnticlockwise</Description>
 <IsMenuShortcut>false</IsMenuShortcut>
 </a1:KeyboardShortcut>
-<a1:KeyboardShortcut id="ref-69" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.1.24708%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
+<a1:KeyboardShortcut id="ref-69" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.7.22011%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
 <Value>F6</Value>
 <Description id="ref-144">KeyS_ToggleBetweenContentViewAndTOCView</Description>
 <IsMenuShortcut>false</IsMenuShortcut>
 </a1:KeyboardShortcut>
-<a1:KeyboardShortcut id="ref-70" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.1.24708%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
+<a1:KeyboardShortcut id="ref-70" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.7.22011%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
 <Value>Space, Shift</Value>
 <Description id="ref-145">KeyS_PlayPauseUsingSelection</Description>
 <IsMenuShortcut>false</IsMenuShortcut>
 </a1:KeyboardShortcut>
-<a1:KeyboardShortcut id="ref-71" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.1.24708%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
+<a1:KeyboardShortcut id="ref-71" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.7.22011%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
 <Value>Space</Value>
 <Description id="ref-146">KeyS_PlayPauseUsingAudioCursor_Default</Description>
 <IsMenuShortcut>false</IsMenuShortcut>
 </a1:KeyboardShortcut>
-<a1:KeyboardShortcut id="ref-72" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.1.24708%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
+<a1:KeyboardShortcut id="ref-72" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.7.22011%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
 <Value>Return, Alt</Value>
 <Description id="ref-147">KeyS_ShowPropertiesOfSelectedNode</Description>
 <IsMenuShortcut>false</IsMenuShortcut>
 </a1:KeyboardShortcut>
-<a1:KeyboardShortcut id="ref-73" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.1.24708%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
+<a1:KeyboardShortcut id="ref-73" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.7.22011%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
 <Value>F8</Value>
 <Description id="ref-148">KeyS_FocusOnTransportBarTimeDisplay</Description>
 <IsMenuShortcut>false</IsMenuShortcut>
 </a1:KeyboardShortcut>
-<a1:KeyboardShortcut id="ref-74" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.1.24708%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
+<a1:KeyboardShortcut id="ref-74" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.7.22011%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
 <Value>F10, Control, Alt</Value>
 <Description id="ref-149">KeyS_HardResetAllSettings</Description>
 <IsMenuShortcut>false</IsMenuShortcut>
 </a1:KeyboardShortcut>
-<SOAP-ENC:Array id="ref-75" SOAP-ENC:arrayType="a1:KeyboardShortcut[150]" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.1.24708%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
+<SOAP-ENC:Array id="ref-75" SOAP-ENC:arrayType="a1:KeyboardShortcut[151]" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.7.22011%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
 <item href="#ref-150"/>
 <item href="#ref-151"/>
 <item href="#ref-152"/>
@@ -587,755 +587,761 @@
 <item href="#ref-297"/>
 <item href="#ref-298"/>
 <item href="#ref-299"/>
+<item href="#ref-300"/>
 </SOAP-ENC:Array>
-<a1:KeyboardShortcut id="ref-150" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.1.24708%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
+<a1:KeyboardShortcut id="ref-150" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.7.22011%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
 <Value>N, Control</Value>
-<Description id="ref-300">mFile_NewProjectMenuItem</Description>
+<Description id="ref-301">mFile_NewProjectMenuItem</Description>
 <IsMenuShortcut>true</IsMenuShortcut>
 </a1:KeyboardShortcut>
-<a1:KeyboardShortcut id="ref-151" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.1.24708%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
+<a1:KeyboardShortcut id="ref-151" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.7.22011%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
 <Value>N, Shift, Control</Value>
-<Description id="ref-301">mFile_NewProjectFromImportMenuItem</Description>
+<Description id="ref-302">mFile_NewProjectFromImportMenuItem</Description>
 <IsMenuShortcut>true</IsMenuShortcut>
 </a1:KeyboardShortcut>
-<a1:KeyboardShortcut id="ref-152" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.1.24708%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
+<a1:KeyboardShortcut id="ref-152" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.7.22011%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
 <Value>O, Control</Value>
-<Description id="ref-302">mFile_OpenProjectMenuItem</Description>
+<Description id="ref-303">mFile_OpenProjectMenuItem</Description>
 <IsMenuShortcut>true</IsMenuShortcut>
 </a1:KeyboardShortcut>
-<a1:KeyboardShortcut id="ref-153" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.1.24708%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
+<a1:KeyboardShortcut id="ref-153" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.7.22011%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
 <Value>S, Control</Value>
-<Description id="ref-303">mFile_SaveProjectMenuItem</Description>
+<Description id="ref-304">mFile_SaveProjectMenuItem</Description>
 <IsMenuShortcut>true</IsMenuShortcut>
 </a1:KeyboardShortcut>
-<a1:KeyboardShortcut id="ref-154" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.1.24708%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
+<a1:KeyboardShortcut id="ref-154" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.7.22011%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
 <Value>S, Shift, Control</Value>
-<Description id="ref-304">mFile_SaveProjectAsMenuItem</Description>
+<Description id="ref-305">mFile_SaveProjectAsMenuItem</Description>
 <IsMenuShortcut>true</IsMenuShortcut>
 </a1:KeyboardShortcut>
-<a1:KeyboardShortcut id="ref-155" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.1.24708%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
+<a1:KeyboardShortcut id="ref-155" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.7.22011%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
 <Value>None</Value>
-<Description id="ref-305">mFile_MergeProjectMenuItem</Description>
+<Description id="ref-306">mFile_MergeProjectMenuItem</Description>
 <IsMenuShortcut>true</IsMenuShortcut>
 </a1:KeyboardShortcut>
-<a1:KeyboardShortcut id="ref-156" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.1.24708%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
+<a1:KeyboardShortcut id="ref-156" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.7.22011%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
 <Value>None</Value>
-<Description id="ref-306">m_RestoreFromBackupToolStripMenuItem</Description>
+<Description id="ref-307">m_RestoreFromBackupToolStripMenuItem</Description>
 <IsMenuShortcut>true</IsMenuShortcut>
 </a1:KeyboardShortcut>
-<a1:KeyboardShortcut id="ref-157" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.1.24708%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
+<a1:KeyboardShortcut id="ref-157" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.7.22011%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
 <Value>None</Value>
-<Description id="ref-307">m_RestoreFromOriginalProjectToolStripMenuItem</Description>
+<Description id="ref-308">m_RestoreFromOriginalProjectToolStripMenuItem</Description>
 <IsMenuShortcut>true</IsMenuShortcut>
 </a1:KeyboardShortcut>
-<a1:KeyboardShortcut id="ref-158" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.1.24708%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
+<a1:KeyboardShortcut id="ref-158" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.7.22011%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
 <Value>W, Control</Value>
-<Description id="ref-308">mFile_CloseProjectMenuItem</Description>
+<Description id="ref-309">mFile_CloseProjectMenuItem</Description>
 <IsMenuShortcut>true</IsMenuShortcut>
 </a1:KeyboardShortcut>
-<a1:KeyboardShortcut id="ref-159" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.1.24708%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
+<a1:KeyboardShortcut id="ref-159" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.7.22011%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
 <Value>None</Value>
-<Description id="ref-309">mFile_ClearListMenuItem</Description>
+<Description id="ref-310">mFile_ClearListMenuItem</Description>
 <IsMenuShortcut>true</IsMenuShortcut>
 </a1:KeyboardShortcut>
-<a1:KeyboardShortcut id="ref-160" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.1.24708%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
+<a1:KeyboardShortcut id="ref-160" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.7.22011%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
 <Value>F4, Alt</Value>
-<Description id="ref-310">mFile_ExitMenuItem</Description>
+<Description id="ref-311">mFile_ExitMenuItem</Description>
 <IsMenuShortcut>true</IsMenuShortcut>
 </a1:KeyboardShortcut>
-<a1:KeyboardShortcut id="ref-161" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.1.24708%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
+<a1:KeyboardShortcut id="ref-161" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.7.22011%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
 <Value>Z, Control</Value>
-<Description id="ref-311">mUndoToolStripMenuItem</Description>
+<Description id="ref-312">mUndoToolStripMenuItem</Description>
 <IsMenuShortcut>true</IsMenuShortcut>
 </a1:KeyboardShortcut>
-<a1:KeyboardShortcut id="ref-162" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.1.24708%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
+<a1:KeyboardShortcut id="ref-162" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.7.22011%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
 <Value>Y, Control</Value>
-<Description id="ref-312">mRedoToolStripMenuItem</Description>
+<Description id="ref-313">mRedoToolStripMenuItem</Description>
 <IsMenuShortcut>true</IsMenuShortcut>
 </a1:KeyboardShortcut>
-<a1:KeyboardShortcut id="ref-163" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.1.24708%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
+<a1:KeyboardShortcut id="ref-163" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.7.22011%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
 <Value>X, Control</Value>
-<Description id="ref-313">mCutToolStripMenuItem</Description>
+<Description id="ref-314">mCutToolStripMenuItem</Description>
 <IsMenuShortcut>true</IsMenuShortcut>
 </a1:KeyboardShortcut>
-<a1:KeyboardShortcut id="ref-164" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.1.24708%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
+<a1:KeyboardShortcut id="ref-164" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.7.22011%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
 <Value>C, Control</Value>
-<Description id="ref-314">mCopyToolStripMenuItem</Description>
+<Description id="ref-315">mCopyToolStripMenuItem</Description>
 <IsMenuShortcut>true</IsMenuShortcut>
 </a1:KeyboardShortcut>
-<a1:KeyboardShortcut id="ref-165" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.1.24708%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
+<a1:KeyboardShortcut id="ref-165" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.7.22011%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
 <Value>V, Control</Value>
-<Description id="ref-315">mPasteToolStripMenuItem</Description>
+<Description id="ref-316">mPasteToolStripMenuItem</Description>
 <IsMenuShortcut>true</IsMenuShortcut>
 </a1:KeyboardShortcut>
-<a1:KeyboardShortcut id="ref-166" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.1.24708%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
+<a1:KeyboardShortcut id="ref-166" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.7.22011%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
 <Value>V, Control, Alt</Value>
-<Description id="ref-316">mPasteBeforeToolStripMenuItem</Description>
+<Description id="ref-317">mPasteBeforeToolStripMenuItem</Description>
 <IsMenuShortcut>true</IsMenuShortcut>
 </a1:KeyboardShortcut>
-<a1:KeyboardShortcut id="ref-167" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.1.24708%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
+<a1:KeyboardShortcut id="ref-167" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.7.22011%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
 <Value>V, Shift, Control</Value>
-<Description id="ref-317">mPasteInsideToolStripMenuItem</Description>
+<Description id="ref-318">mPasteInsideToolStripMenuItem</Description>
 <IsMenuShortcut>true</IsMenuShortcut>
 </a1:KeyboardShortcut>
-<a1:KeyboardShortcut id="ref-168" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.1.24708%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
+<a1:KeyboardShortcut id="ref-168" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.7.22011%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
 <Value>Delete</Value>
-<Description id="ref-318">mDeleteToolStripMenuItem</Description>
+<Description id="ref-319">mDeleteToolStripMenuItem</Description>
 <IsMenuShortcut>true</IsMenuShortcut>
 </a1:KeyboardShortcut>
-<a1:KeyboardShortcut id="ref-169" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.1.24708%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
+<a1:KeyboardShortcut id="ref-169" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.7.22011%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
 <Value>None</Value>
-<Description id="ref-319">mSelectNothingToolStripMenuItem</Description>
+<Description id="ref-320">mSelectNothingToolStripMenuItem</Description>
 <IsMenuShortcut>true</IsMenuShortcut>
 </a1:KeyboardShortcut>
-<a1:KeyboardShortcut id="ref-170" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.1.24708%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
+<a1:KeyboardShortcut id="ref-170" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.7.22011%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
 <Value>L, Shift, Control</Value>
-<Description id="ref-320">mEdit_DeleteUnusedDataMenuItem</Description>
+<Description id="ref-321">mEdit_DeleteUnusedDataMenuItem</Description>
 <IsMenuShortcut>true</IsMenuShortcut>
 </a1:KeyboardShortcut>
-<a1:KeyboardShortcut id="ref-171" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.1.24708%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
+<a1:KeyboardShortcut id="ref-171" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.7.22011%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
 <Value>F, Control</Value>
-<Description id="ref-321">mFindInTextToolStripMenuItem</Description>
+<Description id="ref-322">mFindInTextToolStripMenuItem</Description>
 <IsMenuShortcut>true</IsMenuShortcut>
 </a1:KeyboardShortcut>
-<a1:KeyboardShortcut id="ref-172" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.1.24708%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
+<a1:KeyboardShortcut id="ref-172" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.7.22011%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
 <Value>F3</Value>
-<Description id="ref-322">mFindNextToolStripMenuItem</Description>
+<Description id="ref-323">mFindNextToolStripMenuItem</Description>
 <IsMenuShortcut>true</IsMenuShortcut>
 </a1:KeyboardShortcut>
-<a1:KeyboardShortcut id="ref-173" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.1.24708%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
+<a1:KeyboardShortcut id="ref-173" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.7.22011%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
 <Value>F3, Shift</Value>
-<Description id="ref-323">mFindPreviousToolStripMenuItem</Description>
+<Description id="ref-324">mFindPreviousToolStripMenuItem</Description>
 <IsMenuShortcut>true</IsMenuShortcut>
 </a1:KeyboardShortcut>
-<a1:KeyboardShortcut id="ref-174" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.1.24708%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
+<a1:KeyboardShortcut id="ref-174" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.7.22011%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
 <Value>None</Value>
-<Description id="ref-324">mEdit_AssignBookmarkToolStripMenuItem</Description>
+<Description id="ref-325">mEdit_AssignBookmarkToolStripMenuItem</Description>
 <IsMenuShortcut>true</IsMenuShortcut>
 </a1:KeyboardShortcut>
-<a1:KeyboardShortcut id="ref-175" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.1.24708%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
+<a1:KeyboardShortcut id="ref-175" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.7.22011%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
 <Value>None</Value>
-<Description id="ref-325">mEdit_GotoBookmarkToolStripMenuItem</Description>
+<Description id="ref-326">mEdit_GotoBookmarkToolStripMenuItem</Description>
 <IsMenuShortcut>true</IsMenuShortcut>
 </a1:KeyboardShortcut>
-<a1:KeyboardShortcut id="ref-176" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.1.24708%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
+<a1:KeyboardShortcut id="ref-176" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.7.22011%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
 <Value>T, Control, Alt</Value>
-<Description id="ref-326">mShowTOCViewToolStripMenuItem</Description>
+<Description id="ref-327">mShowTOCViewToolStripMenuItem</Description>
 <IsMenuShortcut>true</IsMenuShortcut>
 </a1:KeyboardShortcut>
-<a1:KeyboardShortcut id="ref-177" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.1.24708%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
+<a1:KeyboardShortcut id="ref-177" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.7.22011%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
 <Value>M, Control, Alt</Value>
-<Description id="ref-327">mShowMetadataViewToolStripMenuItem</Description>
+<Description id="ref-328">mShowMetadataViewToolStripMenuItem</Description>
 <IsMenuShortcut>true</IsMenuShortcut>
 </a1:KeyboardShortcut>
-<a1:KeyboardShortcut id="ref-178" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.1.24708%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
+<a1:KeyboardShortcut id="ref-178" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.7.22011%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
 <Value>B, Control, Alt</Value>
-<Description id="ref-328">mShowTransportBarToolStripMenuItem</Description>
+<Description id="ref-329">mShowTransportBarToolStripMenuItem</Description>
 <IsMenuShortcut>true</IsMenuShortcut>
 </a1:KeyboardShortcut>
-<a1:KeyboardShortcut id="ref-179" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.1.24708%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
+<a1:KeyboardShortcut id="ref-179" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.7.22011%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
 <Value>U, Control, Alt</Value>
-<Description id="ref-329">mShowStatusBarToolStripMenuItem</Description>
+<Description id="ref-330">mShowStatusBarToolStripMenuItem</Description>
 <IsMenuShortcut>true</IsMenuShortcut>
 </a1:KeyboardShortcut>
-<a1:KeyboardShortcut id="ref-180" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.1.24708%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
+<a1:KeyboardShortcut id="ref-180" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.7.22011%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
 <Value>F6</Value>
-<Description id="ref-330">mFocusOnTOCViewToolStripMenuItem</Description>
+<Description id="ref-331">mFocusOnTOCViewToolStripMenuItem</Description>
 <IsMenuShortcut>true</IsMenuShortcut>
 </a1:KeyboardShortcut>
-<a1:KeyboardShortcut id="ref-181" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.1.24708%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
+<a1:KeyboardShortcut id="ref-181" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.7.22011%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
 <Value>F6</Value>
-<Description id="ref-331">mFocusOnStripsViewToolStripMenuItem</Description>
+<Description id="ref-332">mFocusOnStripsViewToolStripMenuItem</Description>
 <IsMenuShortcut>true</IsMenuShortcut>
 </a1:KeyboardShortcut>
-<a1:KeyboardShortcut id="ref-182" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.1.24708%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
+<a1:KeyboardShortcut id="ref-182" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.7.22011%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
 <Value>F6, Control</Value>
-<Description id="ref-332">mFocusOnTransportBarToolStripMenuItem</Description>
+<Description id="ref-333">mFocusOnTransportBarToolStripMenuItem</Description>
 <IsMenuShortcut>true</IsMenuShortcut>
 </a1:KeyboardShortcut>
-<a1:KeyboardShortcut id="ref-183" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.1.24708%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
+<a1:KeyboardShortcut id="ref-183" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.7.22011%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
 <Value>Y, Control, Alt</Value>
-<Description id="ref-333">mSynchronizeViewsToolStripMenuItem</Description>
+<Description id="ref-334">mSynchronizeViewsToolStripMenuItem</Description>
 <IsMenuShortcut>true</IsMenuShortcut>
 </a1:KeyboardShortcut>
-<a1:KeyboardShortcut id="ref-184" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.1.24708%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
+<a1:KeyboardShortcut id="ref-184" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.7.22011%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
 <Value>P, Control, Alt</Value>
-<Description id="ref-334">mShowPeakMeterMenuItem</Description>
+<Description id="ref-335">mShowPeakMeterMenuItem</Description>
 <IsMenuShortcut>true</IsMenuShortcut>
 </a1:KeyboardShortcut>
-<a1:KeyboardShortcut id="ref-185" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.1.24708%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
+<a1:KeyboardShortcut id="ref-185" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.7.22011%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
 <Value>O, Control, Alt</Value>
-<Description id="ref-335">mShowSourceToolStripMenuItem</Description>
+<Description id="ref-336">mShowSourceToolStripMenuItem</Description>
 <IsMenuShortcut>true</IsMenuShortcut>
 </a1:KeyboardShortcut>
-<a1:KeyboardShortcut id="ref-186" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.1.24708%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
+<a1:KeyboardShortcut id="ref-186" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.7.22011%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
 <Value>R, Control, Alt</Value>
-<Description id="ref-336">mView_RecordingToolBarMenuItem</Description>
+<Description id="ref-337">mView_RecordingToolBarMenuItem</Description>
 <IsMenuShortcut>true</IsMenuShortcut>
 </a1:KeyboardShortcut>
-<a1:KeyboardShortcut id="ref-187" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.1.24708%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
+<a1:KeyboardShortcut id="ref-187" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.7.22011%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
 <Value>Oemplus, Control, Alt</Value>
-<Description id="ref-337">mView_ZoomInMenuItem</Description>
+<Description id="ref-338">mView_ZoomInMenuItem</Description>
 <IsMenuShortcut>true</IsMenuShortcut>
 </a1:KeyboardShortcut>
-<a1:KeyboardShortcut id="ref-188" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.1.24708%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
+<a1:KeyboardShortcut id="ref-188" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.7.22011%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
 <Value>OemMinus, Control, Alt</Value>
-<Description id="ref-338">mView_ZoomOutMenuItem</Description>
+<Description id="ref-339">mView_ZoomOutMenuItem</Description>
 <IsMenuShortcut>true</IsMenuShortcut>
 </a1:KeyboardShortcut>
-<a1:KeyboardShortcut id="ref-189" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.1.24708%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
+<a1:KeyboardShortcut id="ref-189" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.7.22011%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
 <Value>D0, Control, Alt</Value>
-<Description id="ref-339">mView_NormalSizeMenuItem</Description>
+<Description id="ref-340">mView_NormalSizeMenuItem</Description>
 <IsMenuShortcut>true</IsMenuShortcut>
 </a1:KeyboardShortcut>
-<a1:KeyboardShortcut id="ref-190" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.1.24708%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
+<a1:KeyboardShortcut id="ref-190" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.7.22011%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
 <Value>Oemplus, Shift, Control, Alt</Value>
-<Description id="ref-340">mView_AudioZoomInMenuItem</Description>
+<Description id="ref-341">mView_AudioZoomInMenuItem</Description>
 <IsMenuShortcut>true</IsMenuShortcut>
 </a1:KeyboardShortcut>
-<a1:KeyboardShortcut id="ref-191" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.1.24708%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
+<a1:KeyboardShortcut id="ref-191" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.7.22011%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
 <Value>OemMinus, Shift, Control, Alt</Value>
-<Description id="ref-341">mView_AudioZoomOutMenuItem</Description>
+<Description id="ref-342">mView_AudioZoomOutMenuItem</Description>
 <IsMenuShortcut>true</IsMenuShortcut>
 </a1:KeyboardShortcut>
-<a1:KeyboardShortcut id="ref-192" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.1.24708%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
+<a1:KeyboardShortcut id="ref-192" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.7.22011%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
 <Value>D0, Shift, Control, Alt</Value>
-<Description id="ref-342">mView_ResetAudioSizeMenuItem</Description>
+<Description id="ref-343">mView_ResetAudioSizeMenuItem</Description>
 <IsMenuShortcut>true</IsMenuShortcut>
 </a1:KeyboardShortcut>
-<a1:KeyboardShortcut id="ref-193" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.1.24708%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
+<a1:KeyboardShortcut id="ref-193" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.7.22011%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
 <Value>F5</Value>
-<Description id="ref-343">mView_RefreshContentViewMenuItem</Description>
+<Description id="ref-344">mView_RefreshContentViewMenuItem</Description>
 <IsMenuShortcut>true</IsMenuShortcut>
 </a1:KeyboardShortcut>
-<a1:KeyboardShortcut id="ref-194" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.1.24708%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
+<a1:KeyboardShortcut id="ref-194" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.7.22011%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
 <Value>F12</Value>
-<Description id="ref-344">mView_PhrasePropertiesMenuItem</Description>
+<Description id="ref-345">mView_PhrasePropertiesMenuItem</Description>
 <IsMenuShortcut>true</IsMenuShortcut>
 </a1:KeyboardShortcut>
-<a1:KeyboardShortcut id="ref-195" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.1.24708%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
+<a1:KeyboardShortcut id="ref-195" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.7.22011%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
 <Value>Return, Alt</Value>
-<Description id="ref-345">mView_SectionPropertiesMenuItem</Description>
+<Description id="ref-346">mView_SectionPropertiesMenuItem</Description>
 <IsMenuShortcut>true</IsMenuShortcut>
 </a1:KeyboardShortcut>
-<a1:KeyboardShortcut id="ref-196" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.1.24708%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
-<Value>None</Value>
-<Description id="ref-346">mView_ProjectPropertiesMenuItem</Description>
+<a1:KeyboardShortcut id="ref-196" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.7.22011%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
+<Value>F12, Control</Value>
+<Description id="ref-347">mView_ProjectPropertiesMenuItem</Description>
 <IsMenuShortcut>true</IsMenuShortcut>
 </a1:KeyboardShortcut>
-<a1:KeyboardShortcut id="ref-197" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.1.24708%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
+<a1:KeyboardShortcut id="ref-197" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.7.22011%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
 <Value>H, Control</Value>
-<Description id="ref-347">mAddSectionToolStripMenuItem</Description>
+<Description id="ref-348">mAddSectionToolStripMenuItem</Description>
 <IsMenuShortcut>true</IsMenuShortcut>
 </a1:KeyboardShortcut>
-<a1:KeyboardShortcut id="ref-198" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.1.24708%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
+<a1:KeyboardShortcut id="ref-198" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.7.22011%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
 <Value>H, Shift, Control</Value>
-<Description id="ref-348">mAddSubsectionToolStripMenuItem</Description>
+<Description id="ref-349">mAddSubsectionToolStripMenuItem</Description>
 <IsMenuShortcut>true</IsMenuShortcut>
 </a1:KeyboardShortcut>
-<a1:KeyboardShortcut id="ref-199" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.1.24708%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
+<a1:KeyboardShortcut id="ref-199" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.7.22011%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
 <Value>H, Control, Alt</Value>
-<Description id="ref-349">mInsertSectionToolStripMenuItem</Description>
+<Description id="ref-350">mInsertSectionToolStripMenuItem</Description>
 <IsMenuShortcut>true</IsMenuShortcut>
 </a1:KeyboardShortcut>
-<a1:KeyboardShortcut id="ref-200" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.1.24708%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
+<a1:KeyboardShortcut id="ref-200" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.7.22011%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
 <Value>F2</Value>
-<Description id="ref-350">mRenameSectionToolStripMenuItem</Description>
+<Description id="ref-351">mRenameSectionToolStripMenuItem</Description>
 <IsMenuShortcut>true</IsMenuShortcut>
 </a1:KeyboardShortcut>
-<a1:KeyboardShortcut id="ref-201" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.1.24708%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
+<a1:KeyboardShortcut id="ref-201" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.7.22011%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
 <Value>Left, Shift, Control</Value>
-<Description id="ref-351">mDecreaseSectionLevelToolStripMenuItem</Description>
+<Description id="ref-352">mDecreaseSectionLevelToolStripMenuItem</Description>
 <IsMenuShortcut>true</IsMenuShortcut>
 </a1:KeyboardShortcut>
-<a1:KeyboardShortcut id="ref-202" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.1.24708%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
+<a1:KeyboardShortcut id="ref-202" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.7.22011%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
 <Value>Right, Shift, Control</Value>
-<Description id="ref-352">mIncreaseSectionLevelToolStripMenuItem</Description>
+<Description id="ref-353">mIncreaseSectionLevelToolStripMenuItem</Description>
 <IsMenuShortcut>true</IsMenuShortcut>
 </a1:KeyboardShortcut>
-<a1:KeyboardShortcut id="ref-203" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.1.24708%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
+<a1:KeyboardShortcut id="ref-203" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.7.22011%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
 <Value>Q, Shift, Control</Value>
-<Description id="ref-353">mSplitSectionToolStripMenuItem</Description>
+<Description id="ref-354">mSplitSectionToolStripMenuItem</Description>
 <IsMenuShortcut>true</IsMenuShortcut>
 </a1:KeyboardShortcut>
-<a1:KeyboardShortcut id="ref-204" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.1.24708%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
+<a1:KeyboardShortcut id="ref-204" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.7.22011%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
 <Value>M, Shift, Control</Value>
-<Description id="ref-354">mMergeWithNextSectionToolStripMenuItem</Description>
+<Description id="ref-355">mMergeWithNextSectionToolStripMenuItem</Description>
 <IsMenuShortcut>true</IsMenuShortcut>
 </a1:KeyboardShortcut>
-<a1:KeyboardShortcut id="ref-205" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.1.24708%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
+<a1:KeyboardShortcut id="ref-205" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.7.22011%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
 <Value>None</Value>
-<Description id="ref-355">mMultiSectionOperations</Description>
+<Description id="ref-356">mMultiSectionOperations</Description>
 <IsMenuShortcut>true</IsMenuShortcut>
 </a1:KeyboardShortcut>
-<a1:KeyboardShortcut id="ref-206" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.1.24708%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
+<a1:KeyboardShortcut id="ref-206" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.7.22011%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
 <Value>K, Control</Value>
-<Description id="ref-356">mSectionIsUsedToolStripMenuItem</Description>
+<Description id="ref-357">mSectionIsUsedToolStripMenuItem</Description>
 <IsMenuShortcut>true</IsMenuShortcut>
 </a1:KeyboardShortcut>
-<a1:KeyboardShortcut id="ref-207" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.1.24708%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
+<a1:KeyboardShortcut id="ref-207" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.7.22011%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
 <Value>B, Control</Value>
-<Description id="ref-357">mAddBlankPhraseToolStripMenuItem</Description>
+<Description id="ref-358">mAddBlankPhraseToolStripMenuItem</Description>
 <IsMenuShortcut>true</IsMenuShortcut>
 </a1:KeyboardShortcut>
-<a1:KeyboardShortcut id="ref-208" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.1.24708%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
+<a1:KeyboardShortcut id="ref-208" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.7.22011%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
 <Value>B, Shift, Control</Value>
-<Description id="ref-358">mAddEmptyPagesToolStripMenuItem</Description>
+<Description id="ref-359">mAddEmptyPagesToolStripMenuItem</Description>
 <IsMenuShortcut>true</IsMenuShortcut>
 </a1:KeyboardShortcut>
-<a1:KeyboardShortcut id="ref-209" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.1.24708%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
+<a1:KeyboardShortcut id="ref-209" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.7.22011%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
 <Value>I, Control</Value>
-<Description id="ref-359">mImportAudioFileToolStripMenuItem</Description>
+<Description id="ref-360">mImportAudioFileToolStripMenuItem</Description>
 <IsMenuShortcut>true</IsMenuShortcut>
 </a1:KeyboardShortcut>
-<a1:KeyboardShortcut id="ref-210" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.1.24708%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
+<a1:KeyboardShortcut id="ref-210" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.7.22011%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
 <Value>Q, Control</Value>
-<Description id="ref-360">mSplitPhraseToolStripMenuItem</Description>
+<Description id="ref-361">mSplitPhraseToolStripMenuItem</Description>
 <IsMenuShortcut>true</IsMenuShortcut>
 </a1:KeyboardShortcut>
-<a1:KeyboardShortcut id="ref-211" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.1.24708%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
+<a1:KeyboardShortcut id="ref-211" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.7.22011%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
 <Value>M, Control</Value>
-<Description id="ref-361">mMergePhraseWithNextToolStripMenuItem</Description>
+<Description id="ref-362">mMergePhraseWithNextToolStripMenuItem</Description>
 <IsMenuShortcut>true</IsMenuShortcut>
 </a1:KeyboardShortcut>
-<a1:KeyboardShortcut id="ref-212" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.1.24708%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
+<a1:KeyboardShortcut id="ref-212" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.7.22011%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
 <Value>None</Value>
-<Description id="ref-362">splitAndMergeWithNextToolStripMenuItem</Description>
+<Description id="ref-363">splitAndMergeWithNextToolStripMenuItem</Description>
 <IsMenuShortcut>true</IsMenuShortcut>
 </a1:KeyboardShortcut>
-<a1:KeyboardShortcut id="ref-213" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.1.24708%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
+<a1:KeyboardShortcut id="ref-213" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.7.22011%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
 <Value>None</Value>
-<Description id="ref-363">splitAndMergeWithPreviousToolStripMenuItem</Description>
+<Description id="ref-364">splitAndMergeWithPreviousToolStripMenuItem</Description>
 <IsMenuShortcut>true</IsMenuShortcut>
 </a1:KeyboardShortcut>
-<a1:KeyboardShortcut id="ref-214" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.1.24708%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
+<a1:KeyboardShortcut id="ref-214" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.7.22011%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
 <Value>None</Value>
-<Description id="ref-364">mMergePhraseWithFollowingPhrasesToolStripMenuItem</Description>
+<Description id="ref-365">mMergePhraseWithFollowingPhrasesToolStripMenuItem</Description>
 <IsMenuShortcut>true</IsMenuShortcut>
 </a1:KeyboardShortcut>
-<a1:KeyboardShortcut id="ref-215" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.1.24708%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
+<a1:KeyboardShortcut id="ref-215" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.7.22011%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
 <Value>None</Value>
-<Description id="ref-365">mMergePhraseWithPrecedingPhrasesToolStripMenuItem</Description>
+<Description id="ref-366">mMergePhraseWithPrecedingPhrasesToolStripMenuItem</Description>
 <IsMenuShortcut>true</IsMenuShortcut>
 </a1:KeyboardShortcut>
-<a1:KeyboardShortcut id="ref-216" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.1.24708%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
+<a1:KeyboardShortcut id="ref-216" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.7.22011%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
 <Value>Q, Control, Alt</Value>
-<Description id="ref-366">mCropAudiotoolStripMenuItem</Description>
+<Description id="ref-367">mCropAudiotoolStripMenuItem</Description>
 <IsMenuShortcut>true</IsMenuShortcut>
 </a1:KeyboardShortcut>
-<a1:KeyboardShortcut id="ref-217" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.1.24708%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
+<a1:KeyboardShortcut id="ref-217" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.7.22011%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
 <Value>F9</Value>
-<Description id="ref-367">mPhrases_PhraseIsTODOMenuItem</Description>
+<Description id="ref-368">mPhrases_PhraseIsTODOMenuItem</Description>
 <IsMenuShortcut>true</IsMenuShortcut>
 </a1:KeyboardShortcut>
-<a1:KeyboardShortcut id="ref-218" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.1.24708%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
+<a1:KeyboardShortcut id="ref-218" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.7.22011%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
 <Value>K, Control</Value>
-<Description id="ref-368">mPhraseIsUsedToolStripMenuItem</Description>
+<Description id="ref-369">mPhraseIsUsedToolStripMenuItem</Description>
 <IsMenuShortcut>true</IsMenuShortcut>
 </a1:KeyboardShortcut>
-<a1:KeyboardShortcut id="ref-219" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.1.24708%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
+<a1:KeyboardShortcut id="ref-219" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.7.22011%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
 <Value>None</Value>
-<Description id="ref-369">beginMarkToolStripMenuItem</Description>
+<Description id="ref-370">beginMarkToolStripMenuItem</Description>
 <IsMenuShortcut>true</IsMenuShortcut>
 </a1:KeyboardShortcut>
-<a1:KeyboardShortcut id="ref-220" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.1.24708%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
+<a1:KeyboardShortcut id="ref-220" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.7.22011%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
 <Value>None</Value>
-<Description id="ref-370">endMarkToolStripMenuItem</Description>
+<Description id="ref-371">endMarkToolStripMenuItem</Description>
 <IsMenuShortcut>true</IsMenuShortcut>
 </a1:KeyboardShortcut>
-<a1:KeyboardShortcut id="ref-221" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.1.24708%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
+<a1:KeyboardShortcut id="ref-221" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.7.22011%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
 <Value>None</Value>
-<Description id="ref-371">mPhrases_RenumberPagesMenuItem</Description>
+<Description id="ref-372">mPhrases_RenumberPagesMenuItem</Description>
 <IsMenuShortcut>true</IsMenuShortcut>
 </a1:KeyboardShortcut>
-<a1:KeyboardShortcut id="ref-222" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.1.24708%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
+<a1:KeyboardShortcut id="ref-222" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.7.22011%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
 <Value>None</Value>
-<Description id="ref-372">m_AutoFillMissingPagesMenuItem</Description>
+<Description id="ref-373">m_AutoFillMissingPagesMenuItem</Description>
 <IsMenuShortcut>true</IsMenuShortcut>
 </a1:KeyboardShortcut>
-<a1:KeyboardShortcut id="ref-223" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.1.24708%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
+<a1:KeyboardShortcut id="ref-223" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.7.22011%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
 <Value>OemOpenBrackets, Control, Alt</Value>
-<Description id="ref-373">mSkippableBeginNoteToolStripMenuItem</Description>
+<Description id="ref-374">mSkippableBeginNoteToolStripMenuItem</Description>
 <IsMenuShortcut>true</IsMenuShortcut>
 </a1:KeyboardShortcut>
-<a1:KeyboardShortcut id="ref-224" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.1.24708%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
+<a1:KeyboardShortcut id="ref-224" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.7.22011%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
 <Value>Oem6, Control, Alt</Value>
-<Description id="ref-374">mSkippableEndNoteToolStripMenuItem</Description>
+<Description id="ref-375">mSkippableEndNoteToolStripMenuItem</Description>
 <IsMenuShortcut>true</IsMenuShortcut>
 </a1:KeyboardShortcut>
-<a1:KeyboardShortcut id="ref-225" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.1.24708%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
+<a1:KeyboardShortcut id="ref-225" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.7.22011%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
 <Value>A, Control, Alt</Value>
-<Description id="ref-375">mSkippableAddReferenceToolStripMenuItem</Description>
+<Description id="ref-376">mSkippableAddReferenceToolStripMenuItem</Description>
 <IsMenuShortcut>true</IsMenuShortcut>
 </a1:KeyboardShortcut>
-<a1:KeyboardShortcut id="ref-226" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.1.24708%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
+<a1:KeyboardShortcut id="ref-226" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.7.22011%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
 <Value>None</Value>
-<Description id="ref-376">mSkippableGotoToolStripMenuItem</Description>
+<Description id="ref-377">mSkippableGotoToolStripMenuItem</Description>
 <IsMenuShortcut>true</IsMenuShortcut>
 </a1:KeyboardShortcut>
-<a1:KeyboardShortcut id="ref-227" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.1.24708%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
+<a1:KeyboardShortcut id="ref-227" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.7.22011%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
 <Value>D, Control, Alt</Value>
-<Description id="ref-377">mSkippableRemoveReferenceToolStripMenuItem</Description>
+<Description id="ref-378">mSkippableRemoveReferenceToolStripMenuItem</Description>
 <IsMenuShortcut>true</IsMenuShortcut>
 </a1:KeyboardShortcut>
-<a1:KeyboardShortcut id="ref-228" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.1.24708%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
+<a1:KeyboardShortcut id="ref-228" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.7.22011%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
 <Value>None</Value>
-<Description id="ref-378">mSkippableMoveToStartNoteToolStripMenuItem</Description>
+<Description id="ref-379">mSkippableMoveToStartNoteToolStripMenuItem</Description>
 <IsMenuShortcut>true</IsMenuShortcut>
 </a1:KeyboardShortcut>
-<a1:KeyboardShortcut id="ref-229" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.1.24708%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
+<a1:KeyboardShortcut id="ref-229" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.7.22011%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
 <Value>None</Value>
-<Description id="ref-379">mSkippableMoveToEndNoteToolStripMenuItem</Description>
+<Description id="ref-380">mSkippableMoveToEndNoteToolStripMenuItem</Description>
 <IsMenuShortcut>true</IsMenuShortcut>
 </a1:KeyboardShortcut>
-<a1:KeyboardShortcut id="ref-230" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.1.24708%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
+<a1:KeyboardShortcut id="ref-230" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.7.22011%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
 <Value>C, Control, Alt</Value>
-<Description id="ref-380">mSkippableClearRoleFromNoteToolStripMenuItem</Description>
+<Description id="ref-381">mSkippableClearRoleFromNoteToolStripMenuItem</Description>
 <IsMenuShortcut>true</IsMenuShortcut>
 </a1:KeyboardShortcut>
-<a1:KeyboardShortcut id="ref-231" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.1.24708%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
+<a1:KeyboardShortcut id="ref-231" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.7.22011%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
+<Value>None</Value>
+<Description id="ref-382">mAutoPageGenerationMenuItem</Description>
+<IsMenuShortcut>true</IsMenuShortcut>
+</a1:KeyboardShortcut>
+<a1:KeyboardShortcut id="ref-232" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.7.22011%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
 <Value>F11</Value>
-<Description id="ref-381">mPhrases_AssignRole_PlainMenuItem</Description>
+<Description id="ref-383">mPhrases_AssignRole_PlainMenuItem</Description>
 <IsMenuShortcut>true</IsMenuShortcut>
 </a1:KeyboardShortcut>
-<a1:KeyboardShortcut id="ref-232" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.1.24708%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
+<a1:KeyboardShortcut id="ref-233" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.7.22011%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
 <Value>D, Shift, Control</Value>
-<Description id="ref-382">mPhrases_AssignRole_HeadingMenuItem</Description>
+<Description id="ref-384">mPhrases_AssignRole_HeadingMenuItem</Description>
 <IsMenuShortcut>true</IsMenuShortcut>
 </a1:KeyboardShortcut>
-<a1:KeyboardShortcut id="ref-233" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.1.24708%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
+<a1:KeyboardShortcut id="ref-234" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.7.22011%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
 <Value>G, Shift, Control</Value>
-<Description id="ref-383">mPhrases_AssignRole_PageMenuItem</Description>
+<Description id="ref-385">mPhrases_AssignRole_PageMenuItem</Description>
 <IsMenuShortcut>true</IsMenuShortcut>
 </a1:KeyboardShortcut>
-<a1:KeyboardShortcut id="ref-234" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.1.24708%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
+<a1:KeyboardShortcut id="ref-235" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.7.22011%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
 <Value>E, Shift, Control</Value>
-<Description id="ref-384">mPhrases_AssignRole_SilenceMenuItem</Description>
+<Description id="ref-386">mPhrases_AssignRole_SilenceMenuItem</Description>
 <IsMenuShortcut>true</IsMenuShortcut>
 </a1:KeyboardShortcut>
-<a1:KeyboardShortcut id="ref-235" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.1.24708%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
+<a1:KeyboardShortcut id="ref-236" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.7.22011%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
 <Value>None</Value>
-<Description id="ref-385">mPhrases_AssignRole_AnchorMenuItem</Description>
+<Description id="ref-387">mPhrases_AssignRole_AnchorMenuItem</Description>
 <IsMenuShortcut>true</IsMenuShortcut>
 </a1:KeyboardShortcut>
-<a1:KeyboardShortcut id="ref-236" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.1.24708%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
+<a1:KeyboardShortcut id="ref-237" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.7.22011%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
 <Value>None</Value>
-<Description id="ref-386">mPhrases_AssignRole_NewCustomRoleMenuItem</Description>
+<Description id="ref-388">mPhrases_AssignRole_NewCustomRoleMenuItem</Description>
 <IsMenuShortcut>true</IsMenuShortcut>
 </a1:KeyboardShortcut>
-<a1:KeyboardShortcut id="ref-237" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.1.24708%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
+<a1:KeyboardShortcut id="ref-238" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.7.22011%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
 <Value>C, Shift, Control</Value>
-<Description id="ref-387">mPhrases_ClearRoleMenuItem</Description>
+<Description id="ref-389">mPhrases_ClearRoleMenuItem</Description>
 <IsMenuShortcut>true</IsMenuShortcut>
 </a1:KeyboardShortcut>
-<a1:KeyboardShortcut id="ref-238" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.1.24708%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
+<a1:KeyboardShortcut id="ref-239" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.7.22011%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
 <Value>None</Value>
-<Description id="ref-388">mPhrases_EditRolesMenuItem</Description>
+<Description id="ref-390">mPhrases_EditRolesMenuItem</Description>
 <IsMenuShortcut>true</IsMenuShortcut>
 </a1:KeyboardShortcut>
-<a1:KeyboardShortcut id="ref-239" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.1.24708%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
+<a1:KeyboardShortcut id="ref-240" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.7.22011%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
 <Value>P, Shift, Control</Value>
-<Description id="ref-389">mPhrases_ApplyPhraseDetectionMenuItem</Description>
+<Description id="ref-391">mPhrases_ApplyPhraseDetectionMenuItem</Description>
 <IsMenuShortcut>true</IsMenuShortcut>
 </a1:KeyboardShortcut>
-<a1:KeyboardShortcut id="ref-240" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.1.24708%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
+<a1:KeyboardShortcut id="ref-241" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.7.22011%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
 <Value>None</Value>
-<Description id="ref-390">mApplyPhraseDetectionInProjectToolStripMenuItem</Description>
+<Description id="ref-392">mApplyPhraseDetectionInProjectToolStripMenuItem</Description>
 <IsMenuShortcut>true</IsMenuShortcut>
 </a1:KeyboardShortcut>
-<a1:KeyboardShortcut id="ref-241" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.1.24708%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
+<a1:KeyboardShortcut id="ref-242" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.7.22011%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
 <Value>None</Value>
-<Description id="ref-391">settingsFromSilencePhraseToolStripMenuItem</Description>
+<Description id="ref-393">settingsFromSilencePhraseToolStripMenuItem</Description>
 <IsMenuShortcut>true</IsMenuShortcut>
 </a1:KeyboardShortcut>
-<a1:KeyboardShortcut id="ref-242" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.1.24708%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
+<a1:KeyboardShortcut id="ref-243" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.7.22011%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
 <Value>F7</Value>
-<Description id="ref-392">detectSilencePhraseToolStripMenuItem</Description>
+<Description id="ref-394">detectSilencePhraseToolStripMenuItem</Description>
 <IsMenuShortcut>true</IsMenuShortcut>
 </a1:KeyboardShortcut>
-<a1:KeyboardShortcut id="ref-243" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.1.24708%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
+<a1:KeyboardShortcut id="ref-244" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.7.22011%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
 <Value>OemOpenBrackets, Control</Value>
-<Description id="ref-393">mPhrases_AudioSelection_BeginAudioSelectionMenuItem</Description>
+<Description id="ref-395">mPhrases_AudioSelection_BeginAudioSelectionMenuItem</Description>
 <IsMenuShortcut>true</IsMenuShortcut>
 </a1:KeyboardShortcut>
-<a1:KeyboardShortcut id="ref-244" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.1.24708%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
+<a1:KeyboardShortcut id="ref-245" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.7.22011%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
 <Value>Oem6, Control</Value>
-<Description id="ref-394">mPhrases_AudioSelection_EndAudioSelectionMenuItem</Description>
+<Description id="ref-396">mPhrases_AudioSelection_EndAudioSelectionMenuItem</Description>
 <IsMenuShortcut>true</IsMenuShortcut>
 </a1:KeyboardShortcut>
-<a1:KeyboardShortcut id="ref-245" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.1.24708%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
+<a1:KeyboardShortcut id="ref-246" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.7.22011%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
 <Value>F9, Control</Value>
-<Description id="ref-395">mNextTODOPhraseToolStripMenuItem</Description>
+<Description id="ref-397">mNextTODOPhraseToolStripMenuItem</Description>
 <IsMenuShortcut>true</IsMenuShortcut>
 </a1:KeyboardShortcut>
-<a1:KeyboardShortcut id="ref-246" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.1.24708%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
+<a1:KeyboardShortcut id="ref-247" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.7.22011%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
 <Value>F9, Shift, Control</Value>
-<Description id="ref-396">mPreviousTODOPhraseToolStripMenuItem</Description>
+<Description id="ref-398">mPreviousTODOPhraseToolStripMenuItem</Description>
 <IsMenuShortcut>true</IsMenuShortcut>
 </a1:KeyboardShortcut>
-<a1:KeyboardShortcut id="ref-247" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.1.24708%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
+<a1:KeyboardShortcut id="ref-248" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.7.22011%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
 <Value>G, Control</Value>
-<Description id="ref-397">m_GoToPageToolStrip</Description>
+<Description id="ref-399">m_GoToPageToolStrip</Description>
 <IsMenuShortcut>true</IsMenuShortcut>
 </a1:KeyboardShortcut>
-<a1:KeyboardShortcut id="ref-248" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.1.24708%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
+<a1:KeyboardShortcut id="ref-249" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.7.22011%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
 <Value>F3, Control</Value>
-<Description id="ref-398">m_GoToCollectSpecialPhrasesToolStripMenuItem</Description>
+<Description id="ref-400">m_GoToCollectSpecialPhrasesToolStripMenuItem</Description>
 <IsMenuShortcut>true</IsMenuShortcut>
 </a1:KeyboardShortcut>
-<a1:KeyboardShortcut id="ref-249" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.1.24708%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
+<a1:KeyboardShortcut id="ref-250" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.7.22011%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
 <Value>None</Value>
-<Description id="ref-399">mCheckForPhrasesWithImproperAudioMenuItem</Description>
+<Description id="ref-401">mCheckForPhrasesWithImproperAudioMenuItem</Description>
 <IsMenuShortcut>true</IsMenuShortcut>
 </a1:KeyboardShortcut>
-<a1:KeyboardShortcut id="ref-250" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.1.24708%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
+<a1:KeyboardShortcut id="ref-251" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.7.22011%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
 <Value>None</Value>
-<Description id="ref-400">mDeleteFollowingPhrasesToolStripMenuItem</Description>
+<Description id="ref-402">mDeleteFollowingPhrasesToolStripMenuItem</Description>
 <IsMenuShortcut>true</IsMenuShortcut>
 </a1:KeyboardShortcut>
-<a1:KeyboardShortcut id="ref-251" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.1.24708%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
+<a1:KeyboardShortcut id="ref-252" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.7.22011%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
 <Value>Space, Shift, Control</Value>
-<Description id="ref-401">mPlayAllToolStripMenuItem</Description>
+<Description id="ref-403">mPlayAllToolStripMenuItem</Description>
 <IsMenuShortcut>true</IsMenuShortcut>
 </a1:KeyboardShortcut>
-<a1:KeyboardShortcut id="ref-252" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.1.24708%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
+<a1:KeyboardShortcut id="ref-253" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.7.22011%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
 <Value>None</Value>
-<Description id="ref-402">mPlaySelectionToolStripMenuItem</Description>
+<Description id="ref-404">mPlaySelectionToolStripMenuItem</Description>
 <IsMenuShortcut>true</IsMenuShortcut>
 </a1:KeyboardShortcut>
-<a1:KeyboardShortcut id="ref-253" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.1.24708%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
+<a1:KeyboardShortcut id="ref-254" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.7.22011%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
 <Value>None</Value>
-<Description id="ref-403">m_PlaySectionToolStripMenuItem</Description>
+<Description id="ref-405">m_PlaySectionToolStripMenuItem</Description>
 <IsMenuShortcut>true</IsMenuShortcut>
 </a1:KeyboardShortcut>
-<a1:KeyboardShortcut id="ref-254" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.1.24708%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
+<a1:KeyboardShortcut id="ref-255" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.7.22011%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
 <Value>None</Value>
-<Description id="ref-404">m_PlayHeadingToolStripMenuItem</Description>
+<Description id="ref-406">m_PlayHeadingToolStripMenuItem</Description>
 <IsMenuShortcut>true</IsMenuShortcut>
 </a1:KeyboardShortcut>
-<a1:KeyboardShortcut id="ref-255" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.1.24708%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
+<a1:KeyboardShortcut id="ref-256" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.7.22011%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
 <Value>None</Value>
-<Description id="ref-405">mPauseToolStripMenuItem</Description>
+<Description id="ref-407">mPauseToolStripMenuItem</Description>
 <IsMenuShortcut>true</IsMenuShortcut>
 </a1:KeyboardShortcut>
-<a1:KeyboardShortcut id="ref-256" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.1.24708%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
+<a1:KeyboardShortcut id="ref-257" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.7.22011%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
 <Value>None</Value>
-<Description id="ref-406">mResumeToolStripMenuItem</Description>
+<Description id="ref-408">mResumeToolStripMenuItem</Description>
 <IsMenuShortcut>true</IsMenuShortcut>
 </a1:KeyboardShortcut>
-<a1:KeyboardShortcut id="ref-257" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.1.24708%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
+<a1:KeyboardShortcut id="ref-258" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.7.22011%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
 <Value>Space, Control</Value>
-<Description id="ref-407">mStopToolStripMenuItem</Description>
+<Description id="ref-409">mStopToolStripMenuItem</Description>
 <IsMenuShortcut>true</IsMenuShortcut>
 </a1:KeyboardShortcut>
-<a1:KeyboardShortcut id="ref-258" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.1.24708%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
+<a1:KeyboardShortcut id="ref-259" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.7.22011%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
 <Value>D0, Control</Value>
-<Description id="ref-408">NormalSpeedtoolStripMenuItem</Description>
+<Description id="ref-410">NormalSpeedtoolStripMenuItem</Description>
 <IsMenuShortcut>true</IsMenuShortcut>
 </a1:KeyboardShortcut>
-<a1:KeyboardShortcut id="ref-259" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.1.24708%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
+<a1:KeyboardShortcut id="ref-260" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.7.22011%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
 <Value>None</Value>
-<Description id="ref-409">mElapseBacktoolStripMenuItem</Description>
+<Description id="ref-411">mElapseBacktoolStripMenuItem</Description>
 <IsMenuShortcut>true</IsMenuShortcut>
 </a1:KeyboardShortcut>
-<a1:KeyboardShortcut id="ref-260" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.1.24708%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
+<a1:KeyboardShortcut id="ref-261" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.7.22011%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
 <Value>Oemplus, Control</Value>
-<Description id="ref-410">SpeedUptoolStripMenuItem</Description>
+<Description id="ref-412">SpeedUptoolStripMenuItem</Description>
 <IsMenuShortcut>true</IsMenuShortcut>
 </a1:KeyboardShortcut>
-<a1:KeyboardShortcut id="ref-261" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.1.24708%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
+<a1:KeyboardShortcut id="ref-262" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.7.22011%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
 <Value>OemMinus, Control</Value>
-<Description id="ref-411">mSpeedDowntoolStripMenuItem</Description>
+<Description id="ref-413">mSpeedDowntoolStripMenuItem</Description>
 <IsMenuShortcut>true</IsMenuShortcut>
 </a1:KeyboardShortcut>
-<a1:KeyboardShortcut id="ref-262" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.1.24708%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
+<a1:KeyboardShortcut id="ref-263" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.7.22011%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
 <Value>P, Control</Value>
-<Description id="ref-412">mPreviewFromToolStripMenuItem</Description>
+<Description id="ref-414">mPreviewFromToolStripMenuItem</Description>
 <IsMenuShortcut>true</IsMenuShortcut>
 </a1:KeyboardShortcut>
-<a1:KeyboardShortcut id="ref-263" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.1.24708%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
+<a1:KeyboardShortcut id="ref-264" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.7.22011%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
 <Value>None</Value>
-<Description id="ref-413">mPreviewUpToToolStripMenuItem</Description>
+<Description id="ref-415">mPreviewUpToToolStripMenuItem</Description>
 <IsMenuShortcut>true</IsMenuShortcut>
 </a1:KeyboardShortcut>
-<a1:KeyboardShortcut id="ref-264" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.1.24708%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
+<a1:KeyboardShortcut id="ref-265" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.7.22011%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
 <Value>None</Value>
-<Description id="ref-414">mPreviewSelectedToolStripMenuItem</Description>
+<Description id="ref-416">mPreviewSelectedToolStripMenuItem</Description>
 <IsMenuShortcut>true</IsMenuShortcut>
 </a1:KeyboardShortcut>
-<a1:KeyboardShortcut id="ref-265" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.1.24708%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
+<a1:KeyboardShortcut id="ref-266" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.7.22011%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
 <Value>R, Control</Value>
-<Description id="ref-415">mStartMonitoringToolStripMenuItem</Description>
+<Description id="ref-417">mStartMonitoringToolStripMenuItem</Description>
 <IsMenuShortcut>true</IsMenuShortcut>
 </a1:KeyboardShortcut>
-<a1:KeyboardShortcut id="ref-266" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.1.24708%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
+<a1:KeyboardShortcut id="ref-267" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.7.22011%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
 <Value>R, Control</Value>
-<Description id="ref-416">mStartRecordingToolStripMenuItem</Description>
+<Description id="ref-418">mStartRecordingToolStripMenuItem</Description>
 <IsMenuShortcut>true</IsMenuShortcut>
 </a1:KeyboardShortcut>
-<a1:KeyboardShortcut id="ref-267" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.1.24708%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
+<a1:KeyboardShortcut id="ref-268" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.7.22011%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
 <Value>R, Shift, Control</Value>
-<Description id="ref-417">mStartRecordingDirectlyToolStripMenuItem</Description>
+<Description id="ref-419">mStartRecordingDirectlyToolStripMenuItem</Description>
 <IsMenuShortcut>true</IsMenuShortcut>
 </a1:KeyboardShortcut>
-<a1:KeyboardShortcut id="ref-268" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.1.24708%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
+<a1:KeyboardShortcut id="ref-269" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.7.22011%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
 <Value>None</Value>
-<Description id="ref-418">m_DeletePhrasesWhileRecordingtoolStripMenuItem</Description>
+<Description id="ref-420">m_DeletePhrasesWhileRecordingtoolStripMenuItem</Description>
 <IsMenuShortcut>true</IsMenuShortcut>
 </a1:KeyboardShortcut>
-<a1:KeyboardShortcut id="ref-269" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.1.24708%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
+<a1:KeyboardShortcut id="ref-270" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.7.22011%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
 <Value>None</Value>
-<Description id="ref-419">m_PreviewBeforeRecordingToolStripMenuItem</Description>
+<Description id="ref-421">m_PreviewBeforeRecordingToolStripMenuItem</Description>
 <IsMenuShortcut>true</IsMenuShortcut>
 </a1:KeyboardShortcut>
-<a1:KeyboardShortcut id="ref-270" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.1.24708%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
+<a1:KeyboardShortcut id="ref-271" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.7.22011%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
 <Value>None</Value>
-<Description id="ref-420">m_MonitorContinuouslyToolStripMenuItem</Description>
+<Description id="ref-422">m_MonitorContinuouslyToolStripMenuItem</Description>
 <IsMenuShortcut>true</IsMenuShortcut>
 </a1:KeyboardShortcut>
-<a1:KeyboardShortcut id="ref-271" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.1.24708%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
+<a1:KeyboardShortcut id="ref-272" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.7.22011%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
 <Value>None</Value>
-<Description id="ref-421">mAllowOverwriteToolStripMenuItem</Description>
+<Description id="ref-423">mAllowOverwriteToolStripMenuItem</Description>
 <IsMenuShortcut>true</IsMenuShortcut>
 </a1:KeyboardShortcut>
-<a1:KeyboardShortcut id="ref-272" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.1.24708%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
+<a1:KeyboardShortcut id="ref-273" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.7.22011%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
 <Value>None</Value>
-<Description id="ref-422">selectedPageToolStripMenuItem</Description>
+<Description id="ref-424">selectedPageToolStripMenuItem</Description>
 <IsMenuShortcut>true</IsMenuShortcut>
 </a1:KeyboardShortcut>
-<a1:KeyboardShortcut id="ref-273" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.1.24708%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
+<a1:KeyboardShortcut id="ref-274" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.7.22011%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
 <Value>None</Value>
-<Description id="ref-423">allEmptyPagesToolStripMenuItem</Description>
+<Description id="ref-425">allEmptyPagesToolStripMenuItem</Description>
 <IsMenuShortcut>true</IsMenuShortcut>
 </a1:KeyboardShortcut>
-<a1:KeyboardShortcut id="ref-274" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.1.24708%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
+<a1:KeyboardShortcut id="ref-275" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.7.22011%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
 <Value>Up, Alt</Value>
-<Description id="ref-424">mPreviousSectionToolStripMenuItem</Description>
+<Description id="ref-426">mPreviousSectionToolStripMenuItem</Description>
 <IsMenuShortcut>true</IsMenuShortcut>
 </a1:KeyboardShortcut>
-<a1:KeyboardShortcut id="ref-275" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.1.24708%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
+<a1:KeyboardShortcut id="ref-276" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.7.22011%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
 <Value>PageUp, Alt</Value>
-<Description id="ref-425">mPreviousPageToolStripMenuItem</Description>
+<Description id="ref-427">mPreviousPageToolStripMenuItem</Description>
 <IsMenuShortcut>true</IsMenuShortcut>
 </a1:KeyboardShortcut>
-<a1:KeyboardShortcut id="ref-276" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.1.24708%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
+<a1:KeyboardShortcut id="ref-277" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.7.22011%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
 <Value>Left, Alt</Value>
-<Description id="ref-426">mPreviousPhraseToolStripMenuItem</Description>
+<Description id="ref-428">mPreviousPhraseToolStripMenuItem</Description>
 <IsMenuShortcut>true</IsMenuShortcut>
 </a1:KeyboardShortcut>
-<a1:KeyboardShortcut id="ref-277" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.1.24708%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
+<a1:KeyboardShortcut id="ref-278" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.7.22011%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
 <Value>None</Value>
-<Description id="ref-427">mBackwardElapseToolStripMenuItem</Description>
+<Description id="ref-429">mBackwardElapseToolStripMenuItem</Description>
 <IsMenuShortcut>true</IsMenuShortcut>
 </a1:KeyboardShortcut>
-<a1:KeyboardShortcut id="ref-278" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.1.24708%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
+<a1:KeyboardShortcut id="ref-279" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.7.22011%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
 <Value>None</Value>
-<Description id="ref-428">mForwardElapseToolStripMenuItem</Description>
+<Description id="ref-430">mForwardElapseToolStripMenuItem</Description>
 <IsMenuShortcut>true</IsMenuShortcut>
 </a1:KeyboardShortcut>
-<a1:KeyboardShortcut id="ref-279" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.1.24708%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
+<a1:KeyboardShortcut id="ref-280" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.7.22011%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
 <Value>Right, Alt</Value>
-<Description id="ref-429">mNextPhraseToolStripMenuItem</Description>
+<Description id="ref-431">mNextPhraseToolStripMenuItem</Description>
 <IsMenuShortcut>true</IsMenuShortcut>
 </a1:KeyboardShortcut>
-<a1:KeyboardShortcut id="ref-280" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.1.24708%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
+<a1:KeyboardShortcut id="ref-281" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.7.22011%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
 <Value>Next, Alt</Value>
-<Description id="ref-430">mNextPageToolStripMenuItem</Description>
+<Description id="ref-432">mNextPageToolStripMenuItem</Description>
 <IsMenuShortcut>true</IsMenuShortcut>
 </a1:KeyboardShortcut>
-<a1:KeyboardShortcut id="ref-281" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.1.24708%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
+<a1:KeyboardShortcut id="ref-282" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.7.22011%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
 <Value>Down, Alt</Value>
-<Description id="ref-431">mNextSectionToolStripMenuItem</Description>
+<Description id="ref-433">mNextSectionToolStripMenuItem</Description>
 <IsMenuShortcut>true</IsMenuShortcut>
 </a1:KeyboardShortcut>
-<a1:KeyboardShortcut id="ref-282" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.1.24708%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
+<a1:KeyboardShortcut id="ref-283" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.7.22011%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
 <Value>U, Control</Value>
-<Description id="ref-432">mPlayOnNavigateToolStripMenuItem</Description>
+<Description id="ref-434">mPlayOnNavigateToolStripMenuItem</Description>
 <IsMenuShortcut>true</IsMenuShortcut>
 </a1:KeyboardShortcut>
-<a1:KeyboardShortcut id="ref-283" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.1.24708%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
+<a1:KeyboardShortcut id="ref-284" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.7.22011%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
 <Value>None</Value>
-<Description id="ref-433">mFineNavigationToolStripMenuItem</Description>
+<Description id="ref-435">mFineNavigationToolStripMenuItem</Description>
 <IsMenuShortcut>true</IsMenuShortcut>
 </a1:KeyboardShortcut>
-<a1:KeyboardShortcut id="ref-284" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.1.24708%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
+<a1:KeyboardShortcut id="ref-285" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.7.22011%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
 <Value>Oemcomma, Control</Value>
-<Description id="ref-434">mRewindToolStripMenuItem</Description>
+<Description id="ref-436">mRewindToolStripMenuItem</Description>
 <IsMenuShortcut>true</IsMenuShortcut>
 </a1:KeyboardShortcut>
-<a1:KeyboardShortcut id="ref-285" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.1.24708%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
+<a1:KeyboardShortcut id="ref-286" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.7.22011%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
 <Value>OemPeriod, Control</Value>
-<Description id="ref-435">mFastForwardToolStripMenuItem</Description>
+<Description id="ref-437">mFastForwardToolStripMenuItem</Description>
 <IsMenuShortcut>true</IsMenuShortcut>
 </a1:KeyboardShortcut>
-<a1:KeyboardShortcut id="ref-286" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.1.24708%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
+<a1:KeyboardShortcut id="ref-287" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.7.22011%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
 <Value>F, Control, Alt</Value>
-<Description id="ref-436">mTools_PreferencesMenuItem</Description>
+<Description id="ref-438">mTools_PreferencesMenuItem</Description>
 <IsMenuShortcut>true</IsMenuShortcut>
 </a1:KeyboardShortcut>
-<a1:KeyboardShortcut id="ref-287" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.1.24708%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
+<a1:KeyboardShortcut id="ref-288" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.7.22011%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
 <Value>None</Value>
-<Description id="ref-437">m_ToolsLangPack</Description>
+<Description id="ref-439">m_ToolsLangPack</Description>
 <IsMenuShortcut>true</IsMenuShortcut>
 </a1:KeyboardShortcut>
-<a1:KeyboardShortcut id="ref-288" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.1.24708%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
+<a1:KeyboardShortcut id="ref-289" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.7.22011%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
 <Value>F10</Value>
-<Description id="ref-438">mTools_AudioProcessing</Description>
+<Description id="ref-440">mTools_AudioProcessing</Description>
 <IsMenuShortcut>true</IsMenuShortcut>
 </a1:KeyboardShortcut>
-<a1:KeyboardShortcut id="ref-289" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.1.24708%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
+<a1:KeyboardShortcut id="ref-290" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.7.22011%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
 <Value>E, Control, Alt</Value>
-<Description id="ref-439">mTools_ExportSelectedAudioMenuItem</Description>
+<Description id="ref-441">mTools_ExportSelectedAudioMenuItem</Description>
 <IsMenuShortcut>true</IsMenuShortcut>
 </a1:KeyboardShortcut>
-<a1:KeyboardShortcut id="ref-290" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.1.24708%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
+<a1:KeyboardShortcut id="ref-291" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.7.22011%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
 <Value>L, Control</Value>
-<Description id="ref-440">m_Tools_CompleteCleanupToolStripMenuItem</Description>
+<Description id="ref-442">m_Tools_CompleteCleanupToolStripMenuItem</Description>
 <IsMenuShortcut>true</IsMenuShortcut>
 </a1:KeyboardShortcut>
-<a1:KeyboardShortcut id="ref-291" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.1.24708%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
+<a1:KeyboardShortcut id="ref-292" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.7.22011%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
 <Value>L, Control, Alt</Value>
-<Description id="ref-441">m_Tools_QuickCleanupToolStripMenuItem</Description>
+<Description id="ref-443">m_Tools_QuickCleanupToolStripMenuItem</Description>
 <IsMenuShortcut>true</IsMenuShortcut>
 </a1:KeyboardShortcut>
-<a1:KeyboardShortcut id="ref-292" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.1.24708%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
+<a1:KeyboardShortcut id="ref-293" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.7.22011%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
 <Value>None</Value>
-<Description id="ref-442">rollbackToolStripMenuItem</Description>
+<Description id="ref-444">rollbackToolStripMenuItem</Description>
 <IsMenuShortcut>true</IsMenuShortcut>
 </a1:KeyboardShortcut>
-<a1:KeyboardShortcut id="ref-293" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.1.24708%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
+<a1:KeyboardShortcut id="ref-294" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.7.22011%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
 <Value>E, Control</Value>
-<Description id="ref-443">mTools_ExportAsDAISYMenuItem</Description>
+<Description id="ref-445">mTools_ExportAsDAISYMenuItem</Description>
 <IsMenuShortcut>true</IsMenuShortcut>
 </a1:KeyboardShortcut>
-<a1:KeyboardShortcut id="ref-294" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.1.24708%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
+<a1:KeyboardShortcut id="ref-295" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.7.22011%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
 <Value>None</Value>
-<Description id="ref-444">m_EPUB3ValidatorToolStripMenuItem</Description>
+<Description id="ref-446">m_EPUB3ValidatorToolStripMenuItem</Description>
 <IsMenuShortcut>true</IsMenuShortcut>
 </a1:KeyboardShortcut>
-<a1:KeyboardShortcut id="ref-295" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.1.24708%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
+<a1:KeyboardShortcut id="ref-296" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.7.22011%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
 <Value>None</Value>
-<Description id="ref-445">mHelp_WhatsNewMenuItem</Description>
+<Description id="ref-447">mHelp_WhatsNewMenuItem</Description>
 <IsMenuShortcut>true</IsMenuShortcut>
 </a1:KeyboardShortcut>
-<a1:KeyboardShortcut id="ref-296" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.1.24708%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
+<a1:KeyboardShortcut id="ref-297" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.7.22011%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
 <Value>None</Value>
-<Description id="ref-446">mHelp_ContentsMenuItem</Description>
+<Description id="ref-448">mHelp_ContentsMenuItem</Description>
 <IsMenuShortcut>true</IsMenuShortcut>
 </a1:KeyboardShortcut>
-<a1:KeyboardShortcut id="ref-297" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.1.24708%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
+<a1:KeyboardShortcut id="ref-298" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.7.22011%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
 <Value>None</Value>
-<Description id="ref-447">mHelp_ReportBugMenuItem</Description>
+<Description id="ref-449">mHelp_ReportBugMenuItem</Description>
 <IsMenuShortcut>true</IsMenuShortcut>
 </a1:KeyboardShortcut>
-<a1:KeyboardShortcut id="ref-298" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.1.24708%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
+<a1:KeyboardShortcut id="ref-299" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.7.22011%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
 <Value>None</Value>
-<Description id="ref-448">aboutObiToolStripMenuItem</Description>
+<Description id="ref-450">aboutObiToolStripMenuItem</Description>
 <IsMenuShortcut>true</IsMenuShortcut>
 </a1:KeyboardShortcut>
-<a1:KeyboardShortcut id="ref-299" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.1.24708%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
+<a1:KeyboardShortcut id="ref-300" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.7.22011%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
 <Value>None</Value>
-<Description id="ref-449">checkForUpdatesToolStripMenuItem</Description>
+<Description id="ref-451">checkForUpdatesToolStripMenuItem</Description>
 <IsMenuShortcut>true</IsMenuShortcut>
 </a1:KeyboardShortcut>
 </SOAP-ENV:Body>
