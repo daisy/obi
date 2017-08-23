@@ -5497,7 +5497,7 @@ namespace Obi {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Keyboard shortcuts are loaded from the selected item..
+        ///   Looks up a localized string similar to Keyboard shortcuts are loaded from the selected item. It is recommended to restart Obi..
         /// </summary>
         internal static string Preferences_ProfilesShortcutsLoaded {
             get {
