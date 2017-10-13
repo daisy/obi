@@ -75,9 +75,9 @@ namespace Obi.Dialogs
             this.m_txtBox_Color = new System.Windows.Forms.TextBox();
             this.m_gpBox_ColorsList = new System.Windows.Forms.GroupBox();
             this.m_lv_ColorPref = new System.Windows.Forms.ListView();
-            this.columnHeader3 = new System.Windows.Forms.ColumnHeader();
-            this.columnHeader4 = new System.Windows.Forms.ColumnHeader();
-            this.columnHeader5 = new System.Windows.Forms.ColumnHeader();
+            this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.m_lbl_AssignColor = new System.Windows.Forms.Label();
             this.mNormalColorCombo = new System.Windows.Forms.ComboBox();
             this.m_lbl_AssignHighContrastColor = new System.Windows.Forms.Label();
@@ -87,8 +87,8 @@ namespace Obi.Dialogs
             this.label12 = new System.Windows.Forms.Label();
             this.m_grpKeyboardShortcutList = new System.Windows.Forms.GroupBox();
             this.m_lvShortcutKeysList = new System.Windows.Forms.ListView();
-            this.columnHeader1 = new System.Windows.Forms.ColumnHeader();
-            this.columnHeader2 = new System.Windows.Forms.ColumnHeader();
+            this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.m_RestoreDefaults = new System.Windows.Forms.Button();
             this.m_btnRemove = new System.Windows.Forms.Button();
             this.m_btnAssign = new System.Windows.Forms.Button();
@@ -183,6 +183,7 @@ namespace Obi.Dialogs
             resources.ApplyResources(this.m_CheckBoxListView, "m_CheckBoxListView");
             this.m_CheckBoxListView.CheckBoxes = true;
             this.m_CheckBoxListView.Name = "m_CheckBoxListView";
+            this.helpProvider1.SetShowHelp(this.m_CheckBoxListView, ((bool)(resources.GetObject("m_CheckBoxListView.ShowHelp"))));
             this.m_CheckBoxListView.UseCompatibleStateImageBehavior = false;
             this.m_CheckBoxListView.View = System.Windows.Forms.View.List;
             this.m_CheckBoxListView.ItemChecked += new System.Windows.Forms.ItemCheckedEventHandler(this.m_CheckBoxListView_ItemChecked);
@@ -456,6 +457,7 @@ namespace Obi.Dialogs
             this.m_gpBox_Font.Controls.Add(this.m_cb_ChooseFont);
             resources.ApplyResources(this.m_gpBox_Font, "m_gpBox_Font");
             this.m_gpBox_Font.Name = "m_gpBox_Font";
+            this.helpProvider1.SetShowHelp(this.m_gpBox_Font, ((bool)(resources.GetObject("m_gpBox_Font.ShowHelp"))));
             this.m_gpBox_Font.TabStop = false;
             // 
             // m_lblChooseFont
@@ -655,10 +657,10 @@ namespace Obi.Dialogs
             resources.ApplyResources(this.m_txtShortcutKeys, "m_txtShortcutKeys");
             this.m_txtShortcutKeys.Name = "m_txtShortcutKeys";
             this.helpProvider1.SetShowHelp(this.m_txtShortcutKeys, ((bool)(resources.GetObject("m_txtShortcutKeys.ShowHelp"))));
-            this.m_txtShortcutKeys.KeyDown += new System.Windows.Forms.KeyEventHandler(this.m_txtShortcutKeys_KeyDown);
-            this.m_txtShortcutKeys.Leave += new System.EventHandler(this.m_txtShortcutKeys_Leave);
-            this.m_txtShortcutKeys.KeyUp += new System.Windows.Forms.KeyEventHandler(this.m_txtShortcutKeys_KeyUp);
             this.m_txtShortcutKeys.Enter += new System.EventHandler(this.m_txtShortcutKeys_Enter);
+            this.m_txtShortcutKeys.KeyDown += new System.Windows.Forms.KeyEventHandler(this.m_txtShortcutKeys_KeyDown);
+            this.m_txtShortcutKeys.KeyUp += new System.Windows.Forms.KeyEventHandler(this.m_txtShortcutKeys_KeyUp);
+            this.m_txtShortcutKeys.Leave += new System.EventHandler(this.m_txtShortcutKeys_Leave);
             // 
             // m_lblShortcutKeys
             // 
