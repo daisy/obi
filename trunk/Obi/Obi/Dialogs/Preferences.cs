@@ -1222,11 +1222,11 @@ m_cb_ChooseFont.Visible = false;
                 m_grpBoxChkBoxListView.Visible = true;
                 m_CheckBoxListView.Items.Clear();
               
-                m_CheckBoxListView.Location = new Point(575,60);//(120, 255);
-                m_CheckBoxListView.Size = new Size(405,345);//(365, 135);
+                //m_CheckBoxListView.Location = new Point(575,60);//(120, 255);
+                //m_CheckBoxListView.Size = new Size(405,345);//(365, 135);
                 
-                m_grpBoxChkBoxListView.Location = new Point(570,40);//(108, 235);
-                m_grpBoxChkBoxListView.Size = new Size(415,370);//(385, 165);
+                //m_grpBoxChkBoxListView.Location = new Point(570,40);//(108, 235);
+                //m_grpBoxChkBoxListView.Size = new Size(415,370);//(385, 165);
 
                 m_CheckBoxListView.Items.Add(Localizer.Message("AudioTab_AudioClues"));
                 m_CheckBoxListView.Items.Add(Localizer.Message("AudioTab_RetainInitialSilence"));
@@ -1331,10 +1331,10 @@ m_cb_ChooseFont.Visible = false;
                 m_CheckBoxListView.Visible = true;
                 m_grpBoxChkBoxListView.Visible = true;
                 m_CheckBoxListView.Items.Clear();
-                m_CheckBoxListView.Size = new Size(405,345);//(365, 135);
-                m_CheckBoxListView.Location = new Point(575,60);//(120, 255);
-                m_grpBoxChkBoxListView.Size = new Size(415,370);//(385, 165);
-                m_grpBoxChkBoxListView.Location = new Point(570,40);//(108, 235);
+                //m_CheckBoxListView.Size = new Size(405,345);//(365, 135);
+                //m_CheckBoxListView.Location = new Point(575,60);//(120, 255);
+                //m_grpBoxChkBoxListView.Size = new Size(415,370);//(385, 165);
+                //m_grpBoxChkBoxListView.Location = new Point(570,40);//(108, 235);
                 m_CheckBoxListView.Items.Add(Localizer.Message("ProjectTab_OpenLastProject"));
              // m_CheckBoxListView.Items.Add(Localizer.Message("ProjectTab_AutoSaveWhenRecordingEnds"));
                 m_CheckBoxListView.Items.Add(Localizer.Message("ProjectTab_SelectBookmark"));
