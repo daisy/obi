@@ -41,6 +41,7 @@ namespace Obi.ProjectView
         private bool m_IsAudioProcessingChecked = false;
         private double m_ZoomWaveformIncrementFactor;
         private bool m_SaveZoomWaveformZoomLevel;
+        private double m_TotalCursorTime; // use to calulate time between two marks.
                   
     
         /// <summary>
@@ -586,6 +587,7 @@ namespace Obi.ProjectView
                 //@enable begin node = end node
                 //return mPresentation != null && node != null && !TransportBar.IsRecorderActive && Selection != null && BeginNote != null && node is EmptyNode && (BeginNote != mContentView.EndSpecialNode || BeginNote != node) && node.ParentAs<SectionNode>() == BeginNote.ParentAs<SectionNode>();
                 if (mPresentation == null || node == null || BeginNote == null || !node.IsRooted || !BeginNote.IsRooted) return false;
+                if (Selection != null && !TransportBar.IsRecorderActive && node is EmptyNode  && BeginNote.ParentAs<SectionNode>().Position <= node.ParentAs<SectionNode>().Position && node.ParentAs<SectionNode>() != BeginNote.ParentAs<SectionNode>() && !IsZoomWaveformActive) return true;
                 return Selection != null &&  !TransportBar.IsRecorderActive && node is EmptyNode && BeginNote.Index <= node.Index && node.ParentAs<SectionNode>() == BeginNote.ParentAs<SectionNode>() && !IsZoomWaveformActive;
             }
         }
@@ -5199,13 +5201,30 @@ for (int j = 0;
         public void MarkBeginNote()
         {
             mContentView.BeginSpecialNode = Selection.EmptyNodeForSelection; //@AssociateNode
-            TransportBar.PlayAudioClue(TransportBar.AudioCluesSelection.SelectionBegin);
+            if (((AudioSelection)this.Selection).AudioRange.HasCursor)
+            {
+                m_TotalCursorTime = m_TotalCursorTime = ((AudioSelection)this.Selection).AudioRange.CursorTime;
+            }
+            else
+            {
+                m_TotalCursorTime = m_TotalCursorTime = ((AudioSelection)this.Selection).AudioRange.SelectionBeginTime;
+            }
+            m_TotalCursorTime = this.Selection.Node.Duration - m_TotalCursorTime;
+           TransportBar.PlayAudioClue(TransportBar.AudioCluesSelection.SelectionBegin);
         }
 
         public void MarkEndNote()
         {
             if (mContentView.BeginSpecialNode == null) return;
             mContentView.EndSpecialNode = Selection.EmptyNodeForSelection; //@AssociateNode
+            if (((AudioSelection)this.Selection).AudioRange.HasCursor)
+            {
+                m_TotalCursorTime += m_TotalCursorTime = ((AudioSelection)this.Selection).AudioRange.CursorTime;
+            }
+            else
+            {
+                m_TotalCursorTime += m_TotalCursorTime = ((AudioSelection)this.Selection).AudioRange.SelectionEndTime;
+            }
             TransportBar.PlayAudioClue(TransportBar.AudioCluesSelection.SelectionEnd);
         }
 
@@ -5228,7 +5247,7 @@ for (int j = 0;
                     //return;
                 //}
             //else if (startNode.Index > endNode.Index)
-            if (startNode.Index > endNode.Index)
+            if (startNode.Index > endNode.Index && startNode.Parent == endNode.Parent)
                 {
                     MessageBox.Show(Localizer.Message( "Start_node_index_greater_than_end"));
                     return;
@@ -5238,6 +5257,10 @@ for (int j = 0;
                     this.TransportBar.Stop();
                 }
                 Dialogs.AssignSpecialNodeMark AssignSpecialNodeDialog = new Obi.Dialogs.AssignSpecialNodeMark(ObiForm.Settings); //@fontconfig
+                if (startNode.Parent != endNode.Parent)
+                {
+                    AssignSpecialNodeDialog.EnableRadioButtons = false;                    
+                }
             AssignSpecialNodeDialog.ShowDialog();
             if (AssignSpecialNodeDialog.DialogResult == DialogResult.OK)
             {
@@ -5246,6 +5269,8 @@ for (int j = 0;
 
                 if (AssignSpecialNodeDialog.IsRenumberChecked)
                     RenumberPage();
+                else if (AssignSpecialNodeDialog.IsTimeElapsedChecked)
+                    TimeElasped(startNode,endNode);
                 else if (AssignSpecialNodeDialog.IsAudioProcessingChecked)
                 {
                     //Obi.Dialogs.AudioProcessingDialog dialog = new Obi.Dialogs.AudioProcessingDialog();
@@ -6860,6 +6885,118 @@ public bool ShowOnlySelectedSection
                 
                             
             return cmd;
+        }
+
+        public void TimeElasped(EmptyNode startNode, EmptyNode endNode)
+        {
+
+            if (startNode.Parent is SectionNode)
+            {
+                if (startNode is PhraseNode && endNode is PhraseNode)
+                {
+                    PhraseNode phraseNode = (PhraseNode)startNode;
+
+                    PhraseNode phraseEndNode = (PhraseNode)endNode;
+
+                    if (phraseNode.FollowingNode != null && phraseNode != phraseEndNode)
+                    {
+                        if (phraseNode.FollowingNode is PhraseNode)
+                        {
+                            CalculateCursorTime((PhraseNode)phraseNode.FollowingNode, phraseEndNode);
+                        }
+                        else if (phraseNode.FollowingNode is EmptyNode)
+                        {
+                            ObiNode tempNode = phraseNode.FollowingNode;
+                            while (tempNode != null && !(tempNode is PhraseNode) && tempNode.Parent == tempNode.FollowingNode.Parent)
+                            {
+                                tempNode = tempNode.FollowingNode;
+                            }
+                            if (tempNode is PhraseNode)
+                            {
+                                CalculateCursorTime((PhraseNode)tempNode, phraseEndNode);
+                            }
+                        }
+                    }
+                }
+
+            }
+
+            string TotalTimeElapsed = Program.FormatDuration_Long(m_TotalCursorTime);
+            MessageBox.Show(Localizer.Message("TimeElapsed") + " " + TotalTimeElapsed, Localizer.Message("Caption_Information"));
+
+        }
+
+        private void CalculateCursorTime(PhraseNode phraseNode, PhraseNode endNode)
+        {
+            if (phraseNode.FollowingNode != null && phraseNode != endNode)            
+            {
+                m_TotalCursorTime += phraseNode.Duration;
+                if (phraseNode.FollowingNode != endNode)
+                {
+                    if (phraseNode.FollowingNode is PhraseNode)
+                    {
+                        if (phraseNode.Parent == phraseNode.FollowingNode.Parent || phraseNode.FollowingNode.Parent == endNode.Parent)
+                        {
+                            CalculateCursorTime((PhraseNode)phraseNode.FollowingNode, endNode);
+                        }
+                        else if (phraseNode.FollowingNode.Parent is SectionNode)
+                        {
+                            CalculateSectionTime((SectionNode)phraseNode.FollowingNode.Parent, endNode);
+                        }
+                    }
+                    else if (phraseNode.FollowingNode is EmptyNode)
+                    {
+                        ObiNode tempNode = phraseNode.FollowingNode;
+                        while (tempNode != null && !(tempNode is PhraseNode))
+                        {
+                            tempNode = tempNode.FollowingNode;
+                        }
+                       if (tempNode is PhraseNode)
+                        {
+                            if (phraseNode.Parent == tempNode.Parent || tempNode.Parent == endNode.Parent)
+                            {
+                                CalculateCursorTime((PhraseNode)tempNode, endNode);
+                            }
+                            else if (tempNode.Parent is SectionNode)
+                            {
+                                CalculateSectionTime((SectionNode)tempNode.Parent, endNode);
+                            }
+                           
+
+                        }
+                    }
+                }
+            }
+        }
+        private void CalculateSectionTime(SectionNode secNode, PhraseNode endNode)
+        {
+
+            m_TotalCursorTime += secNode.Duration;
+            if (secNode.FollowingSection != null && secNode.FollowingSection is SectionNode && secNode.FollowingSection != endNode.Parent)
+            {
+                CalculateSectionTime((SectionNode)secNode.FollowingSection, endNode);
+            }
+            else if (secNode.FollowingSection != null && secNode.FollowingSection == endNode.Parent)
+            {
+                if (secNode.FollowingSection.FirstUsedPhrase is PhraseNode)
+                {
+                    PhraseNode phraseNode = (PhraseNode)secNode.FollowingSection.FirstUsedPhrase;
+                    CalculateCursorTime(phraseNode, endNode);
+                }
+                else if (secNode.FollowingSection.FirstUsedPhrase is EmptyNode)
+                {
+                    ObiNode tempNode = secNode.FollowingSection.FirstUsedPhrase;
+                    while (tempNode != null && !(tempNode is PhraseNode))
+                    {
+                        tempNode = tempNode.FollowingNode;
+                    }
+                    if (tempNode is PhraseNode)
+                    {
+                        CalculateCursorTime((PhraseNode)tempNode, endNode);
+                    }
+                }
+
+            }
         }
     }
 

@@ -7219,6 +7219,15 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Time Elapsed between Begin and End marks is.
+        /// </summary>
+        internal static string TimeElapsed {
+            get {
+                return ResourceManager.GetString("TimeElapsed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to {0}{1} ({2}) - {3} ({4}).
         /// </summary>
         internal static string title_bar {
