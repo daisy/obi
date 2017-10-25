@@ -37,6 +37,23 @@ namespace Obi.Dialogs
         public bool IsAudioProcessingChecked
         { get { return m_IsAudioProcessingChecked; } }
 
+        public bool IsTimeElapsedChecked
+        {
+            get
+            {
+                return m_rtb_btn_TimeElapsed.Checked;
+            }
+        }
+        public bool EnableRadioButtons
+        {
+            set
+            {
+                m_rdb_btn_SpecialPhrase.Enabled = value;
+                m_rdb_btn_RenumberPages.Enabled = value;
+                m_rtb_btn_AudioProcessing.Enabled = value;
+            }
+        }
+
         private void m_btn_OK_Click(object sender, EventArgs e)
         {
             m_SelectedSpecialNode = m_cmbBoxSpecialNode.SelectedItem.ToString();            
@@ -61,6 +78,14 @@ namespace Obi.Dialogs
             m_IsAudioProcessingChecked = true;
             m_cmbBoxSpecialNode.Visible = false;
             m_IsRenumberChecked = false;
+        }
+
+        private void m_rtb_btn_TimeElapsed_CheckedChanged(object sender, EventArgs e)
+        {
+            m_IsAudioProcessingChecked = false;
+            m_cmbBoxSpecialNode.Visible = false;
+            m_IsRenumberChecked = false;
+            
         }
 
     }

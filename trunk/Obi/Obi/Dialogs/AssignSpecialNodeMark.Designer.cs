@@ -37,6 +37,7 @@ namespace Obi.Dialogs
             this.helpProvider1 = new System.Windows.Forms.HelpProvider();
             this.m_rtb_btn_AudioProcessing = new System.Windows.Forms.RadioButton();
             this.m_gp_box_operation = new System.Windows.Forms.GroupBox();
+            this.m_rtb_btn_TimeElapsed = new System.Windows.Forms.RadioButton();
             this.m_gp_box_operation.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -99,12 +100,21 @@ namespace Obi.Dialogs
             // 
             // m_gp_box_operation
             // 
+            this.m_gp_box_operation.Controls.Add(this.m_rtb_btn_TimeElapsed);
             this.m_gp_box_operation.Controls.Add(this.m_rdb_btn_SpecialPhrase);
             this.m_gp_box_operation.Controls.Add(this.m_rtb_btn_AudioProcessing);
             this.m_gp_box_operation.Controls.Add(this.m_rdb_btn_RenumberPages);
             resources.ApplyResources(this.m_gp_box_operation, "m_gp_box_operation");
             this.m_gp_box_operation.Name = "m_gp_box_operation";
             this.m_gp_box_operation.TabStop = false;
+            // 
+            // m_rtb_btn_TimeElapsed
+            // 
+            resources.ApplyResources(this.m_rtb_btn_TimeElapsed, "m_rtb_btn_TimeElapsed");
+            this.m_rtb_btn_TimeElapsed.Name = "m_rtb_btn_TimeElapsed";
+            this.m_rtb_btn_TimeElapsed.TabStop = true;
+            this.m_rtb_btn_TimeElapsed.UseVisualStyleBackColor = true;
+            this.m_rtb_btn_TimeElapsed.CheckedChanged += new System.EventHandler(this.m_rtb_btn_TimeElapsed_CheckedChanged);
             // 
             // AssignSpecialNodeMark
             // 
@@ -133,5 +143,6 @@ namespace Obi.Dialogs
         private System.Windows.Forms.HelpProvider helpProvider1;
         private System.Windows.Forms.RadioButton m_rtb_btn_AudioProcessing;
         private System.Windows.Forms.GroupBox m_gp_box_operation;
+        private System.Windows.Forms.RadioButton m_rtb_btn_TimeElapsed;
     }
 }
