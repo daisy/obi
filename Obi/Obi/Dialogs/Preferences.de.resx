@@ -117,63 +117,17 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="mOKButton.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
-  <data name="mOKButton.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
-    <value>AssociateIndex</value>
-  </data>
-  <data name="mOKButton.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
-  <data name="mCancelButton.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
-  <data name="mCancelButton.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
-    <value>AssociateIndex</value>
-  </data>
-  <data name="mCancelButton.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
   <data name="mCancelButton.Text" xml:space="preserve">
     <value>A&amp;bbrechen</value>
   </data>
   <data name="m_CheckBoxListView.AccessibleName" xml:space="preserve">
     <value>Liste. Mit Pfeil hoch/runter auswählen</value>
   </data>
-  <data name="m_CheckBoxListView.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
-  <data name="m_CheckBoxListView.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
-    <value>AssociateIndex</value>
-  </data>
-  <data name="m_CheckBoxListView.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
-  <data name="m_grpBoxChkBoxListView.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
-  <data name="m_grpBoxChkBoxListView.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
-    <value>AssociateIndex</value>
-  </data>
-  <data name="m_grpBoxChkBoxListView.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
   <data name="m_grpBoxChkBoxListView.Text" xml:space="preserve">
     <value>Liste der Kontrollkästchen</value>
   </data>
   <data name="m_btnSaveProfile.AccessibleName" xml:space="preserve">
     <value>Aktuelle Einstellungen als Profil speichern</value>
-  </data>
-  <data name="m_btnSaveProfile.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
-  <data name="m_btnSaveProfile.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
-    <value>AssociateIndex</value>
-  </data>
-  <data name="m_btnSaveProfile.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
   </data>
   <data name="m_btnSaveProfile.Text" xml:space="preserve">
     <value>&amp;Speichern unter …</value>
@@ -184,26 +138,8 @@
   <data name="m_btnAddProfile.AccessibleName" xml:space="preserve">
     <value>Profil importieren</value>
   </data>
-  <data name="m_btnAddProfile.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
-  <data name="m_btnAddProfile.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
-    <value>AssociateIndex</value>
-  </data>
-  <data name="m_btnAddProfile.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
   <data name="m_btnAddProfile.ToolTip" xml:space="preserve">
     <value>Profil hinzufügen</value>
-  </data>
-  <data name="m_ResetButton.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
-  <data name="m_ResetButton.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
-    <value>AssociateIndex</value>
-  </data>
-  <data name="m_ResetButton.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
   </data>
   <data name="m_ResetButton.Text" xml:space="preserve">
     <value>Zu&amp;rücksetzen</value>
@@ -211,33 +147,11 @@
   <data name="m_gpBox_SelectProfileRecordingToolbar.AccessibleName" xml:space="preserve">
     <value>Tonprofile der Aufnahmeleiste zuweisen</value>
   </data>
-  <data name="m_btnAssignProfile.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
-  <data name="m_btnAssignProfile.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
-    <value>AssociateIndex</value>
-  </data>
-  <data name="m_btnAssignProfile.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
   <data name="m_btnAssignProfile.Text" xml:space="preserve">
     <value>&amp;Zuweisen</value>
   </data>
   <data name="m_lblProfile2.AccessibleName" xml:space="preserve">
     <value>Aufnahmeleiste Profil 2</value>
-  </data>
-  <data name="m_lblProfile2.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
-  <data name="m_lblProfile2.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
-    <value>AssociateIndex</value>
-  </data>
-  <data name="m_lblProfile2.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
-  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="m_lblProfile2.ShowHelp" type="System.Boolean, mscorlib">
-    <value>True</value>
   </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="m_lblProfile2.Size" type="System.Drawing.Size, System.Drawing">
@@ -249,38 +163,11 @@
   <data name="m_cb_Profile2.AccessibleName" xml:space="preserve">
     <value>Profil 2 </value>
   </data>
-  <data name="m_cb_Profile2.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
-  <data name="m_cb_Profile2.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
-    <value>AssociateIndex</value>
-  </data>
-  <data name="m_cb_Profile2.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
   <data name="m_cb_Profile1.AccessibleName" xml:space="preserve">
     <value>Profil 1</value>
   </data>
-  <data name="m_cb_Profile1.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
-  <data name="m_cb_Profile1.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
-    <value>AssociateIndex</value>
-  </data>
-  <data name="m_cb_Profile1.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
   <data name="m_lblProfile1.AccessibleName" xml:space="preserve">
     <value>Aufnahmeleiste Profil 1</value>
-  </data>
-  <data name="m_lblProfile1.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
-  <data name="m_lblProfile1.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
-    <value>AssociateIndex</value>
-  </data>
-  <data name="m_lblProfile1.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
   </data>
   <data name="m_lblProfile1.Size" type="System.Drawing.Size, System.Drawing">
     <value>51, 16</value>
@@ -288,35 +175,11 @@
   <data name="m_lblProfile1.Text" xml:space="preserve">
     <value>Profil 1:</value>
   </data>
-  <data name="m_gpBox_SelectProfileRecordingToolbar.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
-  <data name="m_gpBox_SelectProfileRecordingToolbar.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
-    <value>AssociateIndex</value>
-  </data>
-  <data name="m_gpBox_SelectProfileRecordingToolbar.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
-  <data name="m_gpBox_SelectProfileRecordingToolbar.ShowHelp" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
   <data name="m_gpBox_SelectProfileRecordingToolbar.Text" xml:space="preserve">
     <value>Tonprofile der Aufnahmeleiste zuweisen</value>
   </data>
   <data name="m_btnRemoveProfile.AccessibleName" xml:space="preserve">
     <value>Profil entfernen</value>
-  </data>
-  <data name="m_btnRemoveProfile.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
-  <data name="m_btnRemoveProfile.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
-    <value>AssociateIndex</value>
-  </data>
-  <data name="m_btnRemoveProfile.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
-  <data name="m_btnRemoveProfile.ShowHelp" type="System.Boolean, mscorlib">
-    <value>True</value>
   </data>
   <data name="m_btnRemoveProfile.Text" xml:space="preserve">
     <value>Entfe&amp;rnen</value>
@@ -324,71 +187,11 @@
   <data name="m_btnRemoveProfile.ToolTip" xml:space="preserve">
     <value>Profil entfernen.</value>
   </data>
-  <data name="m_gpBox_Buttons.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
-  <data name="m_gpBox_Buttons.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
-    <value>AssociateIndex</value>
-  </data>
-  <data name="m_gpBox_Buttons.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
-  <data name="m_gpBox_Buttons.ShowHelp" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="m_lblSelectedShortcuts.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
-  <data name="m_lblSelectedShortcuts.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
-    <value>AssociateIndex</value>
-  </data>
-  <data name="m_lblSelectedShortcuts.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
-  <data name="m_lblSelectedShortcuts.ShowHelp" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
   <data name="m_lblSelectedShortcuts.Size" type="System.Drawing.Size, System.Drawing">
     <value>144, 16</value>
   </data>
   <data name="m_lblSelectedShortcuts.Text" xml:space="preserve">
     <value>Aktuelles Tastaturprofil</value>
-  </data>
-  <data name="m_txtSelectedShortcutsProfile.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
-  <data name="m_txtSelectedShortcutsProfile.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
-    <value>AssociateIndex</value>
-  </data>
-  <data name="m_txtSelectedShortcutsProfile.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
-  <data name="m_txtSelectedShortcutsProfile.ShowHelp" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="m_txtSelectedProfile.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
-  <data name="m_txtSelectedProfile.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
-    <value>AssociateIndex</value>
-  </data>
-  <data name="m_txtSelectedProfile.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
-  <data name="m_txtSelectedProfile.ShowHelp" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="m_rdb_KeyboardShortcuts.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
-  <data name="m_rdb_KeyboardShortcuts.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
-    <value>AssociateIndex</value>
-  </data>
-  <data name="m_rdb_KeyboardShortcuts.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
-  <data name="m_rdb_KeyboardShortcuts.ShowHelp" type="System.Boolean, mscorlib">
-    <value>True</value>
   </data>
   <data name="m_rdb_KeyboardShortcuts.Size" type="System.Drawing.Size, System.Drawing">
     <value>110, 20</value>
@@ -396,65 +199,20 @@
   <data name="m_rdb_KeyboardShortcuts.Text" xml:space="preserve">
     <value>Tastatur&amp;kürzel</value>
   </data>
-  <data name="m_rdb_Preferences.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
-  <data name="m_rdb_Preferences.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
-    <value>AssociateIndex</value>
-  </data>
-  <data name="m_rdb_Preferences.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
-  <data name="m_rdb_Preferences.ShowHelp" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
   <data name="m_rdb_Preferences.Size" type="System.Drawing.Size, System.Drawing">
     <value>106, 20</value>
   </data>
   <data name="m_rdb_Preferences.Text" xml:space="preserve">
     <value>E&amp;instellungen</value>
   </data>
-  <data name="m_gpBox_SelectProfile.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
-  <data name="m_gpBox_SelectProfile.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
-    <value>AssociateIndex</value>
-  </data>
-  <data name="m_gpBox_SelectProfile.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
-  <data name="m_gpBox_SelectProfile.ShowHelp" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
   <data name="m_gpBox_SelectProfile.Text" xml:space="preserve">
     <value>Profilart wählen</value>
-  </data>
-  <data name="m_lblSelectedProfile.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
-  <data name="m_lblSelectedProfile.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
-    <value>AssociateIndex</value>
-  </data>
-  <data name="m_lblSelectedProfile.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
-  <data name="m_lblSelectedProfile.ShowHelp" type="System.Boolean, mscorlib">
-    <value>True</value>
   </data>
   <data name="m_lblSelectedProfile.Size" type="System.Drawing.Size, System.Drawing">
     <value>99, 16</value>
   </data>
   <data name="m_lblSelectedProfile.Text" xml:space="preserve">
     <value>Aktuelles Profil:</value>
-  </data>
-  <data name="m_lblShortcutsProfile.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
-  <data name="m_lblShortcutsProfile.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
-    <value>AssociateIndex</value>
-  </data>
-  <data name="m_lblShortcutsProfile.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
   </data>
   <data name="m_lblShortcutsProfile.Size" type="System.Drawing.Size, System.Drawing">
     <value>139, 16</value>
@@ -465,59 +223,11 @@
   <data name="m_btnProfileDiscription.AccessibleName" xml:space="preserve">
     <value>Profilbeschreibung</value>
   </data>
-  <data name="m_btnProfileDiscription.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
-  <data name="m_btnProfileDiscription.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
-    <value>AssociateIndex</value>
-  </data>
-  <data name="m_btnProfileDiscription.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
-  <data name="m_cb_SelectProfile.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
-  <data name="m_cb_SelectProfile.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
-    <value>AssociateIndex</value>
-  </data>
-  <data name="m_cb_SelectProfile.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
-  <data name="m_cb_SelectShorcutsProfile.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
-  <data name="m_cb_SelectShorcutsProfile.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
-    <value>AssociateIndex</value>
-  </data>
-  <data name="m_cb_SelectShorcutsProfile.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
-  <data name="m_lblSelectProfile.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
-  <data name="m_lblSelectProfile.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
-    <value>AssociateIndex</value>
-  </data>
-  <data name="m_lblSelectProfile.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
   <data name="m_lblSelectProfile.Size" type="System.Drawing.Size, System.Drawing">
     <value>83, 16</value>
   </data>
   <data name="m_lblSelectProfile.Text" xml:space="preserve">
     <value>Wähle Profil:</value>
-  </data>
-  <data name="m_chkColor.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
-  <data name="m_chkColor.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
-    <value>AssociateIndex</value>
-  </data>
-  <data name="m_chkColor.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
-  <data name="m_chkColor.ShowHelp" type="System.Boolean, mscorlib">
-    <value>True</value>
   </data>
   <data name="m_chkColor.Size" type="System.Drawing.Size, System.Drawing">
     <value>63, 20</value>
@@ -525,62 +235,14 @@
   <data name="m_chkColor.Text" xml:space="preserve">
     <value>&amp;Farbe</value>
   </data>
-  <data name="m_chkProject.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
-  <data name="m_chkProject.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
-    <value>AssociateIndex</value>
-  </data>
-  <data name="m_chkProject.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
-  <data name="m_chkProject.ShowHelp" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
   <data name="m_chkProject.Text" xml:space="preserve">
     <value>&amp;Projekt</value>
-  </data>
-  <data name="m_chkAudio.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
-  <data name="m_chkAudio.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
-    <value>AssociateIndex</value>
-  </data>
-  <data name="m_chkAudio.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
-  <data name="m_chkAudio.ShowHelp" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="m_chkLanguage.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
-  <data name="m_chkLanguage.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
-    <value>AssociateIndex</value>
-  </data>
-  <data name="m_chkLanguage.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
-  <data name="m_chkLanguage.ShowHelp" type="System.Boolean, mscorlib">
-    <value>True</value>
   </data>
   <data name="m_chkLanguage.Size" type="System.Drawing.Size, System.Drawing">
     <value>78, 20</value>
   </data>
   <data name="m_chkLanguage.Text" xml:space="preserve">
     <value>Spra&amp;che</value>
-  </data>
-  <data name="m_chkAll.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
-  <data name="m_chkAll.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
-    <value>AssociateIndex</value>
-  </data>
-  <data name="m_chkAll.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
-  <data name="m_chkAll.ShowHelp" type="System.Boolean, mscorlib">
-    <value>True</value>
   </data>
   <data name="m_chkAll.Size" type="System.Drawing.Size, System.Drawing">
     <value>102, 20</value>
@@ -591,56 +253,14 @@
   <data name="m_btnLoadProfile.AccessibleName" xml:space="preserve">
     <value>Lade das gewählte Profil</value>
   </data>
-  <data name="m_btnLoadProfile.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
-  <data name="m_btnLoadProfile.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
-    <value>AssociateIndex</value>
-  </data>
-  <data name="m_btnLoadProfile.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
-  <data name="m_btnLoadProfile.ShowHelp" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
   <data name="m_btnLoadProfile.Text" xml:space="preserve">
     <value>&amp;Laden</value>
   </data>
   <data name="m_btnLoadProfile.ToolTip" xml:space="preserve">
     <value>Aktuelle Einstellungen als Profil speichern</value>
   </data>
-  <data name="m_gpBox_SelectPreferences.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
-  <data name="m_gpBox_SelectPreferences.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
-    <value>AssociateIndex</value>
-  </data>
-  <data name="m_gpBox_SelectPreferences.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
-  <data name="m_gpBox_SelectPreferences.ShowHelp" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="mAdvanceTab.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
-  <data name="mAdvanceTab.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
-    <value>AssociateIndex</value>
-  </data>
-  <data name="mAdvanceTab.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
   <data name="mAdvanceTab.Text" xml:space="preserve">
     <value>Erweitert</value>
-  </data>
-  <data name="m_lblChooseFont.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
-  <data name="m_lblChooseFont.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
-    <value>AssociateIndex</value>
-  </data>
-  <data name="m_lblChooseFont.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
   </data>
   <data name="m_lblChooseFont.Size" type="System.Drawing.Size, System.Drawing">
     <value>101, 16</value>
@@ -651,56 +271,8 @@
   <data name="m_txtBox_Font.AccessibleName" xml:space="preserve">
     <value>Darstellung der gewählten Schrift</value>
   </data>
-  <data name="m_txtBox_Font.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
-  <data name="m_txtBox_Font.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
-    <value>AssociateIndex</value>
-  </data>
-  <data name="m_txtBox_Font.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
-  <data name="m_cb_ChooseFont.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
-  <data name="m_cb_ChooseFont.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
-    <value>AssociateIndex</value>
-  </data>
-  <data name="m_cb_ChooseFont.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
-  <data name="m_gpBox_Font.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
-  <data name="m_gpBox_Font.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
-    <value>AssociateIndex</value>
-  </data>
-  <data name="m_gpBox_Font.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
-  <data name="m_gpBox_Font.ShowHelp" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
   <data name="m_gpBox_Font.Text" xml:space="preserve">
     <value>Schriftart</value>
-  </data>
-  <data name="m_txtBox_HighContrast.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
-  <data name="m_txtBox_HighContrast.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
-    <value>AssociateIndex</value>
-  </data>
-  <data name="m_txtBox_HighContrast.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
-  <data name="m_txtBox_Color.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
-  <data name="m_txtBox_Color.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
-    <value>AssociateIndex</value>
-  </data>
-  <data name="m_txtBox_Color.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
   </data>
   <data name="m_lv_ColorPref.AccessibleName" xml:space="preserve">
     <value>Farbenliste</value>
@@ -714,24 +286,6 @@
   <data name="columnHeader5.Text" xml:space="preserve">
     <value>Aktuelle Kontrastfarbe</value>
   </data>
-  <data name="m_lv_ColorPref.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
-  <data name="m_lv_ColorPref.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
-    <value>AssociateIndex</value>
-  </data>
-  <data name="m_lv_ColorPref.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
-  <data name="m_lbl_AssignColor.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
-  <data name="m_lbl_AssignColor.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
-    <value>AssociateIndex</value>
-  </data>
-  <data name="m_lbl_AssignColor.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
   <data name="m_lbl_AssignColor.Location" type="System.Drawing.Point, System.Drawing">
     <value>76, 180</value>
   </data>
@@ -740,24 +294,6 @@
   </data>
   <data name="m_lbl_AssignColor.Text" xml:space="preserve">
     <value>Farbe festle&amp;gen:</value>
-  </data>
-  <data name="mNormalColorCombo.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
-  <data name="mNormalColorCombo.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
-    <value>AssociateIndex</value>
-  </data>
-  <data name="mNormalColorCombo.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
-  <data name="m_lbl_AssignHighContrastColor.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
-  <data name="m_lbl_AssignHighContrastColor.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
-    <value>AssociateIndex</value>
-  </data>
-  <data name="m_lbl_AssignHighContrastColor.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
   </data>
   <data name="m_lbl_AssignHighContrastColor.Location" type="System.Drawing.Point, System.Drawing">
     <value>33, 207</value>
@@ -768,59 +304,14 @@
   <data name="m_lbl_AssignHighContrastColor.Text" xml:space="preserve">
     <value>Kontrastfarbe fest&amp;legen:</value>
   </data>
-  <data name="mHighContrastCombo.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
-  <data name="mHighContrastCombo.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
-    <value>AssociateIndex</value>
-  </data>
-  <data name="mHighContrastCombo.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
-  <data name="m_gpBox_ColorsList.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
-  <data name="m_gpBox_ColorsList.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
-    <value>AssociateIndex</value>
-  </data>
-  <data name="m_gpBox_ColorsList.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
   <data name="m_gpBox_ColorsList.Text" xml:space="preserve">
     <value>Farben </value>
-  </data>
-  <data name="m_btn_Apply.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
-  <data name="m_btn_Apply.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
-    <value>AssociateIndex</value>
-  </data>
-  <data name="m_btn_Apply.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
   </data>
   <data name="m_btn_Apply.Text" xml:space="preserve">
     <value>Zuf&amp;ügen</value>
   </data>
-  <data name="mColorPreferencesTab.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
-  <data name="mColorPreferencesTab.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
-    <value>AssociateIndex</value>
-  </data>
-  <data name="mColorPreferencesTab.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
   <data name="mColorPreferencesTab.Text" xml:space="preserve">
     <value>Farbeinstellungen</value>
-  </data>
-  <data name="label12.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
-  <data name="label12.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
-    <value>AssociateIndex</value>
-  </data>
-  <data name="label12.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
   </data>
   <data name="label12.Location" type="System.Drawing.Point, System.Drawing">
     <value>19, 20</value>
@@ -837,80 +328,17 @@
   <data name="columnHeader2.Text" xml:space="preserve">
     <value>Tastenkürzel</value>
   </data>
-  <data name="m_lvShortcutKeysList.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
-  <data name="m_lvShortcutKeysList.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
-    <value>AssociateIndex</value>
-  </data>
-  <data name="m_lvShortcutKeysList.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
-  <data name="m_grpKeyboardShortcutList.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
-  <data name="m_grpKeyboardShortcutList.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
-    <value>AssociateIndex</value>
-  </data>
-  <data name="m_grpKeyboardShortcutList.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
   <data name="m_grpKeyboardShortcutList.Text" xml:space="preserve">
     <value>Tastenkürzel (Liste)</value>
-  </data>
-  <data name="m_RestoreDefaults.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
-  <data name="m_RestoreDefaults.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
-    <value>AssociateIndex</value>
-  </data>
-  <data name="m_RestoreDefaults.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
   </data>
   <data name="m_RestoreDefaults.Text" xml:space="preserve">
     <value>Stan&amp;dard wiederherstellen</value>
   </data>
-  <data name="m_btnRemove.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
-  <data name="m_btnRemove.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
-    <value>AssociateIndex</value>
-  </data>
-  <data name="m_btnRemove.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
   <data name="m_btnRemove.Text" xml:space="preserve">
     <value>Kürzel entfe&amp;rnen</value>
   </data>
-  <data name="m_btnAssign.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
-  <data name="m_btnAssign.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
-    <value>AssociateIndex</value>
-  </data>
-  <data name="m_btnAssign.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
   <data name="m_btnAssign.Text" xml:space="preserve">
     <value>Fes&amp;tlegen</value>
-  </data>
-  <data name="m_txtShortcutKeys.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
-  <data name="m_txtShortcutKeys.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
-    <value>AssociateIndex</value>
-  </data>
-  <data name="m_txtShortcutKeys.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
-  <data name="m_lblShortcutKeys.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
-  <data name="m_lblShortcutKeys.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
-    <value>AssociateIndex</value>
-  </data>
-  <data name="m_lblShortcutKeys.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
   </data>
   <data name="m_lblShortcutKeys.Size" type="System.Drawing.Size, System.Drawing">
     <value>141, 32</value>
@@ -923,62 +351,17 @@
   <data name="m_cbShortcutKeys.AccessibleName" xml:space="preserve">
     <value>Wähle Tastaturkürzel zur Ansicht</value>
   </data>
-  <data name="m_cbShortcutKeys.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
-  <data name="m_cbShortcutKeys.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
-    <value>AssociateIndex</value>
-  </data>
-  <data name="m_cbShortcutKeys.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
   <data name="m_cbShortcutKeys.Items" xml:space="preserve">
     <value>Inhalt/-Verzeichnis Tastaturbefehle</value>
   </data>
   <data name="m_cbShortcutKeys.Items1" xml:space="preserve">
     <value>Menu-Tastaturbefehle</value>
   </data>
-  <data name="mKeyboardShortcutTab.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
-  <data name="mKeyboardShortcutTab.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
-    <value>AssociateIndex</value>
-  </data>
-  <data name="mKeyboardShortcutTab.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
   <data name="mKeyboardShortcutTab.Text" xml:space="preserve">
     <value>Tastatur-Kürzel</value>
   </data>
-  <data name="label6.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
-  <data name="label6.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
-    <value>AssociateIndex</value>
-  </data>
-  <data name="label6.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
   <data name="mCultureBox.AccessibleName" xml:space="preserve">
     <value>Sprache</value>
-  </data>
-  <data name="mCultureBox.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
-  <data name="mCultureBox.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
-    <value>AssociateIndex</value>
-  </data>
-  <data name="mCultureBox.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
-  <data name="label5.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
-  <data name="label5.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
-    <value>AssociateIndex</value>
-  </data>
-  <data name="label5.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
   </data>
   <data name="label5.Size" type="System.Drawing.Size, System.Drawing">
     <value>62, 16</value>
@@ -986,47 +369,11 @@
   <data name="label5.Text" xml:space="preserve">
     <value>Spra&amp;che:</value>
   </data>
-  <data name="mOrganizationTextbox.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
-  <data name="mOrganizationTextbox.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
-    <value>AssociateIndex</value>
-  </data>
-  <data name="mOrganizationTextbox.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
-  <data name="mFullNameTextbox.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
-  <data name="mFullNameTextbox.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
-    <value>AssociateIndex</value>
-  </data>
-  <data name="mFullNameTextbox.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
-  <data name="label4.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
-  <data name="label4.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
-    <value>AssociateIndex</value>
-  </data>
-  <data name="label4.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
   <data name="label4.Size" type="System.Drawing.Size, System.Drawing">
     <value>87, 16</value>
   </data>
   <data name="label4.Text" xml:space="preserve">
     <value>&amp;Organisation:</value>
-  </data>
-  <data name="label1.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
-  <data name="label1.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
-    <value>AssociateIndex</value>
-  </data>
-  <data name="label1.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
   </data>
   <data name="label1.Location" type="System.Drawing.Point, System.Drawing">
     <value>9, 9</value>
@@ -1037,44 +384,17 @@
   <data name="label1.Text" xml:space="preserve">
     <value>Ganzer &amp;Name:</value>
   </data>
-  <data name="mUserProfileTab.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
-  <data name="mUserProfileTab.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
-    <value>AssociateIndex</value>
-  </data>
-  <data name="mUserProfileTab.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
   <data name="mUserProfileTab.Text" xml:space="preserve">
     <value>Benutzerprofil</value>
   </data>
   <data name="m_CleanUpFileSizeNumericUpDown.AccessibleName" xml:space="preserve">
     <value>Maximale Dateigröße (Bereinigung)</value>
   </data>
-  <data name="m_CleanUpFileSizeNumericUpDown.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
-  <data name="m_CleanUpFileSizeNumericUpDown.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
-    <value>AssociateIndex</value>
-  </data>
-  <data name="m_CleanUpFileSizeNumericUpDown.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
   <data name="m_CleanUpFileSizeNumericUpDown.Location" type="System.Drawing.Point, System.Drawing">
-    <value>269, 90</value>
+    <value>275, 148</value>
   </data>
   <data name="m_CleanUpFileSizeNumericUpDown.Size" type="System.Drawing.Size, System.Drawing">
     <value>74, 22</value>
-  </data>
-  <data name="mlblCleanupFileSize.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
-  <data name="mlblCleanupFileSize.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
-    <value>AssociateIndex</value>
-  </data>
-  <data name="mlblCleanupFileSize.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
   </data>
   <data name="mlblCleanupFileSize.Size" type="System.Drawing.Size, System.Drawing">
     <value>259, 16</value>
@@ -1085,14 +405,8 @@
   <data name="m_btn_speak.AccessibleName" xml:space="preserve">
     <value>drücken, um synth. Stimme zu prüfen</value>
   </data>
-  <data name="m_btn_speak.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
-  <data name="m_btn_speak.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
-    <value>AssociateIndex</value>
-  </data>
-  <data name="m_btn_speak.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
+  <data name="m_btn_speak.Location" type="System.Drawing.Point, System.Drawing">
+    <value>441, 206</value>
   </data>
   <data name="m_btn_speak.Text" xml:space="preserve">
     <value>Sprich!</value>
@@ -1100,50 +414,17 @@
   <data name="labelTTSvoice.AccessibleName" xml:space="preserve">
     <value>Synthetische Stimme wählen</value>
   </data>
-  <data name="labelTTSvoice.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
-  <data name="labelTTSvoice.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
-    <value>AssociateIndex</value>
-  </data>
-  <data name="labelTTSvoice.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
   <data name="labelTTSvoice.Size" type="System.Drawing.Size, System.Drawing">
     <value>180, 16</value>
   </data>
   <data name="labelTTSvoice.Text" xml:space="preserve">
     <value>Synthetische Stimme wählen:</value>
   </data>
-  <data name="mTTSvoiceCombo.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
-  <data name="mTTSvoiceCombo.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
-    <value>AssociateIndex</value>
-  </data>
-  <data name="mTTSvoiceCombo.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
+  <data name="mTTSvoiceCombo.Location" type="System.Drawing.Point, System.Drawing">
+    <value>186, 208</value>
   </data>
   <data name="m_OperationDurationUpDown.AccessibleName" xml:space="preserve">
     <value>Dauer in Millisekunden</value>
-  </data>
-  <data name="m_OperationDurationUpDown.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
-  <data name="m_OperationDurationUpDown.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
-    <value>AssociateIndex</value>
-  </data>
-  <data name="m_OperationDurationUpDown.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
-  <data name="m_cbOperation.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
-  <data name="m_cbOperation.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
-    <value>AssociateIndex</value>
-  </data>
-  <data name="m_cbOperation.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
   </data>
   <data name="m_cbOperation.Items" xml:space="preserve">
     <value>Sprung-Dauer</value>
@@ -1163,15 +444,6 @@
   <data name="m_cbOperation.Items5" xml:space="preserve">
     <value>Pause (Phrasenerkennung)</value>
   </data>
-  <data name="mlbOperation.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
-  <data name="mlbOperation.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
-    <value>AssociateIndex</value>
-  </data>
-  <data name="mlbOperation.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
   <data name="mlbOperation.Size" type="System.Drawing.Size, System.Drawing">
     <value>48, 16</value>
   </data>
@@ -1180,15 +452,6 @@
   </data>
   <data name="mNoiseLevelComboBox.AccessibleName" xml:space="preserve">
     <value>Störniveau/Rauschpegel</value>
-  </data>
-  <data name="mNoiseLevelComboBox.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
-  <data name="mNoiseLevelComboBox.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
-    <value>AssociateIndex</value>
-  </data>
-  <data name="mNoiseLevelComboBox.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
   </data>
   <data name="mNoiseLevelComboBox.Items" xml:space="preserve">
     <value>Niedrig</value>
@@ -1200,22 +463,10 @@
     <value>Hoch</value>
   </data>
   <data name="mNoiseLevelComboBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>515, 89</value>
+    <value>237, 179</value>
   </data>
   <data name="mNoiseLevelComboBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>88, 24</value>
-  </data>
-  <data name="label8.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
-  <data name="label8.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
-    <value>AssociateIndex</value>
-  </data>
-  <data name="label8.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
-  <data name="label8.Location" type="System.Drawing.Point, System.Drawing">
-    <value>350, 97</value>
+    <value>110, 24</value>
   </data>
   <data name="label8.Size" type="System.Drawing.Size, System.Drawing">
     <value>157, 16</value>
@@ -1223,62 +474,17 @@
   <data name="label8.Text" xml:space="preserve">
     <value>Stör&amp;niveau/Rauschpegel</value>
   </data>
-  <data name="label3.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
-  <data name="label3.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
-    <value>AssociateIndex</value>
-  </data>
-  <data name="label3.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
   <data name="label3.Text" xml:space="preserve">
     <value>Millisekunden (ms)</value>
   </data>
   <data name="mChannelsTextbox.AccessibleName" xml:space="preserve">
     <value>Projekt Kanäle:</value>
   </data>
-  <data name="mChannelsTextbox.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
-  <data name="mChannelsTextbox.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
-    <value>AssociateIndex</value>
-  </data>
-  <data name="mChannelsTextbox.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
   <data name="mSampleRateTextbox.AccessibleName" xml:space="preserve">
     <value>Projekt Samplerate:</value>
   </data>
-  <data name="mSampleRateTextbox.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
-  <data name="mSampleRateTextbox.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
-    <value>AssociateIndex</value>
-  </data>
-  <data name="mSampleRateTextbox.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
   <data name="mChannelsCombo.AccessibleName" xml:space="preserve">
     <value>Standard Kanäle:</value>
-  </data>
-  <data name="mChannelsCombo.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
-  <data name="mChannelsCombo.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
-    <value>AssociateIndex</value>
-  </data>
-  <data name="mChannelsCombo.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
-  <data name="labelChannels.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
-  <data name="labelChannels.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
-    <value>AssociateIndex</value>
-  </data>
-  <data name="labelChannels.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
   </data>
   <data name="labelChannels.Size" type="System.Drawing.Size, System.Drawing">
     <value>76, 16</value>
@@ -1289,24 +495,6 @@
   <data name="mSampleRateCombo.AccessibleName" xml:space="preserve">
     <value>Standard Samplerate</value>
   </data>
-  <data name="mSampleRateCombo.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
-  <data name="mSampleRateCombo.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
-    <value>AssociateIndex</value>
-  </data>
-  <data name="mSampleRateCombo.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
-  <data name="labelSampleRate.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
-  <data name="labelSampleRate.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
-    <value>AssociateIndex</value>
-  </data>
-  <data name="labelSampleRate.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
   <data name="labelSampleRate.Size" type="System.Drawing.Size, System.Drawing">
     <value>81, 16</value>
   </data>
@@ -1316,35 +504,8 @@
   <data name="mOutputDeviceCombo.AccessibleName" xml:space="preserve">
     <value>Wiedergabegerät:</value>
   </data>
-  <data name="mOutputDeviceCombo.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
-  <data name="mOutputDeviceCombo.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
-    <value>AssociateIndex</value>
-  </data>
-  <data name="mOutputDeviceCombo.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
   <data name="mInputDeviceCombo.AccessibleName" xml:space="preserve">
     <value>Aufnahmegerät:</value>
-  </data>
-  <data name="mInputDeviceCombo.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
-  <data name="mInputDeviceCombo.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
-    <value>AssociateIndex</value>
-  </data>
-  <data name="mInputDeviceCombo.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
-  <data name="labelOutputDeviceName.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
-  <data name="labelOutputDeviceName.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
-    <value>AssociateIndex</value>
-  </data>
-  <data name="labelOutputDeviceName.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
   </data>
   <data name="labelOutputDeviceName.Size" type="System.Drawing.Size, System.Drawing">
     <value>118, 16</value>
@@ -1352,56 +513,20 @@
   <data name="labelOutputDeviceName.Text" xml:space="preserve">
     <value>W&amp;iedergabegerät:</value>
   </data>
-  <data name="labelInputDeviceName.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
-  <data name="labelInputDeviceName.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
-    <value>AssociateIndex</value>
-  </data>
-  <data name="labelInputDeviceName.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
   <data name="labelInputDeviceName.Size" type="System.Drawing.Size, System.Drawing">
     <value>102, 16</value>
   </data>
   <data name="labelInputDeviceName.Text" xml:space="preserve">
     <value>A&amp;ufnahmegerät:</value>
   </data>
-  <data name="mAudioTab.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
-  <data name="mAudioTab.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
-    <value>AssociateIndex</value>
-  </data>
-  <data name="mAudioTab.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
   <data name="mAudioTab.Text" xml:space="preserve">
     <value>Ton</value>
   </data>
-  <data name="m_btnRecordInLocalDrive.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
-  <data name="m_btnRecordInLocalDrive.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
-    <value>AssociateIndex</value>
-  </data>
-  <data name="m_btnRecordInLocalDrive.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
-  <data name="m_btnRecordInLocalDrive.ShowHelp" type="System.Boolean, mscorlib">
-    <value>True</value>
+  <data name="m_btnRecordInLocalDrive.Location" type="System.Drawing.Point, System.Drawing">
+    <value>507, 96</value>
   </data>
   <data name="m_btnRecordInLocalDrive.Text" xml:space="preserve">
     <value>suc&amp;hen</value>
-  </data>
-  <data name="m_txtRecordInLocalDrive.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
-  <data name="m_txtRecordInLocalDrive.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
-    <value>AssociateIndex</value>
-  </data>
-  <data name="m_txtRecordInLocalDrive.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
   </data>
   <data name="m_txtRecordInLocalDrive.Location" type="System.Drawing.Point, System.Drawing">
     <value>227, 97</value>
@@ -1409,35 +534,14 @@
   <data name="m_txtRecordInLocalDrive.Size" type="System.Drawing.Size, System.Drawing">
     <value>274, 22</value>
   </data>
-  <data name="m_chkRecordInLocalDrive.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
-  <data name="m_chkRecordInLocalDrive.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
-    <value>AssociateIndex</value>
-  </data>
-  <data name="m_chkRecordInLocalDrive.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
   <data name="m_chkRecordInLocalDrive.Location" type="System.Drawing.Point, System.Drawing">
     <value>3, 99</value>
-  </data>
-  <data name="m_chkRecordInLocalDrive.ShowHelp" type="System.Boolean, mscorlib">
-    <value>True</value>
   </data>
   <data name="m_chkRecordInLocalDrive.Size" type="System.Drawing.Size, System.Drawing">
     <value>218, 20</value>
   </data>
   <data name="m_chkRecordInLocalDrive.Text" xml:space="preserve">
     <value>Aufnahme auf lokalem Laufwerk:</value>
-  </data>
-  <data name="label10.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
-  <data name="label10.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
-    <value>AssociateIndex</value>
-  </data>
-  <data name="label10.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
   </data>
   <data name="label10.Size" type="System.Drawing.Size, System.Drawing">
     <value>119, 16</value>
@@ -1451,38 +555,11 @@
   <data name="m_lblImportTolerance.AccessibleName" xml:space="preserve">
     <value>Importtoleranz</value>
   </data>
-  <data name="m_lblImportTolerance.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
-  <data name="m_lblImportTolerance.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
-    <value>AssociateIndex</value>
-  </data>
-  <data name="m_lblImportTolerance.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
   <data name="m_lblImportTolerance.Size" type="System.Drawing.Size, System.Drawing">
     <value>92, 16</value>
   </data>
   <data name="m_lblImportTolerance.Text" xml:space="preserve">
     <value>Importtoleranz</value>
-  </data>
-  <data name="m_NumImportTolerance.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
-  <data name="m_NumImportTolerance.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
-    <value>AssociateIndex</value>
-  </data>
-  <data name="m_NumImportTolerance.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
-  <data name="m_ChkAutoSaveInterval.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
-  <data name="m_ChkAutoSaveInterval.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
-    <value>AssociateIndex</value>
-  </data>
-  <data name="m_ChkAutoSaveInterval.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
   </data>
   <data name="m_ChkAutoSaveInterval.Location" type="System.Drawing.Point, System.Drawing">
     <value>124, 138</value>
@@ -1496,26 +573,11 @@
   <data name="MnumAutoSaveInterval.AccessibleName" xml:space="preserve">
     <value>Intervall in Minuten</value>
   </data>
-  <data name="MnumAutoSaveInterval.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
-  <data name="MnumAutoSaveInterval.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
-    <value>AssociateIndex</value>
-  </data>
-  <data name="MnumAutoSaveInterval.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
+  <data name="MnumAutoSaveInterval.Location" type="System.Drawing.Point, System.Drawing">
+    <value>370, 138</value>
   </data>
   <data name="mPipelineTextbox.AccessibleName" xml:space="preserve">
     <value>Verzeichnis der Pipeline-Scripte</value>
-  </data>
-  <data name="mPipelineTextbox.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
-  <data name="mPipelineTextbox.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
-    <value>AssociateIndex</value>
-  </data>
-  <data name="mPipelineTextbox.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
   </data>
   <data name="mPipelineTextbox.Location" type="System.Drawing.Point, System.Drawing">
     <value>208, 55</value>
@@ -1526,41 +588,17 @@
   <data name="mDirectoryTextbox.AccessibleName" xml:space="preserve">
     <value>Standard-Projektverzeichnis</value>
   </data>
-  <data name="mDirectoryTextbox.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
-  <data name="mDirectoryTextbox.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
-    <value>AssociateIndex</value>
-  </data>
-  <data name="mDirectoryTextbox.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
   <data name="mDirectoryTextbox.Location" type="System.Drawing.Point, System.Drawing">
     <value>208, 13</value>
   </data>
   <data name="mDirectoryTextbox.Size" type="System.Drawing.Size, System.Drawing">
     <value>292, 22</value>
   </data>
-  <data name="mPipelineBrowseButton.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
-  <data name="mPipelineBrowseButton.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
-    <value>AssociateIndex</value>
-  </data>
-  <data name="mPipelineBrowseButton.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
+  <data name="mPipelineBrowseButton.Location" type="System.Drawing.Point, System.Drawing">
+    <value>507, 54</value>
   </data>
   <data name="mPipelineBrowseButton.Text" xml:space="preserve">
     <value>suc&amp;hen</value>
-  </data>
-  <data name="label9.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
-  <data name="label9.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
-    <value>AssociateIndex</value>
-  </data>
-  <data name="label9.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
   </data>
   <data name="label9.Location" type="System.Drawing.Point, System.Drawing">
     <value>3, 57</value>
@@ -1571,15 +609,6 @@
   <data name="label9.Text" xml:space="preserve">
     <value>Verzeichnis der &amp;Pipeline-Scripte:</value>
   </data>
-  <data name="label2.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
-  <data name="label2.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
-    <value>AssociateIndex</value>
-  </data>
-  <data name="label2.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
   <data name="label2.Location" type="System.Drawing.Point, System.Drawing">
     <value>4, 15</value>
   </data>
@@ -1589,62 +618,17 @@
   <data name="label2.Text" xml:space="preserve">
     <value>Stan&amp;dard-Projektverzeichnis:</value>
   </data>
-  <data name="mBrowseButton.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
-  <data name="mBrowseButton.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
-    <value>AssociateIndex</value>
-  </data>
-  <data name="mBrowseButton.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
+  <data name="mBrowseButton.Location" type="System.Drawing.Point, System.Drawing">
+    <value>507, 12</value>
   </data>
   <data name="mBrowseButton.Text" xml:space="preserve">
     <value>suc&amp;hen</value>
   </data>
-  <data name="mProjectTab.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
-  <data name="mProjectTab.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
-    <value>AssociateIndex</value>
-  </data>
-  <data name="mProjectTab.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
   <data name="mProjectTab.Text" xml:space="preserve">
     <value>Projekt</value>
   </data>
-  <data name="mTab.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
-  <data name="mTab.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
-    <value>AssociateIndex</value>
-  </data>
-  <data name="mTab.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
-  <data name="m_ApplyButton.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
-  <data name="m_ApplyButton.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
-    <value>AssociateIndex</value>
-  </data>
-  <data name="m_ApplyButton.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
-  <data name="m_ApplyButton.ShowHelp" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
   <data name="m_ApplyButton.Text" xml:space="preserve">
     <value>Zuf&amp;ügen</value>
-  </data>
-  <data name="$this.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
-  <data name="$this.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
-    <value>AssociateIndex</value>
-  </data>
-  <data name="$this.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
   </data>
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>

@@ -199,10 +199,10 @@
     <value>列表框，在复选框中使用á和â键选择</value>
   </data>
   <data name="m_CheckBoxListView.Location" type="System.Drawing.Point, System.Drawing">
-    <value>195, 307</value>
+    <value>636,74</value>
   </data>
   <data name="m_CheckBoxListView.Size" type="System.Drawing.Size, System.Drawing">
-    <value>267, 81</value>
+    <value>341,324</value>
   </data>
   <data name="m_CheckBoxListView.TabIndex" type="System.Int32, mscorlib">
     <value>3</value>
@@ -220,10 +220,10 @@
     <value>3</value>
   </data>
   <data name="m_grpBoxChkBoxListView.Location" type="System.Drawing.Point, System.Drawing">
-    <value>171, 306</value>
+    <value>630, 53</value>
   </data>
   <data name="m_grpBoxChkBoxListView.Size" type="System.Drawing.Size, System.Drawing">
-    <value>405, 100</value>
+    <value>353, 351</value>
   </data>
   <data name="m_grpBoxChkBoxListView.TabIndex" type="System.Int32, mscorlib">
     <value>3</value>
@@ -2091,7 +2091,7 @@
     <value>音频清理的最大文件值</value>
   </data>
   <data name="m_CleanUpFileSizeNumericUpDown.Location" type="System.Drawing.Point, System.Drawing">
-    <value>209, 92</value>
+    <value>211,148</value>
   </data>
   <data name="m_CleanUpFileSizeNumericUpDown.ShowHelp" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -2121,7 +2121,7 @@
     <value>NoControl</value>
   </data>
   <data name="mlblCleanupFileSize.Location" type="System.Drawing.Point, System.Drawing">
-    <value>4, 92</value>
+    <value>5,150</value>
   </data>
   <data name="mlblCleanupFileSize.ShowHelp" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -2157,7 +2157,7 @@
     <value>NoControl</value>
   </data>
   <data name="m_btn_speak.Location" type="System.Drawing.Point, System.Drawing">
-    <value>467, 123</value>
+    <value>467, 203</value>
   </data>
   <data name="m_btn_speak.ShowHelp" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -2193,7 +2193,7 @@
     <value>NoControl</value>
   </data>
   <data name="labelTTSvoice.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 128</value>
+    <value>3,211</value>
   </data>
   <data name="labelTTSvoice.ShowHelp" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -2223,7 +2223,7 @@
     <value>Flat</value>
   </data>
   <data name="mTTSvoiceCombo.Location" type="System.Drawing.Point, System.Drawing">
-    <value>160, 123</value>
+    <value>160,208</value>
   </data>
   <data name="mTTSvoiceCombo.ShowHelp" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -2250,7 +2250,7 @@
     <value>间隔毫秒数</value>
   </data>
   <data name="m_OperationDurationUpDown.Location" type="System.Drawing.Point, System.Drawing">
-    <value>335, 153</value>
+    <value>305,249</value>
   </data>
   <data name="m_OperationDurationUpDown.ShowHelp" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -2292,7 +2292,7 @@
     <value>间隔（句检测）</value>
   </data>
   <data name="m_cbOperation.Location" type="System.Drawing.Point, System.Drawing">
-    <value>160, 153</value>
+    <value>136,248</value>
   </data>
   <data name="m_cbOperation.ShowHelp" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -2322,7 +2322,7 @@
     <value>NoControl</value>
   </data>
   <data name="mlbOperation.Location" type="System.Drawing.Point, System.Drawing">
-    <value>76, 156</value>
+    <value>60, 250</value>
   </data>
   <data name="mlbOperation.ShowHelp" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -2364,7 +2364,7 @@
     <value>高</value>
   </data>
   <data name="mNoiseLevelComboBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>464, 89</value>
+    <value>157,179</value>
   </data>
   <data name="mNoiseLevelComboBox.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 4, 4, 4</value>
@@ -2397,7 +2397,7 @@
     <value>NoControl</value>
   </data>
   <data name="label8.Location" type="System.Drawing.Point, System.Drawing">
-    <value>381, 94</value>
+    <value>67,182</value>
   </data>
   <data name="label8.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 0, 4, 0</value>
@@ -2430,7 +2430,7 @@
     <value>NoControl</value>
   </data>
   <data name="label3.Location" type="System.Drawing.Point, System.Drawing">
-    <value>461, 156</value>
+    <value>426,256</value>
   </data>
   <data name="label3.ShowHelp" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -2460,10 +2460,10 @@
     <value>项目信道数：</value>
   </data>
   <data name="mChannelsTextbox.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Top, Left, Right</value>
+    <value>Top, Left</value>
   </data>
   <data name="mChannelsTextbox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>464, 63</value>
+    <value>165,106</value>
   </data>
   <data name="mChannelsTextbox.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 4, 4, 4</value>
@@ -2496,7 +2496,7 @@
     <value>项目采样率：</value>
   </data>
   <data name="mSampleRateTextbox.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Top, Left, Right</value>
+    <value>Top, Left</value>
   </data>
   <data name="mSampleRateTextbox.Location" type="System.Drawing.Point, System.Drawing">
     <value>160, 63</value>
@@ -2532,13 +2532,13 @@
     <value>默认信道数：</value>
   </data>
   <data name="mChannelsCombo.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Top, Left, Right</value>
+    <value>Top, Left</value>
   </data>
   <data name="mChannelsCombo.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Flat</value>
   </data>
   <data name="mChannelsCombo.Location" type="System.Drawing.Point, System.Drawing">
-    <value>466, 61</value>
+    <value>157,104</value>
   </data>
   <data name="mChannelsCombo.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 4, 4, 4</value>
@@ -2571,7 +2571,7 @@
     <value>NoControl</value>
   </data>
   <data name="labelChannels.Location" type="System.Drawing.Point, System.Drawing">
-    <value>357, 66</value>
+    <value>43,108</value>
   </data>
   <data name="labelChannels.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 0, 4, 0</value>
@@ -2604,7 +2604,7 @@
     <value>默认采样率：</value>
   </data>
   <data name="mSampleRateCombo.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Top, Left, Right</value>
+    <value>Top, Left</value>
   </data>
   <data name="mSampleRateCombo.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Flat</value>
@@ -2676,7 +2676,7 @@
     <value>输出设备名：</value>
   </data>
   <data name="mOutputDeviceCombo.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Top, Left, Right</value>
+    <value>Top, Left</value>
   </data>
   <data name="mOutputDeviceCombo.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Flat</value>
@@ -2691,7 +2691,7 @@
     <value>True</value>
   </data>
   <data name="mOutputDeviceCombo.Size" type="System.Drawing.Size, System.Drawing">
-    <value>443, 24</value>
+    <value>375, 24</value>
   </data>
   <data name="mOutputDeviceCombo.TabIndex" type="System.Int32, mscorlib">
     <value>16</value>
@@ -2712,7 +2712,7 @@
     <value>输入设备名：</value>
   </data>
   <data name="mInputDeviceCombo.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Top, Left, Right</value>
+    <value>Top, Left</value>
   </data>
   <data name="mInputDeviceCombo.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Flat</value>
@@ -2727,7 +2727,7 @@
     <value>True</value>
   </data>
   <data name="mInputDeviceCombo.Size" type="System.Drawing.Size, System.Drawing">
-    <value>443, 24</value>
+    <value>376, 24</value>
   </data>
   <data name="mInputDeviceCombo.TabIndex" type="System.Int32, mscorlib">
     <value>14</value>
@@ -2856,10 +2856,10 @@
     <value>Flat</value>
   </data>
   <data name="m_btnRecordInLocalDrive.Location" type="System.Drawing.Point, System.Drawing">
-    <value>507, 93</value>
+    <value>455,96</value>
   </data>
   <data name="m_btnRecordInLocalDrive.Size" type="System.Drawing.Size, System.Drawing">
-    <value>100, 31</value>
+    <value>85, 31</value>
   </data>
   <data name="m_btnRecordInLocalDrive.TabIndex" type="System.Int32, mscorlib">
     <value>9</value>
@@ -2883,10 +2883,10 @@
     <value>False</value>
   </data>
   <data name="m_txtRecordInLocalDrive.Location" type="System.Drawing.Point, System.Drawing">
-    <value>171, 97</value>
+    <value>166, 101</value>
   </data>
   <data name="m_txtRecordInLocalDrive.Size" type="System.Drawing.Size, System.Drawing">
-    <value>330, 22</value>
+    <value>282, 22</value>
   </data>
   <data name="m_txtRecordInLocalDrive.TabIndex" type="System.Int32, mscorlib">
     <value>8</value>
@@ -3093,7 +3093,7 @@
     <value>Top, Left, Right</value>
   </data>
   <data name="mPipelineTextbox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>172, 55</value>
+    <value>166, 55</value>
   </data>
   <data name="mPipelineTextbox.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 4, 4, 4</value>
@@ -3102,7 +3102,7 @@
     <value>True</value>
   </data>
   <data name="mPipelineTextbox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>328, 22</value>
+    <value>281, 22</value>
   </data>
   <data name="mPipelineTextbox.TabIndex" type="System.Int32, mscorlib">
     <value>5</value>
@@ -3126,7 +3126,7 @@
     <value>Top, Left, Right</value>
   </data>
   <data name="mDirectoryTextbox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>172, 13</value>
+    <value>166, 13</value>
   </data>
   <data name="mDirectoryTextbox.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 4, 4, 4</value>
@@ -3135,7 +3135,7 @@
     <value>True</value>
   </data>
   <data name="mDirectoryTextbox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>328, 22</value>
+    <value>281, 22</value>
   </data>
   <data name="mDirectoryTextbox.TabIndex" type="System.Int32, mscorlib">
     <value>2</value>
@@ -3162,7 +3162,7 @@
     <value>NoControl</value>
   </data>
   <data name="mPipelineBrowseButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>508, 50</value>
+    <value>455, 54</value>
   </data>
   <data name="mPipelineBrowseButton.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 4, 4, 4</value>
@@ -3171,7 +3171,7 @@
     <value>True</value>
   </data>
   <data name="mPipelineBrowseButton.Size" type="System.Drawing.Size, System.Drawing">
-    <value>100, 31</value>
+    <value>85, 31</value>
   </data>
   <data name="mPipelineBrowseButton.TabIndex" type="System.Int32, mscorlib">
     <value>6</value>
@@ -3270,7 +3270,7 @@
     <value>NoControl</value>
   </data>
   <data name="mBrowseButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>508, 8</value>
+    <value>456, 12</value>
   </data>
   <data name="mBrowseButton.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 4, 4, 4</value>
@@ -3279,7 +3279,7 @@
     <value>True</value>
   </data>
   <data name="mBrowseButton.Size" type="System.Drawing.Size, System.Drawing">
-    <value>100, 31</value>
+    <value>85, 31</value>
   </data>
   <data name="mBrowseButton.TabIndex" type="System.Int32, mscorlib">
     <value>3</value>
@@ -3312,7 +3312,7 @@
     <value>True</value>
   </data>
   <data name="mProjectTab.Size" type="System.Drawing.Size, System.Drawing">
-    <value>616, 373</value>
+    <value>980, 373</value>
   </data>
   <data name="mProjectTab.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
@@ -3336,7 +3336,7 @@
     <value>Top, Bottom, Left, Right</value>
   </data>
   <data name="mTab.Location" type="System.Drawing.Point, System.Drawing">
-    <value>16, 16</value>
+    <value>6, 13</value>
   </data>
   <data name="mTab.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 4, 4, 4</value>
@@ -3345,7 +3345,7 @@
     <value>True</value>
   </data>
   <data name="mTab.Size" type="System.Drawing.Size, System.Drawing">
-    <value>624, 402</value>
+    <value>988, 402</value>
   </data>
   <data name="mTab.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
@@ -3393,7 +3393,7 @@
     <value>8, 16</value>
   </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>656, 473</value>
+    <value>1015, 473</value>
   </data>
   <data name="$this.Font" type="System.Drawing.Font, System.Drawing">
     <value>Microsoft Sans Serif, 9.75pt</value>
