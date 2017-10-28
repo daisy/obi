@@ -581,9 +581,6 @@
   <data name="mAdvanceTab.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
   </data>
-  <data name="mAdvanceTab.Size" type="System.Drawing.Size, System.Drawing">
-    <value>656, 373</value>
-  </data>
   <data name="m_lblChooseFont.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
   </data>
@@ -752,9 +749,6 @@
   <data name="mColorPreferencesTab.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
   </data>
-  <data name="mColorPreferencesTab.Size" type="System.Drawing.Size, System.Drawing">
-    <value>656, 373</value>
-  </data>
   <data name="mColorPreferencesTab.Text" xml:space="preserve">
     <value>Cor do tipo de letra</value>
   </data>
@@ -892,9 +886,6 @@
   <data name="mKeyboardShortcutTab.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
   </data>
-  <data name="mKeyboardShortcutTab.Size" type="System.Drawing.Size, System.Drawing">
-    <value>656, 373</value>
-  </data>
   <data name="mKeyboardShortcutTab.Text" xml:space="preserve">
     <value>Teclas de atalho</value>
   </data>
@@ -994,9 +985,6 @@
   <data name="mUserProfileTab.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
   </data>
-  <data name="mUserProfileTab.Size" type="System.Drawing.Size, System.Drawing">
-    <value>656, 373</value>
-  </data>
   <data name="mUserProfileTab.Text" xml:space="preserve">
     <value>Perfil de utilizador</value>
   </data>
@@ -1013,7 +1001,7 @@
     <value />
   </data>
   <data name="m_CleanUpFileSizeNumericUpDown.Location" type="System.Drawing.Point, System.Drawing">
-    <value>335, 91</value>
+    <value>345,148</value>
   </data>
   <data name="m_CleanUpFileSizeNumericUpDown.Size" type="System.Drawing.Size, System.Drawing">
     <value>90, 22</value>
@@ -1028,7 +1016,7 @@
     <value />
   </data>
   <data name="mlblCleanupFileSize.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 92</value>
+    <value>1,150</value>
   </data>
   <data name="mlblCleanupFileSize.Size" type="System.Drawing.Size, System.Drawing">
     <value>337, 16</value>
@@ -1038,6 +1026,9 @@
   </data>
   <data name="m_btn_speak.AccessibleName" xml:space="preserve">
     <value> botão falar para verificar voz TTS</value>
+  </data>
+  <data name="m_btn_speak.Location" type="System.Drawing.Point, System.Drawing">
+    <value>421, 206</value>
   </data>
   <data name="m_btn_speak.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
@@ -1071,6 +1062,12 @@
   </data>
   <data name="mTTSvoiceCombo.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
+  </data>
+  <data name="mTTSvoiceCombo.Size" type="System.Drawing.Size, System.Drawing">
+    <value>230, 24</value>
+  </data>
+  <data name="mTTSvoiceCombo.Location" type="System.Drawing.Point, System.Drawing">
+    <value>180, 208</value>
   </data>
   <data name="mTTSvoiceCombo.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
     <value>AssociateIndex</value>
@@ -1154,10 +1151,10 @@
     <value>Alto</value>
   </data>
   <data name="mNoiseLevelComboBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>550, 89</value>
+    <value>165,179</value>
   </data>
   <data name="mNoiseLevelComboBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>99, 24</value>
+    <value>120, 24</value>
   </data>
   <data name="label8.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
@@ -1169,7 +1166,7 @@
     <value />
   </data>
   <data name="label8.Location" type="System.Drawing.Point, System.Drawing">
-    <value>450, 93</value>
+    <value>67,182</value>
   </data>
   <data name="label8.Size" type="System.Drawing.Size, System.Drawing">
     <value>94, 16</value>
@@ -1218,6 +1215,9 @@
   </data>
   <data name="mChannelsCombo.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
+	<data name="mChannelsCombo.Location" type="System.Drawing.Point, System.Drawing">
+    <value>157, 104</value>
+  </data>
   </data>
   <data name="mChannelsCombo.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
     <value>AssociateIndex</value>
@@ -1235,7 +1235,7 @@
     <value />
   </data>
   <data name="labelChannels.Location" type="System.Drawing.Point, System.Drawing">
-    <value>370, 66</value>
+    <value>43,108</value>
   </data>
   <data name="labelChannels.Size" type="System.Drawing.Size, System.Drawing">
     <value>90, 16</value>
@@ -1354,14 +1354,14 @@
   <data name="mAudioTab.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
   </data>
-  <data name="mAudioTab.Size" type="System.Drawing.Size, System.Drawing">
-    <value>656, 373</value>
-  </data>
   <data name="mAudioTab.Text" xml:space="preserve">
     <value>Áudio</value>
   </data>
   <data name="m_btnRecordInLocalDrive.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
+  </data>
+  <data name="m_btnRecordInLocalDrive.Location" type="System.Drawing.Point, System.Drawing">
+    <value>506,96</value>
   </data>
   <data name="m_btnRecordInLocalDrive.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
     <value>AssociateIndex</value>
@@ -1381,6 +1381,13 @@
   <data name="m_txtRecordInLocalDrive.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
   </data>
+  <data name="m_txtRecordInLocalDrive.Size" type="System.Drawing.Size, System.Drawing">
+    <value>310, 22</value>
+  </data>
+  <data name="m_txtRecordInLocalDrive.Location" type="System.Drawing.Point, System.Drawing">
+    <value>188, 101</value>
+  </data>
+  
   <data name="m_chkRecordInLocalDrive.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
   </data>
@@ -1406,7 +1413,7 @@
     <value />
   </data>
   <data name="label10.Location" type="System.Drawing.Point, System.Drawing">
-    <value>336, 167</value>
+    <value>336, 177</value>
   </data>
   <data name="label10.Size" type="System.Drawing.Size, System.Drawing">
     <value>111, 16</value>
@@ -1430,7 +1437,7 @@
     <value />
   </data>
   <data name="m_lblImportTolerance.Location" type="System.Drawing.Point, System.Drawing">
-    <value>13, 167</value>
+    <value>13, 177</value>
   </data>
   <data name="m_lblImportTolerance.Size" type="System.Drawing.Size, System.Drawing">
     <value>166, 16</value>
@@ -1448,7 +1455,7 @@
     <value />
   </data>
   <data name="m_NumImportTolerance.Location" type="System.Drawing.Point, System.Drawing">
-    <value>200, 165</value>
+    <value>200, 175</value>
   </data>
   <data name="m_ChkAutoSaveInterval.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
@@ -1486,6 +1493,9 @@
   <data name="mPipelineTextbox.AccessibleName" xml:space="preserve">
     <value>Diretório de Pipeline scripts</value>
   </data>
+  <data name="mPipelineTextbox.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Left</value>
+  </data>
   <data name="mPipelineTextbox.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
   </data>
@@ -1495,17 +1505,29 @@
   <data name="mPipelineTextbox.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
   </data>
+  <data name="mPipelineTextbox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>187, 59</value>
+  </data>
+  <data name="mPipelineTextbox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>310, 22</value>
+  </data>
   <data name="mDirectoryTextbox.AccessibleName" xml:space="preserve">
     <value>Diretório padrão do projeto:</value>
   </data>
   <data name="mDirectoryTextbox.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
   </data>
+  <data name="mDirectoryTextbox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>310, 22</value>
+  </data>
   <data name="mDirectoryTextbox.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
     <value>AssociateIndex</value>
   </data>
   <data name="mDirectoryTextbox.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
+  </data>
+  <data name="mDirectoryTextbox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>186, 17</value>
   </data>
   <data name="mPipelineBrowseButton.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
@@ -1515,6 +1537,9 @@
   </data>
   <data name="mPipelineBrowseButton.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
+  </data>
+  <data name="mPipelineBrowseButton.Location" type="System.Drawing.Point, System.Drawing">
+    <value>508,54</value>
   </data>
   <data name="mPipelineBrowseButton.Text" xml:space="preserve">
     <value>&amp;Procurar</value>
@@ -1558,6 +1583,9 @@
   <data name="mBrowseButton.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
   </data>
+  <data name="mBrowseButton.Location" type="System.Drawing.Point, System.Drawing">
+    <value>508,12</value>
+  </data>
   <data name="mBrowseButton.Text" xml:space="preserve">
     <value>Proc&amp;urar</value>
   </data>
@@ -1569,9 +1597,6 @@
   </data>
   <data name="mProjectTab.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
-  </data>
-  <data name="mProjectTab.Size" type="System.Drawing.Size, System.Drawing">
-    <value>656, 373</value>
   </data>
   <data name="mProjectTab.Text" xml:space="preserve">
     <value>Projeto</value>
@@ -1585,9 +1610,6 @@
   <data name="mTab.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
   </data>
-  <data name="mTab.Size" type="System.Drawing.Size, System.Drawing">
-    <value>664, 402</value>
-  </data>
   <data name="m_ApplyButton.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
   </data>
@@ -1599,9 +1621,6 @@
   </data>
   <data name="m_ApplyButton.Text" xml:space="preserve">
     <value>Ap&amp;licar</value>
-  </data>
-  <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>700, 473</value>
   </data>
   <data name="$this.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
