@@ -5201,15 +5201,20 @@ for (int j = 0;
         public void MarkBeginNote()
         {
             mContentView.BeginSpecialNode = Selection.EmptyNodeForSelection; //@AssociateNode
-            if (((AudioSelection)this.Selection).AudioRange.HasCursor)
+
+            if (this.Selection != null && this.Selection is AudioSelection && ((AudioSelection)this.Selection).AudioRange != null)
             {
-                m_TotalCursorTime = m_TotalCursorTime = ((AudioSelection)this.Selection).AudioRange.CursorTime;
+                if (((AudioSelection)this.Selection).AudioRange.HasCursor)
+                {
+                    m_TotalCursorTime = m_TotalCursorTime = ((AudioSelection)this.Selection).AudioRange.CursorTime;
+                }
+                else
+                {
+                    m_TotalCursorTime = m_TotalCursorTime = ((AudioSelection)this.Selection).AudioRange.SelectionBeginTime;
+                }
+                m_TotalCursorTime = this.Selection.Node.Duration - m_TotalCursorTime;
             }
-            else
-            {
-                m_TotalCursorTime = m_TotalCursorTime = ((AudioSelection)this.Selection).AudioRange.SelectionBeginTime;
-            }
-            m_TotalCursorTime = this.Selection.Node.Duration - m_TotalCursorTime;
+            
            TransportBar.PlayAudioClue(TransportBar.AudioCluesSelection.SelectionBegin);
         }
 
@@ -5217,13 +5222,16 @@ for (int j = 0;
         {
             if (mContentView.BeginSpecialNode == null) return;
             mContentView.EndSpecialNode = Selection.EmptyNodeForSelection; //@AssociateNode
-            if (((AudioSelection)this.Selection).AudioRange.HasCursor)
+            if (this.Selection != null && this.Selection is AudioSelection && ((AudioSelection)this.Selection).AudioRange != null)
             {
-                m_TotalCursorTime += m_TotalCursorTime = ((AudioSelection)this.Selection).AudioRange.CursorTime;
-            }
-            else
-            {
-                m_TotalCursorTime += m_TotalCursorTime = ((AudioSelection)this.Selection).AudioRange.SelectionEndTime;
+                if (((AudioSelection)this.Selection).AudioRange.HasCursor)
+                {
+                    m_TotalCursorTime += m_TotalCursorTime = ((AudioSelection)this.Selection).AudioRange.CursorTime;
+                }
+                else
+                {
+                    m_TotalCursorTime += m_TotalCursorTime = ((AudioSelection)this.Selection).AudioRange.SelectionEndTime;
+                }
             }
             TransportBar.PlayAudioClue(TransportBar.AudioCluesSelection.SelectionEnd);
         }
