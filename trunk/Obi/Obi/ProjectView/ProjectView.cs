@@ -6901,13 +6901,48 @@ public bool ShowOnlySelectedSection
 
             if (startNode.Parent is SectionNode)
             {
-                if (startNode is PhraseNode && endNode is PhraseNode)
+                if ((startNode is PhraseNode || startNode is EmptyNode) && (endNode is PhraseNode || endNode is EmptyNode))
                 {
-                    PhraseNode phraseNode = (PhraseNode)startNode;
+                    PhraseNode phraseNode = null;
+                    PhraseNode phraseEndNode = null;
+                    if (startNode is PhraseNode)
+                    {
+                        phraseNode = (PhraseNode)startNode;
+                    }
+                    else if(startNode is EmptyNode)
+                    {
+                        ObiNode tempNode = startNode;
+                        while (tempNode != null && !(tempNode is PhraseNode) && tempNode != endNode)
+                        {
+                            tempNode = tempNode.FollowingNode;
+                        }
+                        if (tempNode is PhraseNode)
+                        {
+                            phraseNode = (PhraseNode)tempNode;
+                            m_TotalCursorTime += phraseNode.Duration;
+                        }
+                    }
 
-                    PhraseNode phraseEndNode = (PhraseNode)endNode;
+                    if (endNode is PhraseNode)
+                    {
+                        phraseEndNode = (PhraseNode)endNode;
+                    }
+                    else if (endNode is EmptyNode)
+                    {
+                        ObiNode tempNode = endNode;
+                        while (tempNode != null && !(tempNode is PhraseNode) && tempNode != startNode)
+                        {
+                            tempNode = tempNode.PrecedingNode;
+                        }
+                        if (tempNode is PhraseNode)
+                        {
+                            phraseEndNode = (PhraseNode)tempNode;
+                            if(phraseEndNode != phraseNode)
+                            m_TotalCursorTime += phraseEndNode.Duration;
+                        }
+                    }
 
-                    if (phraseNode.FollowingNode != null && phraseNode != phraseEndNode)
+                    if (phraseNode != null && phraseEndNode != null && phraseNode.FollowingNode != null && phraseNode != phraseEndNode)
                     {
                         if (phraseNode.FollowingNode is PhraseNode)
                         {
@@ -6916,7 +6951,7 @@ public bool ShowOnlySelectedSection
                         else if (phraseNode.FollowingNode is EmptyNode)
                         {
                             ObiNode tempNode = phraseNode.FollowingNode;
-                            while (tempNode != null && !(tempNode is PhraseNode) && tempNode.Parent == tempNode.FollowingNode.Parent)
+                            while (tempNode != null && !(tempNode is PhraseNode))
                             {
                                 tempNode = tempNode.FollowingNode;
                             }
