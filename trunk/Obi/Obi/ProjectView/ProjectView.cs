@@ -5202,6 +5202,7 @@ for (int j = 0;
         {
             mContentView.BeginSpecialNode = Selection.EmptyNodeForSelection; //@AssociateNode
 
+            m_TotalCursorTime = 0;
             if (this.Selection != null && this.Selection is AudioSelection && ((AudioSelection)this.Selection).AudioRange != null)
             {
                 if (((AudioSelection)this.Selection).AudioRange.HasCursor)
