@@ -5871,8 +5871,8 @@ if (CanExportSelectedNodeAudio)
         {
             string tempDirectoryName = "AudioProcessing";
             string directoryFullPath = System.IO.Path.Combine(mPresentation.DataProviderManager.DataFileDirectoryFullPath,
-                tempDirectoryName);            
-            while (nodeToSelect.Index <= mContentView.EndSpecialNode.Index && nodeToSelect.Parent == mContentView.EndSpecialNode.Parent)
+                tempDirectoryName);
+            while ((nodeToSelect.Index <= mContentView.EndSpecialNode.Index && nodeToSelect.Parent == mContentView.EndSpecialNode.Parent) || (mContentView.BeginSpecialNode.Parent != mContentView.EndSpecialNode.Parent && nodeToSelect.Parent != mContentView.EndSpecialNode.Parent))
             {
                 string audioFileFullPath = CreateAudioFileFromNode(nodeToSelect, directoryFullPath, null);
                 dictionaryOfFilePaths.Add(nodeToSelect, audioFileFullPath);
@@ -6966,7 +6966,10 @@ public bool ShowOnlySelectedSection
             }
 
             string TotalTimeElapsed = Program.FormatDuration_Long(m_TotalCursorTime);
-            MessageBox.Show(Localizer.Message("TimeElapsed") + " " + TotalTimeElapsed, Localizer.Message("Caption_Information"));
+            Dialogs.TimeElapsed TimeElapsedDialog = new Obi.Dialogs.TimeElapsed(ObiForm.Settings,TotalTimeElapsed);
+            TimeElapsedDialog.ShowDialog();
+
+           // MessageBox.Show(Localizer.Message("TimeElapsed") + " " + TotalTimeElapsed, Localizer.Message("Caption_Information"));
 
         }
 
