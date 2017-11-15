@@ -362,6 +362,12 @@
     <Compile Include="Dialogs\SpecialPhraseList.Designer.cs">
       <DependentUpon>SpecialPhraseList.cs</DependentUpon>
     </Compile>
+    <Compile Include="Dialogs\TimeElapsed.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\TimeElapsed.Designer.cs">
+      <DependentUpon>TimeElapsed.cs</DependentUpon>
+    </Compile>
     <Compile Include="Dialogs\UserRegistration.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -919,6 +925,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\SpecialPhraseList.zh-Hant.resx">
       <DependentUpon>SpecialPhraseList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\TimeElapsed.resx">
+      <DependentUpon>TimeElapsed.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\UserRegistration.de.resx">
       <DependentUpon>UserRegistration.cs</DependentUpon>
