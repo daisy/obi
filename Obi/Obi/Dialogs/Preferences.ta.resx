@@ -199,10 +199,10 @@
     <value>பட்டியல் பெட்டி, தேர்வு பெட்டிகளில் நகர மேலே, கீழே திசை விசைகளை பயன் படுத்தவும்</value>
   </data>
   <data name="m_CheckBoxListView.Location" type="System.Drawing.Point, System.Drawing">
-    <value>195, 307</value>
+    <value>636,68</value>
   </data>
   <data name="m_CheckBoxListView.Size" type="System.Drawing.Size, System.Drawing">
-    <value>267, 81</value>
+    <value>341,332</value>
   </data>
   <data name="m_CheckBoxListView.TabIndex" type="System.Int32, mscorlib">
     <value>3</value>
@@ -220,10 +220,10 @@
     <value>3</value>
   </data>
   <data name="m_grpBoxChkBoxListView.Location" type="System.Drawing.Point, System.Drawing">
-    <value>171, 306</value>
+    <value>630,47</value>
   </data>
   <data name="m_grpBoxChkBoxListView.Size" type="System.Drawing.Size, System.Drawing">
-    <value>405, 100</value>
+    <value>352,360</value>
   </data>
   <data name="m_grpBoxChkBoxListView.TabIndex" type="System.Int32, mscorlib">
     <value>3</value>
@@ -2091,13 +2091,13 @@
     <value>Audio cleanup max file size</value>
   </data>
   <data name="m_CleanUpFileSizeNumericUpDown.Location" type="System.Drawing.Point, System.Drawing">
-    <value>209, 92</value>
+    <value>209,148</value>
   </data>
   <data name="m_CleanUpFileSizeNumericUpDown.ShowHelp" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
   <data name="m_CleanUpFileSizeNumericUpDown.Size" type="System.Drawing.Size, System.Drawing">
-    <value>100, 22</value>
+    <value>120, 22</value>
   </data>
   <data name="m_CleanUpFileSizeNumericUpDown.TabIndex" type="System.Int32, mscorlib">
     <value>22</value>
@@ -2121,7 +2121,7 @@
     <value>NoControl</value>
   </data>
   <data name="mlblCleanupFileSize.Location" type="System.Drawing.Point, System.Drawing">
-    <value>4, 92</value>
+    <value>4, 150</value>
   </data>
   <data name="mlblCleanupFileSize.ShowHelp" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -2157,7 +2157,7 @@
     <value>NoControl</value>
   </data>
   <data name="m_btn_speak.Location" type="System.Drawing.Point, System.Drawing">
-    <value>467, 123</value>
+    <value>467, 206</value>
   </data>
   <data name="m_btn_speak.ShowHelp" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -2193,7 +2193,7 @@
     <value>NoControl</value>
   </data>
   <data name="labelTTSvoice.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 128</value>
+    <value>3, 211</value>
   </data>
   <data name="labelTTSvoice.ShowHelp" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -2223,7 +2223,7 @@
     <value>Flat</value>
   </data>
   <data name="mTTSvoiceCombo.Location" type="System.Drawing.Point, System.Drawing">
-    <value>200, 123</value>
+    <value>200, 208</value>
   </data>
   <data name="mTTSvoiceCombo.ShowHelp" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -2250,7 +2250,7 @@
     <value>கால அளவு மில்லி வினாடிகளில்</value>
   </data>
   <data name="m_OperationDurationUpDown.Location" type="System.Drawing.Point, System.Drawing">
-    <value>335, 153</value>
+    <value>335,249</value>
   </data>
   <data name="m_OperationDurationUpDown.ShowHelp" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -2292,7 +2292,7 @@
     <value>இடைவெளி (சொற்றொடர் கண்டுபிடித்தல்)</value>
   </data>
   <data name="m_cbOperation.Location" type="System.Drawing.Point, System.Drawing">
-    <value>160, 153</value>
+    <value>160, 248</value>
   </data>
   <data name="m_cbOperation.ShowHelp" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -2322,7 +2322,7 @@
     <value>NoControl</value>
   </data>
   <data name="mlbOperation.Location" type="System.Drawing.Point, System.Drawing">
-    <value>76, 156</value>
+    <value>76, 250</value>
   </data>
   <data name="mlbOperation.ShowHelp" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -2364,7 +2364,7 @@
     <value>உயர்ந்த</value>
   </data>
   <data name="mNoiseLevelComboBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>464, 89</value>
+    <value>157,179</value>
   </data>
   <data name="mNoiseLevelComboBox.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 4, 4, 4</value>
@@ -2373,7 +2373,7 @@
     <value>True</value>
   </data>
   <data name="mNoiseLevelComboBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>139, 24</value>
+    <value>174, 24</value>
   </data>
   <data name="mNoiseLevelComboBox.TabIndex" type="System.Int32, mscorlib">
     <value>24</value>
@@ -2397,7 +2397,7 @@
     <value>NoControl</value>
   </data>
   <data name="label8.Location" type="System.Drawing.Point, System.Drawing">
-    <value>351, 94</value>
+    <value>67,182</value>
   </data>
   <data name="label8.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 0, 4, 0</value>
@@ -2430,7 +2430,7 @@
     <value>NoControl</value>
   </data>
   <data name="label3.Location" type="System.Drawing.Point, System.Drawing">
-    <value>461, 156</value>
+    <value>461, 256</value>
   </data>
   <data name="label3.ShowHelp" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -2460,10 +2460,10 @@
     <value>திட்டபணி அலைவரிசை::</value>
   </data>
   <data name="mChannelsTextbox.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Top, Left, Right</value>
+    <value>Top, Left</value>
   </data>
   <data name="mChannelsTextbox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>464, 63</value>
+    <value>155,106</value>
   </data>
   <data name="mChannelsTextbox.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 4, 4, 4</value>
@@ -2472,7 +2472,7 @@
     <value>True</value>
   </data>
   <data name="mChannelsTextbox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>120, 22</value>
+    <value>156, 22</value>
   </data>
   <data name="mChannelsTextbox.TabIndex" type="System.Int32, mscorlib">
     <value>20</value>
@@ -2532,13 +2532,13 @@
     <value>இயல்பு நிலை அலைவரிசை:</value>
   </data>
   <data name="mChannelsCombo.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Top, Left, Right</value>
+    <value>Top, Left</value>
   </data>
   <data name="mChannelsCombo.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Flat</value>
   </data>
   <data name="mChannelsCombo.Location" type="System.Drawing.Point, System.Drawing">
-    <value>466, 61</value>
+    <value>152,104</value>
   </data>
   <data name="mChannelsCombo.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 4, 4, 4</value>
@@ -2547,7 +2547,7 @@
     <value>True</value>
   </data>
   <data name="mChannelsCombo.Size" type="System.Drawing.Size, System.Drawing">
-    <value>138, 24</value>
+    <value>158, 24</value>
   </data>
   <data name="mChannelsCombo.TabIndex" type="System.Int32, mscorlib">
     <value>20</value>
@@ -2571,7 +2571,7 @@
     <value>NoControl</value>
   </data>
   <data name="labelChannels.Location" type="System.Drawing.Point, System.Drawing">
-    <value>357, 66</value>
+    <value>43,108</value>
   </data>
   <data name="labelChannels.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 0, 4, 0</value>
@@ -2604,7 +2604,7 @@
     <value>இயல்பு நிலை மாதிரி விகிதம்:</value>
   </data>
   <data name="mSampleRateCombo.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Top, Left, Right</value>
+    <value>Top, Left</value>
   </data>
   <data name="mSampleRateCombo.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Flat</value>
@@ -2676,7 +2676,7 @@
     <value>வெளியீட்டு கருவி பெயர்:</value>
   </data>
   <data name="mOutputDeviceCombo.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Top, Left, Right</value>
+    <value>Top, Left</value>
   </data>
   <data name="mOutputDeviceCombo.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Flat</value>
@@ -2691,7 +2691,7 @@
     <value>True</value>
   </data>
   <data name="mOutputDeviceCombo.Size" type="System.Drawing.Size, System.Drawing">
-    <value>443, 24</value>
+    <value>375, 24</value>
   </data>
   <data name="mOutputDeviceCombo.TabIndex" type="System.Int32, mscorlib">
     <value>16</value>
@@ -2712,7 +2712,7 @@
     <value>உள்ளீட்டு கருவி பெயர்:</value>
   </data>
   <data name="mInputDeviceCombo.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Top, Left, Right</value>
+    <value>Top, Left</value>
   </data>
   <data name="mInputDeviceCombo.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Flat</value>
@@ -2727,7 +2727,7 @@
     <value>True</value>
   </data>
   <data name="mInputDeviceCombo.Size" type="System.Drawing.Size, System.Drawing">
-    <value>443, 24</value>
+    <value>376, 24</value>
   </data>
   <data name="mInputDeviceCombo.TabIndex" type="System.Int32, mscorlib">
     <value>14</value>
@@ -2856,10 +2856,10 @@
     <value>Flat</value>
   </data>
   <data name="m_btnRecordInLocalDrive.Location" type="System.Drawing.Point, System.Drawing">
-    <value>507, 93</value>
+    <value>518, 93</value>
   </data>
   <data name="m_btnRecordInLocalDrive.Size" type="System.Drawing.Size, System.Drawing">
-    <value>100, 31</value>
+    <value>85, 31</value>
   </data>
   <data name="m_btnRecordInLocalDrive.TabIndex" type="System.Int32, mscorlib">
     <value>9</value>
@@ -2937,7 +2937,7 @@
     <value>NoControl</value>
   </data>
   <data name="label10.Location" type="System.Drawing.Point, System.Drawing">
-    <value>306, 167</value>
+    <value>299, 182</value>
   </data>
   <data name="label10.ShowHelp" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -2976,7 +2976,7 @@
     <value>NoControl</value>
   </data>
   <data name="m_lblImportTolerance.Location" type="System.Drawing.Point, System.Drawing">
-    <value>57, 166</value>
+    <value>57, 176</value>
   </data>
   <data name="m_lblImportTolerance.ShowHelp" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -3003,7 +3003,7 @@
     <value>4</value>
   </data>
   <data name="m_NumImportTolerance.Location" type="System.Drawing.Point, System.Drawing">
-    <value>172, 165</value>
+    <value>172, 175</value>
   </data>
   <data name="m_NumImportTolerance.ShowHelp" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -3090,10 +3090,10 @@
     <value>பைப்லைன் வரி வடிவு(script) கோப்பகம்</value>
   </data>
   <data name="mPipelineTextbox.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Top, Left, Right</value>
+    <value>Top, Left</value>
   </data>
   <data name="mPipelineTextbox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>212, 55</value>
+    <value>218, 55</value>
   </data>
   <data name="mPipelineTextbox.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 4, 4, 4</value>
@@ -3102,7 +3102,7 @@
     <value>True</value>
   </data>
   <data name="mPipelineTextbox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>288, 22</value>
+    <value>281, 22</value>
   </data>
   <data name="mPipelineTextbox.TabIndex" type="System.Int32, mscorlib">
     <value>5</value>
@@ -3123,7 +3123,7 @@
     <value>இயற்கை நிலை திட்டபணி கோப்பகம்:</value>
   </data>
   <data name="mDirectoryTextbox.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Top, Left, Right</value>
+    <value>Top, Left</value>
   </data>
   <data name="mDirectoryTextbox.Location" type="System.Drawing.Point, System.Drawing">
     <value>212, 13</value>
@@ -3153,7 +3153,7 @@
     <value>9</value>
   </data>
   <data name="mPipelineBrowseButton.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Top, Right</value>
+    <value>Top</value>
   </data>
   <data name="mPipelineBrowseButton.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Flat</value>
@@ -3162,7 +3162,7 @@
     <value>NoControl</value>
   </data>
   <data name="mPipelineBrowseButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>508, 50</value>
+    <value>336, 50</value>
   </data>
   <data name="mPipelineBrowseButton.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 4, 4, 4</value>
@@ -3171,7 +3171,7 @@
     <value>True</value>
   </data>
   <data name="mPipelineBrowseButton.Size" type="System.Drawing.Size, System.Drawing">
-    <value>100, 31</value>
+    <value>85, 31</value>
   </data>
   <data name="mPipelineBrowseButton.TabIndex" type="System.Int32, mscorlib">
     <value>6</value>
@@ -3261,7 +3261,7 @@
     <value>12</value>
   </data>
   <data name="mBrowseButton.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Top, Right</value>
+    <value>Top</value>
   </data>
   <data name="mBrowseButton.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Flat</value>
@@ -3270,7 +3270,7 @@
     <value>NoControl</value>
   </data>
   <data name="mBrowseButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>508, 8</value>
+    <value>336, 8</value>
   </data>
   <data name="mBrowseButton.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 4, 4, 4</value>
@@ -3279,7 +3279,7 @@
     <value>True</value>
   </data>
   <data name="mBrowseButton.Size" type="System.Drawing.Size, System.Drawing">
-    <value>100, 31</value>
+    <value>85, 31</value>
   </data>
   <data name="mBrowseButton.TabIndex" type="System.Int32, mscorlib">
     <value>3</value>
@@ -3345,7 +3345,7 @@
     <value>True</value>
   </data>
   <data name="mTab.Size" type="System.Drawing.Size, System.Drawing">
-    <value>624, 402</value>
+    <value>988, 402</value>
   </data>
   <data name="mTab.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
@@ -3393,7 +3393,7 @@
     <value>8, 16</value>
   </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>656, 473</value>
+    <value>1009, 473</value>
   </data>
   <data name="$this.Font" type="System.Drawing.Font, System.Drawing">
     <value>Microsoft Sans Serif, 9.75pt</value>
