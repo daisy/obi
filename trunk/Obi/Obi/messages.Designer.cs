@@ -5650,6 +5650,15 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Do not Show Message box for showing section containing the phrase.
+        /// </summary>
+        internal static string Project_DoNotDisplayMessageBoxForShowingSection {
+            get {
+                return ResourceManager.GetString("Project_DoNotDisplayMessageBoxForShowingSection", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Enable Mouse wheel scrolling.
         /// </summary>
         internal static string Project_EnableMouseScrolling {
@@ -7215,15 +7224,6 @@ namespace Obi {
         internal static string time_exceeds_duration_section {
             get {
                 return ResourceManager.GetString("time_exceeds_duration_section", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Time Elapsed between Begin and End marks is.
-        /// </summary>
-        internal static string TimeElapsed {
-            get {
-                return ResourceManager.GetString("TimeElapsed", resourceCulture);
             }
         }
         

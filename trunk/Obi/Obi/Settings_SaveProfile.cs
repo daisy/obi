@@ -127,6 +127,7 @@ namespace Obi
                newSettings.Project_DisplayWarningsForEditOperations = this.Project_DisplayWarningsForEditOperations;
                newSettings.Project_ShowAdvancePropertiesInPropertiesDialogs = this.Project_ShowAdvancePropertiesInPropertiesDialogs;
                newSettings.Project_ImportNCCFileWithWindows1252Encoding= this.Project_ImportNCCFileWithWindows1252Encoding;
+               newSettings.Project_DoNotDisplayMessageBoxForShowingSection = this.Project_DoNotDisplayMessageBoxForShowingSection;
                // checks for paths
                //if ( !string.IsNullOrEmpty(this.Project_DefaultPath) && Directory.Exists (this.Project_DefaultPath ))
                //newSettings.Project_DefaultPath = this.Project_DefaultPath;
@@ -502,7 +503,8 @@ namespace Obi
                && this.Project_SaveTOCViewWidth == settings.Project_SaveTOCViewWidth
                && this.Project_DisplayWarningsForEditOperations ==  settings.Project_DisplayWarningsForEditOperations
                && this.Project_ShowAdvancePropertiesInPropertiesDialogs == settings.Project_ShowAdvancePropertiesInPropertiesDialogs
-                                  && this.Project_ImportNCCFileWithWindows1252Encoding == settings.Project_ImportNCCFileWithWindows1252Encoding)
+               && this.Project_ImportNCCFileWithWindows1252Encoding == settings.Project_ImportNCCFileWithWindows1252Encoding
+               && this.Project_DoNotDisplayMessageBoxForShowingSection == settings.Project_DoNotDisplayMessageBoxForShowingSection)
                {
                    projectPreferencesMatch = true ;
                }

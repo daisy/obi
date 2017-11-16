@@ -1162,6 +1162,7 @@ m_cb_ChooseFont.Visible = false;
                 mSettings.Project_ShowAdvancePropertiesInPropertiesDialogs = m_CheckBoxListView.Items[21].Checked;
                 mSettings.Project_DisplayWarningsForEditOperations = m_CheckBoxListView.Items[22].Checked;
                 mSettings.Project_ImportNCCFileWithWindows1252Encoding= m_CheckBoxListView.Items[23].Checked;
+                mSettings.Project_DoNotDisplayMessageBoxForShowingSection = m_CheckBoxListView.Items[24].Checked;
             }
             if (mTab.SelectedTab == mAudioTab)
             {
@@ -1360,6 +1361,7 @@ m_cb_ChooseFont.Visible = false;
                 m_CheckBoxListView.Items.Add(Localizer.Message("Project_ShowAdvancePropertiesInPropertiesDialogs"));
                 m_CheckBoxListView.Items.Add(Localizer.Message("Project_DisplayWarningsForEditOperations"));
                 m_CheckBoxListView.Items.Add(Localizer.Message("Project_ImportNCCFileWithWindows1252Encoding"));
+                m_CheckBoxListView.Items.Add(Localizer.Message("Project_DoNotDisplayMessageBoxForShowingSection"));
                
                 m_CheckBoxListView.Items[0].Checked = mSettings.Project_OpenLastProject;
                 m_CheckBoxListView.Items[0].ToolTipText = Localizer.Message("ProjectTab_OpenLastProject");
@@ -1409,6 +1411,8 @@ m_cb_ChooseFont.Visible = false;
                 m_CheckBoxListView.Items[22].ToolTipText = Localizer.Message("Project_DisplayWarningsForEditOperations");
                 m_CheckBoxListView.Items[23].Checked = mSettings.Project_ImportNCCFileWithWindows1252Encoding;
                 m_CheckBoxListView.Items[23].ToolTipText = Localizer.Message("Project_ImportNCCFileWithWindows1252Encoding");
+                m_CheckBoxListView.Items[24].Checked = mSettings.Project_DoNotDisplayMessageBoxForShowingSection;
+                m_CheckBoxListView.Items[24].ToolTipText = Localizer.Message("Project_DoNotDisplayMessageBoxForShowingSection");
 
             }
             m_CheckBoxListView.View = View.Details;
@@ -1498,6 +1502,7 @@ m_cb_ChooseFont.Visible = false;
                 mSettings.Project_ShowAdvancePropertiesInPropertiesDialogs = m_DefaultSettings.Project_ShowAdvancePropertiesInPropertiesDialogs;
                 mSettings.Project_DisplayWarningsForEditOperations = m_DefaultSettings.Project_DisplayWarningsForEditOperations;
                 mSettings.Project_ImportNCCFileWithWindows1252Encoding= m_DefaultSettings.Project_ImportNCCFileWithWindows1252Encoding;
+                mSettings.Project_DoNotDisplayMessageBoxForShowingSection = m_DefaultSettings.Project_DoNotDisplayMessageBoxForShowingSection;
                 InitializeProjectTab();
             }
             else if (mTab.SelectedTab == mAudioTab) // Default settings for Audio tab
@@ -2143,6 +2148,7 @@ m_cb_ChooseFont.Visible = false;
                     m_CheckBoxListView.Items[21].Checked = false;
                     m_CheckBoxListView.Items[22].Checked = false;
                     m_CheckBoxListView.Items[23].Checked = false;
+                    m_CheckBoxListView.Items[24].Checked = false;
                     UpdateBoolSettings();
                 }
                 else if (Profile == "Intermediate.xml" || Profile == "Intermediate.XML")
@@ -2212,6 +2218,7 @@ m_cb_ChooseFont.Visible = false;
                     m_CheckBoxListView.Items[21].Checked = false;
                     m_CheckBoxListView.Items[22].Checked = false;
                     m_CheckBoxListView.Items[23].Checked = false;
+                    m_CheckBoxListView.Items[24].Checked = false;
                     UpdateBoolSettings();
                 }
                 else if (Profile == "Advance.xml" || Profile == "Advance.XML")
@@ -2280,6 +2287,7 @@ m_cb_ChooseFont.Visible = false;
                     m_CheckBoxListView.Items[21].Checked = true;
                     m_CheckBoxListView.Items[22].Checked = false;
                     m_CheckBoxListView.Items[23].Checked = false;
+                    m_CheckBoxListView.Items[24].Checked = false;
                     UpdateBoolSettings();
                 }
                 else if (Profile == "Profile-SBS.xml" || Profile == "Profile-SBS.XML")
@@ -2348,6 +2356,7 @@ m_cb_ChooseFont.Visible = false;
                     m_CheckBoxListView.Items[21].Checked = true;
                     m_CheckBoxListView.Items[22].Checked = false;
                     m_CheckBoxListView.Items[23].Checked = false;
+                    m_CheckBoxListView.Items[24].Checked = false;
                     UpdateBoolSettings();
 
 
@@ -2418,6 +2427,7 @@ m_cb_ChooseFont.Visible = false;
                     m_CheckBoxListView.Items[21].Checked = true;
                     m_CheckBoxListView.Items[22].Checked = true;
                     m_CheckBoxListView.Items[23].Checked = false;
+                    m_CheckBoxListView.Items[24].Checked = false;
                     UpdateBoolSettings();
 
                 }
@@ -2488,6 +2498,7 @@ m_cb_ChooseFont.Visible = false;
                     m_CheckBoxListView.Items[21].Checked = true;
                     m_CheckBoxListView.Items[22].Checked = true;
                     m_CheckBoxListView.Items[23].Checked = false;
+                    m_CheckBoxListView.Items[24].Checked = false;
                     UpdateBoolSettings();
 
                 }
@@ -2557,6 +2568,7 @@ m_cb_ChooseFont.Visible = false;
                     m_CheckBoxListView.Items[21].Checked = true;
                     m_CheckBoxListView.Items[22].Checked = true;
                     m_CheckBoxListView.Items[23].Checked = false;
+                    m_CheckBoxListView.Items[24].Checked = false;
                     UpdateBoolSettings();
 
                 }

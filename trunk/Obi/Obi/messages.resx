@@ -2997,7 +2997,7 @@ Error text: {1}</value>
   <data name="EmptyPagesFilledInGaps" xml:space="preserve">
     <value>Empty pages filled in the gaps</value>
   </data>
-  <data name="TimeElapsed" xml:space="preserve">
-    <value>Time Elapsed between Begin and End marks is</value>
+  <data name="Project_DoNotDisplayMessageBoxForShowingSection" xml:space="preserve">
+    <value>Do not Show Message box for showing section containing the phrase</value>
   </data>
 </root>
