@@ -1,6 +1,6 @@
 <SOAP-ENV:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/" xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:clr="http://schemas.microsoft.com/soap/encoding/clr/1.0" SOAP-ENV:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">
 <SOAP-ENV:Body>
-<a1:Settings id="ref-1" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.1.35191%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
+<a1:Settings id="ref-1" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D4.0.0.33969%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
 <Audio_AllowOverwrite>false</Audio_AllowOverwrite>
 <Audio_Recording_PreviewBeforeStarting>false</Audio_Recording_PreviewBeforeStarting>
 <Audio_Recording_ReplaceAfterCursor>false</Audio_Recording_ReplaceAfterCursor>
@@ -33,7 +33,7 @@
 <Project_OpenLastProject>false</Project_OpenLastProject>
 <Project_PipelineScriptsPath href="#ref-4"/>
 <Project_CheckForUpdates>true</Project_CheckForUpdates>
-<Project_LatestVersionCheckedByUpdate id="ref-9">3.9.1.35191</Project_LatestVersionCheckedByUpdate>
+<Project_LatestVersionCheckedByUpdate id="ref-9">4.0.0.33907</Project_LatestVersionCheckedByUpdate>
 <PlayIfNoSelection>true</PlayIfNoSelection>
 <PlayOnNavigate>false</PlayOnNavigate>
 <Audio_PreviewDuration>1500</Audio_PreviewDuration>
@@ -130,8 +130,10 @@
 <Audio_MergeFirstTwoPhrasesAfterPhraseDetectionWhileRecording>false</Audio_MergeFirstTwoPhrasesAfterPhraseDetectionWhileRecording>
 <Project_ImportNCCFileWithWindows1252Encoding>false</Project_ImportNCCFileWithWindows1252Encoding>
 <Audio_AutoPlayAfterRecordingStops>false</Audio_AutoPlayAfterRecordingStops>
+<Export_EpubCreateMediaOverlays>false</Export_EpubCreateMediaOverlays>
+<Project_DoNotDisplayMessageBoxForShowingSection>false</Project_DoNotDisplayMessageBoxForShowingSection>
 </a1:Settings>
-<a1:ColorSettings id="ref-5" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.1.35191%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
+<a1:ColorSettings id="ref-5" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D4.0.0.33969%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
 <BlockBackColor_Custom>
 <name xsi:null="1"/>
 <value>0</value>
@@ -445,7 +447,7 @@
 <state>1</state>
 </HighlightedSectionNodeWithoutSelectionColor>
 </a1:ColorSettings>
-<a1:ColorSettings id="ref-6" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.1.35191%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
+<a1:ColorSettings id="ref-6" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D4.0.0.33969%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
 <BlockBackColor_Custom>
 <name xsi:null="1"/>
 <value>0</value>
@@ -764,7 +766,7 @@
 <_size>0</_size>
 <_version>0</_version>
 </a3:ArrayList>
-<a1:UserProfile id="ref-11" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.9.1.35191%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
+<a1:UserProfile id="ref-11" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D4.0.0.33969%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
 <Name href="#ref-4"/>
 <Organization href="#ref-4"/>
 <Culture href="#ref-28"/>
@@ -804,38 +806,39 @@
 <compareInfo href="#ref-29"/>
 <textInfo xsi:null="1"/>
 <numInfo href="#ref-30"/>
-<dateTimeInfo xsi:null="1"/>
-<calendar xsi:null="1"/>
+<dateTimeInfo href="#ref-31"/>
+<calendar href="#ref-32"/>
 <m_dataItem>0</m_dataItem>
 <cultureID>1033</cultureID>
-<m_name id="ref-31">en-US</m_name>
+<m_name id="ref-33">en-US</m_name>
 <m_useUserOverride>true</m_useUserOverride>
 </a6:CultureInfo>
 <a6:CompareInfo id="ref-29" xmlns:a6="http://schemas.microsoft.com/clr/ns/System.Globalization">
-<m_name id="ref-32">en-US</m_name>
+<m_name id="ref-34">en-US</m_name>
 <win32LCID>0</win32LCID>
 <culture>1033</culture>
+<m_SortVersion xsi:null="1"/>
 </a6:CompareInfo>
 <a6:NumberFormatInfo id="ref-30" xmlns:a6="http://schemas.microsoft.com/clr/ns/System.Globalization">
-<numberGroupSizes href="#ref-33"/>
-<currencyGroupSizes href="#ref-34"/>
-<percentGroupSizes href="#ref-33"/>
-<positiveSign id="ref-35">+</positiveSign>
-<negativeSign id="ref-36">-</negativeSign>
-<numberDecimalSeparator id="ref-37">.</numberDecimalSeparator>
-<numberGroupSeparator id="ref-38">,</numberGroupSeparator>
-<currencyGroupSeparator id="ref-39">,</currencyGroupSeparator>
-<currencyDecimalSeparator id="ref-40">.</currencyDecimalSeparator>
-<currencySymbol id="ref-41">$</currencySymbol>
+<numberGroupSizes href="#ref-35"/>
+<currencyGroupSizes href="#ref-36"/>
+<percentGroupSizes href="#ref-35"/>
+<positiveSign id="ref-37">+</positiveSign>
+<negativeSign id="ref-38">-</negativeSign>
+<numberDecimalSeparator id="ref-39">.</numberDecimalSeparator>
+<numberGroupSeparator id="ref-40">,</numberGroupSeparator>
+<currencyGroupSeparator id="ref-41">,</currencyGroupSeparator>
+<currencyDecimalSeparator id="ref-42">.</currencyDecimalSeparator>
+<currencySymbol id="ref-43">$</currencySymbol>
 <ansiCurrencySymbol xsi:null="1"/>
-<nanSymbol id="ref-42">NaN</nanSymbol>
-<positiveInfinitySymbol id="ref-43">∞</positiveInfinitySymbol>
-<negativeInfinitySymbol id="ref-44">-∞</negativeInfinitySymbol>
-<percentDecimalSeparator href="#ref-37"/>
-<percentGroupSeparator href="#ref-38"/>
-<percentSymbol id="ref-45">%</percentSymbol>
-<perMilleSymbol id="ref-46">‰</perMilleSymbol>
-<nativeDigits href="#ref-47"/>
+<nanSymbol id="ref-44">NaN</nanSymbol>
+<positiveInfinitySymbol id="ref-45">∞</positiveInfinitySymbol>
+<negativeInfinitySymbol id="ref-46">-∞</negativeInfinitySymbol>
+<percentDecimalSeparator href="#ref-39"/>
+<percentGroupSeparator href="#ref-40"/>
+<percentSymbol id="ref-47">%</percentSymbol>
+<perMilleSymbol id="ref-48">‰</perMilleSymbol>
+<nativeDigits href="#ref-49"/>
 <m_dataItem>0</m_dataItem>
 <numberDecimalDigits>2</numberDecimalDigits>
 <currencyDecimalDigits>2</currencyDecimalDigits>
@@ -852,23 +855,110 @@
 <validForParseAsNumber>true</validForParseAsNumber>
 <validForParseAsCurrency>true</validForParseAsCurrency>
 </a6:NumberFormatInfo>
-<SOAP-ENC:Array id="ref-33" SOAP-ENC:arrayType="xsd:int[1]">
+<a6:DateTimeFormatInfo id="ref-31" xmlns:a6="http://schemas.microsoft.com/clr/ns/System.Globalization">
+<m_name id="ref-50">en-US</m_name>
+<amDesignator id="ref-51">AM</amDesignator>
+<pmDesignator id="ref-52">PM</pmDesignator>
+<dateSeparator id="ref-53">/</dateSeparator>
+<generalShortTimePattern xsi:null="1"/>
+<generalLongTimePattern xsi:null="1"/>
+<timeSeparator id="ref-54">:</timeSeparator>
+<monthDayPattern xsi:null="1"/>
+<dateTimeOffsetPattern xsi:null="1"/>
+<calendar href="#ref-32"/>
+<firstDayOfWeek>0</firstDayOfWeek>
+<calendarWeekRule>0</calendarWeekRule>
+<fullDateTimePattern xsi:null="1"/>
+<abbreviatedDayNames xsi:null="1"/>
+<m_superShortDayNames xsi:null="1"/>
+<dayNames xsi:null="1"/>
+<abbreviatedMonthNames xsi:null="1"/>
+<monthNames xsi:null="1"/>
+<genitiveMonthNames xsi:null="1"/>
+<m_genitiveAbbreviatedMonthNames xsi:null="1"/>
+<leapYearMonthNames xsi:null="1"/>
+<longDatePattern id="ref-55">dddd, MMMM d, yyyy</longDatePattern>
+<shortDatePattern id="ref-56">M/d/yyyy</shortDatePattern>
+<yearMonthPattern id="ref-57">MMMM yyyy</yearMonthPattern>
+<longTimePattern id="ref-58">h:mm:ss tt</longTimePattern>
+<shortTimePattern id="ref-59">h:mm tt</shortTimePattern>
+<allYearMonthPatterns href="#ref-60"/>
+<allShortDatePatterns href="#ref-61"/>
+<allLongDatePatterns href="#ref-62"/>
+<allShortTimePatterns href="#ref-63"/>
+<allLongTimePatterns href="#ref-64"/>
+<m_eraNames xsi:null="1"/>
+<m_abbrevEraNames xsi:null="1"/>
+<m_abbrevEnglishEraNames xsi:null="1"/>
+<optionalCalendars href="#ref-65"/>
+<m_isReadOnly>false</m_isReadOnly>
+<formatFlags>NotInitialized</formatFlags>
+<CultureID>1033</CultureID>
+<m_useUserOverride>true</m_useUserOverride>
+<bUseCalendarInfo>false</bUseCalendarInfo>
+<nDataItem>0</nDataItem>
+<m_isDefaultCalendar>false</m_isDefaultCalendar>
+<m_dateWords xsi:null="1"/>
+</a6:DateTimeFormatInfo>
+<a6:GregorianCalendar id="ref-32" xmlns:a6="http://schemas.microsoft.com/clr/ns/System.Globalization">
+<m_type>Localized</m_type>
+<m_currentEraValue>-1</m_currentEraValue>
+<twoDigitYearMax>-1</twoDigitYearMax>
+<Calendar_x002B_m_currentEraValue>-1</Calendar_x002B_m_currentEraValue>
+<Calendar_x002B_m_isReadOnly>false</Calendar_x002B_m_isReadOnly>
+<Calendar_x002B_twoDigitYearMax>-1</Calendar_x002B_twoDigitYearMax>
+</a6:GregorianCalendar>
+<SOAP-ENC:Array id="ref-35" SOAP-ENC:arrayType="xsd:int[1]">
 <item>3</item>
 </SOAP-ENC:Array>
-<SOAP-ENC:Array id="ref-34" SOAP-ENC:arrayType="xsd:int[1]">
+<SOAP-ENC:Array id="ref-36" SOAP-ENC:arrayType="xsd:int[1]">
 <item>3</item>
 </SOAP-ENC:Array>
-<SOAP-ENC:Array id="ref-47" SOAP-ENC:arrayType="xsd:string[10]">
-<item id="ref-48">0</item>
-<item id="ref-49">1</item>
-<item id="ref-50">2</item>
-<item id="ref-51">3</item>
-<item id="ref-52">4</item>
-<item id="ref-53">5</item>
-<item id="ref-54">6</item>
-<item id="ref-55">7</item>
-<item id="ref-56">8</item>
-<item id="ref-57">9</item>
+<SOAP-ENC:Array id="ref-49" SOAP-ENC:arrayType="xsd:string[10]">
+<item id="ref-66">0</item>
+<item id="ref-67">1</item>
+<item id="ref-68">2</item>
+<item id="ref-69">3</item>
+<item id="ref-70">4</item>
+<item id="ref-71">5</item>
+<item id="ref-72">6</item>
+<item id="ref-73">7</item>
+<item id="ref-74">8</item>
+<item id="ref-75">9</item>
+</SOAP-ENC:Array>
+<SOAP-ENC:Array id="ref-60" SOAP-ENC:arrayType="xsd:string[1]">
+<item id="ref-76">MMMM yyyy</item>
+</SOAP-ENC:Array>
+<SOAP-ENC:Array id="ref-61" SOAP-ENC:arrayType="xsd:string[7]">
+<item id="ref-77">M/d/yyyy</item>
+<item id="ref-78">M/d/yy</item>
+<item id="ref-79">MM/dd/yy</item>
+<item id="ref-80">MM/dd/yyyy</item>
+<item id="ref-81">yy/MM/dd</item>
+<item id="ref-82">yyyy-MM-dd</item>
+<item id="ref-83">dd-MMM-yy</item>
+</SOAP-ENC:Array>
+<SOAP-ENC:Array id="ref-62" SOAP-ENC:arrayType="xsd:string[4]">
+<item id="ref-84">dddd, MMMM d, yyyy</item>
+<item id="ref-85">MMMM d, yyyy</item>
+<item id="ref-86">dddd, d MMMM, yyyy</item>
+<item id="ref-87">d MMMM, yyyy</item>
+</SOAP-ENC:Array>
+<SOAP-ENC:Array id="ref-63" SOAP-ENC:arrayType="xsd:string[4]">
+<item id="ref-88">h:mm tt</item>
+<item id="ref-89">hh:mm tt</item>
+<item id="ref-90">H:mm</item>
+<item id="ref-91">HH:mm</item>
+</SOAP-ENC:Array>
+<SOAP-ENC:Array id="ref-64" SOAP-ENC:arrayType="xsd:string[4]">
+<item id="ref-92">h:mm:ss tt</item>
+<item id="ref-93">hh:mm:ss tt</item>
+<item id="ref-94">H:mm:ss</item>
+<item id="ref-95">HH:mm:ss</item>
+</SOAP-ENC:Array>
+<SOAP-ENC:Array id="ref-65" SOAP-ENC:arrayType="xsd:int[2]">
+<item>1</item>
+<item>2</item>
 </SOAP-ENC:Array>
 </SOAP-ENV:Body>
 </SOAP-ENV:Envelope>
