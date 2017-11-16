@@ -309,6 +309,10 @@ public bool Project_ImportNCCFileWithWindows1252Encoding ; // useful for importi
         [OptionalField]
         public bool Export_EpubCreateMediaOverlays;
 
+        // for Obi 4.1 beta
+        [OptionalField]
+        public bool Project_DoNotDisplayMessageBoxForShowingSection;
+
         protected static void InitializeDefaultSettings(Settings settings)
         {
             settings.Audio_Channels = 1;
@@ -451,6 +455,8 @@ public bool Project_ImportNCCFileWithWindows1252Encoding ; // useful for importi
             settings.Project_ImportNCCFileWithWindows1252Encoding = false;
             settings.Audio_AutoPlayAfterRecordingStops = false;
             settings.Export_EpubCreateMediaOverlays = false;
+            // Obi 4.1 beta
+            settings.Project_DoNotDisplayMessageBoxForShowingSection = false;
         }
 
         /// <summary>

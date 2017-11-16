@@ -4867,7 +4867,7 @@ if (thresholdAboveLastNode >= stripControl.Node.PhraseChildCount) thresholdAbove
 
                 if (!isParentSectionVisible)
                     {
-                    if (MessageBox.Show ( Localizer.Message ("SelectPhraseOrSection_ShowSection"), "?", MessageBoxButtons.YesNo, MessageBoxIcon.Question ) == DialogResult.Yes)
+                    if (this.Settings.Project_DoNotDisplayMessageBoxForShowingSection ||  MessageBox.Show ( Localizer.Message ("SelectPhraseOrSection_ShowSection"), "?", MessageBoxButtons.YesNo, MessageBoxIcon.Question ) == DialogResult.Yes)
                         {
                         CreateStripForSelectedSection ( parentSection, true );
                         }
