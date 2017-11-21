@@ -3000,4 +3000,7 @@ Error text: {1}</value>
   <data name="Project_DoNotDisplayMessageBoxForShowingSection" xml:space="preserve">
     <value>Do not show message box while moving to phrase in another section</value>
   </data>
+  <data name="NoAudioInSection" xml:space="preserve">
+    <value>no audio</value>
+  </data>
 </root>
