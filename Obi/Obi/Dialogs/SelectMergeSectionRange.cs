@@ -137,7 +137,14 @@ namespace Obi.Dialogs
                   
                     string PagesInSection = String.Empty;
                     PagesInSection = GetPagesInSection(i);
-                    m_lb_listofSectionsToMerge.Items.Add(m_SectionList[i].Label + " " + Localizer.Message("MergeOptions_LevelString") + m_SectionList[i].Level + PagesInSection);
+                    if (m_SectionList[i].Duration != 0)
+                    {
+                        m_lb_listofSectionsToMerge.Items.Add(m_SectionList[i].Label + " " + Localizer.Message("MergeOptions_LevelString") + m_SectionList[i].Level + PagesInSection);
+                    }
+                    else
+                    {
+                        m_lb_listofSectionsToMerge.Items.Add(m_SectionList[i].Label + " " + Localizer.Message("MergeOptions_LevelString") + m_SectionList[i].Level + " (" + Localizer.Message("NoAudioInSection") + ") " + PagesInSection);
+                    }
                    // m_SectionListAfterLevelChange.Add(m_SectionList[i]);
                 }
                 //else

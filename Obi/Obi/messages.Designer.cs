@@ -4453,6 +4453,15 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to no audio.
+        /// </summary>
+        internal static string NoAudioInSection {
+            get {
+                return ResourceManager.GetString("NoAudioInSection", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The node is already associated with some other node. Do you want to continue associating?.
         /// </summary>
         internal static string Node_already_associated {
@@ -5650,7 +5659,7 @@ namespace Obi {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Do not Show Message box for showing section containing the phrase.
+        ///   Looks up a localized string similar to Do not show message box while moving to phrase in another section.
         /// </summary>
         internal static string Project_DoNotDisplayMessageBoxForShowingSection {
             get {
