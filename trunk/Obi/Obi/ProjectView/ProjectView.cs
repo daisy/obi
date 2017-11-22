@@ -2819,7 +2819,7 @@ namespace Obi.ProjectView
                                     }
                                     if (createSectionForEachPhrase)
                                     {
-                                        CompositeCommand createSectionsCommand = GetImportSectionsFromAudioCommands(phraseNodes, phrase_SectionNameMap, dialog.CharacterCountToTruncateFromStart, dialog.CharactersToBeReplacedWithSpaces, dialog.PageIdentificationString);
+                                       CompositeCommand createSectionsCommand = GetImportSectionsFromAudioCommands(phraseNodes, phrase_SectionNameMap, dialog.CharacterCountToTruncateFromStart, dialog.CharactersToBeReplacedWithSpaces, dialog.PageIdentificationString);
 
                                         mPresentation.Do(createSectionsCommand);
                                     }
@@ -3084,6 +3084,29 @@ for (int j = 0;
                 if (newSectionNode != null) command.ChildCommands.Insert(command.ChildCommands.Count, new Commands.UpdateSelection(this, new NodeSelection(newSectionNode, mContentView)));
             return command;
             }
+
+
+        private CompositeCommand GetCommandForImportAudioFileInEachSection(List<PhraseNode> phraseNodesList)
+        {
+            List<PhraseNode> phraseNodes = new List<PhraseNode>();
+            phraseNodes.AddRange(phraseNodesList);
+            CompositeCommand command = Presentation.CreateCompositeCommand(Localizer.Message("import_phrases"));
+            
+            if (Selection != null) command.ChildCommands.Insert(command.ChildCommands.Count, new Commands.UpdateSelection(this, new NodeSelection(Selection.Node, Selection.Control)));
+            SectionNode firstSection = mPresentation.FirstSection;
+            int phraseCounter = 0 ;
+
+            for (SectionNode section = firstSection; section != null; section = section.FollowingSection)
+            {
+                if (phraseNodes.Count <= phraseCounter) break;
+
+                Commands.Node.AddNode addCmd = new Commands.Node.AddNode(this, phraseNodes[phraseCounter], section, section.PhraseChildCount, false);
+                command.ChildCommands.Insert(command.ChildCommands.Count, addCmd);
+                phraseCounter++;
+            }
+//if ( != null) command.ChildCommands.Insert(command.ChildCommands.Count, new Commands.UpdateSelection(this, new NodeSelection(newSectionNode, mContentView)));
+            return command;
+        }
 
         private PhraseNode CreatePagePhraseWithNegligibleAudio(PageNumber pgNumber, double durationInSeconds)
         {
