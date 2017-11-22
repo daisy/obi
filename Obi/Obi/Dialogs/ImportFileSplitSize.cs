@@ -53,21 +53,30 @@ namespace Obi.Dialogs
             helpProvider1.SetHelpKeyword(this, "HTML Files/Creating a DTB/Working with Audio/Importing Audio Files.htm");
             mchkCountToTruncateFromStart.Enabled =
                 mchkToReplaceWithSpace.Enabled =
-                mchktPageIdentificationString.Enabled = mCreateAudioFilePerSectionCheckBox.Checked;
+                mchktPageIdentificationString.Enabled = m_rdbCreateAudioFilePerSection.Checked;
 
-            if (m_Settings.ImportAudioCreateSectionCheck)
+            if (m_Settings.ImportAudioRadioButtonIndex == 1)
             {
                 m_txtCharToReplaceWithSpace.Enabled = true;
                 m_numCharCountToTruncateFromStart.Enabled = true;
                 m_numCharCountToTruncateFromStart.Enabled = true;
                 m_txtPageIdentificationString.Enabled = true;
 
-                mCreateAudioFilePerSectionCheckBox.Checked = true;
+                m_rdbCreateAudioFilePerSection.Checked = true;
                
                 mchkToReplaceWithSpace.Checked = true;
                 mchkCountToTruncateFromStart.Checked = true;
                 mchktPageIdentificationString.Checked = true;
             }
+            else if (m_Settings.ImportAudioRadioButtonIndex == 2)
+            {
+                m_rdbImportAudioFileInEachSection.Checked = true;
+            }
+            else
+            {
+                m_rdbImportAudioInSelectedSection.Checked = true;
+            }
+
             if (settings.ObiFont != this.Font.Name)
             {
                 this.Font = new Font(m_Settings.ObiFont, this.Font.Size, FontStyle.Regular);//@fontconfig
@@ -79,7 +88,8 @@ namespace Obi.Dialogs
         /// </summary>
         public bool SplitPhrases { get { return m_rdbSplitPhrasesOnImport.Checked; } }
 
-        public bool createSectionForEachPhrase { get { return mCreateAudioFilePerSectionCheckBox.Checked; } }
+        public bool createSectionForEachPhrase { get { return m_rdbCreateAudioFilePerSection.Checked; } }
+        public bool ImportAudioFilesInEachSection { get { return m_rdbImportAudioFileInEachSection.Checked; } }
        // public bool SortFileNamesAscending { get { return m_radiobtnYes.Checked; } }
         public string[] FilesPaths 
         { 
@@ -96,11 +106,11 @@ namespace Obi.Dialogs
         /// </summary>
         public uint MaxPhraseDurationMinutes { get { return mMaxPhraseDurationMinutes; } }
 
-        public string PageIdentificationString { get { return mCreateAudioFilePerSectionCheckBox.Checked && mchktPageIdentificationString.Checked && !string.IsNullOrEmpty(m_txtPageIdentificationString.Text)? m_txtPageIdentificationString.Text: null; } }
+        public string PageIdentificationString { get { return m_rdbCreateAudioFilePerSection.Checked && mchktPageIdentificationString.Checked && !string.IsNullOrEmpty(m_txtPageIdentificationString.Text)? m_txtPageIdentificationString.Text: null; } }
 
-        public string CharactersToBeReplacedWithSpaces { get { return mCreateAudioFilePerSectionCheckBox.Checked && mchkToReplaceWithSpace.Checked && !string.IsNullOrEmpty(m_txtCharToReplaceWithSpace.Text)? m_txtCharToReplaceWithSpace.Text: null; } }
+        public string CharactersToBeReplacedWithSpaces { get { return m_rdbCreateAudioFilePerSection.Checked && mchkToReplaceWithSpace.Checked && !string.IsNullOrEmpty(m_txtCharToReplaceWithSpace.Text)? m_txtCharToReplaceWithSpace.Text: null; } }
 
-        public int CharacterCountToTruncateFromStart { get { return mCreateAudioFilePerSectionCheckBox.Checked && mchkCountToTruncateFromStart.Checked? Convert.ToInt32(m_numCharCountToTruncateFromStart.Value) : 0 ; } }
+        public int CharacterCountToTruncateFromStart { get { return m_rdbCreateAudioFilePerSection.Checked && mchkCountToTruncateFromStart.Checked? Convert.ToInt32(m_numCharCountToTruncateFromStart.Value) : 0 ; } }
 
         public bool ApplyPhraseDetection { get { return m_rdbPhraseDetectionOnImportedFiles.Checked; } }
 
@@ -569,14 +579,51 @@ namespace Obi.Dialogs
 
         private void ImportFileSplitSize_FormClosed(object sender, FormClosedEventArgs e)
         {
-            if (mCreateAudioFilePerSectionCheckBox.Checked)
+            if (m_rdbCreateAudioFilePerSection.Checked)
             {
                 m_Settings.ImportAudioCreateSectionCheck = true;
+                m_Settings.ImportAudioRadioButtonIndex = 1;
+            }
+            else if (m_rdbImportAudioFileInEachSection.Checked)
+            {
+                m_Settings.ImportAudioRadioButtonIndex = 2;
             }
             else
             {
                 m_Settings.ImportAudioCreateSectionCheck = false;
+                m_Settings.ImportAudioRadioButtonIndex = 0;
             }
+        }
+
+        private void m_rdbCreateAudioFilePerSection_CheckedChanged(object sender, EventArgs e)
+        {
+            mchkCountToTruncateFromStart.Enabled =
+    mchkToReplaceWithSpace.Enabled =
+    mchktPageIdentificationString.Enabled = m_rdbCreateAudioFilePerSection.Checked;
+            if (m_rdbCreateAudioFilePerSection.Checked)
+            {
+                m_txtCharToReplaceWithSpace.Enabled = true;
+                m_numCharCountToTruncateFromStart.Enabled = true;
+                m_txtPageIdentificationString.Enabled = true;
+                mchkToReplaceWithSpace.Checked = true;
+                mchkCountToTruncateFromStart.Checked = true;
+                mchktPageIdentificationString.Checked = true;
+            }
+            else
+            {
+                m_txtCharToReplaceWithSpace.Enabled = false;
+                m_numCharCountToTruncateFromStart.Enabled = false;
+                m_txtPageIdentificationString.Enabled = false;
+                mchkToReplaceWithSpace.Checked = false;
+                mchkCountToTruncateFromStart.Checked = false;
+                mchktPageIdentificationString.Checked = false;
+            }
+
+        }
+
+        private void m_rdbImportAudioFileInEachSection_CheckedChanged(object sender, EventArgs e)
+        {
+              
         }
 
  

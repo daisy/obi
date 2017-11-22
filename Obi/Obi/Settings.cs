@@ -313,6 +313,9 @@ public bool Project_ImportNCCFileWithWindows1252Encoding ; // useful for importi
         [OptionalField]
         public bool Project_DoNotDisplayMessageBoxForShowingSection;
 
+        [OptionalField]
+        public int ImportAudioRadioButtonIndex;
+
         protected static void InitializeDefaultSettings(Settings settings)
         {
             settings.Audio_Channels = 1;
@@ -457,6 +460,7 @@ public bool Project_ImportNCCFileWithWindows1252Encoding ; // useful for importi
             settings.Export_EpubCreateMediaOverlays = false;
             // Obi 4.1 beta
             settings.Project_DoNotDisplayMessageBoxForShowingSection = false;
+            settings.ImportAudioRadioButtonIndex = 0;
         }
 
         /// <summary>

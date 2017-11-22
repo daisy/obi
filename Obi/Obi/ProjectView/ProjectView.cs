@@ -2751,6 +2751,7 @@ namespace Obi.ProjectView
                         ObiForm.Settings.MaxPhraseDurationMinutes = dialog.MaxPhraseDurationMinutes;
                         ObiForm.Settings.SplitPhrasesOnImport = dialog.SplitPhrases;
                         bool createSectionForEachPhrase = dialog.createSectionForEachPhrase;
+                        bool ImportAudioFilesInEachSection = dialog.ImportAudioFilesInEachSection;
                          // convert from minutes to milliseconds
                         double durationMs = dialog.SplitPhrases ? dialog.MaxPhraseDurationMinutes * 60000.0 : (ObiForm.Settings.MaxAllowedPhraseDurationInMinutes * 60000.0);
                        // double durationMs = dialog.SplitPhrases ? dialog.MaxPhraseDurationMinutes * 60000.0 : 0.0;
@@ -2822,6 +2823,11 @@ namespace Obi.ProjectView
                                        CompositeCommand createSectionsCommand = GetImportSectionsFromAudioCommands(phraseNodes, phrase_SectionNameMap, dialog.CharacterCountToTruncateFromStart, dialog.CharactersToBeReplacedWithSpaces, dialog.PageIdentificationString);
 
                                         mPresentation.Do(createSectionsCommand);
+                                    }
+                                    else if (ImportAudioFilesInEachSection)
+                                    {
+                                        CompositeCommand ImportSectionCommand = GetCommandForImportAudioFileInEachSection(phraseNodes);
+                                        mPresentation.Do(ImportSectionCommand);
                                     }
                                     else
                                     {
