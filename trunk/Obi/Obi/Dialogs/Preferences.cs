@@ -2427,7 +2427,7 @@ m_cb_ChooseFont.Visible = false;
                     m_CheckBoxListView.Items[21].Checked = true;
                     m_CheckBoxListView.Items[22].Checked = true;
                     m_CheckBoxListView.Items[23].Checked = false;
-                    m_CheckBoxListView.Items[24].Checked = false;
+                    m_CheckBoxListView.Items[24].Checked = true;
                     UpdateBoolSettings();
 
                 }
@@ -2498,7 +2498,7 @@ m_cb_ChooseFont.Visible = false;
                     m_CheckBoxListView.Items[21].Checked = true;
                     m_CheckBoxListView.Items[22].Checked = true;
                     m_CheckBoxListView.Items[23].Checked = false;
-                    m_CheckBoxListView.Items[24].Checked = false;
+                    m_CheckBoxListView.Items[24].Checked = true;
                     UpdateBoolSettings();
 
                 }
@@ -2568,7 +2568,7 @@ m_cb_ChooseFont.Visible = false;
                     m_CheckBoxListView.Items[21].Checked = true;
                     m_CheckBoxListView.Items[22].Checked = true;
                     m_CheckBoxListView.Items[23].Checked = false;
-                    m_CheckBoxListView.Items[24].Checked = false;
+                    m_CheckBoxListView.Items[24].Checked = true;
                     UpdateBoolSettings();
 
                 }
