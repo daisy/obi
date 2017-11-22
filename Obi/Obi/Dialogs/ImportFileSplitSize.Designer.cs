@@ -47,6 +47,9 @@ namespace Obi.Dialogs
             this.m_txtPageIdentificationString = new System.Windows.Forms.TextBox();
             this.m_numCharCountToTruncateFromStart = new System.Windows.Forms.NumericUpDown();
             this.m_grpCreateSectionForEachAudioFile = new System.Windows.Forms.GroupBox();
+            this.m_rdbCreateAudioFilePerSection = new System.Windows.Forms.RadioButton();
+            this.m_rdbImportAudioFileInEachSection = new System.Windows.Forms.RadioButton();
+            this.m_rdbImportAudioInSelectedSection = new System.Windows.Forms.RadioButton();
             this.mchktPageIdentificationString = new System.Windows.Forms.CheckBox();
             this.mchkCountToTruncateFromStart = new System.Windows.Forms.CheckBox();
             this.mchkToReplaceWithSpace = new System.Windows.Forms.CheckBox();
@@ -54,9 +57,6 @@ namespace Obi.Dialogs
             this.m_rdbPhraseDetectionOnImportedFiles = new System.Windows.Forms.RadioButton();
             this.m_rdbSplitPhrasesOnImport = new System.Windows.Forms.RadioButton();
             this.helpProvider1 = new System.Windows.Forms.HelpProvider();
-            this.m_rdbImportAudioInSelectedSection = new System.Windows.Forms.RadioButton();
-            this.m_rdbImportAudioFileInEachSection = new System.Windows.Forms.RadioButton();
-            this.m_rdbCreateAudioFilePerSection = new System.Windows.Forms.RadioButton();
             this.m_grpAddFiles.SuspendLayout();
             this.m_grpArrangeAudioFiles.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.m_numCharCountToTruncateFromStart)).BeginInit();
@@ -203,6 +203,30 @@ namespace Obi.Dialogs
             this.m_grpCreateSectionForEachAudioFile.Name = "m_grpCreateSectionForEachAudioFile";
             this.m_grpCreateSectionForEachAudioFile.TabStop = false;
             // 
+            // m_rdbCreateAudioFilePerSection
+            // 
+            resources.ApplyResources(this.m_rdbCreateAudioFilePerSection, "m_rdbCreateAudioFilePerSection");
+            this.m_rdbCreateAudioFilePerSection.Name = "m_rdbCreateAudioFilePerSection";
+            this.m_rdbCreateAudioFilePerSection.TabStop = true;
+            this.m_rdbCreateAudioFilePerSection.UseVisualStyleBackColor = true;
+            this.m_rdbCreateAudioFilePerSection.CheckedChanged += new System.EventHandler(this.m_rdbCreateAudioFilePerSection_CheckedChanged);
+            // 
+            // m_rdbImportAudioFileInEachSection
+            // 
+            resources.ApplyResources(this.m_rdbImportAudioFileInEachSection, "m_rdbImportAudioFileInEachSection");
+            this.m_rdbImportAudioFileInEachSection.Name = "m_rdbImportAudioFileInEachSection";
+            this.m_rdbImportAudioFileInEachSection.TabStop = true;
+            this.m_rdbImportAudioFileInEachSection.UseVisualStyleBackColor = true;
+            this.m_rdbImportAudioFileInEachSection.CheckedChanged += new System.EventHandler(this.m_rdbImportAudioFileInEachSection_CheckedChanged);
+            // 
+            // m_rdbImportAudioInSelectedSection
+            // 
+            resources.ApplyResources(this.m_rdbImportAudioInSelectedSection, "m_rdbImportAudioInSelectedSection");
+            this.m_rdbImportAudioInSelectedSection.Name = "m_rdbImportAudioInSelectedSection";
+            this.helpProvider1.SetShowHelp(this.m_rdbImportAudioInSelectedSection, ((bool)(resources.GetObject("m_rdbImportAudioInSelectedSection.ShowHelp"))));
+            this.m_rdbImportAudioInSelectedSection.TabStop = true;
+            this.m_rdbImportAudioInSelectedSection.UseVisualStyleBackColor = true;
+            // 
             // mchktPageIdentificationString
             // 
             resources.ApplyResources(this.mchktPageIdentificationString, "mchktPageIdentificationString");
@@ -252,30 +276,6 @@ namespace Obi.Dialogs
             // helpProvider1
             // 
             resources.ApplyResources(this.helpProvider1, "helpProvider1");
-            // 
-            // m_rdbImportAudioInSelectedSection
-            // 
-            resources.ApplyResources(this.m_rdbImportAudioInSelectedSection, "m_rdbImportAudioInSelectedSection");
-            this.m_rdbImportAudioInSelectedSection.Name = "m_rdbImportAudioInSelectedSection";
-            this.helpProvider1.SetShowHelp(this.m_rdbImportAudioInSelectedSection, ((bool)(resources.GetObject("m_rdbImportAudioInSelectedSection.ShowHelp"))));
-            this.m_rdbImportAudioInSelectedSection.TabStop = true;
-            this.m_rdbImportAudioInSelectedSection.UseVisualStyleBackColor = true;
-            // 
-            // m_rdbImportAudioFileInEachSection
-            // 
-            resources.ApplyResources(this.m_rdbImportAudioFileInEachSection, "m_rdbImportAudioFileInEachSection");
-            this.m_rdbImportAudioFileInEachSection.Name = "m_rdbImportAudioFileInEachSection";
-            this.m_rdbImportAudioFileInEachSection.TabStop = true;
-            this.m_rdbImportAudioFileInEachSection.UseVisualStyleBackColor = true;
-            this.m_rdbImportAudioFileInEachSection.CheckedChanged += new System.EventHandler(this.m_rdbImportAudioFileInEachSection_CheckedChanged);
-            // 
-            // m_rdbCreateAudioFilePerSection
-            // 
-            resources.ApplyResources(this.m_rdbCreateAudioFilePerSection, "m_rdbCreateAudioFilePerSection");
-            this.m_rdbCreateAudioFilePerSection.Name = "m_rdbCreateAudioFilePerSection";
-            this.m_rdbCreateAudioFilePerSection.TabStop = true;
-            this.m_rdbCreateAudioFilePerSection.UseVisualStyleBackColor = true;
-            this.m_rdbCreateAudioFilePerSection.CheckedChanged += new System.EventHandler(this.m_rdbCreateAudioFilePerSection_CheckedChanged);
             // 
             // ImportFileSplitSize
             // 
