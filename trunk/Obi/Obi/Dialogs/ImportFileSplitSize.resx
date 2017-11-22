@@ -181,7 +181,7 @@
     <value>Flat</value>
   </data>
   <data name="mOKButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>40, 566</value>
+    <value>40, 529</value>
   </data>
   <data name="mOKButton.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 4, 4, 4</value>
@@ -211,7 +211,7 @@
     <value>Flat</value>
   </data>
   <data name="mCancelButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>158, 566</value>
+    <value>158, 529</value>
   </data>
   <data name="mCancelButton.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 4, 4, 4</value>
@@ -532,7 +532,7 @@
     <value>False</value>
   </data>
   <data name="m_txtCharToReplaceWithSpace.Location" type="System.Drawing.Point, System.Drawing">
-    <value>222, 71</value>
+    <value>222, 97</value>
   </data>
   <data name="m_txtCharToReplaceWithSpace.Size" type="System.Drawing.Size, System.Drawing">
     <value>100, 22</value>
@@ -559,7 +559,7 @@
     <value>False</value>
   </data>
   <data name="m_txtPageIdentificationString.Location" type="System.Drawing.Point, System.Drawing">
-    <value>224, 127</value>
+    <value>224, 153</value>
   </data>
   <data name="m_txtPageIdentificationString.Size" type="System.Drawing.Size, System.Drawing">
     <value>100, 22</value>
@@ -586,7 +586,7 @@
     <value>False</value>
   </data>
   <data name="m_numCharCountToTruncateFromStart.Location" type="System.Drawing.Point, System.Drawing">
-    <value>224, 99</value>
+    <value>224, 125</value>
   </data>
   <data name="m_numCharCountToTruncateFromStart.Size" type="System.Drawing.Size, System.Drawing">
     <value>98, 22</value>
@@ -613,7 +613,7 @@
     <value>True</value>
   </data>
   <data name="m_rdbCreateAudioFilePerSection.Location" type="System.Drawing.Point, System.Drawing">
-    <value>10, 47</value>
+    <value>10, 73</value>
   </data>
   <data name="m_rdbCreateAudioFilePerSection.Size" type="System.Drawing.Size, System.Drawing">
     <value>220, 20</value>
@@ -640,7 +640,7 @@
     <value>True</value>
   </data>
   <data name="m_rdbImportAudioFileInEachSection.Location" type="System.Drawing.Point, System.Drawing">
-    <value>10, 155</value>
+    <value>10, 47</value>
   </data>
   <data name="m_rdbImportAudioFileInEachSection.Size" type="System.Drawing.Size, System.Drawing">
     <value>219, 20</value>
@@ -703,7 +703,7 @@
     <value>True</value>
   </data>
   <data name="mchktPageIdentificationString.Location" type="System.Drawing.Point, System.Drawing">
-    <value>10, 127</value>
+    <value>28, 153</value>
   </data>
   <data name="mchktPageIdentificationString.Size" type="System.Drawing.Size, System.Drawing">
     <value>137, 20</value>
@@ -733,7 +733,7 @@
     <value>True</value>
   </data>
   <data name="mchkCountToTruncateFromStart.Location" type="System.Drawing.Point, System.Drawing">
-    <value>11, 101</value>
+    <value>29, 127</value>
   </data>
   <data name="mchkCountToTruncateFromStart.Size" type="System.Drawing.Size, System.Drawing">
     <value>155, 20</value>
@@ -763,7 +763,7 @@
     <value>True</value>
   </data>
   <data name="mchkToReplaceWithSpace.Location" type="System.Drawing.Point, System.Drawing">
-    <value>10, 73</value>
+    <value>28, 99</value>
   </data>
   <data name="mchkToReplaceWithSpace.Size" type="System.Drawing.Size, System.Drawing">
     <value>171, 20</value>
@@ -790,7 +790,7 @@
     <value>12, 221</value>
   </data>
   <data name="m_grpCreateSectionForEachAudioFile.Size" type="System.Drawing.Size, System.Drawing">
-    <value>329, 193</value>
+    <value>329, 188</value>
   </data>
   <data name="m_grpCreateSectionForEachAudioFile.TabIndex" type="System.Int32, mscorlib">
     <value>9</value>
@@ -862,7 +862,7 @@
     <value>1</value>
   </data>
   <data name="m_grpSplitPhraseOrPhraseDetection.Location" type="System.Drawing.Point, System.Drawing">
-    <value>12, 429</value>
+    <value>12, 410</value>
   </data>
   <data name="m_grpSplitPhraseOrPhraseDetection.Size" type="System.Drawing.Size, System.Drawing">
     <value>329, 103</value>
@@ -889,7 +889,7 @@
     <value>8, 16</value>
   </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>351, 612</value>
+    <value>351, 570</value>
   </data>
   <data name="$this.Font" type="System.Drawing.Font, System.Drawing">
     <value>Microsoft Sans Serif, 9.75pt</value>
