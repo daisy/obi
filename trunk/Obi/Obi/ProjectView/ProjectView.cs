@@ -2826,8 +2826,35 @@ namespace Obi.ProjectView
                                     }
                                     else if (ImportAudioFilesInEachSection)
                                     {
-                                        CompositeCommand ImportSectionCommand = GetCommandForImportAudioFileInEachSection(phraseNodes);
-                                        mPresentation.Do(ImportSectionCommand);
+                                        List<SectionNode> sectionsList = ((ObiRootNode)this.Presentation.RootNode).GetListOfAllSections();
+                                        SectionNode tempSectionNodeSelected = null;
+
+                                        if (this.Selection != null && this.Selection.Node != null)
+                                        {
+                                            if ((this.Selection.Node is PhraseNode || this.Selection.Node is EmptyNode) && this.Selection.Node.Parent is SectionNode)
+                                            {
+                                                tempSectionNodeSelected = (SectionNode)this.Selection.Node.Parent;
+                                            }
+                                            else if (this.Selection.Node is SectionNode)
+                                            {
+                                                tempSectionNodeSelected = (SectionNode)this.Selection.Node;
+                                            }
+
+                                        }
+                                        int tempRequiredPositionOfLastSection = 0;
+                                        if(tempSectionNodeSelected != null)
+                                        tempRequiredPositionOfLastSection = tempSectionNodeSelected.Position + phraseNodes.Count - 1; 
+                              
+                                        if (phraseNodes.Count <= sectionsList.Count && tempRequiredPositionOfLastSection <= sectionsList[sectionsList.Count-1].Position)
+                                        {
+                                            CompositeCommand ImportSectionCommand = GetCommandForImportAudioFileInEachSection(phraseNodes);
+                                            mPresentation.Do(ImportSectionCommand);
+                                        }
+                                        else
+                                        {
+                                            return;
+                                        }
+
                                     }
                                     else
                                     {
