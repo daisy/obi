@@ -2831,7 +2831,7 @@ namespace Obi.ProjectView
 
                                         if (this.Selection != null && this.Selection.Node != null)
                                         {
-                                            if ((this.Selection.Node is PhraseNode || this.Selection.Node is EmptyNode) && this.Selection.Node.Parent is SectionNode)
+                                            if (this.Selection.Node is EmptyNode && this.Selection.Node.Parent is SectionNode)
                                             {
                                                 tempSectionNodeSelected = (SectionNode)this.Selection.Node.Parent;
                                             }
@@ -2843,15 +2843,16 @@ namespace Obi.ProjectView
                                         }
                                         int tempRequiredPositionOfLastSection = 0;
                                         if(tempSectionNodeSelected != null)
-                                        tempRequiredPositionOfLastSection = tempSectionNodeSelected.Position + phraseNodes.Count - 1; 
-                              
-                                        if (phraseNodes.Count <= sectionsList.Count && tempRequiredPositionOfLastSection <= sectionsList[sectionsList.Count-1].Position)
+                                        tempRequiredPositionOfLastSection = tempSectionNodeSelected.Position + phraseNodes.Count - 1;
+
+                                        if (phraseNodes.Count <= sectionsList.Count && tempSectionNodeSelected != null && tempRequiredPositionOfLastSection <= sectionsList[sectionsList.Count - 1].Position)
                                         {
                                             CompositeCommand ImportSectionCommand = GetCommandForImportAudioFileInEachSection(phraseNodes);
                                             mPresentation.Do(ImportSectionCommand);
                                         }
                                         else
                                         {
+                                            MessageBox.Show(Localizer.Message("NotEnoughSectionsToImportFiles"), Localizer.Message("Caption_Error"));
                                             return;
                                         }
 

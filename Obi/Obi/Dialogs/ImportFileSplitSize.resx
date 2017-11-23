@@ -237,39 +237,6 @@
   <data name="&gt;&gt;mCancelButton.ZOrder" xml:space="preserve">
     <value>3</value>
   </data>
-  <data name="mCreateAudioFilePerSectionCheckBox.AccessibleName" xml:space="preserve">
-    <value>create section for each audio file.</value>
-  </data>
-  <data name="mCreateAudioFilePerSectionCheckBox.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="mCreateAudioFilePerSectionCheckBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>13, 47</value>
-  </data>
-  <data name="mCreateAudioFilePerSectionCheckBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>221, 20</value>
-  </data>
-  <data name="mCreateAudioFilePerSectionCheckBox.TabIndex" type="System.Int32, mscorlib">
-    <value>10</value>
-  </data>
-  <data name="mCreateAudioFilePerSectionCheckBox.Text" xml:space="preserve">
-    <value>&amp;Create section for each audio file</value>
-  </data>
-  <data name="mCreateAudioFilePerSectionCheckBox.Visible" type="System.Boolean, mscorlib">
-    <value>False</value>
-  </data>
-  <data name="&gt;&gt;mCreateAudioFilePerSectionCheckBox.Name" xml:space="preserve">
-    <value>mCreateAudioFilePerSectionCheckBox</value>
-  </data>
-  <data name="&gt;&gt;mCreateAudioFilePerSectionCheckBox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;mCreateAudioFilePerSectionCheckBox.Parent" xml:space="preserve">
-    <value>m_grpCreateSectionForEachAudioFile</value>
-  </data>
-  <data name="&gt;&gt;mCreateAudioFilePerSectionCheckBox.ZOrder" xml:space="preserve">
-    <value>6</value>
-  </data>
   <data name="lstManualArrange.AccessibleName" xml:space="preserve">
     <value>Audio files list box.</value>
   </data>
@@ -538,7 +505,7 @@
     <value>100, 22</value>
   </data>
   <data name="m_txtCharToReplaceWithSpace.TabIndex" type="System.Int32, mscorlib">
-    <value>13</value>
+    <value>14</value>
   </data>
   <data name="&gt;&gt;m_txtCharToReplaceWithSpace.Name" xml:space="preserve">
     <value>m_txtCharToReplaceWithSpace</value>
@@ -550,7 +517,7 @@
     <value>m_grpCreateSectionForEachAudioFile</value>
   </data>
   <data name="&gt;&gt;m_txtCharToReplaceWithSpace.ZOrder" xml:space="preserve">
-    <value>7</value>
+    <value>6</value>
   </data>
   <data name="m_txtPageIdentificationString.AccessibleName" xml:space="preserve">
     <value>Page identification </value>
@@ -565,7 +532,7 @@
     <value>100, 22</value>
   </data>
   <data name="m_txtPageIdentificationString.TabIndex" type="System.Int32, mscorlib">
-    <value>17</value>
+    <value>18</value>
   </data>
   <data name="&gt;&gt;m_txtPageIdentificationString.Name" xml:space="preserve">
     <value>m_txtPageIdentificationString</value>
@@ -577,7 +544,7 @@
     <value>m_grpCreateSectionForEachAudioFile</value>
   </data>
   <data name="&gt;&gt;m_txtPageIdentificationString.ZOrder" xml:space="preserve">
-    <value>9</value>
+    <value>8</value>
   </data>
   <data name="m_numCharCountToTruncateFromStart.AccessibleName" xml:space="preserve">
     <value>Number of initial chars to trim</value>
@@ -592,7 +559,7 @@
     <value>98, 22</value>
   </data>
   <data name="m_numCharCountToTruncateFromStart.TabIndex" type="System.Int32, mscorlib">
-    <value>15</value>
+    <value>16</value>
   </data>
   <data name="&gt;&gt;m_numCharCountToTruncateFromStart.Name" xml:space="preserve">
     <value>m_numCharCountToTruncateFromStart</value>
@@ -604,7 +571,7 @@
     <value>m_grpCreateSectionForEachAudioFile</value>
   </data>
   <data name="&gt;&gt;m_numCharCountToTruncateFromStart.ZOrder" xml:space="preserve">
-    <value>8</value>
+    <value>7</value>
   </data>
   <data name="m_grpCreateSectionForEachAudioFile.AccessibleName" xml:space="preserve">
     <value>Group box to create section for each audio file.</value>
@@ -619,7 +586,7 @@
     <value>220, 20</value>
   </data>
   <data name="m_rdbCreateAudioFilePerSection.TabIndex" type="System.Int32, mscorlib">
-    <value>11</value>
+    <value>12</value>
   </data>
   <data name="m_rdbCreateAudioFilePerSection.Text" xml:space="preserve">
     <value>&amp;Create section for each audio file</value>
@@ -646,7 +613,7 @@
     <value>219, 20</value>
   </data>
   <data name="m_rdbImportAudioFileInEachSection.TabIndex" type="System.Int32, mscorlib">
-    <value>18</value>
+    <value>11</value>
   </data>
   <data name="m_rdbImportAudioFileInEachSection.Text" xml:space="preserve">
     <value>I&amp;mport audio files in each section</value>
@@ -709,7 +676,7 @@
     <value>137, 20</value>
   </data>
   <data name="mchktPageIdentificationString.TabIndex" type="System.Int32, mscorlib">
-    <value>16</value>
+    <value>17</value>
   </data>
   <data name="mchktPageIdentificationString.Text" xml:space="preserve">
     <value>Page &amp;Identification</value>
@@ -739,7 +706,7 @@
     <value>155, 20</value>
   </data>
   <data name="mchkCountToTruncateFromStart.TabIndex" type="System.Int32, mscorlib">
-    <value>14</value>
+    <value>15</value>
   </data>
   <data name="mchkCountToTruncateFromStart.Text" xml:space="preserve">
     <value># of initial &amp;chars to trim</value>
@@ -769,7 +736,7 @@
     <value>171, 20</value>
   </data>
   <data name="mchkToReplaceWithSpace.TabIndex" type="System.Int32, mscorlib">
-    <value>12</value>
+    <value>13</value>
   </data>
   <data name="mchkToReplaceWithSpace.Text" xml:space="preserve">
     <value>&amp;To Replace With Space</value>

@@ -33,7 +33,6 @@ namespace Obi.Dialogs
             this.mPhraseSizeTextBox = new System.Windows.Forms.TextBox();
             this.mOKButton = new System.Windows.Forms.Button();
             this.mCancelButton = new System.Windows.Forms.Button();
-            this.mCreateAudioFilePerSectionCheckBox = new System.Windows.Forms.CheckBox();
             this.lstManualArrange = new System.Windows.Forms.ListBox();
             this.m_btnMoveUp = new System.Windows.Forms.Button();
             this.m_btnMoveDown = new System.Windows.Forms.Button();
@@ -89,13 +88,6 @@ namespace Obi.Dialogs
             resources.ApplyResources(this.mCancelButton, "mCancelButton");
             this.mCancelButton.Name = "mCancelButton";
             this.mCancelButton.UseVisualStyleBackColor = true;
-            // 
-            // mCreateAudioFilePerSectionCheckBox
-            // 
-            resources.ApplyResources(this.mCreateAudioFilePerSectionCheckBox, "mCreateAudioFilePerSectionCheckBox");
-            this.mCreateAudioFilePerSectionCheckBox.Name = "mCreateAudioFilePerSectionCheckBox";
-            this.mCreateAudioFilePerSectionCheckBox.UseVisualStyleBackColor = true;
-            this.mCreateAudioFilePerSectionCheckBox.CheckedChanged += new System.EventHandler(this.mCreateAudioFilePerSectionCheckBox_CheckedChanged);
             // 
             // lstManualArrange
             // 
@@ -196,7 +188,6 @@ namespace Obi.Dialogs
             this.m_grpCreateSectionForEachAudioFile.Controls.Add(this.mchktPageIdentificationString);
             this.m_grpCreateSectionForEachAudioFile.Controls.Add(this.mchkCountToTruncateFromStart);
             this.m_grpCreateSectionForEachAudioFile.Controls.Add(this.mchkToReplaceWithSpace);
-            this.m_grpCreateSectionForEachAudioFile.Controls.Add(this.mCreateAudioFilePerSectionCheckBox);
             this.m_grpCreateSectionForEachAudioFile.Controls.Add(this.m_txtCharToReplaceWithSpace);
             this.m_grpCreateSectionForEachAudioFile.Controls.Add(this.m_numCharCountToTruncateFromStart);
             this.m_grpCreateSectionForEachAudioFile.Controls.Add(this.m_txtPageIdentificationString);
@@ -314,7 +305,6 @@ namespace Obi.Dialogs
         private System.Windows.Forms.TextBox mPhraseSizeTextBox;
         private System.Windows.Forms.Button mOKButton;
         private System.Windows.Forms.Button mCancelButton;
-        private System.Windows.Forms.CheckBox mCreateAudioFilePerSectionCheckBox;
         private System.Windows.Forms.ListBox lstManualArrange;
         private System.Windows.Forms.Button m_btnMoveUp;
         private System.Windows.Forms.Button m_btnMoveDown;

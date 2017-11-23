@@ -4570,6 +4570,15 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to You do not have enough sections to import all the files..
+        /// </summary>
+        internal static string NotEnoughSectionsToImportFiles {
+            get {
+                return ResourceManager.GetString("NotEnoughSectionsToImportFiles", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Nothing to search!.
         /// </summary>
         internal static string nothing_to_search {
