@@ -3099,7 +3099,15 @@ for (int j = 0;
             CompositeCommand command = Presentation.CreateCompositeCommand(Localizer.Message("import_phrases"));
             
             if (Selection != null) command.ChildCommands.Insert(command.ChildCommands.Count, new Commands.UpdateSelection(this, new NodeSelection(Selection.Node, Selection.Control)));
-            SectionNode firstSection = mPresentation.FirstSection;
+            SectionNode firstSection = null;
+            if (Selection != null && Selection.Node is SectionNode)
+            {
+                firstSection = (SectionNode)Selection.Node;
+            }
+            else
+            {
+                firstSection = mPresentation.FirstSection;
+            }
             int phraseCounter = 0 ;
 
             for (SectionNode section = firstSection; section != null; section = section.FollowingSection)
