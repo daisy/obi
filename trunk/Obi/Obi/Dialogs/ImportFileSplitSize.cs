@@ -252,30 +252,6 @@ namespace Obi.Dialogs
             
         }
 
-        private void mCreateAudioFilePerSectionCheckBox_CheckedChanged(object sender, EventArgs e)
-        {
-            mchkCountToTruncateFromStart.Enabled =
-                mchkToReplaceWithSpace.Enabled =
-                mchktPageIdentificationString.Enabled = mCreateAudioFilePerSectionCheckBox.Checked;
-            if(mCreateAudioFilePerSectionCheckBox.Checked)
-            {
-                m_txtCharToReplaceWithSpace.Enabled = true;
-                m_numCharCountToTruncateFromStart.Enabled = true;
-                m_txtPageIdentificationString.Enabled = true;
-                mchkToReplaceWithSpace.Checked = true;
-                mchkCountToTruncateFromStart.Checked = true;
-                mchktPageIdentificationString.Checked = true;
-            }
-            else
-            {
-                m_txtCharToReplaceWithSpace.Enabled = false;
-                m_numCharCountToTruncateFromStart.Enabled = false;
-                m_txtPageIdentificationString.Enabled = false;
-                mchkToReplaceWithSpace.Checked = false;
-                mchkCountToTruncateFromStart.Checked = false;
-                mchktPageIdentificationString.Checked = false;
-            }
-        }
 
         private void m_rdbSplitPhrasesOnImport_CheckedChanged(object sender, EventArgs e)
         {
