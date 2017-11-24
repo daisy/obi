@@ -583,13 +583,13 @@
     <value>10, 73</value>
   </data>
   <data name="m_rdbCreateAudioFilePerSection.Size" type="System.Drawing.Size, System.Drawing">
-    <value>220, 20</value>
+    <value>258, 20</value>
   </data>
   <data name="m_rdbCreateAudioFilePerSection.TabIndex" type="System.Int32, mscorlib">
     <value>12</value>
   </data>
   <data name="m_rdbCreateAudioFilePerSection.Text" xml:space="preserve">
-    <value>&amp;Create section for each audio file</value>
+    <value>&amp;Create a new section for each audio file</value>
   </data>
   <data name="&gt;&gt;m_rdbCreateAudioFilePerSection.Name" xml:space="preserve">
     <value>m_rdbCreateAudioFilePerSection</value>
@@ -610,13 +610,13 @@
     <value>10, 47</value>
   </data>
   <data name="m_rdbImportAudioFileInEachSection.Size" type="System.Drawing.Size, System.Drawing">
-    <value>219, 20</value>
+    <value>306, 20</value>
   </data>
   <data name="m_rdbImportAudioFileInEachSection.TabIndex" type="System.Int32, mscorlib">
     <value>11</value>
   </data>
   <data name="m_rdbImportAudioFileInEachSection.Text" xml:space="preserve">
-    <value>I&amp;mport audio files in each section</value>
+    <value>I&amp;mport audio file in each section (from selection)</value>
   </data>
   <data name="&gt;&gt;m_rdbImportAudioFileInEachSection.Name" xml:space="preserve">
     <value>m_rdbImportAudioFileInEachSection</value>
