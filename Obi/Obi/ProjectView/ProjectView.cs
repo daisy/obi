@@ -2847,6 +2847,11 @@ namespace Obi.ProjectView
 
                                         if (phraseNodes.Count <= sectionsList.Count && tempSectionNodeSelected != null && tempRequiredPositionOfLastSection <= sectionsList[sectionsList.Count - 1].Position)
                                         {
+                                            if (Selection != null && Selection.Node is EmptyNode)
+                                            {
+                                                Selection = new NodeSelection(Selection.Node.ParentAs<SectionNode>(), mContentView);
+                                            }
+   
                                             CompositeCommand ImportSectionCommand = GetCommandForImportAudioFileInEachSection(phraseNodes);
                                             mPresentation.Do(ImportSectionCommand);
                                         }
