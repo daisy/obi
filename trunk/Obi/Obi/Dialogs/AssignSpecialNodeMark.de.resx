@@ -147,7 +147,7 @@
   </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="m_cmbBoxSpecialNode.Location" type="System.Drawing.Point, System.Drawing">
-    <value>127, 70</value>
+    <value>218, 70</value>
   </data>
   <data name="m_btn_OK.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
@@ -159,7 +159,7 @@
     <value />
   </data>
   <data name="m_btn_OK.Location" type="System.Drawing.Point, System.Drawing">
-    <value>121, 108</value>
+    <value>203, 108</value>
   </data>
   <data name="m_btn_Cancel.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
@@ -171,7 +171,7 @@
     <value />
   </data>
   <data name="m_btn_Cancel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>227, 108</value>
+    <value>309, 108</value>
   </data>
   <data name="m_btn_Cancel.Text" xml:space="preserve">
     <value>Abbrechen</value>
@@ -221,11 +221,27 @@
   <data name="m_rtb_btn_AudioProcessing.Location" type="System.Drawing.Point, System.Drawing">
     <value>321, 19</value>
   </data>
+  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="m_rtb_btn_AudioProcessing.ShowHelp" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
   <data name="m_rtb_btn_AudioProcessing.Size" type="System.Drawing.Size, System.Drawing">
     <value>131, 17</value>
   </data>
   <data name="m_rtb_btn_AudioProcessing.Text" xml:space="preserve">
     <value>Tonqualität bearbeiten</value>
+  </data>
+  <data name="m_rtb_btn_TimeElapsed.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="m_rtb_btn_TimeElapsed.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
+    <value>AssociateIndex</value>
+  </data>
+  <data name="m_rtb_btn_TimeElapsed.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="m_rtb_btn_TimeElapsed.Location" type="System.Drawing.Point, System.Drawing">
+    <value>485, 19</value>
   </data>
   <data name="m_gp_box_operation.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
@@ -236,11 +252,14 @@
   <data name="m_gp_box_operation.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
   </data>
+  <data name="m_gp_box_operation.ShowHelp" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
   <data name="m_gp_box_operation.Size" type="System.Drawing.Size, System.Drawing">
-    <value>459, 43</value>
+    <value>582, 43</value>
   </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>476, 162</value>
+    <value>603, 162</value>
   </data>
   <data name="$this.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
