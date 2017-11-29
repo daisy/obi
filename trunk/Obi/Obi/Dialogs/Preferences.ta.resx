@@ -2472,7 +2472,7 @@
     <value>True</value>
   </data>
   <data name="mChannelsTextbox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>156, 22</value>
+    <value>148, 22</value>
   </data>
   <data name="mChannelsTextbox.TabIndex" type="System.Int32, mscorlib">
     <value>20</value>
@@ -2496,7 +2496,7 @@
     <value>திட்டபனி மாதிரி விகிதம்:</value>
   </data>
   <data name="mSampleRateTextbox.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Top, Left, Right</value>
+    <value>Top, Left</value>
   </data>
   <data name="mSampleRateTextbox.Location" type="System.Drawing.Point, System.Drawing">
     <value>160, 63</value>
@@ -2508,7 +2508,7 @@
     <value>True</value>
   </data>
   <data name="mSampleRateTextbox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>130, 22</value>
+    <value>148, 22</value>
   </data>
   <data name="mSampleRateTextbox.TabIndex" type="System.Int32, mscorlib">
     <value>18</value>
