@@ -536,10 +536,13 @@
     <value>プロジェクトチャンネル：</value>
   </data>
   <data name="mChannelsTextbox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>464, 63</value>
+    <value>159,106</value>
+  </data>
+  <data name="mChannelsTextbox.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Left</value>
   </data>
   <data name="mChannelsTextbox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>120, 22</value>
+    <value>130, 22</value>
   </data>
   <data name="mSampleRateTextbox.AccessibleName" xml:space="preserve">
     <value>プロジェクトサンプルレート：</value>
@@ -549,6 +552,9 @@
   </data>
   <data name="mSampleRateTextbox.Size" type="System.Drawing.Size, System.Drawing">
     <value>130, 22</value>
+  </data>
+  <data name="mSampleRateTextbox.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Left</value>
   </data>
   <data name="mChannelsCombo.AccessibleName" xml:space="preserve">
     <value>既定のチャンネル：</value>
@@ -563,7 +569,7 @@
     <value>145, 24</value>
   </data>
   <data name="labelChannels.Location" type="System.Drawing.Point, System.Drawing">
-    <value>43,108</value>
+    <value>33,108</value>
   </data>
   <data name="labelChannels.Size" type="System.Drawing.Size, System.Drawing">
     <value>118, 16</value>
