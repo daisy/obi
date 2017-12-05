@@ -3939,6 +3939,15 @@ SelectionChangedPlaybackEnabled = false;
                 }
 
             }
+            // mark to do to first phrase if retain initial silence is false
+            if (!mView.ObiForm.Settings.Audio_RetainInitialSilenceInPhraseDetection
+                && phrasesList.Count > 0
+                && multipleSplitCommand.ChildCommands.Count > 0)
+            {
+                Commands.Node.ToggleNodeTODO todoMarkCmd = new Obi.Commands.Node.ToggleNodeTODO(mView, phrasesList[0]);
+                todoMarkCmd.UpdateSelection = false;
+                multipleSplitCommand.ChildCommands.Insert(multipleSplitCommand.ChildCommands.Count, todoMarkCmd);
+            }
             return multipleSplitCommand;
         }
 
