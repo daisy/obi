@@ -5289,7 +5289,7 @@ for (int j = 0;
             {
                 m_TotalCursorTime = this.Selection.Node.Duration;
             }
-            
+      
            TransportBar.PlayAudioClue(TransportBar.AudioCluesSelection.SelectionBegin);
         }
 
@@ -6997,7 +6997,10 @@ public bool ShowOnlySelectedSection
                         if (tempNode is PhraseNode)
                         {
                             phraseNode = (PhraseNode)tempNode;
-                            m_TotalCursorTime += phraseNode.Duration;
+                            if (tempNode != endNode)
+                            {
+                                m_TotalCursorTime += phraseNode.Duration;
+                            }
                         }
                     }
 
