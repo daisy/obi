@@ -49,7 +49,7 @@ namespace Obi.Dialogs
             set
             {
                 m_rdb_btn_SpecialPhrase.Enabled = value;
-             //   m_rdb_btn_RenumberPages.Enabled = value;
+               //   m_rdb_btn_RenumberPages.Enabled = value;
              //   m_rtb_btn_AudioProcessing.Enabled = value;
             }
         }

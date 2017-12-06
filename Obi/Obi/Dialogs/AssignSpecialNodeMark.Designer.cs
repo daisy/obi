@@ -74,7 +74,6 @@ namespace Obi.Dialogs
             resources.ApplyResources(this.m_rdb_btn_SpecialPhrase, "m_rdb_btn_SpecialPhrase");
             this.m_rdb_btn_SpecialPhrase.Checked = true;
             this.m_rdb_btn_SpecialPhrase.Name = "m_rdb_btn_SpecialPhrase";
-            this.m_rdb_btn_SpecialPhrase.TabStop = true;
             this.m_rdb_btn_SpecialPhrase.UseVisualStyleBackColor = true;
             this.m_rdb_btn_SpecialPhrase.CheckedChanged += new System.EventHandler(this.m_rdb_btn_SpecialPhrase_CheckedChanged);
             // 
@@ -82,7 +81,6 @@ namespace Obi.Dialogs
             // 
             resources.ApplyResources(this.m_rdb_btn_RenumberPages, "m_rdb_btn_RenumberPages");
             this.m_rdb_btn_RenumberPages.Name = "m_rdb_btn_RenumberPages";
-            this.m_rdb_btn_RenumberPages.TabStop = true;
             this.m_rdb_btn_RenumberPages.UseVisualStyleBackColor = true;
             this.m_rdb_btn_RenumberPages.CheckedChanged += new System.EventHandler(this.m_rdb_btn_RenumberPages_CheckedChanged);
             // 
@@ -94,7 +92,6 @@ namespace Obi.Dialogs
             // 
             resources.ApplyResources(this.m_rtb_btn_AudioProcessing, "m_rtb_btn_AudioProcessing");
             this.m_rtb_btn_AudioProcessing.Name = "m_rtb_btn_AudioProcessing";
-            this.m_rtb_btn_AudioProcessing.TabStop = true;
             this.m_rtb_btn_AudioProcessing.UseVisualStyleBackColor = true;
             this.m_rtb_btn_AudioProcessing.CheckedChanged += new System.EventHandler(this.m_rtb_btn_AudioProcessing_CheckedChanged);
             // 
@@ -106,13 +103,13 @@ namespace Obi.Dialogs
             this.m_gp_box_operation.Controls.Add(this.m_rdb_btn_RenumberPages);
             resources.ApplyResources(this.m_gp_box_operation, "m_gp_box_operation");
             this.m_gp_box_operation.Name = "m_gp_box_operation";
+            this.helpProvider1.SetShowHelp(this.m_gp_box_operation, ((bool)(resources.GetObject("m_gp_box_operation.ShowHelp"))));
             this.m_gp_box_operation.TabStop = false;
             // 
             // m_rtb_btn_TimeElapsed
             // 
             resources.ApplyResources(this.m_rtb_btn_TimeElapsed, "m_rtb_btn_TimeElapsed");
             this.m_rtb_btn_TimeElapsed.Name = "m_rtb_btn_TimeElapsed";
-            this.m_rtb_btn_TimeElapsed.TabStop = true;
             this.m_rtb_btn_TimeElapsed.UseVisualStyleBackColor = true;
             this.m_rtb_btn_TimeElapsed.CheckedChanged += new System.EventHandler(this.m_rtb_btn_TimeElapsed_CheckedChanged);
             // 

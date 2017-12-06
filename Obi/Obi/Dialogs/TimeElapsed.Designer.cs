@@ -47,6 +47,7 @@
             // 
             // m_btnClose
             // 
+            this.m_btnClose.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             resources.ApplyResources(this.m_btnClose, "m_btnClose");
             this.m_btnClose.Name = "m_btnClose";
             this.m_btnClose.UseVisualStyleBackColor = true;
@@ -54,8 +55,10 @@
             // 
             // TimeElapsed
             // 
+            this.AcceptButton = this.m_btnClose;
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.CancelButton = this.m_btnClose;
             this.Controls.Add(this.m_btnClose);
             this.Controls.Add(this.m_txtBoxTotalTimeElapsed);
             this.Controls.Add(this.m_lblTimeElapsed);
