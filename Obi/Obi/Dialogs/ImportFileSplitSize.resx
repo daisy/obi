@@ -123,7 +123,7 @@
   </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="label1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>13, 51</value>
+    <value>41, 53</value>
   </data>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="label1.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
@@ -154,13 +154,13 @@
     <value>Phrase size in minutes textbox</value>
   </data>
   <data name="mPhraseSizeTextBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>174, 51</value>
+    <value>242, 51</value>
   </data>
   <data name="mPhraseSizeTextBox.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 4, 4, 4</value>
   </data>
   <data name="mPhraseSizeTextBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>120, 22</value>
+    <value>102, 22</value>
   </data>
   <data name="mPhraseSizeTextBox.TabIndex" type="System.Int32, mscorlib">
     <value>22</value>
@@ -181,7 +181,7 @@
     <value>Flat</value>
   </data>
   <data name="mOKButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>40, 529</value>
+    <value>72, 529</value>
   </data>
   <data name="mOKButton.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 4, 4, 4</value>
@@ -211,7 +211,7 @@
     <value>Flat</value>
   </data>
   <data name="mCancelButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>158, 529</value>
+    <value>190, 529</value>
   </data>
   <data name="mCancelButton.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 4, 4, 4</value>
@@ -250,7 +250,7 @@
     <value>10, 11</value>
   </data>
   <data name="lstManualArrange.Size" type="System.Drawing.Size, System.Drawing">
-    <value>205, 116</value>
+    <value>238, 116</value>
   </data>
   <data name="lstManualArrange.TabIndex" type="System.Int32, mscorlib">
     <value>2</value>
@@ -271,10 +271,10 @@
     <value>Flat</value>
   </data>
   <data name="m_btnMoveUp.Location" type="System.Drawing.Point, System.Drawing">
-    <value>221, 11</value>
+    <value>256, 11</value>
   </data>
   <data name="m_btnMoveUp.Size" type="System.Drawing.Size, System.Drawing">
-    <value>91, 23</value>
+    <value>91, 26</value>
   </data>
   <data name="m_btnMoveUp.TabIndex" type="System.Int32, mscorlib">
     <value>3</value>
@@ -298,7 +298,7 @@
     <value>Flat</value>
   </data>
   <data name="m_btnMoveDown.Location" type="System.Drawing.Point, System.Drawing">
-    <value>221, 43</value>
+    <value>256, 43</value>
   </data>
   <data name="m_btnMoveDown.Size" type="System.Drawing.Size, System.Drawing">
     <value>91, 23</value>
@@ -325,7 +325,7 @@
     <value>Flat</value>
   </data>
   <data name="m_btnAdd.Location" type="System.Drawing.Point, System.Drawing">
-    <value>221, 72</value>
+    <value>256, 72</value>
   </data>
   <data name="m_btnAdd.Size" type="System.Drawing.Size, System.Drawing">
     <value>91, 23</value>
@@ -355,7 +355,7 @@
     <value>Flat</value>
   </data>
   <data name="m_btnRemove.Location" type="System.Drawing.Point, System.Drawing">
-    <value>223, 101</value>
+    <value>258, 101</value>
   </data>
   <data name="m_btnRemove.Size" type="System.Drawing.Size, System.Drawing">
     <value>88, 23</value>
@@ -385,7 +385,7 @@
     <value>Flat</value>
   </data>
   <data name="mbtnDesendingOrder.Location" type="System.Drawing.Point, System.Drawing">
-    <value>156, 34</value>
+    <value>178, 25</value>
   </data>
   <data name="mbtnDesendingOrder.Size" type="System.Drawing.Size, System.Drawing">
     <value>149, 26</value>
@@ -415,7 +415,7 @@
     <value>NoControl</value>
   </data>
   <data name="mbtnAscendingOrder.Location" type="System.Drawing.Point, System.Drawing">
-    <value>10, 34</value>
+    <value>20, 25</value>
   </data>
   <metadata name="helpProvider1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
@@ -451,7 +451,7 @@
     <value>6, 138</value>
   </data>
   <data name="m_grpArrangeAudioFiles.Size" type="System.Drawing.Size, System.Drawing">
-    <value>315, 65</value>
+    <value>342, 65</value>
   </data>
   <data name="m_grpArrangeAudioFiles.TabIndex" type="System.Int32, mscorlib">
     <value>7</value>
@@ -475,7 +475,7 @@
     <value>12, 6</value>
   </data>
   <data name="m_grpAddFiles.Size" type="System.Drawing.Size, System.Drawing">
-    <value>329, 209</value>
+    <value>354, 209</value>
   </data>
   <data name="m_grpAddFiles.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
@@ -499,10 +499,10 @@
     <value>False</value>
   </data>
   <data name="m_txtCharToReplaceWithSpace.Location" type="System.Drawing.Point, System.Drawing">
-    <value>222, 97</value>
+    <value>240, 97</value>
   </data>
   <data name="m_txtCharToReplaceWithSpace.Size" type="System.Drawing.Size, System.Drawing">
-    <value>100, 22</value>
+    <value>102, 22</value>
   </data>
   <data name="m_txtCharToReplaceWithSpace.TabIndex" type="System.Int32, mscorlib">
     <value>14</value>
@@ -526,7 +526,7 @@
     <value>False</value>
   </data>
   <data name="m_txtPageIdentificationString.Location" type="System.Drawing.Point, System.Drawing">
-    <value>224, 153</value>
+    <value>242, 153</value>
   </data>
   <data name="m_txtPageIdentificationString.Size" type="System.Drawing.Size, System.Drawing">
     <value>100, 22</value>
@@ -553,7 +553,7 @@
     <value>False</value>
   </data>
   <data name="m_numCharCountToTruncateFromStart.Location" type="System.Drawing.Point, System.Drawing">
-    <value>224, 125</value>
+    <value>242, 125</value>
   </data>
   <data name="m_numCharCountToTruncateFromStart.Size" type="System.Drawing.Size, System.Drawing">
     <value>98, 22</value>
@@ -580,7 +580,7 @@
     <value>True</value>
   </data>
   <data name="m_rdbCreateAudioFilePerSection.Location" type="System.Drawing.Point, System.Drawing">
-    <value>10, 73</value>
+    <value>8, 73</value>
   </data>
   <data name="m_rdbCreateAudioFilePerSection.Size" type="System.Drawing.Size, System.Drawing">
     <value>258, 20</value>
@@ -607,7 +607,7 @@
     <value>True</value>
   </data>
   <data name="m_rdbImportAudioFileInEachSection.Location" type="System.Drawing.Point, System.Drawing">
-    <value>10, 47</value>
+    <value>8, 47</value>
   </data>
   <data name="m_rdbImportAudioFileInEachSection.Size" type="System.Drawing.Size, System.Drawing">
     <value>306, 20</value>
@@ -637,7 +637,7 @@
     <value>NoControl</value>
   </data>
   <data name="m_rdbImportAudioInSelectedSection.Location" type="System.Drawing.Point, System.Drawing">
-    <value>11, 21</value>
+    <value>9, 21</value>
   </data>
   <data name="m_rdbImportAudioInSelectedSection.ShowHelp" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -754,10 +754,10 @@
     <value>5</value>
   </data>
   <data name="m_grpCreateSectionForEachAudioFile.Location" type="System.Drawing.Point, System.Drawing">
-    <value>12, 221</value>
+    <value>12, 214</value>
   </data>
   <data name="m_grpCreateSectionForEachAudioFile.Size" type="System.Drawing.Size, System.Drawing">
-    <value>329, 188</value>
+    <value>355, 188</value>
   </data>
   <data name="m_grpCreateSectionForEachAudioFile.TabIndex" type="System.Int32, mscorlib">
     <value>9</value>
@@ -829,10 +829,10 @@
     <value>1</value>
   </data>
   <data name="m_grpSplitPhraseOrPhraseDetection.Location" type="System.Drawing.Point, System.Drawing">
-    <value>12, 410</value>
+    <value>12, 402</value>
   </data>
   <data name="m_grpSplitPhraseOrPhraseDetection.Size" type="System.Drawing.Size, System.Drawing">
-    <value>329, 103</value>
+    <value>355, 103</value>
   </data>
   <data name="m_grpSplitPhraseOrPhraseDetection.TabIndex" type="System.Int32, mscorlib">
     <value>19</value>
@@ -856,7 +856,7 @@
     <value>8, 16</value>
   </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>351, 570</value>
+    <value>373, 570</value>
   </data>
   <data name="$this.Font" type="System.Drawing.Font, System.Drawing">
     <value>Microsoft Sans Serif, 9.75pt</value>
