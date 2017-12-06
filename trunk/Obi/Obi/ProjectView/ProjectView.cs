@@ -5285,6 +5285,10 @@ for (int j = 0;
                 }
                 m_TotalCursorTime = this.Selection.Node.Duration - m_TotalCursorTime;
             }
+            else if (this.Selection != null && this.Selection.Node != null)
+            {
+                m_TotalCursorTime = this.Selection.Node.Duration;
+            }
             
            TransportBar.PlayAudioClue(TransportBar.AudioCluesSelection.SelectionBegin);
         }
@@ -5303,6 +5307,10 @@ for (int j = 0;
                 {
                     m_TotalCursorTime += m_TotalCursorTime = ((AudioSelection)this.Selection).AudioRange.SelectionEndTime;
                 }
+            }
+            else if (this.Selection != null && this.Selection.Node != null)
+            {
+                m_TotalCursorTime += this.Selection.Node.Duration;
             }
             TransportBar.PlayAudioClue(TransportBar.AudioCluesSelection.SelectionEnd);
         }
