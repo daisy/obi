@@ -5311,7 +5311,15 @@ for (int j = 0;
             {
                 if (((AudioSelection)this.Selection).AudioRange.HasCursor)
                 {
-                    m_TotalCursorTime += m_TotalCursorTime = ((AudioSelection)this.Selection).AudioRange.CursorTime;
+                    if (mContentView.BeginSpecialNode != mContentView.EndSpecialNode)
+                    {
+                        m_TotalCursorTime += m_TotalCursorTime = ((AudioSelection)this.Selection).AudioRange.CursorTime;
+                    }
+                    else
+                    {
+                        double tempTime = this.Selection.Node.Duration - ((AudioSelection)this.Selection).AudioRange.CursorTime;
+                        m_TotalCursorTime = m_TotalCursorTime - tempTime;
+                    }
                 }
                 else if (mContentView.BeginSpecialNode == mContentView.EndSpecialNode)
                 {
@@ -5375,7 +5383,11 @@ for (int j = 0;
                 Dialogs.AssignSpecialNodeMark AssignSpecialNodeDialog = new Obi.Dialogs.AssignSpecialNodeMark(ObiForm.Settings); //@fontconfig
                 if (startNode.Parent != endNode.Parent)
                 {
-                    AssignSpecialNodeDialog.EnableRadioButtons = false;                    
+                    AssignSpecialNodeDialog.EnableSkippableNotes = false;                    
+                }
+                if (m_TotalCursorTime < 0)
+                {
+                    AssignSpecialNodeDialog.EnableTimeElapsed = false;
                 }
             AssignSpecialNodeDialog.ShowDialog();
             if (AssignSpecialNodeDialog.DialogResult == DialogResult.OK)

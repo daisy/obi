@@ -44,7 +44,7 @@ namespace Obi.Dialogs
                 return m_rtb_btn_TimeElapsed.Checked;
             }
         }
-        public bool EnableRadioButtons
+        public bool EnableSkippableNotes
         {
             set
             {
@@ -53,8 +53,14 @@ namespace Obi.Dialogs
                 {
                     m_rdb_btn_RenumberPages.Checked = true;
                 }
-               //   m_rdb_btn_RenumberPages.Enabled = value;
-             //   m_rtb_btn_AudioProcessing.Enabled = value;
+            }
+        }
+
+        public bool EnableTimeElapsed
+        {
+            set
+            {
+                m_rtb_btn_TimeElapsed.Enabled = value;
             }
         }
 
