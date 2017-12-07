@@ -3006,4 +3006,7 @@ Error text: {1}</value>
   <data name="NotEnoughSectionsToImportFiles" xml:space="preserve">
     <value>You do not have enough sections to import all the files.</value>
   </data>
+  <data name="TimeElapsedCannotBeCalculated" xml:space="preserve">
+    <value>Time Elapsed cannot be Calculated as End Mark is before Begin Mark</value>
+  </data>
 </root>

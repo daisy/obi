@@ -56,14 +56,6 @@ namespace Obi.Dialogs
             }
         }
 
-        public bool EnableTimeElapsed
-        {
-            set
-            {
-                m_rtb_btn_TimeElapsed.Enabled = value;
-            }
-        }
-
         private void m_btn_OK_Click(object sender, EventArgs e)
         {
             m_SelectedSpecialNode = m_cmbBoxSpecialNode.SelectedItem.ToString();            

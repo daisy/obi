@@ -42,8 +42,7 @@ namespace Obi.ProjectView
         private double m_ZoomWaveformIncrementFactor;
         private bool m_SaveZoomWaveformZoomLevel;
         private double m_TotalCursorTime; // use to calulate time between two marks.
-        private PhraseNode m_BeginMarkPhraseWhenPlayerIsActive; // use to get begin mark phrase when player is active for time elapsed calculations.
-        private PhraseNode m_EndMarkPhraseWhenPlayerIsActive; // use to get end mark phrase when player is active for time elapsed calculations.
+        private PhraseNode m_BeginMarkPhraseWhenPlayerIsActive; // use to get begin mark phrase when player is active for time elapsed calculations.       
                   
     
         /// <summary>
@@ -5306,7 +5305,7 @@ for (int j = 0;
             if (mContentView.BeginSpecialNode == null) return;
             mContentView.EndSpecialNode = Selection.EmptyNodeForSelection; //@AssociateNode
 
-            m_EndMarkPhraseWhenPlayerIsActive = null;
+         
             if (this.Selection != null && this.Selection is AudioSelection && ((AudioSelection)this.Selection).AudioRange != null && !TransportBar.IsPlayerActive)
             {
                 if (((AudioSelection)this.Selection).AudioRange.HasCursor)
@@ -5337,8 +5336,8 @@ for (int j = 0;
             }
             else if(this.TransportBar.IsPlayerActive)
             {
-                m_EndMarkPhraseWhenPlayerIsActive = TransportBar.CurrentPlaylist.CurrentPhrase;
-                if (m_BeginMarkPhraseWhenPlayerIsActive == m_EndMarkPhraseWhenPlayerIsActive)
+
+                if (m_BeginMarkPhraseWhenPlayerIsActive == TransportBar.CurrentPlaylist.CurrentPhrase)
                 {
                     double tempTime = TransportBar.CurrentPlaylist.CurrentPhrase.Duration - TransportBar.CurrentPlaylist.CurrentTimeInAsset;
                     m_TotalCursorTime = m_TotalCursorTime - tempTime;
@@ -5358,6 +5357,11 @@ for (int j = 0;
             EmptyNode startNode = mContentView.BeginSpecialNode;
            // EmptyNode endNode = Selection.EmptyNodeForSelection;
             EmptyNode endNode = mContentView.EndSpecialNode;
+            PhraseNode EndMarkPhraseWhenPlayerIsActive = null;
+            if (TransportBar.IsPlayerActive)
+            {
+                EndMarkPhraseWhenPlayerIsActive = TransportBar.CurrentPlaylist.CurrentPhrase;
+            }
             if (startNode == null || endNode == null) return;
             bool IsSpecialNodeAdded = false;
 
@@ -5385,10 +5389,7 @@ for (int j = 0;
                 {
                     AssignSpecialNodeDialog.EnableSkippableNotes = false;                    
                 }
-                if (m_TotalCursorTime < 0)
-                {
-                    AssignSpecialNodeDialog.EnableTimeElapsed = false;
-                }
+
             AssignSpecialNodeDialog.ShowDialog();
             if (AssignSpecialNodeDialog.DialogResult == DialogResult.OK)
             {
@@ -5403,9 +5404,14 @@ for (int j = 0;
                     {
                         startNode = m_BeginMarkPhraseWhenPlayerIsActive;
                     }
-                    if (m_EndMarkPhraseWhenPlayerIsActive != null)
+                    if (EndMarkPhraseWhenPlayerIsActive != null)
                     {
-                        endNode = m_EndMarkPhraseWhenPlayerIsActive;
+                        endNode = EndMarkPhraseWhenPlayerIsActive;
+                    }
+                    if (m_TotalCursorTime < 0)
+                    {
+                        MessageBox.Show(Localizer.Message("TimeElapsedCannotBeCalculated"),Localizer.Message("Caption_Error"));
+                        return;
                     }
                     TimeElasped(startNode, endNode);
                 }
