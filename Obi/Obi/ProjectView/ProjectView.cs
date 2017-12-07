@@ -42,6 +42,8 @@ namespace Obi.ProjectView
         private double m_ZoomWaveformIncrementFactor;
         private bool m_SaveZoomWaveformZoomLevel;
         private double m_TotalCursorTime; // use to calulate time between two marks.
+        private PhraseNode m_BeginMarkPhraseWhenPlayerIsActive; // use to get begin mark phrase when player is active for time elapsed calculations.
+        private PhraseNode m_EndMarkPhraseWhenPlayerIsActive; // use to get end mark phrase when player is active for time elapsed calculations.
                   
     
         /// <summary>
@@ -5273,7 +5275,8 @@ for (int j = 0;
             mContentView.BeginSpecialNode = Selection.EmptyNodeForSelection; //@AssociateNode
 
             m_TotalCursorTime = 0;
-            if (this.Selection != null && this.Selection is AudioSelection && ((AudioSelection)this.Selection).AudioRange != null)
+            m_BeginMarkPhraseWhenPlayerIsActive = null;
+            if (this.Selection != null && this.Selection is AudioSelection && ((AudioSelection)this.Selection).AudioRange != null && !TransportBar.IsPlayerActive)
             {
                 if (((AudioSelection)this.Selection).AudioRange.HasCursor)
                 {
@@ -5285,11 +5288,16 @@ for (int j = 0;
                 }
                 m_TotalCursorTime = this.Selection.Node.Duration - m_TotalCursorTime;
             }
-            else if (this.Selection != null && this.Selection.Node != null)
+            else if (this.Selection != null && this.Selection.Node != null && !TransportBar.IsPlayerActive)
             {
                 m_TotalCursorTime = this.Selection.Node.Duration;
             }
-      
+            else if (this.TransportBar.IsPlayerActive)
+            {
+                m_TotalCursorTime = TransportBar.CurrentPlaylist.CurrentPhrase.Duration - TransportBar.CurrentPlaylist.CurrentTimeInAsset;
+                m_BeginMarkPhraseWhenPlayerIsActive = TransportBar.CurrentPlaylist.CurrentPhrase;
+            }
+            
            TransportBar.PlayAudioClue(TransportBar.AudioCluesSelection.SelectionBegin);
         }
 
@@ -5297,20 +5305,41 @@ for (int j = 0;
         {
             if (mContentView.BeginSpecialNode == null) return;
             mContentView.EndSpecialNode = Selection.EmptyNodeForSelection; //@AssociateNode
-            if (this.Selection != null && this.Selection is AudioSelection && ((AudioSelection)this.Selection).AudioRange != null)
+
+            m_EndMarkPhraseWhenPlayerIsActive = null;
+            if (this.Selection != null && this.Selection is AudioSelection && ((AudioSelection)this.Selection).AudioRange != null && !TransportBar.IsPlayerActive)
             {
                 if (((AudioSelection)this.Selection).AudioRange.HasCursor)
                 {
                     m_TotalCursorTime += m_TotalCursorTime = ((AudioSelection)this.Selection).AudioRange.CursorTime;
                 }
-                else
+                else if (mContentView.BeginSpecialNode == mContentView.EndSpecialNode)
+                {
+                    m_TotalCursorTime = ((AudioSelection)this.Selection).AudioRange.SelectionEndTime - ((AudioSelection)this.Selection).AudioRange.SelectionBeginTime;
+                }
+                else 
                 {
                     m_TotalCursorTime += m_TotalCursorTime = ((AudioSelection)this.Selection).AudioRange.SelectionEndTime;
                 }
+               
             }
-            else if (this.Selection != null && this.Selection.Node != null)
+            else if (this.Selection != null && this.Selection.Node != null && !TransportBar.IsPlayerActive)
             {
                 m_TotalCursorTime += this.Selection.Node.Duration;
+            }
+            else if(this.TransportBar.IsPlayerActive)
+            {
+                m_EndMarkPhraseWhenPlayerIsActive = TransportBar.CurrentPlaylist.CurrentPhrase;
+                if (m_BeginMarkPhraseWhenPlayerIsActive == m_EndMarkPhraseWhenPlayerIsActive)
+                {
+                    double tempTime = TransportBar.CurrentPlaylist.CurrentPhrase.Duration - TransportBar.CurrentPlaylist.CurrentTimeInAsset;
+                    m_TotalCursorTime = m_TotalCursorTime - tempTime;
+                }
+                else
+                {
+                    m_TotalCursorTime += TransportBar.CurrentPlaylist.CurrentTimeInAsset;
+                }
+                
             }
             TransportBar.PlayAudioClue(TransportBar.AudioCluesSelection.SelectionEnd);
         }
@@ -5357,7 +5386,17 @@ for (int j = 0;
                 if (AssignSpecialNodeDialog.IsRenumberChecked)
                     RenumberPage();
                 else if (AssignSpecialNodeDialog.IsTimeElapsedChecked)
-                    TimeElasped(startNode,endNode);
+                {
+                    if (m_BeginMarkPhraseWhenPlayerIsActive != null)
+                    {
+                        startNode = m_BeginMarkPhraseWhenPlayerIsActive;
+                    }
+                    if (m_EndMarkPhraseWhenPlayerIsActive != null)
+                    {
+                        endNode = m_EndMarkPhraseWhenPlayerIsActive;
+                    }
+                    TimeElasped(startNode, endNode);
+                }
                 else if (AssignSpecialNodeDialog.IsAudioProcessingChecked)
                 {
                     //Obi.Dialogs.AudioProcessingDialog dialog = new Obi.Dialogs.AudioProcessingDialog();
@@ -6986,6 +7025,7 @@ public bool ShowOnlySelectedSection
                     if (startNode is PhraseNode)
                     {
                         phraseNode = (PhraseNode)startNode;
+                        Console.WriteLine("Start Phrase selected is <<<<<<<<<<<<<<<<<<<<< {0}", phraseNode);
                     }
                     else if(startNode is EmptyNode)
                     {
@@ -7007,6 +7047,7 @@ public bool ShowOnlySelectedSection
                     if (endNode is PhraseNode)
                     {
                         phraseEndNode = (PhraseNode)endNode;
+                        Console.WriteLine("End Phrase selected is <<<<<<<<<<<<<<<<<<<<< {0}", phraseEndNode);
                     }
                     else if (endNode is EmptyNode)
                     {
