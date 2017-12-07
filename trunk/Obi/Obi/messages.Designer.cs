@@ -7246,6 +7246,15 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Time Elapsed cannot be Calculated as End Mark is before Begin Mark.
+        /// </summary>
+        internal static string TimeElapsedCannotBeCalculated {
+            get {
+                return ResourceManager.GetString("TimeElapsedCannotBeCalculated", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to {0}{1} ({2}) - {3} ({4}).
         /// </summary>
         internal static string title_bar {
