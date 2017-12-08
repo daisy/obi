@@ -41,8 +41,7 @@ namespace Obi.ProjectView
         private bool m_IsAudioProcessingChecked = false;
         private double m_ZoomWaveformIncrementFactor;
         private bool m_SaveZoomWaveformZoomLevel;
-        private double m_TotalCursorTime; // use to calulate time between two marks.
-        private PhraseNode m_BeginMarkPhraseWhenPlayerIsActive; // use to get begin mark phrase when player is active for time elapsed calculations.       
+        private double m_TotalCursorTime; // use to calulate time between two marks.   
                   
     
         /// <summary>
@@ -5271,11 +5270,15 @@ for (int j = 0;
 
         public void MarkBeginNote()
         {
+            if (this.TransportBar.IsPlayerActive && this.Selection != null)
+            {
+                this.Selection = new AudioSelection(this.TransportBar.CurrentPlaylist.CurrentPhrase, mContentView, new AudioRange(this.TransportBar.CurrentPlaylist.CurrentTimeInAsset));
+            }
             mContentView.BeginSpecialNode = Selection.EmptyNodeForSelection; //@AssociateNode
 
             m_TotalCursorTime = 0;
-            m_BeginMarkPhraseWhenPlayerIsActive = null;
-            if (this.Selection != null && this.Selection is AudioSelection && ((AudioSelection)this.Selection).AudioRange != null && !TransportBar.IsPlayerActive)
+           
+            if (this.Selection != null && this.Selection is AudioSelection && ((AudioSelection)this.Selection).AudioRange != null)
             {
                 if (((AudioSelection)this.Selection).AudioRange.HasCursor)
                 {
@@ -5287,15 +5290,15 @@ for (int j = 0;
                 }
                 m_TotalCursorTime = this.Selection.Node.Duration - m_TotalCursorTime;
             }
-            else if (this.Selection != null && this.Selection.Node != null && !TransportBar.IsPlayerActive)
+            else if (this.Selection != null && this.Selection.Node != null)
             {
                 m_TotalCursorTime = this.Selection.Node.Duration;
             }
-            else if (this.TransportBar.IsPlayerActive)
-            {
-                m_TotalCursorTime = TransportBar.CurrentPlaylist.CurrentPhrase.Duration - TransportBar.CurrentPlaylist.CurrentTimeInAsset;
-                m_BeginMarkPhraseWhenPlayerIsActive = TransportBar.CurrentPlaylist.CurrentPhrase;
-            }
+            //else if (this.TransportBar.IsPlayerActive)
+            //{
+            //    m_TotalCursorTime = TransportBar.CurrentPlaylist.CurrentPhrase.Duration - TransportBar.CurrentPlaylist.CurrentTimeInAsset;
+            //    m_BeginMarkPhraseWhenPlayerIsActive = TransportBar.CurrentPlaylist.CurrentPhrase;
+            //}
             
            TransportBar.PlayAudioClue(TransportBar.AudioCluesSelection.SelectionBegin);
         }
@@ -5303,10 +5306,18 @@ for (int j = 0;
         public void MarkEndNote()
         {
             if (mContentView.BeginSpecialNode == null) return;
+
+            if (this.TransportBar.IsPlayerActive && this.Selection != null)
+            {
+               
+                this.Selection = new AudioSelection(this.TransportBar.CurrentPlaylist.CurrentPhrase, mContentView, new AudioRange(this.TransportBar.CurrentPlaylist.CurrentTimeInAsset));
+            }
+
             mContentView.EndSpecialNode = Selection.EmptyNodeForSelection; //@AssociateNode
 
+           
          
-            if (this.Selection != null && this.Selection is AudioSelection && ((AudioSelection)this.Selection).AudioRange != null && !TransportBar.IsPlayerActive)
+            if (this.Selection != null && this.Selection is AudioSelection && ((AudioSelection)this.Selection).AudioRange != null)
             {
                 if (((AudioSelection)this.Selection).AudioRange.HasCursor)
                 {
@@ -5330,24 +5341,11 @@ for (int j = 0;
                 }
                
             }
-            else if (this.Selection != null && this.Selection.Node != null && !TransportBar.IsPlayerActive)
+            else if (this.Selection != null && this.Selection.Node != null)
             {
                 m_TotalCursorTime += this.Selection.Node.Duration;
             }
-            else if(this.TransportBar.IsPlayerActive)
-            {
 
-                if (m_BeginMarkPhraseWhenPlayerIsActive == TransportBar.CurrentPlaylist.CurrentPhrase)
-                {
-                    double tempTime = TransportBar.CurrentPlaylist.CurrentPhrase.Duration - TransportBar.CurrentPlaylist.CurrentTimeInAsset;
-                    m_TotalCursorTime = m_TotalCursorTime - tempTime;
-                }
-                else
-                {
-                    m_TotalCursorTime += TransportBar.CurrentPlaylist.CurrentTimeInAsset;
-                }
-                
-            }
             TransportBar.PlayAudioClue(TransportBar.AudioCluesSelection.SelectionEnd);
         }
 
@@ -5357,11 +5355,7 @@ for (int j = 0;
             EmptyNode startNode = mContentView.BeginSpecialNode;
            // EmptyNode endNode = Selection.EmptyNodeForSelection;
             EmptyNode endNode = mContentView.EndSpecialNode;
-            PhraseNode EndMarkPhraseWhenPlayerIsActive = null;
-            if (TransportBar.IsPlayerActive)
-            {
-                EndMarkPhraseWhenPlayerIsActive = TransportBar.CurrentPlaylist.CurrentPhrase;
-            }
+
             if (startNode == null || endNode == null) return;
             bool IsSpecialNodeAdded = false;
 
@@ -5400,14 +5394,7 @@ for (int j = 0;
                     RenumberPage();
                 else if (AssignSpecialNodeDialog.IsTimeElapsedChecked)
                 {
-                    if (m_BeginMarkPhraseWhenPlayerIsActive != null)
-                    {
-                        startNode = m_BeginMarkPhraseWhenPlayerIsActive;
-                    }
-                    if (EndMarkPhraseWhenPlayerIsActive != null)
-                    {
-                        endNode = EndMarkPhraseWhenPlayerIsActive;
-                    }
+                    
                     if (m_TotalCursorTime < 0)
                     {
                         MessageBox.Show(Localizer.Message("TimeElapsedCannotBeCalculated"),Localizer.Message("Caption_Error"));
@@ -7043,7 +7030,6 @@ public bool ShowOnlySelectedSection
                     if (startNode is PhraseNode)
                     {
                         phraseNode = (PhraseNode)startNode;
-                        Console.WriteLine("Start Phrase selected is <<<<<<<<<<<<<<<<<<<<< {0}", phraseNode);
                     }
                     else if(startNode is EmptyNode)
                     {
@@ -7065,7 +7051,6 @@ public bool ShowOnlySelectedSection
                     if (endNode is PhraseNode)
                     {
                         phraseEndNode = (PhraseNode)endNode;
-                        Console.WriteLine("End Phrase selected is <<<<<<<<<<<<<<<<<<<<< {0}", phraseEndNode);
                     }
                     else if (endNode is EmptyNode)
                     {
