@@ -112,58 +112,49 @@
     <value>2.0</value>
   </resheader>
   <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <metadata name="helpProvider1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 17</value>
-  </metadata>
-  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <assembly alias="mscorlib" name="mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="label1.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="label1.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
   </data>
-  <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="label1.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
+    <value>AssociateIndex</value>
+  </data>
+  <data name="label1.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="label1.Location" type="System.Drawing.Point, System.Drawing">
     <value>0, 51</value>
   </data>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="label1.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 0, 4, 0</value>
-  </data>
   <data name="label1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>143, 16</value>
+    <value>189, 16</value>
   </data>
+  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="label1.TabIndex" type="System.Int32, mscorlib">
     <value>20</value>
   </data>
   <data name="label1.Text" xml:space="preserve">
     <value>Tamanho da frase em &amp;minutos</value>
   </data>
-  <data name="&gt;&gt;label1.Name" xml:space="preserve">
-    <value>label1</value>
-  </data>
-  <data name="&gt;&gt;label1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;label1.Parent" xml:space="preserve">
-    <value>m_grpSplitPhraseOrPhraseDetection</value>
-  </data>
-  <data name="&gt;&gt;label1.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
   <data name="mPhraseSizeTextBox.AccessibleName" xml:space="preserve">
     <value>Caixa de texto tamanho da frase em minutos</value>
   </data>
+  <data name="mPhraseSizeTextBox.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="mPhraseSizeTextBox.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
+    <value>AssociateIndex</value>
+  </data>
+  <data name="mPhraseSizeTextBox.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
   <data name="mPhraseSizeTextBox.Location" type="System.Drawing.Point, System.Drawing">
     <value>194, 51</value>
-  </data>
-  <data name="mPhraseSizeTextBox.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 4, 4, 4</value>
   </data>
   <data name="mPhraseSizeTextBox.Size" type="System.Drawing.Size, System.Drawing">
     <value>110, 22</value>
@@ -171,59 +162,32 @@
   <data name="mPhraseSizeTextBox.TabIndex" type="System.Int32, mscorlib">
     <value>21</value>
   </data>
-  <data name="&gt;&gt;mPhraseSizeTextBox.Name" xml:space="preserve">
-    <value>mPhraseSizeTextBox</value>
+  <data name="mOKButton.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
   </data>
-  <data name="&gt;&gt;mPhraseSizeTextBox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="mOKButton.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
+    <value>AssociateIndex</value>
   </data>
-  <data name="&gt;&gt;mPhraseSizeTextBox.Parent" xml:space="preserve">
-    <value>m_grpSplitPhraseOrPhraseDetection</value>
-  </data>
-  <data name="&gt;&gt;mPhraseSizeTextBox.ZOrder" xml:space="preserve">
-    <value>3</value>
-  </data>
-  <data name="mOKButton.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
-    <value>Flat</value>
+  <data name="mOKButton.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
   </data>
   <data name="mOKButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>40, 465</value>
-  </data>
-  <data name="mOKButton.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 4, 4, 4</value>
-  </data>
-  <data name="mOKButton.Size" type="System.Drawing.Size, System.Drawing">
-    <value>100, 31</value>
+    <value>40, 540</value>
   </data>
   <data name="mOKButton.TabIndex" type="System.Int32, mscorlib">
     <value>22</value>
   </data>
-  <data name="mOKButton.Text" xml:space="preserve">
-    <value>&amp;OK</value>
+  <data name="mCancelButton.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
   </data>
-  <data name="&gt;&gt;mOKButton.Name" xml:space="preserve">
-    <value>mOKButton</value>
+  <data name="mCancelButton.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
+    <value>AssociateIndex</value>
   </data>
-  <data name="&gt;&gt;mOKButton.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;mOKButton.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;mOKButton.ZOrder" xml:space="preserve">
-    <value>4</value>
-  </data>
-  <data name="mCancelButton.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
-    <value>Flat</value>
+  <data name="mCancelButton.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
   </data>
   <data name="mCancelButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>158, 465</value>
-  </data>
-  <data name="mCancelButton.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 4, 4, 4</value>
-  </data>
-  <data name="mCancelButton.Size" type="System.Drawing.Size, System.Drawing">
-    <value>100, 31</value>
+    <value>158, 540</value>
   </data>
   <data name="mCancelButton.TabIndex" type="System.Int32, mscorlib">
     <value>23</value>
@@ -231,80 +195,29 @@
   <data name="mCancelButton.Text" xml:space="preserve">
     <value>&amp;Cancelar</value>
   </data>
-  <data name="&gt;&gt;mCancelButton.Name" xml:space="preserve">
-    <value>mCancelButton</value>
-  </data>
-  <data name="&gt;&gt;mCancelButton.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;mCancelButton.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;mCancelButton.ZOrder" xml:space="preserve">
-    <value>3</value>
-  </data>
-  <data name="mCreateAudioFilePerSectionCheckBox.AccessibleName" xml:space="preserve">
-    <value>Criar uma secção para cada ficheiro áudio.</value>
-  </data>
-  <data name="mCreateAudioFilePerSectionCheckBox.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="mCreateAudioFilePerSectionCheckBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>9, 15</value>
-  </data>
-  <data name="mCreateAudioFilePerSectionCheckBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>221, 20</value>
-  </data>
-  <data name="mCreateAudioFilePerSectionCheckBox.TabIndex" type="System.Int32, mscorlib">
-    <value>10</value>
-  </data>
-  <data name="mCreateAudioFilePerSectionCheckBox.Text" xml:space="preserve">
-    <value>&amp;Criar uma secção para cada ficheiro áudio.</value>
-  </data>
-  <data name="&gt;&gt;mCreateAudioFilePerSectionCheckBox.Name" xml:space="preserve">
-    <value>mCreateAudioFilePerSectionCheckBox</value>
-  </data>
-  <data name="&gt;&gt;mCreateAudioFilePerSectionCheckBox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;mCreateAudioFilePerSectionCheckBox.Parent" xml:space="preserve">
-    <value>m_grpCreateSectionForEachAudioFile</value>
-  </data>
-  <data name="&gt;&gt;mCreateAudioFilePerSectionCheckBox.ZOrder" xml:space="preserve">
-    <value>3</value>
-  </data>
   <data name="lstManualArrange.AccessibleName" xml:space="preserve">
     <value>Caixa de lista Ficheiros áudio</value>
   </data>
-  <data name="lstManualArrange.HorizontalScrollbar" type="System.Boolean, mscorlib">
-    <value>True</value>
+  <data name="lstManualArrange.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
   </data>
-  <data name="lstManualArrange.ItemHeight" type="System.Int32, mscorlib">
-    <value>16</value>
+  <data name="lstManualArrange.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
+    <value>AssociateIndex</value>
   </data>
-  <data name="lstManualArrange.Location" type="System.Drawing.Point, System.Drawing">
-    <value>10, 11</value>
+  <data name="lstManualArrange.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
   </data>
   <data name="lstManualArrange.Size" type="System.Drawing.Size, System.Drawing">
     <value>205, 116</value>
   </data>
-  <data name="lstManualArrange.TabIndex" type="System.Int32, mscorlib">
-    <value>2</value>
+  <data name="m_btnMoveUp.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
   </data>
-  <data name="&gt;&gt;lstManualArrange.Name" xml:space="preserve">
-    <value>lstManualArrange</value>
+  <data name="m_btnMoveUp.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
+    <value>AssociateIndex</value>
   </data>
-  <data name="&gt;&gt;lstManualArrange.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ListBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;lstManualArrange.Parent" xml:space="preserve">
-    <value>m_grpAddFiles</value>
-  </data>
-  <data name="&gt;&gt;lstManualArrange.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="m_btnMoveUp.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
-    <value>Flat</value>
+  <data name="m_btnMoveUp.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
   </data>
   <data name="m_btnMoveUp.Location" type="System.Drawing.Point, System.Drawing">
     <value>221, 11</value>
@@ -312,227 +225,131 @@
   <data name="m_btnMoveUp.Size" type="System.Drawing.Size, System.Drawing">
     <value>91, 23</value>
   </data>
-  <data name="m_btnMoveUp.TabIndex" type="System.Int32, mscorlib">
-    <value>3</value>
-  </data>
   <data name="m_btnMoveUp.Text" xml:space="preserve">
     <value>Deslocar para &amp;cima</value>
   </data>
-  <data name="&gt;&gt;m_btnMoveUp.Name" xml:space="preserve">
-    <value>m_btnMoveUp</value>
+  <data name="m_btnMoveDown.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
   </data>
-  <data name="&gt;&gt;m_btnMoveUp.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="m_btnMoveDown.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
+    <value>AssociateIndex</value>
   </data>
-  <data name="&gt;&gt;m_btnMoveUp.Parent" xml:space="preserve">
-    <value>m_grpAddFiles</value>
-  </data>
-  <data name="&gt;&gt;m_btnMoveUp.ZOrder" xml:space="preserve">
-    <value>4</value>
-  </data>
-  <data name="m_btnMoveDown.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
-    <value>Flat</value>
+  <data name="m_btnMoveDown.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
   </data>
   <data name="m_btnMoveDown.Location" type="System.Drawing.Point, System.Drawing">
     <value>221, 43</value>
   </data>
-  <data name="m_btnMoveDown.Size" type="System.Drawing.Size, System.Drawing">
-    <value>91, 23</value>
-  </data>
-  <data name="m_btnMoveDown.TabIndex" type="System.Int32, mscorlib">
-    <value>4</value>
-  </data>
   <data name="m_btnMoveDown.Text" xml:space="preserve">
     <value>Deslocar para &amp;baixo</value>
   </data>
-  <data name="&gt;&gt;m_btnMoveDown.Name" xml:space="preserve">
-    <value>m_btnMoveDown</value>
+  <data name="m_btnAdd.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
   </data>
-  <data name="&gt;&gt;m_btnMoveDown.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="m_btnAdd.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
+    <value>AssociateIndex</value>
   </data>
-  <data name="&gt;&gt;m_btnMoveDown.Parent" xml:space="preserve">
-    <value>m_grpAddFiles</value>
-  </data>
-  <data name="&gt;&gt;m_btnMoveDown.ZOrder" xml:space="preserve">
-    <value>5</value>
-  </data>
-  <data name="m_btnAdd.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
-    <value>Flat</value>
+  <data name="m_btnAdd.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
   </data>
   <data name="m_btnAdd.Location" type="System.Drawing.Point, System.Drawing">
     <value>221, 72</value>
   </data>
-  <data name="m_btnAdd.Size" type="System.Drawing.Size, System.Drawing">
-    <value>91, 23</value>
-  </data>
-  <data name="m_btnAdd.TabIndex" type="System.Int32, mscorlib">
-    <value>5</value>
-  </data>
   <data name="m_btnAdd.Text" xml:space="preserve">
     <value>&amp;Adicionar</value>
-  </data>
-  <data name="&gt;&gt;m_btnAdd.Name" xml:space="preserve">
-    <value>m_btnAdd</value>
-  </data>
-  <data name="&gt;&gt;m_btnAdd.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;m_btnAdd.Parent" xml:space="preserve">
-    <value>m_grpAddFiles</value>
-  </data>
-  <data name="&gt;&gt;m_btnAdd.ZOrder" xml:space="preserve">
-    <value>3</value>
   </data>
   <data name="m_grpAddFiles.AccessibleName" xml:space="preserve">
     <value>Caixa de grupo para adicionar e ordenar ficheiros.</value>
   </data>
-  <data name="m_btnRemove.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
-    <value>Flat</value>
+  <data name="m_btnRemove.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="m_btnRemove.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
+    <value>AssociateIndex</value>
+  </data>
+  <data name="m_btnRemove.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
   </data>
   <data name="m_btnRemove.Location" type="System.Drawing.Point, System.Drawing">
     <value>223, 101</value>
   </data>
-  <data name="m_btnRemove.Size" type="System.Drawing.Size, System.Drawing">
-    <value>88, 23</value>
-  </data>
-  <data name="m_btnRemove.TabIndex" type="System.Int32, mscorlib">
-    <value>6</value>
-  </data>
   <data name="m_btnRemove.Text" xml:space="preserve">
     <value>&amp;Remover</value>
-  </data>
-  <data name="&gt;&gt;m_btnRemove.Name" xml:space="preserve">
-    <value>m_btnRemove</value>
-  </data>
-  <data name="&gt;&gt;m_btnRemove.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;m_btnRemove.Parent" xml:space="preserve">
-    <value>m_grpAddFiles</value>
-  </data>
-  <data name="&gt;&gt;m_btnRemove.ZOrder" xml:space="preserve">
-    <value>0</value>
   </data>
   <data name="m_grpArrangeAudioFiles.AccessibleName" xml:space="preserve">
     <value>Caixa de grupo ordenar ficheiros</value>
   </data>
-  <data name="mbtnDesendingOrder.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
-    <value>Flat</value>
+  <data name="mbtnDesendingOrder.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="mbtnDesendingOrder.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
+    <value>AssociateIndex</value>
+  </data>
+  <data name="mbtnDesendingOrder.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
   </data>
   <data name="mbtnDesendingOrder.Location" type="System.Drawing.Point, System.Drawing">
     <value>156, 34</value>
   </data>
-  <data name="mbtnDesendingOrder.Size" type="System.Drawing.Size, System.Drawing">
-    <value>149, 26</value>
-  </data>
-  <data name="mbtnDesendingOrder.TabIndex" type="System.Int32, mscorlib">
-    <value>8</value>
-  </data>
   <data name="mbtnDesendingOrder.Text" xml:space="preserve">
     <value>Ordem d&amp;escendente</value>
   </data>
-  <data name="&gt;&gt;mbtnDesendingOrder.Name" xml:space="preserve">
-    <value>mbtnDesendingOrder</value>
+  <data name="mbtnAscendingOrder.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
   </data>
-  <data name="&gt;&gt;mbtnDesendingOrder.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="mbtnAscendingOrder.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
+    <value>AssociateIndex</value>
   </data>
-  <data name="&gt;&gt;mbtnDesendingOrder.Parent" xml:space="preserve">
-    <value>m_grpArrangeAudioFiles</value>
-  </data>
-  <data name="&gt;&gt;mbtnDesendingOrder.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="mbtnAscendingOrder.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
-    <value>Flat</value>
-  </data>
-  <data name="mbtnAscendingOrder.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
+  <data name="mbtnAscendingOrder.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
   </data>
   <data name="mbtnAscendingOrder.Location" type="System.Drawing.Point, System.Drawing">
     <value>10, 34</value>
   </data>
-  <data name="helpProvider1.HelpNamespace" xml:space="preserve">
-    <value>Obi Help.chm</value>
-  </data>
-  <data name="mbtnAscendingOrder.ShowHelp" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="mbtnAscendingOrder.Size" type="System.Drawing.Size, System.Drawing">
-    <value>140, 26</value>
-  </data>
-  <data name="mbtnAscendingOrder.TabIndex" type="System.Int32, mscorlib">
-    <value>7</value>
-  </data>
   <data name="mbtnAscendingOrder.Text" xml:space="preserve">
     <value>Ordem &amp;ascendente</value>
   </data>
-  <data name="&gt;&gt;mbtnAscendingOrder.Name" xml:space="preserve">
-    <value>mbtnAscendingOrder</value>
+  <data name="m_grpArrangeAudioFiles.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
   </data>
-  <data name="&gt;&gt;mbtnAscendingOrder.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="m_grpArrangeAudioFiles.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
+    <value>AssociateIndex</value>
   </data>
-  <data name="&gt;&gt;mbtnAscendingOrder.Parent" xml:space="preserve">
-    <value>m_grpArrangeAudioFiles</value>
-  </data>
-  <data name="&gt;&gt;mbtnAscendingOrder.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="m_grpArrangeAudioFiles.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 138</value>
+  <data name="m_grpArrangeAudioFiles.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
   </data>
   <data name="m_grpArrangeAudioFiles.Size" type="System.Drawing.Size, System.Drawing">
     <value>315, 65</value>
   </data>
-  <data name="m_grpArrangeAudioFiles.TabIndex" type="System.Int32, mscorlib">
-    <value>7</value>
-  </data>
   <data name="m_grpArrangeAudioFiles.Text" xml:space="preserve">
     <value>Ordenar ficheiros áudio</value>
   </data>
-  <data name="&gt;&gt;m_grpArrangeAudioFiles.Name" xml:space="preserve">
-    <value>m_grpArrangeAudioFiles</value>
+  <data name="m_grpAddFiles.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
   </data>
-  <data name="&gt;&gt;m_grpArrangeAudioFiles.Type" xml:space="preserve">
-    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="m_grpAddFiles.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
+    <value>AssociateIndex</value>
   </data>
-  <data name="&gt;&gt;m_grpArrangeAudioFiles.Parent" xml:space="preserve">
-    <value>m_grpAddFiles</value>
-  </data>
-  <data name="&gt;&gt;m_grpArrangeAudioFiles.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="m_grpAddFiles.Location" type="System.Drawing.Point, System.Drawing">
-    <value>12, 6</value>
+  <data name="m_grpAddFiles.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
   </data>
   <data name="m_grpAddFiles.Size" type="System.Drawing.Size, System.Drawing">
     <value>329, 209</value>
   </data>
-  <data name="m_grpAddFiles.TabIndex" type="System.Int32, mscorlib">
-    <value>1</value>
-  </data>
-  <data name="&gt;&gt;m_grpAddFiles.Name" xml:space="preserve">
-    <value>m_grpAddFiles</value>
-  </data>
-  <data name="&gt;&gt;m_grpAddFiles.Type" xml:space="preserve">
-    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;m_grpAddFiles.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;m_grpAddFiles.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
   <data name="m_txtCharToReplaceWithSpace.AccessibleName" xml:space="preserve">
     <value>Para substituir com espaço</value>
   </data>
-  <data name="m_txtCharToReplaceWithSpace.Enabled" type="System.Boolean, mscorlib">
-    <value>False</value>
+  <data name="m_txtCharToReplaceWithSpace.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="m_txtCharToReplaceWithSpace.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
+    <value>AssociateIndex</value>
+  </data>
+  <data name="m_txtCharToReplaceWithSpace.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
   </data>
   <data name="m_txtCharToReplaceWithSpace.Location" type="System.Drawing.Point, System.Drawing">
-    <value>221, 43</value>
+    <value>221, 102</value>
   </data>
   <data name="m_txtCharToReplaceWithSpace.Size" type="System.Drawing.Size, System.Drawing">
     <value>100, 22</value>
@@ -540,53 +357,38 @@
   <data name="m_txtCharToReplaceWithSpace.TabIndex" type="System.Int32, mscorlib">
     <value>12</value>
   </data>
-  <data name="&gt;&gt;m_txtCharToReplaceWithSpace.Name" xml:space="preserve">
-    <value>m_txtCharToReplaceWithSpace</value>
-  </data>
-  <data name="&gt;&gt;m_txtCharToReplaceWithSpace.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;m_txtCharToReplaceWithSpace.Parent" xml:space="preserve">
-    <value>m_grpCreateSectionForEachAudioFile</value>
-  </data>
-  <data name="&gt;&gt;m_txtCharToReplaceWithSpace.ZOrder" xml:space="preserve">
-    <value>4</value>
-  </data>
   <data name="m_txtPageIdentificationString.AccessibleName" xml:space="preserve">
     <value>Identificação de página</value>
   </data>
-  <data name="m_txtPageIdentificationString.Enabled" type="System.Boolean, mscorlib">
-    <value>False</value>
+  <data name="m_txtPageIdentificationString.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="m_txtPageIdentificationString.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
+    <value>AssociateIndex</value>
+  </data>
+  <data name="m_txtPageIdentificationString.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
   </data>
   <data name="m_txtPageIdentificationString.Location" type="System.Drawing.Point, System.Drawing">
-    <value>223, 99</value>
-  </data>
-  <data name="m_txtPageIdentificationString.Size" type="System.Drawing.Size, System.Drawing">
-    <value>100, 22</value>
+    <value>223, 158</value>
   </data>
   <data name="m_txtPageIdentificationString.TabIndex" type="System.Int32, mscorlib">
     <value>16</value>
   </data>
-  <data name="&gt;&gt;m_txtPageIdentificationString.Name" xml:space="preserve">
-    <value>m_txtPageIdentificationString</value>
-  </data>
-  <data name="&gt;&gt;m_txtPageIdentificationString.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;m_txtPageIdentificationString.Parent" xml:space="preserve">
-    <value>m_grpCreateSectionForEachAudioFile</value>
-  </data>
-  <data name="&gt;&gt;m_txtPageIdentificationString.ZOrder" xml:space="preserve">
-    <value>6</value>
-  </data>
   <data name="m_numCharCountToTruncateFromStart.AccessibleName" xml:space="preserve">
     <value>Número de carateres iniciais a decorar</value>
   </data>
-  <data name="m_numCharCountToTruncateFromStart.Enabled" type="System.Boolean, mscorlib">
-    <value>False</value>
+  <data name="m_numCharCountToTruncateFromStart.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="m_numCharCountToTruncateFromStart.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
+    <value>AssociateIndex</value>
+  </data>
+  <data name="m_numCharCountToTruncateFromStart.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
   </data>
   <data name="m_numCharCountToTruncateFromStart.Location" type="System.Drawing.Point, System.Drawing">
-    <value>243, 71</value>
+    <value>243, 130</value>
   </data>
   <data name="m_numCharCountToTruncateFromStart.Size" type="System.Drawing.Size, System.Drawing">
     <value>78, 22</value>
@@ -594,32 +396,53 @@
   <data name="m_numCharCountToTruncateFromStart.TabIndex" type="System.Int32, mscorlib">
     <value>14</value>
   </data>
-  <data name="&gt;&gt;m_numCharCountToTruncateFromStart.Name" xml:space="preserve">
-    <value>m_numCharCountToTruncateFromStart</value>
-  </data>
-  <data name="&gt;&gt;m_numCharCountToTruncateFromStart.Type" xml:space="preserve">
-    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;m_numCharCountToTruncateFromStart.Parent" xml:space="preserve">
-    <value>m_grpCreateSectionForEachAudioFile</value>
-  </data>
-  <data name="&gt;&gt;m_numCharCountToTruncateFromStart.ZOrder" xml:space="preserve">
-    <value>5</value>
-  </data>
   <data name="m_grpCreateSectionForEachAudioFile.AccessibleName" xml:space="preserve">
     <value>Caixa de grupo para criar uma secção para cada ficheiro áudio.</value>
+  </data>
+  <data name="m_rdbCreateAudioFilePerSection.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="m_rdbCreateAudioFilePerSection.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
+    <value>AssociateIndex</value>
+  </data>
+  <data name="m_rdbCreateAudioFilePerSection.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="m_rdbImportAudioFileInEachSection.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="m_rdbImportAudioFileInEachSection.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
+    <value>AssociateIndex</value>
+  </data>
+  <data name="m_rdbImportAudioFileInEachSection.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="m_rdbImportAudioInSelectedSection.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="m_rdbImportAudioInSelectedSection.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
+    <value>AssociateIndex</value>
+  </data>
+  <data name="m_rdbImportAudioInSelectedSection.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
   </data>
   <data name="mchktPageIdentificationString.AccessibleName" xml:space="preserve">
     <value>Identificação de página</value>
   </data>
-  <data name="mchktPageIdentificationString.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
+  <data name="mchktPageIdentificationString.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="mchktPageIdentificationString.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
+    <value>AssociateIndex</value>
+  </data>
+  <data name="mchktPageIdentificationString.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
   </data>
   <data name="mchktPageIdentificationString.Location" type="System.Drawing.Point, System.Drawing">
-    <value>9, 99</value>
+    <value>18, 158</value>
   </data>
   <data name="mchktPageIdentificationString.Size" type="System.Drawing.Size, System.Drawing">
-    <value>137, 20</value>
+    <value>167, 20</value>
   </data>
   <data name="mchktPageIdentificationString.TabIndex" type="System.Int32, mscorlib">
     <value>15</value>
@@ -627,29 +450,23 @@
   <data name="mchktPageIdentificationString.Text" xml:space="preserve">
     <value>&amp;Identificação de página</value>
   </data>
-  <data name="&gt;&gt;mchktPageIdentificationString.Name" xml:space="preserve">
-    <value>mchktPageIdentificationString</value>
-  </data>
-  <data name="&gt;&gt;mchktPageIdentificationString.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;mchktPageIdentificationString.Parent" xml:space="preserve">
-    <value>m_grpCreateSectionForEachAudioFile</value>
-  </data>
-  <data name="&gt;&gt;mchktPageIdentificationString.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
   <data name="mchkCountToTruncateFromStart.AccessibleName" xml:space="preserve">
     <value>Número de carateres adicionais a decorar</value>
   </data>
-  <data name="mchkCountToTruncateFromStart.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
+  <data name="mchkCountToTruncateFromStart.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="mchkCountToTruncateFromStart.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
+    <value>AssociateIndex</value>
+  </data>
+  <data name="mchkCountToTruncateFromStart.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
   </data>
   <data name="mchkCountToTruncateFromStart.Location" type="System.Drawing.Point, System.Drawing">
-    <value>10, 73</value>
+    <value>19, 132</value>
   </data>
   <data name="mchkCountToTruncateFromStart.Size" type="System.Drawing.Size, System.Drawing">
-    <value>155, 20</value>
+    <value>218, 20</value>
   </data>
   <data name="mchkCountToTruncateFromStart.TabIndex" type="System.Int32, mscorlib">
     <value>13</value>
@@ -657,29 +474,23 @@
   <data name="mchkCountToTruncateFromStart.Text" xml:space="preserve">
     <value># de carateres iniciais a decorar</value>
   </data>
-  <data name="&gt;&gt;mchkCountToTruncateFromStart.Name" xml:space="preserve">
-    <value>mchkCountToTruncateFromStart</value>
-  </data>
-  <data name="&gt;&gt;mchkCountToTruncateFromStart.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;mchkCountToTruncateFromStart.Parent" xml:space="preserve">
-    <value>m_grpCreateSectionForEachAudioFile</value>
-  </data>
-  <data name="&gt;&gt;mchkCountToTruncateFromStart.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
   <data name="mchkToReplaceWithSpace.AccessibleName" xml:space="preserve">
     <value>Para substituir com espaço</value>
   </data>
-  <data name="mchkToReplaceWithSpace.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
+  <data name="mchkToReplaceWithSpace.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="mchkToReplaceWithSpace.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
+    <value>AssociateIndex</value>
+  </data>
+  <data name="mchkToReplaceWithSpace.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
   </data>
   <data name="mchkToReplaceWithSpace.Location" type="System.Drawing.Point, System.Drawing">
-    <value>9, 45</value>
+    <value>18, 104</value>
   </data>
   <data name="mchkToReplaceWithSpace.Size" type="System.Drawing.Size, System.Drawing">
-    <value>171, 20</value>
+    <value>189, 20</value>
   </data>
   <data name="mchkToReplaceWithSpace.TabIndex" type="System.Int32, mscorlib">
     <value>11</value>
@@ -687,47 +498,32 @@
   <data name="mchkToReplaceWithSpace.Text" xml:space="preserve">
     <value>&amp;Para substituir com espaço</value>
   </data>
-  <data name="&gt;&gt;mchkToReplaceWithSpace.Name" xml:space="preserve">
-    <value>mchkToReplaceWithSpace</value>
+  <data name="m_grpCreateSectionForEachAudioFile.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
   </data>
-  <data name="&gt;&gt;mchkToReplaceWithSpace.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="m_grpCreateSectionForEachAudioFile.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
+    <value>AssociateIndex</value>
   </data>
-  <data name="&gt;&gt;mchkToReplaceWithSpace.Parent" xml:space="preserve">
-    <value>m_grpCreateSectionForEachAudioFile</value>
-  </data>
-  <data name="&gt;&gt;mchkToReplaceWithSpace.ZOrder" xml:space="preserve">
-    <value>2</value>
+  <data name="m_grpCreateSectionForEachAudioFile.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
   </data>
   <data name="m_grpCreateSectionForEachAudioFile.Location" type="System.Drawing.Point, System.Drawing">
     <value>12, 215</value>
   </data>
   <data name="m_grpCreateSectionForEachAudioFile.Size" type="System.Drawing.Size, System.Drawing">
-    <value>329, 127</value>
+    <value>329, 193</value>
   </data>
-  <data name="m_grpCreateSectionForEachAudioFile.TabIndex" type="System.Int32, mscorlib">
-    <value>9</value>
+  <data name="m_rdbPhraseDetectionOnImportedFiles.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
   </data>
-  <data name="&gt;&gt;m_grpCreateSectionForEachAudioFile.Name" xml:space="preserve">
-    <value>m_grpCreateSectionForEachAudioFile</value>
+  <data name="m_rdbPhraseDetectionOnImportedFiles.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
+    <value>AssociateIndex</value>
   </data>
-  <data name="&gt;&gt;m_grpCreateSectionForEachAudioFile.Type" xml:space="preserve">
-    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;m_grpCreateSectionForEachAudioFile.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;m_grpCreateSectionForEachAudioFile.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="m_rdbPhraseDetectionOnImportedFiles.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="m_rdbPhraseDetectionOnImportedFiles.Location" type="System.Drawing.Point, System.Drawing">
-    <value>13, 77</value>
+  <data name="m_rdbPhraseDetectionOnImportedFiles.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
   </data>
   <data name="m_rdbPhraseDetectionOnImportedFiles.Size" type="System.Drawing.Size, System.Drawing">
-    <value>228, 20</value>
+    <value>286, 20</value>
   </data>
   <data name="m_rdbPhraseDetectionOnImportedFiles.TabIndex" type="System.Int32, mscorlib">
     <value>18</value>
@@ -735,26 +531,17 @@
   <data name="m_rdbPhraseDetectionOnImportedFiles.Text" xml:space="preserve">
     <value>&amp;Deteção de frases nos ficheiros importados</value>
   </data>
-  <data name="&gt;&gt;m_rdbPhraseDetectionOnImportedFiles.Name" xml:space="preserve">
-    <value>m_rdbPhraseDetectionOnImportedFiles</value>
+  <data name="m_rdbSplitPhrasesOnImport.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
   </data>
-  <data name="&gt;&gt;m_rdbPhraseDetectionOnImportedFiles.Type" xml:space="preserve">
-    <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="m_rdbSplitPhrasesOnImport.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
+    <value>AssociateIndex</value>
   </data>
-  <data name="&gt;&gt;m_rdbPhraseDetectionOnImportedFiles.Parent" xml:space="preserve">
-    <value>m_grpSplitPhraseOrPhraseDetection</value>
-  </data>
-  <data name="&gt;&gt;m_rdbPhraseDetectionOnImportedFiles.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="m_rdbSplitPhrasesOnImport.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="m_rdbSplitPhrasesOnImport.Location" type="System.Drawing.Point, System.Drawing">
-    <value>13, 19</value>
+  <data name="m_rdbSplitPhrasesOnImport.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
   </data>
   <data name="m_rdbSplitPhrasesOnImport.Size" type="System.Drawing.Size, System.Drawing">
-    <value>162, 20</value>
+    <value>175, 20</value>
   </data>
   <data name="m_rdbSplitPhrasesOnImport.TabIndex" type="System.Int32, mscorlib">
     <value>19</value>
@@ -762,20 +549,17 @@
   <data name="m_rdbSplitPhrasesOnImport.Text" xml:space="preserve">
     <value>D&amp;ividir frases ao importar</value>
   </data>
-  <data name="&gt;&gt;m_rdbSplitPhrasesOnImport.Name" xml:space="preserve">
-    <value>m_rdbSplitPhrasesOnImport</value>
+  <data name="m_grpSplitPhraseOrPhraseDetection.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
   </data>
-  <data name="&gt;&gt;m_rdbSplitPhrasesOnImport.Type" xml:space="preserve">
-    <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="m_grpSplitPhraseOrPhraseDetection.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
+    <value>AssociateIndex</value>
   </data>
-  <data name="&gt;&gt;m_rdbSplitPhrasesOnImport.Parent" xml:space="preserve">
-    <value>m_grpSplitPhraseOrPhraseDetection</value>
-  </data>
-  <data name="&gt;&gt;m_rdbSplitPhrasesOnImport.ZOrder" xml:space="preserve">
-    <value>1</value>
+  <data name="m_grpSplitPhraseOrPhraseDetection.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
   </data>
   <data name="m_grpSplitPhraseOrPhraseDetection.Location" type="System.Drawing.Point, System.Drawing">
-    <value>12, 346</value>
+    <value>12, 414</value>
   </data>
   <data name="m_grpSplitPhraseOrPhraseDetection.Size" type="System.Drawing.Size, System.Drawing">
     <value>329, 103</value>
@@ -783,43 +567,19 @@
   <data name="m_grpSplitPhraseOrPhraseDetection.TabIndex" type="System.Int32, mscorlib">
     <value>17</value>
   </data>
-  <data name="&gt;&gt;m_grpSplitPhraseOrPhraseDetection.Name" xml:space="preserve">
-    <value>m_grpSplitPhraseOrPhraseDetection</value>
-  </data>
-  <data name="&gt;&gt;m_grpSplitPhraseOrPhraseDetection.Type" xml:space="preserve">
-    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;m_grpSplitPhraseOrPhraseDetection.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;m_grpSplitPhraseOrPhraseDetection.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
-    <value>8, 16</value>
-  </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>351, 502</value>
+    <value>351, 587</value>
   </data>
-  <data name="$this.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Microsoft Sans Serif, 9.75pt</value>
+  <data name="$this.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
   </data>
-  <data name="$this.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 4, 4, 4</value>
+  <data name="$this.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
+    <value>AssociateIndex</value>
+  </data>
+  <data name="$this.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
   </data>
   <data name="$this.Text" xml:space="preserve">
     <value>Definições de importação de ficheiros áudio</value>
-  </data>
-  <data name="&gt;&gt;helpProvider1.Name" xml:space="preserve">
-    <value>helpProvider1</value>
-  </data>
-  <data name="&gt;&gt;helpProvider1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.HelpProvider, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;$this.Name" xml:space="preserve">
-    <value>ImportFileSplitSize</value>
-  </data>
-  <data name="&gt;&gt;$this.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Form, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
 </root>

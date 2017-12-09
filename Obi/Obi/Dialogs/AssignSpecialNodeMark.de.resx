@@ -209,28 +209,6 @@
   <data name="m_rdb_btn_RenumberPages.Text" xml:space="preserve">
     <value>Seitenzahlen aktualisieren</value>
   </data>
-  <data name="m_rtb_btn_AudioProcessing.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
-  <data name="m_rtb_btn_AudioProcessing.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
-    <value>AssociateIndex</value>
-  </data>
-  <data name="m_rtb_btn_AudioProcessing.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
-  <data name="m_rtb_btn_AudioProcessing.Location" type="System.Drawing.Point, System.Drawing">
-    <value>321, 19</value>
-  </data>
-  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="m_rtb_btn_AudioProcessing.ShowHelp" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="m_rtb_btn_AudioProcessing.Size" type="System.Drawing.Size, System.Drawing">
-    <value>131, 17</value>
-  </data>
-  <data name="m_rtb_btn_AudioProcessing.Text" xml:space="preserve">
-    <value>Tonqualität bearbeiten</value>
-  </data>
   <data name="m_rtb_btn_TimeElapsed.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
   </data>
@@ -243,6 +221,37 @@
   <data name="m_rtb_btn_TimeElapsed.Location" type="System.Drawing.Point, System.Drawing">
     <value>485, 19</value>
   </data>
+  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="m_rtb_btn_TimeElapsed.ShowHelp" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="m_rtb_btn_TimeElapsed.Size" type="System.Drawing.Size, System.Drawing">
+    <value>62, 17</value>
+  </data>
+  <data name="m_rtb_btn_TimeElapsed.Text" xml:space="preserve">
+    <value>Laufzeit</value>
+  </data>
+  <data name="m_rtb_btn_AudioProcessing.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="m_rtb_btn_AudioProcessing.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
+    <value>AssociateIndex</value>
+  </data>
+  <data name="m_rtb_btn_AudioProcessing.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="m_rtb_btn_AudioProcessing.Location" type="System.Drawing.Point, System.Drawing">
+    <value>321, 19</value>
+  </data>
+  <data name="m_rtb_btn_AudioProcessing.ShowHelp" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="m_rtb_btn_AudioProcessing.Size" type="System.Drawing.Size, System.Drawing">
+    <value>131, 17</value>
+  </data>
+  <data name="m_rtb_btn_AudioProcessing.Text" xml:space="preserve">
+    <value>Tonqualität bearbeiten</value>
+  </data>
   <data name="m_gp_box_operation.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
   </data>
@@ -251,9 +260,6 @@
   </data>
   <data name="m_gp_box_operation.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
-  </data>
-  <data name="m_gp_box_operation.ShowHelp" type="System.Boolean, mscorlib">
-    <value>True</value>
   </data>
   <data name="m_gp_box_operation.Size" type="System.Drawing.Size, System.Drawing">
     <value>582, 43</value>

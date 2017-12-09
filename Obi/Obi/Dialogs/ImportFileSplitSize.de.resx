@@ -155,6 +155,9 @@
   <data name="mOKButton.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
   </data>
+  <data name="mOKButton.Location" type="System.Drawing.Point, System.Drawing">
+    <value>75, 561</value>
+  </data>
   <data name="mCancelButton.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
   </data>
@@ -164,26 +167,11 @@
   <data name="mCancelButton.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
   </data>
+  <data name="mCancelButton.Location" type="System.Drawing.Point, System.Drawing">
+    <value>193, 561</value>
+  </data>
   <data name="mCancelButton.Text" xml:space="preserve">
     <value>A&amp;bbrechen</value>
-  </data>
-  <data name="mCreateAudioFilePerSectionCheckBox.AccessibleName" xml:space="preserve">
-    <value>Eine Sektion für jede Audiodatei bilden</value>
-  </data>
-  <data name="mCreateAudioFilePerSectionCheckBox.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
-  <data name="mCreateAudioFilePerSectionCheckBox.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
-    <value>AssociateIndex</value>
-  </data>
-  <data name="mCreateAudioFilePerSectionCheckBox.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
-  <data name="mCreateAudioFilePerSectionCheckBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>257, 20</value>
-  </data>
-  <data name="mCreateAudioFilePerSectionCheckBox.Text" xml:space="preserve">
-    <value>Eine Se&amp;ktion für jede Audiodatei bilden</value>
   </data>
   <data name="lstManualArrange.AccessibleName" xml:space="preserve">
     <value>Audiodateien Listenfeld</value>
@@ -306,7 +294,7 @@
     <value />
   </data>
   <data name="m_grpAddFiles.Size" type="System.Drawing.Size, System.Drawing">
-    <value>392, 209</value>
+    <value>413, 209</value>
   </data>
   <data name="m_txtCharToReplaceWithSpace.AccessibleName" xml:space="preserve">
     <value>mit Leerzeichen ersetzen</value>
@@ -321,7 +309,7 @@
     <value />
   </data>
   <data name="m_txtCharToReplaceWithSpace.Location" type="System.Drawing.Point, System.Drawing">
-    <value>273, 43</value>
+    <value>291, 100</value>
   </data>
   <data name="m_txtPageIdentificationString.AccessibleName" xml:space="preserve">
     <value>Seitenkennung</value>
@@ -336,7 +324,7 @@
     <value />
   </data>
   <data name="m_txtPageIdentificationString.Location" type="System.Drawing.Point, System.Drawing">
-    <value>271, 99</value>
+    <value>289, 156</value>
   </data>
   <data name="m_numCharCountToTruncateFromStart.AccessibleName" xml:space="preserve">
     <value>Anzahl Zeichen zu Beginn abschneiden</value>
@@ -351,10 +339,55 @@
     <value />
   </data>
   <data name="m_numCharCountToTruncateFromStart.Location" type="System.Drawing.Point, System.Drawing">
-    <value>273, 71</value>
+    <value>291, 128</value>
   </data>
   <data name="m_grpCreateSectionForEachAudioFile.AccessibleName" xml:space="preserve">
     <value>Feld zum Einstellen einer Sektion je Audiodatei</value>
+  </data>
+  <data name="m_rdbCreateAudioFilePerSection.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="m_rdbCreateAudioFilePerSection.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
+    <value>AssociateIndex</value>
+  </data>
+  <data name="m_rdbCreateAudioFilePerSection.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="m_rdbCreateAudioFilePerSection.Size" type="System.Drawing.Size, System.Drawing">
+    <value>256, 20</value>
+  </data>
+  <data name="m_rdbCreateAudioFilePerSection.Text" xml:space="preserve">
+    <value>Eine Se&amp;ktion für jede Audiodatei bilden</value>
+  </data>
+  <data name="m_rdbImportAudioFileInEachSection.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="m_rdbImportAudioFileInEachSection.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
+    <value>AssociateIndex</value>
+  </data>
+  <data name="m_rdbImportAudioFileInEachSection.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="m_rdbImportAudioFileInEachSection.Size" type="System.Drawing.Size, System.Drawing">
+    <value>358, 20</value>
+  </data>
+  <data name="m_rdbImportAudioFileInEachSection.Text" xml:space="preserve">
+    <value>A&amp;udiodatei in jedem Abschnitt importieren (aus Auswahl)</value>
+  </data>
+  <data name="m_rdbImportAudioInSelectedSection.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="m_rdbImportAudioInSelectedSection.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
+    <value>AssociateIndex</value>
+  </data>
+  <data name="m_rdbImportAudioInSelectedSection.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="m_rdbImportAudioInSelectedSection.Size" type="System.Drawing.Size, System.Drawing">
+    <value>350, 20</value>
+  </data>
+  <data name="m_rdbImportAudioInSelectedSection.Text" xml:space="preserve">
+    <value>&amp;Importieren Sie Audiodateien im ausgewählten Sektion</value>
   </data>
   <data name="mchktPageIdentificationString.AccessibleName" xml:space="preserve">
     <value>Seitenkennung</value>
@@ -367,6 +400,9 @@
   </data>
   <data name="mchktPageIdentificationString.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
+  </data>
+  <data name="mchktPageIdentificationString.Location" type="System.Drawing.Point, System.Drawing">
+    <value>30, 153</value>
   </data>
   <data name="mchktPageIdentificationString.Size" type="System.Drawing.Size, System.Drawing">
     <value>116, 20</value>
@@ -386,6 +422,9 @@
   <data name="mchkCountToTruncateFromStart.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
   </data>
+  <data name="mchkCountToTruncateFromStart.Location" type="System.Drawing.Point, System.Drawing">
+    <value>31, 127</value>
+  </data>
   <data name="mchkCountToTruncateFromStart.Size" type="System.Drawing.Size, System.Drawing">
     <value>260, 20</value>
   </data>
@@ -404,6 +443,9 @@
   <data name="mchkToReplaceWithSpace.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
   </data>
+  <data name="mchkToReplaceWithSpace.Location" type="System.Drawing.Point, System.Drawing">
+    <value>30, 99</value>
+  </data>
   <data name="mchkToReplaceWithSpace.Size" type="System.Drawing.Size, System.Drawing">
     <value>174, 20</value>
   </data>
@@ -420,7 +462,7 @@
     <value />
   </data>
   <data name="m_grpCreateSectionForEachAudioFile.Size" type="System.Drawing.Size, System.Drawing">
-    <value>392, 127</value>
+    <value>413, 202</value>
   </data>
   <data name="m_rdbPhraseDetectionOnImportedFiles.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
@@ -461,11 +503,18 @@
   <data name="m_grpSplitPhraseOrPhraseDetection.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
   </data>
+  <data name="m_grpSplitPhraseOrPhraseDetection.Location" type="System.Drawing.Point, System.Drawing">
+    <value>12, 437</value>
+  </data>
+  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="m_grpSplitPhraseOrPhraseDetection.ShowHelp" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
   <data name="m_grpSplitPhraseOrPhraseDetection.Size" type="System.Drawing.Size, System.Drawing">
-    <value>392, 103</value>
+    <value>413, 103</value>
   </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>416, 502</value>
+    <value>437, 601</value>
   </data>
   <data name="$this.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
