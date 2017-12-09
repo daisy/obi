@@ -117,16 +117,6 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="label1.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
-  <data name="label1.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
-    <value>AssociateIndex</value>
-  </data>
-  <data name="label1.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="label1.Location" type="System.Drawing.Point, System.Drawing">
     <value>13, 51</value>
@@ -134,24 +124,11 @@
   <data name="label1.Size" type="System.Drawing.Size, System.Drawing">
     <value>115, 16</value>
   </data>
-  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="label1.TabIndex" type="System.Int32, mscorlib">
-    <value>20</value>
-  </data>
   <data name="label1.Text" xml:space="preserve">
     <value>句的分鐘長度(&amp;z:)</value>
   </data>
   <data name="mPhraseSizeTextBox.AccessibleName" xml:space="preserve">
     <value>句的分鐘長度 文字框</value>
-  </data>
-  <data name="mPhraseSizeTextBox.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
-  <data name="mPhraseSizeTextBox.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
-    <value>AssociateIndex</value>
-  </data>
-  <data name="mPhraseSizeTextBox.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
   </data>
   <data name="mPhraseSizeTextBox.Location" type="System.Drawing.Point, System.Drawing">
     <value>162, 51</value>
@@ -159,41 +136,14 @@
   <data name="mPhraseSizeTextBox.Size" type="System.Drawing.Size, System.Drawing">
     <value>132, 22</value>
   </data>
-  <data name="mPhraseSizeTextBox.TabIndex" type="System.Int32, mscorlib">
-    <value>21</value>
-  </data>
-  <data name="mOKButton.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
-  <data name="mOKButton.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
-    <value>AssociateIndex</value>
-  </data>
-  <data name="mOKButton.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
   <data name="mOKButton.Location" type="System.Drawing.Point, System.Drawing">
     <value>40, 529</value>
-  </data>
-  <data name="mOKButton.TabIndex" type="System.Int32, mscorlib">
-    <value>22</value>
   </data>
   <data name="mOKButton.Text" xml:space="preserve">
     <value>確定(&amp;O)</value>
   </data>
-  <data name="mCancelButton.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
-  <data name="mCancelButton.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
-    <value>AssociateIndex</value>
-  </data>
-  <data name="mCancelButton.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
   <data name="mCancelButton.Location" type="System.Drawing.Point, System.Drawing">
     <value>158, 529</value>
-  </data>
-  <data name="mCancelButton.TabIndex" type="System.Int32, mscorlib">
-    <value>23</value>
   </data>
   <data name="mCancelButton.Text" xml:space="preserve">
     <value>取消(&amp;C)</value>
@@ -201,26 +151,8 @@
   <data name="lstManualArrange.AccessibleName" xml:space="preserve">
     <value>音訊檔清單</value>
   </data>
-  <data name="lstManualArrange.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
-  <data name="lstManualArrange.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
-    <value>AssociateIndex</value>
-  </data>
-  <data name="lstManualArrange.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
   <data name="lstManualArrange.Size" type="System.Drawing.Size, System.Drawing">
     <value>205, 116</value>
-  </data>
-  <data name="m_btnMoveUp.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
-  <data name="m_btnMoveUp.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
-    <value>AssociateIndex</value>
-  </data>
-  <data name="m_btnMoveUp.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
   </data>
   <data name="m_btnMoveUp.Location" type="System.Drawing.Point, System.Drawing">
     <value>221, 11</value>
@@ -231,29 +163,11 @@
   <data name="m_btnMoveUp.Text" xml:space="preserve">
     <value>上移(&amp;U)</value>
   </data>
-  <data name="m_btnMoveDown.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
-  <data name="m_btnMoveDown.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
-    <value>AssociateIndex</value>
-  </data>
-  <data name="m_btnMoveDown.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
   <data name="m_btnMoveDown.Location" type="System.Drawing.Point, System.Drawing">
     <value>221, 43</value>
   </data>
   <data name="m_btnMoveDown.Text" xml:space="preserve">
     <value>下移(&amp;D)</value>
-  </data>
-  <data name="m_btnAdd.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
-  <data name="m_btnAdd.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
-    <value>AssociateIndex</value>
-  </data>
-  <data name="m_btnAdd.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
   </data>
   <data name="m_btnAdd.Location" type="System.Drawing.Point, System.Drawing">
     <value>221, 72</value>
@@ -264,15 +178,6 @@
   <data name="m_grpAddFiles.AccessibleName" xml:space="preserve">
     <value>新增及編排檔案的分組框</value>
   </data>
-  <data name="m_btnRemove.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
-  <data name="m_btnRemove.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
-    <value>AssociateIndex</value>
-  </data>
-  <data name="m_btnRemove.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
   <data name="m_btnRemove.Location" type="System.Drawing.Point, System.Drawing">
     <value>223, 101</value>
   </data>
@@ -282,17 +187,8 @@
   <data name="m_grpArrangeAudioFiles.AccessibleName" xml:space="preserve">
     <value>編排音訊檔群組框</value>
   </data>
-  <data name="mbtnDesendingOrder.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
-  <data name="mbtnDesendingOrder.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
-    <value>AssociateIndex</value>
-  </data>
-  <data name="mbtnDesendingOrder.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
   <data name="mbtnDesendingOrder.Location" type="System.Drawing.Point, System.Drawing">
-    <value>168, 34</value>
+    <value>168, 32</value>
   </data>
   <data name="mbtnDesendingOrder.Size" type="System.Drawing.Size, System.Drawing">
     <value>132, 26</value>
@@ -300,17 +196,8 @@
   <data name="mbtnDesendingOrder.Text" xml:space="preserve">
     <value>降序(&amp;e)</value>
   </data>
-  <data name="mbtnAscendingOrder.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
-  <data name="mbtnAscendingOrder.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
-    <value>AssociateIndex</value>
-  </data>
-  <data name="mbtnAscendingOrder.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
   <data name="mbtnAscendingOrder.Location" type="System.Drawing.Point, System.Drawing">
-    <value>10, 34</value>
+    <value>10, 32</value>
   </data>
   <data name="mbtnAscendingOrder.Size" type="System.Drawing.Size, System.Drawing">
     <value>118, 26</value>
@@ -318,29 +205,11 @@
   <data name="mbtnAscendingOrder.Text" xml:space="preserve">
     <value>升序(&amp;A)</value>
   </data>
-  <data name="m_grpArrangeAudioFiles.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
-  <data name="m_grpArrangeAudioFiles.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
-    <value>AssociateIndex</value>
-  </data>
-  <data name="m_grpArrangeAudioFiles.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
   <data name="m_grpArrangeAudioFiles.Size" type="System.Drawing.Size, System.Drawing">
     <value>315, 65</value>
   </data>
   <data name="m_grpArrangeAudioFiles.Text" xml:space="preserve">
     <value>編排音訊檔</value>
-  </data>
-  <data name="m_grpAddFiles.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
-  <data name="m_grpAddFiles.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
-    <value>AssociateIndex</value>
-  </data>
-  <data name="m_grpAddFiles.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
   </data>
   <data name="m_grpAddFiles.Size" type="System.Drawing.Size, System.Drawing">
     <value>329, 209</value>
@@ -348,101 +217,29 @@
   <data name="m_txtCharToReplaceWithSpace.AccessibleName" xml:space="preserve">
     <value>加入空白播放</value>
   </data>
-  <data name="m_txtCharToReplaceWithSpace.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
-  <data name="m_txtCharToReplaceWithSpace.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
-    <value>AssociateIndex</value>
-  </data>
-  <data name="m_txtCharToReplaceWithSpace.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
   <data name="m_txtCharToReplaceWithSpace.Location" type="System.Drawing.Point, System.Drawing">
     <value>221, 105</value>
   </data>
   <data name="m_txtCharToReplaceWithSpace.Size" type="System.Drawing.Size, System.Drawing">
     <value>100, 22</value>
   </data>
-  <data name="m_txtCharToReplaceWithSpace.TabIndex" type="System.Int32, mscorlib">
-    <value>12</value>
-  </data>
   <data name="m_txtPageIdentificationString.AccessibleName" xml:space="preserve">
     <value>頁標識</value>
-  </data>
-  <data name="m_txtPageIdentificationString.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
-  <data name="m_txtPageIdentificationString.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
-    <value>AssociateIndex</value>
-  </data>
-  <data name="m_txtPageIdentificationString.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
   </data>
   <data name="m_txtPageIdentificationString.Location" type="System.Drawing.Point, System.Drawing">
     <value>223, 161</value>
   </data>
-  <data name="m_txtPageIdentificationString.TabIndex" type="System.Int32, mscorlib">
-    <value>16</value>
-  </data>
   <data name="m_numCharCountToTruncateFromStart.AccessibleName" xml:space="preserve">
     <value>從開端抽取的字符數</value>
-  </data>
-  <data name="m_numCharCountToTruncateFromStart.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
-  <data name="m_numCharCountToTruncateFromStart.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
-    <value>AssociateIndex</value>
-  </data>
-  <data name="m_numCharCountToTruncateFromStart.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
   </data>
   <data name="m_numCharCountToTruncateFromStart.Location" type="System.Drawing.Point, System.Drawing">
     <value>223, 133</value>
   </data>
-  <data name="m_numCharCountToTruncateFromStart.TabIndex" type="System.Int32, mscorlib">
-    <value>14</value>
-  </data>
   <data name="m_grpCreateSectionForEachAudioFile.AccessibleName" xml:space="preserve">
     <value>為每一音訊檔建立分節群組框</value>
   </data>
-  <data name="m_rdbCreateAudioFilePerSection.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
-  <data name="m_rdbCreateAudioFilePerSection.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
-    <value>AssociateIndex</value>
-  </data>
-  <data name="m_rdbCreateAudioFilePerSection.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
-  <data name="m_rdbImportAudioFileInEachSection.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
-  <data name="m_rdbImportAudioFileInEachSection.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
-    <value>AssociateIndex</value>
-  </data>
-  <data name="m_rdbImportAudioFileInEachSection.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
-  <data name="m_rdbImportAudioInSelectedSection.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
-  <data name="m_rdbImportAudioInSelectedSection.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
-    <value>AssociateIndex</value>
-  </data>
-  <data name="m_rdbImportAudioInSelectedSection.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
   <data name="mchktPageIdentificationString.AccessibleName" xml:space="preserve">
     <value>頁標識</value>
-  </data>
-  <data name="mchktPageIdentificationString.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
-  <data name="mchktPageIdentificationString.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
-    <value>AssociateIndex</value>
-  </data>
-  <data name="mchktPageIdentificationString.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
   </data>
   <data name="mchktPageIdentificationString.Location" type="System.Drawing.Point, System.Drawing">
     <value>38, 161</value>
@@ -450,23 +247,11 @@
   <data name="mchktPageIdentificationString.Size" type="System.Drawing.Size, System.Drawing">
     <value>83, 20</value>
   </data>
-  <data name="mchktPageIdentificationString.TabIndex" type="System.Int32, mscorlib">
-    <value>15</value>
-  </data>
   <data name="mchktPageIdentificationString.Text" xml:space="preserve">
     <value>頁標識(&amp;I)</value>
   </data>
   <data name="mchkCountToTruncateFromStart.AccessibleName" xml:space="preserve">
     <value>從開端抽取的字符數</value>
-  </data>
-  <data name="mchkCountToTruncateFromStart.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
-  <data name="mchkCountToTruncateFromStart.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
-    <value>AssociateIndex</value>
-  </data>
-  <data name="mchkCountToTruncateFromStart.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
   </data>
   <data name="mchkCountToTruncateFromStart.Location" type="System.Drawing.Point, System.Drawing">
     <value>39, 135</value>
@@ -474,23 +259,11 @@
   <data name="mchkCountToTruncateFromStart.Size" type="System.Drawing.Size, System.Drawing">
     <value>177, 20</value>
   </data>
-  <data name="mchkCountToTruncateFromStart.TabIndex" type="System.Int32, mscorlib">
-    <value>13</value>
-  </data>
   <data name="mchkCountToTruncateFromStart.Text" xml:space="preserve">
     <value>從開端抽取的字符數(&amp;c)</value>
   </data>
   <data name="mchkToReplaceWithSpace.AccessibleName" xml:space="preserve">
     <value>加入空白播放</value>
-  </data>
-  <data name="mchkToReplaceWithSpace.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
-  <data name="mchkToReplaceWithSpace.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
-    <value>AssociateIndex</value>
-  </data>
-  <data name="mchkToReplaceWithSpace.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
   </data>
   <data name="mchkToReplaceWithSpace.Location" type="System.Drawing.Point, System.Drawing">
     <value>38, 107</value>
@@ -498,20 +271,8 @@
   <data name="mchkToReplaceWithSpace.Size" type="System.Drawing.Size, System.Drawing">
     <value>134, 20</value>
   </data>
-  <data name="mchkToReplaceWithSpace.TabIndex" type="System.Int32, mscorlib">
-    <value>11</value>
-  </data>
   <data name="mchkToReplaceWithSpace.Text" xml:space="preserve">
     <value>加入空白播放(&amp;T)</value>
-  </data>
-  <data name="m_grpCreateSectionForEachAudioFile.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
-  <data name="m_grpCreateSectionForEachAudioFile.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
-    <value>AssociateIndex</value>
-  </data>
-  <data name="m_grpCreateSectionForEachAudioFile.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
   </data>
   <data name="m_grpCreateSectionForEachAudioFile.Location" type="System.Drawing.Point, System.Drawing">
     <value>12, 215</value>
@@ -519,50 +280,17 @@
   <data name="m_grpCreateSectionForEachAudioFile.Size" type="System.Drawing.Size, System.Drawing">
     <value>329, 189</value>
   </data>
-  <data name="m_rdbPhraseDetectionOnImportedFiles.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
-  <data name="m_rdbPhraseDetectionOnImportedFiles.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
-    <value>AssociateIndex</value>
-  </data>
-  <data name="m_rdbPhraseDetectionOnImportedFiles.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
   <data name="m_rdbPhraseDetectionOnImportedFiles.Size" type="System.Drawing.Size, System.Drawing">
     <value>208, 20</value>
-  </data>
-  <data name="m_rdbPhraseDetectionOnImportedFiles.TabIndex" type="System.Int32, mscorlib">
-    <value>18</value>
   </data>
   <data name="m_rdbPhraseDetectionOnImportedFiles.Text" xml:space="preserve">
     <value>在匯入的檔案使用句偵測(&amp;P)</value>
   </data>
-  <data name="m_rdbSplitPhrasesOnImport.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
-  <data name="m_rdbSplitPhrasesOnImport.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
-    <value>AssociateIndex</value>
-  </data>
-  <data name="m_rdbSplitPhrasesOnImport.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
   <data name="m_rdbSplitPhrasesOnImport.Size" type="System.Drawing.Size, System.Drawing">
     <value>148, 20</value>
   </data>
-  <data name="m_rdbSplitPhrasesOnImport.TabIndex" type="System.Int32, mscorlib">
-    <value>19</value>
-  </data>
   <data name="m_rdbSplitPhrasesOnImport.Text" xml:space="preserve">
     <value>在匯入時分割句(&amp;S)</value>
-  </data>
-  <data name="m_grpSplitPhraseOrPhraseDetection.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
-  <data name="m_grpSplitPhraseOrPhraseDetection.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
-    <value>AssociateIndex</value>
-  </data>
-  <data name="m_grpSplitPhraseOrPhraseDetection.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
   </data>
   <data name="m_grpSplitPhraseOrPhraseDetection.Location" type="System.Drawing.Point, System.Drawing">
     <value>12, 410</value>
@@ -570,20 +298,8 @@
   <data name="m_grpSplitPhraseOrPhraseDetection.Size" type="System.Drawing.Size, System.Drawing">
     <value>329, 103</value>
   </data>
-  <data name="m_grpSplitPhraseOrPhraseDetection.TabIndex" type="System.Int32, mscorlib">
-    <value>17</value>
-  </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
     <value>351, 569</value>
-  </data>
-  <data name="$this.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
-  <data name="$this.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
-    <value>AssociateIndex</value>
-  </data>
-  <data name="$this.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
   </data>
   <data name="$this.Text" xml:space="preserve">
     <value>匯入檔案設定</value>

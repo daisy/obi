@@ -117,16 +117,22 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="label1.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="label1.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
+    <value>AssociateIndex</value>
+  </data>
+  <data name="label1.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="label1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>15, 64</value>
+    <value>30, 64</value>
   </data>
   <data name="label1.Size" type="System.Drawing.Size, System.Drawing">
     <value>137, 20</value>
-  </data>
-  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="label1.TabIndex" type="System.Int32, mscorlib">
-    <value>20</value>
   </data>
   <data name="label1.Text" xml:space="preserve">
     <value>मिनटो में वाक्यांश की अवधि:</value>
@@ -134,18 +140,32 @@
   <data name="mPhraseSizeTextBox.AccessibleName" xml:space="preserve">
     <value>मिनटो में वाक्यांश की अवधि टेक्स्ट बॉक्स</value>
   </data>
-  <data name="mPhraseSizeTextBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>182, 64</value>
+  <data name="mPhraseSizeTextBox.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
   </data>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="mPhraseSizeTextBox.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
+    <value>AssociateIndex</value>
+  </data>
+  <data name="mPhraseSizeTextBox.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="mPhraseSizeTextBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>191, 64</value>
+  </data>
   <data name="mPhraseSizeTextBox.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 5, 4, 5</value>
   </data>
   <data name="mPhraseSizeTextBox.Size" type="System.Drawing.Size, System.Drawing">
     <value>148, 26</value>
   </data>
-  <data name="mPhraseSizeTextBox.TabIndex" type="System.Int32, mscorlib">
-    <value>21</value>
+  <data name="mOKButton.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="mOKButton.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
+    <value>AssociateIndex</value>
+  </data>
+  <data name="mOKButton.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
   </data>
   <data name="mOKButton.Location" type="System.Drawing.Point, System.Drawing">
     <value>45, 691</value>
@@ -156,11 +176,17 @@
   <data name="mOKButton.Size" type="System.Drawing.Size, System.Drawing">
     <value>112, 39</value>
   </data>
-  <data name="mOKButton.TabIndex" type="System.Int32, mscorlib">
-    <value>22</value>
-  </data>
   <data name="mOKButton.Text" xml:space="preserve">
     <value>स्वीकृत करें</value>
+  </data>
+  <data name="mCancelButton.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="mCancelButton.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
+    <value>AssociateIndex</value>
+  </data>
+  <data name="mCancelButton.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
   </data>
   <data name="mCancelButton.Location" type="System.Drawing.Point, System.Drawing">
     <value>178, 691</value>
@@ -171,15 +197,22 @@
   <data name="mCancelButton.Size" type="System.Drawing.Size, System.Drawing">
     <value>112, 39</value>
   </data>
-  <data name="mCancelButton.TabIndex" type="System.Int32, mscorlib">
-    <value>23</value>
-  </data>
   <data name="mCancelButton.Text" xml:space="preserve">
     <value>रद्द करें</value>
   </data>
   <data name="lstManualArrange.AccessibleName" xml:space="preserve">
     <value>ऑडियो फाइल्स लिस्ट बॉक्स</value>
   </data>
+  <data name="lstManualArrange.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="lstManualArrange.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
+    <value>AssociateIndex</value>
+  </data>
+  <data name="lstManualArrange.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="lstManualArrange.ItemHeight" type="System.Int32, mscorlib">
     <value>20</value>
   </data>
@@ -191,6 +224,15 @@
   </data>
   <data name="lstManualArrange.Size" type="System.Drawing.Size, System.Drawing">
     <value>230, 144</value>
+  </data>
+  <data name="m_btnMoveUp.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="m_btnMoveUp.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
+    <value>AssociateIndex</value>
+  </data>
+  <data name="m_btnMoveUp.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
   </data>
   <data name="m_btnMoveUp.Location" type="System.Drawing.Point, System.Drawing">
     <value>249, 14</value>
@@ -204,6 +246,15 @@
   <data name="m_btnMoveUp.Text" xml:space="preserve">
     <value>ऊपर ले जाएँ</value>
   </data>
+  <data name="m_btnMoveDown.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="m_btnMoveDown.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
+    <value>AssociateIndex</value>
+  </data>
+  <data name="m_btnMoveDown.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
   <data name="m_btnMoveDown.Location" type="System.Drawing.Point, System.Drawing">
     <value>249, 54</value>
   </data>
@@ -215,6 +266,15 @@
   </data>
   <data name="m_btnMoveDown.Text" xml:space="preserve">
     <value>नीचे ले जाएँ</value>
+  </data>
+  <data name="m_btnAdd.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="m_btnAdd.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
+    <value>AssociateIndex</value>
+  </data>
+  <data name="m_btnAdd.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
   </data>
   <data name="m_btnAdd.Location" type="System.Drawing.Point, System.Drawing">
     <value>249, 90</value>
@@ -231,17 +291,14 @@
   <data name="m_grpAddFiles.AccessibleName" xml:space="preserve">
     <value>फाइल्स को जोड़ने और व्यवस्थित करने के लिए ग्रुप बॉक्स</value>
   </data>
-  <data name="m_grpAddFiles.Location" type="System.Drawing.Point, System.Drawing">
-    <value>14, 8</value>
+  <data name="m_btnRemove.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
   </data>
-  <data name="m_grpAddFiles.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>3, 4, 3, 4</value>
+  <data name="m_btnRemove.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
+    <value>AssociateIndex</value>
   </data>
-  <data name="m_grpAddFiles.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>3, 4, 3, 4</value>
-  </data>
-  <data name="m_grpAddFiles.Size" type="System.Drawing.Size, System.Drawing">
-    <value>370, 261</value>
+  <data name="m_btnRemove.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
   </data>
   <data name="m_btnRemove.Location" type="System.Drawing.Point, System.Drawing">
     <value>251, 126</value>
@@ -258,6 +315,57 @@
   <data name="m_grpArrangeAudioFiles.AccessibleName" xml:space="preserve">
     <value>ऑडियो फाइल्स व्यवस्थित करने के लिए ग्रुप बॉक्स</value>
   </data>
+  <data name="mbtnDesendingOrder.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="mbtnDesendingOrder.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
+    <value>AssociateIndex</value>
+  </data>
+  <data name="mbtnDesendingOrder.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="mbtnDesendingOrder.Location" type="System.Drawing.Point, System.Drawing">
+    <value>189, 34</value>
+  </data>
+  <data name="mbtnDesendingOrder.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>3, 4, 3, 4</value>
+  </data>
+  <data name="mbtnDesendingOrder.Size" type="System.Drawing.Size, System.Drawing">
+    <value>148, 32</value>
+  </data>
+  <data name="mbtnDesendingOrder.Text" xml:space="preserve">
+    <value>घटता हुआ क्रम</value>
+  </data>
+  <data name="mbtnAscendingOrder.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="mbtnAscendingOrder.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
+    <value>AssociateIndex</value>
+  </data>
+  <data name="mbtnAscendingOrder.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="mbtnAscendingOrder.Location" type="System.Drawing.Point, System.Drawing">
+    <value>11, 34</value>
+  </data>
+  <data name="mbtnAscendingOrder.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>3, 4, 3, 4</value>
+  </data>
+  <data name="mbtnAscendingOrder.Size" type="System.Drawing.Size, System.Drawing">
+    <value>133, 32</value>
+  </data>
+  <data name="mbtnAscendingOrder.Text" xml:space="preserve">
+    <value>बढ़ता हुआ क्रम</value>
+  </data>
+  <data name="m_grpArrangeAudioFiles.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="m_grpArrangeAudioFiles.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
+    <value>AssociateIndex</value>
+  </data>
+  <data name="m_grpArrangeAudioFiles.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
   <data name="m_grpArrangeAudioFiles.Location" type="System.Drawing.Point, System.Drawing">
     <value>7, 172</value>
   </data>
@@ -273,32 +381,38 @@
   <data name="m_grpArrangeAudioFiles.Text" xml:space="preserve">
     <value>ऑडियो फाइल्स को व्यवस्थित करना</value>
   </data>
-  <data name="mbtnDesendingOrder.Location" type="System.Drawing.Point, System.Drawing">
-    <value>189, 42</value>
+  <data name="m_grpAddFiles.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
   </data>
-  <data name="mbtnDesendingOrder.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+  <data name="m_grpAddFiles.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
+    <value>AssociateIndex</value>
+  </data>
+  <data name="m_grpAddFiles.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="m_grpAddFiles.Location" type="System.Drawing.Point, System.Drawing">
+    <value>14, 8</value>
+  </data>
+  <data name="m_grpAddFiles.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>3, 4, 3, 4</value>
   </data>
-  <data name="mbtnDesendingOrder.Size" type="System.Drawing.Size, System.Drawing">
-    <value>148, 32</value>
-  </data>
-  <data name="mbtnDesendingOrder.Text" xml:space="preserve">
-    <value>घटता हुआ क्रम</value>
-  </data>
-  <data name="mbtnAscendingOrder.Location" type="System.Drawing.Point, System.Drawing">
-    <value>11, 42</value>
-  </data>
-  <data name="mbtnAscendingOrder.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+  <data name="m_grpAddFiles.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>3, 4, 3, 4</value>
   </data>
-  <data name="mbtnAscendingOrder.Size" type="System.Drawing.Size, System.Drawing">
-    <value>133, 32</value>
-  </data>
-  <data name="mbtnAscendingOrder.Text" xml:space="preserve">
-    <value>बढ़ता हुआ क्रम</value>
+  <data name="m_grpAddFiles.Size" type="System.Drawing.Size, System.Drawing">
+    <value>370, 261</value>
   </data>
   <data name="m_txtCharToReplaceWithSpace.AccessibleName" xml:space="preserve">
     <value>रिक्त स्थान से भरना </value>
+  </data>
+  <data name="m_txtCharToReplaceWithSpace.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="m_txtCharToReplaceWithSpace.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
+    <value>AssociateIndex</value>
+  </data>
+  <data name="m_txtCharToReplaceWithSpace.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
   </data>
   <data name="m_txtCharToReplaceWithSpace.Location" type="System.Drawing.Point, System.Drawing">
     <value>249, 129</value>
@@ -309,11 +423,17 @@
   <data name="m_txtCharToReplaceWithSpace.Size" type="System.Drawing.Size, System.Drawing">
     <value>112, 26</value>
   </data>
-  <data name="m_txtCharToReplaceWithSpace.TabIndex" type="System.Int32, mscorlib">
-    <value>12</value>
-  </data>
   <data name="m_txtPageIdentificationString.AccessibleName" xml:space="preserve">
     <value>पृष्ठ की पहचान</value>
+  </data>
+  <data name="m_txtPageIdentificationString.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="m_txtPageIdentificationString.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
+    <value>AssociateIndex</value>
+  </data>
+  <data name="m_txtPageIdentificationString.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
   </data>
   <data name="m_txtPageIdentificationString.Location" type="System.Drawing.Point, System.Drawing">
     <value>251, 199</value>
@@ -324,11 +444,17 @@
   <data name="m_txtPageIdentificationString.Size" type="System.Drawing.Size, System.Drawing">
     <value>112, 26</value>
   </data>
-  <data name="m_txtPageIdentificationString.TabIndex" type="System.Int32, mscorlib">
-    <value>16</value>
-  </data>
   <data name="m_numCharCountToTruncateFromStart.AccessibleName" xml:space="preserve">
     <value>प्रारंभिक अक्षरों को ट्रिम करने की संख्या </value>
+  </data>
+  <data name="m_numCharCountToTruncateFromStart.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="m_numCharCountToTruncateFromStart.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
+    <value>AssociateIndex</value>
+  </data>
+  <data name="m_numCharCountToTruncateFromStart.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
   </data>
   <data name="m_numCharCountToTruncateFromStart.Location" type="System.Drawing.Point, System.Drawing">
     <value>251, 164</value>
@@ -339,11 +465,17 @@
   <data name="m_numCharCountToTruncateFromStart.Size" type="System.Drawing.Size, System.Drawing">
     <value>110, 26</value>
   </data>
-  <data name="m_numCharCountToTruncateFromStart.TabIndex" type="System.Int32, mscorlib">
-    <value>14</value>
-  </data>
   <data name="m_grpCreateSectionForEachAudioFile.AccessibleName" xml:space="preserve">
     <value>प्रत्येक ऑडियो फाइल के लिए अलग खंड बनाने के लिए ग्रुप बॉक्स</value>
+  </data>
+  <data name="m_rdbCreateAudioFilePerSection.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="m_rdbCreateAudioFilePerSection.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
+    <value>AssociateIndex</value>
+  </data>
+  <data name="m_rdbCreateAudioFilePerSection.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
   </data>
   <data name="m_rdbCreateAudioFilePerSection.Location" type="System.Drawing.Point, System.Drawing">
     <value>9, 91</value>
@@ -354,6 +486,15 @@
   <data name="m_rdbCreateAudioFilePerSection.Size" type="System.Drawing.Size, System.Drawing">
     <value>305, 24</value>
   </data>
+  <data name="m_rdbImportAudioFileInEachSection.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="m_rdbImportAudioFileInEachSection.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
+    <value>AssociateIndex</value>
+  </data>
+  <data name="m_rdbImportAudioFileInEachSection.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
   <data name="m_rdbImportAudioFileInEachSection.Location" type="System.Drawing.Point, System.Drawing">
     <value>9, 59</value>
   </data>
@@ -362,6 +503,15 @@
   </data>
   <data name="m_rdbImportAudioFileInEachSection.Size" type="System.Drawing.Size, System.Drawing">
     <value>363, 24</value>
+  </data>
+  <data name="m_rdbImportAudioInSelectedSection.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="m_rdbImportAudioInSelectedSection.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
+    <value>AssociateIndex</value>
+  </data>
+  <data name="m_rdbImportAudioInSelectedSection.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
   </data>
   <data name="m_rdbImportAudioInSelectedSection.Location" type="System.Drawing.Point, System.Drawing">
     <value>10, 26</value>
@@ -375,6 +525,15 @@
   <data name="mchktPageIdentificationString.AccessibleName" xml:space="preserve">
     <value>पृष्ठ की पहचान</value>
   </data>
+  <data name="mchktPageIdentificationString.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="mchktPageIdentificationString.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
+    <value>AssociateIndex</value>
+  </data>
+  <data name="mchktPageIdentificationString.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
   <data name="mchktPageIdentificationString.Location" type="System.Drawing.Point, System.Drawing">
     <value>32, 199</value>
   </data>
@@ -384,14 +543,20 @@
   <data name="mchktPageIdentificationString.Size" type="System.Drawing.Size, System.Drawing">
     <value>93, 24</value>
   </data>
-  <data name="mchktPageIdentificationString.TabIndex" type="System.Int32, mscorlib">
-    <value>15</value>
-  </data>
   <data name="mchktPageIdentificationString.Text" xml:space="preserve">
     <value>पृष्ठ की पहचान</value>
   </data>
   <data name="mchkCountToTruncateFromStart.AccessibleName" xml:space="preserve">
     <value>प्रारंभिक अक्षरों को ट्रिम करने की संख्या </value>
+  </data>
+  <data name="mchkCountToTruncateFromStart.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="mchkCountToTruncateFromStart.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
+    <value>AssociateIndex</value>
+  </data>
+  <data name="mchkCountToTruncateFromStart.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
   </data>
   <data name="mchkCountToTruncateFromStart.Location" type="System.Drawing.Point, System.Drawing">
     <value>33, 166</value>
@@ -402,14 +567,20 @@
   <data name="mchkCountToTruncateFromStart.Size" type="System.Drawing.Size, System.Drawing">
     <value>209, 24</value>
   </data>
-  <data name="mchkCountToTruncateFromStart.TabIndex" type="System.Int32, mscorlib">
-    <value>13</value>
-  </data>
   <data name="mchkCountToTruncateFromStart.Text" xml:space="preserve">
     <value>प्रारंभिक अक्षरों को ट्रिम करने की संख्या </value>
   </data>
   <data name="mchkToReplaceWithSpace.AccessibleName" xml:space="preserve">
     <value>रिक्त स्थान से भरना </value>
+  </data>
+  <data name="mchkToReplaceWithSpace.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="mchkToReplaceWithSpace.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
+    <value>AssociateIndex</value>
+  </data>
+  <data name="mchkToReplaceWithSpace.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
   </data>
   <data name="mchkToReplaceWithSpace.Location" type="System.Drawing.Point, System.Drawing">
     <value>32, 131</value>
@@ -420,11 +591,17 @@
   <data name="mchkToReplaceWithSpace.Size" type="System.Drawing.Size, System.Drawing">
     <value>120, 24</value>
   </data>
-  <data name="mchkToReplaceWithSpace.TabIndex" type="System.Int32, mscorlib">
-    <value>11</value>
-  </data>
   <data name="mchkToReplaceWithSpace.Text" xml:space="preserve">
     <value>रिक्त स्थान से भरना </value>
+  </data>
+  <data name="m_grpCreateSectionForEachAudioFile.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="m_grpCreateSectionForEachAudioFile.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
+    <value>AssociateIndex</value>
+  </data>
+  <data name="m_grpCreateSectionForEachAudioFile.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
   </data>
   <data name="m_grpCreateSectionForEachAudioFile.Location" type="System.Drawing.Point, System.Drawing">
     <value>14, 269</value>
@@ -438,6 +615,57 @@
   <data name="m_grpCreateSectionForEachAudioFile.Size" type="System.Drawing.Size, System.Drawing">
     <value>370, 251</value>
   </data>
+  <data name="m_rdbPhraseDetectionOnImportedFiles.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="m_rdbPhraseDetectionOnImportedFiles.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
+    <value>AssociateIndex</value>
+  </data>
+  <data name="m_rdbPhraseDetectionOnImportedFiles.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="m_rdbPhraseDetectionOnImportedFiles.Location" type="System.Drawing.Point, System.Drawing">
+    <value>15, 96</value>
+  </data>
+  <data name="m_rdbPhraseDetectionOnImportedFiles.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>3, 4, 3, 4</value>
+  </data>
+  <data name="m_rdbPhraseDetectionOnImportedFiles.Size" type="System.Drawing.Size, System.Drawing">
+    <value>180, 24</value>
+  </data>
+  <data name="m_rdbPhraseDetectionOnImportedFiles.Text" xml:space="preserve">
+    <value>प्राप्त फाइलों पर वाक्यांश की खोज</value>
+  </data>
+  <data name="m_rdbSplitPhrasesOnImport.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="m_rdbSplitPhrasesOnImport.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
+    <value>AssociateIndex</value>
+  </data>
+  <data name="m_rdbSplitPhrasesOnImport.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="m_rdbSplitPhrasesOnImport.Location" type="System.Drawing.Point, System.Drawing">
+    <value>15, 24</value>
+  </data>
+  <data name="m_rdbSplitPhrasesOnImport.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>3, 4, 3, 4</value>
+  </data>
+  <data name="m_rdbSplitPhrasesOnImport.Size" type="System.Drawing.Size, System.Drawing">
+    <value>178, 24</value>
+  </data>
+  <data name="m_rdbSplitPhrasesOnImport.Text" xml:space="preserve">
+    <value>प्राप्त किये गए वाक्यांशों को तोड़ना</value>
+  </data>
+  <data name="m_grpSplitPhraseOrPhraseDetection.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="m_grpSplitPhraseOrPhraseDetection.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
+    <value>AssociateIndex</value>
+  </data>
+  <data name="m_grpSplitPhraseOrPhraseDetection.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
   <data name="m_grpSplitPhraseOrPhraseDetection.Location" type="System.Drawing.Point, System.Drawing">
     <value>14, 542</value>
   </data>
@@ -450,39 +678,6 @@
   <data name="m_grpSplitPhraseOrPhraseDetection.Size" type="System.Drawing.Size, System.Drawing">
     <value>370, 129</value>
   </data>
-  <data name="m_grpSplitPhraseOrPhraseDetection.TabIndex" type="System.Int32, mscorlib">
-    <value>17</value>
-  </data>
-  <data name="m_rdbPhraseDetectionOnImportedFiles.Location" type="System.Drawing.Point, System.Drawing">
-    <value>15, 96</value>
-  </data>
-  <data name="m_rdbPhraseDetectionOnImportedFiles.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>3, 4, 3, 4</value>
-  </data>
-  <data name="m_rdbPhraseDetectionOnImportedFiles.Size" type="System.Drawing.Size, System.Drawing">
-    <value>180, 24</value>
-  </data>
-  <data name="m_rdbPhraseDetectionOnImportedFiles.TabIndex" type="System.Int32, mscorlib">
-    <value>18</value>
-  </data>
-  <data name="m_rdbPhraseDetectionOnImportedFiles.Text" xml:space="preserve">
-    <value>प्राप्त फाइलों पर वाक्यांश की खोज</value>
-  </data>
-  <data name="m_rdbSplitPhrasesOnImport.Location" type="System.Drawing.Point, System.Drawing">
-    <value>15, 24</value>
-  </data>
-  <data name="m_rdbSplitPhrasesOnImport.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>3, 4, 3, 4</value>
-  </data>
-  <data name="m_rdbSplitPhrasesOnImport.Size" type="System.Drawing.Size, System.Drawing">
-    <value>178, 24</value>
-  </data>
-  <data name="m_rdbSplitPhrasesOnImport.TabIndex" type="System.Int32, mscorlib">
-    <value>19</value>
-  </data>
-  <data name="m_rdbSplitPhrasesOnImport.Text" xml:space="preserve">
-    <value>प्राप्त किये गए वाक्यांशों को तोड़ना</value>
-  </data>
   <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
     <value>9, 20</value>
   </data>
@@ -491,6 +686,15 @@
   </data>
   <data name="$this.Font" type="System.Drawing.Font, System.Drawing">
     <value>Microsoft Sans Serif, 12pt</value>
+  </data>
+  <data name="$this.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="$this.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
+    <value>AssociateIndex</value>
+  </data>
+  <data name="$this.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
   </data>
   <data name="$this.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 5, 4, 5</value>
