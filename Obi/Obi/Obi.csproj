@@ -926,6 +926,12 @@
     <EmbeddedResource Include="Dialogs\SpecialPhraseList.zh-Hant.resx">
       <DependentUpon>SpecialPhraseList.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\TimeElapsed.de.resx">
+      <DependentUpon>TimeElapsed.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\TimeElapsed.fr.resx">
+      <DependentUpon>TimeElapsed.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\TimeElapsed.resx">
       <DependentUpon>TimeElapsed.cs</DependentUpon>
     </EmbeddedResource>
