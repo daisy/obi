@@ -249,7 +249,7 @@
     <value />
   </data>
   <data name="mbtnDesendingOrder.Location" type="System.Drawing.Point, System.Drawing">
-    <value>209, 34</value>
+    <value>209, 26</value>
   </data>
   <data name="mbtnDesendingOrder.Text" xml:space="preserve">
     <value>&amp;Aufsteigend sortieren</value>
@@ -264,7 +264,7 @@
     <value />
   </data>
   <data name="mbtnAscendingOrder.Location" type="System.Drawing.Point, System.Drawing">
-    <value>20, 35</value>
+    <value>20, 27</value>
   </data>
   <data name="mbtnAscendingOrder.Size" type="System.Drawing.Size, System.Drawing">
     <value>158, 26</value>

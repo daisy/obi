@@ -134,10 +134,6 @@
   <data name="label1.Size" type="System.Drawing.Size, System.Drawing">
     <value>189, 16</value>
   </data>
-  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="label1.TabIndex" type="System.Int32, mscorlib">
-    <value>20</value>
-  </data>
   <data name="label1.Text" xml:space="preserve">
     <value>Tamanho da frase em &amp;minutos</value>
   </data>
@@ -159,9 +155,6 @@
   <data name="mPhraseSizeTextBox.Size" type="System.Drawing.Size, System.Drawing">
     <value>110, 22</value>
   </data>
-  <data name="mPhraseSizeTextBox.TabIndex" type="System.Int32, mscorlib">
-    <value>21</value>
-  </data>
   <data name="mOKButton.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
   </data>
@@ -174,9 +167,6 @@
   <data name="mOKButton.Location" type="System.Drawing.Point, System.Drawing">
     <value>40, 540</value>
   </data>
-  <data name="mOKButton.TabIndex" type="System.Int32, mscorlib">
-    <value>22</value>
-  </data>
   <data name="mCancelButton.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
   </data>
@@ -188,9 +178,6 @@
   </data>
   <data name="mCancelButton.Location" type="System.Drawing.Point, System.Drawing">
     <value>158, 540</value>
-  </data>
-  <data name="mCancelButton.TabIndex" type="System.Int32, mscorlib">
-    <value>23</value>
   </data>
   <data name="mCancelButton.Text" xml:space="preserve">
     <value>&amp;Cancelar</value>
@@ -289,7 +276,7 @@
     <value />
   </data>
   <data name="mbtnDesendingOrder.Location" type="System.Drawing.Point, System.Drawing">
-    <value>156, 34</value>
+    <value>156, 25</value>
   </data>
   <data name="mbtnDesendingOrder.Text" xml:space="preserve">
     <value>Ordem d&amp;escendente</value>
@@ -304,7 +291,7 @@
     <value />
   </data>
   <data name="mbtnAscendingOrder.Location" type="System.Drawing.Point, System.Drawing">
-    <value>10, 34</value>
+    <value>10, 25</value>
   </data>
   <data name="mbtnAscendingOrder.Text" xml:space="preserve">
     <value>Ordem &amp;ascendente</value>
@@ -354,9 +341,6 @@
   <data name="m_txtCharToReplaceWithSpace.Size" type="System.Drawing.Size, System.Drawing">
     <value>100, 22</value>
   </data>
-  <data name="m_txtCharToReplaceWithSpace.TabIndex" type="System.Int32, mscorlib">
-    <value>12</value>
-  </data>
   <data name="m_txtPageIdentificationString.AccessibleName" xml:space="preserve">
     <value>Identificação de página</value>
   </data>
@@ -371,9 +355,6 @@
   </data>
   <data name="m_txtPageIdentificationString.Location" type="System.Drawing.Point, System.Drawing">
     <value>223, 158</value>
-  </data>
-  <data name="m_txtPageIdentificationString.TabIndex" type="System.Int32, mscorlib">
-    <value>16</value>
   </data>
   <data name="m_numCharCountToTruncateFromStart.AccessibleName" xml:space="preserve">
     <value>Número de carateres iniciais a decorar</value>
@@ -392,9 +373,6 @@
   </data>
   <data name="m_numCharCountToTruncateFromStart.Size" type="System.Drawing.Size, System.Drawing">
     <value>78, 22</value>
-  </data>
-  <data name="m_numCharCountToTruncateFromStart.TabIndex" type="System.Int32, mscorlib">
-    <value>14</value>
   </data>
   <data name="m_grpCreateSectionForEachAudioFile.AccessibleName" xml:space="preserve">
     <value>Caixa de grupo para criar uma secção para cada ficheiro áudio.</value>
@@ -444,9 +422,6 @@
   <data name="mchktPageIdentificationString.Size" type="System.Drawing.Size, System.Drawing">
     <value>167, 20</value>
   </data>
-  <data name="mchktPageIdentificationString.TabIndex" type="System.Int32, mscorlib">
-    <value>15</value>
-  </data>
   <data name="mchktPageIdentificationString.Text" xml:space="preserve">
     <value>&amp;Identificação de página</value>
   </data>
@@ -468,9 +443,6 @@
   <data name="mchkCountToTruncateFromStart.Size" type="System.Drawing.Size, System.Drawing">
     <value>218, 20</value>
   </data>
-  <data name="mchkCountToTruncateFromStart.TabIndex" type="System.Int32, mscorlib">
-    <value>13</value>
-  </data>
   <data name="mchkCountToTruncateFromStart.Text" xml:space="preserve">
     <value># de carateres iniciais a decorar</value>
   </data>
@@ -491,9 +463,6 @@
   </data>
   <data name="mchkToReplaceWithSpace.Size" type="System.Drawing.Size, System.Drawing">
     <value>189, 20</value>
-  </data>
-  <data name="mchkToReplaceWithSpace.TabIndex" type="System.Int32, mscorlib">
-    <value>11</value>
   </data>
   <data name="mchkToReplaceWithSpace.Text" xml:space="preserve">
     <value>&amp;Para substituir com espaço</value>
@@ -525,9 +494,6 @@
   <data name="m_rdbPhraseDetectionOnImportedFiles.Size" type="System.Drawing.Size, System.Drawing">
     <value>286, 20</value>
   </data>
-  <data name="m_rdbPhraseDetectionOnImportedFiles.TabIndex" type="System.Int32, mscorlib">
-    <value>18</value>
-  </data>
   <data name="m_rdbPhraseDetectionOnImportedFiles.Text" xml:space="preserve">
     <value>&amp;Deteção de frases nos ficheiros importados</value>
   </data>
@@ -542,9 +508,6 @@
   </data>
   <data name="m_rdbSplitPhrasesOnImport.Size" type="System.Drawing.Size, System.Drawing">
     <value>175, 20</value>
-  </data>
-  <data name="m_rdbSplitPhrasesOnImport.TabIndex" type="System.Int32, mscorlib">
-    <value>19</value>
   </data>
   <data name="m_rdbSplitPhrasesOnImport.Text" xml:space="preserve">
     <value>D&amp;ividir frases ao importar</value>
@@ -563,9 +526,6 @@
   </data>
   <data name="m_grpSplitPhraseOrPhraseDetection.Size" type="System.Drawing.Size, System.Drawing">
     <value>329, 103</value>
-  </data>
-  <data name="m_grpSplitPhraseOrPhraseDetection.TabIndex" type="System.Int32, mscorlib">
-    <value>17</value>
   </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
     <value>351, 587</value>

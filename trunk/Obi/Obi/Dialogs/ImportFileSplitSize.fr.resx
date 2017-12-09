@@ -172,7 +172,7 @@
     <value>40, 538</value>
   </data>
   <data name="mOKButton.TabIndex" type="System.Int32, mscorlib">
-    <value>22</value>
+    <value>23</value>
   </data>
   <data name="mCancelButton.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
@@ -187,7 +187,7 @@
     <value>158, 538</value>
   </data>
   <data name="mCancelButton.TabIndex" type="System.Int32, mscorlib">
-    <value>23</value>
+    <value>24</value>
   </data>
   <data name="mCancelButton.Text" xml:space="preserve">
     <value>&amp;Annuler</value>
@@ -333,9 +333,6 @@
   <data name="m_txtCharToReplaceWithSpace.Size" type="System.Drawing.Size, System.Drawing">
     <value>90, 22</value>
   </data>
-  <data name="m_txtCharToReplaceWithSpace.TabIndex" type="System.Int32, mscorlib">
-    <value>12</value>
-  </data>
   <data name="m_txtPageIdentificationString.AccessibleName" xml:space="preserve">
     <value>Page d'identification</value>
   </data>
@@ -354,9 +351,6 @@
   <data name="m_txtPageIdentificationString.Size" type="System.Drawing.Size, System.Drawing">
     <value>90, 22</value>
   </data>
-  <data name="m_txtPageIdentificationString.TabIndex" type="System.Int32, mscorlib">
-    <value>16</value>
-  </data>
   <data name="m_numCharCountToTruncateFromStart.AccessibleName" xml:space="preserve">
     <value>Nombre de caractères initiaux à retrancher</value>
   </data>
@@ -374,9 +368,6 @@
   </data>
   <data name="m_numCharCountToTruncateFromStart.Size" type="System.Drawing.Size, System.Drawing">
     <value>90, 22</value>
-  </data>
-  <data name="m_numCharCountToTruncateFromStart.TabIndex" type="System.Int32, mscorlib">
-    <value>14</value>
   </data>
   <data name="m_grpCreateSectionForEachAudioFile.AccessibleName" xml:space="preserve">
     <value>Boîte de groupe pour créer une section pour chaque fichier audio.</value>
@@ -453,9 +444,6 @@
   <data name="mchktPageIdentificationString.Size" type="System.Drawing.Size, System.Drawing">
     <value>155, 20</value>
   </data>
-  <data name="mchktPageIdentificationString.TabIndex" type="System.Int32, mscorlib">
-    <value>15</value>
-  </data>
   <data name="mchktPageIdentificationString.Text" xml:space="preserve">
     <value>&amp;Identification de page</value>
   </data>
@@ -477,9 +465,6 @@
   <data name="mchkCountToTruncateFromStart.Size" type="System.Drawing.Size, System.Drawing">
     <value>218, 20</value>
   </data>
-  <data name="mchkCountToTruncateFromStart.TabIndex" type="System.Int32, mscorlib">
-    <value>13</value>
-  </data>
   <data name="mchkCountToTruncateFromStart.Text" xml:space="preserve">
     <value># &amp;caractères initiaux à retrancher</value>
   </data>
@@ -500,9 +485,6 @@
   </data>
   <data name="mchkToReplaceWithSpace.Size" type="System.Drawing.Size, System.Drawing">
     <value>170, 20</value>
-  </data>
-  <data name="mchkToReplaceWithSpace.TabIndex" type="System.Int32, mscorlib">
-    <value>11</value>
   </data>
   <data name="mchkToReplaceWithSpace.Text" xml:space="preserve">
     <value>&amp;À remplacer par du vide</value>
@@ -535,7 +517,7 @@
     <value>296, 20</value>
   </data>
   <data name="m_rdbPhraseDetectionOnImportedFiles.TabIndex" type="System.Int32, mscorlib">
-    <value>18</value>
+    <value>22</value>
   </data>
   <data name="m_rdbPhraseDetectionOnImportedFiles.Text" xml:space="preserve">
     <value>&amp;Détection de phrases sur les fichiers importés</value>
@@ -551,9 +533,6 @@
   </data>
   <data name="m_rdbSplitPhrasesOnImport.Size" type="System.Drawing.Size, System.Drawing">
     <value>252, 20</value>
-  </data>
-  <data name="m_rdbSplitPhrasesOnImport.TabIndex" type="System.Int32, mscorlib">
-    <value>19</value>
   </data>
   <data name="m_rdbSplitPhrasesOnImport.Text" xml:space="preserve">
     <value>&amp;Fractionner les phrases à l'importation</value>
@@ -572,9 +551,6 @@
   </data>
   <data name="m_grpSplitPhraseOrPhraseDetection.Size" type="System.Drawing.Size, System.Drawing">
     <value>447, 103</value>
-  </data>
-  <data name="m_grpSplitPhraseOrPhraseDetection.TabIndex" type="System.Int32, mscorlib">
-    <value>17</value>
   </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
     <value>471, 580</value>

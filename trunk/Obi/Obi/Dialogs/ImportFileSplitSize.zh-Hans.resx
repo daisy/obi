@@ -134,10 +134,6 @@
   <data name="label1.Size" type="System.Drawing.Size, System.Drawing">
     <value>152, 16</value>
   </data>
-  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="label1.TabIndex" type="System.Int32, mscorlib">
-    <value>20</value>
-  </data>
   <data name="label1.Text" xml:space="preserve">
     <value>句最大时长（分钟数）：</value>
   </data>
@@ -159,9 +155,6 @@
   <data name="mPhraseSizeTextBox.Size" type="System.Drawing.Size, System.Drawing">
     <value>132, 22</value>
   </data>
-  <data name="mPhraseSizeTextBox.TabIndex" type="System.Int32, mscorlib">
-    <value>21</value>
-  </data>
   <data name="mOKButton.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
   </data>
@@ -173,9 +166,6 @@
   </data>
   <data name="mOKButton.Location" type="System.Drawing.Point, System.Drawing">
     <value>40, 532</value>
-  </data>
-  <data name="mOKButton.TabIndex" type="System.Int32, mscorlib">
-    <value>22</value>
   </data>
   <data name="mOKButton.Text" xml:space="preserve">
     <value>确定&amp;O</value>
@@ -191,9 +181,6 @@
   </data>
   <data name="mCancelButton.Location" type="System.Drawing.Point, System.Drawing">
     <value>158, 532</value>
-  </data>
-  <data name="mCancelButton.TabIndex" type="System.Int32, mscorlib">
-    <value>23</value>
   </data>
   <data name="mCancelButton.Text" xml:space="preserve">
     <value>取消&amp;C</value>
@@ -292,7 +279,7 @@
     <value />
   </data>
   <data name="mbtnDesendingOrder.Location" type="System.Drawing.Point, System.Drawing">
-    <value>168, 34</value>
+    <value>168, 30</value>
   </data>
   <data name="mbtnDesendingOrder.Size" type="System.Drawing.Size, System.Drawing">
     <value>132, 26</value>
@@ -310,7 +297,7 @@
     <value />
   </data>
   <data name="mbtnAscendingOrder.Location" type="System.Drawing.Point, System.Drawing">
-    <value>10, 34</value>
+    <value>10, 30</value>
   </data>
   <data name="mbtnAscendingOrder.Size" type="System.Drawing.Size, System.Drawing">
     <value>118, 26</value>
@@ -363,9 +350,6 @@
   <data name="m_txtCharToReplaceWithSpace.Size" type="System.Drawing.Size, System.Drawing">
     <value>100, 22</value>
   </data>
-  <data name="m_txtCharToReplaceWithSpace.TabIndex" type="System.Int32, mscorlib">
-    <value>12</value>
-  </data>
   <data name="m_txtPageIdentificationString.AccessibleName" xml:space="preserve">
     <value>页码识别</value>
   </data>
@@ -381,9 +365,6 @@
   <data name="m_txtPageIdentificationString.Location" type="System.Drawing.Point, System.Drawing">
     <value>223, 161</value>
   </data>
-  <data name="m_txtPageIdentificationString.TabIndex" type="System.Int32, mscorlib">
-    <value>16</value>
-  </data>
   <data name="m_numCharCountToTruncateFromStart.AccessibleName" xml:space="preserve">
     <value>要削减的首字符数</value>
   </data>
@@ -398,9 +379,6 @@
   </data>
   <data name="m_numCharCountToTruncateFromStart.Location" type="System.Drawing.Point, System.Drawing">
     <value>223, 133</value>
-  </data>
-  <data name="m_numCharCountToTruncateFromStart.TabIndex" type="System.Int32, mscorlib">
-    <value>14</value>
   </data>
   <data name="m_grpCreateSectionForEachAudioFile.AccessibleName" xml:space="preserve">
     <value>为每个音频文件添加章节组合框</value>
@@ -450,9 +428,6 @@
   <data name="mchktPageIdentificationString.Size" type="System.Drawing.Size, System.Drawing">
     <value>86, 20</value>
   </data>
-  <data name="mchktPageIdentificationString.TabIndex" type="System.Int32, mscorlib">
-    <value>15</value>
-  </data>
   <data name="mchktPageIdentificationString.Text" xml:space="preserve">
     <value>页码识别&amp;I</value>
   </data>
@@ -474,9 +449,6 @@
   <data name="mchkCountToTruncateFromStart.Size" type="System.Drawing.Size, System.Drawing">
     <value>166, 20</value>
   </data>
-  <data name="mchkCountToTruncateFromStart.TabIndex" type="System.Int32, mscorlib">
-    <value>13</value>
-  </data>
   <data name="mchkCountToTruncateFromStart.Text" xml:space="preserve">
     <value># 要削减的初始角色&amp;C</value>
   </data>
@@ -497,9 +469,6 @@
   </data>
   <data name="mchkToReplaceWithSpace.Size" type="System.Drawing.Size, System.Drawing">
     <value>111, 20</value>
-  </data>
-  <data name="mchkToReplaceWithSpace.TabIndex" type="System.Int32, mscorlib">
-    <value>11</value>
   </data>
   <data name="mchkToReplaceWithSpace.Text" xml:space="preserve">
     <value>用空格代替&amp;T</value>
@@ -531,9 +500,6 @@
   <data name="m_rdbPhraseDetectionOnImportedFiles.Size" type="System.Drawing.Size, System.Drawing">
     <value>200, 20</value>
   </data>
-  <data name="m_rdbPhraseDetectionOnImportedFiles.TabIndex" type="System.Int32, mscorlib">
-    <value>18</value>
-  </data>
   <data name="m_rdbPhraseDetectionOnImportedFiles.Text" xml:space="preserve">
     <value>对导入文件进行句群检测&amp;P</value>
   </data>
@@ -548,9 +514,6 @@
   </data>
   <data name="m_rdbSplitPhrasesOnImport.Size" type="System.Drawing.Size, System.Drawing">
     <value>140, 20</value>
-  </data>
-  <data name="m_rdbSplitPhrasesOnImport.TabIndex" type="System.Int32, mscorlib">
-    <value>19</value>
   </data>
   <data name="m_rdbSplitPhrasesOnImport.Text" xml:space="preserve">
     <value>拆分导入的句群&amp;S</value>
@@ -569,9 +532,6 @@
   </data>
   <data name="m_grpSplitPhraseOrPhraseDetection.Size" type="System.Drawing.Size, System.Drawing">
     <value>329, 103</value>
-  </data>
-  <data name="m_grpSplitPhraseOrPhraseDetection.TabIndex" type="System.Int32, mscorlib">
-    <value>17</value>
   </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
     <value>351, 576</value>

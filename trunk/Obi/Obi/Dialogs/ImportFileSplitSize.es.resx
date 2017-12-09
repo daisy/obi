@@ -132,7 +132,7 @@
   </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="label1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 51</value>
+    <value>22, 51</value>
   </data>
   <data name="label1.Size" type="System.Drawing.Size, System.Drawing">
     <value>195, 16</value>
@@ -157,7 +157,7 @@
     <value />
   </data>
   <data name="mPhraseSizeTextBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>202, 51</value>
+    <value>223, 51</value>
   </data>
   <data name="mPhraseSizeTextBox.Size" type="System.Drawing.Size, System.Drawing">
     <value>112, 22</value>
@@ -178,7 +178,7 @@
     <value>57, 529</value>
   </data>
   <data name="mOKButton.TabIndex" type="System.Int32, mscorlib">
-    <value>22</value>
+    <value>23</value>
   </data>
   <data name="mOKButton.Text" xml:space="preserve">
     <value>A&amp;ceptar</value>
@@ -196,7 +196,7 @@
     <value>175, 529</value>
   </data>
   <data name="mCancelButton.TabIndex" type="System.Int32, mscorlib">
-    <value>23</value>
+    <value>24</value>
   </data>
   <data name="mCancelButton.Text" xml:space="preserve">
     <value>&amp;Cancelar</value>
@@ -295,7 +295,7 @@
     <value />
   </data>
   <data name="mbtnDesendingOrder.Location" type="System.Drawing.Point, System.Drawing">
-    <value>168, 34</value>
+    <value>168, 30</value>
   </data>
   <data name="mbtnDesendingOrder.Size" type="System.Drawing.Size, System.Drawing">
     <value>140, 26</value>
@@ -313,7 +313,7 @@
     <value />
   </data>
   <data name="mbtnAscendingOrder.Location" type="System.Drawing.Point, System.Drawing">
-    <value>10, 34</value>
+    <value>10, 30</value>
   </data>
   <data name="mbtnAscendingOrder.Text" xml:space="preserve">
     <value>Orden &amp;A&amp;scendente</value>
@@ -328,7 +328,7 @@
     <value />
   </data>
   <data name="m_grpArrangeAudioFiles.Size" type="System.Drawing.Size, System.Drawing">
-    <value>315, 65</value>
+    <value>334, 65</value>
   </data>
   <data name="m_grpArrangeAudioFiles.Text" xml:space="preserve">
     <value>Organizar los archivos de audio:</value>
@@ -363,9 +363,6 @@
   <data name="m_txtCharToReplaceWithSpace.Size" type="System.Drawing.Size, System.Drawing">
     <value>100, 22</value>
   </data>
-  <data name="m_txtCharToReplaceWithSpace.TabIndex" type="System.Int32, mscorlib">
-    <value>12</value>
-  </data>
   <data name="m_txtPageIdentificationString.AccessibleName" xml:space="preserve">
     <value>Identificación de página</value>
   </data>
@@ -380,9 +377,6 @@
   </data>
   <data name="m_txtPageIdentificationString.Location" type="System.Drawing.Point, System.Drawing">
     <value>242, 157</value>
-  </data>
-  <data name="m_txtPageIdentificationString.TabIndex" type="System.Int32, mscorlib">
-    <value>16</value>
   </data>
   <data name="m_numCharCountToTruncateFromStart.AccessibleName" xml:space="preserve">
     <value>Número de caracteres iniciales a eliminar</value>
@@ -401,9 +395,6 @@
   </data>
   <data name="m_numCharCountToTruncateFromStart.Size" type="System.Drawing.Size, System.Drawing">
     <value>78, 22</value>
-  </data>
-  <data name="m_numCharCountToTruncateFromStart.TabIndex" type="System.Int32, mscorlib">
-    <value>14</value>
   </data>
   <data name="m_grpCreateSectionForEachAudioFile.AccessibleName" xml:space="preserve">
     <value>Cuadro de grupo para crear una sección para cada archivo de audio</value>
@@ -453,9 +444,6 @@
   <data name="mchktPageIdentificationString.Size" type="System.Drawing.Size, System.Drawing">
     <value>169, 20</value>
   </data>
-  <data name="mchktPageIdentificationString.TabIndex" type="System.Int32, mscorlib">
-    <value>15</value>
-  </data>
   <data name="mchktPageIdentificationString.Text" xml:space="preserve">
     <value>&amp;Identificación de página</value>
   </data>
@@ -477,9 +465,6 @@
   <data name="mchkCountToTruncateFromStart.Size" type="System.Drawing.Size, System.Drawing">
     <value>233, 20</value>
   </data>
-  <data name="mchkCountToTruncateFromStart.TabIndex" type="System.Int32, mscorlib">
-    <value>13</value>
-  </data>
   <data name="mchkCountToTruncateFromStart.Text" xml:space="preserve">
     <value># de &amp;caracteres iniciales a eliminar</value>
   </data>
@@ -500,9 +485,6 @@
   </data>
   <data name="mchkToReplaceWithSpace.Size" type="System.Drawing.Size, System.Drawing">
     <value>204, 20</value>
-  </data>
-  <data name="mchkToReplaceWithSpace.TabIndex" type="System.Int32, mscorlib">
-    <value>11</value>
   </data>
   <data name="mchkToReplaceWithSpace.Text" xml:space="preserve">
     <value>Para &amp;reemplazar con espacio</value>
@@ -535,7 +517,7 @@
     <value>310, 20</value>
   </data>
   <data name="m_rdbPhraseDetectionOnImportedFiles.TabIndex" type="System.Int32, mscorlib">
-    <value>18</value>
+    <value>22</value>
   </data>
   <data name="m_rdbPhraseDetectionOnImportedFiles.Text" xml:space="preserve">
     <value>Detección de &amp;frases en los archivos importados</value>
@@ -551,9 +533,6 @@
   </data>
   <data name="m_rdbSplitPhrasesOnImport.Size" type="System.Drawing.Size, System.Drawing">
     <value>170, 20</value>
-  </data>
-  <data name="m_rdbSplitPhrasesOnImport.TabIndex" type="System.Int32, mscorlib">
-    <value>19</value>
   </data>
   <data name="m_rdbSplitPhrasesOnImport.Text" xml:space="preserve">
     <value>&amp;Dividir frases al importar</value>
@@ -572,9 +551,6 @@
   </data>
   <data name="m_grpSplitPhraseOrPhraseDetection.Size" type="System.Drawing.Size, System.Drawing">
     <value>350, 103</value>
-  </data>
-  <data name="m_grpSplitPhraseOrPhraseDetection.TabIndex" type="System.Int32, mscorlib">
-    <value>17</value>
   </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
     <value>374, 578</value>
