@@ -128,6 +128,9 @@
     <value />
   </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="label1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>28, 53</value>
+  </data>
   <data name="label1.Size" type="System.Drawing.Size, System.Drawing">
     <value>137, 16</value>
   </data>
@@ -151,7 +154,7 @@
     <value />
   </data>
   <data name="mPhraseSizeTextBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>162, 51</value>
+    <value>170, 51</value>
   </data>
   <data name="mPhraseSizeTextBox.Size" type="System.Drawing.Size, System.Drawing">
     <value>132, 22</value>
@@ -268,7 +271,7 @@
     <value />
   </data>
   <data name="mbtnDesendingOrder.Location" type="System.Drawing.Point, System.Drawing">
-    <value>168, 34</value>
+    <value>164, 25</value>
   </data>
   <data name="mbtnDesendingOrder.Size" type="System.Drawing.Size, System.Drawing">
     <value>132, 26</value>
@@ -490,7 +493,7 @@
     <value>12, 215</value>
   </data>
   <data name="m_grpCreateSectionForEachAudioFile.Size" type="System.Drawing.Size, System.Drawing">
-    <value>329, 187</value>
+    <value>354, 187</value>
   </data>
   <data name="m_rdbPhraseDetectionOnImportedFiles.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
@@ -544,7 +547,7 @@
     <value>17</value>
   </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>351, 583</value>
+    <value>381, 583</value>
   </data>
   <data name="$this.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
@@ -554,9 +557,6 @@
   </data>
   <data name="$this.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
-  </data>
-  <data name="$this.ShowHelp" type="System.Boolean, mscorlib">
-    <value>True</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
     <value>音声ファイルインポート設定</value>
