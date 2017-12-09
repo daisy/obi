@@ -169,7 +169,7 @@
     <value />
   </data>
   <data name="mOKButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>40, 546</value>
+    <value>67, 546</value>
   </data>
   <data name="mOKButton.TabIndex" type="System.Int32, mscorlib">
     <value>22</value>
@@ -187,7 +187,7 @@
     <value />
   </data>
   <data name="mCancelButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>158, 546</value>
+    <value>185, 546</value>
   </data>
   <data name="mCancelButton.TabIndex" type="System.Int32, mscorlib">
     <value>23</value>
@@ -478,7 +478,7 @@
     <value>12, 215</value>
   </data>
   <data name="m_grpCreateSectionForEachAudioFile.Size" type="System.Drawing.Size, System.Drawing">
-    <value>329, 197</value>
+    <value>354, 197</value>
   </data>
   <data name="m_rdbPhraseDetectionOnImportedFiles.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
@@ -526,10 +526,10 @@
     <value>12, 424</value>
   </data>
   <data name="m_grpSplitPhraseOrPhraseDetection.Size" type="System.Drawing.Size, System.Drawing">
-    <value>329, 103</value>
+    <value>354, 103</value>
   </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>351, 588</value>
+    <value>388, 588</value>
   </data>
   <data name="$this.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
