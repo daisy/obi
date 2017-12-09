@@ -602,6 +602,16 @@ namespace Obi.Dialogs
               
         }
 
+        private void m_txtCharToReplaceWithSpace_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void m_grpCreateSectionForEachAudioFile_Enter(object sender, EventArgs e)
+        {
+
+        }
+
  
     }
 }

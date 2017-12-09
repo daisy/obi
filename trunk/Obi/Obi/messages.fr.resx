@@ -2722,6 +2722,24 @@ tester "Figer la largeur du volet du contenu" ?(Recommandé)</value>
     <value>Pages:</value>
   </data>
   <data name="AutoPageGeneration_Progress" xml:space="preserve">
-    <value>Auto page generation in progress. Please wait..</value>
+    <value>Production automatique des pages en cours. Veuillez patienter…</value>
+  </data>
+  <data name="NoGapsFoundInPages" xml:space="preserve">
+    <value>Pas de blanc trouvé dans les pages</value>
+  </data>
+  <data name="EmptyPagesFilledInGaps" xml:space="preserve">
+    <value>Pages blanches remplies</value>
+  </data>
+  <data name="Project_DoNotDisplayMessageBoxForShowingSection" xml:space="preserve">
+    <value>Ne pas afficher de boîte de dialogue lors d'un déplacement vers une phrase d'une autre section</value>
+  </data>
+  <data name="NoAudioInSection" xml:space="preserve">
+    <value>Pas d'audio</value>
+  </data>
+  <data name="NotEnoughSectionsToImportFiles" xml:space="preserve">
+    <value>Vous n'avez pas assez de sections pour importer tous les fichiers.</value>
+  </data>
+  <data name="TimeElapsedCannotBeCalculated" xml:space="preserve">
+    <value>Le temps écoulé ne peut pas être calculé car la marque de fin est antérieure à la marque de début</value>
   </data>
 </root>

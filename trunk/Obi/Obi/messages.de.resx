@@ -2715,4 +2715,28 @@ Fehlertext: {1}</value>
     <value>Seiten löschen</value>
     <comment>Command</comment>
   </data>
+  <data name="Pages" xml:space="preserve">
+    <value>Seiten:</value>
+  </data>
+  <data name="AutoPageGeneration_Progress" xml:space="preserve">
+    <value>Seiten werden erstellt. Bitte warten …</value>
+  </data>
+  <data name="NoGapsFoundInPages" xml:space="preserve">
+    <value>Nummernfolge der Seitenzahlen komplett</value>
+  </data>
+  <data name="EmptyPagesFilledInGaps" xml:space="preserve">
+    <value>Leere Seiten für vollständige Nummernfolge eingefügt</value>
+  </data>
+  <data name="Project_DoNotDisplayMessageBoxForShowingSection" xml:space="preserve">
+    <value>Benachrichtigung ausschalten beim Sprung in andere Sektion</value>
+  </data>
+  <data name="NoAudioInSection" xml:space="preserve">
+    <value>Kein Ton</value>
+  </data>
+  <data name="NotEnoughSectionsToImportFiles" xml:space="preserve">
+    <value>Zu wenige Sektionen zum Import aller Dateien.</value>
+  </data>
+  <data name="TimeElapsedCannotBeCalculated" xml:space="preserve">
+    <value>Die verstrichene Zeit kann nicht berechnet werden, da die Endmarke vor Beginn der Markierung steht</value>
+  </data>
 </root>
