@@ -154,7 +154,10 @@
     <value />
   </data>
   <data name="mPhraseSizeTextBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>227, 51</value>
+    <value>310, 51</value>
+  </data>
+  <data name="mPhraseSizeTextBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>90, 22</value>
   </data>
   <data name="mPhraseSizeTextBox.TabIndex" type="System.Int32, mscorlib">
     <value>21</value>
@@ -169,7 +172,7 @@
     <value />
   </data>
   <data name="mOKButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>40, 538</value>
+    <value>110, 538</value>
   </data>
   <data name="mOKButton.TabIndex" type="System.Int32, mscorlib">
     <value>23</value>
@@ -184,7 +187,7 @@
     <value />
   </data>
   <data name="mCancelButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>158, 538</value>
+    <value>218, 538</value>
   </data>
   <data name="mCancelButton.TabIndex" type="System.Int32, mscorlib">
     <value>24</value>
@@ -204,6 +207,9 @@
   <data name="lstManualArrange.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
   </data>
+  <data name="lstManualArrange.Size" type="System.Drawing.Size, System.Drawing">
+    <value>335, 116</value>
+  </data>
   <data name="m_btnMoveUp.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
   </data>
@@ -216,6 +222,9 @@
   <data name="m_btnMoveUp.Text" xml:space="preserve">
     <value>Vers le &amp;Haut</value>
   </data>
+  <data name="m_btnMoveUp.Location" type="System.Drawing.Point, System.Drawing">
+    <value>350, 11</value>
+  </data>
   <data name="m_btnMoveDown.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
   </data>
@@ -224,6 +233,9 @@
   </data>
   <data name="m_btnMoveDown.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
+  </data>
+  <data name="m_btnMoveDown.Location" type="System.Drawing.Point, System.Drawing">
+    <value>350, 43</value>
   </data>
   <data name="m_btnMoveDown.Text" xml:space="preserve">
     <value>Vers le &amp;Bas</value>
@@ -240,6 +252,9 @@
   <data name="m_btnAdd.Text" xml:space="preserve">
     <value>&amp;Ajouter</value>
   </data>
+  <data name="m_btnAdd.Location" type="System.Drawing.Point, System.Drawing">
+    <value>350, 72</value>
+  </data>
   <data name="m_grpAddFiles.AccessibleName" xml:space="preserve">
     <value>Boîte de groupe pour ajouter et organiser les fichiers.</value>
   </data>
@@ -251,6 +266,9 @@
   </data>
   <data name="m_btnRemove.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
+  </data>
+  <data name="m_btnRemove.Location" type="System.Drawing.Point, System.Drawing">
+    <value>351,101</value>
   </data>
   <data name="m_btnRemove.Text" xml:space="preserve">
     <value>&amp;Retirer</value>
@@ -268,10 +286,10 @@
     <value />
   </data>
   <data name="mbtnDesendingOrder.Location" type="System.Drawing.Point, System.Drawing">
-    <value>168, 25</value>
+    <value>230, 25</value>
   </data>
   <data name="mbtnDesendingOrder.Size" type="System.Drawing.Size, System.Drawing">
-    <value>132, 26</value>
+    <value>169, 26</value>
   </data>
   <data name="mbtnDesendingOrder.Text" xml:space="preserve">
     <value>Ordre &amp;décroissant</value>
@@ -285,8 +303,11 @@
   <data name="mbtnAscendingOrder.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
   </data>
+  <data name="mbtnAscendingOrder.Location" type="System.Drawing.Point, System.Drawing">
+    <value>32, 25</value>
+  </data>
   <data name="mbtnAscendingOrder.Size" type="System.Drawing.Size, System.Drawing">
-    <value>118, 26</value>
+    <value>160, 26</value>
   </data>
   <data name="mbtnAscendingOrder.Text" xml:space="preserve">
     <value>Ordre &amp;croissant</value>
@@ -302,6 +323,9 @@
   </data>
   <data name="m_grpArrangeAudioFiles.Text" xml:space="preserve">
     <value>Organiser les fichiers audio:</value>
+  </data>
+  <data name="m_grpArrangeAudioFiles.Size" type="System.Drawing.Size, System.Drawing">
+    <value>432, 65</value>
   </data>
   <data name="m_grpAddFiles.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
@@ -328,7 +352,7 @@
     <value />
   </data>
   <data name="m_txtCharToReplaceWithSpace.Location" type="System.Drawing.Point, System.Drawing">
-    <value>255, 103</value>
+    <value>310, 103</value>
   </data>
   <data name="m_txtCharToReplaceWithSpace.Size" type="System.Drawing.Size, System.Drawing">
     <value>90, 22</value>
@@ -346,7 +370,7 @@
     <value />
   </data>
   <data name="m_txtPageIdentificationString.Location" type="System.Drawing.Point, System.Drawing">
-    <value>255, 159</value>
+    <value>310, 159</value>
   </data>
   <data name="m_txtPageIdentificationString.Size" type="System.Drawing.Size, System.Drawing">
     <value>90, 22</value>
@@ -364,7 +388,7 @@
     <value />
   </data>
   <data name="m_numCharCountToTruncateFromStart.Location" type="System.Drawing.Point, System.Drawing">
-    <value>255, 131</value>
+    <value>310, 131</value>
   </data>
   <data name="m_numCharCountToTruncateFromStart.Size" type="System.Drawing.Size, System.Drawing">
     <value>90, 22</value>
