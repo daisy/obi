@@ -5272,6 +5272,7 @@ for (int j = 0;
         {
             if (this.TransportBar.IsPlayerActive && this.Selection != null)
             {
+                this.TransportBar.Pause();
                 this.Selection = new AudioSelection(this.TransportBar.CurrentPlaylist.CurrentPhrase, mContentView, new AudioRange(this.TransportBar.CurrentPlaylist.CurrentTimeInAsset));
             }
             mContentView.BeginSpecialNode = Selection.EmptyNodeForSelection; //@AssociateNode
