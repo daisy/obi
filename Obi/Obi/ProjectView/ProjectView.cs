@@ -5274,6 +5274,10 @@ for (int j = 0;
             {
                 this.TransportBar.Pause();
                 this.Selection = new AudioSelection(this.TransportBar.CurrentPlaylist.CurrentPhrase, mContentView, new AudioRange(this.TransportBar.CurrentPlaylist.CurrentTimeInAsset));
+                if (ObiForm.Settings.PlayOnNavigate)
+                {
+                    TransportBar.Pause();
+                }
             }
             mContentView.BeginSpecialNode = Selection.EmptyNodeForSelection; //@AssociateNode
 
@@ -5291,9 +5295,13 @@ for (int j = 0;
                 }
                 m_TotalCursorTime = this.Selection.Node.Duration - m_TotalCursorTime;
             }
-            else if (this.Selection != null && this.Selection.Node != null)
+            else if (this.Selection != null && this.Selection.Node != null && !(this.Selection is AudioSelection) && !this.TransportBar.IsPlayerActive)
             {
                 m_TotalCursorTime = this.Selection.Node.Duration;
+            }
+            else if(this.Selection != null && this.Selection.Node != null &&  !(this.Selection is AudioSelection) && this.TransportBar.IsPlayerActive)
+            {
+                m_TotalCursorTime = this.Selection.Node.Duration - this.TransportBar.CurrentPlaylist.CurrentTimeInAsset;
             }
             //else if (this.TransportBar.IsPlayerActive)
             //{
@@ -5312,6 +5320,10 @@ for (int j = 0;
             {
                 TransportBar.Pause();
                 this.Selection = new AudioSelection(this.TransportBar.CurrentPlaylist.CurrentPhrase, mContentView, new AudioRange(this.TransportBar.CurrentPlaylist.CurrentTimeInAsset));
+                if (ObiForm.Settings.PlayOnNavigate)
+                {
+                    TransportBar.Pause();
+                }
             }
 
             mContentView.EndSpecialNode = Selection.EmptyNodeForSelection; //@AssociateNode
@@ -5342,9 +5354,24 @@ for (int j = 0;
                 }
                
             }
-            else if (this.Selection != null && this.Selection.Node != null)
+            else if (this.Selection != null && this.Selection.Node != null && !(this.Selection is AudioSelection) && !this.TransportBar.IsPlayerActive)
             {
-                m_TotalCursorTime += this.Selection.Node.Duration;
+                if (mContentView.BeginSpecialNode != mContentView.EndSpecialNode)
+                {
+                    m_TotalCursorTime += this.Selection.Node.Duration;
+                }             
+            }
+            else if (this.Selection != null && this.Selection.Node != null && !(this.Selection is AudioSelection) && this.TransportBar.IsPlayerActive)
+            {
+                if (mContentView.BeginSpecialNode != mContentView.EndSpecialNode)
+                {
+                    m_TotalCursorTime += this.TransportBar.CurrentPlaylist.CurrentTimeInAsset;
+                }
+                else
+                {
+                    double tempTime = this.Selection.Node.Duration - this.TransportBar.CurrentPlaylist.CurrentTimeInAsset;
+                    m_TotalCursorTime = m_TotalCursorTime - tempTime;
+                }
             }
 
             TransportBar.PlayAudioClue(TransportBar.AudioCluesSelection.SelectionEnd);
@@ -5386,6 +5413,10 @@ for (int j = 0;
                 }
 
             AssignSpecialNodeDialog.ShowDialog();
+            if (this.TransportBar.IsPlayerActive)
+            {
+                this.TransportBar.Stop();
+            }
             if (AssignSpecialNodeDialog.DialogResult == DialogResult.OK)
             {
                 customClass = AssignSpecialNodeDialog.SelectedSpecialNode;
