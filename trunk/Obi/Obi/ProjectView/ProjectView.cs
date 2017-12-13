@@ -5310,7 +5310,7 @@ for (int j = 0;
 
             if (this.TransportBar.IsPlayerActive && this.Selection != null)
             {
-               
+                TransportBar.Pause();
                 this.Selection = new AudioSelection(this.TransportBar.CurrentPlaylist.CurrentPhrase, mContentView, new AudioRange(this.TransportBar.CurrentPlaylist.CurrentTimeInAsset));
             }
 
