@@ -3008,7 +3008,10 @@ m_cb_ChooseFont.Visible = false;
                         string newCustomFilePath = System.IO.Path.Combine(shortcutsProfilesDirectory,
                             System.IO.Path.GetFileName(fileDialog.FileName));
                         System.IO.File.Copy(fileDialog.FileName, newCustomFilePath, true);
-                        m_cb_SelectShorcutsProfile.Items.Add(System.IO.Path.GetFileNameWithoutExtension(newCustomFilePath));
+                        if (!m_cb_SelectShorcutsProfile.Items.Contains(System.IO.Path.GetFileNameWithoutExtension(newCustomFilePath)))
+                        {
+                            m_cb_SelectShorcutsProfile.Items.Add(System.IO.Path.GetFileNameWithoutExtension(newCustomFilePath));
+                        }
                     }
                     catch (System.Exception ex)
                     {
@@ -3176,6 +3179,15 @@ m_cb_ChooseFont.Visible = false;
 
         private void LoadShortcutsFromFile(string filePath)
         {
+            string FileName = System.IO.Path.GetFileNameWithoutExtension(filePath);
+            if (m_cb_SelectShorcutsProfile.Items.Contains(FileName))
+            {
+                DialogResult result = MessageBox.Show(Localizer.Message("Preferences_ProfileExists"), Localizer.Message("Caption_Warning"), MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
+                if (result == DialogResult.Cancel)
+                {
+                    return;
+                }
+            }
 
             if (filePath != null && System.IO.File.Exists(filePath))
             {
