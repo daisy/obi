@@ -3747,6 +3747,15 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Show Contents in Content View.
+        /// </summary>
+        internal static string MergeOptions_ShowContents {
+            get {
+                return ResourceManager.GetString("MergeOptions_ShowContents", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The count of phrase to merge cannot be greater than {0}. Please select lesser number of phrases to merge.
         /// </summary>
         internal static string MergePhrases_CountLimitMessage {
