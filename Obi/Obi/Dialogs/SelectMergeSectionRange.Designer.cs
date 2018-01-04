@@ -34,6 +34,7 @@ namespace Obi.Dialogs
             this.m_StatusLabelForMergeSection = new System.Windows.Forms.ToolStripStatusLabel();
             this.m_btn_SelectAll = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.m_btn_ShowContents = new System.Windows.Forms.Button();
             this.helpProvider1 = new System.Windows.Forms.HelpProvider();
             this.m_btn_IncreaseSectionLevel = new System.Windows.Forms.Button();
             this.m_btn_DecreaseSectionLevel = new System.Windows.Forms.Button();
@@ -41,8 +42,8 @@ namespace Obi.Dialogs
             this.m_btn_Merge = new System.Windows.Forms.Button();
             this.m_btn_Undo = new System.Windows.Forms.Button();
             this.m_btn_Close = new System.Windows.Forms.Button();
-            this.m_grp_SectionAudioOperation = new System.Windows.Forms.GroupBox();
             this.m_btnPause = new System.Windows.Forms.Button();
+            this.m_grp_SectionAudioOperation = new System.Windows.Forms.GroupBox();
             this.m_btn_Stop = new System.Windows.Forms.Button();
             this.m_btn_Play = new System.Windows.Forms.Button();
             this.m_lb_listofSectionsToMerge = new System.Windows.Forms.ListBox();
@@ -78,10 +79,18 @@ namespace Obi.Dialogs
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.m_btn_ShowContents);
             this.groupBox2.Controls.Add(this.m_btn_SelectAll);
             resources.ApplyResources(this.groupBox2, "groupBox2");
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.TabStop = false;
+            // 
+            // m_btn_ShowContents
+            // 
+            resources.ApplyResources(this.m_btn_ShowContents, "m_btn_ShowContents");
+            this.m_btn_ShowContents.Name = "m_btn_ShowContents";
+            this.m_btn_ShowContents.UseVisualStyleBackColor = true;
+            this.m_btn_ShowContents.Click += new System.EventHandler(this.m_btn_ShowContents_Click);
             // 
             // helpProvider1
             // 
@@ -137,6 +146,14 @@ namespace Obi.Dialogs
             this.m_btn_Close.UseVisualStyleBackColor = true;
             this.m_btn_Close.Click += new System.EventHandler(this.m_btn_Close_Click);
             // 
+            // m_btnPause
+            // 
+            resources.ApplyResources(this.m_btnPause, "m_btnPause");
+            this.m_btnPause.Name = "m_btnPause";
+            this.helpProvider1.SetShowHelp(this.m_btnPause, ((bool)(resources.GetObject("m_btnPause.ShowHelp"))));
+            this.m_btnPause.UseVisualStyleBackColor = true;
+            this.m_btnPause.Click += new System.EventHandler(this.m_btnPause_Click);
+            // 
             // m_grp_SectionAudioOperation
             // 
             this.m_grp_SectionAudioOperation.Controls.Add(this.m_btnPause);
@@ -145,13 +162,6 @@ namespace Obi.Dialogs
             resources.ApplyResources(this.m_grp_SectionAudioOperation, "m_grp_SectionAudioOperation");
             this.m_grp_SectionAudioOperation.Name = "m_grp_SectionAudioOperation";
             this.m_grp_SectionAudioOperation.TabStop = false;
-            // 
-            // m_btnPause
-            // 
-            resources.ApplyResources(this.m_btnPause, "m_btnPause");
-            this.m_btnPause.Name = "m_btnPause";
-            this.m_btnPause.UseVisualStyleBackColor = true;
-            this.m_btnPause.Click += new System.EventHandler(this.m_btnPause_Click);
             // 
             // m_btn_Stop
             // 
@@ -226,5 +236,6 @@ namespace Obi.Dialogs
         private System.Windows.Forms.Button m_btn_Close;
         private System.Windows.Forms.TextBox m_tb_SectionsSelected;
         private System.Windows.Forms.ToolTip toolTip;
+        private System.Windows.Forms.Button m_btn_ShowContents;
     }
 }
