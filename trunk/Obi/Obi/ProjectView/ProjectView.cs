@@ -1809,23 +1809,13 @@ namespace Obi.ProjectView
 
                     });
                     selectionDialog.ShowDialog();
-                    //  if (selectedSections.Count <= 1)
-                    {
-                        if (temp_NodeSelected != null && temp_NodeSelected.IsRooted)
+             
+                        if (temp_NodeSelected != null && temp_NodeSelected.IsRooted && !selectionDialog.ShowContentsOfContentView)
                         {
                             this.Selection = new NodeSelection(temp_NodeSelected, mTOCView);
                         }
-                        //Console.WriteLine();
-                        // SectionNode nodes = GetSelectedPhraseSection;
-                        // List<SectionNode> selectedSections = selectionDialog.SelectedSections;
-                        //foreach (SectionNode node in selectedSections)
-                        //{
-                        //    mTOCView.Selection = new NodeSelection(node, mContentView);
-                        //    DecreaseSelectedSectionLevel();
-                        //}
 
-                        //   return;
-                    }
+                  
 
                 }
             }
@@ -7201,6 +7191,11 @@ public bool ShowOnlySelectedSection
                 }
 
             }
+        }
+        public void HighlightSelection(SectionNode SelectedPhraseSection)
+        {
+         //   mTOCView.HighlightNodeWithoutSelection = GetSelectedPhraseSection;
+        //    mTOCView.Selection = new NodeSelection(SelectedPhraseSection, mTOCView);
         }
     }
 

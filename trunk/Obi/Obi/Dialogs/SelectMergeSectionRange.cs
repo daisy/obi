@@ -27,6 +27,7 @@ namespace Obi.Dialogs
         private List<int> m_IndexOfSectionSelected = new List<int>();
         private List<SectionNode> m_SelectedSectionListToMerge = new List<SectionNode>();
         private bool m_FlagMerge = false;
+        private bool m_IsShowContents = false;
 
         public event SectionsManipulationDelegate LevelIncrementEvent;
         public event SectionsManipulationDelegate LevelDecrementEvent;
@@ -55,6 +56,7 @@ namespace Obi.Dialogs
             toolTip.SetToolTip(m_btn_IncreaseSectionLevel, Localizer.Message("MergeOptions_IncreaseLevel"));
             toolTip.SetToolTip(m_btn_DecreaseSectionLevel, Localizer.Message("MergeOptions_DecreaseLevel"));
             toolTip.SetToolTip(m_btn_Merge,Localizer.Message("MergeOptions_Merge"));
+            toolTip.SetToolTip(m_btn_ShowContents, Localizer.Message("MergeOptions_ShowContents"));
 
             if (projectView.ObiForm.Settings.ObiFont != this.Font.Name)
             {
@@ -123,6 +125,13 @@ namespace Obi.Dialogs
         public List<SectionNode> SelectedSectionsForDecreaseLevel
         {
             get { return m_SelectedSectionListForDecreaseLevel; }
+        }
+        public bool ShowContentsOfContentView
+        {            
+            get
+            {
+                return m_IsShowContents;
+            }
         }
    
 
@@ -531,13 +540,13 @@ namespace Obi.Dialogs
         private void m_btnMerge_Click(object sender, EventArgs e)
         {
             m_Merge = true;
-           SectionsSelected();        
+           SectionsSelected(false);        
         }
 
         private void m_btn_IncreaseSectionLevel_Click(object sender, EventArgs e)
         {
             m_Merge = false;
-            SectionsSelected();
+            SectionsSelected(false);
             m_SelectedSectionListForIncreaseLevel = m_SelectedSectionList;
             if (LevelIncrementEvent != null)
             {
@@ -545,7 +554,7 @@ namespace Obi.Dialogs
             }
             populateListboxForSectionsAfterLevelchange();        
         }
-        private void SectionsSelected()
+        private void SectionsSelected(bool ShowContentsInContentView)
         {
             List<SectionNode> listOfSelectedSections = new List<SectionNode>();
             for (int i = 0; i < m_lb_listofSectionsToMerge.SelectedItems.Count; i++)
@@ -559,6 +568,18 @@ namespace Obi.Dialogs
                         m_IndexOfSectionSelected.Add(j);
                     }
                 }
+            }
+            if (ShowContentsInContentView)
+            {
+                if (listOfSelectedSections.Count < 1)
+                {
+                    MessageBox.Show(Localizer.Message("MergeOptions_NoSelectionForLevelChange"));
+                    return;
+                }
+                m_ProjectView.Selection = new NodeSelection(listOfSelectedSections[0], m_ContentView);
+                m_ProjectView.HighlightSelection(listOfSelectedSections[0]);
+         //       m_ProjectView.Selection.Node = listOfSelectedSections[0];
+                return;
             }
             if (m_Merge)
             {               
@@ -597,7 +618,7 @@ namespace Obi.Dialogs
         private void m_btn_DecreaseSectionLevel_Click(object sender, EventArgs e)
         {
             m_Merge = false;
-            SectionsSelected();
+            SectionsSelected(false);
             m_SelectedSectionListForDecreaseLevel = m_SelectedSectionList;
             if (LevelDecrementEvent != null)
             {
@@ -609,7 +630,7 @@ namespace Obi.Dialogs
         private void m_btn_Play_Click(object sender, EventArgs e)
         {
             m_Merge = false;
-            SectionsSelected();
+            SectionsSelected(false);
             if (m_ProjectView.TransportBar.CurrentState == Obi.ProjectView.TransportBar.State.Paused)
             {
                 m_ProjectView.TransportBar.PlayOrResume();
@@ -664,12 +685,12 @@ namespace Obi.Dialogs
 
         private void m_btn_Merge_Click(object sender, EventArgs e)
         {
-            m_Merge = true;  
+            m_Merge = true;
             if (m_ProjectView.TransportBar.IsPlayerActive)
             {
                 m_ProjectView.TransportBar.Stop();
             }
-            SectionsSelected();
+            SectionsSelected(false);
             if (m_FlagMerge)
             {
                 if (MergeSectionEvent != null)
@@ -691,6 +712,17 @@ namespace Obi.Dialogs
         {
             if (m_ProjectView.TransportBar.CanStop) m_ProjectView.TransportBar.Stop();
             Close();
+        }
+
+        private void m_btn_ShowContents_Click(object sender, EventArgs e)
+        {
+            m_Merge = false;
+            SectionsSelected(true);
+            if (m_lb_listofSectionsToMerge.SelectedItems.Count >= 1)
+            {
+                m_IsShowContents = true;
+                this.Close();
+            }
         }
     }
 }

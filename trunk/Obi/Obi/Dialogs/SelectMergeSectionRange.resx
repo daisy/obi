@@ -160,10 +160,10 @@
     <value>Flat</value>
   </data>
   <data name="m_btn_SelectAll.Location" type="System.Drawing.Point, System.Drawing">
-    <value>9, 18</value>
+    <value>9, 14</value>
   </data>
   <data name="m_btn_SelectAll.Size" type="System.Drawing.Size, System.Drawing">
-    <value>100, 44</value>
+    <value>100, 52</value>
   </data>
   <data name="m_btn_SelectAll.TabIndex" type="System.Int32, mscorlib">
     <value>6</value>
@@ -181,13 +181,43 @@
     <value>groupBox2</value>
   </data>
   <data name="&gt;&gt;m_btn_SelectAll.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="m_btn_ShowContents.AccessibleName" xml:space="preserve">
+    <value>Show Contents</value>
+  </data>
+  <data name="m_btn_ShowContents.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>Flat</value>
+  </data>
+  <data name="m_btn_ShowContents.Location" type="System.Drawing.Point, System.Drawing">
+    <value>132, 14</value>
+  </data>
+  <data name="m_btn_ShowContents.Size" type="System.Drawing.Size, System.Drawing">
+    <value>121, 52</value>
+  </data>
+  <data name="m_btn_ShowContents.TabIndex" type="System.Int32, mscorlib">
+    <value>7</value>
+  </data>
+  <data name="m_btn_ShowContents.Text" xml:space="preserve">
+    <value>Show Contents</value>
+  </data>
+  <data name="&gt;&gt;m_btn_ShowContents.Name" xml:space="preserve">
+    <value>m_btn_ShowContents</value>
+  </data>
+  <data name="&gt;&gt;m_btn_ShowContents.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_btn_ShowContents.Parent" xml:space="preserve">
+    <value>groupBox2</value>
+  </data>
+  <data name="&gt;&gt;m_btn_ShowContents.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
   <data name="groupBox2.Location" type="System.Drawing.Point, System.Drawing">
     <value>233, 251</value>
   </data>
   <data name="groupBox2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>122, 72</value>
+    <value>253, 72</value>
   </data>
   <data name="groupBox2.TabIndex" type="System.Int32, mscorlib">
     <value>5</value>
@@ -349,7 +379,7 @@
     <value>1</value>
   </data>
   <data name="m_grp_SectionLevelOperation.Location" type="System.Drawing.Point, System.Drawing">
-    <value>384, 251</value>
+    <value>492, 251</value>
   </data>
   <data name="m_grp_SectionLevelOperation.ShowHelp" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -382,7 +412,7 @@
     <value>NoControl</value>
   </data>
   <data name="m_btn_Close.Location" type="System.Drawing.Point, System.Drawing">
-    <value>308, 365</value>
+    <value>350, 365</value>
   </data>
   <data name="m_btn_Close.ShowHelp" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -414,11 +444,17 @@
   <data name="m_btnPause.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Flat</value>
   </data>
+  <data name="m_btnPause.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <data name="m_btnPause.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 18</value>
+    <value>6, 14</value>
+  </data>
+  <data name="m_btnPause.ShowHelp" type="System.Boolean, mscorlib">
+    <value>True</value>
   </data>
   <data name="m_btnPause.Size" type="System.Drawing.Size, System.Drawing">
-    <value>89, 45</value>
+    <value>89, 49</value>
   </data>
   <data name="m_btnPause.TabIndex" type="System.Int32, mscorlib">
     <value>3</value>
@@ -448,10 +484,10 @@
     <value>Flat</value>
   </data>
   <data name="m_btn_Stop.Location" type="System.Drawing.Point, System.Drawing">
-    <value>101, 18</value>
+    <value>108, 14</value>
   </data>
   <data name="m_btn_Stop.Size" type="System.Drawing.Size, System.Drawing">
-    <value>88, 45</value>
+    <value>88, 52</value>
   </data>
   <data name="m_btn_Stop.TabIndex" type="System.Int32, mscorlib">
     <value>4</value>
@@ -502,10 +538,10 @@
     <value>2</value>
   </data>
   <data name="m_grp_SectionAudioOperation.Location" type="System.Drawing.Point, System.Drawing">
-    <value>30, 251</value>
+    <value>20, 251</value>
   </data>
   <data name="m_grp_SectionAudioOperation.Size" type="System.Drawing.Size, System.Drawing">
-    <value>197, 72</value>
+    <value>207, 72</value>
   </data>
   <data name="m_grp_SectionAudioOperation.TabIndex" type="System.Int32, mscorlib">
     <value>2</value>
@@ -532,7 +568,7 @@
     <value>20, 12</value>
   </data>
   <data name="m_lb_listofSectionsToMerge.Size" type="System.Drawing.Size, System.Drawing">
-    <value>703, 212</value>
+    <value>805, 212</value>
   </data>
   <data name="m_lb_listofSectionsToMerge.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
@@ -553,7 +589,7 @@
     <value>20, 339</value>
   </data>
   <data name="m_tb_SectionsSelected.Size" type="System.Drawing.Size, System.Drawing">
-    <value>703, 20</value>
+    <value>811, 20</value>
   </data>
   <data name="m_tb_SectionsSelected.TabIndex" type="System.Int32, mscorlib">
     <value>12</value>
@@ -583,7 +619,7 @@
     <value>6, 13</value>
   </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>735, 403</value>
+    <value>848, 403</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
     <value>Edit Section</value>
