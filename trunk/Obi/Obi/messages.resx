@@ -3009,4 +3009,7 @@ Error text: {1}</value>
   <data name="TimeElapsedCannotBeCalculated" xml:space="preserve">
     <value>Time Elapsed cannot be Calculated as End Mark is before Begin Mark</value>
   </data>
+  <data name="MergeOptions_ShowContents" xml:space="preserve">
+    <value>Show Contents in Content View</value>
+  </data>
 </root>
