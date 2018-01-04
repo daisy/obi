@@ -577,8 +577,7 @@ namespace Obi.Dialogs
                     return;
                 }
                 m_ProjectView.Selection = new NodeSelection(listOfSelectedSections[0], m_ContentView);
-                m_ProjectView.HighlightSelection(listOfSelectedSections[0]);
-         //       m_ProjectView.Selection.Node = listOfSelectedSections[0];
+          
                 return;
             }
             if (m_Merge)

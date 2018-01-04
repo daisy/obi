@@ -7192,11 +7192,7 @@ public bool ShowOnlySelectedSection
 
             }
         }
-        public void HighlightSelection(SectionNode SelectedPhraseSection)
-        {
-         //   mTOCView.HighlightNodeWithoutSelection = GetSelectedPhraseSection;
-        //    mTOCView.Selection = new NodeSelection(SelectedPhraseSection, mTOCView);
-        }
+
     }
 
     public class ImportingFileEventArgs
