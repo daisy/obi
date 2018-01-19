@@ -630,7 +630,7 @@ namespace Obi
                                                                          || Path.GetExtension(xhtmlPath).ToLower() == ".txt")
                                                                      {
                                                                          ImportExport.ImportStructureFromCSV csvImport = new Obi.ImportExport.ImportStructureFromCSV();
-                                                                         csvImport.ImportFromCSVFile(xhtmlPath, mSession.Presentation);
+                                                                         csvImport.ImportFromCSVFile(xhtmlPath, mSession.Presentation,false);
                                                                      }
                                                                      else
                                                                      {
@@ -6244,6 +6244,77 @@ ref string exportDirectoryEPUB3)
             private void mAutoPageGenerationMenuItem_Click(object sender, EventArgs e)
             {
                 mProjectView.AutoPageGeneration();
+            }
+
+            private void mFile_ImportTOCMenuItem_Click(object sender, EventArgs e)
+            {
+                OpenFileDialog dialog = new OpenFileDialog();
+                    dialog.Title = Localizer.Message("choose_import_file");
+                    dialog.Filter = Localizer.Message("filterCSVAndTXT");
+                    if (dialog.ShowDialog() == DialogResult.OK)
+                    {
+                        ImportExport.ImportStructureFromCSV csvImport = new Obi.ImportExport.ImportStructureFromCSV();
+                        csvImport.ImportFromCSVFile(dialog.FileName, mSession.Presentation,true);
+
+
+                        List<SectionNode> listOfSectionNodes = new List<SectionNode>();
+                        for (SectionNode tempNode = (SectionNode)mSession.Presentation.FirstSection; tempNode != null; tempNode = (SectionNode)tempNode.FollowingSection)
+                        {
+                            listOfSectionNodes.Add(tempNode);
+                        }
+
+                        int index = 0;
+                        foreach (SectionNode tempNode in listOfSectionNodes)
+                        {
+                            if (index < csvImport.SectionNamesOfImportedCSV.Count && csvImport.SectionNamesOfImportedCSV[index] != null)
+                            {
+                                mSession.Presentation.RenameSectionNode(tempNode, csvImport.SectionNamesOfImportedCSV[index]);
+                             //   mSession.Presentation.
+                                if (tempNode.Level != csvImport.LevelsListOfImportedCSV[index])
+                                {
+                                    ChangeLevelForTOCImport(tempNode, csvImport.LevelsListOfImportedCSV[index]);
+                                }
+                                index++;
+                            }
+                            else
+                            {
+                                break;
+                            }
+                        }
+
+                    }
+            }
+
+            private void ChangeLevelForTOCImport(SectionNode tempSectionNode, int requiredLevelOfSection)
+            {
+                if (tempSectionNode.Level < requiredLevelOfSection)
+                {
+                    while (tempSectionNode.Level < requiredLevelOfSection)
+                    {
+                        if (Commands.TOC.MoveSectionIn.CanMoveNode(tempSectionNode))
+                        {
+
+                            mSession.Presentation.Do(new Commands.TOC.MoveSectionIn(mProjectView, tempSectionNode));
+                        }
+                        else
+                            break;
+                    }
+                }
+                else if (tempSectionNode.Level > requiredLevelOfSection)
+                {
+                    while (tempSectionNode.Level > requiredLevelOfSection)
+                    {
+                        if (Commands.TOC.MoveSectionOut.CanMoveNode(tempSectionNode))
+                        {
+                            mSession.Presentation.Do(new Commands.TOC.MoveSectionOut(mProjectView, tempSectionNode));
+                        }
+                        else
+                            break;
+                    }
+                }
+
+                
+               
             }
 
  

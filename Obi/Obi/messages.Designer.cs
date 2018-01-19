@@ -2296,6 +2296,15 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Csv, Txt file(*.csv;*.txt)|*.csv;*.txt.
+        /// </summary>
+        internal static string filterCSVAndTXT {
+            get {
+                return ResourceManager.GetString("filterCSVAndTXT", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Type the text to search for it in the selected section..
         /// </summary>
         internal static string find_in_text_init {

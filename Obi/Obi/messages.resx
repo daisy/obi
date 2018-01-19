@@ -3012,4 +3012,8 @@ Error text: {1}</value>
   <data name="MergeOptions_ShowContents" xml:space="preserve">
     <value>Show Contents in Content View</value>
   </data>
+   <data name="filterCSVAndTXT" xml:space="preserve">
+    <value>Csv, Txt file(*.csv;*.txt)|*.csv;*.txt</value>
+    <comment>File dialog</comment>
+  </data>
 </root>

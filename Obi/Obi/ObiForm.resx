@@ -192,6 +192,12 @@
   <data name="mFile_OpenProjectMenuItem.Text" xml:space="preserve">
     <value>&amp;Open project</value>
   </data>
+  <data name="mFile_ImportTOCMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>281, 22</value>
+  </data>
+  <data name="mFile_ImportTOCMenuItem.Text" xml:space="preserve">
+    <value>Import TOC</value>
+  </data>
   <data name="toolStripSeparator9.Size" type="System.Drawing.Size, System.Drawing">
     <value>278, 6</value>
   </data>
@@ -2056,7 +2062,7 @@
     <value>mProjectView</value>
   </data>
   <data name="&gt;&gt;mProjectView.Type" xml:space="preserve">
-    <value>Obi.ProjectView.ProjectView, Obi, Version=3.9.1.19852, Culture=neutral, PublicKeyToken=null</value>
+    <value>Obi.ProjectView.ProjectView, Obi, Version=4.1.0.21891, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;mProjectView.Parent" xml:space="preserve">
     <value>$this</value>
@@ -2354,6 +2360,12 @@
     <value>mFile_OpenProjectMenuItem</value>
   </data>
   <data name="&gt;&gt;mFile_OpenProjectMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;mFile_ImportTOCMenuItem.Name" xml:space="preserve">
+    <value>mFile_ImportTOCMenuItem</value>
+  </data>
+  <data name="&gt;&gt;mFile_ImportTOCMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;toolStripSeparator9.Name" xml:space="preserve">

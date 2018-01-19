@@ -34,6 +34,7 @@ namespace Obi
             this.mFile_NewProjectMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mFile_NewProjectFromImportMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mFile_OpenProjectMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mFile_ImportTOCMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator9 = new System.Windows.Forms.ToolStripSeparator();
             this.mFile_SaveProjectMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mFile_SaveProjectAsMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -256,6 +257,7 @@ namespace Obi
             this.mFile_NewProjectMenuItem,
             this.mFile_NewProjectFromImportMenuItem,
             this.mFile_OpenProjectMenuItem,
+            this.mFile_ImportTOCMenuItem,
             this.toolStripSeparator9,
             this.mFile_SaveProjectMenuItem,
             this.mFile_SaveProjectAsMenuItem,
@@ -287,6 +289,12 @@ namespace Obi
             resources.ApplyResources(this.mFile_OpenProjectMenuItem, "mFile_OpenProjectMenuItem");
             this.mFile_OpenProjectMenuItem.Name = "mFile_OpenProjectMenuItem";
             this.mFile_OpenProjectMenuItem.Click += new System.EventHandler(this.File_OpenProjectMenuItem_Click);
+            // 
+            // mFile_ImportTOCMenuItem
+            // 
+            this.mFile_ImportTOCMenuItem.Name = "mFile_ImportTOCMenuItem";
+            resources.ApplyResources(this.mFile_ImportTOCMenuItem, "mFile_ImportTOCMenuItem");
+            this.mFile_ImportTOCMenuItem.Click += new System.EventHandler(this.mFile_ImportTOCMenuItem_Click);
             // 
             // toolStripSeparator9
             // 
@@ -1896,6 +1904,7 @@ namespace Obi
         private System.Windows.Forms.ToolStripMenuItem rollbackToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem detectSilencePhraseToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mAutoPageGenerationMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem mFile_ImportTOCMenuItem;
     }
 }
 
