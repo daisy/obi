@@ -3016,4 +3016,10 @@ Error text: {1}</value>
     <value>Csv, Txt file(*.csv;*.txt)|*.csv;*.txt</value>
     <comment>File dialog</comment>
   </data>
+  <data name="NoSectionsInBook" xml:space="preserve">
+    <value>There are no sections in book to import TOC</value>
+  </data>
+  <data name="LessSectionsInBook" xml:space="preserve">
+    <value>There are less sections in book so whole TOC will not import</value>
+  </data>
 </root>

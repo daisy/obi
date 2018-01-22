@@ -3486,6 +3486,15 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to There are less sections in book so whole TOC will not import.
+        /// </summary>
+        internal static string LessSectionsInBook {
+            get {
+                return ResourceManager.GetString("LessSectionsInBook", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Level 1.
         /// </summary>
         internal static string Level1 {
@@ -4539,6 +4548,15 @@ namespace Obi {
         internal static string normal_phrase {
             get {
                 return ResourceManager.GetString("normal_phrase", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to There are no sections in book to import TOC.
+        /// </summary>
+        internal static string NoSectionsInBook {
+            get {
+                return ResourceManager.GetString("NoSectionsInBook", resourceCulture);
             }
         }
         
