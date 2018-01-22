@@ -10,49 +10,26 @@ namespace Obi.ImportExport
     public class ImportStructureFromCSV 
     {
         private ObiPresentation m_Presentation ;
-        private List<int> m_LevelsList;
-        private List<string> m_SectionsNames;
 
         public ImportStructureFromCSV()
         {
         }
 
-        public void ImportFromCSVFile(string CSVFullPath, ObiPresentation presentation, bool ImportTOCView)
-        {
+            public void ImportFromCSVFile(string CSVFullPath, ObiPresentation presentation)
+        {   
             m_Presentation = presentation;
-            List<int> levelsList = new List<int>();
-            List<string> sectionNames = new List<string>();
-            List<int> pagesPerSection = new List<int>();
-            //levelsList.Add(1);
-            //levelsList.Add(2);
-            //sectionNames.Add("first");
-            //sectionNames.Add("second");
-            //pagesPerSection.Add(0);
-            //pagesPerSection.Add(2);
-            ReadListsFromCSVFile(levelsList, sectionNames, pagesPerSection, CSVFullPath);
-            m_LevelsList = levelsList;
-            m_SectionsNames = sectionNames;
-            if (!ImportTOCView)
-            {
+        List<int> levelsList = new List<int> ();
+                List<string> sectionNames = new List<string>() ;
+                List <int> pagesPerSection = new List<int>() ;
+                //levelsList.Add(1);
+                //levelsList.Add(2);
+                //sectionNames.Add("first");
+                //sectionNames.Add("second");
+                //pagesPerSection.Add(0);
+                //pagesPerSection.Add(2);
+                ReadListsFromCSVFile(levelsList, sectionNames, pagesPerSection, CSVFullPath);
                 CreateStructure(levelsList, sectionNames, pagesPerSection);
-            }
         }
-           
-
-            public List<int> LevelsListOfImportedCSV
-            {
-                get
-                {
-                    return m_LevelsList;
-                }
-            }
-            public List<string> SectionNamesOfImportedCSV
-            {
-                get
-                {
-                    return m_SectionsNames;
-                }
-            }
 
         private void ReadListsFromCSVFile(List<int> levelsList, List<string> sectionNamesList, List<int> pagesPerSection, string CSVFullPath)
         {
@@ -125,8 +102,6 @@ namespace Obi.ImportExport
             }
             Console.WriteLine("lists loaded");
         }
-
- 
 
         private void CreateStructure(List<int> levelsList, List<string> sectionNamesList, List<int> pagesPerSection)
         {

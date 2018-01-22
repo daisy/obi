@@ -630,7 +630,7 @@ namespace Obi
                                                                          || Path.GetExtension(xhtmlPath).ToLower() == ".txt")
                                                                      {
                                                                          ImportExport.ImportStructureFromCSV csvImport = new Obi.ImportExport.ImportStructureFromCSV();
-                                                                         csvImport.ImportFromCSVFile(xhtmlPath, mSession.Presentation,false);
+                                                                         csvImport.ImportFromCSVFile(xhtmlPath, mSession.Presentation);
                                                                      }
                                                                      else
                                                                      {
@@ -6253,15 +6253,20 @@ ref string exportDirectoryEPUB3)
                     dialog.Filter = Localizer.Message("filterCSVAndTXT");
                     if (dialog.ShowDialog() == DialogResult.OK)
                     {
-                        ImportExport.ImportStructureFromCSV csvImport = new Obi.ImportExport.ImportStructureFromCSV();
-                        csvImport.ImportFromCSVFile(dialog.FileName, mSession.Presentation,true);
+                        ImportExport.ImportTOC csvImport = new Obi.ImportExport.ImportTOC();
+                        csvImport.ImportFromCSVFile(dialog.FileName, mSession.Presentation);
 
 
                         List<SectionNode> listOfSectionNodes = new List<SectionNode>();
-                        for (SectionNode tempNode = (SectionNode)mSession.Presentation.FirstSection; tempNode != null; tempNode = (SectionNode)tempNode.FollowingSection)
+                        if (mSession != null && mSession.Presentation != null && mSession.Presentation.FirstSection != null)
                         {
-                            listOfSectionNodes.Add(tempNode);
+                            for (SectionNode tempNode = (SectionNode)mSession.Presentation.FirstSection; tempNode != null; tempNode = (SectionNode)tempNode.FollowingSection)
+                            {
+                                listOfSectionNodes.Add(tempNode);
+                            }
                         }
+                        else
+                            return;
 
                         int index = 0;
                         foreach (SectionNode tempNode in listOfSectionNodes)
@@ -6296,8 +6301,10 @@ ref string exportDirectoryEPUB3)
 
                             mSession.Presentation.Do(new Commands.TOC.MoveSectionIn(mProjectView, tempSectionNode));
                         }
+                       
                         else
                             break;
+                  
                     }
                 }
                 else if (tempSectionNode.Level > requiredLevelOfSection)
@@ -6308,13 +6315,58 @@ ref string exportDirectoryEPUB3)
                         {
                             mSession.Presentation.Do(new Commands.TOC.MoveSectionOut(mProjectView, tempSectionNode));
                         }
+                        else if (tempSectionNode.SectionChildCount > 0)
+                        {
+                            SectionNode tempSecNode = tempSectionNode;
+
+                            while (tempSecNode.SectionChildCount > 0)
+                            {
+                                tempSecNode = FindLastSectionChild(tempSecNode);
+                            }                           
+
+                            while (tempSecNode != tempSectionNode)
+                            {
+                                while (tempSecNode.Level > requiredLevelOfSection)
+                                {
+                                    if (Commands.TOC.MoveSectionOut.CanMoveNode(tempSecNode))
+                                    {
+                                        mSession.Presentation.Do(new Commands.TOC.MoveSectionOut(mProjectView, tempSecNode));
+                                    }
+                                    else
+                                        break;
+                                }
+                                if (tempSecNode != null && tempSecNode.PrecedingSection != null)
+                                {
+                                    tempSecNode = tempSecNode.PrecedingSection;
+                                }
+                                else
+                                    break;
+                            }
+                        }
                         else
                             break;
+
                     }
                 }
 
                 
                
+            }
+            
+            private SectionNode FindLastSectionChild(SectionNode sectionNode)
+            {
+                SectionNode tempSecNode = sectionNode;
+              
+                for (int index = 0; index < sectionNode.SectionChildCount; index++)
+                {
+                    if (tempSecNode != null && tempSecNode.FollowingSection != null)
+                    {
+                        tempSecNode = tempSecNode.FollowingSection;                                            
+                    }
+                    else
+                        break;
+                }
+                return tempSecNode;
             }
 
  
