@@ -422,6 +422,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="ImportExport\ExportStructure.cs" />
+    <Compile Include="ImportExport\ImportTOC.cs" />
     <Compile Include="ImportExport\XslResolver.cs">
       <SubType>Code</SubType>
     </Compile>
