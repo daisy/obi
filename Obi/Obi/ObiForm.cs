@@ -6266,8 +6266,19 @@ ref string exportDirectoryEPUB3)
                             }
                         }
                         else
+                        {
+                            if (listOfSectionNodes.Count == 0)
+                            {
+                                MessageBox.Show(Localizer.Message("NoSectionsInBook"), Localizer.Message("Caption_Information"));
+                            }
                             return;
+                        }
+                       
 
+                        if (listOfSectionNodes.Count < csvImport.SectionNamesOfImportedCSV.Count)
+                        {
+                            MessageBox.Show(Localizer.Message("LessSectionsInBook"), Localizer.Message("Caption_Information"));
+                        }
                         int index = 0;
                         foreach (SectionNode tempNode in listOfSectionNodes)
                         {
