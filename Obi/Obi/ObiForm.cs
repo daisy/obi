@@ -11,6 +11,7 @@ using urakawa.data;
 using PipelineInterface;
 using Jaime.Olivares;
 using System.Security;
+using Obi.ImportExport;
 
 
 namespace Obi
@@ -6246,21 +6247,35 @@ ref string exportDirectoryEPUB3)
                 mProjectView.AutoPageGeneration();
             }
 
-            private void mFile_ImportTOCMenuItem_Click(object sender, EventArgs e)
+            private void mImportTOCMenuItem_Click(object sender, EventArgs e)
             {
                 OpenFileDialog dialog = new OpenFileDialog();
                     dialog.Title = Localizer.Message("choose_import_file");
-                    dialog.Filter = Localizer.Message("filterCSVAndTXT");
-                    if (dialog.ShowDialog() == DialogResult.OK)
+                    dialog.Filter = Localizer.Message("FilterImportTOC");
+                if (dialog.ShowDialog() == DialogResult.OK)
+                {
+                    string strExtension = System.IO.Path.GetExtension(dialog.FileName).ToLower();
+                    ImportExport.ImportTOC importTOC = new Obi.ImportExport.ImportTOC();
+                    if (strExtension == ".xml")
                     {
-                        ImportExport.ImportTOC csvImport = new Obi.ImportExport.ImportTOC();
-                        csvImport.ImportFromCSVFile(dialog.FileName, mSession.Presentation);
+                     
+                        importTOC.ImportFromXMLFile(dialog.FileName);
+
+                    }
+                    else
+                    {
+
+                        importTOC.ImportFromCSVFile(dialog.FileName);
+                    }
 
 
-                        List<SectionNode> listOfSectionNodes = new List<SectionNode>();
-                        if (mSession != null && mSession.Presentation != null && mSession.Presentation.FirstSection != null)
+                    List<SectionNode> listOfSectionNodes = new List<SectionNode>();
+                        if (mSession != null && mSession.Presentation != null &&
+                            mSession.Presentation.FirstSection != null)
                         {
-                            for (SectionNode tempNode = (SectionNode)mSession.Presentation.FirstSection; tempNode != null; tempNode = (SectionNode)tempNode.FollowingSection)
+                            for (SectionNode tempNode = (SectionNode) mSession.Presentation.FirstSection;
+                                tempNode != null;
+                                tempNode = (SectionNode) tempNode.FollowingSection)
                             {
                                 listOfSectionNodes.Add(tempNode);
                             }
@@ -6269,27 +6284,33 @@ ref string exportDirectoryEPUB3)
                         {
                             if (listOfSectionNodes.Count == 0)
                             {
-                                MessageBox.Show(Localizer.Message("NoSectionsInBook"), Localizer.Message("Caption_Information"));
+                                MessageBox.Show(Localizer.Message("NoSectionsInBook"),
+                                    Localizer.Message("Caption_Information"),MessageBoxButtons.OK,MessageBoxIcon.Information);
                             }
+
                             return;
                         }
-                       
 
-                        if (listOfSectionNodes.Count < csvImport.SectionNamesOfImportedCSV.Count)
+
+                        if (listOfSectionNodes.Count < importTOC.SectionNamesOfImportedTocList.Count)
                         {
-                            MessageBox.Show(Localizer.Message("LessSectionsInBook"), Localizer.Message("Caption_Information"));
+                            MessageBox.Show(Localizer.Message("LessSectionsInBook"),
+                                Localizer.Message("Caption_Information"), MessageBoxButtons.OK, MessageBoxIcon.Information);
                         }
+
                         int index = 0;
                         foreach (SectionNode tempNode in listOfSectionNodes)
                         {
-                            if (index < csvImport.SectionNamesOfImportedCSV.Count && csvImport.SectionNamesOfImportedCSV[index] != null)
+                            if (index < importTOC.SectionNamesOfImportedTocList.Count &&
+                                importTOC.SectionNamesOfImportedTocList[index] != null)
                             {
-                                mSession.Presentation.RenameSectionNode(tempNode, csvImport.SectionNamesOfImportedCSV[index]);
-                             //   mSession.Presentation.
-                                if (tempNode.Level != csvImport.LevelsListOfImportedCSV[index])
+                                mSession.Presentation.RenameSectionNode(tempNode,importTOC.SectionNamesOfImportedTocList[index]);
+                                //   mSession.Presentation.
+                                if (tempNode.Level != importTOC.LevelsListOfImportedTocList[index])
                                 {
-                                    ChangeLevelForTOCImport(tempNode, csvImport.LevelsListOfImportedCSV[index]);
+                                    ChangeLevelForTOCImport(tempNode, importTOC.LevelsListOfImportedTocList[index]);
                                 }
+
                                 index++;
                             }
                             else
@@ -6299,7 +6320,8 @@ ref string exportDirectoryEPUB3)
                         }
 
                     }
-            }
+                }
+            
 
             private void ChangeLevelForTOCImport(SectionNode tempSectionNode, int requiredLevelOfSection)
             {
@@ -6379,6 +6401,8 @@ ref string exportDirectoryEPUB3)
                 }
                 return tempSecNode;
             }
+
+
 
  
         }

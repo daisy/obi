@@ -2287,6 +2287,15 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to This file is being used by other process.Please close all applications using this file and try again.
+        /// </summary>
+        internal static string FileInUse {
+            get {
+                return ResourceManager.GetString("FileInUse", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to XHTML, Opf, XML, Csv, Txt, Epub file (*.htm;*.html;*.xhtml;*.opf;*.xml;*.epub;*.csv;*.txt)|*.htm;*.html;*.xhtml;*.opf;*.xml;*.epub;*.csv;*.txt|Any file|*.*.
         /// </summary>
         internal static string filter {
@@ -2296,11 +2305,11 @@ namespace Obi {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Csv, Txt file(*.csv;*.txt)|*.csv;*.txt.
+        ///   Looks up a localized string similar to Xml,Csv, Txt file(*.xml;*.csv;*.txt)|*.xml;*.csv;*.txt.
         /// </summary>
-        internal static string filterCSVAndTXT {
+        internal static string FilterImportTOC {
             get {
-                return ResourceManager.GetString("filterCSVAndTXT", resourceCulture);
+                return ResourceManager.GetString("FilterImportTOC", resourceCulture);
             }
         }
         
@@ -3486,7 +3495,7 @@ namespace Obi {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to There are less sections in book so whole TOC will not import.
+        ///   Looks up a localized string similar to Existing sections in book are less so full TOC will not import.
         /// </summary>
         internal static string LessSectionsInBook {
             get {

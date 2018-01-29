@@ -34,7 +34,6 @@ namespace Obi
             this.mFile_NewProjectMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mFile_NewProjectFromImportMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mFile_OpenProjectMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.mFile_ImportTOCMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator9 = new System.Windows.Forms.ToolStripSeparator();
             this.mFile_SaveProjectMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mFile_SaveProjectAsMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -100,6 +99,7 @@ namespace Obi
             this.mAddSubsectionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mInsertSectionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mRenameSectionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mImportTOCMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator11 = new System.Windows.Forms.ToolStripSeparator();
             this.mDecreaseSectionLevelToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mIncreaseSectionLevelToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -257,7 +257,6 @@ namespace Obi
             this.mFile_NewProjectMenuItem,
             this.mFile_NewProjectFromImportMenuItem,
             this.mFile_OpenProjectMenuItem,
-            this.mFile_ImportTOCMenuItem,
             this.toolStripSeparator9,
             this.mFile_SaveProjectMenuItem,
             this.mFile_SaveProjectAsMenuItem,
@@ -289,12 +288,6 @@ namespace Obi
             resources.ApplyResources(this.mFile_OpenProjectMenuItem, "mFile_OpenProjectMenuItem");
             this.mFile_OpenProjectMenuItem.Name = "mFile_OpenProjectMenuItem";
             this.mFile_OpenProjectMenuItem.Click += new System.EventHandler(this.File_OpenProjectMenuItem_Click);
-            // 
-            // mFile_ImportTOCMenuItem
-            // 
-            this.mFile_ImportTOCMenuItem.Name = "mFile_ImportTOCMenuItem";
-            resources.ApplyResources(this.mFile_ImportTOCMenuItem, "mFile_ImportTOCMenuItem");
-            this.mFile_ImportTOCMenuItem.Click += new System.EventHandler(this.mFile_ImportTOCMenuItem_Click);
             // 
             // toolStripSeparator9
             // 
@@ -713,6 +706,7 @@ namespace Obi
             this.mAddSubsectionToolStripMenuItem,
             this.mInsertSectionToolStripMenuItem,
             this.mRenameSectionToolStripMenuItem,
+            this.mImportTOCMenuItem,
             this.toolStripSeparator11,
             this.mDecreaseSectionLevelToolStripMenuItem,
             this.mIncreaseSectionLevelToolStripMenuItem,
@@ -748,6 +742,12 @@ namespace Obi
             resources.ApplyResources(this.mRenameSectionToolStripMenuItem, "mRenameSectionToolStripMenuItem");
             this.mRenameSectionToolStripMenuItem.Name = "mRenameSectionToolStripMenuItem";
             this.mRenameSectionToolStripMenuItem.Click += new System.EventHandler(this.mRenameSectionToolStripMenuItem_Click);
+            // 
+            // mImportTOCMenuItem
+            // 
+            this.mImportTOCMenuItem.Name = "mImportTOCMenuItem";
+            resources.ApplyResources(this.mImportTOCMenuItem, "mImportTOCMenuItem");
+            this.mImportTOCMenuItem.Click += new System.EventHandler(this.mImportTOCMenuItem_Click);
             // 
             // toolStripSeparator11
             // 
@@ -1904,7 +1904,7 @@ namespace Obi
         private System.Windows.Forms.ToolStripMenuItem rollbackToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem detectSilencePhraseToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mAutoPageGenerationMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem mFile_ImportTOCMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem mImportTOCMenuItem;
     }
 }
 
