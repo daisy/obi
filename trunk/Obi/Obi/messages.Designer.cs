@@ -7858,6 +7858,15 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to File imported is in wrong format. Make sure proper level is given for each section..
+        /// </summary>
+        internal static string WrongFormat {
+            get {
+                return ResourceManager.GetString("WrongFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to XML file|*.xml.
         /// </summary>
         internal static string xml_filter {
