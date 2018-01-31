@@ -6256,6 +6256,7 @@ ref string exportDirectoryEPUB3)
                 {
                     string strExtension = System.IO.Path.GetExtension(dialog.FileName).ToLower();
                     ImportExport.ImportTOC importTOC = new Obi.ImportExport.ImportTOC();
+                    bool tempResult = true;
                     if (strExtension == ".xml")
                     {
                      
@@ -6265,10 +6266,15 @@ ref string exportDirectoryEPUB3)
                     else
                     {
 
-                        importTOC.ImportFromCSVFile(dialog.FileName);
+                        tempResult = importTOC.ImportFromCSVFile(dialog.FileName);
                     }
 
-
+                    if (importTOC.SectionNamesOfImportedTocList.Count != importTOC.LevelsListOfImportedTocList.Count || !tempResult)
+                    {
+                        MessageBox.Show(Localizer.Message("WrongFormat"), Localizer.Message("Caption_Error"),
+                            MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
                     List<SectionNode> listOfSectionNodes = new List<SectionNode>();
                         if (mSession != null && mSession.Presentation != null &&
                             mSession.Presentation.FirstSection != null)

@@ -3025,4 +3025,7 @@ Error text: {1}</value>
   <data name="FileInUse" xml:space="preserve">
     <value>This file is being used by other process.Please close all applications using this file and try again</value>
   </data>
+  <data name="WrongFormat" xml:space="preserve">
+    <value>File imported is in wrong format. Make sure proper level is given for each section.</value>
+  </data>
 </root>

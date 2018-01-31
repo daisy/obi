@@ -19,14 +19,14 @@ namespace Obi.ImportExport
         {
         }
 
-        public void ImportFromCSVFile(string CSVFullPath)
+        public bool ImportFromCSVFile(string CSVFullPath)
         {
             List<int> levelsList = new List<int>();
             List<string> sectionNames = new List<string>();
-            ReadListsFromCSVFile(levelsList, sectionNames, CSVFullPath);
+            bool result = ReadListsFromCSVFile(levelsList, sectionNames, CSVFullPath);
             m_LevelsList = levelsList;
             m_SectionsNames = sectionNames;
-
+            return result;
         }
 
         public void ImportFromXMLFile(string filePath)
@@ -40,6 +40,10 @@ namespace Obi.ImportExport
                 {
                     XmlNode xmlNode = dtbookFileDoc.DocumentType.ParentNode;
                     parseContentDocument(filePath, xmlNode);
+                    if(m_SectionsNames.Count != m_LevelsList.Count)
+                    {
+                        m_SectionsNames.Add(Localizer.Message("default_section_label"));
+                    }
                 }
 
             }
@@ -72,7 +76,7 @@ namespace Obi.ImportExport
             }
         }
 
-        private void ReadListsFromCSVFile(List<int> levelsList, List<string> sectionNamesList, string CSVFullPath)
+        private bool ReadListsFromCSVFile(List<int> levelsList, List<string> sectionNamesList, string CSVFullPath)
         {
             string[] linesInFiles;
             try
@@ -83,11 +87,11 @@ namespace Obi.ImportExport
             catch (IOException e)
             {
                 MessageBox.Show(Localizer.Message("FileInUse"), Localizer.Message("Caption_Error"), MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
+                return false;
             }
             catch (Exception e)
             {
-                return;
+                return false;
             }
 
             string tempString = "";
@@ -116,6 +120,10 @@ namespace Obi.ImportExport
                         {
                             levelsList.Add(Level);
                         }
+                        else if (CorrectFormat && Level < 0)
+                        {
+                            return false;
+                        }
                         else
                         {
                             isValid = false;
@@ -139,6 +147,8 @@ namespace Obi.ImportExport
                 }
 
             }
+
+            return true;
         }
         private void parseContentDocument(string filePath, XmlNode xmlNode)
         {
@@ -170,8 +180,11 @@ namespace Obi.ImportExport
                     }
                 case XmlNodeType.Element:
                     {
-
-                        if (xmlNode.LocalName.StartsWith("level") || xmlNode.LocalName == "doctitle")
+                        if (xmlNode.LocalName == "doctitle")
+                        {
+                            m_LevelsList.Add(1);
+                        }
+                        if (xmlNode.LocalName.StartsWith("level"))
                         {
                             string tempLevel = xmlNode.LocalName.Replace("level", string.Empty);
                             int n;
@@ -179,14 +192,20 @@ namespace Obi.ImportExport
 
                             if (isNumeric)
                             {
+                                if (m_LevelsList.Count != m_SectionsNames.Count)
+                                {
+                                    m_SectionsNames.Add(Localizer.Message("default_section_label"));
+                                }
                                 m_LevelsList.Add(n);
                             }
                         }
 
                         if (xmlNode.LocalName == "h1" || xmlNode.LocalName == "h2" || xmlNode.LocalName == "h3"
-                        || xmlNode.LocalName == "h4" || xmlNode.LocalName == "h5" || xmlNode.LocalName == "h6" || xmlNode.LocalName == "HD")
+                            || xmlNode.LocalName == "h4" || xmlNode.LocalName == "h5" || xmlNode.LocalName == "h6" ||
+                            xmlNode.LocalName == "HD" || xmlNode.LocalName == "doctitle")
                         {
-                            string tempSectionName = xmlNode.InnerText.Replace("\n", "").Replace("\r", "").Replace("\t", "");
+                            string tempSectionName =
+                                xmlNode.InnerText.Replace("\n", "").Replace("\r", "").Replace("\t", "");
                             m_SectionsNames.Add(tempSectionName);
 
 
