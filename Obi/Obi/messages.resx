@@ -3013,7 +3013,7 @@ Error text: {1}</value>
     <value>Show Contents in Content View</value>
   </data>
    <data name="FilterImportTOC" xml:space="preserve">
-    <value>Xml,Csv, Txt file(*.xml;*.csv;*.txt)|*.xml;*.csv;*.txt</value>
+    <value>Xhtml,Csv, Txt file(*.xhtml;*.csv;*.txt)|*.xhtml;*.csv;*.txt</value>
     <comment>File dialog</comment>
   </data>
   <data name="NoSectionsInBook" xml:space="preserve">
