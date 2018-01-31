@@ -6257,11 +6257,9 @@ ref string exportDirectoryEPUB3)
                     string strExtension = System.IO.Path.GetExtension(dialog.FileName).ToLower();
                     ImportExport.ImportTOC importTOC = new Obi.ImportExport.ImportTOC();
                     bool tempResult = true;
-                    if (strExtension == ".xml")
+                    if (strExtension == ".xhtml")
                     {
-                     
-                        importTOC.ImportFromXMLFile(dialog.FileName);
-
+                        importTOC.ImportFromXHTML(dialog.FileName);
                     }
                     else
                     {
