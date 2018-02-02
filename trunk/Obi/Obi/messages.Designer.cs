@@ -2305,7 +2305,7 @@ namespace Obi {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Xhtml,Csv, Txt file(*.xhtml;*.csv;*.txt)|*.xhtml;*.csv;*.txt.
+        ///   Looks up a localized string similar to Xhtml,Csv, Txt file(*.htm;*.html;*.xhtml;*.csv;*.txt)|*.htm;*.html;*.xhtml;*.csv;*.txt.
         /// </summary>
         internal static string FilterImportTOC {
             get {
