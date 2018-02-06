@@ -42,6 +42,8 @@ namespace Obi.ProjectView
         private double m_ZoomWaveformIncrementFactor;
         private bool m_SaveZoomWaveformZoomLevel;
         private double m_TotalCursorTime; // use to calulate time between two marks.   
+        private List<EmptyNode> m_ListOfPhrasesToCopy = new List<EmptyNode>();
+        private bool m_IsCopyForMultiplePhrasesChecked = false;
                   
     
         /// <summary>
@@ -5433,6 +5435,19 @@ for (int j = 0;
                     //}
 
                 }
+                else if (AssignSpecialNodeDialog.IsCopyChecked || AssignSpecialNodeDialog.IsCutChecked)
+                {
+                    if (AssignSpecialNodeDialog.IsCopyChecked)
+                    {
+                        m_IsCopyForMultiplePhrasesChecked = true;
+                    }
+                    else
+                    {
+                        m_IsCopyForMultiplePhrasesChecked = false;
+                    }
+                    CopyMultiplePhrases(startNode,endNode);
+                
+                }
                 else
                 {
                     if (startNode.Index <= endNode.Index)
@@ -7193,7 +7208,64 @@ public bool ShowOnlySelectedSection
             }
         }
 
-    }
+        public void CopyMultiplePhrases(EmptyNode startNode, EmptyNode endNode)
+        {
+            EmptyNode tempNode = startNode;
+
+            m_ListOfPhrasesToCopy.Clear();
+
+            m_ListOfPhrasesToCopy.Add(startNode);
+            while (tempNode != endNode)
+            {
+                if (tempNode.FollowingNode != null && !(tempNode.FollowingNode is SectionNode))
+                {
+                    tempNode = (EmptyNode) tempNode.FollowingNode;
+                    m_ListOfPhrasesToCopy.Add(tempNode);
+
+                }
+                else
+                    break;
+            }
+
+        }
+
+        public void PasteMultiplePhrases()
+        {
+            EmptyNode tempNodeToPaste = null;
+            if (this.Selection.Node is PhraseNode)
+            {
+                tempNodeToPaste = (PhraseNode) this.Selection.Node;
+            }
+
+            if (tempNodeToPaste != null)
+            {
+                foreach (EmptyNode tempPhraseNode in m_ListOfPhrasesToCopy)
+                {
+                    this.Selection = new NodeSelection(tempPhraseNode, mContentView);
+                    if (m_IsCopyForMultiplePhrasesChecked)
+                    {
+                        this.Copy();
+                    }
+                    else
+                    {
+                        this.Cut();
+                    }
+                    this.Selection = new NodeSelection(tempNodeToPaste, mContentView);
+                    this.Paste();
+                    if (this.Selection != null && this.Selection.Node != null && this.Selection.Node is PhraseNode)
+                    {
+                        tempNodeToPaste = (PhraseNode) this.Selection.Node;
+                    }
+                    else
+                    {
+                        break;
+
+                    }
+                }
+            }
+        }
+
+        }
 
     public class ImportingFileEventArgs
         {

@@ -5998,6 +5998,11 @@ Block lastBlock = ActiveStrip.LastBlock ;
 
         }
 
+        private void ContextPasteMultiplePhrasesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            mProjectView.PasteMultiplePhrases();
+        }
+
      
 
         }

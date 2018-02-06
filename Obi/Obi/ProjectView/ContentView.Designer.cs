@@ -68,6 +68,8 @@ namespace Obi.ProjectView
             this.Context_PhraseDetection_ApplyPhraseDetectionInProjectMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.Context_SettingsFromsilencePhraseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.ContextBeginMarkToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ContextEndMarkToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.Context_SkippablesMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.Context_Skippable_BeginSpecialNodeMarkToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.Context_Skippable_EndSpecialNodeMarkToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -102,8 +104,7 @@ namespace Obi.ProjectView
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.verticalScrollToolStripContainer1 = new Obi.ProjectView.VerticalScrollToolStripContainer();
             this.contentViewLabel1 = new Obi.ProjectView.ContentViewLabel();
-            this.ContextBeginMarkToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.ContextEndMarkToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ContextPasteMultiplePhrasesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mContextMenuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -386,9 +387,22 @@ namespace Obi.ProjectView
             // 
             this.toolStripMenuItem1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.ContextBeginMarkToolStripMenuItem,
-            this.ContextEndMarkToolStripMenuItem});
+            this.ContextEndMarkToolStripMenuItem,
+            this.ContextPasteMultiplePhrasesToolStripMenuItem});
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
             resources.ApplyResources(this.toolStripMenuItem1, "toolStripMenuItem1");
+            // 
+            // ContextBeginMarkToolStripMenuItem
+            // 
+            this.ContextBeginMarkToolStripMenuItem.Name = "ContextBeginMarkToolStripMenuItem";
+            resources.ApplyResources(this.ContextBeginMarkToolStripMenuItem, "ContextBeginMarkToolStripMenuItem");
+            this.ContextBeginMarkToolStripMenuItem.Click += new System.EventHandler(this.beginMarkToolStripMenuItem_Click);
+            // 
+            // ContextEndMarkToolStripMenuItem
+            // 
+            this.ContextEndMarkToolStripMenuItem.Name = "ContextEndMarkToolStripMenuItem";
+            resources.ApplyResources(this.ContextEndMarkToolStripMenuItem, "ContextEndMarkToolStripMenuItem");
+            this.ContextEndMarkToolStripMenuItem.Click += new System.EventHandler(this.endMarkToolStripMenuItem_Click);
             // 
             // Context_SkippablesMenuItem
             // 
@@ -583,8 +597,8 @@ namespace Obi.ProjectView
             resources.ApplyResources(this.mVScrollBar, "mVScrollBar");
             this.mVScrollBar.LargeChange = 64;
             this.mVScrollBar.Name = "mVScrollBar";
-            this.mVScrollBar.ValueChanged += new System.EventHandler(this.mVScrollBar_ValueChanged);
             this.mVScrollBar.Scroll += new System.Windows.Forms.ScrollEventHandler(this.mVScrollBar_Scroll);
+            this.mVScrollBar.ValueChanged += new System.EventHandler(this.mVScrollBar_ValueChanged);
             // 
             // mCornerPanel
             // 
@@ -615,17 +629,11 @@ namespace Obi.ProjectView
             this.contentViewLabel1.sectionSelected = false;
             this.contentViewLabel1.zoomFactor = 1F;
             // 
-            // ContextBeginMarkToolStripMenuItem
+            // ContextPasteMultiplePhrasesToolStripMenuItem
             // 
-            this.ContextBeginMarkToolStripMenuItem.Name = "ContextBeginMarkToolStripMenuItem";
-            resources.ApplyResources(this.ContextBeginMarkToolStripMenuItem, "ContextBeginMarkToolStripMenuItem");
-            this.ContextBeginMarkToolStripMenuItem.Click += new System.EventHandler(this.beginMarkToolStripMenuItem_Click);
-            // 
-            // ContextEndMarkToolStripMenuItem
-            // 
-            this.ContextEndMarkToolStripMenuItem.Name = "ContextEndMarkToolStripMenuItem";
-            resources.ApplyResources(this.ContextEndMarkToolStripMenuItem, "ContextEndMarkToolStripMenuItem");
-            this.ContextEndMarkToolStripMenuItem.Click += new System.EventHandler(this.endMarkToolStripMenuItem_Click);
+            this.ContextPasteMultiplePhrasesToolStripMenuItem.Name = "ContextPasteMultiplePhrasesToolStripMenuItem";
+            resources.ApplyResources(this.ContextPasteMultiplePhrasesToolStripMenuItem, "ContextPasteMultiplePhrasesToolStripMenuItem");
+            this.ContextPasteMultiplePhrasesToolStripMenuItem.Click += new System.EventHandler(this.ContextPasteMultiplePhrasesToolStripMenuItem_Click);
             // 
             // ContentView
             // 
@@ -639,8 +647,8 @@ namespace Obi.ProjectView
             this.Name = "ContentView";
             resources.ApplyResources(this, "$this");
             this.Click += new System.EventHandler(this.ContentView_Click);
-            this.Resize += new System.EventHandler(this.ContentView_Resize);
             this.Enter += new System.EventHandler(this.StripsView_Enter);
+            this.Resize += new System.EventHandler(this.ContentView_Resize);
             this.mContextMenuStrip.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -723,5 +731,6 @@ namespace Obi.ProjectView
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem ContextBeginMarkToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem ContextEndMarkToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem ContextPasteMultiplePhrasesToolStripMenuItem;
     }
 }
