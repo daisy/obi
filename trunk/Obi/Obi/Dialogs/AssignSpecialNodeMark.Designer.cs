@@ -35,9 +35,11 @@ namespace Obi.Dialogs
             this.m_rdb_btn_SpecialPhrase = new System.Windows.Forms.RadioButton();
             this.m_rdb_btn_RenumberPages = new System.Windows.Forms.RadioButton();
             this.helpProvider1 = new System.Windows.Forms.HelpProvider();
-            this.m_rtb_btn_AudioProcessing = new System.Windows.Forms.RadioButton();
             this.m_gp_box_operation = new System.Windows.Forms.GroupBox();
+            this.m_rdb_Copy = new System.Windows.Forms.RadioButton();
+            this.m_rdb_Cut = new System.Windows.Forms.RadioButton();
             this.m_rtb_btn_TimeElapsed = new System.Windows.Forms.RadioButton();
+            this.m_rtb_btn_AudioProcessing = new System.Windows.Forms.RadioButton();
             this.m_gp_box_operation.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -74,6 +76,7 @@ namespace Obi.Dialogs
             resources.ApplyResources(this.m_rdb_btn_SpecialPhrase, "m_rdb_btn_SpecialPhrase");
             this.m_rdb_btn_SpecialPhrase.Checked = true;
             this.m_rdb_btn_SpecialPhrase.Name = "m_rdb_btn_SpecialPhrase";
+            this.m_rdb_btn_SpecialPhrase.TabStop = true;
             this.m_rdb_btn_SpecialPhrase.UseVisualStyleBackColor = true;
             this.m_rdb_btn_SpecialPhrase.CheckedChanged += new System.EventHandler(this.m_rdb_btn_SpecialPhrase_CheckedChanged);
             // 
@@ -88,15 +91,10 @@ namespace Obi.Dialogs
             // 
             resources.ApplyResources(this.helpProvider1, "helpProvider1");
             // 
-            // m_rtb_btn_AudioProcessing
-            // 
-            resources.ApplyResources(this.m_rtb_btn_AudioProcessing, "m_rtb_btn_AudioProcessing");
-            this.m_rtb_btn_AudioProcessing.Name = "m_rtb_btn_AudioProcessing";
-            this.m_rtb_btn_AudioProcessing.UseVisualStyleBackColor = true;
-            this.m_rtb_btn_AudioProcessing.CheckedChanged += new System.EventHandler(this.m_rtb_btn_AudioProcessing_CheckedChanged);
-            // 
             // m_gp_box_operation
             // 
+            this.m_gp_box_operation.Controls.Add(this.m_rdb_Copy);
+            this.m_gp_box_operation.Controls.Add(this.m_rdb_Cut);
             this.m_gp_box_operation.Controls.Add(this.m_rtb_btn_TimeElapsed);
             this.m_gp_box_operation.Controls.Add(this.m_rdb_btn_SpecialPhrase);
             this.m_gp_box_operation.Controls.Add(this.m_rtb_btn_AudioProcessing);
@@ -106,12 +104,33 @@ namespace Obi.Dialogs
             this.helpProvider1.SetShowHelp(this.m_gp_box_operation, ((bool)(resources.GetObject("m_gp_box_operation.ShowHelp"))));
             this.m_gp_box_operation.TabStop = false;
             // 
+            // m_rdb_Copy
+            // 
+            resources.ApplyResources(this.m_rdb_Copy, "m_rdb_Copy");
+            this.m_rdb_Copy.Name = "m_rdb_Copy";
+            this.m_rdb_Copy.UseVisualStyleBackColor = true;
+            this.m_rdb_Copy.CheckedChanged += new System.EventHandler(this.m_rdb_Copy_CheckedChanged);
+            // 
+            // m_rdb_Cut
+            // 
+            resources.ApplyResources(this.m_rdb_Cut, "m_rdb_Cut");
+            this.m_rdb_Cut.Name = "m_rdb_Cut";
+            this.m_rdb_Cut.UseVisualStyleBackColor = true;
+            this.m_rdb_Cut.CheckedChanged += new System.EventHandler(this.m_rdb_Cut_CheckedChanged);
+            // 
             // m_rtb_btn_TimeElapsed
             // 
             resources.ApplyResources(this.m_rtb_btn_TimeElapsed, "m_rtb_btn_TimeElapsed");
             this.m_rtb_btn_TimeElapsed.Name = "m_rtb_btn_TimeElapsed";
             this.m_rtb_btn_TimeElapsed.UseVisualStyleBackColor = true;
             this.m_rtb_btn_TimeElapsed.CheckedChanged += new System.EventHandler(this.m_rtb_btn_TimeElapsed_CheckedChanged);
+            // 
+            // m_rtb_btn_AudioProcessing
+            // 
+            resources.ApplyResources(this.m_rtb_btn_AudioProcessing, "m_rtb_btn_AudioProcessing");
+            this.m_rtb_btn_AudioProcessing.Name = "m_rtb_btn_AudioProcessing";
+            this.m_rtb_btn_AudioProcessing.UseVisualStyleBackColor = true;
+            this.m_rtb_btn_AudioProcessing.CheckedChanged += new System.EventHandler(this.m_rtb_btn_AudioProcessing_CheckedChanged);
             // 
             // AssignSpecialNodeMark
             // 
@@ -124,6 +143,7 @@ namespace Obi.Dialogs
             this.Controls.Add(this.m_btn_OK);
             this.Controls.Add(this.m_cmbBoxSpecialNode);
             this.Name = "AssignSpecialNodeMark";
+            this.helpProvider1.SetShowHelp(this, ((bool)(resources.GetObject("$this.ShowHelp"))));
             this.m_gp_box_operation.ResumeLayout(false);
             this.m_gp_box_operation.PerformLayout();
             this.ResumeLayout(false);
@@ -141,5 +161,7 @@ namespace Obi.Dialogs
         private System.Windows.Forms.RadioButton m_rtb_btn_AudioProcessing;
         private System.Windows.Forms.GroupBox m_gp_box_operation;
         private System.Windows.Forms.RadioButton m_rtb_btn_TimeElapsed;
+        private System.Windows.Forms.RadioButton m_rdb_Copy;
+        private System.Windows.Forms.RadioButton m_rdb_Cut;
     }
 }

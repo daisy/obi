@@ -13,6 +13,7 @@ namespace Obi.Dialogs
         private string m_SelectedSpecialNode = "";
         private bool m_IsRenumberChecked = false;
         private bool m_IsAudioProcessingChecked = false;
+        private bool m_IsCopyChecked = false;
         public AssignSpecialNodeMark(Settings settings) //@fontconfig
         {
             InitializeComponent();
@@ -24,6 +25,7 @@ namespace Obi.Dialogs
             {
                 this.Font = new Font(settings.ObiFont, this.Font.Size, FontStyle.Regular);//@fontconfig
             }
+
         }
 
         public string SelectedSpecialNode
@@ -37,6 +39,16 @@ namespace Obi.Dialogs
         public bool IsAudioProcessingChecked
         { get { return m_IsAudioProcessingChecked; } }
 
+        public bool IsCopyChecked
+        {
+            get { return m_rdb_Copy.Checked; }
+        }
+
+        public bool IsCutChecked
+        {
+            get { return m_rdb_Cut.Checked; }
+        }
+
         public bool IsTimeElapsedChecked
         {
             get
@@ -44,6 +56,9 @@ namespace Obi.Dialogs
                 return m_rtb_btn_TimeElapsed.Checked;
             }
         }
+
+     
+
         public bool EnableSkippableNotes
         {
             set
@@ -66,6 +81,7 @@ namespace Obi.Dialogs
             m_cmbBoxSpecialNode.Visible = true;
             m_IsRenumberChecked = false;
             m_IsAudioProcessingChecked = false;
+            m_IsCopyChecked = false;
         }
 
         private void m_rdb_btn_RenumberPages_CheckedChanged(object sender, EventArgs e)
@@ -73,6 +89,7 @@ namespace Obi.Dialogs
             m_IsRenumberChecked = true;
             m_cmbBoxSpecialNode.Visible = false;
             m_IsAudioProcessingChecked = false;
+            m_IsCopyChecked = false;
         }
 
         private void m_rtb_btn_AudioProcessing_CheckedChanged(object sender, EventArgs e)
@@ -80,6 +97,7 @@ namespace Obi.Dialogs
             m_IsAudioProcessingChecked = true;
             m_cmbBoxSpecialNode.Visible = false;
             m_IsRenumberChecked = false;
+            m_IsCopyChecked = false;
         }
 
         private void m_rtb_btn_TimeElapsed_CheckedChanged(object sender, EventArgs e)
@@ -87,7 +105,21 @@ namespace Obi.Dialogs
             m_IsAudioProcessingChecked = false;
             m_cmbBoxSpecialNode.Visible = false;
             m_IsRenumberChecked = false;
+            m_IsCopyChecked = false;
             
+        }
+
+        private void m_rdb_Copy_CheckedChanged(object sender, EventArgs e)
+        {
+            m_IsAudioProcessingChecked = false;
+            m_cmbBoxSpecialNode.Visible = false;
+            m_IsRenumberChecked = false;
+            m_IsCopyChecked = true;
+        }
+
+        private void m_rdb_Cut_CheckedChanged(object sender, EventArgs e)
+        {
+
         }
 
     }
