@@ -44,6 +44,7 @@ namespace Obi.ProjectView
         private Waveform m_RenderingWaveform = null;
         private EmptyNode m_BeginNote = null; //@AssociateNode
         private EmptyNode m_EndNote = null;  //@AssociateNode
+        private List<EmptyNode> m_ListOfPhrasesToCutOrCopy = new List<EmptyNode>(); //@AssociateNode
         private Waveform_Recording waveform_recording_control;
         private ZoomWaveform m_ZoomWaveformPanel;
         private Toolbar_EditAudio m_Edit;
@@ -263,6 +264,12 @@ namespace Obi.ProjectView
             get { return m_EndNote; }
             set { m_EndNote = value; }
         }
+
+            public List<EmptyNode> ListOfPhrasesToCutOrCopy
+            {
+                get { return m_ListOfPhrasesToCutOrCopy; }
+                set { m_ListOfPhrasesToCutOrCopy = value; }
+            }
         /// <summary>
         /// Add a custom class to the context menu.
         /// </summary>
@@ -437,6 +444,15 @@ namespace Obi.ProjectView
                         }
                     }
                     
+                }
+
+
+
+                if (!(e.Command.ShortDescription == Localizer.Message("copy_phrase") ||
+                      e.Command.ShortDescription == Localizer.Message("cut_phrase") ||
+                      e.Command.ShortDescription == Localizer.Message("paste_phrase")))
+                {
+                    m_ListOfPhrasesToCutOrCopy.Clear();
                 }
             }
 
