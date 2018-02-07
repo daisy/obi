@@ -42,7 +42,6 @@ namespace Obi.ProjectView
         private double m_ZoomWaveformIncrementFactor;
         private bool m_SaveZoomWaveformZoomLevel;
         private double m_TotalCursorTime; // use to calulate time between two marks.   
-        private List<EmptyNode> m_ListOfPhrasesToCopy = new List<EmptyNode>();
         private bool m_IsCopyForMultiplePhrasesChecked = false;
                   
     
@@ -7210,17 +7209,21 @@ public bool ShowOnlySelectedSection
 
         public void CopyMultiplePhrases(EmptyNode startNode, EmptyNode endNode)
         {
+            if (this.CanPaste)
+            {
+                mClipboard = null;
+            }
             EmptyNode tempNode = startNode;
 
-            m_ListOfPhrasesToCopy.Clear();
+            mContentView.ListOfPhrasesToCutOrCopy.Clear();
 
-            m_ListOfPhrasesToCopy.Add(startNode);
+            mContentView.ListOfPhrasesToCutOrCopy.Add(startNode);
             while (tempNode != endNode)
             {
                 if (tempNode.FollowingNode != null && !(tempNode.FollowingNode is SectionNode))
                 {
                     tempNode = (EmptyNode) tempNode.FollowingNode;
-                    m_ListOfPhrasesToCopy.Add(tempNode);
+                    mContentView.ListOfPhrasesToCutOrCopy.Add(tempNode);
 
                 }
                 else
@@ -7231,35 +7234,46 @@ public bool ShowOnlySelectedSection
 
         public void PasteMultiplePhrases()
         {
-            EmptyNode tempNodeToPaste = null;
-            if (this.Selection.Node is PhraseNode)
+            if (CanPaste)
             {
-                tempNodeToPaste = (PhraseNode) this.Selection.Node;
+                mContentView.ListOfPhrasesToCutOrCopy.Clear();
             }
 
-            if (tempNodeToPaste != null)
+            if (mContentView.ListOfPhrasesToCutOrCopy.Count > 1)
             {
-                foreach (EmptyNode tempPhraseNode in m_ListOfPhrasesToCopy)
+                EmptyNode tempNodeToPaste = null;
+                if (this.Selection.Node is PhraseNode)
                 {
-                    this.Selection = new NodeSelection(tempPhraseNode, mContentView);
-                    if (m_IsCopyForMultiplePhrasesChecked)
-                    {
-                        this.Copy();
-                    }
-                    else
-                    {
-                        this.Cut();
-                    }
-                    this.Selection = new NodeSelection(tempNodeToPaste, mContentView);
-                    this.Paste();
-                    if (this.Selection != null && this.Selection.Node != null && this.Selection.Node is PhraseNode)
-                    {
-                        tempNodeToPaste = (PhraseNode) this.Selection.Node;
-                    }
-                    else
-                    {
-                        break;
+                    tempNodeToPaste = (PhraseNode) this.Selection.Node;
+                }
 
+                if (tempNodeToPaste != null)
+                {
+
+                    foreach (EmptyNode tempPhraseNode in mContentView.ListOfPhrasesToCutOrCopy)
+                    {
+                        this.Selection = new NodeSelection(tempPhraseNode, mContentView);
+                        if (m_IsCopyForMultiplePhrasesChecked)
+                        {
+                            this.Copy();
+                        }
+                        else
+                        {
+                            this.Cut();
+                        }
+
+                        this.Selection = new NodeSelection(tempNodeToPaste, mContentView);
+                        this.Paste();
+                        if (this.Selection != null && this.Selection.Node != null &&
+                            this.Selection.Node is PhraseNode)
+                        {
+                            tempNodeToPaste = (PhraseNode) this.Selection.Node;
+                        }
+                        else
+                        {
+                            break;
+
+                        }
                     }
                 }
             }

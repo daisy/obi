@@ -172,7 +172,7 @@
     <value>8</value>
   </data>
   <data name="m_btn_OK.Text" xml:space="preserve">
-    <value>OK</value>
+    <value>O&amp;K</value>
   </data>
   <data name="&gt;&gt;m_btn_OK.Name" xml:space="preserve">
     <value>m_btn_OK</value>
@@ -199,7 +199,7 @@
     <value>9</value>
   </data>
   <data name="m_btn_Cancel.Text" xml:space="preserve">
-    <value>Cancel</value>
+    <value>Ca&amp;ncel</value>
   </data>
   <data name="&gt;&gt;m_btn_Cancel.Name" xml:space="preserve">
     <value>m_btn_Cancel</value>
@@ -226,7 +226,7 @@
     <value>1</value>
   </data>
   <data name="m_rdb_btn_SpecialPhrase.Text" xml:space="preserve">
-    <value>Skippable notes</value>
+    <value>&amp;Skippable notes</value>
   </data>
   <data name="&gt;&gt;m_rdb_btn_SpecialPhrase.Name" xml:space="preserve">
     <value>m_rdb_btn_SpecialPhrase</value>
@@ -253,7 +253,7 @@
     <value>3</value>
   </data>
   <data name="m_rdb_btn_RenumberPages.Text" xml:space="preserve">
-    <value>Renumber pages</value>
+    <value>&amp;Renumber pages</value>
   </data>
   <data name="&gt;&gt;m_rdb_btn_RenumberPages.Name" xml:space="preserve">
     <value>m_rdb_btn_RenumberPages</value>
@@ -340,7 +340,7 @@
     <value>5</value>
   </data>
   <data name="m_rtb_btn_TimeElapsed.Text" xml:space="preserve">
-    <value>Time Elapsed</value>
+    <value>&amp;Time Elapsed</value>
   </data>
   <data name="&gt;&gt;m_rtb_btn_TimeElapsed.Name" xml:space="preserve">
     <value>m_rtb_btn_TimeElapsed</value>
@@ -367,7 +367,7 @@
     <value>4</value>
   </data>
   <data name="m_rtb_btn_AudioProcessing.Text" xml:space="preserve">
-    <value>Audio Processing</value>
+    <value>&amp;Audio Processing</value>
   </data>
   <data name="&gt;&gt;m_rtb_btn_AudioProcessing.Name" xml:space="preserve">
     <value>m_rtb_btn_AudioProcessing</value>
@@ -418,7 +418,7 @@
     <value>True</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
-    <value>Assign note/ Renumber pages</value>
+    <value>Multi Phrase Operations</value>
   </data>
   <data name="&gt;&gt;helpProvider1.Name" xml:space="preserve">
     <value>helpProvider1</value>
