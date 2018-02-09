@@ -3028,4 +3028,7 @@ Error text: {1}</value>
   <data name="WrongFormat" xml:space="preserve">
     <value>File imported is in wrong format. Make sure proper level is given for each section.</value>
   </data>
+  <data name="PasteNotAllowed" xml:space="preserve">
+    <value>Pasting inside the selected phrases are not allowed</value>
+  </data>
 </root>

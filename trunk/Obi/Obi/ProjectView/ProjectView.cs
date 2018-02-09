@@ -7234,6 +7234,7 @@ public bool ShowOnlySelectedSection
 
         public void PasteMultiplePhrases()
         {
+          
             if (CanPaste)
             {
                 mContentView.ListOfPhrasesToCutOrCopy.Clear();
@@ -7244,11 +7245,38 @@ public bool ShowOnlySelectedSection
                 EmptyNode tempNodeToPaste = null;
                 if (this.Selection.Node is PhraseNode)
                 {
-                    tempNodeToPaste = (PhraseNode) this.Selection.Node;
+                    tempNodeToPaste = this.Selection.EmptyNodeForSelection;
+                }
+                else if (this.Selection.Node is SectionNode)
+                {
+                    tempNodeToPaste = this.Selection.Node.LastUsedPhrase;
+                    if (tempNodeToPaste == null && ((SectionNode)this.Selection.Node).PhraseChildCount == 0)
+                    {
+                        SectionNode tempSectionNode = (SectionNode)this.Selection.Node;
+                        this.Selection = new NodeSelection(mContentView.ListOfPhrasesToCutOrCopy[0], mContentView);
+                        if (m_IsCopyForMultiplePhrasesChecked)
+                        {
+                            this.Copy();
+                        }
+                        else
+                        {
+                            this.Cut();
+                        }
+
+                        this.Selection = new NodeSelection(tempSectionNode, mContentView);
+                        this.Paste();
+                        tempNodeToPaste = this.Selection.EmptyNodeForSelection;
+                        mContentView.ListOfPhrasesToCutOrCopy.Remove(mContentView.ListOfPhrasesToCutOrCopy[0]);
+                    }
                 }
 
                 if (tempNodeToPaste != null)
                 {
+                    if (mContentView.ListOfPhrasesToCutOrCopy.Contains(tempNodeToPaste))
+                    {
+                        MessageBox.Show(Localizer.Message("PasteNotAllowed"), Localizer.Message("Caption_Error"), MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
 
                     foreach (EmptyNode tempPhraseNode in mContentView.ListOfPhrasesToCutOrCopy)
                     {
@@ -7267,7 +7295,7 @@ public bool ShowOnlySelectedSection
                         if (this.Selection != null && this.Selection.Node != null &&
                             this.Selection.Node is PhraseNode)
                         {
-                            tempNodeToPaste = (PhraseNode) this.Selection.Node;
+                            tempNodeToPaste = (PhraseNode)this.Selection.Node;
                         }
                         else
                         {
@@ -7277,6 +7305,55 @@ public bool ShowOnlySelectedSection
                     }
                 }
             }
+            //Dialogs.ProgressDialog progress =
+            //    new Dialogs.ProgressDialog(Localizer.Message("import_audio_progress_dialog_title"),
+            //        delegate()
+            //        {
+            //            if (CanPaste)
+            //            {
+            //                mContentView.ListOfPhrasesToCutOrCopy.Clear();
+            //            }
+
+            //            if (mContentView.ListOfPhrasesToCutOrCopy.Count > 1)
+            //            {
+            //                EmptyNode tempNodeToPaste = null;
+            //                if (this.Selection.Node is PhraseNode)
+            //                {
+            //                    tempNodeToPaste = (PhraseNode)this.Selection.Node;
+            //                }
+
+            //                if (tempNodeToPaste != null)
+            //                {
+
+            //                    foreach (EmptyNode tempPhraseNode in mContentView.ListOfPhrasesToCutOrCopy)
+            //                    {
+            //                        this.Selection = new NodeSelection(tempPhraseNode, mContentView);
+            //                        if (m_IsCopyForMultiplePhrasesChecked)
+            //                        {
+            //                            this.Copy();
+            //                        }
+            //                        else
+            //                        {
+            //                            this.Cut();
+            //                        }
+
+            //                        this.Selection = new NodeSelection(tempNodeToPaste, mContentView);
+            //                        this.Paste();
+            //                        if (this.Selection != null && this.Selection.Node != null &&
+            //                            this.Selection.Node is PhraseNode)
+            //                        {
+            //                            tempNodeToPaste = (PhraseNode)this.Selection.Node;
+            //                        }
+            //                        else
+            //                        {
+            //                            break;
+
+            //                        }
+            //                    }
+            //                }
+            //            }
+            //        }, this.ObiForm.Settings);
+            //progress.ShowDialog();
         }
 
         }
