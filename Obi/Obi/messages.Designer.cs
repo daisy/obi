@@ -5029,6 +5029,15 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Pasting inside the selected phrases are not allowed.
+        /// </summary>
+        internal static string PasteNotAllowed {
+            get {
+                return ResourceManager.GetString("PasteNotAllowed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Path &quot;{0}&quot; is not recognized ({1})..
         /// </summary>
         internal static string path_not_recognized {
