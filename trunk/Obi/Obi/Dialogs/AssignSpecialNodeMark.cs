@@ -57,13 +57,19 @@ namespace Obi.Dialogs
             }
         }
 
+        public bool IsMergeChecked
+        {
+            get { return m_rdb_Merge.Checked; }
+        }
+
      
 
-        public bool EnableSkippableNotes
+        public bool EnableSkippableNotesAndMerge
         {
             set
             {
                 m_rdb_btn_SpecialPhrase.Enabled = value;
+                m_rdb_Merge.Enabled = value;
                 if (!value)
                 {
                     m_rdb_btn_RenumberPages.Checked = true;
@@ -119,7 +125,15 @@ namespace Obi.Dialogs
 
         private void m_rdb_Cut_CheckedChanged(object sender, EventArgs e)
         {
+            m_cmbBoxSpecialNode.Visible = false;
+        }
 
+        private void m_rdb_Merge_CheckedChanged(object sender, EventArgs e)
+        {
+            m_cmbBoxSpecialNode.Visible = false;
+            m_IsRenumberChecked = false;
+            m_IsAudioProcessingChecked = false;
+            m_IsCopyChecked = false;
         }
 
     }
