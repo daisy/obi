@@ -3473,13 +3473,13 @@ for (int j = 0;
                 }
             }
 
-        public void MergePhraseWithFollowingPhrasesInSection () { MergeRangeOfPhrasesInSection ( true ); }
-        public void MergeWithPhrasesBeforeInSection  () { MergeRangeOfPhrasesInSection ( false); }
+        public void MergePhraseWithFollowingPhrasesInSection () { MergeRangeOfPhrasesInSection ( true, false ); }
+        public void MergeWithPhrasesBeforeInSection  () { MergeRangeOfPhrasesInSection ( false, false); }
 
-        private void MergeRangeOfPhrasesInSection ( bool mergeWithFollowing)
+        private void MergeRangeOfPhrasesInSection ( bool mergeWithFollowing, bool mergeRangeOfPhrases)
             {
         if ( ( mergeWithFollowing && CanMergePhraseWithFollowingPhrasesInSection )
-            || (!mergeWithFollowing && CanMergeWithPhrasesBeforeInSection ))
+            || (!mergeWithFollowing && CanMergeWithPhrasesBeforeInSection ) || mergeRangeOfPhrases)
                 {
                 if (mTransportBar.IsPlayerActive)
                     {
@@ -3489,11 +3489,23 @@ for (int j = 0;
 
                 SectionNode section = ((EmptyNode)Selection.Node).ParentAs<SectionNode> ();
 
-                EmptyNode startNode = mergeWithFollowing ? (EmptyNode)Selection.Node :
-                    section.PhraseChild ( 0 );
-                EmptyNode endNode = mergeWithFollowing ? section.PhraseChild ( section.PhraseChildCount - 1 ) :
-                    (EmptyNode)Selection.Node;
-            // check if the merged phrase is not more than 10 mins
+                EmptyNode startNode = null;
+                EmptyNode endNode = null;
+                    if (!mergeRangeOfPhrases)
+                    {
+                        startNode = mergeWithFollowing ? (EmptyNode) Selection.Node : section.PhraseChild(0);
+                        endNode = mergeWithFollowing
+                            ? section.PhraseChild(section.PhraseChildCount - 1)
+                            : (EmptyNode) Selection.Node;
+                    }
+
+                    else
+                    {
+
+                        startNode = mContentView.BeginSpecialNode;
+                        endNode = mContentView.EndSpecialNode;
+                    }
+                    // check if the merged phrase is not more than 10 mins
 
                 double durationSum = 0;
                 //if ((endNode.Index - startNode.Index) > 300)
@@ -5400,7 +5412,7 @@ for (int j = 0;
                 Dialogs.AssignSpecialNodeMark AssignSpecialNodeDialog = new Obi.Dialogs.AssignSpecialNodeMark(ObiForm.Settings); //@fontconfig
                 if (startNode.Parent != endNode.Parent)
                 {
-                    AssignSpecialNodeDialog.EnableSkippableNotes = false;                    
+                    AssignSpecialNodeDialog.EnableSkippableNotesAndMerge = false;                    
                 }
 
             AssignSpecialNodeDialog.ShowDialog();
@@ -5446,6 +5458,10 @@ for (int j = 0;
                     }
                     CopyMultiplePhrases(startNode,endNode);
                 
+                }
+                else if (AssignSpecialNodeDialog.IsMergeChecked)
+                {
+                    MergeRangeOfPhrasesInSection(false,true);
                 }
                 else
                 {

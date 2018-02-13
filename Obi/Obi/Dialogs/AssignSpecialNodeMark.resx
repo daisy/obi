@@ -137,7 +137,7 @@
   </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="m_cmbBoxSpecialNode.Location" type="System.Drawing.Point, System.Drawing">
-    <value>259, 99</value>
+    <value>307, 99</value>
   </data>
   <data name="m_cmbBoxSpecialNode.Size" type="System.Drawing.Size, System.Drawing">
     <value>181, 21</value>
@@ -163,13 +163,13 @@
     <value>Flat</value>
   </data>
   <data name="m_btn_OK.Location" type="System.Drawing.Point, System.Drawing">
-    <value>244, 157</value>
+    <value>291, 157</value>
   </data>
   <data name="m_btn_OK.Size" type="System.Drawing.Size, System.Drawing">
     <value>90, 31</value>
   </data>
   <data name="m_btn_OK.TabIndex" type="System.Int32, mscorlib">
-    <value>8</value>
+    <value>9</value>
   </data>
   <data name="m_btn_OK.Text" xml:space="preserve">
     <value>O&amp;K</value>
@@ -190,13 +190,13 @@
     <value>Flat</value>
   </data>
   <data name="m_btn_Cancel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>350, 157</value>
+    <value>397, 157</value>
   </data>
   <data name="m_btn_Cancel.Size" type="System.Drawing.Size, System.Drawing">
     <value>90, 31</value>
   </data>
   <data name="m_btn_Cancel.TabIndex" type="System.Int32, mscorlib">
-    <value>9</value>
+    <value>10</value>
   </data>
   <data name="m_btn_Cancel.Text" xml:space="preserve">
     <value>Ca&amp;ncel</value>
@@ -238,7 +238,7 @@
     <value>m_gp_box_operation</value>
   </data>
   <data name="&gt;&gt;m_rdb_btn_SpecialPhrase.ZOrder" xml:space="preserve">
-    <value>3</value>
+    <value>4</value>
   </data>
   <data name="m_rdb_btn_RenumberPages.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -265,7 +265,7 @@
     <value>m_gp_box_operation</value>
   </data>
   <data name="&gt;&gt;m_rdb_btn_RenumberPages.ZOrder" xml:space="preserve">
-    <value>5</value>
+    <value>6</value>
   </data>
   <metadata name="helpProvider1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
@@ -273,11 +273,38 @@
   <data name="helpProvider1.HelpNamespace" xml:space="preserve">
     <value>Obi Help.chm</value>
   </data>
+  <data name="m_rdb_Merge.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="m_rdb_Merge.Location" type="System.Drawing.Point, System.Drawing">
+    <value>666, 19</value>
+  </data>
+  <data name="m_rdb_Merge.Size" type="System.Drawing.Size, System.Drawing">
+    <value>55, 17</value>
+  </data>
+  <data name="m_rdb_Merge.TabIndex" type="System.Int32, mscorlib">
+    <value>8</value>
+  </data>
+  <data name="m_rdb_Merge.Text" xml:space="preserve">
+    <value>Merge</value>
+  </data>
+  <data name="&gt;&gt;m_rdb_Merge.Name" xml:space="preserve">
+    <value>m_rdb_Merge</value>
+  </data>
+  <data name="&gt;&gt;m_rdb_Merge.Type" xml:space="preserve">
+    <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_rdb_Merge.Parent" xml:space="preserve">
+    <value>m_gp_box_operation</value>
+  </data>
+  <data name="&gt;&gt;m_rdb_Merge.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
   <data name="m_rdb_Copy.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
   <data name="m_rdb_Copy.Location" type="System.Drawing.Point, System.Drawing">
-    <value>606, 19</value>
+    <value>600, 19</value>
   </data>
   <data name="m_rdb_Copy.Size" type="System.Drawing.Size, System.Drawing">
     <value>49, 17</value>
@@ -298,7 +325,7 @@
     <value>m_gp_box_operation</value>
   </data>
   <data name="&gt;&gt;m_rdb_Copy.ZOrder" xml:space="preserve">
-    <value>0</value>
+    <value>1</value>
   </data>
   <data name="m_rdb_Cut.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -325,7 +352,7 @@
     <value>m_gp_box_operation</value>
   </data>
   <data name="&gt;&gt;m_rdb_Cut.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>2</value>
   </data>
   <data name="m_rtb_btn_TimeElapsed.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -352,7 +379,7 @@
     <value>m_gp_box_operation</value>
   </data>
   <data name="&gt;&gt;m_rtb_btn_TimeElapsed.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>3</value>
   </data>
   <data name="m_rtb_btn_AudioProcessing.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -379,7 +406,7 @@
     <value>m_gp_box_operation</value>
   </data>
   <data name="&gt;&gt;m_rtb_btn_AudioProcessing.ZOrder" xml:space="preserve">
-    <value>4</value>
+    <value>5</value>
   </data>
   <data name="m_gp_box_operation.Location" type="System.Drawing.Point, System.Drawing">
     <value>12, 12</value>
@@ -388,7 +415,7 @@
     <value>True</value>
   </data>
   <data name="m_gp_box_operation.Size" type="System.Drawing.Size, System.Drawing">
-    <value>678, 55</value>
+    <value>746, 55</value>
   </data>
   <data name="m_gp_box_operation.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
@@ -412,7 +439,7 @@
     <value>6, 13</value>
   </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>717, 212</value>
+    <value>774, 212</value>
   </data>
   <data name="$this.ShowHelp" type="System.Boolean, mscorlib">
     <value>True</value>
