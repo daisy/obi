@@ -230,6 +230,7 @@ namespace Obi
             this.mStatusStrip = new System.Windows.Forms.StatusStrip();
             this.mStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.mStatusProgressBar = new System.Windows.Forms.ToolStripProgressBar();
+            this.m_pasteMultiplePhrasesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mProjectView = new Obi.ProjectView.ProjectView();
             this.mMenuStrip.SuspendLayout();
             this.mStatusStrip.SuspendLayout();
@@ -920,7 +921,8 @@ namespace Obi
             this.beginMarkToolStripMenuItem,
             this.endMarkToolStripMenuItem,
             this.mPhrases_RenumberPagesMenuItem,
-            this.m_AutoFillMissingPagesMenuItem});
+            this.m_AutoFillMissingPagesMenuItem,
+            this.m_pasteMultiplePhrasesToolStripMenuItem});
             this.MultiPhraseOperationMenuItem.Name = "MultiPhraseOperationMenuItem";
             resources.ApplyResources(this.MultiPhraseOperationMenuItem, "MultiPhraseOperationMenuItem");
             // 
@@ -1658,6 +1660,12 @@ namespace Obi
             resources.ApplyResources(this.mStatusProgressBar, "mStatusProgressBar");
             this.mStatusProgressBar.Style = System.Windows.Forms.ProgressBarStyle.Continuous;
             // 
+            // m_pasteMultiplePhrasesToolStripMenuItem
+            // 
+            this.m_pasteMultiplePhrasesToolStripMenuItem.Name = "m_pasteMultiplePhrasesToolStripMenuItem";
+            resources.ApplyResources(this.m_pasteMultiplePhrasesToolStripMenuItem, "m_pasteMultiplePhrasesToolStripMenuItem");
+            this.m_pasteMultiplePhrasesToolStripMenuItem.Click += new System.EventHandler(this.m_pasteMultiplePhrasesToolStripMenuItem_Click);
+            // 
             // mProjectView
             // 
             this.mProjectView.BackColor = System.Drawing.SystemColors.Control;
@@ -1905,6 +1913,7 @@ namespace Obi
         private System.Windows.Forms.ToolStripMenuItem detectSilencePhraseToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mAutoPageGenerationMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mImportTOCMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem m_pasteMultiplePhrasesToolStripMenuItem;
     }
 }
 

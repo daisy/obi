@@ -7256,7 +7256,7 @@ public bool ShowOnlySelectedSection
                 mContentView.ListOfPhrasesToCutOrCopy.Clear();
             }
 
-            if (mContentView.ListOfPhrasesToCutOrCopy.Count > 1)
+            if (mContentView.ListOfPhrasesToCutOrCopy.Count >= 1)
             {
                 EmptyNode tempNodeToPaste = null;
                 if (this.Selection.Node is PhraseNode)
@@ -7321,55 +7321,7 @@ public bool ShowOnlySelectedSection
                     }
                 }
             }
-            //Dialogs.ProgressDialog progress =
-            //    new Dialogs.ProgressDialog(Localizer.Message("import_audio_progress_dialog_title"),
-            //        delegate()
-            //        {
-            //            if (CanPaste)
-            //            {
-            //                mContentView.ListOfPhrasesToCutOrCopy.Clear();
-            //            }
-
-            //            if (mContentView.ListOfPhrasesToCutOrCopy.Count > 1)
-            //            {
-            //                EmptyNode tempNodeToPaste = null;
-            //                if (this.Selection.Node is PhraseNode)
-            //                {
-            //                    tempNodeToPaste = (PhraseNode)this.Selection.Node;
-            //                }
-
-            //                if (tempNodeToPaste != null)
-            //                {
-
-            //                    foreach (EmptyNode tempPhraseNode in mContentView.ListOfPhrasesToCutOrCopy)
-            //                    {
-            //                        this.Selection = new NodeSelection(tempPhraseNode, mContentView);
-            //                        if (m_IsCopyForMultiplePhrasesChecked)
-            //                        {
-            //                            this.Copy();
-            //                        }
-            //                        else
-            //                        {
-            //                            this.Cut();
-            //                        }
-
-            //                        this.Selection = new NodeSelection(tempNodeToPaste, mContentView);
-            //                        this.Paste();
-            //                        if (this.Selection != null && this.Selection.Node != null &&
-            //                            this.Selection.Node is PhraseNode)
-            //                        {
-            //                            tempNodeToPaste = (PhraseNode)this.Selection.Node;
-            //                        }
-            //                        else
-            //                        {
-            //                            break;
-
-            //                        }
-            //                    }
-            //                }
-            //            }
-            //        }, this.ObiForm.Settings);
-            //progress.ShowDialog();
+;
         }
 
         }
