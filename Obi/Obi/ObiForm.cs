@@ -6406,6 +6406,11 @@ ref string exportDirectoryEPUB3)
                 return tempSecNode;
             }
 
+            private void m_pasteMultiplePhrasesToolStripMenuItem_Click(object sender, EventArgs e)
+            {
+                mProjectView.PasteMultiplePhrases();
+            }
+
 
 
  

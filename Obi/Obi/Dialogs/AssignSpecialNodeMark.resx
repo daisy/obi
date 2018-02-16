@@ -286,7 +286,7 @@
     <value>8</value>
   </data>
   <data name="m_rdb_Merge.Text" xml:space="preserve">
-    <value>Merge</value>
+    <value>&amp;Merge</value>
   </data>
   <data name="&gt;&gt;m_rdb_Merge.Name" xml:space="preserve">
     <value>m_rdb_Merge</value>

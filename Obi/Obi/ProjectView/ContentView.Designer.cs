@@ -70,6 +70,7 @@ namespace Obi.ProjectView
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.ContextBeginMarkToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ContextEndMarkToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ContextPasteMultiplePhrasesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.Context_SkippablesMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.Context_Skippable_BeginSpecialNodeMarkToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.Context_Skippable_EndSpecialNodeMarkToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -104,7 +105,6 @@ namespace Obi.ProjectView
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.verticalScrollToolStripContainer1 = new Obi.ProjectView.VerticalScrollToolStripContainer();
             this.contentViewLabel1 = new Obi.ProjectView.ContentViewLabel();
-            this.ContextPasteMultiplePhrasesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mContextMenuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -404,6 +404,12 @@ namespace Obi.ProjectView
             resources.ApplyResources(this.ContextEndMarkToolStripMenuItem, "ContextEndMarkToolStripMenuItem");
             this.ContextEndMarkToolStripMenuItem.Click += new System.EventHandler(this.endMarkToolStripMenuItem_Click);
             // 
+            // ContextPasteMultiplePhrasesToolStripMenuItem
+            // 
+            this.ContextPasteMultiplePhrasesToolStripMenuItem.Name = "ContextPasteMultiplePhrasesToolStripMenuItem";
+            resources.ApplyResources(this.ContextPasteMultiplePhrasesToolStripMenuItem, "ContextPasteMultiplePhrasesToolStripMenuItem");
+            this.ContextPasteMultiplePhrasesToolStripMenuItem.Click += new System.EventHandler(this.ContextPasteMultiplePhrasesToolStripMenuItem_Click);
+            // 
             // Context_SkippablesMenuItem
             // 
             resources.ApplyResources(this.Context_SkippablesMenuItem, "Context_SkippablesMenuItem");
@@ -628,12 +634,6 @@ namespace Obi.ProjectView
             this.contentViewLabel1.Name_SectionDisplayed = "No section selected.";
             this.contentViewLabel1.sectionSelected = false;
             this.contentViewLabel1.zoomFactor = 1F;
-            // 
-            // ContextPasteMultiplePhrasesToolStripMenuItem
-            // 
-            this.ContextPasteMultiplePhrasesToolStripMenuItem.Name = "ContextPasteMultiplePhrasesToolStripMenuItem";
-            resources.ApplyResources(this.ContextPasteMultiplePhrasesToolStripMenuItem, "ContextPasteMultiplePhrasesToolStripMenuItem");
-            this.ContextPasteMultiplePhrasesToolStripMenuItem.Click += new System.EventHandler(this.ContextPasteMultiplePhrasesToolStripMenuItem_Click);
             // 
             // ContentView
             // 
