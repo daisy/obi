@@ -7263,6 +7263,7 @@ public bool ShowOnlySelectedSection
                 {
                     tempNodeToPaste = this.Selection.EmptyNodeForSelection;
                 }
+
                 else if (this.Selection.Node is SectionNode)
                 {
                     tempNodeToPaste = this.Selection.Node.LastUsedPhrase;
@@ -7294,30 +7295,22 @@ public bool ShowOnlySelectedSection
                         return;
                     }
 
-                    foreach (EmptyNode tempPhraseNode in mContentView.ListOfPhrasesToCutOrCopy)
+                    if (tempNodeToPaste.Parent is SectionNode)
                     {
-                        this.Selection = new NodeSelection(tempPhraseNode, mContentView);
-                        if (m_IsCopyForMultiplePhrasesChecked)
+                        SectionNode tempPasteSection = (SectionNode) tempNodeToPaste.Parent;
+                        int tempPasteStartIndex = 0;
+                        if (mContentView.ListOfPhrasesToCutOrCopy[0].Parent ==
+                             mContentView.ListOfPhrasesToCutOrCopy[mContentView.ListOfPhrasesToCutOrCopy.Count - 1].Parent && !m_IsCopyForMultiplePhrasesChecked)
                         {
-                            this.Copy();
+                            tempPasteStartIndex = tempNodeToPaste.Index;
                         }
                         else
                         {
-                            this.Cut();
+                            tempPasteStartIndex = tempNodeToPaste.Index + 1;
                         }
 
-                        this.Selection = new NodeSelection(tempNodeToPaste, mContentView);
-                        this.Paste();
-                        if (this.Selection != null && this.Selection.Node != null &&
-                            this.Selection.Node is PhraseNode)
-                        {
-                            tempNodeToPaste = (PhraseNode)this.Selection.Node;
-                        }
-                        else
-                        {
-                            break;
-
-                        }
+                        CompositeCommand command = GetPasteMultiplePhrasesCommand(tempPasteSection, tempPasteStartIndex);
+                        mPresentation.Do(command);
                     }
                 }
             }
