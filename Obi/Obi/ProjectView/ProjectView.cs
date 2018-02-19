@@ -7299,7 +7299,7 @@ public bool ShowOnlySelectedSection
                     {
                         SectionNode tempPasteSection = (SectionNode) tempNodeToPaste.Parent;
                         int tempPasteStartIndex = 0;
-                        if (mContentView.ListOfPhrasesToCutOrCopy[0].Parent ==
+                        if (tempPasteSection ==
                              mContentView.ListOfPhrasesToCutOrCopy[mContentView.ListOfPhrasesToCutOrCopy.Count - 1].Parent && !m_IsCopyForMultiplePhrasesChecked)
                         {
                             tempPasteStartIndex = tempNodeToPaste.Index;
