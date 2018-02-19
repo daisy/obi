@@ -7255,7 +7255,7 @@ public bool ShowOnlySelectedSection
             {
                 mContentView.ListOfPhrasesToCutOrCopy.Clear();
             }
-
+            
             if (mContentView.ListOfPhrasesToCutOrCopy.Count >= 1)
             {
                 EmptyNode tempNodeToPaste = null;
@@ -7322,6 +7322,36 @@ public bool ShowOnlySelectedSection
                 }
             }
 ;
+        }
+
+        private CompositeCommand GetPasteMultiplePhrasesCommand(SectionNode pasteSection, int pasteStartIndex)
+        {
+            CompositeCommand pasteCommand = mPresentation.CreateCompositeCommand("PasteMultiplePhrasesCmd");
+            EmptyNode tempNode = null;
+            
+            for (int i = mContentView.ListOfPhrasesToCutOrCopy.Count - 1; i >= 0 ; i--)
+            {
+                if (m_IsCopyForMultiplePhrasesChecked)
+                {
+                    tempNode = (EmptyNode)mContentView.ListOfPhrasesToCutOrCopy[i].Copy(false, true);
+
+                }
+                else
+                {
+                    tempNode = mContentView.ListOfPhrasesToCutOrCopy[i];
+                    if (tempNode.IsRooted)
+                    {
+                        Commands.Node.Delete deleteCmd = new Commands.Node.Delete(this, tempNode, false);
+                        pasteCommand.ChildCommands.Insert(pasteCommand.ChildCommands.Count, deleteCmd);
+                    }
+                }
+
+                // paste operation
+                Commands.Node.AddNode addNodeCmd = new Commands.Node.AddNode(this, tempNode, pasteSection, pasteStartIndex , false);
+                pasteCommand.ChildCommands.Insert(pasteCommand.ChildCommands.Count, addNodeCmd);
+            }
+
+            return pasteCommand;
         }
 
         }
