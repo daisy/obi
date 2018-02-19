@@ -7288,7 +7288,7 @@ public bool ShowOnlySelectedSection
 
                 if (tempNodeToPaste != null)
                 {
-                    if (mContentView.ListOfPhrasesToCutOrCopy.Contains(tempNodeToPaste))
+                    if (mContentView.ListOfPhrasesToCutOrCopy.Contains(tempNodeToPaste) && mContentView.EndSpecialNode != tempNodeToPaste)
                     {
                         MessageBox.Show(Localizer.Message("PasteNotAllowed"), Localizer.Message("Caption_Error"), MessageBoxButtons.OK, MessageBoxIcon.Error);
                         return;
