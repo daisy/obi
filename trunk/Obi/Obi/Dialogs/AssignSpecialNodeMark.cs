@@ -126,6 +126,9 @@ namespace Obi.Dialogs
         private void m_rdb_Cut_CheckedChanged(object sender, EventArgs e)
         {
             m_cmbBoxSpecialNode.Visible = false;
+            m_IsRenumberChecked = false;
+            m_IsAudioProcessingChecked = false;
+            m_IsCopyChecked = false;
         }
 
         private void m_rdb_Merge_CheckedChanged(object sender, EventArgs e)
