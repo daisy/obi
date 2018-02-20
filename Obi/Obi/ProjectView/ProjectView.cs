@@ -7259,7 +7259,7 @@ public bool ShowOnlySelectedSection
             if (mContentView.ListOfPhrasesToCutOrCopy.Count >= 1)
             {
                 EmptyNode tempNodeToPaste = null;
-                if (this.Selection.Node is PhraseNode)
+                if (this.Selection.Node is PhraseNode || this.Selection is StripIndexSelection)
                 {
                     tempNodeToPaste = this.Selection.EmptyNodeForSelection;
                 }
