@@ -7309,7 +7309,7 @@ public bool ShowOnlySelectedSection
                             tempPasteStartIndex = tempNodeToPaste.Index + 1;
                         }
 
-                        CompositeCommand command = GetPasteMultiplePhrasesCommand(tempPasteSection, tempPasteStartIndex);
+                        CompositeCommand command = GetPasteMultiplePhrasesCommand(tempPasteSection, tempNodeToPaste);
                         mPresentation.Do(command);
                     }
                 }
@@ -7317,21 +7317,24 @@ public bool ShowOnlySelectedSection
 ;
         }
 
-        private CompositeCommand GetPasteMultiplePhrasesCommand(SectionNode pasteSection, int pasteStartIndex)
+        private CompositeCommand GetPasteMultiplePhrasesCommand(SectionNode pasteSection, EmptyNode pasteNode)
         {
             CompositeCommand pasteCommand = mPresentation.CreateCompositeCommand("PasteMultiplePhrasesCmd");
             EmptyNode tempNode = null;
             
             for (int i = mContentView.ListOfPhrasesToCutOrCopy.Count - 1; i >= 0 ; i--)
             {
-                if (m_IsCopyForMultiplePhrasesChecked)
-                {
-                    tempNode = (EmptyNode)mContentView.ListOfPhrasesToCutOrCopy[i].Copy(false, true);
+                tempNode = (EmptyNode)mContentView.ListOfPhrasesToCutOrCopy[i].Copy(false, true);
+                // paste operation
+                Commands.Node.AddNode addNodeCmd = new Commands.Node.AddNode(this, tempNode, pasteSection, pasteNode.Index + 1, false);
+                pasteCommand.ChildCommands.Insert(pasteCommand.ChildCommands.Count, addNodeCmd);
+            }
 
-                }
-                else
-                {
-                    tempNode = mContentView.ListOfPhrasesToCutOrCopy[i];
+            for (int i = mContentView.ListOfPhrasesToCutOrCopy.Count - 1; i >= 0 ; i--)
+            {
+                if (!m_IsCopyForMultiplePhrasesChecked)
+                {   
+                                    tempNode = mContentView.ListOfPhrasesToCutOrCopy[i];
                     if (tempNode.IsRooted)
                     {
                         Commands.Node.Delete deleteCmd = new Commands.Node.Delete(this, tempNode, false);
@@ -7339,9 +7342,7 @@ public bool ShowOnlySelectedSection
                     }
                 }
 
-                // paste operation
-                Commands.Node.AddNode addNodeCmd = new Commands.Node.AddNode(this, tempNode, pasteSection, pasteStartIndex , false);
-                pasteCommand.ChildCommands.Insert(pasteCommand.ChildCommands.Count, addNodeCmd);
+                
             }
 
             return pasteCommand;
