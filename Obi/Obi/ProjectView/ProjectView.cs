@@ -7298,17 +7298,6 @@ public bool ShowOnlySelectedSection
                     if (tempNodeToPaste.Parent is SectionNode)
                     {
                         SectionNode tempPasteSection = (SectionNode) tempNodeToPaste.Parent;
-                        int tempPasteStartIndex = 0;
-                        if (tempPasteSection ==
-                             mContentView.ListOfPhrasesToCutOrCopy[mContentView.ListOfPhrasesToCutOrCopy.Count - 1].Parent && !m_IsCopyForMultiplePhrasesChecked)
-                        {
-                            tempPasteStartIndex = tempNodeToPaste.Index;
-                        }
-                        else
-                        {
-                            tempPasteStartIndex = tempNodeToPaste.Index + 1;
-                        }
-
                         CompositeCommand command = GetPasteMultiplePhrasesCommand();
                         mPresentation.Do(command);
                     }
