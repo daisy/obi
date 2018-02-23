@@ -7259,11 +7259,10 @@ public bool ShowOnlySelectedSection
             if (mContentView.ListOfPhrasesToCutOrCopy.Count >= 1)
             {
                 EmptyNode tempNodeToPaste = null;
-                if (this.Selection.Node is PhraseNode || this.Selection is StripIndexSelection)
+                if (this.Selection.Node is EmptyNode || this.Selection is StripIndexSelection)
                 {
                     tempNodeToPaste = this.Selection.EmptyNodeForSelection;
                 }
-
                 else if (this.Selection.Node is SectionNode)
                 {
                     tempNodeToPaste = this.Selection.Node.LastUsedPhrase;
@@ -7294,16 +7293,17 @@ public bool ShowOnlySelectedSection
                         MessageBox.Show(Localizer.Message("PasteNotAllowed"), Localizer.Message("Caption_Error"), MessageBoxButtons.OK, MessageBoxIcon.Error);
                         return;
                     }
+                }
 
-                    if (tempNodeToPaste.Parent is SectionNode)
+                    if ((tempNodeToPaste !=null &&  tempNodeToPaste.Parent is SectionNode )
+                        || this.Selection is StripIndexSelection)
                     {
-                        SectionNode tempPasteSection = (SectionNode) tempNodeToPaste.Parent;
                         CompositeCommand command = GetPasteMultiplePhrasesCommand();
                         mPresentation.Do(command);
                     }
-                }
+                
             }
-;
+
         }
 
         private CompositeCommand GetPasteMultiplePhrasesCommand()
@@ -7317,7 +7317,7 @@ public bool ShowOnlySelectedSection
             {
                 pasteIndex = ((EmptyNode)Selection.Node).Index + 1;
             }
-            else if (Selection is StripIndexSelection)
+            else if (Selection is StripIndexSelection && ((StripIndexSelection)Selection).EmptyNodeForSelection != null )
             {
                 pasteIndex = ((StripIndexSelection)Selection).Index;
             }
