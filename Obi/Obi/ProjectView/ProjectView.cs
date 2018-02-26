@@ -7298,8 +7298,15 @@ public bool ShowOnlySelectedSection
                     if ((tempNodeToPaste !=null &&  tempNodeToPaste.Parent is SectionNode )
                         || this.Selection is StripIndexSelection)
                     {
-                        CompositeCommand command = GetPasteMultiplePhrasesCommand();
-                        mPresentation.Do(command);
+                        try
+                        {
+                            CompositeCommand command = GetPasteMultiplePhrasesCommand();
+                            mPresentation.Do(command);
+                        }
+                        catch (Exception e)
+                        {
+                            MessageBox.Show(e.Message);
+                        }
                     }
                 
             }
