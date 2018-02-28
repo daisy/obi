@@ -7246,6 +7246,12 @@ public bool ShowOnlySelectedSection
                     break;
             }
 
+            if (ObiForm.Settings.Project_MaximumPhrasesSelectLimit && mContentView.ListOfPhrasesToCutOrCopy.Count > 500)
+            {
+                MessageBox.Show(Localizer.Message("Project_MaximumPhrasesSelectLimit"), Localizer.Message("Caption_Error"), MessageBoxButtons.OK, MessageBoxIcon.Error);
+                mContentView.ListOfPhrasesToCutOrCopy.Clear();
+            }
+
         }
 
         public void PasteMultiplePhrases()

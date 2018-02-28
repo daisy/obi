@@ -5794,6 +5794,15 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Maximum 500 phrases can be selected for multi phrase operations like cut and copy..
+        /// </summary>
+        internal static string Project_MaximumPhrasesSelectLimit {
+            get {
+                return ResourceManager.GetString("Project_MaximumPhrasesSelectLimit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Do you want to check &quot;Fix content view width&quot; also ?(Recommended).
         /// </summary>
         internal static string Project_MessageBoxToCheckFixContentView {
