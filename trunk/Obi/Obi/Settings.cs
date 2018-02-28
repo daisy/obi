@@ -316,6 +316,10 @@ public bool Project_ImportNCCFileWithWindows1252Encoding ; // useful for importi
         [OptionalField]
         public int ImportAudioRadioButtonIndex;
 
+        // for Obi 4.2
+        [OptionalField] 
+        public bool Project_MaximumPhrasesSelectLimit;
+
         protected static void InitializeDefaultSettings(Settings settings)
         {
             settings.Audio_Channels = 1;
@@ -461,6 +465,8 @@ public bool Project_ImportNCCFileWithWindows1252Encoding ; // useful for importi
             // Obi 4.1 beta
             settings.Project_DoNotDisplayMessageBoxForShowingSection = false;
             settings.ImportAudioRadioButtonIndex = 0;
+            // Obi 4.2
+            settings.Project_MaximumPhrasesSelectLimit = true;
         }
 
         /// <summary>
