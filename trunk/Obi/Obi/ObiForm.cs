@@ -890,7 +890,7 @@ namespace Obi
                 string postFix = currentDateTime.Year.ToString() + "-"
                     + (currentDateTime.Month.ToString().Length > 1 ? currentDateTime.Month.ToString() : "0" + currentDateTime.Month.ToString()) + "-"
                     + (currentDateTime.Day.ToString().Length > 1 ? currentDateTime.Day.ToString() : "0" + currentDateTime.Day.ToString())
-                    + "-" + currentDateTime.Hour.ToString() + "hr";
+                    + "-" + currentDateTime.Hour.ToString() + "hr" + currentDateTime.Minute.ToString() + "mins";
                 string backUpFileCopyAtInterval = Path.Combine(Path.GetDirectoryName(mSession.BackUpPath), postFix + Path.GetFileName(mSession.BackUpPath));
              //   string projectDirPath = Directory.GetParent(mSession.Path).FullName;
                 if (File.Exists(mSession.Path) && !File.Exists(backUpFileCopyAtInterval))
@@ -3632,7 +3632,7 @@ ref string exportDirectoryEPUB3)
                     {
                         SaveToBackup();
                     }
-                    else if(m_TotalTimeIntervalSinceLastBackup >= 7200000)
+                    else if (m_TotalTimeIntervalSinceLastBackup >= 1800000)
                     {
                         CopyToBackup();
                     }
@@ -3845,7 +3845,7 @@ ref string exportDirectoryEPUB3)
                 {
                     // if backup files are above 50, delete extra files
                     string[] backupFilePaths = Directory.GetFiles(Path.GetDirectoryName(mSession.BackUpPath), "*.obi", SearchOption.AllDirectories);
-                    if (backupFilePaths.Length > 23 || 
+                    if (backupFilePaths.Length > 50 || 
                         (backupFilePaths.Length > 1 &&  allExceptPrimaryBackup))
                     {
                         List<string> backUpFilesList = new List<string>();
@@ -3855,7 +3855,7 @@ ref string exportDirectoryEPUB3)
                             backUpFilesList.Remove(Path.GetFullPath(mSession.BackUpPath));
 
                         int filesCountToDelete = allExceptPrimaryBackup ? backUpFilesList.Count : 
-                            backUpFilesList.Count > 16? backUpFilesList.Count - 16 : 0;
+                            backUpFilesList.Count > 50? backUpFilesList.Count - 50 : 0;
                         for (int i = 0; 
                             i < backUpFilesList.Count && i <= filesCountToDelete; 
                             i++)
