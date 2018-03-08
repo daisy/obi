@@ -886,7 +886,8 @@ namespace Obi
                     mFile_SaveProjectAsMenuItem.Enabled = false;
                 }
 
-                DateTime currentDateTime = DateTime.Now;
+                DateTime currentDateTime = File.GetLastWriteTime(mSession.Path); 
+             //   DateTime lastModifiedTime = File.GetLastWriteTime(mSession.Path);
                 string postFix = currentDateTime.Year.ToString() + "-"
                     + (currentDateTime.Month.ToString().Length > 1 ? currentDateTime.Month.ToString() : "0" + currentDateTime.Month.ToString()) + "-"
                     + (currentDateTime.Day.ToString().Length > 1 ? currentDateTime.Day.ToString() : "0" + currentDateTime.Day.ToString())
@@ -3632,7 +3633,7 @@ ref string exportDirectoryEPUB3)
                     {
                         SaveToBackup();
                     }
-                    else if (m_TotalTimeIntervalSinceLastBackup >= 1800000)
+                    if (m_TotalTimeIntervalSinceLastBackup >= 1800000)
                     {
                         CopyToBackup();
                     }
