@@ -1070,7 +1070,7 @@ namespace Obi.Dialogs
             // 
             resources.ApplyResources(this.MnumAutoSaveInterval, "MnumAutoSaveInterval");
             this.MnumAutoSaveInterval.Maximum = new decimal(new int[] {
-            120,
+            30,
             0,
             0,
             0});
