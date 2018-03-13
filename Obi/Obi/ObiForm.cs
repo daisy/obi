@@ -840,19 +840,21 @@ namespace Obi
                     {
                         mProjectView.TransportBar.Stop();
                     }
-                    DateTime currentDateTime= DateTime.Now ;
+                    //DateTime currentDateTime= DateTime.Now ;
+                    DateTime currentDateTime = File.GetLastWriteTime(mSession.BackUpPath); 
                     string postFix = currentDateTime.Year.ToString() + "-"
                         + (currentDateTime.Month.ToString().Length > 1 ? currentDateTime.Month.ToString() : "0" + currentDateTime.Month.ToString())  + "-"
-                        + (currentDateTime.Day.ToString().Length > 1 ? currentDateTime.Day.ToString() : "0" + currentDateTime.Day.ToString()) 
-                        + "-" + currentDateTime.Hour.ToString() + "hr";
+                        + (currentDateTime.Day.ToString().Length > 1 ? currentDateTime.Day.ToString() : "0" + currentDateTime.Day.ToString())
+                        + "-" + currentDateTime.Hour.ToString() + "hr" + currentDateTime.Minute.ToString() + "mins"; 
                     string backUpFileCopyAtInterval = Path.Combine(Path.GetDirectoryName(mSession.BackUpPath), postFix + Path.GetFileName(mSession.BackUpPath) );
                         
                     Console.WriteLine(backUpFileCopyAtInterval);
-                    if (File.Exists(mSession.BackUpPath) && !File.Exists(backUpFileCopyAtInterval))
+                    if (File.Exists(mSession.BackUpPath) && !File.Exists(backUpFileCopyAtInterval) && m_TotalTimeIntervalSinceLastBackup >= 1800000)
                     {
                         try
                         {
                             File.Move(mSession.BackUpPath, backUpFileCopyAtInterval);
+                            m_TotalTimeIntervalSinceLastBackup = 0;
                         }
                         catch (System.Exception ex)
                         {
@@ -887,7 +889,6 @@ namespace Obi
                 }
 
                 DateTime currentDateTime = File.GetLastWriteTime(mSession.Path); 
-             //   DateTime lastModifiedTime = File.GetLastWriteTime(mSession.Path);
                 string postFix = currentDateTime.Year.ToString() + "-"
                     + (currentDateTime.Month.ToString().Length > 1 ? currentDateTime.Month.ToString() : "0" + currentDateTime.Month.ToString()) + "-"
                     + (currentDateTime.Day.ToString().Length > 1 ? currentDateTime.Day.ToString() : "0" + currentDateTime.Day.ToString())
