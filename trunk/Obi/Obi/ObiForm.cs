@@ -818,7 +818,7 @@ namespace Obi
 
                     mStatusLabel.Text = Localizer.Message("Status_ProjectSaved");
                     // reset the  auto save timer
-                    mAutoSaveTimer.Stop();
+                  //  mAutoSaveTimer.Stop(); // Resetting of Timer disabled for making forced backups.
                     if (mSettings.Project_AutoSaveTimeIntervalEnabled) mAutoSaveTimer.Start();
                     m_IsSaveActive = false;
                 }
