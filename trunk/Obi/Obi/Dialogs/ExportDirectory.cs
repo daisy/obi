@@ -40,7 +40,7 @@ namespace Obi.Dialogs
             m_ComboSelectLevelForAudioFiles.Items.Add ( Localizer.Message ("Level5" ) );
             m_ComboSelectLevelForAudioFiles.Items.Add ( Localizer.Message ("Level6" ) );
 
-            m_Mp3Mp4Bitrates = new List<double>(new double[] { 32, 40, 48, 56, 64, 128, 196, 256 });
+            m_Mp3Mp4Bitrates = new List<double>(new double[] { 32, 40, 48, 56, 64, 96, 128, 160, 196,224,256,320 });
             m_AmrBitrates = new List<double>(new double[] { 4.75, 5.15, 5.90, 6.70, 7.40, 7.95, 10.20, 12.20 });
             m_3gpBitrates = new List<double>(new double[] { 4.75, 5.15, 5.90, 6.70, 7.40, 7.95, 10.20, 12.20, 14.25, 15.85, 18.25, 19.85, 23.05, 23.85 });
             m_EncodingOptions = new List<string>(new string[] { "MP3", "MP4 (M4A)", "AMR", "3GP" });
