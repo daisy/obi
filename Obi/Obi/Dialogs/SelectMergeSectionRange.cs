@@ -42,6 +42,29 @@ namespace Obi.Dialogs
             helpProvider1.HelpNamespace = Localizer.Message("CHMhelp_file_name");
             helpProvider1.SetHelpNavigator(this, HelpNavigator.Topic);
             helpProvider1.SetHelpKeyword(this, "HTML Files\\Creating a DTB\\Working with Sections\\Multi-section Operations.htm");
+            m_lb_listofSectionsToMerge.DrawMode = DrawMode.OwnerDrawFixed;
+            m_lb_listofSectionsToMerge.DrawItem += new DrawItemEventHandler(m_lb_listofSectionsToMerge_DrawItem);
+        }
+
+        void m_lb_listofSectionsToMerge_DrawItem(object sender, DrawItemEventArgs e)
+        {
+            e.DrawBackground();
+
+            Graphics g = e.Graphics;
+            //g.FillRectangle(new SolidBrush(Color.White), e.Bounds);
+            ListBox lb = (ListBox)sender;
+            if (m_SectionList != null && e.Index < m_SectionList.Count && m_SectionList[e.Index].Duration == 0)
+            {
+                g.DrawString(lb.Items[e.Index].ToString(), e.Font, new SolidBrush(Color.Maroon),
+                    new PointF(e.Bounds.X, e.Bounds.Y));
+            }
+            else
+            {
+                g.DrawString(lb.Items[e.Index].ToString(), e.Font, new SolidBrush(Color.Black),
+                    new PointF(e.Bounds.X, e.Bounds.Y));
+            }
+
+            e.DrawFocusRectangle();
         }
 
         public SelectMergeSectionRange(Obi.ProjectView.ProjectView projectView,Obi.ProjectView.ContentView contentview)
