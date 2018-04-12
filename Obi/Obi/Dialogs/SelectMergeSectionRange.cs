@@ -51,18 +51,16 @@ namespace Obi.Dialogs
             e.DrawBackground();
 
             Graphics g = e.Graphics;
-            //g.FillRectangle(new SolidBrush(Color.White), e.Bounds);
             ListBox lb = (ListBox)sender;
-            if (m_SectionList != null && e.Index < m_SectionList.Count && m_SectionList[e.Index].Duration == 0)
+            if (m_SectionList != null && e.Index < m_SectionList.Count && m_SectionList[e.Index].Duration == 0 &&
+                (e.State & DrawItemState.Selected) != DrawItemState.Selected)
             {
-                g.DrawString(lb.Items[e.Index].ToString(), e.Font, new SolidBrush(Color.Maroon),
-                    new PointF(e.Bounds.X, e.Bounds.Y));
+                g.FillRectangle(
+                    new SolidBrush(m_ProjectView.ObiForm.Settings.ColorSettings.EmptySectionBackgroundColor), e.Bounds);
             }
-            else
-            {
-                g.DrawString(lb.Items[e.Index].ToString(), e.Font, new SolidBrush(Color.Black),
-                    new PointF(e.Bounds.X, e.Bounds.Y));
-            }
+
+            g.DrawString(lb.Items[e.Index].ToString(), e.Font, new SolidBrush(Color.Black),
+                new PointF(e.Bounds.X, e.Bounds.Y));
 
             e.DrawFocusRectangle();
         }
