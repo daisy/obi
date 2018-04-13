@@ -57,10 +57,14 @@ namespace Obi.Dialogs
                 (e.State & DrawItemState.Selected) != DrawItemState.Selected)
             {
 
-                String tempText = lb.Items[e.Index].ToString();
-                Size tempSizeOfListBoxItem = TextRenderer.MeasureText(tempText, this.Font);
-               g.FillRectangle(
-                    new SolidBrush(m_ProjectView.ObiForm.Settings.ColorSettings.EmptySectionBackgroundColor), e.Bounds.X,e.Bounds.Y,tempSizeOfListBoxItem.Width,e.Bounds.Height);
+                string tempText = lb.Items[e.Index].ToString();
+                Font tempFont = this.m_lb_listofSectionsToMerge.Font;
+                //Size tempSizeOfListBoxItem = TextRenderer.MeasureText(tempText, tempFont);
+                SizeF tempSizeOfListBoxItem = new SizeF();
+                tempSizeOfListBoxItem = e.Graphics.MeasureString(tempText, tempFont);
+          
+                g.FillRectangle(
+                    new SolidBrush(m_ProjectView.ObiForm.Settings.ColorSettings.EmptySectionBackgroundColor), e.Bounds.X, e.Bounds.Y, tempSizeOfListBoxItem.Width, e.Bounds.Height);
             }
 
             g.DrawString(lb.Items[e.Index].ToString(), e.Font, new SolidBrush(Color.Black),
