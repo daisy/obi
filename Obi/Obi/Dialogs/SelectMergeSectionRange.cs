@@ -52,11 +52,15 @@ namespace Obi.Dialogs
 
             Graphics g = e.Graphics;
             ListBox lb = (ListBox)sender;
+      
             if (m_SectionList != null && e.Index < m_SectionList.Count && m_SectionList[e.Index].Duration == 0 &&
                 (e.State & DrawItemState.Selected) != DrawItemState.Selected)
             {
-                g.FillRectangle(
-                    new SolidBrush(m_ProjectView.ObiForm.Settings.ColorSettings.EmptySectionBackgroundColor), e.Bounds);
+
+                String tempText = lb.Items[e.Index].ToString();
+                Size tempSizeOfListBoxItem = TextRenderer.MeasureText(tempText, this.Font);
+               g.FillRectangle(
+                    new SolidBrush(m_ProjectView.ObiForm.Settings.ColorSettings.EmptySectionBackgroundColor), e.Bounds.X,e.Bounds.Y,tempSizeOfListBoxItem.Width,e.Bounds.Height);
             }
 
             g.DrawString(lb.Items[e.Index].ToString(), e.Font, new SolidBrush(Color.Black),
