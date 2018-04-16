@@ -210,7 +210,15 @@ namespace Obi.Dialogs
                         string PagesInSection = String.Empty;
                         PagesInSection = GetPagesInSection(i);
                         m_SectionList[i].Label = m_SectionList[i].Label.Replace("\n", string.Empty);
-                        m_lb_listofSectionsToMerge.Items.Add(m_SectionList[i].Label + " " + Localizer.Message("MergeOptions_LevelString") + m_SectionList[i].Level + PagesInSection);
+                        if (m_SectionList[i].Duration != 0)
+                        {
+                            m_lb_listofSectionsToMerge.Items.Add(m_SectionList[i].Label + " " + Localizer.Message("MergeOptions_LevelString") + m_SectionList[i].Level + PagesInSection);
+                        }
+                        else
+                        {
+                            m_lb_listofSectionsToMerge.Items.Add(m_SectionList[i].Label + " " + Localizer.Message("MergeOptions_LevelString") + m_SectionList[i].Level + " (" + Localizer.Message("NoAudioInSection") + ") " + PagesInSection);
+                        }
+
                         if (m_IndexOfSectionSelected.Contains(i))
                         {
                             m_lb_listofSectionsToMerge.SelectedIndex = i;
@@ -239,7 +247,15 @@ namespace Obi.Dialogs
                     PagesInSection = GetPagesInSection(i);
                     int n = m_SectionList.IndexOf(m_SectionList[i]);
                     m_SectionList[n].Label = m_SectionList[n].Label.Replace("\n", string.Empty);
-                    m_lb_listofSectionsToMerge.Items.Add(m_SectionList[n].Label + " " + Localizer.Message("MergeOptions_LevelString") + m_SectionList[n].Level + PagesInSection);
+                    if (m_SectionList[n].Duration != 0)
+                    {
+                        m_lb_listofSectionsToMerge.Items.Add(m_SectionList[n].Label + " " + Localizer.Message("MergeOptions_LevelString") + m_SectionList[n].Level + PagesInSection);
+                    }
+                    else
+                    {
+                        m_lb_listofSectionsToMerge.Items.Add(m_SectionList[n].Label + " " + Localizer.Message("MergeOptions_LevelString") + m_SectionList[n].Level + " (" + Localizer.Message("NoAudioInSection") + ") " + PagesInSection);
+                    }
+
                     if (m_SectionList[i] == m_ProjectView.GetSelectedPhraseSection)
                     {
                         m_lb_listofSectionsToMerge.SelectedIndex = i;
@@ -271,7 +287,14 @@ namespace Obi.Dialogs
                         string PagesInSection = String.Empty;
                         PagesInSection =  GetPagesInSection(i);
                         m_SectionList[i].Label = m_SectionList[i].Label.Replace("\n", string.Empty);
-                        m_lb_listofSectionsToMerge.Items.Add(m_SectionList[i].Label + " " + Localizer.Message("MergeOptions_LevelString") + m_SectionList[i].Level + PagesInSection);
+                        if (m_SectionList[i].Duration != 0)
+                        {
+                            m_lb_listofSectionsToMerge.Items.Add(m_SectionList[i].Label + " " + Localizer.Message("MergeOptions_LevelString") + m_SectionList[i].Level + PagesInSection);
+                        }
+                        else
+                        {
+                            m_lb_listofSectionsToMerge.Items.Add(m_SectionList[i].Label + " " + Localizer.Message("MergeOptions_LevelString") + m_SectionList[i].Level + " (" + Localizer.Message("NoAudioInSection") + ") " + PagesInSection);
+                        }
 
                     }
                     if (m_IndexOfSectionSelected[0] == i)
