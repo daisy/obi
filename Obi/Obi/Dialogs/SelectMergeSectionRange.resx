@@ -121,9 +121,6 @@
     <value>0, 0</value>
   </metadata>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="m_StatusLabelForMergeSection.Size" type="System.Drawing.Size, System.Drawing">
-    <value>0, 0</value>
-  </data>
   <data name="m_statusStripForMergeSection.Location" type="System.Drawing.Point, System.Drawing">
     <value>0, 0</value>
   </data>
@@ -151,6 +148,9 @@
   </data>
   <data name="&gt;&gt;m_statusStripForMergeSection.ZOrder" xml:space="preserve">
     <value>6</value>
+  </data>
+  <data name="m_StatusLabelForMergeSection.Size" type="System.Drawing.Size, System.Drawing">
+    <value>0, 0</value>
   </data>
   <data name="m_btn_SelectAll.AccessibleName" xml:space="preserve">
     <value>Select All</value>
@@ -190,7 +190,7 @@
     <value>Flat</value>
   </data>
   <data name="m_btn_ShowContents.Location" type="System.Drawing.Point, System.Drawing">
-    <value>132, 14</value>
+    <value>125, 14</value>
   </data>
   <data name="m_btn_ShowContents.Size" type="System.Drawing.Size, System.Drawing">
     <value>121, 52</value>
@@ -250,7 +250,7 @@
     <value>NoControl</value>
   </data>
   <data name="m_btn_IncreaseSectionLevel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>98, 14</value>
+    <value>99, 14</value>
   </data>
   <data name="m_btn_IncreaseSectionLevel.ShowHelp" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -477,6 +477,51 @@
   <data name="&gt;&gt;m_btnPause.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
+  <data name="&gt;&gt;m_btn_Stop.Name" xml:space="preserve">
+    <value>m_btn_Stop</value>
+  </data>
+  <data name="&gt;&gt;m_btn_Stop.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_btn_Stop.Parent" xml:space="preserve">
+    <value>m_grp_SectionAudioOperation</value>
+  </data>
+  <data name="&gt;&gt;m_btn_Stop.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;m_btn_Play.Name" xml:space="preserve">
+    <value>m_btn_Play</value>
+  </data>
+  <data name="&gt;&gt;m_btn_Play.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_btn_Play.Parent" xml:space="preserve">
+    <value>m_grp_SectionAudioOperation</value>
+  </data>
+  <data name="&gt;&gt;m_btn_Play.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="m_grp_SectionAudioOperation.Location" type="System.Drawing.Point, System.Drawing">
+    <value>20, 251</value>
+  </data>
+  <data name="m_grp_SectionAudioOperation.Size" type="System.Drawing.Size, System.Drawing">
+    <value>207, 72</value>
+  </data>
+  <data name="m_grp_SectionAudioOperation.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="&gt;&gt;m_grp_SectionAudioOperation.Name" xml:space="preserve">
+    <value>m_grp_SectionAudioOperation</value>
+  </data>
+  <data name="&gt;&gt;m_grp_SectionAudioOperation.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_grp_SectionAudioOperation.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;m_grp_SectionAudioOperation.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
   <data name="m_btn_Stop.AccessibleName" xml:space="preserve">
     <value>Stop</value>
   </data>
@@ -535,27 +580,6 @@
     <value>m_grp_SectionAudioOperation</value>
   </data>
   <data name="&gt;&gt;m_btn_Play.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="m_grp_SectionAudioOperation.Location" type="System.Drawing.Point, System.Drawing">
-    <value>20, 251</value>
-  </data>
-  <data name="m_grp_SectionAudioOperation.Size" type="System.Drawing.Size, System.Drawing">
-    <value>207, 72</value>
-  </data>
-  <data name="m_grp_SectionAudioOperation.TabIndex" type="System.Int32, mscorlib">
-    <value>2</value>
-  </data>
-  <data name="&gt;&gt;m_grp_SectionAudioOperation.Name" xml:space="preserve">
-    <value>m_grp_SectionAudioOperation</value>
-  </data>
-  <data name="&gt;&gt;m_grp_SectionAudioOperation.Type" xml:space="preserve">
-    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;m_grp_SectionAudioOperation.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;m_grp_SectionAudioOperation.ZOrder" xml:space="preserve">
     <value>2</value>
   </data>
   <data name="m_lb_listofSectionsToMerge.AccessibleName" xml:space="preserve">

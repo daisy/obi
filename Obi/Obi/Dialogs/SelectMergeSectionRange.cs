@@ -28,6 +28,7 @@ namespace Obi.Dialogs
         private List<SectionNode> m_SelectedSectionListToMerge = new List<SectionNode>();
         private bool m_FlagMerge = false;
         private bool m_IsShowContents = false;
+        private SizeF m_MaxSizeOfTextInListBoxItem = new SizeF();
 
         public event SectionsManipulationDelegate LevelIncrementEvent;
         public event SectionsManipulationDelegate LevelDecrementEvent;
@@ -52,17 +53,21 @@ namespace Obi.Dialogs
 
             Graphics g = e.Graphics;
             ListBox lb = (ListBox)sender;
+            string tempText = lb.Items[e.Index].ToString();
+            Font tempFont = this.m_lb_listofSectionsToMerge.Font;
+            SizeF tempSizeOfListBoxItem = new SizeF();
+            tempSizeOfListBoxItem = e.Graphics.MeasureString(tempText, tempFont);
+            if (m_MaxSizeOfTextInListBoxItem.Width < tempSizeOfListBoxItem.Width)
+            {
+                m_MaxSizeOfTextInListBoxItem = tempSizeOfListBoxItem;
+                m_lb_listofSectionsToMerge.HorizontalExtent = (int)m_MaxSizeOfTextInListBoxItem.Width;
+            }
+
       
             if (m_SectionList != null && e.Index < m_SectionList.Count && m_SectionList[e.Index].Duration == 0 &&
                 (e.State & DrawItemState.Selected) != DrawItemState.Selected)
             {
-
-                string tempText = lb.Items[e.Index].ToString();
-                Font tempFont = this.m_lb_listofSectionsToMerge.Font;
                 //Size tempSizeOfListBoxItem = TextRenderer.MeasureText(tempText, tempFont);
-                SizeF tempSizeOfListBoxItem = new SizeF();
-                tempSizeOfListBoxItem = e.Graphics.MeasureString(tempText, tempFont);
-          
                 g.FillRectangle(
                     new SolidBrush(m_ProjectView.ObiForm.Settings.ColorSettings.EmptySectionBackgroundColor), e.Bounds.X, e.Bounds.Y, tempSizeOfListBoxItem.Width, e.Bounds.Height);
             }
@@ -86,6 +91,7 @@ namespace Obi.Dialogs
             toolTip.SetToolTip(m_btn_DecreaseSectionLevel, Localizer.Message("MergeOptions_DecreaseLevel"));
             toolTip.SetToolTip(m_btn_Merge,Localizer.Message("MergeOptions_Merge"));
             toolTip.SetToolTip(m_btn_ShowContents, Localizer.Message("MergeOptions_ShowContents"));
+            toolTip.SetToolTip(m_tb_SectionsSelected, m_tb_SectionsSelected.Text);
 
             if (projectView.ObiForm.Settings.ObiFont != this.Font.Name)
             {
@@ -422,7 +428,8 @@ namespace Obi.Dialogs
             }
             if (m_lb_listofSectionsToMerge.SelectedItems.Count == 1)
             {
-                m_tb_SectionsSelected.Text = m_StatusLabelForMergeSection.Text = String.Format(Localizer.Message("select_one_more_section"), m_lb_listofSectionsToMerge.SelectedItem);               
+                m_tb_SectionsSelected.Text = m_StatusLabelForMergeSection.Text = String.Format(Localizer.Message("select_one_more_section"), m_lb_listofSectionsToMerge.SelectedItem);
+                toolTip.SetToolTip(m_tb_SectionsSelected, m_tb_SectionsSelected.Text);
             }
 
             //if (m_lb_listofSectionsToMerge.SelectedIndices.Count > 0)
@@ -526,10 +533,12 @@ namespace Obi.Dialogs
                     if (m_lb_listofSectionsToMerge.SelectedItems.Count == 1)
                     {
                         m_tb_SectionsSelected.Text = m_StatusLabelForMergeSection.Text = String.Format(Localizer.Message("select_one_more_section"), m_lb_listofSectionsToMerge.SelectedItem);
+                        toolTip.SetToolTip(m_tb_SectionsSelected, m_tb_SectionsSelected.Text);
                     }
                     else
                     {
                         m_tb_SectionsSelected.Text = m_StatusLabelForMergeSection.Text = String.Format(Localizer.Message("merged_sections"), listOfLargestNumberOfSections[0].Label, listOfLargestNumberOfSections[listOfLargestNumberOfSections.Count - 1].Label);
+                        toolTip.SetToolTip(m_tb_SectionsSelected, m_tb_SectionsSelected.Text);
 
                     }
 
@@ -539,12 +548,14 @@ namespace Obi.Dialogs
                 {
                     MessageBox.Show(Localizer.Message("phrase_count_more_than_7000"));
                     m_tb_SectionsSelected.Text = m_StatusLabelForMergeSection.Text = String.Format(Localizer.Message("phrase_count_more_than_7000"));
+                    toolTip.SetToolTip(m_tb_SectionsSelected, m_tb_SectionsSelected.Text);
                     listOfLargestNumberOfSections = null;
                 }
             }
             else
             {
                 m_tb_SectionsSelected.Text = m_StatusLabelForMergeSection.Text = String.Format(Localizer.Message("StatusForMergeSection"), m_SectionList[0].Label, m_SectionList[m_SectionList.Count - 1].Label);
+                toolTip.SetToolTip(m_tb_SectionsSelected, m_tb_SectionsSelected.Text);
             }
 
             //if (m_lb_listofSectionsToMerge.SelectedIndices.Count > 0)
@@ -731,6 +742,7 @@ namespace Obi.Dialogs
             {
                 m_StatusLabelForMergeSection.Text = "";
                 m_tb_SectionsSelected.Text = "";
+                toolTip.SetToolTip(m_tb_SectionsSelected, m_tb_SectionsSelected.Text);
             }
         }
 
@@ -756,6 +768,7 @@ namespace Obi.Dialogs
             {
                 m_StatusLabelForMergeSection.Text = "";
                 m_tb_SectionsSelected.Text = "";
+                toolTip.SetToolTip(m_tb_SectionsSelected, m_tb_SectionsSelected.Text);
             }
         }
 
