@@ -6310,7 +6310,9 @@ ref string exportDirectoryEPUB3)
                             if (index < importTOC.SectionNamesOfImportedTocList.Count &&
                                 importTOC.SectionNamesOfImportedTocList[index] != null)
                             {
-                                mSession.Presentation.RenameSectionNode(tempNode,importTOC.SectionNamesOfImportedTocList[index]);
+                              //  mSession.Presentation.RenameSectionNode(tempNode,importTOC.SectionNamesOfImportedTocList[index]);
+
+                                mProjectView.RenameSectionNode(tempNode, importTOC.SectionNamesOfImportedTocList[index]);
                                 //   mSession.Presentation.
                                 if (tempNode.Level != importTOC.LevelsListOfImportedTocList[index])
                                 {
