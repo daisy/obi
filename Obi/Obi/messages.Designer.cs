@@ -1107,7 +1107,7 @@ namespace Obi {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to You are about to rename section. Do you want to continue?.
+        ///   Looks up a localized string similar to You are about to rename section. Do you want to continue?(Note: If you do not want this message to pop up kindly uncheck &quot;Warn before section manipulation&quot; in project tab of preferences) .
         /// </summary>
         internal static string ConfirmSectionRename {
             get {

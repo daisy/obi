@@ -2942,7 +2942,7 @@ Error text: {1}</value>
     <value>You are about to delete section. Do you want to continue?</value>
   </data>
   <data name="ConfirmSectionRename" xml:space="preserve">
-    <value>You are about to rename section. Do you want to continue?</value>
+    <value>You are about to rename section. Do you want to continue?(Note: If you do not want this message to pop up kindly uncheck "Warn before section manipulation" in project tab of preferences) </value>
   </data>
   <data name="ConfirmSectionCut" xml:space="preserve">
     <value>You are about to cut section. Do you want to continue?</value>
