@@ -3012,7 +3012,7 @@ Error text: {1}</value>
   <data name="MergeOptions_ShowContents" xml:space="preserve">
     <value>Show Contents in Content View</value>
   </data>
-   <data name="FilterImportTOC" xml:space="preserve">
+  <data name="FilterImportTOC" xml:space="preserve">
     <value>Xhtml,Csv, Txt file(*.htm;*.html;*.xhtml;*.csv;*.txt)|*.htm;*.html;*.xhtml;*.csv;*.txt</value>
     <comment>File dialog</comment>
   </data>
@@ -3020,7 +3020,7 @@ Error text: {1}</value>
     <value>There are no sections in book to import TOC</value>
   </data>
   <data name="LessSectionsInBook" xml:space="preserve">
-    <value>Existing sections in book are less so full TOC will not import</value>
+    <value>Existing sections in the project are less than imported sections. Therefore full TOC will not be imported.</value>
   </data>
   <data name="FileInUse" xml:space="preserve">
     <value>This file is being used by other process.Please close all applications using this file and try again</value>
