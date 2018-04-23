@@ -6305,6 +6305,7 @@ ref string exportDirectoryEPUB3)
                         }
 
                         int index = 0;
+                        urakawa.command.CompositeCommand renameCommands = mProjectView.Presentation.CreateCompositeCommand("Overwrite TOC with Imported TOC");
                         foreach (SectionNode tempNode in listOfSectionNodes)
                         {
                             if (index < importTOC.SectionNamesOfImportedTocList.Count &&
@@ -6312,7 +6313,9 @@ ref string exportDirectoryEPUB3)
                             {
                               //  mSession.Presentation.RenameSectionNode(tempNode,importTOC.SectionNamesOfImportedTocList[index]);
 
-                                mProjectView.RenameSectionNode(tempNode, importTOC.SectionNamesOfImportedTocList[index]);
+//                                mProjectView.RenameSectionNode(tempNode, importTOC.SectionNamesOfImportedTocList[index]);
+                                renameCommands.ChildCommands.Insert (renameCommands.ChildCommands.Count,
+                                new Commands.Node.RenameSection(mProjectView, tempNode, importTOC.SectionNamesOfImportedTocList[index]));
                                 //   mSession.Presentation.
                                 if (tempNode.Level != importTOC.LevelsListOfImportedTocList[index])
                                 {
@@ -6326,7 +6329,10 @@ ref string exportDirectoryEPUB3)
                                 break;
                             }
                         }
-
+                        if (renameCommands.ChildCommands.Count > 0)
+                        {
+                            mProjectView.Presentation.Do(renameCommands);
+                        }
                     }
                 }
             
