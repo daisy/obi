@@ -1068,7 +1068,7 @@ namespace Obi.ProjectView
             {
                 AudioSelection ZoomAudioSelect = (AudioSelection)m_ProjectView.Selection;
 
-                if (ZoomAudioSelect != null && ZoomAudioSelect.AudioRange != null)
+                if (ZoomAudioSelect != null && ZoomAudioSelect.AudioRange != null && m_AudioBlock != null)
                 {
                     this.AutoScroll = true;
                     if (ZoomAudioSelect.AudioRange.HasCursor)
