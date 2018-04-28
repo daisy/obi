@@ -6263,13 +6263,13 @@ ref string exportDirectoryEPUB3)
                     {
                         importTOC.ImportFromXHTML(dialog.FileName);
                     }
-                    else if(strExtension == ".csv" || strExtension == ".text")
+                    else if (strExtension == ".csv" || strExtension == ".text" || strExtension == ".txt")
                     {
 
                         tempResult = importTOC.ImportFromCSVFile(dialog.FileName);
                     }
 
-                    if (importTOC.SectionNamesOfImportedTocList.Count != importTOC.LevelsListOfImportedTocList.Count || !tempResult)
+                    if (importTOC.SectionNamesOfImportedTocList.Count != importTOC.LevelsListOfImportedTocList.Count || !tempResult || importTOC.SectionNamesOfImportedTocList.Count == 0)
                     {
                         MessageBox.Show(Localizer.Message("WrongFormat"), Localizer.Message("Caption_Error"),
                             MessageBoxButtons.OK, MessageBoxIcon.Error);
