@@ -116,6 +116,14 @@ namespace Obi
 
         public override string BaseString() { return base.BaseString(Audio.Duration.AsMilliseconds); }
         public override string BaseStringShort() { return base.BaseStringShort(Audio.Duration.AsMilliseconds); }
-        public override double Duration { get { return Audio.Duration.AsMilliseconds; } }
+
+        public override double Duration
+        {
+            get
+            {
+                if (Audio != null) return Audio.Duration.AsMilliseconds;
+                return 0.0;
+            }
+        }
     }
 }
