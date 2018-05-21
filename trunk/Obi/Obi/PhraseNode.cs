@@ -89,6 +89,25 @@ namespace Obi
             }
         }
 
+        public int GetInvocationListLengthOfNodeAudioChangedEvent   // @ImproveZoomPanel
+        {
+            get
+            {
+                if (NodeAudioChanged != null)
+                {
+                    return NodeAudioChanged.GetInvocationList().Length;
+                }
+
+                return 0;
+            }
+
+        }
+
+        public void ResetSubcriptionsOfNodeAudioChangedEvent()   // @ImproveZoomPanel
+        {
+            NodeAudioChanged = null;
+        }
+
         /// <summary>
         /// Signal a change in the audio for this phrase (used during recording)
         /// </summary>
@@ -116,14 +135,6 @@ namespace Obi
 
         public override string BaseString() { return base.BaseString(Audio.Duration.AsMilliseconds); }
         public override string BaseStringShort() { return base.BaseStringShort(Audio.Duration.AsMilliseconds); }
-
-        public override double Duration
-        {
-            get
-            {
-                if (Audio != null) return Audio.Duration.AsMilliseconds;
-                return 0.0;
-            }
-        }
+        public override double Duration { get { return Audio.Duration.AsMilliseconds; } }
     }
 }

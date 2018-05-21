@@ -101,7 +101,17 @@ namespace Obi
             get
             {
                 double duration = 0;
-                for (int i = 0; i < PhraseChildCount; ++i) duration += PhraseChild(i).Duration;
+                for (int i = 0; i < PhraseChildCount; ++i)
+                {
+                    if (PhraseChild(i) is PhraseNode && (PhraseChild(i) as PhraseNode).Audio == null)
+                    {
+                        duration += 0.0;
+                    }
+                    else
+                    {
+                        duration += PhraseChild(i).Duration;
+                    }
+                }
                 return duration;
             }
         }
