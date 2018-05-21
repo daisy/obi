@@ -89,25 +89,6 @@ namespace Obi
             }
         }
 
-        public int GetInvocationListLengthOfNodeAudioChangedEvent   // @ImproveZoomPanel
-        {
-            get
-            {
-                if (NodeAudioChanged != null)
-                {
-                    return NodeAudioChanged.GetInvocationList().Length;
-                }
-
-                return 0;
-            }
-
-        }
-
-        public void ResetSubcriptionsOfNodeAudioChangedEvent()   // @ImproveZoomPanel
-        {
-            NodeAudioChanged = null;
-        }
-
         /// <summary>
         /// Signal a change in the audio for this phrase (used during recording)
         /// </summary>
