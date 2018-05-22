@@ -3013,6 +3013,15 @@ m_cb_ChooseFont.Visible = false;
                 {
                     try
                     {
+                        string FileName = System.IO.Path.GetFileNameWithoutExtension(fileDialog.FileName);
+                        if (m_cb_SelectShorcutsProfile.Items.Contains(FileName))
+                        {
+                            DialogResult result = MessageBox.Show(Localizer.Message("Preferences_ProfileExists"), Localizer.Message("Caption_Warning"), MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
+                            if (result == DialogResult.Cancel)
+                            {
+                                return;
+                            }
+                        }
                         LoadShortcutsFromFile(fileDialog.FileName);
                         // copy the profile file to custom profile directory
                         string shortcutsProfilesDirectory = GetCustomProfilesDirectory(false);
@@ -3191,17 +3200,7 @@ m_cb_ChooseFont.Visible = false;
 
         private void LoadShortcutsFromFile(string filePath)
         {
-            string FileName = System.IO.Path.GetFileNameWithoutExtension(filePath);
-            if (m_cb_SelectShorcutsProfile.Items.Contains(FileName))
-            {
-                DialogResult result = MessageBox.Show(Localizer.Message("Preferences_ProfileExists"), Localizer.Message("Caption_Warning"), MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
-                if (result == DialogResult.Cancel)
-                {
-                    return;
-                }
-            }
-
-            if (filePath != null && System.IO.File.Exists(filePath))
+           if (filePath != null && System.IO.File.Exists(filePath))
             {
                 KeyboardShortcuts_Settings shortCuts = KeyboardShortcuts_Settings.GetKeyboardShortcuts_SettingsFromFile(filePath);
                 List<string> descriptions = new List<string> () ;
