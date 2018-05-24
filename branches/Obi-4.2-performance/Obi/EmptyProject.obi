@@ -1,0 +1,344 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Xuk
+	xsi:noNamespaceSchemaLocation="http://www.daisy.org/urakawa/xuk/2.0/xuk.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.daisy.org/urakawa/xuk/2.0">
+	<Project>
+		<PresentationFactory>
+			<RegisteredTypes>
+				<Type
+					XukLocalName="Presentation"
+					XukNamespaceUri="http://www.daisy.org/urakawa/xuk/2.0"
+					AssemblyName="UrakawaSDK.core"
+					AssemblyVersion="2.0.0.0"
+					FullName="urakawa.Presentation" />
+				<Type
+					XukLocalName="ObiPresentation"
+					XukNamespaceUri="http://www.daisy.org/urakawa/obi"
+					BaseXukLocalName="Presentation"
+					BaseXukNamespaceUri="http://www.daisy.org/urakawa/xuk/2.0"
+					AssemblyName="Obi"
+					AssemblyVersion="1.2.0.28897"
+					FullName="Obi.ObiPresentation" />
+			</RegisteredTypes>
+		</PresentationFactory>
+		<Presentations>
+			<ns1:ObiPresentation
+				RootUri="../EmptyProject" xmlns:ns1="http://www.daisy.org/urakawa/obi">
+				<TreeNodeFactory>
+					<RegisteredTypes>
+						<Type
+							XukLocalName="TreeNode"
+							XukNamespaceUri="http://www.daisy.org/urakawa/xuk/2.0"
+							AssemblyName="UrakawaSDK.core"
+							AssemblyVersion="2.0.0.0"
+							FullName="urakawa.core.TreeNode" />
+						<Type
+							XukLocalName="root"
+							XukNamespaceUri="http://www.daisy.org/urakawa/obi"
+							AssemblyName="Obi"
+							AssemblyVersion="1.2.0.28897"
+							FullName="Obi.ObiRootNode" />
+					</RegisteredTypes>
+				</TreeNodeFactory>
+				<PropertyFactory>
+					<RegisteredTypes>
+						<Type
+							XukLocalName="ChannelsProperty"
+							XukNamespaceUri="http://www.daisy.org/urakawa/xuk/2.0"
+							AssemblyName="UrakawaSDK.core"
+							AssemblyVersion="2.0.0.0"
+							FullName="urakawa.property.channel.ChannelsProperty" />
+						<Type
+							XukLocalName="XmlProperty"
+							XukNamespaceUri="http://www.daisy.org/urakawa/xuk/2.0"
+							AssemblyName="UrakawaSDK.core"
+							AssemblyVersion="2.0.0.0"
+							FullName="urakawa.property.xml.XmlProperty" />
+					</RegisteredTypes>
+				</PropertyFactory>
+				<ChannelFactory>
+					<RegisteredTypes>
+						<Type
+							XukLocalName="Channel"
+							XukNamespaceUri="http://www.daisy.org/urakawa/xuk/2.0"
+							AssemblyName="UrakawaSDK.core"
+							AssemblyVersion="2.0.0.0"
+							FullName="urakawa.property.channel.Channel" />
+						<Type
+							XukLocalName="TextChannel"
+							XukNamespaceUri="http://www.daisy.org/urakawa/xuk/2.0"
+							AssemblyName="UrakawaSDK.core"
+							AssemblyVersion="2.0.0.0"
+							FullName="urakawa.property.channel.TextChannel" />
+						<Type
+							XukLocalName="ImageChannel"
+							XukNamespaceUri="http://www.daisy.org/urakawa/xuk/2.0"
+							AssemblyName="UrakawaSDK.core"
+							AssemblyVersion="2.0.0.0"
+							FullName="urakawa.property.channel.ImageChannel" />
+						<Type
+							XukLocalName="AudioChannel"
+							XukNamespaceUri="http://www.daisy.org/urakawa/xuk/2.0"
+							AssemblyName="UrakawaSDK.core"
+							AssemblyVersion="2.0.0.0"
+							FullName="urakawa.property.channel.AudioChannel" />
+					</RegisteredTypes>
+				</ChannelFactory>
+				<MediaFactory>
+					<RegisteredTypes>
+						<Type
+							XukLocalName="ManagedImageMedia"
+							XukNamespaceUri="http://www.daisy.org/urakawa/xuk/2.0"
+							AssemblyName="UrakawaSDK.core"
+							AssemblyVersion="2.0.0.0"
+							FullName="urakawa.media.data.image.ManagedImageMedia" />
+						<Type
+							XukLocalName="ManagedAudioMedia"
+							XukNamespaceUri="http://www.daisy.org/urakawa/xuk/2.0"
+							AssemblyName="UrakawaSDK.core"
+							AssemblyVersion="2.0.0.0"
+							FullName="urakawa.media.data.audio.ManagedAudioMedia" />
+						<Type
+							XukLocalName="TextMedia"
+							XukNamespaceUri="http://www.daisy.org/urakawa/xuk/2.0"
+							AssemblyName="UrakawaSDK.core"
+							AssemblyVersion="2.0.0.0"
+							FullName="urakawa.media.TextMedia" />
+						<Type
+							XukLocalName="ExternalImageMedia"
+							XukNamespaceUri="http://www.daisy.org/urakawa/xuk/2.0"
+							AssemblyName="UrakawaSDK.core"
+							AssemblyVersion="2.0.0.0"
+							FullName="urakawa.media.ExternalImageMedia" />
+						<Type
+							XukLocalName="ExternalVideoMedia"
+							XukNamespaceUri="http://www.daisy.org/urakawa/xuk/2.0"
+							AssemblyName="UrakawaSDK.core"
+							AssemblyVersion="2.0.0.0"
+							FullName="urakawa.media.ExternalVideoMedia" />
+						<Type
+							XukLocalName="ExternalTextMedia"
+							XukNamespaceUri="http://www.daisy.org/urakawa/xuk/2.0"
+							AssemblyName="UrakawaSDK.core"
+							AssemblyVersion="2.0.0.0"
+							FullName="urakawa.media.ExternalTextMedia" />
+						<Type
+							XukLocalName="ExternalAudioMedia"
+							XukNamespaceUri="http://www.daisy.org/urakawa/xuk/2.0"
+							AssemblyName="UrakawaSDK.core"
+							AssemblyVersion="2.0.0.0"
+							FullName="urakawa.media.ExternalAudioMedia" />
+						<Type
+							XukLocalName="SequenceMedia"
+							XukNamespaceUri="http://www.daisy.org/urakawa/xuk/2.0"
+							AssemblyName="UrakawaSDK.core"
+							AssemblyVersion="2.0.0.0"
+							FullName="urakawa.media.SequenceMedia" />
+					</RegisteredTypes>
+				</MediaFactory>
+				<DataProviderFactory>
+					<RegisteredTypes>
+						<Type
+							XukLocalName="FileDataProvider"
+							XukNamespaceUri="http://www.daisy.org/urakawa/xuk/2.0"
+							AssemblyName="UrakawaSDK.core"
+							AssemblyVersion="2.0.0.0"
+							FullName="urakawa.data.FileDataProvider" />
+					</RegisteredTypes>
+				</DataProviderFactory>
+				<MediaDataFactory>
+					<RegisteredTypes>
+						<Type
+							XukLocalName="JpgImageMediaData"
+							XukNamespaceUri="http://www.daisy.org/urakawa/xuk/2.0"
+							AssemblyName="UrakawaSDK.core"
+							AssemblyVersion="2.0.0.0"
+							FullName="urakawa.media.data.image.codec.JpgImageMediaData" />
+						<Type
+							XukLocalName="WavAudioMediaData"
+							XukNamespaceUri="http://www.daisy.org/urakawa/xuk/2.0"
+							AssemblyName="UrakawaSDK.core"
+							AssemblyVersion="2.0.0.0"
+							FullName="urakawa.media.data.audio.codec.WavAudioMediaData" />
+					</RegisteredTypes>
+				</MediaDataFactory>
+				<CommandFactory>
+					<RegisteredTypes>
+						<Type
+							XukLocalName="CompositeCommand"
+							XukNamespaceUri="http://www.daisy.org/urakawa/xuk/2.0"
+							AssemblyName="UrakawaSDK.core"
+							AssemblyVersion="2.0.0.0"
+							FullName="urakawa.command.CompositeCommand" />
+						<Type
+							XukLocalName="TreeNodeSetManagedAudioMediaCommand"
+							XukNamespaceUri="http://www.daisy.org/urakawa/xuk/2.0"
+							AssemblyName="UrakawaSDK.core"
+							AssemblyVersion="2.0.0.0"
+							FullName="urakawa.commands.TreeNodeSetManagedAudioMediaCommand" />
+						<Type
+							XukLocalName="ManagedAudioMediaInsertDataCommand"
+							XukNamespaceUri="http://www.daisy.org/urakawa/xuk/2.0"
+							AssemblyName="UrakawaSDK.core"
+							AssemblyVersion="2.0.0.0"
+							FullName="urakawa.commands.ManagedAudioMediaInsertDataCommand" />
+						<Type
+							XukLocalName="TreeNodeAudioStreamDeleteCommand"
+							XukNamespaceUri="http://www.daisy.org/urakawa/xuk/2.0"
+							AssemblyName="UrakawaSDK.core"
+							AssemblyVersion="2.0.0.0"
+							FullName="urakawa.commands.TreeNodeAudioStreamDeleteCommand" />
+						<Type
+							XukLocalName="TreeNodeSetIsMarkedCommand"
+							XukNamespaceUri="http://www.daisy.org/urakawa/xuk/2.0"
+							AssemblyName="UrakawaSDK.core"
+							AssemblyVersion="2.0.0.0"
+							FullName="urakawa.commands.TreeNodeSetIsMarkedCommand" />
+						<Type
+							XukLocalName="TreeNodeChangeTextCommand"
+							XukNamespaceUri="http://www.daisy.org/urakawa/xuk/2.0"
+							AssemblyName="UrakawaSDK.core"
+							AssemblyVersion="2.0.0.0"
+							FullName="urakawa.commands.TreeNodeChangeTextCommand" />
+						<Type
+							XukLocalName="MetadataAddCommand"
+							XukNamespaceUri="http://www.daisy.org/urakawa/xuk/2.0"
+							AssemblyName="UrakawaSDK.core"
+							AssemblyVersion="2.0.0.0"
+							FullName="urakawa.commands.MetadataAddCommand" />
+						<Type
+							XukLocalName="MetadataRemoveCommand"
+							XukNamespaceUri="http://www.daisy.org/urakawa/xuk/2.0"
+							AssemblyName="UrakawaSDK.core"
+							AssemblyVersion="2.0.0.0"
+							FullName="urakawa.commands.MetadataRemoveCommand" />
+						<Type
+							XukLocalName="MetadataSetContentCommand"
+							XukNamespaceUri="http://www.daisy.org/urakawa/xuk/2.0"
+							AssemblyName="UrakawaSDK.core"
+							AssemblyVersion="2.0.0.0"
+							FullName="urakawa.commands.MetadataSetContentCommand" />
+						<Type
+							XukLocalName="MetadataSetNameCommand"
+							XukNamespaceUri="http://www.daisy.org/urakawa/xuk/2.0"
+							AssemblyName="UrakawaSDK.core"
+							AssemblyVersion="2.0.0.0"
+							FullName="urakawa.commands.MetadataSetNameCommand" />
+						<Type
+							XukLocalName="MetadataSetIdCommand"
+							XukNamespaceUri="http://www.daisy.org/urakawa/xuk/2.0"
+							AssemblyName="UrakawaSDK.core"
+							AssemblyVersion="2.0.0.0"
+							FullName="urakawa.commands.MetadataSetIdCommand" />
+					</RegisteredTypes>
+				</CommandFactory>
+				<MetadataFactory>
+					<RegisteredTypes>
+						<Type
+							XukLocalName="Metadata"
+							XukNamespaceUri="http://www.daisy.org/urakawa/xuk/2.0"
+							AssemblyName="UrakawaSDK.core"
+							AssemblyVersion="2.0.0.0"
+							FullName="urakawa.metadata.Metadata" />
+					</RegisteredTypes>
+				</MetadataFactory>
+				<ExternalFileDataFactory>
+					<RegisteredTypes>
+						<Type
+							XukLocalName="CssExternalFileData"
+							XukNamespaceUri="http://www.daisy.org/urakawa/xuk/2.0"
+							AssemblyName="UrakawaSDK.core"
+							AssemblyVersion="2.0.0.0"
+							FullName="urakawa.ExternalFiles.CSSExternalFileData" />
+						<Type
+							XukLocalName="XsltExternalFileData"
+							XukNamespaceUri="http://www.daisy.org/urakawa/xuk/2.0"
+							AssemblyName="UrakawaSDK.core"
+							AssemblyVersion="2.0.0.0"
+							FullName="urakawa.ExternalFiles.XSLTExternalFileData" />
+						<Type
+							XukLocalName="DTDExternalFileData"
+							XukNamespaceUri="http://www.daisy.org/urakawa/xuk/2.0"
+							AssemblyName="UrakawaSDK.core"
+							AssemblyVersion="2.0.0.0"
+							FullName="urakawa.ExternalFiles.DTDExternalFileData" />
+					</RegisteredTypes>
+				</ExternalFileDataFactory>
+				<ChannelsManager>
+					<Channels>
+						<TextChannel
+							Uid="CH00000"
+							Name="" />
+						<AudioChannel
+							Uid="CH00001"
+							Name="" />
+					</Channels>
+				</ChannelsManager>
+				<DataProviderManager
+					DataFileDirectoryPath="Data">
+					<DataProviders />
+				</DataProviderManager>
+				<MediaDataManager
+					enforceSinglePCMFormat="true">
+					<DefaultPCMFormat>
+						<PCMFormatInfo
+							NumberOfChannels="1"
+							SampleRate="44100"
+							BitDepth="16" />
+					</DefaultPCMFormat>
+					<MediaDatas />
+				</MediaDataManager>
+				<ExternalFileDataManager>
+					<ExternalFileDatas />
+				</ExternalFileDataManager>
+				<Metadatas>
+					<Metadata>
+						<MetadataAttribute
+							Name="dc:Title"
+							Value="EmptyProject" />
+					</Metadata>
+					<Metadata>
+						<MetadataAttribute
+							Name="dc:Publisher"
+							Value="N/A" />
+					</Metadata>
+					<Metadata>
+						<MetadataAttribute
+							Name="dc:Identifier"
+							Value="3eb90388-b3de-483c-ae8f-7b90f572d09d" />
+					</Metadata>
+					<Metadata>
+						<MetadataAttribute
+							Name="dc:Language"
+							Value="en-US" />
+					</Metadata>
+					<Metadata>
+						<MetadataAttribute
+							Name="dc:Creator"
+							Value="Creator name" />
+					</Metadata>
+					<Metadata>
+						<MetadataAttribute
+							Name="dtb:narrator"
+							Value="hp" />
+					</Metadata>
+					<Metadata>
+						<MetadataAttribute
+							Name="generator"
+							Value="Obi v1.2.0.28897 with toolkit: UrakawaSDK.core v2.0.0.0 (http://urakawa.sf.net/obi)" />
+					</Metadata>
+					<Metadata>
+						<MetadataAttribute
+							Name="obi:xukversion"
+							Value="xuk/obi;1.0" />
+					</Metadata>
+				</Metadatas>
+				<RootNode>
+					<ns1:root>
+						<Properties />
+						<Children />
+					</ns1:root>
+				</RootNode>
+			</ns1:ObiPresentation>
+		</Presentations>
+	</Project>
+</Xuk>

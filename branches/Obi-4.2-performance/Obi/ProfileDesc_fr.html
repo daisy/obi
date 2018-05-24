@@ -1,0 +1,1095 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xml:lang="en" xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <title>Profile Description</title>
+    <link rel="stylesheet" href="help.css" type="text/css"/>
+  </head>
+<body style="background-color: white; color: black">
+
+<div id="Advance">
+<p>Dans le Mode avancé les cases à cocher suivantes sont cochées:-</p>
+<p>Onglet Audio:-</p>
+<table border="3">
+<tr>
+  <td>Conserver le silence d'origine lors de la détection de phrase</td>
+  <td>Si cette case est cochée, Obi conservera les silences d'origine lors du découpage automatique opéré par la détection de phrases. Si elle n'est pas cochée, ces silences disparaitront.</td>   
+</tr>
+<tr>
+  <td>Autoriser l'écrasement à l'enregistrement</td>
+  <td>Si cette case est cochée, Obi éclatera la phrase, à un endroit déterminé par un ensemble de règles, et poursuivra l'enregistrement dans une nouvelle phrase entre les deux segments. Si elle n'est pas cochée, Obi créera systématiquement une nouvelle phrase après la phrase sélectionnée.</td>
+</tr>
+<tr>
+  <td>Démmarer directement l'enregistrement à partir de la barre de transport</td>
+  <td>Si cette case est cochée, Obi désactivera le bouton à bascule Démarrer le monitoring/Enregistrer dans la barre de transport et n'affichera plus qu'un bouton Enregistrer directement à la place. En conséquence, cliquer sur ce bouton déclenchera systématiquement un enregistrement.</td>
+</tr>
+<tr>
+  <td>Limiter la durée maximum d'une phrase à 50 minutes</td>
+  <td>Si cette case est cochée, Obi fixera une durée maximum de 50 minutes pour une phrase. Si elle n'est pas cochée, aucune limite ne sera appliquée.</td>
+</tr>
+<tr>
+  <td>Afficher le spectre sonore en temps réel lors de l'enregistrement</td>
+  <td>Si cette case est cochée, Obi affichera le spectre sonore de l'enregistrement en cours.</td>
+</tr>
+<tr>
+  <td>Exécuter la détection de phrases pendant l'enregistrement</td>
+  <td>Si cette case est cochée, Obi exécutera la détection de phrases à la volée pendant l'enregistrement. À la fin de l'enregistrement, le contenu enregistré sera fractionné aux points déterminés lors de la détection.</td>
+</tr>
+<tr>
+  <td>Renuméroter les pages suivantes à la fin de l'enregistrement</td>
+  <td>Si cette case est cochée, Obi renumérotera les pages une fois l'enregistrement terminé, et ce dès l'arrêt de l'enregistrement.</td>
+</tr>
+<tr>
+  <td>Fusionner les deux premières phrases détectées par la détection de phrases</td>
+  <td>Si cette case est cochée, Obi fusionnera les deux premières phrases issues du processus de découpage automatique de la détection de phrases.</td>
+</tr>
+<tr>
+  <td>Lire en accéléré sans affecter la tonalité</td>
+  <td>Si cette case est cochée, Obi préservera la tonalité tant en augmentant qu'en diminuant la vitesse de lecture.</td>
+</tr>
+<tr>
+  <td>N'autoriser qu'un seul curseur audio</td>
+  <td>Si cette case est cochée, vous forcerez Obi à n'utiliser qu'un curseur au lieu de deux. Concrètement, le curseur rouge se positionnera automatiquement là où aurait dû se trouver le curseur bleu.</td>
+</tr>
+<tr>
+  <td>Prévenir la détection de phrases à la volée dans la page</td>
+  <td>Si cette case est cochée, Obi n'appliquera pas de détection de phrases pendant l'enregistrement de la page</td>
+</tr>
+</table>
+<p>Onglet Projet:-</p>
+<table  border="3">
+<tr>
+  <td>Figer la largeur du volet du contenu</td>
+  <td>Si cette case est cochée, Obi ne perturbera pas l'affichage des autres phrases même si la longueur de la phrase excède la largeur du volet du contenu. Si elle n'est pas cochée, Obi déformera la largeur du volet du contenu pour chaque longue phrase et rognera en conséquence sur l'affichage des autres phrases.</td>
+</tr>
+<tr>
+  <td>Optimiser l'utilisation de la mémoire</td>
+  <td>Si cette case est cochée, cela optimisera la mémoire utilisée par Obi.</td>
+</tr>
+<tr>
+  <td>Désactiver la restauration pour revenir à l'état antérieur avant nettoyage</td>
+    <td>Si cette case est cochée, Obi ne permettra pas la restauration à l'état antérieur à un nettoyage. </td>
+</tr>
+<tr>
+  <td>Activer le test d’espace libre</td>
+  <td>Si cette case est cochée, Obi testera l'espace disponible et avertira l'utilisateur lors d'un enregistrement, une sauvegarde ou une importation.</td>
+</tr>
+<tr>
+  <td>Sauvegarder le projet à la fin de l'enregistrement</td>
+  <td>Si cette case est cochée, Obi sauvegardera les modifications apportées au projet dès l'arrêt ou la mise en pause d'un enregistrement.</td>
+</tr>
+<tr>
+  <td>Vérifier les mises à jour</td>
+  <td>Si cette case est Cochée, Obi vérifiera automatiquement si une nouvelle version du programme est disponible et en informera l'utilisateur.</td>
+</tr>
+<tr>
+  <td>Afficher les spectres sonores dans le volet du contenu</td>
+  <td>Si cette case est cochée, Obi affichera les spectre sonores sous les intitulés des phrases dans le volet du contenu. Si elle n'est pas cochée, les spectres sonores seront masqués et la durée du contenu audio sera affichée à la place.</td>
+</tr>
+<tr>
+  <td>Expiration de la validation Epub Check après 3 minutes</td>
+  <td>Si cette case est cochée, Obi aura 3 minutes pour procéder à la validation Epub check, ce qui est largement suffisant même pour un gros livre. Cela permet de s'assurer que le processus ne tourne pas en boucle suite à une erreur.</td>
+</tr>
+<tr>
+  <td>Activer la roulette de la souris en scrollant</td>
+  <td>Vous permet d'activer ou de désactiver la roulette de votre souris dans le volet du contenu.</td>
+</tr>
+<tr>
+  <td>Afficher les propriétés avancées dans la boîte de dialogue propriétés</td>
+  <td>Si cette case est cochée, Obi affichera les propriétés avancées, comme le nombre total des fichiers du projet, dans la boîte de dialogue des propriétés. Si elle ne l'est pas, ces propriétés seront masquées.</td>
+</tr>
+</table>
+</div>
+<div id="Intermidate">
+<p>Dans le Mode intermédiaire les cases à cocher suivantes sont cochées:-</p>
+<p>Onglet Audio:-</p>
+<table border="3" >
+<tr>
+  <td>Conserver le silence d'origine lors de la détection de phrase</td>
+  <td>Si cette case est cochée, Obi conservera les silences d'origine lors du découpage automatique opéré par la détection de phrases. Si elle n'est pas cochée, ces silences disparaitront.</td>   
+</tr>
+<tr>
+  <td>Autoriser l'écrasement à l'enregistrement</td>
+  <td>Si cette case est cochée, Obi éclatera la phrase, à un endroit déterminé par un ensemble de règles, et poursuivra l'enregistrement dans une nouvelle phrase entre les deux segments. Si elle n'est pas cochée, Obi créera systématiquement une nouvelle phrase après la phrase sélectionnée.</td>
+</tr>
+<tr>
+  <td>Démmarer directement l'enregistrement à partir de la barre de transport</td>
+  <td>Si cette case est cochée, Obi désactivera le bouton à bascule Démarrer le monitoring/Enregistrer dans la barre de transport et n'affichera plus qu'un bouton Enregistrer directement à la place. En conséquence, cliquer sur ce bouton déclenchera systématiquement un enregistrement.</td>
+</tr>
+<tr>
+  <td>Limiter la durée maximum d'une phrase à 50 minutes</td>
+  <td>Si cette case est cochée, Obi fixera une durée maximum de 50 minutes pour une phrase. Si elle n'est pas cochée, aucune limite ne sera appliquée.</td>
+</tr>
+<tr>
+  <td>Exécuter la détection de phrases pendant l'enregistrement</td>
+  <td>Si cette case est cochée, Obi exécutera la détection de phrases à la volée pendant l'enregistrement. À la fin de l'enregistrement, le contenu enregistré sera fractionné aux points déterminés lors de la détection.</td>
+</tr>
+<tr>
+  <td>Renuméroter les pages suivantes à la fin de l'enregistrement</td>
+  <td>Si cette case est cochée, Obi renumérotera les pages une fois l'enregistrement terminé, et ce dès l'arrêt de l'enregistrement.</td>
+</tr>
+<tr>
+  <td>Lire en accéléré sans affecter la tonalité</td>
+  <td>Si cette case est cochée, Obi préservera la tonalité tant en augmentant qu'en diminuant la vitesse de lecture.</td>
+</tr>
+<tr>
+  <td>Prévenir la détection de phrases à la volée dans la page</td>
+  <td>Si cette case est cochée, Obi n'appliquera pas de détection de phrases pendant l'enregistrement de la page</td>
+</tr>
+</table>
+<p>Onglet Projet:-</p>
+<table  border="3">
+<tr>
+  <td>Figer la largeur du volet du contenu</td>
+  <td>Si cette case est cochée, Obi ne perturbera pas l'affichage des autres phrases même si la longueur de la phrase excède la largeur du volet du contenu. Si elle n'est pas cochée, Obi déformera la largeur du volet du contenu pour chaque longue phrase et rognera en conséquence sur l'affichage des autres phrases.</td>
+</tr>
+<tr>
+  <td>Optimiser l'utilisation de la mémoire</td>
+  <td>Si cette case est cochée, cela optimisera la mémoire utilisée par Obi.</td>
+</tr>
+<tr>
+  <td>Désactiver la restauration pour revenir à l'état antérieur avant nettoyage</td>
+    <td>Si cette case est cochée, Obi ne permettra pas la restauration à l'état antérieur à un nettoyage. </td>
+</tr>
+<tr>
+  <td>Activer le test d’espace libre</td>
+  <td>Si cette case est cochée, Obi testera l'espace disponible et avertira l'utilisateur lors d'un enregistrement, une sauvegarde ou une importation.</td>
+</tr>
+<tr>
+  <td>Sauvegarder le projet à la fin de l'enregistrement</td>
+  <td>Si cette case est cochée, Obi sauvegardera les modifications apportées au projet dès l'arrêt ou la mise en pause d'un enregistrement.</td>
+</tr>
+<tr>
+  <td>Vérifier les mises à jour</td>
+  <td>Si cette case est Cochée, Obi vérifiera automatiquement si une nouvelle version du programme est disponible et en informera l'utilisateur.</td>
+</tr>
+<tr>
+  <td>Afficher les spectres sonores dans le volet du contenu</td>
+  <td>Si cette case est cochée, Obi affichera les spectre sonores sous les intitulés des phrases dans le volet du contenu. Si elle n'est pas cochée, les spectres sonores seront masqués et la durée du contenu audio sera affichée à la place.</td>
+</tr>
+<tr>
+  <td>Expiration de la validation Epub Check après 3 minutes</td>
+  <td>Si cette case est cochée, Obi aura 3 minutes pour procéder à la validation Epub check, ce qui est largement suffisant même pour un gros livre. Cela permet de s'assurer que le processus ne tourne pas en boucle suite à une erreur.</td>
+</tr>
+<tr>
+  <td>Activer la roulette de la souris en scrollant</td>
+  <td>Vous permet d'activer ou de désactiver la roulette de votre souris dans le volet du contenu.</td>
+</tr>
+</table>
+</div>
+<div id="Basic">
+<p>Dans le Mode débutant les cases à cocher suivantes sont cochées:-</p>
+<p>Onglet Audio:-</p>
+<table border="3" >
+
+<tr>
+  <td>Conserver le silence d'origine lors de la détection de phrase</td>
+  <td>Si cette case est cochée, Obi conservera les silences d'origine lors du découpage automatique opéré par la détection de phrases. Si elle n'est pas cochée, ces silences disparaitront.</td>   
+</tr>
+<tr>
+  <td>Limiter la durée maximum d'une phrase à 50 minutes</td>
+  <td>Si cette case est cochée, Obi fixera une durée maximum de 50 minutes pour une phrase. Si elle n'est pas cochée, aucune limite ne sera appliquée.</td>
+</tr>
+<tr>
+  <td>Renuméroter les pages suivantes à la fin de l'enregistrement</td>
+  <td>Si cette case est cochée, Obi renumérotera les pages une fois l'enregistrement terminé, et ce dès l'arrêt de l'enregistrement.</td>
+</tr>
+<tr>
+  <td>Lire en accéléré sans affecter la tonalité</td>
+  <td>Si cette case est cochée, Obi préservera la tonalité tant en augmentant qu'en diminuant la vitesse de lecture.</td>
+</tr>
+<tr>
+  <td>Prévenir la détection de phrases à la volée dans la page</td>
+  <td>Si cette case est cochée, Obi n'appliquera pas de détection de phrases pendant l'enregistrement de la page</td>
+</tr>
+</table>
+<p>Onglet Projet:-</p>
+<table  border="3">
+<tr>
+  <td>Figer la largeur du volet du contenu</td>
+  <td>Si cette case est cochée, Obi ne perturbera pas l'affichage des autres phrases même si la longueur de la phrase excède la largeur du volet du contenu. Si elle n'est pas cochée, Obi déformera la largeur du volet du contenu pour chaque longue phrase et rognera en conséquence sur l'affichage des autres phrases.</td>
+</tr>
+<tr>
+  <td>Optimiser l'utilisation de la mémoire</td>
+  <td>Si cette case est cochée, cela optimisera la mémoire utilisée par Obi.</td>
+</tr>
+<tr>
+  <td>Désactiver la restauration pour revenir à l'état antérieur avant nettoyage</td>
+    <td>Si cette case est cochée, Obi ne permettra pas la restauration à l'état antérieur à un nettoyage. </td>
+</tr>
+<tr>
+  <td>Activer le test d’espace libre</td>
+  <td>Si cette case est cochée, Obi testera l'espace disponible et avertira l'utilisateur lors d'un enregistrement, une sauvegarde ou une importation.</td>
+</tr>
+<tr>
+  <td>Sauvegarder le projet à la fin de l'enregistrement</td>
+  <td>Si cette case est cochée, Obi sauvegardera les modifications apportées au projet dès l'arrêt ou la mise en pause d'un enregistrement.</td>
+</tr>
+<tr>
+  <td>Vérifier les mises à jour</td>
+  <td>Si cette case est Cochée, Obi vérifiera automatiquement si une nouvelle version du programme est disponible et en informera l'utilisateur.</td>
+</tr>
+<tr>
+  <td>Afficher les spectres sonores dans le volet du contenu</td>
+  <td>Si cette case est cochée, Obi affichera les spectre sonores sous les intitulés des phrases dans le volet du contenu. Si elle n'est pas cochée, les spectres sonores seront masqués et la durée du contenu audio sera affichée à la place.</td>
+</tr>
+<tr>
+  <td>Expiration de la validation Epub Check après 3 minutes</td>
+  <td>Si cette case est cochée, Obi aura 3 minutes pour procéder à la validation Epub check, ce qui est largement suffisant même pour un gros livre. Cela permet de s'assurer que le processus ne tourne pas en boucle suite à une erreur.</td>
+</tr>
+<tr>
+  <td>Activer la roulette de la souris en scrollant</td>
+  <td>Vous permet d'activer ou de désactiver la roulette de votre souris dans le volet du contenu.</td>
+</tr>
+</table>
+</div>
+<div id="Custom">
+<p>Il s'agit de votre profil personnalisé.Vous pouvez, en fonction de vos besoins, cocher les cases à cocher suivantes:-</p>
+<p>Onglet Audio:-</p>
+<table border="3" >
+<tr>
+  <td>Messages Audio</td>
+  <td>Active les messages audio, les désactive dans le cas contraire. Les messages audio donnent des indications sonores aux utilisateurs non-voyants.</td>   
+</tr>
+<tr>
+  <td>Conserver le silence d'origine lors de la détection de phrase</td>
+  <td>Si cette case est cochée, Obi conservera les silences d'origine lors du découpage automatique opéré par la détection de phrases. Si elle n'est pas cochée, ces silences disparaitront.</td>   
+</tr>
+<tr>
+  <td>Utiliser le bouton Enregistrer pour avoir un Aperçu avant enregistrement.</td>
+  <td>Si cette case est cochée, Obi lira un court échantillon avant la position du curseur puis il commencera l'enregistrement. Si elle n'est pas cochée, Obi lancera directement l'enregistrement.</td>
+</tr>
+<tr>
+  <td>Utiliser la barre d'espace pour arrêter l'enregistrement.</td>
+  <td>Si cette case est cochée, Obi arrêtera l'enregistrement lorsque l'utilisateur appuyera sur la barre d'espace du clavier. Si elle n'est pas cochée, il adoptera le comportement par défaut ce qui aura pour effet de mettre en pause l'enregistrement.</td>
+</tr>
+<tr>
+  <td>Autoriser l'écrasement à l'enregistrement</td>
+  <td>Si cette case est cochée, Obi éclatera la phrase, à un endroit déterminé par un ensemble de règles, et poursuivra l'enregistrement dans une nouvelle phrase entre les deux segments. Si elle n'est pas cochée, Obi créera systématiquement une nouvelle phrase après la phrase sélectionnée.</td>
+</tr>
+<tr>
+  <td>Démmarer directement l'enregistrement à partir de la barre de transport</td>
+  <td>Si cette case est cochée, Obi désactivera le bouton à bascule Démarrer le monitoring/Enregistrer dans la barre de transport et n'affichera plus qu'un bouton Enregistrer directement à la place. En conséquence, cliquer sur ce bouton déclenchera systématiquement un enregistrement.</td>
+</tr>
+<tr>
+  <td>Limiter la durée maximum d'une phrase à 50 minutes</td>
+  <td>Si cette case est cochée, Obi fixera une durée maximum de 50 minutes pour une phrase. Si elle n'est pas cochée, aucune limite ne sera appliquée.</td>
+</tr>
+<tr>
+  <td>Afficher le spectre sonore en temps réel lors de l'enregistrement</td>
+  <td>Si cette case est cochée, Obi affichera le spectre sonore de l'enregistrement en cours.</td>
+</tr>
+<tr>
+  <td>Exécuter la détection de phrases pendant l'enregistrement</td>
+  <td>Si cette case est cochée, Obi exécutera la détection de phrases à la volée pendant l'enregistrement. À la fin de l'enregistrement, le contenu enregistré sera fractionné aux points déterminés lors de la détection.</td>
+</tr>
+<tr>
+  <td>Renuméroter les pages suivantes à la fin de l'enregistrement</td>
+  <td>Si cette case est cochée, Obi renumérotera les pages une fois l'enregistrement terminé, et ce dès l'arrêt de l'enregistrement.</td>
+</tr>
+<tr>
+  <td>Fusionner les deux premières phrases détectées par la détection de phrases</td>
+  <td>Si cette case est cochée, Obi fusionnera les deux premières phrases issues du processus de découpage automatique de la détection de phrases.</td>
+</tr>
+<tr>
+  <td>Lire en accéléré sans affecter la tonalité</td>
+  <td>Si cette case est cochée, Obi préservera la tonalité tant en augmentant qu'en diminuant la vitesse de lecture.</td>
+</tr>
+<tr>
+  <td>Utiliser le bouton Enregistrer pour enregistrer par-dessus le contenu qui suit</td>
+  <td>Si cette case est cochée, cliquer sur le bouton Enregistrer remplacera le contenu existant à la position du curseur par le contenu qui sera enregistré. Assurez-vous d'avoir également coché "Démarrer directement l'enregistrement à partir de la barre de transport".</td>
+</tr>
+<tr>
+  <td>N'autoriser qu'un seul curseur audio</td>
+  <td>Si cette case est cochée, vous forcerez Obi à n'utiliser qu'un curseur au lieu de deux. Concrètement, le curseur rouge se positionnera automatiquement là où aurait dû se trouver le curseur bleu.</td>
+</tr>
+<tr>
+  <td>Supprimer les phrases qui suivent à la fin de l'enregistrement</td>
+  <td>Si cette case est cochée, Obi supprimera les phrases suivante présentes dans la section dès que vous mettrez fin à l'enregistrement de la phrase en cours.</td>
+</tr>
+<tr>
+  <td>Ne pas désélectionner en cliquant deux fois sur Arrêt</td>
+  <td>Si cette case est cochée, presser CTRL+Barre d'espace deux fois ne désélectionnera pas la sélection en cours. Si elle n'est pas cochée, cela reviendra à exécuter la commande Ne rien sélectionner.</td>
+</tr>
+<tr>
+  <td>Enregistrer par-dessus un contenu existant tout en conservant la pagination</td>
+  <td>Si cette case est cochée, l'enregistrement remplaçant l'audio déjà existant ne détruira pas les phrases ayant un rôle de Page mais il les conservera dans la section à la fin du nouvel enregistrement.</td>
+</tr>
+<tr>
+  <td>Monitoring en continu dans la barre d'enregistrement</td>
+  <td>Si cette case est cochée, la case à cocher Monitoring en continu sera cochée par défaut dans la barre d'enregistrement et l'audio sera donc constamment analysé.</td>
+</tr>
+<tr>
+  <td>Mettre en évidence l'intitulé lors de l'Aperçu avant enregistrement</td>
+  <td>Si cette case est cochée, Obi mettra en évidence l'intitulé de la phrase qui sera lu à l'aperçu avant enregistrement lorsque cet aperçu sera activé.</td>
+</tr>
+<tr>
+  <td>Utiliser le bouton Lecture et la barre d'espace pour lire la section</td>
+  <td>Si cette case est cochée, le bouton Lecture et la barre d'espace permettront de lire le contenu audio de la section.</td>
+</tr>
+<tr>
+  <td>Activer le nettoyage rapide (pour les installations en réseau)</td>
+  <td>Si cette case est cochée, le sous-menu Nettoyage rapide apparaîtra dans le menu des Outils. Cela évitera de procéder à un nettoyage là où les fichiers audio auront déjà été nettoyés.</td>
+</tr>
+<tr>
+  <td>S'assurer de la visibilité du curseur si Aperçu avant enregistrement n'est pas disponible</td>
+  <td>Si cette case est cochée, le curseur restera visible si l'Aperçu avant enregistrement n'est pas disponible.</td>
+</tr>
+<tr>
+  <td>Désactiver la création de nouveaux titres ou pages pendant l'enregistrement</td>
+  <td>Si cette case est cochée, les commandes Titre suivant et Page suivante renverront bien à leurs éléments respectifs en y poursuivant l'enregistrement en cours mais elles ne créeront pas de nouveaux titres ou pages.</td>
+</tr>
+<tr>
+  <td>Prévenir la détection de phrases à la volée dans la page</td>
+  <td>Si cette case est cochée, Obi n'appliquera pas de détection de phrases pendant l'enregistrement de la page</td>
+</tr>
+<tr>
+  <td>Conserver le Zoom Audio pour le volet du contenu </td>
+  <td>Si cette case est cochée, Obi conservera les propriétés du Zoom Audio pour l'ensemble des sessions de Obi.</td>
+</tr>
+<tr>
+  <td>Sélectionner la dernière phrase lue une fois écoutée</td>
+  <td>Si cette case est cochée, Obi déplace le curseur sur la dernière phrase écoutée une fois le bouton Arrêt activé. Si elle n'est pas cochée, Obi restera positionné sur la phrase à partir de laquelle la lecture a commencé.</td>
+</tr>
+<tr>
+  <td>Afficher le temps dans la Barre de transport lorsque Obi est à l'arrêt</td>
+  <td>Si cette case est cochée, à l'arrêt, Obi affichera, dans le champ Durée de la Barre de transport, la position à laquelle se trouve le curseur. Si elle n'est pas cochée, à l'arrêt, ce champ affichera invariablement 0. À noter que cette option n'est disponible que pour les affichages de Temps écoulé de la phrase et Temps écoulé de la section.</td>
+</tr>
+<tr>
+  <td>Enregistrer dans la première phrase vide à l'aide de la commande Enregistrer une section</td>
+  <td>Si cette case est cochée, Enregistrer une section lancera un enregistrement dans la première phrase vide de la section. Si elle n'est pas cochée, Obi commencera l'enregistrement dans une nouvelle phrase à la fin de la section.</td>
+</tr>
+<tr>
+  <td>Fusionner les 2 premières phrases après enregistrement lors de la détection de phrases</td>
+  <td>Si cette case est cochée, Obi fusionne les deux premières phrases générées par la détection de phrases à la volée.</td>
+</tr>
+<tr>
+  <td>Lire la phrase enregistrée à l'arrêt de l'enregistrement</td>
+  <td>Lit la phrase audio qui vient d'être enregistrée. Si vous avez enregistré votre contenu en mode phrases multiples, seul le contenu de la dernière phrase sera lu.</td>
+</tr>
+</table>
+<p>Onglet Projet:-</p>
+<table  border="3">
+<tr>
+  <td>Ouvrir le dernier projet</td>
+  <td>Si cette case est cochée, Obi ouvrira le dernier projet utilisé lors de la dernière session.</td>
+</tr>
+<tr>
+  <td>Revenir au signet à la réouverture d'un projet</td>
+  <td>Si cette case est cochée, Obi placera le focus clavier sur le signet à la réouverture du projet. Si elle n'est pas cochée, Obi ouvrira le projet dans le mode par défaut; le volet du contenu affichera alors la première section.</td>
+</tr>
+<tr>
+  <td>Figer la largeur du volet du contenu</td>
+  <td>Si cette case est cochée, Obi ne perturbera pas l'affichage des autres phrases même si la longueur de la phrase excède la largeur du volet du contenu. Si elle n'est pas cochée, Obi déformera la largeur du volet du contenu pour chaque longue phrase et rognera en conséquence sur l'affichage des autres phrases.</td>
+</tr>
+<tr>
+  <td>Optimiser l'utilisation de la mémoire</td>
+  <td>Si cette case est cochée, cela optimisera la mémoire utilisée par Obi.</td>
+</tr>
+<tr>
+  <td>Désactiver la restauration pour revenir à l'état antérieur avant nettoyage</td>
+    <td>Si cette case est cochée, Obi ne permettra pas la restauration à l'état antérieur à un nettoyage. </td>
+</tr>
+<tr>
+  <td>Activer le test d’espace libre</td>
+  <td>Si cette case est cochée, Obi testera l'espace disponible et avertira l'utilisateur lors d'un enregistrement, une sauvegarde ou une importation.</td>
+</tr>
+<tr>
+  <td>Sauvegarder le projet à la fin de l'enregistrement</td>
+  <td>Si cette case est cochée, Obi sauvegardera les modifications apportées au projet dès l'arrêt ou la mise en pause d'un enregistrement.</td>
+</tr>
+<tr>
+  <td>Vérifier les mises à jour</td>
+  <td>Si cette case est Cochée, Obi vérifiera automatiquement si une nouvelle version du programme est disponible et en informera l'utilisateur.</td>
+</tr>
+<tr>
+  <td>Afficher les spectres sonores dans le volet du contenu</td>
+  <td>Si cette case est cochée, Obi affichera les spectre sonores sous les intitulés des phrases dans le volet du contenu. Si elle n'est pas cochée, les spectres sonores seront masqués et la durée du contenu audio sera affichée à la place.</td>
+</tr>
+<tr>
+  <td>Ne jamais afficher en retrait les fichiers DAISY exportés</td>
+  <td>Si cette case est cochée, les fichiers exportés (tels que les .SMIL, .OPF, et caetera) ne seront pas mis en retrait et ce pour offrir une meilleure lisibilité.meilleure lisibilité visuelle.</td>
+</tr>
+<tr>
+  <td>Mettre en évidence les sections vides dans le volet TDM</td>
+  <td>Si cette case est cochée, Obi affichera les sections vides sur fond rose pour les distinguer des autres.</td>
+</tr>
+<tr>
+  <td>Sauvegarder l'emplacement et la taille de la fenêtre Obi</td>
+  <td>Si cette case est cochée, Obi sauvegardera la taille actuelle de la fenêtre du programme ainsi que son emplacement à l'écran, et rouvrira toutes les sessions en appliquant ces paramètres d'affichage.</td>
+</tr>
+<tr>
+  <td>Garder le Vu-Mètre aligné sur la droite de Obi</td>
+  <td>Si cette case est cochée, le Vue-Mètre sera toujours aligné sur la droite de la fenêtre de Obi. Son emplacement ne changera pas même si l'utilisateur essaye de le modifier. Veuillez noter que cette option n'est pas disponible si la fenêtre de Obi est agrandie.</td>
+</tr>
+<tr>
+  <td>Expiration de la validation Epub Check après 3 minutes</td>
+  <td>Si cette case est cochée, Obi aura 3 minutes pour procéder à la validation Epub check, ce qui est largement suffisant même pour un gros livre. Cela permet de s'assurer que le processus ne tourne pas en boucle suite à une erreur.</td>
+</tr>
+<tr>
+  <td>Ne pas réduire Obi lorsque la barre d'enregistrement est activée</td>
+  <td>Si cette case est cochée, la fenêtre de Obi ne sera pas réduite lorsque l'utilisateur activera la barre d'enregistrement.</td>
+</tr>
+<tr>
+  <td>Activer la roulette de la souris en scrollant</td>
+  <td>Vous permet d'activer ou de désactiver la roulette de votre souris dans le volet du contenu.</td>
+</tr>
+<tr>
+  <td>Désactiver le repliement pour la section sélectionnée dans le volet TDM</td>
+  <td>Si cette case est cochée, un double clic ne provoque aucun effet (ni repliement ni développement) pour la section sélectionnée dans le volet TDM.</td>
+</tr>
+<tr>
+  <td>Ouvrir Obi en mode plein écran</td>
+  <td>Ouvre la fenêtre du programme Obi en mode plein écran.</td>
+</tr>
+<tr>
+  <td>Utiliser le modèle Vision Australia pour l'exportation Xhtml</td>
+  <td>Si cette case est cochée, l'exportation Xhtml se fera selon les règles spécifiées par Vision Australia.</td>
+</tr>
+<tr>
+  <td>Agrandir les phrases proportionnellement à la résolution de l'écran</td>
+  <td>Si cette case est cochée, Obi agrandira les phrases proportionnellement à la résolution de l'écran pour conserver ainsi leur affichage dans le volet de contenu. Cela permettra à Obi d'être plus efficace en prévenant l'accumulation d'un trop grand nombre de spectres sonores importants.</td>
+</tr>
+<tr>
+  <td>Figer la largeur du volet TDM</td>
+  <td>Si cette case est cochée, Obi conservera la largeur actuelle du volet TDM; tout ajustement automatique ou manuel sera alors impossible.</td>
+</tr>
+<tr>
+  <td>Afficher les propriétés avancées dans la boîte de dialogue propriétés</td>
+  <td>Si cette case est cochée, Obi affichera les propriétés avancées, comme le nombre total des fichiers du projet, dans la boîte de dialogue des propriétés. Si elle ne l'est pas, ces propriétés seront masquées.</td>
+</tr>
+<tr>
+  <td>Alerter avant toute manipulation de section</td>
+  <td>Si cette case est cochée, Obi alertera l'utilisateur au moment de couper, supprimer ou renommer une section.</td>
+</tr>
+<tr>
+  <td>Importer d'anciens fichiers NCC encodés en Windows 1252</td>
+  <td>Si cette case est cochée, Obi importe les fichiers NCC encodée en Windows 1252. Cela garantit la bonne importation des anciens fichiers NCC.</td>
+</tr>
+<tr>
+  <td>Ne pas afficher de boîte de dialogue lors d'un déplacement vers une phrase d'une autre section</td>
+  <td>Lorsque les commandes comme Aller à la page, etc. aboutissent à amener la phrase d'une autre section dans la vue Contenu, Obi avertit l'utilisateur en affichant une boîte de message. Vous pouvez désactiver l'affichage du message d'avertissement en cochant cette case.</td>
+</tr>
+</table>
+</div>   
+<div id="Profile2">
+<p>Dans le Profil-SBS les cases à cocher suivantes sont cochées:-</p>
+<p>Onglet Audio:-</p>
+<table border="3" >
+<tr>
+  <td>Conserver le silence d'origine lors de la détection de phrase</td>
+  <td>Si cette case est cochée, Obi conservera les silences d'origine lors du découpage automatique opéré par la détection de phrases. Si elle n'est pas cochée, ces silences disparaitront.</td>   
+</tr>
+<tr>
+  <td>Utiliser le bouton Enregistrer pour avoir un Aperçu avant enregistrement.</td>
+  <td>Si cette case est cochée, Obi lira un court échantillon avant la position du curseur puis il commencera l'enregistrement. Si elle n'est pas cochée, Obi lancera directement l'enregistrement.</td>
+</tr>
+<tr>
+  <td>Autoriser l'écrasement à l'enregistrement</td>
+  <td>Si cette case est cochée, Obi éclatera la phrase, à un endroit déterminé par un ensemble de règles, et poursuivra l'enregistrement dans une nouvelle phrase entre les deux segments. Si elle n'est pas cochée, Obi créera systématiquement une nouvelle phrase après la phrase sélectionnée.</td>
+</tr>
+<tr>
+  <td>Démmarer directement l'enregistrement à partir de la barre de transport</td>
+  <td>Si cette case est cochée, Obi désactivera le bouton à bascule Démarrer le monitoring/Enregistrer dans la barre de transport et n'affichera plus qu'un bouton Enregistrer directement à la place. En conséquence, cliquer sur ce bouton déclenchera systématiquement un enregistrement.</td>
+</tr>
+<tr>
+  <td>Limiter la durée maximum d'une phrase à 50 minutes</td>
+  <td>Si cette case est cochée, Obi fixera une durée maximum de 50 minutes pour une phrase. Si elle n'est pas cochée, aucune limite ne sera appliquée.</td>
+</tr>
+<tr>
+  <td>Exécuter la détection de phrases pendant l'enregistrement</td>
+  <td>Si cette case est cochée, Obi exécutera la détection de phrases à la volée pendant l'enregistrement. À la fin de l'enregistrement, le contenu enregistré sera fractionné aux points déterminés lors de la détection.</td>
+</tr>
+<tr>
+  <td>Renuméroter les pages suivantes à la fin de l'enregistrement</td>
+  <td>Si cette case est cochée, Obi renumérotera les pages une fois l'enregistrement terminé, et ce dès l'arrêt de l'enregistrement.</td>
+</tr>
+<tr>
+  <td>Lire en accéléré sans affecter la tonalité</td>
+  <td>Si cette case est cochée, Obi préservera la tonalité tant en augmentant qu'en diminuant la vitesse de lecture.</td>
+</tr>
+<tr>
+  <td>N'autoriser qu'un seul curseur audio</td>
+  <td>Si cette case est cochée, vous forcerez Obi à n'utiliser qu'un curseur au lieu de deux. Concrètement, le curseur rouge se positionnera automatiquement là où aurait dû se trouver le curseur bleu.</td>
+</tr>
+<tr>
+  <td>Ne pas désélectionner en cliquant deux fois sur Arrêt</td>
+  <td>Si cette case est cochée, presser CTRL+Barre d'espace deux fois ne désélectionnera pas la sélection en cours. Si elle n'est pas cochée, cela reviendra à exécuter la commande Ne rien sélectionner.</td>
+</tr>
+<tr>
+  <td>Monitoring en continu dans la barre d'enregistrement</td>
+  <td>Si cette case est cochée, la case à cocher Monitoring en continu sera cochée par défaut dans la barre d'enregistrement et l'audio sera donc constamment analysé.</td>
+</tr>
+<tr>
+  <td>Mettre en évidence l'intitulé lors de l'Aperçu avant enregistrement</td>
+  <td>Si cette case est cochée, Obi mettra en évidence l'intitulé de la phrase qui sera lu à l'aperçu avant enregistrement lorsque cet aperçu sera activé.</td>
+</tr>
+<tr>
+  <td>Activer le nettoyage rapide (pour les installations en réseau)</td>
+  <td>Si cette case est cochée, le sous-menu Nettoyage rapide apparaîtra dans le menu des Outils. Cela évitera de procéder à un nettoyage là où les fichiers audio auront déjà été nettoyés.</td>
+</tr>
+<tr>
+  <td>S'assurer de la visibilité du curseur si Aperçu avant enregistrement n'est pas disponible</td>
+  <td>Si cette case est cochée, le curseur restera visible si l'Aperçu avant enregistrement n'est pas disponible.</td>
+</tr>
+<tr>
+  <td>Prévenir la détection de phrases à la volée dans la page</td>
+  <td>Si cette case est cochée, Obi n'appliquera pas de détection de phrases pendant l'enregistrement de la page</td>
+</tr>
+<tr>
+  <td>Conserver le Zoom Audio pour le volet du contenu</td>
+  <td>Si cette case est cochée, Obi conservera les propriétés du Zoom Audio pour l'ensemble des sessions de Obi.</td>
+</tr>
+</table>
+<p>Onglet Projet:-</p>
+<table  border="3">
+<tr>
+  <td>Figer la largeur du volet du contenu</td>
+  <td>Si cette case est cochée, Obi ne perturbera pas l'affichage des autres phrases même si la longueur de la phrase excède la largeur du volet du contenu. Si elle n'est pas cochée, Obi déformera la largeur du volet du contenu pour chaque longue phrase et rognera en conséquence sur l'affichage des autres phrases.</td>
+</tr>
+<tr>
+  <td>Optimiser l'utilisation de la mémoire</td>
+  <td>Si cette case est cochée, cela optimisera la mémoire utilisée par Obi.</td>
+</tr>
+<tr>
+  <td>Activer le test d’espace libre</td>
+  <td>Si cette case est cochée, Obi testera l'espace disponible et avertira l'utilisateur lors d'un enregistrement, une sauvegarde ou une importation.</td>
+</tr>
+<tr>
+  <td>Sauvegarder le projet à la fin de l'enregistrement</td>
+  <td>Si cette case est cochée, Obi sauvegardera les modifications apportées au projet dès l'arrêt ou la mise en pause d'un enregistrement.</td>
+</tr>
+<tr>
+  <td>Vérifier les mises à jour</td>
+  <td>Si cette case est Cochée, Obi vérifiera automatiquement si une nouvelle version du programme est disponible et en informera l'utilisateur.</td>
+</tr>
+<tr>
+  <td>Afficher les spectres sonores dans le volet du contenu</td>
+  <td>Si cette case est cochée, Obi affichera les spectre sonores sous les intitulés des phrases dans le volet du contenu. Si elle n'est pas cochée, les spectres sonores seront masqués et la durée du contenu audio sera affichée à la place.</td>
+</tr>
+<tr>
+  <td>Mettre en évidence les sections vides dans le volet TDM</td>
+  <td>Si cette case est cochée, Obi affichera les sections vides sur fond rose pour les distinguer des autres.</td>
+</tr>
+<tr>
+  <td>Sauvegarder l'emplacement et la taille de la fenêtre Obi</td>
+  <td>Si cette case est cochée, Obi sauvegardera la taille actuelle de la fenêtre du programme ainsi que son emplacement à l'écran, et rouvrira toutes les sessions en appliquant ces paramètres d'affichage.</td>
+</tr>
+<tr>
+  <td>Garder le Vu-Mètre aligné sur la droite de Obi</td>
+  <td>Si cette case est cochée, le Vue-Mètre sera toujours aligné sur la droite de la fenêtre de Obi. Son emplacement ne changera pas même si l'utilisateur essaye de le modifier. Veuillez noter que cette option n'est pas disponible si la fenêtre de Obi est agrandie.</td>
+</tr>
+<tr>
+  <td>Expiration de la validation Epub Check après 3 minutes</td>
+  <td>Si cette case est cochée, Obi aura 3 minutes pour procéder à la validation Epub check, ce qui est largement suffisant même pour un gros livre. Cela permet de s'assurer que le processus ne tourne pas en boucle suite à une erreur.</td>
+</tr>
+<tr>
+  <td>Afficher les propriétés avancées dans la boîte de dialogue propriétés</td>
+  <td>Si cette case est cochée, Obi affichera les propriétés avancées, comme le nombre total des fichiers du projet, dans la boîte de dialogue des propriétés. Si elle ne l'est pas, ces propriétés seront masquées.</td>
+</tr>
+</table>
+</div> 
+
+
+<div id="VA-Insert">
+<p>Dans le Insertion-VA les cases à cocher suivantes sont cocher:-</p>
+<p>Onglet Audio:-</p>
+<table border="3" >
+<tr>
+  <td>Conserver le silence d'origine lors de la détection de phrase</td>
+  <td>Si cette case est cochée, Obi conservera les silences d'origine lors du découpage automatique opéré par la détection de phrases. Si elle n'est pas cochée, ces silences disparaitront.</td>   
+</tr>
+<tr>
+  <td>Utiliser la barre d'espace pour arrêter l'enregistrement.</td>
+  <td>Si cette case est cochée, Obi arrêtera l'enregistrement lorsque l'utilisateur appuyera sur la barre d'espace du clavier. Si elle n'est pas cochée, il adoptera le comportement par défaut ce qui aura pour effet de mettre en pause l'enregistrement.</td>
+</tr>
+<tr>
+  <td>Autoriser l'écrasement à l'enregistrement</td>
+  <td>Si cette case est cochée, Obi éclatera la phrase, à un endroit déterminé par un ensemble de règles, et poursuivra l'enregistrement dans une nouvelle phrase entre les deux segments. Si elle n'est pas cochée, Obi créera systématiquement une nouvelle phrase après la phrase sélectionnée.</td>
+</tr>
+<tr>
+  <td>Démmarer directement l'enregistrement à partir de la barre de transport</td>
+  <td>Si cette case est cochée, Obi désactivera le bouton à bascule Démarrer le monitoring/Enregistrer dans la barre de transport et n'affichera plus qu'un bouton Enregistrer directement à la place. En conséquence, cliquer sur ce bouton déclenchera systématiquement un enregistrement.</td>
+</tr>
+<tr>
+  <td>Limiter la durée maximum d'une phrase à 50 minutes</td>
+  <td>Si cette case est cochée, Obi fixera une durée maximum de 50 minutes pour une phrase. Si elle n'est pas cochée, aucune limite ne sera appliquée.</td>
+</tr>
+<tr>
+  <td>Afficher le spectre sonore en temps réel lors de l'enregistrement</td>
+  <td>Si cette case est cochée, Obi affichera le spectre sonore de l'enregistrement en cours.</td>
+</tr>
+<tr>
+  <td>Exécuter la détection de phrases pendant l'enregistrement</td>
+  <td>Si cette case est cochée, Obi exécutera la détection de phrases à la volée pendant l'enregistrement. À la fin de l'enregistrement, le contenu enregistré sera fractionné aux points déterminés lors de la détection.</td>
+</tr>
+<tr>
+  <td>Renuméroter les pages suivantes à la fin de l'enregistrement</td>
+  <td>Si cette case est cochée, Obi renumérotera les pages une fois l'enregistrement terminé, et ce dès l'arrêt de l'enregistrement.</td>
+</tr>
+<tr>
+  <td>Fusionner les deux premières phrases détectées par la détection de phrases</td>
+  <td>Si cette case est cochée, Obi fusionnera les deux premières phrases issues du processus de découpage automatique de la détection de phrases.</td>
+</tr>
+<tr>
+  <td>Lire en accéléré sans affecter la tonalité</td>
+  <td>Si cette case est cochée, Obi préservera la tonalité tant en augmentant qu'en diminuant la vitesse de lecture.</td>
+</tr>
+<tr>
+  <td>N'autoriser qu'un seul curseur audio</td>
+  <td>Si cette case est cochée, vous forcerez Obi à n'utiliser qu'un curseur au lieu de deux. Concrètement, le curseur rouge se positionnera automatiquement là où aurait dû se trouver le curseur bleu.</td>
+</tr>
+<tr>
+  <td>Utiliser le bouton Lecture et la barre d'espace pour lire la section</td>
+  <td>Si cette case est cochée, le bouton Lecture et la barre d'espace permettront de lire le contenu audio de la section.</td>
+</tr>
+<tr>
+  <td>Désactiver la création de nouveaux titres ou pages pendant l'enregistrement</td>
+  <td>Si cette case est cochée, les commandes Titre suivant et Page suivante renverront bien à leurs éléments respectifs en y poursuivant l'enregistrement en cours mais elles ne créeront pas de nouveaux titres ou pages.</td>
+</tr>
+<tr>
+  <td>Sélectionner la dernière phrase lue une fois écoutée</td>
+  <td>Si cette case est cochée, Obi déplace le curseur sur la dernière phrase écoutée une fois le bouton Arrêt activé. Si elle n'est pas cochée, Obi restera positionné sur la phrase à partir de laquelle la lecture a commencé.</td>
+</tr>
+<tr>
+  <td>Afficher le temps dans la Barre de transport lorsque Obi est à l'arrêt</td>
+  <td>Si cette case est cochée, à l'arrêt, Obi affichera, dans le champ Durée de la Barre de transport, la position à laquelle se trouve le curseur. Si elle n'est pas cochée, à l'arrêt, ce champ affichera invariablement 0. À noter que cette option n'est disponible que pour les affichages de Temps écoulé de la phrase et Temps écoulé de la section.</td>
+</tr>
+<tr>
+  <td>Enregistrer dans la première phrase vide à l'aide de la commande Enregistrer une section</td>
+  <td>Si cette case est cochée, Enregistrer une section lancera un enregistrement dans la première phrase vide de la section. Si elle n'est pas cochée, Obi commencera l'enregistrement dans une nouvelle phrase à la fin de la section.</td>
+</tr>
+</table>
+<p>Onglet Projet:-</p>
+<table  border="3">
+<tr>
+  <td>Ouvrir le dernier projet</td>
+  <td>Si cette case est cochée, Obi ouvrira le dernier projet utilisé lors de la dernière session.</td>
+</tr>
+<tr>
+  <td>Revenir au signet à la réouverture d'un projet</td>
+  <td>Si cette case est cochée, Obi placera le focus clavier sur le signet à la réouverture du projet. Si elle n'est pas cochée, Obi ouvrira le projet dans le mode par défaut; le volet du contenu affichera alors la première section.</td>
+</tr>
+<tr>
+  <td>Figer la largeur du volet du contenu</td>
+  <td>Si cette case est cochée, Obi ne perturbera pas l'affichage des autres phrases même si la longueur de la phrase excède la largeur du volet du contenu. Si elle n'est pas cochée, Obi déformera la largeur du volet du contenu pour chaque longue phrase et rognera en conséquence sur l'affichage des autres phrases.</td>
+</tr>
+<tr>
+  <td>Optimiser l'utilisation de la mémoire</td>
+  <td>Si cette case est cochée, cela optimisera la mémoire utilisée par Obi.</td>
+</tr>
+<tr>
+  <td>Désactiver la restauration pour revenir à l'état antérieur avant nettoyage</td>
+    <td>Si cette case est cochée, Obi ne permettra pas la restauration à l'état antérieur à un nettoyage. </td>
+</tr>
+<tr>
+  <td>Activer le test d’espace libre</td>
+  <td>Si cette case est cochée, Obi testera l'espace disponible et avertira l'utilisateur lors d'un enregistrement, une sauvegarde ou une importation.</td>
+</tr>
+<tr>
+  <td>Sauvegarder le projet à la fin de l'enregistrement</td>
+  <td>Si cette case est cochée, Obi sauvegardera les modifications apportées au projet dès l'arrêt ou la mise en pause d'un enregistrement.</td>
+</tr>
+<tr>
+  <td>Vérifier les mises à jour</td>
+  <td>Si cette case est Cochée, Obi vérifiera automatiquement si une nouvelle version du programme est disponible et en informera l'utilisateur.</td>
+</tr>
+<tr>
+  <td>Afficher les spectres sonores dans le volet du contenu</td>
+  <td>Si cette case est cochée, Obi affichera les spectre sonores sous les intitulés des phrases dans le volet du contenu. Si elle n'est pas cochée, les spectres sonores seront masqués et la durée du contenu audio sera affichée à la place.</td>
+</tr>
+<tr>
+  <td>Mettre en évidence les sections vides dans le volet TDM</td>
+  <td>Si cette case est cochée, Obi affichera les sections vides sur fond rose pour les distinguer des autres.</td>
+</tr>
+<tr>
+  <td>Sauvegarder l'emplacement et la taille de la fenêtre Obi</td>
+  <td>Si cette case est cochée, Obi sauvegardera la taille actuelle de la fenêtre du programme ainsi que son emplacement à l'écran, et rouvrira toutes les sessions en appliquant ces paramètres d'affichage.</td>
+</tr>
+<tr>
+  <td>Garder le Vu-Mètre aligné sur la droite de Obi</td>
+  <td>Si cette case est cochée, le Vue-Mètre sera toujours aligné sur la droite de la fenêtre de Obi. Son emplacement ne changera pas même si l'utilisateur essaye de le modifier. Veuillez noter que cette option n'est pas disponible si la fenêtre de Obi est agrandie.</td>
+</tr>
+<tr>
+  <td>Expiration de la validation Epub Check après 3 minutes</td>
+  <td>Si cette case est cochée, Obi aura 3 minutes pour procéder à la validation Epub check, ce qui est largement suffisant même pour un gros livre. Cela permet de s'assurer que le processus ne tourne pas en boucle suite à une erreur.</td>
+</tr>
+<tr>
+  <td>Ne pas réduire Obi lorsque la barre d'enregistrement est activée</td>
+  <td>Si cette case est cochée, la fenêtre de Obi ne sera pas réduite lorsque l'utilisateur activera la barre d'enregistrement.</td>
+</tr>
+<tr>
+  <td>Désactiver le repliement pour la section sélectionnée dans le volet TDM</td>
+  <td>Si cette case est cochée, un double clic ne provoque aucun effet (ni repliement ni développement) pour la section sélectionnée dans le volet TDM.</td>
+</tr>
+<tr>
+  <td>Ouvrir Obi en mode plein écran</td>
+  <td>Ouvre la fenêtre du programme Obi en mode plein écran.</td>
+</tr>
+<tr>
+  <td>Utiliser le modèle Vision Australia pour l'exportation Xhtml</td>
+  <td>Si cette case est cochée, l'exportation Xhtml se fera selon les règles spécifiées par Vision Australia.</td>
+</tr>
+<tr>
+  <td>Agrandir les phrases proportionnellement à la résolution de l'écran</td>
+  <td>Si cette case est cochée, Obi agrandira les phrases proportionnellement à la résolution de l'écran pour conserver ainsi leur affichage dans le volet de contenu. Cela permettra à Obi d'être plus efficace en prévenant l'accumulation d'un trop grand nombre de spectres sonores importants.</td>
+</tr>
+<tr>
+  <td>Afficher les propriétés avancées dans la boîte de dialogue propriétés</td>
+  <td>Si cette case est cochée, Obi affichera les propriétés avancées, comme le nombre total des fichiers du projet, dans la boîte de dialogue des propriétés. Si elle ne l'est pas, ces propriétés seront masquées.</td>
+</tr>
+<tr>
+  <td>Alerter avant toute manipulation de section</td>
+  <td>Si cette case est cochée, Obi alertera l'utilisateur au moment de couper, supprimer ou renommer une section.</td>
+</tr>
+<tr>
+  <td>Ne pas afficher de boîte de dialogue lors d'un déplacement vers une phrase d'une autre section</td>
+  <td>Lorsque les commandes comme Aller à la page, etc. aboutissent à amener la phrase d'une autre section dans la vue Contenu, Obi avertit l'utilisateur en affichant une boîte de message. Vous pouvez désactiver l'affichage du message d'avertissement en cochant cette case.</td>
+</tr>
+</table>
+</div> 
+<div id="VA-Overwrite">
+<p>Dans le Écrasement-VA les cases à cocher suivantes sont cocher:-</p>
+<p>Onglet Audio:-</p>
+<table border="3" >
+<tr>
+  <td>Conserver le silence d'origine lors de la détection de phrase</td>
+  <td>Si cette case est cochée, Obi conservera les silences d'origine lors du découpage automatique opéré par la détection de phrases. Si elle n'est pas cochée, ces silences disparaitront.</td>   
+</tr>
+<tr>
+  <td>Utiliser la barre d'espace pour arrêter l'enregistrement.</td>
+  <td>Si cette case est cochée, Obi arrêtera l'enregistrement lorsque l'utilisateur appuyera sur la barre d'espace du clavier. Si elle n'est pas cochée, il adoptera le comportement par défaut ce qui aura pour effet de mettre en pause l'enregistrement.</td>
+</tr>
+<tr>
+  <td>Autoriser l'écrasement à l'enregistrement</td>
+  <td>Si cette case est cochée, Obi éclatera la phrase, à un endroit déterminé par un ensemble de règles, et poursuivra l'enregistrement dans une nouvelle phrase entre les deux segments. Si elle n'est pas cochée, Obi créera systématiquement une nouvelle phrase après la phrase sélectionnée.</td>
+</tr>
+<tr>
+  <td>Démmarer directement l'enregistrement à partir de la barre de transport</td>
+  <td>Si cette case est cochée, Obi désactivera le bouton à bascule Démarrer le monitoring/Enregistrer dans la barre de transport et n'affichera plus qu'un bouton Enregistrer directement à la place. En conséquence, cliquer sur ce bouton déclenchera systématiquement un enregistrement.</td>
+</tr>
+<tr>
+  <td>Limiter la durée maximum d'une phrase à 50 minutes</td>
+  <td>Si cette case est cochée, Obi fixera une durée maximum de 50 minutes pour une phrase. Si elle n'est pas cochée, aucune limite ne sera appliquée.</td>
+</tr>
+<tr>
+  <td>Afficher le spectre sonore en temps réel lors de l'enregistrement</td>
+  <td>Si cette case est cochée, Obi affichera le spectre sonore de l'enregistrement en cours.</td>
+</tr>
+<tr>
+  <td>Exécuter la détection de phrases pendant l'enregistrement</td>
+  <td>Si cette case est cochée, Obi exécutera la détection de phrases à la volée pendant l'enregistrement. À la fin de l'enregistrement, le contenu enregistré sera fractionné aux points déterminés lors de la détection.</td>
+</tr>
+<tr>
+  <td>Renuméroter les pages suivantes à la fin de l'enregistrement</td>
+  <td>Si cette case est cochée, Obi renumérotera les pages une fois l'enregistrement terminé, et ce dès l'arrêt de l'enregistrement.</td>
+</tr>
+<tr>
+  <td>Fusionner les deux premières phrases détectées par la détection de phrases</td>
+  <td>Si cette case est cochée, Obi fusionnera les deux premières phrases issues du processus de découpage automatique de la détection de phrases.</td>
+</tr>
+<tr>
+  <td>Lire en accéléré sans affecter la tonalité</td>
+  <td>Si cette case est cochée, Obi préservera la tonalité tant en augmentant qu'en diminuant la vitesse de lecture.</td>
+</tr>
+<tr>
+  <td>Utiliser le bouton Enregistrer pour enregistrer par-dessus le contenu qui suit</td>
+  <td>Si cette case est cochée, cliquer sur le bouton Enregistrer remplacera le contenu existant à la position du curseur par le contenu qui sera enregistré. Assurez-vous d'avoir également coché "Démarrer directement l'enregistrement à partir de la barre de transport".</td>
+</tr>
+<tr>
+  <td>N'autoriser qu'un seul curseur audio</td>
+  <td>Si cette case est cochée, vous forcerez Obi à n'utiliser qu'un curseur au lieu de deux. Concrètement, le curseur rouge se positionnera automatiquement là où aurait dû se trouver le curseur bleu.</td>
+</tr>
+<tr>
+  <td>Supprimer les phrases qui suivent à la fin de l'enregistrement</td>
+  <td>Si cette case est cochée, Obi supprimera les phrases suivante présentes dans la section dès que vous mettrez fin à l'enregistrement de la phrase en cours.</td>
+</tr>
+<tr>
+  <td>Ne pas désélectionner en cliquant deux fois sur Arrêt</td>
+  <td>Si cette case est cochée, presser CTRL+Barre d'espace deux fois ne désélectionnera pas la sélection en cours. Si elle n'est pas cochée, cela reviendra à exécuter la commande Ne rien sélectionner.</td>
+</tr>
+<tr>
+  <td>Enregistrer par-dessus un contenu existant tout en conservant la pagination</td>
+  <td>Si cette case est cochée, l'enregistrement remplaçant l'audio déjà existant ne détruira pas les phrases ayant un rôle de Page mais il les conservera dans la section à la fin du nouvel enregistrement.</td>
+</tr>
+<tr>
+  <td>Utiliser le bouton Lecture et la barre d'espace pour lire la section</td>
+  <td>Si cette case est cochée, le bouton Lecture et la barre d'espace permettront de lire le contenu audio de la section.</td>
+</tr>
+<tr>
+  <td>Désactiver la création de nouveaux titres ou pages pendant l'enregistrement</td>
+  <td>Si cette case est cochée, les commandes Titre suivant et Page suivante renverront bien à leurs éléments respectifs en y poursuivant l'enregistrement en cours mais elles ne créeront pas de nouveaux titres ou pages.</td>
+</tr>
+<tr>
+  <td>Sélectionner la dernière phrase lue une fois écoutée</td>
+  <td>Si cette case est cochée, Obi déplace le curseur sur la dernière phrase écoutée une fois le bouton Arrêt activé. Si elle n'est pas cochée, Obi restera positionné sur la phrase à partir de laquelle la lecture a commencé.</td>
+</tr>
+<tr>
+  <td>Afficher le temps dans la Barre de transport lorsque Obi est à l'arrêt</td>
+  <td>Si cette case est cochée, à l'arrêt, Obi affichera, dans le champ Durée de la Barre de transport, la position à laquelle se trouve le curseur. Si elle n'est pas cochée, à l'arrêt, ce champ affichera invariablement 0. À noter que cette option n'est disponible que pour les affichages de Temps écoulé de la phrase et Temps écoulé de la section.</td>
+</tr>
+<tr>
+  <td>Enregistrer dans la première phrase vide à l'aide de la commande Enregistrer une section</td>
+  <td>Si cette case est cochée, Enregistrer une section lancera un enregistrement dans la première phrase vide de la section. Si elle n'est pas cochée, Obi commencera l'enregistrement dans une nouvelle phrase à la fin de la section.</td>
+</tr>
+</table>
+<p>Onglet Projet:-</p>
+<table  border="3">
+<tr>
+  <td>Ouvrir le dernier projet</td>
+  <td>Si cette case est cochée, Obi ouvrira le dernier projet utilisé lors de la dernière session.</td>
+</tr>
+<tr>
+  <td>Revenir au signet à la réouverture d'un projet</td>
+  <td>Si cette case est cochée, Obi placera le focus clavier sur le signet à la réouverture du projet. Si elle n'est pas cochée, Obi ouvrira le projet dans le mode par défaut; le volet du contenu affichera alors la première section.</td>
+</tr>
+<tr>
+  <td>Figer la largeur du volet du contenu</td>
+  <td>Si cette case est cochée, Obi ne perturbera pas l'affichage des autres phrases même si la longueur de la phrase excède la largeur du volet du contenu. Si elle n'est pas cochée, Obi déformera la largeur du volet du contenu pour chaque longue phrase et rognera en conséquence sur l'affichage des autres phrases.</td>
+</tr>
+<tr>
+  <td>Optimiser l'utilisation de la mémoire</td>
+  <td>Si cette case est cochée, cela optimisera la mémoire utilisée par Obi.</td>
+</tr>
+<tr>
+  <td>Désactiver la restauration pour revenir à l'état antérieur avant nettoyage</td>
+    <td>Si cette case est cochée, Obi ne permettra pas la restauration à l'état antérieur à un nettoyage. </td>
+</tr>
+<tr>
+  <td>Activer le test d’espace libre</td>
+  <td>Si cette case est cochée, Obi testera l'espace disponible et avertira l'utilisateur lors d'un enregistrement, une sauvegarde ou une importation.</td>
+</tr>
+<tr>
+  <td>Sauvegarder le projet à la fin de l'enregistrement</td>
+  <td>Si cette case est cochée, Obi sauvegardera les modifications apportées au projet dès l'arrêt ou la mise en pause d'un enregistrement.</td>
+</tr>
+<tr>
+  <td>Vérifier les mises à jour</td>
+  <td>Si cette case est Cochée, Obi vérifiera automatiquement si une nouvelle version du programme est disponible et en informera l'utilisateur.</td>
+</tr>
+<tr>
+  <td>Afficher les spectres sonores dans le volet du contenu</td>
+  <td>Si cette case est cochée, Obi affichera les spectre sonores sous les intitulés des phrases dans le volet du contenu. Si elle n'est pas cochée, les spectres sonores seront masqués et la durée du contenu audio sera affichée à la place.</td>
+</tr>
+<tr>
+  <td>Mettre en évidence les sections vides dans le volet TDM</td>
+  <td>Si cette case est cochée, Obi affichera les sections vides sur fond rose pour les distinguer des autres.</td>
+</tr>
+<tr>
+  <td>Sauvegarder l'emplacement et la taille de la fenêtre Obi</td>
+  <td>Si cette case est cochée, Obi sauvegardera la taille actuelle de la fenêtre du programme ainsi que son emplacement à l'écran, et rouvrira toutes les sessions en appliquant ces paramètres d'affichage.</td>
+</tr>
+<tr>
+  <td>Garder le Vu-Mètre aligné sur la droite de Obi</td>
+  <td>Si cette case est cochée, le Vue-Mètre sera toujours aligné sur la droite de la fenêtre de Obi. Son emplacement ne changera pas même si l'utilisateur essaye de le modifier. Veuillez noter que cette option n'est pas disponible si la fenêtre de Obi est agrandie.</td>
+</tr>
+<tr>
+  <td>Expiration de la validation Epub Check après 3 minutes</td>
+  <td>Si cette case est cochée, Obi aura 3 minutes pour procéder à la validation Epub check, ce qui est largement suffisant même pour un gros livre. Cela permet de s'assurer que le processus ne tourne pas en boucle suite à une erreur.</td>
+</tr>
+<tr>
+  <td>Ne pas réduire Obi lorsque la barre d'enregistrement est activée</td>
+  <td>Si cette case est cochée, la fenêtre de Obi ne sera pas réduite lorsque l'utilisateur activera la barre d'enregistrement.</td>
+</tr>
+<tr>
+  <td>Désactiver le repliement pour la section sélectionnée dans le volet TDM</td>
+  <td>Si cette case est cochée, un double clic ne provoque aucun effet (ni repliement ni développement) pour la section sélectionnée dans le volet TDM.</td>
+</tr>
+<tr>
+  <td>Ouvrir Obi en mode plein écran</td>
+  <td>Ouvre la fenêtre du programme Obi en mode plein écran.</td>
+</tr>
+<tr>
+  <td>Utiliser le modèle Vision Australia pour l'exportation Xhtml</td>
+  <td>Si cette case est cochée, l'exportation Xhtml se fera selon les règles spécifiées par Vision Australia.</td>
+</tr>
+<tr>
+  <td>Agrandir les phrases proportionnellement à la résolution de l'écran</td>
+  <td>Si cette case est cochée, Obi agrandira les phrases proportionnellement à la résolution de l'écran pour conserver ainsi leur affichage dans le volet de contenu. Cela permettra à Obi d'être plus efficace en prévenant l'accumulation d'un trop grand nombre de spectres sonores importants.</td>
+</tr>
+<tr>
+  <td>Afficher les propriétés avancées dans la boîte de dialogue propriétés</td>
+  <td>Si cette case est cochée, Obi affichera les propriétés avancées, comme le nombre total des fichiers du projet, dans la boîte de dialogue des propriétés. Si elle ne l'est pas, ces propriétés seront masquées.</td>
+</tr>
+<tr>
+  <td>Alerter avant toute manipulation de section</td>
+  <td>Si cette case est cochée, Obi alertera l'utilisateur au moment de couper, supprimer ou renommer une section.</td>
+</tr>
+<tr>
+  <td>Ne pas afficher de boîte de dialogue lors d'un déplacement vers une phrase d'une autre section</td>
+  <td>Lorsque les commandes comme Aller à la page, etc. aboutissent à amener la phrase d'une autre section dans la vue Contenu, Obi avertit l'utilisateur en affichant une boîte de message. Vous pouvez désactiver l'affichage du message d'avertissement en cochant cette case.</td>
+</tr>
+</table>
+</div>  
+<div id="VA-Editing">
+<p>Dans le Édition-VA les cases à cocher suivantes sont cocher:-</p>
+<p>Onglet Audio:-</p>
+<table border="3" >
+<tr>
+  <td>Conserver le silence d'origine lors de la détection de phrase</td>
+  <td>Si cette case est cochée, Obi conservera les silences d'origine lors du découpage automatique opéré par la détection de phrases. Si elle n'est pas cochée, ces silences disparaitront.</td>   
+</tr>
+<tr>
+  <td>Utiliser la barre d'espace pour arrêter l'enregistrement.</td>
+  <td>Si cette case est cochée, Obi arrêtera l'enregistrement lorsque l'utilisateur appuyera sur la barre d'espace du clavier. Si elle n'est pas cochée, il adoptera le comportement par défaut ce qui aura pour effet de mettre en pause l'enregistrement.</td>
+</tr>
+<tr>
+  <td>Autoriser l'écrasement à l'enregistrement</td>
+  <td>Si cette case est cochée, Obi éclatera la phrase, à un endroit déterminé par un ensemble de règles, et poursuivra l'enregistrement dans une nouvelle phrase entre les deux segments. Si elle n'est pas cochée, Obi créera systématiquement une nouvelle phrase après la phrase sélectionnée.</td>
+</tr>
+<tr>
+  <td>Démmarer directement l'enregistrement à partir de la barre de transport</td>
+  <td>Si cette case est cochée, Obi désactivera le bouton à bascule Démarrer le monitoring/Enregistrer dans la barre de transport et n'affichera plus qu'un bouton Enregistrer directement à la place. En conséquence, cliquer sur ce bouton déclenchera systématiquement un enregistrement.</td>
+</tr>
+<tr>
+  <td>Limiter la durée maximum d'une phrase à 50 minutes</td>
+  <td>Si cette case est cochée, Obi fixera une durée maximum de 50 minutes pour une phrase. Si elle n'est pas cochée, aucune limite ne sera appliquée.</td>
+</tr>
+<tr>
+  <td>Afficher le spectre sonore en temps réel lors de l'enregistrement</td>
+  <td>Si cette case est cochée, Obi affichera le spectre sonore de l'enregistrement en cours.</td>
+</tr>
+<tr>
+  <td>Exécuter la détection de phrases pendant l'enregistrement</td>
+  <td>Si cette case est cochée, Obi exécutera la détection de phrases à la volée pendant l'enregistrement. À la fin de l'enregistrement, le contenu enregistré sera fractionné aux points déterminés lors de la détection.</td>
+</tr>
+<tr>
+  <td>Renuméroter les pages suivantes à la fin de l'enregistrement</td>
+  <td>Si cette case est cochée, Obi renumérotera les pages une fois l'enregistrement terminé, et ce dès l'arrêt de l'enregistrement.</td>
+</tr>
+<tr>
+  <td>Fusionner les deux premières phrases détectées par la détection de phrases</td>
+  <td>Si cette case est cochée, Obi fusionnera les deux premières phrases issues du processus de découpage automatique de la détection de phrases.</td>
+</tr>
+<tr>
+  <td>Lire en accéléré sans affecter la tonalité</td>
+  <td>Si cette case est cochée, Obi préservera la tonalité tant en augmentant qu'en diminuant la vitesse de lecture.</td>
+</tr>
+<tr>
+  <td>Utiliser le bouton Enregistrer pour enregistrer par-dessus le contenu qui suit</td>
+  <td>Si cette case est cochée, cliquer sur le bouton Enregistrer remplacera le contenu existant à la position du curseur par le contenu qui sera enregistré. Assurez-vous d'avoir également coché "Démarrer directement l'enregistrement à partir de la barre de transport".</td>
+</tr>
+<tr>
+  <td>N'autoriser qu'un seul curseur audio</td>
+  <td>Si cette case est cochée, vous forcerez Obi à n'utiliser qu'un curseur au lieu de deux. Concrètement, le curseur rouge se positionnera automatiquement là où aurait dû se trouver le curseur bleu.</td>
+</tr>
+<tr>
+  <td>Supprimer les phrases qui suivent à la fin de l'enregistrement</td>
+  <td>Si cette case est cochée, Obi supprimera les phrases suivante présentes dans la section dès que vous mettrez fin à l'enregistrement de la phrase en cours.</td>
+</tr>
+<tr>
+  <td>Ne pas désélectionner en cliquant deux fois sur Arrêt</td>
+  <td>Si cette case est cochée, presser CTRL+Barre d'espace deux fois ne désélectionnera pas la sélection en cours. Si elle n'est pas cochée, cela reviendra à exécuter la commande Ne rien sélectionner.</td>
+</tr>
+<tr>
+  <td>Enregistrer par-dessus un contenu existant tout en conservant la pagination</td>
+  <td>Si cette case est cochée, l'enregistrement remplaçant l'audio déjà existant ne détruira pas les phrases ayant un rôle de Page mais il les conservera dans la section à la fin du nouvel enregistrement.</td>
+</tr>
+<tr>
+  <td>Utiliser le bouton Lecture et la barre d'espace pour lire la section</td>
+  <td>Si cette case est cochée, le bouton Lecture et la barre d'espace permettront de lire le contenu audio de la section.</td>
+</tr>
+<tr>
+  <td>Désactiver la création de nouveaux titres ou pages pendant l'enregistrement</td>
+  <td>Si cette case est cochée, les commandes Titre suivant et Page suivante renverront bien à leurs éléments respectifs en y poursuivant l'enregistrement en cours mais elles ne créeront pas de nouveaux titres ou pages.</td>
+</tr>
+<tr>
+  <td>Afficher le temps dans la Barre de transport lorsque Obi est à l'arrêt</td>
+  <td>Si cette case est cochée, à l'arrêt, Obi affichera, dans le champ Durée de la Barre de transport, la position à laquelle se trouve le curseur. Si elle n'est pas cochée, à l'arrêt, ce champ affichera invariablement 0. À noter que cette option n'est disponible que pour les affichages de Temps écoulé de la phrase et Temps écoulé de la section.</td>
+</tr>
+<tr>
+  <td>Enregistrer dans la première phrase vide à l'aide de la commande Enregistrer une section</td>
+  <td>Si cette case est cochée, Enregistrer une section lancera un enregistrement dans la première phrase vide de la section. Si elle n'est pas cochée, Obi commencera l'enregistrement dans une nouvelle phrase à la fin de la section.</td>
+</tr>
+</table>
+<p>Onglet Projet:-</p>
+<table  border="3">
+<tr>
+  <td>Ouvrir le dernier projet</td>
+  <td>Si cette case est cochée, Obi ouvrira le dernier projet utilisé lors de la dernière session.</td>
+</tr>
+<tr>
+  <td>Revenir au signet à la réouverture d'un projet</td>
+  <td>Si cette case est cochée, Obi placera le focus clavier sur le signet à la réouverture du projet. Si elle n'est pas cochée, Obi ouvrira le projet dans le mode par défaut; le volet du contenu affichera alors la première section.</td>
+</tr>
+<tr>
+  <td>Figer la largeur du volet du contenu</td>
+  <td>Si cette case est cochée, Obi ne perturbera pas l'affichage des autres phrases même si la longueur de la phrase excède la largeur du volet du contenu. Si elle n'est pas cochée, Obi déformera la largeur du volet du contenu pour chaque longue phrase et rognera en conséquence sur l'affichage des autres phrases.</td>
+</tr>
+<tr>
+  <td>Optimiser l'utilisation de la mémoire</td>
+  <td>Si cette case est cochée, cela optimisera la mémoire utilisée par Obi.</td>
+</tr>
+<tr>
+  <td>Désactiver la restauration pour revenir à l'état antérieur avant nettoyage</td>
+    <td>Si cette case est cochée, Obi ne permettra pas la restauration à l'état antérieur à un nettoyage. </td>
+</tr>
+<tr>
+  <td>Activer le test d’espace libre</td>
+  <td>Si cette case est cochée, Obi testera l'espace disponible et avertira l'utilisateur lors d'un enregistrement, une sauvegarde ou une importation.</td>
+</tr>
+<tr>
+  <td>Sauvegarder le projet à la fin de l'enregistrement</td>
+  <td>Si cette case est cochée, Obi sauvegardera les modifications apportées au projet dès l'arrêt ou la mise en pause d'un enregistrement.</td>
+</tr>
+<tr>
+  <td>Vérifier les mises à jour</td>
+  <td>Si cette case est Cochée, Obi vérifiera automatiquement si une nouvelle version du programme est disponible et en informera l'utilisateur.</td>
+</tr>
+<tr>
+  <td>Afficher les spectres sonores dans le volet du contenu</td>
+  <td>Si cette case est cochée, Obi affichera les spectre sonores sous les intitulés des phrases dans le volet du contenu. Si elle n'est pas cochée, les spectres sonores seront masqués et la durée du contenu audio sera affichée à la place.</td>
+</tr>
+<tr>
+  <td>Mettre en évidence les sections vides dans le volet TDM</td>
+  <td>Si cette case est cochée, Obi affichera les sections vides sur fond rose pour les distinguer des autres.</td>
+</tr>
+<tr>
+  <td>Sauvegarder l'emplacement et la taille de la fenêtre Obi</td>
+  <td>Si cette case est cochée, Obi sauvegardera la taille actuelle de la fenêtre du programme ainsi que son emplacement à l'écran, et rouvrira toutes les sessions en appliquant ces paramètres d'affichage.</td>
+</tr>
+<tr>
+  <td>Garder le Vu-Mètre aligné sur la droite de Obi</td>
+  <td>Si cette case est cochée, le Vue-Mètre sera toujours aligné sur la droite de la fenêtre de Obi. Son emplacement ne changera pas même si l'utilisateur essaye de le modifier. Veuillez noter que cette option n'est pas disponible si la fenêtre de Obi est agrandie.</td>
+</tr>
+<tr>
+  <td>Expiration de la validation Epub Check après 3 minutes</td>
+  <td>Si cette case est cochée, Obi aura 3 minutes pour procéder à la validation Epub check, ce qui est largement suffisant même pour un gros livre. Cela permet de s'assurer que le processus ne tourne pas en boucle suite à une erreur.</td>
+</tr>
+<tr>
+  <td>Ne pas réduire Obi lorsque la barre d'enregistrement est activée</td>
+  <td>Si cette case est cochée, la fenêtre de Obi ne sera pas réduite lorsque l'utilisateur activera la barre d'enregistrement.</td>
+</tr>
+<tr>
+  <td>Désactiver le repliement pour la section sélectionnée dans le volet TDM</td>
+  <td>Si cette case est cochée, un double clic ne provoque aucun effet (ni repliement ni développement) pour la section sélectionnée dans le volet TDM.</td>
+</tr>
+<tr>
+  <td>Ouvrir Obi en mode plein écran</td>
+  <td>Ouvre la fenêtre du programme Obi en mode plein écran.</td>
+</tr>
+<tr>
+  <td>Utiliser le modèle Vision Australia pour l'exportation Xhtml</td>
+  <td>Si cette case est cochée, l'exportation Xhtml se fera selon les règles spécifiées par Vision Australia.</td>
+</tr>
+<tr>
+  <td>Agrandir les phrases proportionnellement à la résolution de l'écran</td>
+  <td>Si cette case est cochée, Obi agrandira les phrases proportionnellement à la résolution de l'écran pour conserver ainsi leur affichage dans le volet de contenu. Cela permettra à Obi d'être plus efficace en prévenant l'accumulation d'un trop grand nombre de spectres sonores importants.</td>
+</tr>
+<tr>
+  <td>Afficher les propriétés avancées dans la boîte de dialogue propriétés</td>
+  <td>Si cette case est cochée, Obi affichera les propriétés avancées, comme le nombre total des fichiers du projet, dans la boîte de dialogue des propriétés. Si elle ne l'est pas, ces propriétés seront masquées.</td>
+</tr>
+<tr>
+  <td>Alerter avant toute manipulation de section</td>
+  <td>Si cette case est cochée, Obi alertera l'utilisateur au moment de couper, supprimer ou renommer une section.</td>
+</tr>
+<tr>
+  <td>Ne pas afficher de boîte de dialogue lors d'un déplacement vers une phrase d'une autre section</td>
+  <td>Lorsque les commandes comme Aller à la page, etc. aboutissent à amener la phrase d'une autre section dans la vue Contenu, Obi avertit l'utilisateur en affichant une boîte de message. Vous pouvez désactiver l'affichage du message d'avertissement en cochant cette case.</td>
+</tr>
+</table>
+</div>  
+  </body>
+</html>

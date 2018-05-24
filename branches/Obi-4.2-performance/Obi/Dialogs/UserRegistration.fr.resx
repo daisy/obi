@@ -1,0 +1,305 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="m_btnOk.Location" type="System.Drawing.Point, System.Drawing">
+    <value>68, 480</value>
+  </data>
+  <data name="m_btnOk.Size" type="System.Drawing.Size, System.Drawing">
+    <value>111, 35</value>
+  </data>
+  <data name="m_btnOk.Text" xml:space="preserve">
+    <value>S'&amp;inscrire</value>
+  </data>
+  <data name="m_btnRemindMeLater.Location" type="System.Drawing.Point, System.Drawing">
+    <value>225, 480</value>
+  </data>
+  <data name="m_btnRemindMeLater.Size" type="System.Drawing.Size, System.Drawing">
+    <value>111, 35</value>
+  </data>
+  <data name="m_btnRemindMeLater.Text" xml:space="preserve">
+    <value>&amp;Rappelez-le-moi ultérieurement</value>
+  </data>
+  <data name="m_txtRetypeEmail.Location" type="System.Drawing.Point, System.Drawing">
+    <value>135, 95</value>
+  </data>
+  <data name="m_txtRetypeEmail.Size" type="System.Drawing.Size, System.Drawing">
+    <value>227, 21</value>
+  </data>
+  <data name="m_lblRetypeEmail.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 103</value>
+  </data>
+  <data name="m_lblRetypeEmail.Size" type="System.Drawing.Size, System.Drawing">
+    <value>137, 15</value>
+  </data>
+  <data name="m_lblRetypeEmail.Text" xml:space="preserve">
+    <value>Confirmer votre courriel:</value>
+  </data>
+  <data name="m_txtWinVer.Location" type="System.Drawing.Point, System.Drawing">
+    <value>129, 261</value>
+  </data>
+  <data name="m_txtWinVer.Size" type="System.Drawing.Size, System.Drawing">
+    <value>233, 21</value>
+  </data>
+  <data name="m_lblWinVer.Location" type="System.Drawing.Point, System.Drawing">
+    <value>2, 262</value>
+  </data>
+  <data name="m_lblWinVer.Size" type="System.Drawing.Size, System.Drawing">
+    <value>124, 15</value>
+  </data>
+  <data name="m_lblWinVer.Text" xml:space="preserve">
+    <value>Version de Windows :</value>
+  </data>
+  <data name="m_txtName.Location" type="System.Drawing.Point, System.Drawing">
+    <value>129, 15</value>
+  </data>
+  <data name="m_txtName.Size" type="System.Drawing.Size, System.Drawing">
+    <value>233, 21</value>
+  </data>
+  <data name="m_txtCountry.Location" type="System.Drawing.Point, System.Drawing">
+    <value>129, 223</value>
+  </data>
+  <data name="m_txtCountry.Size" type="System.Drawing.Size, System.Drawing">
+    <value>233, 21</value>
+  </data>
+  <data name="m_txtCity.Location" type="System.Drawing.Point, System.Drawing">
+    <value>129, 181</value>
+  </data>
+  <data name="m_txtCity.Size" type="System.Drawing.Size, System.Drawing">
+    <value>233, 21</value>
+  </data>
+  <data name="m_txtOrganizationName.Location" type="System.Drawing.Point, System.Drawing">
+    <value>129, 136</value>
+  </data>
+  <data name="m_txtOrganizationName.Size" type="System.Drawing.Size, System.Drawing">
+    <value>233, 21</value>
+  </data>
+  <data name="m_txtEmail.Location" type="System.Drawing.Point, System.Drawing">
+    <value>129, 52</value>
+  </data>
+  <data name="m_txtEmail.Size" type="System.Drawing.Size, System.Drawing">
+    <value>233, 21</value>
+  </data>
+  <data name="m_lblCountry.Location" type="System.Drawing.Point, System.Drawing">
+    <value>7, 226</value>
+  </data>
+  <data name="m_lblCountry.Size" type="System.Drawing.Size, System.Drawing">
+    <value>39, 15</value>
+  </data>
+  <data name="m_lblCountry.Text" xml:space="preserve">
+    <value>&amp;Pays :</value>
+  </data>
+  <data name="m_lblCity.Location" type="System.Drawing.Point, System.Drawing">
+    <value>7, 185</value>
+  </data>
+  <data name="m_lblCity.Size" type="System.Drawing.Size, System.Drawing">
+    <value>111, 15</value>
+  </data>
+  <data name="m_lblCity.Text" xml:space="preserve">
+    <value>&amp;Ville/Département :</value>
+  </data>
+  <data name="m_lblOrgName.Location" type="System.Drawing.Point, System.Drawing">
+    <value>2, 141</value>
+  </data>
+  <data name="m_lblOrgName.Size" type="System.Drawing.Size, System.Drawing">
+    <value>182, 30</value>
+  </data>
+  <data name="m_lblOrgName.Text" xml:space="preserve">
+    <value>&amp;Organisme :
+ "Home" pour un utilisateur privé</value>
+  </data>
+  <data name="m_lblEmail.Location" type="System.Drawing.Point, System.Drawing">
+    <value>7, 55</value>
+  </data>
+  <data name="m_lblEmail.Size" type="System.Drawing.Size, System.Drawing">
+    <value>53, 15</value>
+  </data>
+  <data name="m_lblEmail.Text" xml:space="preserve">
+    <value>&amp;Courriel:</value>
+  </data>
+  <data name="m_lblName.Location" type="System.Drawing.Point, System.Drawing">
+    <value>7, 18</value>
+  </data>
+  <data name="m_lblName.Size" type="System.Drawing.Size, System.Drawing">
+    <value>40, 15</value>
+  </data>
+  <data name="m_lblName.Text" xml:space="preserve">
+    <value>&amp;Nom :</value>
+  </data>
+  <data name="m_grpBoxUserInformation.Location" type="System.Drawing.Point, System.Drawing">
+    <value>14, 78</value>
+  </data>
+  <data name="m_grpBoxUserInformation.Size" type="System.Drawing.Size, System.Drawing">
+    <value>370, 291</value>
+  </data>
+  <data name="m_rdbTryingObi.Location" type="System.Drawing.Point, System.Drawing">
+    <value>10, 69</value>
+  </data>
+  <data name="m_rdbTryingObi.Size" type="System.Drawing.Size, System.Drawing">
+    <value>150, 19</value>
+  </data>
+  <data name="m_rdbTryingObi.Text" xml:space="preserve">
+    <value>J'essaie et je &amp;teste Obi.</value>
+  </data>
+  <data name="m_rdbDaisyProduction.Location" type="System.Drawing.Point, System.Drawing">
+    <value>10, 44</value>
+  </data>
+  <data name="m_rdbDaisyProduction.Size" type="System.Drawing.Size, System.Drawing">
+    <value>305, 19</value>
+  </data>
+  <data name="m_rdbDaisyProduction.Text" xml:space="preserve">
+    <value>J'utilise déjà Obi pour la production de livres &amp;DAISY.</value>
+  </data>
+  <data name="m_lblSelectRadioButton.Location" type="System.Drawing.Point, System.Drawing">
+    <value>7, 22</value>
+  </data>
+  <data name="m_lblSelectRadioButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>267, 15</value>
+  </data>
+  <data name="m_lblSelectRadioButton.Text" xml:space="preserve">
+    <value>Veuillez &amp;sélectionner un des éléments suivants :</value>
+  </data>
+  <data name="m_grpBoxObiUse.Location" type="System.Drawing.Point, System.Drawing">
+    <value>14, 376</value>
+  </data>
+  <data name="m_grpBoxObiUse.Size" type="System.Drawing.Size, System.Drawing">
+    <value>370, 97</value>
+  </data>
+  <data name="m_txtBoxObiInformation.AccessibleName" xml:space="preserve">
+    <value>utiliser les touches fléchées pour lire</value>
+  </data>
+  <data name="m_txtBoxObiInformation.Location" type="System.Drawing.Point, System.Drawing">
+    <value>14, 8</value>
+  </data>
+  <data name="m_txtBoxObiInformation.Size" type="System.Drawing.Size, System.Drawing">
+    <value>369, 76</value>
+  </data>
+  <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
+    <value>7, 15</value>
+  </data>
+  <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
+    <value>398, 523</value>
+  </data>
+  <data name="$this.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 9pt</value>
+  </data>
+  <data name="$this.Text" xml:space="preserve">
+    <value>Inscription de l'utilisateur</value>
+  </data>
+</root>
