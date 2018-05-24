@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Text;
 using System.Windows.Forms;
 using System.Xml;
 using urakawa.daisy;
@@ -101,7 +102,7 @@ namespace Obi.ImportExport
             try
             {
 
-                linesInFiles = File.ReadAllLines(CSVFullPath);
+                linesInFiles = File.ReadAllLines(CSVFullPath,Encoding.Default);
             }
             catch (IOException e)
             {
