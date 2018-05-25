@@ -5467,6 +5467,20 @@ for (int j = 0;
                 {
                     MergeRangeOfPhrasesInSection(false,true);
                 }
+                else if (AssignSpecialNodeDialog.IsDeleteChecked)
+                {
+                    try
+                    {
+                        SectionNode section = Selection.Node is SectionNode ? (SectionNode)Selection.Node : ((EmptyNode)Selection.Node).ParentAs<SectionNode>();
+                        mPresentation.Do(GetDeleteRangeOfPhrasesInSectionCommand(section, startNode, endNode));
+
+                    }
+                    catch (System.Exception ex)
+                    {
+                        this.WriteToLogFile(ex.ToString());
+                        MessageBox.Show(Localizer.Message("ProjectViewFormMsg_DeleteOperationFail") + "\n\n" + ex.ToString()); //@Messagecorrected
+                    }
+                }
                 else
                 {
                     if (startNode.Index <= endNode.Index)

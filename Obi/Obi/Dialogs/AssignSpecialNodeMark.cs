@@ -41,6 +41,11 @@ namespace Obi.Dialogs
             get { return m_rdb_Copy.Checked; }
         }
 
+        public bool IsDeleteChecked
+        {
+            get { return m_rdb_Delete.Checked; }
+        }
+
         public bool IsCutChecked
         {
             get { return m_rdb_Cut.Checked; }
@@ -69,6 +74,7 @@ namespace Obi.Dialogs
                 m_rdb_Merge.Enabled = value;
                 m_rdb_Copy.Enabled = value;
                 m_rdb_Cut.Enabled = value;
+                m_rdb_Delete.Enabled = value;
                 if (!value)
                 {
                     m_rdb_btn_RenumberPages.Checked = true;
@@ -113,6 +119,11 @@ namespace Obi.Dialogs
         }
 
         private void m_rdb_Merge_CheckedChanged(object sender, EventArgs e)
+        {
+            m_cmbBoxSpecialNode.Visible = false;
+        }
+
+        private void m_rdb_Delete_CheckedChanged(object sender, EventArgs e)
         {
             m_cmbBoxSpecialNode.Visible = false;
         }
