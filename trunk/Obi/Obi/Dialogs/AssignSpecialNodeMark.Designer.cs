@@ -36,6 +36,7 @@ namespace Obi.Dialogs
             this.m_rdb_btn_RenumberPages = new System.Windows.Forms.RadioButton();
             this.helpProvider1 = new System.Windows.Forms.HelpProvider();
             this.m_gp_box_operation = new System.Windows.Forms.GroupBox();
+            this.m_rdb_Delete = new System.Windows.Forms.RadioButton();
             this.m_rdb_Merge = new System.Windows.Forms.RadioButton();
             this.m_rdb_Copy = new System.Windows.Forms.RadioButton();
             this.m_rdb_Cut = new System.Windows.Forms.RadioButton();
@@ -94,6 +95,7 @@ namespace Obi.Dialogs
             // 
             // m_gp_box_operation
             // 
+            this.m_gp_box_operation.Controls.Add(this.m_rdb_Delete);
             this.m_gp_box_operation.Controls.Add(this.m_rdb_Merge);
             this.m_gp_box_operation.Controls.Add(this.m_rdb_Copy);
             this.m_gp_box_operation.Controls.Add(this.m_rdb_Cut);
@@ -105,6 +107,13 @@ namespace Obi.Dialogs
             this.m_gp_box_operation.Name = "m_gp_box_operation";
             this.helpProvider1.SetShowHelp(this.m_gp_box_operation, ((bool)(resources.GetObject("m_gp_box_operation.ShowHelp"))));
             this.m_gp_box_operation.TabStop = false;
+            // 
+            // m_rdb_Delete
+            // 
+            resources.ApplyResources(this.m_rdb_Delete, "m_rdb_Delete");
+            this.m_rdb_Delete.Name = "m_rdb_Delete";
+            this.m_rdb_Delete.UseVisualStyleBackColor = true;
+            this.m_rdb_Delete.CheckedChanged += new System.EventHandler(this.m_rdb_Delete_CheckedChanged);
             // 
             // m_rdb_Merge
             // 
@@ -173,5 +182,6 @@ namespace Obi.Dialogs
         private System.Windows.Forms.RadioButton m_rdb_Copy;
         private System.Windows.Forms.RadioButton m_rdb_Cut;
         private System.Windows.Forms.RadioButton m_rdb_Merge;
+        private System.Windows.Forms.RadioButton m_rdb_Delete;
     }
 }
