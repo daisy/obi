@@ -33,7 +33,19 @@ namespace Obi.ProjectView
             InitializeComponent();
             m_IsAudioBlockDisposing = false;
             m_ShowWaveform = showWaveform;
-            SetWaveform(Node as PhraseNode);
+            if (!ContentView.IsZoomWaveformActive) // @ImproveZoomPanel
+            {
+                SetWaveform(Node as PhraseNode);
+            }
+            else
+            {
+                SetWaveformForZoom(Node as PhraseNode);
+            }
+
+            if (node.GetInvocationListLengthOfNodeAudioChangedEvent > 0) // @ImproveZoomPanel
+            {
+                node.ResetSubcriptionsOfNodeAudioChangedEvent();
+            }
             node.NodeAudioChanged += new NodeEventHandler<PhraseNode>(node_NodeAudioChanged);
             mShiftKeyPressed = false;
             if (ContentView.Settings.ObiFont != this.Font.Name)//@fontconfig
@@ -117,8 +129,8 @@ public void SetWaveformForZoom(PhraseNode node)
                     mWaveform.BackColor = BackColor;
                     mWaveform.AccessibleName = AccessibleName;
                     mWaveform.Location = new Point(0, mLabel.Height + mLabel.Margin.Bottom);
-                    //mWaveform.Size = new Size(WaveformDefaultWidth,
-                    //    Height - mLabel.Height - mLabel.Margin.Bottom - mWaveform.Margin.Vertical - BorderHeight);
+                    mWaveform.Size = new Size(WaveformDefaultWidth,
+                        Height - mLabel.Height - mLabel.Margin.Bottom - mWaveform.Margin.Vertical - BorderHeight); // @ImproveZoomPanel
                     mWaveform.Block = this;
                     Size = new Size(WaveformFullWidth, Height);
                 }
@@ -232,7 +244,14 @@ public void SetWaveformForZoom(PhraseNode node)
             {
                 mRecordingLabel.Location = new Point(0, mLabel.Height + mLabel.Location.Y + (mWaveform.Height));
             }
-            SetWaveform(mNode as PhraseNode);
+            if (!ContentView.IsZoomWaveformActive)   // @ImproveZoomPanel
+            {
+                SetWaveform(mNode as PhraseNode);
+            }
+            else
+            {
+                SetWaveformForZoom(mNode as PhraseNode);
+            }
         }
         //@zoomwaveform
         public  void SetZoomFactorAndHeightForZoom(float zoom, int height)

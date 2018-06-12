@@ -610,6 +610,15 @@ namespace Obi.ProjectView
                 }
             }
 
+            public bool EventsAreEnabled            // @ImproveZoomPanel
+            {
+                set
+                {
+                    mContentView.EventsAreEnabled = value;
+                    this.TransportBar.EventsAreEnabled = value;
+                }
+            }
+
         /// <summary>
         /// Can assign at least one role (for instance custom or page); as long as there is a block to assign it to.
         /// </summary>

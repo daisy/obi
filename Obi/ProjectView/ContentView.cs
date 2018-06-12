@@ -51,6 +51,7 @@ namespace Obi.ProjectView
         private double m_timeElapsed = 0.0;
         private Color m_ColorBackgroundBeforeFlicker;
         private Color m_ColorBackgroundAfterFlicker;
+        private bool m_IsRefreshContentViewBeforeZoomPlanelClosed = false; // @ImproveZoomPanel
 
         /// <summary>
         /// A new strips view.
@@ -428,6 +429,11 @@ namespace Obi.ProjectView
 
         private void ContentView_commandDone ( object sender, urakawa.events.undo.DoneEventArgs e )
             {
+                if (IsZoomWaveformActive)   // @ImproveZoomPanel
+                {
+                    EventsAreEnabled = false;
+                    return;
+                }
                 ResizeForCommands();
                 
             // explicit toolstrip enabling for merge preceding, it is not so important, can be allowed to work like other commands but will be helpful to user in this operation
@@ -458,6 +464,11 @@ namespace Obi.ProjectView
 
         private void ContentView_commandReDone(object sender, urakawa.events.undo.ReDoneEventArgs e)
         {
+            if (IsZoomWaveformActive)   // @ImproveZoomPanel
+            {
+                EventsAreEnabled = false;
+                return;
+            }
             ResizeForCommands();
             if (e.Command is CompositeCommand
                 && mProjectView.Selection != null && !(mProjectView.Selection is AudioSelection) )
@@ -469,6 +480,11 @@ namespace Obi.ProjectView
 
         private void ContentView_commandUndone (object sender, urakawa.events.undo.UnDoneEventArgs e)
         {
+            if (IsZoomWaveformActive)   // @ImproveZoomPanel
+            {
+                EventsAreEnabled = false;
+                return;
+            }
             ResizeForCommands();
             // workaround for making selection visible in some complex, large volume commands
             if (e.Command is CompositeCommand  && (((CompositeCommand)e.Command ).ShortDescription == Localizer.Message("split_section") || ((CompositeCommand)e.Command).ShortDescription == Localizer.Message("phrase_detection")
@@ -502,7 +518,7 @@ namespace Obi.ProjectView
             }
             ResumeLayout_All();
             UpdateSize();
-            if (!UpdateScrollTrackBarAccordingToSelectedNode()) 
+            if (!UpdateScrollTrackBarAccordingToSelectedNode() && !this.IsZoomWaveformActive) // @ImproveZoomPanel
             {
                 Strip currentlyActiveStrip = ActiveStrip;
                 if ( currentlyActiveStrip != null )  verticalScrollToolStripContainer1.TrackBarValueInPercentage = EstimateScrollPercentage(currentlyActiveStrip);
@@ -1508,6 +1524,10 @@ namespace Obi.ProjectView
         //@singleSection
         private void CreateSelectedStripAndPhraseBlocks ( NodeSelection selectionValue )
             {
+                if (this.IsZoomWaveformActive)    // @ImproveZoomPanel 
+                {
+                    return;
+                }
             if (selectionValue == null || selectionValue.Node == null || !selectionValue.Node.IsRooted) return;
 
             // if selection restore phrase lie in next phrase lot but phrase is alreaty created with lot before, no need to refresh screen in this case
@@ -1649,7 +1669,7 @@ namespace Obi.ProjectView
                 Strip requiredExistingStrip = null;
                 foreach (Control c in mStripsPanel.Controls)
                     {
-                    if (c is Strip && ((Strip)c).Node == node)
+                        if (c is Strip && ((Strip)c).Node == node && !IsRefreshContentViewBeforeZoomPlanelClosed) // @ImproveZoomPanel
                         {
                         requiredExistingStrip = (Strip)c;
                         }
@@ -5559,6 +5579,10 @@ Block lastBlock = ActiveStrip.LastBlock ;
         //@singleSection
         private void ProjectView_SelectionChanged ( object sender, EventArgs e )
             {
+                if (this.IsZoomWaveformActive)  // @ImproveZoomPanel
+                {
+                    return;
+                }
             if (mProjectView.GetSelectedPhraseSection == null)
                 {
                 contentViewLabel1.sectionSelected = false;
@@ -5873,6 +5897,7 @@ Block lastBlock = ActiveStrip.LastBlock ;
                  //   mProjectView.TransportBar.Hide();
                     m_ZoomWaveformPanel.Focus();
                     mProjectView.TransportBar.UpdateButtons();
+                    EventsAreEnabled = false;  // @ImproveZoomPanel
                     return true;
                 }
             }
@@ -5893,6 +5918,11 @@ Block lastBlock = ActiveStrip.LastBlock ;
             }
         }
 
+        public bool IsRefreshContentViewBeforeZoomPlanelClosed   // @ImproveZoomPanel
+        {
+            set { m_IsRefreshContentViewBeforeZoomPlanelClosed = value; }
+            get { return m_IsRefreshContentViewBeforeZoomPlanelClosed; }
+        }
         //@zoomwaveform
         public void SelectCursor(PhraseNode node, AudioRange audioRange)
         {

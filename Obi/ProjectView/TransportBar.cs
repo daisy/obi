@@ -274,6 +274,28 @@ namespace Obi.ProjectView
             set { m_CanMoveSelectionToPlaybackPhrase = value; }
         }
 
+        public bool EventsAreEnabled    // @ImproveZoomPanel
+        {
+            set
+            {
+                if (!value)
+                {
+                    mView.Presentation.Changed -=
+                        new EventHandler<urakawa.events.DataModelChangedEventArgs>(Presentation_Changed);
+                    mView.Presentation.UsedStatusChanged -=
+                        new NodeEventHandler<ObiNode>(Presentation_UsedStatusChanged);
+                }
+                else
+                {
+
+                    mView.Presentation.Changed +=
+                        new EventHandler<urakawa.events.DataModelChangedEventArgs>(Presentation_Changed);
+                    mView.Presentation.UsedStatusChanged +=
+                        new NodeEventHandler<ObiNode>(Presentation_UsedStatusChanged);
+                }
+            }
+        }
+
         // @phraseLimit
         /// <summary>
         ///  Returns true if phrase count of  selected section is below below max visible phrase blocks count

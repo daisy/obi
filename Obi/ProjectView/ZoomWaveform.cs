@@ -937,6 +937,11 @@ namespace Obi.ProjectView
           private void Close()
           {
                 m_buttonSizeinit = false;
+                m_ContentView.IsRefreshContentViewBeforeZoomPlanelClosed = true;  // @ImproveZoomPanel
+                SectionNode tempSectionNode = m_ProjectView.GetSelectedPhraseSection;  // @ImproveZoomPanel
+                m_ContentView.CreateStripForSelectedSection(tempSectionNode, true);  // @ImproveZoomPanel
+                m_ContentView.IsRefreshContentViewBeforeZoomPlanelClosed = false;  // @ImproveZoomPanel
+
                 if (m_chkPreserveZoom.Checked)
                 {
                     m_ProjectView.SaveZoomWaveformZoomLevel = true;
@@ -948,13 +953,18 @@ namespace Obi.ProjectView
                     m_ProjectView.ZoomWaveformIncrementFactor = 0;
                 }
                 m_ContentView.RemovePanel();
-
+                m_ContentView.EventsAreEnabled = true;  // @ImproveZoomPanel
                 m_ProjectView.SelectionChanged -= new EventHandler(ProjectViewSelectionChanged);
                 m_ProjectView.Presentation.UndoRedoManager.CommandDone -= new EventHandler<urakawa.events.undo.DoneEventArgs>(ProjectviewUpdated);
                 m_ProjectView.Presentation.UndoRedoManager.CommandUnDone -= new EventHandler<urakawa.events.undo.UnDoneEventArgs>(ProjectviewUpdated);
                 m_ProjectView.Presentation.UndoRedoManager.CommandReDone -= new EventHandler<urakawa.events.undo.ReDoneEventArgs>(ProjectviewUpdated);
-              
-                
+
+                if (!m_ContentView.IsZoomWaveformActive)  // @ImproveZoomPanel
+                {
+                    m_ProjectView.Selection = new NodeSelection(m_ContentView.Selection.Node, m_ContentView);
+                    m_Strip.Resize_All();
+                    m_ContentView.UpdateSize();
+                }
                 
                 
            }
