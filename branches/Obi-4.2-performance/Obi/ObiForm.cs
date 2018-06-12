@@ -1603,8 +1603,31 @@ namespace Obi
                 mProjectView.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(Progress_Changed);
             }
 
+            public bool EventsAreEnabled   // @ImproveZoomPanel
+            {
+                set
+                {
+                    if (value)
+                    {
+                        mProjectView.Presentation.Changed +=
+                            new EventHandler<urakawa.events.DataModelChangedEventArgs>(Presentation_Changed);
+                        mProjectView.Presentation.BeforeCommandExecuted +=
+                            new EventHandler<urakawa.events.command.CommandEventArgs>(ObiForm_BeforeCommandExecuted);
+                    }
+                    else
+                    {
+                        mProjectView.Presentation.Changed -=
+                            new EventHandler<urakawa.events.DataModelChangedEventArgs>(Presentation_Changed);
+                        mProjectView.Presentation.BeforeCommandExecuted -=
+                            new EventHandler<urakawa.events.command.CommandEventArgs>(ObiForm_BeforeCommandExecuted);
+                    }
+                }
+            }
+
             private void ObiForm_commandDone(object sender, urakawa.events.undo.DoneEventArgs e)
             {
+                if (mProjectView.IsZoomWaveformActive) // @ImproveZoomPanel
+                    return;
                 CanAutoSave = true; //@singleSection
                 ProjectHasChanged(1);
                 if (!IsStatusBarEnabled) IsStatusBarEnabled = true; //@singleSection
@@ -1614,6 +1637,8 @@ namespace Obi
 
             private void ObiForm_commandUnDone(object sender, urakawa.events.undo.UnDoneEventArgs e)
             {
+                if (mProjectView.IsZoomWaveformActive) // @ImproveZoomPanel
+                    return;
                 CanAutoSave = true; //@singleSection
                 ProjectHasChanged(-1);
                 if (!IsStatusBarEnabled) IsStatusBarEnabled = true; //@singleSection
@@ -1623,6 +1648,8 @@ namespace Obi
 
             private void ObiForm_commandReDone(object sender, urakawa.events.undo.ReDoneEventArgs e)
             {
+                if (mProjectView.IsZoomWaveformActive) // @ImproveZoomPanel
+                    return;
                 CanAutoSave = true; //@singleSection
                 ProjectHasChanged(1);
                 if (!IsStatusBarEnabled) IsStatusBarEnabled = true; //@singleSection
@@ -1633,6 +1660,8 @@ namespace Obi
             private void ObiForm_BeforeCommandExecuted(object sender, urakawa.events.command.CommandEventArgs e)
                 //@singleSection
             {
+                if (mProjectView.IsZoomWaveformActive) // @ImproveZoomPanel
+                    return;
                 CanAutoSave = false; //@singleSection
                 if (e.SourceCommand is urakawa.command.CompositeCommand)
                 {
