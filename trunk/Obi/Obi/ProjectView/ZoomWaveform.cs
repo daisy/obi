@@ -43,6 +43,7 @@ namespace Obi.ProjectView
         private double m_PhraseDuration = 0;
         private double m_ZoomIncrementFactor = 0;
         private CheckBox m_chkPreserveZoom;
+        private string m_SelectedPhraseSection = " "; // @ImproveZoomPanel
            
 
         private KeyboardShortcuts_Settings keyboardShortcuts;
@@ -126,9 +127,10 @@ namespace Obi.ProjectView
         {
             if (m_ProjectView != null && m_ProjectView.Selection != null)
             {
-                btntxtZoomSelected.Text = " ";
-                btntxtZoomSelected.Text += " " + m_ProjectView.Selection.ToString();
-                btntxtZoomSelected.Text += " " + (m_ProjectView.GetSelectedPhraseSection != null ? m_ProjectView.GetSelectedPhraseSection.ToString() : "");
+                btntxtZoomSelected.Text = " " + m_ProjectView.Selection.ToString() + " " + m_SelectedPhraseSection;  // @ImproveZoomPanel
+                //btntxtZoomSelected.Text = " ";
+                //btntxtZoomSelected.Text += " " + m_ProjectView.Selection.ToString();
+                //btntxtZoomSelected.Text += " " + (m_ProjectView.GetSelectedPhraseSection != null ? m_ProjectView.GetSelectedPhraseSection.ToString() : "");
                
                 
                 if (m_ProjectView.Selection.Phrase != null)
@@ -196,9 +198,10 @@ namespace Obi.ProjectView
         {
             if (m_ProjectView != null && m_ProjectView.Selection != null)
             {
-                btntxtZoomSelected.Text = " ";
-                btntxtZoomSelected.Text += " " + m_ProjectView.Selection.ToString();
-                btntxtZoomSelected.Text += " " + (m_ProjectView.GetSelectedPhraseSection != null ? m_ProjectView.GetSelectedPhraseSection.ToString() : "");
+                btntxtZoomSelected.Text = " " + m_ProjectView.Selection.ToString() + " " + m_SelectedPhraseSection;  // @ImproveZoomPanel
+                //btntxtZoomSelected.Text = " ";
+                //btntxtZoomSelected.Text += " " + m_ProjectView.Selection.ToString();
+                //btntxtZoomSelected.Text += " " + (m_ProjectView.GetSelectedPhraseSection != null ? m_ProjectView.GetSelectedPhraseSection.ToString() : "");
                 if (m_ProjectView.Selection.Node.Duration != m_PhraseDuration)
                 {
                     Point tempScrollPosition = panelZooomWaveform.AutoScrollPosition;
@@ -369,7 +372,7 @@ namespace Obi.ProjectView
         }
 
        public ZoomWaveform(ContentView contentView, Strip strip,EmptyNode node,ProjectView mProjectView):this    ()
-        {
+       {
             m_chkPreserveZoom = new CheckBox();
             m_chkPreserveZoom.Text = Localizer.Message("ZoomWaveform_PreserveZoom");
             m_chkPreserveZoom.Checked = mProjectView.SaveZoomWaveformZoomLevel;
@@ -579,11 +582,15 @@ namespace Obi.ProjectView
 
 
 
-            btntxtZoomSelected.Text = " ";
+            //btntxtZoomSelected.Text = " ";
+
             if (m_ProjectView != null && m_ProjectView.Selection != null)
             {
-                btntxtZoomSelected.Text += " " + m_ProjectView.Selection.ToString();
-                btntxtZoomSelected.Text += " " + (m_ProjectView.GetSelectedPhraseSection != null ? m_ProjectView.GetSelectedPhraseSection.ToString() : "");
+
+                m_SelectedPhraseSection = (m_ProjectView.GetSelectedPhraseSection != null ? m_ProjectView.GetSelectedPhraseSection.ToString() : ""); // @ImproveZoomPanel
+                btntxtZoomSelected.Text = " " + m_ProjectView.Selection.ToString() + " " + m_SelectedPhraseSection;
+                //btntxtZoomSelected.Text += " " + m_ProjectView.Selection.ToString();
+                //btntxtZoomSelected.Text += " " + (m_ProjectView.GetSelectedPhraseSection != null ? m_ProjectView.GetSelectedPhraseSection.ToString() : "");
             }
             m_PreviousHeight = this.Height;
             if (toolStripZoomPanel.Width < m_ContentView.Width && (m_Edit.Width + 5) < m_ContentView.Width && m_ProjectView.Height > m_PreviousHeight )
@@ -930,6 +937,10 @@ namespace Obi.ProjectView
           private void Close()
           {
                 m_buttonSizeinit = false;
+                
+                SectionNode tempSectionNode = m_ProjectView.GetSelectedPhraseSection;  // @ImproveZoomPanel
+                m_ContentView.CreateStripForSelectedSection(tempSectionNode, true);  // @ImproveZoomPanel
+                
                 if (m_chkPreserveZoom.Checked)
                 {
                     m_ProjectView.SaveZoomWaveformZoomLevel = true;
@@ -941,13 +952,18 @@ namespace Obi.ProjectView
                     m_ProjectView.ZoomWaveformIncrementFactor = 0;
                 }
                 m_ContentView.RemovePanel();
-
+                m_ContentView.EventsAreEnabled = true;  // @ImproveZoomPanel
                 m_ProjectView.SelectionChanged -= new EventHandler(ProjectViewSelectionChanged);
                 m_ProjectView.Presentation.UndoRedoManager.CommandDone -= new EventHandler<urakawa.events.undo.DoneEventArgs>(ProjectviewUpdated);
                 m_ProjectView.Presentation.UndoRedoManager.CommandUnDone -= new EventHandler<urakawa.events.undo.UnDoneEventArgs>(ProjectviewUpdated);
                 m_ProjectView.Presentation.UndoRedoManager.CommandReDone -= new EventHandler<urakawa.events.undo.ReDoneEventArgs>(ProjectviewUpdated);
-              
-                
+
+                if (!m_ContentView.IsZoomWaveformActive)  // @ImproveZoomPanel
+                {
+                    m_ProjectView.Selection = new NodeSelection(m_ContentView.Selection.Node, m_ContentView);
+                    m_Strip.Resize_All();
+                    m_ContentView.UpdateSize();
+                }
                 
                 
            }
