@@ -1817,7 +1817,7 @@ namespace Obi.ProjectView
                         }
                         else if (temp_NodeSelected != null && temp_NodeSelected.IsRooted && selectionDialog.ShowContentsOfContentView)
                         {
-                            this.Selection = new NodeSelection(this.Selection.Node, mTOCView);
+                            this.Selection = new NodeSelection(this.Selection.Node, mContentView);
                         }
 
                   
