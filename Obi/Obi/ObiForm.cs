@@ -3136,7 +3136,7 @@ ref string exportDirectoryDAISY3,
                                 customMetadata += m.NameContentAttribute.Name;
                             }   
                         }
-                        if (customMetadata != null) MessageBox.Show("The project has the following custom metadata. It cannot be included in DAISY 2.02 export. " + customMetadata);
+                        if (customMetadata != null)  MessageBox.Show(Localizer.Message("CustomMetadataD202_NotIncluded") + '\n' + customMetadata);
                     }
 
                     if (ExportDialogEPUB3 != null)
