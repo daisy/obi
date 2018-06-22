@@ -3124,6 +3124,19 @@ ref string exportDirectoryDAISY3,
                         if (ExportDialogDAISY202.EnabledAdvancedParameters) DAISY202ExportInstance.SetAdditionalMp3EncodingParameters(ExportDialogDAISY202.Mp3ChannelMode, ExportDialogDAISY202.Mp3ReSample, ExportDialogDAISY202.Mp3RePlayGain);
                         ((Obi.ImportExport.DAISY202Export)DAISY202ExportInstance).AlwaysIgnoreIndentation = mSettings.Project_Export_AlwaysIgnoreIndentation;
                         DAISY202ExportInstance.EncodingFileFormat = ExportDialogDAISY202.EncodingFileFormat;
+
+                        // check for custom metadata
+                        List<string> DAISYMetadataNames = Metadata.DAISY3MetadataNames;
+                        string customMetadata = null;
+                        foreach (urakawa.metadata.Metadata m in mProjectView.Presentation.Metadatas.ContentsAs_Enumerable)
+                        {
+                            if (!DAISYMetadataNames.Contains(m.NameContentAttribute.Name))
+                            {
+                                customMetadata += "\n";
+                                customMetadata += m.NameContentAttribute.Name;
+                            }   
+                        }
+                        if (customMetadata != null) MessageBox.Show("The project has the following custom metadata. It cannot be included in DAISY 2.02 export. " + customMetadata);
                     }
 
                     if (ExportDialogEPUB3 != null)
