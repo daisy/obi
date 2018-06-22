@@ -3034,4 +3034,7 @@ Error text: {1}</value>
   <data name="Project_MaximumPhrasesSelectLimit" xml:space="preserve">
     <value>Maximum 500 phrases can be selected for multi phrase operations like cut and copy.</value>
   </data>
+  <data name="CustomMetadataD202_NotIncluded" xml:space="preserve">
+    <value>The project has the following custom metadata. It cannot be included in DAISY 2.02 export.</value>
+  </data>
 </root>

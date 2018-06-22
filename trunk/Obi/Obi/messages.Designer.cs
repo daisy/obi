@@ -1288,6 +1288,15 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The project has the following custom metadata. It cannot be included in DAISY 2.02 export..
+        /// </summary>
+        internal static string CustomMetadataD202_NotIncluded {
+            get {
+                return ResourceManager.GetString("CustomMetadataD202_NotIncluded", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to cut audio.
         /// </summary>
         internal static string cut_audio {
@@ -3495,7 +3504,7 @@ namespace Obi {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Existing sections in book are less so full TOC will not import.
+        ///   Looks up a localized string similar to Existing sections in the project are less than imported sections. Therefore full TOC will not be imported..
         /// </summary>
         internal static string LessSectionsInBook {
             get {
