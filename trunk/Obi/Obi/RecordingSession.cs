@@ -108,6 +108,13 @@ namespace Obi
 
         public List<int> PhraseIndexesToDelete { get { return m_PhraseIndexesToDelete; } }
 
+        private bool m_Audio_DeleteFollowingPhrasesOfSectionAfterRecording;
+        public bool Audio_DeleteFollowingPhrasesOfSectionAfterRecording
+        {
+            get { return m_Audio_DeleteFollowingPhrasesOfSectionAfterRecording; }
+            set { m_Audio_DeleteFollowingPhrasesOfSectionAfterRecording = value; }
+            }
+
         /// <summary>
         /// Finish the currently recording phrase and continue recording into a new phrase.
         /// The phrase that was just finished receives a page number as well (auto-generated.)
