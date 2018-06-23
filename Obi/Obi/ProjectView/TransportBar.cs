@@ -2130,6 +2130,7 @@ namespace Obi.ProjectView
             ObiNode node = GetRecordingNode ( command, afterSection );
             InitRecordingSectionAndPhraseIndex ( node, mView.ObiForm.Settings.Audio_AllowOverwrite, command , deleteFollowingPhrases);
             if (mView.Selection == null && node is SectionNode) mView.SelectFromTransportBar(node, null);// if nothing is selected, new section is created, select it in content view
+            
             // Set events
             mRecordingSession = new RecordingSession ( mView.Presentation, mRecorder, mView.ObiForm.Settings );
             mRecordingSession.StartingPhrase += new Obi.Events.Audio.Recorder.StartingPhraseHandler (
@@ -2144,6 +2145,9 @@ namespace Obi.ProjectView
 
             // resume recording should be null to indicate that recoreding is in process and cannot be resumed.
             mResumeRecordingPhrase = null;
+            // stroing the value for session because it is dependent on selection before recording
+            mRecordingSession.Audio_DeleteFollowingPhrasesOfSectionAfterRecording = mView.ObiForm.Settings.Audio_DeleteFollowingPhrasesOfSectionAfterRecording;
+                //&& (mView.Selection == null || !(mView.Selection is AudioSelection) || ((AudioSelection)mView.Selection).AudioRange.HasCursor) ;
 
             // Actually start monitoring or recording
             if (recording)
@@ -3810,7 +3814,7 @@ SelectionChangedPlaybackEnabled = false;
             //Console.WriteLine("recording index :" + listOfRecordedPhrases[listOfRecordedPhrases.Count - 1].Index + " : " + (mRecordingSection.PhraseChildCount-1));
 
             // delete the following phrases before going into more complex commands
-            if (mView.ObiForm.Settings.Audio_DeleteFollowingPhrasesOfSectionAfterRecording && listOfRecordedPhrases != null && listOfRecordedPhrases.Count > 0)
+            if (mRecordingSession.Audio_DeleteFollowingPhrasesOfSectionAfterRecording && listOfRecordedPhrases != null && listOfRecordedPhrases.Count > 0)
             {
                 EmptyNode lastRecordedPhrase = listOfRecordedPhrases[listOfRecordedPhrases.Count - 1] ;
                 SectionNode section = lastRecordedPhrase.ParentAs<SectionNode> () ;
