@@ -2619,8 +2619,50 @@ namespace Obi.ProjectView
                     }
                     else
                     {
-                        PhraseNode destinationPhrase = mCurrentPlaylist.PrevPhrase(
-                            FindPlaybackStartNode(mView.Selection == null ? null : mView.Selection.Node));
+                        ObiNode selectionNode = null;
+                        bool isPreviousPhraseSelected = false;
+                        if (mView.GetSelectedPhraseSection != null && mView.Selection is StripIndexSelection) // For selecting previous phrase of strip index.
+                        {
+                            if (((StripIndexSelection)mView.Selection).EmptyNodeForSelection != null)
+                            {
+                                selectionNode = ((StripIndexSelection)mView.Selection).EmptyNodeForSelection;
+                            }
+                            else if (((StripIndexSelection)mView.Selection).Node.PrecedingNode != null)
+                            {
+                                selectionNode = ((StripIndexSelection)mView.Selection).Node.LastUsedPhrase;
+                                isPreviousPhraseSelected = true;
+                            }
+
+                            if (selectionNode is PhraseNode)
+                            {
+                                mView.SelectPhraseInContentView(selectionNode as PhraseNode);
+                            }
+                            else
+                            {
+                                while (selectionNode.PrecedingNode != null && selectionNode.Parent == selectionNode.PrecedingNode.Parent)
+                                {
+                                    selectionNode = selectionNode.PrecedingNode;
+                                    if (selectionNode is PhraseNode)
+                                    {
+                                        mView.SelectPhraseInContentView(selectionNode as PhraseNode);
+                                        isPreviousPhraseSelected = true;
+                                        break;
+                                    }
+
+                                }
+                            }
+
+                        }
+                        PhraseNode destinationPhrase;
+                        if (!isPreviousPhraseSelected)
+                        {
+                            destinationPhrase = mCurrentPlaylist.PrevPhrase(
+                                FindPlaybackStartNode(mView.Selection == null ? null : mView.Selection.Node));
+                        }
+                        else
+                        {
+                            destinationPhrase = mView.Selection.Node as PhraseNode;
+                        }
                         mView.SelectPhraseInContentView(destinationPhrase);
                         mCurrentPlaylist.CurrentPhrase = destinationPhrase; //@masternewbehaviour
                     }
@@ -2692,13 +2734,49 @@ namespace Obi.ProjectView
                     }
                     else
                     {
+                        bool isNextPhraseSelected = false;
+                        if (mView.GetSelectedPhraseSection != null && mView.Selection is StripIndexSelection)  // For selecting next phrase of strip index.
+                        {
+
+                            ObiNode selectionNode = null;
+                            if (((StripIndexSelection)mView.Selection).EmptyNodeForSelection != null)
+                            {
+                                selectionNode = ((StripIndexSelection)mView.Selection).EmptyNodeForSelection;
+                            }
+                            else if (((StripIndexSelection)mView.Selection).Node.FollowingNode != null)
+                            {
+                                selectionNode = ((StripIndexSelection)mView.Selection).Node.FollowingNode;
+                            }
+
+                            if (selectionNode is PhraseNode)
+                            {
+                                mView.SelectPhraseInContentView(selectionNode as PhraseNode);
+                                isNextPhraseSelected = true;
+                            }
+                            else
+                            {
+                                //mView.SelectPhraseBlockOrStrip(selectionNode as EmptyNode);
+                                while (selectionNode.FollowingNode != null)
+                                {
+                                    selectionNode = selectionNode.FollowingNode;
+                                    if (selectionNode is PhraseNode)
+                                    {
+                                        mView.SelectPhraseInContentView(selectionNode as PhraseNode);
+                                        isNextPhraseSelected = true;
+                                        break;
+                                    }
+
+                                }
+
+                            }
+                        }
                         PhraseNode startPhrase = FindPlaybackStartNode(mView.Selection == null ? null : mView.Selection.Node);
                         PhraseNode destinationPhrase = null ;
                         if (mView.Selection != null && mView.Selection.Node is EmptyNode && !(mView.Selection.Node is PhraseNode))
                         {
                             destinationPhrase = startPhrase ;
                         }
-                        else
+                        else if (!isNextPhraseSelected && !(mView.Selection is StripIndexSelection))
                         {
                         destinationPhrase =mCurrentPlaylist.NextPhrase(startPhrase);
                         }
