@@ -2633,7 +2633,7 @@ namespace Obi.ProjectView
                             {
                                 selectionNode = ((StripIndexSelection)mView.Selection).EmptyNodeForSelection;
                             }
-                            else if (((StripIndexSelection)mView.Selection).Node.PrecedingNode != null)
+                            else 
                             {
                                 selectionNode = ((StripIndexSelection)mView.Selection).Node.LastUsedPhrase;
                                 isPreviousPhraseSelected = true;
@@ -2645,17 +2645,8 @@ namespace Obi.ProjectView
                             }
                             else
                             {
-                                while (selectionNode.PrecedingNode != null && selectionNode.Parent == selectionNode.PrecedingNode.Parent)
-                                {
-                                    selectionNode = selectionNode.PrecedingNode;
-                                    if (selectionNode is PhraseNode)
-                                    {
-                                        mView.SelectPhraseInContentView(selectionNode as PhraseNode);
-                                        isPreviousPhraseSelected = true;
-                                        break;
-                                    }
-
-                                }
+                                mView.SelectPhraseBlockOrStrip(selectionNode as EmptyNode);
+                                
                             }
 
                         }
@@ -2740,7 +2731,6 @@ namespace Obi.ProjectView
                     }
                     else
                     {
-                        bool isNextPhraseSelected = false;
                         if (mView.GetSelectedPhraseSection != null && mView.Selection is StripIndexSelection)  // For selecting next phrase of strip index.
                         {
 
@@ -2748,32 +2738,20 @@ namespace Obi.ProjectView
                             if (((StripIndexSelection)mView.Selection).EmptyNodeForSelection != null)
                             {
                                 selectionNode = ((StripIndexSelection)mView.Selection).EmptyNodeForSelection;
+                                selectionNode = selectionNode.PrecedingNode;
                             }
-                            else if (((StripIndexSelection)mView.Selection).Node.FollowingNode != null)
+                            else
                             {
-                                selectionNode = ((StripIndexSelection)mView.Selection).Node.FollowingNode;
+                                selectionNode = mView.Selection.Node.LastUsedPhrase;
                             }
 
                             if (selectionNode is PhraseNode)
                             {
                                 mView.SelectPhraseInContentView(selectionNode as PhraseNode);
-                                isNextPhraseSelected = true;
                             }
                             else
                             {
-                                //mView.SelectPhraseBlockOrStrip(selectionNode as EmptyNode);
-                                while (selectionNode.FollowingNode != null)
-                                {
-                                    selectionNode = selectionNode.FollowingNode;
-                                    if (selectionNode is PhraseNode)
-                                    {
-                                        mView.SelectPhraseInContentView(selectionNode as PhraseNode);
-                                        isNextPhraseSelected = true;
-                                        break;
-                                    }
-
-                                }
-
+                                mView.SelectPhraseBlockOrStrip(selectionNode as EmptyNode);
                             }
                         }
                         PhraseNode startPhrase = FindPlaybackStartNode(mView.Selection == null ? null : mView.Selection.Node);
@@ -2782,7 +2760,7 @@ namespace Obi.ProjectView
                         {
                             destinationPhrase = startPhrase ;
                         }
-                        else if (!isNextPhraseSelected && !(mView.Selection is StripIndexSelection))
+                        else
                         {
                         destinationPhrase =mCurrentPlaylist.NextPhrase(startPhrase);
                         }
