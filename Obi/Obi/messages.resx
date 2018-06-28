@@ -3037,4 +3037,7 @@ Error text: {1}</value>
   <data name="CustomMetadataD202_NotIncluded" xml:space="preserve">
     <value>The project has the following custom metadata. It cannot be included in DAISY 2.02 export.</value>
   </data>
+  <data name="Audio_RevertOverwriteBehaviourForRecordOnSelection" xml:space="preserve">
+    <value>Revert audio overwrite behaviour for record on selection</value>
+  </data>
 </root>

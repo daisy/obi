@@ -439,6 +439,15 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Revert audio overwrite behaviour for record on selection.
+        /// </summary>
+        internal static string Audio_RevertOverwriteBehaviourForRecordOnSelection {
+            get {
+                return ResourceManager.GetString("Audio_RevertOverwriteBehaviourForRecordOnSelection", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Preserve Audio Zoom for Content View.
         /// </summary>
         internal static string Audio_SaveAudioZoom {
