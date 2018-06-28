@@ -316,9 +316,13 @@ public bool Project_ImportNCCFileWithWindows1252Encoding ; // useful for importi
         [OptionalField]
         public int ImportAudioRadioButtonIndex;
 
-        // for Obi 4.2
+        // for Obi 4.2 alpha
         [OptionalField] 
         public bool Project_MaximumPhrasesSelectLimit;
+
+        // for Obi 4.2 beta
+        [OptionalField]
+        public bool Audio_RevertOverwriteBehaviourForRecordOnSelection;
 
         protected static void InitializeDefaultSettings(Settings settings)
         {
@@ -467,6 +471,7 @@ public bool Project_ImportNCCFileWithWindows1252Encoding ; // useful for importi
             settings.ImportAudioRadioButtonIndex = 0;
             // Obi 4.2
             settings.Project_MaximumPhrasesSelectLimit = true;
+            settings.Audio_RevertOverwriteBehaviourForRecordOnSelection = false;
         }
 
         /// <summary>
