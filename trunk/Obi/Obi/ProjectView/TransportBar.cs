@@ -292,6 +292,12 @@ namespace Obi.ProjectView
                 }
             }
 
+        //@deleterecording
+        public bool CanRecordOnFollowingAudio
+        {
+            get { return mView.ObiForm.Settings.Audio_RevertOverwriteBehaviourForRecordOnSelection || (mView.Selection == null || !(mView.Selection is AudioSelection) || ((AudioSelection)mView.Selection).AudioRange.HasCursor); }
+        }
+
         public double ElapsedTimeInSection
         {
             get 
@@ -2145,8 +2151,8 @@ namespace Obi.ProjectView
 
             // resume recording should be null to indicate that recoreding is in process and cannot be resumed.
             mResumeRecordingPhrase = null;
-            // stroing the value for session because it is dependent on selection before recording
-            mRecordingSession.Audio_DeleteFollowingPhrasesOfSectionAfterRecording = mView.ObiForm.Settings.Audio_DeleteFollowingPhrasesOfSectionAfterRecording;
+            // Holding the value in recording session because it is dependent on selection before recording
+            mRecordingSession.Audio_DeleteFollowingPhrasesOfSectionAfterRecording = mView.ObiForm.Settings.Audio_DeleteFollowingPhrasesOfSectionAfterRecording && CanRecordOnFollowingAudio;
                 //&& (mView.Selection == null || !(mView.Selection is AudioSelection) || ((AudioSelection)mView.Selection).AudioRange.HasCursor) ;
 
             // Actually start monitoring or recording
@@ -4438,7 +4444,8 @@ SelectionChangedPlaybackEnabled = false;
             if (CanRecord )
             {
                 if (mView.ObiForm.Settings.Audio_AllowOverwrite && CurrentState == State.Playing) Pause(); //@recordFromPlay
-                StartRecordingDirectly_Internal(true);
+                //StartRecordingDirectly_Internal(true); //@deleterecording
+                StartRecordingDirectly_Internal(CanRecordOnFollowingAudio);
             }
         }
 
