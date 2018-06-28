@@ -322,6 +322,7 @@ namespace Obi.Dialogs
                 m_CheckBoxListView.Items[27].Checked = mSettings.Audio_RecordInFirstEmptyPhraseWithRecordSectionCommand;
                 m_CheckBoxListView.Items[28].Checked = mSettings.Audio_MergeFirstTwoPhrasesAfterPhraseDetectionWhileRecording;
                 m_CheckBoxListView.Items[29].Checked = mSettings.Audio_AutoPlayAfterRecordingStops;
+                m_CheckBoxListView.Items[30].Checked = mSettings.Audio_RevertOverwriteBehaviourForRecordOnSelection;
 
                 m_IsComplete = true;
 
@@ -1198,6 +1199,7 @@ m_cb_ChooseFont.Visible = false;
                 mSettings.Audio_RecordInFirstEmptyPhraseWithRecordSectionCommand = m_CheckBoxListView.Items[27].Checked;
                 mSettings.Audio_MergeFirstTwoPhrasesAfterPhraseDetectionWhileRecording= m_CheckBoxListView.Items[28].Checked;
                 mSettings.Audio_AutoPlayAfterRecordingStops= m_CheckBoxListView.Items[29].Checked;
+                mSettings.Audio_RevertOverwriteBehaviourForRecordOnSelection = m_CheckBoxListView.Items[30].Checked;
 
             }
             //if (mTab.SelectedTab == mAdvanceTab)
@@ -1261,6 +1263,7 @@ m_cb_ChooseFont.Visible = false;
                 m_CheckBoxListView.Items.Add(Localizer.Message("Audio_RecordInFirstEmptyPhraseWithRecordSectionCommand"));
                 m_CheckBoxListView.Items.Add(Localizer.Message("Audio_MergeFirstTwoPhrasesAfterPhraseDetectionWhileRecording"));
                 m_CheckBoxListView.Items.Add(Localizer.Message("Audio_AutoPlayAfterRecordingStops"));
+                m_CheckBoxListView.Items.Add(Localizer.Message("Audio_RevertOverwriteBehaviourForRecordOnSelection"));
                
                 m_CheckBoxListView.Items[0].Checked = mSettings.Audio_AudioClues;
                 m_CheckBoxListView.Items[0].ToolTipText = Localizer.Message("AudioTab_AudioClues");                
@@ -1322,6 +1325,8 @@ m_cb_ChooseFont.Visible = false;
                 m_CheckBoxListView.Items[28].ToolTipText = Localizer.Message("Audio_MergeFirstTwoPhrasesAfterPhraseDetectionWhileRecording");
                 m_CheckBoxListView.Items[29].Checked = mSettings.Audio_AutoPlayAfterRecordingStops;
                 m_CheckBoxListView.Items[29].ToolTipText = Localizer.Message("Audio_AutoPlayAfterRecordingStops");
+                m_CheckBoxListView.Items[30].Checked = mSettings.Audio_RevertOverwriteBehaviourForRecordOnSelection;
+                m_CheckBoxListView.Items[30].ToolTipText = Localizer.Message("Audio_RevertOverwriteBehaviourForRecordOnSelection");
               
             }
             if (this.mTab.SelectedTab == this.mProjectTab)
@@ -2119,6 +2124,7 @@ m_cb_ChooseFont.Visible = false;
                     m_CheckBoxListView.Items[27].Checked = false;
                     m_CheckBoxListView.Items[28].Checked = false;
                     m_CheckBoxListView.Items[29].Checked = false;
+                    m_CheckBoxListView.Items[30].Checked = false;
 
                     mSettings.Audio_DefaultGap = 300;
                     mSettings.Audio_PreviewDuration = 1500;
@@ -2190,6 +2196,7 @@ m_cb_ChooseFont.Visible = false;
                     m_CheckBoxListView.Items[27].Checked = false;
                     m_CheckBoxListView.Items[28].Checked = false;
                     m_CheckBoxListView.Items[29].Checked = false;
+                    m_CheckBoxListView.Items[30].Checked = false;
 
                     mSettings.Audio_DefaultGap = 300;
                     mSettings.Audio_PreviewDuration = 1500;
@@ -2260,6 +2267,7 @@ m_cb_ChooseFont.Visible = false;
                     m_CheckBoxListView.Items[27].Checked = false;
                     m_CheckBoxListView.Items[28].Checked = false;
                     m_CheckBoxListView.Items[29].Checked = false;
+                    m_CheckBoxListView.Items[30].Checked = false;
 
                     mSettings.Audio_DefaultGap = 300;
                     mSettings.Audio_PreviewDuration = 1500;
@@ -2330,6 +2338,7 @@ m_cb_ChooseFont.Visible = false;
                     m_CheckBoxListView.Items[27].Checked = false;
                     m_CheckBoxListView.Items[28].Checked = false;
                     m_CheckBoxListView.Items[29].Checked = false;
+                    m_CheckBoxListView.Items[30].Checked = false;
 
                     mSettings.Audio_DefaultGap = 300;
                     mSettings.Audio_PreviewDuration = 1500;
@@ -2403,6 +2412,7 @@ m_cb_ChooseFont.Visible = false;
                     m_CheckBoxListView.Items[27].Checked = true;
                     m_CheckBoxListView.Items[28].Checked = false;
                     m_CheckBoxListView.Items[29].Checked = false;
+                    m_CheckBoxListView.Items[30].Checked = false;
 
                     mSettings.Audio_DefaultGap = 600;
                     mSettings.Audio_PreviewDuration = 7000;
@@ -2474,6 +2484,7 @@ m_cb_ChooseFont.Visible = false;
                     m_CheckBoxListView.Items[27].Checked = true;
                     m_CheckBoxListView.Items[28].Checked = false;
                     m_CheckBoxListView.Items[29].Checked = false;
+                    m_CheckBoxListView.Items[30].Checked = false;
 
                     mSettings.Audio_DefaultGap = 600;
                     mSettings.Audio_PreviewDuration = 7000;
@@ -2546,6 +2557,7 @@ m_cb_ChooseFont.Visible = false;
                     m_CheckBoxListView.Items[27].Checked = true;
                     m_CheckBoxListView.Items[28].Checked = false;
                     m_CheckBoxListView.Items[29].Checked = false;
+                    m_CheckBoxListView.Items[30].Checked = false;
 
                     mSettings.Audio_DefaultGap = 600;
                     mSettings.Audio_PreviewDuration = 7000;
