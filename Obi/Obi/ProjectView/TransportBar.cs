@@ -2625,41 +2625,25 @@ namespace Obi.ProjectView
                     }
                     else
                     {
-                        ObiNode selectionNode = null;
-                        bool isPreviousPhraseSelected = false;
-                        if (mView.GetSelectedPhraseSection != null && mView.Selection is StripIndexSelection) // For selecting previous phrase of strip index.
+                        // if strip index is selected then select the equivalent phrase block.
+                        if (mView.Selection != null
+                            && mView.Selection.Node is SectionNode
+                            && mView.Selection is StripIndexSelection)
                         {
-                            if (((StripIndexSelection)mView.Selection).EmptyNodeForSelection != null)
+                            if (((StripIndexSelection)mView.Selection).Index >= ((SectionNode)mView.Selection.Node).PhraseChildCount)
                             {
-                                selectionNode = ((StripIndexSelection)mView.Selection).EmptyNodeForSelection;
-                            }
-                            else 
-                            {
-                                selectionNode = ((StripIndexSelection)mView.Selection).Node.LastUsedPhrase;
-                                isPreviousPhraseSelected = true;
-                            }
-
-                            if (selectionNode is PhraseNode)
-                            {
-                                mView.SelectPhraseInContentView(selectionNode as PhraseNode);
+                                SectionNode section = (SectionNode)mView.Selection.Node;
+                                mView.SelectPhraseBlockOrStrip(section.PhraseChild(section.PhraseChildCount - 1));
                             }
                             else
                             {
-                                mView.SelectPhraseBlockOrStrip(selectionNode as EmptyNode);
-                                
+                                mView.SelectPhraseBlockOrStrip (mView.Selection.EmptyNodeForSelection);
                             }
-
                         }
-                        PhraseNode destinationPhrase;
-                        if (!isPreviousPhraseSelected)
-                        {
-                            destinationPhrase = mCurrentPlaylist.PrevPhrase(
-                                FindPlaybackStartNode(mView.Selection == null ? null : mView.Selection.Node));
-                        }
-                        else
-                        {
-                            destinationPhrase = mView.Selection.Node as PhraseNode;
-                        }
+                            
+                        // older code continues below
+                        PhraseNode destinationPhrase = mCurrentPlaylist.PrevPhrase(
+                                                    FindPlaybackStartNode(mView.Selection == null ? null : mView.Selection.Node));
                         mView.SelectPhraseInContentView(destinationPhrase);
                         mCurrentPlaylist.CurrentPhrase = destinationPhrase; //@masternewbehaviour
                     }
@@ -2731,43 +2715,37 @@ namespace Obi.ProjectView
                     }
                     else
                     {
-                        if (mView.GetSelectedPhraseSection != null && mView.Selection is StripIndexSelection)  // For selecting next phrase of strip index.
+                        // if strip index is selected then select the equivalent phrase block.
+                        if (mView.Selection != null
+                            && mView.Selection.Node is SectionNode
+                            && mView.Selection is StripIndexSelection)
                         {
-
-                            ObiNode selectionNode = null;
-                            if (((StripIndexSelection)mView.Selection).EmptyNodeForSelection != null)
+                            if (((StripIndexSelection)mView.Selection).Index >= ((SectionNode)mView.Selection.Node).PhraseChildCount)
                             {
-                                selectionNode = ((StripIndexSelection)mView.Selection).EmptyNodeForSelection;
-                                selectionNode = selectionNode.PrecedingNode;
+                                SectionNode section = (SectionNode)mView.Selection.Node;
+                                mView.SelectPhraseBlockOrStrip(section.PhraseChild(section.PhraseChildCount - 1));
                             }
                             else
                             {
-                                selectionNode = mView.Selection.Node.LastUsedPhrase;
-                            }
-
-                            if (selectionNode is PhraseNode)
-                            {
-                                mView.SelectPhraseInContentView(selectionNode as PhraseNode);
-                            }
-                            else
-                            {
-                                mView.SelectPhraseBlockOrStrip(selectionNode as EmptyNode);
+                                mView.SelectPhraseBlockOrStrip(mView.Selection.EmptyNodeForSelection);
                             }
                         }
+
+                        // older code continues below
                         PhraseNode startPhrase = FindPlaybackStartNode(mView.Selection == null ? null : mView.Selection.Node);
-                        PhraseNode destinationPhrase = null ;
+                        PhraseNode destinationPhrase = null;
                         if (mView.Selection != null && mView.Selection.Node is EmptyNode && !(mView.Selection.Node is PhraseNode))
                         {
-                            destinationPhrase = startPhrase ;
+                            destinationPhrase = startPhrase;
                         }
                         else
                         {
-                        destinationPhrase =mCurrentPlaylist.NextPhrase(startPhrase);
+                            destinationPhrase = mCurrentPlaylist.NextPhrase(startPhrase);
                         }
                         mView.SelectPhraseInContentView(destinationPhrase);
                         mCurrentPlaylist.CurrentPhrase = destinationPhrase; //@masternewbehaviour
                     }
-                }
+                                        }
                 else
                 {
                     mCurrentPlaylist.NavigateToNextPhrase();
