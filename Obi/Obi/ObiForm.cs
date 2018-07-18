@@ -2165,6 +2165,7 @@ namespace Obi
                 mMergeWithNextSectionToolStripMenuItem.Enabled = mProjectView.CanMergeStripWithNext;
                 mMultiSectionOperations.Enabled = mProjectView.EnableMultiSectionOperation;
                 mSectionIsUsedToolStripMenuItem.Enabled = mProjectView.CanSetSectionUsedStatus;
+                mImportTOCMenuItem.Enabled = !mProjectView.TransportBar.IsRecorderActive;
                 mSectionIsUsedToolStripMenuItem.CheckedChanged -=
                     new System.EventHandler(mSectionIsUsedToolStripMenuItem_CheckedChanged);
                 mSectionIsUsedToolStripMenuItem.Checked = mProjectView.CanMarkSectionUnused ||

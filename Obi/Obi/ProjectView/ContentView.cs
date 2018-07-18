@@ -5206,6 +5206,7 @@ if (thresholdAboveLastNode >= stripControl.Node.PhraseChildCount) thresholdAbove
             Context_AudioProcessing.Enabled = mProjectView.CanExportSelectedNodeAudio;
             ContextBeginMarkToolStripMenuItem.Enabled = mProjectView.CanBeginSpecialNote;
             ContextEndMarkToolStripMenuItem.Enabled = mProjectView.CanEndSpecialNote;
+            ContextPasteMultiplePhrasesToolStripMenuItem.Enabled = !mProjectView.TransportBar.IsRecorderActive;
             }
 
         private bool CanSetSelectedPhraseUsedStatus
