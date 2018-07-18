@@ -847,7 +847,16 @@ namespace Obi.ProjectView
         private void PaintColorForEmptySection(SectionNode node, bool isIterating) // @emptysectioncolor
         {
             if (!mProjectView.ObiForm.Settings.Project_BackgroundColorForEmptySection && !isIterating) return;
-            if (mProjectView.ObiForm.Settings.Project_BackgroundColorForEmptySection && node.Duration == 0.0)
+            bool tempSectionIsEmpty = true;
+            for (int i = 0; i < node.PhraseChildCount; i++)
+            {
+                if (node.PhraseChild(i) is PhraseNode && (node.PhraseChild(i) as PhraseNode).Audio != null)
+                {
+                    tempSectionIsEmpty = false;
+                    break;
+                }               
+            }
+            if (mProjectView.ObiForm.Settings.Project_BackgroundColorForEmptySection && tempSectionIsEmpty)
             {
                 TreeNode treeNode = FindTreeNodeWithoutLabel((SectionNode)node);
                 if (!SystemInformation.HighContrast)
@@ -859,7 +868,7 @@ namespace Obi.ProjectView
                     treeNode.BackColor = mProjectView.ObiForm.Settings.ColorSettingsHC.EmptySectionBackgroundColor; ;
                 }
                 treeNode.ForeColor = SystemColors.ControlText;
-                
+
             }
             else if(m_HighlightedSectionNodeWithoutSelection!=(SectionNode)node)
             {
