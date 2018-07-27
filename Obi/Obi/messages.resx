@@ -3040,4 +3040,13 @@ Error text: {1}</value>
   <data name="Audio_RevertOverwriteBehaviourForRecordOnSelection" xml:space="preserve">
     <value>Revert audio overwrite behaviour for record on selection</value>
   </data>
+  <data name="Import_AudioFormat_FilesWillBeRenamed" xml:space="preserve">
+    <value>There are some Files that needs to be renamed as the Files with the name already exists in project directory</value>
+  </data>
+  <data name="Import_AudioFormat_RenameFilesList" xml:space="preserve">
+    <value>-> File named {0} is renamed to {1}</value>
+  </data>
+  <data name="Import_AudioFormat_FollowingFilesRenamed" xml:space="preserve">
+    <value>Following Files are renamed:- </value>
+  </data>
 </root>
