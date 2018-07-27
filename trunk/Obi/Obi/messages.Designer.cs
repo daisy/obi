@@ -2566,11 +2566,38 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to There are some Files that needs to be renamed as the Files with the name already exists in project directory.
+        /// </summary>
+        internal static string Import_AudioFormat_FilesWillBeRenamed {
+            get {
+                return ResourceManager.GetString("Import_AudioFormat_FilesWillBeRenamed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Following Files are renamed:- .
+        /// </summary>
+        internal static string Import_AudioFormat_FollowingFilesRenamed {
+            get {
+                return ResourceManager.GetString("Import_AudioFormat_FollowingFilesRenamed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to File named {0} is renamed to {1} as the file  with the name already exists in project directory.
         /// </summary>
         internal static string Import_AudioFormat_RenameFile {
             get {
                 return ResourceManager.GetString("Import_AudioFormat_RenameFile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to -&gt; File named {0} is renamed to {1}.
+        /// </summary>
+        internal static string Import_AudioFormat_RenameFilesList {
+            get {
+                return ResourceManager.GetString("Import_AudioFormat_RenameFilesList", resourceCulture);
             }
         }
         

@@ -14,6 +14,9 @@ namespace Obi.Audio
     public class AudioFormatConverter
     {
         private static bool m_IsRequestCancellation;
+        private static bool m_IsFileExists;
+        private static Dictionary<string, string> m_FilesThatAreRenamed = new Dictionary<string, string>();
+
         public static bool IsRequestCancellation
         {
             get { return m_IsRequestCancellation; }
@@ -27,6 +30,8 @@ namespace Obi.Audio
             string convertedFile = null;
             List<string> listOfConvertedFiles = new List<string>();
 
+            m_FilesThatAreRenamed.Clear();
+            m_IsFileExists = false;
 
             for (int i = 0; i < numberOfFiles; i++)
             {
@@ -34,6 +39,18 @@ namespace Obi.Audio
                 convertedFile = ConvertedFile(fileName[i], presentation);
                 if (convertedFile != null) listOfConvertedFiles.Add(convertedFile);
             }
+
+            if (m_FilesThatAreRenamed.Count != 0)
+            {
+                string tempStr = Localizer.Message("Import_AudioFormat_FollowingFilesRenamed") + "\n";
+                foreach (var str in m_FilesThatAreRenamed)
+                {
+                    tempStr += string.Format("\n" + Localizer.Message("Import_AudioFormat_RenameFilesList"), str.Key, str.Value);
+                }
+                MessageBox.Show(tempStr,
+                    Localizer.Message("Caption_Information"), MessageBoxButtons.OK);
+            }
+
             string[] returnArray = new string[listOfConvertedFiles.Count];
             for (int i = 0; i < listOfConvertedFiles.Count; i++) returnArray[i] = listOfConvertedFiles[i];
 
@@ -93,9 +110,18 @@ namespace Obi.Audio
                         newConvertedFilePath = Path.Combine(Path.GetDirectoryName(convertedFile), i.ToString() + Path.GetFileNameWithoutExtension(filePath) + ".wav");
                         if (!File.Exists(newConvertedFilePath))
                         {
-                            MessageBox.Show(string.Format(Localizer.Message("Import_AudioFormat_RenameFile"), Path.GetFileNameWithoutExtension(filePath) + ".wav", Path.GetFileName(newConvertedFilePath)),
-                                Localizer.Message("Caption_Information"),
-                                MessageBoxButtons.OK);
+                            m_FilesThatAreRenamed.Add(Path.GetFileNameWithoutExtension(filePath) + ".wav", Path.GetFileName(newConvertedFilePath));
+
+                            //MessageBox.Show(string.Format(Localizer.Message("Import_AudioFormat_RenameFile"), Path.GetFileNameWithoutExtension(filePath) + ".wav", Path.GetFileName(newConvertedFilePath)),
+                            //    Localizer.Message("Caption_Information"),
+                            //    MessageBoxButtons.OK);
+
+                            if (!m_IsFileExists)
+                            {
+                                m_IsFileExists = true;
+                                MessageBox.Show(Localizer.Message("Import_AudioFormat_FilesWillBeRenamed"),
+                                    Localizer.Message("Caption_Information"), MessageBoxButtons.OK);
+                            }
                             break;
                         }
                     }
