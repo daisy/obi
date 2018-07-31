@@ -606,7 +606,7 @@ namespace Obi.UserControls
             m_strStatus = Localizer.Message("RecToolbar_NewPhrase");
             m_TransportBar.NextPhrase();
             m_Count = 0;
-            timer1.Start();
+           // timer1.Start();
             UpdateButtons();
             this.Focus();
         }
@@ -615,7 +615,7 @@ namespace Obi.UserControls
         {
             m_strStatus = Localizer.Message("RecToolbar_NewPage");
             m_TransportBar.NextPage();
-            timer1.Start();
+           // timer1.Start();
             this.Focus();
         }
 
