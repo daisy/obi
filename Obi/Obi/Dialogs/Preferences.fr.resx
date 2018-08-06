@@ -112,15 +112,15 @@
     <value>2.0</value>
   </resheader>
   <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="helpProvider1.HelpNamespace" xml:space="preserve">
     <value>Obi Help.fr.chm</value>
   </data>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="mOKButton.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
   </data>
@@ -325,7 +325,7 @@
   <data name="m_lblSelectedShortcuts.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
   </data>
-  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="m_lblSelectedShortcuts.Location" type="System.Drawing.Point, System.Drawing">
     <value>0, 42</value>
   </data>
@@ -1915,5 +1915,23 @@
   </data>
   <data name="$this.Text" xml:space="preserve">
     <value>Edition des préférences</value>
+  </data>
+  <data name="mOKButton.Text" xml:space="preserve">
+    <value>&amp;OK</value>
+  </data>
+  <data name="m_lblProfile2.Text" xml:space="preserve">
+    <value>Profil 2 :</value>
+  </data>
+  <data name="m_lblProfile1.Text" xml:space="preserve">
+    <value>Profil 1 :</value>
+  </data>
+  <data name="m_btnProfileDiscription.Text" xml:space="preserve">
+    <value>?</value>
+  </data>
+  <data name="m_chkAudio.Text" xml:space="preserve">
+    <value>A&amp;udio</value>
+  </data>
+  <data name="mAudioTab.Text" xml:space="preserve">
+    <value>Audio</value>
   </data>
 </root>
