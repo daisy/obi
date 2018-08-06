@@ -2742,4 +2742,34 @@ tester "Figer la largeur du volet du contenu" ?(Recommandé)</value>
   <data name="TimeElapsedCannotBeCalculated" xml:space="preserve">
     <value>Le temps écoulé ne peut pas être calculé car la marque de fin est antérieure à la marque de début</value>
   </data>
+  <data name="MergeOptions_ShowContents" xml:space="preserve">
+    <value>Afficher les Contenus dans le Volet Contenu</value>
+  </data>
+  <data name="FilterImportTOC" xml:space="preserve">
+    <value>fichier Xhtml,Csv, Txt (*.htm;*.html;*.xhtml;*.csv;*.txt)|*.htm;*.html;*.xhtml;*.csv;*.txt</value>
+  </data>
+  <data name="NoSectionsInBook" xml:space="preserve">
+    <value>Il n'y a pas de section dans le livre pour importer une TDM</value>
+  </data>
+  <data name="LessSectionsInBook" xml:space="preserve">
+    <value>Les sections présentes dans le projet sont inférieures aux sections importées. La TDM complète ne sera donc pas importée.</value>
+  </data>
+  <data name="FileInUse" xml:space="preserve">
+    <value>Ce fichier est déjà utilisé par une autre ressource. Veuillez fermer toutes les applications utilisant ce fichier et essayez à nouveau.</value>
+  </data>
+  <data name="WrongFormat" xml:space="preserve">
+    <value>Le fichier importé n'est pas au bon format. Assurez-vous que chaque niveau corresponde bien à chaque section.</value>
+  </data>
+  <data name="PasteNotAllowed" xml:space="preserve">
+    <value>Coller dans les phrases sélectionnées n'est pas autorisé.</value>
+  </data>
+  <data name="Project_MaximumPhrasesSelectLimit" xml:space="preserve">
+    <value>La sélection est limitée à 500 phrases pour effectuer des opérations sur Phrases Mutiples telles que Couper ou Copier.</value>
+  </data>
+  <data name="CustomMetadataD202_NotIncluded" xml:space="preserve">
+    <value>Le projet comporte les métadonnées personalisées suivantes. Elles ne pourront être incluses dans l'exportation DAISY 2.02.</value>
+  </data>
+  <data name="Audio_RevertOverwriteBehaviourForRecordOnSelection" xml:space="preserve">
+    <value>Revenir à l'état précédent afin de procéder à l'enregistrement dans la section</value>
+  </data>
 </root>

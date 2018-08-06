@@ -127,11 +127,17 @@
   <data name="m_cmbBoxSpecialNode.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
   </data>
+  <data name="m_cmbBoxSpecialNode.Items" xml:space="preserve">
+    <value>Annotation</value>
+  </data>
   <data name="m_cmbBoxSpecialNode.Items1" xml:space="preserve">
     <value>note de fin</value>
   </data>
   <data name="m_cmbBoxSpecialNode.Items2" xml:space="preserve">
     <value>note de pied de page</value>
+  </data>
+  <data name="m_cmbBoxSpecialNode.Items3" xml:space="preserve">
+    <value>Note</value>
   </data>
   <data name="m_cmbBoxSpecialNode.Items4" xml:space="preserve">
     <value>note du producteur</value>
@@ -141,7 +147,7 @@
   </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="m_cmbBoxSpecialNode.Location" type="System.Drawing.Point, System.Drawing">
-    <value>183, 74</value>
+    <value>325, 74</value>
   </data>
   <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="m_cmbBoxSpecialNode.TabIndex" type="System.Int32, mscorlib">
@@ -160,7 +166,7 @@
     <value />
   </data>
   <data name="m_btn_OK.Location" type="System.Drawing.Point, System.Drawing">
-    <value>168, 112</value>
+    <value>314, 112</value>
   </data>
   <data name="m_btn_OK.TabIndex" type="System.Int32, mscorlib">
     <value>5</value>
@@ -178,7 +184,7 @@
     <value />
   </data>
   <data name="m_btn_Cancel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>274, 112</value>
+    <value>420, 112</value>
   </data>
   <data name="m_btn_Cancel.TabIndex" type="System.Int32, mscorlib">
     <value>6</value>
@@ -215,6 +221,66 @@
   </data>
   <data name="m_rdb_btn_RenumberPages.Text" xml:space="preserve">
     <value>Renuméroter les pages</value>
+  </data>
+  <data name="m_rdb_Delete.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="m_rdb_Delete.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
+    <value>AssociateIndex</value>
+  </data>
+  <data name="m_rdb_Delete.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="m_rdb_Delete.Size" type="System.Drawing.Size, System.Drawing">
+    <value>72, 17</value>
+  </data>
+  <data name="m_rdb_Delete.Text" xml:space="preserve">
+    <value>&amp;Supprimer</value>
+  </data>
+  <data name="m_rdb_Merge.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="m_rdb_Merge.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
+    <value>AssociateIndex</value>
+  </data>
+  <data name="m_rdb_Merge.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="m_rdb_Merge.Size" type="System.Drawing.Size, System.Drawing">
+    <value>71, 17</value>
+  </data>
+  <data name="m_rdb_Merge.Text" xml:space="preserve">
+    <value>&amp;Fusionner</value>
+  </data>
+  <data name="m_rdb_Copy.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="m_rdb_Copy.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
+    <value>AssociateIndex</value>
+  </data>
+  <data name="m_rdb_Copy.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="m_rdb_Copy.Size" type="System.Drawing.Size, System.Drawing">
+    <value>55, 17</value>
+  </data>
+  <data name="m_rdb_Copy.Text" xml:space="preserve">
+    <value>C&amp;opier</value>
+  </data>
+  <data name="m_rdb_Cut.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="m_rdb_Cut.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
+    <value>AssociateIndex</value>
+  </data>
+  <data name="m_rdb_Cut.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="m_rdb_Cut.Size" type="System.Drawing.Size, System.Drawing">
+    <value>59, 17</value>
+  </data>
+  <data name="m_rdb_Cut.Text" xml:space="preserve">
+    <value>Co&amp;uper</value>
   </data>
   <data name="m_rtb_btn_TimeElapsed.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
@@ -265,10 +331,10 @@
     <value />
   </data>
   <data name="m_gp_box_operation.Size" type="System.Drawing.Size, System.Drawing">
-    <value>508, 43</value>
+    <value>855, 43</value>
   </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>530, 162</value>
+    <value>888, 162</value>
   </data>
   <data name="$this.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />

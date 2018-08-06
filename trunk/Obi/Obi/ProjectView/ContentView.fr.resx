@@ -1116,4 +1116,7 @@
   <data name="toolStripMenuItem1.Text" xml:space="preserve">
     <value>Opérations sur &amp;plusieurs phrases</value>
   </data>
+  <data name="ContextPasteMultiplePhrasesToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;Coller Phrases Multiples</value>
+  </data>
 </root>
