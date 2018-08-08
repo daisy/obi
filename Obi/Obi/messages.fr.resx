@@ -2772,4 +2772,13 @@ tester "Figer la largeur du volet du contenu" ?(Recommandé)</value>
   <data name="Audio_RevertOverwriteBehaviourForRecordOnSelection" xml:space="preserve">
     <value>Revenir à l'état précédent afin de procéder à l'enregistrement dans la section</value>
   </data>
+  <data name="Import_AudioFormat_FilesWillBeRenamed" xml:space="preserve">
+    <value>Certains fichiers ont besoin d'être renommés car le dossier du projet contient déjà des fichiers du même nom.</value>
+  </data>
+  <data name="Import_AudioFormat_RenameFilesList" xml:space="preserve">
+    <value>File named {0} is renamed to {1}</value>
+  </data>
+  <data name="Import_AudioFormat_FollowingFilesRenamed" xml:space="preserve">
+    <value>Les fichiers suivants sont renommés:</value>
+  </data>
 </root>
