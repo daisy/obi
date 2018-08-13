@@ -2701,6 +2701,18 @@ namespace Obi
                 m_Tools_QuickCleanupToolStripMenuItem.Enabled = mSettings.Audio_EnableFileDataProviderPreservation;
             }
 
+
+            protected override bool ProcessCmdKey(ref Message msg, Keys key)
+            {
+                if (key == (Keys.Control | Keys.C) && mProjectView != null && mProjectView.IsTOCViewInEditMode)
+                {
+                    return false;
+                }
+
+                return base.ProcessCmdKey(ref msg, key);
+            }
+
+
             // Open the preferences dialog
             private void mTools_PreferencesMenuItem_Click(object sender, EventArgs e)
             {
