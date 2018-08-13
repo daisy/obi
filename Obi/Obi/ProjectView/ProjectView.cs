@@ -162,6 +162,21 @@ namespace Obi.ProjectView
             set { mContentView.BeginSpecialNode = value; }
         }
 
+            public bool IsTOCViewInEditMode  // Returns true while editing Selected Node of TOCView
+            {
+                get
+                {
+                    if (mTOCView != null && mTOCView.SelectedNode != null)
+                    {
+                        return mTOCView.SelectedNode.IsEditing;
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                }
+            }
+
 
         /// <summary>
         /// Add a new metadata entry to the project
