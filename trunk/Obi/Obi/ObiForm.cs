@@ -2702,15 +2702,15 @@ namespace Obi
             }
 
 
-            //protected override bool ProcessCmdKey(ref Message msg, Keys key)   // commented for not inlcuding it in our stable release for now.
-            //{
-            //    if (key == (Keys.Control | Keys.C) && mProjectView != null && mProjectView.IsTOCViewInEditMode)
-            //    {
-            //        return false;
-            //    }
+            protected override bool ProcessCmdKey(ref Message msg, Keys key)   
+            {
+                if (key == (Keys.Control | Keys.C) && mProjectView != null && mProjectView.IsTOCViewInEditMode)
+                {
+                    return false;
+                }
 
-            //    return base.ProcessCmdKey(ref msg, key);
-            //}
+                return base.ProcessCmdKey(ref msg, key);
+            }
 
 
             // Open the preferences dialog
