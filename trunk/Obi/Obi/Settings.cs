@@ -324,6 +324,9 @@ public bool Project_ImportNCCFileWithWindows1252Encoding ; // useful for importi
         [OptionalField]
         public bool Audio_RevertOverwriteBehaviourForRecordOnSelection;
 
+        [OptionalField]
+        public bool IsObiConfigurationDone;
+
         protected static void InitializeDefaultSettings(Settings settings)
         {
             settings.Audio_Channels = 1;
@@ -472,6 +475,7 @@ public bool Project_ImportNCCFileWithWindows1252Encoding ; // useful for importi
             // Obi 4.2
             settings.Project_MaximumPhrasesSelectLimit = true;
             settings.Audio_RevertOverwriteBehaviourForRecordOnSelection = false;
+            settings.IsObiConfigurationDone = false;
         }
 
         /// <summary>
