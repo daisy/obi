@@ -1676,6 +1676,7 @@ namespace Obi
                 if (!m_InputDeviceFound && !m_OutputDevicefound) this.Close();
                 CheckSystemSupportForMemoryOptimization();
                 UploadUsersInfo(); //can be commentted for test releases
+                UploadObiConfigurations();
                 if (ShouldOpenLastProject) OpenProject_Safe(mSettings.LastOpenProject, null);
                 if (!ShouldOpenLastProject && mShowWelcomWindow) ShowWelcomeDialog();
 
@@ -1753,6 +1754,18 @@ namespace Obi
                         }
                     }
                 }
+            }
+
+
+            private void UploadObiConfigurations()
+            {
+                if (!mSettings.IsObiConfigurationDone)
+                {
+                    Dialogs.ObiConfiguration
+                        obiConfigDialog = new ObiConfiguration(this, mProjectView, mSettings); //@fontconfig
+                    obiConfigDialog.ShowDialog();
+                }
+
             }
 
 
