@@ -4777,7 +4777,17 @@ SelectionChangedPlaybackEnabled = false;
                         mView.Selection = new AudioSelection((PhraseNode) mView.Selection.Node, mView.Selection.Control, new AudioRange(time));
                         SelectionChangedPlaybackEnabled = playOnNavigateStatus;
                         }
-                    PlayOrResume(nodeSelect);
+
+                    try
+                    {
+                        PlayOrResume(nodeSelect);
+                    }
+                    catch (System.Exception ex)
+                    {
+                        mView.WriteToLogFile(ex.ToString());
+                        if (mCurrentPlaylist != null) mCurrentPlaylist.ForcedStopForError();
+                        MessageBox.Show(string.Format(Localizer.Message("TransportBar_PlayerExceptionMsg"), "\n\n", ex.ToString()));
+                    }
                 }
             }
         }
