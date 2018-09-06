@@ -1089,6 +1089,17 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Welcome To OBI. Please select appropriate settings from the options provided below. 
+        ///If you would like to configure Obi as per default settings, you can simply click on OK button or press the enter key and proceed. 
+        ///You can always change settings later from Obi Preferences..
+        /// </summary>
+        internal static string ConfigureObi {
+            get {
+                return ResourceManager.GetString("ConfigureObi", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Operation successful. Please restart Obi to load the default settings.
         /// </summary>
         internal static string Confirm_Setting {
