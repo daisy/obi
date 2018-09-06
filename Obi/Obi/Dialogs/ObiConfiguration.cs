@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Configuration;
 using System.Data;
 using System.Drawing;
 using System.Linq;
@@ -27,6 +28,7 @@ namespace Obi.Dialogs
             m_Settings = settings;
             m_ProjectView = projectView;
             m_Form = form;
+            this.Text = this.Text +" "+ Application.ProductVersion;
             if (m_Settings.ObiFont != this.Font.Name)
             {
                 this.Font = new Font(m_Settings.ObiFont, this.Font.Size, FontStyle.Regular); //@fontconfig
@@ -39,11 +41,8 @@ namespace Obi.Dialogs
             if (m_cb_SelectShortcutsProfile.Items.Count > 0)
                 m_cb_SelectShortcutsProfile.SelectedIndex = 0;
 
-            string temptext =
-                "Welcome To OBI. Before starting using OBI please select appropriate settings or simply press OK to continue with the default settings" +
-                " If you are not sure we recommend you to go with default settings as you can always change settings later from Obi Preferences";
-                           
-            m_tb_ObiConfigInstructions.Text = temptext;
+
+            m_tb_ObiConfigInstructions.Text = Localizer.Message("ConfigureObi");
 
         }
 
