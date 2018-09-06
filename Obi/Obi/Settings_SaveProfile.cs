@@ -51,7 +51,7 @@ namespace Obi
                newSettings.Audio_EnablePostRecordingPageRenumbering = this.Audio_EnablePostRecordingPageRenumbering;
                newSettings.Audio_EnforceSingleCursor = this.Audio_EnforceSingleCursor;
                newSettings.Audio_FastPlayWithoutPitchChange = this.Audio_FastPlayWithoutPitchChange;
-               if (profileName != "Profile-SBS" && profileName != "VA-Insert" && profileName != "VA-Overwrite" &&
+               if (profileName != "Profile-SBS" && profileName != "VA-Insert" && profileName != "VA-Overwrite" && profileName != "VA-Editing" &&
                    profileName != "Basic" && profileName != "Advance" && profileName != "Intermediate")
                {
                    newSettings.Audio_LastInputDevice = this.Audio_LastInputDevice;
