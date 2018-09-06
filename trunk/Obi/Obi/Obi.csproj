@@ -252,6 +252,10 @@
     <Compile Include="Dialogs\MultipleOptionDialog.Designer.cs">
       <DependentUpon>MultipleOptionDialog.cs</DependentUpon>
     </Compile>
+    <Compile Include="Dialogs\ObiConfiguration.cs" />
+    <Compile Include="Dialogs\ObiConfiguration.Designer.cs">
+      <DependentUpon>ObiConfiguration.cs</DependentUpon>
+    </Compile>
     <Compile Include="Dialogs\ProfileDescription.cs">
       <SubType>Form</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
@@ -796,6 +800,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\NewProject.zh-Hant.resx">
       <DependentUpon>NewProject.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\ObiConfiguration.resx">
+      <DependentUpon>ObiConfiguration.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\PhraseProperties.de.resx">
       <DependentUpon>PhraseProperties.cs</DependentUpon>
