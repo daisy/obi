@@ -4760,7 +4760,9 @@ if (thresholdAboveLastNode >= stripControl.Node.PhraseChildCount) thresholdAbove
                             {
                             //mProjectView.Selection = new NodeSelection ( n, this );
                             SelectPhraseBlockOrStrip ( (EmptyNode)n ); // @phraseLimit
-                            return;
+
+                            SelectAtTODOCursorPosition((EmptyNode)n);
+                                return;
                             }
                         }
                     }
@@ -4770,6 +4772,8 @@ if (thresholdAboveLastNode >= stripControl.Node.PhraseChildCount) thresholdAbove
                         {
                         //mProjectView.Selection = new NodeSelection ( n, this );
                         SelectPhraseBlockOrStrip ( (EmptyNode)n ); // @phraseLimit
+
+                        SelectAtTODOCursorPosition((EmptyNode)n);
                         return;
                         }
                     }
@@ -4791,6 +4795,8 @@ if (thresholdAboveLastNode >= stripControl.Node.PhraseChildCount) thresholdAbove
                             {
                             //mProjectView.Selection = new NodeSelection(n, this);
                             SelectPhraseBlockOrStrip ( (EmptyNode)n ); // @phraseLimit
+
+                            SelectAtTODOCursorPosition((EmptyNode)n);
                             return;
                             }
                         }
@@ -4801,10 +4807,22 @@ if (thresholdAboveLastNode >= stripControl.Node.PhraseChildCount) thresholdAbove
                         {
                         //mProjectView.Selection = new NodeSelection(n, this);
                         SelectPhraseBlockOrStrip ( (EmptyNode)n ); // @phraseLimit
+
+                        SelectAtTODOCursorPosition((EmptyNode)n);
                         return;
                         }
                     }
                 } // check for null presentation ends
+            }
+
+            private void SelectAtTODOCursorPosition(EmptyNode n)
+            {
+                if (mProjectView.Selection != null && n is PhraseNode && n.Duration != null &&
+                    n.Duration > 0 && n.TODOCursorPosition > 0)
+                {
+                    AudioRange tempAudioRange = new AudioRange(n.TODOCursorPosition);
+                    mProjectView.Selection = new AudioSelection(n as PhraseNode, this, tempAudioRange);
+                }
             }
 
         private bool SelectNextEmptyNode ()

@@ -4068,6 +4068,15 @@ SelectionChangedPlaybackEnabled = false;
                     mView.Presentation.UndoRedoManager.Execute(new Commands.Node.ToggleNodeTODO(mView, node));
                     mView.Presentation.Changed += new EventHandler<urakawa.events.DataModelChangedEventArgs>(Presentation_Changed);
                 }
+
+                if (node != null && node is PhraseNode && node.Duration > 0 && mCurrentPlaylist != null)
+                {
+                    node.TODOCursorPosition = mCurrentPlaylist.CurrentTimeInAsset;
+                }
+                else if (node != null && Math.Abs(node.TODOCursorPosition) > 0)
+                {
+                    node.TODOCursorPosition = 0;
+                }
             }
         else if (mView.Selection != null && mView.Selection.Node is EmptyNode)
             {
@@ -4075,7 +4084,18 @@ SelectionChangedPlaybackEnabled = false;
             mView.Presentation.Changed -= new EventHandler<urakawa.events.DataModelChangedEventArgs> ( Presentation_Changed );
             mView.Presentation.UndoRedoManager.Execute ( new Commands.Node.ToggleNodeTODO ( mView, node ) );
             mView.Presentation.Changed += new EventHandler<urakawa.events.DataModelChangedEventArgs> ( Presentation_Changed );
+                if (node != null && node is PhraseNode && node.Duration > 0 && mView.Selection is AudioSelection)
+                {
+                    AudioSelection selection = mView.Selection as AudioSelection;
+                    node.TODOCursorPosition = selection.AudioRange.HasCursor ? selection.AudioRange.CursorTime :
+                        selection.AudioRange.SelectionBeginTime;
+                }
+                else if (node != null && Math.Abs(node.TODOCursorPosition) > 0)
+                {
+                    node.TODOCursorPosition = 0;
+                }
             }
+           
         }
 
 
