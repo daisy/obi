@@ -43,6 +43,7 @@ namespace Obi
         private EmptyNode m_AssociatedNode = null;                            //@AssociateNode  
         private static readonly string XUK_ATTR_NAME_AssociateNode = "ANode"; //attribute for associate node location
         private string m_AssociatedNodeLocation;                              //@AssociateNode
+        private double m_TODOCursorPosition = 0;
         
 
         /// <summary>
@@ -278,6 +279,12 @@ private static Dictionary <string,string> m_SkippableLocalizedNameMap = null ;
         {
             get { return mTODO; }
             set { mTODO = value;  }
+        }
+
+        public double TODOCursorPosition
+        {
+            get { return m_TODOCursorPosition;}
+            set { m_TODOCursorPosition = mTODO ? value : 0; }
         }
 
         /// <summary>
