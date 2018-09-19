@@ -143,6 +143,8 @@ namespace Obi.Dialogs
             this.mTab = new System.Windows.Forms.TabControl();
             this.m_ApplyButton = new System.Windows.Forms.Button();
             this.m_Preference_ToolTip = new System.Windows.Forms.ToolTip(this.components);
+            this.btn_AdvanceSettingsAudioPref = new System.Windows.Forms.Button();
+            this.btn_AdvanceSettingsPrjPref = new System.Windows.Forms.Button();
             this.mAdvanceTab.SuspendLayout();
             this.m_gpBox_SelectProfileRecordingToolbar.SuspendLayout();
             this.m_gpBox_Buttons.SuspendLayout();
@@ -761,6 +763,7 @@ namespace Obi.Dialogs
             // 
             // mAudioTab
             // 
+            this.mAudioTab.Controls.Add(this.btn_AdvanceSettingsAudioPref);
             this.mAudioTab.Controls.Add(this.m_CleanUpFileSizeNumericUpDown);
             this.mAudioTab.Controls.Add(this.mlblCleanupFileSize);
             this.mAudioTab.Controls.Add(this.m_btn_speak);
@@ -988,6 +991,7 @@ namespace Obi.Dialogs
             // 
             // mProjectTab
             // 
+            this.mProjectTab.Controls.Add(this.btn_AdvanceSettingsPrjPref);
             this.mProjectTab.Controls.Add(this.m_btnRecordInLocalDrive);
             this.mProjectTab.Controls.Add(this.m_txtRecordInLocalDrive);
             this.mProjectTab.Controls.Add(this.m_chkRecordInLocalDrive);
@@ -1150,6 +1154,20 @@ namespace Obi.Dialogs
             this.helpProvider1.SetShowHelp(this.m_ApplyButton, ((bool)(resources.GetObject("m_ApplyButton.ShowHelp"))));
             this.m_ApplyButton.UseVisualStyleBackColor = true;
             this.m_ApplyButton.Click += new System.EventHandler(this.m_ApplyButton_Click);
+            // 
+            // btn_AdvanceSettingsAudioPref
+            // 
+            resources.ApplyResources(this.btn_AdvanceSettingsAudioPref, "btn_AdvanceSettingsAudioPref");
+            this.btn_AdvanceSettingsAudioPref.Name = "btn_AdvanceSettingsAudioPref";
+            this.helpProvider1.SetShowHelp(this.btn_AdvanceSettingsAudioPref, ((bool)(resources.GetObject("btn_AdvanceSettingsAudioPref.ShowHelp"))));
+            this.btn_AdvanceSettingsAudioPref.UseVisualStyleBackColor = true;
+            // 
+            // btn_AdvanceSettingsPrjPref
+            // 
+            resources.ApplyResources(this.btn_AdvanceSettingsPrjPref, "btn_AdvanceSettingsPrjPref");
+            this.btn_AdvanceSettingsPrjPref.Name = "btn_AdvanceSettingsPrjPref";
+            this.helpProvider1.SetShowHelp(this.btn_AdvanceSettingsPrjPref, ((bool)(resources.GetObject("btn_AdvanceSettingsPrjPref.ShowHelp"))));
+            this.btn_AdvanceSettingsPrjPref.UseVisualStyleBackColor = true;
             // 
             // Preferences
             // 
@@ -1319,5 +1337,7 @@ namespace Obi.Dialogs
         private System.Windows.Forms.Button m_btnRecordInLocalDrive;
         private System.Windows.Forms.TextBox m_txtBox_Font;
         private System.Windows.Forms.GroupBox m_gpBox_Font;
+        private System.Windows.Forms.Button btn_AdvanceSettingsAudioPref;
+        private System.Windows.Forms.Button btn_AdvanceSettingsPrjPref;
     }
 }
