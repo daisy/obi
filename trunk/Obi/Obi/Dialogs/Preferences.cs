@@ -3392,6 +3392,21 @@ m_cb_ChooseFont.Visible = false;
 
         }
 
+        private void btn_AdvanceSettingsPrjPref_Click(object sender, EventArgs e)
+        {
+            OpenAdvanceSettingsDialog();
+        }
 
-    }
+        private void btn_AdvanceSettingsAudioPref_Click(object sender, EventArgs e)
+        {
+           OpenAdvanceSettingsDialog();
+        }
+
+        private void OpenAdvanceSettingsDialog()
+        {
+            AdvancePreferencesSettings advanceSettings = new AdvancePreferencesSettings(mSettings, this.mTab.SelectedTab == this.mProjectTab);
+            advanceSettings.Show();
+        }
+
+        }
     }   

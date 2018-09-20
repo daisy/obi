@@ -2889,7 +2889,7 @@
     <value>31</value>
   </data>
   <data name="btn_AdvanceSettingsAudioPref.Text" xml:space="preserve">
-    <value>&amp;Advance Settings  &gt;&gt;</value>
+    <value>&amp;Advance Audio Settings  &gt;&gt;</value>
   </data>
   <data name="&gt;&gt;btn_AdvanceSettingsAudioPref.Name" xml:space="preserve">
     <value>btn_AdvanceSettingsAudioPref</value>
@@ -3681,7 +3681,7 @@
     <value>13</value>
   </data>
   <data name="btn_AdvanceSettingsPrjPref.Text" xml:space="preserve">
-    <value>&amp;Advance Settings  &gt;&gt;</value>
+    <value>&amp;Advance Project Settings  &gt;&gt;</value>
   </data>
   <data name="&gt;&gt;btn_AdvanceSettingsPrjPref.Name" xml:space="preserve">
     <value>btn_AdvanceSettingsPrjPref</value>
