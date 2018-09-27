@@ -7295,7 +7295,7 @@ public bool ShowOnlySelectedSection
                 mContentView.ListOfPhrasesToCutOrCopy.Clear();
             }
             
-            if (mContentView.ListOfPhrasesToCutOrCopy.Count >= 1)
+            if (mContentView.ListOfPhrasesToCutOrCopy.Count >= 1 && this.Selection != null)
             {
                 EmptyNode tempNodeToPaste = null;
                 if (this.Selection.Node is EmptyNode || this.Selection is StripIndexSelection)
@@ -7305,24 +7305,24 @@ public bool ShowOnlySelectedSection
                 else if (this.Selection.Node is SectionNode)
                 {
                     tempNodeToPaste = this.Selection.Node.LastUsedPhrase;
-                    if (tempNodeToPaste == null && ((SectionNode)this.Selection.Node).PhraseChildCount == 0)
-                    {
-                        SectionNode tempSectionNode = (SectionNode)this.Selection.Node;
-                        this.Selection = new NodeSelection(mContentView.ListOfPhrasesToCutOrCopy[0], mContentView);
-                        if (m_IsCopyForMultiplePhrasesChecked)
-                        {
-                            this.Copy();
-                        }
-                        else
-                        {
-                            this.Cut();
-                        }
+                    //if (tempNodeToPaste == null && ((SectionNode)this.Selection.Node).PhraseChildCount == 0)
+                    //{
+                    //    SectionNode tempSectionNode = (SectionNode)this.Selection.Node;
+                    //    this.Selection = new NodeSelection(mContentView.ListOfPhrasesToCutOrCopy[0], mContentView);
+                    //    if (m_IsCopyForMultiplePhrasesChecked)
+                    //    {
+                    //        this.Copy();
+                    //    }
+                    //    else
+                    //    {
+                    //        this.Cut();
+                    //    }
 
-                        this.Selection = new NodeSelection(tempSectionNode, mContentView);
-                        this.Paste();
-                        tempNodeToPaste = this.Selection.EmptyNodeForSelection;
-                        mContentView.ListOfPhrasesToCutOrCopy.Remove(mContentView.ListOfPhrasesToCutOrCopy[0]);
-                    }
+                    //    this.Selection = new NodeSelection(tempSectionNode, mContentView);
+                    //    this.Paste();
+                    //    tempNodeToPaste = this.Selection.EmptyNodeForSelection;
+                    //    mContentView.ListOfPhrasesToCutOrCopy.Remove(mContentView.ListOfPhrasesToCutOrCopy[0]);
+                    //}
                 }
 
                 if (tempNodeToPaste != null)
@@ -7334,20 +7334,21 @@ public bool ShowOnlySelectedSection
                     }
                 }
 
-                    if ((tempNodeToPaste !=null &&  tempNodeToPaste.Parent is SectionNode )
-                        || this.Selection is StripIndexSelection)
+                if ((tempNodeToPaste != null && tempNodeToPaste.Parent is SectionNode) ||
+                    (tempNodeToPaste == null && this.Selection.Node is SectionNode && ((SectionNode) this.Selection.Node).PhraseChildCount == 0)
+                    || this.Selection is StripIndexSelection)
+                {
+                    try
                     {
-                        try
-                        {
-                            CompositeCommand command = GetPasteMultiplePhrasesCommand();
-                            mPresentation.Do(command);
-                        }
-                        catch (Exception e)
-                        {
-                            MessageBox.Show(e.Message);
-                        }
+                        CompositeCommand command = GetPasteMultiplePhrasesCommand();
+                        mPresentation.Do(command);
                     }
-                
+                    catch (Exception e)
+                    {
+                        MessageBox.Show(e.Message);
+                    }
+                }
+
             }
 
         }
