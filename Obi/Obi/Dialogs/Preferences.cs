@@ -1178,7 +1178,7 @@ m_cb_ChooseFont.Visible = false;
             m_CheckBoxListView.Columns.Clear();
             m_CheckBoxListView.HeaderStyle = ColumnHeaderStyle.None;
             m_CheckBoxListView.ShowItemToolTips = true;
-            m_CheckBoxListView.Columns.Add("", 367, HorizontalAlignment.Left);
+            m_CheckBoxListView.Columns.Add("", 450, HorizontalAlignment.Left);
             if (this.mTab.SelectedTab == this.mAudioTab)
             {
              helpProvider1.HelpNamespace = Localizer.Message("CHMhelp_file_name");
@@ -3323,7 +3323,7 @@ m_cb_ChooseFont.Visible = false;
         private void OpenAdvanceSettingsDialog()
         {
             AdvancePreferencesSettings advanceSettings = new AdvancePreferencesSettings(mSettings, this.mTab.SelectedTab == this.mProjectTab);
-            advanceSettings.Show();
+            advanceSettings.ShowDialog();
         }
 
         }

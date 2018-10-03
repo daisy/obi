@@ -35,7 +35,7 @@ namespace Obi.Dialogs
             m_CheckBoxListView.ShowItemToolTips = true;
             m_CheckBoxListView.Scrollable = true;
 
-            m_CheckBoxListView.Columns.Add("", 367, HorizontalAlignment.Left);
+            m_CheckBoxListView.Columns.Add("", 550, HorizontalAlignment.Left);
 
           
             m_CheckBoxListView.Items.Clear();
