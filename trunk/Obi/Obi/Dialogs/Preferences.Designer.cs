@@ -104,7 +104,6 @@ namespace Obi.Dialogs
             this.label4 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.mAudioTab = new System.Windows.Forms.TabPage();
-            this.btn_AdvanceSettingsAudioPref = new System.Windows.Forms.Button();
             this.m_CleanUpFileSizeNumericUpDown = new System.Windows.Forms.NumericUpDown();
             this.mlblCleanupFileSize = new System.Windows.Forms.Label();
             this.m_btn_speak = new System.Windows.Forms.Button();
@@ -127,7 +126,6 @@ namespace Obi.Dialogs
             this.labelOutputDeviceName = new System.Windows.Forms.Label();
             this.labelInputDeviceName = new System.Windows.Forms.Label();
             this.mProjectTab = new System.Windows.Forms.TabPage();
-            this.btn_AdvanceSettingsPrjPref = new System.Windows.Forms.Button();
             this.m_btnRecordInLocalDrive = new System.Windows.Forms.Button();
             this.m_txtRecordInLocalDrive = new System.Windows.Forms.TextBox();
             this.m_chkRecordInLocalDrive = new System.Windows.Forms.CheckBox();
@@ -144,6 +142,7 @@ namespace Obi.Dialogs
             this.mBrowseButton = new System.Windows.Forms.Button();
             this.mTab = new System.Windows.Forms.TabControl();
             this.m_ApplyButton = new System.Windows.Forms.Button();
+            this.m_btnAdvanceSettingsPreferences = new System.Windows.Forms.Button();
             this.m_Preference_ToolTip = new System.Windows.Forms.ToolTip(this.components);
             this.mAdvanceTab.SuspendLayout();
             this.m_gpBox_SelectProfileRecordingToolbar.SuspendLayout();
@@ -763,7 +762,6 @@ namespace Obi.Dialogs
             // 
             // mAudioTab
             // 
-            this.mAudioTab.Controls.Add(this.btn_AdvanceSettingsAudioPref);
             this.mAudioTab.Controls.Add(this.m_CleanUpFileSizeNumericUpDown);
             this.mAudioTab.Controls.Add(this.mlblCleanupFileSize);
             this.mAudioTab.Controls.Add(this.m_btn_speak);
@@ -789,14 +787,6 @@ namespace Obi.Dialogs
             this.mAudioTab.Name = "mAudioTab";
             this.helpProvider1.SetShowHelp(this.mAudioTab, ((bool)(resources.GetObject("mAudioTab.ShowHelp"))));
             this.mAudioTab.UseVisualStyleBackColor = true;
-            // 
-            // btn_AdvanceSettingsAudioPref
-            // 
-            resources.ApplyResources(this.btn_AdvanceSettingsAudioPref, "btn_AdvanceSettingsAudioPref");
-            this.btn_AdvanceSettingsAudioPref.Name = "btn_AdvanceSettingsAudioPref";
-            this.helpProvider1.SetShowHelp(this.btn_AdvanceSettingsAudioPref, ((bool)(resources.GetObject("btn_AdvanceSettingsAudioPref.ShowHelp"))));
-            this.btn_AdvanceSettingsAudioPref.UseVisualStyleBackColor = true;
-            this.btn_AdvanceSettingsAudioPref.Click += new System.EventHandler(this.btn_AdvanceSettingsAudioPref_Click);
             // 
             // m_CleanUpFileSizeNumericUpDown
             // 
@@ -999,7 +989,6 @@ namespace Obi.Dialogs
             // 
             // mProjectTab
             // 
-            this.mProjectTab.Controls.Add(this.btn_AdvanceSettingsPrjPref);
             this.mProjectTab.Controls.Add(this.m_btnRecordInLocalDrive);
             this.mProjectTab.Controls.Add(this.m_txtRecordInLocalDrive);
             this.mProjectTab.Controls.Add(this.m_chkRecordInLocalDrive);
@@ -1018,14 +1007,6 @@ namespace Obi.Dialogs
             this.mProjectTab.Name = "mProjectTab";
             this.helpProvider1.SetShowHelp(this.mProjectTab, ((bool)(resources.GetObject("mProjectTab.ShowHelp"))));
             this.mProjectTab.UseVisualStyleBackColor = true;
-            // 
-            // btn_AdvanceSettingsPrjPref
-            // 
-            resources.ApplyResources(this.btn_AdvanceSettingsPrjPref, "btn_AdvanceSettingsPrjPref");
-            this.btn_AdvanceSettingsPrjPref.Name = "btn_AdvanceSettingsPrjPref";
-            this.helpProvider1.SetShowHelp(this.btn_AdvanceSettingsPrjPref, ((bool)(resources.GetObject("btn_AdvanceSettingsPrjPref.ShowHelp"))));
-            this.btn_AdvanceSettingsPrjPref.UseVisualStyleBackColor = true;
-            this.btn_AdvanceSettingsPrjPref.Click += new System.EventHandler(this.btn_AdvanceSettingsPrjPref_Click);
             // 
             // m_btnRecordInLocalDrive
             // 
@@ -1171,12 +1152,21 @@ namespace Obi.Dialogs
             this.m_ApplyButton.UseVisualStyleBackColor = true;
             this.m_ApplyButton.Click += new System.EventHandler(this.m_ApplyButton_Click);
             // 
+            // m_btnAdvanceSettingsPreferences
+            // 
+            resources.ApplyResources(this.m_btnAdvanceSettingsPreferences, "m_btnAdvanceSettingsPreferences");
+            this.m_btnAdvanceSettingsPreferences.Name = "m_btnAdvanceSettingsPreferences";
+            this.helpProvider1.SetShowHelp(this.m_btnAdvanceSettingsPreferences, ((bool)(resources.GetObject("m_btnAdvanceSettingsPreferences.ShowHelp"))));
+            this.m_btnAdvanceSettingsPreferences.UseVisualStyleBackColor = true;
+            this.m_btnAdvanceSettingsPreferences.Click += new System.EventHandler(this.m_btnAdvanceSettingsPreferences_Click);
+            // 
             // Preferences
             // 
             this.AcceptButton = this.mOKButton;
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.mCancelButton;
+            this.Controls.Add(this.m_btnAdvanceSettingsPreferences);
             this.Controls.Add(this.m_ApplyButton);
             this.Controls.Add(this.m_ResetButton);
             this.Controls.Add(this.m_grpBoxChkBoxListView);
@@ -1339,7 +1329,6 @@ namespace Obi.Dialogs
         private System.Windows.Forms.Button m_btnRecordInLocalDrive;
         private System.Windows.Forms.TextBox m_txtBox_Font;
         private System.Windows.Forms.GroupBox m_gpBox_Font;
-        private System.Windows.Forms.Button btn_AdvanceSettingsAudioPref;
-        private System.Windows.Forms.Button btn_AdvanceSettingsPrjPref;
+        private System.Windows.Forms.Button m_btnAdvanceSettingsPreferences;
     }
 }

@@ -1188,6 +1188,11 @@ m_cb_ChooseFont.Visible = false;
                 m_CheckBoxListView.Visible = true;
                
                 m_grpBoxChkBoxListView.Visible = true;
+
+                m_btnAdvanceSettingsPreferences.Visible = true;
+
+                m_btnAdvanceSettingsPreferences.Text = Localizer.Message("Preferences_AdvanceAudioSettings");
+
                 m_CheckBoxListView.Items.Clear();
               
                 //m_CheckBoxListView.Location = new Point(575,60);//(120, 255);
@@ -1259,6 +1264,8 @@ m_cb_ChooseFont.Visible = false;
 
                 m_CheckBoxListView.Visible = true;
                 m_grpBoxChkBoxListView.Visible = true;
+                m_btnAdvanceSettingsPreferences.Visible = true;
+                m_btnAdvanceSettingsPreferences.Text = Localizer.Message("Preferences_AdvanceProjectSettings");
                 m_CheckBoxListView.Items.Clear();
                 //m_CheckBoxListView.Size = new Size(405,345);//(365, 135);
                 //m_CheckBoxListView.Location = new Point(575,60);//(120, 255);
@@ -1339,6 +1346,7 @@ m_cb_ChooseFont.Visible = false;
 
                 m_CheckBoxListView.Visible = false;
                 m_grpBoxChkBoxListView.Visible = false;
+                m_btnAdvanceSettingsPreferences.Visible = false;
                 m_lblShortcutKeys.Text = m_lblShortcutKeys_text;
             }
             else
@@ -1353,6 +1361,7 @@ m_cb_ChooseFont.Visible = false;
 
                 m_CheckBoxListView.Visible = false;
                 m_grpBoxChkBoxListView.Visible = false;
+                m_btnAdvanceSettingsPreferences.Visible = false;
             }
             if (mTab.SelectedTab == mColorPreferencesTab)
             {
@@ -1362,11 +1371,13 @@ m_cb_ChooseFont.Visible = false;
 
                 m_CheckBoxListView.Visible = false;
                 m_grpBoxChkBoxListView.Visible = false;
+                m_btnAdvanceSettingsPreferences.Visible = false;
             }
             if (mTab.SelectedTab == mAdvanceTab)
             {
                 m_CheckBoxListView.Visible = false;
                 m_grpBoxChkBoxListView.Visible = false;
+                m_btnAdvanceSettingsPreferences.Visible = false;
              //  m_cb_SelectProfile.SelectedIndex = mSettings.Audio_LevelComboBoxIndex;
             }
             if (!m_txtShortcutKeys.Focused) this.AcceptButton = mOKButton;
@@ -3305,25 +3316,16 @@ m_cb_ChooseFont.Visible = false;
             }
         }
 
-        private void mChooseFontCombo_SelectedIndexChanged_1(object sender, EventArgs e)
-        {
-
-        }
-
-        private void btn_AdvanceSettingsPrjPref_Click(object sender, EventArgs e)
-        {
-            OpenAdvanceSettingsDialog();
-        }
-
-        private void btn_AdvanceSettingsAudioPref_Click(object sender, EventArgs e)
-        {
-           OpenAdvanceSettingsDialog();
-        }
-
         private void OpenAdvanceSettingsDialog()
         {
             AdvancePreferencesSettings advanceSettings = new AdvancePreferencesSettings(mSettings, this.mTab.SelectedTab == this.mProjectTab);
             advanceSettings.ShowDialog();
+        }
+
+        private void m_btnAdvanceSettingsPreferences_Click(object sender, EventArgs e)
+        {
+
+            OpenAdvanceSettingsDialog();
         }
 
         }

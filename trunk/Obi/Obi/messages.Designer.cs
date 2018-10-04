@@ -5472,11 +5472,29 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Advance Audio Settings .
+        /// </summary>
+        internal static string Preferences_AdvanceAudioSettings {
+            get {
+                return ResourceManager.GetString("Preferences_AdvanceAudioSettings", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Advance recording mode.
         /// </summary>
         internal static string Preferences_advanced_recording_mode {
             get {
                 return ResourceManager.GetString("Preferences_advanced_recording_mode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Advance Project Settings .
+        /// </summary>
+        internal static string Preferences_AdvanceProjectSettings {
+            get {
+                return ResourceManager.GetString("Preferences_AdvanceProjectSettings", resourceCulture);
             }
         }
         
