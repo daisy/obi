@@ -214,7 +214,21 @@ namespace Obi.ProjectView
             {
                 return mPresentation.FirstSection;
             }
-        } 
+        }
+
+            public bool CanPasteMultiplePhrases
+            {
+                get
+                {
+                    if (mContentView.ListOfPhrasesToCutOrCopy.Count == 0)
+                    {
+                        return false;
+                    }
+
+                    return true;
+                }
+
+            }
 
         public void SaveDefaultMetadatas()
         {

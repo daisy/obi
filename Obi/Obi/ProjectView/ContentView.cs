@@ -448,7 +448,7 @@ namespace Obi.ProjectView
 
 
 
-                if (!(e.Command.ShortDescription == Localizer.Message("copy_phrase") ||
+                if ((e.Command.ShortDescription == Localizer.Message("copy_phrase") ||
                       e.Command.ShortDescription == Localizer.Message("cut_phrase") ||
                       e.Command.ShortDescription == Localizer.Message("paste_phrase")))
                 {
@@ -5224,7 +5224,7 @@ if (thresholdAboveLastNode >= stripControl.Node.PhraseChildCount) thresholdAbove
             Context_AudioProcessing.Enabled = mProjectView.CanExportSelectedNodeAudio;
             ContextBeginMarkToolStripMenuItem.Enabled = mProjectView.CanBeginSpecialNote;
             ContextEndMarkToolStripMenuItem.Enabled = mProjectView.CanEndSpecialNote;
-            ContextPasteMultiplePhrasesToolStripMenuItem.Enabled = !mProjectView.TransportBar.IsRecorderActive;
+            ContextPasteMultiplePhrasesToolStripMenuItem.Enabled = !mProjectView.TransportBar.IsRecorderActive && mProjectView.CanPasteMultiplePhrases;
             }
 
         private bool CanSetSelectedPhraseUsedStatus
