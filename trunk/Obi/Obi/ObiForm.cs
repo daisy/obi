@@ -2315,6 +2315,7 @@ namespace Obi
                 endMarkToolStripMenuItem.Enabled = mProjectView.CanEndSpecialNote;
                 mAutoPageGenerationMenuItem.Enabled = mProjectView.CanAddEmptyPage
                                                           && !mProjectView.TransportBar.IsRecorderActive;
+                m_pasteMultiplePhrasesToolStripMenuItem.Enabled = !mProjectView.TransportBar.IsRecorderActive &&  mProjectView.CanPasteMultiplePhrases;
             }
 
             private void UpdateAudioSelectionBlockMenuItems()
