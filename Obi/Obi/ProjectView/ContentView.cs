@@ -448,9 +448,10 @@ namespace Obi.ProjectView
 
 
 
-                if ((e.Command.ShortDescription == Localizer.Message("copy_phrase") ||
-                      e.Command.ShortDescription == Localizer.Message("cut_phrase") ||
-                      e.Command.ShortDescription == Localizer.Message("paste_phrase")))
+                //if ((e.Command.ShortDescription == Localizer.Message("copy_phrase") ||
+                //      e.Command.ShortDescription == Localizer.Message("cut_phrase") ||
+                //      e.Command.ShortDescription == Localizer.Message("paste_phrase")))
+                if (e.Command.ShortDescription != "PasteMultiplePhrasesCmd")
                 {
                     m_ListOfPhrasesToCutOrCopy.Clear();
                 }
