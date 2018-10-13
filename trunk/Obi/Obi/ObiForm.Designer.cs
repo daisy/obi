@@ -127,6 +127,7 @@ namespace Obi
             this.endMarkToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mPhrases_RenumberPagesMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.m_AutoFillMissingPagesMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.m_pasteMultiplePhrasesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mSkippableNoteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mSkippableBeginNoteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mSkippableEndNoteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -230,7 +231,6 @@ namespace Obi
             this.mStatusStrip = new System.Windows.Forms.StatusStrip();
             this.mStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.mStatusProgressBar = new System.Windows.Forms.ToolStripProgressBar();
-            this.m_pasteMultiplePhrasesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mProjectView = new Obi.ProjectView.ProjectView();
             this.mMenuStrip.SuspendLayout();
             this.mStatusStrip.SuspendLayout();
@@ -950,6 +950,12 @@ namespace Obi
             this.m_AutoFillMissingPagesMenuItem.Name = "m_AutoFillMissingPagesMenuItem";
             this.m_AutoFillMissingPagesMenuItem.Click += new System.EventHandler(this.m_AutoFillMissingPagesMenuItem_Click);
             // 
+            // m_pasteMultiplePhrasesToolStripMenuItem
+            // 
+            this.m_pasteMultiplePhrasesToolStripMenuItem.Name = "m_pasteMultiplePhrasesToolStripMenuItem";
+            resources.ApplyResources(this.m_pasteMultiplePhrasesToolStripMenuItem, "m_pasteMultiplePhrasesToolStripMenuItem");
+            this.m_pasteMultiplePhrasesToolStripMenuItem.Click += new System.EventHandler(this.m_pasteMultiplePhrasesToolStripMenuItem_Click);
+            // 
             // mSkippableNoteToolStripMenuItem
             // 
             resources.ApplyResources(this.mSkippableNoteToolStripMenuItem, "mSkippableNoteToolStripMenuItem");
@@ -1659,12 +1665,6 @@ namespace Obi
             this.mStatusProgressBar.Name = "mStatusProgressBar";
             resources.ApplyResources(this.mStatusProgressBar, "mStatusProgressBar");
             this.mStatusProgressBar.Style = System.Windows.Forms.ProgressBarStyle.Continuous;
-            // 
-            // m_pasteMultiplePhrasesToolStripMenuItem
-            // 
-            this.m_pasteMultiplePhrasesToolStripMenuItem.Name = "m_pasteMultiplePhrasesToolStripMenuItem";
-            resources.ApplyResources(this.m_pasteMultiplePhrasesToolStripMenuItem, "m_pasteMultiplePhrasesToolStripMenuItem");
-            this.m_pasteMultiplePhrasesToolStripMenuItem.Click += new System.EventHandler(this.m_pasteMultiplePhrasesToolStripMenuItem_Click);
             // 
             // mProjectView
             // 

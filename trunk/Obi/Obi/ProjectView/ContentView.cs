@@ -4081,6 +4081,9 @@ if (thresholdAboveLastNode >= stripControl.Node.PhraseChildCount) thresholdAbove
             Context_PropertiesMenuItem.ShortcutKeyDisplayString = ObiForm.RefineKeyboardShortcutStringForAccessibleName(keyboardShortcuts.FormatKeyboardShorcut(keyboardShortcuts.MenuNameDictionary["mView_PhrasePropertiesMenuItem"].Value.ToString()));
             Context_PropertiesMenuItem.AccessibleName = Context_PropertiesMenuItem.Text.Replace("&", "") + " " + Context_PropertiesMenuItem.ShortcutKeyDisplayString;
 
+            ContextPasteMultiplePhrasesToolStripMenuItem.ShortcutKeyDisplayString = ObiForm.RefineKeyboardShortcutStringForAccessibleName(keyboardShortcuts.FormatKeyboardShorcut(keyboardShortcuts.MenuNameDictionary["m_pasteMultiplePhrasesToolStripMenuItem"].Value.ToString()));
+            ContextPasteMultiplePhrasesToolStripMenuItem.AccessibleName = ContextPasteMultiplePhrasesToolStripMenuItem.Text.Replace("&", "") + " " + ContextPasteMultiplePhrasesToolStripMenuItem.ShortcutKeyDisplayString;
+
         }
 
         private bool CanUseKeys { get { return (mSelection == null || !(mSelection is TextSelection)) && !m_IsBlocksVisibilityProcessActive; } }
