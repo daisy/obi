@@ -42,6 +42,7 @@
             this.btnZoomOuttoolStrip = new System.Windows.Forms.ToolStripButton();
             this.btnResettoolStrip = new System.Windows.Forms.ToolStripButton();
             this.btnZoomSelectiontoolStrip = new System.Windows.Forms.ToolStripButton();
+            this.btnPreserveZoomtoolStrip = new System.Windows.Forms.ToolStripButton();
             this.helpProvider1 = new System.Windows.Forms.HelpProvider();
             this.toolStripZoomPanel.SuspendLayout();
             this.SuspendLayout();
@@ -77,8 +78,8 @@
             this.btnZoomIntoolStrip,
             this.btnZoomOuttoolStrip,
             this.btnResettoolStrip,
-            this.btnZoomSelectiontoolStrip});
-            this.toolStripZoomPanel.MinimumSize = new System.Drawing.Size(617, 28);
+            this.btnZoomSelectiontoolStrip,
+            this.btnPreserveZoomtoolStrip});
             this.toolStripZoomPanel.Name = "toolStripZoomPanel";
             this.toolStripZoomPanel.TabStop = true;
             // 
@@ -125,6 +126,12 @@
             this.btnZoomSelectiontoolStrip.Name = "btnZoomSelectiontoolStrip";
             this.btnZoomSelectiontoolStrip.Click += new System.EventHandler(this.mbtnZoomSelectiontoolStrip_Click);
             // 
+            // btnPreserveZoomtoolStrip
+            // 
+            resources.ApplyResources(this.btnPreserveZoomtoolStrip, "btnPreserveZoomtoolStrip");
+            this.btnPreserveZoomtoolStrip.Name = "btnPreserveZoomtoolStrip";
+            this.btnPreserveZoomtoolStrip.Click += new System.EventHandler(this.btnPreserveZoomtoolStrip_Click);
+            // 
             // ZoomWaveform
             // 
             resources.ApplyResources(this, "$this");
@@ -157,6 +164,7 @@
         private System.Windows.Forms.ToolStripButton btnResettoolStrip;
         private System.Windows.Forms.ToolStripButton btnZoomSelectiontoolStrip;
         private System.Windows.Forms.HelpProvider helpProvider1;
+        private System.Windows.Forms.ToolStripButton btnPreserveZoomtoolStrip;
 
     }
 }

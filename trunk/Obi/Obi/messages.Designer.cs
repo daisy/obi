@@ -5490,15 +5490,6 @@ namespace Obi {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Advance Project Settings .
-        /// </summary>
-        internal static string Preferences_AdvanceProjectSettings {
-            get {
-                return ResourceManager.GetString("Preferences_AdvanceProjectSettings", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Allow overwrite,Record directly and Perform phrase detection while recording from transport bar checkboxes will be checked. Do you want to proceed?.
         /// </summary>
         internal static string Preferences_Allow_overwrite {
@@ -8040,11 +8031,29 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Preserve Zoom Checked.
+        /// </summary>
+        internal static string ZoomWaveform_PreserveZoomChecked {
+            get {
+                return ResourceManager.GetString("ZoomWaveform_PreserveZoomChecked", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Preserve zoom for the zoom panel.
         /// </summary>
         internal static string ZoomWaveform_PreserveZoomToolTip {
             get {
                 return ResourceManager.GetString("ZoomWaveform_PreserveZoomToolTip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Preserve Zoom Unhecked.
+        /// </summary>
+        internal static string ZoomWaveform_PreserveZoomUnchecked {
+            get {
+                return ResourceManager.GetString("ZoomWaveform_PreserveZoomUnchecked", resourceCulture);
             }
         }
     }
