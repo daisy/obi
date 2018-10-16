@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
 using System.Data;
+using System.IO;
+using System.Reflection;
 using System.Text;
 using System.Windows.Forms;
 using urakawa.media.timing;
@@ -42,8 +44,9 @@ namespace Obi.ProjectView
         private int m_InitialPanelHeight = 0;
         private double m_PhraseDuration = 0;
         private double m_ZoomIncrementFactor = 0;
-        private CheckBox m_chkPreserveZoom;
         private string m_SelectedPhraseSection = " "; // @ImproveZoomPanel
+        private Image m_PreserveZoomCheckedImage;
+        private Image m_PreserveZoomUnCheckedImage;
            
 
         private KeyboardShortcuts_Settings keyboardShortcuts;
@@ -55,6 +58,14 @@ namespace Obi.ProjectView
             InitializeComponent();
             this.Controls.Add(panelZooomWaveform);       
             this.Controls.Add(btntxtZoomSelected);
+            Assembly myAssembly = Assembly.GetExecutingAssembly();
+            Stream preserveZoomChecked = null;
+            preserveZoomChecked = myAssembly.GetManifestResourceStream("Obi.images.icons.Preserve_Zoom_Checked.png");
+            if(preserveZoomChecked != null)
+            m_PreserveZoomCheckedImage = Image.FromStream(preserveZoomChecked);
+            preserveZoomChecked = myAssembly.GetManifestResourceStream("Obi.images.icons.Preserve_Zoom_Unchecked.png");
+            if (preserveZoomChecked != null)
+            m_PreserveZoomUnCheckedImage = Image.FromStream(preserveZoomChecked);
             helpProvider1.HelpNamespace = Localizer.Message("CHMhelp_file_name");
             helpProvider1.SetHelpNavigator(this, HelpNavigator.Topic);
             helpProvider1.SetHelpKeyword(this, "HTML Files/Exploring the GUI/Obi Views and Transport Bar/Zoomed Waveform view.htm");           
@@ -373,14 +384,18 @@ namespace Obi.ProjectView
 
        public ZoomWaveform(ContentView contentView, Strip strip,EmptyNode node,ProjectView mProjectView):this    ()
        {
-            m_chkPreserveZoom = new CheckBox();
-            m_chkPreserveZoom.Text = Localizer.Message("ZoomWaveform_PreserveZoom");
-            m_chkPreserveZoom.Checked = mProjectView.SaveZoomWaveformZoomLevel;
-           // m_cbPreserveZoom.CheckStateChanged += new EventHandler(m_cbPreserveZoom_CheckStateChanged);
-            ToolStripControlHost host = new ToolStripControlHost(m_chkPreserveZoom);
-            toolStripZoomPanel.Items.Insert(7, host);
-            toolStripZoomPanel.Items[7].ToolTipText = Localizer.Message("ZoomWaveform_PreserveZoomToolTip");
-            
+           
+           if (mProjectView.SaveZoomWaveformZoomLevel)
+           {
+               btnPreserveZoomtoolStrip.Image = m_PreserveZoomCheckedImage;
+               btnPreserveZoomtoolStrip.Text = Localizer.Message("ZoomWaveform_PreserveZoomChecked");
+           }
+           else
+           {
+               btnPreserveZoomtoolStrip.Image = m_PreserveZoomUnCheckedImage;
+               btnPreserveZoomtoolStrip.Text = Localizer.Message("ZoomWaveform_PreserveZoomUnchecked");
+           }
+           
             m_ContentView = contentView;
             m_ProjectView = mProjectView;
             m_ProjectView.SelectionChanged += new EventHandler(ProjectViewSelectionChanged);          
@@ -397,7 +412,6 @@ namespace Obi.ProjectView
             ZoomPanelToolTipInit();
             if (m_ProjectView.SaveZoomWaveformZoomLevel)
             {
-                m_chkPreserveZoom.Checked = m_ProjectView.SaveZoomWaveformZoomLevel;
                 m_ZoomIncrementFactor = m_ProjectView.ZoomWaveformIncrementFactor;
             }
             m_ZoomFactor = 0;
@@ -526,7 +540,7 @@ namespace Obi.ProjectView
                 m_AudioBlock.SetZoomFactorAndHeight(zoomFactor, Height);
 
                 initialWaveformWidth = m_AudioBlock.Waveform.Width;
-                if (m_chkPreserveZoom.Checked)
+                if (mProjectView.SaveZoomWaveformZoomLevel)
                 {
                     m_AudioBlock.Waveform.Width = m_AudioBlock.Waveform.Width + (int)(initialWaveformWidth * m_ZoomIncrementFactor);
                 }
@@ -608,15 +622,6 @@ namespace Obi.ProjectView
 
         }
 
-        void m_cbPreserveZoom_CheckStateChanged(object sender, EventArgs e)
-        {
-            if (m_chkPreserveZoom.Checked)
-            {
-                m_ProjectView.ZoomWaveformIncrementFactor = m_ZoomIncrementFactor;
-                //m_ZoomFactor = m_ZoomIncrementFactor
-            }
-            //throw new Exception("The method or operation is not implemented.");
-        }
 
         void ZoomWaveform_Load(object sender, EventArgs e)
         {
@@ -696,11 +701,7 @@ namespace Obi.ProjectView
      string g=keyboardShortcuts.ZoomPanel_Close.Value.ToString();
      string p=g;
             //this.Focus();
-     if (keyData == Keys.Space && this.ActiveControl == m_chkPreserveZoom)
-     {
-         return false;
-     }
-             if (keyData == keyboardShortcuts.ContentView_TransportBarRecordSingleKey.Value)
+              if (keyData == keyboardShortcuts.ContentView_TransportBarRecordSingleKey.Value)
              {
                  return true;
              }
@@ -938,14 +939,12 @@ namespace Obi.ProjectView
           {
                 m_buttonSizeinit = false;
                 
-                if (m_chkPreserveZoom.Checked)
+               if (m_ProjectView.SaveZoomWaveformZoomLevel)
                 {
-                    m_ProjectView.SaveZoomWaveformZoomLevel = true;
                     m_ProjectView.ZoomWaveformIncrementFactor = m_ZoomIncrementFactor;
                 }
                 else
                 {
-                    m_ProjectView.SaveZoomWaveformZoomLevel = false;
                     m_ProjectView.ZoomWaveformIncrementFactor = 0;
                 }
                 m_ContentView.RemovePanel();
@@ -1243,6 +1242,23 @@ namespace Obi.ProjectView
         private void mtoolTipZoomWaveform_Popup(object sender, PopupEventArgs e)
         {
             e.ToolTipSize = TextRenderer.MeasureText(mtoolTipZoomWaveform.GetToolTip(e.AssociatedControl), new Font(m_ProjectView.ObiForm.Settings.ObiFont, this.Font.Size));
+        }
+
+        private void btnPreserveZoomtoolStrip_Click(object sender, EventArgs e)
+        {
+            m_ProjectView.SaveZoomWaveformZoomLevel = !m_ProjectView.SaveZoomWaveformZoomLevel;
+            if (m_ProjectView.SaveZoomWaveformZoomLevel)
+            {
+                m_ProjectView.ZoomWaveformIncrementFactor = m_ZoomIncrementFactor;
+                btnPreserveZoomtoolStrip.Image = m_PreserveZoomCheckedImage;
+                btnPreserveZoomtoolStrip.Text = Localizer.Message("ZoomWaveform_PreserveZoomChecked");
+                //m_ZoomFactor = m_ZoomIncrementFactor
+            }
+            else
+            {
+                btnPreserveZoomtoolStrip.Image = m_PreserveZoomUnCheckedImage;
+                btnPreserveZoomtoolStrip.Text = Localizer.Message("ZoomWaveform_PreserveZoomUnchecked");
+            }
         }
 
       
