@@ -149,6 +149,12 @@
     <Compile Include="Dialogs\About.Designer.cs">
       <DependentUpon>About.cs</DependentUpon>
     </Compile>
+    <Compile Include="Dialogs\AdvancePreferencesSettings.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\AdvancePreferencesSettings.Designer.cs">
+      <DependentUpon>AdvancePreferencesSettings.cs</DependentUpon>
+    </Compile>
     <Compile Include="Dialogs\AssignSpecialNodeMark.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -252,7 +258,9 @@
     <Compile Include="Dialogs\MultipleOptionDialog.Designer.cs">
       <DependentUpon>MultipleOptionDialog.cs</DependentUpon>
     </Compile>
-    <Compile Include="Dialogs\ObiConfiguration.cs" />
+    <Compile Include="Dialogs\ObiConfiguration.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Dialogs\ObiConfiguration.Designer.cs">
       <DependentUpon>ObiConfiguration.cs</DependentUpon>
     </Compile>
@@ -604,6 +612,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\About.zh-Hant.resx">
       <DependentUpon>About.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\AdvancePreferencesSettings.resx">
+      <DependentUpon>AdvancePreferencesSettings.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\AssignSpecialNodeMark.de.resx">
       <DependentUpon>AssignSpecialNodeMark.cs</DependentUpon>
@@ -3110,6 +3121,8 @@
     <Content Include="images\obird_right_48.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <EmbeddedResource Include="images\Preserve_Zoom_Checked.png" />
+    <EmbeddedResource Include="images\Preserve_Zoom_Unchecked.png" />
     <Content Include="low.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
