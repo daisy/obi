@@ -8049,7 +8049,7 @@ namespace Obi {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Preserve Zoom Unhecked.
+        ///   Looks up a localized string similar to Preserve Zoom Unchecked.
         /// </summary>
         internal static string ZoomWaveform_PreserveZoomUnchecked {
             get {

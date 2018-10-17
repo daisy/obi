@@ -3061,7 +3061,7 @@ You can always change settings later from Obi Preferences.</value>
     <value>Preserve Zoom Checked</value>
   </data>
   <data name="ZoomWaveform_PreserveZoomUnchecked" xml:space="preserve">
-    <value>Preserve Zoom Unhecked</value>
+    <value>Preserve Zoom Unchecked</value>
   </data>
 
 
