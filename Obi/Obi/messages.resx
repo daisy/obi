@@ -3057,12 +3057,16 @@ You can always change settings later from Obi Preferences.</value>
   <data name="Preferences_AdvanceAudioSettings" xml:space="preserve">
     <value>Advance Audio Settings </value>
   </data>
+  <data name="Preferences_AdvanceProjectSettings" xml:space="preserve">
+    <value>Advance Project Settings </value>
+  </data>
   <data name="ZoomWaveform_PreserveZoomChecked" xml:space="preserve">
     <value>Preserve Zoom Checked</value>
   </data>
   <data name="ZoomWaveform_PreserveZoomUnchecked" xml:space="preserve">
     <value>Preserve Zoom Unchecked</value>
   </data>
-
-
+  <data name="Audio_RemoveAccentsFromDaisy2ExportFileNames" xml:space="preserve">
+    <value>Remove accents from file names during Daisy 2.02 Export </value>
+  </data>
 </root>

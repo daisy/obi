@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Text;
 using System.Xml;
 using System.IO;
@@ -36,12 +37,13 @@ namespace Obi.ImportExport
         private EmptyNode m_FirstPageNumberedPhraseOfFirstSection;
         private int m_MaxDepth = 0 ;
         private List<string> m_FilesList = null;
+        private Settings m_Settings;
         //private bool m_EncodeToMP3;
         //private int m_BitRate_Mp3;
 
         public DAISY202Export(ObiPresentation presentation, string exportDirectory, bool encodeToMp3, double mp3BitRate, 
             AudioLib.SampleRate sampleRate, bool stereo,
-            int audioFileSectionLevel)
+            int audioFileSectionLevel,Settings settings)
             :
             base(presentation, exportDirectory, null, encodeToMp3, mp3BitRate,
             sampleRate, stereo,
@@ -54,8 +56,9 @@ namespace Obi.ImportExport
             m_NextSectionPageAdjustmentDictionary = new Dictionary<SectionNode, EmptyNode>();
             m_AudioFileSectionLevel = audioFileSectionLevel;
             m_FilesList = new List<string>();
-            //m_EncodeToMP3 = encodeToMP3;
-            
+            m_Settings = settings;
+                //m_EncodeToMP3 = encodeToMP3;
+
             }
 
         private bool m_AlwaysIgnoreIndentation = false;
@@ -397,8 +400,27 @@ namespace Obi.ImportExport
 
                             XmlNode audioNode = smilDocument.CreateElement(null, "audio", smilBodyNode.NamespaceURI);
                             seqNode_AudioParent.AppendChild(audioNode);
-                            string relativeSRC = AddSectionNameToAudioFile? 
-                                AddSectionNameToAudioFileName(externalMedia.Src, phrase.ParentAs<SectionNode>().Label): 
+                            string tempSectionName = null;
+                            if (m_Settings.Audio_RemoveAccentsFromDaisy2ExportFileNames && AddSectionNameToAudioFile)
+                            {
+                                tempSectionName = phrase.ParentAs<SectionNode>().Label;
+
+                                // 1st method
+
+                                tempSectionName = RemoveDiacritics(tempSectionName);
+
+                                // 2nd method
+                                //byte[] tempBytes;
+                                //tempBytes = System.Text.Encoding.GetEncoding("ISO-8859-8").GetBytes(tempSectionName);
+                                //string asciiStr = System.Text.Encoding.UTF8.GetString(tempBytes);
+                                //tempSectionName = asciiStr;
+
+                            }
+                            //string relativeSRC = AddSectionNameToAudioFile? 
+                            //    AddSectionNameToAudioFileName(externalMedia.Src, phrase.ParentAs<SectionNode>().Label): 
+                            //    Path.GetFileName(externalMedia.Src);
+                            string relativeSRC = AddSectionNameToAudioFile ?
+                                AddSectionNameToAudioFileName(externalMedia.Src, tempSectionName) :
                                 Path.GetFileName(externalMedia.Src);
                             CreateAppendXmlAttribute(smilDocument, audioNode, "src", relativeSRC);
                             CreateAppendXmlAttribute(smilDocument, audioNode, "clip-begin",
@@ -889,6 +911,23 @@ namespace Obi.ImportExport
                 return time.ToString("", System.Globalization.CultureInfo.CreateSpecificCulture("en-US"));
             }
         }
+
+            private string RemoveDiacritics(string text)
+            {
+                var normalizedString = text.Normalize(NormalizationForm.FormD);
+                var stringBuilder = new StringBuilder();
+
+                foreach (var c in normalizedString)
+                {
+                    var unicodeCategory = CharUnicodeInfo.GetUnicodeCategory(c);
+                    if (unicodeCategory != UnicodeCategory.NonSpacingMark)
+                    {
+                        stringBuilder.Append(c);
+                    }
+                }
+
+                return stringBuilder.ToString().Normalize(NormalizationForm.FormC);
+            }
 
     }
     }
