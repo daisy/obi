@@ -3144,7 +3144,7 @@ ref string exportDirectoryDAISY3,
                         DAISY202ExportInstance = new Obi.ImportExport.DAISY202Export(
                             mSession.Presentation, exportPathDAISY202, ExportDialogDAISY202.EncodeAudioFiles, ExportDialogDAISY202.BitRate,
                             AudioLib.SampleRate.Hz44100, mSettings.Audio_Channels == 2,
-                            ExportDialogDAISY202.LevelSelection);
+                            ExportDialogDAISY202.LevelSelection, mSettings);
 
                         DAISY202ExportInstance.AddSectionNameToAudioFile = ExportDialogDAISY202.AppendSectionNameToAudioFileName;
                         DAISY202ExportInstance.AudioFileNameCharsLimit = ExportDialogDAISY202.AudioFileNameCharsLimit;
@@ -3259,7 +3259,7 @@ ref string exportDirectoryEPUB3)
                     configInstance.DAISY202ExportParameters.ExportEncodingBitrate,
                         configInstance.DAISY202ExportParameters.ExportSampleRate , 
                     configInstance.DAISY202ExportParameters.ExportChannels == 2,
-                        100);
+                        100,mSettings);
 
                     DAISY202ExportInstance.AddSectionNameToAudioFile = false;
                     DAISY202ExportInstance.AudioFileNameCharsLimit = 100;

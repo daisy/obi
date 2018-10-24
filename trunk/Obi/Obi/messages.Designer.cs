@@ -439,6 +439,15 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Remove accents from file names during Daisy 2.02 Export .
+        /// </summary>
+        internal static string Audio_RemoveAccentsFromDaisy2ExportFileNames {
+            get {
+                return ResourceManager.GetString("Audio_RemoveAccentsFromDaisy2ExportFileNames", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Revert audio overwrite behaviour for record on selection.
         /// </summary>
         internal static string Audio_RevertOverwriteBehaviourForRecordOnSelection {
@@ -5486,6 +5495,15 @@ namespace Obi {
         internal static string Preferences_advanced_recording_mode {
             get {
                 return ResourceManager.GetString("Preferences_advanced_recording_mode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Advance Project Settings .
+        /// </summary>
+        internal static string Preferences_AdvanceProjectSettings {
+            get {
+                return ResourceManager.GetString("Preferences_AdvanceProjectSettings", resourceCulture);
             }
         }
         

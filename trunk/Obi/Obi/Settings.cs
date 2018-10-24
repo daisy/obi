@@ -327,6 +327,9 @@ public bool Project_ImportNCCFileWithWindows1252Encoding ; // useful for importi
         [OptionalField]
         public bool IsObiConfigurationDone;
 
+        [OptionalField] 
+        public bool Audio_RemoveAccentsFromDaisy2ExportFileNames;
+
         protected static void InitializeDefaultSettings(Settings settings)
         {
             settings.Audio_Channels = 1;
@@ -476,6 +479,7 @@ public bool Project_ImportNCCFileWithWindows1252Encoding ; // useful for importi
             settings.Project_MaximumPhrasesSelectLimit = true;
             settings.Audio_RevertOverwriteBehaviourForRecordOnSelection = false;
             settings.IsObiConfigurationDone = false;
+            settings.Audio_RemoveAccentsFromDaisy2ExportFileNames = false;
         }
 
         /// <summary>
