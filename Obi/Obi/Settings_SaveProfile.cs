@@ -87,6 +87,7 @@ namespace Obi
                newSettings.Audio_MergeFirstTwoPhrasesAfterPhraseDetectionWhileRecording= this.Audio_MergeFirstTwoPhrasesAfterPhraseDetectionWhileRecording;
                newSettings.Audio_AutoPlayAfterRecordingStops = this.Audio_AutoPlayAfterRecordingStops;
                newSettings.Audio_RevertOverwriteBehaviourForRecordOnSelection = this.Audio_RevertOverwriteBehaviourForRecordOnSelection;
+               newSettings.Audio_RemoveAccentsFromDaisy2ExportFileNames = this.Audio_RemoveAccentsFromDaisy2ExportFileNames;
 
                if (!string.IsNullOrEmpty(this.Audio_LocalRecordingDirectory) && System.IO.Directory.Exists(this.Audio_LocalRecordingDirectory))
                {
@@ -472,7 +473,8 @@ namespace Obi
                && this.Audio_RecordInFirstEmptyPhraseWithRecordSectionCommand == settings.Audio_RecordInFirstEmptyPhraseWithRecordSectionCommand
                && this.Audio_MergeFirstTwoPhrasesAfterPhraseDetectionWhileRecording == settings.Audio_MergeFirstTwoPhrasesAfterPhraseDetectionWhileRecording
                && this.Audio_AutoPlayAfterRecordingStops== settings.Audio_AutoPlayAfterRecordingStops
-               && this.Audio_RevertOverwriteBehaviourForRecordOnSelection == settings.Audio_RevertOverwriteBehaviourForRecordOnSelection)
+               && this.Audio_RevertOverwriteBehaviourForRecordOnSelection == settings.Audio_RevertOverwriteBehaviourForRecordOnSelection
+               && this.Audio_RemoveAccentsFromDaisy2ExportFileNames == settings.Audio_RemoveAccentsFromDaisy2ExportFileNames)
            {
                audioPreferencesMatch = true ;
            }
