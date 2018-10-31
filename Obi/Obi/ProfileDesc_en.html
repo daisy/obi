@@ -13,8 +13,7 @@
 <p>Audio Tab:-</p>
 <table border="3">
 <tr>
-  <td>Retain initial silence while phrase detection</td>
-  <td>If checked, retains the initial silence during the process of Auto-splitting using phrase detection. If unchecked, discards the initial silence.</td>   
+    <td> <strong>Basic Settings</strong> </td>
 </tr>
 <tr>
   <td>Allow overwrite while recording</td>
@@ -23,10 +22,6 @@
 <tr>
   <td>Always record directly from transport bar</td>
   <td>If checked, Obi will deactivate the toggling behavior of Start Monitoring/Record button of Transport Bar and always show Record Directly in its place. As a result, each click on that button will initiate recording.</td>
-</tr>
-<tr>
-  <td>Limit max phrase duration to 50 minutes</td>
-  <td>If checked, sets an upper limit for the length of phrase to be 50 minutes. Otherwise, allows phrases of any length to exist.</td>
 </tr>
 <tr>
   <td>Show live waveform while recording</td>
@@ -41,16 +36,27 @@
   <td>If checked, Obi renumbers the pages after the recorded audio when the record command is stopped.</td>
 </tr>
 <tr>
+  <td>Enforce single audio cursor</td>
+  <td>By checking this checkbox, you instruct Obi to use only one cursor instead of two. In this case, red cursor will automatically be mapped to the location of blue.</td>
+</tr>
+<tr>
+    <td> <strong>Advance Settings</strong> </td>
+</tr>
+<tr>
+  <td>Retain initial silence while phrase detection</td>
+  <td>If checked, retains the initial silence during the process of Auto-splitting using phrase detection. If unchecked, discards the initial silence.</td>   
+</tr>
+<tr>
+  <td>Limit max phrase duration to 50 minutes</td>
+  <td>If checked, sets an upper limit for the length of phrase to be 50 minutes. Otherwise, allows phrases of any length to exist.</td>
+</tr>
+<tr>
   <td>Merge first 2 phrases detected by phrase detection</td>
   <td>If checked, merges the first two phrases resulting from the process of auto-splitting using phrase detection.</td>
 </tr>
 <tr>
   <td>Fast play without pitch change</td>
   <td>If checked, Obi preserves the pitch while increasing or decreasing the fast play rate.</td>
-</tr>
-<tr>
-  <td>Enforce single audio cursor</td>
-  <td>By checking this checkbox, you instruct Obi to use only one cursor instead of two. In this case, red cursor will automatically be mapped to the location of blue.</td>
 </tr>
 <tr>
   <td>Prevent on the fly phrase detection on pages</td>
@@ -60,16 +66,11 @@
 <p>Project Tab:-</p>
 <table  border="3">
 <tr>
+    <td> <strong>Basic Settings</strong> </td>
+</tr>
+<tr>
   <td>Fix content view width</td>
   <td>If checked, Obi will not disturb the orientation of other visible phrases even if the length of a phrase exceeds the current width of Content view. If unchecked, Obi will alter the width of Content view with each elongated phrase and shift other phrases according to the altered width.</td>
-</tr>
-<tr>
-  <td>Optimize memory utilization</td>
-  <td>If checked, optimizes the memory utilized by Obi.</td>
-</tr>
-<tr>
-  <td>Disable roll back for cleanup</td>
-    <td>If checked, Obi will not allow the users to rollback the Cleanup command.  </td>
 </tr>
 <tr>
   <td>Enable free disk space check</td>
@@ -78,10 +79,6 @@
 <tr>
   <td>Save project when recording ends</td>
   <td>If checked, Obi saves the modifications to the project file as soon as recording is stopped or paused.</td>
-</tr>
-<tr>
-  <td>Check for Updates</td>
-  <td>If checked, Obi automatically checks for new updates to the application and informs the user.</td>
 </tr>
 <tr>
   <td>Show waveforms in Content view</td>
@@ -100,6 +97,21 @@
     <td>If checked, advance properties like "Project file count" will be shown in project properties dialog</td>
 </tr>
 <tr>
+    <td> <strong>Advance Settings</strong> </td>
+</tr>
+<tr>
+  <td>Optimize memory utilization</td>
+  <td>If checked, optimizes the memory utilized by Obi.</td>
+</tr>
+<tr>
+  <td>Disable roll back for cleanup</td>
+    <td>If checked, Obi will not allow the users to rollback the Cleanup command.  </td>
+</tr>
+<tr>
+  <td>Check for Updates</td>
+  <td>If checked, Obi automatically checks for new updates to the application and informs the user.</td>
+</tr>
+<tr>
     <td>Maximum 500 phrases can be selected for multi phrase operations like cut and copy</td>
     <td>If checked, user is allowed to select at most 500 phrases for doing multiphrase operatons like cut and copy. This helps in improving efficiency of these operations.</td>
 </tr>
@@ -110,8 +122,7 @@
 <p>Audio Tab:-</p>
 <table border="3" >
 <tr>
-  <td>Retain initial silence while phrase detection</td>
-  <td>If checked, retains the initial silence during the process of Auto-splitting using phrase detection. If unchecked, discards the initial silence.</td>   
+    <td> <strong>Basic Settings</strong> </td>
 </tr>
 <tr>
   <td>Allow overwrite while recording</td>
@@ -122,16 +133,23 @@
   <td>If checked, Obi will deactivate the toggling behavior of Start Monitoring/Record button of Transport Bar and always show Record Directly in its place. As a result, each click on that button will initiate recording.</td>
 </tr>
 <tr>
-  <td>Limit max phrase duration to 50 minutes</td>
-  <td>If checked, sets an upper limit for the length of phrase to be 50 minutes. Otherwise, allows phrases of any length to exist.</td>
-</tr>
-<tr>
   <td>Perform phrase detection while recording</td>
   <td>If checked, Obi applies phrase detection to the audio being recorded on the run. At the end of recording, the recorded content will be split at the detected points.</td>
 </tr>
 <tr>
   <td>Renumber the following pages when recording ends</td>
   <td>If checked, Obi renumbers the pages after the recorded audio when the record command is stopped.</td>
+</tr>
+<tr>
+    <td> <strong>Advance Settings</strong> </td>
+</tr>
+<tr>
+  <td>Retain initial silence while phrase detection</td>
+  <td>If checked, retains the initial silence during the process of Auto-splitting using phrase detection. If unchecked, discards the initial silence.</td>   
+</tr>
+<tr>
+  <td>Limit max phrase duration to 50 minutes</td>
+  <td>If checked, sets an upper limit for the length of phrase to be 50 minutes. Otherwise, allows phrases of any length to exist.</td>
 </tr>
 <tr>
   <td>Fast play without pitch change</td>
@@ -145,16 +163,11 @@
 <p>Project Tab:-</p>
 <table  border="3">
 <tr>
+    <td> <strong>Basic Settings</strong> </td>
+</tr>
+<tr>
   <td>Fix content view width</td>
   <td>If checked, Obi will not disturb the orientation of other visible phrases even if the length of a phrase exceeds the current width of Content view. If unchecked, Obi will alter the width of Content view with each elongated phrase and shift other phrases according to the altered width.</td>
-</tr>
-<tr>
-  <td>Optimize memory utilization</td>
-  <td>If checked, optimizes the memory utilized by Obi.</td>
-</tr>
-<tr>
-  <td>Disable roll back for cleanup</td>
-    <td>If checked, Obi will not allow the users to rollback the Cleanup command.  </td>
 </tr>
 <tr>
   <td>Enable free disk space check</td>
@@ -163,10 +176,6 @@
 <tr>
   <td>Save project when recording ends</td>
   <td>If checked, Obi saves the modifications to the project file as soon as recording is stopped or paused.</td>
-</tr>
-<tr>
-  <td>Check for Updates</td>
-  <td>If checked, Obi automatically checks for new updates to the application and informs the user.</td>
 </tr>
 <tr>
   <td>Show waveforms in Content view</td>
@@ -181,6 +190,21 @@
     <td>Lets you enable or disable mouse wheel scrolling for Content view.</td>
 </tr>
 <tr>
+    <td> <strong>Advance Settings</strong> </td>
+</tr>
+<tr>
+  <td>Optimize memory utilization</td>
+  <td>If checked, optimizes the memory utilized by Obi.</td>
+</tr>
+<tr>
+  <td>Disable roll back for cleanup</td>
+    <td>If checked, Obi will not allow the users to rollback the Cleanup command.  </td>
+</tr>
+<tr>
+  <td>Check for Updates</td>
+  <td>If checked, Obi automatically checks for new updates to the application and informs the user.</td>
+</tr>
+<tr>
     <td>Maximum 500 phrases can be selected for multi phrase operations like cut and copy</td>
     <td>If checked, user is allowed to select at most 500 phrases for doing multiphrase operatons like cut and copy. This helps in improving efficiency of these operations.</td>
 </tr>
@@ -190,7 +214,16 @@
 <p>In Basic mode following checkboxes are checked</p>
 <p>Audio Tab:-</p>
 <table border="3" >
-
+<tr>
+    <td> <strong>Basic Settings</strong> </td>
+</tr>
+<tr>
+  <td>Renumber the following pages when recording ends</td>
+  <td>If checked, Obi renumbers the pages after the recorded audio when the record command is stopped.</td>
+</tr>
+<tr>
+    <td> <strong>Advance Settings</strong> </td>
+</tr>
 <tr>
   <td>Retain initial silence while phrase detection</td>
   <td>If checked, retains the initial silence during the process of Auto-splitting using phrase detection. If unchecked, discards the initial silence.</td>   
@@ -198,10 +231,6 @@
 <tr>
   <td>Limit max phrase duration to 50 minutes</td>
   <td>If checked, sets an upper limit for the length of phrase to be 50 minutes. Otherwise, allows phrases of any length to exist.</td>
-</tr>
-<tr>
-  <td>Renumber the following pages when recording ends</td>
-  <td>If checked, Obi renumbers the pages after the recorded audio when the record command is stopped.</td>
 </tr>
 <tr>
   <td>Fast play without pitch change</td>
@@ -215,16 +244,11 @@
 <p>Project Tab:-</p>
 <table  border="3">
 <tr>
+    <td> <strong>Basic Settings</strong> </td>
+</tr>
+<tr>
   <td>Fix content view width</td>
   <td>If checked, Obi will not disturb the orientation of other visible phrases even if the length of a phrase exceeds the current width of Content view. If unchecked, Obi will alter the width of Content view with each elongated phrase and shift other phrases according to the altered width.</td>
-</tr>
-<tr>
-  <td>Optimize memory utilization</td>
-  <td>If checked, optimizes the memory utilized by Obi.</td>
-</tr>
-<tr>
-  <td>Disable roll back for cleanup</td>
-    <td>If checked, Obi will not allow the users to rollback the Cleanup command.  </td>
 </tr>
 <tr>
   <td>Enable free disk space check</td>
@@ -233,10 +257,6 @@
 <tr>
   <td>Save project when recording ends</td>
   <td>If checked, Obi saves the modifications to the project file as soon as recording is stopped or paused.</td>
-</tr>
-<tr>
-  <td>Check for Updates</td>
-  <td>If checked, Obi automatically checks for new updates to the application and informs the user.</td>
 </tr>
 <tr>
   <td>Show waveforms in Content view</td>
@@ -251,6 +271,21 @@
   <td>Lets you enable or disable mouse wheel scrolling for Content view.</td>
 </tr>
 <tr>
+    <td> <strong>Advance Settings</strong> </td>
+</tr>
+<tr>
+  <td>Optimize memory utilization</td>
+  <td>If checked, optimizes the memory utilized by Obi.</td>
+</tr>
+<tr>
+  <td>Disable roll back for cleanup</td>
+    <td>If checked, Obi will not allow the users to rollback the Cleanup command.  </td>
+</tr>
+<tr>
+  <td>Check for Updates</td>
+  <td>If checked, Obi automatically checks for new updates to the application and informs the user.</td>
+</tr>
+<tr>
     <td>Maximum 500 phrases can be selected for multi phrase operations like cut and copy</td>
     <td>If checked, user is allowed to select at most 500 phrases for doing multiphrase operatons like cut and copy. This helps in improving efficiency of these operations.</td>
 </tr>
@@ -261,16 +296,11 @@
 <p>Audio Tab:-</p>
 <table border="3" >
 <tr>
+    <td> <strong>Basic Settings</strong> </td>
+</tr>
+<tr>
   <td>Audio Clues</td>
   <td>Enables the audio clues, disables otherwise. Audio clues provide audio indications for non-visual users.</td>   
-</tr>
-<tr>
-  <td>Retain initial silence while phrase detection</td>
-  <td>If checked, retains the initial silence during the process of Auto-splitting using phrase detection. If unchecked, discards the initial silence.</td>   
-</tr>
-<tr>
-  <td>Use record button to preview before recording</td>
-  <td>If checked, plays a small portion of audio prior to the marked cursor position before initiating the Record command. If unchecked, starts recording directly.</td>
 </tr>
 <tr>
   <td>Use Space key to stop recording</td>
@@ -285,10 +315,6 @@
   <td>If checked, Obi will deactivate the toggling behavior of Start Monitoring/Record button of Transport Bar and always show Record Directly in its place. As a result, each click on that button will initiate recording.</td>
 </tr>
 <tr>
-  <td>Limit max phrase duration to 50 minutes</td>
-  <td>If checked, sets an upper limit for the length of phrase to be 50 minutes. Otherwise, allows phrases of any length to exist.</td>
-</tr>
-<tr>
   <td>Show live waveform while recording</td>
   <td>If checked, draws the waveform of the audio content being recorded concurrently.</td>
 </tr>
@@ -299,14 +325,6 @@
 <tr>
   <td>Renumber the following pages when recording ends</td>
   <td>If checked, Obi renumbers the pages after the recorded audio when the record command is stopped.</td>
-</tr>
-<tr>
-  <td>Merge first 2 phrases detected by phrase detection</td>
-  <td>If checked, merges the first two phrases resulting from the process of auto-splitting using phrase detection.</td>
-</tr>
-<tr>
-  <td>Fast play without pitch change</td>
-  <td>If checked, Obi preserves the pitch while increasing or decreasing the fast play rate.</td>
 </tr>
 <tr>
   <td>Use Record Button to record over subsequent audio</td>
@@ -325,10 +343,6 @@
   <td>If checked, Obi does not deselect the selection on pressing Ctrl+Space twice. If this check box is not checked, it will result in execution of the Select nothing command.</td>
 </tr>
 <tr>
-  <td>Preserve pages while recording over subsequent audio</td>
-  <td>If checked, the command Record over subsequent audio does not overwrite the page phrases but retains them in the section after the newly recorded audio.</td>
-</tr>
-<tr>
   <td>Always monitor in Recording Toolbar</td>
   <td>If checked, the Monitor Continuously check box of the Recording Toolbar is checked by default, and therefore, audio input is always monitored.</td>
 </tr>
@@ -345,6 +359,41 @@
   <td>If checked, Quick cleanup menu item in Tools menu is enabled. Quick cleanup skips the audio files where cleanup has already been performed.</td>
 </tr>
 <tr>
+  <td>Preserve Audio Zoom for Content View </td>
+  <td>If checked, Obi will save the current state of audio zoom across Obi sessions. </td>
+</tr>
+<tr>
+  <td>Show cursor time in Transport Bar in stop state</td>
+  <td>If checked, the Time Display field of Transport Bar shows the current cursor time in the stopped state. Otherwise, this field will always show 0 in the stopped state. Please note that this feature works only for the Elapsed in phrase and the Elapsed in Section options of Time Display.</td>
+</tr>
+<tr>
+    <td> <strong>Advance Settings</strong> </td>
+</tr>
+<tr>
+  <td>Retain initial silence while phrase detection</td>
+  <td>If checked, retains the initial silence during the process of Auto-splitting using phrase detection. If unchecked, discards the initial silence.</td>   
+</tr>
+<tr>
+  <td>Use record button to preview before recording</td>
+  <td>If checked, plays a small portion of audio prior to the marked cursor position before initiating the Record command. If unchecked, starts recording directly.</td>
+</tr>
+<tr>
+  <td>Limit max phrase duration to 50 minutes</td>
+  <td>If checked, sets an upper limit for the length of phrase to be 50 minutes. Otherwise, allows phrases of any length to exist.</td>
+</tr>
+<tr>
+  <td>Merge first 2 phrases detected by phrase detection</td>
+  <td>If checked, merges the first two phrases resulting from the process of auto-splitting using phrase detection.</td>
+</tr>
+<tr>
+  <td>Fast play without pitch change</td>
+  <td>If checked, Obi preserves the pitch while increasing or decreasing the fast play rate.</td>
+</tr>
+<tr>
+  <td>Preserve pages while recording over subsequent audio</td>
+  <td>If checked, the command Record over subsequent audio does not overwrite the page phrases but retains them in the section after the newly recorded audio.</td>
+</tr>
+<tr>
   <td>Ensure cursor visibility when preview before recording is undone</td>
   <td>If checked, cursor will be visible when preview before recording is undone.</td>
 </tr>
@@ -357,16 +406,8 @@
   <td>If checked, Obi will not apply phrase detection on the page phrases while live recording.</td>
 </tr>
 <tr>
-  <td>Preserve Audio Zoom for Content View </td>
-  <td>If checked, Obi will save the current state of audio zoom across Obi sessions. </td>
-</tr>
-<tr>
   <td>After playback, select the last phrase played</td>
   <td>If checked, Obi moves the focus to the last phrase played in the playback when playback stops. Otherwise, the focus remains on the phrase from where playback was started.</td>
-</tr>
-<tr>
-  <td>Show cursor time in Transport Bar in stop state</td>
-  <td>If checked, the Time Display field of Transport Bar shows the current cursor time in the stopped state. Otherwise, this field will always show 0 in the stopped state. Please note that this feature works only for the Elapsed in phrase and the Elapsed in Section options of Time Display.</td>
 </tr>
 <tr>
   <td>Record in first empty phrase with record section command</td>
@@ -384,6 +425,9 @@
 <p>Project Tab:-</p>
 <table  border="3">
 <tr>
+    <td> <strong>Basic Settings</strong> </td>
+</tr>
+<tr>
   <td>Open last project</td>
   <td>If checked, Obi opens the last project opened in previous session.</td>
 </tr>
@@ -396,14 +440,6 @@
   <td>If checked, Obi will not disturb the orientation of other visible phrases even if the length of a phrase exceeds the current width of Content view. If unchecked, Obi will alter the width of Content view with each elongated phrase and shift other phrases according to the altered width.</td>
 </tr>
 <tr>
-  <td>Optimize memory utilization</td>
-  <td>If checked, optimizes the memory utilized by Obi.</td>
-</tr>
-<tr>
-  <td>Disable roll back for cleanup</td>
-    <td>If checked, Obi will not allow the users to rollback the Cleanup command.  </td>
-</tr>
-<tr>
   <td>Enable free disk space check</td>
   <td>If checked, checks for available disk space and warns the users during Record, Save, and Import operations.</td>
 </tr>
@@ -412,16 +448,8 @@
   <td>If checked, Obi saves the modifications to the project file as soon as recording is stopped or paused.</td>
 </tr>
 <tr>
-  <td>Check for Updates</td>
-  <td>If checked, Obi automatically checks for new updates to the application and informs the user.</td>
-</tr>
-<tr>
   <td>Show waveforms in Content view</td>
   <td>If checked, Obi displays the waveforms beneath the phrase labels in the Content view. If unchecked, the waveforms are hidden and the length of the contained audio is displayed instead.</td>
-</tr>
-<tr>
-  <td>Always ignore indentation for DAISY export files</td>
-  <td>If checked, the exported files (such as SMIL, OPF, etc.) will not be indented for human readability.</td>
 </tr>
 <tr>
   <td>Highlight empty sections in TOC view</td>
@@ -448,24 +476,12 @@
   <td>Lets you enable or disable mouse wheel scrolling for Content view.</td>
 </tr>
 <tr>
-  <td>Disable collapse of selected section in TOC View</td>
-  <td>If checked, double-clicking the selected section in TOC view does not collapse or expand it.</td>
-</tr>
-<tr>
   <td>Open Obi in maximize state</td>
   <td>Opens Obi application window in the maximized state.</td>
 </tr>
 <tr>
-  <td>Use Vision Australia rule for XHTML export</td>
-  <td>If checked, the XHTML export is done according to the rules specified by Vision Australia.</td>
-</tr>
-<tr>
   <td>Enlarge phrases as per increase in screen resolution</td>
   <td>If checked, Obi enlarges the phrases with the increase in screen resolution to preserve their orientation in the Content view. This results in improved efficiency as it prevents accumulation of large number of waveforms in the view.</td>
-</tr>
-<tr>
-  <td>Freeze TOC View Width</td>
-  <td>If checked, Obi freezes the current width of TOC view; hence disallowing automatic or manual adjustments to it.</td>
 </tr>
 <tr>
   <td>Show advance properties in properties dialog</td>
@@ -484,6 +500,37 @@
   <td>When the commands like Go to page, etc. Result in bringing the phrase of another section in Content view, Obi warns the user by displaying a message box. You can disable the display of the warning message by checking this check box.</td>
 </tr>
 <tr>
+    <td> <strong>Advance Settings</strong> </td>
+</tr>
+<tr>
+  <td>Optimize memory utilization</td>
+  <td>If checked, optimizes the memory utilized by Obi.</td>
+</tr>
+<tr>
+  <td>Disable roll back for cleanup</td>
+    <td>If checked, Obi will not allow the users to rollback the Cleanup command.  </td>
+</tr>
+<tr>
+  <td>Check for Updates</td>
+  <td>If checked, Obi automatically checks for new updates to the application and informs the user.</td>
+</tr>
+<tr>
+  <td>Always ignore indentation for DAISY export files</td>
+  <td>If checked, the exported files (such as SMIL, OPF, etc.) will not be indented for human readability.</td>
+</tr>
+<tr>
+  <td>Disable collapse of selected section in TOC View</td>
+  <td>If checked, double-clicking the selected section in TOC view does not collapse or expand it.</td>
+</tr>
+<tr>
+  <td>Use Vision Australia rule for XHTML export</td>
+  <td>If checked, the XHTML export is done according to the rules specified by Vision Australia.</td>
+</tr>
+<tr>
+  <td>Freeze TOC View Width</td>
+  <td>If checked, Obi freezes the current width of TOC view; hence disallowing automatic or manual adjustments to it.</td>
+</tr>
+<tr>
     <td>Maximum 500 phrases can be selected for multi phrase operations like cut and copy</td>
     <td>If checked, user is allowed to select at most 500 phrases for doing multiphrase operatons like cut and copy. This helps in improving efficiency of these operations.</td>
 </tr>
@@ -494,12 +541,7 @@
 <p>Audio Tab:-</p>
 <table border="3" >
 <tr>
-  <td>Retain initial silence while phrase detection</td>
-  <td>If checked, retains the initial silence during the process of Auto-splitting using phrase detection. If unchecked, discards the initial silence.</td>   
-</tr>
-<tr>
-  <td>Use record button to preview before recording</td>
-  <td>If checked, plays a small portion of audio prior to the marked cursor position before initiating the Record command. If unchecked, starts recording directly.</td>
+    <td> <strong>Basic Settings</strong> </td>
 </tr>
 <tr>
   <td>Allow overwrite while recording</td>
@@ -510,20 +552,12 @@
   <td>If checked, Obi will deactivate the toggling behavior of Start Monitoring/Record button of Transport Bar and always show Record Directly in its place. As a result, each click on that button will initiate recording.</td>
 </tr>
 <tr>
-  <td>Limit max phrase duration to 50 minutes</td>
-  <td>If checked, sets an upper limit for the length of phrase to be 50 minutes. Otherwise, allows phrases of any length to exist.</td>
-</tr>
-<tr>
   <td>Perform phrase detection while recording</td>
   <td>If checked, Obi applies phrase detection to the audio being recorded on the run. At the end of recording, the recorded content will be split at the detected points.</td>
 </tr>
 <tr>
   <td>Renumber the following pages when recording ends</td>
   <td>If checked, Obi renumbers the pages after the recorded audio when the record command is stopped.</td>
-</tr>
-<tr>
-  <td>Fast play without pitch change</td>
-  <td>If checked, Obi preserves the pitch while increasing or decreasing the fast play rate.</td>
 </tr>
 <tr>
   <td>Enforce single audio cursor</td>
@@ -546,6 +580,29 @@
   <td>Obi will skip already cleaned up files while cleanup.</td>
 </tr>
 <tr>
+  <td>Preserve Audio Zoom for Content View</td>
+  <td>If checked, Obi will save the current state of audio zoom across Obi sessions. </td>
+</tr>
+<tr>
+    <td> <strong>Advance Settings</strong> </td>
+</tr>
+<tr>
+  <td>Retain initial silence while phrase detection</td>
+  <td>If checked, retains the initial silence during the process of Auto-splitting using phrase detection. If unchecked, discards the initial silence.</td>   
+</tr>
+<tr>
+  <td>Use record button to preview before recording</td>
+  <td>If checked, plays a small portion of audio prior to the marked cursor position before initiating the Record command. If unchecked, starts recording directly.</td>
+</tr>
+<tr>
+  <td>Limit max phrase duration to 50 minutes</td>
+  <td>If checked, sets an upper limit for the length of phrase to be 50 minutes. Otherwise, allows phrases of any length to exist.</td>
+</tr>
+<tr>
+  <td>Fast play without pitch change</td>
+  <td>If checked, Obi preserves the pitch while increasing or decreasing the fast play rate.</td>
+</tr>
+<tr>
   <td>Ensure cursor visibility when preview before recording is undone</td>
   <td>If checked, cursor will be visible when preview before recording is undone.</td>
 </tr>
@@ -553,20 +610,15 @@
   <td>Prevent on the fly phrase detection on pages</td>
   <td>If checked, Obi will not apply phrase detection on the page phrases while live recording.</td>
 </tr>
-<tr>
-  <td>Preserve Audio Zoom for Content View</td>
-  <td>If checked, Obi will save the current state of audio zoom across Obi sessions. </td>
-</tr>
 </table>
 <p>Project Tab:-</p>
 <table  border="3">
 <tr>
-  <td>Fix content view width</td>
-  <td>If checked, Obi will not disturb the orientation of other visible phrases even if the length of a phrase exceeds the current width of Content view. If unchecked, Obi will alter the width of Content view with each elongated phrase and shift other phrases according to the altered width.</td>
+    <td> <strong>Basic Settings</strong> </td>
 </tr>
 <tr>
-  <td>Optimize memory utilization</td>
-  <td>If checked, optimizes the memory utilized by Obi.</td>
+  <td>Fix content view width</td>
+  <td>If checked, Obi will not disturb the orientation of other visible phrases even if the length of a phrase exceeds the current width of Content view. If unchecked, Obi will alter the width of Content view with each elongated phrase and shift other phrases according to the altered width.</td>
 </tr>
 <tr>
   <td>Enable free disk space check</td>
@@ -575,10 +627,6 @@
 <tr>
   <td>Save project when recording ends</td>
   <td>If checked, Obi saves the modifications to the project file as soon as recording is stopped or paused.</td>
-</tr>
-<tr>
-  <td>Check for Updates</td>
-  <td>If checked, Obi automatically checks for new updates to the application and informs the user.</td>
 </tr>
 <tr>
   <td>Show waveforms in Content view</td>
@@ -603,6 +651,17 @@
 <tr>
   <td>Show advance properties in properties dialog</td>
   <td>If checked, advance properties like "Project file count" will be shown in project properties dialog</td>
+</tr>
+<tr>
+    <td> <strong>Advance Settings</strong> </td>
+</tr>
+<tr>
+  <td>Optimize memory utilization</td>
+  <td>If checked, optimizes the memory utilized by Obi.</td>
+</tr>
+<tr>
+  <td>Check for Updates</td>
+  <td>If checked, Obi automatically checks for new updates to the application and informs the user.</td>
 </tr>
 <tr>
     <td>Maximum 500 phrases can be selected for multi phrase operations like cut and copy</td>
@@ -617,8 +676,7 @@
 <p>Audio Tab:-</p>
 <table border="3" >
 <tr>
-  <td>Retain initial silence while phrase detection</td>
-  <td>If checked, retains the initial silence during the process of Auto-splitting using phrase detection. If unchecked, discards the initial silence.</td>   
+    <td> <strong>Basic Settings</strong> </td>
 </tr>
 <tr>
   <td>Use Space key to stop recording</td>
@@ -633,10 +691,6 @@
   <td>If checked, Obi will deactivate the toggling behavior of Start Monitoring/Record button of Transport Bar and always show Record Directly in its place. As a result, each click on that button will initiate recording.</td>
 </tr>
 <tr>
-  <td>Limit max phrase duration to 50 minutes</td>
-  <td>If checked, sets an upper limit for the length of phrase to be 50 minutes. Otherwise, allows phrases of any length to exist.</td>
-</tr>
-<tr>
   <td>Show live waveform while recording</td>
   <td>If checked, draws the waveform of the audio content being recorded concurrently.</td>
 </tr>
@@ -649,20 +703,35 @@
   <td>If checked, Obi renumbers the pages after the recorded audio when the record command is stopped.</td>
 </tr>
 <tr>
-  <td>Merge first 2 phrases detected by phrase detection</td>
-  <td>If checked, merges the first two phrases resulting from the process of auto-splitting using phrase detection.</td>
-</tr>
-<tr>
-  <td>Fast play without pitch change</td>
-  <td>If checked, Obi preserves the pitch while increasing or decreasing the fast play rate.</td>
-</tr>
-<tr>
   <td>Enforce single audio cursor</td>
   <td>By checking this checkbox, you instruct Obi to use only one cursor instead of two. In this case, red cursor will automatically be mapped to the location of blue.</td>
 </tr>
 <tr>
   <td>Use Play button and Space key to play section</td>
   <td>If checked, the Play command and the shortcut key Space play the audio of the section.</td>
+</tr>
+<tr>
+  <td>Show cursor time in Transport Bar in stop state</td>
+  <td>If checked, the Time Display field of Transport Bar shows the current cursor time in the stopped state. Otherwise, this field will always show 0 in the stopped state. Please note that this feature works only for the Elapsed in phrase and the Elapsed in Section options of Time Display.</td>
+</tr>
+<tr>
+    <td> <strong>Advance Settings</strong> </td>
+</tr>
+<tr>
+  <td>Retain initial silence while phrase detection</td>
+  <td>If checked, retains the initial silence during the process of Auto-splitting using phrase detection. If unchecked, discards the initial silence.</td>   
+</tr>
+<tr>
+  <td>Limit max phrase duration to 50 minutes</td>
+  <td>If checked, sets an upper limit for the length of phrase to be 50 minutes. Otherwise, allows phrases of any length to exist.</td>
+</tr>
+<tr>
+  <td>Merge first 2 phrases detected by phrase detection</td>
+  <td>If checked, merges the first two phrases resulting from the process of auto-splitting using phrase detection.</td>
+</tr>
+<tr>
+  <td>Fast play without pitch change</td>
+  <td>If checked, Obi preserves the pitch while increasing or decreasing the fast play rate.</td>
 </tr>
 <tr>
   <td>Disable creation of new headings and pages while recording</td>
@@ -673,16 +742,15 @@
   <td>If checked, Obi moves the focus to the last phrase played in the playback when playback stops. Otherwise, the focus remains on the phrase from where playback was started.</td>
 </tr>
 <tr>
-  <td>Show cursor time in Transport Bar in stop state</td>
-  <td>If checked, the Time Display field of Transport Bar shows the current cursor time in the stopped state. Otherwise, this field will always show 0 in the stopped state. Please note that this feature works only for the Elapsed in phrase and the Elapsed in Section options of Time Display.</td>
-</tr>
-<tr>
   <td>Record in first empty phrase with record section command</td>
   <td>If checked, Obi will start recording from the first phrase of the section when selection is at section level</td>
 </tr>
 </table>
 <p>Project Tab:-</p>
 <table  border="3">
+<tr>
+    <td> <strong>Basic Settings</strong> </td>
+</tr>
 <tr>
   <td>Open last project</td>
   <td>If checked, Obi opens the last project opened in previous session.</td>
@@ -696,24 +764,12 @@
   <td>If checked, Obi will not disturb the orientation of other visible phrases even if the length of a phrase exceeds the current width of Content view. If unchecked, Obi will alter the width of Content view with each elongated phrase and shift other phrases according to the altered width.</td>
 </tr>
 <tr>
-  <td>Optimize memory utilization</td>
-  <td>If checked, optimizes the memory utilized by Obi.</td>
-</tr>
-<tr>
-  <td>Disable roll back for cleanup</td>
-    <td>If checked, Obi will not allow the users to rollback the Cleanup command.  </td>
-</tr>
-<tr>
   <td>Enable free disk space check</td>
   <td>If checked, checks for available disk space and warns the users during Record, Save, and Import operations.</td>
 </tr>
 <tr>
   <td>Save project when recording ends</td>
   <td>If checked, Obi saves the modifications to the project file as soon as recording is stopped or paused.</td>
-</tr>
-<tr>
-  <td>Check for Updates</td>
-  <td>If checked, Obi automatically checks for new updates to the application and informs the user.</td>
 </tr>
 <tr>
   <td>Show waveforms in Content view</td>
@@ -740,16 +796,8 @@
   <td>If checked, Obi window is not minimized when user opens the Recording Toolbar.</td>
 </tr>
 <tr>
-  <td>Disable collapse of selected section in TOC View</td>
-  <td>If checked, double-clicking the selected section in TOC view does not collapse or expand it.</td>
-</tr>
-<tr>
   <td>Open Obi in maximize state</td>
   <td>Opens Obi application window in the maximized state.</td>
-</tr>
-<tr>
-  <td>Use Vision Australia rule for XHTML export</td>
-  <td>If checked, the XHTML export is done according to the rules specified by Vision Australia.</td>
 </tr>
 <tr>
   <td>Enlarge phrases as per increase in screen resolution</td>
@@ -766,6 +814,29 @@
 <tr>
   <td>Do not show message box while moving to phrase in another section</td>
   <td>When the commands like Go to page, etc. Result in bringing the phrase of another section in Content view, Obi warns the user by displaying a message box. You can disable the display of the warning message by checking this check box.</td>
+</tr>
+<tr>
+    <td> <strong>Advance Settings</strong> </td>
+</tr>
+<tr>
+  <td>Optimize memory utilization</td>
+  <td>If checked, optimizes the memory utilized by Obi.</td>
+</tr>
+<tr>
+  <td>Disable roll back for cleanup</td>
+    <td>If checked, Obi will not allow the users to rollback the Cleanup command.  </td>
+</tr>
+<tr>
+  <td>Check for Updates</td>
+  <td>If checked, Obi automatically checks for new updates to the application and informs the user.</td>
+</tr>
+<tr>
+  <td>Disable collapse of selected section in TOC View</td>
+  <td>If checked, double-clicking the selected section in TOC view does not collapse or expand it.</td>
+</tr>
+<tr>
+  <td>Use Vision Australia rule for XHTML export</td>
+  <td>If checked, the XHTML export is done according to the rules specified by Vision Australia.</td>
 </tr>
 <tr>
     <td>Maximum 500 phrases can be selected for multi phrase operations like cut and copy</td>
@@ -778,8 +849,7 @@
 <p>Audio Tab:-</p>
 <table border="3" >
 <tr>
-  <td>Retain initial silence while phrase detection</td>
-  <td>If checked, retains the initial silence during the process of Auto-splitting using phrase detection. If unchecked, discards the initial silence.</td>   
+    <td> <strong>Basic Settings</strong> </td>
 </tr>
 <tr>
   <td>Use Space key to stop recording</td>
@@ -794,10 +864,6 @@
   <td>If checked, Obi will deactivate the toggling behavior of Start Monitoring/Record button of Transport Bar and always show Record Directly in its place. As a result, each click on that button will initiate recording.</td>
 </tr>
 <tr>
-  <td>Limit max phrase duration to 50 minutes</td>
-  <td>If checked, sets an upper limit for the length of phrase to be 50 minutes. Otherwise, allows phrases of any length to exist.</td>
-</tr>
-<tr>
   <td>Show live waveform while recording</td>
   <td>If checked, draws the waveform of the audio content being recorded concurrently.</td>
 </tr>
@@ -808,14 +874,6 @@
 <tr>
   <td>Renumber the following pages when recording ends</td>
   <td>If checked, Obi renumbers the pages after the recorded audio when the record command is stopped.</td>
-</tr>
-<tr>
-  <td>Merge first 2 phrases detected by phrase detection</td>
-  <td>If checked, merges the first two phrases resulting from the process of auto-splitting using phrase detection.</td>
-</tr>
-<tr>
-  <td>Fast play without pitch change</td>
-  <td>If checked, Obi preserves the pitch while increasing or decreasing the fast play rate.</td>
 </tr>
 <tr>
   <td>Use Record Button to record over subsequent audio</td>
@@ -834,12 +892,35 @@
   <td>If checked, Obi does not deselect the selection on pressing Ctrl+Space twice. If this check box is not checked, it will result in execution of the Select nothing command.</td>
 </tr>
 <tr>
-  <td>Preserve pages while recording over subsequent audio</td>
-  <td>If checked, the command Record over subsequent audio does not overwrite the page phrases but retains them in the section after the newly recorded audio.</td>
-</tr>
-<tr>
   <td>Use Play button and Space key to play section</td>
   <td>If checked, the Play command and the shortcut key Space play the audio of the section.</td>
+</tr>
+<tr>
+  <td>Show cursor time in Transport Bar in stop state</td>
+  <td>If checked, the Time Display field of Transport Bar shows the current cursor time in the stopped state. Otherwise, this field will always show 0 in the stopped state. Please note that this feature works only for the Elapsed in phrase and the Elapsed in Section options of Time Display.</td>
+</tr>
+<tr>
+    <td> <strong>Advance Settings</strong> </td>
+</tr>
+<tr>
+  <td>Retain initial silence while phrase detection</td>
+  <td>If checked, retains the initial silence during the process of Auto-splitting using phrase detection. If unchecked, discards the initial silence.</td>   
+</tr>
+<tr>
+  <td>Limit max phrase duration to 50 minutes</td>
+  <td>If checked, sets an upper limit for the length of phrase to be 50 minutes. Otherwise, allows phrases of any length to exist.</td>
+</tr>
+<tr>
+  <td>Merge first 2 phrases detected by phrase detection</td>
+  <td>If checked, merges the first two phrases resulting from the process of auto-splitting using phrase detection.</td>
+</tr>
+<tr>
+  <td>Fast play without pitch change</td>
+  <td>If checked, Obi preserves the pitch while increasing or decreasing the fast play rate.</td>
+</tr>
+<tr>
+  <td>Preserve pages while recording over subsequent audio</td>
+  <td>If checked, the command Record over subsequent audio does not overwrite the page phrases but retains them in the section after the newly recorded audio.</td>
 </tr>
 <tr>
   <td>Disable creation of new headings and pages while recording</td>
@@ -850,16 +931,15 @@
   <td>If checked, Obi moves the focus to the last phrase played in the playback when playback stops. Otherwise, the focus remains on the phrase from where playback was started.</td>
 </tr>
 <tr>
-  <td>Show cursor time in Transport Bar in stop state</td>
-  <td>If checked, the Time Display field of Transport Bar shows the current cursor time in the stopped state. Otherwise, this field will always show 0 in the stopped state. Please note that this feature works only for the Elapsed in phrase and the Elapsed in Section options of Time Display.</td>
-</tr>
-<tr>
   <td>Record in first empty phrase with record section command</td>
   <td>If checked, Obi will start recording from the first phrase of the section when selection is at section level</td>
 </tr>
 </table>
 <p>Project Tab:-</p>
 <table  border="3">
+<tr>
+    <td> <strong>Basic Settings</strong> </td>
+</tr>
 <tr>
   <td>Open last project</td>
   <td>If checked, Obi opens the last project opened in previous session.</td>
@@ -873,24 +953,12 @@
   <td>If checked, Obi will not disturb the orientation of other visible phrases even if the length of a phrase exceeds the current width of Content view. If unchecked, Obi will alter the width of Content view with each elongated phrase and shift other phrases according to the altered width.</td>
 </tr>
 <tr>
-  <td>Optimize memory utilization</td>
-  <td>If checked, optimizes the memory utilized by Obi.</td>
-</tr>
-<tr>
-  <td>Disable roll back for cleanup</td>
-    <td>If checked, Obi will not allow the users to rollback the Cleanup command.  </td>
-</tr>
-<tr>
   <td>Enable free disk space check</td>
   <td>If checked, checks for available disk space and warns the users during Record, Save, and Import operations.</td>
 </tr>
 <tr>
   <td>Save project when recording ends</td>
   <td>If checked, Obi saves the modifications to the project file as soon as recording is stopped or paused.</td>
-</tr>
-<tr>
-  <td>Check for Updates</td>
-  <td>If checked, Obi automatically checks for new updates to the application and informs the user.</td>
 </tr>
 <tr>
   <td>Show waveforms in Content view</td>
@@ -917,16 +985,8 @@
   <td>If checked, Obi window is not minimized when user opens the Recording Toolbar.</td>
 </tr>
 <tr>
-  <td>Disable collapse of selected section in TOC View</td>
-  <td>If checked, double-clicking the selected section in TOC view does not collapse or expand it.</td>
-</tr>
-<tr>
   <td>Open Obi in maximize state</td>
   <td>Opens Obi application window in the maximized state.</td>
-</tr>
-<tr>
-  <td>Use Vision Australia rule for XHTML export</td>
-  <td>If checked, the XHTML export is done according to the rules specified by Vision Australia.</td>
 </tr>
 <tr>
   <td>Enlarge phrases as per increase in screen resolution</td>
@@ -945,6 +1005,29 @@
   <td>When the commands like Go to page, etc. Result in bringing the phrase of another section in Content view, Obi warns the user by displaying a message box. You can disable the display of the warning message by checking this check box.</td>
 </tr>
 <tr>
+    <td> <strong>Advance Settings</strong> </td>
+</tr>
+<tr>
+  <td>Optimize memory utilization</td>
+  <td>If checked, optimizes the memory utilized by Obi.</td>
+</tr>
+<tr>
+  <td>Disable roll back for cleanup</td>
+    <td>If checked, Obi will not allow the users to rollback the Cleanup command.  </td>
+</tr>
+<tr>
+  <td>Check for Updates</td>
+  <td>If checked, Obi automatically checks for new updates to the application and informs the user.</td>
+</tr>
+<tr>
+  <td>Disable collapse of selected section in TOC View</td>
+  <td>If checked, double-clicking the selected section in TOC view does not collapse or expand it.</td>
+</tr>
+<tr>
+  <td>Use Vision Australia rule for XHTML export</td>
+  <td>If checked, the XHTML export is done according to the rules specified by Vision Australia.</td>
+</tr>
+<tr>
     <td>Maximum 500 phrases can be selected for multi phrase operations like cut and copy</td>
     <td>If checked, user is allowed to select at most 500 phrases for doing multiphrase operatons like cut and copy. This helps in improving efficiency of these operations.</td>
 </tr>
@@ -955,8 +1038,7 @@
 <p>Audio Tab:-</p>
 <table border="3" >
 <tr>
-  <td>Retain initial silence while phrase detection</td>
-  <td>If checked, retains the initial silence during the process of Auto-splitting using phrase detection. If unchecked, discards the initial silence.</td>   
+    <td> <strong>Basic Settings</strong> </td>
 </tr>
 <tr>
   <td>Use Space key to stop recording</td>
@@ -971,10 +1053,6 @@
   <td>If checked, Obi will deactivate the toggling behavior of Start Monitoring/Record button of Transport Bar and always show Record Directly in its place. As a result, each click on that button will initiate recording.</td>
 </tr>
 <tr>
-  <td>Limit max phrase duration to 50 minutes</td>
-  <td>If checked, sets an upper limit for the length of phrase to be 50 minutes. Otherwise, allows phrases of any length to exist.</td>
-</tr>
-<tr>
   <td>Show live waveform while recording</td>
   <td>If checked, draws the waveform of the audio content being recorded concurrently.</td>
 </tr>
@@ -985,14 +1063,6 @@
 <tr>
   <td>Renumber the following pages when recording ends</td>
   <td>If checked, Obi renumbers the pages after the recorded audio when the record command is stopped.</td>
-</tr>
-<tr>
-  <td>Merge first 2 phrases detected by phrase detection</td>
-  <td>If checked, merges the first two phrases resulting from the process of auto-splitting using phrase detection.</td>
-</tr>
-<tr>
-  <td>Fast play without pitch change</td>
-  <td>If checked, Obi preserves the pitch while increasing or decreasing the fast play rate.</td>
 </tr>
 <tr>
   <td>Use Record Button to record over subsequent audio</td>
@@ -1011,20 +1081,39 @@
   <td>If checked, Obi does not deselect the selection on pressing Ctrl+Space twice. If this check box is not checked, it will result in execution of the Select nothing command.</td>
 </tr>
 <tr>
-  <td>Preserve pages while recording over subsequent audio</td>
-  <td>If checked, the command Record over subsequent audio does not overwrite the page phrases but retains them in the section after the newly recorded audio.</td>
-</tr>
-<tr>
   <td>Use Play button and Space key to play section</td>
   <td>If checked, the Play command and the shortcut key Space play the audio of the section.</td>
 </tr>
 <tr>
-  <td>Disable creation of new headings and pages while recording</td>
-  <td>If checked, the next heading and next page commands will move to the respective item and continue recording into it, but they will not create a new heading or page.</td>
-</tr>
-<tr>
   <td>Show cursor time in Transport Bar in stop state</td>
   <td>If checked, the Time Display field of Transport Bar shows the current cursor time in the stopped state. Otherwise, this field will always show 0 in the stopped state. Please note that this feature works only for the Elapsed in phrase and the Elapsed in Section options of Time Display.</td>
+</tr>
+<tr>
+    <td> <strong>Advance Settings</strong> </td>
+</tr>
+<tr>
+  <td>Retain initial silence while phrase detection</td>
+  <td>If checked, retains the initial silence during the process of Auto-splitting using phrase detection. If unchecked, discards the initial silence.</td>   
+</tr>
+<tr>
+  <td>Limit max phrase duration to 50 minutes</td>
+  <td>If checked, sets an upper limit for the length of phrase to be 50 minutes. Otherwise, allows phrases of any length to exist.</td>
+</tr>
+<tr>
+  <td>Merge first 2 phrases detected by phrase detection</td>
+  <td>If checked, merges the first two phrases resulting from the process of auto-splitting using phrase detection.</td>
+</tr>
+<tr>
+  <td>Fast play without pitch change</td>
+  <td>If checked, Obi preserves the pitch while increasing or decreasing the fast play rate.</td>
+</tr>
+<tr>
+  <td>Preserve pages while recording over subsequent audio</td>
+  <td>If checked, the command Record over subsequent audio does not overwrite the page phrases but retains them in the section after the newly recorded audio.</td>
+</tr>
+<tr>
+  <td>Disable creation of new headings and pages while recording</td>
+  <td>If checked, the next heading and next page commands will move to the respective item and continue recording into it, but they will not create a new heading or page.</td>
 </tr>
 <tr>
   <td>Record in first empty phrase with record section command</td>
@@ -1033,6 +1122,9 @@
 </table>
 <p>Project Tab:-</p>
 <table  border="3">
+<tr>
+    <td> <strong>Basic Settings</strong> </td>
+</tr>
 <tr>
   <td>Open last project</td>
   <td>If checked, Obi opens the last project opened in previous session.</td>
@@ -1046,24 +1138,12 @@
   <td>If checked, Obi will not disturb the orientation of other visible phrases even if the length of a phrase exceeds the current width of Content view. If unchecked, Obi will alter the width of Content view with each elongated phrase and shift other phrases according to the altered width.</td>
 </tr>
 <tr>
-  <td>Optimize memory utilization</td>
-  <td>If checked, optimizes the memory utilized by Obi.</td>
-</tr>
-<tr>
-  <td>Disable roll back for cleanup</td>
-    <td>If checked, Obi will not allow the users to rollback the Cleanup command.  </td>
-</tr>
-<tr>
   <td>Enable free disk space check</td>
   <td>If checked, checks for available disk space and warns the users during Record, Save, and Import operations.</td>
 </tr>
 <tr>
   <td>Save project when recording ends</td>
   <td>If checked, Obi saves the modifications to the project file as soon as recording is stopped or paused.</td>
-</tr>
-<tr>
-  <td>Check for Updates</td>
-  <td>If checked, Obi automatically checks for new updates to the application and informs the user.</td>
 </tr>
 <tr>
   <td>Show waveforms in Content view</td>
@@ -1090,16 +1170,8 @@
   <td>If checked, Obi window is not minimized when user opens the Recording Toolbar.</td>
 </tr>
 <tr>
-  <td>Disable collapse of selected section in TOC View</td>
-  <td>If checked, double-clicking the selected section in TOC view does not collapse or expand it.</td>
-</tr>
-<tr>
   <td>Open Obi in maximize state</td>
   <td>Opens Obi application window in the maximized state.</td>
-</tr>
-<tr>
-  <td>Use Vision Australia rule for XHTML export</td>
-  <td>If checked, the XHTML export is done according to the rules specified by Vision Australia.</td>
 </tr>
 <tr>
   <td>Enlarge phrases as per increase in screen resolution</td>
@@ -1116,6 +1188,29 @@
 <tr>
     <td>Do not show message box while moving to phrase in another section</td>
     <td>When the commands like Go to page, etc. Result in bringing the phrase of another section in Content view, Obi warns the user by displaying a message box. You can disable the display of the warning message by checking this check box.</td>
+</tr>
+<tr>
+    <td> <strong>Advance Settings</strong> </td>
+</tr>
+<tr>
+  <td>Optimize memory utilization</td>
+  <td>If checked, optimizes the memory utilized by Obi.</td>
+</tr>
+<tr>
+  <td>Disable roll back for cleanup</td>
+    <td>If checked, Obi will not allow the users to rollback the Cleanup command.  </td>
+</tr>
+<tr>
+  <td>Check for Updates</td>
+  <td>If checked, Obi automatically checks for new updates to the application and informs the user.</td>
+</tr>
+<tr>
+  <td>Disable collapse of selected section in TOC View</td>
+  <td>If checked, double-clicking the selected section in TOC view does not collapse or expand it.</td>
+</tr>
+<tr>
+  <td>Use Vision Australia rule for XHTML export</td>
+  <td>If checked, the XHTML export is done according to the rules specified by Vision Australia.</td>
 </tr>
 <tr>
     <td>Maximum 500 phrases can be selected for multi phrase operations like cut and copy</td>
