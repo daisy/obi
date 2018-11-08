@@ -1191,7 +1191,7 @@ m_cb_ChooseFont.Visible = false;
 
                 m_btnAdvanceSettingsPreferences.Visible = true;
 
-                m_btnAdvanceSettingsPreferences.Text = Localizer.Message("Preferences_AdvanceAudioSettings");
+                m_btnAdvanceSettingsPreferences.Text = Localizer.Message("Preferences_AdditionalAudioSettings");
 
                 m_CheckBoxListView.Items.Clear();
               
@@ -1265,7 +1265,7 @@ m_cb_ChooseFont.Visible = false;
                 m_CheckBoxListView.Visible = true;
                 m_grpBoxChkBoxListView.Visible = true;
                 m_btnAdvanceSettingsPreferences.Visible = true;
-                m_btnAdvanceSettingsPreferences.Text = Localizer.Message("Preferences_AdvanceProjectSettings");
+                m_btnAdvanceSettingsPreferences.Text = Localizer.Message("Preferences_AdditionalProjectSettings");
                 m_CheckBoxListView.Items.Clear();
                 //m_CheckBoxListView.Size = new Size(405,345);//(365, 135);
                 //m_CheckBoxListView.Location = new Point(575,60);//(120, 255);

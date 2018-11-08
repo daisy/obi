@@ -220,7 +220,7 @@
     <value>Microsoft Sans Serif, 9pt</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
-    <value>Advance Preferences Settings</value>
+    <value>Additional Preferences Settings</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
     <value>AdvancePreferencesSettings</value>

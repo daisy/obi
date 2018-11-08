@@ -5472,6 +5472,24 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Additional Audio Settings .
+        /// </summary>
+        internal static string Preferences_AdditionalAudioSettings {
+            get {
+                return ResourceManager.GetString("Preferences_AdditionalAudioSettings", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Additional Project Settings .
+        /// </summary>
+        internal static string Preferences_AdditionalProjectSettings {
+            get {
+                return ResourceManager.GetString("Preferences_AdditionalProjectSettings", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Following checkboxes will be checked. Do you want to proceed?.
         /// </summary>
         internal static string Preferences_Advance_Mode {
@@ -5481,29 +5499,11 @@ namespace Obi {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Advance Audio Settings .
-        /// </summary>
-        internal static string Preferences_AdvanceAudioSettings {
-            get {
-                return ResourceManager.GetString("Preferences_AdvanceAudioSettings", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Advance recording mode.
         /// </summary>
         internal static string Preferences_advanced_recording_mode {
             get {
                 return ResourceManager.GetString("Preferences_advanced_recording_mode", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Advance Project Settings .
-        /// </summary>
-        internal static string Preferences_AdvanceProjectSettings {
-            get {
-                return ResourceManager.GetString("Preferences_AdvanceProjectSettings", resourceCulture);
             }
         }
         

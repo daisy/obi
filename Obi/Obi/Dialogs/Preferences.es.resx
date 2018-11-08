@@ -162,10 +162,10 @@
     <value />
   </data>
   <data name="m_CheckBoxListView.Location" type="System.Drawing.Point, System.Drawing">
-    <value>648, 68</value>
+    <value>662, 68</value>
   </data>
   <data name="m_CheckBoxListView.Size" type="System.Drawing.Size, System.Drawing">
-    <value>344, 336</value>
+    <value>331, 292</value>
   </data>
   <data name="m_grpBoxChkBoxListView.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
@@ -177,10 +177,10 @@
     <value />
   </data>
   <data name="m_grpBoxChkBoxListView.Location" type="System.Drawing.Point, System.Drawing">
-    <value>644, 47</value>
+    <value>662, 50</value>
   </data>
   <data name="m_grpBoxChkBoxListView.Size" type="System.Drawing.Size, System.Drawing">
-    <value>355, 362</value>
+    <value>331, 310</value>
   </data>
   <data name="m_grpBoxChkBoxListView.Text" xml:space="preserve">
     <value>Cuadro de lista</value>
@@ -1869,6 +1869,18 @@
   </data>
   <data name="m_ApplyButton.Text" xml:space="preserve">
     <value>Apl&amp;icar</value>
+  </data>
+  <data name="m_btnAdvanceSettingsPreferences.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="m_btnAdvanceSettingsPreferences.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
+    <value>AssociateIndex</value>
+  </data>
+  <data name="m_btnAdvanceSettingsPreferences.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="m_btnAdvanceSettingsPreferences.Location" type="System.Drawing.Point, System.Drawing">
+    <value>694, 369</value>
   </data>
   <data name="$this.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
