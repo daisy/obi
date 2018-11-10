@@ -5922,6 +5922,15 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Open Obi in read only mode.
+        /// </summary>
+        internal static string Project_ReadOnlyMode {
+            get {
+                return ResourceManager.GetString("Project_ReadOnlyMode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Save location and size of Obi.
         /// </summary>
         internal static string Project_SaveObiLocationAndSize {

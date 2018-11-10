@@ -357,30 +357,30 @@ namespace Obi.ProjectView
         /// </summary>
         public void UpdateContextMenu()
         {
-            Context_AddSectionMenuItem.Enabled = CanAddSection;
-            Context_AddSubsectionMenuItem.Enabled = CanAddSubsection && !mProjectView.TransportBar.IsRecorderActive;
-            Context_InsertSectionMenuItem.Enabled = CanInsertSection && !mProjectView.TransportBar.IsRecorderActive;
-            Context_RenameSectionMenuItem.Enabled = CanRenameSection;
-            Context_DecreaseSectionLevelMenuItem.Enabled = CanDecreaseLevel && !mProjectView.TransportBar.IsRecorderActive;
-            Context_IncreaseSectionLevelMenuItem.Enabled = CanIncreaseLevel && !mProjectView.TransportBar.IsRecorderActive;
-            Context_SectionIsUsedMenuItem.Enabled = CanSetSectionUsedStatus;
+            Context_AddSectionMenuItem.Enabled = CanAddSection && !mProjectView.ObiForm.Settings.Project_ReadOnlyMode;
+            Context_AddSubsectionMenuItem.Enabled = CanAddSubsection && !mProjectView.TransportBar.IsRecorderActive && !mProjectView.ObiForm.Settings.Project_ReadOnlyMode;
+            Context_InsertSectionMenuItem.Enabled = CanInsertSection && !mProjectView.TransportBar.IsRecorderActive && !mProjectView.ObiForm.Settings.Project_ReadOnlyMode;
+            Context_RenameSectionMenuItem.Enabled = CanRenameSection && !mProjectView.ObiForm.Settings.Project_ReadOnlyMode;
+            Context_DecreaseSectionLevelMenuItem.Enabled = CanDecreaseLevel && !mProjectView.TransportBar.IsRecorderActive && !mProjectView.ObiForm.Settings.Project_ReadOnlyMode;
+            Context_IncreaseSectionLevelMenuItem.Enabled = CanIncreaseLevel && !mProjectView.TransportBar.IsRecorderActive && !mProjectView.ObiForm.Settings.Project_ReadOnlyMode;
+            Context_SectionIsUsedMenuItem.Enabled = CanSetSectionUsedStatus && !mProjectView.ObiForm.Settings.Project_ReadOnlyMode;
             Context_SectionIsUsedMenuItem.CheckedChanged -= new EventHandler(Context_SectionIsUsedMenuItem_CheckedChanged);
-            Context_SectionIsUsedMenuItem.Checked = mProjectView.CanMarkSectionUnused;
+            Context_SectionIsUsedMenuItem.Checked = mProjectView.CanMarkSectionUnused && !mProjectView.ObiForm.Settings.Project_ReadOnlyMode;
             Context_SectionIsUsedMenuItem.CheckedChanged += new EventHandler(Context_SectionIsUsedMenuItem_CheckedChanged);
-            Context_CutMenuItem.Enabled = CanRemoveSection;
-            Context_CopyMenuItem.Enabled = CanCopySection && !mProjectView.TransportBar.IsRecorderActive;
-            Context_PasteMenuItem.Enabled = CanPaste(mProjectView.Clipboard);
-            Context_PasteBeforeMenuItem.Enabled = CanPasteBefore(mProjectView.Clipboard);
-            Context_PasteInsideMenuItem.Enabled = CanPasteInside(mProjectView.Clipboard);
-            Context_DeleteMenuItem.Enabled = mProjectView.CanRemoveSection;
+            Context_CutMenuItem.Enabled = CanRemoveSection && !mProjectView.ObiForm.Settings.Project_ReadOnlyMode;
+            Context_CopyMenuItem.Enabled = CanCopySection && !mProjectView.TransportBar.IsRecorderActive && !mProjectView.ObiForm.Settings.Project_ReadOnlyMode;
+            Context_PasteMenuItem.Enabled = CanPaste(mProjectView.Clipboard) && !mProjectView.ObiForm.Settings.Project_ReadOnlyMode;
+            Context_PasteBeforeMenuItem.Enabled = CanPasteBefore(mProjectView.Clipboard) && !mProjectView.ObiForm.Settings.Project_ReadOnlyMode;
+            Context_PasteInsideMenuItem.Enabled = CanPasteInside(mProjectView.Clipboard) && !mProjectView.ObiForm.Settings.Project_ReadOnlyMode;
+            Context_DeleteMenuItem.Enabled = mProjectView.CanRemoveSection && !mProjectView.ObiForm.Settings.Project_ReadOnlyMode;
             Context_PropertiesMenuItem.Enabled = mProjectView.CanShowSectionPropertiesDialog;
            // Context_MergeSectionMenuItem.Enabled = mProjectView.CanMergeStripWithNext;
-            Context_MergeWithNextMenuItem.Enabled = mProjectView.CanMergeStripWithNext;
-            Context_MultipleOperationsMenuItem.Enabled = mProjectView.EnableMultiSectionOperation;
-            Context_ShowContentsMenuItem.Enabled = mProjectView.Selection != null && !(mProjectView.Selection is TextSelection);
+            Context_MergeWithNextMenuItem.Enabled = mProjectView.CanMergeStripWithNext && !mProjectView.ObiForm.Settings.Project_ReadOnlyMode;
+            Context_MultipleOperationsMenuItem.Enabled = mProjectView.EnableMultiSectionOperation && !mProjectView.ObiForm.Settings.Project_ReadOnlyMode;
+            Context_ShowContentsMenuItem.Enabled = mProjectView.Selection != null && !(mProjectView.Selection is TextSelection) && !mProjectView.ObiForm.Settings.Project_ReadOnlyMode;
             Context_AddBlankPhraseMenuItem.Enabled = 
                 Context_AddEmptyPagesMenuItem.Enabled = (mProjectView.CanAddEmptyBlock || (mProjectView.Selection != null && mProjectView.Selection.Node is SectionNode))
-                                                          && !mProjectView.TransportBar.IsRecorderActive;
+                                                          && !mProjectView.TransportBar.IsRecorderActive && !mProjectView.ObiForm.Settings.Project_ReadOnlyMode;
         }
 
 

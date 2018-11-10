@@ -54,8 +54,9 @@ namespace Obi.Dialogs
                 m_CheckBoxListView.Items.Add(Localizer.Message("Project_AlwaysIgnoreIndentationForExportFiles")); 
                 m_CheckBoxListView.Items.Add(Localizer.Message("Project_DisableTOCViewCollapse")); 
                 m_CheckBoxListView.Items.Add(Localizer.Message("Project_VAXhtmlExport")); 
-                m_CheckBoxListView.Items.Add(Localizer.Message("Project_SaveTOCViewWidth")); 
+                m_CheckBoxListView.Items.Add(Localizer.Message("Project_SaveTOCViewWidth"));
                 m_CheckBoxListView.Items.Add(Localizer.Message("Project_MaximumPhrasesSelectLimit"));
+                m_CheckBoxListView.Items.Add(Localizer.Message("Project_ReadOnlyMode"));
 
 
                 
@@ -76,8 +77,10 @@ namespace Obi.Dialogs
                 m_CheckBoxListView.Items[5].ToolTipText = Localizer.Message("Project_VAXhtmlExport"); 
                 m_CheckBoxListView.Items[6].Checked = m_Settings.Project_SaveTOCViewWidth; 
                 m_CheckBoxListView.Items[6].ToolTipText = Localizer.Message("Project_SaveTOCViewWidth"); 
-                m_CheckBoxListView.Items[7].Checked = m_Settings.Project_MaximumPhrasesSelectLimit; 
-                m_CheckBoxListView.Items[7].ToolTipText = Localizer.Message("Project_MaximumPhrasesSelectLimit"); 
+                m_CheckBoxListView.Items[7].Checked = m_Settings.Project_MaximumPhrasesSelectLimit;
+                m_CheckBoxListView.Items[7].ToolTipText = Localizer.Message("Project_MaximumPhrasesSelectLimit");
+                m_CheckBoxListView.Items[8].Checked = m_Settings.Project_ReadOnlyMode;
+                m_CheckBoxListView.Items[8].ToolTipText = Localizer.Message("Project_ReadOnlyMode"); 
             }
             else
             {   //helpProvider1.HelpNamespace = Localizer.Message("CHMhelp_file_name");
@@ -153,7 +156,8 @@ namespace Obi.Dialogs
                 m_Settings.Project_DisableTOCViewCollapse = m_CheckBoxListView.Items[4].Checked;  
                 m_Settings.Project_VAXhtmlExport = m_CheckBoxListView.Items[5].Checked; 
                 m_Settings.Project_SaveTOCViewWidth = m_CheckBoxListView.Items[6].Checked; 
-                m_Settings.Project_MaximumPhrasesSelectLimit = m_CheckBoxListView.Items[7].Checked; 
+                m_Settings.Project_MaximumPhrasesSelectLimit = m_CheckBoxListView.Items[7].Checked;
+                m_Settings.Project_ReadOnlyMode = m_CheckBoxListView.Items[8].Checked; 
             }
             else
             {

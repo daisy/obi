@@ -3069,4 +3069,7 @@ You can always change settings later from Obi Preferences.</value>
   <data name="Audio_RemoveAccentsFromDaisy2ExportFileNames" xml:space="preserve">
     <value>Remove accents from file names during Daisy 2.02 Export </value>
   </data>
+  <data name="Project_ReadOnlyMode" xml:space="preserve">
+    <value>Open Obi in read only mode</value>
+  </data>
 </root>
