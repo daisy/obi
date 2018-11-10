@@ -1,6 +1,6 @@
 <SOAP-ENV:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/" xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:clr="http://schemas.microsoft.com/soap/encoding/clr/1.0" SOAP-ENV:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">
 <SOAP-ENV:Body>
-<a1:Settings id="ref-1" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D4.2.0.35276%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
+<a1:Settings id="ref-1" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D4.2.0.31329%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
 <Audio_AllowOverwrite>false</Audio_AllowOverwrite>
 <Audio_Recording_PreviewBeforeStarting>false</Audio_Recording_PreviewBeforeStarting>
 <Audio_Recording_ReplaceAfterCursor>false</Audio_Recording_ReplaceAfterCursor>
@@ -9,16 +9,16 @@
 <Audio_AudioClues>false</Audio_AudioClues>
 <Audio_AudioScale>0.01</Audio_AudioScale>
 <Audio_BitDepth>16</Audio_BitDepth>
-<Audio_TTSVoice id="ref-4"></Audio_TTSVoice>
+<Audio_TTSVoice id="ref-4">Microsoft David Desktop</Audio_TTSVoice>
 <TransportBarCounterIndex>0</TransportBarCounterIndex>
 <Audio_FastPlayWithoutPitchChange>true</Audio_FastPlayWithoutPitchChange>
 <ColorSettings href="#ref-5"/>
 <ColorSettingsHC href="#ref-6"/>
 <CreateTitleSection>true</CreateTitleSection>
-<Project_DefaultPath href="#ref-4"/>
+<Project_DefaultPath id="ref-7"></Project_DefaultPath>
 <FontSize>10</FontSize>
-<Audio_LastInputDevice id="ref-7">Primary Sound Capture Driver</Audio_LastInputDevice>
-<LastOpenProject id="ref-8">C:\Users\Rohit\Documents\Chimpanzees\project.obi</LastOpenProject>
+<Audio_LastInputDevice id="ref-8">Primary Sound Capture Driver</Audio_LastInputDevice>
+<LastOpenProject href="#ref-7"/>
 <Audio_LastOutputDevice id="ref-9">Primary Sound Driver</Audio_LastOutputDevice>
 <MaxPhraseDurationMinutes>10</MaxPhraseDurationMinutes>
 <ImportCharCountToTruncateFromStart>4</ImportCharCountToTruncateFromStart>
@@ -31,7 +31,7 @@
 <Audio_NudgeTimeMs>200</Audio_NudgeTimeMs>
 <ShowGraphicalPeakMeterAtStartup>true</ShowGraphicalPeakMeterAtStartup>
 <Project_OpenLastProject>false</Project_OpenLastProject>
-<Project_PipelineScriptsPath href="#ref-4"/>
+<Project_PipelineScriptsPath href="#ref-7"/>
 <Project_CheckForUpdates>true</Project_CheckForUpdates>
 <Project_LatestVersionCheckedByUpdate id="ref-12">4.1.3.30532</Project_LatestVersionCheckedByUpdate>
 <PlayIfNoSelection>true</PlayIfNoSelection>
@@ -103,7 +103,7 @@
 <Audio_RecordingToolbarProfile2 id="ref-26">Advance</Audio_RecordingToolbarProfile2>
 <Audio_ColorFlickerPreviewBeforeRecording>false</Audio_ColorFlickerPreviewBeforeRecording>
 <Audio_PlaySectionUsingPlayBtn>false</Audio_PlaySectionUsingPlayBtn>
-<Audio_LocalRecordingDirectory href="#ref-4"/>
+<Audio_LocalRecordingDirectory href="#ref-7"/>
 <Project_EnableMouseScrolling>true</Project_EnableMouseScrolling>
 <Audio_EnableFileDataProviderPreservation>false</Audio_EnableFileDataProviderPreservation>
 <Project_DisableTOCViewCollapse>false</Project_DisableTOCViewCollapse>
@@ -137,8 +137,9 @@
 <Audio_RevertOverwriteBehaviourForRecordOnSelection>false</Audio_RevertOverwriteBehaviourForRecordOnSelection>
 <IsObiConfigurationDone>true</IsObiConfigurationDone>
 <Audio_RemoveAccentsFromDaisy2ExportFileNames>false</Audio_RemoveAccentsFromDaisy2ExportFileNames>
+<Project_ReadOnlyMode>false</Project_ReadOnlyMode>
 </a1:Settings>
-<a1:ColorSettings id="ref-5" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D4.2.0.35276%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
+<a1:ColorSettings id="ref-5" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D4.2.0.31329%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
 <BlockBackColor_Custom>
 <name xsi:null="1"/>
 <value>0</value>
@@ -452,7 +453,7 @@
 <state>1</state>
 </HighlightedSectionNodeWithoutSelectionColor>
 </a1:ColorSettings>
-<a1:ColorSettings id="ref-6" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D4.2.0.35276%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
+<a1:ColorSettings id="ref-6" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D4.2.0.31329%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
 <BlockBackColor_Custom>
 <name xsi:null="1"/>
 <value>0</value>
@@ -768,12 +769,12 @@
 </a1:ColorSettings>
 <a3:ArrayList id="ref-13" xmlns:a3="http://schemas.microsoft.com/clr/ns/System.Collections">
 <_items href="#ref-32"/>
-<_size>1</_size>
-<_version>1</_version>
+<_size>0</_size>
+<_version>0</_version>
 </a3:ArrayList>
-<a1:UserProfile id="ref-14" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D4.2.0.35276%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
-<Name href="#ref-4"/>
-<Organization href="#ref-4"/>
+<a1:UserProfile id="ref-14" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D4.2.0.31329%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
+<Name href="#ref-7"/>
+<Organization href="#ref-7"/>
 <Culture href="#ref-33"/>
 </a1:UserProfile>
 <SOAP-ENC:Array id="ref-19" SOAP-ENC:arrayType="xsd:int[2]">
@@ -804,31 +805,36 @@
 <item>0</item>
 <item>0</item>
 </SOAP-ENC:Array>
-<SOAP-ENC:Array id="ref-32" SOAP-ENC:arrayType="xsd:anyType[4]">
-<item href="#ref-8"/>
+<SOAP-ENC:Array id="ref-32" SOAP-ENC:arrayType="xsd:anyType[0]">
 </SOAP-ENC:Array>
 <a6:CultureInfo id="ref-33" xmlns:a6="http://schemas.microsoft.com/clr/ns/System.Globalization">
 <m_isReadOnly>false</m_isReadOnly>
 <compareInfo href="#ref-34"/>
 <textInfo xsi:null="1"/>
-<numInfo href="#ref-35"/>
+<numInfo xsi:null="1"/>
 <dateTimeInfo xsi:null="1"/>
 <calendar xsi:null="1"/>
 <m_dataItem>0</m_dataItem>
 <cultureID>9</cultureID>
-<m_name id="ref-36">en</m_name>
+<m_name id="ref-35">en</m_name>
 <m_useUserOverride>true</m_useUserOverride>
 </a6:CultureInfo>
 <a6:CompareInfo id="ref-34" xmlns:a6="http://schemas.microsoft.com/clr/ns/System.Globalization">
-<m_name id="ref-37">en</m_name>
+<m_name id="ref-36">en</m_name>
 <win32LCID>0</win32LCID>
 <culture>9</culture>
 <m_SortVersion xsi:null="1"/>
 </a6:CompareInfo>
-<a6:NumberFormatInfo id="ref-35" xmlns:a6="http://schemas.microsoft.com/clr/ns/System.Globalization">
-<numberGroupSizes href="#ref-38"/>
-<currencyGroupSizes href="#ref-39"/>
-<percentGroupSizes href="#ref-38"/>
+</SOAP-ENV:Body>
+</SOAP-ENV:Envelope>
+ortVersion xsi:null="1"/>
+</a6:CompareInfo>
+</SOAP-ENV:Body>
+</SOAP-ENV:Envelope>
+ompareInfo>
+</SOAP-ENV:Body>
+</SOAP-ENV:Envelope>
+GroupSizes href="#ref-38"/>
 <positiveSign id="ref-40">+</positiveSign>
 <negativeSign id="ref-41">-</negativeSign>
 <numberDecimalSeparator id="ref-42">.</numberDecimalSeparator>
