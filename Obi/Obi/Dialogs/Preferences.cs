@@ -1422,6 +1422,7 @@ m_cb_ChooseFont.Visible = false;
                 mSettings.Project_ImportNCCFileWithWindows1252Encoding= m_DefaultSettings.Project_ImportNCCFileWithWindows1252Encoding;
                 mSettings.Project_DoNotDisplayMessageBoxForShowingSection = m_DefaultSettings.Project_DoNotDisplayMessageBoxForShowingSection;
                 mSettings.Project_MaximumPhrasesSelectLimit = m_DefaultSettings.Project_MaximumPhrasesSelectLimit;
+                mSettings.Project_ReadOnlyMode = m_DefaultSettings.Project_ReadOnlyMode;
                 InitializeProjectTab();
             }
             else if (mTab.SelectedTab == mAudioTab) // Default settings for Audio tab
@@ -2092,6 +2093,7 @@ m_cb_ChooseFont.Visible = false;
                     mSettings.Project_ImportNCCFileWithWindows1252Encoding = false;
                     mSettings.Project_DoNotDisplayMessageBoxForShowingSection = false;
                     mSettings.Project_MaximumPhrasesSelectLimit = true;
+                    mSettings.Project_ReadOnlyMode = false;
                     // UpdateBoolSettings();
                 }
                 else if (Profile == "Intermediate.xml" || Profile == "Intermediate.XML")
@@ -2165,6 +2167,7 @@ m_cb_ChooseFont.Visible = false;
                     mSettings.Project_ImportNCCFileWithWindows1252Encoding = false;
                     mSettings.Project_DoNotDisplayMessageBoxForShowingSection = false;
                     mSettings.Project_MaximumPhrasesSelectLimit = true;
+                    mSettings.Project_ReadOnlyMode = false;
                     // UpdateBoolSettings();
                 }
                 else if (Profile == "Advance.xml" || Profile == "Advance.XML")
@@ -2237,6 +2240,7 @@ m_cb_ChooseFont.Visible = false;
                     mSettings.Project_ImportNCCFileWithWindows1252Encoding = false;
                     mSettings.Project_DoNotDisplayMessageBoxForShowingSection = false;
                     mSettings.Project_MaximumPhrasesSelectLimit = true;
+                    mSettings.Project_ReadOnlyMode = false;
                     // UpdateBoolSettings();
                 }
                 else if (Profile == "Profile-SBS.xml" || Profile == "Profile-SBS.XML")
@@ -2309,6 +2313,7 @@ m_cb_ChooseFont.Visible = false;
                     mSettings.Project_ImportNCCFileWithWindows1252Encoding = false;
                     mSettings.Project_DoNotDisplayMessageBoxForShowingSection = false;
                     mSettings.Project_MaximumPhrasesSelectLimit = true;
+                    mSettings.Project_ReadOnlyMode = false;
                     // UpdateBoolSettings();
 
 
@@ -2383,6 +2388,7 @@ m_cb_ChooseFont.Visible = false;
                     mSettings.Project_ImportNCCFileWithWindows1252Encoding = false;
                     mSettings.Project_DoNotDisplayMessageBoxForShowingSection = true;
                     mSettings.Project_MaximumPhrasesSelectLimit = true;
+                    mSettings.Project_ReadOnlyMode = false;
                     // UpdateBoolSettings();
 
                 }
@@ -2457,6 +2463,7 @@ m_cb_ChooseFont.Visible = false;
                     mSettings.Project_ImportNCCFileWithWindows1252Encoding = false;
                     mSettings.Project_DoNotDisplayMessageBoxForShowingSection = true;
                     mSettings.Project_MaximumPhrasesSelectLimit = true;
+                    mSettings.Project_ReadOnlyMode = false;
                     // UpdateBoolSettings();
 
                 }
@@ -2530,6 +2537,7 @@ m_cb_ChooseFont.Visible = false;
                     mSettings.Project_ImportNCCFileWithWindows1252Encoding = false;
                     mSettings.Project_DoNotDisplayMessageBoxForShowingSection = true;
                     mSettings.Project_MaximumPhrasesSelectLimit = true;
+                    mSettings.Project_ReadOnlyMode = false;
                     // UpdateBoolSettings();
 
                 }

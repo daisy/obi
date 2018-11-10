@@ -87,7 +87,9 @@ namespace Obi.ProjectView
         /// Add a new empty block.
         /// </summary>
         public void AddEmptyBlock ()
-            {
+        {
+            if (this.ObiForm.Settings.Project_ReadOnlyMode)
+                return;
                 if (Selection != null && this.Selection.Node is SectionNode
                       && (mContentView.ActiveStrip == null || Selection.Control is TOCView))
                 {
@@ -107,6 +109,8 @@ namespace Obi.ProjectView
         /// </summary>
         public void AddEmptyPages()
         {
+            if (this.ObiForm.Settings.Project_ReadOnlyMode)
+                return;
             if (Selection != null && this.Selection.Node is SectionNode 
                     && (mContentView.ActiveStrip == null || Selection.Control is TOCView))
                 { 
@@ -296,6 +300,8 @@ namespace Obi.ProjectView
         /// </summary>
         public void AddSection ()
             {
+                if (this.ObiForm.Settings.Project_ReadOnlyMode)
+                    return;
             // if metadata is selected, for section creating rules, treat as nothing is selected.
             if (Selection != null && Selection is MetadataSelection)
                 Selection = null;
@@ -453,6 +459,8 @@ namespace Obi.ProjectView
         /// </summary>
         public void AddSubSection ()
             {
+                if (this.ObiForm.Settings.Project_ReadOnlyMode)
+                    return;
             if (CanAddSubsection)
                 {
                 if (mTransportBar.IsPlayerActive) mTransportBar.Stop ();
@@ -832,7 +840,9 @@ namespace Obi.ProjectView
         /// Copy the current selection into the clipboard. Noop if there is no selection.
         /// </summary>
         public void Copy ()
-            {
+        {
+            if (this.ObiForm.Settings.Project_ReadOnlyMode)
+                return;
                 if (Selection != null && Selection is TextSelection)
                 {
                     System.Windows.Forms.Clipboard.SetText(((TextSelection)Selection).Text);
@@ -862,6 +872,8 @@ namespace Obi.ProjectView
         /// </summary>
         public void Cut ()
             {
+                if (this.ObiForm.Settings.Project_ReadOnlyMode)
+                    return;
                 if (Selection != null && Selection is TextSelection)
                 {
                     System.Windows.Forms.Clipboard.SetText(((TextSelection)Selection).Text);
@@ -933,7 +945,9 @@ namespace Obi.ProjectView
         /// Delete the current selection. Noop if there is no selection.
         /// </summary>
         public void Delete ()
-            {
+        {
+            if (this.ObiForm.Settings.Project_ReadOnlyMode)
+                return;
             if (Selection != null && Selection is TextSelection) return;
             if (CanDelete && mTransportBar.IsPlayerActive) mTransportBar.Stop ();
             
@@ -1286,6 +1300,8 @@ namespace Obi.ProjectView
         /// </summary>
         public void InsertSection ()
             {
+                if (this.ObiForm.Settings.Project_ReadOnlyMode)
+                    return;
             if (CanInsertStrip)
                 {
                 if (mTransportBar.IsPlayerActive) mTransportBar.Stop ();
@@ -1313,6 +1329,8 @@ namespace Obi.ProjectView
         /// </summary>
         public void MergeStrips ()
             {
+                if (this.ObiForm.Settings.Project_ReadOnlyMode)
+                    return;
             if (CanMergeStripWithNext)
                 {
                 // if total phrase count after merge is more than max phrases per section, return
@@ -1423,6 +1441,8 @@ namespace Obi.ProjectView
 
         public void MergeMultipleSections()
         {
+            if (this.ObiForm.Settings.Project_ReadOnlyMode)
+                return;
             if (GetSelectedPhraseSection != null)
             {
                 SectionNode temp_NodeSelected = GetSelectedPhraseSection;
@@ -1888,6 +1908,8 @@ namespace Obi.ProjectView
         /// </summary>
         public void IncreaseSelectedSectionLevel ()
             {
+                if (this.ObiForm.Settings.Project_ReadOnlyMode)
+                    return;
             if (CanIncreaseLevel)
                 {
                 if (mTransportBar.IsActive) mTransportBar.Stop ();
@@ -1904,6 +1926,8 @@ namespace Obi.ProjectView
         /// </summary>
         public void DecreaseSelectedSectionLevel ()
             {
+                if (this.ObiForm.Settings.Project_ReadOnlyMode)
+                    return;
             if (CanDecreaseLevel)
                 {
                 if (mTransportBar.IsActive) mTransportBar.Stop ();
@@ -1971,7 +1995,9 @@ namespace Obi.ProjectView
         /// Paste the contents of the clipboard in the current context. Noop if the clipboard is empty.
         /// </summary>
         public void Paste ()
-            {
+        {
+            if (this.ObiForm.Settings.Project_ReadOnlyMode)
+                return;
             if (CanPaste)
                 {
                 // if clipboard has phrase and the phrase count per section is above the max limit, return
@@ -2038,7 +2064,9 @@ namespace Obi.ProjectView
         /// Paste the contents of the clipboard before the selected section.
         /// </summary>
         public void PasteBefore ()
-            {
+        {
+            if (this.ObiForm.Settings.Project_ReadOnlyMode)
+                return;
             if (CanPasteBefore)
                 {
                 Commands.Node.Paste paste = new Commands.Node.PasteBefore ( this );
@@ -2050,7 +2078,9 @@ namespace Obi.ProjectView
         /// Paste the contents of the clipboard inside (as the last child of) the selected section.
         /// </summary>
         public void PasteInside ()
-            {
+        {
+            if (this.ObiForm.Settings.Project_ReadOnlyMode)
+                return;
             if (CanPasteInside)
                 {
                 Commands.Node.PasteInside paste = new Commands.Node.PasteInside ( this );
@@ -2212,6 +2242,8 @@ namespace Obi.ProjectView
         /// </summary>
         public void SetSelectedNodeUsedStatus ( bool used )
             {
+                if (this.ObiForm.Settings.Project_ReadOnlyMode)
+                    return;
             if (CanSetSelectedNodeUsedStatus && mSelection.Node.Used != used)
                 {
                 CompositeCommand command = Presentation.CreateCompositeCommand ( String.Format (
@@ -2255,6 +2287,8 @@ namespace Obi.ProjectView
         /// </summary>
         public void StartRenamingSelectedSection ()
             {
+                if (this.ObiForm.Settings.Project_ReadOnlyMode)
+                    return;
             if (CanRenameStrip)
                 {
                 mContentView.SelectAndRename ( mContentView.Selection.Section );
@@ -2285,6 +2319,8 @@ namespace Obi.ProjectView
         /// </summary>
         public void SplitStrip ()
             {
+                if (this.ObiForm.Settings.Project_ReadOnlyMode)
+                    return;
             if (CanSplitStrip)
                 {
                     if (mTransportBar.IsPlayerActive && !PauseAndCreatePlayingSection()) return;

@@ -2167,22 +2167,22 @@ namespace Obi
 
             private void UpdateSectionsMenu()
             {
-                mAddSectionToolStripMenuItem.Enabled = mProjectView.CanAddSection && !mProjectView.TransportBar.IsListening;
-                mAddSubsectionToolStripMenuItem.Enabled = mProjectView.CanAddSubsection && !mProjectView.TransportBar.IsListening;
-                mInsertSectionToolStripMenuItem.Enabled = mProjectView.CanInsertSection;
-                mRenameSectionToolStripMenuItem.Enabled = mProjectView.CanRenameSection;
-                mDecreaseSectionLevelToolStripMenuItem.Enabled = mProjectView.CanDecreaseLevel;
-                mIncreaseSectionLevelToolStripMenuItem.Enabled = mProjectView.CanIncreaseLevel;
-                mSplitSectionToolStripMenuItem.Enabled = mProjectView.CanSplitStrip;
+                mAddSectionToolStripMenuItem.Enabled = mProjectView.CanAddSection && !mProjectView.TransportBar.IsListening && !this.Settings.Project_ReadOnlyMode;
+                mAddSubsectionToolStripMenuItem.Enabled = mProjectView.CanAddSubsection && !mProjectView.TransportBar.IsListening && !this.Settings.Project_ReadOnlyMode;
+                mInsertSectionToolStripMenuItem.Enabled = mProjectView.CanInsertSection && !this.Settings.Project_ReadOnlyMode;
+                mRenameSectionToolStripMenuItem.Enabled = mProjectView.CanRenameSection && !this.Settings.Project_ReadOnlyMode;
+                mDecreaseSectionLevelToolStripMenuItem.Enabled = mProjectView.CanDecreaseLevel && !this.Settings.Project_ReadOnlyMode;
+                mIncreaseSectionLevelToolStripMenuItem.Enabled = mProjectView.CanIncreaseLevel && !this.Settings.Project_ReadOnlyMode;
+                mSplitSectionToolStripMenuItem.Enabled = mProjectView.CanSplitStrip && !this.Settings.Project_ReadOnlyMode;
                // mMergeSectionWithNextToolStripMenuItem.Enabled = mProjectView.CanMergeStripWithNext;
-                mMergeWithNextSectionToolStripMenuItem.Enabled = mProjectView.CanMergeStripWithNext;
-                mMultiSectionOperations.Enabled = mProjectView.EnableMultiSectionOperation;
-                mSectionIsUsedToolStripMenuItem.Enabled = mProjectView.CanSetSectionUsedStatus;
-                mImportTOCMenuItem.Enabled = !mProjectView.TransportBar.IsRecorderActive;
+                mMergeWithNextSectionToolStripMenuItem.Enabled = mProjectView.CanMergeStripWithNext && !this.Settings.Project_ReadOnlyMode;
+                mMultiSectionOperations.Enabled = mProjectView.EnableMultiSectionOperation && !this.Settings.Project_ReadOnlyMode;
+                mSectionIsUsedToolStripMenuItem.Enabled = mProjectView.CanSetSectionUsedStatus && !this.Settings.Project_ReadOnlyMode;
+                mImportTOCMenuItem.Enabled = !mProjectView.TransportBar.IsRecorderActive && !this.Settings.Project_ReadOnlyMode;
                 mSectionIsUsedToolStripMenuItem.CheckedChanged -=
                     new System.EventHandler(mSectionIsUsedToolStripMenuItem_CheckedChanged);
-                mSectionIsUsedToolStripMenuItem.Checked = mProjectView.CanMarkSectionUnused ||
-                                                          mProjectView.CanMarkStripUnused;
+                mSectionIsUsedToolStripMenuItem.Checked = (mProjectView.CanMarkSectionUnused ||
+                                                          mProjectView.CanMarkStripUnused) && !this.Settings.Project_ReadOnlyMode;
                 mSectionIsUsedToolStripMenuItem.CheckedChanged +=
                     new System.EventHandler(mSectionIsUsedToolStripMenuItem_CheckedChanged);
             }
