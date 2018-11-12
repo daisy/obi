@@ -22,7 +22,10 @@ namespace Obi.Dialogs
             {
                 this.Font = new Font(settings.ObiFont, this.Font.Size, FontStyle.Regular);//@fontconfig
             }
-
+            if (settings.Project_ReadOnlyMode)
+            {
+                m_rdb_Copy.Enabled = m_rdb_Cut.Enabled = m_rdb_Delete.Enabled = !settings.Project_ReadOnlyMode;
+            }
         }
 
         public string SelectedSpecialNode
