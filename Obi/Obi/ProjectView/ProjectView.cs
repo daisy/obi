@@ -329,6 +329,8 @@ namespace Obi.ProjectView
         // Add a new strip to the project.
         public void AddStrip ()
             {
+                if (this.ObiForm.Settings.Project_ReadOnlyMode)
+                    return;
             // quick fix to avoid a crash.
             if (Presentation != null && Presentation.FirstSection == null && Selection != null)
                 Selection = null;
@@ -2348,6 +2350,8 @@ namespace Obi.ProjectView
         //@singleSection
         public void DeleteFollowingPhrasesInSection ()
             {
+                if (this.ObiForm.Settings.Project_ReadOnlyMode)
+                    return;
             if (CanDeleteFollowingPhrasesInSection)
                 {
                 if (mTransportBar.IsPlayerActive) mTransportBar.Stop ();
@@ -7339,6 +7343,8 @@ public bool ShowOnlySelectedSection
 
         public void PasteMultiplePhrases()
         {
+            if (this.ObiForm.Settings.Project_ReadOnlyMode)
+                return;
           
             if (CanPaste)
             {
