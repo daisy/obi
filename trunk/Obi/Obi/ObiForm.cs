@@ -62,6 +62,7 @@ namespace Obi
             private bool m_FlagLangUpdate = false;
             private string m_ObiFont;//@fontconfig
             private int m_TotalTimeIntervalSinceLastBackup = 0;
+            private bool m_IsSkippableNoteInProject = false;
 
 
             /// <summary>
@@ -2767,6 +2768,7 @@ namespace Obi
                 {
                     mProjectView.ZoomPanelClose();
                 }
+                m_IsSkippableNoteInProject = false;
                 ExportProject();
 
             }
@@ -3163,7 +3165,11 @@ ref string exportDirectoryDAISY3,
                                 customMetadata += m.NameContentAttribute.Name;
                             }   
                         }
-                        if (customMetadata != null)  MessageBox.Show(Localizer.Message("CustomMetadataD202_NotIncluded") + '\n' + customMetadata);
+                        if (customMetadata != null) MessageBox.Show(Localizer.Message("CustomMetadataD202_NotIncluded") + '\n' + customMetadata, Localizer.Message("Caption_Information"));
+                        if (m_IsSkippableNoteInProject)
+                        {
+                            MessageBox.Show(Localizer.Message("SkippableNotExportedInDaisy202"), Localizer.Message("Caption_Information"));
+                        }
                     }
 
                     if (ExportDialogEPUB3 != null)
@@ -3357,6 +3363,10 @@ ref string exportDirectoryEPUB3)
                                 {
                                     pages.Add(phrase.PageNumber.Number, phrase);
                                 }
+                            }
+                            if (phrase != null && phrase.Role_ == EmptyNode.Role.Custom)
+                            {
+                                m_IsSkippableNoteInProject = true;
                             }
                             return true;
                         },

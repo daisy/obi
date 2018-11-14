@@ -7149,6 +7149,15 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The project has some skippable notes. They cannot be included in DAISY 2.02 export..
+        /// </summary>
+        internal static string SkippableNotExportedInDaisy202 {
+            get {
+                return ResourceManager.GetString("SkippableNotExportedInDaisy202", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Generating speech....
         /// </summary>
         internal static string SpeechGenerationProgress {
