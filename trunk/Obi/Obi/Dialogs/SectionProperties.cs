@@ -70,6 +70,7 @@ namespace Obi.Dialogs
         private void SectionProperties_Load(object sender, EventArgs e)
         {
             m_txtName.Text = mNode.Label;
+            m_txtName.ReadOnly = mView.ObiForm.Settings.Project_ReadOnlyMode;
             int maxLevel = mNode.PrecedingSection == null ? 1 : mNode.PrecedingSection.Level + 1;
             for (int i = 1; i <= maxLevel; ++i) m_comboLevel.Items.Add(i);
             m_comboLevel.SelectedIndex = mNode.Level - 1;
@@ -84,7 +85,8 @@ namespace Obi.Dialogs
                     m_lbParentsList.Items.Insert(0, string.Format(Localizer.Message("section_level"),
                         parent.Label, parent.Level));
                 }
-            }            
+            }
+            m_comboLevel.Enabled = !mView.ObiForm.Settings.Project_ReadOnlyMode;
             m_txtTimeLength.Text = Program.FormatDuration_Long(mNode.Duration);
             m_txtPhraseCount.Text = mNode.PhraseChildCount.ToString();
             m_chkUsed.Checked = mNode.Used;

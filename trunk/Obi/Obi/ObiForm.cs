@@ -3165,10 +3165,10 @@ ref string exportDirectoryDAISY3,
                                 customMetadata += m.NameContentAttribute.Name;
                             }   
                         }
-                        if (customMetadata != null) MessageBox.Show(Localizer.Message("CustomMetadataD202_NotIncluded") + '\n' + customMetadata, Localizer.Message("Caption_Information"));
+                        if (customMetadata != null) MessageBox.Show(Localizer.Message("CustomMetadataD202_NotIncluded") + '\n' + customMetadata, Localizer.Message("Caption_Information"), MessageBoxButtons.OK, MessageBoxIcon.Information);
                         if (m_IsSkippableNoteInProject)
                         {
-                            MessageBox.Show(Localizer.Message("SkippableNotExportedInDaisy202"), Localizer.Message("Caption_Information"));
+                            MessageBox.Show(Localizer.Message("SkippableNotExportedInDaisy202"), Localizer.Message("Caption_Information"),MessageBoxButtons.OK,MessageBoxIcon.Information);
                         }
                     }
 
