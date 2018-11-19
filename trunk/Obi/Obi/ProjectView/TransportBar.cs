@@ -1365,20 +1365,22 @@ namespace Obi.ProjectView
             if (IsPlayerActive && PlaybackPhrase == null) return;
             
             m_ElapsedTime_FromSectionToFirstRecordingPhraseOrPlaybackPhrase = 0;
-            SectionNode section = CurrentState == State.Recording ? mRecordingPhrase.ParentAs<SectionNode>() :
-                PlaybackPhrase.ParentAs<SectionNode>();
-
-            for (int i = 0; i < section.PhraseChildCount; ++i)
+            SectionNode section = CurrentState == State.Recording && mRecordingPhrase != null ? mRecordingPhrase.ParentAs<SectionNode>() :
+                PlaybackPhrase != null ? PlaybackPhrase.ParentAs<SectionNode>() : null;
+            if (section != null)
             {
-                EmptyNode n = section.PhraseChild(i);
-                if ((CurrentState == State.Recording && n == mRecordingPhrase)
-                    || (IsPlayerActive && n == PlaybackPhrase))
+                for (int i = 0; i < section.PhraseChildCount; ++i)
                 {
-                    return;
-                }
-                if (n is PhraseNode && n.Children.Count == 0)
-                {
-                    m_ElapsedTime_FromSectionToFirstRecordingPhraseOrPlaybackPhrase += ((PhraseNode)n).Audio.Duration.AsMilliseconds;
+                    EmptyNode n = section.PhraseChild(i);
+                    if ((CurrentState == State.Recording && n == mRecordingPhrase)
+                        || (IsPlayerActive && n == PlaybackPhrase))
+                    {
+                        return;
+                    }
+                    if (n is PhraseNode && n.Children.Count == 0)
+                    {
+                        m_ElapsedTime_FromSectionToFirstRecordingPhraseOrPlaybackPhrase += ((PhraseNode)n).Audio.Duration.AsMilliseconds;
+                    }
                 }
             }
 
