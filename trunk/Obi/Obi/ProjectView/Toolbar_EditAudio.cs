@@ -64,11 +64,11 @@ namespace Obi.ProjectView
 
         public void EnableDisableCut()
         {
-            mbtnCuttoolStrip.Enabled = (m_ContentView.CanRemoveAudio ) && !m_ProjectView.TransportBar.IsRecorderActive;
-            mbtnCopytoolStrip.Enabled = (m_ContentView.CanCopyAudio || m_ContentView.CanCopyBlock || m_ContentView.CanCopyStrip) && !m_ProjectView.TransportBar.IsRecorderActive;
-            mbtnPastetoolStrip.Enabled = m_ProjectView.CanPaste;
+            mbtnCuttoolStrip.Enabled = (m_ContentView.CanRemoveAudio ) && !m_ProjectView.TransportBar.IsRecorderActive && !m_ProjectView.ObiForm.Settings.Project_ReadOnlyMode;
+            mbtnCopytoolStrip.Enabled = (m_ContentView.CanCopyAudio || m_ContentView.CanCopyBlock || m_ContentView.CanCopyStrip) && !m_ProjectView.TransportBar.IsRecorderActive && !m_ProjectView.ObiForm.Settings.Project_ReadOnlyMode;
+            mbtnPastetoolStrip.Enabled = m_ProjectView.CanPaste && !m_ProjectView.ObiForm.Settings.Project_ReadOnlyMode;
             mbtnSplittoolStrip.Enabled =  m_ProjectView.CanSplitPhrase;
-            mbtnDeletetoolStrip.Enabled = (m_ContentView.CanRemoveAudio ) && !m_ProjectView.TransportBar.IsRecorderActive;
+            mbtnDeletetoolStrip.Enabled = (m_ContentView.CanRemoveAudio) && !m_ProjectView.TransportBar.IsRecorderActive && !m_ProjectView.ObiForm.Settings.Project_ReadOnlyMode;
             mbtnMergetoolStrip.Enabled = m_ContentView.CanMergeBlockWithNext;
             
         }
