@@ -5922,7 +5922,7 @@ namespace Obi {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Open Obi in read only mode.
+        ///   Looks up a localized string similar to Switch Obi to read only mode.
         /// </summary>
         internal static string Project_ReadOnlyMode {
             get {

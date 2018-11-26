@@ -3070,7 +3070,7 @@ You can always change settings later from Obi Preferences.</value>
     <value>Remove accents from file names during Daisy 2.02 Export </value>
   </data>
   <data name="Project_ReadOnlyMode" xml:space="preserve">
-    <value>Open Obi in read only mode</value>
+    <value>Switch Obi to read only mode</value>
   </data>
   <data name="SkippableNotExportedInDaisy202" xml:space="preserve">
     <value>The project has some skippable notes. They cannot be included in DAISY 2.02 export.</value>
