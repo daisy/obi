@@ -1143,6 +1143,7 @@ m_cb_ChooseFont.Visible = false;
                 mSettings.Project_DisplayWarningsForEditOperations = m_CheckBoxListView.Items[15].Checked;
                 mSettings.Project_ImportNCCFileWithWindows1252Encoding= m_CheckBoxListView.Items[16].Checked;
                 mSettings.Project_DoNotDisplayMessageBoxForShowingSection = m_CheckBoxListView.Items[17].Checked;
+                mSettings.Project_ReadOnlyMode = m_CheckBoxListView.Items[18].Checked; 
             }
             if (mTab.SelectedTab == mAudioTab)
             {
@@ -1290,6 +1291,7 @@ m_cb_ChooseFont.Visible = false;
                 m_CheckBoxListView.Items.Add(Localizer.Message("Project_DisplayWarningsForEditOperations"));
                 m_CheckBoxListView.Items.Add(Localizer.Message("Project_ImportNCCFileWithWindows1252Encoding"));
                 m_CheckBoxListView.Items.Add(Localizer.Message("Project_DoNotDisplayMessageBoxForShowingSection"));
+                m_CheckBoxListView.Items.Add(Localizer.Message("Project_ReadOnlyMode"));
                
                 m_CheckBoxListView.Items[0].Checked = mSettings.Project_OpenLastProject;
                 m_CheckBoxListView.Items[0].ToolTipText = Localizer.Message("ProjectTab_OpenLastProject");
@@ -1327,6 +1329,8 @@ m_cb_ChooseFont.Visible = false;
                 m_CheckBoxListView.Items[16].ToolTipText = Localizer.Message("Project_ImportNCCFileWithWindows1252Encoding");
                 m_CheckBoxListView.Items[17].Checked = mSettings.Project_DoNotDisplayMessageBoxForShowingSection;
                 m_CheckBoxListView.Items[17].ToolTipText = Localizer.Message("Project_DoNotDisplayMessageBoxForShowingSection");
+                m_CheckBoxListView.Items[18].Checked = mSettings.Project_ReadOnlyMode;
+                m_CheckBoxListView.Items[18].ToolTipText = Localizer.Message("Project_ReadOnlyMode"); 
 
             }
             m_CheckBoxListView.View = View.Details;
