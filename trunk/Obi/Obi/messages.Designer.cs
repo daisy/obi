@@ -6219,6 +6219,15 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Read Only.
+        /// </summary>
+        internal static string ReadOnlyString {
+            get {
+                return ResourceManager.GetString("ReadOnlyString", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Ready..
         /// </summary>
         internal static string ready {
@@ -7424,6 +7433,15 @@ namespace Obi {
         internal static string title_bar {
             get {
                 return ResourceManager.GetString("title_bar", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0}{1} ({2}) - {3} [{4}]({5}).
+        /// </summary>
+        internal static string title_bar_ReadOnly {
+            get {
+                return ResourceManager.GetString("title_bar_ReadOnly", resourceCulture);
             }
         }
         

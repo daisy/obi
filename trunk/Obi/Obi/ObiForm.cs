@@ -4344,10 +4344,20 @@ ref string exportDirectoryEPUB3)
                     {
                         tempSettingsName = str[1] + " " + str[0];
                     }
-                    Text = mSession.HasProject
-                                   ? String.Format(Localizer.Message("title_bar"), mSession.Presentation.Title,
-                                                   (mSession.CanSave ? "*" : ""), tempPath, Localizer.Message("obi"), tempSettingsName)
-                                   : Localizer.Message("obi");
+                    if (!mSettings.Project_ReadOnlyMode)
+                    {
+                        Text = mSession.HasProject
+                                       ? String.Format(Localizer.Message("title_bar"), mSession.Presentation.Title,
+                                                       (mSession.CanSave ? "*" : ""), tempPath, Localizer.Message("obi"), tempSettingsName)
+                                       : Localizer.Message("obi");
+                    }
+                    else
+                    {
+                        Text = mSession.HasProject
+                                       ? String.Format(Localizer.Message("title_bar_ReadOnly"), mSession.Presentation.Title,
+                                                       (mSession.CanSave ? "*" : ""), tempPath, Localizer.Message("obi"), Localizer.Message("ReadOnlyString"), tempSettingsName)
+                                       : Localizer.Message("obi");
+                    }
 
                 }
             }

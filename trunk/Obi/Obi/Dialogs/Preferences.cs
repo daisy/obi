@@ -609,6 +609,7 @@ m_cb_ChooseFont.Visible = false;
             mForm.SetAutoSaverInterval = mSettings.Project_AutoSaveTimeInterval;
             if (mSettings.Project_AutoSaveTimeIntervalEnabled) mForm.StartAutoSaveTimeInterval ();
             VerifyChangeInLoadedSettings();
+            mForm.UpdateTitle();
             return returnVal;
             }
 
