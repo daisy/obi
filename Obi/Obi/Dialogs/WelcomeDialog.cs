@@ -25,6 +25,10 @@ namespace Obi.Dialogs
             helpProvider1.HelpNamespace = Localizer.Message("CHMhelp_file_name");
             helpProvider1.SetHelpNavigator(this, HelpNavigator.Topic);
             helpProvider1.SetHelpKeyword(this, "HTML Files/Introducing Obi/Getting Started/Starting Obi.htm");
+            if (settings.Project_ReadOnlyMode)
+            {
+                this.Text = this.Text + " [" + Localizer.Message("ReadOnlyString") +"]";
+            }
             if (settings.ObiFont != this.Font.Name)
             {
                 this.Font = new Font(settings.ObiFont, this.Font.Size, FontStyle.Regular);//@fontconfig

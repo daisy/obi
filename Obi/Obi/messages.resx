@@ -3075,4 +3075,10 @@ You can always change settings later from Obi Preferences.</value>
   <data name="SkippableNotExportedInDaisy202" xml:space="preserve">
     <value>The project has some skippable notes. They cannot be included in DAISY 2.02 export.</value>
   </data>
+  <data name="ReadOnlyString" xml:space="preserve">
+    <value>Read Only</value>
+  </data>
+  <data name="title_bar_ReadOnly" xml:space="preserve">
+    <value>{0}{1} ({2}) - {3} [{4}]({5})</value>
+  </data>
 </root>
