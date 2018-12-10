@@ -45,7 +45,6 @@
             // 
             // m_btnOk
             // 
-            this.m_btnOk.AccessibleDescription = global::Obi.messages.Executing__0_;
             resources.ApplyResources(this.m_btnOk, "m_btnOk");
             this.m_btnOk.Name = "m_btnOk";
             this.m_btnOk.UseVisualStyleBackColor = true;
@@ -53,9 +52,8 @@
             // 
             // m_btnCancel
             // 
-            this.m_btnCancel.AccessibleDescription = global::Obi.messages.Executing__0_;
-            this.m_btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             resources.ApplyResources(this.m_btnCancel, "m_btnCancel");
+            this.m_btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.m_btnCancel.Name = "m_btnCancel";
             this.m_btnCancel.UseVisualStyleBackColor = true;
             this.m_btnCancel.Click += new System.EventHandler(this.button2_Click);
