@@ -124,6 +124,24 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Advance audio settings list .
+        /// </summary>
+        internal static string AdvancePreferencesAudioDesc {
+            get {
+                return ResourceManager.GetString("AdvancePreferencesAudioDesc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Advance project settings list .
+        /// </summary>
+        internal static string AdvancePreferencesProjectDesc {
+            get {
+                return ResourceManager.GetString("AdvancePreferencesProjectDesc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to There are anchor nodes which are empty or they refer to empty nodes..
         /// </summary>
         internal static string Anchor_node_error {
@@ -1098,9 +1116,7 @@ namespace Obi {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Welcome To OBI. Please select appropriate settings from the options provided below. 
-        ///If you would like to configure Obi as per default settings, you can simply click on OK button or press the enter key and proceed. 
-        ///You can always change settings later from Obi Preferences..
+        ///   Looks up a localized string similar to Welcome To OBI. Please select appropriate settings from the options provided below.If you would like to configure Obi as per default settings, you can simply click on OK button or press the enter key and proceed.You can always change settings later from Obi Preferences..
         /// </summary>
         internal static string ConfigureObi {
             get {
@@ -5922,7 +5938,7 @@ namespace Obi {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Switch Obi to read only mode.
+        ///   Looks up a localized string similar to Switch to read only structure.
         /// </summary>
         internal static string Project_ReadOnlyMode {
             get {

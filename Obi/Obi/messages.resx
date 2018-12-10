@@ -3050,9 +3050,7 @@ Error text: {1}</value>
     <value>Following Files are renamed:- </value>
   </data>
   <data name="ConfigureObi" xml:space="preserve">
-    <value>Welcome To OBI. Please select appropriate settings from the options provided below. 
-If you would like to configure Obi as per default settings, you can simply click on OK button or press the enter key and proceed. 
-You can always change settings later from Obi Preferences.</value>
+    <value>Welcome To OBI. Please select appropriate settings from the options provided below.If you would like to configure Obi as per default settings, you can simply click on OK button or press the enter key and proceed.You can always change settings later from Obi Preferences.</value>
   </data>
   <data name="Preferences_AdditionalAudioSettings" xml:space="preserve">
     <value>Additional Audio Settings </value>
@@ -3070,7 +3068,7 @@ You can always change settings later from Obi Preferences.</value>
     <value>Remove accents from file names during Daisy 2.02 Export </value>
   </data>
   <data name="Project_ReadOnlyMode" xml:space="preserve">
-    <value>Switch Obi to read only mode</value>
+    <value>Switch to read only structure</value>
   </data>
   <data name="SkippableNotExportedInDaisy202" xml:space="preserve">
     <value>The project has some skippable notes. They cannot be included in DAISY 2.02 export.</value>
@@ -3080,5 +3078,11 @@ You can always change settings later from Obi Preferences.</value>
   </data>
   <data name="title_bar_ReadOnly" xml:space="preserve">
     <value>{0}{1} ({2}) - {3} [{4}]({5})</value>
+  </data>
+  <data name="AdvancePreferencesProjectDesc" xml:space="preserve">
+    <value>Advance project settings list </value>
+  </data>
+  <data name="AdvancePreferencesAudioDesc" xml:space="preserve">
+    <value>Advance audio settings list </value>
   </data>
 </root>
