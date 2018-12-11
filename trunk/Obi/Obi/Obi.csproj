@@ -589,6 +589,9 @@
     <EmbeddedResource Include="Dialogs\About.zh-Hant.resx">
       <DependentUpon>About.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\AdvancePreferencesSettings.fr.resx">
+      <DependentUpon>AdvancePreferencesSettings.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\AdvancePreferencesSettings.resx">
       <DependentUpon>AdvancePreferencesSettings.cs</DependentUpon>
     </EmbeddedResource>
@@ -787,6 +790,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\NewProject.zh-Hant.resx">
       <DependentUpon>NewProject.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\ObiConfiguration.fr.resx">
+      <DependentUpon>ObiConfiguration.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\ObiConfiguration.resx">
       <DependentUpon>ObiConfiguration.cs</DependentUpon>
