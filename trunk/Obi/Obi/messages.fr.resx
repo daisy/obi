@@ -112,10 +112,10 @@
     <value>2.0</value>
   </resheader>
   <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="clear_recent_caption" xml:space="preserve">
     <value>Effacer la liste des projets récents?</value>
@@ -2780,5 +2780,41 @@ tester "Figer la largeur du volet du contenu" ?(Recommandé)</value>
   </data>
   <data name="Import_AudioFormat_FollowingFilesRenamed" xml:space="preserve">
     <value>Les fichiers suivants sont renommés:</value>
+  </data>
+  <data name="ConfigureObi" xml:space="preserve">
+    <value>Bienvenue dans OBI. Veuillez sélectionner les paramètres appropriés parmi les options suivantes. Si vous souhaitez configurer Obi aux valeurs par défaut, cliquez simplement sur le bouton OK ou appuyez sur Entrée et continuez. Vous pourrez toujours changer ultérieurement ces paramètres dans le menu Préférences d'Obi.</value>
+  </data>
+  <data name="Preferences_AdditionalAudioSettings" xml:space="preserve">
+    <value>Paramètres Audio Complémentaires</value>
+  </data>
+  <data name="Preferences_AdditionalProjectSettings" xml:space="preserve">
+    <value>Paramètres de Projet Complémentaires</value>
+  </data>
+  <data name="ZoomWaveform_PreserveZoomChecked" xml:space="preserve">
+    <value>Préserver le Zoom Coché</value>
+  </data>
+  <data name="ZoomWaveform_PreserveZoomUnchecked" xml:space="preserve">
+    <value>Préserver le Zoom Décoché</value>
+  </data>
+  <data name="Audio_RemoveAccentsFromDaisy2ExportFileNames" xml:space="preserve">
+    <value>Retirer les accents des noms de fichiers lors de l'export DAISY 2.02</value>
+  </data>
+  <data name="Project_ReadOnlyMode" xml:space="preserve">
+    <value>Passer Obi en mode Lecture seule</value>
+  </data>
+  <data name="SkippableNotExportedInDaisy202" xml:space="preserve">
+    <value>Le projet comporte des notes facultatives. Elles ne peuvent être incluses lors d'un export DAISY 2.02.</value>
+  </data>
+  <data name="ReadOnlyString" xml:space="preserve">
+    <value>Lecture Seule</value>
+  </data>
+  <data name="title_bar_ReadOnly" xml:space="preserve">
+    <value>{0}{1} ({2}) - {3} [{4}]({5})</value>
+  </data>
+  <data name="AdvancePreferencesProjectDesc" xml:space="preserve">
+    <value>Paramètres de Projet Complémentaires Liste</value>
+  </data>
+  <data name="AdvancePreferencesAudioDesc" xml:space="preserve">
+    <value>Paramètres Audio Complémentaires Liste</value>
   </data>
 </root>

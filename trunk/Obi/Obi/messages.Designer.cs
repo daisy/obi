@@ -124,7 +124,7 @@ namespace Obi {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Advance audio settings list .
+        ///   Looks up a localized string similar to Additional audio settings list .
         /// </summary>
         internal static string AdvancePreferencesAudioDesc {
             get {
@@ -133,7 +133,7 @@ namespace Obi {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Advance project settings list .
+        ///   Looks up a localized string similar to Additional project settings list .
         /// </summary>
         internal static string AdvancePreferencesProjectDesc {
             get {
@@ -1116,7 +1116,7 @@ namespace Obi {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Welcome To OBI. Please select appropriate settings from the options provided below.If you would like to configure Obi as per default settings, you can simply click on OK button or press the enter key and proceed.You can always change settings later from Obi Preferences..
+        ///   Looks up a localized string similar to Welcome to OBI. Please select appropriate settings from the options provided below. If you would like to configure Obi as per default settings, you can simply click on OK button or press the enter key and proceed. You can always change settings later from Obi Preferences..
         /// </summary>
         internal static string ConfigureObi {
             get {
