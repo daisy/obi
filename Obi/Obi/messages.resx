@@ -3050,7 +3050,7 @@ Error text: {1}</value>
     <value>Following Files are renamed:- </value>
   </data>
   <data name="ConfigureObi" xml:space="preserve">
-    <value>Welcome To OBI. Please select appropriate settings from the options provided below.If you would like to configure Obi as per default settings, you can simply click on OK button or press the enter key and proceed.You can always change settings later from Obi Preferences.</value>
+    <value>Welcome to OBI. Please select appropriate settings from the options provided below. If you would like to configure Obi as per default settings, you can simply click on OK button or press the enter key and proceed. You can always change settings later from Obi Preferences.</value>
   </data>
   <data name="Preferences_AdditionalAudioSettings" xml:space="preserve">
     <value>Additional Audio Settings </value>
@@ -3080,9 +3080,9 @@ Error text: {1}</value>
     <value>{0}{1} ({2}) - {3} [{4}]({5})</value>
   </data>
   <data name="AdvancePreferencesProjectDesc" xml:space="preserve">
-    <value>Advance project settings list </value>
+    <value>Additional project settings list </value>
   </data>
   <data name="AdvancePreferencesAudioDesc" xml:space="preserve">
-    <value>Advance audio settings list </value>
+    <value>Additional audio settings list </value>
   </data>
 </root>
