@@ -51,6 +51,7 @@ namespace Obi.Dialogs
             this.m_rdbDaisyProduction = new System.Windows.Forms.RadioButton();
             this.m_lblSelectRadioButton = new System.Windows.Forms.Label();
             this.m_txtBoxObiInformation = new System.Windows.Forms.TextBox();
+            this.m_chkAuthorization = new System.Windows.Forms.CheckBox();
             this.m_grpBoxUserInformation.SuspendLayout();
             this.m_grpBoxObiUse.SuspendLayout();
             this.SuspendLayout();
@@ -163,6 +164,7 @@ namespace Obi.Dialogs
             // 
             // m_grpBoxObiUse
             // 
+            this.m_grpBoxObiUse.Controls.Add(this.m_chkAuthorization);
             this.m_grpBoxObiUse.Controls.Add(this.m_rdbTryingObi);
             this.m_grpBoxObiUse.Controls.Add(this.m_rdbDaisyProduction);
             this.m_grpBoxObiUse.Controls.Add(this.m_lblSelectRadioButton);
@@ -194,6 +196,13 @@ namespace Obi.Dialogs
             resources.ApplyResources(this.m_txtBoxObiInformation, "m_txtBoxObiInformation");
             this.m_txtBoxObiInformation.Name = "m_txtBoxObiInformation";
             this.m_txtBoxObiInformation.ReadOnly = true;
+            // 
+            // m_chkAuthorization
+            // 
+            resources.ApplyResources(this.m_chkAuthorization, "m_chkAuthorization");
+            this.m_chkAuthorization.Name = "m_chkAuthorization";
+            this.m_chkAuthorization.UseVisualStyleBackColor = true;
+            this.m_chkAuthorization.CheckedChanged += new System.EventHandler(this.m_chkAuthorization_CheckedChanged);
             // 
             // UserRegistration
             // 
@@ -240,5 +249,6 @@ namespace Obi.Dialogs
         private System.Windows.Forms.TextBox m_txtWinVer;
         private System.Windows.Forms.TextBox m_txtRetypeEmail;
         private System.Windows.Forms.Label m_lblRetypeEmail;
+        private System.Windows.Forms.CheckBox m_chkAuthorization;
     }
 }

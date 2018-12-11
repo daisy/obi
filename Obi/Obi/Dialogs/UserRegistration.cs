@@ -34,6 +34,7 @@ namespace Obi.Dialogs
             m_txtWinVer.AccessibleName = m_lblWinVer.Text.Replace("&", "");
             m_txtBoxObiInformation.Text = Localizer.Message("Obi_UserInformationText");
             m_txtBoxObiInformation.Select(0, 0);
+            m_btnOk.Enabled = false;
         }
 
         public UserRegistration(Settings_Permanent settings, Settings set)
@@ -280,6 +281,11 @@ namespace Obi.Dialogs
             {
                 ProjectView.ProjectView.WriteToLogFile_Static(ex.ToString());
             }
+        }
+
+        private void m_chkAuthorization_CheckedChanged(object sender, EventArgs e)
+        {
+            m_btnOk.Enabled = m_chkAuthorization.Checked;
         }
 
 
