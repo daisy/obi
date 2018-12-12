@@ -770,19 +770,19 @@ Use "Home" For Private user</value>
     <value>2</value>
   </data>
   <data name="m_chkAuthorization.Location" type="System.Drawing.Point, System.Drawing">
-    <value>14, 478</value>
+    <value>14, 482</value>
   </data>
   <data name="m_chkAuthorization.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>2, 2, 2, 2</value>
   </data>
   <data name="m_chkAuthorization.Size" type="System.Drawing.Size, System.Drawing">
-    <value>369, 56</value>
+    <value>369, 40</value>
   </data>
   <data name="m_chkAuthorization.TabIndex" type="System.Int32, mscorlib">
     <value>18</value>
   </data>
   <data name="m_chkAuthorization.Text" xml:space="preserve">
-    <value>I &amp;authorize DAISY Consortium to use the personal data submitted by me for communications and usage statistics for Obi.</value>
+    <value>I &amp;authorize DAISY Consortium to use this personal data for communications and usage statistics for Obi.</value>
   </data>
   <data name="&gt;&gt;m_chkAuthorization.Name" xml:space="preserve">
     <value>m_chkAuthorization</value>
