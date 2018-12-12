@@ -214,7 +214,7 @@
     <value>1</value>
   </data>
   <data name="m_tbDialogDesc.Location" type="System.Drawing.Point, System.Drawing">
-    <value>19, 12</value>
+    <value>13, 12</value>
   </data>
   <data name="m_tbDialogDesc.Size" type="System.Drawing.Size, System.Drawing">
     <value>397, 21</value>
