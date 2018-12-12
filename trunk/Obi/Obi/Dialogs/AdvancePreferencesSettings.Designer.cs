@@ -45,7 +45,7 @@
             // 
             // m_btnOk
             // 
-            this.m_btnOk.AccessibleDescription = global::Obi.messages.phrase_extra_Plain;
+            this.m_btnOk.AccessibleDescription = global::Obi.messages_zh_Hant.Executing__0_;
             resources.ApplyResources(this.m_btnOk, "m_btnOk");
             this.m_btnOk.Name = "m_btnOk";
             this.m_btnOk.UseVisualStyleBackColor = true;
@@ -53,7 +53,7 @@
             // 
             // m_btnCancel
             // 
-            this.m_btnCancel.AccessibleDescription = global::Obi.messages.phrase_extra_Plain;
+            this.m_btnCancel.AccessibleDescription = global::Obi.messages_zh_Hant.Executing__0_;
             resources.ApplyResources(this.m_btnCancel, "m_btnCancel");
             this.m_btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.m_btnCancel.Name = "m_btnCancel";
