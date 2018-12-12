@@ -37,13 +37,13 @@ namespace Obi.ImportExport
         private EmptyNode m_FirstPageNumberedPhraseOfFirstSection;
         private int m_MaxDepth = 0 ;
         private List<string> m_FilesList = null;
-        private Settings m_Settings;
+        private bool m_IsRemoveAccentsChecked;
         //private bool m_EncodeToMP3;
         //private int m_BitRate_Mp3;
 
         public DAISY202Export(ObiPresentation presentation, string exportDirectory, bool encodeToMp3, double mp3BitRate, 
             AudioLib.SampleRate sampleRate, bool stereo,
-            int audioFileSectionLevel,Settings settings)
+            int audioFileSectionLevel, bool isRemoveAccentsChecked)
             :
             base(presentation, exportDirectory, null, encodeToMp3, mp3BitRate,
             sampleRate, stereo,
@@ -56,7 +56,7 @@ namespace Obi.ImportExport
             m_NextSectionPageAdjustmentDictionary = new Dictionary<SectionNode, EmptyNode>();
             m_AudioFileSectionLevel = audioFileSectionLevel;
             m_FilesList = new List<string>();
-            m_Settings = settings;
+            m_IsRemoveAccentsChecked = isRemoveAccentsChecked;
                 //m_EncodeToMP3 = encodeToMP3;
 
             }
@@ -401,7 +401,7 @@ namespace Obi.ImportExport
                             XmlNode audioNode = smilDocument.CreateElement(null, "audio", smilBodyNode.NamespaceURI);
                             seqNode_AudioParent.AppendChild(audioNode);
                             string tempSectionName = null;
-                            if (m_Settings.Audio_RemoveAccentsFromDaisy2ExportFileNames && AddSectionNameToAudioFile)
+                            if (m_IsRemoveAccentsChecked && AddSectionNameToAudioFile)
                             {
                                 tempSectionName = phrase.ParentAs<SectionNode>().Label;
 
