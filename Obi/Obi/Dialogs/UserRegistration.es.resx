@@ -119,19 +119,13 @@
   </resheader>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="m_btnOk.Location" type="System.Drawing.Point, System.Drawing">
-    <value>68, 480</value>
-  </data>
-  <data name="m_btnOk.Size" type="System.Drawing.Size, System.Drawing">
-    <value>111, 35</value>
+    <value>67, 525</value>
   </data>
   <data name="m_btnOk.Text" xml:space="preserve">
     <value>Re&amp;gistrar</value>
   </data>
   <data name="m_btnRemindMeLater.Location" type="System.Drawing.Point, System.Drawing">
-    <value>225, 480</value>
-  </data>
-  <data name="m_btnRemindMeLater.Size" type="System.Drawing.Size, System.Drawing">
-    <value>111, 35</value>
+    <value>224, 525</value>
   </data>
   <data name="m_btnRemindMeLater.Text" xml:space="preserve">
     <value>&amp;Recordar más tarde</value>
@@ -142,41 +136,17 @@
   <data name="m_txtRetypeEmail.Size" type="System.Drawing.Size, System.Drawing">
     <value>179, 21</value>
   </data>
-  <data name="m_lblRetypeEmail.Location" type="System.Drawing.Point, System.Drawing">
-    <value>7, 103</value>
-  </data>
   <data name="m_lblRetypeEmail.Size" type="System.Drawing.Size, System.Drawing">
     <value>167, 15</value>
   </data>
   <data name="m_lblRetypeEmail.Text" xml:space="preserve">
     <value>&amp;Reescribir correo electrónico:</value>
   </data>
-  <data name="m_txtWinVer.Location" type="System.Drawing.Point, System.Drawing">
-    <value>129, 261</value>
-  </data>
-  <data name="m_txtWinVer.Size" type="System.Drawing.Size, System.Drawing">
-    <value>233, 21</value>
-  </data>
-  <data name="m_lblWinVer.Location" type="System.Drawing.Point, System.Drawing">
-    <value>2, 262</value>
-  </data>
   <data name="m_lblWinVer.Size" type="System.Drawing.Size, System.Drawing">
     <value>119, 15</value>
   </data>
   <data name="m_lblWinVer.Text" xml:space="preserve">
     <value>Versión de windows:</value>
-  </data>
-  <data name="m_txtName.Location" type="System.Drawing.Point, System.Drawing">
-    <value>129, 15</value>
-  </data>
-  <data name="m_txtName.Size" type="System.Drawing.Size, System.Drawing">
-    <value>233, 21</value>
-  </data>
-  <data name="m_txtCountry.Location" type="System.Drawing.Point, System.Drawing">
-    <value>129, 223</value>
-  </data>
-  <data name="m_txtCountry.Size" type="System.Drawing.Size, System.Drawing">
-    <value>233, 21</value>
   </data>
   <data name="m_txtCity.Location" type="System.Drawing.Point, System.Drawing">
     <value>143, 181</value>
@@ -189,15 +159,6 @@
   </data>
   <data name="m_txtOrganizationName.Size" type="System.Drawing.Size, System.Drawing">
     <value>198, 21</value>
-  </data>
-  <data name="m_txtEmail.Location" type="System.Drawing.Point, System.Drawing">
-    <value>129, 52</value>
-  </data>
-  <data name="m_txtEmail.Size" type="System.Drawing.Size, System.Drawing">
-    <value>233, 21</value>
-  </data>
-  <data name="m_lblCountry.Location" type="System.Drawing.Point, System.Drawing">
-    <value>7, 226</value>
   </data>
   <data name="m_lblCountry.Size" type="System.Drawing.Size, System.Drawing">
     <value>34, 15</value>
@@ -214,18 +175,12 @@
   <data name="m_lblCity.Text" xml:space="preserve">
     <value>&amp;Ciudad/Provincia/C.A.:</value>
   </data>
-  <data name="m_lblOrgName.Location" type="System.Drawing.Point, System.Drawing">
-    <value>2, 141</value>
-  </data>
   <data name="m_lblOrgName.Size" type="System.Drawing.Size, System.Drawing">
     <value>230, 30</value>
   </data>
   <data name="m_lblOrgName.Text" xml:space="preserve">
     <value>Nombre de la &amp;Organización: 
  Utilice "Personal" para usuario particular</value>
-  </data>
-  <data name="m_lblEmail.Location" type="System.Drawing.Point, System.Drawing">
-    <value>7, 55</value>
   </data>
   <data name="m_lblEmail.Size" type="System.Drawing.Size, System.Drawing">
     <value>110, 15</value>
@@ -242,23 +197,11 @@
   <data name="m_lblName.Text" xml:space="preserve">
     <value>&amp;Nombre:</value>
   </data>
-  <data name="m_grpBoxUserInformation.Location" type="System.Drawing.Point, System.Drawing">
-    <value>14, 78</value>
-  </data>
-  <data name="m_grpBoxUserInformation.Size" type="System.Drawing.Size, System.Drawing">
-    <value>370, 291</value>
-  </data>
-  <data name="m_rdbTryingObi.Location" type="System.Drawing.Point, System.Drawing">
-    <value>10, 69</value>
-  </data>
   <data name="m_rdbTryingObi.Size" type="System.Drawing.Size, System.Drawing">
     <value>216, 19</value>
   </data>
   <data name="m_rdbTryingObi.Text" xml:space="preserve">
     <value>Estoy aprendiendo y pro&amp;bando Obi.</value>
-  </data>
-  <data name="m_rdbDaisyProduction.Location" type="System.Drawing.Point, System.Drawing">
-    <value>10, 44</value>
   </data>
   <data name="m_rdbDaisyProduction.Size" type="System.Drawing.Size, System.Drawing">
     <value>233, 19</value>
@@ -266,38 +209,26 @@
   <data name="m_rdbDaisyProduction.Text" xml:space="preserve">
     <value>Ya uso Obi para producir libros &amp;DAISY.</value>
   </data>
-  <data name="m_lblSelectRadioButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>7, 22</value>
-  </data>
   <data name="m_lblSelectRadioButton.Size" type="System.Drawing.Size, System.Drawing">
     <value>336, 15</value>
   </data>
   <data name="m_lblSelectRadioButton.Text" xml:space="preserve">
     <value>Seleccione, &amp;por favor, cualquiera de las siguientes opciones:</value>
   </data>
-  <data name="m_grpBoxObiUse.Location" type="System.Drawing.Point, System.Drawing">
-    <value>14, 376</value>
+  <data name="m_chkAuthorization.Location" type="System.Drawing.Point, System.Drawing">
+    <value>14, 491</value>
   </data>
-  <data name="m_grpBoxObiUse.Size" type="System.Drawing.Size, System.Drawing">
-    <value>370, 97</value>
+  <data name="m_chkAuthorization.Size" type="System.Drawing.Size, System.Drawing">
+    <value>369, 20</value>
+  </data>
+  <data name="m_chkAuthorization.Text" xml:space="preserve">
+    <value>Autorizo ​​el uso de estos datos para Obi.</value>
   </data>
   <data name="m_txtBoxObiInformation.AccessibleName" xml:space="preserve">
     <value>use las teclas de flechas para leer</value>
   </data>
-  <data name="m_txtBoxObiInformation.Location" type="System.Drawing.Point, System.Drawing">
-    <value>14, 8</value>
-  </data>
-  <data name="m_txtBoxObiInformation.Size" type="System.Drawing.Size, System.Drawing">
-    <value>369, 76</value>
-  </data>
-  <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
-    <value>7, 15</value>
-  </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>398, 523</value>
-  </data>
-  <data name="$this.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Microsoft Sans Serif, 9pt</value>
+    <value>398, 567</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
     <value>Registro de usuario</value>
