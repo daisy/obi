@@ -769,6 +769,9 @@ Use "Home" For Private user</value>
   <data name="&gt;&gt;m_grpBoxObiUse.ZOrder" xml:space="preserve">
     <value>2</value>
   </data>
+  <data name="m_chkAuthorization.CheckAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>TopLeft</value>
+  </data>
   <data name="m_chkAuthorization.Location" type="System.Drawing.Point, System.Drawing">
     <value>14, 482</value>
   </data>
@@ -776,7 +779,7 @@ Use "Home" For Private user</value>
     <value>2, 2, 2, 2</value>
   </data>
   <data name="m_chkAuthorization.Size" type="System.Drawing.Size, System.Drawing">
-    <value>369, 40</value>
+    <value>369, 36</value>
   </data>
   <data name="m_chkAuthorization.TabIndex" type="System.Int32, mscorlib">
     <value>18</value>
