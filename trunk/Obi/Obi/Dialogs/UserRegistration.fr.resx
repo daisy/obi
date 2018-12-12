@@ -218,6 +218,9 @@
   <data name="m_chkAuthorization.Location" type="System.Drawing.Point, System.Drawing">
     <value>14, 501</value>
   </data>
+  <data name="m_chkAuthorization.Text" xml:space="preserve">
+    <value>J’&amp;autorise le DAISY Consortium à utiliser ces données personnelles pour des communications ou des statistiques d’usages concernant Obi.</value>
+  </data>
   <data name="m_txtBoxObiInformation.AccessibleName" xml:space="preserve">
     <value>utiliser les touches fléchées pour lire</value>
   </data>
@@ -226,7 +229,7 @@
   </data>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="$this.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>Inherit</value>
+    <value>NoControl</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
     <value>Inscription de l'utilisateur</value>
