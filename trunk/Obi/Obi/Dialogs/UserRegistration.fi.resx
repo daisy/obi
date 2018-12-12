@@ -119,19 +119,19 @@
   </resheader>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="m_btnOk.Location" type="System.Drawing.Point, System.Drawing">
-    <value>68, 480</value>
+    <value>68, 522</value>
   </data>
   <data name="m_btnOk.Size" type="System.Drawing.Size, System.Drawing">
-    <value>111, 35</value>
+    <value>111, 39</value>
   </data>
   <data name="m_btnOk.Text" xml:space="preserve">
     <value>&amp;Rekisteröinti</value>
   </data>
   <data name="m_btnRemindMeLater.Location" type="System.Drawing.Point, System.Drawing">
-    <value>225, 480</value>
+    <value>225, 522</value>
   </data>
   <data name="m_btnRemindMeLater.Size" type="System.Drawing.Size, System.Drawing">
-    <value>111, 35</value>
+    <value>111, 39</value>
   </data>
   <data name="m_btnRemindMeLater.Text" xml:space="preserve">
     <value>Muistuta minua m&amp;yöhemmin</value>
@@ -151,53 +151,11 @@
   <data name="m_lblRetypeEmail.Text" xml:space="preserve">
     <value>Sähköpostiosoite &amp;uudelleen:</value>
   </data>
-  <data name="m_txtWinVer.Location" type="System.Drawing.Point, System.Drawing">
-    <value>129, 261</value>
-  </data>
-  <data name="m_txtWinVer.Size" type="System.Drawing.Size, System.Drawing">
-    <value>233, 21</value>
-  </data>
-  <data name="m_lblWinVer.Location" type="System.Drawing.Point, System.Drawing">
-    <value>2, 262</value>
-  </data>
   <data name="m_lblWinVer.Size" type="System.Drawing.Size, System.Drawing">
     <value>101, 15</value>
   </data>
   <data name="m_lblWinVer.Text" xml:space="preserve">
     <value>Windosws versio:</value>
-  </data>
-  <data name="m_txtName.Location" type="System.Drawing.Point, System.Drawing">
-    <value>129, 15</value>
-  </data>
-  <data name="m_txtName.Size" type="System.Drawing.Size, System.Drawing">
-    <value>233, 21</value>
-  </data>
-  <data name="m_txtCountry.Location" type="System.Drawing.Point, System.Drawing">
-    <value>129, 223</value>
-  </data>
-  <data name="m_txtCountry.Size" type="System.Drawing.Size, System.Drawing">
-    <value>233, 21</value>
-  </data>
-  <data name="m_txtCity.Location" type="System.Drawing.Point, System.Drawing">
-    <value>129, 181</value>
-  </data>
-  <data name="m_txtCity.Size" type="System.Drawing.Size, System.Drawing">
-    <value>233, 21</value>
-  </data>
-  <data name="m_txtOrganizationName.Location" type="System.Drawing.Point, System.Drawing">
-    <value>129, 136</value>
-  </data>
-  <data name="m_txtOrganizationName.Size" type="System.Drawing.Size, System.Drawing">
-    <value>233, 21</value>
-  </data>
-  <data name="m_txtEmail.Location" type="System.Drawing.Point, System.Drawing">
-    <value>129, 52</value>
-  </data>
-  <data name="m_txtEmail.Size" type="System.Drawing.Size, System.Drawing">
-    <value>233, 21</value>
-  </data>
-  <data name="m_lblCountry.Location" type="System.Drawing.Point, System.Drawing">
-    <value>7, 226</value>
   </data>
   <data name="m_lblCountry.Size" type="System.Drawing.Size, System.Drawing">
     <value>35, 15</value>
@@ -205,17 +163,11 @@
   <data name="m_lblCountry.Text" xml:space="preserve">
     <value>&amp;Maa:</value>
   </data>
-  <data name="m_lblCity.Location" type="System.Drawing.Point, System.Drawing">
-    <value>7, 185</value>
-  </data>
   <data name="m_lblCity.Size" type="System.Drawing.Size, System.Drawing">
     <value>77, 15</value>
   </data>
   <data name="m_lblCity.Text" xml:space="preserve">
     <value>&amp;Paikkakunta:</value>
-  </data>
-  <data name="m_lblOrgName.Location" type="System.Drawing.Point, System.Drawing">
-    <value>2, 141</value>
   </data>
   <data name="m_lblOrgName.Size" type="System.Drawing.Size, System.Drawing">
     <value>157, 30</value>
@@ -223,9 +175,6 @@
   <data name="m_lblOrgName.Text" xml:space="preserve">
     <value>&amp;Organisaatio: 
  Käytä ”Koti” yksityiskäyttöön</value>
-  </data>
-  <data name="m_lblEmail.Location" type="System.Drawing.Point, System.Drawing">
-    <value>7, 55</value>
   </data>
   <data name="m_lblEmail.Size" type="System.Drawing.Size, System.Drawing">
     <value>71, 15</value>
@@ -242,23 +191,11 @@
   <data name="m_lblName.Text" xml:space="preserve">
     <value>&amp;Nimi:</value>
   </data>
-  <data name="m_grpBoxUserInformation.Location" type="System.Drawing.Point, System.Drawing">
-    <value>14, 78</value>
-  </data>
-  <data name="m_grpBoxUserInformation.Size" type="System.Drawing.Size, System.Drawing">
-    <value>370, 291</value>
-  </data>
-  <data name="m_rdbTryingObi.Location" type="System.Drawing.Point, System.Drawing">
-    <value>10, 69</value>
-  </data>
   <data name="m_rdbTryingObi.Size" type="System.Drawing.Size, System.Drawing">
     <value>207, 19</value>
   </data>
   <data name="m_rdbTryingObi.Text" xml:space="preserve">
     <value>Kokeilen ja &amp;testaan Obi-ohjelmaa</value>
-  </data>
-  <data name="m_rdbDaisyProduction.Location" type="System.Drawing.Point, System.Drawing">
-    <value>10, 44</value>
   </data>
   <data name="m_rdbDaisyProduction.Size" type="System.Drawing.Size, System.Drawing">
     <value>356, 19</value>
@@ -266,38 +203,26 @@
   <data name="m_rdbDaisyProduction.Text" xml:space="preserve">
     <value>Käytössäni on jo Obi-ohjelma DAISY äänikirjojen tekemiseen</value>
   </data>
-  <data name="m_lblSelectRadioButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>7, 22</value>
-  </data>
   <data name="m_lblSelectRadioButton.Size" type="System.Drawing.Size, System.Drawing">
     <value>140, 15</value>
   </data>
   <data name="m_lblSelectRadioButton.Text" xml:space="preserve">
     <value>&amp;Valitse jokin seuraavista:</value>
   </data>
-  <data name="m_grpBoxObiUse.Location" type="System.Drawing.Point, System.Drawing">
-    <value>14, 376</value>
+  <data name="m_chkAuthorization.Location" type="System.Drawing.Point, System.Drawing">
+    <value>14, 478</value>
   </data>
-  <data name="m_grpBoxObiUse.Size" type="System.Drawing.Size, System.Drawing">
-    <value>370, 97</value>
+  <data name="m_chkAuthorization.Size" type="System.Drawing.Size, System.Drawing">
+    <value>369, 22</value>
+  </data>
+  <data name="m_chkAuthorization.Text" xml:space="preserve">
+    <value>Hyväksyn näiden tietojen käytön Obiin.</value>
   </data>
   <data name="m_txtBoxObiInformation.AccessibleName" xml:space="preserve">
     <value>käytä nuolinäppäimiä lukemiseen</value>
   </data>
-  <data name="m_txtBoxObiInformation.Location" type="System.Drawing.Point, System.Drawing">
-    <value>14, 8</value>
-  </data>
-  <data name="m_txtBoxObiInformation.Size" type="System.Drawing.Size, System.Drawing">
-    <value>369, 76</value>
-  </data>
-  <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
-    <value>7, 15</value>
-  </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>398, 523</value>
-  </data>
-  <data name="$this.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Microsoft Sans Serif, 9pt</value>
+    <value>398, 568</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
     <value>Käyttäjän rekisteröinti</value>

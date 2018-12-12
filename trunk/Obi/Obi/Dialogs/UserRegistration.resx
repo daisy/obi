@@ -183,195 +183,6 @@
   <data name="&gt;&gt;m_btnRemindMeLater.ZOrder" xml:space="preserve">
     <value>4</value>
   </data>
-  <data name="&gt;&gt;m_txtRetypeEmail.Name" xml:space="preserve">
-    <value>m_txtRetypeEmail</value>
-  </data>
-  <data name="&gt;&gt;m_txtRetypeEmail.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;m_txtRetypeEmail.Parent" xml:space="preserve">
-    <value>m_grpBoxUserInformation</value>
-  </data>
-  <data name="&gt;&gt;m_txtRetypeEmail.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;m_lblRetypeEmail.Name" xml:space="preserve">
-    <value>m_lblRetypeEmail</value>
-  </data>
-  <data name="&gt;&gt;m_lblRetypeEmail.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;m_lblRetypeEmail.Parent" xml:space="preserve">
-    <value>m_grpBoxUserInformation</value>
-  </data>
-  <data name="&gt;&gt;m_lblRetypeEmail.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="&gt;&gt;m_txtWinVer.Name" xml:space="preserve">
-    <value>m_txtWinVer</value>
-  </data>
-  <data name="&gt;&gt;m_txtWinVer.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;m_txtWinVer.Parent" xml:space="preserve">
-    <value>m_grpBoxUserInformation</value>
-  </data>
-  <data name="&gt;&gt;m_txtWinVer.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="&gt;&gt;m_lblWinVer.Name" xml:space="preserve">
-    <value>m_lblWinVer</value>
-  </data>
-  <data name="&gt;&gt;m_lblWinVer.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;m_lblWinVer.Parent" xml:space="preserve">
-    <value>m_grpBoxUserInformation</value>
-  </data>
-  <data name="&gt;&gt;m_lblWinVer.ZOrder" xml:space="preserve">
-    <value>3</value>
-  </data>
-  <data name="&gt;&gt;m_txtName.Name" xml:space="preserve">
-    <value>m_txtName</value>
-  </data>
-  <data name="&gt;&gt;m_txtName.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;m_txtName.Parent" xml:space="preserve">
-    <value>m_grpBoxUserInformation</value>
-  </data>
-  <data name="&gt;&gt;m_txtName.ZOrder" xml:space="preserve">
-    <value>4</value>
-  </data>
-  <data name="&gt;&gt;m_txtCountry.Name" xml:space="preserve">
-    <value>m_txtCountry</value>
-  </data>
-  <data name="&gt;&gt;m_txtCountry.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;m_txtCountry.Parent" xml:space="preserve">
-    <value>m_grpBoxUserInformation</value>
-  </data>
-  <data name="&gt;&gt;m_txtCountry.ZOrder" xml:space="preserve">
-    <value>5</value>
-  </data>
-  <data name="&gt;&gt;m_txtCity.Name" xml:space="preserve">
-    <value>m_txtCity</value>
-  </data>
-  <data name="&gt;&gt;m_txtCity.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;m_txtCity.Parent" xml:space="preserve">
-    <value>m_grpBoxUserInformation</value>
-  </data>
-  <data name="&gt;&gt;m_txtCity.ZOrder" xml:space="preserve">
-    <value>6</value>
-  </data>
-  <data name="&gt;&gt;m_txtOrganizationName.Name" xml:space="preserve">
-    <value>m_txtOrganizationName</value>
-  </data>
-  <data name="&gt;&gt;m_txtOrganizationName.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;m_txtOrganizationName.Parent" xml:space="preserve">
-    <value>m_grpBoxUserInformation</value>
-  </data>
-  <data name="&gt;&gt;m_txtOrganizationName.ZOrder" xml:space="preserve">
-    <value>7</value>
-  </data>
-  <data name="&gt;&gt;m_txtEmail.Name" xml:space="preserve">
-    <value>m_txtEmail</value>
-  </data>
-  <data name="&gt;&gt;m_txtEmail.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;m_txtEmail.Parent" xml:space="preserve">
-    <value>m_grpBoxUserInformation</value>
-  </data>
-  <data name="&gt;&gt;m_txtEmail.ZOrder" xml:space="preserve">
-    <value>8</value>
-  </data>
-  <data name="&gt;&gt;m_lblCountry.Name" xml:space="preserve">
-    <value>m_lblCountry</value>
-  </data>
-  <data name="&gt;&gt;m_lblCountry.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;m_lblCountry.Parent" xml:space="preserve">
-    <value>m_grpBoxUserInformation</value>
-  </data>
-  <data name="&gt;&gt;m_lblCountry.ZOrder" xml:space="preserve">
-    <value>9</value>
-  </data>
-  <data name="&gt;&gt;m_lblCity.Name" xml:space="preserve">
-    <value>m_lblCity</value>
-  </data>
-  <data name="&gt;&gt;m_lblCity.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;m_lblCity.Parent" xml:space="preserve">
-    <value>m_grpBoxUserInformation</value>
-  </data>
-  <data name="&gt;&gt;m_lblCity.ZOrder" xml:space="preserve">
-    <value>10</value>
-  </data>
-  <data name="&gt;&gt;m_lblOrgName.Name" xml:space="preserve">
-    <value>m_lblOrgName</value>
-  </data>
-  <data name="&gt;&gt;m_lblOrgName.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;m_lblOrgName.Parent" xml:space="preserve">
-    <value>m_grpBoxUserInformation</value>
-  </data>
-  <data name="&gt;&gt;m_lblOrgName.ZOrder" xml:space="preserve">
-    <value>11</value>
-  </data>
-  <data name="&gt;&gt;m_lblEmail.Name" xml:space="preserve">
-    <value>m_lblEmail</value>
-  </data>
-  <data name="&gt;&gt;m_lblEmail.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;m_lblEmail.Parent" xml:space="preserve">
-    <value>m_grpBoxUserInformation</value>
-  </data>
-  <data name="&gt;&gt;m_lblEmail.ZOrder" xml:space="preserve">
-    <value>12</value>
-  </data>
-  <data name="&gt;&gt;m_lblName.Name" xml:space="preserve">
-    <value>m_lblName</value>
-  </data>
-  <data name="&gt;&gt;m_lblName.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;m_lblName.Parent" xml:space="preserve">
-    <value>m_grpBoxUserInformation</value>
-  </data>
-  <data name="&gt;&gt;m_lblName.ZOrder" xml:space="preserve">
-    <value>13</value>
-  </data>
-  <data name="m_grpBoxUserInformation.Location" type="System.Drawing.Point, System.Drawing">
-    <value>14, 78</value>
-  </data>
-  <data name="m_grpBoxUserInformation.Size" type="System.Drawing.Size, System.Drawing">
-    <value>370, 291</value>
-  </data>
-  <data name="m_grpBoxUserInformation.TabIndex" type="System.Int32, mscorlib">
-    <value>2</value>
-  </data>
-  <data name="&gt;&gt;m_grpBoxUserInformation.Name" xml:space="preserve">
-    <value>m_grpBoxUserInformation</value>
-  </data>
-  <data name="&gt;&gt;m_grpBoxUserInformation.Type" xml:space="preserve">
-    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;m_grpBoxUserInformation.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;m_grpBoxUserInformation.ZOrder" xml:space="preserve">
-    <value>3</value>
-  </data>
   <data name="m_txtRetypeEmail.Location" type="System.Drawing.Point, System.Drawing">
     <value>129, 95</value>
   </data>
@@ -712,92 +523,26 @@ Use "Home" For Private user</value>
   <data name="&gt;&gt;m_lblName.ZOrder" xml:space="preserve">
     <value>13</value>
   </data>
-  <data name="&gt;&gt;m_rdbTryingObi.Name" xml:space="preserve">
-    <value>m_rdbTryingObi</value>
+  <data name="m_grpBoxUserInformation.Location" type="System.Drawing.Point, System.Drawing">
+    <value>14, 78</value>
   </data>
-  <data name="&gt;&gt;m_rdbTryingObi.Type" xml:space="preserve">
-    <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="m_grpBoxUserInformation.Size" type="System.Drawing.Size, System.Drawing">
+    <value>370, 291</value>
   </data>
-  <data name="&gt;&gt;m_rdbTryingObi.Parent" xml:space="preserve">
-    <value>m_grpBoxObiUse</value>
-  </data>
-  <data name="&gt;&gt;m_rdbTryingObi.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;m_rdbDaisyProduction.Name" xml:space="preserve">
-    <value>m_rdbDaisyProduction</value>
-  </data>
-  <data name="&gt;&gt;m_rdbDaisyProduction.Type" xml:space="preserve">
-    <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;m_rdbDaisyProduction.Parent" xml:space="preserve">
-    <value>m_grpBoxObiUse</value>
-  </data>
-  <data name="&gt;&gt;m_rdbDaisyProduction.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="&gt;&gt;m_lblSelectRadioButton.Name" xml:space="preserve">
-    <value>m_lblSelectRadioButton</value>
-  </data>
-  <data name="&gt;&gt;m_lblSelectRadioButton.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;m_lblSelectRadioButton.Parent" xml:space="preserve">
-    <value>m_grpBoxObiUse</value>
-  </data>
-  <data name="&gt;&gt;m_lblSelectRadioButton.ZOrder" xml:space="preserve">
+  <data name="m_grpBoxUserInformation.TabIndex" type="System.Int32, mscorlib">
     <value>2</value>
   </data>
-  <data name="m_grpBoxObiUse.Location" type="System.Drawing.Point, System.Drawing">
-    <value>14, 376</value>
+  <data name="&gt;&gt;m_grpBoxUserInformation.Name" xml:space="preserve">
+    <value>m_grpBoxUserInformation</value>
   </data>
-  <data name="m_grpBoxObiUse.Size" type="System.Drawing.Size, System.Drawing">
-    <value>370, 97</value>
-  </data>
-  <data name="m_grpBoxObiUse.TabIndex" type="System.Int32, mscorlib">
-    <value>3</value>
-  </data>
-  <data name="&gt;&gt;m_grpBoxObiUse.Name" xml:space="preserve">
-    <value>m_grpBoxObiUse</value>
-  </data>
-  <data name="&gt;&gt;m_grpBoxObiUse.Type" xml:space="preserve">
+  <data name="&gt;&gt;m_grpBoxUserInformation.Type" xml:space="preserve">
     <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;m_grpBoxObiUse.Parent" xml:space="preserve">
+  <data name="&gt;&gt;m_grpBoxUserInformation.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="&gt;&gt;m_grpBoxObiUse.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="m_chkAuthorization.CheckAlign" type="System.Drawing.ContentAlignment, System.Drawing">
-    <value>TopLeft</value>
-  </data>
-  <data name="m_chkAuthorization.Location" type="System.Drawing.Point, System.Drawing">
-    <value>14, 482</value>
-  </data>
-  <data name="m_chkAuthorization.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>2, 2, 2, 2</value>
-  </data>
-  <data name="m_chkAuthorization.Size" type="System.Drawing.Size, System.Drawing">
-    <value>369, 36</value>
-  </data>
-  <data name="m_chkAuthorization.TabIndex" type="System.Int32, mscorlib">
-    <value>18</value>
-  </data>
-  <data name="m_chkAuthorization.Text" xml:space="preserve">
-    <value>I &amp;authorize DAISY Consortium to use this personal data for communications and usage statistics for Obi.</value>
-  </data>
-  <data name="&gt;&gt;m_chkAuthorization.Name" xml:space="preserve">
-    <value>m_chkAuthorization</value>
-  </data>
-  <data name="&gt;&gt;m_chkAuthorization.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;m_chkAuthorization.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;m_chkAuthorization.ZOrder" xml:space="preserve">
-    <value>0</value>
+  <data name="&gt;&gt;m_grpBoxUserInformation.ZOrder" xml:space="preserve">
+    <value>3</value>
   </data>
   <data name="m_rdbTryingObi.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -880,6 +625,57 @@ Use "Home" For Private user</value>
   <data name="&gt;&gt;m_lblSelectRadioButton.ZOrder" xml:space="preserve">
     <value>2</value>
   </data>
+  <data name="m_grpBoxObiUse.Location" type="System.Drawing.Point, System.Drawing">
+    <value>14, 376</value>
+  </data>
+  <data name="m_grpBoxObiUse.Size" type="System.Drawing.Size, System.Drawing">
+    <value>370, 97</value>
+  </data>
+  <data name="m_grpBoxObiUse.TabIndex" type="System.Int32, mscorlib">
+    <value>3</value>
+  </data>
+  <data name="&gt;&gt;m_grpBoxObiUse.Name" xml:space="preserve">
+    <value>m_grpBoxObiUse</value>
+  </data>
+  <data name="&gt;&gt;m_grpBoxObiUse.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_grpBoxObiUse.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;m_grpBoxObiUse.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="m_chkAuthorization.CheckAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>TopLeft</value>
+  </data>
+  <data name="m_chkAuthorization.Location" type="System.Drawing.Point, System.Drawing">
+    <value>14, 482</value>
+  </data>
+  <data name="m_chkAuthorization.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>2, 2, 2, 2</value>
+  </data>
+  <data name="m_chkAuthorization.Size" type="System.Drawing.Size, System.Drawing">
+    <value>369, 34</value>
+  </data>
+  <data name="m_chkAuthorization.TabIndex" type="System.Int32, mscorlib">
+    <value>18</value>
+  </data>
+  <data name="m_chkAuthorization.Text" xml:space="preserve">
+    <value>I &amp;authorize DAISY Consortium to use this personal data for communications and usage statistics for Obi.</value>
+  </data>
+  <data name="&gt;&gt;m_chkAuthorization.Name" xml:space="preserve">
+    <value>m_chkAuthorization</value>
+  </data>
+  <data name="&gt;&gt;m_chkAuthorization.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_chkAuthorization.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;m_chkAuthorization.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
   <data name="m_txtBoxObiInformation.AccessibleName" xml:space="preserve">
     <value>use arrow keys to read</value>
   </data>
@@ -918,9 +714,6 @@ Use "Home" For Private user</value>
   </data>
   <data name="$this.Font" type="System.Drawing.Font, System.Drawing">
     <value>Microsoft Sans Serif, 9pt</value>
-  </data>
-  <data name="$this.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
     <value>User Registration</value>

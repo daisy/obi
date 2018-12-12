@@ -47,10 +47,10 @@ namespace Obi.Dialogs
             this.m_lblEmail = new System.Windows.Forms.Label();
             this.m_lblName = new System.Windows.Forms.Label();
             this.m_grpBoxObiUse = new System.Windows.Forms.GroupBox();
-            this.m_chkAuthorization = new System.Windows.Forms.CheckBox();
             this.m_rdbTryingObi = new System.Windows.Forms.RadioButton();
             this.m_rdbDaisyProduction = new System.Windows.Forms.RadioButton();
             this.m_lblSelectRadioButton = new System.Windows.Forms.Label();
+            this.m_chkAuthorization = new System.Windows.Forms.CheckBox();
             this.m_txtBoxObiInformation = new System.Windows.Forms.TextBox();
             this.m_grpBoxUserInformation.SuspendLayout();
             this.m_grpBoxObiUse.SuspendLayout();
@@ -171,13 +171,6 @@ namespace Obi.Dialogs
             this.m_grpBoxObiUse.Name = "m_grpBoxObiUse";
             this.m_grpBoxObiUse.TabStop = false;
             // 
-            // m_chkAuthorization
-            // 
-            resources.ApplyResources(this.m_chkAuthorization, "m_chkAuthorization");
-            this.m_chkAuthorization.Name = "m_chkAuthorization";
-            this.m_chkAuthorization.UseVisualStyleBackColor = true;
-            this.m_chkAuthorization.CheckedChanged += new System.EventHandler(this.m_chkAuthorization_CheckedChanged);
-            // 
             // m_rdbTryingObi
             // 
             resources.ApplyResources(this.m_rdbTryingObi, "m_rdbTryingObi");
@@ -196,6 +189,13 @@ namespace Obi.Dialogs
             // 
             resources.ApplyResources(this.m_lblSelectRadioButton, "m_lblSelectRadioButton");
             this.m_lblSelectRadioButton.Name = "m_lblSelectRadioButton";
+            // 
+            // m_chkAuthorization
+            // 
+            resources.ApplyResources(this.m_chkAuthorization, "m_chkAuthorization");
+            this.m_chkAuthorization.Name = "m_chkAuthorization";
+            this.m_chkAuthorization.UseVisualStyleBackColor = true;
+            this.m_chkAuthorization.CheckedChanged += new System.EventHandler(this.m_chkAuthorization_CheckedChanged);
             // 
             // m_txtBoxObiInformation
             // 

@@ -119,31 +119,16 @@
   </resheader>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="m_btnOk.Location" type="System.Drawing.Point, System.Drawing">
-    <value>68, 480</value>
-  </data>
-  <data name="m_btnOk.Size" type="System.Drawing.Size, System.Drawing">
-    <value>111, 35</value>
+    <value>68, 513</value>
   </data>
   <data name="m_btnOk.Text" xml:space="preserve">
     <value>注册&amp;G</value>
   </data>
   <data name="m_btnRemindMeLater.Location" type="System.Drawing.Point, System.Drawing">
-    <value>225, 480</value>
-  </data>
-  <data name="m_btnRemindMeLater.Size" type="System.Drawing.Size, System.Drawing">
-    <value>111, 35</value>
+    <value>225, 513</value>
   </data>
   <data name="m_btnRemindMeLater.Text" xml:space="preserve">
     <value>稍后提醒&amp;R</value>
-  </data>
-  <data name="m_txtRetypeEmail.Location" type="System.Drawing.Point, System.Drawing">
-    <value>129, 95</value>
-  </data>
-  <data name="m_txtRetypeEmail.Size" type="System.Drawing.Size, System.Drawing">
-    <value>233, 21</value>
-  </data>
-  <data name="m_lblRetypeEmail.Location" type="System.Drawing.Point, System.Drawing">
-    <value>7, 103</value>
   </data>
   <data name="m_lblRetypeEmail.Size" type="System.Drawing.Size, System.Drawing">
     <value>94, 15</value>
@@ -151,53 +136,11 @@
   <data name="m_lblRetypeEmail.Text" xml:space="preserve">
     <value>重新输入邮箱：&amp;R</value>
   </data>
-  <data name="m_txtWinVer.Location" type="System.Drawing.Point, System.Drawing">
-    <value>129, 261</value>
-  </data>
-  <data name="m_txtWinVer.Size" type="System.Drawing.Size, System.Drawing">
-    <value>233, 21</value>
-  </data>
-  <data name="m_lblWinVer.Location" type="System.Drawing.Point, System.Drawing">
-    <value>2, 262</value>
-  </data>
   <data name="m_lblWinVer.Size" type="System.Drawing.Size, System.Drawing">
     <value>87, 15</value>
   </data>
   <data name="m_lblWinVer.Text" xml:space="preserve">
     <value>Windows版本：</value>
-  </data>
-  <data name="m_txtName.Location" type="System.Drawing.Point, System.Drawing">
-    <value>129, 15</value>
-  </data>
-  <data name="m_txtName.Size" type="System.Drawing.Size, System.Drawing">
-    <value>233, 21</value>
-  </data>
-  <data name="m_txtCountry.Location" type="System.Drawing.Point, System.Drawing">
-    <value>129, 223</value>
-  </data>
-  <data name="m_txtCountry.Size" type="System.Drawing.Size, System.Drawing">
-    <value>233, 21</value>
-  </data>
-  <data name="m_txtCity.Location" type="System.Drawing.Point, System.Drawing">
-    <value>129, 181</value>
-  </data>
-  <data name="m_txtCity.Size" type="System.Drawing.Size, System.Drawing">
-    <value>233, 21</value>
-  </data>
-  <data name="m_txtOrganizationName.Location" type="System.Drawing.Point, System.Drawing">
-    <value>129, 136</value>
-  </data>
-  <data name="m_txtOrganizationName.Size" type="System.Drawing.Size, System.Drawing">
-    <value>233, 21</value>
-  </data>
-  <data name="m_txtEmail.Location" type="System.Drawing.Point, System.Drawing">
-    <value>129, 52</value>
-  </data>
-  <data name="m_txtEmail.Size" type="System.Drawing.Size, System.Drawing">
-    <value>233, 21</value>
-  </data>
-  <data name="m_lblCountry.Location" type="System.Drawing.Point, System.Drawing">
-    <value>7, 226</value>
   </data>
   <data name="m_lblCountry.Size" type="System.Drawing.Size, System.Drawing">
     <value>44, 15</value>
@@ -205,17 +148,11 @@
   <data name="m_lblCountry.Text" xml:space="preserve">
     <value>国家：&amp;Y</value>
   </data>
-  <data name="m_lblCity.Location" type="System.Drawing.Point, System.Drawing">
-    <value>7, 185</value>
-  </data>
   <data name="m_lblCity.Size" type="System.Drawing.Size, System.Drawing">
     <value>75, 15</value>
   </data>
   <data name="m_lblCity.Text" xml:space="preserve">
     <value>城市/州/省：&amp;C</value>
-  </data>
-  <data name="m_lblOrgName.Location" type="System.Drawing.Point, System.Drawing">
-    <value>2, 141</value>
   </data>
   <data name="m_lblOrgName.Size" type="System.Drawing.Size, System.Drawing">
     <value>120, 30</value>
@@ -223,12 +160,6 @@
   <data name="m_lblOrgName.Text" xml:space="preserve">
     <value>组织名：
 个人用户使用“家庭”&amp;O</value>
-  </data>
-  <data name="m_lblEmail.Location" type="System.Drawing.Point, System.Drawing">
-    <value>7, 55</value>
-  </data>
-  <data name="m_lblEmail.Size" type="System.Drawing.Size, System.Drawing">
-    <value>45, 15</value>
   </data>
   <data name="m_lblEmail.Text" xml:space="preserve">
     <value>邮箱：&amp;E</value>
@@ -242,23 +173,11 @@
   <data name="m_lblName.Text" xml:space="preserve">
     <value>姓名：&amp;N</value>
   </data>
-  <data name="m_grpBoxUserInformation.Location" type="System.Drawing.Point, System.Drawing">
-    <value>14, 78</value>
-  </data>
-  <data name="m_grpBoxUserInformation.Size" type="System.Drawing.Size, System.Drawing">
-    <value>370, 291</value>
-  </data>
-  <data name="m_rdbTryingObi.Location" type="System.Drawing.Point, System.Drawing">
-    <value>10, 69</value>
-  </data>
   <data name="m_rdbTryingObi.Size" type="System.Drawing.Size, System.Drawing">
     <value>138, 19</value>
   </data>
   <data name="m_rdbTryingObi.Text" xml:space="preserve">
     <value>我在试用和测试Obi.&amp;T</value>
-  </data>
-  <data name="m_rdbDaisyProduction.Location" type="System.Drawing.Point, System.Drawing">
-    <value>10, 44</value>
   </data>
   <data name="m_rdbDaisyProduction.Size" type="System.Drawing.Size, System.Drawing">
     <value>198, 19</value>
@@ -266,38 +185,26 @@
   <data name="m_rdbDaisyProduction.Text" xml:space="preserve">
     <value>我已经使用过Obi制作DAISY书.&amp;D</value>
   </data>
-  <data name="m_lblSelectRadioButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>7, 22</value>
-  </data>
   <data name="m_lblSelectRadioButton.Size" type="System.Drawing.Size, System.Drawing">
     <value>129, 15</value>
   </data>
   <data name="m_lblSelectRadioButton.Text" xml:space="preserve">
     <value>请选择以下任意一项：&amp;P</value>
   </data>
-  <data name="m_grpBoxObiUse.Location" type="System.Drawing.Point, System.Drawing">
-    <value>14, 376</value>
+  <data name="m_chkAuthorization.Location" type="System.Drawing.Point, System.Drawing">
+    <value>14, 478</value>
   </data>
-  <data name="m_grpBoxObiUse.Size" type="System.Drawing.Size, System.Drawing">
-    <value>370, 97</value>
+  <data name="m_chkAuthorization.Size" type="System.Drawing.Size, System.Drawing">
+    <value>369, 21</value>
+  </data>
+  <data name="m_chkAuthorization.Text" xml:space="preserve">
+    <value>我授权将此数据用于Obi。</value>
   </data>
   <data name="m_txtBoxObiInformation.AccessibleName" xml:space="preserve">
     <value>使用箭头键阅读</value>
   </data>
-  <data name="m_txtBoxObiInformation.Location" type="System.Drawing.Point, System.Drawing">
-    <value>14, 8</value>
-  </data>
-  <data name="m_txtBoxObiInformation.Size" type="System.Drawing.Size, System.Drawing">
-    <value>369, 76</value>
-  </data>
-  <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
-    <value>7, 15</value>
-  </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>398, 523</value>
-  </data>
-  <data name="$this.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Microsoft Sans Serif, 9pt</value>
+    <value>398, 560</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
     <value>用户注册</value>
