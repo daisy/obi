@@ -400,11 +400,9 @@ namespace Obi.ImportExport
 
                             XmlNode audioNode = smilDocument.CreateElement(null, "audio", smilBodyNode.NamespaceURI);
                             seqNode_AudioParent.AppendChild(audioNode);
-                            string tempSectionName = null;
+                            string tempSectionName = phrase.ParentAs<SectionNode>().Label; 
                             if (m_IsRemoveAccentsChecked && AddSectionNameToAudioFile)
                             {
-                                tempSectionName = phrase.ParentAs<SectionNode>().Label;
-
                                 // 1st method
 
                                 tempSectionName = RemoveDiacritics(tempSectionName);
