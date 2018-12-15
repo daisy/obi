@@ -48,7 +48,7 @@ namespace Obi.Dialogs
               
                 //m_CheckBoxListView.Items.Add(Localizer.Message("ProjectTab_FixContentViewWidth"));  but remove
 
-                m_tbDialogDesc.Text = Localizer.Message("AdvancePreferencesProjectDesc"); 
+                m_tbDialogDesc.Text = Localizer.Message("Preferences_AdditionalProjectSettings"); 
 
                 m_CheckBoxListView.Items.Add(Localizer.Message("ProjectTab_OptimizeMemory")); 
                 m_CheckBoxListView.Items.Add(Localizer.Message("Project_DisableRollBackForCleanUp")); 
@@ -85,7 +85,7 @@ namespace Obi.Dialogs
             {   //helpProvider1.HelpNamespace = Localizer.Message("CHMhelp_file_name");
                 //helpProvider1.SetHelpNavigator(this, HelpNavigator.Topic);
                 //helpProvider1.SetHelpKeyword(this, "HTML Files/Exploring the GUI/The Preferences Dialog/Audio Preferences.htm");
-                m_tbDialogDesc.Text = Localizer.Message("AdvancePreferencesAudioDesc"); 
+                m_tbDialogDesc.Text = Localizer.Message("Preferences_AdditionalAudioSettings"); 
 
                 m_CheckBoxListView.Items.Add(Localizer.Message("AudioTab_RetainInitialSilence")); 
                 m_CheckBoxListView.Items.Add(Localizer.Message("AudioTab_PreviewBeforeRecording")); 

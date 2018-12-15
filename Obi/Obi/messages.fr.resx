@@ -2811,10 +2811,4 @@ tester "Figer la largeur du volet du contenu" ?(Recommandé)</value>
   <data name="title_bar_ReadOnly" xml:space="preserve">
     <value>{0}{1} ({2}) - {3} [{4}]({5})</value>
   </data>
-  <data name="AdvancePreferencesProjectDesc" xml:space="preserve">
-    <value>Paramètres de Projet Complémentaires Liste</value>
-  </data>
-  <data name="AdvancePreferencesAudioDesc" xml:space="preserve">
-    <value>Paramètres Audio Complémentaires Liste</value>
-  </data>
 </root>

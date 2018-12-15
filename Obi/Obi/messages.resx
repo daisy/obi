@@ -3079,10 +3079,4 @@ Error text: {1}</value>
   <data name="title_bar_ReadOnly" xml:space="preserve">
     <value>{0}{1} ({2}) - {3} [{4}]({5})</value>
   </data>
-  <data name="AdvancePreferencesProjectDesc" xml:space="preserve">
-    <value>Additional project settings list </value>
-  </data>
-  <data name="AdvancePreferencesAudioDesc" xml:space="preserve">
-    <value>Additional audio settings list </value>
-  </data>
 </root>
