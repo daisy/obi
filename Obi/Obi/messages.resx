@@ -3071,7 +3071,7 @@ Error text: {1}</value>
     <value>Switch to read only structure</value>
   </data>
   <data name="SkippableNotExportedInDaisy202" xml:space="preserve">
-    <value>The project has some skippable notes. They cannot be included in DAISY 2.02 export.</value>
+    <value>The project has some skippable notes. These will not be exported to DAISY 2.02 talking book.</value>
   </data>
   <data name="ReadOnlyString" xml:space="preserve">
     <value>Read Only</value>
