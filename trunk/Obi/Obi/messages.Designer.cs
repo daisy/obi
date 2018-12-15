@@ -124,24 +124,6 @@ namespace Obi {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Additional audio settings list .
-        /// </summary>
-        internal static string AdvancePreferencesAudioDesc {
-            get {
-                return ResourceManager.GetString("AdvancePreferencesAudioDesc", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Additional project settings list .
-        /// </summary>
-        internal static string AdvancePreferencesProjectDesc {
-            get {
-                return ResourceManager.GetString("AdvancePreferencesProjectDesc", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to There are anchor nodes which are empty or they refer to empty nodes..
         /// </summary>
         internal static string Anchor_node_error {
