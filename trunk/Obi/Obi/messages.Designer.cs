@@ -7174,7 +7174,7 @@ namespace Obi {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The project has some skippable notes. They cannot be included in DAISY 2.02 export..
+        ///   Looks up a localized string similar to The project has some skippable notes. These will not be exported to DAISY 2.02 talking book..
         /// </summary>
         internal static string SkippableNotExportedInDaisy202 {
             get {
