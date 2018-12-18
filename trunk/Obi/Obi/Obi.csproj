@@ -3099,12 +3099,12 @@
     <Content Include="images\icons\media-seek-backward.png" />
     <Content Include="images\icons\media-seek-forward.png" />
     <Content Include="images\icons\nextpage.png" />
+    <EmbeddedResource Include="images\icons\Preserve_Zoom_Checked.png" />
+    <EmbeddedResource Include="images\icons\Preserve_Zoom_Unchecked.png" />
     <Content Include="images\icons\prevpage.png" />
     <Content Include="images\obird_right_48.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <EmbeddedResource Include="images\Preserve_Zoom_Checked.png" />
-    <EmbeddedResource Include="images\Preserve_Zoom_Unchecked.png" />
     <Content Include="low.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
