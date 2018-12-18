@@ -4021,9 +4021,6 @@ if (thresholdAboveLastNode >= stripControl.Node.PhraseChildCount) thresholdAbove
             ContextEndMarkToolStripMenuItem.ShortcutKeyDisplayString = ObiForm.RefineKeyboardShortcutStringForAccessibleName(keyboardShortcuts.FormatKeyboardShorcut(keyboardShortcuts.MenuNameDictionary["mSkippableEndNoteToolStripMenuItem"].Value.ToString()));
             ContextEndMarkToolStripMenuItem.AccessibleName = ContextEndMarkToolStripMenuItem.Text.Replace("&", "") + " " + ContextEndMarkToolStripMenuItem.ShortcutKeyDisplayString;
 
-            //ContextPasteMultiplePhrasesToolStripMenuItem.ShortcutKeyDisplayString = ObiForm.RefineKeyboardShortcutStringForAccessibleName(keyboardShortcuts.FormatKeyboardShorcut(keyboardShortcuts.MenuNameDictionary["m_pasteMultiplePhrasesToolStripMenuItem"].Value.ToString()));
-            //ContextPasteMultiplePhrasesToolStripMenuItem.AccessibleName = ContextPasteMultiplePhrasesToolStripMenuItem.Text.Replace("&", "") + " " + ContextPasteMultiplePhrasesToolStripMenuItem.ShortcutKeyDisplayString;
-
             Context_Skippable_BeginSpecialNodeMarkToolStripMenuItem.ShortcutKeyDisplayString = ObiForm.RefineKeyboardShortcutStringForAccessibleName(keyboardShortcuts.FormatKeyboardShorcut(keyboardShortcuts.MenuNameDictionary["mSkippableBeginNoteToolStripMenuItem"].Value.ToString()));
             Context_Skippable_BeginSpecialNodeMarkToolStripMenuItem.AccessibleName = Context_Skippable_BeginSpecialNodeMarkToolStripMenuItem.Text.Replace("&", "") + " " + Context_Skippable_BeginSpecialNodeMarkToolStripMenuItem.ShortcutKeyDisplayString;
 
