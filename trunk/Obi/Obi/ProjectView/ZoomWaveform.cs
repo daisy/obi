@@ -388,12 +388,12 @@ namespace Obi.ProjectView
            if (mProjectView.SaveZoomWaveformZoomLevel)
            {
                btnPreserveZoomtoolStrip.Image = m_PreserveZoomCheckedImage;
-               btnPreserveZoomtoolStrip.Text = Localizer.Message("ZoomWaveform_PreserveZoomChecked");
+               btnPreserveZoomtoolStrip.AccessibleName = Localizer.Message("ZoomWaveform_PreserveZoomChecked");
            }
            else
            {
                btnPreserveZoomtoolStrip.Image = m_PreserveZoomUnCheckedImage;
-               btnPreserveZoomtoolStrip.Text = Localizer.Message("ZoomWaveform_PreserveZoomUnchecked");
+               btnPreserveZoomtoolStrip.AccessibleName = Localizer.Message("ZoomWaveform_PreserveZoomUnchecked");
            }
            
             m_ContentView = contentView;
@@ -1251,13 +1251,13 @@ namespace Obi.ProjectView
             {
                 m_ProjectView.ZoomWaveformIncrementFactor = m_ZoomIncrementFactor;
                 btnPreserveZoomtoolStrip.Image = m_PreserveZoomCheckedImage;
-                btnPreserveZoomtoolStrip.Text = Localizer.Message("ZoomWaveform_PreserveZoomChecked");
+                btnPreserveZoomtoolStrip.AccessibleName = Localizer.Message("ZoomWaveform_PreserveZoomChecked");
                 //m_ZoomFactor = m_ZoomIncrementFactor
             }
             else
             {
                 btnPreserveZoomtoolStrip.Image = m_PreserveZoomUnCheckedImage;
-                btnPreserveZoomtoolStrip.Text = Localizer.Message("ZoomWaveform_PreserveZoomUnchecked");
+                btnPreserveZoomtoolStrip.AccessibleName = Localizer.Message("ZoomWaveform_PreserveZoomUnchecked");
             }
         }
 
