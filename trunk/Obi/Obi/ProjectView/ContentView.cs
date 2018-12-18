@@ -4021,6 +4021,9 @@ if (thresholdAboveLastNode >= stripControl.Node.PhraseChildCount) thresholdAbove
             ContextEndMarkToolStripMenuItem.ShortcutKeyDisplayString = ObiForm.RefineKeyboardShortcutStringForAccessibleName(keyboardShortcuts.FormatKeyboardShorcut(keyboardShortcuts.MenuNameDictionary["mSkippableEndNoteToolStripMenuItem"].Value.ToString()));
             ContextEndMarkToolStripMenuItem.AccessibleName = ContextEndMarkToolStripMenuItem.Text.Replace("&", "") + " " + ContextEndMarkToolStripMenuItem.ShortcutKeyDisplayString;
 
+            //ContextPasteMultiplePhrasesToolStripMenuItem.ShortcutKeyDisplayString = ObiForm.RefineKeyboardShortcutStringForAccessibleName(keyboardShortcuts.FormatKeyboardShorcut(keyboardShortcuts.MenuNameDictionary["m_pasteMultiplePhrasesToolStripMenuItem"].Value.ToString()));
+            //ContextPasteMultiplePhrasesToolStripMenuItem.AccessibleName = ContextPasteMultiplePhrasesToolStripMenuItem.Text.Replace("&", "") + " " + ContextPasteMultiplePhrasesToolStripMenuItem.ShortcutKeyDisplayString;
+
             Context_Skippable_BeginSpecialNodeMarkToolStripMenuItem.ShortcutKeyDisplayString = ObiForm.RefineKeyboardShortcutStringForAccessibleName(keyboardShortcuts.FormatKeyboardShorcut(keyboardShortcuts.MenuNameDictionary["mSkippableBeginNoteToolStripMenuItem"].Value.ToString()));
             Context_Skippable_BeginSpecialNodeMarkToolStripMenuItem.AccessibleName = Context_Skippable_BeginSpecialNodeMarkToolStripMenuItem.Text.Replace("&", "") + " " + Context_Skippable_BeginSpecialNodeMarkToolStripMenuItem.ShortcutKeyDisplayString;
 
@@ -4822,7 +4825,7 @@ if (thresholdAboveLastNode >= stripControl.Node.PhraseChildCount) thresholdAbove
             private void SelectAtTODOCursorPosition(EmptyNode n)
             {
                 if (mProjectView.Selection != null && n is PhraseNode && n.Duration != null &&
-                    n.Duration > 0 && n.TODOCursorPosition > 0)
+                    n.Duration > 0 && n.TODOCursorPosition > 0 && n.Duration > n.TODOCursorPosition)
                 {
                     AudioRange tempAudioRange = new AudioRange(n.TODOCursorPosition);
                     mProjectView.Selection = new AudioSelection(n as PhraseNode, this, tempAudioRange);
