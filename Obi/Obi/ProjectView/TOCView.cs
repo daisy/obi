@@ -14,6 +14,8 @@ namespace Obi.ProjectView
         private float mBaseFontSize;       // base font size (for scaling)
         private ProjectView mProjectView;  // the parent project view
         private NodeSelection mSelection;  // actual selection context
+        private Dictionary<Keys, ProjectView.HandledShortcutKey> mShortcutKeys;  // list of all shortcuts
+        private KeyboardShortcuts_Settings keyboardShortcuts;
 
 
         /// <summary>
@@ -32,6 +34,42 @@ namespace Obi.ProjectView
         }
 
 
+        public void InitializeShortcutKeys()
+        {
+            keyboardShortcuts = mProjectView.ObiForm.KeyboardShortcuts;
+            mShortcutKeys = new Dictionary<Keys, ProjectView.HandledShortcutKey>();
+            mShortcutKeys[keyboardShortcuts.ContentView_TransportBarRecordSingleKey.Value] = RecordUsingSingleKeyShortcut;
+            mShortcutKeys[keyboardShortcuts.ContentView_TransportBarStopSingleKey.Value] = mProjectView.TransportBar.Stop;
+        }
+
+        private bool RecordUsingSingleKeyShortcut()
+        {
+            if (mProjectView.Selection.Node is SectionNode)
+            {
+                DialogResult result = DialogResult.OK;
+                SectionNode tempNode = mProjectView.Selection.Node as SectionNode;
+                if (tempNode.Duration != 0)
+                {
+                    bool IsMonitoringActive = false;
+                    if (mProjectView.TransportBar.CurrentState == Obi.ProjectView.TransportBar.State.Monitoring)
+                        IsMonitoringActive = true;
+                    if (!IsMonitoringActive)
+                    {
+                        result = MessageBox.Show(Localizer.Message("RecordUsingSingleKeyFromTOCMessage"), Localizer.Message("Caption_Warning"), MessageBoxButtons.OKCancel,MessageBoxIcon.Warning);
+                    }
+                    if (result == DialogResult.OK)
+                    {
+                        return mProjectView.TransportBar.Record_Button();
+                    }
+                }
+                else
+                {
+                    return mProjectView.TransportBar.Record_Button();
+                }
+               
+            }
+            return true;            
+        }
 
         public void AssignShotcutToContextMenu()
         {
@@ -523,6 +561,8 @@ namespace Obi.ProjectView
         // Tabbing inside the view
         protected override bool ProcessDialogKey(Keys KeyData)
         {
+            if (mProjectView.ObiForm.Settings.Audio_RecordUsingSingleKeyFromTOC && mShortcutKeys.ContainsKey(KeyData) && mShortcutKeys[KeyData]())
+                return true;
             if (this.ContainsFocus && (KeyData == Keys.Tab || KeyData == ((Keys)Keys.Shift | Keys.Tab)))
             {
                 System.Media.SystemSounds.Beep.Play();
@@ -530,6 +570,15 @@ namespace Obi.ProjectView
             }
             return base.ProcessDialogKey(KeyData);
         }
+
+        //protected override bool ProcessCmdKey(ref Message msg, Keys key)
+        //{
+            
+        //    //else if (((msg.Msg == ProjectView.WM_KEYDOWN) || (msg.Msg == ProjectView.WM_SYSKEYDOWN)))
+        //    //    return false;
+        //    else
+        //        return this.ProcessDialogKey(key);
+        //}
 
         // Set the strips visibility for the given tree node according to expandednessity
         private void SetStripsVisibilityForNode(TreeNode node, bool visible)

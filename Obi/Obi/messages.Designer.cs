@@ -439,6 +439,15 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Start and stop recording using single key shortcuts from TOC View.
+        /// </summary>
+        internal static string Audio_RecordUsingSingleKeyFromTOC {
+            get {
+                return ResourceManager.GetString("Audio_RecordUsingSingleKeyFromTOC", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Remove accents from file names during Daisy 2.02 Export .
         /// </summary>
         internal static string Audio_RemoveAccentsFromDaisy2ExportFileNames {
@@ -6375,6 +6384,15 @@ namespace Obi {
         internal static string RecordingToolbar_SwitchProfileStatusBar {
             get {
                 return ResourceManager.GetString("RecordingToolbar_SwitchProfileStatusBar", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Recording will start from the end of the section. Do you want to continue?.
+        /// </summary>
+        internal static string RecordUsingSingleKeyFromTOCMessage {
+            get {
+                return ResourceManager.GetString("RecordUsingSingleKeyFromTOCMessage", resourceCulture);
             }
         }
         

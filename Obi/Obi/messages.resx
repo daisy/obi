@@ -3079,4 +3079,10 @@ Error text: {1}</value>
   <data name="title_bar_ReadOnly" xml:space="preserve">
     <value>{0}{1} ({2}) - {3} [{4}]({5})</value>
   </data>
+  <data name="RecordUsingSingleKeyFromTOCMessage" xml:space="preserve">
+    <value>Recording will start from the end of the section. Do you want to continue?</value>
+  </data>
+  <data name="Audio_RecordUsingSingleKeyFromTOC" xml:space="preserve">
+    <value>Start and stop recording using single key shortcuts from TOC View</value>
+  </data>
 </root>
