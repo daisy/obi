@@ -71,24 +71,28 @@
             // 
             // m_cb_InputDevice
             // 
+            this.m_cb_InputDevice.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             resources.ApplyResources(this.m_cb_InputDevice, "m_cb_InputDevice");
             this.m_cb_InputDevice.FormattingEnabled = true;
             this.m_cb_InputDevice.Name = "m_cb_InputDevice";
             // 
             // m_cb_OutPutDevice
             // 
+            this.m_cb_OutPutDevice.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             resources.ApplyResources(this.m_cb_OutPutDevice, "m_cb_OutPutDevice");
             this.m_cb_OutPutDevice.FormattingEnabled = true;
             this.m_cb_OutPutDevice.Name = "m_cb_OutPutDevice";
             // 
             // m_cb_SelectProfile
             // 
+            this.m_cb_SelectProfile.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             resources.ApplyResources(this.m_cb_SelectProfile, "m_cb_SelectProfile");
             this.m_cb_SelectProfile.FormattingEnabled = true;
             this.m_cb_SelectProfile.Name = "m_cb_SelectProfile";
             // 
             // m_cb_SelectShortcutsProfile
             // 
+            this.m_cb_SelectShortcutsProfile.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             resources.ApplyResources(this.m_cb_SelectShortcutsProfile, "m_cb_SelectShortcutsProfile");
             this.m_cb_SelectShortcutsProfile.FormattingEnabled = true;
             this.m_cb_SelectShortcutsProfile.Name = "m_cb_SelectShortcutsProfile";
