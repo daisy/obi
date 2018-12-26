@@ -1469,6 +1469,7 @@ m_cb_ChooseFont.Visible = false;
                 mSettings.Audio_AutoPlayAfterRecordingStops = m_DefaultSettings.Audio_AutoPlayAfterRecordingStops;
                 mSettings.Audio_RevertOverwriteBehaviourForRecordOnSelection = m_DefaultSettings.Audio_RevertOverwriteBehaviourForRecordOnSelection;
                 mSettings.Audio_RemoveAccentsFromDaisy2ExportFileNames = m_DefaultSettings.Audio_RemoveAccentsFromDaisy2ExportFileNames;
+                mSettings.Audio_RecordUsingSingleKeyFromTOC = m_DefaultSettings.Audio_RecordUsingSingleKeyFromTOC;
 
 
                 //If operation is empty then nothing will b selected.

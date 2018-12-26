@@ -4188,6 +4188,7 @@ for (int j = 0;
         public void InitializeShortcutKeys ()
             {
                 mContentView.InitializeShortcutKeys();
+                mTOCView.InitializeShortcutKeys();
 
             keyboardShortcuts = ObiForm.KeyboardShortcuts;
             mShortcutKeys = new Dictionary<Keys, HandledShortcutKey> ();

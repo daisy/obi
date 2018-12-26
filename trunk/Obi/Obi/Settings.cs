@@ -323,7 +323,7 @@ public bool Project_ImportNCCFileWithWindows1252Encoding ; // useful for importi
         // for Obi 4.2 beta
         [OptionalField]
         public bool Audio_RevertOverwriteBehaviourForRecordOnSelection;
-
+        //for Obi 4.3
         [OptionalField]
         public bool IsObiConfigurationDone;
 
@@ -332,6 +332,10 @@ public bool Project_ImportNCCFileWithWindows1252Encoding ; // useful for importi
 
         [OptionalField]
         public bool Project_ReadOnlyMode;
+        //for Post Obi 4.3
+
+        [OptionalField]
+        public bool Audio_RecordUsingSingleKeyFromTOC;
 
         protected static void InitializeDefaultSettings(Settings settings)
         {
@@ -481,9 +485,12 @@ public bool Project_ImportNCCFileWithWindows1252Encoding ; // useful for importi
             // Obi 4.2
             settings.Project_MaximumPhrasesSelectLimit = true;
             settings.Audio_RevertOverwriteBehaviourForRecordOnSelection = false;
+            //Obi 4.3
             settings.IsObiConfigurationDone = false;
             settings.Audio_RemoveAccentsFromDaisy2ExportFileNames = false;
             settings.Project_ReadOnlyMode = false;
+            //Post Obi 4.3
+            settings.Audio_RecordUsingSingleKeyFromTOC = false;
         }
 
         /// <summary>
