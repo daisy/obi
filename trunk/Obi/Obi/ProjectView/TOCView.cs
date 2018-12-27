@@ -44,7 +44,7 @@ namespace Obi.ProjectView
 
         private bool RecordUsingSingleKeyShortcut()
         {
-            if (mProjectView.Selection.Node is SectionNode)
+            if (mProjectView.Selection!=null && mProjectView.Selection.Node is SectionNode)
             {
                 DialogResult result = DialogResult.OK;
                 SectionNode tempNode = mProjectView.Selection.Node as SectionNode;
