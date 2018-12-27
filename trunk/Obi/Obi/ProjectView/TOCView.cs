@@ -48,7 +48,7 @@ namespace Obi.ProjectView
             {
                 DialogResult result = DialogResult.OK;
                 SectionNode tempNode = mProjectView.Selection.Node as SectionNode;
-                if (tempNode.Duration != 0)
+                if (tempNode.Duration != 0 || (tempNode.PhraseChildCount > 0 && !mProjectView.ObiForm.Settings.Audio_RecordInFirstEmptyPhraseWithRecordSectionCommand))
                 {
                     bool IsMonitoringActive = false;
                     if (mProjectView.TransportBar.CurrentState == Obi.ProjectView.TransportBar.State.Monitoring)
@@ -570,15 +570,6 @@ namespace Obi.ProjectView
             }
             return base.ProcessDialogKey(KeyData);
         }
-
-        //protected override bool ProcessCmdKey(ref Message msg, Keys key)
-        //{
-            
-        //    //else if (((msg.Msg == ProjectView.WM_KEYDOWN) || (msg.Msg == ProjectView.WM_SYSKEYDOWN)))
-        //    //    return false;
-        //    else
-        //        return this.ProcessDialogKey(key);
-        //}
 
         // Set the strips visibility for the given tree node according to expandednessity
         private void SetStripsVisibilityForNode(TreeNode node, bool visible)
