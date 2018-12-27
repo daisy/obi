@@ -48,7 +48,8 @@ namespace Obi.ProjectView
             {
                 DialogResult result = DialogResult.OK;
                 SectionNode tempNode = mProjectView.Selection.Node as SectionNode;
-                if (tempNode.Duration != 0 || (tempNode.PhraseChildCount > 0 && !mProjectView.ObiForm.Settings.Audio_RecordInFirstEmptyPhraseWithRecordSectionCommand))
+                if ((tempNode.Duration != 0 && (tempNode.FirstLeaf.Duration !=0 || !mProjectView.ObiForm.Settings.Audio_RecordInFirstEmptyPhraseWithRecordSectionCommand))
+                    || (tempNode.PhraseChildCount > 0 && !mProjectView.ObiForm.Settings.Audio_RecordInFirstEmptyPhraseWithRecordSectionCommand))
                 {
                     bool IsMonitoringActive = false;
                     if (mProjectView.TransportBar.CurrentState == Obi.ProjectView.TransportBar.State.Monitoring)
