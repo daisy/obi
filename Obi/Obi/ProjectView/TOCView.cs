@@ -44,32 +44,34 @@ namespace Obi.ProjectView
 
         private bool RecordUsingSingleKeyShortcut()
         {
-            if (mProjectView.Selection!=null && mProjectView.Selection.Node is SectionNode)
-            {
-                DialogResult result = DialogResult.OK;
-                SectionNode tempNode = mProjectView.Selection.Node as SectionNode;
-                if ((tempNode.Duration != 0 && (tempNode.FirstLeaf.Duration !=0 || !mProjectView.ObiForm.Settings.Audio_RecordInFirstEmptyPhraseWithRecordSectionCommand))
-                    || (tempNode.PhraseChildCount > 0 && !mProjectView.ObiForm.Settings.Audio_RecordInFirstEmptyPhraseWithRecordSectionCommand))
-                {
-                    bool IsMonitoringActive = false;
-                    if (mProjectView.TransportBar.CurrentState == Obi.ProjectView.TransportBar.State.Monitoring)
-                        IsMonitoringActive = true;
-                    if (!IsMonitoringActive)
-                    {
-                        result = MessageBox.Show(Localizer.Message("RecordUsingSingleKeyFromTOCMessage"), Localizer.Message("Caption_Warning"), MessageBoxButtons.OKCancel,MessageBoxIcon.Warning);
-                    }
-                    if (result == DialogResult.OK)
-                    {
-                        return mProjectView.TransportBar.Record_Button();
-                    }
-                }
-                else
-                {
-                    return mProjectView.TransportBar.Record_Button();
-                }
+            return mProjectView.TransportBar.Record_Button();
+
+            //if (mProjectView.Selection!=null && mProjectView.Selection.Node is SectionNode)
+            //{
+            //    DialogResult result = DialogResult.OK;
+            //    SectionNode tempNode = mProjectView.Selection.Node as SectionNode;
+            //    if ((tempNode.Duration != 0 && (tempNode.FirstLeaf.Duration !=0 || !mProjectView.ObiForm.Settings.Audio_RecordInFirstEmptyPhraseWithRecordSectionCommand))
+            //        || (tempNode.PhraseChildCount > 0 && !mProjectView.ObiForm.Settings.Audio_RecordInFirstEmptyPhraseWithRecordSectionCommand))
+            //    {
+            //        bool IsMonitoringActive = false;
+            //        if (mProjectView.TransportBar.CurrentState == Obi.ProjectView.TransportBar.State.Monitoring)
+            //            IsMonitoringActive = true;
+            //        if (!IsMonitoringActive)
+            //        {
+            //            result = MessageBox.Show(Localizer.Message("RecordUsingSingleKeyFromTOCMessage"), Localizer.Message("Caption_Warning"), MessageBoxButtons.OKCancel,MessageBoxIcon.Warning);
+            //        }
+            //        if (result == DialogResult.OK)
+            //        {
+            //            return mProjectView.TransportBar.Record_Button();
+            //        }
+            //    }
+            //    else
+            //    {
+            //        return mProjectView.TransportBar.Record_Button();
+            //    }
                
-            }
-            return true;            
+            //}
+            //return true;            
         }
 
         public void AssignShotcutToContextMenu()
@@ -562,8 +564,26 @@ namespace Obi.ProjectView
         // Tabbing inside the view
         protected override bool ProcessDialogKey(Keys KeyData)
         {
-            if (mProjectView.ObiForm.Settings.Audio_RecordUsingSingleKeyFromTOC && mShortcutKeys.ContainsKey(KeyData) && mShortcutKeys[KeyData]())
-                return true;
+            //bool tempIsTextSelected = mProjectView.Selection is TextSelection;
+            //if (mProjectView.ObiForm.Settings.Audio_RecordUsingSingleKeyFromTOC && mShortcutKeys.ContainsKey(KeyData) && mShortcutKeys[KeyData]()
+            //    && !(tempIsTextSelected))
+            if (mProjectView.ObiForm.Settings.Audio_RecordUsingSingleKeyFromTOC)
+            {
+                if (!(mProjectView.Selection is TextSelection))
+                {
+                    if(mShortcutKeys == null || mShortcutKeys.Count == 0)
+                    this.InitializeShortcutKeys();
+
+                    if (mShortcutKeys != null && mShortcutKeys.ContainsKey(KeyData) && mShortcutKeys[KeyData]())
+                    return true;
+                }
+                else if (mShortcutKeys != null)
+                {
+                    mShortcutKeys.Clear();
+                }
+            }
+            else if(mShortcutKeys != null && mShortcutKeys.Count > 0)
+                mShortcutKeys.Clear();
             if (this.ContainsFocus && (KeyData == Keys.Tab || KeyData == ((Keys)Keys.Shift | Keys.Tab)))
             {
                 System.Media.SystemSounds.Beep.Play();
