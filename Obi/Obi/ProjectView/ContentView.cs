@@ -3185,7 +3185,12 @@ if (thresholdAboveLastNode >= stripControl.Node.PhraseChildCount) thresholdAbove
 
                 if (stripControl == null)
                 {
-                    if (MessageBox.Show(string.Format (Localizer.Message( "Recording_CreateSectionContentsInformation"), section.Label),
+                    bool IsShowContentsOfRecordingSectionWihoutMessage = false;
+                    if (mProjectView.ObiForm.Settings.Audio_RecordUsingSingleKeyFromTOC)
+                    {
+                        IsShowContentsOfRecordingSectionWihoutMessage = ShowContentsOfRecordingSectionUsingSingleRecordKeyFromTOC(section);
+                    }
+                    if (IsShowContentsOfRecordingSectionWihoutMessage || MessageBox.Show(string.Format(Localizer.Message("Recording_CreateSectionContentsInformation"), section.Label),
                         Localizer.Message("Caption_Information"), MessageBoxButtons.OK, MessageBoxIcon.Information) == DialogResult.OK
                         &&    (Selection == null || !(Selection.Control is ContentView) ))
                     {
@@ -3258,6 +3263,23 @@ if (thresholdAboveLastNode >= stripControl.Node.PhraseChildCount) thresholdAbove
                     }
                 }
             }
+
+
+        private bool ShowContentsOfRecordingSectionUsingSingleRecordKeyFromTOC(SectionNode section)
+        {
+            if (mProjectView.Selection.Control is TOCView)
+            {
+                if (section.PhraseChildCount > 0)
+                {
+                   MessageBox.Show(string.Format (Localizer.Message( "Recording_CreateSectionContentsInformation"), section.Label),
+                        Localizer.Message("Caption_Information"), MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                return true;
+
+            }
+            return false;
+
+        }
 
         //@singleSection
         public void PostRecording_RecreateInvisibleRecordingPhrases(SectionNode section, int initialIndex, int count)
