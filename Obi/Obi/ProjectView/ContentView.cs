@@ -5664,7 +5664,22 @@ Block lastBlock = ActiveStrip.LastBlock ;
             {
                 if (interval > 10)
                     interval = 10;
-                ScrollMStripsPanel(increment * interval, false);
+                int totalInterval = increment * interval;
+                if (e.Delta < 0 && totalInterval > mHScrollBar.Location.Y)
+                {
+                    totalInterval = mHScrollBar.Location.Y;
+                }
+                else if (e.Delta > 0 && totalInterval < mHScrollBar.Location.Y)
+                {
+                    totalInterval = mHScrollBar.Location.Y * -1;
+                }
+
+                //New Approach
+                ScrollMStripsPanel(totalInterval, false);
+
+
+                //Old Approach
+                //ScrollMStripsPanel(increment * interval, false);
             }
             //Console.WriteLine ( "mouse wheel scrolling " + increment + " " + interval);
              
