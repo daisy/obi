@@ -1644,7 +1644,7 @@ Error text: {1}</value>
     <value>It is a user-defined data. Please enter both metadata name and its value.</value>
   </data>
   <data name="Recording_CreateSectionContentsInformation" xml:space="preserve">
-    <value>Contents of the recording section: {0} are not displayed in content view. Press enter to show the section contents and consequently start recording.</value>
+    <value>Contents of the recording section: {0} are not displayed in content view. Press enter to show the section contents and subsequently start recording.</value>
   </data>
   <data name="METADATA_DAISY202_EXPORT_PATH_HELP" xml:space="preserve">
     <value>Obi specific data for saving Daisy 2.02 export path</value>

@@ -6289,7 +6289,7 @@ namespace Obi {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Contents of the recording section: {0} are not displayed in content view. Press enter to show the section contents and consequently start recording..
+        ///   Looks up a localized string similar to Contents of the recording section: {0} are not displayed in content view. Press enter to show the section contents and subsequently start recording..
         /// </summary>
         internal static string Recording_CreateSectionContentsInformation {
             get {
