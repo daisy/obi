@@ -16,7 +16,12 @@ namespace Obi.ProjectView
 
         public event EventHandler EditableChanged;    // editable status changed
         public event EventHandler LabelEditedByUser;  // raised when the user has edited the label
+        public event EventHandler AddNote;
+        public event EventHandler CloseAddNote;
 
+        public bool m_EditPhraseNote = false;
+        
+        private EmptyNode m_Node; 
 
         /// <summary>
         /// Create a new label. Don't forget to set its Label property.
@@ -27,6 +32,17 @@ namespace Obi.ProjectView
             mButtonsBaseFontSize = mOKButton.Font.SizeInPoints;
             mLabelBaseFontSize = mLabel.Font.SizeInPoints;
         }
+        public EditableLabel(EmptyNode node)
+        {
+            m_Node = node;
+            InitializeComponent();
+            mTextBox.Text = m_Node.AddNoteText;
+            m_EditPhraseNote = true;
+        }
+
+       
+
+
 
 
         /// <summary>
@@ -48,15 +64,19 @@ namespace Obi.ProjectView
                     mLabel.Visible = !mEditable;
                     if (mEditable)
                     {
-                        mTextBox.Text = mLabel.Text;
+                        if (!m_EditPhraseNote)
+                        {
+                            mTextBox.Text = mLabel.Text;
+                        }
                         mTextBox.SelectAll();
                         mTextBox.Focus();
                     }
                     UpdateSize();
-                    if (EditableChanged != null) EditableChanged(this, new EventArgs());
+                    if (!m_EditPhraseNote && EditableChanged != null) EditableChanged(this, new EventArgs());
                 }
             }
         }
+
 
         /// <summary>
         /// The (uneditable) label that is displayed.
@@ -119,6 +139,10 @@ namespace Obi.ProjectView
             System.Diagnostics.Debug.Assert(mEditable,
                 "This button cannot be clicked when the label is not editable.");
             Editable = false;
+            if (m_EditPhraseNote)
+            {
+                if (CloseAddNote != null) CloseAddNote(this, new EventArgs());
+            }
         }
 
         /// <summary>
@@ -129,6 +153,11 @@ namespace Obi.ProjectView
         {
             System.Diagnostics.Debug.Assert(mEditable,
                 "This button cannot be clicked when the label is not editable.");
+            if (m_EditPhraseNote && m_Node != null)
+            {
+                m_Node.AddNoteText = mTextBox.Text;
+            }
+
             UpdateText();
         }
 
@@ -140,11 +169,19 @@ namespace Obi.ProjectView
         {
             if (e.KeyCode == Keys.Return)
             {
+                if (m_EditPhraseNote && m_Node != null)
+                {
+                    m_Node.AddNoteText = mTextBox.Text;
+                }
                 UpdateText();
             }
             else if (e.KeyCode == Keys.Escape)
             {
                 Editable = false;
+                if (m_EditPhraseNote)
+                {
+                    if (CloseAddNote != null) CloseAddNote(this, new EventArgs());
+                }
             }
         }
 
@@ -156,21 +193,38 @@ namespace Obi.ProjectView
             mCancelButton.Location =
                 new Point(mOKButton.Location.X + mOKButton.Width + mOKButton.Margin.Right + mCancelButton.Margin.Left, h);
             int wlabel = mLabel.Location.X + mLabel.Width + mLabel.Margin.Right;
+            if (m_EditPhraseNote)
+            {
+                wlabel = wlabel * 4;
+                mLabel.Text = string.Empty;
+            }
             int wbuttons = mCancelButton.Location.X + mCancelButton.Width + mCancelButton.Margin.Right;
             Size = new Size(wlabel > wbuttons ? wlabel : wbuttons,
                 mEditable ? mOKButton.Location.Y + mOKButton.Height + mOKButton.Margin.Bottom :
                     mLabel.Location.Y + mLabel.Height + mLabel.Margin.Bottom);
+
         }
 
         // Update the text in the label/textbox
         private void UpdateText()
         {
-            if (mTextBox.Text != "")
+            if (!m_EditPhraseNote)
             {
-                Label = mTextBox.Text;
-                if (LabelEditedByUser != null) LabelEditedByUser(this, new EventArgs());
+                if (mTextBox.Text != "")
+                {
+                    Label = mTextBox.Text;
+                    if (LabelEditedByUser != null) LabelEditedByUser(this, new EventArgs());
+                }
+            }
+            else
+            {
+                if (m_Node != null && m_Node.AddNoteText != null)
+                {
+                    if (AddNote != null) AddNote(this, new EventArgs());
+                }
             }
             Editable = false;
+            m_EditPhraseNote = false;
         }
 
         // If the label loses its focus then it becomes non-editable.

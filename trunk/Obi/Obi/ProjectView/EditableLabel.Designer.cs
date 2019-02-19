@@ -75,7 +75,6 @@ namespace Obi.ProjectView
             this.Controls.Add(this.mTextBox);
             this.Controls.Add(this.mLabel);
             this.Name = "EditableLabel";
-            this.Tag = "";
             this.Leave += new System.EventHandler(this.EditableLabel_Leave);
             this.ResumeLayout(false);
             this.PerformLayout();
