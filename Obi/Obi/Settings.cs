@@ -337,6 +337,9 @@ public bool Project_ImportNCCFileWithWindows1252Encoding ; // useful for importi
         [OptionalField]
         public bool Audio_RecordUsingSingleKeyFromTOC;
 
+        [OptionalField]
+        public bool Project_DisplayWarningsForSectionDelete;
+
         protected static void InitializeDefaultSettings(Settings settings)
         {
             settings.Audio_Channels = 1;
@@ -491,6 +494,7 @@ public bool Project_ImportNCCFileWithWindows1252Encoding ; // useful for importi
             settings.Project_ReadOnlyMode = false;
             //Post Obi 4.3
             settings.Audio_RecordUsingSingleKeyFromTOC = false;
+            settings.Project_DisplayWarningsForSectionDelete = false;
         }
 
         /// <summary>

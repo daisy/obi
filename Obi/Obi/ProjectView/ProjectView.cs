@@ -968,7 +968,7 @@ namespace Obi.ProjectView
                 if (CanRemoveSection)
                 {
                     DialogResult dialogResult = DialogResult.None;
-                    if (this.ObiForm.Settings.Project_DisplayWarningsForEditOperations)
+                    if (this.ObiForm.Settings.Project_DisplayWarningsForEditOperations || this.ObiForm.Settings.Project_DisplayWarningsForSectionDelete)
                     {
                         dialogResult = MessageBox.Show(Localizer.Message("ConfirmSectionDelete"), Localizer.Message("Caption_Warning"), MessageBoxButtons.OKCancel,MessageBoxIcon.Warning,MessageBoxDefaultButton.Button2);
                     }
@@ -982,7 +982,7 @@ namespace Obi.ProjectView
                     if (Selection != null && Selection.Node is SectionNode) //@singleSection: begin
                     {
                         DialogResult dialogResult = DialogResult.None;
-                        if (this.ObiForm.Settings.Project_DisplayWarningsForEditOperations)
+                        if (this.ObiForm.Settings.Project_DisplayWarningsForEditOperations || this.ObiForm.Settings.Project_DisplayWarningsForSectionDelete)
                         {
                             dialogResult = MessageBox.Show(Localizer.Message("ConfirmSectionDelete"), Localizer.Message("Caption_Warning"), MessageBoxButtons.OKCancel,MessageBoxIcon.Warning,MessageBoxDefaultButton.Button2);
                         }
