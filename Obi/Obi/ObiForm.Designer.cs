@@ -165,6 +165,9 @@ namespace Obi
             this.m_GoToCollectSpecialPhrasesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mCheckForPhrasesWithImproperAudioMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mDeleteFollowingPhrasesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.m_AddNoteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.m_AddViewNoteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.m_ClearNoteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.transportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mPlayToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mPlayAllToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -822,7 +825,8 @@ namespace Obi
             this.mPhrases_AudioSelectionMenuItem,
             this.mGoToToolStripMenuItem,
             this.mCheckForPhrasesWithImproperAudioMenuItem,
-            this.mDeleteFollowingPhrasesToolStripMenuItem});
+            this.mDeleteFollowingPhrasesToolStripMenuItem,
+            this.m_AddNoteToolStripMenuItem});
             this.mPhrasesToolStripMenuItem.Name = "mPhrasesToolStripMenuItem";
             resources.ApplyResources(this.mPhrasesToolStripMenuItem, "mPhrasesToolStripMenuItem");
             // 
@@ -1199,6 +1203,27 @@ namespace Obi
             resources.ApplyResources(this.mDeleteFollowingPhrasesToolStripMenuItem, "mDeleteFollowingPhrasesToolStripMenuItem");
             this.mDeleteFollowingPhrasesToolStripMenuItem.Name = "mDeleteFollowingPhrasesToolStripMenuItem";
             this.mDeleteFollowingPhrasesToolStripMenuItem.Click += new System.EventHandler(this.mDeleteFollowingPhrasesToolStripMenuItem_Click);
+            // 
+            // m_AddNoteToolStripMenuItem
+            // 
+            this.m_AddNoteToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.m_AddViewNoteToolStripMenuItem,
+            this.m_ClearNoteToolStripMenuItem});
+            this.m_AddNoteToolStripMenuItem.Name = "m_AddNoteToolStripMenuItem";
+            resources.ApplyResources(this.m_AddNoteToolStripMenuItem, "m_AddNoteToolStripMenuItem");
+            this.m_AddNoteToolStripMenuItem.Click += new System.EventHandler(this.m_AddNoteToolStripMenuItem_Click);
+            // 
+            // m_AddViewNoteToolStripMenuItem
+            // 
+            this.m_AddViewNoteToolStripMenuItem.Name = "m_AddViewNoteToolStripMenuItem";
+            resources.ApplyResources(this.m_AddViewNoteToolStripMenuItem, "m_AddViewNoteToolStripMenuItem");
+            this.m_AddViewNoteToolStripMenuItem.Click += new System.EventHandler(this.m_AddViewNoteToolStripMenuItem_Click);
+            // 
+            // m_ClearNoteToolStripMenuItem
+            // 
+            this.m_ClearNoteToolStripMenuItem.Name = "m_ClearNoteToolStripMenuItem";
+            resources.ApplyResources(this.m_ClearNoteToolStripMenuItem, "m_ClearNoteToolStripMenuItem");
+            this.m_ClearNoteToolStripMenuItem.Click += new System.EventHandler(this.m_ClearNoteToolStripMenuItem_Click);
             // 
             // transportToolStripMenuItem
             // 
@@ -1914,6 +1939,9 @@ namespace Obi
         private System.Windows.Forms.ToolStripMenuItem mAutoPageGenerationMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mImportTOCMenuItem;
         private System.Windows.Forms.ToolStripMenuItem m_pasteMultiplePhrasesToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem m_AddNoteToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem m_AddViewNoteToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem m_ClearNoteToolStripMenuItem;
     }
 }
 

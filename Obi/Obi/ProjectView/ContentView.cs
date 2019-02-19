@@ -51,6 +51,7 @@ namespace Obi.ProjectView
         private double m_timeElapsed = 0.0;
         private Color m_ColorBackgroundBeforeFlicker;
         private Color m_ColorBackgroundAfterFlicker;
+        private EditableLabel m_EditableLabel;
 
         /// <summary>
         /// A new strips view.
@@ -3498,7 +3499,7 @@ if (thresholdAboveLastNode >= stripControl.Node.PhraseChildCount) thresholdAbove
             }
 
         // Find the block for the given node; return null if not found (be careful!)
-        private Block FindBlock ( EmptyNode node )
+        public Block FindBlock ( EmptyNode node )
             {
             Strip strip = FindStrip ( node.ParentAs<SectionNode> () );
             return strip == null ? null : strip.FindBlock ( node );
@@ -4112,6 +4113,8 @@ if (thresholdAboveLastNode >= stripControl.Node.PhraseChildCount) thresholdAbove
         
         protected override bool ProcessCmdKey ( ref Message msg, Keys key )
             {
+                if (this.Controls.Contains(m_EditableLabel))
+                    return false;
                 if (mProjectView.ObiForm.Settings.Project_OptimizeMemory &&  ShouldSkipKeyDueToMemoryOverload(key)) return true;
             if (CanUseKeys &&
                 ((msg.Msg == ProjectView.WM_KEYDOWN) || (msg.Msg == ProjectView.WM_SYSKEYDOWN)) &&
@@ -5604,6 +5607,12 @@ Block lastBlock = ActiveStrip.LastBlock ;
         //@singleSection
         private void ProjectView_SelectionChanged ( object sender, EventArgs e )
             {
+                if (this.Controls.Contains(m_EditableLabel))
+                {
+                    m_EditableLabel.AddNote -= new EventHandler(EditableLabel_AddNote);
+                    m_EditableLabel.CloseAddNote -= new EventHandler(EditLabel_CloseAddNote);
+                    this.Controls.Remove(m_EditableLabel);
+                }
             if (mProjectView.GetSelectedPhraseSection == null)
                 {
                 contentViewLabel1.sectionSelected = false;
@@ -5964,6 +5973,41 @@ Block lastBlock = ActiveStrip.LastBlock ;
         {
             mProjectView.SplitAndMerge(mergeWithNext);
         }
+        public void ShowEditLabelToAddNote(EditableLabel editLabel)
+        {
+            this.Controls.Add(editLabel);
+            m_EditableLabel = editLabel;
+            Block tempBlock = FindBlock(mProjectView.Selection.Node as EmptyNode);
+            editLabel.Show();
+            editLabel.Editable = true;
+            if ((verticalScrollToolStripContainer1.Location.X - tempBlock.Location.X) >= m_EditableLabel.Size.Width)
+            {
+                editLabel.Location = new Point(tempBlock.Location.X, tempBlock.Location.Y);
+            }
+            else
+            {
+                int tempVal = m_EditableLabel.Size.Width - (verticalScrollToolStripContainer1.Location.X - tempBlock.Location.X);
+                editLabel.Location = new Point(tempBlock.Location.X - tempVal, tempBlock.Location.Y);
+            }
+            editLabel.BringToFront();
+            editLabel.AddNote += new EventHandler(EditableLabel_AddNote);
+            editLabel.CloseAddNote +=new EventHandler(EditLabel_CloseAddNote);
+        }
+
+        public void ClearNote()
+        {
+            Block tempBlock = FindBlock(mProjectView.Selection.Node as EmptyNode);
+            if (tempBlock != null)
+            {
+                if (mProjectView.Selection.Node is EmptyNode)
+                {
+                    EmptyNode tempNode = (EmptyNode)mProjectView.Selection.Node;
+                    tempNode.AddNoteText = string.Empty;
+                }
+                tempBlock.UpdateLabelsText();
+
+            }
+        }
         public bool StripIsSelected
         {
             get
@@ -6053,6 +6097,26 @@ Block lastBlock = ActiveStrip.LastBlock ;
             mProjectView.MarkEndNote();
             mProjectView.AssignRoleToMarkedContinuousNodes();
         }
+        private void EditableLabel_AddNote(object sender, EventArgs e)
+        {
+            Block tempBlock = FindBlock(mProjectView.Selection.Node as EmptyNode);
+            if (tempBlock != null)
+            {
+                tempBlock.UpdateLabelsText();
+                m_EditableLabel.AddNote -= new EventHandler(EditableLabel_AddNote);
+                m_EditableLabel.CloseAddNote -= new EventHandler(EditLabel_CloseAddNote);
+                this.Controls.Remove(m_EditableLabel);
+
+            }
+        }
+
+        private void EditLabel_CloseAddNote(object sender, EventArgs e)
+        {
+            m_EditableLabel.AddNote -= new EventHandler(EditableLabel_AddNote);
+            m_EditableLabel.CloseAddNote -= new EventHandler(EditLabel_CloseAddNote);
+            this.Controls.Remove(m_EditableLabel);
+        }
+
         public void ResetColorAfterColorFlickering()
         {
             //if (mProjectView.ObiForm.Settings.Audio_ColorFlickerPreviewBeforeRecording && m_ColorBackgroundBeforeFlicker != null)

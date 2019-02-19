@@ -39,6 +39,7 @@ namespace Obi.ProjectView
             mBaseFontSize = mLabel.Font.SizeInPoints;
             mToolTip.Popup +=new PopupEventHandler(mToolTip_Popup);
         }
+
         
         /// <summary>
         /// Get or set the color settings. Set from the strip/parent container, get from the waveform.
@@ -193,6 +194,18 @@ namespace Obi.ProjectView
                 mLabel.AccessibleName = GetAccessibleName;
                 mToolTip.SetToolTip(this, Node.BaseStringShort());
                 mToolTip.SetToolTip(mLabel, Node.BaseStringShort());
+                if (Node.AddNoteText != null && Node.AddNoteText != string.Empty)
+                {
+                    m_NotePictureBox.Visible = true;
+                    mLabel.Location = new Point(m_NotePictureBox.Width, mLabel.Location.Y);
+                    mToolTip.SetToolTip(m_NotePictureBox,Node.AddNoteText);
+                    mLabel.AccessibleName = GetAccessibleName + "Note attached";
+                }
+                else if (Node.AddNoteText != null && Node.AddNoteText == string.Empty)
+                {
+                    m_NotePictureBox.Visible = false;
+                    mLabel.Location = new Point(0, mLabel.Location.Y);
+                }
                 AccessibleName = mLabel.AccessibleName;
             }
         }

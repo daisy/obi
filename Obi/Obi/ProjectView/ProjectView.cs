@@ -181,6 +181,16 @@ namespace Obi.ProjectView
                 }
             }
 
+            public void ShowEditLabelToAddNote(EditableLabel editLabel)
+            {
+                mContentView.ShowEditLabelToAddNote(editLabel);
+            }
+
+            public void ClearNote()
+            {
+                mContentView.ClearNote();
+            }
+
 
         /// <summary>
         /// Add a new metadata entry to the project
