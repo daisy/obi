@@ -133,6 +133,7 @@ namespace Obi
                newSettings.Project_DoNotDisplayMessageBoxForShowingSection = this.Project_DoNotDisplayMessageBoxForShowingSection;
                newSettings.Project_MaximumPhrasesSelectLimit = this.Project_MaximumPhrasesSelectLimit;
                newSettings.Project_ReadOnlyMode = this.Project_ReadOnlyMode;
+               newSettings.Project_DisplayWarningsForSectionDelete = this.Project_DisplayWarningsForSectionDelete;
                // checks for paths
                //if ( !string.IsNullOrEmpty(this.Project_DefaultPath) && Directory.Exists (this.Project_DefaultPath ))
                //newSettings.Project_DefaultPath = this.Project_DefaultPath;
@@ -514,7 +515,8 @@ namespace Obi
                && this.Project_ImportNCCFileWithWindows1252Encoding == settings.Project_ImportNCCFileWithWindows1252Encoding
                && this.Project_DoNotDisplayMessageBoxForShowingSection == settings.Project_DoNotDisplayMessageBoxForShowingSection
                && this.Project_MaximumPhrasesSelectLimit == settings.Project_MaximumPhrasesSelectLimit
-               && this.Project_ReadOnlyMode == settings.Project_ReadOnlyMode)
+               && this.Project_ReadOnlyMode == settings.Project_ReadOnlyMode
+               && this.Project_DisplayWarningsForSectionDelete == settings.Project_DisplayWarningsForSectionDelete)
                {
                    projectPreferencesMatch = true ;
                }

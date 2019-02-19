@@ -5812,6 +5812,15 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Warn before deleting section.
+        /// </summary>
+        internal static string Project_DisplayWarningsForSectionDelete {
+            get {
+                return ResourceManager.GetString("Project_DisplayWarningsForSectionDelete", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Do not show message box while moving to phrase in another section.
         /// </summary>
         internal static string Project_DoNotDisplayMessageBoxForShowingSection {
