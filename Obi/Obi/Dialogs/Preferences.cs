@@ -1144,7 +1144,8 @@ m_cb_ChooseFont.Visible = false;
                 mSettings.Project_DisplayWarningsForEditOperations = m_CheckBoxListView.Items[15].Checked;
                 mSettings.Project_ImportNCCFileWithWindows1252Encoding= m_CheckBoxListView.Items[16].Checked;
                 mSettings.Project_DoNotDisplayMessageBoxForShowingSection = m_CheckBoxListView.Items[17].Checked;
-                mSettings.Project_ReadOnlyMode = m_CheckBoxListView.Items[18].Checked; 
+                mSettings.Project_ReadOnlyMode = m_CheckBoxListView.Items[18].Checked;
+                mSettings.Project_DisplayWarningsForSectionDelete = m_CheckBoxListView.Items[19].Checked;
             }
             if (mTab.SelectedTab == mAudioTab)
             {
@@ -1293,6 +1294,7 @@ m_cb_ChooseFont.Visible = false;
                 m_CheckBoxListView.Items.Add(Localizer.Message("Project_ImportNCCFileWithWindows1252Encoding"));
                 m_CheckBoxListView.Items.Add(Localizer.Message("Project_DoNotDisplayMessageBoxForShowingSection"));
                 m_CheckBoxListView.Items.Add(Localizer.Message("Project_ReadOnlyMode"));
+                m_CheckBoxListView.Items.Add(Localizer.Message("Project_DisplayWarningsForSectionDelete"));
                
                 m_CheckBoxListView.Items[0].Checked = mSettings.Project_OpenLastProject;
                 m_CheckBoxListView.Items[0].ToolTipText = Localizer.Message("ProjectTab_OpenLastProject");
@@ -1331,7 +1333,9 @@ m_cb_ChooseFont.Visible = false;
                 m_CheckBoxListView.Items[17].Checked = mSettings.Project_DoNotDisplayMessageBoxForShowingSection;
                 m_CheckBoxListView.Items[17].ToolTipText = Localizer.Message("Project_DoNotDisplayMessageBoxForShowingSection");
                 m_CheckBoxListView.Items[18].Checked = mSettings.Project_ReadOnlyMode;
-                m_CheckBoxListView.Items[18].ToolTipText = Localizer.Message("Project_ReadOnlyMode"); 
+                m_CheckBoxListView.Items[18].ToolTipText = Localizer.Message("Project_ReadOnlyMode");
+                m_CheckBoxListView.Items[19].Checked = mSettings.Project_DisplayWarningsForSectionDelete;
+                m_CheckBoxListView.Items[19].ToolTipText = Localizer.Message("Project_DisplayWarningsForSectionDelete"); 
 
             }
             m_CheckBoxListView.View = View.Details;
@@ -1428,6 +1432,7 @@ m_cb_ChooseFont.Visible = false;
                 mSettings.Project_DoNotDisplayMessageBoxForShowingSection = m_DefaultSettings.Project_DoNotDisplayMessageBoxForShowingSection;
                 mSettings.Project_MaximumPhrasesSelectLimit = m_DefaultSettings.Project_MaximumPhrasesSelectLimit;
                 mSettings.Project_ReadOnlyMode = m_DefaultSettings.Project_ReadOnlyMode;
+                mSettings.Project_DisplayWarningsForSectionDelete = m_DefaultSettings.Project_DisplayWarningsForSectionDelete;
                 InitializeProjectTab();
             }
             else if (mTab.SelectedTab == mAudioTab) // Default settings for Audio tab
@@ -2100,6 +2105,7 @@ m_cb_ChooseFont.Visible = false;
                     mSettings.Project_DoNotDisplayMessageBoxForShowingSection = false;
                     mSettings.Project_MaximumPhrasesSelectLimit = true;
                     mSettings.Project_ReadOnlyMode = false;
+                    mSettings.Project_DisplayWarningsForSectionDelete = false;
                     // UpdateBoolSettings();
                 }
                 else if (Profile == "Intermediate.xml" || Profile == "Intermediate.XML")
@@ -2174,6 +2180,7 @@ m_cb_ChooseFont.Visible = false;
                     mSettings.Project_DoNotDisplayMessageBoxForShowingSection = false;
                     mSettings.Project_MaximumPhrasesSelectLimit = true;
                     mSettings.Project_ReadOnlyMode = false;
+                    mSettings.Project_DisplayWarningsForSectionDelete = false;
                     // UpdateBoolSettings();
                 }
                 else if (Profile == "Advance.xml" || Profile == "Advance.XML")
@@ -2247,6 +2254,7 @@ m_cb_ChooseFont.Visible = false;
                     mSettings.Project_DoNotDisplayMessageBoxForShowingSection = false;
                     mSettings.Project_MaximumPhrasesSelectLimit = true;
                     mSettings.Project_ReadOnlyMode = false;
+                    mSettings.Project_DisplayWarningsForSectionDelete = false;
                     // UpdateBoolSettings();
                 }
                 else if (Profile == "Profile-SBS.xml" || Profile == "Profile-SBS.XML")
@@ -2320,6 +2328,7 @@ m_cb_ChooseFont.Visible = false;
                     mSettings.Project_DoNotDisplayMessageBoxForShowingSection = false;
                     mSettings.Project_MaximumPhrasesSelectLimit = true;
                     mSettings.Project_ReadOnlyMode = false;
+                    mSettings.Project_DisplayWarningsForSectionDelete = false;
                     // UpdateBoolSettings();
 
 
@@ -2395,6 +2404,7 @@ m_cb_ChooseFont.Visible = false;
                     mSettings.Project_DoNotDisplayMessageBoxForShowingSection = true;
                     mSettings.Project_MaximumPhrasesSelectLimit = true;
                     mSettings.Project_ReadOnlyMode = false;
+                    mSettings.Project_DisplayWarningsForSectionDelete = false;
                     // UpdateBoolSettings();
 
                 }
@@ -2470,6 +2480,7 @@ m_cb_ChooseFont.Visible = false;
                     mSettings.Project_DoNotDisplayMessageBoxForShowingSection = true;
                     mSettings.Project_MaximumPhrasesSelectLimit = true;
                     mSettings.Project_ReadOnlyMode = false;
+                    mSettings.Project_DisplayWarningsForSectionDelete = false;
                     // UpdateBoolSettings();
 
                 }
@@ -2544,6 +2555,7 @@ m_cb_ChooseFont.Visible = false;
                     mSettings.Project_DoNotDisplayMessageBoxForShowingSection = true;
                     mSettings.Project_MaximumPhrasesSelectLimit = true;
                     mSettings.Project_ReadOnlyMode = false;
+                    mSettings.Project_DisplayWarningsForSectionDelete = false;
                     // UpdateBoolSettings();
 
                 }

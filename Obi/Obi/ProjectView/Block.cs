@@ -193,17 +193,21 @@ namespace Obi.ProjectView
                 //mLabel.AccessibleName = Node.BaseString(); // commented for removing update block label threads.
                 mLabel.AccessibleName = GetAccessibleName;
                 mToolTip.SetToolTip(this, Node.BaseStringShort());
-                mToolTip.SetToolTip(mLabel, Node.BaseStringShort());
-                if (Node.AddNoteText != null && Node.AddNoteText != string.Empty)
+                if (Node.CommentText == null || Node.CommentText == string.Empty)
                 {
-                    m_NotePictureBox.Visible = true;
-                    mLabel.Location = new Point(m_NotePictureBox.Width, mLabel.Location.Y);
-                    mToolTip.SetToolTip(m_NotePictureBox,Node.AddNoteText);
-                    mLabel.AccessibleName = GetAccessibleName + "Note attached";
+                    mToolTip.SetToolTip(mLabel, Node.BaseStringShort());
                 }
-                else if (Node.AddNoteText != null && Node.AddNoteText == string.Empty)
+                if (Node.CommentText != null && Node.CommentText != string.Empty)
                 {
-                    m_NotePictureBox.Visible = false;
+                    m_CommentPictureBox.Visible = true;
+                    mLabel.Location = new Point(m_CommentPictureBox.Width, mLabel.Location.Y);
+                    mToolTip.SetToolTip(m_CommentPictureBox, Node.BaseStringShort() + "\n" + Node.CommentText);
+                    mToolTip.SetToolTip(mLabel, Node.BaseStringShort() + "\n" + Node.CommentText);
+                    mLabel.AccessibleName = GetAccessibleName + Localizer.Message("CommentAttachedFlagForAccessibleName");
+                }
+                else if (Node.CommentText != null && Node.CommentText == string.Empty)
+                {
+                    m_CommentPictureBox.Visible = false;
                     mLabel.Location = new Point(0, mLabel.Location.Y);
                 }
                 AccessibleName = mLabel.AccessibleName;

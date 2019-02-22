@@ -265,7 +265,7 @@
     <value>22</value>
   </data>
   <data name="m_btnSaveProfile.Text" xml:space="preserve">
-    <value>&amp;Save As</value>
+    <value>&amp;Save as</value>
   </data>
   <metadata name="m_Preference_ToolTip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>144, 17</value>
@@ -604,13 +604,13 @@
     <value>True</value>
   </data>
   <data name="m_lblSelectedShortcuts.Size" type="System.Drawing.Size, System.Drawing">
-    <value>152, 16</value>
+    <value>149, 16</value>
   </data>
   <data name="m_lblSelectedShortcuts.TabIndex" type="System.Int32, mscorlib">
     <value>3</value>
   </data>
   <data name="m_lblSelectedShortcuts.Text" xml:space="preserve">
-    <value>Current Shorcuts Profile :</value>
+    <value>Current shorcuts profile :</value>
   </data>
   <data name="&gt;&gt;m_lblSelectedShortcuts.Name" xml:space="preserve">
     <value>m_lblSelectedShortcuts</value>
@@ -682,13 +682,13 @@
     <value>True</value>
   </data>
   <data name="m_rdb_KeyboardShortcuts.Size" type="System.Drawing.Size, System.Drawing">
-    <value>143, 20</value>
+    <value>141, 20</value>
   </data>
   <data name="m_rdb_KeyboardShortcuts.TabIndex" type="System.Int32, mscorlib">
     <value>7</value>
   </data>
   <data name="m_rdb_KeyboardShortcuts.Text" xml:space="preserve">
-    <value>&amp;Keyboard Shortcuts</value>
+    <value>&amp;Keyboard shortcuts</value>
   </data>
   <data name="&gt;&gt;m_rdb_KeyboardShortcuts.Name" xml:space="preserve">
     <value>m_rdb_KeyboardShortcuts</value>
@@ -745,7 +745,7 @@
     <value>5</value>
   </data>
   <data name="m_gpBox_SelectProfile.Text" xml:space="preserve">
-    <value>Select Profile Options</value>
+    <value>Select profile options</value>
   </data>
   <data name="&gt;&gt;m_gpBox_SelectProfile.Name" xml:space="preserve">
     <value>m_gpBox_SelectProfile</value>
@@ -769,13 +769,13 @@
     <value>True</value>
   </data>
   <data name="m_lblSelectedProfile.Size" type="System.Drawing.Size, System.Drawing">
-    <value>97, 16</value>
+    <value>96, 16</value>
   </data>
   <data name="m_lblSelectedProfile.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
   </data>
   <data name="m_lblSelectedProfile.Text" xml:space="preserve">
-    <value>Current Profile :</value>
+    <value>Current profile :</value>
   </data>
   <data name="&gt;&gt;m_lblSelectedProfile.Name" xml:space="preserve">
     <value>m_lblSelectedProfile</value>
@@ -802,13 +802,13 @@
     <value>True</value>
   </data>
   <data name="m_lblShortcutsProfile.Size" type="System.Drawing.Size, System.Drawing">
-    <value>151, 16</value>
+    <value>148, 16</value>
   </data>
   <data name="m_lblShortcutsProfile.TabIndex" type="System.Int32, mscorlib">
     <value>12</value>
   </data>
   <data name="m_lblShortcutsProfile.Text" xml:space="preserve">
-    <value>Select Shortcuts Profile :</value>
+    <value>Select shortcuts profile :</value>
   </data>
   <data name="&gt;&gt;m_lblShortcutsProfile.Name" xml:space="preserve">
     <value>m_lblShortcutsProfile</value>
@@ -925,13 +925,13 @@
     <value>True</value>
   </data>
   <data name="m_lblSelectProfile.Size" type="System.Drawing.Size, System.Drawing">
-    <value>93, 16</value>
+    <value>92, 16</value>
   </data>
   <data name="m_lblSelectProfile.TabIndex" type="System.Int32, mscorlib">
     <value>9</value>
   </data>
   <data name="m_lblSelectProfile.Text" xml:space="preserve">
-    <value>Select Profile :</value>
+    <value>Select profile :</value>
   </data>
   <data name="&gt;&gt;m_lblSelectProfile.Name" xml:space="preserve">
     <value>m_lblSelectProfile</value>
@@ -2295,7 +2295,7 @@
     <value>2</value>
   </data>
   <data name="labelTTSvoice.AccessibleName" xml:space="preserve">
-    <value>Set TTS Synthetic Voice</value>
+    <value>Set TTS synthetic voice</value>
   </data>
   <data name="labelTTSvoice.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -2310,13 +2310,13 @@
     <value>True</value>
   </data>
   <data name="labelTTSvoice.Size" type="System.Drawing.Size, System.Drawing">
-    <value>157, 16</value>
+    <value>155, 16</value>
   </data>
   <data name="labelTTSvoice.TabIndex" type="System.Int32, mscorlib">
     <value>25</value>
   </data>
   <data name="labelTTSvoice.Text" xml:space="preserve">
-    <value>Set TTS Synthetic voice :</value>
+    <value>Set TTS synthetic voice :</value>
   </data>
   <data name="&gt;&gt;labelTTSvoice.Name" xml:space="preserve">
     <value>labelTTSvoice</value>
@@ -3528,7 +3528,7 @@
     <value>12</value>
   </data>
   <data name="m_btnAdvanceSettingsPreferences.Text" xml:space="preserve">
-    <value>Additional Settings  &gt;&gt;</value>
+    <value>Additional settings  &gt;&gt;</value>
   </data>
   <data name="m_btnAdvanceSettingsPreferences.Visible" type="System.Boolean, mscorlib">
     <value>False</value>

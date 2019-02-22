@@ -3088,4 +3088,10 @@ Error text: {1}</value>
   <data name="Project_DisplayWarningsForSectionDelete" xml:space="preserve">
     <value>Warn before deleting section</value>
   </data>
+  <data name="KeyS_AddCommentSingleKey" xml:space="preserve">
+    <value>Add Comment: single key shortcut</value>
+  </data>
+  <data name="CommentAttachedFlagForAccessibleName" xml:space="preserve">
+    <value>Comment attached</value>
+  </data>
 </root>

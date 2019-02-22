@@ -310,6 +310,24 @@
   <data name="Context_ClearRoleMenuItem.Text" xml:space="preserve">
     <value>Clear role</value>
   </data>
+  <data name="Context_AddViewCommentMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>183, 22</value>
+  </data>
+  <data name="Context_AddViewCommentMenuItem.Text" xml:space="preserve">
+    <value>Add/View Comment</value>
+  </data>
+  <data name="Context_ClearCommentMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>183, 22</value>
+  </data>
+  <data name="Context_ClearCommentMenuItem.Text" xml:space="preserve">
+    <value>Clear Comment</value>
+  </data>
+  <data name="Context_CommentMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>208, 22</value>
+  </data>
+  <data name="Context_CommentMenuItem.Text" xml:space="preserve">
+    <value>Comment</value>
+  </data>
   <data name="Context_ApplyPhraseDetectionMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>285, 22</value>
   </data>
@@ -691,7 +709,7 @@
     <value>verticalScrollToolStripContainer1</value>
   </data>
   <data name="&gt;&gt;verticalScrollToolStripContainer1.Type" xml:space="preserve">
-    <value>Obi.ProjectView.VerticalScrollToolStripContainer, Obi, Version=4.1.0.33211, Culture=neutral, PublicKeyToken=null</value>
+    <value>Obi.ProjectView.VerticalScrollToolStripContainer, Obi, Version=4.3.0.20259, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;verticalScrollToolStripContainer1.Parent" xml:space="preserve">
     <value>$this</value>
@@ -724,7 +742,7 @@
     <value>contentViewLabel1</value>
   </data>
   <data name="&gt;&gt;contentViewLabel1.Type" xml:space="preserve">
-    <value>Obi.ProjectView.ContentViewLabel, Obi, Version=4.1.0.33211, Culture=neutral, PublicKeyToken=null</value>
+    <value>Obi.ProjectView.ContentViewLabel, Obi, Version=4.3.0.20259, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;contentViewLabel1.Parent" xml:space="preserve">
     <value>$this</value>
@@ -931,6 +949,24 @@
     <value>Context_ClearRoleMenuItem</value>
   </data>
   <data name="&gt;&gt;Context_ClearRoleMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;Context_CommentMenuItem.Name" xml:space="preserve">
+    <value>Context_CommentMenuItem</value>
+  </data>
+  <data name="&gt;&gt;Context_CommentMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;Context_AddViewCommentMenuItem.Name" xml:space="preserve">
+    <value>Context_AddViewCommentMenuItem</value>
+  </data>
+  <data name="&gt;&gt;Context_AddViewCommentMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;Context_ClearCommentMenuItem.Name" xml:space="preserve">
+    <value>Context_ClearCommentMenuItem</value>
+  </data>
+  <data name="&gt;&gt;Context_ClearCommentMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;Context_PhraseDetectionMenuItem.Name" xml:space="preserve">
