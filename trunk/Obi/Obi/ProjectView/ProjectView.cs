@@ -181,14 +181,14 @@ namespace Obi.ProjectView
                 }
             }
 
-            public void ShowEditLabelToAddNote(EditableLabel editLabel)
+            public void ShowEditLabelToAddNote()
             {
-                mContentView.ShowEditLabelToAddNote(editLabel);
+                mContentView.ShowEditLabelToAddComment();
             }
 
             public void ClearNote()
             {
-                mContentView.ClearNote();
+                mContentView.ClearComment();
             }
 
 

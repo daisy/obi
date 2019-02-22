@@ -3946,6 +3946,8 @@ if (thresholdAboveLastNode >= stripControl.Node.PhraseChildCount) thresholdAbove
 
             mShortcutKeys[keyboardShortcuts.ContentView_TransportBarRecordSingleKey.Value] = mProjectView.TransportBar.Record_Button;
             mShortcutKeys[keyboardShortcuts.ContentView_TransportBarStopSingleKey.Value] = mProjectView.TransportBar.Stop ;
+
+            mShortcutKeys[keyboardShortcuts.ContentView_AddComment.Value] = ShowEditLabelToAddComment;
         }
 
         public void AssignShotcutToContextMenu()
@@ -4106,6 +4108,9 @@ if (thresholdAboveLastNode >= stripControl.Node.PhraseChildCount) thresholdAbove
 
             ContextPasteMultiplePhrasesToolStripMenuItem.ShortcutKeyDisplayString = ObiForm.RefineKeyboardShortcutStringForAccessibleName(keyboardShortcuts.FormatKeyboardShorcut(keyboardShortcuts.MenuNameDictionary["m_pasteMultiplePhrasesToolStripMenuItem"].Value.ToString()));
             ContextPasteMultiplePhrasesToolStripMenuItem.AccessibleName = ContextPasteMultiplePhrasesToolStripMenuItem.Text.Replace("&", "") + " " + ContextPasteMultiplePhrasesToolStripMenuItem.ShortcutKeyDisplayString;
+
+            Context_AddViewCommentMenuItem.ShortcutKeyDisplayString = ObiForm.RefineKeyboardShortcutStringForAccessibleName(keyboardShortcuts.FormatKeyboardShorcut(keyboardShortcuts.ContentView_AddComment.Value.ToString()));
+            Context_AddViewCommentMenuItem.AccessibleName = Context_AddViewCommentMenuItem.Text.Replace("&", "") + " " + Context_AddViewCommentMenuItem.ShortcutKeyDisplayString;
 
         }
 
@@ -5254,6 +5259,7 @@ if (thresholdAboveLastNode >= stripControl.Node.PhraseChildCount) thresholdAbove
             ContextBeginMarkToolStripMenuItem.Enabled = mProjectView.CanBeginSpecialNote;
             ContextEndMarkToolStripMenuItem.Enabled = mProjectView.CanEndSpecialNote;
             ContextPasteMultiplePhrasesToolStripMenuItem.Enabled = !mProjectView.TransportBar.IsRecorderActive && mProjectView.CanPasteMultiplePhrases && !Settings.Project_ReadOnlyMode;
+            Context_CommentMenuItem.Enabled = Context_AddViewCommentMenuItem.Enabled = Context_ClearCommentMenuItem.Enabled = mProjectView.IsBlockSelected;
             }
 
         private bool CanSetSelectedPhraseUsedStatus
@@ -5609,8 +5615,8 @@ Block lastBlock = ActiveStrip.LastBlock ;
             {
                 if (this.Controls.Contains(m_EditableLabel))
                 {
-                    m_EditableLabel.AddNote -= new EventHandler(EditableLabel_AddNote);
-                    m_EditableLabel.CloseAddNote -= new EventHandler(EditLabel_CloseAddNote);
+                    m_EditableLabel.AddComment -= new EventHandler(EditableLabel_AddNote);
+                    m_EditableLabel.CloseComment -= new EventHandler(EditLabel_CloseAddNote);
                     this.Controls.Remove(m_EditableLabel);
                 }
             if (mProjectView.GetSelectedPhraseSection == null)
@@ -5973,8 +5979,9 @@ Block lastBlock = ActiveStrip.LastBlock ;
         {
             mProjectView.SplitAndMerge(mergeWithNext);
         }
-        public void ShowEditLabelToAddNote(EditableLabel editLabel)
+        public bool ShowEditLabelToAddComment()
         {
+            EditableLabel editLabel = new EditableLabel(mProjectView.Selection.Node as EmptyNode);
             this.Controls.Add(editLabel);
             m_EditableLabel = editLabel;
             Block tempBlock = FindBlock(mProjectView.Selection.Node as EmptyNode);
@@ -5990,11 +5997,12 @@ Block lastBlock = ActiveStrip.LastBlock ;
                 editLabel.Location = new Point(tempBlock.Location.X - tempVal, tempBlock.Location.Y);
             }
             editLabel.BringToFront();
-            editLabel.AddNote += new EventHandler(EditableLabel_AddNote);
-            editLabel.CloseAddNote +=new EventHandler(EditLabel_CloseAddNote);
+            editLabel.AddComment += new EventHandler(EditableLabel_AddNote);
+            editLabel.CloseComment +=new EventHandler(EditLabel_CloseAddNote);
+            return true;
         }
 
-        public void ClearNote()
+        public void ClearComment()
         {
             Block tempBlock = FindBlock(mProjectView.Selection.Node as EmptyNode);
             if (tempBlock != null)
@@ -6002,7 +6010,7 @@ Block lastBlock = ActiveStrip.LastBlock ;
                 if (mProjectView.Selection.Node is EmptyNode)
                 {
                     EmptyNode tempNode = (EmptyNode)mProjectView.Selection.Node;
-                    tempNode.AddNoteText = string.Empty;
+                    tempNode.CommentText = string.Empty;
                 }
                 tempBlock.UpdateLabelsText();
 
@@ -6103,8 +6111,8 @@ Block lastBlock = ActiveStrip.LastBlock ;
             if (tempBlock != null)
             {
                 tempBlock.UpdateLabelsText();
-                m_EditableLabel.AddNote -= new EventHandler(EditableLabel_AddNote);
-                m_EditableLabel.CloseAddNote -= new EventHandler(EditLabel_CloseAddNote);
+                m_EditableLabel.AddComment -= new EventHandler(EditableLabel_AddNote);
+                m_EditableLabel.CloseComment -= new EventHandler(EditLabel_CloseAddNote);
                 this.Controls.Remove(m_EditableLabel);
 
             }
@@ -6112,8 +6120,8 @@ Block lastBlock = ActiveStrip.LastBlock ;
 
         private void EditLabel_CloseAddNote(object sender, EventArgs e)
         {
-            m_EditableLabel.AddNote -= new EventHandler(EditableLabel_AddNote);
-            m_EditableLabel.CloseAddNote -= new EventHandler(EditLabel_CloseAddNote);
+            m_EditableLabel.AddComment -= new EventHandler(EditableLabel_AddNote);
+            m_EditableLabel.CloseComment -= new EventHandler(EditLabel_CloseAddNote);
             this.Controls.Remove(m_EditableLabel);
         }
 
@@ -6141,6 +6149,16 @@ Block lastBlock = ActiveStrip.LastBlock ;
         private void ContextPasteMultiplePhrasesToolStripMenuItem_Click(object sender, EventArgs e)
         {
             mProjectView.PasteMultiplePhrases();
+        }
+
+        private void Context_AddViewCommentMenuItem_Click(object sender, EventArgs e)
+        {
+            this.ShowEditLabelToAddComment();
+        }
+
+        private void Context_ClearCommentMenuItem_Click(object sender, EventArgs e)
+        {
+            this.ClearComment();
         }
 
      

@@ -53,6 +53,10 @@ namespace Obi
 
         public KeyboardShortcut ContentView_ZoomWaveformPanel = new KeyboardShortcut(Keys.Z, "KeyS_ZoomWaveformPanel");
 
+        // Post Obi 4.3 
+        [OptionalField]
+        public KeyboardShortcut ContentView_AddComment = new KeyboardShortcut(Keys.M, "KeyS_AddCommentSingleKey");
+
         //Zoom Paenl Shortcuts        
         public KeyboardShortcut ZoomPanel_Close = new KeyboardShortcut(Keys.Alt | Keys.C, "KeyS_CloseZoomPanel");
         public KeyboardShortcut ZoomPanel_Reset = new KeyboardShortcut(Keys.Alt | Keys.D0, "KeyS_ResetZoomPanel");
@@ -368,6 +372,7 @@ namespace Obi
                 KeyboardShortcutsDescription.Add(Localizer.Message(ContentView_TransportBarExpandSwitchProfile.Description), ContentView_TransportBarExpandSwitchProfile);
 
             KeyboardShortcutsDescription.Add(Localizer.Message(ContentView_ZoomWaveformPanel.Description), ContentView_ZoomWaveformPanel);
+            KeyboardShortcutsDescription.Add(Localizer.Message(ContentView_AddComment.Description), ContentView_AddComment);
             KeyboardShortcutsDescription.Add(Localizer.Message(ContentView_TransportBarRecordSingleKey.Description), ContentView_TransportBarRecordSingleKey);
             KeyboardShortcutsDescription.Add(Localizer.Message(ContentView_TransportBarStopSingleKey.Description), ContentView_TransportBarStopSingleKey);
             KeyboardShortcutsDescription.Add(Localizer.Message(ContentView_FastPlayStepDown.Description), ContentView_FastPlayStepDown);

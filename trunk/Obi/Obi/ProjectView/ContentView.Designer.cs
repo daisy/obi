@@ -63,6 +63,9 @@ namespace Obi.ProjectView
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.Context_AssignRole_NewCustomRoleMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.Context_ClearRoleMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.Context_CommentMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.Context_AddViewCommentMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.Context_ClearCommentMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.Context_PhraseDetectionMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.Context_ApplyPhraseDetectionMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.Context_PhraseDetection_ApplyPhraseDetectionInProjectMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -131,6 +134,7 @@ namespace Obi.ProjectView
             this.toolStripSeparator2,
             this.Context_AssignRoleMenuItem,
             this.Context_ClearRoleMenuItem,
+            this.Context_CommentMenuItem,
             this.Context_PhraseDetectionMenuItem,
             this.toolStripMenuItem1,
             this.Context_SkippablesMenuItem,
@@ -355,6 +359,26 @@ namespace Obi.ProjectView
             this.Context_ClearRoleMenuItem.Name = "Context_ClearRoleMenuItem";
             resources.ApplyResources(this.Context_ClearRoleMenuItem, "Context_ClearRoleMenuItem");
             this.Context_ClearRoleMenuItem.Click += new System.EventHandler(this.Context_ClearRoleMenuItem_Click);
+            // 
+            // Context_CommentMenuItem
+            // 
+            this.Context_CommentMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.Context_AddViewCommentMenuItem,
+            this.Context_ClearCommentMenuItem});
+            this.Context_CommentMenuItem.Name = "Context_CommentMenuItem";
+            resources.ApplyResources(this.Context_CommentMenuItem, "Context_CommentMenuItem");
+            // 
+            // Context_AddViewCommentMenuItem
+            // 
+            this.Context_AddViewCommentMenuItem.Name = "Context_AddViewCommentMenuItem";
+            resources.ApplyResources(this.Context_AddViewCommentMenuItem, "Context_AddViewCommentMenuItem");
+            this.Context_AddViewCommentMenuItem.Click += new System.EventHandler(this.Context_AddViewCommentMenuItem_Click);
+            // 
+            // Context_ClearCommentMenuItem
+            // 
+            this.Context_ClearCommentMenuItem.Name = "Context_ClearCommentMenuItem";
+            resources.ApplyResources(this.Context_ClearCommentMenuItem, "Context_ClearCommentMenuItem");
+            this.Context_ClearCommentMenuItem.Click += new System.EventHandler(this.Context_ClearCommentMenuItem_Click);
             // 
             // Context_PhraseDetectionMenuItem
             // 
@@ -732,5 +756,8 @@ namespace Obi.ProjectView
         private System.Windows.Forms.ToolStripMenuItem ContextBeginMarkToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem ContextEndMarkToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem ContextPasteMultiplePhrasesToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem Context_CommentMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem Context_AddViewCommentMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem Context_ClearCommentMenuItem;
     }
 }

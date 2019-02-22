@@ -1107,6 +1107,15 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Comment attached.
+        /// </summary>
+        internal static string CommentAttachedFlagForAccessibleName {
+            get {
+                return ResourceManager.GetString("CommentAttachedFlagForAccessibleName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Welcome to OBI. Please select appropriate settings from the options provided below. If you would like to configure Obi as per default settings, you can simply click on OK button or press the enter key and proceed. You can always change settings later from Obi Preferences..
         /// </summary>
         internal static string ConfigureObi {
@@ -2843,6 +2852,15 @@ namespace Obi {
         internal static string KeyboardShortcuts_TextboxAccessibleName {
             get {
                 return ResourceManager.GetString("KeyboardShortcuts_TextboxAccessibleName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Add Comment: single key shortcut.
+        /// </summary>
+        internal static string KeyS_AddCommentSingleKey {
+            get {
+                return ResourceManager.GetString("KeyS_AddCommentSingleKey", resourceCulture);
             }
         }
         

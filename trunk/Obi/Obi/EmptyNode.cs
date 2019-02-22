@@ -282,7 +282,7 @@ private static Dictionary <string,string> m_SkippableLocalizedNameMap = null ;
             set { mTODO = value;  }
         }
 
-        public string AddNoteText
+        public string CommentText
         {
             get { return m_AddNoteText; }
             set { m_AddNoteText = value; }

@@ -32,8 +32,8 @@ namespace Obi.ProjectView
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Block));
             this.mLabel = new System.Windows.Forms.Label();
             this.mToolTip = new System.Windows.Forms.ToolTip(this.components);
-            this.m_NotePictureBox = new System.Windows.Forms.PictureBox();
-            ((System.ComponentModel.ISupportInitialize)(this.m_NotePictureBox)).BeginInit();
+            this.m_CommentPictureBox = new System.Windows.Forms.PictureBox();
+            ((System.ComponentModel.ISupportInitialize)(this.m_CommentPictureBox)).BeginInit();
             this.SuspendLayout();
             // 
             // mLabel
@@ -51,13 +51,13 @@ namespace Obi.ProjectView
             // 
             // m_NotePictureBox
             // 
-            this.m_NotePictureBox.Image = ((System.Drawing.Image)(resources.GetObject("m_NotePictureBox.Image")));
-            this.m_NotePictureBox.Location = new System.Drawing.Point(0, 0);
-            this.m_NotePictureBox.Name = "m_NotePictureBox";
-            this.m_NotePictureBox.Size = new System.Drawing.Size(12, 19);
-            this.m_NotePictureBox.TabIndex = 3;
-            this.m_NotePictureBox.TabStop = false;
-            this.m_NotePictureBox.Visible = false;
+            this.m_CommentPictureBox.Image = ((System.Drawing.Image)(resources.GetObject("m_NotePictureBox.Image")));
+            this.m_CommentPictureBox.Location = new System.Drawing.Point(0, 0);
+            this.m_CommentPictureBox.Name = "m_NotePictureBox";
+            this.m_CommentPictureBox.Size = new System.Drawing.Size(12, 19);
+            this.m_CommentPictureBox.TabIndex = 3;
+            this.m_CommentPictureBox.TabStop = false;
+            this.m_CommentPictureBox.Visible = false;
             // 
             // Block
             // 
@@ -65,7 +65,7 @@ namespace Obi.ProjectView
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.HotPink;
             this.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.Controls.Add(this.m_NotePictureBox);
+            this.Controls.Add(this.m_CommentPictureBox);
             this.Controls.Add(this.mLabel);
             this.DoubleBuffered = true;
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -74,7 +74,7 @@ namespace Obi.ProjectView
             this.Size = new System.Drawing.Size(104, 104);
             this.Click += new System.EventHandler(this.Block_Click);
             this.Enter += new System.EventHandler(this.Block_Enter);
-            ((System.ComponentModel.ISupportInitialize)(this.m_NotePictureBox)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.m_CommentPictureBox)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -84,7 +84,7 @@ namespace Obi.ProjectView
 
         protected System.Windows.Forms.Label mLabel;
         private System.Windows.Forms.ToolTip mToolTip;
-        private System.Windows.Forms.PictureBox m_NotePictureBox;
+        private System.Windows.Forms.PictureBox m_CommentPictureBox;
 
     }
 }

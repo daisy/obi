@@ -2317,7 +2317,7 @@ namespace Obi
                 mAutoPageGenerationMenuItem.Enabled = mProjectView.CanAddEmptyPage
                                                           && !mProjectView.TransportBar.IsRecorderActive;
                 m_pasteMultiplePhrasesToolStripMenuItem.Enabled = !mProjectView.TransportBar.IsRecorderActive &&  mProjectView.CanPasteMultiplePhrases;
-                m_AddNoteToolStripMenuItem.Enabled =  m_AddViewNoteToolStripMenuItem.Enabled = m_ClearNoteToolStripMenuItem.Enabled = mProjectView.IsBlockSelected;                
+                m_CommentToolStripMenuItem.Enabled =  m_AddViewCommentToolStripMenuItem.Enabled = m_ClearCommentToolStripMenuItem.Enabled = mProjectView.IsBlockSelected;                
             }
 
             private void UpdateAudioSelectionBlockMenuItems()
@@ -6482,21 +6482,16 @@ ref string exportDirectoryEPUB3)
                 mProjectView.PasteMultiplePhrases();
             }
 
-            private void m_AddNoteToolStripMenuItem_Click(object sender, EventArgs e)
-            {
-              
-            }
 
-            private void m_AddViewNoteToolStripMenuItem_Click(object sender, EventArgs e)
+            private void m_AddViewCommentToolStripMenuItem_Click(object sender, EventArgs e)
             {
-                  if (mProjectView.Selection.Node is EmptyNode)
+                if (mProjectView.Selection.Node is EmptyNode)
                 {
-                    Obi.ProjectView.EditableLabel editLabel = new ProjectView.EditableLabel(mProjectView.Selection.Node as EmptyNode);
-                    mProjectView.ShowEditLabelToAddNote(editLabel);
+                    mProjectView.ShowEditLabelToAddNote();
                 }
             }
 
-            private void m_ClearNoteToolStripMenuItem_Click(object sender, EventArgs e)
+            private void m_ClearCommentToolStripMenuItem_Click(object sender, EventArgs e)
             {
                 if (mProjectView.Selection.Node is EmptyNode)
                 {
@@ -6504,7 +6499,6 @@ ref string exportDirectoryEPUB3)
                 }
 
             }
-
 
 
 
