@@ -5990,6 +5990,10 @@ Block lastBlock = ActiveStrip.LastBlock ;
         {
             if (mProjectView.Selection.Node is EmptyNode && mProjectView.IsBlockSelected)
             {
+                if (this.mProjectView.TransportBar.IsPlayerActive)
+                {
+                    this.mProjectView.TransportBar.Pause();
+                }
                 ActiveStrip.ShowEditLabelToAddComment();
 
                 return true;
