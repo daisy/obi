@@ -51,7 +51,6 @@ namespace Obi.ProjectView
         private double m_timeElapsed = 0.0;
         private Color m_ColorBackgroundBeforeFlicker;
         private Color m_ColorBackgroundAfterFlicker;
-        private EditableLabel m_EditableLabel;
 
         /// <summary>
         /// A new strips view.
@@ -3165,6 +3164,10 @@ if (thresholdAboveLastNode >= stripControl.Node.PhraseChildCount) thresholdAbove
         m_StripPanelPreviousWidth = mStripsPanel.Width;
             if ( verticalScrollToolStripContainer1 != null && !verticalScrollToolStripContainer1.CanScrollDown && mStripsPanel.Location.Y + mStripsPanel.Height > mHScrollBar.Location.Y )
                  UpdateVerticalScrolPanelButtons () ;
+            //if (this.ActiveStrip != null && this.ActiveStrip.IsCommentEditLabelActive)
+            //{
+            //    this.ActiveStrip.AlignCommentEditLabel();
+            //}
             }
 
         public void RecreateContentsWhileInitializingRecording(EmptyNode recordingResumePhrase)
@@ -4118,8 +4121,10 @@ if (thresholdAboveLastNode >= stripControl.Node.PhraseChildCount) thresholdAbove
         
         protected override bool ProcessCmdKey ( ref Message msg, Keys key )
             {
-                if (this.Controls.Contains(m_EditableLabel))
+                if (this.ActiveStrip.IsCommentEditLabelActive)
+                {
                     return false;
+                }
                 if (mProjectView.ObiForm.Settings.Project_OptimizeMemory &&  ShouldSkipKeyDueToMemoryOverload(key)) return true;
             if (CanUseKeys &&
                 ((msg.Msg == ProjectView.WM_KEYDOWN) || (msg.Msg == ProjectView.WM_SYSKEYDOWN)) &&
@@ -5597,6 +5602,10 @@ Block lastBlock = ActiveStrip.LastBlock ;
             {
                 UpdateVerticalScrolPanelButtons();
             }
+            if (this.ActiveStrip != null && this.ActiveStrip.IsCommentEditLabelActive)
+            {
+                this.ActiveStrip.AlignCommentEditLabel();
+            }
             }
             
             
@@ -5613,11 +5622,9 @@ Block lastBlock = ActiveStrip.LastBlock ;
         //@singleSection
         private void ProjectView_SelectionChanged ( object sender, EventArgs e )
             {
-                if (this.Controls.Contains(m_EditableLabel))
+                if (this.ActiveStrip.IsCommentEditLabelActive)
                 {
-                    m_EditableLabel.AddComment -= new EventHandler(EditableLabel_AddNote);
-                    m_EditableLabel.CloseComment -= new EventHandler(EditLabel_CloseAddNote);
-                    this.Controls.Remove(m_EditableLabel);
+                    this.ActiveStrip.RemoveEditLabelControlForAddingComment();
                 }
             if (mProjectView.GetSelectedPhraseSection == null)
                 {
@@ -5981,25 +5988,13 @@ Block lastBlock = ActiveStrip.LastBlock ;
         }
         public bool ShowEditLabelToAddComment()
         {
-            EditableLabel editLabel = new EditableLabel(mProjectView.Selection.Node as EmptyNode);
-            this.Controls.Add(editLabel);
-            m_EditableLabel = editLabel;
-            Block tempBlock = FindBlock(mProjectView.Selection.Node as EmptyNode);
-            editLabel.Show();
-            editLabel.Editable = true;
-            if ((verticalScrollToolStripContainer1.Location.X - tempBlock.Location.X) >= m_EditableLabel.Size.Width)
+            if (mProjectView.Selection.Node is EmptyNode && mProjectView.IsBlockSelected)
             {
-                editLabel.Location = new Point(tempBlock.Location.X, tempBlock.Location.Y);
+                ActiveStrip.ShowEditLabelToAddComment();
+
+                return true;
             }
-            else
-            {
-                int tempVal = m_EditableLabel.Size.Width - (verticalScrollToolStripContainer1.Location.X - tempBlock.Location.X);
-                editLabel.Location = new Point(tempBlock.Location.X - tempVal, tempBlock.Location.Y);
-            }
-            editLabel.BringToFront();
-            editLabel.AddComment += new EventHandler(EditableLabel_AddNote);
-            editLabel.CloseComment +=new EventHandler(EditLabel_CloseAddNote);
-            return true;
+            return false;
         }
 
         public void ClearComment()
@@ -6105,25 +6100,7 @@ Block lastBlock = ActiveStrip.LastBlock ;
             mProjectView.MarkEndNote();
             mProjectView.AssignRoleToMarkedContinuousNodes();
         }
-        private void EditableLabel_AddNote(object sender, EventArgs e)
-        {
-            Block tempBlock = FindBlock(mProjectView.Selection.Node as EmptyNode);
-            if (tempBlock != null)
-            {
-                tempBlock.UpdateLabelsText();
-                m_EditableLabel.AddComment -= new EventHandler(EditableLabel_AddNote);
-                m_EditableLabel.CloseComment -= new EventHandler(EditLabel_CloseAddNote);
-                this.Controls.Remove(m_EditableLabel);
-
-            }
-        }
-
-        private void EditLabel_CloseAddNote(object sender, EventArgs e)
-        {
-            m_EditableLabel.AddComment -= new EventHandler(EditableLabel_AddNote);
-            m_EditableLabel.CloseComment -= new EventHandler(EditLabel_CloseAddNote);
-            this.Controls.Remove(m_EditableLabel);
-        }
+      
 
         public void ResetColorAfterColorFlickering()
         {

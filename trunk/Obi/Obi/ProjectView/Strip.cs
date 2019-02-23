@@ -25,6 +25,9 @@ namespace Obi.ProjectView
         private StripCursor m_TempCursor;// @zoomwaveform 
         private Block m_PrevRecBlock; // Stores previous recording Block. It is used for removing color of previous recording phrase.
         private const int m_BaseScreenResolution = 768; //@ScreenResolution
+        private EditableLabel m_EditableLabel;
+        private EmptyNode m_SelectedNodeToAddComment;
+        private double m_TimeOfCursor;
         /// <summary>
         /// This constructor is used by the designer.
         /// </summary>
@@ -1797,6 +1800,77 @@ int boundaryWidth = mContentView.ClientRectangle.Width - Margin.Horizontal;
         {
             if (mContentView != null )  mContentView.SizeChanged -= new EventHandler(Resize_View);
         }
+        public bool IsCommentEditLabelActive
+        {
+            get
+            {
+                return this.Controls.Contains(m_EditableLabel);
+            }
+        }
+        public void ShowEditLabelToAddComment()
+        {
+            if (mContentView.Selection is AudioSelection)
+            {
+                m_TimeOfCursor = ((AudioSelection)mContentView.Selection).AudioRange.CursorTime;                
+            }
+            EditableLabel editLabel = new EditableLabel(mContentView.Selection.Node as EmptyNode);
+            this.Controls.Add(editLabel);
+            m_EditableLabel = editLabel;
+            m_SelectedNodeToAddComment = mContentView.Selection.Node as EmptyNode;
+            editLabel.Show();
+            editLabel.Editable = true;
+            AlignCommentEditLabel();
+            editLabel.BringToFront();
+            editLabel.AddComment += new EventHandler(EditableLabel_AddComment);
+            editLabel.CloseComment += new EventHandler(EditLabel_CloseAddComment);
+        }
 
+        private void EditableLabel_AddComment(object sender, EventArgs e)
+        {
+            Block tempBlock = FindBlock(m_SelectedNodeToAddComment);
+            if (tempBlock != null)
+            {
+                tempBlock.UpdateLabelsText();
+                RemoveEditLabelControlForAddingComment();
+
+            }
+        }
+
+        private void EditLabel_CloseAddComment(object sender, EventArgs e)
+        {
+            RemoveEditLabelControlForAddingComment();
+        }
+
+        public void RemoveEditLabelControlForAddingComment()
+        {
+            m_EditableLabel.AddComment -= new EventHandler(EditableLabel_AddComment);
+            m_EditableLabel.CloseComment -= new EventHandler(EditLabel_CloseAddComment);
+            this.Controls.Remove(m_EditableLabel);
+
+            if (m_TimeOfCursor != 0 && m_SelectedNodeToAddComment is PhraseNode)
+            {
+                mContentView.Selection = new AudioSelection((PhraseNode)m_SelectedNodeToAddComment, mContentView,
+                    new AudioRange(m_TimeOfCursor));
+            }
+            else
+            {
+                mContentView.Selection = new NodeSelection(m_SelectedNodeToAddComment, mContentView);
+            }
+            m_TimeOfCursor = 0;
+        }
+        public void AlignCommentEditLabel()
+        {
+
+            Block tempBlock = FindBlock(m_SelectedNodeToAddComment);
+            if ((this.Size.Width - tempBlock.Location.X) >= m_EditableLabel.Size.Width)
+            {
+                m_EditableLabel.Location = new Point(tempBlock.Location.X, tempBlock.Location.Y);
+            }
+            else
+            {
+                int tempVal = (this.Size.Width - m_EditableLabel.Size.Width);
+                m_EditableLabel.Location = new Point(tempVal, tempBlock.Location.Y);
+            }
+        }
     }
 }
