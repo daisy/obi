@@ -1373,7 +1373,7 @@ namespace Obi.ProjectView
             AddContentsViewLabel();
             mLabel.Focus();
             if ((mContentView.SelectedSection != mNode || mContentView.Selection is StripIndexSelection) &&
-                !mContentView.Focusing)
+                !mContentView.Focusing && !this.IsCommentEditLabelActive)
             {
                 mContentView.SelectedNode = mNode;
             }
@@ -1845,7 +1845,6 @@ int boundaryWidth = mContentView.ClientRectangle.Width - Margin.Horizontal;
         {
             m_EditableLabel.AddComment -= new EventHandler(EditableLabel_AddComment);
             m_EditableLabel.CloseComment -= new EventHandler(EditLabel_CloseAddComment);
-            this.Controls.Remove(m_EditableLabel);
 
             if (m_TimeOfCursor != 0 && m_SelectedNodeToAddComment is PhraseNode)
             {
@@ -1857,6 +1856,8 @@ int boundaryWidth = mContentView.ClientRectangle.Width - Margin.Horizontal;
                 mContentView.Selection = new NodeSelection(m_SelectedNodeToAddComment, mContentView);
             }
             m_TimeOfCursor = 0;
+
+            this.Controls.Remove(m_EditableLabel);
         }
         public void AlignCommentEditLabel()
         {
