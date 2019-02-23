@@ -1107,7 +1107,7 @@ namespace Obi {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Comment attached.
+        ///   Looks up a localized string similar to has comment.
         /// </summary>
         internal static string CommentAttachedFlagForAccessibleName {
             get {

@@ -3092,6 +3092,6 @@ Error text: {1}</value>
     <value>Add Comment: single key shortcut</value>
   </data>
   <data name="CommentAttachedFlagForAccessibleName" xml:space="preserve">
-    <value>Comment attached</value>
+    <value>has comment</value>
   </data>
 </root>
