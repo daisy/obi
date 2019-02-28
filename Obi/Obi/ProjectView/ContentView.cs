@@ -5264,7 +5264,7 @@ if (thresholdAboveLastNode >= stripControl.Node.PhraseChildCount) thresholdAbove
             ContextBeginMarkToolStripMenuItem.Enabled = mProjectView.CanBeginSpecialNote;
             ContextEndMarkToolStripMenuItem.Enabled = mProjectView.CanEndSpecialNote;
             ContextPasteMultiplePhrasesToolStripMenuItem.Enabled = !mProjectView.TransportBar.IsRecorderActive && mProjectView.CanPasteMultiplePhrases && !Settings.Project_ReadOnlyMode;
-            Context_CommentMenuItem.Enabled = Context_AddViewCommentMenuItem.Enabled = Context_ClearCommentMenuItem.Enabled = mProjectView.IsBlockSelected;
+            Context_CommentMenuItem.Enabled = Context_AddViewCommentMenuItem.Enabled = Context_ClearCommentMenuItem.Enabled = mProjectView.IsBlockSelected && this.Context_PhraseIsTODOMenuItem.Checked;
             }
 
         private bool CanSetSelectedPhraseUsedStatus
@@ -5988,7 +5988,7 @@ Block lastBlock = ActiveStrip.LastBlock ;
         }
         public bool ShowEditLabelToAddComment()
         {
-            if (mProjectView.Selection.Node is EmptyNode && mProjectView.IsBlockSelected)
+            if (mProjectView.Selection.Node is EmptyNode && mProjectView.IsBlockSelected && this.Context_PhraseIsTODOMenuItem.Checked)
             {
                 if (this.mProjectView.TransportBar.IsPlayerActive)
                 {

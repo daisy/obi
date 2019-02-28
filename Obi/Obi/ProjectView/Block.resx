@@ -121,12 +121,12 @@
     <value>17, 17</value>
   </metadata>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="m_NotePictureBox.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+  <data name="m_CommentPictureBox.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
-        iVBORw0KGgoAAAANSUhEUgAAAA0AAAAPCAIAAACwQdIgAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
-        wwAADsMBx2+oZAAAAHRJREFUKFOFj0EOgCAMBHmIntSTL+Dm/98i+IRa0lUotjjZBGknawhpWr3k5tvw
-        rnh0E86or031zmbahYhUn6myVDxz975AJKb05WWXqeQrMe47sH+AJ383mwTVJx42mpDm7VdiVB9mFtXD
-        wAEebj4B5xiiGyecdNUDuYJyAAAAAElFTkSuQmCC
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAAUCAYAAACEYr13AAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
+        xAAADsQBlSsOGwAAAFpJREFUOE9jUNro859YrLwBRPtCMYSNYYAyGp8Qpr4BuDHM2aiYpDDAhkcNGDUA
+        hIkzYBMWMSimggvwmE4MJs0L4PIAFVPBgE3YsymxGLcL0MMGxgfRcDmf/wBh1aWtnLwdDgAAAABJRU5E
+        rkJggg==
 </value>
   </data>
 </root>

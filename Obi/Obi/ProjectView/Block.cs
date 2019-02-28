@@ -189,6 +189,12 @@ namespace Obi.ProjectView
             }
             else
             {
+                if (Node.CommentText != null && mLabel.Text.Contains("TODO") && !Node.TODO) // When todo mark is removed then comment is also removed.
+                {
+                    m_CommentPictureBox.Visible = false;
+                    mLabel.Location = new Point(0, mLabel.Location.Y);
+                    Node.CommentText = null;
+                }
                 mLabel.Text = Node.BaseStringShort();
                 //mLabel.AccessibleName = Node.BaseString(); // commented for removing update block label threads.
                 mLabel.AccessibleName = GetAccessibleName;
@@ -197,7 +203,7 @@ namespace Obi.ProjectView
                 {
                     mToolTip.SetToolTip(mLabel, Node.BaseStringShort());
                 }
-                if (Node.CommentText != null && Node.CommentText != string.Empty)
+                if (Node.CommentText != null && Node.CommentText != string.Empty) 
                 {
                     m_CommentPictureBox.Visible = true;
                     mLabel.Location = new Point(m_CommentPictureBox.Width, mLabel.Location.Y);
@@ -205,10 +211,11 @@ namespace Obi.ProjectView
                     mToolTip.SetToolTip(mLabel, Node.BaseStringShort() + "\n" + Node.CommentText);
                     mLabel.AccessibleName = GetAccessibleName + Localizer.Message("CommentAttachedFlagForAccessibleName");
                 }
-                else if (Node.CommentText != null && Node.CommentText == string.Empty)
+                else if (Node.CommentText != null && Node.CommentText == string.Empty) // when text in the comment is removed then comment is removed.
                 {
                     m_CommentPictureBox.Visible = false;
                     mLabel.Location = new Point(0, mLabel.Location.Y);
+                    Node.CommentText = null;
                 }
                 AccessibleName = mLabel.AccessibleName;
             }
