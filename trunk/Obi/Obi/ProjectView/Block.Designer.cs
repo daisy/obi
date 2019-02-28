@@ -49,12 +49,12 @@ namespace Obi.ProjectView
             this.mLabel.Text = "Label";
             this.mLabel.Click += new System.EventHandler(this.Block_Click);
             // 
-            // m_NotePictureBox
+            // m_CommentPictureBox
             // 
-            this.m_CommentPictureBox.Image = ((System.Drawing.Image)(resources.GetObject("m_NotePictureBox.Image")));
+            this.m_CommentPictureBox.Image = ((System.Drawing.Image)(resources.GetObject("m_CommentPictureBox.Image")));
             this.m_CommentPictureBox.Location = new System.Drawing.Point(0, 0);
-            this.m_CommentPictureBox.Name = "m_NotePictureBox";
-            this.m_CommentPictureBox.Size = new System.Drawing.Size(12, 19);
+            this.m_CommentPictureBox.Name = "m_CommentPictureBox";
+            this.m_CommentPictureBox.Size = new System.Drawing.Size(12, 20);
             this.m_CommentPictureBox.TabIndex = 3;
             this.m_CommentPictureBox.TabStop = false;
             this.m_CommentPictureBox.Visible = false;

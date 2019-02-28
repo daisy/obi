@@ -137,6 +137,9 @@ namespace Obi
             this.mSkippableMoveToStartNoteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mSkippableMoveToEndNoteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mSkippableClearRoleFromNoteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.m_CommentToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.m_AddViewCommentToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.m_ClearCommentToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mAutoPageGenerationMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator6 = new System.Windows.Forms.ToolStripSeparator();
             this.mPhrases_AssignRoleMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -165,9 +168,6 @@ namespace Obi
             this.m_GoToCollectSpecialPhrasesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mCheckForPhrasesWithImproperAudioMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mDeleteFollowingPhrasesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.m_CommentToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.m_AddViewCommentToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.m_ClearCommentToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.transportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mPlayToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mPlayAllToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -815,6 +815,7 @@ namespace Obi
             this.mPhraseIsUsedToolStripMenuItem,
             this.MultiPhraseOperationMenuItem,
             this.mSkippableNoteToolStripMenuItem,
+            this.m_CommentToolStripMenuItem,
             this.mAutoPageGenerationMenuItem,
             this.toolStripSeparator6,
             this.mPhrases_AssignRoleMenuItem,
@@ -825,8 +826,7 @@ namespace Obi
             this.mPhrases_AudioSelectionMenuItem,
             this.mGoToToolStripMenuItem,
             this.mCheckForPhrasesWithImproperAudioMenuItem,
-            this.mDeleteFollowingPhrasesToolStripMenuItem,
-            this.m_CommentToolStripMenuItem});
+            this.mDeleteFollowingPhrasesToolStripMenuItem});
             this.mPhrasesToolStripMenuItem.Name = "mPhrasesToolStripMenuItem";
             resources.ApplyResources(this.mPhrasesToolStripMenuItem, "mPhrasesToolStripMenuItem");
             // 
@@ -1022,6 +1022,26 @@ namespace Obi
             this.mSkippableClearRoleFromNoteToolStripMenuItem.Name = "mSkippableClearRoleFromNoteToolStripMenuItem";
             this.mSkippableClearRoleFromNoteToolStripMenuItem.Click += new System.EventHandler(this.mSkippableClearRoleFromNoteToolStripMenuItem_Click);
             // 
+            // m_CommentToolStripMenuItem
+            // 
+            this.m_CommentToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.m_AddViewCommentToolStripMenuItem,
+            this.m_ClearCommentToolStripMenuItem});
+            this.m_CommentToolStripMenuItem.Name = "m_CommentToolStripMenuItem";
+            resources.ApplyResources(this.m_CommentToolStripMenuItem, "m_CommentToolStripMenuItem");
+            // 
+            // m_AddViewCommentToolStripMenuItem
+            // 
+            this.m_AddViewCommentToolStripMenuItem.Name = "m_AddViewCommentToolStripMenuItem";
+            resources.ApplyResources(this.m_AddViewCommentToolStripMenuItem, "m_AddViewCommentToolStripMenuItem");
+            this.m_AddViewCommentToolStripMenuItem.Click += new System.EventHandler(this.m_AddViewCommentToolStripMenuItem_Click);
+            // 
+            // m_ClearCommentToolStripMenuItem
+            // 
+            this.m_ClearCommentToolStripMenuItem.Name = "m_ClearCommentToolStripMenuItem";
+            resources.ApplyResources(this.m_ClearCommentToolStripMenuItem, "m_ClearCommentToolStripMenuItem");
+            this.m_ClearCommentToolStripMenuItem.Click += new System.EventHandler(this.m_ClearCommentToolStripMenuItem_Click);
+            // 
             // mAutoPageGenerationMenuItem
             // 
             this.mAutoPageGenerationMenuItem.Name = "mAutoPageGenerationMenuItem";
@@ -1203,26 +1223,6 @@ namespace Obi
             resources.ApplyResources(this.mDeleteFollowingPhrasesToolStripMenuItem, "mDeleteFollowingPhrasesToolStripMenuItem");
             this.mDeleteFollowingPhrasesToolStripMenuItem.Name = "mDeleteFollowingPhrasesToolStripMenuItem";
             this.mDeleteFollowingPhrasesToolStripMenuItem.Click += new System.EventHandler(this.mDeleteFollowingPhrasesToolStripMenuItem_Click);
-            // 
-            // m_CommentToolStripMenuItem
-            // 
-            this.m_CommentToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.m_AddViewCommentToolStripMenuItem,
-            this.m_ClearCommentToolStripMenuItem});
-            this.m_CommentToolStripMenuItem.Name = "m_CommentToolStripMenuItem";
-            resources.ApplyResources(this.m_CommentToolStripMenuItem, "m_CommentToolStripMenuItem");
-            // 
-            // m_AddViewCommentToolStripMenuItem
-            // 
-            this.m_AddViewCommentToolStripMenuItem.Name = "m_AddViewCommentToolStripMenuItem";
-            resources.ApplyResources(this.m_AddViewCommentToolStripMenuItem, "m_AddViewCommentToolStripMenuItem");
-            this.m_AddViewCommentToolStripMenuItem.Click += new System.EventHandler(this.m_AddViewCommentToolStripMenuItem_Click);
-            // 
-            // m_ClearCommentToolStripMenuItem
-            // 
-            this.m_ClearCommentToolStripMenuItem.Name = "m_ClearCommentToolStripMenuItem";
-            resources.ApplyResources(this.m_ClearCommentToolStripMenuItem, "m_ClearCommentToolStripMenuItem");
-            this.m_ClearCommentToolStripMenuItem.Click += new System.EventHandler(this.m_ClearCommentToolStripMenuItem_Click);
             // 
             // transportToolStripMenuItem
             // 

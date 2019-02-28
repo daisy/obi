@@ -1200,6 +1200,24 @@
   <data name="mSkippableClearRoleFromNoteToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Clear role from note</value>
   </data>
+  <data name="m_CommentToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>240, 22</value>
+  </data>
+  <data name="m_CommentToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;TODO Comment</value>
+  </data>
+  <data name="m_AddViewCommentToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>183, 22</value>
+  </data>
+  <data name="m_AddViewCommentToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;Add/View Comment</value>
+  </data>
+  <data name="m_ClearCommentToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>183, 22</value>
+  </data>
+  <data name="m_ClearCommentToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;Clear Comment</value>
+  </data>
   <data name="mAutoPageGenerationMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>240, 22</value>
   </data>
@@ -1445,24 +1463,6 @@
   </data>
   <data name="mDeleteFollowingPhrasesToolStripMenuItem.Text" xml:space="preserve">
     <value>Delete &amp;following phrases</value>
-  </data>
-  <data name="m_CommentToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>240, 22</value>
-  </data>
-  <data name="m_CommentToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;Comment</value>
-  </data>
-  <data name="m_AddViewCommentToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>183, 22</value>
-  </data>
-  <data name="m_AddViewCommentToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;Add/View Comment</value>
-  </data>
-  <data name="m_ClearCommentToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>183, 22</value>
-  </data>
-  <data name="m_ClearCommentToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;Clear Comment</value>
   </data>
   <data name="transportToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>69, 20</value>
@@ -2089,7 +2089,7 @@
     <value>mProjectView</value>
   </data>
   <data name="&gt;&gt;mProjectView.Type" xml:space="preserve">
-    <value>Obi.ProjectView.ProjectView, Obi, Version=4.3.0.20179, Culture=neutral, PublicKeyToken=null</value>
+    <value>Obi.ProjectView.ProjectView, Obi, Version=4.3.0.22986, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;mProjectView.Parent" xml:space="preserve">
     <value>$this</value>
@@ -3007,6 +3007,24 @@
   <data name="&gt;&gt;mSkippableClearRoleFromNoteToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="&gt;&gt;m_CommentToolStripMenuItem.Name" xml:space="preserve">
+    <value>m_CommentToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;m_CommentToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_AddViewCommentToolStripMenuItem.Name" xml:space="preserve">
+    <value>m_AddViewCommentToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;m_AddViewCommentToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_ClearCommentToolStripMenuItem.Name" xml:space="preserve">
+    <value>m_ClearCommentToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;m_ClearCommentToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="&gt;&gt;mAutoPageGenerationMenuItem.Name" xml:space="preserve">
     <value>mAutoPageGenerationMenuItem</value>
   </data>
@@ -3173,24 +3191,6 @@
     <value>mDeleteFollowingPhrasesToolStripMenuItem</value>
   </data>
   <data name="&gt;&gt;mDeleteFollowingPhrasesToolStripMenuItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;m_CommentToolStripMenuItem.Name" xml:space="preserve">
-    <value>m_CommentToolStripMenuItem</value>
-  </data>
-  <data name="&gt;&gt;m_CommentToolStripMenuItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;m_AddViewCommentToolStripMenuItem.Name" xml:space="preserve">
-    <value>m_AddViewCommentToolStripMenuItem</value>
-  </data>
-  <data name="&gt;&gt;m_AddViewCommentToolStripMenuItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;m_ClearCommentToolStripMenuItem.Name" xml:space="preserve">
-    <value>m_ClearCommentToolStripMenuItem</value>
-  </data>
-  <data name="&gt;&gt;m_ClearCommentToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;transportToolStripMenuItem.Name" xml:space="preserve">
