@@ -1832,6 +1832,7 @@ int boundaryWidth = mContentView.ClientRectangle.Width - Margin.Horizontal;
             {
                 tempBlock.UpdateLabelsText();
                 RemoveEditLabelControlForAddingComment();
+                mContentView.ToggleTODOForPhrase();
 
             }
         }

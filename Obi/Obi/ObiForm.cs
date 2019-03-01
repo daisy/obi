@@ -2317,7 +2317,7 @@ namespace Obi
                 mAutoPageGenerationMenuItem.Enabled = mProjectView.CanAddEmptyPage
                                                           && !mProjectView.TransportBar.IsRecorderActive;
                 m_pasteMultiplePhrasesToolStripMenuItem.Enabled = !mProjectView.TransportBar.IsRecorderActive &&  mProjectView.CanPasteMultiplePhrases;
-                m_CommentToolStripMenuItem.Enabled = m_AddViewCommentToolStripMenuItem.Enabled = m_ClearCommentToolStripMenuItem.Enabled = mProjectView.IsBlockSelected && mPhrases_PhraseIsTODOMenuItem.Checked;                
+                m_CommentToolStripMenuItem.Enabled = m_AddViewCommentToolStripMenuItem.Enabled = m_ClearCommentToolStripMenuItem.Enabled = mProjectView.IsBlockSelected;                
             }
 
             private void UpdateAudioSelectionBlockMenuItems()
