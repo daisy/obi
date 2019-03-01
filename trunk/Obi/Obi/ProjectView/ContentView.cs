@@ -5264,7 +5264,7 @@ if (thresholdAboveLastNode >= stripControl.Node.PhraseChildCount) thresholdAbove
             ContextBeginMarkToolStripMenuItem.Enabled = mProjectView.CanBeginSpecialNote;
             ContextEndMarkToolStripMenuItem.Enabled = mProjectView.CanEndSpecialNote;
             ContextPasteMultiplePhrasesToolStripMenuItem.Enabled = !mProjectView.TransportBar.IsRecorderActive && mProjectView.CanPasteMultiplePhrases && !Settings.Project_ReadOnlyMode;
-            Context_CommentMenuItem.Enabled = Context_AddViewCommentMenuItem.Enabled = Context_ClearCommentMenuItem.Enabled = mProjectView.IsBlockSelected && this.Context_PhraseIsTODOMenuItem.Checked;
+            Context_CommentMenuItem.Enabled = Context_AddViewCommentMenuItem.Enabled = Context_ClearCommentMenuItem.Enabled = mProjectView.IsBlockSelected;
             }
 
         private bool CanSetSelectedPhraseUsedStatus
@@ -5988,7 +5988,7 @@ Block lastBlock = ActiveStrip.LastBlock ;
         }
         public bool ShowEditLabelToAddComment()
         {
-            if (mProjectView.Selection.Node is EmptyNode && mProjectView.IsBlockSelected && this.Context_PhraseIsTODOMenuItem.Checked)
+            if (mProjectView.Selection.Node is EmptyNode && mProjectView.IsBlockSelected)
             {
                 if (this.mProjectView.TransportBar.IsPlayerActive)
                 {
@@ -5999,6 +5999,17 @@ Block lastBlock = ActiveStrip.LastBlock ;
                 return true;
             }
             return false;
+        }
+
+        public void ToggleTODOForPhrase()
+        {
+            if (!mProjectView.IsCurrentBlockTODO && mProjectView.Selection.Node is EmptyNode)
+            {
+                if ((mProjectView.Selection.Node as EmptyNode).CommentText != null)
+                {
+                    mProjectView.ToggleTODOForPhrase();
+                }
+            }
         }
 
         public void ClearComment()
