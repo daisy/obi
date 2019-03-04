@@ -1831,6 +1831,7 @@ int boundaryWidth = mContentView.ClientRectangle.Width - Margin.Horizontal;
             if (tempBlock != null)
             {
                 tempBlock.UpdateLabelsText();
+                tempBlock.SetZoomFactorAndHeight(mContentView.ZoomFactor, mBlockHeight);
                 RemoveEditLabelControlForAddingComment();
                 mContentView.ToggleTODOForPhrase();
 

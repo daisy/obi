@@ -211,7 +211,6 @@ namespace Obi.ProjectView
                 if (Node.CommentText != null && Node.CommentText != string.Empty) 
                 {
                     m_CommentPictureBox.Visible = true;
-                    mLabel.Location = new Point(m_CommentPictureBox.Width, mLabel.Location.Y);
                     mToolTip.SetToolTip(m_CommentPictureBox, Node.BaseStringShort() + "\n" + Node.CommentText);
                     mToolTip.SetToolTip(mLabel, Node.BaseStringShort() + "\n" + Node.CommentText);
                     mLabel.AccessibleName = GetAccessibleName + Localizer.Message("CommentAttachedFlagForAccessibleName");
