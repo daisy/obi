@@ -55,7 +55,8 @@ namespace Obi.ProjectView
             this.m_CommentPictureBox.Image = ((System.Drawing.Image)(resources.GetObject("m_CommentPictureBox.Image")));
             this.m_CommentPictureBox.Location = new System.Drawing.Point(0, 0);
             this.m_CommentPictureBox.Name = "m_CommentPictureBox";
-            this.m_CommentPictureBox.Size = new System.Drawing.Size(16, 20);
+            this.m_CommentPictureBox.Size = new System.Drawing.Size(16, 16);
+            this.m_CommentPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.m_CommentPictureBox.TabIndex = 3;
             this.m_CommentPictureBox.TabStop = false;
             this.m_CommentPictureBox.Visible = false;
