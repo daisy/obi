@@ -5264,7 +5264,7 @@ if (thresholdAboveLastNode >= stripControl.Node.PhraseChildCount) thresholdAbove
             ContextBeginMarkToolStripMenuItem.Enabled = mProjectView.CanBeginSpecialNote;
             ContextEndMarkToolStripMenuItem.Enabled = mProjectView.CanEndSpecialNote;
             ContextPasteMultiplePhrasesToolStripMenuItem.Enabled = !mProjectView.TransportBar.IsRecorderActive && mProjectView.CanPasteMultiplePhrases && !Settings.Project_ReadOnlyMode;
-            Context_CommentMenuItem.Enabled = Context_AddViewCommentMenuItem.Enabled = Context_ClearCommentMenuItem.Enabled = mProjectView.IsBlockSelected;
+            Context_CommentMenuItem.Enabled = Context_AddViewCommentMenuItem.Enabled = Context_ClearCommentMenuItem.Enabled = mProjectView.IsBlockSelected || mProjectView.TransportBar.IsPlayerActive;
             }
 
         private bool CanSetSelectedPhraseUsedStatus
@@ -5988,14 +5988,18 @@ Block lastBlock = ActiveStrip.LastBlock ;
         }
         public bool ShowEditLabelToAddComment()
         {
-            if (mProjectView.Selection.Node is EmptyNode && mProjectView.IsBlockSelected)
+            if (this.mProjectView.TransportBar.IsPlayerActive)
             {
-                if (this.mProjectView.TransportBar.IsPlayerActive)
-                {
-                    this.mProjectView.TransportBar.Pause();
-                }
-                ActiveStrip.ShowEditLabelToAddComment();
+                this.mProjectView.TransportBar.Pause();
 
+                if (!(mProjectView.Selection.Node is EmptyNode))
+                {
+                    mProjectView.Selection = new NodeSelection(mProjectView.TransportBar.CurrentPlaylist.CurrentPhrase, this);
+                }
+            }
+            if (mProjectView.Selection != null && mProjectView.Selection.Node is EmptyNode)
+            {
+                ActiveStrip.ShowEditLabelToAddComment();
                 return true;
             }
             return false;
@@ -6014,16 +6018,26 @@ Block lastBlock = ActiveStrip.LastBlock ;
 
         public void ClearComment()
         {
-            Block tempBlock = FindBlock(mProjectView.Selection.Node as EmptyNode);
-            if (tempBlock != null)
+            if (mProjectView.TransportBar.IsPlayerActive)
             {
-                if (mProjectView.Selection.Node is EmptyNode)
+                if ((mProjectView.Selection.Node is EmptyNode && mProjectView.Selection.Node != mProjectView.TransportBar.CurrentPlaylist.CurrentPhrase)
+                    || !(mProjectView.Selection.Node is EmptyNode))
                 {
-                    EmptyNode tempNode = (EmptyNode)mProjectView.Selection.Node;
-                    tempNode.CommentText = string.Empty;
+                    mProjectView.Selection = new NodeSelection(mProjectView.TransportBar.CurrentPlaylist.CurrentPhrase, this);
                 }
-                tempBlock.UpdateLabelsText();
-
+            }
+            if (mProjectView != null && mProjectView.Selection != null && mProjectView.Selection.Node is EmptyNode)
+            {
+                Block tempBlock = FindBlock(mProjectView.Selection.Node as EmptyNode);
+                if (tempBlock != null)
+                {
+                    if (mProjectView.Selection.Node is EmptyNode)
+                    {
+                        EmptyNode tempNode = (EmptyNode)mProjectView.Selection.Node;
+                        tempNode.CommentText = string.Empty;
+                    }
+                    tempBlock.UpdateLabelsText();
+                }
             }
         }
         public bool StripIsSelected

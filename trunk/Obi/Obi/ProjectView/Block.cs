@@ -134,6 +134,11 @@ namespace Obi.ProjectView
             {
                 mLabel.Font = new Font(Font.FontFamily, zoom * mBaseFontSize);
                 Size = new Size(LabelFullWidth, height - Margin.Vertical);
+                if (Node.CommentText != null)
+                {
+                    m_CommentPictureBox.Size = new Size(mLabel.Size.Height, mLabel.Size.Height);
+                    mLabel.Location = new Point(m_CommentPictureBox.Width, mLabel.Location.Y);
+                }
             }
         }
 
@@ -216,6 +221,11 @@ namespace Obi.ProjectView
                     m_CommentPictureBox.Visible = false;
                     mLabel.Location = new Point(0, mLabel.Location.Y);
                     Node.CommentText = null;
+                }
+                else if (Node.CommentText == null && m_CommentPictureBox.Visible == true)
+                {
+                    m_CommentPictureBox.Visible = false;
+                    mLabel.Location = new Point(0, mLabel.Location.Y);
                 }
                 AccessibleName = mLabel.AccessibleName;
             }
