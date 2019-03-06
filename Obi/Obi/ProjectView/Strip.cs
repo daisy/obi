@@ -1831,7 +1831,8 @@ int boundaryWidth = mContentView.ClientRectangle.Width - Margin.Horizontal;
             if (tempBlock != null)
             {
                 tempBlock.UpdateLabelsText();
-                tempBlock.SetZoomFactorAndHeight(mContentView.ZoomFactor, mBlockHeight);
+                //tempBlock.SetZoomFactorAndHeight(mContentView.ZoomFactor, mBlockHeight);
+                tempBlock.AlignLabelToShowCommentIcon();
                 RemoveEditLabelControlForAddingComment();
                 mContentView.ToggleTODOForPhrase();
 
@@ -1873,6 +1874,15 @@ int boundaryWidth = mContentView.ClientRectangle.Width - Margin.Horizontal;
             {
                 int tempVal = (this.Size.Width - m_EditableLabel.Size.Width);
                 m_EditableLabel.Location = new Point(tempVal, tempBlock.Location.Y);
+            }
+        }
+        public void AlignLabelToShowCommentIcon()
+        {
+            if (mContentView.Selection.Node is EmptyNode)
+            {
+                Block tempBlock = FindBlock(mContentView.Selection.Node as EmptyNode);
+                tempBlock.UpdateLabelsText();
+                tempBlock.AlignLabelToShowCommentIcon();
             }
         }
     }

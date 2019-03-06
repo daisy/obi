@@ -5626,6 +5626,10 @@ Block lastBlock = ActiveStrip.LastBlock ;
                 {
                     this.ActiveStrip.RemoveEditLabelControlForAddingComment();
                 }
+                else if (m_ZoomWaveformPanel != null && m_ZoomWaveformPanel.IsCommentEditLabelActive)
+                {
+                    m_ZoomWaveformPanel.RemoveEditLabelControlForAddingComment();
+                }
             if (mProjectView.GetSelectedPhraseSection == null)
                 {
                 contentViewLabel1.sectionSelected = false;
@@ -5999,7 +6003,14 @@ Block lastBlock = ActiveStrip.LastBlock ;
             }
             if (mProjectView.Selection != null && mProjectView.Selection.Node is EmptyNode)
             {
-                ActiveStrip.ShowEditLabelToAddComment();
+                if (IsZoomWaveformActive)
+                {
+                    m_ZoomWaveformPanel.ShowEditLabelToAddComment();
+                }
+                else
+                {
+                    ActiveStrip.ShowEditLabelToAddComment();
+                }
                 return true;
             }
             return false;
