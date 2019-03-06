@@ -136,9 +136,17 @@ namespace Obi.ProjectView
                 Size = new Size(LabelFullWidth, height - Margin.Vertical);
                 if (Node.CommentText != null)
                 {
-                    m_CommentPictureBox.Size = new Size(mLabel.Size.Height, mLabel.Size.Height);
-                    mLabel.Location = new Point(m_CommentPictureBox.Width, mLabel.Location.Y);
+                    AlignLabelToShowCommentIcon();
                 }
+            }
+        }
+
+        public void AlignLabelToShowCommentIcon()
+        {
+            if (Node.CommentText != null)
+            {
+                m_CommentPictureBox.Size = new Size(mLabel.Size.Height, mLabel.Size.Height);
+                mLabel.Location = new Point(m_CommentPictureBox.Width, mLabel.Location.Y);
             }
         }
 

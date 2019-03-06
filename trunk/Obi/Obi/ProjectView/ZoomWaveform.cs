@@ -47,6 +47,9 @@ namespace Obi.ProjectView
         private string m_SelectedPhraseSection = " "; // @ImproveZoomPanel
         private Image m_PreserveZoomCheckedImage;
         private Image m_PreserveZoomUnCheckedImage;
+        private EditableLabel m_EditableLabel;
+        private EmptyNode m_SelectedNodeToAddComment;
+        private double m_TimeOfCursor;
            
 
         private KeyboardShortcuts_Settings keyboardShortcuts;
@@ -88,6 +91,13 @@ namespace Obi.ProjectView
         public ColorSettings ColorSettings { get { return m_ColorSettings; } set { m_ColorSettings = value; } }
         public ContentView ContentView { get { return m_ContentView; } }
         public Strip Strip { get { return m_Strip; } }
+        public bool IsCommentEditLabelActive
+        {
+            get
+            {
+                return this.Controls.Contains(m_EditableLabel);
+            }
+        }
         public string ToMatch() { return null; }
 
         public void UpdateCursorTime (double time ) 
@@ -694,143 +704,147 @@ namespace Obi.ProjectView
 
 
 
- protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
+        protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
         {
-     if ( m_ProjectView.ObiForm.KeyboardShortcuts == null ) return false ;
-     
-     string g=keyboardShortcuts.ZoomPanel_Close.Value.ToString();
-     string p=g;
+            if (m_ProjectView.ObiForm.KeyboardShortcuts == null) return false;
+
+            string g = keyboardShortcuts.ZoomPanel_Close.Value.ToString();
+            string p = g;
             //this.Focus();
-              if (keyData == keyboardShortcuts.ContentView_TransportBarRecordSingleKey.Value)
-             {
-                 return true;
-             }
-             if (keyData == keyboardShortcuts.ContentView_ZoomWaveformPanel.Value)
-             {
-                 return true;
-             }
-             if (keyData == keyboardShortcuts.ZoomPanel_Close.Value) 
-             {
-                 Close();
-                 return true;
-             }
-             else if(keyData ==keyboardShortcuts.ZoomPanel_NextPhrase.Value )
-             {
-                 NextPhrase();
-                 return true;
-             }
-             else if (keyData == keyboardShortcuts.ZoomPanel_PreviousPhrase.Value)
-             {
-                 PreviousPhrase();
-                 return true;
-             }
-             else if (keyData == keyboardShortcuts.ZoomPanel_Reset.Value)
-             {
-                 Reset();
-                 return true;
-             }
-             else if (keyData == keyboardShortcuts.ZoomPanel_ZoomIn.Value)
-             {
-                 ZoomIn();
-                 return true;
-             }
-             else if (keyData == keyboardShortcuts.ZoomPanel_ZoomOut.Value)
-             {
-                 ZoomOut();
-                 return true;
-             }
-             else if (keyData == keyboardShortcuts.ZoomPanel_ZoomSelection.Value)
-             {
-                 ZoomSelection();
-                 return true;
-             }
-             else if (keyData == keyboardShortcuts.ContentView_SelectPrecedingPhrase.Value && this.ActiveControl != toolStripZoomPanel && this.ActiveControl != m_Edit)
-             {
-                 m_NudgeAtLeft = true;
-                 m_ContentView.NudgeInFineNavigation(false);
-                 m_NudgeAtLeft = false;
-                 return true;
-             }
-             else if (keyData == keyboardShortcuts.ContentView_SelectFollowingPhrase.Value && this.ActiveControl != toolStripZoomPanel && this.ActiveControl != m_Edit)
-             {
-                 m_NudgeAtRight = true;
-                 m_ContentView.NudgeInFineNavigation(true);
-                 m_NudgeAtRight = false;
-                 return true;
-             }
-             else if (keyData == keyboardShortcuts.ContentView_TransportBarNudgeBackward.Value && this.ActiveControl != toolStripZoomPanel && this.ActiveControl != m_Edit)
-             {
-                 m_NudgeAtLeft = true;
-                 m_ContentView.NudgeInFineNavigation(false);
-                 m_NudgeAtLeft = false;
-                 return true;
-             }
-             else if (keyData == keyboardShortcuts.ContentView_TransportBarNudgeForward.Value && this.ActiveControl != toolStripZoomPanel && this.ActiveControl != m_Edit)
-             {
-                 m_NudgeAtRight = true;
-                 m_ContentView.NudgeInFineNavigation(true);
-                 m_NudgeAtRight = false;
-                 return true;
-             }
-             else if (keyData == keyboardShortcuts.ContentView_ExpandAudioSelectionAtLeft.Value && this.ActiveControl != toolStripZoomPanel && this.ActiveControl != m_Edit)
-             {
-                 m_NudgeAtRightFromLeft = true;
-                 m_ProjectView.TransportBar.NudgeSelectedAudio(TransportBar.NudgeSelection.ExpandAtLeft);
-                 m_NudgeAtRightFromLeft = false;
-                 return true;
-             }
-             else if (keyData == keyboardShortcuts.ContentView_ContractAudioSelectionAtLeft.Value && this.ActiveControl != toolStripZoomPanel && this.ActiveControl != m_Edit)
-             {
-                 m_NudgeAtLeftFromLeft = true;
-                 m_ProjectView.TransportBar.NudgeSelectedAudio(TransportBar.NudgeSelection.ContractAtLeft);
-                 m_NudgeAtLeftFromLeft = false;
-                 return true;
-             }
-             else if (keyData == keyboardShortcuts.ContentView_ScrollDown_SmallIncrementWithSelection.Value)
-             {
-                 m_ContentView.NudgeIntervalIncrement(false);
-                 return true;
-             }
-             else if (keyData == keyboardShortcuts.ContentView_ScrollUp_SmallIncrementWithSelection.Value)
-             {
-                 m_ContentView.NudgeIntervalIncrement(true);
-                 return true;
-             }
-             else if (keyData == Keys.Tab
-         && this.ActiveControl != null)
-             {
-                 Control c = this.ActiveControl;
-                 this.SelectNextControl(c, true, true, false, true);
-                 //Console.WriteLine(c.ToString());
-                 //Console.WriteLine(m_ProjectView.Selection);
-                 if (this.ActiveControl != null && c.TabIndex > this.ActiveControl.TabIndex)
-                     System.Media.SystemSounds.Beep.Play();
+            if (this.Controls.Contains(m_EditableLabel))
+            {
+                return false;
+            }
+            if (keyData == keyboardShortcuts.ContentView_TransportBarRecordSingleKey.Value)
+            {
+                return true;
+            }
+            if (keyData == keyboardShortcuts.ContentView_ZoomWaveformPanel.Value)
+            {
+                return true;
+            }
+            if (keyData == keyboardShortcuts.ZoomPanel_Close.Value)
+            {
+                Close();
+                return true;
+            }
+            else if (keyData == keyboardShortcuts.ZoomPanel_NextPhrase.Value)
+            {
+                NextPhrase();
+                return true;
+            }
+            else if (keyData == keyboardShortcuts.ZoomPanel_PreviousPhrase.Value)
+            {
+                PreviousPhrase();
+                return true;
+            }
+            else if (keyData == keyboardShortcuts.ZoomPanel_Reset.Value)
+            {
+                Reset();
+                return true;
+            }
+            else if (keyData == keyboardShortcuts.ZoomPanel_ZoomIn.Value)
+            {
+                ZoomIn();
+                return true;
+            }
+            else if (keyData == keyboardShortcuts.ZoomPanel_ZoomOut.Value)
+            {
+                ZoomOut();
+                return true;
+            }
+            else if (keyData == keyboardShortcuts.ZoomPanel_ZoomSelection.Value)
+            {
+                ZoomSelection();
+                return true;
+            }
+            else if (keyData == keyboardShortcuts.ContentView_SelectPrecedingPhrase.Value && this.ActiveControl != toolStripZoomPanel && this.ActiveControl != m_Edit)
+            {
+                m_NudgeAtLeft = true;
+                m_ContentView.NudgeInFineNavigation(false);
+                m_NudgeAtLeft = false;
+                return true;
+            }
+            else if (keyData == keyboardShortcuts.ContentView_SelectFollowingPhrase.Value && this.ActiveControl != toolStripZoomPanel && this.ActiveControl != m_Edit)
+            {
+                m_NudgeAtRight = true;
+                m_ContentView.NudgeInFineNavigation(true);
+                m_NudgeAtRight = false;
+                return true;
+            }
+            else if (keyData == keyboardShortcuts.ContentView_TransportBarNudgeBackward.Value && this.ActiveControl != toolStripZoomPanel && this.ActiveControl != m_Edit)
+            {
+                m_NudgeAtLeft = true;
+                m_ContentView.NudgeInFineNavigation(false);
+                m_NudgeAtLeft = false;
+                return true;
+            }
+            else if (keyData == keyboardShortcuts.ContentView_TransportBarNudgeForward.Value && this.ActiveControl != toolStripZoomPanel && this.ActiveControl != m_Edit)
+            {
+                m_NudgeAtRight = true;
+                m_ContentView.NudgeInFineNavigation(true);
+                m_NudgeAtRight = false;
+                return true;
+            }
+            else if (keyData == keyboardShortcuts.ContentView_ExpandAudioSelectionAtLeft.Value && this.ActiveControl != toolStripZoomPanel && this.ActiveControl != m_Edit)
+            {
+                m_NudgeAtRightFromLeft = true;
+                m_ProjectView.TransportBar.NudgeSelectedAudio(TransportBar.NudgeSelection.ExpandAtLeft);
+                m_NudgeAtRightFromLeft = false;
+                return true;
+            }
+            else if (keyData == keyboardShortcuts.ContentView_ContractAudioSelectionAtLeft.Value && this.ActiveControl != toolStripZoomPanel && this.ActiveControl != m_Edit)
+            {
+                m_NudgeAtLeftFromLeft = true;
+                m_ProjectView.TransportBar.NudgeSelectedAudio(TransportBar.NudgeSelection.ContractAtLeft);
+                m_NudgeAtLeftFromLeft = false;
+                return true;
+            }
+            else if (keyData == keyboardShortcuts.ContentView_ScrollDown_SmallIncrementWithSelection.Value)
+            {
+                m_ContentView.NudgeIntervalIncrement(false);
+                return true;
+            }
+            else if (keyData == keyboardShortcuts.ContentView_ScrollUp_SmallIncrementWithSelection.Value)
+            {
+                m_ContentView.NudgeIntervalIncrement(true);
+                return true;
+            }
+            else if (keyData == Keys.Tab
+        && this.ActiveControl != null)
+            {
+                Control c = this.ActiveControl;
+                this.SelectNextControl(c, true, true, false, true);
+                //Console.WriteLine(c.ToString());
+                //Console.WriteLine(m_ProjectView.Selection);
+                if (this.ActiveControl != null && c.TabIndex > this.ActiveControl.TabIndex)
+                    System.Media.SystemSounds.Beep.Play();
 
-                 return true;
-             }
-             else if (keyData == (Keys)(Keys.Shift | Keys.Tab)
-                  && this.ActiveControl != null)
-             {
-                 Control c = this.ActiveControl;
-                 this.SelectNextControl(c, false, true, false, true);
-                 if (this.ActiveControl != null && c.TabIndex < this.ActiveControl.TabIndex)
-                     System.Media.SystemSounds.Beep.Play();
+                return true;
+            }
+            else if (keyData == (Keys)(Keys.Shift | Keys.Tab)
+                 && this.ActiveControl != null)
+            {
+                Control c = this.ActiveControl;
+                this.SelectNextControl(c, false, true, false, true);
+                if (this.ActiveControl != null && c.TabIndex < this.ActiveControl.TabIndex)
+                    System.Media.SystemSounds.Beep.Play();
 
-                 return true;
-             }
-             else if (keyData == keyboardShortcuts.ContentView_SelectUp.Value)
-             {
-                 if (m_ProjectView != null && m_ProjectView.Selection != null && m_ProjectView.Selection.Control != null && m_ProjectView.Selection is Obi.AudioSelection)
-                 {
-                     IControlWithSelection tempControl;
-                     tempControl = m_ProjectView.Selection.Control;
-                     m_ProjectView.Selection = new NodeSelection((ObiNode)m_Node, tempControl);
-                 }
-             }
-             else if (keyData == Keys.Right || keyData == Keys.Left)
-             {
-                 return false;
-             }
+                return true;
+            }
+            else if (keyData == keyboardShortcuts.ContentView_SelectUp.Value)
+            {
+                if (m_ProjectView != null && m_ProjectView.Selection != null && m_ProjectView.Selection.Control != null && m_ProjectView.Selection is Obi.AudioSelection)
+                {
+                    IControlWithSelection tempControl;
+                    tempControl = m_ProjectView.Selection.Control;
+                    m_ProjectView.Selection = new NodeSelection((ObiNode)m_Node, tempControl);
+                }
+            }
+            else if (keyData == Keys.Right || keyData == Keys.Left)
+            {
+                return false;
+            }
             if (keyData == keyboardShortcuts.ContentView_ScrollDown_LargeIncrementWithSelection.Value || keyData == keyboardShortcuts.ContentView_ScrollUp_LargeIncrementWithSelection.Value
                 || keyData == keyboardShortcuts.ContentView_SelectFollowingStripCursor.Value || keyData == keyboardShortcuts.ContentView_SelectPrecedingStripCursor.Value
                 || keyData == keyboardShortcuts.ContentView_SelectFollowingStrip.Value || keyData == keyboardShortcuts.ContentView_SelectPrecedingStrip.Value
@@ -842,7 +856,7 @@ namespace Obi.ProjectView
             {
                 return false;
             }
-           
+
             return base.ProcessCmdKey(ref msg, keyData);
             // return true;
 
@@ -1261,6 +1275,66 @@ namespace Obi.ProjectView
             }
         }
 
+        public void ShowEditLabelToAddComment()
+        {
+            if (m_ContentView.Selection is AudioSelection)
+            {
+                m_TimeOfCursor = ((AudioSelection)m_ContentView.Selection).AudioRange.CursorTime;
+            }
+            EditableLabel editLabel = new EditableLabel(m_ContentView.Selection.Node as EmptyNode);
+            this.Controls.Add(editLabel);
+            m_EditableLabel = editLabel;
+            m_SelectedNodeToAddComment = m_ContentView.Selection.Node as EmptyNode;
+            editLabel.Show();
+            editLabel.Editable = true;
+            AlignCommentEditLabel();
+            editLabel.BringToFront();
+            editLabel.AddComment += new EventHandler(EditableLabel_AddComment);
+            editLabel.CloseComment += new EventHandler(EditLabel_CloseAddComment);
+        }
+        private void EditLabel_CloseAddComment(object sender, EventArgs e)
+        {
+            RemoveEditLabelControlForAddingComment();
+        }
+
+        private void EditableLabel_AddComment(object sender, EventArgs e)
+        {
+            Block tempBlock = m_Block;
+            if (tempBlock != null)
+            {
+                m_Block.UpdateLabelsText();
+                m_Block.AlignLabelToShowCommentIcon();
+                m_ContentView.ActiveStrip.AlignLabelToShowCommentIcon();
+                RemoveEditLabelControlForAddingComment();
+                m_ContentView.ToggleTODOForPhrase();
+
+            }
+        }
+
+        public void RemoveEditLabelControlForAddingComment()
+        {
+            m_EditableLabel.AddComment -= new EventHandler(EditableLabel_AddComment);
+            m_EditableLabel.CloseComment -= new EventHandler(EditLabel_CloseAddComment);
+
+            if (m_TimeOfCursor != 0 && m_SelectedNodeToAddComment is PhraseNode)
+            {
+                m_ContentView.Selection = new AudioSelection((PhraseNode)m_SelectedNodeToAddComment, m_ContentView,
+                    new AudioRange(m_TimeOfCursor));
+            }
+            else
+            {
+                m_ContentView.Selection = new NodeSelection(m_SelectedNodeToAddComment, m_ContentView);
+            }
+            m_TimeOfCursor = 0;
+
+            this.Controls.Remove(m_EditableLabel);
+        }
+        public void AlignCommentEditLabel()
+        {
+                m_EditableLabel.Location = new Point(0,0);
+            
+        
+        }
       
     }
 }
