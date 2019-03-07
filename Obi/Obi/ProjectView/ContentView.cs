@@ -6049,7 +6049,15 @@ Block lastBlock = ActiveStrip.LastBlock ;
                     }
                     tempBlock.UpdateLabelsText();
                 }
+                if (this.IsZoomWaveformActive)
+                {
+                    m_ZoomWaveformPanel.ClearComment();
+                }
             }
+        }
+        public void ShowCommentIconInZoomWaveform()
+        {
+            m_ZoomWaveformPanel.ShowCommentIconInZoomWaveform();
         }
         public bool StripIsSelected
         {

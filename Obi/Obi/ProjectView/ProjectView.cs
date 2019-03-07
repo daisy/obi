@@ -1016,7 +1016,23 @@ namespace Obi.ProjectView
                 }
                 else if (CanRemoveAudio)
                 {
+                    string tempCommentText = string.Empty; // Re-visit this code snippet after comment Text is done in xuk
+                    if (this.Selection.Node is EmptyNode && (this.Selection.Node as EmptyNode).CommentText != null)
+                    {
+                        tempCommentText = (this.Selection.Node as EmptyNode).CommentText;
+                    }
                     mPresentation.Do(Commands.Audio.Delete.GetCommand(this));
+                    if (tempCommentText != string.Empty)
+                    {
+                        (this.Selection.Node as EmptyNode).CommentText = tempCommentText;
+                        Block tempBlock = mContentView.FindBlock(this.Selection.Node as EmptyNode);
+                        tempBlock.UpdateLabelsText();
+                        tempBlock.AlignLabelToShowCommentIcon();
+                        if (mContentView.IsZoomWaveformActive)
+                        {
+                            mContentView.ShowCommentIconInZoomWaveform();
+                        }
+                    }
                 }
                 else if (CanRemoveMetadata)
                 {
@@ -4041,6 +4057,7 @@ for (int j = 0;
                             MessageBox.Show ( string.Format ( Localizer.Message ( "ContentHidden_SectionHasOverlimitPhrases" ), SNode.Label, MaxVisibleBlocksCount ), Localizer.Message ( "Caption_Warning" ), MessageBoxButtons.OK, MessageBoxIcon.Warning );
                         }
                     TransportBar.SelectionChangedPlaybackEnabled = playbackOnSelectionChangedStatus;
+
                     }
                 }
             }

@@ -201,6 +201,10 @@ namespace Obi.Commands.Node
                         }
                     phrases[i].Used = phrase.Used;
                     phrases[i].TODO = phrase.TODO;
+                    if (i == 0 && phrase.TODO && (phrase as EmptyNode).CommentText != null)
+                    {
+                        (phrases[i] as EmptyNode).CommentText = (phrase as EmptyNode).CommentText;
+                    }
                     if (phrases[i].Role_ == EmptyNode.Role.Heading && i > 0) phrases[i].Role_ = EmptyNode.Role.Plain;
 
                     // in following add node constructor, update selection is made false, to improve performance (19 may, 2010)
