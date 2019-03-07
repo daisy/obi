@@ -153,7 +153,10 @@ namespace Obi.ProjectView
                 //btntxtZoomSelected.Text += " " + m_ProjectView.Selection.ToString();
                 //btntxtZoomSelected.Text += " " + (m_ProjectView.GetSelectedPhraseSection != null ? m_ProjectView.GetSelectedPhraseSection.ToString() : "");
                
-                
+                if(this.Controls.Contains(m_EditableLabel))
+                {
+                    this.RemoveEditLabelControlForAddingComment();
+                }
                 if (m_ProjectView.Selection.Phrase != null)
                 {
 
@@ -206,6 +209,11 @@ namespace Obi.ProjectView
                         }
                     }
 
+                }
+
+                if (m_Node.CommentText != null && !(m_Node is PhraseNode) && m_Node is EmptyNode)
+                {
+                    m_Block.AlignLabelToShowCommentIcon();
                 }
 
             }
@@ -599,6 +607,8 @@ namespace Obi.ProjectView
                 panelZooomWaveform.Controls.Add(m_Block);
                 m_AudioBlock = null;
                 m_PhraseDuration = 0;
+                if(m_Node.CommentText != null)
+                m_Block.AlignLabelToShowCommentIcon();
 
             }
 
@@ -1331,9 +1341,21 @@ namespace Obi.ProjectView
         }
         public void AlignCommentEditLabel()
         {
-                m_EditableLabel.Location = new Point(0,0);
-            
-        
+                m_EditableLabel.Location = new Point(0,0);  
+        }
+        public void ClearComment()
+        {
+            if (m_ProjectView.Selection.Node is EmptyNode)
+            {
+                EmptyNode tempNode = (EmptyNode)m_ProjectView.Selection.Node;
+                tempNode.CommentText = string.Empty;
+            }
+            m_Block.UpdateLabelsText();
+        }
+        public void ShowCommentIconInZoomWaveform()
+        {
+            m_Block.UpdateLabelsText();
+            m_Block.AlignLabelToShowCommentIcon();
         }
       
     }
