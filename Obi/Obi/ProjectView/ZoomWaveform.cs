@@ -1348,7 +1348,7 @@ namespace Obi.ProjectView
             if (m_ProjectView.Selection.Node is EmptyNode)
             {
                 EmptyNode tempNode = (EmptyNode)m_ProjectView.Selection.Node;
-                tempNode.CommentText = string.Empty;
+                tempNode.CommentText = null;
             }
             m_Block.UpdateLabelsText();
         }
