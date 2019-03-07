@@ -6045,7 +6045,7 @@ Block lastBlock = ActiveStrip.LastBlock ;
                     if (mProjectView.Selection.Node is EmptyNode)
                     {
                         EmptyNode tempNode = (EmptyNode)mProjectView.Selection.Node;
-                        tempNode.CommentText = string.Empty;
+                        tempNode.CommentText = null;
                     }
                     tempBlock.UpdateLabelsText();
                 }
