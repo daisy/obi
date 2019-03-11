@@ -211,15 +211,16 @@ namespace Obi.ProjectView
                 mLabel.Text = Node.BaseStringShort();
                 //mLabel.AccessibleName = Node.BaseString(); // commented for removing update block label threads.
                 mLabel.AccessibleName = GetAccessibleName;
-                mToolTip.SetToolTip(this, Node.BaseStringShort());
                 if (Node.CommentText == null || Node.CommentText == string.Empty)
                 {
+                    mToolTip.SetToolTip(this, Node.BaseStringShort());
                     mToolTip.SetToolTip(mLabel, Node.BaseStringShort());
                 }
                 if (Node.CommentText != null && Node.CommentText != string.Empty) 
                 {
                     m_CommentPictureBox.Visible = true;
                     mToolTip.SetToolTip(m_CommentPictureBox, Node.BaseStringShort() + "\n" + Node.CommentText);
+                    mToolTip.SetToolTip(this, Node.BaseStringShort() + "\n" + Node.CommentText);
                     mToolTip.SetToolTip(mLabel, Node.BaseStringShort() + "\n" + Node.CommentText);
                     mLabel.AccessibleName = GetAccessibleName + Localizer.Message("CommentAttachedFlagForAccessibleName");
                 }
