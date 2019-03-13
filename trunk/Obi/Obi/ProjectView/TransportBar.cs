@@ -4067,35 +4067,35 @@ SelectionChangedPlaybackEnabled = false;
                 if (node != null)
                 {
                     mView.Presentation.Changed -= new EventHandler<urakawa.events.DataModelChangedEventArgs>(Presentation_Changed);
+                    if (node is PhraseNode && node.Duration > 0 && mCurrentPlaylist != null)
+                    {
+                        mView.Presentation.UndoRedoManager.Execute(new Commands.Node.ToggleNodeTODO(mView, node, mCurrentPlaylist.CurrentTimeInAsset));
+                }
+                else
+                    {
                     mView.Presentation.UndoRedoManager.Execute(new Commands.Node.ToggleNodeTODO(mView, node));
+                }
                     mView.Presentation.Changed += new EventHandler<urakawa.events.DataModelChangedEventArgs>(Presentation_Changed);
                 }
 
-                if (node != null && node is PhraseNode && node.Duration > 0 && mCurrentPlaylist != null)
-                {
-                    node.TODOCursorPosition = mCurrentPlaylist.CurrentTimeInAsset;
-                }
-                else if (node != null && Math.Abs(node.TODOCursorPosition) > 0)
-                {
-                    node.TODOCursorPosition = 0;
-                }
             }
         else if (mView.Selection != null && mView.Selection.Node is EmptyNode)
             {
             node  = (EmptyNode)mView.Selection.Node;
             mView.Presentation.Changed -= new EventHandler<urakawa.events.DataModelChangedEventArgs> ( Presentation_Changed );
-            mView.Presentation.UndoRedoManager.Execute ( new Commands.Node.ToggleNodeTODO ( mView, node ) );
+            if (node != null && node is PhraseNode && node.Duration > 0 && mView.Selection is AudioSelection)
+            {
+                AudioSelection selection = mView.Selection as AudioSelection;
+                double todoTime = selection.AudioRange.HasCursor ? selection.AudioRange.CursorTime :
+                    selection.AudioRange.SelectionBeginTime;
+                if (todoTime > 0 && todoTime < node.Duration) mView.Presentation.UndoRedoManager.Execute(new Commands.Node.ToggleNodeTODO(mView, node, todoTime));
+            }
+            else
+            {
+                mView.Presentation.UndoRedoManager.Execute(new Commands.Node.ToggleNodeTODO(mView, node));
+            }
             mView.Presentation.Changed += new EventHandler<urakawa.events.DataModelChangedEventArgs> ( Presentation_Changed );
-                if (node != null && node is PhraseNode && node.Duration > 0 && mView.Selection is AudioSelection)
-                {
-                    AudioSelection selection = mView.Selection as AudioSelection;
-                    node.TODOCursorPosition = selection.AudioRange.HasCursor ? selection.AudioRange.CursorTime :
-                        selection.AudioRange.SelectionBeginTime;
-                }
-                else if (node != null && Math.Abs(node.TODOCursorPosition) > 0)
-                {
-                    node.TODOCursorPosition = 0;
-                }
+                
             }
            
         }
