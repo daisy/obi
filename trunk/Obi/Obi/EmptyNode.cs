@@ -34,6 +34,8 @@ namespace Obi
         private static readonly string XUK_ATTR_NAME_PAGE_KIND = "pageKind";  // name of the pageKind attribute
         private static readonly string XUK_ATTR_NAME_PAGE_TEXT = "pageText";  // name of the pageText attribute
         private static readonly string XUK_ATTR_NAME_TODO = "TODO";           // name of the TODO attribute
+        private static readonly string XUK_ATTR_NAME_TODOTIME = "TODOTime";           // name of the TODO time attribute
+        private static readonly string XUK_ATTR_NAME_TODOTEXT = "TODOText";           // name of the TODO comment attribute
         public static readonly string Footnote = "footnote";
         public static readonly string Sidebar = "sidebar";
         public static readonly string ProducerNote = "prodnote";
@@ -541,6 +543,14 @@ private static Dictionary <string,string> m_SkippableLocalizedNameMap = null ;
 
                 string todo = source.GetAttribute(XUK_ATTR_NAME_TODO);
                 if (todo != null) mTODO = todo == "True";
+                if (mTODO)
+                {
+                    string todoTime = source.GetAttribute(XUK_ATTR_NAME_TODOTIME);
+                    if (todoTime != null) double.TryParse (todoTime, out m_TODOCursorPosition);
+
+                    string TodoText = source.GetAttribute(XUK_ATTR_NAME_TODOTEXT);
+                    if (TodoText != null) m_AddNoteText = TodoText;
+                }
                 m_AssociatedNodeLocation = source.GetAttribute(XUK_ATTR_NAME_AssociateNode);  //@AssociateNode
 
             }
@@ -585,7 +595,12 @@ private static Dictionary <string,string> m_SkippableLocalizedNameMap = null ;
                     wr.WriteAttributeString(XUK_ATTR_NAME_PAGE_KIND, mPageNumber.Kind.ToString());
                     wr.WriteAttributeString(XUK_ATTR_NAME_PAGE_TEXT, mPageNumber.Unquoted);
                 }
-                if (mTODO) wr.WriteAttributeString(XUK_ATTR_NAME_TODO, "True");
+                if (mTODO)
+                {
+                    wr.WriteAttributeString(XUK_ATTR_NAME_TODO, "True");
+                    if (m_TODOCursorPosition > 0) wr.WriteAttributeString(XUK_ATTR_NAME_TODOTIME, m_TODOCursorPosition.ToString());
+                    if (!string.IsNullOrEmpty(m_AddNoteText)) wr.WriteAttributeString(XUK_ATTR_NAME_TODOTEXT, m_AddNoteText);
+                }
                 if (AssociatedNode != null && AssociatedNode.IsRooted)       //@AssociateNode
                 {
                     UpdateAssociatedNodeLocationString();
