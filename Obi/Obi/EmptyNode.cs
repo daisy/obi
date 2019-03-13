@@ -382,11 +382,19 @@ private static Dictionary <string,string> m_SkippableLocalizedNameMap = null ;
         /// Set the TODO status of this node and send an event on change.
         /// </summary>
         /// <param name="todo"></param>
-        public void SetTODO(bool todo)
+        public void SetTODO(bool todo, double time)
         {
             if (todo != TODO)
             {
                 TODO = todo;
+                if (mTODO)
+                {
+                    if (time > 0) m_TODOCursorPosition = time;
+                }
+                else
+                {
+                    m_TODOCursorPosition = 0;
+                }
                 if (ChangedTODOStatus != null) ChangedTODOStatus(this, new NodeEventArgs<EmptyNode>(this));
             }
         }

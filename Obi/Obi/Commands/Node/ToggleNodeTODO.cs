@@ -8,15 +8,25 @@ namespace Obi.Commands.Node
     {
         private EmptyNode mNode;         // the empty node
         private bool mOriginalStatus;  // original used status of the node
+        private double m_ToDoTime; // time in phrase at which Todo is marked
 
         /// <summary>
         /// Change the used status of a single node.
         /// </summary>
         public ToggleNodeTODO (ProjectView.ProjectView view, EmptyNode node)
+            : this (view, node, 0)
+            {
+    }
+
+        /// <summary>
+        /// Change the used status of a single node.
+        /// </summary>
+        public ToggleNodeTODO (ProjectView.ProjectView view, EmptyNode node, double time)
             : base(view)
         {
             mNode = node;
             mOriginalStatus = node.TODO;
+            m_ToDoTime = time;
             SetDescriptions(Localizer.Message("toggle_TODO"));
         }
 
@@ -25,12 +35,12 @@ namespace Obi.Commands.Node
         
         public override void Execute()
         {
-            mNode.SetTODO ( !mOriginalStatus );
+            mNode.SetTODO ( !mOriginalStatus, m_ToDoTime);
         }
 
         public override void UnExecute()
         {
-            mNode.SetTODO(mOriginalStatus);
+            mNode.SetTODO(mOriginalStatus, m_ToDoTime);
             base.UnExecute();
         }
 
