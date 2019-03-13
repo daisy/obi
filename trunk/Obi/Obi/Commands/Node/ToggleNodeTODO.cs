@@ -46,4 +46,40 @@ namespace Obi.Commands.Node
 
 
     }
+
+    class AddComment: Command
+    {
+        private EmptyNode mNode;         // the empty node
+        private string m_Comment ; // Comment on the node
+        private string m_CommentPrevious;
+
+        /// <summary>
+        /// Add comment to a node.
+        /// </summary>
+        public AddComment(ProjectView.ProjectView view, EmptyNode node, string comment)
+            :base(view)
+        {
+            mNode = node;
+            m_CommentPrevious = node.CommentText;
+            m_Comment = comment;
+            //SetDescriptions(Localizer.Message("toggle_TODO"));
+        }
+
+        public override bool CanExecute { get { return true; } }
+
+
+        public override void Execute()
+        {
+            mNode.CommentText = m_Comment ;
+        }
+
+        public override void UnExecute()
+        {
+            mNode.CommentText = m_CommentPrevious;
+            base.UnExecute();
+        }
+
+
+    }
+
 }

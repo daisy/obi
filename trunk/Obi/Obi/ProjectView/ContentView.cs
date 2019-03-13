@@ -6045,8 +6045,16 @@ Block lastBlock = ActiveStrip.LastBlock ;
                     if (mProjectView.Selection.Node is EmptyNode)
                     {
                         EmptyNode tempNode = (EmptyNode)mProjectView.Selection.Node;
-                        tempNode.CommentText = null;
-                    }
+                        Commands.Node.AddComment addCommentCmd = new Commands.Node.AddComment(mProjectView, tempNode, null);
+                        try
+                        {
+                            mProjectView.Presentation.Do(addCommentCmd);
+                        }
+                        catch (System.Exception ex)
+                        {
+                            MessageBox.Show (ex.ToString ()) ;
+                        }
+                    }          
                     tempBlock.UpdateLabelsText();
                 }
                 if (this.IsZoomWaveformActive)
