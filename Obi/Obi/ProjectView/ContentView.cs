@@ -6016,16 +6016,40 @@ Block lastBlock = ActiveStrip.LastBlock ;
             return false;
         }
 
-        public void ToggleTODOForPhrase()
+        public void ToggleTODOForPhrase(string CommentText)
         {
             if (!mProjectView.IsCurrentBlockTODO && mProjectView.Selection.Node is EmptyNode)
             {
-                if ((mProjectView.Selection.Node as EmptyNode).CommentText != null)
+                if (CommentText != null && CommentText != string.Empty)
                 {
                     mProjectView.ToggleTODOForPhrase();
                 }
             }
         }
+
+        public void AddCommentOnTodoPhrase(string CommentText)
+        {
+            Commands.Node.AddComment addCommentCmd;
+            if (CommentText != null && CommentText != string.Empty)
+            {
+                addCommentCmd = new Commands.Node.AddComment(mProjectView, mProjectView.Selection.Node as EmptyNode, CommentText);
+            }
+            else
+            {
+                addCommentCmd = new Commands.Node.AddComment(mProjectView, mProjectView.Selection.Node as EmptyNode, null);
+            }
+            try
+            {
+                if(addCommentCmd != null)
+                mProjectView.Presentation.Do(addCommentCmd);
+            }
+            catch (System.Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+        }
+            
+        
 
         public void ClearComment()
         {
@@ -6045,15 +6069,7 @@ Block lastBlock = ActiveStrip.LastBlock ;
                     if (mProjectView.Selection.Node is EmptyNode)
                     {
                         EmptyNode tempNode = (EmptyNode)mProjectView.Selection.Node;
-                        Commands.Node.AddComment addCommentCmd = new Commands.Node.AddComment(mProjectView, tempNode, null);
-                        try
-                        {
-                            mProjectView.Presentation.Do(addCommentCmd);
-                        }
-                        catch (System.Exception ex)
-                        {
-                            MessageBox.Show (ex.ToString ()) ;
-                        }
+                        AddCommentOnTodoPhrase(null);
                     }          
                     tempBlock.UpdateLabelsText();
                 }

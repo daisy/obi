@@ -32,6 +32,7 @@ namespace Obi.ProjectView
             node.ChangedRole += new EmptyNode.ChangedRoleEventHandler(Node_ChangedKind);
             node.ChangedPageNumber += new NodeEventHandler<EmptyNode>(Node_ChangedPageNumber);
             node.ChangedTODOStatus += new NodeEventHandler<EmptyNode>(Node_ChangedTODOStatus);
+            node.ChangedComment += new NodeEventHandler<EmptyNode>(node_ChangedComment);
             ((ObiPresentation)node.Presentation).UsedStatusChanged += new NodeEventHandler<ObiNode>(Presentation_UsedStatusChanged);
             UpdateColors();
             UpdateLabel();
@@ -39,6 +40,7 @@ namespace Obi.ProjectView
             mBaseFontSize = mLabel.Font.SizeInPoints;
             mToolTip.Popup +=new PopupEventHandler(mToolTip_Popup);
         }
+
 
         
         /// <summary>
@@ -300,6 +302,12 @@ namespace Obi.ProjectView
         {
             UpdateColors();
             UpdateLabel();
+        }
+
+        void node_ChangedComment(object sender, NodeEventArgs<EmptyNode> e)
+        {
+            UpdateLabel();
+            AlignLabelToShowCommentIcon();
         }
 
         private void Presentation_UsedStatusChanged ( object sender, NodeEventArgs<ObiNode> e )

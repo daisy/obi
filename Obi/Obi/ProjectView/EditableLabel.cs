@@ -21,7 +21,8 @@ namespace Obi.ProjectView
 
         public bool m_EditPhraseComment = false;
         
-        private EmptyNode m_Node; 
+        private EmptyNode m_Node;
+        private string m_CommentText;
 
         /// <summary>
         /// Create a new label. Don't forget to set its Label property.
@@ -36,6 +37,7 @@ namespace Obi.ProjectView
         {
             m_Node = node;
             InitializeComponent();
+            mTextBox.MaxLength = 200;
             mTextBox.Text = m_Node.CommentText;
             m_EditPhraseComment = true;
         }
@@ -77,6 +79,13 @@ namespace Obi.ProjectView
             }
         }
 
+        public string CommentText
+        {
+            get
+            {
+                return m_CommentText;
+            }
+        }
 
         /// <summary>
         /// The (uneditable) label that is displayed.
@@ -155,7 +164,8 @@ namespace Obi.ProjectView
                 "This button cannot be clicked when the label is not editable.");
             if (m_EditPhraseComment && m_Node != null)
             {
-                m_Node.CommentText = mTextBox.Text;
+                //m_Node.CommentText = mTextBox.Text;
+                m_CommentText = mTextBox.Text;
             }
 
             UpdateText();
@@ -171,7 +181,8 @@ namespace Obi.ProjectView
             {
                 if (m_EditPhraseComment && m_Node != null)
                 {
-                    m_Node.CommentText = mTextBox.Text;
+                    //m_Node.CommentText = mTextBox.Text;
+                    m_CommentText = mTextBox.Text;
                 }
                 UpdateText();
             }
@@ -218,7 +229,7 @@ namespace Obi.ProjectView
             }
             else
             {
-                if (m_Node != null && m_Node.CommentText != null)
+                if (m_Node != null && m_CommentText != null)
                 {
                     if (AddComment != null) AddComment(this, new EventArgs());
                 }
