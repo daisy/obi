@@ -43,6 +43,7 @@ namespace Obi.ProjectView
         private bool m_SaveZoomWaveformZoomLevel;
         private double m_TotalCursorTime; // use to calulate time between two marks.   
         private bool m_IsCopyForMultiplePhrasesChecked = false;
+        private Obi.UserControls.GraphicalPeakMeter m_PeakMeter = new UserControls.GraphicalPeakMeter(); 
                   
     
         /// <summary>
@@ -3742,11 +3743,11 @@ for (int j = 0;
             }
 
 
-        public void ToggleEmptyNodeTo_DoMark ()
+        public void ToggleEmptyNodeTo_DoMark(bool IsCommentAdded = false)
             {
             if (TransportBar.Enabled)
                 {
-                TransportBar.MarkTodo ();
+                    TransportBar.MarkTodo(IsCommentAdded);
                 }
             else if (IsBlockSelected)
                 {
@@ -4541,15 +4542,15 @@ for (int j = 0;
         /// <summary>
         /// Toggle the TODO status of a phrase.
         /// </summary>
-        public void ToggleTODOForPhrase ()
+        public void ToggleTODOForPhrase (bool IsCommentAdded = false)
             {
             if (TransportBar.IsPlayerActive)
                 {
-                TransportBar.MarkTodo ();
+                    TransportBar.MarkTodo(IsCommentAdded);
                 }
             else
                 {
-                ToggleEmptyNodeTo_DoMark ();
+                    ToggleEmptyNodeTo_DoMark(IsCommentAdded);
                 }
             }
 
@@ -7487,6 +7488,7 @@ public bool ShowOnlySelectedSection
             
             return pasteCommand;
         }
+
 
         }
 

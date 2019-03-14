@@ -1832,7 +1832,7 @@ int boundaryWidth = mContentView.ClientRectangle.Width - Margin.Horizontal;
             {
 
                 mContentView.ToggleTODOForPhrase(m_EditableLabel.CommentText);
-                mContentView.AddCommentOnTodoPhrase(m_EditableLabel.CommentText);
+              //  mContentView.AddCommentOnTodoPhrase(m_EditableLabel.CommentText);
                 tempBlock.UpdateLabelsText();
                 //tempBlock.SetZoomFactorAndHeight(mContentView.ZoomFactor, mBlockHeight);
                 tempBlock.AlignLabelToShowCommentIcon();
