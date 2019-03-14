@@ -46,7 +46,7 @@ namespace Obi
         private static readonly string XUK_ATTR_NAME_AssociateNode = "ANode"; //attribute for associate node location
         private string m_AssociatedNodeLocation;                              //@AssociateNode
         private double m_TODOCursorPosition = 0;
-        private string m_AddNoteText;
+        private string m_CommentText;
         
 
         /// <summary>
@@ -155,6 +155,10 @@ private static Dictionary <string,string> m_SkippableLocalizedNameMap = null ;
         /// </summary>
         public event NodeEventHandler<EmptyNode> ChangedTODOStatus;
 
+        /// <summary>
+        /// This event is sent when there is change in Comment of the node.
+        /// </summary>
+        public event NodeEventHandler<EmptyNode> ChangedComment;
 
         /// <summary>
         /// Create a new empty node of a given kind in a presentation.
@@ -286,8 +290,12 @@ private static Dictionary <string,string> m_SkippableLocalizedNameMap = null ;
 
         public string CommentText
         {
-            get { return m_AddNoteText; }
-            set { m_AddNoteText = value; }
+            get { return m_CommentText; }
+            set
+            {
+                m_CommentText = value;
+                if (ChangedComment != null) ChangedComment(this, new NodeEventArgs<EmptyNode>(this));
+            }
         }
 
         public double TODOCursorPosition
@@ -557,7 +565,7 @@ private static Dictionary <string,string> m_SkippableLocalizedNameMap = null ;
                     if (todoTime != null) double.TryParse (todoTime, out m_TODOCursorPosition);
 
                     string TodoText = source.GetAttribute(XUK_ATTR_NAME_TODOTEXT);
-                    if (TodoText != null) m_AddNoteText = TodoText;
+                    if (TodoText != null) m_CommentText = TodoText;
                 }
                 m_AssociatedNodeLocation = source.GetAttribute(XUK_ATTR_NAME_AssociateNode);  //@AssociateNode
 
@@ -607,7 +615,7 @@ private static Dictionary <string,string> m_SkippableLocalizedNameMap = null ;
                 {
                     wr.WriteAttributeString(XUK_ATTR_NAME_TODO, "True");
                     if (m_TODOCursorPosition > 0) wr.WriteAttributeString(XUK_ATTR_NAME_TODOTIME, m_TODOCursorPosition.ToString());
-                    if (!string.IsNullOrEmpty(m_AddNoteText)) wr.WriteAttributeString(XUK_ATTR_NAME_TODOTEXT, m_AddNoteText);
+                    if (!string.IsNullOrEmpty(m_CommentText)) wr.WriteAttributeString(XUK_ATTR_NAME_TODOTEXT, m_CommentText);
                 }
                 if (AssociatedNode != null && AssociatedNode.IsRooted)       //@AssociateNode
                 {

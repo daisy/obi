@@ -1830,11 +1830,13 @@ int boundaryWidth = mContentView.ClientRectangle.Width - Margin.Horizontal;
             Block tempBlock = FindBlock(m_SelectedNodeToAddComment);
             if (tempBlock != null)
             {
+
+                mContentView.ToggleTODOForPhrase(m_EditableLabel.CommentText);
+                mContentView.AddCommentOnTodoPhrase(m_EditableLabel.CommentText);
                 tempBlock.UpdateLabelsText();
                 //tempBlock.SetZoomFactorAndHeight(mContentView.ZoomFactor, mBlockHeight);
                 tempBlock.AlignLabelToShowCommentIcon();
                 RemoveEditLabelControlForAddingComment();
-                mContentView.ToggleTODOForPhrase();
 
             }
         }
