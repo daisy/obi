@@ -6022,12 +6022,13 @@ Block lastBlock = ActiveStrip.LastBlock ;
             {
                 if (CommentText != null && CommentText != string.Empty)
                 {
-                    mProjectView.ToggleTODOForPhrase();
+                    mProjectView.ToggleTODOForPhrase(true);
+                    AddCommentOnTodoPhrase(CommentText);
                 }
             }
         }
 
-        public void AddCommentOnTodoPhrase(string CommentText)
+        private void AddCommentOnTodoPhrase(string CommentText)
         {
             Commands.Node.AddComment addCommentCmd;
             if (CommentText != null && CommentText != string.Empty)

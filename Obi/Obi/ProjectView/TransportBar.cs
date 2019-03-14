@@ -4049,7 +4049,7 @@ SelectionChangedPlaybackEnabled = false;
         /// <summary>
         /// Toggle TODO on the currently playing/recording phrase.
         /// </summary>
-        public void MarkTodo()
+        public void MarkTodo(bool IsCommentAdded = false)
         {
             EmptyNode node = null;
             if (IsRecording)
@@ -4059,6 +4059,7 @@ SelectionChangedPlaybackEnabled = false;
                 mView.Presentation.Changed -= new EventHandler<urakawa.events.DataModelChangedEventArgs>(Presentation_Changed);
                 mView.Presentation.UndoRedoManager.Execute(new Commands.Node.ToggleNodeTODO(mView, node));
                 mView.Presentation.Changed += new EventHandler<urakawa.events.DataModelChangedEventArgs>(Presentation_Changed);
+                if (!IsCommentAdded)
                 NextPhrase();
             }
             else if (IsPlayerActive)
