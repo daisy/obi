@@ -5622,7 +5622,7 @@ Block lastBlock = ActiveStrip.LastBlock ;
         //@singleSection
         private void ProjectView_SelectionChanged ( object sender, EventArgs e )
             {
-                if (this.ActiveStrip.IsCommentEditLabelActive)
+                if (this.ActiveStrip != null && this.ActiveStrip.IsCommentEditLabelActive)
                 {
                     this.ActiveStrip.RemoveEditLabelControlForAddingComment();
                 }
@@ -5992,9 +5992,9 @@ Block lastBlock = ActiveStrip.LastBlock ;
         }
         public bool ShowEditLabelToAddComment()
         {
-            if (this.mProjectView.TransportBar.IsPlayerActive)
+            if (mProjectView.Selection != null && mProjectView.TransportBar.IsPlayerActive)
             {
-                this.mProjectView.TransportBar.Pause();
+                mProjectView.TransportBar.Pause();
 
                 if (!(mProjectView.Selection.Node is EmptyNode))
                 {
