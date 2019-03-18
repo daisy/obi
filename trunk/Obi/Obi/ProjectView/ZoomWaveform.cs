@@ -1312,7 +1312,7 @@ namespace Obi.ProjectView
             Block tempBlock = m_Block;
             if (tempBlock != null)
             {
-                m_ContentView.ToggleTODOForPhrase(m_EditableLabel.CommentText);
+                m_ContentView.MarkTODOAndAddComment(m_EditableLabel.CommentText);
                 m_Block.UpdateLabelsText();
                 m_Block.AlignLabelToShowCommentIcon();
                 m_ContentView.ActiveStrip.AlignLabelToShowCommentIcon();
