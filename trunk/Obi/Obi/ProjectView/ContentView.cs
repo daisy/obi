@@ -6016,13 +6016,16 @@ Block lastBlock = ActiveStrip.LastBlock ;
             return false;
         }
 
-        public void ToggleTODOForPhrase(string CommentText)
+        public void ToggleTODOForPhrase(string CommentText) 
         {
-            if (!mProjectView.IsCurrentBlockTODO && mProjectView.Selection.Node is EmptyNode)
+            if (mProjectView.Selection.Node is EmptyNode)
             {
                 if (CommentText != null && CommentText != string.Empty)
                 {
-                    mProjectView.ToggleTODOForPhrase(true);
+                    if (!mProjectView.IsCurrentBlockTODO)
+                    {
+                        mProjectView.ToggleTODOForPhrase(true);
+                    }
                     AddCommentOnTodoPhrase(CommentText);
                 }
             }
