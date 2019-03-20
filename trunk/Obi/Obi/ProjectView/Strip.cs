@@ -1851,14 +1851,17 @@ int boundaryWidth = mContentView.ClientRectangle.Width - Margin.Horizontal;
             m_EditableLabel.AddComment -= new EventHandler(EditableLabel_AddComment);
             m_EditableLabel.CloseComment -= new EventHandler(EditLabel_CloseAddComment);
 
-            if (m_TimeOfCursor != 0 && m_SelectedNodeToAddComment is PhraseNode)
+            if (this.RecordingNode == null)
             {
-                mContentView.Selection = new AudioSelection((PhraseNode)m_SelectedNodeToAddComment, mContentView,
-                    new AudioRange(m_TimeOfCursor));
-            }
-            else
-            {
-                mContentView.Selection = new NodeSelection(m_SelectedNodeToAddComment, mContentView);
+                if (m_TimeOfCursor != 0 && m_SelectedNodeToAddComment is PhraseNode)
+                {
+                    mContentView.Selection = new AudioSelection((PhraseNode)m_SelectedNodeToAddComment, mContentView,
+                        new AudioRange(m_TimeOfCursor));
+                }
+                else
+                {
+                    mContentView.Selection = new NodeSelection(m_SelectedNodeToAddComment, mContentView);
+                }
             }
             m_TimeOfCursor = 0;
 
@@ -1868,6 +1871,10 @@ int boundaryWidth = mContentView.ClientRectangle.Width - Margin.Horizontal;
         {
 
             Block tempBlock = FindBlock(m_SelectedNodeToAddComment);
+            if (this.Size.Width < m_EditableLabel.Width)
+            {
+                m_EditableLabel.Width = this.Size.Width;
+            }
             if ((this.Size.Width - tempBlock.Location.X) >= m_EditableLabel.Size.Width)
             {
                 m_EditableLabel.Location = new Point(tempBlock.Location.X, tempBlock.Location.Y);

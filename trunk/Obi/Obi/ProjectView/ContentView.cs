@@ -6023,9 +6023,9 @@ Block lastBlock = ActiveStrip.LastBlock ;
                 if (CommentText != null && CommentText != string.Empty)
                 {
 
-                    if (mProjectView.TransportBar.IsRecorderActive)
+                    if (this.RecordingNode != null)
                     {
-                        if (mProjectView.TransportBar.RecordingPhrase != mProjectView.Selection.Node as EmptyNode)
+                        if (RecordingNode != mProjectView.Selection.Node as EmptyNode)
                         {
                             mProjectView.Selection = new NodeSelection(mProjectView.TransportBar.RecordingPhrase, this);
                         }
@@ -6035,6 +6035,10 @@ Block lastBlock = ActiveStrip.LastBlock ;
                         mProjectView.ToggleTODOForPhrase(true);
                     }
                     AddCommentOnTodoPhrase(CommentText);
+                    if (this.RecordingNode != null)
+                    {
+                        mProjectView.TransportBar.NextPhrase();
+                    }
                 }
             }
         }
