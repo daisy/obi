@@ -27,7 +27,6 @@ namespace Obi.ProjectView
         private const int m_BaseScreenResolution = 768; //@ScreenResolution
         private EditableLabel m_EditableLabel;
         private EmptyNode m_SelectedNodeToAddComment;
-        private double m_TimeOfCursor;
         /// <summary>
         /// This constructor is used by the designer.
         /// </summary>
@@ -1809,10 +1808,6 @@ int boundaryWidth = mContentView.ClientRectangle.Width - Margin.Horizontal;
         }
         public void ShowEditLabelToAddComment()
         {
-            if (mContentView.Selection is AudioSelection)
-            {
-                m_TimeOfCursor = ((AudioSelection)mContentView.Selection).AudioRange.CursorTime;                
-            }
             EditableLabel editLabel = new EditableLabel(mContentView.Selection.Node as EmptyNode);
             this.Controls.Add(editLabel);
             m_EditableLabel = editLabel;
@@ -1843,27 +1838,47 @@ int boundaryWidth = mContentView.ClientRectangle.Width - Margin.Horizontal;
 
         private void EditLabel_CloseAddComment(object sender, EventArgs e)
         {
-            RemoveEditLabelControlForAddingComment();
+            RemoveEditLabelControlForAddingComment(true);
         }
 
-        public void RemoveEditLabelControlForAddingComment()
+        public void RemoveEditLabelControlForAddingComment(bool IsCloseAddComment = false)
         {
             m_EditableLabel.AddComment -= new EventHandler(EditableLabel_AddComment);
             m_EditableLabel.CloseComment -= new EventHandler(EditLabel_CloseAddComment);
-
-            if (this.RecordingNode == null)
+            double TimeOfCursor = 0;
+            double SelectionBeginTime = 0;
+            double SelectionEndTime = 0;
+            if (mContentView.Selection is AudioSelection)
             {
-                if (m_TimeOfCursor != 0 && m_SelectedNodeToAddComment is PhraseNode)
+                if ((mContentView.Selection as AudioSelection).AudioRange.HasCursor)
+                {
+                    TimeOfCursor = ((AudioSelection)mContentView.Selection).AudioRange.CursorTime;
+                }
+                else
+                {
+                    SelectionBeginTime = ((AudioSelection)mContentView.Selection).AudioRange.SelectionBeginTime;
+                    SelectionEndTime = ((AudioSelection)mContentView.Selection).AudioRange.SelectionEndTime;
+                }
+
+            }
+
+            if (this.RecordingNode == null || IsCloseAddComment)
+            {
+                if (TimeOfCursor != 0 && m_SelectedNodeToAddComment is PhraseNode)
                 {
                     mContentView.Selection = new AudioSelection((PhraseNode)m_SelectedNodeToAddComment, mContentView,
-                        new AudioRange(m_TimeOfCursor));
+                        new AudioRange(TimeOfCursor));
+                }
+                else if (SelectionBeginTime != 0 && SelectionEndTime != 0 && m_SelectedNodeToAddComment is PhraseNode)
+                {
+                    ContentView.Selection = new AudioSelection((PhraseNode)m_SelectedNodeToAddComment, mContentView,
+                        new AudioRange(SelectionBeginTime,SelectionEndTime));
                 }
                 else
                 {
                     mContentView.Selection = new NodeSelection(m_SelectedNodeToAddComment, mContentView);
                 }
             }
-            m_TimeOfCursor = 0;
 
             this.Controls.Remove(m_EditableLabel);
         }
