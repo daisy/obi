@@ -49,7 +49,6 @@ namespace Obi.ProjectView
         private Image m_PreserveZoomUnCheckedImage;
         private EditableLabel m_EditableLabel;
         private EmptyNode m_SelectedNodeToAddComment;
-        private double m_TimeOfCursor;
            
 
         private KeyboardShortcuts_Settings keyboardShortcuts;
@@ -1287,10 +1286,6 @@ namespace Obi.ProjectView
 
         public void ShowEditLabelToAddComment()
         {
-            if (m_ContentView.Selection is AudioSelection)
-            {
-                m_TimeOfCursor = ((AudioSelection)m_ContentView.Selection).AudioRange.CursorTime;
-            }
             EditableLabel editLabel = new EditableLabel(m_ContentView.Selection.Node as EmptyNode);
             this.Controls.Add(editLabel);
             m_EditableLabel = editLabel;
@@ -1325,17 +1320,36 @@ namespace Obi.ProjectView
         {
             m_EditableLabel.AddComment -= new EventHandler(EditableLabel_AddComment);
             m_EditableLabel.CloseComment -= new EventHandler(EditLabel_CloseAddComment);
+            double TimeOfCursor = 0;
+            double SelectionBeginTime = 0;
+            double SelectionEndTime = 0;
+            if (m_ContentView.Selection is AudioSelection)
+            {
+                if ((m_ContentView.Selection as AudioSelection).AudioRange.HasCursor)
+                {
+                    TimeOfCursor = ((AudioSelection)m_ContentView.Selection).AudioRange.CursorTime;
+                }
+                else
+                {
+                    SelectionBeginTime = ((AudioSelection)m_ContentView.Selection).AudioRange.SelectionBeginTime;
+                    SelectionEndTime = ((AudioSelection)m_ContentView.Selection).AudioRange.SelectionEndTime;
+                }
+            }
 
-            if (m_TimeOfCursor != 0 && m_SelectedNodeToAddComment is PhraseNode)
+            if (TimeOfCursor != 0 && m_SelectedNodeToAddComment is PhraseNode)
             {
                 m_ContentView.Selection = new AudioSelection((PhraseNode)m_SelectedNodeToAddComment, m_ContentView,
-                    new AudioRange(m_TimeOfCursor));
+                    new AudioRange(TimeOfCursor));
+            }
+            else if (SelectionBeginTime != 0 && SelectionEndTime != 0 && m_SelectedNodeToAddComment is PhraseNode)
+            {
+                ContentView.Selection = new AudioSelection((PhraseNode)m_SelectedNodeToAddComment, m_ContentView,
+                    new AudioRange(SelectionBeginTime, SelectionEndTime));
             }
             else
             {
                 m_ContentView.Selection = new NodeSelection(m_SelectedNodeToAddComment, m_ContentView);
             }
-            m_TimeOfCursor = 0;
 
             this.Controls.Remove(m_EditableLabel);
         }
