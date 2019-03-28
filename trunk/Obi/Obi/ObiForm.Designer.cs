@@ -80,6 +80,7 @@ namespace Obi
             this.mSynchronizeViewsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator10 = new System.Windows.Forms.ToolStripSeparator();
             this.mShowPeakMeterMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mShowPeakMeterInsideObiMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mShowSourceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mView_RecordingToolBarMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator15 = new System.Windows.Forms.ToolStripSeparator();
@@ -524,6 +525,7 @@ namespace Obi
             this.mSynchronizeViewsToolStripMenuItem,
             this.toolStripSeparator10,
             this.mShowPeakMeterMenuItem,
+            this.mShowPeakMeterInsideObiMenuItem,
             this.mShowSourceToolStripMenuItem,
             this.mView_RecordingToolBarMenuItem,
             this.toolStripSeparator15,
@@ -619,6 +621,13 @@ namespace Obi
             resources.ApplyResources(this.mShowPeakMeterMenuItem, "mShowPeakMeterMenuItem");
             this.mShowPeakMeterMenuItem.Name = "mShowPeakMeterMenuItem";
             this.mShowPeakMeterMenuItem.Click += new System.EventHandler(this.mShowPeakMeterMenuItem_Click);
+            // 
+            // mShowPeakMeterInsideObiMenuItem
+            // 
+            this.mShowPeakMeterInsideObiMenuItem.CheckOnClick = true;
+            this.mShowPeakMeterInsideObiMenuItem.Name = "mShowPeakMeterInsideObiMenuItem";
+            resources.ApplyResources(this.mShowPeakMeterInsideObiMenuItem, "mShowPeakMeterInsideObiMenuItem");
+            this.mShowPeakMeterInsideObiMenuItem.Click += new System.EventHandler(this.mShowPeakMeterInsideObiMenuItem_Click);
             // 
             // mShowSourceToolStripMenuItem
             // 
@@ -1241,6 +1250,7 @@ namespace Obi
             this.mFastForwardToolStripMenuItem});
             this.transportToolStripMenuItem.Name = "transportToolStripMenuItem";
             resources.ApplyResources(this.transportToolStripMenuItem, "transportToolStripMenuItem");
+            this.transportToolStripMenuItem.Click += new System.EventHandler(this.transportToolStripMenuItem_Click);
             // 
             // mPlayToolStripMenuItem
             // 
@@ -1941,6 +1951,7 @@ namespace Obi
         private System.Windows.Forms.ToolStripMenuItem m_CommentToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem m_AddViewCommentToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem m_ClearCommentToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem mShowPeakMeterInsideObiMenuItem;
     }
 }
 

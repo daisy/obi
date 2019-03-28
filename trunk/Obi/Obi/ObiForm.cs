@@ -1682,7 +1682,15 @@ namespace Obi
                 if (!ShouldOpenLastProject && mShowWelcomWindow) ShowWelcomeDialog();
 
                 UpdateKeyboardFocusForSelection();
-                if (mSettings.ShowGraphicalPeakMeterAtStartup) ShowPeakMeter();
+                if (mSettings.ShowGraphicalPeakMeterAtStartup)
+                {
+                    ShowPeakMeter();
+                }
+                else if (mSettings.ShowGraphicalPeakMeterInsideObiAtStartup)
+                {
+                    mShowPeakMeterInsideObiMenuItem.Checked = true;
+                    mProjectView.ShowPeakMeterInsideObi(true);
+                }
                 if (mSettings.Project_RecordingToolbarOpenInPreviousSession) ShowRecordingToolBar();
                 if (mSettings.Project_CheckForUpdates) CheckForNewRelease(true);
                 if (mSettings.Project_MaximizeObi)
@@ -2092,6 +2100,7 @@ namespace Obi
                 // mShowSectionContentsToolStripMenuItem.Enabled = mProjectView.CanShowSectionContents;
                 // mShowSingleSectionToolStripItem.Enabled = mSession.HasProject && mProjectView.Selection != null;
                 mShowPeakMeterMenuItem.Enabled = mSession.HasProject;
+                mShowPeakMeterInsideObiMenuItem.Enabled = mSession.HasProject;
                 mView_RecordingToolBarMenuItem.Enabled = mSession.HasProject;
                 mShowSourceToolStripMenuItem.Enabled = mSession.HasProject;
                 mView_PhrasePropertiesMenuItem.Visible =
@@ -3635,6 +3644,7 @@ ref string exportDirectoryEPUB3)
                         mStatusLabel.Font = new Font(mSettings.ObiFont, this.mStatusLabel.Font.Size, FontStyle.Regular);//@fontconfig    
                     }
 
+
                     
                     //CheckSystemSupportForMemoryOptimization();
                  }
@@ -4118,6 +4128,11 @@ ref string exportDirectoryEPUB3)
             //    }
             private void ShowPeakMeter()
             {
+                if (mProjectView.IsPeakMeterInsideObiActive)
+                {
+                    mProjectView.RemovePeakMeterInsideObi();
+                    mShowPeakMeterInsideObiMenuItem.Checked = mProjectView.IsPeakMeterInsideObiActive;
+                }
                 if (mPeakMeter == null)
                 {
                     mPeakMeter = new Obi.Audio.PeakMeterForm();
@@ -4465,6 +4480,7 @@ ref string exportDirectoryEPUB3)
                     {
                         if (mSettings.Project_SaveObiLocationAndSize) mSettings.ObiLastLocation = this.Location;
                         mSettings.ShowGraphicalPeakMeterAtStartup = mPeakMeter != null;
+                        mSettings.ShowGraphicalPeakMeterInsideObiAtStartup = mProjectView.IsPeakMeterInsideObiActive;
                         if (mRecordingToolBarForm != null)
                         {
                             mSettings.RecordingToolBarIncrementVal = mRecordingToolBarForm.NetSizeIncrementOfButtons;
@@ -6492,6 +6508,20 @@ ref string exportDirectoryEPUB3)
             private void m_ClearCommentToolStripMenuItem_Click(object sender, EventArgs e)
             {
                     mProjectView.ClearNote();               
+
+            }
+
+            private void mShowPeakMeterInsideObiMenuItem_Click(object sender, EventArgs e)
+            {
+                if (mPeakMeter != null)
+                {
+                    mPeakMeter.Close();
+                }
+                mProjectView.ShowPeakMeterInsideObi(mShowPeakMeterInsideObiMenuItem.Checked);
+            }
+
+            private void transportToolStripMenuItem_Click(object sender, EventArgs e)
+            {
 
             }
 

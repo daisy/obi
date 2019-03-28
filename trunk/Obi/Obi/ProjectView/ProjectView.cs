@@ -43,7 +43,7 @@ namespace Obi.ProjectView
         private bool m_SaveZoomWaveformZoomLevel;
         private double m_TotalCursorTime; // use to calulate time between two marks.   
         private bool m_IsCopyForMultiplePhrasesChecked = false;
-        private Obi.UserControls.GraphicalPeakMeter m_PeakMeter = new UserControls.GraphicalPeakMeter(); 
+        private Obi.UserControls.GraphicalPeakMeter m_PeakMeterInsideObi;
                   
     
         /// <summary>
@@ -1928,6 +1928,8 @@ namespace Obi.ProjectView
                     if (!mTOCView.Focused)
                         FocusOnContentView ();
                     }
+                if(mMetadataSplitter.Panel1.Controls.Contains(m_PeakMeterInsideObi))
+                m_PeakMeterInsideObi.Size = new System.Drawing.Size(40, mMetadataSplitter.Panel1.Height - 5);
                 }
             }
 
@@ -7487,6 +7489,65 @@ public bool ShowOnlySelectedSection
 
             
             return pasteCommand;
+        }
+
+        public bool IsPeakMeterInsideObiActive
+        {
+            get
+            {
+                return this.mMetadataSplitter.Panel1.Controls.Contains(m_PeakMeterInsideObi);
+            }
+        }
+
+        public void ShowPeakMeterInsideObi(bool IsChecked)
+        {
+            if (m_PeakMeterInsideObi == null)
+            {
+                m_PeakMeterInsideObi = new UserControls.GraphicalPeakMeter();
+            }
+            if (m_PeakMeterInsideObi != null)
+            {
+                if (IsChecked)
+                {
+                    double tempWidth = m_PeakMeterInsideObi.Width;
+                    this.mMetadataSplitter.Panel1.Controls.Add(m_PeakMeterInsideObi);
+                    mTOCView.Dock = DockStyle.None;
+                    tempWidth = m_PeakMeterInsideObi.Width;
+                    m_PeakMeterInsideObi.MinimumSize = new System.Drawing.Size(40, m_PeakMeterInsideObi.MinimumSize.Height);
+                    m_PeakMeterInsideObi.Size = new System.Drawing.Size(40, mMetadataSplitter.Panel1.Height - 5);
+                    mTOCView.Size = new System.Drawing.Size(mMetadataSplitter.Panel1.Size.Width - m_PeakMeterInsideObi.Size.Width - 5, mTOCView.Size.Height);
+                    m_PeakMeterInsideObi.Location = new Point(mTOCView.Size.Width + (m_PeakMeterInsideObi.Width / 12), 0);
+                    m_PeakMeterInsideObi.BringToFront();
+                    mTOCView.Dock = DockStyle.Left;
+                    this.mMetadataSplitter.Resize += new EventHandler(mMetadataSplitter_Resize);
+                    m_PeakMeterInsideObi.SourceVuMeter = this.TransportBar.VuMeter;
+                }
+                else
+                {
+                    RemovePeakMeterInsideObi();
+                }
+            }
+        }
+        public void RemovePeakMeterInsideObi()
+        {
+            if (m_PeakMeterInsideObi != null)
+            {
+                this.mMetadataSplitter.Panel1.Controls.Remove(m_PeakMeterInsideObi);
+                this.mMetadataSplitter.Resize -= new EventHandler(mMetadataSplitter_Resize);
+                mTOCView.Dock = DockStyle.Fill;
+                m_PeakMeterInsideObi = null;
+            }
+        }
+
+        private void mMetadataSplitter_Resize(object sender, EventArgs e)
+        {
+            if (IsPeakMeterInsideObiActive)
+            {
+                m_PeakMeterInsideObi.Size = new System.Drawing.Size(40, mMetadataSplitter.Panel1.Height - 5);
+                mTOCView.Size = new System.Drawing.Size(mMetadataSplitter.Panel1.Size.Width - m_PeakMeterInsideObi.Width - 5, mTOCView.Size.Height);
+                m_PeakMeterInsideObi.Location = new Point(mTOCView.Size.Width + (m_PeakMeterInsideObi.Width / 12), 0);
+                m_PeakMeterInsideObi.BringToFront();
+            }
         }
 
 

@@ -340,6 +340,9 @@ public bool Project_ImportNCCFileWithWindows1252Encoding ; // useful for importi
         [OptionalField]
         public bool Project_DisplayWarningsForSectionDelete;
 
+        [OptionalField]
+        public bool ShowGraphicalPeakMeterInsideObiAtStartup;
+
         protected static void InitializeDefaultSettings(Settings settings)
         {
             settings.Audio_Channels = 1;
@@ -495,6 +498,7 @@ public bool Project_ImportNCCFileWithWindows1252Encoding ; // useful for importi
             //Post Obi 4.3
             settings.Audio_RecordUsingSingleKeyFromTOC = false;
             settings.Project_DisplayWarningsForSectionDelete = false;
+            settings.ShowGraphicalPeakMeterInsideObiAtStartup = false;
         }
 
         /// <summary>
