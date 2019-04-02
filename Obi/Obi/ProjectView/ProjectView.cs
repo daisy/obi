@@ -2543,6 +2543,8 @@ namespace Obi.ProjectView
                     if (!MetadataViewVisible) mTOCSplitter.Panel1Collapsed = true;
                     }
                 mMetadataSplitter.Panel1Collapsed = !value;
+                if (mMetadataSplitter.Panel1.Controls.Contains(m_PeakMeterInsideObi))
+                    m_PeakMeterInsideObi.Size = new System.Drawing.Size(40, mMetadataSplitter.Panel1.Height - 5);
                 }
             }
 
