@@ -6500,14 +6500,14 @@ ref string exportDirectoryEPUB3)
             }
 
 
-            private void m_AddViewCommentToolStripMenuItem_Click(object sender, EventArgs e)
+            private void m_AddViewCommentToolStripMenuItem_Click(object sender, EventArgs e) // @Comment-todo
             {
                 mProjectView.ShowEditLabelToAddNote();
             }
 
-            private void m_ClearCommentToolStripMenuItem_Click(object sender, EventArgs e)
+            private void m_ClearCommentToolStripMenuItem_Click(object sender, EventArgs e) // @Comment-todo
             {
-                    mProjectView.ClearNote();               
+                    mProjectView.ClearComment();               
 
             }
 

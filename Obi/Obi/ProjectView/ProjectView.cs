@@ -182,12 +182,12 @@ namespace Obi.ProjectView
                 }
             }
 
-            public bool ShowEditLabelToAddNote()
+            public bool ShowEditLabelToAddNote() // @Comment-todo
             {
               return mContentView.ShowEditLabelToAddComment();
             }
 
-            public void ClearNote()
+            public void ClearComment() // @Comment-todo
             {
                 mContentView.ClearComment();
             }
@@ -1017,13 +1017,13 @@ namespace Obi.ProjectView
                 }
                 else if (CanRemoveAudio)
                 {
-                    string tempCommentText = string.Empty; // Re-visit this code snippet after comment Text is done in xuk
+                    string tempCommentText = string.Empty; // @Comment-todo 
                     if (this.Selection.Node is EmptyNode && (this.Selection.Node as EmptyNode).CommentText != null)
                     {
                         tempCommentText = (this.Selection.Node as EmptyNode).CommentText;
                     }
                     mPresentation.Do(Commands.Audio.Delete.GetCommand(this));
-                    if (tempCommentText != string.Empty)
+                    if (tempCommentText != string.Empty) // @Comment-todo
                     {
                         (this.Selection.Node as EmptyNode).CommentText = tempCommentText;
                         Block tempBlock = mContentView.FindBlock(this.Selection.Node as EmptyNode);
