@@ -32,7 +32,7 @@ namespace Obi.ProjectView
             node.ChangedRole += new EmptyNode.ChangedRoleEventHandler(Node_ChangedKind);
             node.ChangedPageNumber += new NodeEventHandler<EmptyNode>(Node_ChangedPageNumber);
             node.ChangedTODOStatus += new NodeEventHandler<EmptyNode>(Node_ChangedTODOStatus);
-            node.ChangedComment += new NodeEventHandler<EmptyNode>(node_ChangedComment);
+            node.ChangedComment += new NodeEventHandler<EmptyNode>(node_ChangedComment); // @Comment-todo
             ((ObiPresentation)node.Presentation).UsedStatusChanged += new NodeEventHandler<ObiNode>(Presentation_UsedStatusChanged);
             UpdateColors();
             UpdateLabel();
@@ -136,14 +136,14 @@ namespace Obi.ProjectView
             {
                 mLabel.Font = new Font(Font.FontFamily, zoom * mBaseFontSize);
                 Size = new Size(LabelFullWidth, height - Margin.Vertical);
-                if (Node.CommentText != null)
+                if (Node.CommentText != null)   // @Comment-todo
                 {
                     AlignLabelToShowCommentIcon();
                 }
             }
         }
 
-        public void AlignLabelToShowCommentIcon()
+        public void AlignLabelToShowCommentIcon()  // @Comment-todo
         {
             if (Node.CommentText != null)
             {
@@ -196,7 +196,7 @@ namespace Obi.ProjectView
         /// <summary>
         /// Update label and tooltips.
         /// </summary>
-        public virtual void UpdateLabelsText()
+        public virtual void UpdateLabelsText()  // @Comment-todo
         {
             if (InvokeRequired)
             {
@@ -304,7 +304,7 @@ namespace Obi.ProjectView
             UpdateLabel();
         }
 
-        void node_ChangedComment(object sender, NodeEventArgs<EmptyNode> e)
+        void node_ChangedComment(object sender, NodeEventArgs<EmptyNode> e) // @Comment-todo
         {
             UpdateLabel();
             AlignLabelToShowCommentIcon();

@@ -46,7 +46,7 @@ namespace Obi
         private static readonly string XUK_ATTR_NAME_AssociateNode = "ANode"; //attribute for associate node location
         private string m_AssociatedNodeLocation;                              //@AssociateNode
         private double m_TODOCursorPosition = 0;
-        private string m_CommentText;
+        private string m_CommentText; // @Comment-todo
         
 
         /// <summary>
@@ -288,7 +288,7 @@ private static Dictionary <string,string> m_SkippableLocalizedNameMap = null ;
             set { mTODO = value;  }
         }
 
-        public string CommentText
+        public string CommentText // @Comment-todo
         {
             get { return m_CommentText; }
             set
@@ -565,7 +565,7 @@ private static Dictionary <string,string> m_SkippableLocalizedNameMap = null ;
                     if (todoTime != null) double.TryParse (todoTime, out m_TODOCursorPosition);
 
                     string TodoText = source.GetAttribute(XUK_ATTR_NAME_TODOTEXT);
-                    if (TodoText != null) m_CommentText = TodoText;
+                    if (TodoText != null) m_CommentText = TodoText;  // @Comment-todo
                 }
                 m_AssociatedNodeLocation = source.GetAttribute(XUK_ATTR_NAME_AssociateNode);  //@AssociateNode
 
@@ -615,7 +615,7 @@ private static Dictionary <string,string> m_SkippableLocalizedNameMap = null ;
                 {
                     wr.WriteAttributeString(XUK_ATTR_NAME_TODO, "True");
                     if (m_TODOCursorPosition > 0) wr.WriteAttributeString(XUK_ATTR_NAME_TODOTIME, m_TODOCursorPosition.ToString());
-                    if (!string.IsNullOrEmpty(m_CommentText)) wr.WriteAttributeString(XUK_ATTR_NAME_TODOTEXT, m_CommentText);
+                    if (!string.IsNullOrEmpty(m_CommentText)) wr.WriteAttributeString(XUK_ATTR_NAME_TODOTEXT, m_CommentText); // @Comment-todo
                 }
                 if (AssociatedNode != null && AssociatedNode.IsRooted)       //@AssociateNode
                 {

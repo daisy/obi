@@ -33,7 +33,7 @@ namespace Obi.ProjectView
             mButtonsBaseFontSize = mOKButton.Font.SizeInPoints;
             mLabelBaseFontSize = mLabel.Font.SizeInPoints;
         }
-        public EditableLabel(EmptyNode node)
+        public EditableLabel(EmptyNode node) // @Comment-todo
         {
             m_Node = node;
             InitializeComponent();
@@ -66,7 +66,7 @@ namespace Obi.ProjectView
                     mLabel.Visible = !mEditable;
                     if (mEditable)
                     {
-                        if (!m_EditPhraseComment)
+                        if (!m_EditPhraseComment) // @Comment-todo
                         {
                             mTextBox.Text = mLabel.Text;
                         }
@@ -79,7 +79,7 @@ namespace Obi.ProjectView
             }
         }
 
-        public string CommentText
+        public string CommentText // @Comment-todo
         {
             get
             {
@@ -148,7 +148,7 @@ namespace Obi.ProjectView
             System.Diagnostics.Debug.Assert(mEditable,
                 "This button cannot be clicked when the label is not editable.");
             Editable = false;
-            if (m_EditPhraseComment)
+            if (m_EditPhraseComment) // @Comment-todo
             {
                 if (CloseComment != null) CloseComment(this, new EventArgs());
             }
@@ -162,7 +162,7 @@ namespace Obi.ProjectView
         {
             System.Diagnostics.Debug.Assert(mEditable,
                 "This button cannot be clicked when the label is not editable.");
-            if (m_EditPhraseComment && m_Node != null)
+            if (m_EditPhraseComment && m_Node != null) // @Comment-todo
             {
                 //m_Node.CommentText = mTextBox.Text;
                 m_CommentText = mTextBox.Text;
@@ -179,7 +179,7 @@ namespace Obi.ProjectView
         {
             if (e.KeyCode == Keys.Return)
             {
-                if (m_EditPhraseComment && m_Node != null)
+                if (m_EditPhraseComment && m_Node != null) // @Comment-todo
                 {
                     //m_Node.CommentText = mTextBox.Text;
                     m_CommentText = mTextBox.Text;
@@ -189,7 +189,7 @@ namespace Obi.ProjectView
             else if (e.KeyCode == Keys.Escape)
             {
                 Editable = false;
-                if (m_EditPhraseComment)
+                if (m_EditPhraseComment) // @Comment-todo
                 {
                     if (CloseComment != null) CloseComment(this, new EventArgs());
                 }
@@ -204,7 +204,7 @@ namespace Obi.ProjectView
             mCancelButton.Location =
                 new Point(mOKButton.Location.X + mOKButton.Width + mOKButton.Margin.Right + mCancelButton.Margin.Left, h);
             int wlabel = mLabel.Location.X + mLabel.Width + mLabel.Margin.Right;
-            if (m_EditPhraseComment)
+            if (m_EditPhraseComment) // @Comment-todo
             {
                 wlabel = wlabel * 4;
                 mLabel.Text = string.Empty;
@@ -219,7 +219,7 @@ namespace Obi.ProjectView
         // Update the text in the label/textbox
         private void UpdateText()
         {
-            if (!m_EditPhraseComment)
+            if (!m_EditPhraseComment) // @Comment-todo
             {
                 if (mTextBox.Text != "")
                 {

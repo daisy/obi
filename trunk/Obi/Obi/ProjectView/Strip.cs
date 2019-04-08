@@ -1372,7 +1372,7 @@ namespace Obi.ProjectView
             AddContentsViewLabel();
             mLabel.Focus();
             if ((mContentView.SelectedSection != mNode || mContentView.Selection is StripIndexSelection) &&
-                !mContentView.Focusing && !this.IsCommentEditLabelActive)
+                !mContentView.Focusing && !this.IsCommentEditLabelActive) // @Comment-todo
             {
                 mContentView.SelectedNode = mNode;
             }
@@ -1799,14 +1799,14 @@ int boundaryWidth = mContentView.ClientRectangle.Width - Margin.Horizontal;
         {
             if (mContentView != null )  mContentView.SizeChanged -= new EventHandler(Resize_View);
         }
-        public bool IsCommentEditLabelActive
+        public bool IsCommentEditLabelActive // @Comment-todo
         {
             get
             {
                 return this.Controls.Contains(m_EditableLabel);
             }
         }
-        public void ShowEditLabelToAddComment()
+        public void ShowEditLabelToAddComment() // @Comment-todo
         {
             EditableLabel editLabel = new EditableLabel(mContentView.Selection.Node as EmptyNode);
             this.Controls.Add(editLabel);
@@ -1820,7 +1820,7 @@ int boundaryWidth = mContentView.ClientRectangle.Width - Margin.Horizontal;
             editLabel.CloseComment += new EventHandler(EditLabel_CloseAddComment);
         }
 
-        private void EditableLabel_AddComment(object sender, EventArgs e)
+        private void EditableLabel_AddComment(object sender, EventArgs e)  // @Comment-todo
         {
             Block tempBlock = FindBlock(m_SelectedNodeToAddComment);
             if (tempBlock != null)
@@ -1836,12 +1836,12 @@ int boundaryWidth = mContentView.ClientRectangle.Width - Margin.Horizontal;
             }
         }
 
-        private void EditLabel_CloseAddComment(object sender, EventArgs e)
+        private void EditLabel_CloseAddComment(object sender, EventArgs e)  // @Comment-todo
         {
             RemoveEditLabelControlForAddingComment(true);
         }
 
-        public void RemoveEditLabelControlForAddingComment(bool IsCloseAddComment = false)
+        public void RemoveEditLabelControlForAddingComment(bool IsCloseAddComment = false) // @Comment-todo
         {
             m_EditableLabel.AddComment -= new EventHandler(EditableLabel_AddComment);
             m_EditableLabel.CloseComment -= new EventHandler(EditLabel_CloseAddComment);
@@ -1882,7 +1882,7 @@ int boundaryWidth = mContentView.ClientRectangle.Width - Margin.Horizontal;
 
             this.Controls.Remove(m_EditableLabel);
         }
-        public void AlignCommentEditLabel()
+        public void AlignCommentEditLabel() // @Comment-todo
         {
 
             Block tempBlock = FindBlock(m_SelectedNodeToAddComment);
@@ -1900,7 +1900,7 @@ int boundaryWidth = mContentView.ClientRectangle.Width - Margin.Horizontal;
                 m_EditableLabel.Location = new Point(tempVal, tempBlock.Location.Y);
             }
         }
-        public void AlignLabelToShowCommentIcon()
+        public void AlignLabelToShowCommentIcon() // @Comment-todo
         {
             if (mContentView.Selection.Node is EmptyNode)
             {

@@ -3164,10 +3164,6 @@ if (thresholdAboveLastNode >= stripControl.Node.PhraseChildCount) thresholdAbove
         m_StripPanelPreviousWidth = mStripsPanel.Width;
             if ( verticalScrollToolStripContainer1 != null && !verticalScrollToolStripContainer1.CanScrollDown && mStripsPanel.Location.Y + mStripsPanel.Height > mHScrollBar.Location.Y )
                  UpdateVerticalScrolPanelButtons () ;
-            //if (this.ActiveStrip != null && this.ActiveStrip.IsCommentEditLabelActive)
-            //{
-            //    this.ActiveStrip.AlignCommentEditLabel();
-            //}
             }
 
         public void RecreateContentsWhileInitializingRecording(EmptyNode recordingResumePhrase)
@@ -3950,7 +3946,7 @@ if (thresholdAboveLastNode >= stripControl.Node.PhraseChildCount) thresholdAbove
             mShortcutKeys[keyboardShortcuts.ContentView_TransportBarRecordSingleKey.Value] = mProjectView.TransportBar.Record_Button;
             mShortcutKeys[keyboardShortcuts.ContentView_TransportBarStopSingleKey.Value] = mProjectView.TransportBar.Stop ;
 
-            mShortcutKeys[keyboardShortcuts.ContentView_AddComment.Value] = ShowEditLabelToAddComment;
+            mShortcutKeys[keyboardShortcuts.ContentView_AddComment.Value] = ShowEditLabelToAddComment; // @Comment-todo
         }
 
         public void AssignShotcutToContextMenu()
@@ -4112,7 +4108,7 @@ if (thresholdAboveLastNode >= stripControl.Node.PhraseChildCount) thresholdAbove
             ContextPasteMultiplePhrasesToolStripMenuItem.ShortcutKeyDisplayString = ObiForm.RefineKeyboardShortcutStringForAccessibleName(keyboardShortcuts.FormatKeyboardShorcut(keyboardShortcuts.MenuNameDictionary["m_pasteMultiplePhrasesToolStripMenuItem"].Value.ToString()));
             ContextPasteMultiplePhrasesToolStripMenuItem.AccessibleName = ContextPasteMultiplePhrasesToolStripMenuItem.Text.Replace("&", "") + " " + ContextPasteMultiplePhrasesToolStripMenuItem.ShortcutKeyDisplayString;
 
-            Context_AddViewCommentMenuItem.ShortcutKeyDisplayString = ObiForm.RefineKeyboardShortcutStringForAccessibleName(keyboardShortcuts.FormatKeyboardShorcut(keyboardShortcuts.ContentView_AddComment.Value.ToString()));
+            Context_AddViewCommentMenuItem.ShortcutKeyDisplayString = ObiForm.RefineKeyboardShortcutStringForAccessibleName(keyboardShortcuts.FormatKeyboardShorcut(keyboardShortcuts.ContentView_AddComment.Value.ToString())); // @Comment-todo
             Context_AddViewCommentMenuItem.AccessibleName = Context_AddViewCommentMenuItem.Text.Replace("&", "") + " " + Context_AddViewCommentMenuItem.ShortcutKeyDisplayString;
 
         }
@@ -4121,7 +4117,7 @@ if (thresholdAboveLastNode >= stripControl.Node.PhraseChildCount) thresholdAbove
         
         protected override bool ProcessCmdKey ( ref Message msg, Keys key )
             {
-                if (this.ActiveStrip.IsCommentEditLabelActive)
+                if (this.ActiveStrip.IsCommentEditLabelActive) // @Comment-todo
                 {
                     return false;
                 }
@@ -5264,7 +5260,7 @@ if (thresholdAboveLastNode >= stripControl.Node.PhraseChildCount) thresholdAbove
             ContextBeginMarkToolStripMenuItem.Enabled = mProjectView.CanBeginSpecialNote;
             ContextEndMarkToolStripMenuItem.Enabled = mProjectView.CanEndSpecialNote;
             ContextPasteMultiplePhrasesToolStripMenuItem.Enabled = !mProjectView.TransportBar.IsRecorderActive && mProjectView.CanPasteMultiplePhrases && !Settings.Project_ReadOnlyMode;
-            Context_CommentMenuItem.Enabled = Context_AddViewCommentMenuItem.Enabled = Context_ClearCommentMenuItem.Enabled = mProjectView.IsBlockSelected || mProjectView.TransportBar.IsPlayerActive;
+            Context_CommentMenuItem.Enabled = Context_AddViewCommentMenuItem.Enabled = Context_ClearCommentMenuItem.Enabled = mProjectView.IsBlockSelected || mProjectView.TransportBar.IsPlayerActive; // @Comment-todo
             }
 
         private bool CanSetSelectedPhraseUsedStatus
@@ -5603,7 +5599,7 @@ Block lastBlock = ActiveStrip.LastBlock ;
             {
                 UpdateVerticalScrolPanelButtons();
             }
-            if (this.ActiveStrip != null && this.ActiveStrip.IsCommentEditLabelActive)
+            if (this.ActiveStrip != null && this.ActiveStrip.IsCommentEditLabelActive) // @Comment-todo
             {
                 this.ActiveStrip.AlignCommentEditLabel();
             }
@@ -5623,7 +5619,7 @@ Block lastBlock = ActiveStrip.LastBlock ;
         //@singleSection
         private void ProjectView_SelectionChanged ( object sender, EventArgs e )
             {
-                if (this.ActiveStrip != null && this.ActiveStrip.IsCommentEditLabelActive)
+                if (this.ActiveStrip != null && this.ActiveStrip.IsCommentEditLabelActive) // @Comment-todo
                 {
                     this.ActiveStrip.RemoveEditLabelControlForAddingComment();
                 }
@@ -5991,7 +5987,7 @@ Block lastBlock = ActiveStrip.LastBlock ;
         {
             mProjectView.SplitAndMerge(mergeWithNext);
         }
-        public bool ShowEditLabelToAddComment()
+        public bool ShowEditLabelToAddComment() // @Comment-todo
         {
             if (mProjectView.Selection != null && mProjectView.TransportBar.IsPlayerActive)
             {
@@ -6017,7 +6013,7 @@ Block lastBlock = ActiveStrip.LastBlock ;
             return false;
         }
 
-        public void MarkTODOAndAddComment(string CommentText) 
+        public void MarkTODOAndAddComment(string CommentText)  // @Comment-todo
         {
             if (mProjectView.Selection.Node is EmptyNode)
             {
@@ -6044,7 +6040,7 @@ Block lastBlock = ActiveStrip.LastBlock ;
             }
         }
 
-        private void AddCommentOnTodoPhrase(string CommentText)
+        private void AddCommentOnTodoPhrase(string CommentText) // @Comment-todo
         {
             Commands.Node.AddComment addCommentCmd;
             if (CommentText != null && CommentText != string.Empty)
@@ -6065,10 +6061,10 @@ Block lastBlock = ActiveStrip.LastBlock ;
                 MessageBox.Show(ex.ToString());
             }
         }
-            
-        
 
-        public void ClearComment()
+
+
+        public void ClearComment() // @Comment-todo
         {
             if (mProjectView.TransportBar.IsPlayerActive)
             {
@@ -6096,7 +6092,7 @@ Block lastBlock = ActiveStrip.LastBlock ;
                 }
             }
         }
-        public void ShowCommentIconInZoomWaveform()
+        public void ShowCommentIconInZoomWaveform() // @Comment-todo
         {
             m_ZoomWaveformPanel.ShowCommentIconInZoomWaveform();
         }
@@ -6217,12 +6213,12 @@ Block lastBlock = ActiveStrip.LastBlock ;
             mProjectView.PasteMultiplePhrases();
         }
 
-        private void Context_AddViewCommentMenuItem_Click(object sender, EventArgs e)
+        private void Context_AddViewCommentMenuItem_Click(object sender, EventArgs e) // @Comment-todo
         {
             this.ShowEditLabelToAddComment();
         }
 
-        private void Context_ClearCommentMenuItem_Click(object sender, EventArgs e)
+        private void Context_ClearCommentMenuItem_Click(object sender, EventArgs e) // @Comment-todo
         {
             this.ClearComment();
         }

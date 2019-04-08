@@ -48,7 +48,7 @@ namespace Obi.ProjectView
         private Image m_PreserveZoomCheckedImage;
         private Image m_PreserveZoomUnCheckedImage;
         private EditableLabel m_EditableLabel;
-        private EmptyNode m_SelectedNodeToAddComment;
+        private EmptyNode m_SelectedNodeToAddComment; // @Comment-todo
            
 
         private KeyboardShortcuts_Settings keyboardShortcuts;
@@ -90,7 +90,7 @@ namespace Obi.ProjectView
         public ColorSettings ColorSettings { get { return m_ColorSettings; } set { m_ColorSettings = value; } }
         public ContentView ContentView { get { return m_ContentView; } }
         public Strip Strip { get { return m_Strip; } }
-        public bool IsCommentEditLabelActive
+        public bool IsCommentEditLabelActive  // @Comment-todo
         {
             get
             {
@@ -151,8 +151,8 @@ namespace Obi.ProjectView
                 //btntxtZoomSelected.Text = " ";
                 //btntxtZoomSelected.Text += " " + m_ProjectView.Selection.ToString();
                 //btntxtZoomSelected.Text += " " + (m_ProjectView.GetSelectedPhraseSection != null ? m_ProjectView.GetSelectedPhraseSection.ToString() : "");
-               
-                if(this.Controls.Contains(m_EditableLabel))
+
+                if (this.Controls.Contains(m_EditableLabel)) // @Comment-todo
                 {
                     this.RemoveEditLabelControlForAddingComment();
                 }
@@ -210,7 +210,7 @@ namespace Obi.ProjectView
 
                 }
 
-                if (m_Node.CommentText != null && !(m_Node is PhraseNode) && m_Node is EmptyNode)
+                if (m_Node.CommentText != null && !(m_Node is PhraseNode) && m_Node is EmptyNode) // @Comment-todo
                 {
                     m_Block.AlignLabelToShowCommentIcon();
                 }
@@ -606,7 +606,7 @@ namespace Obi.ProjectView
                 panelZooomWaveform.Controls.Add(m_Block);
                 m_AudioBlock = null;
                 m_PhraseDuration = 0;
-                if(m_Node.CommentText != null)
+                if (m_Node.CommentText != null)  // @Comment-todo
                 m_Block.AlignLabelToShowCommentIcon();
 
             }
@@ -1284,7 +1284,7 @@ namespace Obi.ProjectView
             }
         }
 
-        public void ShowEditLabelToAddComment()
+        public void ShowEditLabelToAddComment() // @Comment-todo
         {
             EditableLabel editLabel = new EditableLabel(m_ContentView.Selection.Node as EmptyNode);
             this.Controls.Add(editLabel);
@@ -1297,12 +1297,12 @@ namespace Obi.ProjectView
             editLabel.AddComment += new EventHandler(EditableLabel_AddComment);
             editLabel.CloseComment += new EventHandler(EditLabel_CloseAddComment);
         }
-        private void EditLabel_CloseAddComment(object sender, EventArgs e)
+        private void EditLabel_CloseAddComment(object sender, EventArgs e) // @Comment-todo
         {
             RemoveEditLabelControlForAddingComment();
         }
 
-        private void EditableLabel_AddComment(object sender, EventArgs e)
+        private void EditableLabel_AddComment(object sender, EventArgs e) // @Comment-todo
         {
             Block tempBlock = m_Block;
             if (tempBlock != null)
@@ -1316,7 +1316,7 @@ namespace Obi.ProjectView
             }
         }
 
-        public void RemoveEditLabelControlForAddingComment()
+        public void RemoveEditLabelControlForAddingComment() // @Comment-todo
         {
             m_EditableLabel.AddComment -= new EventHandler(EditableLabel_AddComment);
             m_EditableLabel.CloseComment -= new EventHandler(EditLabel_CloseAddComment);
@@ -1336,7 +1336,7 @@ namespace Obi.ProjectView
                 }
             }
 
-            if (TimeOfCursor != 0 && m_SelectedNodeToAddComment is PhraseNode)
+            if (TimeOfCursor != 0 && m_SelectedNodeToAddComment is PhraseNode) 
             {
                 m_ContentView.Selection = new AudioSelection((PhraseNode)m_SelectedNodeToAddComment, m_ContentView,
                     new AudioRange(TimeOfCursor));
@@ -1353,11 +1353,11 @@ namespace Obi.ProjectView
 
             this.Controls.Remove(m_EditableLabel);
         }
-        public void AlignCommentEditLabel()
+        public void AlignCommentEditLabel() // @Comment-todo
         {
                 m_EditableLabel.Location = new Point(0,0);  
         }
-        public void ClearComment()
+        public void ClearComment() // @Comment-todo
         {
             if (m_ProjectView.Selection.Node is EmptyNode)
             {
@@ -1366,7 +1366,7 @@ namespace Obi.ProjectView
             }
             m_Block.UpdateLabelsText();
         }
-        public void ShowCommentIconInZoomWaveform()
+        public void ShowCommentIconInZoomWaveform() // @Comment-todo
         {
             m_Block.UpdateLabelsText();
             m_Block.AlignLabelToShowCommentIcon();
