@@ -939,11 +939,15 @@ namespace Obi.ProjectView
                         command.ShortDescription = Localizer.Message("cut_audio");
                         urakawa.command.Command delete = Commands.Audio.Delete.GetCommand(this);
                         PhraseNode deleted = delete is Commands.Audio.Delete ?
-                            ((Commands.Audio.Delete)delete).Deleted : (PhraseNode)Selection.Node;
+                            ((Commands.Audio.Delete)delete).Deleted : (PhraseNode)Selection.Node;                        
                         command.ChildCommands.Insert(command.ChildCommands.Count, new Commands.Audio.Copy(this, deleted,
                             new AudioRange(0.0, deleted.Audio.Duration.AsMilliseconds)));
                         command.ChildCommands.Insert(command.ChildCommands.Count, delete);
                         mPresentation.Do(command);
+                        if ((deleted as EmptyNode).CommentText != null) // @Comment-todo 
+                        {
+                            mContentView.AddCommentOnTodoPhrase((deleted as EmptyNode).CommentText);
+                        }
                     }
             }
             catch (System.Exception ex)
@@ -1025,14 +1029,7 @@ namespace Obi.ProjectView
                     mPresentation.Do(Commands.Audio.Delete.GetCommand(this));
                     if (tempCommentText != string.Empty) // @Comment-todo
                     {
-                        (this.Selection.Node as EmptyNode).CommentText = tempCommentText;
-                        Block tempBlock = mContentView.FindBlock(this.Selection.Node as EmptyNode);
-                        tempBlock.UpdateLabelsText();
-                        tempBlock.AlignLabelToShowCommentIcon();
-                        if (mContentView.IsZoomWaveformActive)
-                        {
-                            mContentView.ShowCommentIconInZoomWaveform();
-                        }
+                        mContentView.AddCommentOnTodoPhrase(tempCommentText);
                     }
                 }
                 else if (CanRemoveMetadata)

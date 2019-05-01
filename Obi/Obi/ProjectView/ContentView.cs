@@ -6040,7 +6040,7 @@ Block lastBlock = ActiveStrip.LastBlock ;
             }
         }
 
-        private void AddCommentOnTodoPhrase(string CommentText) // @Comment-todo
+        public void AddCommentOnTodoPhrase(string CommentText) // @Comment-todo
         {
             Commands.Node.AddComment addCommentCmd;
             if (CommentText != null && CommentText != string.Empty)
