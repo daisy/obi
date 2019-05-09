@@ -4067,15 +4067,20 @@ SelectionChangedPlaybackEnabled = false;
                 node = (EmptyNode)mCurrentPlaylist.CurrentPhrase;
                 if (node != null)
                 {
+
+                    if (node.CommentText != null && node.CommentText != string.Empty)
+                        mView.Presentation.UndoRedoManager.Execute(new Commands.Node.AddComment(mView, node, null));
+
                     mView.Presentation.Changed -= new EventHandler<urakawa.events.DataModelChangedEventArgs>(Presentation_Changed);
                     if (node is PhraseNode && node.Duration > 0 && mCurrentPlaylist != null)
                     {
-                        mView.Presentation.UndoRedoManager.Execute(new Commands.Node.ToggleNodeTODO(mView, node, mCurrentPlaylist.CurrentTimeInAsset));
+                        mView.Presentation.UndoRedoManager.Execute(new Commands.Node.ToggleNodeTODO(mView, node, mCurrentPlaylist.CurrentTimeInAsset));                       
                 }
                 else
                     {
                     mView.Presentation.UndoRedoManager.Execute(new Commands.Node.ToggleNodeTODO(mView, node));
                 }
+
                     mView.Presentation.Changed += new EventHandler<urakawa.events.DataModelChangedEventArgs>(Presentation_Changed);
                 }
 
@@ -4089,10 +4094,19 @@ SelectionChangedPlaybackEnabled = false;
                 AudioSelection selection = mView.Selection as AudioSelection;
                 double todoTime = selection.AudioRange.HasCursor ? selection.AudioRange.CursorTime :
                     selection.AudioRange.SelectionBeginTime;
-                if (todoTime > 0 && todoTime < node.Duration) mView.Presentation.UndoRedoManager.Execute(new Commands.Node.ToggleNodeTODO(mView, node, todoTime));
+                if (todoTime > 0 && todoTime < node.Duration)
+                {
+                    if (node.CommentText != null && node.CommentText != string.Empty)
+                        mView.Presentation.UndoRedoManager.Execute(new Commands.Node.AddComment(mView, node, null));
+
+                    mView.Presentation.UndoRedoManager.Execute(new Commands.Node.ToggleNodeTODO(mView, node, todoTime));
+                }
             }
             else
             {
+                if (node.CommentText != null && node.CommentText != string.Empty)
+                    mView.Presentation.UndoRedoManager.Execute(new Commands.Node.AddComment(mView, node, null));
+
                 mView.Presentation.UndoRedoManager.Execute(new Commands.Node.ToggleNodeTODO(mView, node));
             }
             mView.Presentation.Changed += new EventHandler<urakawa.events.DataModelChangedEventArgs> ( Presentation_Changed );
