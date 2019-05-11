@@ -5989,6 +5989,13 @@ Block lastBlock = ActiveStrip.LastBlock ;
         }
         public bool ShowEditLabelToAddComment() // @Comment-todo
         {
+            if (mProjectView.TransportBar.IsRecording)
+            {
+                if (mProjectView.TransportBar.RecordingPhrase != this.Selection.Node)
+                {
+                    this.Selection = new NodeSelection(mProjectView.TransportBar.RecordingPhrase, this.Selection.Control);
+                }
+            }
             if (mProjectView.Selection != null && mProjectView.TransportBar.IsPlayerActive)
             {
                 mProjectView.TransportBar.Pause();
