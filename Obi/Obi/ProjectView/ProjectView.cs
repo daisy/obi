@@ -182,7 +182,7 @@ namespace Obi.ProjectView
                 }
             }
 
-            public bool ShowEditLabelToAddNote() // @Comment-todo
+            public bool ShowEditLabelToAddComment() // @Comment-todo
             {
               return mContentView.ShowEditLabelToAddComment();
             }
@@ -4231,7 +4231,7 @@ for (int j = 0;
             mShortcutKeys[keyboardShortcuts.ContentView_TransportBarExpandPlayOptions.Value] = delegate() { return TransportBar.ExpandPlayOptions(); };
             mShortcutKeys[keyboardShortcuts.ContentView_TransportBarExpandRecordOptions.Value] = delegate() { return TransportBar.ExpandRecordOptions(); };
             mShortcutKeys[keyboardShortcuts.ContentView_TransportBarExpandSwitchProfile.Value] = delegate() { return TransportBar.ExpandSwitchProfile(); };
-            mShortcutKeys[keyboardShortcuts.ContentView_AddComment.Value] = this.ShowEditLabelToAddNote;
+            mShortcutKeys[keyboardShortcuts.ContentView_AddComment.Value] = this.ShowEditLabelToAddComment;
             mTransportBar.InitializeTooltipsForTransportpar();
 
           //  mContentView.AssignShotcutToContextMenu();
