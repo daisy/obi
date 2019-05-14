@@ -2068,6 +2068,7 @@ m_cb_ChooseFont.Visible = false;
                     mSettings.Audio_AutoPlayAfterRecordingStops = false;
                     mSettings.Audio_RevertOverwriteBehaviourForRecordOnSelection = false;
                     mSettings.Audio_RemoveAccentsFromDaisy2ExportFileNames = false;
+                    mSettings.Audio_RecordUsingSingleKeyFromTOC = false;
 
                     mSettings.Audio_DefaultGap = 300;
                     mSettings.Audio_PreviewDuration = 1500;
@@ -2143,6 +2144,7 @@ m_cb_ChooseFont.Visible = false;
                     mSettings.Audio_AutoPlayAfterRecordingStops = false;
                     mSettings.Audio_RevertOverwriteBehaviourForRecordOnSelection = false;
                     mSettings.Audio_RemoveAccentsFromDaisy2ExportFileNames = false;
+                    mSettings.Audio_RecordUsingSingleKeyFromTOC = false;
 
                     mSettings.Audio_DefaultGap = 300;
                     mSettings.Audio_PreviewDuration = 1500;
@@ -2217,6 +2219,7 @@ m_cb_ChooseFont.Visible = false;
                     mSettings.Audio_AutoPlayAfterRecordingStops = false;
                     mSettings.Audio_RevertOverwriteBehaviourForRecordOnSelection = false;
                     mSettings.Audio_RemoveAccentsFromDaisy2ExportFileNames = false;
+                    mSettings.Audio_RecordUsingSingleKeyFromTOC = false;
 
                     mSettings.Audio_DefaultGap = 300;
                     mSettings.Audio_PreviewDuration = 1500;
@@ -2291,6 +2294,7 @@ m_cb_ChooseFont.Visible = false;
                     mSettings.Audio_AutoPlayAfterRecordingStops = false;
                     mSettings.Audio_RevertOverwriteBehaviourForRecordOnSelection = false;
                     mSettings.Audio_RemoveAccentsFromDaisy2ExportFileNames = false;
+                    mSettings.Audio_RecordUsingSingleKeyFromTOC = false;
 
                     mSettings.Audio_DefaultGap = 300;
                     mSettings.Audio_PreviewDuration = 1500;
@@ -2368,6 +2372,7 @@ m_cb_ChooseFont.Visible = false;
                     mSettings.Audio_AutoPlayAfterRecordingStops = false;
                     mSettings.Audio_RevertOverwriteBehaviourForRecordOnSelection = false;
                     mSettings.Audio_RemoveAccentsFromDaisy2ExportFileNames = false;
+                    mSettings.Audio_RecordUsingSingleKeyFromTOC = true;
 
                     mSettings.Audio_DefaultGap = 600;
                     mSettings.Audio_PreviewDuration = 7000;
@@ -2443,6 +2448,7 @@ m_cb_ChooseFont.Visible = false;
                     mSettings.Audio_AutoPlayAfterRecordingStops = false;
                     mSettings.Audio_RevertOverwriteBehaviourForRecordOnSelection = false;
                     mSettings.Audio_RemoveAccentsFromDaisy2ExportFileNames = false;
+                    mSettings.Audio_RecordUsingSingleKeyFromTOC = true;
 
                     mSettings.Audio_DefaultGap = 600;
                     mSettings.Audio_PreviewDuration = 7000;
@@ -2519,6 +2525,7 @@ m_cb_ChooseFont.Visible = false;
                     mSettings.Audio_AutoPlayAfterRecordingStops = false;
                     mSettings.Audio_RevertOverwriteBehaviourForRecordOnSelection = false;
                     mSettings.Audio_RemoveAccentsFromDaisy2ExportFileNames = false;
+                    mSettings.Audio_RecordUsingSingleKeyFromTOC = true;
 
                     mSettings.Audio_DefaultGap = 600;
                     mSettings.Audio_PreviewDuration = 7000;
