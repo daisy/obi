@@ -372,7 +372,8 @@ namespace Obi
                 KeyboardShortcutsDescription.Add(Localizer.Message(ContentView_TransportBarExpandSwitchProfile.Description), ContentView_TransportBarExpandSwitchProfile);
 
             KeyboardShortcutsDescription.Add(Localizer.Message(ContentView_ZoomWaveformPanel.Description), ContentView_ZoomWaveformPanel);
-            KeyboardShortcutsDescription.Add(Localizer.Message(ContentView_AddComment.Description), ContentView_AddComment);
+            if (ContentView_AddComment == null) ContentView_AddComment = new KeyboardShortcut(Keys.M, "KeyS_AddCommentSingleKey");
+               KeyboardShortcutsDescription.Add(Localizer.Message(ContentView_AddComment.Description), ContentView_AddComment);
             KeyboardShortcutsDescription.Add(Localizer.Message(ContentView_TransportBarRecordSingleKey.Description), ContentView_TransportBarRecordSingleKey);
             KeyboardShortcutsDescription.Add(Localizer.Message(ContentView_TransportBarStopSingleKey.Description), ContentView_TransportBarStopSingleKey);
             KeyboardShortcutsDescription.Add(Localizer.Message(ContentView_FastPlayStepDown.Description), ContentView_FastPlayStepDown);
