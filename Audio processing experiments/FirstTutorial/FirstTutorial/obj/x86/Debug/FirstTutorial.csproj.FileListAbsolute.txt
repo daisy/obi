@@ -1,0 +1,19 @@
+D:\Users\Montana\Desktop\Tutorials\FirstTutorial\FirstTutorial\bin\Debug\FirstTutorial.exe
+D:\Users\Montana\Desktop\Tutorials\FirstTutorial\FirstTutorial\bin\Debug\FirstTutorial.pdb
+D:\Users\Montana\Desktop\Tutorials\FirstTutorial\FirstTutorial\bin\Debug\NAudio.dll
+D:\Users\Montana\Desktop\Tutorials\FirstTutorial\FirstTutorial\obj\x86\Debug\ResolveAssemblyReference.cache
+D:\Users\Montana\Desktop\Tutorials\FirstTutorial\FirstTutorial\obj\x86\Debug\FirstTutorial.Form1.resources
+D:\Users\Montana\Desktop\Tutorials\FirstTutorial\FirstTutorial\obj\x86\Debug\FirstTutorial.Properties.Resources.resources
+D:\Users\Montana\Desktop\Tutorials\FirstTutorial\FirstTutorial\obj\x86\Debug\GenerateResource.read.1.tlog
+D:\Users\Montana\Desktop\Tutorials\FirstTutorial\FirstTutorial\obj\x86\Debug\GenerateResource.write.1.tlog
+D:\Users\Montana\Desktop\Tutorials\FirstTutorial\FirstTutorial\obj\x86\Debug\FirstTutorial.exe
+D:\Users\Montana\Desktop\Tutorials\FirstTutorial\FirstTutorial\obj\x86\Debug\FirstTutorial.pdb
+H:\DAISY\Naudio Tutorial\FirstTutorial\FirstTutorial\obj\x86\Debug\FirstTutorial.exe
+H:\DAISY\Naudio Tutorial\FirstTutorial\FirstTutorial\obj\x86\Debug\FirstTutorial.pdb
+H:\DAISY\Naudio Tutorial\FirstTutorial\FirstTutorial\bin\Debug\FirstTutorial.exe
+H:\DAISY\Naudio Tutorial\FirstTutorial\FirstTutorial\bin\Debug\FirstTutorial.pdb
+H:\DAISY\Naudio Tutorial\FirstTutorial\FirstTutorial\obj\x86\Debug\FirstTutorial.csprojResolveAssemblyReference.cache
+H:\DAISY\Naudio Tutorial\FirstTutorial\FirstTutorial\obj\x86\Debug\FirstTutorial.Form1.resources
+H:\DAISY\Naudio Tutorial\FirstTutorial\FirstTutorial\obj\x86\Debug\FirstTutorial.Properties.Resources.resources
+H:\DAISY\Naudio Tutorial\FirstTutorial\FirstTutorial\obj\x86\Debug\FirstTutorial.csproj.GenerateResource.Cache
+H:\DAISY\Naudio Tutorial\FirstTutorial\FirstTutorial\bin\Debug\NAudio.dll
