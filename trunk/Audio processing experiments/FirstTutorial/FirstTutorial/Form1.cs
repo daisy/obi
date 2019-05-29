@@ -171,11 +171,13 @@ namespace FirstTutorial
         {
             string outputFileName = fileName.Substring(0, fileName.Length - 4);
             var outPath = outputFileName + "NoiseREduction.wav";
-            using (var reader = new WaveFileReader(open.FileName))
+            using (var reader = new AudioFileReader(open.FileName))
             {
-                var r = BiQuadFilter.LowPassFilter(44100, 1500, 1);
+                //var r = BiQuadFilter.LowPassFilter(44100, 1500, 1);
 
                 // reader is the source for filter
+                var filter = new MyWaveProvider(reader, 1500);
+                WaveFileWriter.CreateWaveFile16(outPath, filter);
                 
             }
 
