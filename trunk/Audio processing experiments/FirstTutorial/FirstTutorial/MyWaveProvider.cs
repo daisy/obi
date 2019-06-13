@@ -11,14 +11,17 @@ namespace FirstTutorial
     class MyWaveProvider : ISampleProvider
     {
         private ISampleProvider sourceProvider;
-        private float cutOffFreq;
+        private float lowCutOffFreq;
+        private float highCutOffFreq;
+
         private int channels;
         private BiQuadFilter[] filters;
 
-        public MyWaveProvider(ISampleProvider sourceProvider, int cutOffFreq)
+        public MyWaveProvider(ISampleProvider sourceProvider, int LowCutOffFreq, int HighCutOffFreqency)
         {
             this.sourceProvider = sourceProvider;
-            this.cutOffFreq = cutOffFreq;
+            this.lowCutOffFreq = LowCutOffFreq;
+            this.highCutOffFreq = HighCutOffFreqency;
 
             channels = sourceProvider.WaveFormat.Channels;
             filters = new BiQuadFilter[channels];
@@ -29,9 +32,16 @@ namespace FirstTutorial
         {
             for (int n = 0; n < channels; n++)
                 if (filters[n] == null)
-                    filters[n] = BiQuadFilter.LowPassFilter(44100, cutOffFreq, 1);
+                {
+                    filters[n] = BiQuadFilter.LowPassFilter(44100, lowCutOffFreq, 1);
+                    filters[n] = BiQuadFilter.HighPassFilter(44100, highCutOffFreq, 1);
+                }
                 else
-                    filters[n].SetLowPassFilter(44100, cutOffFreq, 1);
+                {
+
+                    filters[n].SetLowPassFilter(44100, lowCutOffFreq, 1);
+                    filters[n].SetHighPassFilter(44100, highCutOffFreq, 1);
+                }
         }
 
         public WaveFormat WaveFormat { get { return sourceProvider.WaveFormat; } }
