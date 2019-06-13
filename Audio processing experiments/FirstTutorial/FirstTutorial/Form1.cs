@@ -37,6 +37,7 @@ namespace FirstTutorial
             m_DecreaseAmplitudeButton.Enabled = true;
             FadeOutDurationButton.Enabled = true;
             FadeInDurationButton.Enabled = true;
+            m_NoiseReductionButton.Enabled = true;
 
         }
 
@@ -175,8 +176,10 @@ namespace FirstTutorial
             {
                 //var r = BiQuadFilter.LowPassFilter(44100, 1500, 1);
 
+                int LowCutOffFreqency = Int32.Parse(m_LowCutOffFrequencyTextBox.Text);
+                int HighCutOffFreqency = Int32.Parse(m_HighCutoffFrequencyTextBox.Text);
                 // reader is the source for filter
-                var filter = new MyWaveProvider(reader, 1500);
+                var filter = new MyWaveProvider(reader,LowCutOffFreqency,HighCutOffFreqency);
                 WaveFileWriter.CreateWaveFile16(outPath, filter);
                 
             }
