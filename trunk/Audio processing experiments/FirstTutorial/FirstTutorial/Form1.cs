@@ -180,7 +180,12 @@ namespace FirstTutorial
                 int HighCutOffFreqency = Int32.Parse(m_HighCutoffFrequencyTextBox.Text);
                 // reader is the source for filter
                 var filter = new MyWaveProvider(reader,LowCutOffFreqency,HighCutOffFreqency);
+                //var waveOut = new WaveOut();
+                //waveOut.Init(filter);
+                //waveOut.Play();
                 WaveFileWriter.CreateWaveFile16(outPath, filter);
+                //WaveFileWriter.CreateWaveFile(outPath, filter);
+
                 
             }
 
