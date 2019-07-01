@@ -46,10 +46,8 @@
             this.m_DecreaseAmplitudeComboBox = new System.Windows.Forms.ComboBox();
             this.m_DecreaseAmplitudeButton = new System.Windows.Forms.Button();
             this.m_NoiseReductionButton = new System.Windows.Forms.Button();
-            this.m_LowCutOffFrequencyTextBox = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
-            this.m_HighCutoffFrequencyTextBox = new System.Windows.Forms.TextBox();
-            this.label5 = new System.Windows.Forms.Label();
+            this.m_BandPassFrequencyTextBox = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // button1
@@ -224,7 +222,7 @@
             // m_NoiseReductionButton
             // 
             this.m_NoiseReductionButton.Enabled = false;
-            this.m_NoiseReductionButton.Location = new System.Drawing.Point(460, 382);
+            this.m_NoiseReductionButton.Location = new System.Drawing.Point(276, 388);
             this.m_NoiseReductionButton.Name = "m_NoiseReductionButton";
             this.m_NoiseReductionButton.Size = new System.Drawing.Size(157, 23);
             this.m_NoiseReductionButton.TabIndex = 18;
@@ -232,49 +230,30 @@
             this.m_NoiseReductionButton.UseVisualStyleBackColor = true;
             this.m_NoiseReductionButton.Click += new System.EventHandler(this.m_NoiseReductionButton_Click);
             // 
-            // m_LowCutOffFrequencyTextBox
-            // 
-            this.m_LowCutOffFrequencyTextBox.Location = new System.Drawing.Point(115, 385);
-            this.m_LowCutOffFrequencyTextBox.Name = "m_LowCutOffFrequencyTextBox";
-            this.m_LowCutOffFrequencyTextBox.Size = new System.Drawing.Size(100, 20);
-            this.m_LowCutOffFrequencyTextBox.TabIndex = 19;
-            this.m_LowCutOffFrequencyTextBox.Text = "1500";
-            // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(1, 387);
+            this.label4.Location = new System.Drawing.Point(-2, 393);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(114, 13);
+            this.label4.Size = new System.Drawing.Size(111, 13);
             this.label4.TabIndex = 20;
-            this.label4.Text = "Low  Cutoff Frequency";
+            this.label4.Text = "Band Pass Frequency";
             // 
-            // m_HighCutoffFrequencyTextBox
+            // m_BandPassFrequencyTextBox
             // 
-            this.m_HighCutoffFrequencyTextBox.Location = new System.Drawing.Point(350, 387);
-            this.m_HighCutoffFrequencyTextBox.Name = "m_HighCutoffFrequencyTextBox";
-            this.m_HighCutoffFrequencyTextBox.Size = new System.Drawing.Size(100, 20);
-            this.m_HighCutoffFrequencyTextBox.TabIndex = 21;
-            this.m_HighCutoffFrequencyTextBox.Text = "3000";
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(234, 392);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(113, 13);
-            this.label5.TabIndex = 22;
-            this.label5.Text = "High Cutoff Frequency";
+            this.m_BandPassFrequencyTextBox.Location = new System.Drawing.Point(131, 390);
+            this.m_BandPassFrequencyTextBox.Name = "m_BandPassFrequencyTextBox";
+            this.m_BandPassFrequencyTextBox.Size = new System.Drawing.Size(100, 20);
+            this.m_BandPassFrequencyTextBox.TabIndex = 21;
+            this.m_BandPassFrequencyTextBox.Text = "3000";
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(643, 498);
-            this.Controls.Add(this.label5);
-            this.Controls.Add(this.m_HighCutoffFrequencyTextBox);
+            this.Controls.Add(this.m_BandPassFrequencyTextBox);
             this.Controls.Add(this.label4);
-            this.Controls.Add(this.m_LowCutOffFrequencyTextBox);
             this.Controls.Add(this.m_NoiseReductionButton);
             this.Controls.Add(this.m_DecreaseAmplitudeButton);
             this.Controls.Add(this.m_DecreaseAmplitudeComboBox);
@@ -320,10 +299,8 @@
         private System.Windows.Forms.ComboBox m_DecreaseAmplitudeComboBox;
         private System.Windows.Forms.Button m_DecreaseAmplitudeButton;
         private System.Windows.Forms.Button m_NoiseReductionButton;
-        private System.Windows.Forms.TextBox m_LowCutOffFrequencyTextBox;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.TextBox m_HighCutoffFrequencyTextBox;
-        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.TextBox m_BandPassFrequencyTextBox;
     }
 }
 
