@@ -174,17 +174,12 @@ namespace FirstTutorial
             var outPath = outputFileName + "NoiseREduction.wav";
             using (var reader = new AudioFileReader(open.FileName))
             {
-                //var r = BiQuadFilter.LowPassFilter(44100, 1500, 1);
+               
 
-                int LowCutOffFreqency = Int32.Parse(m_LowCutOffFrequencyTextBox.Text);
-                int HighCutOffFreqency = Int32.Parse(m_HighCutoffFrequencyTextBox.Text);
+                int BandPassFreqency = Int32.Parse(m_BandPassFrequencyTextBox.Text);
                 // reader is the source for filter
-                var filter = new MyWaveProvider(reader,LowCutOffFreqency,HighCutOffFreqency);
-                //var waveOut = new WaveOut();
-                //waveOut.Init(filter);
-                //waveOut.Play();
+                var filter = new MyWaveProvider(reader,BandPassFreqency);
                 WaveFileWriter.CreateWaveFile16(outPath, filter);
-                //WaveFileWriter.CreateWaveFile(outPath, filter);
 
                 
             }

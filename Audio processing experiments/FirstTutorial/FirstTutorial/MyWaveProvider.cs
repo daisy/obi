@@ -11,38 +11,28 @@ namespace FirstTutorial
     class MyWaveProvider : ISampleProvider
     {
         private ISampleProvider sourceProvider;
-        private float lowCutOffFreq;
-        private float highCutOffFreq;
+        private float bandPassFreqency;
 
         private int channels;
         private BiQuadFilter[] filters;
-        private BiQuadFilter[] highPassFilters;
 
-        public MyWaveProvider(ISampleProvider sourceProvider, int LowCutOffFreq, int HighCutOffFreqency)
+        public MyWaveProvider(ISampleProvider sourceProvider, int BandPassFreqency)
         {
             this.sourceProvider = sourceProvider;
-            this.lowCutOffFreq = LowCutOffFreq;
-            this.highCutOffFreq = HighCutOffFreqency;
+            this.bandPassFreqency = BandPassFreqency;
 
             channels = sourceProvider.WaveFormat.Channels;
             filters = new BiQuadFilter[channels];
-            highPassFilters = new BiQuadFilter[channels];
             CreateFilters();
         }
 
         private void CreateFilters()
         {
             for (int n = 0; n < channels; n++)
-                if (filters[n] == null)
-                {
-                    highPassFilters[n] = BiQuadFilter.HighPassFilter(44100, highCutOffFreq, 1);
-                    filters[n] = BiQuadFilter.LowPassFilter(44100, lowCutOffFreq, 1);
-                }
-                else
-                {
-                    highPassFilters[n].SetHighPassFilter(44100, highCutOffFreq, 1);
-                    filters[n].SetLowPassFilter(44100, lowCutOffFreq, 1);
-                }
+            {
+                filters[n] = BiQuadFilter.BandPassFilterConstantPeakGain(44100, bandPassFreqency, 1);
+
+            }
         }
 
         public WaveFormat WaveFormat { get { return sourceProvider.WaveFormat; } }
@@ -54,7 +44,6 @@ namespace FirstTutorial
             for (int i = 0; i < samplesRead; i++)
             {
                 buffer[offset + i] = filters[(i % channels)].Transform(buffer[offset + i]);
-                buffer[offset + i] = highPassFilters[(i % channels)].Transform(buffer[offset + i]);
             }
 
             return samplesRead;
