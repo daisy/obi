@@ -77,13 +77,14 @@
             this.button3.Location = new System.Drawing.Point(13, 176);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(434, 23);
-            this.button3.TabIndex = 3;
+            this.button3.TabIndex = 7;
             this.button3.Text = "Fade Out Whole Audio";
             this.button3.UseVisualStyleBackColor = true;
             this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // m_IncreseAmplitudeComboBox
             // 
+            this.m_IncreseAmplitudeComboBox.AccessibleName = "Increase Amplitude Combo Box";
             this.m_IncreseAmplitudeComboBox.FormattingEnabled = true;
             this.m_IncreseAmplitudeComboBox.Items.AddRange(new object[] {
             "1",
@@ -99,7 +100,7 @@
             this.m_IncreseAmplitudeComboBox.Location = new System.Drawing.Point(13, 93);
             this.m_IncreseAmplitudeComboBox.Name = "m_IncreseAmplitudeComboBox";
             this.m_IncreseAmplitudeComboBox.Size = new System.Drawing.Size(121, 21);
-            this.m_IncreseAmplitudeComboBox.TabIndex = 4;
+            this.m_IncreseAmplitudeComboBox.TabIndex = 3;
             // 
             // button4
             // 
@@ -107,25 +108,27 @@
             this.button4.Location = new System.Drawing.Point(13, 216);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(434, 23);
-            this.button4.TabIndex = 6;
+            this.button4.TabIndex = 8;
             this.button4.Text = "Fade In Whole Audio";
             this.button4.UseVisualStyleBackColor = true;
             this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
             // FadeOutDurationTextBox
             // 
+            this.FadeOutDurationTextBox.AccessibleName = "Enter Fade Out Duration";
             this.FadeOutDurationTextBox.Location = new System.Drawing.Point(347, 263);
             this.FadeOutDurationTextBox.Name = "FadeOutDurationTextBox";
             this.FadeOutDurationTextBox.Size = new System.Drawing.Size(100, 20);
-            this.FadeOutDurationTextBox.TabIndex = 7;
+            this.FadeOutDurationTextBox.TabIndex = 12;
             this.FadeOutDurationTextBox.Text = "0";
             // 
             // FadeInDurationTextBox
             // 
-            this.FadeInDurationTextBox.Location = new System.Drawing.Point(204, 326);
+            this.FadeInDurationTextBox.AccessibleName = "Fade In Duration";
+            this.FadeInDurationTextBox.Location = new System.Drawing.Point(178, 324);
             this.FadeInDurationTextBox.Name = "FadeInDurationTextBox";
             this.FadeInDurationTextBox.Size = new System.Drawing.Size(100, 20);
-            this.FadeInDurationTextBox.TabIndex = 8;
+            this.FadeInDurationTextBox.TabIndex = 15;
             this.FadeInDurationTextBox.Text = "0";
             // 
             // FadeOutDurationButton
@@ -134,7 +137,7 @@
             this.FadeOutDurationButton.Location = new System.Drawing.Point(474, 260);
             this.FadeOutDurationButton.Name = "FadeOutDurationButton";
             this.FadeOutDurationButton.Size = new System.Drawing.Size(134, 23);
-            this.FadeOutDurationButton.TabIndex = 9;
+            this.FadeOutDurationButton.TabIndex = 13;
             this.FadeOutDurationButton.Text = "Fade Out Duration";
             this.FadeOutDurationButton.UseVisualStyleBackColor = true;
             this.FadeOutDurationButton.Click += new System.EventHandler(this.FadeOutDurationButton_Click);
@@ -145,17 +148,18 @@
             this.FadeInDurationButton.Location = new System.Drawing.Point(347, 324);
             this.FadeInDurationButton.Name = "FadeInDurationButton";
             this.FadeInDurationButton.Size = new System.Drawing.Size(135, 23);
-            this.FadeInDurationButton.TabIndex = 10;
+            this.FadeInDurationButton.TabIndex = 16;
             this.FadeInDurationButton.Text = "Fade In Duration";
             this.FadeInDurationButton.UseVisualStyleBackColor = true;
             this.FadeInDurationButton.Click += new System.EventHandler(this.FadeInDurationButton_Click);
             // 
             // FadeOutStartingPointTextBox
             // 
+            this.FadeOutStartingPointTextBox.AccessibleName = "Enter Fade Out Starting Point";
             this.FadeOutStartingPointTextBox.Location = new System.Drawing.Point(141, 263);
             this.FadeOutStartingPointTextBox.Name = "FadeOutStartingPointTextBox";
             this.FadeOutStartingPointTextBox.Size = new System.Drawing.Size(100, 20);
-            this.FadeOutStartingPointTextBox.TabIndex = 11;
+            this.FadeOutStartingPointTextBox.TabIndex = 10;
             this.FadeOutStartingPointTextBox.Text = "0";
             // 
             // label1
@@ -164,7 +168,7 @@
             this.label1.Location = new System.Drawing.Point(247, 265);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(94, 13);
-            this.label1.TabIndex = 12;
+            this.label1.TabIndex = 11;
             this.label1.Text = "Fade Out Duration";
             // 
             // label2
@@ -173,7 +177,7 @@
             this.label2.Location = new System.Drawing.Point(10, 266);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(117, 13);
-            this.label2.TabIndex = 13;
+            this.label2.TabIndex = 9;
             this.label2.Text = "Fade Out Starting Point";
             // 
             // label3
@@ -191,13 +195,14 @@
             this.m_IncreaseAmplitude.Location = new System.Drawing.Point(166, 91);
             this.m_IncreaseAmplitude.Name = "m_IncreaseAmplitude";
             this.m_IncreaseAmplitude.Size = new System.Drawing.Size(281, 23);
-            this.m_IncreaseAmplitude.TabIndex = 15;
+            this.m_IncreaseAmplitude.TabIndex = 4;
             this.m_IncreaseAmplitude.Text = "Increase Amplitude";
             this.m_IncreaseAmplitude.UseVisualStyleBackColor = true;
             this.m_IncreaseAmplitude.Click += new System.EventHandler(this.m_IncreaseAmplitude_Click);
             // 
             // m_DecreaseAmplitudeComboBox
             // 
+            this.m_DecreaseAmplitudeComboBox.AccessibleName = "Decrease Amplitude Combo Box";
             this.m_DecreaseAmplitudeComboBox.FormattingEnabled = true;
             this.m_DecreaseAmplitudeComboBox.Items.AddRange(new object[] {
             "0.25",
@@ -206,7 +211,7 @@
             this.m_DecreaseAmplitudeComboBox.Location = new System.Drawing.Point(13, 137);
             this.m_DecreaseAmplitudeComboBox.Name = "m_DecreaseAmplitudeComboBox";
             this.m_DecreaseAmplitudeComboBox.Size = new System.Drawing.Size(121, 21);
-            this.m_DecreaseAmplitudeComboBox.TabIndex = 16;
+            this.m_DecreaseAmplitudeComboBox.TabIndex = 5;
             // 
             // m_DecreaseAmplitudeButton
             // 
@@ -214,7 +219,7 @@
             this.m_DecreaseAmplitudeButton.Location = new System.Drawing.Point(166, 135);
             this.m_DecreaseAmplitudeButton.Name = "m_DecreaseAmplitudeButton";
             this.m_DecreaseAmplitudeButton.Size = new System.Drawing.Size(281, 23);
-            this.m_DecreaseAmplitudeButton.TabIndex = 17;
+            this.m_DecreaseAmplitudeButton.TabIndex = 6;
             this.m_DecreaseAmplitudeButton.Text = "Decrease Amplitude";
             this.m_DecreaseAmplitudeButton.UseVisualStyleBackColor = true;
             this.m_DecreaseAmplitudeButton.Click += new System.EventHandler(this.m_DecreaseAmplitudeButton_Click);
@@ -225,7 +230,7 @@
             this.m_NoiseReductionButton.Location = new System.Drawing.Point(276, 388);
             this.m_NoiseReductionButton.Name = "m_NoiseReductionButton";
             this.m_NoiseReductionButton.Size = new System.Drawing.Size(157, 23);
-            this.m_NoiseReductionButton.TabIndex = 18;
+            this.m_NoiseReductionButton.TabIndex = 19;
             this.m_NoiseReductionButton.Text = "Noise Reduction";
             this.m_NoiseReductionButton.UseVisualStyleBackColor = true;
             this.m_NoiseReductionButton.Click += new System.EventHandler(this.m_NoiseReductionButton_Click);
@@ -236,15 +241,16 @@
             this.label4.Location = new System.Drawing.Point(-2, 393);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(111, 13);
-            this.label4.TabIndex = 20;
+            this.label4.TabIndex = 17;
             this.label4.Text = "Band Pass Frequency";
             // 
             // m_BandPassFrequencyTextBox
             // 
+            this.m_BandPassFrequencyTextBox.AccessibleName = "Band Pass Filter Frequency";
             this.m_BandPassFrequencyTextBox.Location = new System.Drawing.Point(131, 390);
             this.m_BandPassFrequencyTextBox.Name = "m_BandPassFrequencyTextBox";
             this.m_BandPassFrequencyTextBox.Size = new System.Drawing.Size(100, 20);
-            this.m_BandPassFrequencyTextBox.TabIndex = 21;
+            this.m_BandPassFrequencyTextBox.TabIndex = 18;
             this.m_BandPassFrequencyTextBox.Text = "3000";
             // 
             // Form1

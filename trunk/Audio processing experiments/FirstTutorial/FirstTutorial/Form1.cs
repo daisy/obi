@@ -174,11 +174,9 @@ namespace FirstTutorial
             var outPath = outputFileName + "NoiseREduction.wav";
             using (var reader = new AudioFileReader(open.FileName))
             {
-               
-
                 int BandPassFreqency = Int32.Parse(m_BandPassFrequencyTextBox.Text);
                 // reader is the source for filter
-                var filter = new MyWaveProvider(reader,BandPassFreqency);
+                var filter = new MyWaveProvider(reader, BandPassFreqency);
                 WaveFileWriter.CreateWaveFile16(outPath, filter);
 
                 
