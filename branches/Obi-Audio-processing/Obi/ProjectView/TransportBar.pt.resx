@@ -1,0 +1,1471 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <metadata name="mTransportBarTooltip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>398, 17</value>
+  </metadata>
+  <metadata name="mDisplayTimer.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>266, 17</value>
+  </metadata>
+  <metadata name="m_RecordingOptionsContextMenuStrip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>569, 17</value>
+  </metadata>
+  <metadata name="m_PlayingOptionsContextMenuStrip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 17</value>
+  </metadata>
+  <metadata name="m_SwitchProfileContextMenuStrip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>834, 17</value>
+  </metadata>
+  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="mTimeDisplayBox.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 21.75pt</value>
+  </data>
+  <data name="mTimeDisplayBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>509, 0</value>
+  </data>
+  <data name="mTimeDisplayBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>114, 33</value>
+  </data>
+  <assembly alias="mscorlib" name="mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="mTimeDisplayBox.TabIndex" type="System.Int32, mscorlib">
+    <value>15</value>
+  </data>
+  <data name="mTimeDisplayBox.Text" xml:space="preserve">
+    <value>00:00:00</value>
+  </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="mTimeDisplayBox.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
+  </data>
+  <data name="&gt;&gt;mTimeDisplayBox.Name" xml:space="preserve">
+    <value>mTimeDisplayBox</value>
+  </data>
+  <data name="&gt;&gt;mTimeDisplayBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;mTimeDisplayBox.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;mTimeDisplayBox.ZOrder" xml:space="preserve">
+    <value>16</value>
+  </data>
+  <data name="mPreviousPageButton.AccessibleDescription" xml:space="preserve">
+    <value>botão</value>
+  </data>
+  <data name="mPreviousPageButton.AccessibleName" xml:space="preserve">
+    <value>Página anterior</value>
+  </data>
+  <data name="mPreviousPageButton.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>Flat</value>
+  </data>
+  <data name="mPreviousPageButton.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        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
+        TkSuQmCC
+</value>
+  </data>
+  <data name="mPreviousPageButton.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="mPreviousPageButton.Location" type="System.Drawing.Point, System.Drawing">
+    <value>38, 0</value>
+  </data>
+  <data name="mPreviousPageButton.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>3, 0, 3, 0</value>
+  </data>
+  <data name="mPreviousPageButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>32, 32</value>
+  </data>
+  <data name="mPreviousPageButton.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="mPreviousPageButton.ToolTip" xml:space="preserve">
+    <value>Página precedente (Shift+P)</value>
+  </data>
+  <data name="&gt;&gt;mPreviousPageButton.Name" xml:space="preserve">
+    <value>mPreviousPageButton</value>
+  </data>
+  <data name="&gt;&gt;mPreviousPageButton.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;mPreviousPageButton.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;mPreviousPageButton.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="mRewindButton.AccessibleDescription" xml:space="preserve">
+    <value>botão</value>
+  </data>
+  <data name="mRewindButton.AccessibleName" xml:space="preserve">
+    <value>Rebobinar</value>
+  </data>
+  <data name="mRewindButton.BackgroundImageLayout" type="System.Windows.Forms.ImageLayout, System.Windows.Forms">
+    <value>Center</value>
+  </data>
+  <data name="mRewindButton.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>Flat</value>
+  </data>
+  <data name="mRewindButton.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6
+        JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAADSUlEQVRYR+2T60+SURzHNXPSpjE3XS3n
+        8ELxJjabrqHOG1YIFiMVZc41jERlwcqK2UKnSyfibUvbRLzUylzUW5dvbOuyVVb/QjlbAQIq6MMDzyOe
+        znOkeYmL9KJXfLbvGOd8+J3f+fE8UREiRIjwjxyGOQ6TBpNILYQgXD8g0TCJ8Ynxp4uKCwwXeKUAfs9A
+        O/4J1w/KERhGTs4ZWflFnnli0uD2FTyJdv9ml883TT2awEP4AYmBOZaenl7IKzv3uuXODczhWAMU5ZfK
+        CLiXiawdwvWDQo+Li2MVFhf0VVaJsC9fFzYhYANbB16v11/BcP2A0GBSs7LYtYLysh+GcT3u8XgA7naB
+        lTU7jG1/wXD9gByCSU5JSeGU8c/PNivkLrPFBMhNEt3C4VwFazAO59rugsww/YANxCYlJZ0qLS3ppMb3
+        7v2bTepHbo8bODecMA7gXHcAB8p2QeHlcrKktKizSizC3kKfGvc6dJdtFmCxmYDFagbmZRMwW03Ir6gU
+        EjQazf9bQKfTE4VCwf3qmgpA3YLCurIMfll+wkImVNRqXwY2uGZbsaKClFsjqdzx7Zagft0VCQnP8d9A
+        dnZ2LJvNzqitre5oar6GLXz+CCcAbwRHSRVYdaygm1PToNa2traAvPEqKamr7mhWNED/U0i/sUlGMBiM
+        dN+RfjkEG0ni8bhnr6uaZrW9XS673QbQk+zaABiM240DD+FBBW/eUhJU09u+Ylar6w7qt9xWESwWK2gD
+        CD6fH5ebm5vS0CCT3NOol17NzeIkSQIq1DNBkgQqqGlvJTgcThqTyUS+TCaVaNpal+YC+G0dd5HvOyY0
+        QqEwQSTiZ7Z3tGr7Bnuw74vfNr1bXngjNyrY09tFcLlchk+Pys/PT+DzuZmwMe3AkBZb3OdrdXv9AyEW
+        i2PgRJJVKkVe/6B2/vmLaQzHXeihezDcTwgEgj0Fd3xV3uCQdt74cgb6+LY/MhB+A3+QSqU0iURyQqfr
+        lurHR0wLCx9wvWEYwDW/I93tGyYeIn/MMBLQPyjRcrmcrtFoWJNP9KNPn02C+vr6VN+eP5CvVqtZU4/H
+        RqdnpkL5B8NoNMYolcpkhUKRCj+P+pYDQv0t4fgRIkT4j0RF/QaUN+hSlLjMhQAAAABJRU5ErkJggg==
+</value>
+  </data>
+  <data name="mRewindButton.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="mRewindButton.Location" type="System.Drawing.Point, System.Drawing">
+    <value>108, 0</value>
+  </data>
+  <data name="mRewindButton.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>3, 0, 3, 0</value>
+  </data>
+  <data name="mRewindButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>32, 32</value>
+  </data>
+  <data name="mRewindButton.TabIndex" type="System.Int32, mscorlib">
+    <value>3</value>
+  </data>
+  <data name="mRewindButton.ToolTip" xml:space="preserve">
+    <value>Reproduzir em reverso a maior velocidade</value>
+  </data>
+  <data name="&gt;&gt;mRewindButton.Name" xml:space="preserve">
+    <value>mRewindButton</value>
+  </data>
+  <data name="&gt;&gt;mRewindButton.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;mRewindButton.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;mRewindButton.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="mToDo_CustomClassMarkButton.AccessibleDescription" xml:space="preserve">
+    <value>botão</value>
+  </data>
+  <data name="mToDo_CustomClassMarkButton.AccessibleName" xml:space="preserve">
+    <value>Marcar frase</value>
+  </data>
+  <data name="mToDo_CustomClassMarkButton.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>Flat</value>
+  </data>
+  <data name="mToDo_CustomClassMarkButton.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        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
+        Avi+Hxd/BwAAAABJRU5ErkJggg==
+</value>
+  </data>
+  <data name="mToDo_CustomClassMarkButton.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="mToDo_CustomClassMarkButton.Location" type="System.Drawing.Point, System.Drawing">
+    <value>427, 1</value>
+  </data>
+  <data name="mToDo_CustomClassMarkButton.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>3, 0, 3, 0</value>
+  </data>
+  <data name="mToDo_CustomClassMarkButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>37, 32</value>
+  </data>
+  <data name="mToDo_CustomClassMarkButton.TabIndex" type="System.Int32, mscorlib">
+    <value>13</value>
+  </data>
+  <data name="mToDo_CustomClassMarkButton.ToolTip" xml:space="preserve">
+    <value>Adicionar marca para trabalhar durante a gravação (F9)</value>
+  </data>
+  <data name="&gt;&gt;mToDo_CustomClassMarkButton.Name" xml:space="preserve">
+    <value>mToDo_CustomClassMarkButton</value>
+  </data>
+  <data name="&gt;&gt;mToDo_CustomClassMarkButton.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;mToDo_CustomClassMarkButton.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;mToDo_CustomClassMarkButton.ZOrder" xml:space="preserve">
+    <value>21</value>
+  </data>
+  <data name="mNextPageButton.AccessibleDescription" xml:space="preserve">
+    <value>botão</value>
+  </data>
+  <data name="mNextPageButton.AccessibleName" xml:space="preserve">
+    <value>Próxima página</value>
+  </data>
+  <data name="mNextPageButton.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>Flat</value>
+  </data>
+  <data name="mNextPageButton.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        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
+</value>
+  </data>
+  <data name="mNextPageButton.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="mNextPageButton.Location" type="System.Drawing.Point, System.Drawing">
+    <value>358, -1</value>
+  </data>
+  <data name="mNextPageButton.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>3, 0, 3, 0</value>
+  </data>
+  <data name="mNextPageButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>34, 32</value>
+  </data>
+  <data name="mNextPageButton.TabIndex" type="System.Int32, mscorlib">
+    <value>11</value>
+  </data>
+  <data name="mNextPageButton.ToolTip" xml:space="preserve">
+    <value>Próxima página. (P)</value>
+  </data>
+  <data name="&gt;&gt;mNextPageButton.Name" xml:space="preserve">
+    <value>mNextPageButton</value>
+  </data>
+  <data name="&gt;&gt;mNextPageButton.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;mNextPageButton.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;mNextPageButton.ZOrder" xml:space="preserve">
+    <value>14</value>
+  </data>
+  <data name="mPlayButton.AccessibleDescription" xml:space="preserve">
+    <value>botão</value>
+  </data>
+  <data name="mPlayButton.AccessibleName" xml:space="preserve">
+    <value>Reproduzir</value>
+  </data>
+  <data name="mPlayButton.BackgroundImageLayout" type="System.Windows.Forms.ImageLayout, System.Windows.Forms">
+    <value>Center</value>
+  </data>
+  <data name="mPlayButton.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>Flat</value>
+  </data>
+  <data name="mPlayButton.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6
+        JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAADXUlEQVRYR+1WXUiTURi2XyPKLNSgMsra
+        RC8KDLuSXKjzZ5puOr1w5JyphEYm2PyZtgQDIS+m5UVEeKeldDmtLsIuYqBiFlRXluk297/pt7/P5tt7
+        TmNBjkCdK8gHHr7znfec9332nPc7LGIb2/jXcQx5Ermfvv0FcHIFWc+Tk7m5OD6O3EtnwwgOPzsDqqqk
+        rCA/dzgmJiYF5+KQu2g0DKAC2BUWxt+Mr4qKi5yXM9K7IiMjuRg7jNxBV20hqADGuQwmqxHMVhM8fvKI
+        LRQWaFNTUyQYP4U8QFduEQICDCY9pcVuBt2iFppb5d7CQoGGy03IxHUnkJF0R4ixRgCh0bwIVrsV3n+Y
+        gYoKiTdXkDMQHR19HtcfRe6mO0OBqKiooAICQiwGsDms8PLVmE8ourLM411S4J6zyCO4ffP9kZSU9FOA
+        i6HFTJTG32gAq82MTxM87O9jRaKC2bT0NHFiYuJp5EF/qo0hKyuLCnC5nWDBIla75Y90LNlhQbcANxvq
+        WaGw8HVmTmYan8+P5/F4+/wp1wepVEoFuD1usC/ZaAHHsp2ObQ4bFWXGr8OAPaEzaGFeNwfftF/REQu8
+        m5leLS4pgpJS0X2SB7l+EU1NTQEH9Ebdr/PHgqQRCcmYzC1iXI8iyLvDYYfRUfX3PEE2lJWV3CB5xGLx
+        +i8vlUrFycvPpg6Q87bYTNRq0nh2dIA4QZ7knZBxMvDp80eorq30XpWWD3R1Kc/19vbGKpXKnf6U68PI
+        yAinSFgAHq8ncMbLzBJtSuKKy+2i9LJeMJqM0KFUsDJZxdvOzvb0wcHBeLVavbm7QaPRcMSlIvCiAPJL
+        lxgHOLE4cYRcz75VHzAMA8+Gn7LVNbKF1la5ZGJiIgH3RflTbA7z8/OccknZGgfcHhd4PB6YnJzwXa+r
+        cba0ye/Ozs4m6vX6WADYmN3BgMk40kqJvwfwe0cRTpcT5ua+gKK92dumaB6ampq6gOvikaG/iomAmloZ
+        PW/SZBarBS+bXva2/Nb08PAQH+MJyNDYHQxEQF19LW2ysRfqFXlL4+KDftU1Mo+MQ4bO7mAghRoa60HR
+        0eLu7r7XYzabk3Bua+wOBiJA1ddzBzv7Io6J3Yf8ofAAC54hIpDE7rD9DQsAi+5BhsfubfyniIj4AYCS
+        xNJWQzRrAAAAAElFTkSuQmCC
+</value>
+  </data>
+  <data name="mPlayButton.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="mPlayButton.Location" type="System.Drawing.Point, System.Drawing">
+    <value>143, 0</value>
+  </data>
+  <data name="mPlayButton.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>3, 0, 3, 0</value>
+  </data>
+  <data name="mPlayButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>32, 32</value>
+  </data>
+  <data name="mPlayButton.TabIndex" type="System.Int32, mscorlib">
+    <value>4</value>
+  </data>
+  <data name="mPlayButton.ToolTip" xml:space="preserve">
+    <value>Iniciar ou retomar reprodução (Space)</value>
+  </data>
+  <data name="&gt;&gt;mPlayButton.Name" xml:space="preserve">
+    <value>mPlayButton</value>
+  </data>
+  <data name="&gt;&gt;mPlayButton.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;mPlayButton.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;mPlayButton.ZOrder" xml:space="preserve">
+    <value>9</value>
+  </data>
+  <data name="mPauseButton.AccessibleDescription" xml:space="preserve">
+    <value>botão</value>
+  </data>
+  <data name="mPauseButton.AccessibleName" xml:space="preserve">
+    <value>Pausar</value>
+  </data>
+  <data name="mPauseButton.BackgroundImageLayout" type="System.Windows.Forms.ImageLayout, System.Windows.Forms">
+    <value>Center</value>
+  </data>
+  <data name="mPauseButton.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>Flat</value>
+  </data>
+  <data name="mPauseButton.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6
+        JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAABpElEQVRYR+2Ty0oCYRiGpRsQOlBKGZ22
+        XoS3UBIFLWzRohYtCgkicBFBixCCIGnhNXgLXoRgSnkYT5mCOCcn9cv3S1yN8PG3nQe+zfe+PMPM/4/P
+        w8PDQ0BwMntzBhmQdJTZPTjcJ7dB9lcRddTw+/07EI3HY7IHNs9oNGI5MmlHmVAotA0RhLV6lRrN2kyO
+        TNpRJhwOb0E0HA6pUv2kaq1MjuOwHJm0o0wkEtmEyPlxZvLB5BNjh0zaUSYajYZY7gxYrNUqZNsWy5FJ
+        O8rEYrENiHCx6g2N5ZZlshyZtKNMPB5fPz454jfKF3L0XsyRYeqEHTJpR5lEIhE8PYuRZZv0USpMpkiG
+        oRN2yKQdZVKpVODi8nwit6iqlamilViOXTKZDEg7yqTT6bXrmyv+vPi/ccaQY4dM2lEmk8ms3iVu+YK1
+        v1vU+mqyHDtk0o4y2Wx25eHxnuWdTpsfoBt9wg6ZtKNMPp9fTj4/8fmapsFvput9wg6ZtKOMpmlLr28v
+        5DbIpB1lut2uv9frLboNMmnnXxDRgttMY8Ytx0xjDw+POfh8v15j4T1YL2YjAAAAAElFTkSuQmCC
+</value>
+  </data>
+  <data name="mPauseButton.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="mPauseButton.Location" type="System.Drawing.Point, System.Drawing">
+    <value>143, 0</value>
+  </data>
+  <data name="mPauseButton.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>3, 0, 3, 0</value>
+  </data>
+  <data name="mPauseButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>32, 32</value>
+  </data>
+  <data name="mPauseButton.TabIndex" type="System.Int32, mscorlib">
+    <value>5</value>
+  </data>
+  <data name="mPauseButton.ToolTip" xml:space="preserve">
+    <value>Pausar reprodução ou gravação (Space)</value>
+  </data>
+  <data name="&gt;&gt;mPauseButton.Name" xml:space="preserve">
+    <value>mPauseButton</value>
+  </data>
+  <data name="&gt;&gt;mPauseButton.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;mPauseButton.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;mPauseButton.ZOrder" xml:space="preserve">
+    <value>11</value>
+  </data>
+  <data name="mStopButton.AccessibleDescription" xml:space="preserve">
+    <value>botão</value>
+  </data>
+  <data name="mStopButton.AccessibleName" xml:space="preserve">
+    <value>Parar</value>
+  </data>
+  <data name="mStopButton.BackgroundImageLayout" type="System.Windows.Forms.ImageLayout, System.Windows.Forms">
+    <value>Center</value>
+  </data>
+  <data name="mStopButton.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>Flat</value>
+  </data>
+  <data name="mStopButton.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6
+        JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAACP0lEQVRYR+2Uz47SUBjFeQANiTr+mSgT
+        /215CF5ByYzRDSZuNHFhDC6MCQtj4sKYmJhIfAN2LNnyCJpROvxtKVAoMBZaaGnh857by0QyG+bOxkVP
+        cnb9nZ773a+NRYoUKdIW2mW+fw6DP5fuPdx/QAeP972zGhz4MEZS8Xj8LoKWyyX5vk+e523l1WpF4MCL
+        KDklEok7CAqCgDrdNrU76lZGYXDgRZScksnkbQR5C48Ha+3mVg4CnxcAL6LklEql9hDkeu6ZCiz8BS8A
+        XkTJKZ1OJxA0d+enr0Bfu8Wtrc0KoDA48CJKTplM5hYvMJ9Rz+hQt6dvuNNrh2bl1lZZATwPDryIklM2
+        m7356MkBDxyYBvUHPW6j32Uv0/iJm2qNqg2FlOohHVZ+0q/KD/48OPAiSk65XG736bMMOY7DTqrzF6pq
+        gxqtKne9ecRdYwVq9QpVmY9qv2k2cwgceBElp3w+f+PFy+c0YyfqslHrHY05vPv1fWPkLa1BLbXOp4Fi
+        zswmcOBFlJwKhcL1129esSXEFfRPxt8z4HAncO8oxr8STIgVchybwIEXUXIqlUpX3+Xekuu6dHw8ptFo
+        SMORSeZwcLITYaHNMigArlgsXhNRciqXyzsfPr5nv1eXLOsPLzEej/4pgakYp0rY9pTAgRdRclIU5crn
+        L5/YBOb8X4Dtxj5gyRyYndSG2QvhqT2h6XRCk6lF4MCLKDnpun752/evJGvwIkpORHSB+dK2tixrw6Zp
+        XhRRkSJF+h8Vi/0FT05YD2sKXlMAAAAASUVORK5CYII=
+</value>
+  </data>
+  <data name="mStopButton.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="mStopButton.Location" type="System.Drawing.Point, System.Drawing">
+    <value>195, 0</value>
+  </data>
+  <data name="mStopButton.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>3, 0, 3, 0</value>
+  </data>
+  <data name="mStopButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>32, 32</value>
+  </data>
+  <data name="mStopButton.TabIndex" type="System.Int32, mscorlib">
+    <value>6</value>
+  </data>
+  <data name="mStopButton.ToolTip" xml:space="preserve">
+    <value>Parar reprodução ou gravação. (Ctrl+Space)</value>
+  </data>
+  <data name="&gt;&gt;mStopButton.Name" xml:space="preserve">
+    <value>mStopButton</value>
+  </data>
+  <data name="&gt;&gt;mStopButton.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;mStopButton.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;mStopButton.ZOrder" xml:space="preserve">
+    <value>10</value>
+  </data>
+  <data name="mNextPhrase.AccessibleDescription" xml:space="preserve">
+    <value>botão</value>
+  </data>
+  <data name="mNextPhrase.AccessibleName" xml:space="preserve">
+    <value>Próxima frase</value>
+  </data>
+  <data name="mNextPhrase.BackgroundImageLayout" type="System.Windows.Forms.ImageLayout, System.Windows.Forms">
+    <value>Center</value>
+  </data>
+  <data name="mNextPhrase.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>Flat</value>
+  </data>
+  <data name="mNextPhrase.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        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
+        YII=
+</value>
+  </data>
+  <data name="mNextPhrase.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="mNextPhrase.Location" type="System.Drawing.Point, System.Drawing">
+    <value>323, 0</value>
+  </data>
+  <data name="mNextPhrase.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>3, 0, 3, 0</value>
+  </data>
+  <data name="mNextPhrase.Size" type="System.Drawing.Size, System.Drawing">
+    <value>29, 32</value>
+  </data>
+  <data name="mNextPhrase.TabIndex" type="System.Int32, mscorlib">
+    <value>10</value>
+  </data>
+  <data name="mNextPhrase.ToolTip" xml:space="preserve">
+    <value>Próxima frase. (K)</value>
+  </data>
+  <data name="&gt;&gt;mNextPhrase.Name" xml:space="preserve">
+    <value>mNextPhrase</value>
+  </data>
+  <data name="&gt;&gt;mNextPhrase.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;mNextPhrase.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;mNextPhrase.ZOrder" xml:space="preserve">
+    <value>15</value>
+  </data>
+  <data name="mPrevPhraseButton.AccessibleDescription" xml:space="preserve">
+    <value>botão</value>
+  </data>
+  <data name="mPrevPhraseButton.AccessibleName" xml:space="preserve">
+    <value>Frase anterior</value>
+  </data>
+  <data name="mPrevPhraseButton.BackgroundImageLayout" type="System.Windows.Forms.ImageLayout, System.Windows.Forms">
+    <value>Center</value>
+  </data>
+  <data name="mPrevPhraseButton.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>Flat</value>
+  </data>
+  <data name="mPrevPhraseButton.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        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
+</value>
+  </data>
+  <data name="mPrevPhraseButton.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="mPrevPhraseButton.Location" type="System.Drawing.Point, System.Drawing">
+    <value>73, 0</value>
+  </data>
+  <data name="mPrevPhraseButton.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>3, 0, 3, 0</value>
+  </data>
+  <data name="mPrevPhraseButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>32, 32</value>
+  </data>
+  <data name="mPrevPhraseButton.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="mPrevPhraseButton.ToolTip" xml:space="preserve">
+    <value>Frase precedente. (J)</value>
+  </data>
+  <data name="&gt;&gt;mPrevPhraseButton.Name" xml:space="preserve">
+    <value>mPrevPhraseButton</value>
+  </data>
+  <data name="&gt;&gt;mPrevPhraseButton.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;mPrevPhraseButton.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;mPrevPhraseButton.ZOrder" xml:space="preserve">
+    <value>8</value>
+  </data>
+  <data name="mNextSectionButton.AccessibleDescription" xml:space="preserve">
+    <value>botão</value>
+  </data>
+  <data name="mNextSectionButton.AccessibleName" xml:space="preserve">
+    <value>Próxima secção</value>
+  </data>
+  <data name="mNextSectionButton.BackgroundImageLayout" type="System.Windows.Forms.ImageLayout, System.Windows.Forms">
+    <value>Center</value>
+  </data>
+  <data name="mNextSectionButton.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>Flat</value>
+  </data>
+  <data name="mNextSectionButton.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6
+        JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAEw0lEQVRYR+2Va0xTZxzGz9YWSlsRijd0
+        Y65mirs4M+eFtpSLOnXLZCLicOCmrlIEhthCy0qLTN1MXOLCnJcxrRYqNykt5SJRGOqciiC7KE6Myb7s
+        2/ZhSwTvz97/4dQPWzJRINsSn+SX5j3v//K8l3PKPdb/QmqjGLr8IJ7oPClo/CBiN3NSIX3oooLtVw+j
+        7UoZjv3kwNGeUjRe2gPfj5/D8/1ncH/3KWoubEdl11aUddgRZ5HfnGXmRgvpQ5ffQHHzUhT6XoPZG4NN
+        7nnIrpkJQ+V0rHU9izTnJCQfCIXjjBmxFvmNYTdw4moFb8DWsOhvBta5VAMG9of8uwaS9gePnIHBHMGy
+        UtkIG2h6E1bfQuR7dMitnYus6peRXhE5YODQRCTsCxg5A1/3ulDU+AY+9C1gBqKZgTm8gfUV07CmfDLe
+        doRh6T7JSBooh71xCQrq42Gq0yDnyKvYUPUSMzAV75ZF4K0vpcNjgJrxmMR9hMYovkPjtt4y/gJavLEw
+        1qmRUzsLmTUvQl+pQtIBORJKJTxkIMYsp/xb/hr+mkKLf5Z6kyQj96vXb7f3VqK99zC/8tYrTh7afotP
+        B5N3HnI9r0BfPRkrnDIsPxTIk3gwEK4uO8o77fwHqeycHc6zNiRsjbipMUk2Ci0eLE2eaM9OX9bN+h9K
+        sK0lkb98tsZFsDbGw9KgRY53BtKqlEg+LMXKiqD70HhFuRRJzkBmTIHd32yAfu/sfm2eyCWUHpxmreck
+        MRZp56GTxXfKzxehqGkJbM0LYG2OQbp7MlIqZUipDsKqGhneOcKolWEV+6VxStWAmR0nkmGvW3ZXkye+
+        /Ej/C2oTN25hofI3d9fOe7tPG1DYEgeDR8U3poapdXKs9jLqFfdJ88iR6pbD1qbDrlPp0Jmlv6uN3DNC
+        yYdXVK5kzvKPp/Q3XPwCH7UuZs1ZY9ZgtVeB9xoUWNM0CmuPCjSP4se5xyPh7M7DEvvYviijeJFQ6tGl
+        MUreT9+t7ivrLoC+fgK/Umq0riUY+mPBWN86mkfPyGwLh6vHhNSSyOsas7hYKDF0sUvp+MAR0196wYC1
+        TaF8c2pqaA9BxqlQbCBOKuG4bIC5Zv4trVlynKU9MZA9DHphMxegzRd3b2tIvlPStRL64wPNM0+HIvus
+        EtnnlNjVk4iSb1ff05rFvwzrV9Cv6I1ceGyB7Ne9ZzLwyfn5yDgZgqwzSuR0hmF7jwauyybEWRXX55oC
+        Zggpw6+oTWL1YvuYPtdFM2wdM3kD1u6pqP3ZimXbn74ebRKlCqHDqicZEkYgQzY3W7IxeYeqr6rXgoKO
+        SFRdM8HgmN2vNoocbH4UQ05xQjzlUf5Dy980iKFghDDCGOMY4fNyRO6sg1E3PNe2YEtzwm2tSXJJOp5T
+        sblJNC/EUTzlUT7VGbQZCgpg0CqCGUoGFZzIiGCoApTc82qj5GrmAfXd6HzpH+NncPHs+XTGczQvxFE8
+        5VE+1aF6VPeBbwcF+FdPWxrKGMuYwHiKQV+2KeGzOR39w01byp97JGMqPRfmKY7iKY/yqQ7VEzEGrb8e
+        A71atJoxDFoZNaDt9kNjek7zFEfxdB/oLlDjIX8XqACZomJiBpmjLfVDY3pO84M668f6D4jj/gSiVchb
+        t57VBwAAAABJRU5ErkJggg==
+</value>
+  </data>
+  <data name="mNextSectionButton.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="mNextSectionButton.Location" type="System.Drawing.Point, System.Drawing">
+    <value>398, 3</value>
+  </data>
+  <data name="mNextSectionButton.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>3, 0, 3, 0</value>
+  </data>
+  <data name="mNextSectionButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>33, 32</value>
+  </data>
+  <data name="mNextSectionButton.TabIndex" type="System.Int32, mscorlib">
+    <value>12</value>
+  </data>
+  <data name="mNextSectionButton.ToolTip" xml:space="preserve">
+    <value>Próxima secção. (H)</value>
+  </data>
+  <data name="&gt;&gt;mNextSectionButton.Name" xml:space="preserve">
+    <value>mNextSectionButton</value>
+  </data>
+  <data name="&gt;&gt;mNextSectionButton.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;mNextSectionButton.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;mNextSectionButton.ZOrder" xml:space="preserve">
+    <value>22</value>
+  </data>
+  <data name="mPrevSectionButton.AccessibleDescription" xml:space="preserve">
+    <value>botão</value>
+  </data>
+  <data name="mPrevSectionButton.AccessibleName" xml:space="preserve">
+    <value>Secção anterior</value>
+  </data>
+  <data name="mPrevSectionButton.BackgroundImageLayout" type="System.Windows.Forms.ImageLayout, System.Windows.Forms">
+    <value>Center</value>
+  </data>
+  <data name="mPrevSectionButton.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>Flat</value>
+  </data>
+  <data name="mPrevSectionButton.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6
+        JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAEzElEQVRYR+1Wa0wcVRSeurs8FpACJdiI
+        LX0ANn2ZkICwWwSqtQFjaRCxdMFa3shDYFm2bIFtKaYVDT4CTQtdHlJgocvyfgRYKlikqaVJtZIVRH/4
+        0x9NLFRI8fOeYUjUGIQW+NUv+TJnzrnn3O+euTN3uKd4XOzWchZ+2eJDwu36Q6YSVb2iksJPKUkTXOsH
+        WZYkMaL4xemmb4txKM/xgZ9SHCSE1h6ybPGBYK3LdN3NQlSNqlFmSoO/2vq+b4blTmHI2sE/k3shQC29
+        rxvOxccDUYit24nPv4rHudZj87Js0ZRXDmcvDF19eGk5qUwlNpd0J81f+SYbyfo9iKtzR8zV7Si/kYn0
+        qsBZFjeFh3MiIWVVsYG1vlVTFzp77c4FZBl9mYC9iK/3wHu1W1kn3FE5egqKkl3T7M34VMhZPciU4rzY
+        L7xnOr4rRX7nYWQYvPF+4z4mwJMXoKjejCT9buhGchByxmVanimKFlKfHH5KUUho0Zbp9rulKO5XQNVy
+        gBeQ0rhfEODGC4jQOTK/D0oHUxB4yuaBXCnxEUo8PmQqS89Ajd3vhtsluHwjA5r215YUcLRciryOwzjf
+        qYBMJfnNR8W5CqVWDtrRbPW/Vg6f/lM/VgRt1xv/EPDvR0ACQi9b4cglC/aGKKBuCH4kzxbfo80rlFw+
+        aCezzXT9QuuJuc7vy1DUG4aCzhDktr8KVascmUZvpBn2I7HJEzENboiqfQ5hOimOlEvw5iUJwipscXE4
+        BXEXvf6gzctKbliovEywL9tnaVeCHg6Ya/CJKRqFPaHQdgdD03UQ6g45lB3eSG97CclGD0TrnRH+pTXe
+        qrFEWJUljuosEFohQWSVCypGlAg7v21arhRrhdL/D7lSFBnxkcfM0IQeQ5ONGDBXo8+sg2miGvm9B5Hb
+        K4eq2xtJbdtxvNEWx/TWeIcxot4ab9dZof5OAerGCnD1dj5qb+WjZjSPfa6dZnxVolBhiqXhlyWGv8oa
+        ATm2PAPVtvN0NU1WoaA/CJp+GRLaXaFotoHCKJDZxw1SRDZJob+rZQeUGLIs8Rxr/0Mi1SQKU6wMXvGc
+        hJJNU5UoGAxAYpcr3m2zxYkOxk67BTKbfFEtNmi8p6XJH738gZWbXM05LNI3g7MWSq4cCwJ0SO3ZwU94
+        stsOMb3PIrZvgWSTj2LXxs+ArXp2Vc8FEtD7Uxk/AU0W12+PhEF7JF7fyJNs8lHMYD67NgKM5g9xsseO
+        n4gmTf7aASkjCySbfBRr/nGNBOjHTyOhfxMSTPZIHnZA6qgj0m858SSbfBRrnlgjAQ3jGiT2O/PtphWn
+        3mTf/rFNPMkmH8WMayBAzAv4QYOEPmfEs1UmDW1krXdEGpuYSDb5KLbYga2vc5tZrhXl81VWCPqpoGQ7
+        RkcSQLvbwJ6vcfIsWqYK0fpzIdp+OceTbPJRjMaw43vOaQ+3i+W6UL5Qh+ot62eFBtE7Sy10ZnyeBKyU
+        Ni7cXpbrRvlCHapHdZ9hXBJ0cCyu3omRWrmFkX46aVX7GL0Y6bz3Y5QLV7onP8VpHI2nPMqnOlTPgnHZ
+        IKWWjItCqJ20Giq6jXEHo/vfSPfkpziNW2y/DaOEcWUn4n+ABNHjoWK0EuoStZRINoklP206GvvEEz7F
+        OoDj/gItZbtQQW6MsgAAAABJRU5ErkJggg==
+</value>
+  </data>
+  <data name="mPrevSectionButton.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="mPrevSectionButton.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 0</value>
+  </data>
+  <data name="mPrevSectionButton.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>3, 0, 3, 0</value>
+  </data>
+  <data name="mPrevSectionButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>32, 32</value>
+  </data>
+  <data name="mPrevSectionButton.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="mPrevSectionButton.ToolTip" xml:space="preserve">
+    <value>Secção precedente. (Shift+H)</value>
+  </data>
+  <data name="&gt;&gt;mPrevSectionButton.Name" xml:space="preserve">
+    <value>mPrevSectionButton</value>
+  </data>
+  <data name="&gt;&gt;mPrevSectionButton.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;mPrevSectionButton.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;mPrevSectionButton.ZOrder" xml:space="preserve">
+    <value>7</value>
+  </data>
+  <data name="mRecordButton.AccessibleDescription" xml:space="preserve">
+    <value>botão</value>
+  </data>
+  <data name="mRecordButton.AccessibleName" xml:space="preserve">
+    <value>Gravar</value>
+  </data>
+  <data name="mRecordButton.BackgroundImageLayout" type="System.Windows.Forms.ImageLayout, System.Windows.Forms">
+    <value>Center</value>
+  </data>
+  <data name="mRecordButton.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>Flat</value>
+  </data>
+  <data name="mRecordButton.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6
+        JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAEpklEQVRYR+1WXUwTWRRuaaGMcZvK0rBA
+        bfmpKBJjTEwJSzGYuP6URdhtKorIz4oYERVMXFETJDHExAckoE+mTz4gvACJEhJCSNZdJW5bExRXXhdL
+        OzMtYClFlqRnzxlmiCG7SQvuwyZ8yZf7d875zj13Zu7INrGJ/ysUyK1IDTIBqUbGI/9zkIgOmfUvzER+
+        jYxBfnFokVmdMtlPIzLZwCu5nHcqFMuOmJhl6tMcrZENMh35xSoiZxgm9WeV6rsXcvm79/v2fZq5fRsW
+        u7vhr2fPYOnpUwg9fgz+mzfh/d69n8iGbNVqtVGr1dIxbQwGgyG5g2HKXAwTnG1pCS/190Pg4UOYuXMH
+        fM3N4Lt+HfwtLRC4fx+Wenpgprk5TLbko9PpjGlpaeuvRE5OztbmxMRCV1zc3HxHByw8egS+a9eAu3oV
+        +KYm4Bsbgb9yBbhLl4CrrweuoQEWurpg/t49cKpUH8k3OzvbgKHkKxGjhNls1r9QKn/zNzaGgw8erIhc
+        vAi8RBzzFy4Af/48cOfOAXf2LHirq4UE/PX1YfLNy8sz5ufnfyWGjBw2my3Onpz8w1ujMbhotwNXWysI
+        EHns8ygotDRXUwNcVRVwZ84AW14O7KlTEMKE3+j1QYphsVi+EcNGjvLy8m2/MMwTH+5w9tYt8J4+DSwK
+        cJWVwH/OigrgcY1HYe7kSfCWlIC7oAB8ZWXgPX4cnjNMj9VqzcCQ0R1DbW1t0u8KhXsBy8ljWVmbDbgT
+        JwQRXiSJ8FYrsIcOgWf/fnAbjTCVmgp/pqSAe/duCOAxOTBGXV1dZmtra5wYOjI0NDSkOOXyUOjuXfAc
+        PgzeY8eAtViAPXIE2IMHgc3NBQ+KeNLSYNpggGm9HtzIDzqdkMQUzi3gW0IxmpqaMpCMGDoytLW1JZEz
+        BZnCwBSUgpMICZKwNz19lVIiUhIfcCwlgLvP6OzsVImhI0N7e3uCQ6l0Uxmnc3JgisS3bxdESJDNyAAu
+        M3OVNKZ5IQm08+zZs3IEGKOrqyu9t7eX7o/IgQkwr9Tqbio7j2WnXVGZaaeSOL9jB/iQ1EpJCJVAO9/R
+        o8AWFcGYWv3EbreniGGjgvy5yfT9W612Pnj5MrjFEku75/GB82VlgX/nTqGlsVQFD7bkQ74vzebivr4+
+        ujWjx+joqMaxZcuvnMUSnsPXbDUBcfd+FJ7ZtUtoaUzztP4RX0uuqCjsQt/h4WF91OWXgA9PzEurNdel
+        VM7N4ccmgN8BLwlJFcA+7V44BhxzWI0AfhvIlnxe19R8OzY2Rv8K68fExETc64KCUldsbJArKQmH8C6Y
+        LS4GH773PJUf6cf+HH50aI0vLQ3j3RF0Hjjw4+TkZKIYZkOQOxyO2AmbzeyKj594l5q6yGEC83jxhG7c
+        EEh9mvsD18jmTUVF4fj4+DbyFbkuSM70d6MoLCxUYiKJLpOp0qnR9DmVSh7f8WWB2HdoNP0Ok6kKbejM
+        6T+Azp1I/utKRBIXEkAqkbHV1dXxKJAwNDSUTA/YyMiIYXBwUDcwMJCEHxs671iRZC8lICURNdYmISUi
+        JPMPlNYk2w2JrwUFkSgFXsvPbTaxiQggk/0NUw3JO+DnxCwAAAAASUVORK5CYII=
+</value>
+  </data>
+  <data name="mRecordButton.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="mRecordButton.Location" type="System.Drawing.Point, System.Drawing">
+    <value>223, 0</value>
+  </data>
+  <data name="mRecordButton.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>3, 0, 3, 0</value>
+  </data>
+  <data name="mRecordButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>32, 32</value>
+  </data>
+  <data name="mRecordButton.TabIndex" type="System.Int32, mscorlib">
+    <value>7</value>
+  </data>
+  <data name="mRecordButton.ToolTip" xml:space="preserve">
+    <value>Iniciar monitoração ou gravação. (Ctrl+R)</value>
+  </data>
+  <data name="&gt;&gt;mRecordButton.Name" xml:space="preserve">
+    <value>mRecordButton</value>
+  </data>
+  <data name="&gt;&gt;mRecordButton.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;mRecordButton.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;mRecordButton.ZOrder" xml:space="preserve">
+    <value>12</value>
+  </data>
+  <data name="mFastForwardButton.AccessibleDescription" xml:space="preserve">
+    <value>botão</value>
+  </data>
+  <data name="mFastForwardButton.AccessibleName" xml:space="preserve">
+    <value>Avançar rápido</value>
+  </data>
+  <data name="mFastForwardButton.BackgroundImageLayout" type="System.Windows.Forms.ImageLayout, System.Windows.Forms">
+    <value>Center</value>
+  </data>
+  <data name="mFastForwardButton.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>Flat</value>
+  </data>
+  <data name="mFastForwardButton.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6
+        JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAADvklEQVRYR+2UX0hTURzH11+SpkjR0nRl
+        aSio1FKDME1rqSMZ1ywNQjH7o0azYGFOSpdmrb+LbNXKVrqVZSwIYvRi9jL7Qw190IfSEDXb7tS5P27q
+        VU/nnJaWbbv21sM+8OPu3vPZ99zzu+dehhcvXrz8xjJYIbBWwlqILtDwrz4tYSmpO0DCtq1XfX19I+C5
+        P6x5eMQ1/+rTsh4FKlV19l3paX2cWE4uvMaGtQSP/g2+gbr6hw7kx26OzfXx8fHke8bPzw8HIkijARQX
+        H7On8Xa+ioiI2MJkMllQWfDT/AmLxQqd8Uns83ipr6Kjo7cEBASsgMofPi1sNns60GqzgImJCfD2nZYi
+        dvNt27lJVVFRUaFhYWF+Tp0Bf7v1d+xMroyJiQkNDw/3der0wDtf9ytwYMgITOZB4Bh1gNGxUSC7dcOR
+        zk/7mpyckMnhcFZFRkYujouL8+DXYJ/LTc6Mj4/HvnMa9yQmJq79FWgyD4FhswkMW0xgZMSKV/etvw8c
+        OpwPg3nPuTwuJyUlxaVvc+Hz+DxORkbGcrFYPN853d8QBBECNxMO7Df0AT3ZD/RGPSAH9MA4aJgOfv3m
+        NbVnb4aFT6SLdqWnYh9NbLYOA4vVjB8HKtSJyclJ0Az9zD2EhSD4opycnLVJSUmuX9m8vLyQ7H2ZOJAc
+        MMBJSdhaEh/Rud74HQyaBvB4T28PQG5W9m587s4fGh7E48hH7v79WSUCgWB6H/2BUChck38wF//BDFdi
+        gatAhVaGWjxiH4ErQhuthSo8ethy5Eh+6YH8nDn4Wqqg6JCloODgqZKSkmD4GFx3QCKRrBYUF+HAMdi+
+        sfExMIo2FSzUSiN81aovVNqFJ0+oy8RlG5F/TFDo2T9/FvrH1Wcqz2yQSqX+UHX/oZLJZOzSspM4cALe
+        +Tg1jo8URYGXL184yitEXWLxaaK+vp4ll8sXKRQK9imR0L1fLuqqqprxndO4R6VSBVdVV+BAtJqpqSnQ
+        2fWFunxVYrt4uVrc2Ni4GoYtdeoMtVodXHmufJb/mbp05QLyK2b7tGg0mmDp9Ys40GqzgoanKnvNLalG
+        qVRsam5u9p/9CjU1NQVdk874j58o7TUyqaahoY7jyqelpaUl6G7tTfBJ98F+X3Gnt06lyNZqtaz29naX
+        H5HW1tYg+b0a8FH33l57/3avUvkwS6fTrXDn09LR0RH4qOEBeKZ+JOns7GS3tbV5bF93d3eg6rFi2tfr
+        9XNvtytIkmQaDIaVJpMJ7Vba9kGHabPZ5ux78eLlP4XB+AHZyTVeWG5NigAAAABJRU5ErkJggg==
+</value>
+  </data>
+  <data name="mFastForwardButton.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="mFastForwardButton.Location" type="System.Drawing.Point, System.Drawing">
+    <value>290, 3</value>
+  </data>
+  <data name="mFastForwardButton.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>3, 0, 3, 0</value>
+  </data>
+  <data name="mFastForwardButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>35, 27</value>
+  </data>
+  <data name="mFastForwardButton.TabIndex" type="System.Int32, mscorlib">
+    <value>9</value>
+  </data>
+  <data name="mFastForwardButton.ToolTip" xml:space="preserve">
+    <value>Reproduzir a maior velocidade</value>
+  </data>
+  <data name="&gt;&gt;mFastForwardButton.Name" xml:space="preserve">
+    <value>mFastForwardButton</value>
+  </data>
+  <data name="&gt;&gt;mFastForwardButton.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;mFastForwardButton.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;mFastForwardButton.ZOrder" xml:space="preserve">
+    <value>13</value>
+  </data>
+  <data name="m_btnRecordingOptions.AccessibleName" xml:space="preserve">
+    <value>Opções de gravação</value>
+  </data>
+  <data name="m_btnRecordingOptions.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABUAAAAVCAYAAACpF6WWAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6
+        JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAACXBIWXMAAAsMAAALDAE/QCLIAAACM0lE
+        QVQ4T9WSX0hTcRTHR689FFQvPQQRZEE99FLEEIle6qGEmmJFf/DBVmFFRBDqsJD+zNBIMGOR2HIIUhH0
+        2La73c05WznCCGJjkolGmbu72/39bj58+50bUtvdH4VefPhwuIfz+/zOuednkWUZ/5sVLA0Gg8um0JEn
+        pQJfeAS+6FvBGHyj0T9ERuElRiJ5+IhQyCTOk3pDYbBXQ2A9t6C5usH6e8CePgQbdIENPQEbHgB/7gZ/
+        MQj20iPiM/A3r+GVQ6WlfkEy/h7a9jXI2WqgnbWBXT8H7myB3ncPCx4XFoRcf3wfvKsdv+x1SMbG4A/+
+        dRCm8aX4ByjONmhHqqE1nwBrbQbvbBPSTvCBXujuPuhiCl3k1EddkN6Nlx+fkAIBfPw6jax1K7LHD0C7
+        fBrs5lXw7hvgvXcFTvAHHeAXT2IikTTqCx0mKd3qjUTx3dMP1VoF9dRhaFcaoTkugXVcE7+iFXrLBfwY
+        dhvLKuySMEmJgLg9Nj0D9eAeZGqrkT1Ti5y9AdmmeuTOH4Nmr0ds8otRV+x8USlBG52KyFC3rUfmkBWZ
+        o/uQse2HunsLpmTJtPF/KSmlscKfk0g31kHZtQnpmp1Q9lZBaWoQ+UTRsRcpKSX84mBiMoX5dRbM79iI
+        9IZVSKRSRr5Y/SJlpdSNfzyOn3ccmFttwdxth/FdrkuirJSgJzMx+w3K5rVGLPaECqkoNbqVJHyamTVi
+        pS6JilKCRNThUoTEkqTLZaVIZfwGmCCHJ7FPtVAAAAAASUVORK5CYII=
+</value>
+  </data>
+  <data name="m_btnRecordingOptions.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="m_btnRecordingOptions.Location" type="System.Drawing.Point, System.Drawing">
+    <value>261, 5</value>
+  </data>
+  <data name="m_btnRecordingOptions.Size" type="System.Drawing.Size, System.Drawing">
+    <value>23, 23</value>
+  </data>
+  <data name="m_btnRecordingOptions.TabIndex" type="System.Int32, mscorlib">
+    <value>8</value>
+  </data>
+  <data name="m_btnRecordingOptions.ToolTip" xml:space="preserve">
+    <value>Opções de gravação</value>
+  </data>
+  <data name="&gt;&gt;m_btnRecordingOptions.Name" xml:space="preserve">
+    <value>m_btnRecordingOptions</value>
+  </data>
+  <data name="&gt;&gt;m_btnRecordingOptions.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_btnRecordingOptions.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;m_btnRecordingOptions.ZOrder" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <data name="m_btnPlayingOptions.AccessibleName" xml:space="preserve">
+    <value>Opções de reprodução</value>
+  </data>
+  <data name="m_btnPlayingOptions.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABUAAAAVCAYAAACpF6WWAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6
+        JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAACXBIWXMAAAsMAAALDAE/QCLIAAACM0lE
+        QVQ4T9WSX0hTcRTHR689FFQvPQQRZEE99FLEEIle6qGEmmJFf/DBVmFFRBDqsJD+zNBIMGOR2HIIUhH0
+        2La73c05WznCCGJjkolGmbu72/39bj58+50bUtvdH4VefPhwuIfz+/zOuednkWUZ/5sVLA0Gg8um0JEn
+        pQJfeAS+6FvBGHyj0T9ERuElRiJ5+IhQyCTOk3pDYbBXQ2A9t6C5usH6e8CePgQbdIENPQEbHgB/7gZ/
+        MQj20iPiM/A3r+GVQ6WlfkEy/h7a9jXI2WqgnbWBXT8H7myB3ncPCx4XFoRcf3wfvKsdv+x1SMbG4A/+
+        dRCm8aX4ByjONmhHqqE1nwBrbQbvbBPSTvCBXujuPuhiCl3k1EddkN6Nlx+fkAIBfPw6jax1K7LHD0C7
+        fBrs5lXw7hvgvXcFTvAHHeAXT2IikTTqCx0mKd3qjUTx3dMP1VoF9dRhaFcaoTkugXVcE7+iFXrLBfwY
+        dhvLKuySMEmJgLg9Nj0D9eAeZGqrkT1Ti5y9AdmmeuTOH4Nmr0ds8otRV+x8USlBG52KyFC3rUfmkBWZ
+        o/uQse2HunsLpmTJtPF/KSmlscKfk0g31kHZtQnpmp1Q9lZBaWoQ+UTRsRcpKSX84mBiMoX5dRbM79iI
+        9IZVSKRSRr5Y/SJlpdSNfzyOn3ccmFttwdxth/FdrkuirJSgJzMx+w3K5rVGLPaECqkoNbqVJHyamTVi
+        pS6JilKCRNThUoTEkqTLZaVIZfwGmCCHJ7FPtVAAAAAASUVORK5CYII=
+</value>
+  </data>
+  <data name="m_btnPlayingOptions.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="m_btnPlayingOptions.Location" type="System.Drawing.Point, System.Drawing">
+    <value>175, 5</value>
+  </data>
+  <data name="m_btnPlayingOptions.Size" type="System.Drawing.Size, System.Drawing">
+    <value>23, 23</value>
+  </data>
+  <data name="m_btnPlayingOptions.TabIndex" type="System.Int32, mscorlib">
+    <value>6</value>
+  </data>
+  <data name="m_btnPlayingOptions.ToolTip" xml:space="preserve">
+    <value>Opções de reprodução</value>
+  </data>
+  <data name="&gt;&gt;m_btnPlayingOptions.Name" xml:space="preserve">
+    <value>m_btnPlayingOptions</value>
+  </data>
+  <data name="&gt;&gt;m_btnPlayingOptions.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_btnPlayingOptions.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;m_btnPlayingOptions.ZOrder" xml:space="preserve">
+    <value>6</value>
+  </data>
+  <data name="m_btnSwitchProfile.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
+        wwAADsMBx2+oZAAAAwtJREFUSEvFVdsv3EEUFpcocUmIO3END0iIW8Q9ghd38SAkEv+AF4kX8eCNxB/g
+        TUXSuix2l9SudLu07izrVrTVNE2aJpI+9Blfvxnz22rXItLGl3y++Z2Zc87OnJnDDf8ZLhO8bm3F8LNn
+        GPH1xQj1uY8PRkhNNZvgTEGB8nKGywQWJjCGhMASEwNLVBQs0dF4I8akVGV7FREBY1GR8nKGywS7AwMw
+        1dTATJqqqzFP3lTHmPOrXV3KyxlPV4PNnh7oc3JgIPVZWdBnZ8NAOlTZxBprR4fycobrGrS1Yc7TE0uC
+        Hh6Sb5UKLrq7S13gvLGwUHk5484E815eWBFkoBUGWiWFSiqbhfOPSrDc2YmJxERMJSRAFx+PSVKojt+a
+        TYwnucbc1KS8nPF0Rf5XcE5wdSXFPjgIc0MDFkhzXR3M9fXyWxzHgmBjo2O81t0tfTTfm/idQEySV5eX
+        8lO8ZIMqojUgAMvJyVjPz8dGaSk2ysqwLpRczM3FbEmJ9JG+Ko6WzOURmWtrYWEfOkhJwXFFBU756z/w
+        Vwt+FKq+d8rLYWBiV3D7ZrVirqoKo+wrLyMjMR4eLvkiKAgr6eky+EllJU645pQUKqlsNja6MfYsect4
+        q8apo+xTk5mZOBoaut7Bj8NDLDQ3Y9zPD4vsjjZePTu3fkjn92xkksXFOOZRHFPlmDY5pu5xB/ukLS8P
+        xthY6On31WS63oH8q7DZ24tJ7uQdj2WfbeBQkK3giJTKpA5qdq45oG5wt9Oi47a3q2gE6+BIoBX309gY
+        ZjIyYGJLtqemYl8jAxwIpqVdU9nFGqs6nt3+fhlDiyVwa5HPt7dlK9bzbDfj4mCns53HtpeUJFWSNhs5
+        FxoKPXf0xWhU3n/COcGNq7rGPj/Bgi8xiI3/WHZ4CSQ5Xg0Lw1RwMCwtLXLt1cWF9P0bt+7gJk6Gh6Hj
+        G5j398dmYCC2SAvHE0yy3dcn1zju/y24N4HA9+VlzPFRTfOGGby9McVafNbp1OzdeFACgZ9nZ/J1z/Jh
+        nW9tKev9eHCCxwH4BSGDQzlVuclYAAAAAElFTkSuQmCC
+</value>
+  </data>
+  <data name="m_btnSwitchProfile.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="m_btnSwitchProfile.Location" type="System.Drawing.Point, System.Drawing">
+    <value>470, 0</value>
+  </data>
+  <data name="m_btnSwitchProfile.Size" type="System.Drawing.Size, System.Drawing">
+    <value>33, 31</value>
+  </data>
+  <data name="m_btnSwitchProfile.TabIndex" type="System.Int32, mscorlib">
+    <value>14</value>
+  </data>
+  <data name="m_btnSwitchProfile.ToolTip" xml:space="preserve">
+    <value>Mudar de perfil áudio</value>
+  </data>
+  <data name="&gt;&gt;m_btnSwitchProfile.Name" xml:space="preserve">
+    <value>m_btnSwitchProfile</value>
+  </data>
+  <data name="&gt;&gt;m_btnSwitchProfile.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_btnSwitchProfile.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;m_btnSwitchProfile.ZOrder" xml:space="preserve">
+    <value>20</value>
+  </data>
+  <data name="mDisplayBox.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>Flat</value>
+  </data>
+  <data name="mDisplayBox.Items" xml:space="preserve">
+    <value>Decorrido</value>
+  </data>
+  <data name="mDisplayBox.Items1" xml:space="preserve">
+    <value>Total decorrido</value>
+  </data>
+  <data name="mDisplayBox.Items2" xml:space="preserve">
+    <value>Restante</value>
+  </data>
+  <data name="mDisplayBox.Items3" xml:space="preserve">
+    <value>Restante total</value>
+  </data>
+  <data name="mDisplayBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>629, 4</value>
+  </data>
+  <data name="mDisplayBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>174, 24</value>
+  </data>
+  <data name="mDisplayBox.TabIndex" type="System.Int32, mscorlib">
+    <value>16</value>
+  </data>
+  <data name="&gt;&gt;mDisplayBox.Name" xml:space="preserve">
+    <value>mDisplayBox</value>
+  </data>
+  <data name="&gt;&gt;mDisplayBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;mDisplayBox.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;mDisplayBox.ZOrder" xml:space="preserve">
+    <value>18</value>
+  </data>
+  <data name="mFastPlayRateCombobox.AccessibleName" xml:space="preserve">
+    <value>Taxa de reprodução rápida</value>
+  </data>
+  <data name="mFastPlayRateCombobox.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>Flat</value>
+  </data>
+  <data name="mFastPlayRateCombobox.ItemHeight" type="System.Int32, mscorlib">
+    <value>16</value>
+  </data>
+  <data name="mFastPlayRateCombobox.Items" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="mFastPlayRateCombobox.Items1" xml:space="preserve">
+    <value>1.125</value>
+  </data>
+  <data name="mFastPlayRateCombobox.Items2" xml:space="preserve">
+    <value>1.25</value>
+  </data>
+  <data name="mFastPlayRateCombobox.Items3" xml:space="preserve">
+    <value>1.5</value>
+  </data>
+  <data name="mFastPlayRateCombobox.Items4" xml:space="preserve">
+    <value>1.75</value>
+  </data>
+  <data name="mFastPlayRateCombobox.Items5" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="mFastPlayRateCombobox.Items6" xml:space="preserve">
+    <value>2.25</value>
+  </data>
+  <data name="mFastPlayRateCombobox.Items7" xml:space="preserve">
+    <value>2.5</value>
+  </data>
+  <data name="mFastPlayRateCombobox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>809, 4</value>
+  </data>
+  <data name="mFastPlayRateCombobox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>53, 24</value>
+  </data>
+  <data name="mFastPlayRateCombobox.TabIndex" type="System.Int32, mscorlib">
+    <value>17</value>
+  </data>
+  <data name="&gt;&gt;mFastPlayRateCombobox.Name" xml:space="preserve">
+    <value>mFastPlayRateCombobox</value>
+  </data>
+  <data name="&gt;&gt;mFastPlayRateCombobox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;mFastPlayRateCombobox.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;mFastPlayRateCombobox.ZOrder" xml:space="preserve">
+    <value>17</value>
+  </data>
+  <data name="m_MonitoringtoolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>244, 22</value>
+  </data>
+  <data name="m_MonitoringtoolStripMenuItem.Text" xml:space="preserve">
+    <value>Iniciar &amp;monitoração</value>
+  </data>
+  <data name="m_RecordingtoolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>244, 22</value>
+  </data>
+  <data name="m_RecordingtoolStripMenuItem.Text" xml:space="preserve">
+    <value>Iniciar &amp;gravação</value>
+  </data>
+  <data name="m_DeletePhrasestoolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>244, 22</value>
+  </data>
+  <data name="m_DeletePhrasestoolStripMenuItem.Text" xml:space="preserve">
+    <value>Gravar sobre &amp;frases subsequentes</value>
+  </data>
+  <data name="mPreviewBeforeRecToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>244, 22</value>
+  </data>
+  <data name="mPreviewBeforeRecToolStripMenuItem.Text" xml:space="preserve">
+    <value>Simular an&amp;tes de gravar</value>
+  </data>
+  <data name="mMonitorContinuouslyToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>244, 22</value>
+  </data>
+  <data name="mMonitorContinuouslyToolStripMenuItem.Text" xml:space="preserve">
+    <value>Monitoração c&amp;ontínua</value>
+  </data>
+  <data name="m_RecordingOptionsContextMenuStrip.Size" type="System.Drawing.Size, System.Drawing">
+    <value>245, 114</value>
+  </data>
+  <data name="&gt;&gt;m_RecordingOptionsContextMenuStrip.Name" xml:space="preserve">
+    <value>m_RecordingOptionsContextMenuStrip</value>
+  </data>
+  <data name="&gt;&gt;m_RecordingOptionsContextMenuStrip.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ContextMenuStrip, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="m_PlayAlltoolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>186, 22</value>
+  </data>
+  <data name="m_PlayAlltoolStripMenuItem.Text" xml:space="preserve">
+    <value>Reprodu&amp;zir tudo</value>
+  </data>
+  <data name="m_PlaySectiontoolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>186, 22</value>
+  </data>
+  <data name="m_PlaySectiontoolStripMenuItem.Text" xml:space="preserve">
+    <value>Reprod&amp;uzir secção</value>
+  </data>
+  <data name="m_playHeadingToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>186, 22</value>
+  </data>
+  <data name="m_playHeadingToolStripMenuItem.Text" xml:space="preserve">
+    <value>Repro&amp;duzir cabeçalho da secção</value>
+  </data>
+  <data name="m_PreviewFromtoolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>186, 22</value>
+  </data>
+  <data name="m_PreviewFromtoolStripMenuItem.Text" xml:space="preserve">
+    <value>Simular d&amp;esde</value>
+  </data>
+  <data name="m_PreviewUptotoolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>186, 22</value>
+  </data>
+  <data name="m_PreviewUptotoolStripMenuItem.Text" xml:space="preserve">
+    <value>Si&amp;mular até</value>
+  </data>
+  <data name="m_PlayingOptionsContextMenuStrip.Size" type="System.Drawing.Size, System.Drawing">
+    <value>187, 114</value>
+  </data>
+  <data name="&gt;&gt;m_PlayingOptionsContextMenuStrip.Name" xml:space="preserve">
+    <value>m_PlayingOptionsContextMenuStrip</value>
+  </data>
+  <data name="&gt;&gt;m_PlayingOptionsContextMenuStrip.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ContextMenuStrip, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="m_SwitchProfileContextMenuStrip.Size" type="System.Drawing.Size, System.Drawing">
+    <value>61, 4</value>
+  </data>
+  <data name="&gt;&gt;m_SwitchProfileContextMenuStrip.Name" xml:space="preserve">
+    <value>m_SwitchProfileContextMenuStrip</value>
+  </data>
+  <data name="&gt;&gt;m_SwitchProfileContextMenuStrip.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ContextMenuStrip, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="mVUMeterPanel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>870, 3</value>
+  </data>
+  <data name="mVUMeterPanel.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>5, 0, 0, 0</value>
+  </data>
+  <data name="mVUMeterPanel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>233, 28</value>
+  </data>
+  <data name="mVUMeterPanel.TabIndex" type="System.Int32, mscorlib">
+    <value>18</value>
+  </data>
+  <data name="&gt;&gt;mVUMeterPanel.Name" xml:space="preserve">
+    <value>mVUMeterPanel</value>
+  </data>
+  <data name="&gt;&gt;mVUMeterPanel.Type" xml:space="preserve">
+    <value>Obi.UserControls.TextVUMeterPanel, Obi, Version=3.8.0.21251, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;mVUMeterPanel.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;mVUMeterPanel.ZOrder" xml:space="preserve">
+    <value>19</value>
+  </data>
+  <data name="$this.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 9.75pt</value>
+  </data>
+  <data name="$this.Size" type="System.Drawing.Size, System.Drawing">
+    <value>1140, 32</value>
+  </data>
+  <data name="&gt;&gt;mTransportBarTooltip.Name" xml:space="preserve">
+    <value>mTransportBarTooltip</value>
+  </data>
+  <data name="&gt;&gt;mTransportBarTooltip.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolTip, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;mDisplayTimer.Name" xml:space="preserve">
+    <value>mDisplayTimer</value>
+  </data>
+  <data name="&gt;&gt;mDisplayTimer.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Timer, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_MonitoringtoolStripMenuItem.Name" xml:space="preserve">
+    <value>m_MonitoringtoolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;m_MonitoringtoolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_RecordingtoolStripMenuItem.Name" xml:space="preserve">
+    <value>m_RecordingtoolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;m_RecordingtoolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_DeletePhrasestoolStripMenuItem.Name" xml:space="preserve">
+    <value>m_DeletePhrasestoolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;m_DeletePhrasestoolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;mPreviewBeforeRecToolStripMenuItem.Name" xml:space="preserve">
+    <value>mPreviewBeforeRecToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;mPreviewBeforeRecToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;mMonitorContinuouslyToolStripMenuItem.Name" xml:space="preserve">
+    <value>mMonitorContinuouslyToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;mMonitorContinuouslyToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_PlayAlltoolStripMenuItem.Name" xml:space="preserve">
+    <value>m_PlayAlltoolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;m_PlayAlltoolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_PlaySectiontoolStripMenuItem.Name" xml:space="preserve">
+    <value>m_PlaySectiontoolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;m_PlaySectiontoolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_playHeadingToolStripMenuItem.Name" xml:space="preserve">
+    <value>m_playHeadingToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;m_playHeadingToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_PreviewFromtoolStripMenuItem.Name" xml:space="preserve">
+    <value>m_PreviewFromtoolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;m_PreviewFromtoolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_PreviewUptotoolStripMenuItem.Name" xml:space="preserve">
+    <value>m_PreviewUptotoolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;m_PreviewUptotoolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;$this.Name" xml:space="preserve">
+    <value>TransportBar</value>
+  </data>
+  <data name="&gt;&gt;$this.Type" xml:space="preserve">
+    <value>System.Windows.Forms.UserControl, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="media-monitor.png" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+
+      iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
+      wgAADsIBFShKgAAAABl0RVh0U29mdHdhcmUAUGFpbnQuTkVUIHYzLjUuODc7gF0AAAK5SURBVFhH7VU5
+      S2NRFLZRwUpRQdx3RbAQFCsLUVxxQ9x3VMRdC3EDLSwEGwu1tLIQOwv9GRMTBjdwmnFi8u57iRInkUzz
+      zTnXvJDIVHlJMZDAIffec8/9vvOde+6LiYn+ogpEFfjfFLg9PYWlvR2m1FSY4uPxLS5OjnmNfRHN56as
+      DI/V1XDu7uLj/Bx/rq/hvbqC5+wMjq0tPFZVgfdEhIQ5JUUCey8v4To5gXNvD9rGBrT1dTh2duA6PIT3
+      4gLOzU3w3rCSMJPEdGCQqaurUFdWoC4vQywuQszNQSwswH10hPeDA/hijPP4XlPjB5Yg8/NBc3V2FurM
+      DMT0NMTkJJTxcUnAQft8sYZJSEAxNSUBpNE4aG1iAmJsDMrICMTgIJSBAXiOj3FbWmqsFHwgA71ub0MZ
+      GvoEGB2VJgnQvzo8LH0MLPr7Ye/ogJVU0/r6YKfOuCe/EQngJjlZVqWnB6K3V4Kw6XdC7e6GUl8PW2Ul
+      rIWFeM7IwM/0dFipG1xUBktWljECnv192BoaYG9uhtLSAtHYCKW2Fgq1I5N4yc3FS04OrNnZ0n5lZkoS
+      z7Tmpi65SUgwRuDr7Q9xHloVLJQRy8i1Z7OSnJytPS8PSn6+VEApKPg0mvO6VIP22crLZayPcGgEnuh2
+      67KztCwxS85gDKqrIYqK/CTYz/u0pqbAdyM0Ahx1Rwf+Xlry11rPXqULpxUXSxD+57mugs2njqHsdcoP
+      dXUQra14ozbzy0/Zc9Y6AdmSPhWYoK4Mx4aeekCkJTkZb1QOF78DDEQZSgW+kAi8oBwTFnD9EHNiIkRn
+      Jzxra3hta4NGfa+WlEBjo/EbPTrsU7u6YE5KCi+4TuKuogL3lL0gAu/04fHQl4+Nx7z2QD7eE9bM/3XY
+      D3p6LWlpMMXGSuPxE92RiANHAaIKRBWIhAJ/AaE4KsZnOH4bAAAAAElFTkSuQmCC
+
+    </value>
+  </data>
+</root>

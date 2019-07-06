@@ -1,0 +1,258 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="CannotCreate_InputPath" xml:space="preserve">
+    <value>இந்த வகை வழியை உருவாக்க முடியவில்லை: உள்ளீடு</value>
+  </data>
+  <data name="Caption_Error" xml:space="preserve">
+    <value>பிழை</value>
+  </data>
+  <data name="Caption_Warning" xml:space="preserve">
+    <value>எச்சரிக்கை!</value>
+  </data>
+  <data name="Choose_OtherDirectory" xml:space="preserve">
+    <value>வேறொரு கோப்பகம் தேர்வு செய்யவும்</value>
+  </data>
+  <data name="IndexNotInRange" xml:space="preserve">
+    <value>அகவரிசை வரம்பில் இல்லை</value>
+  </data>
+  <data name="No_Path" xml:space="preserve">
+    <value>வழி இல்லை</value>
+  </data>
+  <data name="no_primary_export_directory" xml:space="preserve">
+    <value>டெய்சி ஏற்றுமதி கோப்பகம் கிடைக்கவில்லை. ஏற்றுமதி வழியை தேர்ந்தெடுக்கவும் அல்லது திட்டபணியை டெய்சியில் ஏற்றுமதி செய்யவும்.</value>
+  </data>
+  <data name="no_script" xml:space="preserve">
+    <value>ஸ்கிரிப்ட் கோப்பை இங்கு "{0}" கிடைக்கவில்லை</value>
+  </data>
+  <data name="NotAbleToCreateDirectory" xml:space="preserve">
+    <value>கோப்பகம் {0} உருவாக்க முடியவில்லை</value>
+  </data>
+  <data name="NotAbleToSelectItem" xml:space="preserve">
+    <value>உருப்படியை தேர்ந்தெடுக்க முடியவில்லை</value>
+  </data>
+  <data name="OutputDirectoryNotFound_Permission_Create" xml:space="preserve">
+    <value>வெளியீடு கோப்பகம் கண்டுபிடிக்க முடியவில்லை. \n  அதை உருவாக்க விரும்புகிறீர்களா?</value>
+  </data>
+  <data name="Permission_EmptyOutputDirectory" xml:space="preserve">
+    <value>வெளியீடு கோப்பகம் காலியாக இல்லை. அதை காலியாக்க விரும்புகிறீர்களா?</value>
+  </data>
+  <data name="Pipeline_DuplicateScript" xml:space="preserve">
+    <value> {0} பெயர் உள்ள நகல் பைப்லைன் ஸ்கிரிப்ட் கிடைத்துள்ளது. இதை ஏற்ற முடியாது. தொடர சரி பொத்தானை அமுக்கவும்</value>
+  </data>
+  <data name="Pipeline_Error_NotExpectedRange" xml:space="preserve">
+    <value>மதிப்பு {0}  மற்றும் {1} -  கு நடுவே இருக்கவேண்டும்</value>
+  </data>
+  <data name="Pipeline_InvalidScriptsParameters" xml:space="preserve">
+    <value>ஒன்று அல்லது அதை விட அதிகமான அளவுருக்கள் தவறாக உள்ளது. சரியான மதிப்புகளை நுழைவு செய்யவும்</value>
+  </data>
+  <data name="Pipeline_InvalidString" xml:space="preserve">
+    <value>தவறான உள்ளீடு</value>
+  </data>
+  <data name="Pipeline_OutOfRange" xml:space="preserve">
+    <value>எதிர்பார்த்த வரம்புக்குள் மதிப்புகள்  இல்லை</value>
+  </data>
+  <data name="really_use_directory_caption" xml:space="preserve">
+    <value>கோப்பகத்தை பயன்படுத்தும் முன் காலியாக்க விரும்புகிறீர்களா?</value>
+  </data>
+  <data name="really_use_directory_text" xml:space="preserve">
+    <value>கோப்பகம்  "{0}" காலியாக இல்லை. இதை பயன்படுத்தும் முன் காலியாக்க விரும்பினால் "ஆமாம்" தேர்வு செய்யவும். இந்த கோப்பகத்தை அப்படியே பயன்படுத்த விரும்பினால் "இல்லை" தேர்வு செய்யவும்.</value>
+  </data>
+  <data name="Z3986DTBValidator" xml:space="preserve">
+    <value>டெய்சி 3  வேலிடேற்றர்</value>
+  </data>
+  <data name="Daisy202DTBValidator" xml:space="preserve">
+    <value>டெய்சி 2.02 லைட் வேலிடேற்றர்</value>
+  </data>
+  <data name="DTBAudioEncoder" xml:space="preserve">
+    <value>ஒலியை MP3- கு மாற்றவும்</value>
+  </data>
+  <data name="FilesetRenamer" xml:space="preserve">
+    <value>ஃபைல்செட் மறுபெயரிடுபவர்</value>
+  </data>
+  <data name="PrettyPrinter" xml:space="preserve">
+    <value>ப்ரெட்டி ப்ரிண்டர்</value>
+  </data>
+  <data name="Input_NCC" xml:space="preserve">
+    <value>உள்ளீடு  NCC </value>
+  </data>
+  <data name="Select_the_input_NCC_document" xml:space="preserve">
+    <value>உள்ளீடு  NCC  ஆவணம் தேர்வு செய்யவும்</value>
+  </data>
+  <data name="Validation_Report" xml:space="preserve">
+    <value>வேலிடேஷன் அறிக்கை</value>
+  </data>
+  <data name="Select_a_file_to_store_a_Validation_XML_report_in" xml:space="preserve">
+    <value>வேலிடேஷன்  XML அறிக்கையை சேகரிக்கை ஒரு கோப்பையை தேர்வு செய்யவும்</value>
+  </data>
+  <data name="Time_Tolerance" xml:space="preserve">
+    <value>நேரம் சகிப்புதன்மை</value>
+  </data>
+  <data name="Set_the_time_tolerance_threshold_in_milliseconds" xml:space="preserve">
+    <value>நேரம் சகிப்புதன்மை குறுமட்டம் மில்லி வினாடிகளில் அமை</value>
+  </data>
+  <data name="Input_OPF" xml:space="preserve">
+    <value>உள்ளீடு OPF</value>
+  </data>
+  <data name="Select_the_input_Package_file_(OPF)_document" xml:space="preserve">
+    <value>உள்ளீடு தொகுப்பு கோப்பை  (OPF) ஆவணம் தேர்வு செய்யவும்</value>
+  </data>
+  <data name="Output_directory" xml:space="preserve">
+    <value>வெளியீடு கோப்பகம்</value>
+  </data>
+  <data name="Select_the_output_directory" xml:space="preserve">
+    <value>வெளியீடு கோப்பகம் தேர்வு செய்யவும்</value>
+  </data>
+  <data name="Bitrate" xml:space="preserve">
+    <value>நுண் விகிதம்</value>
+  </data>
+  <data name="Select_the_bitrate_of_the_encoded_files" xml:space="preserve">
+    <value>குறியிடப்பட்ட கோப்பைகளின் நுண் விகிதத்தை தேர்வு செய்யவும்.</value>
+  </data>
+  <data name="Input_file" xml:space="preserve">
+    <value>உள்ளீடு_கோப்பை</value>
+  </data>
+  <data name="Select_the_input_manifest_file_(NCC,_OPF,_etc)" xml:space="preserve">
+    <value>உள்ளீடு வெளிப்படுத்து கோப்பை தேர்வு செய்யவும்</value>
+  </data>
+  <data name="Base_Name" xml:space="preserve">
+    <value>அடித்தளம் பெயர்</value>
+  </data>
+  <data name="The_base_name_used_for_renaming" xml:space="preserve">
+    <value>மறுபெயரிடலுக்காக பயன்படுத்தும் அடித்தளம் பெயர்</value>
+  </data>
+  <data name="File_types_to_exclude" xml:space="preserve">
+    <value>விலக்க வேண்டிய கோப்பு வகைகள்</value>
+  </data>
+  <data name="comma_separated_list_of_file_types_to_exclude_from_renaming" xml:space="preserve">
+    <value>மறுபெயரிடலிலிருந்து விலக்கவேண்டிய, காற்புள்ளியால் பிரிக்கப்பட்ட கோப்பை வகைகளின் பட்டியல்</value>
+  </data>
+  <data name="Use_only_the_characters_A-Z,a-z,0-9,_hyphen_and_underscore_in_output_filenames" xml:space="preserve">
+    <value>வெளியீடு கோப்பை பெயர்களில் எழுத்துக்கள் A-Z,a-z,0-9,  நடுக்கோட்டை, அடிக் கோடு மட்டும் பயன்படுத்தவும்</value>
+  </data>
+  <data name="Use_filesystem_safe_names" xml:space="preserve">
+    <value>கோப்பை அமைப்பு பாதுகாப்பான பெயர்கள் உபயோகிக்கவும்</value>
+  </data>
+  <data name="Max_filename_length" xml:space="preserve">
+    <value>அதிகபட்ச கோப்பை பெயர் நீளம்</value>
+  </data>
+  <data name="Max._number_of_characters_in_output_filename,_excluding_extension._Default_is_60" xml:space="preserve">
+    <value>வெளியீடு கோப்பை பெயருக்கான அதிகபட்ச எழுத்துகளின் எண்ணிக்கை. இயல்பு நிலை 60 ஆகும்</value>
+  </data>
+</root>
