@@ -98,9 +98,12 @@ namespace Obi.Dialogs
             this.m_cb_Process.Items.AddRange(new object[] {
             resources.GetString("m_cb_Process.Items"),
             resources.GetString("m_cb_Process.Items1"),
-            resources.GetString("m_cb_Process.Items2")});
+            resources.GetString("m_cb_Process.Items2"),
+            resources.GetString("m_cb_Process.Items3"),
+            resources.GetString("m_cb_Process.Items4")});
             resources.ApplyResources(this.m_cb_Process, "m_cb_Process");
             this.m_cb_Process.Name = "m_cb_Process";
+            this.m_cb_Process.SelectedIndexChanged += new System.EventHandler(this.m_cb_Process_SelectedIndexChanged);
             // 
             // m_lbl_Process
             // 

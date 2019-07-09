@@ -6091,6 +6091,78 @@ for (int j = 0;
             return null;
         }
 
+
+        public void AudioProcessing()
+        {
+            ObiNode nodeToSelect = Selection.Node;
+            double durationOfSelection = DurationOfNodeSelected(nodeToSelect);
+            if (durationOfSelection == 0)
+            {
+                MessageBox.Show(Localizer.Message("no_audio"), Localizer.Message("no_audio_Caption"), MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+            bool SelectionChangedPlaybackEnabled = mTransportBar.SelectionChangedPlaybackEnabled;
+            mTransportBar.SelectionChangedPlaybackEnabled = false;
+            Obi.Dialogs.AudioProcessingDialog dialog = new Obi.Dialogs.AudioProcessingDialog(ObiForm.Settings); //@fontconfig
+            if (dialog.ShowDialog() == DialogResult.OK)
+            {
+                Audio.AudioProcessing.AudioProcessingKind audioProcessingKind = dialog.AudioProcessNaudio;
+                float val = dialog.AudioProcessingParameter;
+                try
+                {
+                    string tempDirectoryName = "AudioProcessing";
+                    string directoryFullPath = System.IO.Path.Combine(mPresentation.DataProviderManager.DataFileDirectoryFullPath,
+                        tempDirectoryName);
+                    if (System.IO.Directory.Exists(directoryFullPath)) System.IO.Directory.Delete(directoryFullPath, true);
+                    System.IO.Directory.CreateDirectory(directoryFullPath);
+
+
+                    string audioFileFullPath = CreateAudioFileFromNode(nodeToSelect, directoryFullPath, null);
+
+                    if (audioFileFullPath != null)
+                    {
+                        
+                        Obi.Audio.AudioProcessing audioPorcess = new Audio.AudioProcessing();
+                        string audioProcessedFile = null;
+
+                        if (audioProcessingKind == Audio.AudioProcessing.AudioProcessingKind.Amplify)
+                        {
+                            audioProcessedFile = audioPorcess.IncreaseAmplitude(audioFileFullPath, val);
+                        }
+                        else if (audioProcessingKind == Audio.AudioProcessing.AudioProcessingKind.FadeIn)
+                        {
+                            audioProcessedFile = audioPorcess.FadeIn(audioFileFullPath, nodeToSelect.Duration);
+                        }
+                        else if (audioProcessingKind == Audio.AudioProcessing.AudioProcessingKind.FadeOut)
+                        {
+                            audioProcessedFile = audioPorcess.FadeOut(audioFileFullPath, nodeToSelect.Duration);
+                        }
+                        else if (audioProcessingKind == Audio.AudioProcessing.AudioProcessingKind.Normalize)
+                        {
+                            audioProcessedFile = audioPorcess.Normalize(audioFileFullPath);
+                        }
+                        audioPorcess = null;
+
+                        if (audioProcessedFile != null && System.IO.File.Exists(audioFileFullPath) && System.IO.File.Exists(audioProcessedFile))
+                        {
+                            ReplaceAudioOfSelectedNode(audioProcessedFile, true, nodeToSelect);
+                            if (System.IO.Directory.Exists(directoryFullPath))
+                            {
+                                System.IO.File.Delete(audioFileFullPath);
+                                System.IO.Directory.Delete(directoryFullPath, true);
+                            }
+                        }
+
+                    }
+                }
+                catch (System.Exception ex)
+                {
+                    WriteToLogFile(ex.ToString());
+                    MessageBox.Show(ex.ToString());
+                }
+            }
+        }
+
         public void ProcessAudio()
         {
 if (CanExportSelectedNodeAudio)
