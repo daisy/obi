@@ -37,6 +37,19 @@ namespace Obi.Dialogs
             }
         }
 
+        public Obi.Audio.AudioProcessing.AudioProcessingKind AudioProcessNaudio
+        {
+            get
+            {
+                int index = m_cb_Process.SelectedIndex;
+                return index == 0 ? Obi.Audio.AudioProcessing.AudioProcessingKind.Amplify :
+                    index == 1 ? Audio.AudioProcessing.AudioProcessingKind.FadeIn :
+                    index == 2 ? Audio.AudioProcessing.AudioProcessingKind.FadeOut :
+                    Audio.AudioProcessing.AudioProcessingKind.Normalize;
+            }
+        }
+
+
         public float AudioProcessingParameter
         {
             get
@@ -53,6 +66,19 @@ namespace Obi.Dialogs
         private void m_btn_Cancel_Click(object sender, EventArgs e)
         {
             Close();
+        }
+
+        private void m_cb_Process_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            int index = m_cb_Process.SelectedIndex;
+            if (index == 1 || index == 2 || index == 3)
+            {
+                m_numericUpDown1.Enabled = false;
+            }
+            else
+            {
+                m_numericUpDown1.Enabled = true;
+            }
         }
     }
 }
