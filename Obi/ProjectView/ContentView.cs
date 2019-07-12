@@ -6167,7 +6167,8 @@ Block lastBlock = ActiveStrip.LastBlock ;
             if (mProjectView.CanExportSelectedNodeAudio)
             {
                 
-                    mProjectView.ProcessAudio();
+                    //mProjectView.ProcessAudio();
+                mProjectView.AudioProcessing();
                 
             }
         }
