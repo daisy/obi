@@ -6239,7 +6239,8 @@ ref string exportDirectoryEPUB3)
                 }
                 if (mProjectView.CanExportSelectedNodeAudio)
                 {
-                    mProjectView.ProcessAudio();
+                    //mProjectView.ProcessAudio();
+                    mProjectView.AudioProcessing();
                 }
             }
 
