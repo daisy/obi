@@ -114,7 +114,20 @@ namespace Obi.Audio
                 return outPath;
             }
         }
+
+        public string  NoiseReduction(string fileName, float  bandPassfilterFrequency)
+        {
+            string outputFileName = fileName.Substring(0, fileName.Length - 4);
+            var outPath = outputFileName + "NoiseREduction.wav";
+            using (var reader = new AudioFileReader(fileName))
+            {
+                var filter = new ObiWaveProvider(reader, bandPassfilterFrequency);
+                WaveFileWriter.CreateWaveFile16(outPath, filter);
+            }
+
+            return outPath;
+        }
         
-        public enum AudioProcessingKind { Amplify, FadeIn, FadeOut, Normalize, SoundTouch } ;
+        public enum AudioProcessingKind { Amplify, FadeIn, FadeOut, Normalize, NoiseReduction } ;
     }
 }

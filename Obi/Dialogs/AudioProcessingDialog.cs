@@ -45,7 +45,8 @@ namespace Obi.Dialogs
                 return index == 0 ? Obi.Audio.AudioProcessing.AudioProcessingKind.Amplify :
                     index == 1 ? Audio.AudioProcessing.AudioProcessingKind.FadeIn :
                     index == 2 ? Audio.AudioProcessing.AudioProcessingKind.FadeOut :
-                    Audio.AudioProcessing.AudioProcessingKind.Normalize;
+                    index == 3 ? Audio.AudioProcessing.AudioProcessingKind.Normalize :
+                    Audio.AudioProcessing.AudioProcessingKind.NoiseReduction;
             }
         }
 
@@ -55,6 +56,14 @@ namespace Obi.Dialogs
             get
             {
                 return (float) m_numericUpDown1.Value;
+            }
+        }
+
+        public int NoiseReductionParameter
+        {
+            get
+            {
+                return (Int32.Parse(m_tb_NoiseReductionFreqency.Text));
             }
         }
         private void m_btn_OK_Click(object sender, EventArgs e)
@@ -71,13 +80,19 @@ namespace Obi.Dialogs
         private void m_cb_Process_SelectedIndexChanged(object sender, EventArgs e)
         {
             int index = m_cb_Process.SelectedIndex;
-            if (index == 1 || index == 2 || index == 3)
+            if (index == 1 || index == 2 || index == 3 || index == 4)
             {
-                m_numericUpDown1.Enabled = false;
+                m_numericUpDown1.Visible = false;
+                if (index == 4)
+                {
+                    m_tb_NoiseReductionFreqency.Visible = true;
+                    m_tb_NoiseReductionFreqency.Location = m_numericUpDown1.Location;
+                }
             }
             else
             {
-                m_numericUpDown1.Enabled = true;
+                m_numericUpDown1.Visible = true;
+                m_tb_NoiseReductionFreqency.Visible = false;
             }
         }
     }

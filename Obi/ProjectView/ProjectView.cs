@@ -6141,8 +6141,11 @@ for (int j = 0;
                         {
                             audioProcessedFile = audioPorcess.Normalize(audioFileFullPath);
                         }
-                        audioPorcess = null;
-
+                        else if (audioProcessingKind == Audio.AudioProcessing.AudioProcessingKind.NoiseReduction)
+                        {
+                            audioProcessedFile = audioPorcess.NoiseReduction(audioFileFullPath, dialog.NoiseReductionParameter);
+                        }
+                        
                         if (audioProcessedFile != null && System.IO.File.Exists(audioFileFullPath) && System.IO.File.Exists(audioProcessedFile))
                         {
                             ReplaceAudioOfSelectedNode(audioProcessedFile, true, nodeToSelect);

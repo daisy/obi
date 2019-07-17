@@ -98,10 +98,6 @@
     <Reference Include="Microsoft.DirectX.DirectSound, Version=1.0.2902.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35">
       <HintPath>..\..\..\..\..\..\..\..\..\..\WINDOWS\Microsoft.NET\DirectX for Managed Code\1.0.2902.0\Microsoft.DirectX.DirectSound.dll</HintPath>
     </Reference>
-    <Reference Include="NAudio, Version=1.6.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\NAudio DLL\Old Version\NAudio.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Deployment" />
@@ -113,6 +109,8 @@
   <ItemGroup>
     <Compile Include="Audio\AudioFormatConverter.cs" />
     <Compile Include="Audio\AudioProcessing.cs" />
+    <Compile Include="Audio\BiQuadFilter.cs" />
+    <Compile Include="Audio\ObiWaveProvider.cs" />
     <Compile Include="Audio\PeakMeterForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -3276,6 +3274,10 @@
     <ProjectReference Include="..\..\..\..\urakawa-sdk\trunk\csharp\audio\AudioLib\AudioLib_NET4.csproj">
       <Project>{6EE8E00A-DB7C-41A7-BC66-527CB4C08D83}</Project>
       <Name>AudioLib_NET4</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\urakawa-sdk\trunk\csharp\audio\NAudio\NAudio_NET4.csproj">
+      <Project>{DA4F02E3-0B5E-42CD-B8D9-5583FA51D66E}</Project>
+      <Name>NAudio_NET4</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\..\..\urakawa-sdk\trunk\csharp\core\UrakawaSDK.core_NET4.csproj">
       <Project>{7CCD52F9-C801-4C2B-AA9D-B7E217F307A0}</Project>
