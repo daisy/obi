@@ -40,12 +40,14 @@ namespace Obi.Dialogs
             this.m_btn_Cancel = new System.Windows.Forms.Button();
             this.helpProvider1 = new System.Windows.Forms.HelpProvider();
             this.m_InfoToolTip = new System.Windows.Forms.ToolTip(this.components);
+            this.m_tb_NoiseReductionFreqency = new System.Windows.Forms.TextBox();
             this.m_gpbox_Process.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.m_numericUpDown1)).BeginInit();
             this.SuspendLayout();
             // 
             // m_gpbox_Process
             // 
+            this.m_gpbox_Process.Controls.Add(this.m_tb_NoiseReductionFreqency);
             this.m_gpbox_Process.Controls.Add(this.m_txt_info);
             this.m_gpbox_Process.Controls.Add(this.m_numericUpDown1);
             this.m_gpbox_Process.Controls.Add(this.m_lbl_Parameters);
@@ -125,6 +127,11 @@ namespace Obi.Dialogs
             this.m_btn_Cancel.UseVisualStyleBackColor = true;
             this.m_btn_Cancel.Click += new System.EventHandler(this.m_btn_Cancel_Click);
             // 
+            // m_tb_NoiseReductionFreqency
+            // 
+            resources.ApplyResources(this.m_tb_NoiseReductionFreqency, "m_tb_NoiseReductionFreqency");
+            this.m_tb_NoiseReductionFreqency.Name = "m_tb_NoiseReductionFreqency";
+            // 
             // AudioProcessingDialog
             // 
             this.AcceptButton = this.m_btn_OK;
@@ -155,5 +162,6 @@ namespace Obi.Dialogs
         private System.Windows.Forms.TextBox m_txt_info;
         private System.Windows.Forms.HelpProvider helpProvider1;
         private System.Windows.Forms.ToolTip m_InfoToolTip;
+        private System.Windows.Forms.TextBox m_tb_NoiseReductionFreqency;
     }
 }
