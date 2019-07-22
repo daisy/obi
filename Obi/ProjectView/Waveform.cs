@@ -227,7 +227,7 @@ namespace Obi.ProjectView
                 
             return bitmap;
         }
-
+        private bool isLogrithmic = true;
         // Draw one channel for a given x
         private void DrawChannel(Graphics g, Pen pen, short[] samples, int x, int read, int frameSize, int channel, int channels)
         {
@@ -238,10 +238,38 @@ namespace Obi.ProjectView
                 if (samples[i] < min) min = samples[i];
                 if (samples[i] > max) max = samples[i];
             }
-            g.DrawLine(pen, new Point(x, Height - (int)Math.Round(((min - short.MinValue) * Height) / (float)ushort.MaxValue)),
-                new Point(x, Height - (int)Math.Round(((max - short.MinValue) * Height) / (float)ushort.MaxValue)));
-        }
+            //if (!isLogrithmic)
+            //{
+                //g.DrawLine(pen, new Point(x, Height - (int)Math.Round(((min - short.MinValue) * Height) / (float)ushort.MaxValue)),
+                    //new Point(x, Height - (int)Math.Round(((max - short.MinValue) * Height) / (float)ushort.MaxValue)));
+            //}
+            //else
+            //{
+                int minValueToDraw = min - short.MinValue;
+                int maxValueToDraw = max - short.MinValue;
+                int maximumPossibleValue = ushort.MaxValue;
+                Point pt1 = new Point(x, Height - (int)Math.Round(((minValueToDraw) * Height) / (float)maximumPossibleValue));
+                Point pt2 = new Point(x, Height - (int)Math.Round(((maxValueToDraw) * Height) / (float)maximumPossibleValue));        
+                //Console.WriteLine(" MinValue:" + minValueToDraw + " MaxValue:" + maxValueToDraw);
+                if (isLogrithmic)
+                {
+                    minValueToDraw = (int)Math.Abs(20 * Math.Log10(minValueToDraw));
+                    maxValueToDraw = (int)Math.Abs(20 * Math.Log10(maxValueToDraw));
+                    maximumPossibleValue = (int)Math.Abs(20 * Math.Log10(ushort.MaxValue * 2));
+                    //Console.WriteLine(" 2 Max possible value:" + maximumPossibleValue + " MinValue:" + minValueToDraw + " MaxValue:" + maxValueToDraw);
+                    pt1 = new Point(x, (int)Math.Round(((minValueToDraw) * Height) / (float)maximumPossibleValue));
+                    pt2 = new Point(x, (int)Math.Round(((maxValueToDraw) * Height) / (float)maximumPossibleValue));        
+                }
+                
+            //Console.WriteLine("waveform Points:" + pt1.Y + " : " + pt2.Y);
 
+            if (minPixelHeitht > pt1.Y) minPixelHeitht = pt1.Y;
+
+                g.DrawLine(pen,pt1 ,
+                    pt2);
+            //}
+        }
+        int minPixelHeitht = 0;
         // Draw the waveform in a given graphics. Use the color settings and draw a highlighted or lowlighted
         // version depending on the highlighted flag. Do nothing for bit depths different from 16.
         private void DrawWaveform(Graphics g, ColorSettings settings, bool highlighted)

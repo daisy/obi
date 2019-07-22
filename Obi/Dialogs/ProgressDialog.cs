@@ -124,6 +124,7 @@ namespace Obi.Dialogs
                 if (progressVal > 100) progressVal = 100;
                 mProgressBar.Value = progressVal;
                 m_ProgressbarValue = mProgressBar.Value;
+                System.Media.SystemSounds.Asterisk.Play();
             }
         }
 

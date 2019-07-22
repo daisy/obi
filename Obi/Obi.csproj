@@ -70,9 +70,9 @@
     <ErrorReport>prompt</ErrorReport>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="AudioEngine.PPMeter, Version=1.0.3644.25175, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="AudioEngine.PPMeter, Version=1.0.3370.689, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>bin\Debug\AudioEngine.PPMeter.dll</HintPath>
+      <HintPath>..\..\..\..\urakawa-sdk\branches\1.1_before_major_refactor_2.0\csharp\audio\PPMeter\bin\Debug\AudioEngine.PPMeter.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.DirectX, Version=1.0.2902.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35">
       <HintPath>..\..\..\..\..\..\..\..\..\..\WINDOWS\Microsoft.NET\DirectX for Managed Code\1.0.2902.0\Microsoft.DirectX.dll</HintPath>
@@ -90,6 +90,14 @@
     <Reference Include="System.Runtime.Serialization.Formatters.Soap" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
+    <Reference Include="UrakawaSDK.core, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>.\UrakawaSDK.core.dll</HintPath>
+    </Reference>
+    <Reference Include="UrakawaSDK.daisy, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>.\UrakawaSDK.daisy.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Audio\AudioFormatConverter.cs" />
@@ -868,14 +876,6 @@
     <ProjectReference Include="..\..\..\..\urakawa-sdk\trunk\csharp\audio\AudioLib\AudioLib.csproj">
       <Project>{6EE8E00A-DB7C-41A7-BC66-527CB4C08D83}</Project>
       <Name>AudioLib</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\..\urakawa-sdk\trunk\csharp\core\UrakawaSDK.core.csproj">
-      <Project>{7CCD52F9-C801-4C2B-AA9D-B7E217F307A0}</Project>
-      <Name>UrakawaSDK.core</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\..\urakawa-sdk\trunk\csharp\daisy\UrakawaSDK.daisy.csproj">
-      <Project>{69E083B4-AC97-4416-B7D4-61DEBA8A910D}</Project>
-      <Name>UrakawaSDK.daisy</Name>
     </ProjectReference>
     <ProjectReference Include="..\PipelineInterface\PipelineInterface.csproj">
       <Project>{DDEB9FA1-8435-456F-91E8-3C23125BE427}</Project>
