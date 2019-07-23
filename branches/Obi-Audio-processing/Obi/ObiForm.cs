@@ -6232,16 +6232,7 @@ ref string exportDirectoryEPUB3)
 
             private void mTools_AudioProcessing_Click(object sender, EventArgs e)
             {
-                if (mProjectView.TransportBar.IsPlayerActive)
-                {
-                    if (mProjectView.TransportBar.CurrentState == Obi.ProjectView.TransportBar.State.Playing) mProjectView.TransportBar.Pause();
-                    mProjectView.TransportBar.Stop();
-                }
-                if (mProjectView.CanExportSelectedNodeAudio)
-                {
-                    //mProjectView.ProcessAudio();
-                    mProjectView.AudioProcessing();
-                }
+
             }
 
             private void mMergeWithNextSectionToolStripMenuItem_Click(object sender, EventArgs e)
@@ -6524,6 +6515,31 @@ ref string exportDirectoryEPUB3)
             private void transportToolStripMenuItem_Click(object sender, EventArgs e)
             {
 
+            }
+
+            private void amplifyToolStripMenuItem_Click(object sender, EventArgs e)
+            {
+                if (mProjectView.TransportBar.IsPlayerActive)
+                {
+                    if (mProjectView.TransportBar.CurrentState == Obi.ProjectView.TransportBar.State.Playing) mProjectView.TransportBar.Pause();
+                    mProjectView.TransportBar.Stop();
+                }
+                mProjectView.AudioProcessing(AudioLib.WavAudioProcessing.AudioProcessingKind.Amplify);
+            }
+
+            private void fadeInToolStripMenuItem_Click(object sender, EventArgs e)
+            {
+                mProjectView.AudioProcessing(AudioLib.WavAudioProcessing.AudioProcessingKind.FadeIn);
+            }
+
+            private void fadeOutToolStripMenuItem_Click(object sender, EventArgs e)
+            {
+                mProjectView.AudioProcessing(AudioLib.WavAudioProcessing.AudioProcessingKind.FadeOut);
+            }
+
+            private void normalizeToolStripMenuItem_Click(object sender, EventArgs e)
+            {
+                mProjectView.AudioProcessing(AudioLib.WavAudioProcessing.AudioProcessingKind.Normalize);
             }
 
 

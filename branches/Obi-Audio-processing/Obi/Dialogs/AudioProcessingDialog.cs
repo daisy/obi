@@ -37,18 +37,18 @@ namespace Obi.Dialogs
             }
         }
 
-        public Obi.Audio.AudioProcessing.AudioProcessingKind AudioProcessNaudio
-        {
-            get
-            {
-                int index = m_cb_Process.SelectedIndex;
-                return index == 0 ? Obi.Audio.AudioProcessing.AudioProcessingKind.Amplify :
-                    index == 1 ? Audio.AudioProcessing.AudioProcessingKind.FadeIn :
-                    index == 2 ? Audio.AudioProcessing.AudioProcessingKind.FadeOut :
-                    index == 3 ? Audio.AudioProcessing.AudioProcessingKind.Normalize :
-                    Audio.AudioProcessing.AudioProcessingKind.NoiseReduction;
-            }
-        }
+        //public Obi.Audio.AudioProcessing.AudioProcessingKind AudioProcessNaudio
+        //{
+        //    get
+        //    {
+        //        int index = m_cb_Process.SelectedIndex;
+        //        return index == 0 ? Obi.Audio.AudioProcessing.AudioProcessingKind.Amplify :
+        //            index == 1 ? Audio.AudioProcessing.AudioProcessingKind.FadeIn :
+        //            index == 2 ? Audio.AudioProcessing.AudioProcessingKind.FadeOut :
+        //            index == 3 ? Audio.AudioProcessing.AudioProcessingKind.Normalize :
+        //            Audio.AudioProcessing.AudioProcessingKind.NoiseReduction;
+        //    }
+        //}
 
 
         public float AudioProcessingParameter
@@ -94,6 +94,58 @@ namespace Obi.Dialogs
                 m_numericUpDown1.Visible = true;
                 m_tb_NoiseReductionFreqency.Visible = false;
             }
+        }
+
+        private void m_numericUpDown1_ValueChanged(object sender, EventArgs e)
+        {
+           if (m_numericUpDown1.Value > 0 && m_numericUpDown1.Value <= (decimal)0.25)
+                m_AmplifyParameter.Value = -3;
+            else if (m_numericUpDown1.Value > (decimal)0.25 && m_numericUpDown1.Value <= (decimal)0.50)
+                m_AmplifyParameter.Value = -2;
+            else if (m_numericUpDown1.Value > (decimal)0.50 && m_numericUpDown1.Value <= (decimal)0.75)
+                m_AmplifyParameter.Value = -1;
+            else if (m_numericUpDown1.Value > (decimal)0.75 && m_numericUpDown1.Value <= (decimal)1)
+                m_AmplifyParameter.Value = 0;
+            else if (m_numericUpDown1.Value > 1 && m_numericUpDown1.Value <= 2)
+                m_AmplifyParameter.Value = 1;
+            else if (m_numericUpDown1.Value > 2 && m_numericUpDown1.Value <= 3)
+                m_AmplifyParameter.Value = 2;
+            else if (m_numericUpDown1.Value > 3 && m_numericUpDown1.Value <= 4)
+                m_AmplifyParameter.Value = 3;
+        }
+
+        private void m_AmplifyParameter_ValueChanged(object sender, EventArgs e)
+        {
+            float value = 0;
+            if (m_AmplifyParameter.Value == 0)
+            {
+                value = 1;
+            }
+            else if (m_AmplifyParameter.Value == 1)
+            {
+                value = 2;
+            }
+            else if (m_AmplifyParameter.Value == 2)
+            {
+                value = 3;
+            }
+            else if (m_AmplifyParameter.Value == 3)
+            {
+                value = 4;
+            }
+            else if (m_AmplifyParameter.Value == -1)
+            {
+                value = (float)0.75;
+            }
+            else if (m_AmplifyParameter.Value == -2)
+            {
+                value = (float)0.50;
+            }
+            else if (m_AmplifyParameter.Value == -3)
+            {
+                value = (float)0.25;
+            }
+            m_numericUpDown1.Value = (decimal)value;
         }
     }
 }

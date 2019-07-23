@@ -218,6 +218,10 @@ namespace Obi
             this.m_ToolsLangPack = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator16 = new System.Windows.Forms.ToolStripSeparator();
             this.mTools_AudioProcessing = new System.Windows.Forms.ToolStripMenuItem();
+            this.amplifyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.fadeInToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.fadeOutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.normalizeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mTools_ExportSelectedAudioMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mTools_CleanUnreferencedAudioMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.m_Tools_CompleteCleanupToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -1583,9 +1587,37 @@ namespace Obi
             // 
             // mTools_AudioProcessing
             // 
+            this.mTools_AudioProcessing.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.amplifyToolStripMenuItem,
+            this.fadeInToolStripMenuItem,
+            this.fadeOutToolStripMenuItem,
+            this.normalizeToolStripMenuItem});
             this.mTools_AudioProcessing.Name = "mTools_AudioProcessing";
             resources.ApplyResources(this.mTools_AudioProcessing, "mTools_AudioProcessing");
-            this.mTools_AudioProcessing.Click += new System.EventHandler(this.mTools_AudioProcessing_Click);
+            // 
+            // amplifyToolStripMenuItem
+            // 
+            this.amplifyToolStripMenuItem.Name = "amplifyToolStripMenuItem";
+            resources.ApplyResources(this.amplifyToolStripMenuItem, "amplifyToolStripMenuItem");
+            this.amplifyToolStripMenuItem.Click += new System.EventHandler(this.amplifyToolStripMenuItem_Click);
+            // 
+            // fadeInToolStripMenuItem
+            // 
+            this.fadeInToolStripMenuItem.Name = "fadeInToolStripMenuItem";
+            resources.ApplyResources(this.fadeInToolStripMenuItem, "fadeInToolStripMenuItem");
+            this.fadeInToolStripMenuItem.Click += new System.EventHandler(this.fadeInToolStripMenuItem_Click);
+            // 
+            // fadeOutToolStripMenuItem
+            // 
+            this.fadeOutToolStripMenuItem.Name = "fadeOutToolStripMenuItem";
+            resources.ApplyResources(this.fadeOutToolStripMenuItem, "fadeOutToolStripMenuItem");
+            this.fadeOutToolStripMenuItem.Click += new System.EventHandler(this.fadeOutToolStripMenuItem_Click);
+            // 
+            // normalizeToolStripMenuItem
+            // 
+            this.normalizeToolStripMenuItem.Name = "normalizeToolStripMenuItem";
+            resources.ApplyResources(this.normalizeToolStripMenuItem, "normalizeToolStripMenuItem");
+            this.normalizeToolStripMenuItem.Click += new System.EventHandler(this.normalizeToolStripMenuItem_Click);
             // 
             // mTools_ExportSelectedAudioMenuItem
             // 
@@ -1952,6 +1984,10 @@ namespace Obi
         private System.Windows.Forms.ToolStripMenuItem m_AddViewCommentToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem m_ClearCommentToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mShowPeakMeterInsideObiMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem amplifyToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem fadeInToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem fadeOutToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem normalizeToolStripMenuItem;
     }
 }
 

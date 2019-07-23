@@ -1878,6 +1878,30 @@
   <data name="toolStripSeparator16.Size" type="System.Drawing.Size, System.Drawing">
     <value>226, 6</value>
   </data>
+  <data name="amplifyToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>152, 22</value>
+  </data>
+  <data name="amplifyToolStripMenuItem.Text" xml:space="preserve">
+    <value>Amplify</value>
+  </data>
+  <data name="fadeInToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>152, 22</value>
+  </data>
+  <data name="fadeInToolStripMenuItem.Text" xml:space="preserve">
+    <value>Fade In</value>
+  </data>
+  <data name="fadeOutToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>152, 22</value>
+  </data>
+  <data name="fadeOutToolStripMenuItem.Text" xml:space="preserve">
+    <value>Fade Out</value>
+  </data>
+  <data name="normalizeToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>152, 22</value>
+  </data>
+  <data name="normalizeToolStripMenuItem.Text" xml:space="preserve">
+    <value>Normalize</value>
+  </data>
   <data name="mTools_AudioProcessing.Size" type="System.Drawing.Size, System.Drawing">
     <value>229, 22</value>
   </data>
@@ -2095,7 +2119,7 @@
     <value>mProjectView</value>
   </data>
   <data name="&gt;&gt;mProjectView.Type" xml:space="preserve">
-    <value>Obi.ProjectView.ProjectView, Obi, Version=4.3.0.29222, Culture=neutral, PublicKeyToken=null</value>
+    <value>Obi.ProjectView.ProjectView, Obi, Version=4.4.3.22700, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;mProjectView.Parent" xml:space="preserve">
     <value>$this</value>
@@ -3497,6 +3521,30 @@
     <value>mTools_AudioProcessing</value>
   </data>
   <data name="&gt;&gt;mTools_AudioProcessing.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;amplifyToolStripMenuItem.Name" xml:space="preserve">
+    <value>amplifyToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;amplifyToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;fadeInToolStripMenuItem.Name" xml:space="preserve">
+    <value>fadeInToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;fadeInToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;fadeOutToolStripMenuItem.Name" xml:space="preserve">
+    <value>fadeOutToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;fadeOutToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;normalizeToolStripMenuItem.Name" xml:space="preserve">
+    <value>normalizeToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;normalizeToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;mTools_ExportSelectedAudioMenuItem.Name" xml:space="preserve">

@@ -6092,7 +6092,7 @@ for (int j = 0;
         }
 
 
-        public void AudioProcessing()
+        public void AudioProcessing(AudioLib.WavAudioProcessing.AudioProcessingKind audioProcessingNaudio)
         {
             ObiNode nodeToSelect = Selection.Node;
             double durationOfSelection = DurationOfNodeSelected(nodeToSelect);
@@ -6103,11 +6103,23 @@ for (int j = 0;
             }
             bool SelectionChangedPlaybackEnabled = mTransportBar.SelectionChangedPlaybackEnabled;
             mTransportBar.SelectionChangedPlaybackEnabled = false;
-            Obi.Dialogs.AudioProcessingDialog dialog = new Obi.Dialogs.AudioProcessingDialog(ObiForm.Settings); //@fontconfig
-            if (dialog.ShowDialog() == DialogResult.OK)
+
+            AudioLib.WavAudioProcessing.AudioProcessingKind audioProcessingKind = audioProcessingNaudio;
+            Obi.Dialogs.AudioProcessingDialog dialog = null;
+            if (audioProcessingKind == WavAudioProcessing.AudioProcessingKind.Amplify)
             {
-                Audio.AudioProcessing.AudioProcessingKind audioProcessingKind = dialog.AudioProcessNaudio;
-                float val = dialog.AudioProcessingParameter;
+                dialog = new Obi.Dialogs.AudioProcessingDialog(ObiForm.Settings); //@fontconfig
+            }
+            if ((dialog != null && dialog.ShowDialog() == DialogResult.OK) || audioProcessingKind == WavAudioProcessing.AudioProcessingKind.FadeIn
+                || audioProcessingKind == WavAudioProcessing.AudioProcessingKind.FadeOut || audioProcessingKind == WavAudioProcessing.AudioProcessingKind.Normalize)
+            {
+                float val = 0;
+                if (dialog != null)
+                {
+                    val = dialog.AudioProcessingParameter;
+
+                }
+
                 try
                 {
                     string tempDirectoryName = "AudioProcessing";
@@ -6121,30 +6133,30 @@ for (int j = 0;
 
                     if (audioFileFullPath != null)
                     {
-                        
-                        Obi.Audio.AudioProcessing audioPorcess = new Audio.AudioProcessing();
+
+                        AudioLib.WavAudioProcessing audioPorcess = new AudioLib.WavAudioProcessing();
                         string audioProcessedFile = null;
 
-                        if (audioProcessingKind == Audio.AudioProcessing.AudioProcessingKind.Amplify)
+                        if (audioProcessingKind == AudioLib.WavAudioProcessing.AudioProcessingKind.Amplify)
                         {
                             audioProcessedFile = audioPorcess.IncreaseAmplitude(audioFileFullPath, val);
                         }
-                        else if (audioProcessingKind == Audio.AudioProcessing.AudioProcessingKind.FadeIn)
+                        else if (audioProcessingKind == AudioLib.WavAudioProcessing.AudioProcessingKind.FadeIn)
                         {
                             audioProcessedFile = audioPorcess.FadeIn(audioFileFullPath, nodeToSelect.Duration);
                         }
-                        else if (audioProcessingKind == Audio.AudioProcessing.AudioProcessingKind.FadeOut)
+                        else if (audioProcessingKind == AudioLib.WavAudioProcessing.AudioProcessingKind.FadeOut)
                         {
                             audioProcessedFile = audioPorcess.FadeOut(audioFileFullPath, nodeToSelect.Duration);
                         }
-                        else if (audioProcessingKind == Audio.AudioProcessing.AudioProcessingKind.Normalize)
+                        else if (audioProcessingKind == AudioLib.WavAudioProcessing.AudioProcessingKind.Normalize)
                         {
                             audioProcessedFile = audioPorcess.Normalize(audioFileFullPath);
                         }
-                        else if (audioProcessingKind == Audio.AudioProcessing.AudioProcessingKind.NoiseReduction)
-                        {
-                            audioProcessedFile = audioPorcess.NoiseReduction(audioFileFullPath, dialog.NoiseReductionParameter);
-                        }
+                        //else if (audioProcessingKind == AudioLib.WavAudioProcessing.AudioProcessingKind.NoiseReduction)
+                        //{
+                        //    audioProcessedFile = audioPorcess.NoiseReduction(audioFileFullPath, dialog.NoiseReductionParameter);
+                        //}
                         
                         if (audioProcessedFile != null && System.IO.File.Exists(audioFileFullPath) && System.IO.File.Exists(audioProcessedFile))
                         {
