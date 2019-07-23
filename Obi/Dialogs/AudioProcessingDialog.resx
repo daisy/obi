@@ -117,14 +117,95 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="&gt;&gt;m_AmplifyParameter.Name" xml:space="preserve">
+    <value>m_AmplifyParameter</value>
+  </data>
+  <data name="&gt;&gt;m_AmplifyParameter.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TrackBar, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_AmplifyParameter.Parent" xml:space="preserve">
+    <value>m_gpbox_Process</value>
+  </data>
+  <data name="&gt;&gt;m_AmplifyParameter.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;m_txt_info.Name" xml:space="preserve">
+    <value>m_txt_info</value>
+  </data>
+  <data name="&gt;&gt;m_txt_info.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_txt_info.Parent" xml:space="preserve">
+    <value>m_gpbox_Process</value>
+  </data>
+  <data name="&gt;&gt;m_txt_info.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;m_numericUpDown1.Name" xml:space="preserve">
+    <value>m_numericUpDown1</value>
+  </data>
+  <data name="&gt;&gt;m_numericUpDown1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_numericUpDown1.Parent" xml:space="preserve">
+    <value>m_gpbox_Process</value>
+  </data>
+  <data name="&gt;&gt;m_numericUpDown1.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="&gt;&gt;m_lbl_Parameters.Name" xml:space="preserve">
+    <value>m_lbl_Parameters</value>
+  </data>
+  <data name="&gt;&gt;m_lbl_Parameters.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_lbl_Parameters.Parent" xml:space="preserve">
+    <value>m_gpbox_Process</value>
+  </data>
+  <data name="&gt;&gt;m_lbl_Parameters.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="&gt;&gt;m_lbl_Process.Name" xml:space="preserve">
+    <value>m_lbl_Process</value>
+  </data>
+  <data name="&gt;&gt;m_lbl_Process.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_lbl_Process.Parent" xml:space="preserve">
+    <value>m_gpbox_Process</value>
+  </data>
+  <data name="&gt;&gt;m_lbl_Process.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="m_gpbox_Process.Location" type="System.Drawing.Point, System.Drawing">
+    <value>5, 9</value>
+  </data>
+  <data name="m_gpbox_Process.Size" type="System.Drawing.Size, System.Drawing">
+    <value>323, 244</value>
+  </data>
+  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="m_gpbox_Process.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;m_gpbox_Process.Name" xml:space="preserve">
+    <value>m_gpbox_Process</value>
+  </data>
+  <data name="&gt;&gt;m_gpbox_Process.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_gpbox_Process.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;m_gpbox_Process.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
   <data name="m_tb_NoiseReductionFreqency.Location" type="System.Drawing.Point, System.Drawing">
-    <value>183, 75</value>
+    <value>116, 261</value>
   </data>
   <data name="m_tb_NoiseReductionFreqency.Size" type="System.Drawing.Size, System.Drawing">
     <value>100, 21</value>
   </data>
-  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="m_tb_NoiseReductionFreqency.TabIndex" type="System.Int32, mscorlib">
     <value>3</value>
   </data>
@@ -141,13 +222,13 @@
     <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;m_tb_NoiseReductionFreqency.Parent" xml:space="preserve">
-    <value>m_gpbox_Process</value>
+    <value>$this</value>
   </data>
   <data name="&gt;&gt;m_tb_NoiseReductionFreqency.ZOrder" xml:space="preserve">
-    <value>0</value>
+    <value>1</value>
   </data>
   <data name="m_txt_info.Location" type="System.Drawing.Point, System.Drawing">
-    <value>10, 125</value>
+    <value>10, 201</value>
   </data>
   <data name="m_txt_info.Size" type="System.Drawing.Size, System.Drawing">
     <value>304, 21</value>
@@ -174,13 +255,13 @@
     <value>Microsoft Sans Serif, 9pt</value>
   </data>
   <data name="m_numericUpDown1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>112, 76</value>
+    <value>164, 78</value>
   </data>
   <data name="m_numericUpDown1.Size" type="System.Drawing.Size, System.Drawing">
     <value>61, 21</value>
   </data>
   <data name="m_numericUpDown1.TabIndex" type="System.Int32, mscorlib">
-    <value>3</value>
+    <value>2</value>
   </data>
   <data name="&gt;&gt;m_numericUpDown1.Name" xml:space="preserve">
     <value>m_numericUpDown1</value>
@@ -198,13 +279,13 @@
     <value>True</value>
   </data>
   <data name="m_lbl_Parameters.Location" type="System.Drawing.Point, System.Drawing">
-    <value>7, 78</value>
+    <value>66, 78</value>
   </data>
   <data name="m_lbl_Parameters.Size" type="System.Drawing.Size, System.Drawing">
     <value>92, 15</value>
   </data>
   <data name="m_lbl_Parameters.TabIndex" type="System.Int32, mscorlib">
-    <value>2</value>
+    <value>1</value>
   </data>
   <data name="m_lbl_Parameters.Text" xml:space="preserve">
     <value>Set Parameter :</value>
@@ -237,13 +318,16 @@
     <value>Noise Reduction</value>
   </data>
   <data name="m_cb_Process.Location" type="System.Drawing.Point, System.Drawing">
-    <value>112, 39</value>
+    <value>48, 294</value>
   </data>
   <data name="m_cb_Process.Size" type="System.Drawing.Size, System.Drawing">
     <value>168, 23</value>
   </data>
   <data name="m_cb_Process.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
+  </data>
+  <data name="m_cb_Process.Visible" type="System.Boolean, mscorlib">
+    <value>False</value>
   </data>
   <data name="&gt;&gt;m_cb_Process.Name" xml:space="preserve">
     <value>m_cb_Process</value>
@@ -252,7 +336,7 @@
     <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;m_cb_Process.Parent" xml:space="preserve">
-    <value>m_gpbox_Process</value>
+    <value>$this</value>
   </data>
   <data name="&gt;&gt;m_cb_Process.ZOrder" xml:space="preserve">
     <value>4</value>
@@ -261,16 +345,16 @@
     <value>True</value>
   </data>
   <data name="m_lbl_Process.Location" type="System.Drawing.Point, System.Drawing">
-    <value>7, 43</value>
+    <value>96, 40</value>
   </data>
   <data name="m_lbl_Process.Size" type="System.Drawing.Size, System.Drawing">
-    <value>57, 15</value>
+    <value>115, 15</value>
   </data>
   <data name="m_lbl_Process.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
   </data>
   <data name="m_lbl_Process.Text" xml:space="preserve">
-    <value>Process :</value>
+    <value>Volume of audio file</value>
   </data>
   <data name="&gt;&gt;m_lbl_Process.Name" xml:space="preserve">
     <value>m_lbl_Process</value>
@@ -282,41 +366,20 @@
     <value>m_gpbox_Process</value>
   </data>
   <data name="&gt;&gt;m_lbl_Process.ZOrder" xml:space="preserve">
-    <value>5</value>
-  </data>
-  <data name="m_gpbox_Process.Location" type="System.Drawing.Point, System.Drawing">
-    <value>5, 9</value>
-  </data>
-  <data name="m_gpbox_Process.Size" type="System.Drawing.Size, System.Drawing">
-    <value>323, 165</value>
-  </data>
-  <data name="m_gpbox_Process.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;m_gpbox_Process.Name" xml:space="preserve">
-    <value>m_gpbox_Process</value>
-  </data>
-  <data name="&gt;&gt;m_gpbox_Process.Type" xml:space="preserve">
-    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;m_gpbox_Process.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;m_gpbox_Process.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>4</value>
   </data>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="m_btn_OK.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Flat</value>
   </data>
   <data name="m_btn_OK.Location" type="System.Drawing.Point, System.Drawing">
-    <value>51, 199</value>
+    <value>15, 285</value>
   </data>
   <data name="m_btn_OK.Size" type="System.Drawing.Size, System.Drawing">
     <value>92, 32</value>
   </data>
   <data name="m_btn_OK.TabIndex" type="System.Int32, mscorlib">
-    <value>1</value>
+    <value>5</value>
   </data>
   <data name="m_btn_OK.Text" xml:space="preserve">
     <value>&amp;OK</value>
@@ -331,19 +394,19 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;m_btn_OK.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>2</value>
   </data>
   <data name="m_btn_Cancel.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Flat</value>
   </data>
   <data name="m_btn_Cancel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>196, 199</value>
+    <value>196, 288</value>
   </data>
   <data name="m_btn_Cancel.Size" type="System.Drawing.Size, System.Drawing">
     <value>92, 32</value>
   </data>
   <data name="m_btn_Cancel.TabIndex" type="System.Int32, mscorlib">
-    <value>2</value>
+    <value>6</value>
   </data>
   <data name="m_btn_Cancel.Text" xml:space="preserve">
     <value>&amp;Cancel</value>
@@ -366,6 +429,27 @@
   <metadata name="m_InfoToolTip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>144, 17</value>
   </metadata>
+  <data name="m_AmplifyParameter.Location" type="System.Drawing.Point, System.Drawing">
+    <value>43, 129</value>
+  </data>
+  <data name="m_AmplifyParameter.Size" type="System.Drawing.Size, System.Drawing">
+    <value>213, 45</value>
+  </data>
+  <data name="m_AmplifyParameter.TabIndex" type="System.Int32, mscorlib">
+    <value>3</value>
+  </data>
+  <data name="&gt;&gt;m_AmplifyParameter.Name" xml:space="preserve">
+    <value>m_AmplifyParameter</value>
+  </data>
+  <data name="&gt;&gt;m_AmplifyParameter.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TrackBar, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_AmplifyParameter.Parent" xml:space="preserve">
+    <value>m_gpbox_Process</value>
+  </data>
+  <data name="&gt;&gt;m_AmplifyParameter.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
@@ -373,13 +457,13 @@
     <value>7, 15</value>
   </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>331, 244</value>
+    <value>331, 348</value>
   </data>
   <data name="$this.Font" type="System.Drawing.Font, System.Drawing">
     <value>Microsoft Sans Serif, 9pt</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
-    <value>Audio processing (Basic functionality)</value>
+    <value>Amplify</value>
   </data>
   <data name="&gt;&gt;helpProvider1.Name" xml:space="preserve">
     <value>helpProvider1</value>

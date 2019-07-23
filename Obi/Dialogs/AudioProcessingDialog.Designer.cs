@@ -31,6 +31,7 @@ namespace Obi.Dialogs
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AudioProcessingDialog));
             this.m_gpbox_Process = new System.Windows.Forms.GroupBox();
+            this.m_tb_NoiseReductionFreqency = new System.Windows.Forms.TextBox();
             this.m_txt_info = new System.Windows.Forms.TextBox();
             this.m_numericUpDown1 = new System.Windows.Forms.NumericUpDown();
             this.m_lbl_Parameters = new System.Windows.Forms.Label();
@@ -40,22 +41,27 @@ namespace Obi.Dialogs
             this.m_btn_Cancel = new System.Windows.Forms.Button();
             this.helpProvider1 = new System.Windows.Forms.HelpProvider();
             this.m_InfoToolTip = new System.Windows.Forms.ToolTip(this.components);
-            this.m_tb_NoiseReductionFreqency = new System.Windows.Forms.TextBox();
+            this.m_AmplifyParameter = new System.Windows.Forms.TrackBar();
             this.m_gpbox_Process.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.m_numericUpDown1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.m_AmplifyParameter)).BeginInit();
             this.SuspendLayout();
             // 
             // m_gpbox_Process
             // 
-            this.m_gpbox_Process.Controls.Add(this.m_tb_NoiseReductionFreqency);
+            this.m_gpbox_Process.Controls.Add(this.m_AmplifyParameter);
             this.m_gpbox_Process.Controls.Add(this.m_txt_info);
             this.m_gpbox_Process.Controls.Add(this.m_numericUpDown1);
             this.m_gpbox_Process.Controls.Add(this.m_lbl_Parameters);
-            this.m_gpbox_Process.Controls.Add(this.m_cb_Process);
             this.m_gpbox_Process.Controls.Add(this.m_lbl_Process);
             resources.ApplyResources(this.m_gpbox_Process, "m_gpbox_Process");
             this.m_gpbox_Process.Name = "m_gpbox_Process";
             this.m_gpbox_Process.TabStop = false;
+            // 
+            // m_tb_NoiseReductionFreqency
+            // 
+            resources.ApplyResources(this.m_tb_NoiseReductionFreqency, "m_tb_NoiseReductionFreqency");
+            this.m_tb_NoiseReductionFreqency.Name = "m_tb_NoiseReductionFreqency";
             // 
             // m_txt_info
             // 
@@ -65,7 +71,7 @@ namespace Obi.Dialogs
             // 
             // m_numericUpDown1
             // 
-            this.m_numericUpDown1.DecimalPlaces = 1;
+            this.m_numericUpDown1.DecimalPlaces = 2;
             resources.ApplyResources(this.m_numericUpDown1, "m_numericUpDown1");
             this.m_numericUpDown1.Increment = new decimal(new int[] {
             1,
@@ -88,6 +94,7 @@ namespace Obi.Dialogs
             0,
             0,
             65536});
+            this.m_numericUpDown1.ValueChanged += new System.EventHandler(this.m_numericUpDown1_ValueChanged);
             // 
             // m_lbl_Parameters
             // 
@@ -127,10 +134,13 @@ namespace Obi.Dialogs
             this.m_btn_Cancel.UseVisualStyleBackColor = true;
             this.m_btn_Cancel.Click += new System.EventHandler(this.m_btn_Cancel_Click);
             // 
-            // m_tb_NoiseReductionFreqency
+            // m_AmplifyParameter
             // 
-            resources.ApplyResources(this.m_tb_NoiseReductionFreqency, "m_tb_NoiseReductionFreqency");
-            this.m_tb_NoiseReductionFreqency.Name = "m_tb_NoiseReductionFreqency";
+            resources.ApplyResources(this.m_AmplifyParameter, "m_AmplifyParameter");
+            this.m_AmplifyParameter.Maximum = 3;
+            this.m_AmplifyParameter.Minimum = -3;
+            this.m_AmplifyParameter.Name = "m_AmplifyParameter";
+            this.m_AmplifyParameter.ValueChanged += new System.EventHandler(this.m_AmplifyParameter_ValueChanged);
             // 
             // AudioProcessingDialog
             // 
@@ -139,14 +149,18 @@ namespace Obi.Dialogs
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.m_btn_Cancel;
             this.Controls.Add(this.m_btn_Cancel);
+            this.Controls.Add(this.m_tb_NoiseReductionFreqency);
             this.Controls.Add(this.m_btn_OK);
             this.Controls.Add(this.m_gpbox_Process);
+            this.Controls.Add(this.m_cb_Process);
             this.MaximizeBox = false;
             this.Name = "AudioProcessingDialog";
             this.m_gpbox_Process.ResumeLayout(false);
             this.m_gpbox_Process.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.m_numericUpDown1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.m_AmplifyParameter)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -163,5 +177,6 @@ namespace Obi.Dialogs
         private System.Windows.Forms.HelpProvider helpProvider1;
         private System.Windows.Forms.ToolTip m_InfoToolTip;
         private System.Windows.Forms.TextBox m_tb_NoiseReductionFreqency;
+        private System.Windows.Forms.TrackBar m_AmplifyParameter;
     }
 }

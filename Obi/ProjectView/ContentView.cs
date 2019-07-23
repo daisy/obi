@@ -6159,18 +6159,7 @@ Block lastBlock = ActiveStrip.LastBlock ;
 
         private void Context_AudioProcessing_Click(object sender, EventArgs e)
         {
-            if (mProjectView.TransportBar.IsPlayerActive)
-            {
-                if (mProjectView.TransportBar.CurrentState == Obi.ProjectView.TransportBar.State.Playing) mProjectView.TransportBar.Pause();
-                mProjectView.TransportBar.Stop();
-            }
-            if (mProjectView.CanExportSelectedNodeAudio)
-            {
-                
-                    //mProjectView.ProcessAudio();
-                mProjectView.AudioProcessing();
-                
-            }
+
         }
 
         private void Context_MergeWithNextSectionMenuItem_Click(object sender, EventArgs e)
@@ -6229,6 +6218,31 @@ Block lastBlock = ActiveStrip.LastBlock ;
         private void Context_ClearCommentMenuItem_Click(object sender, EventArgs e) // @Comment-todo
         {
             this.ClearComment();
+        }
+
+        private void Context_AmplifyMenuItem_Click(object sender, EventArgs e)
+        {
+            if (mProjectView.TransportBar.IsPlayerActive)
+            {
+                if (mProjectView.TransportBar.CurrentState == Obi.ProjectView.TransportBar.State.Playing) mProjectView.TransportBar.Pause();
+                mProjectView.TransportBar.Stop();
+            }
+            mProjectView.AudioProcessing(AudioLib.WavAudioProcessing.AudioProcessingKind.Amplify);
+        }
+
+        private void Context_FadeInMenuItem_Click(object sender, EventArgs e)
+        {
+            mProjectView.AudioProcessing(AudioLib.WavAudioProcessing.AudioProcessingKind.FadeIn);
+        }
+
+        private void Context_FadeOutMenuItem_Click(object sender, EventArgs e)
+        {
+            mProjectView.AudioProcessing(AudioLib.WavAudioProcessing.AudioProcessingKind.FadeOut);
+        }
+
+        private void Context_NormalizeMenuItem_Click(object sender, EventArgs e)
+        {
+            mProjectView.AudioProcessing(AudioLib.WavAudioProcessing.AudioProcessingKind.Normalize);
         }
 
      
