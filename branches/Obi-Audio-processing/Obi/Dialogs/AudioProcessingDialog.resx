@@ -117,128 +117,11 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="&gt;&gt;m_lbl_Seconds.Name" xml:space="preserve">
-    <value>m_lbl_Seconds</value>
-  </data>
-  <data name="&gt;&gt;m_lbl_Seconds.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;m_lbl_Seconds.Parent" xml:space="preserve">
-    <value>m_gpbox_Process</value>
-  </data>
-  <data name="&gt;&gt;m_lbl_Seconds.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;m_lbl_High.Name" xml:space="preserve">
-    <value>m_lbl_High</value>
-  </data>
-  <data name="&gt;&gt;m_lbl_High.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;m_lbl_High.Parent" xml:space="preserve">
-    <value>m_gpbox_Process</value>
-  </data>
-  <data name="&gt;&gt;m_lbl_High.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="&gt;&gt;m_lbl_Low.Name" xml:space="preserve">
-    <value>m_lbl_Low</value>
-  </data>
-  <data name="&gt;&gt;m_lbl_Low.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;m_lbl_Low.Parent" xml:space="preserve">
-    <value>m_gpbox_Process</value>
-  </data>
-  <data name="&gt;&gt;m_lbl_Low.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="&gt;&gt;m_AmplifyParameter.Name" xml:space="preserve">
-    <value>m_AmplifyParameter</value>
-  </data>
-  <data name="&gt;&gt;m_AmplifyParameter.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TrackBar, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;m_AmplifyParameter.Parent" xml:space="preserve">
-    <value>m_gpbox_Process</value>
-  </data>
-  <data name="&gt;&gt;m_AmplifyParameter.ZOrder" xml:space="preserve">
-    <value>3</value>
-  </data>
-  <data name="&gt;&gt;m_txt_info.Name" xml:space="preserve">
-    <value>m_txt_info</value>
-  </data>
-  <data name="&gt;&gt;m_txt_info.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;m_txt_info.Parent" xml:space="preserve">
-    <value>m_gpbox_Process</value>
-  </data>
-  <data name="&gt;&gt;m_txt_info.ZOrder" xml:space="preserve">
-    <value>4</value>
-  </data>
-  <data name="&gt;&gt;m_numericUpDown1.Name" xml:space="preserve">
-    <value>m_numericUpDown1</value>
-  </data>
-  <data name="&gt;&gt;m_numericUpDown1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;m_numericUpDown1.Parent" xml:space="preserve">
-    <value>m_gpbox_Process</value>
-  </data>
-  <data name="&gt;&gt;m_numericUpDown1.ZOrder" xml:space="preserve">
-    <value>5</value>
-  </data>
-  <data name="&gt;&gt;m_lbl_Parameters.Name" xml:space="preserve">
-    <value>m_lbl_Parameters</value>
-  </data>
-  <data name="&gt;&gt;m_lbl_Parameters.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;m_lbl_Parameters.Parent" xml:space="preserve">
-    <value>m_gpbox_Process</value>
-  </data>
-  <data name="&gt;&gt;m_lbl_Parameters.ZOrder" xml:space="preserve">
-    <value>6</value>
-  </data>
-  <data name="&gt;&gt;m_lbl_Process.Name" xml:space="preserve">
-    <value>m_lbl_Process</value>
-  </data>
-  <data name="&gt;&gt;m_lbl_Process.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;m_lbl_Process.Parent" xml:space="preserve">
-    <value>m_gpbox_Process</value>
-  </data>
-  <data name="&gt;&gt;m_lbl_Process.ZOrder" xml:space="preserve">
-    <value>7</value>
-  </data>
-  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="m_gpbox_Process.Location" type="System.Drawing.Point, System.Drawing">
-    <value>5, 9</value>
-  </data>
-  <data name="m_gpbox_Process.Size" type="System.Drawing.Size, System.Drawing">
-    <value>323, 244</value>
-  </data>
   <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="m_gpbox_Process.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;m_gpbox_Process.Name" xml:space="preserve">
-    <value>m_gpbox_Process</value>
-  </data>
-  <data name="&gt;&gt;m_gpbox_Process.Type" xml:space="preserve">
-    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;m_gpbox_Process.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;m_gpbox_Process.ZOrder" xml:space="preserve">
-    <value>3</value>
-  </data>
   <data name="m_lbl_Seconds.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="m_lbl_Seconds.Location" type="System.Drawing.Point, System.Drawing">
     <value>262, 80</value>
   </data>
@@ -429,13 +312,13 @@
     <value>34, 40</value>
   </data>
   <data name="m_lbl_Process.Size" type="System.Drawing.Size, System.Drawing">
-    <value>256, 15</value>
+    <value>218, 15</value>
   </data>
   <data name="m_lbl_Process.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
   </data>
   <data name="m_lbl_Process.Text" xml:space="preserve">
-    <value>Increase/Decrease volume of selected phrase</value>
+    <value>Increase/Decrease volume of selection</value>
   </data>
   <data name="&gt;&gt;m_lbl_Process.Name" xml:space="preserve">
     <value>m_lbl_Process</value>
@@ -448,6 +331,27 @@
   </data>
   <data name="&gt;&gt;m_lbl_Process.ZOrder" xml:space="preserve">
     <value>7</value>
+  </data>
+  <data name="m_gpbox_Process.Location" type="System.Drawing.Point, System.Drawing">
+    <value>5, 9</value>
+  </data>
+  <data name="m_gpbox_Process.Size" type="System.Drawing.Size, System.Drawing">
+    <value>323, 244</value>
+  </data>
+  <data name="m_gpbox_Process.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;m_gpbox_Process.Name" xml:space="preserve">
+    <value>m_gpbox_Process</value>
+  </data>
+  <data name="&gt;&gt;m_gpbox_Process.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_gpbox_Process.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;m_gpbox_Process.ZOrder" xml:space="preserve">
+    <value>3</value>
   </data>
   <data name="m_tb_NoiseReductionFreqency.Location" type="System.Drawing.Point, System.Drawing">
     <value>104, 261</value>
@@ -592,7 +496,7 @@
     <value>Microsoft Sans Serif, 9pt</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
-    <value>Amplify</value>
+    <value>Change Volume</value>
   </data>
   <data name="&gt;&gt;helpProvider1.Name" xml:space="preserve">
     <value>helpProvider1</value>

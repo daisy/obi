@@ -2350,6 +2350,15 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Set Fade In duration (seconds).
+        /// </summary>
+        internal static string FadeInDurationAccessibleName {
+            get {
+                return ResourceManager.GetString("FadeInDurationAccessibleName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Fade In audio of selection.
         /// </summary>
         internal static string FadeInProcess {
@@ -2364,6 +2373,15 @@ namespace Obi {
         internal static string FadeOutDuration {
             get {
                 return ResourceManager.GetString("FadeOutDuration", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Set Fade Out duration (seconds).
+        /// </summary>
+        internal static string FadeOutDurationAccessibleName {
+            get {
+                return ResourceManager.GetString("FadeOutDurationAccessibleName", resourceCulture);
             }
         }
         

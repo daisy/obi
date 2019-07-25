@@ -593,6 +593,7 @@ namespace Obi.ProjectView
             // 
             // Context_AmplifyMenuItem
             // 
+            this.Context_AmplifyMenuItem.AccessibleName = global::Obi.messages.Executing__0_;
             this.Context_AmplifyMenuItem.Name = "Context_AmplifyMenuItem";
             resources.ApplyResources(this.Context_AmplifyMenuItem, "Context_AmplifyMenuItem");
             this.Context_AmplifyMenuItem.Click += new System.EventHandler(this.Context_AmplifyMenuItem_Click);
