@@ -2341,7 +2341,7 @@ namespace Obi {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Duration Of Fade In:.
+        ///   Looks up a localized string similar to Duration of Fade In :.
         /// </summary>
         internal static string FadeInDuration {
             get {
@@ -2359,7 +2359,7 @@ namespace Obi {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Fade In audio of selection.
+        ///   Looks up a localized string similar to Fade In audio of selection :.
         /// </summary>
         internal static string FadeInProcess {
             get {
@@ -2368,7 +2368,7 @@ namespace Obi {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Duration Of Fade Out:.
+        ///   Looks up a localized string similar to Duration of Fade Out :.
         /// </summary>
         internal static string FadeOutDuration {
             get {
@@ -2386,7 +2386,7 @@ namespace Obi {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Fade Out audio of selection.
+        ///   Looks up a localized string similar to Fade Out audio of selection :.
         /// </summary>
         internal static string FadeOutProcess {
             get {
@@ -4705,7 +4705,7 @@ namespace Obi {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Normalize audio of selection.
+        ///   Looks up a localized string similar to Normalize audio of selection :.
         /// </summary>
         internal static string NormalizeProcess {
             get {
@@ -7489,7 +7489,7 @@ namespace Obi {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {0} seconds is total duaration of selection.
+        ///   Looks up a localized string similar to {0} seconds is total duration of selection.
         /// </summary>
         internal static string TextInfoForFadeInOutOperation {
             get {
