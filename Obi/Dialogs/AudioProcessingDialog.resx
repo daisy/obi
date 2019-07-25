@@ -123,7 +123,7 @@
   </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="m_lbl_Seconds.Location" type="System.Drawing.Point, System.Drawing">
-    <value>262, 80</value>
+    <value>212, 55</value>
   </data>
   <data name="m_lbl_Seconds.Size" type="System.Drawing.Size, System.Drawing">
     <value>55, 15</value>
@@ -153,7 +153,7 @@
     <value>True</value>
   </data>
   <data name="m_lbl_High.Location" type="System.Drawing.Point, System.Drawing">
-    <value>262, 129</value>
+    <value>532, 55</value>
   </data>
   <data name="m_lbl_High.Size" type="System.Drawing.Size, System.Drawing">
     <value>33, 15</value>
@@ -180,7 +180,7 @@
     <value>True</value>
   </data>
   <data name="m_lbl_Low.Location" type="System.Drawing.Point, System.Drawing">
-    <value>16, 129</value>
+    <value>285, 54</value>
   </data>
   <data name="m_lbl_Low.Size" type="System.Drawing.Size, System.Drawing">
     <value>30, 15</value>
@@ -207,7 +207,7 @@
     <value>Slide to Increase/Decrease volume of selection. Right sliding will increase volume</value>
   </data>
   <data name="m_AmplifyParameter.Location" type="System.Drawing.Point, System.Drawing">
-    <value>43, 129</value>
+    <value>316, 54</value>
   </data>
   <data name="m_AmplifyParameter.Size" type="System.Drawing.Size, System.Drawing">
     <value>213, 45</value>
@@ -228,10 +228,10 @@
     <value>3</value>
   </data>
   <data name="m_txt_info.Location" type="System.Drawing.Point, System.Drawing">
-    <value>10, 201</value>
+    <value>8, 100</value>
   </data>
   <data name="m_txt_info.Size" type="System.Drawing.Size, System.Drawing">
-    <value>304, 21</value>
+    <value>294, 21</value>
   </data>
   <data name="m_txt_info.TabIndex" type="System.Int32, mscorlib">
     <value>4</value>
@@ -258,10 +258,10 @@
     <value>Microsoft Sans Serif, 9pt</value>
   </data>
   <data name="m_numericUpDown1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>164, 78</value>
+    <value>133, 52</value>
   </data>
   <data name="m_numericUpDown1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>92, 21</value>
+    <value>68, 21</value>
   </data>
   <data name="m_numericUpDown1.TabIndex" type="System.Int32, mscorlib">
     <value>2</value>
@@ -282,7 +282,7 @@
     <value>True</value>
   </data>
   <data name="m_lbl_Parameters.Location" type="System.Drawing.Point, System.Drawing">
-    <value>39, 79</value>
+    <value>7, 54</value>
   </data>
   <data name="m_lbl_Parameters.Size" type="System.Drawing.Size, System.Drawing">
     <value>92, 15</value>
@@ -309,16 +309,16 @@
     <value>True</value>
   </data>
   <data name="m_lbl_Process.Location" type="System.Drawing.Point, System.Drawing">
-    <value>34, 40</value>
+    <value>7, 16</value>
   </data>
   <data name="m_lbl_Process.Size" type="System.Drawing.Size, System.Drawing">
-    <value>218, 15</value>
+    <value>224, 15</value>
   </data>
   <data name="m_lbl_Process.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
   </data>
   <data name="m_lbl_Process.Text" xml:space="preserve">
-    <value>Increase/Decrease volume of selection</value>
+    <value>Increase/Decrease volume of selection :</value>
   </data>
   <data name="&gt;&gt;m_lbl_Process.Name" xml:space="preserve">
     <value>m_lbl_Process</value>
@@ -336,7 +336,7 @@
     <value>5, 9</value>
   </data>
   <data name="m_gpbox_Process.Size" type="System.Drawing.Size, System.Drawing">
-    <value>323, 244</value>
+    <value>569, 134</value>
   </data>
   <data name="m_gpbox_Process.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
@@ -424,7 +424,7 @@
     <value>Flat</value>
   </data>
   <data name="m_btn_OK.Location" type="System.Drawing.Point, System.Drawing">
-    <value>15, 285</value>
+    <value>196, 164</value>
   </data>
   <data name="m_btn_OK.Size" type="System.Drawing.Size, System.Drawing">
     <value>92, 32</value>
@@ -451,7 +451,7 @@
     <value>Flat</value>
   </data>
   <data name="m_btn_Cancel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>196, 288</value>
+    <value>319, 164</value>
   </data>
   <data name="m_btn_Cancel.Size" type="System.Drawing.Size, System.Drawing">
     <value>92, 32</value>
@@ -490,7 +490,7 @@
     <value>7, 15</value>
   </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>331, 348</value>
+    <value>582, 209</value>
   </data>
   <data name="$this.Font" type="System.Drawing.Font, System.Drawing">
     <value>Microsoft Sans Serif, 9pt</value>

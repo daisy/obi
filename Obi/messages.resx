@@ -3095,22 +3095,22 @@ Error text: {1}</value>
     <value>has comment</value>
   </data>
   <data name="FadeInProcess" xml:space="preserve">
-    <value>Fade In audio of selection</value>
+    <value>Fade In audio of selection :</value>
   </data>
   <data name="FadeOutProcess" xml:space="preserve">
-    <value>Fade Out audio of selection</value>
+    <value>Fade Out audio of selection :</value>
   </data>
   <data name="NormalizeProcess" xml:space="preserve">
-    <value>Normalize audio of selection</value>
+    <value>Normalize audio of selection :</value>
   </data>
   <data name="FadeInDuration" xml:space="preserve">
-    <value>Duration Of Fade In:</value>
+    <value>Duration of Fade In :</value>
   </data>
   <data name="FadeOutDuration" xml:space="preserve">
-    <value>Duration Of Fade Out:</value>
+    <value>Duration of Fade Out :</value>
   </data>
   <data name="TextInfoForFadeInOutOperation" xml:space="preserve">
-    <value>{0} seconds is total duaration of selection</value>
+    <value>{0} seconds is total duration of selection</value>
   </data>
   <data name="FadeInDurationAccessibleName" xml:space="preserve">
     <value>Set Fade In duration (seconds)</value>
