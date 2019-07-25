@@ -3094,4 +3094,22 @@ Error text: {1}</value>
   <data name="CommentAttachedFlagForAccessibleName" xml:space="preserve">
     <value>has comment</value>
   </data>
+  <data name="FadeInProcess" xml:space="preserve">
+    <value>Fade In audio of selection</value>
+  </data>
+  <data name="FadeOutProcess" xml:space="preserve">
+    <value>Fade Out audio of selection</value>
+  </data>
+  <data name="NormalizeProcess" xml:space="preserve">
+    <value>Normalize audio of selection</value>
+  </data>
+  <data name="FadeInDuration" xml:space="preserve">
+    <value>Duration Of Fade In:</value>
+  </data>
+  <data name="FadeOutDuration" xml:space="preserve">
+    <value>Duration Of Fade Out:</value>
+  </data>
+  <data name="TextInfoForFadeInOutOperation" xml:space="preserve">
+    <value>{0} seconds is total duaration of selection</value>
+  </data>
 </root>

@@ -445,7 +445,11 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Localizer.cs" />
-    <Compile Include="messages.Designer.cs" />
+    <Compile Include="messages.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>messages.resx</DependentUpon>
+    </Compile>
     <Compile Include="Metadata.cs" />
     <Compile Include="ObiForm.cs">
       <SubType>Form</SubType>

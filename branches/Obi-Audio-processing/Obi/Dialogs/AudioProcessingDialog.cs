@@ -10,11 +10,60 @@ namespace Obi.Dialogs
 {
     public partial class AudioProcessingDialog : Form
     {
+        private bool m_IsAudioProcessingParameterInSeconds = false;
         public AudioProcessingDialog(Settings settings)
         {
             InitializeComponent();
             m_cb_Process.SelectedIndex = 0;
             m_txt_info.Text = Localizer.Message("AudioProcessing_InfoText");
+            m_InfoToolTip.SetToolTip(m_txt_info, m_txt_info.Text);
+
+            helpProvider1.HelpNamespace = Localizer.Message("CHMhelp_file_name");
+            helpProvider1.SetHelpNavigator(this, HelpNavigator.Topic);
+            helpProvider1.SetHelpKeyword(this, "HTML Files/Creating a DTB/Working with Audio/Audio processing.htm");
+            if (settings.ObiFont != this.Font.Name)
+            {
+                this.Font = new Font(settings.ObiFont, this.Font.Size, FontStyle.Regular);//@fontconfig            
+            }
+
+        }
+        public AudioProcessingDialog(AudioLib.WavAudioProcessing.AudioProcessingKind typeOfAudioProcessing, Settings settings, double durationOfFadeInOut)
+        {
+            InitializeComponent();
+
+            m_txt_info.Text = Localizer.Message("AudioProcessing_InfoText");
+            if (AudioLib.WavAudioProcessing.AudioProcessingKind.FadeIn == typeOfAudioProcessing || AudioLib.WavAudioProcessing.AudioProcessingKind.FadeOut == typeOfAudioProcessing)
+            {
+                if (AudioLib.WavAudioProcessing.AudioProcessingKind.FadeIn == typeOfAudioProcessing)
+                {
+                    m_lbl_Process.Text = Localizer.Message("FadeInProcess");
+                    m_lbl_Parameters.Text = Localizer.Message("FadeInDuration");
+                    this.Text = "Fade In";
+                    //m_lbl_Parameters.Location = new Point(0, m_lbl_Parameters.Location.Y);
+                }
+                else
+                {
+                    m_lbl_Process.Text = Localizer.Message("FadeOutProcess");
+                    m_lbl_Parameters.Text = Localizer.Message("FadeOutDuration");
+                    this.Text = "Fade Out";
+                    //m_lbl_Parameters.Location = new Point(0, m_lbl_Parameters.Location.Y);
+                }
+                double durationiInSeconds = durationOfFadeInOut * 0.001;
+                m_IsAudioProcessingParameterInSeconds = true;
+                m_numericUpDown1.Maximum = (decimal)durationiInSeconds;
+                m_numericUpDown1.Value = (decimal)durationiInSeconds;
+                m_txt_info.Text = string.Format(Localizer.Message("TextInfoForFadeInOutOperation"),Math.Round(m_numericUpDown1.Value,2));
+                m_AmplifyParameter.Visible = false;
+                m_lbl_Low.Visible = false;
+                m_lbl_High.Visible = false;
+                m_lbl_Seconds.Visible = true;
+            }
+            if (AudioLib.WavAudioProcessing.AudioProcessingKind.Normalize == typeOfAudioProcessing)
+            {
+                m_lbl_Process.Text = Localizer.Message("NormalizeProcess"); 
+                this.Text = "Normalize";
+            }
+            m_cb_Process.SelectedIndex = 0;
             m_InfoToolTip.SetToolTip(m_txt_info, m_txt_info.Text);
 
             helpProvider1.HelpNamespace = Localizer.Message("CHMhelp_file_name");
@@ -55,6 +104,10 @@ namespace Obi.Dialogs
         {
             get
             {
+                if (m_IsAudioProcessingParameterInSeconds)
+                {
+                    return (float)m_numericUpDown1.Value * 1000;
+                }
                 return (float) m_numericUpDown1.Value;
             }
         }
@@ -98,20 +151,23 @@ namespace Obi.Dialogs
 
         private void m_numericUpDown1_ValueChanged(object sender, EventArgs e)
         {
-           if (m_numericUpDown1.Value > 0 && m_numericUpDown1.Value <= (decimal)0.25)
-                m_AmplifyParameter.Value = -3;
-            else if (m_numericUpDown1.Value > (decimal)0.25 && m_numericUpDown1.Value <= (decimal)0.50)
-                m_AmplifyParameter.Value = -2;
-            else if (m_numericUpDown1.Value > (decimal)0.50 && m_numericUpDown1.Value <= (decimal)0.75)
-                m_AmplifyParameter.Value = -1;
-            else if (m_numericUpDown1.Value > (decimal)0.75 && m_numericUpDown1.Value <= (decimal)1)
-                m_AmplifyParameter.Value = 0;
-            else if (m_numericUpDown1.Value > 1 && m_numericUpDown1.Value <= 2)
-                m_AmplifyParameter.Value = 1;
-            else if (m_numericUpDown1.Value > 2 && m_numericUpDown1.Value <= 3)
-                m_AmplifyParameter.Value = 2;
-            else if (m_numericUpDown1.Value > 3 && m_numericUpDown1.Value <= 4)
-                m_AmplifyParameter.Value = 3;
+            if (!m_IsAudioProcessingParameterInSeconds)
+            {
+                if (m_numericUpDown1.Value > 0 && m_numericUpDown1.Value <= (decimal)0.25)
+                    m_AmplifyParameter.Value = -3;
+                else if (m_numericUpDown1.Value > (decimal)0.25 && m_numericUpDown1.Value <= (decimal)0.50)
+                    m_AmplifyParameter.Value = -2;
+                else if (m_numericUpDown1.Value > (decimal)0.50 && m_numericUpDown1.Value <= (decimal)0.75)
+                    m_AmplifyParameter.Value = -1;
+                else if (m_numericUpDown1.Value > (decimal)0.75 && m_numericUpDown1.Value <= (decimal)1)
+                    m_AmplifyParameter.Value = 0;
+                else if (m_numericUpDown1.Value > 1 && m_numericUpDown1.Value <= 2)
+                    m_AmplifyParameter.Value = 1;
+                else if (m_numericUpDown1.Value > 2 && m_numericUpDown1.Value <= 3)
+                    m_AmplifyParameter.Value = 2;
+                else if (m_numericUpDown1.Value > 3 && m_numericUpDown1.Value <= 4)
+                    m_AmplifyParameter.Value = 3;
+            }
         }
 
         private void m_AmplifyParameter_ValueChanged(object sender, EventArgs e)
