@@ -3104,18 +3104,18 @@ Error text: {1}</value>
     <value>Normalize audio of selection :</value>
   </data>
   <data name="FadeInDuration" xml:space="preserve">
-    <value>Duration of Fade In :</value>
+    <value>Fade In Duration from begining:</value>
   </data>
   <data name="FadeOutDuration" xml:space="preserve">
-    <value>Duration of Fade Out :</value>
+    <value>Fade Out Duration from begining:</value>
   </data>
   <data name="TextInfoForFadeInOutOperation" xml:space="preserve">
-    <value>{0} seconds is total duration of selection</value>
+    <value>{0} seconds is total duaration of selection</value>
   </data>
   <data name="FadeInDurationAccessibleName" xml:space="preserve">
-    <value>Set Fade In duration (seconds)</value>
+    <value>Set Fade In duration from begining (seconds)</value>
   </data>
   <data name="FadeOutDurationAccessibleName" xml:space="preserve">
-    <value>Set Fade Out duration (seconds)</value>
+    <value>Set Fade Out duration begining (seconds)</value>
   </data>
 </root>
