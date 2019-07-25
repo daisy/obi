@@ -6092,7 +6092,7 @@ for (int j = 0;
         }
 
 
-        public void AudioProcessing(AudioLib.WavAudioProcessing.AudioProcessingKind audioProcessingNaudio)
+        public void AudioProcessing(AudioLib.WavAudioProcessing.AudioProcessingKind audioProcessingNaudioKind)
         {
             ObiNode nodeToSelect = Selection.Node;
             double durationOfSelection = DurationOfNodeSelected(nodeToSelect);
@@ -6104,21 +6104,20 @@ for (int j = 0;
             bool SelectionChangedPlaybackEnabled = mTransportBar.SelectionChangedPlaybackEnabled;
             mTransportBar.SelectionChangedPlaybackEnabled = false;
 
-            AudioLib.WavAudioProcessing.AudioProcessingKind audioProcessingKind = audioProcessingNaudio;
+            AudioLib.WavAudioProcessing.AudioProcessingKind audioProcessingKind = audioProcessingNaudioKind;
             Obi.Dialogs.AudioProcessingDialog dialog = null;
-            if (audioProcessingKind == WavAudioProcessing.AudioProcessingKind.Amplify)
+            if (audioProcessingKind == WavAudioProcessing.AudioProcessingKind.Amplify || audioProcessingKind == WavAudioProcessing.AudioProcessingKind.Normalize)
             {
-                dialog = new Obi.Dialogs.AudioProcessingDialog(ObiForm.Settings); //@fontconfig
+                dialog = new Obi.Dialogs.AudioProcessingDialog(audioProcessingNaudioKind, ObiForm.Settings,0); //@fontconfig
             }
-            if ((dialog != null && dialog.ShowDialog() == DialogResult.OK) || audioProcessingKind == WavAudioProcessing.AudioProcessingKind.FadeIn
-                || audioProcessingKind == WavAudioProcessing.AudioProcessingKind.FadeOut || audioProcessingKind == WavAudioProcessing.AudioProcessingKind.Normalize)
+            else if (audioProcessingKind == WavAudioProcessing.AudioProcessingKind.FadeIn || audioProcessingKind == WavAudioProcessing.AudioProcessingKind.FadeOut)
+            {
+                dialog = new Obi.Dialogs.AudioProcessingDialog(audioProcessingNaudioKind, ObiForm.Settings, nodeToSelect.Duration);
+            }
+            if (dialog != null && dialog.ShowDialog() == DialogResult.OK)
             {
                 float val = 0;
-                if (dialog != null)
-                {
-                    val = dialog.AudioProcessingParameter;
-
-                }
+                val = dialog.AudioProcessingParameter;
 
                 try
                 {
@@ -6143,15 +6142,15 @@ for (int j = 0;
                         }
                         else if (audioProcessingKind == AudioLib.WavAudioProcessing.AudioProcessingKind.FadeIn)
                         {
-                            audioProcessedFile = audioPorcess.FadeIn(audioFileFullPath, nodeToSelect.Duration);
+                            audioProcessedFile = audioPorcess.FadeIn(audioFileFullPath, val);
                         }
                         else if (audioProcessingKind == AudioLib.WavAudioProcessing.AudioProcessingKind.FadeOut)
                         {
-                            audioProcessedFile = audioPorcess.FadeOut(audioFileFullPath, nodeToSelect.Duration);
+                            audioProcessedFile = audioPorcess.FadeOut(audioFileFullPath, val);
                         }
                         else if (audioProcessingKind == AudioLib.WavAudioProcessing.AudioProcessingKind.Normalize)
                         {
-                            audioProcessedFile = audioPorcess.Normalize(audioFileFullPath);
+                            audioProcessedFile = audioPorcess.Normalize(audioFileFullPath, val);
                         }
                         //else if (audioProcessingKind == AudioLib.WavAudioProcessing.AudioProcessingKind.NoiseReduction)
                         //{
