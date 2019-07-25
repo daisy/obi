@@ -39,6 +39,7 @@ namespace Obi.Dialogs
                     m_lbl_Process.Text = Localizer.Message("FadeInProcess");
                     m_lbl_Parameters.Text = Localizer.Message("FadeInDuration");
                     this.Text = "Fade In";
+                    m_numericUpDown1.AccessibleName = Localizer.Message("FadeInDurationAccessibleName");
                     //m_lbl_Parameters.Location = new Point(0, m_lbl_Parameters.Location.Y);
                 }
                 else
@@ -46,6 +47,7 @@ namespace Obi.Dialogs
                     m_lbl_Process.Text = Localizer.Message("FadeOutProcess");
                     m_lbl_Parameters.Text = Localizer.Message("FadeOutDuration");
                     this.Text = "Fade Out";
+                    m_numericUpDown1.AccessibleName = Localizer.Message("FadeOutDurationAccessibleName");
                     //m_lbl_Parameters.Location = new Point(0, m_lbl_Parameters.Location.Y);
                 }
                 double durationiInSeconds = durationOfFadeInOut * 0.001;

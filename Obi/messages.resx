@@ -3112,4 +3112,10 @@ Error text: {1}</value>
   <data name="TextInfoForFadeInOutOperation" xml:space="preserve">
     <value>{0} seconds is total duaration of selection</value>
   </data>
+  <data name="FadeInDurationAccessibleName" xml:space="preserve">
+    <value>Set Fade In duration (seconds)</value>
+  </data>
+  <data name="FadeOutDurationAccessibleName" xml:space="preserve">
+    <value>Set Fade Out duration (seconds)</value>
+  </data>
 </root>
