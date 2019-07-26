@@ -156,57 +156,63 @@ namespace Obi.Dialogs
 
         private void m_numericUpDown1_ValueChanged(object sender, EventArgs e)
         {
-            if (!m_IsAudioProcessingParameterInSeconds)
+            if (this.ActiveControl == m_numericUpDown1)
             {
-                if (m_numericUpDown1.Value > 0 && m_numericUpDown1.Value <= (decimal)0.25)
-                    m_AmplifyParameter.Value = -3;
-                else if (m_numericUpDown1.Value > (decimal)0.25 && m_numericUpDown1.Value <= (decimal)0.50)
-                    m_AmplifyParameter.Value = -2;
-                else if (m_numericUpDown1.Value > (decimal)0.50 && m_numericUpDown1.Value <= (decimal)0.75)
-                    m_AmplifyParameter.Value = -1;
-                else if (m_numericUpDown1.Value > (decimal)0.75 && m_numericUpDown1.Value <= (decimal)1)
-                    m_AmplifyParameter.Value = 0;
-                else if (m_numericUpDown1.Value > 1 && m_numericUpDown1.Value <= 2)
-                    m_AmplifyParameter.Value = 1;
-                else if (m_numericUpDown1.Value > 2 && m_numericUpDown1.Value <= 3)
-                    m_AmplifyParameter.Value = 2;
-                else if (m_numericUpDown1.Value > 3 && m_numericUpDown1.Value <= 4)
-                    m_AmplifyParameter.Value = 3;
+                if (!m_IsAudioProcessingParameterInSeconds)
+                {
+                    if (m_numericUpDown1.Value > 0 && m_numericUpDown1.Value <= (decimal)0.25)
+                        m_AmplifyParameter.Value = -3;
+                    else if (m_numericUpDown1.Value > (decimal)0.25 && m_numericUpDown1.Value <= (decimal)0.50)
+                        m_AmplifyParameter.Value = -2;
+                    else if (m_numericUpDown1.Value > (decimal)0.50 && m_numericUpDown1.Value <= (decimal)0.75)
+                        m_AmplifyParameter.Value = -1;
+                    else if (m_numericUpDown1.Value > (decimal)0.75 && m_numericUpDown1.Value <= (decimal)1)
+                        m_AmplifyParameter.Value = 0;
+                    else if (m_numericUpDown1.Value > 1 && m_numericUpDown1.Value <= 2)
+                        m_AmplifyParameter.Value = 1;
+                    else if (m_numericUpDown1.Value > 2 && m_numericUpDown1.Value <= 3)
+                        m_AmplifyParameter.Value = 2;
+                    else if (m_numericUpDown1.Value > 3 && m_numericUpDown1.Value <= 4)
+                        m_AmplifyParameter.Value = 3;
+                }
             }
         }
 
         private void m_AmplifyParameter_ValueChanged(object sender, EventArgs e)
         {
-            float value = 0;
-            if (m_AmplifyParameter.Value == 0)
+            if (this.ActiveControl == m_AmplifyParameter)
             {
-                value = 1;
+                float value = 0;
+                if (m_AmplifyParameter.Value == 0)
+                {
+                    value = 1;
+                }
+                else if (m_AmplifyParameter.Value == 1)
+                {
+                    value = 2;
+                }
+                else if (m_AmplifyParameter.Value == 2)
+                {
+                    value = 3;
+                }
+                else if (m_AmplifyParameter.Value == 3)
+                {
+                    value = 4;
+                }
+                else if (m_AmplifyParameter.Value == -1)
+                {
+                    value = (float)0.75;
+                }
+                else if (m_AmplifyParameter.Value == -2)
+                {
+                    value = (float)0.50;
+                }
+                else if (m_AmplifyParameter.Value == -3)
+                {
+                    value = (float)0.25;
+                }
+                m_numericUpDown1.Value = (decimal)value;
             }
-            else if (m_AmplifyParameter.Value == 1)
-            {
-                value = 2;
-            }
-            else if (m_AmplifyParameter.Value == 2)
-            {
-                value = 3;
-            }
-            else if (m_AmplifyParameter.Value == 3)
-            {
-                value = 4;
-            }
-            else if (m_AmplifyParameter.Value == -1)
-            {
-                value = (float)0.75;
-            }
-            else if (m_AmplifyParameter.Value == -2)
-            {
-                value = (float)0.50;
-            }
-            else if (m_AmplifyParameter.Value == -3)
-            {
-                value = (float)0.25;
-            }
-            m_numericUpDown1.Value = (decimal)value;
         }
 
         protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
