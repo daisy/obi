@@ -82,6 +82,7 @@ namespace Obi.Dialogs
             // m_AmplifyParameter
             // 
             resources.ApplyResources(this.m_AmplifyParameter, "m_AmplifyParameter");
+            this.m_AmplifyParameter.LargeChange = 2;
             this.m_AmplifyParameter.Maximum = 3;
             this.m_AmplifyParameter.Minimum = -3;
             this.m_AmplifyParameter.Name = "m_AmplifyParameter";

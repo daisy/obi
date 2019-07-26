@@ -208,5 +208,31 @@ namespace Obi.Dialogs
             }
             m_numericUpDown1.Value = (decimal)value;
         }
+
+        protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
+        {
+            if (this.ActiveControl == m_AmplifyParameter)
+            {
+                switch (keyData)
+                {
+                    case Keys.Up:
+                        m_AmplifyParameter.Value = Math.Min(m_AmplifyParameter.Value + m_AmplifyParameter.SmallChange, m_AmplifyParameter.Maximum);
+                        return true;
+
+                    case Keys.Down:
+                        m_AmplifyParameter.Value = Math.Max(m_AmplifyParameter.Value - m_AmplifyParameter.SmallChange, m_AmplifyParameter.Minimum);
+                        return true;
+
+                    case Keys.PageUp:
+                        m_AmplifyParameter.Value = Math.Min(m_AmplifyParameter.Value + m_AmplifyParameter.LargeChange, m_AmplifyParameter.Maximum);
+                        return true;
+
+                    case Keys.PageDown:
+                        m_AmplifyParameter.Value = Math.Max(m_AmplifyParameter.Value - m_AmplifyParameter.LargeChange, m_AmplifyParameter.Minimum);
+                        return true;
+                }
+            }
+            return base.ProcessCmdKey(ref msg, keyData);
+        }
     }
 }
