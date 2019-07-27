@@ -236,6 +236,11 @@ namespace Obi
             this.mStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.mStatusProgressBar = new System.Windows.Forms.ToolStripProgressBar();
             this.mProjectView = new Obi.ProjectView.ProjectView();
+            this.mTools_AudioProcessingNew = new System.Windows.Forms.ToolStripMenuItem();
+            this.m_ChangeVolumeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.m_FadeInToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.m_FadeOutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.m_NormalizeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mMenuStrip.SuspendLayout();
             this.mStatusStrip.SuspendLayout();
             this.SuspendLayout();
@@ -1555,6 +1560,7 @@ namespace Obi
             this.mTools_PreferencesMenuItem,
             this.m_ToolsLangPack,
             this.toolStripSeparator16,
+            this.mTools_AudioProcessingNew,
             this.mTools_AudioProcessing,
             this.mTools_ExportSelectedAudioMenuItem,
             this.mTools_CleanUnreferencedAudioMenuItem,
@@ -1717,6 +1723,40 @@ namespace Obi
             this.mProjectView.TOCViewWidth = 302;
             this.mProjectView.TransportBarVisible = false;
             this.mProjectView.ZoomWaveformIncrementFactor = 0D;
+            // 
+            // mTools_AudioProcessingNew
+            // 
+            this.mTools_AudioProcessingNew.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.m_ChangeVolumeToolStripMenuItem,
+            this.m_FadeInToolStripMenuItem,
+            this.m_FadeOutToolStripMenuItem,
+            this.m_NormalizeToolStripMenuItem});
+            this.mTools_AudioProcessingNew.Name = "mTools_AudioProcessingNew";
+            resources.ApplyResources(this.mTools_AudioProcessingNew, "mTools_AudioProcessingNew");
+            // 
+            // m_ChangeVolumeToolStripMenuItem
+            // 
+            this.m_ChangeVolumeToolStripMenuItem.Name = "m_ChangeVolumeToolStripMenuItem";
+            resources.ApplyResources(this.m_ChangeVolumeToolStripMenuItem, "m_ChangeVolumeToolStripMenuItem");
+            this.m_ChangeVolumeToolStripMenuItem.Click += new System.EventHandler(this.m_ChangeVolumeToolStripMenuItem_Click);
+            // 
+            // m_FadeInToolStripMenuItem
+            // 
+            this.m_FadeInToolStripMenuItem.Name = "m_FadeInToolStripMenuItem";
+            resources.ApplyResources(this.m_FadeInToolStripMenuItem, "m_FadeInToolStripMenuItem");
+            this.m_FadeInToolStripMenuItem.Click += new System.EventHandler(this.m_FadeInToolStripMenuItem_Click);
+            // 
+            // m_FadeOutToolStripMenuItem
+            // 
+            this.m_FadeOutToolStripMenuItem.Name = "m_FadeOutToolStripMenuItem";
+            resources.ApplyResources(this.m_FadeOutToolStripMenuItem, "m_FadeOutToolStripMenuItem");
+            this.m_FadeOutToolStripMenuItem.Click += new System.EventHandler(this.m_FadeOutToolStripMenuItem_Click);
+            // 
+            // m_NormalizeToolStripMenuItem
+            // 
+            this.m_NormalizeToolStripMenuItem.Name = "m_NormalizeToolStripMenuItem";
+            resources.ApplyResources(this.m_NormalizeToolStripMenuItem, "m_NormalizeToolStripMenuItem");
+            this.m_NormalizeToolStripMenuItem.Click += new System.EventHandler(this.m_NormalizeToolStripMenuItem_Click);
             // 
             // ObiForm
             // 
@@ -1952,6 +1992,11 @@ namespace Obi
         private System.Windows.Forms.ToolStripMenuItem m_AddViewCommentToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem m_ClearCommentToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mShowPeakMeterInsideObiMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem mTools_AudioProcessingNew;
+        private System.Windows.Forms.ToolStripMenuItem m_ChangeVolumeToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem m_FadeInToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem m_FadeOutToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem m_NormalizeToolStripMenuItem;
     }
 }
 

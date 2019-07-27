@@ -6230,6 +6230,31 @@ Block lastBlock = ActiveStrip.LastBlock ;
             this.ClearComment();
         }
 
+        private void m_ChangeVolumeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (mProjectView.TransportBar.IsPlayerActive)
+            {
+                if (mProjectView.TransportBar.CurrentState == Obi.ProjectView.TransportBar.State.Playing) mProjectView.TransportBar.Pause();
+                mProjectView.TransportBar.Stop();
+            }
+            mProjectView.AudioProcessing(AudioLib.WavAudioProcessing.AudioProcessingKind.Amplify);
+        }
+
+        private void m_FadeInToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            mProjectView.AudioProcessing(AudioLib.WavAudioProcessing.AudioProcessingKind.FadeIn);
+        }
+
+        private void m_FadeOutToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            mProjectView.AudioProcessing(AudioLib.WavAudioProcessing.AudioProcessingKind.FadeOut);
+        }
+
+        private void m_NormalizeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            mProjectView.AudioProcessing(AudioLib.WavAudioProcessing.AudioProcessingKind.Normalize);
+        }
+
      
 
         }
