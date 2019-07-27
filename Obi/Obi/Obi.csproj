@@ -167,6 +167,10 @@
     <Compile Include="Dialogs\AudioProcessingDialog.designer.cs">
       <DependentUpon>AudioProcessingDialog.cs</DependentUpon>
     </Compile>
+    <Compile Include="Dialogs\AudioProcessingNewDialog.cs" />
+    <Compile Include="Dialogs\AudioProcessingNewDialog.Designer.cs">
+      <DependentUpon>AudioProcessingNewDialog.cs</DependentUpon>
+    </Compile>
     <Compile Include="Dialogs\AudioSettings.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -621,6 +625,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\AudioProcessingDialog.zh-Hant.resx">
       <DependentUpon>AudioProcessingDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\AudioProcessingNewDialog.resx">
+      <DependentUpon>AudioProcessingNewDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\AudioSettings.de.resx">
       <DependentUpon>AudioSettings.cs</DependentUpon>
