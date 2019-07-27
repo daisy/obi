@@ -96,6 +96,11 @@ namespace Obi.ProjectView
             this.Context_Delete_deleteSelectionMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.Context_Delete_deleteFollowingPhrasesMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
+            this.Context_AudioProcessingNew = new System.Windows.Forms.ToolStripMenuItem();
+            this.m_ChangeVolumeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.m_FadeInToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.m_FadeOutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.m_NormalizeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.Context_AudioProcessing = new System.Windows.Forms.ToolStripMenuItem();
             this.Context_ExportReplaceAudioMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.Context_ExportAudioMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -147,6 +152,7 @@ namespace Obi.ProjectView
             this.Context_PasteInsideMenuItem,
             this.Context_DeleteMenuItem,
             this.toolStripSeparator5,
+            this.Context_AudioProcessingNew,
             this.Context_AudioProcessing,
             this.Context_ExportReplaceAudioMenuItem,
             this.Context_PropertiesMenuItem});
@@ -577,6 +583,40 @@ namespace Obi.ProjectView
             this.toolStripSeparator5.Name = "toolStripSeparator5";
             resources.ApplyResources(this.toolStripSeparator5, "toolStripSeparator5");
             // 
+            // Context_AudioProcessingNew
+            // 
+            this.Context_AudioProcessingNew.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.m_ChangeVolumeToolStripMenuItem,
+            this.m_FadeInToolStripMenuItem,
+            this.m_FadeOutToolStripMenuItem,
+            this.m_NormalizeToolStripMenuItem});
+            this.Context_AudioProcessingNew.Name = "Context_AudioProcessingNew";
+            resources.ApplyResources(this.Context_AudioProcessingNew, "Context_AudioProcessingNew");
+            // 
+            // m_ChangeVolumeToolStripMenuItem
+            // 
+            this.m_ChangeVolumeToolStripMenuItem.Name = "m_ChangeVolumeToolStripMenuItem";
+            resources.ApplyResources(this.m_ChangeVolumeToolStripMenuItem, "m_ChangeVolumeToolStripMenuItem");
+            this.m_ChangeVolumeToolStripMenuItem.Click += new System.EventHandler(this.m_ChangeVolumeToolStripMenuItem_Click);
+            // 
+            // m_FadeInToolStripMenuItem
+            // 
+            this.m_FadeInToolStripMenuItem.Name = "m_FadeInToolStripMenuItem";
+            resources.ApplyResources(this.m_FadeInToolStripMenuItem, "m_FadeInToolStripMenuItem");
+            this.m_FadeInToolStripMenuItem.Click += new System.EventHandler(this.m_FadeInToolStripMenuItem_Click);
+            // 
+            // m_FadeOutToolStripMenuItem
+            // 
+            this.m_FadeOutToolStripMenuItem.Name = "m_FadeOutToolStripMenuItem";
+            resources.ApplyResources(this.m_FadeOutToolStripMenuItem, "m_FadeOutToolStripMenuItem");
+            this.m_FadeOutToolStripMenuItem.Click += new System.EventHandler(this.m_FadeOutToolStripMenuItem_Click);
+            // 
+            // m_NormalizeToolStripMenuItem
+            // 
+            this.m_NormalizeToolStripMenuItem.Name = "m_NormalizeToolStripMenuItem";
+            resources.ApplyResources(this.m_NormalizeToolStripMenuItem, "m_NormalizeToolStripMenuItem");
+            this.m_NormalizeToolStripMenuItem.Click += new System.EventHandler(this.m_NormalizeToolStripMenuItem_Click);
+            // 
             // Context_AudioProcessing
             // 
             this.Context_AudioProcessing.Name = "Context_AudioProcessing";
@@ -759,5 +799,10 @@ namespace Obi.ProjectView
         private System.Windows.Forms.ToolStripMenuItem Context_CommentMenuItem;
         private System.Windows.Forms.ToolStripMenuItem Context_AddViewCommentMenuItem;
         private System.Windows.Forms.ToolStripMenuItem Context_ClearCommentMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem Context_AudioProcessingNew;
+        private System.Windows.Forms.ToolStripMenuItem m_ChangeVolumeToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem m_FadeInToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem m_FadeOutToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem m_NormalizeToolStripMenuItem;
     }
 }

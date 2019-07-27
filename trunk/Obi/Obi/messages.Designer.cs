@@ -2341,6 +2341,60 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Fade In Duration from beginning:.
+        /// </summary>
+        internal static string FadeInDuration {
+            get {
+                return ResourceManager.GetString("FadeInDuration", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Set Fade In duration from beginning (seconds).
+        /// </summary>
+        internal static string FadeInDurationAccessibleName {
+            get {
+                return ResourceManager.GetString("FadeInDurationAccessibleName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Fade In audio of selection :.
+        /// </summary>
+        internal static string FadeInProcess {
+            get {
+                return ResourceManager.GetString("FadeInProcess", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Fade Out Duration from beginning:.
+        /// </summary>
+        internal static string FadeOutDuration {
+            get {
+                return ResourceManager.GetString("FadeOutDuration", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Set Fade Out duration beginning (seconds).
+        /// </summary>
+        internal static string FadeOutDurationAccessibleName {
+            get {
+                return ResourceManager.GetString("FadeOutDurationAccessibleName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Fade Out audio of selection :.
+        /// </summary>
+        internal static string FadeOutProcess {
+            get {
+                return ResourceManager.GetString("FadeOutProcess", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to This file is being used by other process.Please close all applications using this file and try again.
         /// </summary>
         internal static string FileInUse {
@@ -4647,6 +4701,15 @@ namespace Obi {
         internal static string normal_phrase {
             get {
                 return ResourceManager.GetString("normal_phrase", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Normalize audio of selection :.
+        /// </summary>
+        internal static string NormalizeProcess {
+            get {
+                return ResourceManager.GetString("NormalizeProcess", resourceCulture);
             }
         }
         
@@ -7422,6 +7485,15 @@ namespace Obi {
         internal static string text_selection_to_string {
             get {
                 return ResourceManager.GetString("text_selection_to_string", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} seconds is total duration of selection.
+        /// </summary>
+        internal static string TextInfoForFadeInOutOperation {
+            get {
+                return ResourceManager.GetString("TextInfoForFadeInOutOperation", resourceCulture);
             }
         }
         
