@@ -37,6 +37,11 @@ namespace Obi.ProjectView
             this.mbtnPastetoolStrip = new System.Windows.Forms.ToolStripButton();
             this.mbtnDeletetoolStrip = new System.Windows.Forms.ToolStripButton();
             this.mbtnPraseDetectiontoolStrip = new System.Windows.Forms.ToolStripButton();
+            this.mbtnAudioProcessingToolStripDropDown = new System.Windows.Forms.ToolStripDropDownButton();
+            this.m_ChangeVolumeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.m_FadeInToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.m_FadeOutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.m_NormalizeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -50,15 +55,14 @@ namespace Obi.ProjectView
             this.mbtnCopytoolStrip,
             this.mbtnPastetoolStrip,
             this.mbtnDeletetoolStrip,
-            this.mbtnPraseDetectiontoolStrip});
-            this.toolStrip1.MaximumSize = new System.Drawing.Size(204, 25);
-            this.toolStrip1.MinimumSize = new System.Drawing.Size(574, 0);
+            this.mbtnPraseDetectiontoolStrip,
+            this.mbtnAudioProcessingToolStripDropDown});
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.TabStop = true;
-            this.toolStrip1.MouseUp += new System.Windows.Forms.MouseEventHandler(this.toolStrip1_MouseUp);
             this.toolStrip1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.toolStrip1_MouseDown);
-            this.toolStrip1.MouseMove += new System.Windows.Forms.MouseEventHandler(this.toolStrip1_MouseMove);
             this.toolStrip1.MouseHover += new System.EventHandler(this.toolStrip1_MouseHover);
+            this.toolStrip1.MouseMove += new System.Windows.Forms.MouseEventHandler(this.toolStrip1_MouseMove);
+            this.toolStrip1.MouseUp += new System.Windows.Forms.MouseEventHandler(this.toolStrip1_MouseUp);
             // 
             // mbtnSplittoolStrip
             // 
@@ -102,12 +106,46 @@ namespace Obi.ProjectView
             this.mbtnPraseDetectiontoolStrip.Name = "mbtnPraseDetectiontoolStrip";
             this.mbtnPraseDetectiontoolStrip.Click += new System.EventHandler(this.mbtnPraseDetectiontoolStrip_Click);
             // 
+            // mbtnAudioProcessingToolStripDropDown
+            // 
+            this.mbtnAudioProcessingToolStripDropDown.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.m_ChangeVolumeToolStripMenuItem,
+            this.m_FadeInToolStripMenuItem,
+            this.m_FadeOutToolStripMenuItem,
+            this.m_NormalizeToolStripMenuItem});
+            resources.ApplyResources(this.mbtnAudioProcessingToolStripDropDown, "mbtnAudioProcessingToolStripDropDown");
+            this.mbtnAudioProcessingToolStripDropDown.Name = "mbtnAudioProcessingToolStripDropDown";
+            // 
+            // m_ChangeVolumeToolStripMenuItem
+            // 
+            this.m_ChangeVolumeToolStripMenuItem.Name = "m_ChangeVolumeToolStripMenuItem";
+            resources.ApplyResources(this.m_ChangeVolumeToolStripMenuItem, "m_ChangeVolumeToolStripMenuItem");
+            this.m_ChangeVolumeToolStripMenuItem.Click += new System.EventHandler(this.m_ChangeVolumeToolStripMenuItem_Click);
+            // 
+            // m_FadeInToolStripMenuItem
+            // 
+            this.m_FadeInToolStripMenuItem.Name = "m_FadeInToolStripMenuItem";
+            resources.ApplyResources(this.m_FadeInToolStripMenuItem, "m_FadeInToolStripMenuItem");
+            this.m_FadeInToolStripMenuItem.Click += new System.EventHandler(this.m_FadeInToolStripMenuItem_Click);
+            // 
+            // m_FadeOutToolStripMenuItem
+            // 
+            this.m_FadeOutToolStripMenuItem.Name = "m_FadeOutToolStripMenuItem";
+            resources.ApplyResources(this.m_FadeOutToolStripMenuItem, "m_FadeOutToolStripMenuItem");
+            this.m_FadeOutToolStripMenuItem.Click += new System.EventHandler(this.m_FadeOutToolStripMenuItem_Click);
+            // 
+            // m_NormalizeToolStripMenuItem
+            // 
+            this.m_NormalizeToolStripMenuItem.Name = "m_NormalizeToolStripMenuItem";
+            resources.ApplyResources(this.m_NormalizeToolStripMenuItem, "m_NormalizeToolStripMenuItem");
+            this.m_NormalizeToolStripMenuItem.Click += new System.EventHandler(this.m_NormalizeToolStripMenuItem_Click);
+            // 
             // Toolbar_EditAudio
             // 
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.toolStrip1);
-            this.MinimumSize = new System.Drawing.Size(583, 28);
+            this.MinimumSize = new System.Drawing.Size(693, 28);
             this.Name = "Toolbar_EditAudio";
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
@@ -126,5 +164,10 @@ namespace Obi.ProjectView
         private System.Windows.Forms.ToolStripButton mbtnDeletetoolStrip;
         private System.Windows.Forms.ToolStripButton mbtnMergetoolStrip;
         private System.Windows.Forms.ToolStripButton mbtnPraseDetectiontoolStrip;
+        private System.Windows.Forms.ToolStripDropDownButton mbtnAudioProcessingToolStripDropDown;
+        private System.Windows.Forms.ToolStripMenuItem m_ChangeVolumeToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem m_FadeInToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem m_FadeOutToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem m_NormalizeToolStripMenuItem;
     }
 }

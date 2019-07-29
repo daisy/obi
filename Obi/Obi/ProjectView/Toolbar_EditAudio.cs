@@ -70,6 +70,7 @@ namespace Obi.ProjectView
             mbtnSplittoolStrip.Enabled =  m_ProjectView.CanSplitPhrase;
             mbtnDeletetoolStrip.Enabled = (m_ContentView.CanRemoveAudio) && !m_ProjectView.TransportBar.IsRecorderActive && !m_ProjectView.ObiForm.Settings.Project_ReadOnlyMode;
             mbtnMergetoolStrip.Enabled = m_ContentView.CanMergeBlockWithNext;
+            mbtnAudioProcessingToolStripDropDown.Enabled = m_ProjectView.CanExportSelectedNodeAudio;
             
         }
 
@@ -224,6 +225,31 @@ namespace Obi.ProjectView
         {
             this.Font = new Font(m_ProjectView.ObiForm.Settings.ObiFont, this.Font.Size, FontStyle.Regular);
             toolStrip1.Font = new Font(m_ProjectView.ObiForm.Settings.ObiFont, this.Font.Size, FontStyle.Regular);
+        }
+
+        private void m_ChangeVolumeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (m_ProjectView.TransportBar.IsPlayerActive)
+            {
+                if (m_ProjectView.TransportBar.CurrentState == Obi.ProjectView.TransportBar.State.Playing) m_ProjectView.TransportBar.Pause();
+                m_ProjectView.TransportBar.Stop();
+            }
+            m_ProjectView.AudioProcessing(AudioLib.WavAudioProcessing.AudioProcessingKind.Amplify);
+        }
+
+        private void m_FadeInToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            m_ProjectView.AudioProcessing(AudioLib.WavAudioProcessing.AudioProcessingKind.FadeIn);
+        }
+
+        private void m_FadeOutToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            m_ProjectView.AudioProcessing(AudioLib.WavAudioProcessing.AudioProcessingKind.FadeOut);
+        }
+
+        private void m_NormalizeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            m_ProjectView.AudioProcessing(AudioLib.WavAudioProcessing.AudioProcessingKind.Normalize);
         }
     }
 }
