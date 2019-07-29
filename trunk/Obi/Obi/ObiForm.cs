@@ -2723,7 +2723,7 @@ namespace Obi
                 mTools_PreferencesMenuItem.Enabled = !mProjectView.TransportBar.IsRecorderActive;
                 PipelineMenuItemsEnabled = mSession.HasProject && !mProjectView.TransportBar.IsRecorderActive;
                 m_ToolsLangPack.Enabled = !mProjectView.TransportBar.IsRecorderActive;
-                mTools_AudioProcessing.Enabled = mProjectView.CanExportSelectedNodeAudio;
+                mTools_AudioProcessing.Enabled = mTools_AudioProcessingNew.Enabled = mProjectView.CanExportSelectedNodeAudio;
                 m_Tools_QuickCleanupToolStripMenuItem.Enabled = mSettings.Audio_EnableFileDataProviderPreservation;
             }
 
