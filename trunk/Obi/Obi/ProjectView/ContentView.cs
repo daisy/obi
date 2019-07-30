@@ -4111,6 +4111,18 @@ if (thresholdAboveLastNode >= stripControl.Node.PhraseChildCount) thresholdAbove
             Context_AddViewCommentMenuItem.ShortcutKeyDisplayString = ObiForm.RefineKeyboardShortcutStringForAccessibleName(keyboardShortcuts.FormatKeyboardShorcut(keyboardShortcuts.ContentView_AddComment.Value.ToString())); // @Comment-todo
             Context_AddViewCommentMenuItem.AccessibleName = Context_AddViewCommentMenuItem.Text.Replace("&", "") + " " + Context_AddViewCommentMenuItem.ShortcutKeyDisplayString;
 
+            m_ChangeVolumeToolStripMenuItem.ShortcutKeyDisplayString = ObiForm.RefineKeyboardShortcutStringForAccessibleName(keyboardShortcuts.FormatKeyboardShorcut(keyboardShortcuts.MenuNameDictionary["m_ChangeVolumeToolStripMenuItem"].Value.ToString()));
+            m_ChangeVolumeToolStripMenuItem.AccessibleName = m_ChangeVolumeToolStripMenuItem.Text.Replace("&", "") + " " + m_ChangeVolumeToolStripMenuItem.ShortcutKeyDisplayString;
+
+            m_FadeInToolStripMenuItem.ShortcutKeyDisplayString = ObiForm.RefineKeyboardShortcutStringForAccessibleName(keyboardShortcuts.FormatKeyboardShorcut(keyboardShortcuts.MenuNameDictionary["m_FadeInToolStripMenuItem"].Value.ToString()));
+            m_FadeInToolStripMenuItem.AccessibleName = m_FadeInToolStripMenuItem.Text.Replace("&", "") + " " + m_FadeInToolStripMenuItem.ShortcutKeyDisplayString;
+
+            m_FadeOutToolStripMenuItem.ShortcutKeyDisplayString = ObiForm.RefineKeyboardShortcutStringForAccessibleName(keyboardShortcuts.FormatKeyboardShorcut(keyboardShortcuts.MenuNameDictionary["m_FadeOutToolStripMenuItem"].Value.ToString()));
+            m_FadeOutToolStripMenuItem.AccessibleName = m_FadeOutToolStripMenuItem.Text.Replace("&", "") + " " + m_FadeOutToolStripMenuItem.ShortcutKeyDisplayString;
+
+            m_NormalizeToolStripMenuItem.ShortcutKeyDisplayString = ObiForm.RefineKeyboardShortcutStringForAccessibleName(keyboardShortcuts.FormatKeyboardShorcut(keyboardShortcuts.MenuNameDictionary["m_NormalizeToolStripMenuItem"].Value.ToString()));
+            m_NormalizeToolStripMenuItem.AccessibleName = m_NormalizeToolStripMenuItem.Text.Replace("&", "") + " " + m_NormalizeToolStripMenuItem.ShortcutKeyDisplayString;
+
         }
 
         private bool CanUseKeys { get { return (mSelection == null || !(mSelection is TextSelection)) && !m_IsBlocksVisibilityProcessActive; } }
