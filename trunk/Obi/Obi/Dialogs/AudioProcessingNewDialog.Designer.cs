@@ -164,7 +164,7 @@ namespace Obi.Dialogs
             this.m_btn_Cancel.UseVisualStyleBackColor = true;
             this.m_btn_Cancel.Click += new System.EventHandler(this.m_btn_Cancel_Click);
             // 
-            // AudioProcessingDialog
+            // AudioProcessingNewDialog
             // 
             this.AcceptButton = this.m_btn_OK;
             resources.ApplyResources(this, "$this");
@@ -176,7 +176,7 @@ namespace Obi.Dialogs
             this.Controls.Add(this.m_gpbox_Process);
             this.Controls.Add(this.m_cb_Process);
             this.MaximizeBox = false;
-            this.Name = "AudioProcessingDialog";
+            this.Name = "AudioProcessingNewDialog";
             this.m_gpbox_Process.ResumeLayout(false);
             this.m_gpbox_Process.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.m_AmplifyParameter)).EndInit();

@@ -1833,7 +1833,7 @@ Error text: {1}</value>
     <value>Error in loading configured keyboard shortcuts. Loading defaults.</value>
   </data>
   <data name="AudioFileExport_progress_dialog_title" xml:space="preserve">
-    <value>Exporting audio File...</value>
+    <value>Processing......</value>
   </data>
   <data name="OpenProject_progress_dialog_title" xml:space="preserve">
     <value>Opening project...Please wait</value>
@@ -3117,5 +3117,20 @@ Error text: {1}</value>
   </data>
   <data name="FadeOutDurationAccessibleName" xml:space="preserve">
     <value>Set Fade Out duration beginning (seconds)</value>
+  </data>
+  <data name="FadeIn" xml:space="preserve">
+    <value>Fade In</value>
+  </data>
+  <data name="FadeOut" xml:space="preserve">
+    <value>Fade In</value>
+  </data>
+  <data name="Normalize" xml:space="preserve">
+    <value>Normalize</value>
+  </data>
+  <data name="NormalizeAceesibleName" xml:space="preserve">
+    <value>Set Parameter to Increase/Decrease volume after Normalize operation</value>
+  </data>
+  <data name="NormalizeAceesibleNameForSlider" xml:space="preserve">
+    <value>Slide to Increase/Decrease volume of selection. Right sliding will increase volume after Normalize operation</value>
   </data>
 </root>
