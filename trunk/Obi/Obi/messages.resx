@@ -2671,7 +2671,7 @@ Error text: {1}</value>
     <value>Processing audio...</value>
   </data>
   <data name="AudioProcessing_InfoText" xml:space="preserve">
-    <value>Value 1.0 means that audio will remain unchanged.</value>
+    <value>Value 1.0 means that volume of audio will remain unchanged.</value>
   </data>
   <data name="ValidatorTimeOutMsg" xml:space="preserve">
     <value>Validator time out</value>
@@ -3128,9 +3128,9 @@ Error text: {1}</value>
     <value>Normalize</value>
   </data>
   <data name="NormalizeAceesibleName" xml:space="preserve">
-    <value>Set Parameter to Increase/Decrease volume after Normalize operation</value>
+    <value>Set Parameter to Increase/Decrease volume while Normalize operation</value>
   </data>
   <data name="NormalizeAceesibleNameForSlider" xml:space="preserve">
-    <value>Slide to Increase/Decrease volume of selection. Right sliding will increase volume after Normalize operation</value>
+    <value>Slide to Increase/Decrease volume of selection. Right sliding will increase volume while Normalize operation</value>
   </data>
 </root>

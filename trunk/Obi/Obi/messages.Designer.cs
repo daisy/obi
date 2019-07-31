@@ -556,7 +556,7 @@ namespace Obi {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Value 1.0 means that audio will remain unchanged..
+        ///   Looks up a localized string similar to Value 1.0 means that volume of audio will remain unchanged..
         /// </summary>
         internal static string AudioProcessing_InfoText {
             get {
@@ -4732,7 +4732,7 @@ namespace Obi {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Set Parameter to Increase/Decrease volume after Normalize operation.
+        ///   Looks up a localized string similar to Set Parameter to Increase/Decrease volume while Normalize operation.
         /// </summary>
         internal static string NormalizeAceesibleName {
             get {
@@ -4741,7 +4741,7 @@ namespace Obi {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Slide to Increase/Decrease volume of selection. Right sliding will increase volume after Normalize operation.
+        ///   Looks up a localized string similar to Slide to Increase/Decrease volume of selection. Right sliding will increase volume while Normalize operation.
         /// </summary>
         internal static string NormalizeAceesibleNameForSlider {
             get {
