@@ -520,7 +520,7 @@ namespace Obi {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Exporting audio File....
+        ///   Looks up a localized string similar to Processing.......
         /// </summary>
         internal static string AudioFileExport_progress_dialog_title {
             get {
@@ -2341,6 +2341,15 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Fade In.
+        /// </summary>
+        internal static string FadeIn {
+            get {
+                return ResourceManager.GetString("FadeIn", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Fade In Duration from beginning:.
         /// </summary>
         internal static string FadeInDuration {
@@ -2364,6 +2373,15 @@ namespace Obi {
         internal static string FadeInProcess {
             get {
                 return ResourceManager.GetString("FadeInProcess", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Fade In.
+        /// </summary>
+        internal static string FadeOut {
+            get {
+                return ResourceManager.GetString("FadeOut", resourceCulture);
             }
         }
         
@@ -4701,6 +4719,33 @@ namespace Obi {
         internal static string normal_phrase {
             get {
                 return ResourceManager.GetString("normal_phrase", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Normalize.
+        /// </summary>
+        internal static string Normalize {
+            get {
+                return ResourceManager.GetString("Normalize", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Set Parameter to Increase/Decrease volume after Normalize operation.
+        /// </summary>
+        internal static string NormalizeAceesibleName {
+            get {
+                return ResourceManager.GetString("NormalizeAceesibleName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Slide to Increase/Decrease volume of selection. Right sliding will increase volume after Normalize operation.
+        /// </summary>
+        internal static string NormalizeAceesibleNameForSlider {
+            get {
+                return ResourceManager.GetString("NormalizeAceesibleNameForSlider", resourceCulture);
             }
         }
         

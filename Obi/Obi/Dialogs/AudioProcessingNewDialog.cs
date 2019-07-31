@@ -38,7 +38,8 @@ namespace Obi.Dialogs
                 {
                     m_lbl_Process.Text = Localizer.Message("FadeInProcess");
                     m_lbl_Parameters.Text = Localizer.Message("FadeInDuration");
-                    this.Text = "Fade In";
+                    this.Text = Localizer.Message("FadeIn");
+                    this.AccessibleName = Localizer.Message("FadeIn");
                     m_numericUpDown1.AccessibleName = Localizer.Message("FadeInDurationAccessibleName");
                     //m_lbl_Parameters.Location = new Point(0, m_lbl_Parameters.Location.Y);
                 }
@@ -46,7 +47,8 @@ namespace Obi.Dialogs
                 {
                     m_lbl_Process.Text = Localizer.Message("FadeOutProcess");
                     m_lbl_Parameters.Text = Localizer.Message("FadeOutDuration");
-                    this.Text = "Fade Out";
+                    this.Text = Localizer.Message("FadeOut");
+                    this.AccessibleName = Localizer.Message("FadeOut");
                     m_numericUpDown1.AccessibleName = Localizer.Message("FadeOutDurationAccessibleName");
                     //m_lbl_Parameters.Location = new Point(0, m_lbl_Parameters.Location.Y);
                 }
@@ -65,8 +67,11 @@ namespace Obi.Dialogs
             }
             if (AudioLib.WavAudioProcessing.AudioProcessingKind.Normalize == typeOfAudioProcessing)
             {
-                m_lbl_Process.Text = Localizer.Message("NormalizeProcess"); 
-                this.Text = "Normalize";
+                m_lbl_Process.Text = Localizer.Message("NormalizeProcess");
+                this.Text = Localizer.Message("Normalize");
+                this.AccessibleName = Localizer.Message("Normalize");
+                m_numericUpDown1.AccessibleName = Localizer.Message("NormalizeAceesibleName");
+                m_AmplifyParameter.AccessibleName = Localizer.Message("NormalizeAceesibleNameForSlider");
             }
             m_cb_Process.SelectedIndex = 0;
             m_InfoToolTip.SetToolTip(m_txt_info, m_txt_info.Text);
