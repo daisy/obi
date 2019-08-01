@@ -2656,6 +2656,8 @@ namespace Obi.ProjectView
         public bool IsBlockUsed { get { return mContentView.IsBlockUsed; } }
         public bool IsStripUsed { get { return mContentView.IsStripUsed; } }
 
+        public bool CanShowFadeInFadeOutDialog { get { return Selection != null && (Selection.Node is PhraseNode) && !(Selection is AudioSelection) && !TransportBar.IsRecorderActive; } }
+
         public bool CanMergeWithPhrasesBeforeInSection 
             { 
             get 

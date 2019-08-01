@@ -2723,7 +2723,9 @@ namespace Obi
                 mTools_PreferencesMenuItem.Enabled = !mProjectView.TransportBar.IsRecorderActive;
                 PipelineMenuItemsEnabled = mSession.HasProject && !mProjectView.TransportBar.IsRecorderActive;
                 m_ToolsLangPack.Enabled = !mProjectView.TransportBar.IsRecorderActive;
-                mTools_AudioProcessing.Enabled = mTools_AudioProcessingNew.Enabled = mProjectView.CanExportSelectedNodeAudio;
+                mTools_AudioProcessing.Enabled = mTools_AudioProcessingNew.Enabled = 
+                            m_ChangeVolumeToolStripMenuItem.Enabled = m_NormalizeToolStripMenuItem.Enabled =  mProjectView.CanExportSelectedNodeAudio;
+                m_FadeInToolStripMenuItem.Enabled = m_FadeOutToolStripMenuItem.Enabled =  mProjectView.CanShowFadeInFadeOutDialog;
                 m_Tools_QuickCleanupToolStripMenuItem.Enabled = mSettings.Audio_EnableFileDataProviderPreservation;
             }
 

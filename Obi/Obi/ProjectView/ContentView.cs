@@ -5268,7 +5268,9 @@ if (thresholdAboveLastNode >= stripControl.Node.PhraseChildCount) thresholdAbove
             Context_GenerateSpeechForPageMenuItem.Enabled = mProjectView.CanGenerateSpeechForPage;
             Context_SettingsFromsilencePhraseToolStripMenuItem.Enabled = mProjectView.CanUpdatePhraseDetectionSettingsFromSilencePhrase;
             Context_ReplaceAudioMenuItem.Enabled = mProjectView.CanExportSelectedNodeAudio;
-            Context_AudioProcessing.Enabled =  Context_AudioProcessingNew.Enabled = mProjectView.CanExportSelectedNodeAudio;
+            Context_AudioProcessing.Enabled =  Context_AudioProcessingNew.Enabled = m_ChangeVolumeToolStripMenuItem.Enabled = 
+                                       m_NormalizeToolStripMenuItem.Enabled = mProjectView.CanExportSelectedNodeAudio;
+            m_FadeInToolStripMenuItem.Enabled = m_FadeOutToolStripMenuItem.Enabled = mProjectView.CanShowFadeInFadeOutDialog;
             ContextBeginMarkToolStripMenuItem.Enabled = mProjectView.CanBeginSpecialNote;
             ContextEndMarkToolStripMenuItem.Enabled = mProjectView.CanEndSpecialNote;
             ContextPasteMultiplePhrasesToolStripMenuItem.Enabled = !mProjectView.TransportBar.IsRecorderActive && mProjectView.CanPasteMultiplePhrases && !Settings.Project_ReadOnlyMode;
