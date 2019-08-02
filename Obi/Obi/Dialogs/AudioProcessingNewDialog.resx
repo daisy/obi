@@ -228,10 +228,10 @@
     <value>3</value>
   </data>
   <data name="m_txt_info.Location" type="System.Drawing.Point, System.Drawing">
-    <value>8, 100</value>
+    <value>21, 100</value>
   </data>
   <data name="m_txt_info.Size" type="System.Drawing.Size, System.Drawing">
-    <value>294, 21</value>
+    <value>398, 21</value>
   </data>
   <data name="m_txt_info.TabIndex" type="System.Int32, mscorlib">
     <value>4</value>
