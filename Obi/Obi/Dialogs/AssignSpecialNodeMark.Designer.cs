@@ -116,7 +116,6 @@ namespace Obi.Dialogs
             // 
             resources.ApplyResources(this.m_rdb_btn_Normalize, "m_rdb_btn_Normalize");
             this.m_rdb_btn_Normalize.Name = "m_rdb_btn_Normalize";
-            this.m_rdb_btn_Normalize.TabStop = true;
             this.m_rdb_btn_Normalize.UseVisualStyleBackColor = true;
             this.m_rdb_btn_Normalize.CheckedChanged += new System.EventHandler(this.m_rdb_btn_Normalize_CheckedChanged);
             // 
@@ -124,7 +123,6 @@ namespace Obi.Dialogs
             // 
             resources.ApplyResources(this.m_rdb_btn_ChangeVolume, "m_rdb_btn_ChangeVolume");
             this.m_rdb_btn_ChangeVolume.Name = "m_rdb_btn_ChangeVolume";
-            this.m_rdb_btn_ChangeVolume.TabStop = true;
             this.m_rdb_btn_ChangeVolume.UseVisualStyleBackColor = true;
             this.m_rdb_btn_ChangeVolume.CheckedChanged += new System.EventHandler(this.m_rdb_btn_ChangeVolume_CheckedChanged);
             // 

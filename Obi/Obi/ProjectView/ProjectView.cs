@@ -43,6 +43,7 @@ namespace Obi.ProjectView
         private bool m_SaveZoomWaveformZoomLevel;
         private double m_TotalCursorTime; // use to calulate time between two marks.   
         private bool m_IsCopyForMultiplePhrasesChecked = false;
+        private bool m_IsAudioprocessingPerformed = false;
         private Obi.UserControls.GraphicalPeakMeter m_PeakMeterInsideObi;
                   
     
@@ -243,6 +244,17 @@ namespace Obi.ProjectView
                     return true;
                 }
 
+            }
+            public bool IsAudioProcessingPerformed
+            {
+                get
+                {
+                    return m_IsAudioprocessingPerformed;
+                }
+                set
+                {
+                    m_IsAudioprocessingPerformed = value;
+                }
             }
 
         public void SaveDefaultMetadatas()
@@ -6210,6 +6222,7 @@ for (int j = 0;
                             if (audioProcessedFile != null && System.IO.File.Exists(audioFileFullPath) && System.IO.File.Exists(audioProcessedFile))
                             {
                                 ReplaceAudioOfSelectedNode(audioProcessedFile, true, nodeToSelect);
+                                m_IsAudioprocessingPerformed = true;
                                 if (System.IO.Directory.Exists(directoryFullPath))
                                 {
                                     System.IO.File.Delete(audioFileFullPath);
@@ -6240,6 +6253,7 @@ for (int j = 0;
                         dictionaryOfFilePaths = AudioProcessingDictionary(dictionaryOfFilePaths, nodeToSelect, audioProcessingKind, val, directoryFullPath);
 
                         ReplaceAudioInMultiplePhrases(dictionaryOfFilePaths);
+                        m_IsAudioprocessingPerformed = true;
 
                         if (System.IO.Directory.Exists(directoryFullPath))
                         {

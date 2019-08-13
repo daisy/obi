@@ -4476,6 +4476,14 @@ ref string exportDirectoryEPUB3)
                 {
                     mSettings.TOCViewWidth = mProjectView.TOCViewWidth;
                 }
+                if (mProjectView.IsAudioProcessingPerformed)
+                {
+                    if (MessageBox.Show(Localizer.Message("CleanUpAfterAudioProcessing"), Localizer.Message("Caption_Information"), MessageBoxButtons.YesNo) == System.Windows.Forms.DialogResult.Yes)
+                    {
+                        CleanProject(false);
+                    }
+                    mProjectView.IsAudioProcessingPerformed = false;
+                }
                if (DidCloseProject())
                 {
                     if (!PreventSettingsUpdateOnClosing)

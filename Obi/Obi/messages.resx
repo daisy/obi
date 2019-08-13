@@ -3133,4 +3133,7 @@ Error text: {1}</value>
   <data name="NormalizeAceesibleNameForSlider" xml:space="preserve">
     <value>Slide to Increase/Decrease volume of selection. Right sliding will increase volume while Normalize operation</value>
   </data>
+  <data name="CleanUpAfterAudioProcessing" xml:space="preserve">
+    <value>You have performed audio processing. It is strongly recommended to perform Cleanup. Press Yes if you want to perform Cleanup now. If you want to do it later manually press No.</value>
+  </data>
 </root>
