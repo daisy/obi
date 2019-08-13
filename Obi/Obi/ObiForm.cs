@@ -1071,6 +1071,15 @@ namespace Obi
                     mProjectView.TransportBar.Stop();
                     
                 }
+
+                if (mProjectView.IsAudioProcessingPerformed)
+                {
+                    if (MessageBox.Show(Localizer.Message("CleanUpAfterAudioProcessing"), Localizer.Message("Caption_Information"), MessageBoxButtons.YesNo) == System.Windows.Forms.DialogResult.Yes)
+                    {
+                        CleanProject(false);
+                    }
+                    mProjectView.IsAudioProcessingPerformed = false;
+                }
                 /*  if (!mSession.CanClose)
                  {
                       if (m_ShouldBookmark)
