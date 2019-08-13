@@ -1051,6 +1051,15 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to You have performed audio processing. It is strongly recommended to perform Cleanup. Press Yes if you want to perform Cleanup now. If you want to do it later manually press No..
+        /// </summary>
+        internal static string CleanUpAfterAudioProcessing {
+            get {
+                return ResourceManager.GetString("CleanUpAfterAudioProcessing", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The roll back operation will reinstate obi project and audio files to the state that was before the last cleanup. Please note that you can perform roll back only for the last cleanup operation. Do you want to proceed?.
         /// </summary>
         internal static string CleanupRollBack_AskToProceed {

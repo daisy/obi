@@ -137,7 +137,7 @@
   </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="m_cmbBoxSpecialNode.Location" type="System.Drawing.Point, System.Drawing">
-    <value>348, 99</value>
+    <value>116, 187</value>
   </data>
   <data name="m_cmbBoxSpecialNode.Size" type="System.Drawing.Size, System.Drawing">
     <value>181, 21</value>
@@ -163,13 +163,13 @@
     <value>Flat</value>
   </data>
   <data name="m_btn_OK.Location" type="System.Drawing.Point, System.Drawing">
-    <value>332, 157</value>
+    <value>111, 237</value>
   </data>
   <data name="m_btn_OK.Size" type="System.Drawing.Size, System.Drawing">
     <value>90, 31</value>
   </data>
   <data name="m_btn_OK.TabIndex" type="System.Int32, mscorlib">
-    <value>10</value>
+    <value>12</value>
   </data>
   <data name="m_btn_OK.Text" xml:space="preserve">
     <value>O&amp;K</value>
@@ -190,13 +190,13 @@
     <value>Flat</value>
   </data>
   <data name="m_btn_Cancel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>438, 157</value>
+    <value>217, 237</value>
   </data>
   <data name="m_btn_Cancel.Size" type="System.Drawing.Size, System.Drawing">
     <value>90, 31</value>
   </data>
   <data name="m_btn_Cancel.TabIndex" type="System.Int32, mscorlib">
-    <value>11</value>
+    <value>13</value>
   </data>
   <data name="m_btn_Cancel.Text" xml:space="preserve">
     <value>Ca&amp;ncel</value>
@@ -244,7 +244,7 @@
     <value>True</value>
   </data>
   <data name="m_rdb_btn_RenumberPages.Location" type="System.Drawing.Point, System.Drawing">
-    <value>141, 19</value>
+    <value>7, 55</value>
   </data>
   <data name="m_rdb_btn_RenumberPages.Size" type="System.Drawing.Size, System.Drawing">
     <value>106, 17</value>
@@ -277,13 +277,13 @@
     <value>True</value>
   </data>
   <data name="m_rdb_btn_Normalize.Location" type="System.Drawing.Point, System.Drawing">
-    <value>546, 19</value>
+    <value>156, 92</value>
   </data>
   <data name="m_rdb_btn_Normalize.Size" type="System.Drawing.Size, System.Drawing">
     <value>99, 17</value>
   </data>
   <data name="m_rdb_btn_Normalize.TabIndex" type="System.Int32, mscorlib">
-    <value>11</value>
+    <value>7</value>
   </data>
   <data name="m_rdb_btn_Normalize.Text" xml:space="preserve">
     <value>Normalize(New)</value>
@@ -304,13 +304,13 @@
     <value>True</value>
   </data>
   <data name="m_rdb_btn_ChangeVolume.Location" type="System.Drawing.Point, System.Drawing">
-    <value>416, 19</value>
+    <value>156, 55</value>
   </data>
   <data name="m_rdb_btn_ChangeVolume.Size" type="System.Drawing.Size, System.Drawing">
     <value>128, 17</value>
   </data>
   <data name="m_rdb_btn_ChangeVolume.TabIndex" type="System.Int32, mscorlib">
-    <value>10</value>
+    <value>6</value>
   </data>
   <data name="m_rdb_btn_ChangeVolume.Text" xml:space="preserve">
     <value>Change &amp;Volume(New)</value>
@@ -331,13 +331,13 @@
     <value>True</value>
   </data>
   <data name="m_rdb_Delete.Location" type="System.Drawing.Point, System.Drawing">
-    <value>905, 19</value>
+    <value>354, 92</value>
   </data>
   <data name="m_rdb_Delete.Size" type="System.Drawing.Size, System.Drawing">
     <value>56, 17</value>
   </data>
   <data name="m_rdb_Delete.TabIndex" type="System.Int32, mscorlib">
-    <value>8</value>
+    <value>10</value>
   </data>
   <data name="m_rdb_Delete.Text" xml:space="preserve">
     <value>&amp;Delete</value>
@@ -358,13 +358,13 @@
     <value>True</value>
   </data>
   <data name="m_rdb_Merge.Location" type="System.Drawing.Point, System.Drawing">
-    <value>995, 19</value>
+    <value>354, 134</value>
   </data>
   <data name="m_rdb_Merge.Size" type="System.Drawing.Size, System.Drawing">
     <value>55, 17</value>
   </data>
   <data name="m_rdb_Merge.TabIndex" type="System.Int32, mscorlib">
-    <value>9</value>
+    <value>11</value>
   </data>
   <data name="m_rdb_Merge.Text" xml:space="preserve">
     <value>&amp;Merge</value>
@@ -385,13 +385,13 @@
     <value>True</value>
   </data>
   <data name="m_rdb_Copy.Location" type="System.Drawing.Point, System.Drawing">
-    <value>828, 19</value>
+    <value>354, 55</value>
   </data>
   <data name="m_rdb_Copy.Size" type="System.Drawing.Size, System.Drawing">
     <value>49, 17</value>
   </data>
   <data name="m_rdb_Copy.TabIndex" type="System.Int32, mscorlib">
-    <value>7</value>
+    <value>9</value>
   </data>
   <data name="m_rdb_Copy.Text" xml:space="preserve">
     <value>C&amp;opy</value>
@@ -412,13 +412,13 @@
     <value>True</value>
   </data>
   <data name="m_rdb_Cut.Location" type="System.Drawing.Point, System.Drawing">
-    <value>754, 19</value>
+    <value>354, 19</value>
   </data>
   <data name="m_rdb_Cut.Size" type="System.Drawing.Size, System.Drawing">
     <value>41, 17</value>
   </data>
   <data name="m_rdb_Cut.TabIndex" type="System.Int32, mscorlib">
-    <value>6</value>
+    <value>8</value>
   </data>
   <data name="m_rdb_Cut.Text" xml:space="preserve">
     <value>&amp;Cut</value>
@@ -439,13 +439,13 @@
     <value>True</value>
   </data>
   <data name="m_rtb_btn_TimeElapsed.Location" type="System.Drawing.Point, System.Drawing">
-    <value>646, 19</value>
+    <value>7, 92</value>
   </data>
   <data name="m_rtb_btn_TimeElapsed.Size" type="System.Drawing.Size, System.Drawing">
     <value>89, 17</value>
   </data>
   <data name="m_rtb_btn_TimeElapsed.TabIndex" type="System.Int32, mscorlib">
-    <value>5</value>
+    <value>4</value>
   </data>
   <data name="m_rtb_btn_TimeElapsed.Text" xml:space="preserve">
     <value>&amp;Time Elapsed</value>
@@ -466,13 +466,13 @@
     <value>True</value>
   </data>
   <data name="m_rtb_btn_AudioProcessing.Location" type="System.Drawing.Point, System.Drawing">
-    <value>280, 19</value>
+    <value>156, 19</value>
   </data>
   <data name="m_rtb_btn_AudioProcessing.Size" type="System.Drawing.Size, System.Drawing">
     <value>129, 17</value>
   </data>
   <data name="m_rtb_btn_AudioProcessing.TabIndex" type="System.Int32, mscorlib">
-    <value>4</value>
+    <value>5</value>
   </data>
   <data name="m_rtb_btn_AudioProcessing.Text" xml:space="preserve">
     <value>&amp;Audio Processing(Old)</value>
@@ -496,7 +496,7 @@
     <value>True</value>
   </data>
   <data name="m_gp_box_operation.Size" type="System.Drawing.Size, System.Drawing">
-    <value>1083, 55</value>
+    <value>452, 157</value>
   </data>
   <data name="m_gp_box_operation.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
@@ -520,7 +520,7 @@
     <value>6, 13</value>
   </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>1107, 212</value>
+    <value>478, 299</value>
   </data>
   <data name="$this.ShowHelp" type="System.Boolean, mscorlib">
     <value>True</value>
