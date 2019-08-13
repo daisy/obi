@@ -36,6 +36,8 @@ namespace Obi.Dialogs
             this.m_rdb_btn_RenumberPages = new System.Windows.Forms.RadioButton();
             this.helpProvider1 = new System.Windows.Forms.HelpProvider();
             this.m_gp_box_operation = new System.Windows.Forms.GroupBox();
+            this.m_rdb_btn_Normalize = new System.Windows.Forms.RadioButton();
+            this.m_rdb_btn_ChangeVolume = new System.Windows.Forms.RadioButton();
             this.m_rdb_Delete = new System.Windows.Forms.RadioButton();
             this.m_rdb_Merge = new System.Windows.Forms.RadioButton();
             this.m_rdb_Copy = new System.Windows.Forms.RadioButton();
@@ -95,6 +97,8 @@ namespace Obi.Dialogs
             // 
             // m_gp_box_operation
             // 
+            this.m_gp_box_operation.Controls.Add(this.m_rdb_btn_Normalize);
+            this.m_gp_box_operation.Controls.Add(this.m_rdb_btn_ChangeVolume);
             this.m_gp_box_operation.Controls.Add(this.m_rdb_Delete);
             this.m_gp_box_operation.Controls.Add(this.m_rdb_Merge);
             this.m_gp_box_operation.Controls.Add(this.m_rdb_Copy);
@@ -107,6 +111,22 @@ namespace Obi.Dialogs
             this.m_gp_box_operation.Name = "m_gp_box_operation";
             this.helpProvider1.SetShowHelp(this.m_gp_box_operation, ((bool)(resources.GetObject("m_gp_box_operation.ShowHelp"))));
             this.m_gp_box_operation.TabStop = false;
+            // 
+            // m_rdb_btn_Normalize
+            // 
+            resources.ApplyResources(this.m_rdb_btn_Normalize, "m_rdb_btn_Normalize");
+            this.m_rdb_btn_Normalize.Name = "m_rdb_btn_Normalize";
+            this.m_rdb_btn_Normalize.TabStop = true;
+            this.m_rdb_btn_Normalize.UseVisualStyleBackColor = true;
+            this.m_rdb_btn_Normalize.CheckedChanged += new System.EventHandler(this.m_rdb_btn_Normalize_CheckedChanged);
+            // 
+            // m_rdb_btn_ChangeVolume
+            // 
+            resources.ApplyResources(this.m_rdb_btn_ChangeVolume, "m_rdb_btn_ChangeVolume");
+            this.m_rdb_btn_ChangeVolume.Name = "m_rdb_btn_ChangeVolume";
+            this.m_rdb_btn_ChangeVolume.TabStop = true;
+            this.m_rdb_btn_ChangeVolume.UseVisualStyleBackColor = true;
+            this.m_rdb_btn_ChangeVolume.CheckedChanged += new System.EventHandler(this.m_rdb_btn_ChangeVolume_CheckedChanged);
             // 
             // m_rdb_Delete
             // 
@@ -183,5 +203,7 @@ namespace Obi.Dialogs
         private System.Windows.Forms.RadioButton m_rdb_Cut;
         private System.Windows.Forms.RadioButton m_rdb_Merge;
         private System.Windows.Forms.RadioButton m_rdb_Delete;
+        private System.Windows.Forms.RadioButton m_rdb_btn_Normalize;
+        private System.Windows.Forms.RadioButton m_rdb_btn_ChangeVolume;
     }
 }

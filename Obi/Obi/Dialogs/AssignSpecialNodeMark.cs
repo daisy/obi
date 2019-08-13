@@ -39,6 +39,12 @@ namespace Obi.Dialogs
         public bool IsAudioProcessingChecked
         { get { return m_rtb_btn_AudioProcessing.Checked; } }
 
+        public bool IsChangeVolumeChecked
+        { get { return m_rdb_btn_ChangeVolume.Checked; } }
+
+        public bool IsNormalizeChecked
+        { get { return m_rdb_btn_Normalize.Checked; } }
+
         public bool IsCopyChecked
         {
             get { return m_rdb_Copy.Checked; }
@@ -127,6 +133,16 @@ namespace Obi.Dialogs
         }
 
         private void m_rdb_Delete_CheckedChanged(object sender, EventArgs e)
+        {
+            m_cmbBoxSpecialNode.Visible = false;
+        }
+
+        private void m_rdb_btn_ChangeVolume_CheckedChanged(object sender, EventArgs e)
+        {
+            m_cmbBoxSpecialNode.Visible = false;
+        }
+
+        private void m_rdb_btn_Normalize_CheckedChanged(object sender, EventArgs e)
         {
             m_cmbBoxSpecialNode.Visible = false;
         }
