@@ -1074,7 +1074,8 @@ namespace Obi
 
                 if (mProjectView.IsAudioProcessingPerformed)
                 {
-                    if (MessageBox.Show(Localizer.Message("CleanUpAfterAudioProcessing"), Localizer.Message("Caption_Information"), MessageBoxButtons.YesNo) == System.Windows.Forms.DialogResult.Yes)
+                    if (MessageBox.Show(Localizer.Message("CleanUpAfterAudioProcessing"), Localizer.Message("Caption_Information"),
+                        MessageBoxButtons.YesNo, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1) == System.Windows.Forms.DialogResult.Yes)
                     {
                         CleanProject(false);
                     }
@@ -4487,7 +4488,8 @@ ref string exportDirectoryEPUB3)
                 }
                 if (mProjectView.IsAudioProcessingPerformed)
                 {
-                    if (MessageBox.Show(Localizer.Message("CleanUpAfterAudioProcessing"), Localizer.Message("Caption_Information"), MessageBoxButtons.YesNo) == System.Windows.Forms.DialogResult.Yes)
+                    if (MessageBox.Show(Localizer.Message("CleanUpAfterAudioProcessing"), Localizer.Message("Caption_Information"), 
+                        MessageBoxButtons.YesNo,MessageBoxIcon.Information,MessageBoxDefaultButton.Button1) == System.Windows.Forms.DialogResult.Yes)
                     {
                         CleanProject(false);
                     }
