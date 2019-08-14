@@ -5565,11 +5565,11 @@ for (int j = 0;
                 }
                 else if (AssignSpecialNodeDialog.IsChangeVolumeChecked)
                 {
-                    this.AudioProcessing(WavAudioProcessing.AudioProcessingKind.Amplify);
+                    this.AudioProcessing(WavAudioProcessing.AudioProcessingKind.Amplify, true);
                 }
                 else if (AssignSpecialNodeDialog.IsNormalizeChecked)
                 {
-                    this.AudioProcessing(WavAudioProcessing.AudioProcessingKind.Normalize);
+                    this.AudioProcessing(WavAudioProcessing.AudioProcessingKind.Normalize, true);
                 }
 
                 else if (AssignSpecialNodeDialog.IsCopyChecked || AssignSpecialNodeDialog.IsCutChecked)
@@ -6146,10 +6146,10 @@ for (int j = 0;
             return dictionaryOfFilePaths;
         }
 
-        public void AudioProcessing(AudioLib.WavAudioProcessing.AudioProcessingKind audioProcessingNaudioKind)
+        public void AudioProcessing(AudioLib.WavAudioProcessing.AudioProcessingKind audioProcessingNaudioKind, bool IsAudioProcessingOnMultiPhrases = false)
         {
             ObiNode nodeToSelect = null;
-            if (mContentView.BeginSpecialNode != null)
+            if (IsAudioProcessingOnMultiPhrases && mContentView.BeginSpecialNode != null && mContentView.EndSpecialNode != null)
             {
                 nodeToSelect = mContentView.BeginSpecialNode;
             }
@@ -6182,7 +6182,7 @@ for (int j = 0;
                 float val = 0;
                 val = dialog.AudioProcessingParameter;
 
-                if (mContentView.BeginSpecialNode == null)
+                if (!IsAudioProcessingOnMultiPhrases)
                 {
                     try
                     {

@@ -1051,8 +1051,7 @@ namespace Obi {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to You have performed audio processing. It is recommended to perform Cleanup. Press Yes if you want to perform Cleanup now. If you want to do it later manually press No.
-        ///     Note:- Cleanup will also save your project.
+        ///   Looks up a localized string similar to You have performed audio processing. It is recommended to perform Cleanup. Press Yes if you want to perform Cleanup now. Cleanup will also save your project. If you want to do it later manually press No..
         /// </summary>
         internal static string CleanUpAfterAudioProcessing {
             get {
