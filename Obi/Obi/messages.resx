@@ -3134,7 +3134,6 @@ Error text: {1}</value>
     <value>Slide to Increase/Decrease volume of selection. Right sliding will increase volume while Normalize operation</value>
   </data>
   <data name="CleanUpAfterAudioProcessing" xml:space="preserve">
-    <value>You have performed audio processing. It is recommended to perform Cleanup. Press Yes if you want to perform Cleanup now. If you want to do it later manually press No.
-     Note:- Cleanup will also save your project</value>
+    <value>You have performed audio processing. It is recommended to perform Cleanup. Press Yes if you want to perform Cleanup now. Cleanup will also save your project. If you want to do it later manually press No.</value>
   </data>
 </root>

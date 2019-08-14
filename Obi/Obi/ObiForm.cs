@@ -1061,6 +1061,16 @@ namespace Obi
             private bool DidCloseProject()
             {
 
+                if (mProjectView.IsAudioProcessingPerformed)
+                {
+                    if (MessageBox.Show(Localizer.Message("CleanUpAfterAudioProcessing"), Localizer.Message("Caption_Information"),
+                        MessageBoxButtons.YesNo, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1) == System.Windows.Forms.DialogResult.Yes)
+                    {
+                        CleanProject(false);
+                    }
+                    mProjectView.IsAudioProcessingPerformed = false;
+                }
+
                 if (!(FreezeChangesFromProjectRestore() ?? true)) return false;
                 if (!SaveProjectAndBookmarkOptionally()) return false;
 
@@ -1072,15 +1082,6 @@ namespace Obi
                     
                 }
 
-                if (mProjectView.IsAudioProcessingPerformed)
-                {
-                    if (MessageBox.Show(Localizer.Message("CleanUpAfterAudioProcessing"), Localizer.Message("Caption_Information"),
-                        MessageBoxButtons.YesNo, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1) == System.Windows.Forms.DialogResult.Yes)
-                    {
-                        CleanProject(false);
-                    }
-                    mProjectView.IsAudioProcessingPerformed = false;
-                }
                 /*  if (!mSession.CanClose)
                  {
                       if (m_ShouldBookmark)
