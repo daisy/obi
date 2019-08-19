@@ -4139,7 +4139,7 @@ ref string exportDirectoryEPUB3)
             //        }
             //    this.Ready ();
             //    }
-            private void ShowPeakMeter()
+            public void ShowPeakMeter()
             {
                 if (mProjectView.IsPeakMeterInsideObiActive)
                 {
@@ -4245,6 +4245,28 @@ ref string exportDirectoryEPUB3)
                     mShowPeakMeterMenuItem.Checked = false;
                 }
                 this.Ready();
+            }
+
+            public void ShowPeakMeterInsideObi(bool IsChecked)
+            {
+                if (IsChecked)
+                {
+                    if (mPeakMeter != null)
+                    {
+                        mPeakMeter.Close();
+                    }
+
+                    mProjectView.ShowPeakMeterInsideObi(IsChecked);
+                    mShowPeakMeterInsideObiMenuItem.Checked = true;
+                }
+                else
+                {
+                    if (mProjectView.IsPeakMeterInsideObiActive)
+                    {
+                        ShowPeakMeter();
+                        mShowPeakMeterMenuItem.Checked = true;
+                    }
+                }
             }
 
             // Undo
