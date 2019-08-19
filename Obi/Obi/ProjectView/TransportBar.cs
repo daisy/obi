@@ -4645,6 +4645,15 @@ SelectionChangedPlaybackEnabled = false;
             mView.ObiForm.UpdateRecordingToolBarButtons();
             mView.ObiForm.UpdateTitle();
             mView.ObiForm.UpdateColors();
+            if (mView.ObiForm.Settings.ShowGraphicalPeakMeterInsideObiAtStartup)
+            {
+
+                mView.ObiForm.ShowPeakMeterInsideObi(true);
+            }
+            else
+            {
+                mView.ObiForm.ShowPeakMeterInsideObi(false);
+            }
         }
 
     // Event is subscribed to ToolStripMenu items.

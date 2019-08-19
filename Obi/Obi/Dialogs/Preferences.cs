@@ -2073,6 +2073,7 @@ m_cb_ChooseFont.Visible = false;
                     mSettings.Audio_DefaultGap = 300;
                     mSettings.Audio_PreviewDuration = 1500;
                     mSettings.PlayOnNavigate = false;
+                    mSettings.ShowGraphicalPeakMeterInsideObiAtStartup = false;
                     mSettings.ColorSettings.WaveformBackColor = defaultColorsettings.WaveformBackColor;
                     mSettings.ColorSettings.HighlightedSectionNodeWithoutSelectionColor = defaultColorsettings.HighlightedSectionNodeWithoutSelectionColor;
 
@@ -2149,6 +2150,7 @@ m_cb_ChooseFont.Visible = false;
                     mSettings.Audio_DefaultGap = 300;
                     mSettings.Audio_PreviewDuration = 1500;
                     mSettings.PlayOnNavigate = false;
+                    mSettings.ShowGraphicalPeakMeterInsideObiAtStartup = false;
                     mSettings.ColorSettings.WaveformBackColor = defaultColorsettings.WaveformBackColor;
                     mSettings.ColorSettings.HighlightedSectionNodeWithoutSelectionColor = defaultColorsettings.HighlightedSectionNodeWithoutSelectionColor;
 
@@ -2224,6 +2226,7 @@ m_cb_ChooseFont.Visible = false;
                     mSettings.Audio_DefaultGap = 300;
                     mSettings.Audio_PreviewDuration = 1500;
                     mSettings.PlayOnNavigate = false;
+                    mSettings.ShowGraphicalPeakMeterInsideObiAtStartup = false;
                     mSettings.ColorSettings.WaveformBackColor = defaultColorsettings.WaveformBackColor;
                     mSettings.ColorSettings.HighlightedSectionNodeWithoutSelectionColor = defaultColorsettings.HighlightedSectionNodeWithoutSelectionColor;
 
@@ -2299,6 +2302,7 @@ m_cb_ChooseFont.Visible = false;
                     mSettings.Audio_DefaultGap = 300;
                     mSettings.Audio_PreviewDuration = 1500;
                     mSettings.PlayOnNavigate = false;
+                    mSettings.ShowGraphicalPeakMeterInsideObiAtStartup = false;
                     mSettings.ColorSettings.WaveformBackColor = defaultColorsettings.WaveformBackColor;
                     mSettings.ColorSettings.HighlightedSectionNodeWithoutSelectionColor = defaultColorsettings.HighlightedSectionNodeWithoutSelectionColor;
 
@@ -2377,6 +2381,7 @@ m_cb_ChooseFont.Visible = false;
                     mSettings.Audio_DefaultGap = 600;
                     mSettings.Audio_PreviewDuration = 7000;
                     mSettings.PlayOnNavigate = false;
+                    mSettings.ShowGraphicalPeakMeterInsideObiAtStartup = true;
                     mSettings.ColorSettings.WaveformBackColor = Color.LightGreen;
                     mSettings.ColorSettings.HighlightedSectionNodeWithoutSelectionColor = Color.Yellow;
 
@@ -2453,6 +2458,7 @@ m_cb_ChooseFont.Visible = false;
                     mSettings.Audio_DefaultGap = 600;
                     mSettings.Audio_PreviewDuration = 7000;
                     mSettings.PlayOnNavigate = false;
+                    mSettings.ShowGraphicalPeakMeterInsideObiAtStartup = true;
                     mSettings.ColorSettings.WaveformBackColor = Color.LightPink;
                     mSettings.ColorSettings.HighlightedSectionNodeWithoutSelectionColor = Color.Yellow;
 
@@ -2530,6 +2536,7 @@ m_cb_ChooseFont.Visible = false;
                     mSettings.Audio_DefaultGap = 600;
                     mSettings.Audio_PreviewDuration = 7000;
                     mSettings.PlayOnNavigate = false;
+                    mSettings.ShowGraphicalPeakMeterInsideObiAtStartup = true;
                     mSettings.ColorSettings.WaveformBackColor = Color.AntiqueWhite;
                     mSettings.ColorSettings.HighlightedSectionNodeWithoutSelectionColor = Color.Yellow;
 
@@ -2668,6 +2675,15 @@ m_cb_ChooseFont.Visible = false;
                     MessageBox.Show(ex.ToString());
                 }
                 mTransportBar.ShowSwitchProfileContextMenu();
+                if (mSettings.ShowGraphicalPeakMeterInsideObiAtStartup)
+                {
+
+                    mForm.ShowPeakMeterInsideObi(true);
+                }
+                else
+                {
+                    mForm.ShowPeakMeterInsideObi(false);
+                }
             }//if (m_rdb_Preferences.Checked)
             else if (m_rdb_KeyboardShortcuts.Checked)
             {
