@@ -145,7 +145,7 @@ namespace Obi.ProjectView
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.toolStrip1);
-            this.MinimumSize = new System.Drawing.Size(693, 28);
+            this.MinimumSize = new System.Drawing.Size(713, 28);
             this.Name = "Toolbar_EditAudio";
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
