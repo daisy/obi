@@ -147,7 +147,7 @@
   </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="m_cmbBoxSpecialNode.Location" type="System.Drawing.Point, System.Drawing">
-    <value>218, 70</value>
+    <value>125, 188</value>
   </data>
   <data name="m_btn_OK.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
@@ -159,7 +159,7 @@
     <value />
   </data>
   <data name="m_btn_OK.Location" type="System.Drawing.Point, System.Drawing">
-    <value>203, 108</value>
+    <value>110, 226</value>
   </data>
   <data name="m_btn_Cancel.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
@@ -171,7 +171,7 @@
     <value />
   </data>
   <data name="m_btn_Cancel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>309, 108</value>
+    <value>216, 226</value>
   </data>
   <data name="m_btn_Cancel.Text" xml:space="preserve">
     <value>Abbrechen</value>
@@ -200,14 +200,65 @@
   <data name="m_rdb_btn_RenumberPages.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
   </data>
-  <data name="m_rdb_btn_RenumberPages.Location" type="System.Drawing.Point, System.Drawing">
-    <value>133, 19</value>
-  </data>
   <data name="m_rdb_btn_RenumberPages.Size" type="System.Drawing.Size, System.Drawing">
     <value>148, 17</value>
   </data>
   <data name="m_rdb_btn_RenumberPages.Text" xml:space="preserve">
     <value>Seitenzahlen aktualisieren</value>
+  </data>
+  <data name="m_rdb_btn_Normalize.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="m_rdb_btn_Normalize.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
+    <value>AssociateIndex</value>
+  </data>
+  <data name="m_rdb_btn_Normalize.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="m_rdb_btn_ChangeVolume.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="m_rdb_btn_ChangeVolume.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
+    <value>AssociateIndex</value>
+  </data>
+  <data name="m_rdb_btn_ChangeVolume.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="m_rdb_Delete.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="m_rdb_Delete.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
+    <value>AssociateIndex</value>
+  </data>
+  <data name="m_rdb_Delete.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="m_rdb_Merge.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="m_rdb_Merge.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
+    <value>AssociateIndex</value>
+  </data>
+  <data name="m_rdb_Merge.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="m_rdb_Copy.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="m_rdb_Copy.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
+    <value>AssociateIndex</value>
+  </data>
+  <data name="m_rdb_Copy.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="m_rdb_Cut.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="m_rdb_Cut.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
+    <value>AssociateIndex</value>
+  </data>
+  <data name="m_rdb_Cut.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
   </data>
   <data name="m_rtb_btn_TimeElapsed.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
@@ -219,7 +270,7 @@
     <value />
   </data>
   <data name="m_rtb_btn_TimeElapsed.Location" type="System.Drawing.Point, System.Drawing">
-    <value>485, 19</value>
+    <value>7, 103</value>
   </data>
   <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="m_rtb_btn_TimeElapsed.ShowHelp" type="System.Boolean, mscorlib">
@@ -240,9 +291,6 @@
   <data name="m_rtb_btn_AudioProcessing.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
   </data>
-  <data name="m_rtb_btn_AudioProcessing.Location" type="System.Drawing.Point, System.Drawing">
-    <value>321, 19</value>
-  </data>
   <data name="m_rtb_btn_AudioProcessing.ShowHelp" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
@@ -262,10 +310,10 @@
     <value />
   </data>
   <data name="m_gp_box_operation.Size" type="System.Drawing.Size, System.Drawing">
-    <value>582, 43</value>
+    <value>444, 162</value>
   </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>603, 162</value>
+    <value>469, 282</value>
   </data>
   <data name="$this.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
