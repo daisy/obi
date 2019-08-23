@@ -3122,7 +3122,7 @@ Error text: {1}</value>
     <value>Fade In</value>
   </data>
   <data name="FadeOut" xml:space="preserve">
-    <value>Fade In</value>
+    <value>Fade Out</value>
   </data>
   <data name="Normalize" xml:space="preserve">
     <value>Normalize</value>
