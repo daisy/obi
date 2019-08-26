@@ -6123,15 +6123,18 @@ for (int j = 0;
                 string audioFileFullPath = CreateAudioFileFromNode(nodeToSelect, directoryFullPath, null);
                 AudioLib.WavAudioProcessing audioPorcess = new AudioLib.WavAudioProcessing();
                 string audioProcessedFile = null;
-                if (audioProcessingKind == AudioLib.WavAudioProcessing.AudioProcessingKind.Amplify)
+                if (nodeToSelect is PhraseNode && audioFileFullPath != null)
                 {
-                    audioProcessedFile = audioPorcess.IncreaseAmplitude(audioFileFullPath, AudioProcessingParameter);
+                    if (audioProcessingKind == AudioLib.WavAudioProcessing.AudioProcessingKind.Amplify)
+                    {
+                        audioProcessedFile = audioPorcess.IncreaseAmplitude(audioFileFullPath, AudioProcessingParameter);
+                    }
+                    else if (audioProcessingKind == AudioLib.WavAudioProcessing.AudioProcessingKind.Normalize)
+                    {
+                        audioProcessedFile = audioPorcess.Normalize(audioFileFullPath, AudioProcessingParameter);
+                    }
+                    dictionaryOfFilePaths.Add(nodeToSelect, audioProcessedFile);
                 }
-                else if (audioProcessingKind == AudioLib.WavAudioProcessing.AudioProcessingKind.Normalize)
-                {
-                    audioProcessedFile = audioPorcess.Normalize(audioFileFullPath, AudioProcessingParameter);
-                }
-                dictionaryOfFilePaths.Add(nodeToSelect, audioProcessedFile);
                 if (nodeToSelect.FollowingNode != null)
                 {
                     nodeToSelect = nodeToSelect.FollowingNode;
