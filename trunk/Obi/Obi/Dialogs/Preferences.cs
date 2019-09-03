@@ -2074,6 +2074,7 @@ m_cb_ChooseFont.Visible = false;
                     mSettings.Audio_PreviewDuration = 1500;
                     mSettings.PlayOnNavigate = false;
                     mSettings.ShowGraphicalPeakMeterInsideObiAtStartup = false;
+                    mSettings.ShowGraphicalPeakMeterAtStartup = true;
                     mSettings.ColorSettings.WaveformBackColor = defaultColorsettings.WaveformBackColor;
                     mSettings.ColorSettings.HighlightedSectionNodeWithoutSelectionColor = defaultColorsettings.HighlightedSectionNodeWithoutSelectionColor;
 
@@ -2151,6 +2152,7 @@ m_cb_ChooseFont.Visible = false;
                     mSettings.Audio_PreviewDuration = 1500;
                     mSettings.PlayOnNavigate = false;
                     mSettings.ShowGraphicalPeakMeterInsideObiAtStartup = false;
+                    mSettings.ShowGraphicalPeakMeterAtStartup = true;
                     mSettings.ColorSettings.WaveformBackColor = defaultColorsettings.WaveformBackColor;
                     mSettings.ColorSettings.HighlightedSectionNodeWithoutSelectionColor = defaultColorsettings.HighlightedSectionNodeWithoutSelectionColor;
 
@@ -2227,6 +2229,7 @@ m_cb_ChooseFont.Visible = false;
                     mSettings.Audio_PreviewDuration = 1500;
                     mSettings.PlayOnNavigate = false;
                     mSettings.ShowGraphicalPeakMeterInsideObiAtStartup = false;
+                    mSettings.ShowGraphicalPeakMeterAtStartup = true;
                     mSettings.ColorSettings.WaveformBackColor = defaultColorsettings.WaveformBackColor;
                     mSettings.ColorSettings.HighlightedSectionNodeWithoutSelectionColor = defaultColorsettings.HighlightedSectionNodeWithoutSelectionColor;
 
@@ -2303,6 +2306,7 @@ m_cb_ChooseFont.Visible = false;
                     mSettings.Audio_PreviewDuration = 1500;
                     mSettings.PlayOnNavigate = false;
                     mSettings.ShowGraphicalPeakMeterInsideObiAtStartup = false;
+                    mSettings.ShowGraphicalPeakMeterAtStartup = true;
                     mSettings.ColorSettings.WaveformBackColor = defaultColorsettings.WaveformBackColor;
                     mSettings.ColorSettings.HighlightedSectionNodeWithoutSelectionColor = defaultColorsettings.HighlightedSectionNodeWithoutSelectionColor;
 
@@ -2382,6 +2386,7 @@ m_cb_ChooseFont.Visible = false;
                     mSettings.Audio_PreviewDuration = 7000;
                     mSettings.PlayOnNavigate = false;
                     mSettings.ShowGraphicalPeakMeterInsideObiAtStartup = true;
+                    mSettings.ShowGraphicalPeakMeterAtStartup = false;
                     mSettings.ColorSettings.WaveformBackColor = Color.LightGreen;
                     mSettings.ColorSettings.HighlightedSectionNodeWithoutSelectionColor = Color.Yellow;
 
@@ -2459,6 +2464,7 @@ m_cb_ChooseFont.Visible = false;
                     mSettings.Audio_PreviewDuration = 7000;
                     mSettings.PlayOnNavigate = false;
                     mSettings.ShowGraphicalPeakMeterInsideObiAtStartup = true;
+                    mSettings.ShowGraphicalPeakMeterAtStartup = false;
                     mSettings.ColorSettings.WaveformBackColor = Color.LightPink;
                     mSettings.ColorSettings.HighlightedSectionNodeWithoutSelectionColor = Color.Yellow;
 
@@ -2537,6 +2543,7 @@ m_cb_ChooseFont.Visible = false;
                     mSettings.Audio_PreviewDuration = 7000;
                     mSettings.PlayOnNavigate = false;
                     mSettings.ShowGraphicalPeakMeterInsideObiAtStartup = true;
+                    mSettings.ShowGraphicalPeakMeterAtStartup = false;
                     mSettings.ColorSettings.WaveformBackColor = Color.AntiqueWhite;
                     mSettings.ColorSettings.HighlightedSectionNodeWithoutSelectionColor = Color.Yellow;
 
