@@ -1,6 +1,6 @@
 <SOAP-ENV:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/" xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:clr="http://schemas.microsoft.com/soap/encoding/clr/1.0" SOAP-ENV:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">
 <SOAP-ENV:Body>
-<a1:Settings id="ref-1" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D4.4.3.19377%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
+<a1:Settings id="ref-1" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D4.4.7.35994%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
 <Audio_AllowOverwrite>true</Audio_AllowOverwrite>
 <Audio_Recording_PreviewBeforeStarting>true</Audio_Recording_PreviewBeforeStarting>
 <Audio_Recording_ReplaceAfterCursor>false</Audio_Recording_ReplaceAfterCursor>
@@ -29,7 +29,7 @@
 <Audio_EnableLivePhraseDetection>true</Audio_EnableLivePhraseDetection>
 <Audio_NoiseLevel>Medium</Audio_NoiseLevel>
 <Audio_NudgeTimeMs>200</Audio_NudgeTimeMs>
-<ShowGraphicalPeakMeterAtStartup>false</ShowGraphicalPeakMeterAtStartup>
+<ShowGraphicalPeakMeterAtStartup>true</ShowGraphicalPeakMeterAtStartup>
 <Project_OpenLastProject>false</Project_OpenLastProject>
 <Project_PipelineScriptsPath href="#ref-7"/>
 <Project_CheckForUpdates>true</Project_CheckForUpdates>
@@ -142,7 +142,7 @@
 <Project_DisplayWarningsForSectionDelete>false</Project_DisplayWarningsForSectionDelete>
 <ShowGraphicalPeakMeterInsideObiAtStartup>false</ShowGraphicalPeakMeterInsideObiAtStartup>
 </a1:Settings>
-<a1:ColorSettings id="ref-5" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D4.4.3.19377%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
+<a1:ColorSettings id="ref-5" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D4.4.7.35994%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
 <BlockBackColor_Custom>
 <name xsi:null="1"/>
 <value>0</value>
@@ -456,7 +456,7 @@
 <state>1</state>
 </HighlightedSectionNodeWithoutSelectionColor>
 </a1:ColorSettings>
-<a1:ColorSettings id="ref-6" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D4.4.3.19377%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
+<a1:ColorSettings id="ref-6" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D4.4.7.35994%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
 <BlockBackColor_Custom>
 <name xsi:null="1"/>
 <value>0</value>
@@ -772,10 +772,10 @@
 </a1:ColorSettings>
 <a3:ArrayList id="ref-14" xmlns:a3="http://schemas.microsoft.com/clr/ns/System.Collections">
 <_items href="#ref-33"/>
-<_size>3</_size>
-<_version>259</_version>
+<_size>1</_size>
+<_version>7</_version>
 </a3:ArrayList>
-<a1:UserProfile id="ref-15" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D4.4.3.19377%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
+<a1:UserProfile id="ref-15" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D4.4.7.35994%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
 <Name href="#ref-7"/>
 <Organization href="#ref-7"/>
 <Culture href="#ref-34"/>
@@ -810,22 +810,29 @@
 </SOAP-ENC:Array>
 <SOAP-ENC:Array id="ref-33" SOAP-ENC:arrayType="xsd:anyType[4]">
 <item href="#ref-9"/>
-<item id="ref-35" xsi:type="SOAP-ENC:string">C:\Users\Rohit\Documents\The Countries_ New Zealand copy 12K\project.obi</item>
-<item id="ref-36" xsi:type="SOAP-ENC:string">C:\Users\Rohit\Documents\The Countries_ New Zealand copy\project.obi</item>
 </SOAP-ENC:Array>
 <a6:CultureInfo id="ref-34" xmlns:a6="http://schemas.microsoft.com/clr/ns/System.Globalization">
 <m_isReadOnly>false</m_isReadOnly>
-<compareInfo href="#ref-37"/>
+<compareInfo href="#ref-35"/>
 <textInfo xsi:null="1"/>
 <numInfo xsi:null="1"/>
 <dateTimeInfo xsi:null="1"/>
 <calendar xsi:null="1"/>
 <m_dataItem>0</m_dataItem>
 <cultureID>9</cultureID>
-<m_name id="ref-38">en</m_name>
+<m_name id="ref-36">en</m_name>
 <m_useUserOverride>true</m_useUserOverride>
 </a6:CultureInfo>
-<a6:CompareInfo id="ref-37" xmlns:a6="http://schemas.microsoft.com/clr/ns/System.Globalization">
+<a6:CompareInfo id="ref-35" xmlns:a6="http://schemas.microsoft.com/clr/ns/System.Globalization">
+<m_name id="ref-37">en</m_name>
+<win32LCID>0</win32LCID>
+<culture>9</culture>
+<m_SortVersion xsi:null="1"/>
+</a6:CompareInfo>
+</SOAP-ENV:Body>
+</SOAP-ENV:Envelope>
+Envelope>
+mlns:a6="http://schemas.microsoft.com/clr/ns/System.Globalization">
 <m_name id="ref-39">en</m_name>
 <win32LCID>0</win32LCID>
 <culture>9</culture>

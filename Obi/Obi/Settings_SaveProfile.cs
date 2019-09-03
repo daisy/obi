@@ -90,6 +90,7 @@ namespace Obi
                newSettings.Audio_RemoveAccentsFromDaisy2ExportFileNames = this.Audio_RemoveAccentsFromDaisy2ExportFileNames;
                newSettings.Audio_RecordUsingSingleKeyFromTOC = this.Audio_RecordUsingSingleKeyFromTOC;
                newSettings.ShowGraphicalPeakMeterInsideObiAtStartup = this.ShowGraphicalPeakMeterInsideObiAtStartup;
+               newSettings.ShowGraphicalPeakMeterAtStartup = this.ShowGraphicalPeakMeterAtStartup;
 
                if (!string.IsNullOrEmpty(this.Audio_LocalRecordingDirectory) && System.IO.Directory.Exists(this.Audio_LocalRecordingDirectory))
                {
@@ -480,7 +481,8 @@ namespace Obi
                && this.Audio_RevertOverwriteBehaviourForRecordOnSelection == settings.Audio_RevertOverwriteBehaviourForRecordOnSelection
                && this.Audio_RemoveAccentsFromDaisy2ExportFileNames == settings.Audio_RemoveAccentsFromDaisy2ExportFileNames
                && this.Audio_RecordUsingSingleKeyFromTOC == settings.Audio_RecordUsingSingleKeyFromTOC
-               && this.ShowGraphicalPeakMeterInsideObiAtStartup == settings.ShowGraphicalPeakMeterInsideObiAtStartup)
+               && this.ShowGraphicalPeakMeterInsideObiAtStartup == settings.ShowGraphicalPeakMeterInsideObiAtStartup
+               && this.ShowGraphicalPeakMeterAtStartup == settings.ShowGraphicalPeakMeterAtStartup)
            {
                audioPreferencesMatch = true ;
            }
