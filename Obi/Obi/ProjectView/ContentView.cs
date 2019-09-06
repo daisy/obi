@@ -3166,7 +3166,7 @@ if (thresholdAboveLastNode >= stripControl.Node.PhraseChildCount) thresholdAbove
                  UpdateVerticalScrolPanelButtons () ;
             }
 
-        public void RecreateContentsWhileInitializingRecording(EmptyNode recordingResumePhrase)
+        public bool RecreateContentsWhileInitializingRecording(EmptyNode recordingResumePhrase)
         {
             if (mProjectView.ObiForm.Settings.Audio_ColorFlickerPreviewBeforeRecording)
             {
@@ -3177,30 +3177,48 @@ if (thresholdAboveLastNode >= stripControl.Node.PhraseChildCount) thresholdAbove
             }
             if (recordingResumePhrase != null
                 || (mProjectView.Selection != null && mProjectView.Selection.Node is SectionNode && !(mProjectView.Selection is StripIndexSelection)))
-                {
-                SectionNode section = recordingResumePhrase != null ? recordingResumePhrase.ParentAs<SectionNode> () :
+            {
+                SectionNode section = recordingResumePhrase != null ? recordingResumePhrase.ParentAs<SectionNode>() :
                     (SectionNode)mProjectView.Selection.Node;
 
-                Strip stripControl = FindStrip ( section );
+                Strip stripControl = FindStrip(section);
 
                 if (stripControl == null)
                 {
                     bool IsShowContentsOfRecordingSectionWihoutMessage = false;
+
                     if (mProjectView.ObiForm.Settings.Audio_RecordUsingSingleKeyFromTOC)
                     {
-                        IsShowContentsOfRecordingSectionWihoutMessage = ShowContentsOfRecordingSectionUsingSingleRecordKeyFromTOC(section);
+                        DialogResult tempresult = DialogResult.OK;
+                        if (mProjectView.Selection.Control is TOCView)
+                        {
+                            if (section.PhraseChildCount > 0)
+                            {
+                                tempresult = MessageBox.Show(string.Format(Localizer.Message("Recording_CreateSectionContentsInformation"), section.Label),
+                                      Localizer.Message("Caption_Information"), MessageBoxButtons.OKCancel, MessageBoxIcon.Information);
+                            }
+
+                        }
+                        if (tempresult == DialogResult.OK)
+                        {
+                            IsShowContentsOfRecordingSectionWihoutMessage = true;
+                        }
+                        else if (tempresult == DialogResult.Cancel)
+                        {
+                            return false;
+                        }
                     }
                     if (IsShowContentsOfRecordingSectionWihoutMessage || MessageBox.Show(string.Format(Localizer.Message("Recording_CreateSectionContentsInformation"), section.Label),
-                        Localizer.Message("Caption_Information"), MessageBoxButtons.OK, MessageBoxIcon.Information) == DialogResult.OK
-                        &&    (Selection == null || !(Selection.Control is ContentView) ))
+                        Localizer.Message("Caption_Information"), MessageBoxButtons.OKCancel, MessageBoxIcon.Information) == DialogResult.OK
+                        && (Selection == null || !(Selection.Control is ContentView)))
                     {
-                        stripControl= CreateStripForSelectedSection(section, true);
-                        EmptyNode lastNodeToCreate = recordingResumePhrase != null && recordingResumePhrase.IsRooted ? recordingResumePhrase : 
-                            section.PhraseChildCount > 0? section.PhraseChild(section.PhraseChildCount - 1): null;
+                        stripControl = CreateStripForSelectedSection(section, true);
+                        EmptyNode lastNodeToCreate = recordingResumePhrase != null && recordingResumePhrase.IsRooted ? recordingResumePhrase :
+                            section.PhraseChildCount > 0 ? section.PhraseChild(section.PhraseChildCount - 1) : null;
                         if (lastNodeToCreate != null)
                         {
                             CreateBlocksTillNodeInStrip(stripControl, lastNodeToCreate, false);
-                            Block preRecordingBlock  = stripControl.FindBlock (lastNodeToCreate ) ;
+                            Block preRecordingBlock = stripControl.FindBlock(lastNodeToCreate);
                             if (preRecordingBlock != null)
                             {
                                 EnsureControlVisible(preRecordingBlock);
@@ -3212,74 +3230,60 @@ if (thresholdAboveLastNode >= stripControl.Node.PhraseChildCount) thresholdAbove
                     }
                     else
                     {
-                        return;
+                        return false;
                     }
                 }
-                if (recordingResumePhrase != null && stripControl.FindBlock ( recordingResumePhrase ) != null) return;
+                if (recordingResumePhrase != null && stripControl.FindBlock(recordingResumePhrase) != null) return true;
 
                 Block firstBlock = stripControl.FirstBlock;
                 Block lastBlock = stripControl.LastBlock;
 
                 if (firstBlock != null && lastBlock != null
-                    && (lastBlock.Node.Index < stripControl.Node.PhraseChild ( stripControl.Node.PhraseChildCount - 1 ).Index
+                    && (lastBlock.Node.Index < stripControl.Node.PhraseChild(stripControl.Node.PhraseChildCount - 1).Index
                     || (recordingResumePhrase != null && lastBlock.Node.Index < recordingResumePhrase.Index)))
-                    {
+                {
                     EmptyNode lastVisiblePhraseIntended = recordingResumePhrase != null ? recordingResumePhrase :
-                        stripControl.Node.PhraseChild ( stripControl.Node.PhraseChildCount - 1 );
+                        stripControl.Node.PhraseChild(stripControl.Node.PhraseChildCount - 1);
 
                     if (lastVisiblePhraseIntended.Index < lastBlock.Node.Index + 10)
-                        {
-                        CreateBlocksTillNodeInStrip ( stripControl, lastVisiblePhraseIntended, false );
-                        if (recordingResumePhrase != null) CreatePhraseBlocksForFillingContentView ( stripControl );
+                    {
+                        CreateBlocksTillNodeInStrip(stripControl, lastVisiblePhraseIntended, false);
+                        if (recordingResumePhrase != null) CreatePhraseBlocksForFillingContentView(stripControl);
                         int trackBarPercent = (lastVisiblePhraseIntended.Index * 100) / stripControl.Node.PhraseChildCount;
                         verticalScrollToolStripContainer1.TrackBarValueInPercentage = trackBarPercent;
                         if (mStripsPanel.Location.Y < 0) verticalScrollToolStripContainer1.CanScrollUp = true;
-                        return;
-                        }
+                        return true;
+                    }
                     //System.Media.SystemSounds.Asterisk.Play ();
                     //stripControl.RemoveAllBlocks ( false );
-                    stripControl.CreateNewLayout ( false );
-                    UpdateSize ();
-                    mStripsPanel.Location = new Point ( mStripsPanel.Location.X, stripControl.BlocksLayoutTopPosition * -1 );
+                    stripControl.CreateNewLayout(false);
+                    UpdateSize();
+                    mStripsPanel.Location = new Point(mStripsPanel.Location.X, stripControl.BlocksLayoutTopPosition * -1);
 
                     // now create some blocks before recording phrase 
                     if (recordingResumePhrase != null)
-                        {
-                        stripControl.AddBlockForNode ( recordingResumePhrase );
-                        CreatePhraseBlocksForFillingContentView ( stripControl );
-                        return;
-                        }
+                    {
+                        stripControl.AddBlockForNode(recordingResumePhrase);
+                        CreatePhraseBlocksForFillingContentView(stripControl);
+                        return true;
+                    }
 
                     if (stripControl.Node.PhraseChildCount > 2)
-                        {
+                    {
                         for (int i = stripControl.Node.PhraseChildCount - 3; i < stripControl.Node.PhraseChildCount; ++i)
-                            {
-                            stripControl.AddBlockForNode ( section.PhraseChild ( i ) );
-                            }
-
+                        {
+                            stripControl.AddBlockForNode(section.PhraseChild(i));
                         }
-                        verticalScrollToolStripContainer1.TrackBarValueInPercentage = 100;
-                        if (mStripsPanel.Location.Y <= stripControl.BlocksLayoutTopPosition*-1 ) verticalScrollToolStripContainer1.CanScrollUp = true;
+
                     }
+                    verticalScrollToolStripContainer1.TrackBarValueInPercentage = 100;
+                    if (mStripsPanel.Location.Y <= stripControl.BlocksLayoutTopPosition * -1) verticalScrollToolStripContainer1.CanScrollUp = true;
                 }
             }
-
-
-        private bool ShowContentsOfRecordingSectionUsingSingleRecordKeyFromTOC(SectionNode section)
-        {
-            if (mProjectView.Selection.Control is TOCView)
-            {
-                if (section.PhraseChildCount > 0)
-                {
-                   MessageBox.Show(string.Format (Localizer.Message( "Recording_CreateSectionContentsInformation"), section.Label),
-                        Localizer.Message("Caption_Information"), MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
-                return true;
-
-            }
-            return false;
-
+            return true;
         }
+
+
 
         //@singleSection
         public void PostRecording_RecreateInvisibleRecordingPhrases(SectionNode section, int initialIndex, int count)

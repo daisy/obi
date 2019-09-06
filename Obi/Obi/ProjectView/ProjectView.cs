@@ -5274,14 +5274,15 @@ for (int j = 0;
 
 
         //@singleSection
-        public void RecreateContentsWhileInitializingRecording ( EmptyNode recordingResumePhrase ) 
-        { 
-            mContentView.RecreateContentsWhileInitializingRecording ( recordingResumePhrase );
+        public bool RecreateContentsWhileInitializingRecording ( EmptyNode recordingResumePhrase ) 
+        {
+            bool ShouldRecordingContinue = mContentView.RecreateContentsWhileInitializingRecording(recordingResumePhrase);
             if (Selection != null && Selection.Node is SectionNode && Selection.Control is TOCView)
             {
                 mTOCView.HighlightNodeWithoutSelection = (SectionNode)Selection.Node;
                 if (!mTOCView.ContainsFocus) mTOCView.Focus();
             }
+            return ShouldRecordingContinue;
         }
 
         //@singleSection : workaround to make recording phrases visible when audio media is updated

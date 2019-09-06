@@ -2080,7 +2080,11 @@ namespace Obi.ProjectView
                                     command.ChildCommands.Insert(command.ChildCommands.Count , new Commands.UpdateSelection(mView, new NodeSelection(mView.Selection.Node , mView.Selection.Control)));
                                 }
             //@singleSection: if phrases till recording phrases are hidden, remove existing phrases to enable content view start from phrases near to recording phrase
-            mView.RecreateContentsWhileInitializingRecording ( mResumeRecordingPhrase);
+            bool ShouldRecordingContinue =  mView.RecreateContentsWhileInitializingRecording ( mResumeRecordingPhrase);
+            if (!ShouldRecordingContinue)
+            {
+                return;
+            }
             // if record section from first empty phrase is checked, do accordingly.
             if (mView.Selection != null && mView.Selection.Node is SectionNode && mResumeRecordingPhrase == null)
             {
