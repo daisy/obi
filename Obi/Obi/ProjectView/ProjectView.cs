@@ -6150,7 +6150,8 @@ for (int j = 0;
             return dictionaryOfFilePaths;
         }
 
-        public void AudioProcessing(AudioLib.WavAudioProcessing.AudioProcessingKind audioProcessingNaudioKind, bool IsAudioProcessingOnMultiPhrases = false)
+        public void AudioProcessing(AudioLib.WavAudioProcessing.AudioProcessingKind audioProcessingNaudioKind, bool IsAudioProcessingOnMultiPhrases = false, 
+                                     bool audioProcessingAll = false)
         {
             ObiNode nodeToSelect = null;
             if (IsAudioProcessingOnMultiPhrases && mContentView.BeginSpecialNode != null && mContentView.EndSpecialNode != null)
@@ -6199,8 +6200,47 @@ for (int j = 0;
 
                         string audioFileFullPath = CreateAudioFileFromNode(nodeToSelect, directoryFullPath, null);
 
+                        if (audioProcessingAll && audioFileFullPath != null && audioProcessingKind == AudioLib.WavAudioProcessing.AudioProcessingKind.Normalize)
+                        {
+                            //System.Diagnostics.Stopwatch watch = new System.Diagnostics.Stopwatch();
+                            //watch.Start();
+                            if (this.Presentation != null && this.Presentation.FirstSection != null)
+                            {
+                                SectionNode tempSectionNode = this.Presentation.FirstSection;
+                                AudioLib.WavAudioProcessing audioPorcess = new AudioLib.WavAudioProcessing();
+                                string audioProcessedFile = null;
+                                while (tempSectionNode != null)
+                                {
+                                    audioFileFullPath = CreateAudioFileFromNode(tempSectionNode, directoryFullPath, null);
+                                    if (audioFileFullPath != null)
+                                        audioProcessedFile = audioPorcess.Normalize(audioFileFullPath, val);
 
-                        if (audioFileFullPath != null)
+                                    if (audioProcessedFile != null && System.IO.File.Exists(audioFileFullPath) && System.IO.File.Exists(audioProcessedFile))
+                                    {
+                                        ReplaceAudioOfSelectedNode(audioProcessedFile, true, tempSectionNode);
+                                        System.IO.File.Delete(audioFileFullPath);
+                                    }
+                                    if (tempSectionNode.FollowingSection != null)
+                                    {
+                                        tempSectionNode = (SectionNode)tempSectionNode.FollowingSection;
+                                    }
+                                    else
+                                    {
+                                        tempSectionNode = null;
+                                    }
+                                }
+                                m_IsAudioprocessingPerformed = true;
+                            }
+                            //watch.Stop();
+                            //Console.WriteLine("Time elapsed during normalization: {0:hh\\:mm\\:ss}", watch.Elapsed);
+                            //MessageBox.Show("Normalization Complete");
+                            if (System.IO.Directory.Exists(directoryFullPath))
+                            {
+                                System.IO.Directory.Delete(directoryFullPath, true);
+                            }
+                        }
+
+                        else  if (audioFileFullPath != null)
                         {
 
                             AudioLib.WavAudioProcessing audioPorcess = new AudioLib.WavAudioProcessing();
