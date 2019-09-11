@@ -113,6 +113,7 @@ namespace Obi.ProjectView
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.verticalScrollToolStripContainer1 = new Obi.ProjectView.VerticalScrollToolStripContainer();
             this.contentViewLabel1 = new Obi.ProjectView.ContentViewLabel();
+            this.m_NormalizeAllToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mContextMenuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -589,7 +590,8 @@ namespace Obi.ProjectView
             this.m_ChangeVolumeToolStripMenuItem,
             this.m_FadeInToolStripMenuItem,
             this.m_FadeOutToolStripMenuItem,
-            this.m_NormalizeToolStripMenuItem});
+            this.m_NormalizeToolStripMenuItem,
+            this.m_NormalizeAllToolStripMenuItem});
             this.Context_AudioProcessingNew.Name = "Context_AudioProcessingNew";
             resources.ApplyResources(this.Context_AudioProcessingNew, "Context_AudioProcessingNew");
             // 
@@ -699,6 +701,12 @@ namespace Obi.ProjectView
             this.contentViewLabel1.sectionSelected = false;
             this.contentViewLabel1.zoomFactor = 1F;
             // 
+            // m_NormalizeAllToolStripMenuItem
+            // 
+            this.m_NormalizeAllToolStripMenuItem.Name = "m_NormalizeAllToolStripMenuItem";
+            resources.ApplyResources(this.m_NormalizeAllToolStripMenuItem, "m_NormalizeAllToolStripMenuItem");
+            this.m_NormalizeAllToolStripMenuItem.Click += new System.EventHandler(this.m_NormalizeAllToolStripMenuItem_Click);
+            // 
             // ContentView
             // 
             this.ContextMenuStrip = this.mContextMenuStrip;
@@ -804,5 +812,6 @@ namespace Obi.ProjectView
         private System.Windows.Forms.ToolStripMenuItem m_FadeInToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem m_FadeOutToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem m_NormalizeToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem m_NormalizeAllToolStripMenuItem;
     }
 }

@@ -557,6 +557,12 @@
   <data name="m_NormalizeToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Normalize</value>
   </data>
+  <data name="m_NormalizeAllToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>158, 22</value>
+  </data>
+  <data name="m_NormalizeAllToolStripMenuItem.Text" xml:space="preserve">
+    <value>Normalize &amp;All</value>
+  </data>
   <data name="Context_AudioProcessingNew.Size" type="System.Drawing.Size, System.Drawing">
     <value>208, 22</value>
   </data>
@@ -739,7 +745,7 @@
     <value>verticalScrollToolStripContainer1</value>
   </data>
   <data name="&gt;&gt;verticalScrollToolStripContainer1.Type" xml:space="preserve">
-    <value>Obi.ProjectView.VerticalScrollToolStripContainer, Obi, Version=4.4.3.19626, Culture=neutral, PublicKeyToken=null</value>
+    <value>Obi.ProjectView.VerticalScrollToolStripContainer, Obi, Version=4.4.7.24252, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;verticalScrollToolStripContainer1.Parent" xml:space="preserve">
     <value>$this</value>
@@ -772,7 +778,7 @@
     <value>contentViewLabel1</value>
   </data>
   <data name="&gt;&gt;contentViewLabel1.Type" xml:space="preserve">
-    <value>Obi.ProjectView.ContentViewLabel, Obi, Version=4.4.3.19626, Culture=neutral, PublicKeyToken=null</value>
+    <value>Obi.ProjectView.ContentViewLabel, Obi, Version=4.4.7.24252, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;contentViewLabel1.Parent" xml:space="preserve">
     <value>$this</value>
@@ -1244,6 +1250,12 @@
   </data>
   <data name="&gt;&gt;timer1.Type" xml:space="preserve">
     <value>System.Windows.Forms.Timer, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_NormalizeAllToolStripMenuItem.Name" xml:space="preserve">
+    <value>m_NormalizeAllToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;m_NormalizeAllToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
     <value>ContentView</value>

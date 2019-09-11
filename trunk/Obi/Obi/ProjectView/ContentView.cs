@@ -6273,6 +6273,11 @@ Block lastBlock = ActiveStrip.LastBlock ;
             mProjectView.AudioProcessing(AudioLib.WavAudioProcessing.AudioProcessingKind.Normalize);
         }
 
+        private void m_NormalizeAllToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            mProjectView.AudioProcessing(AudioLib.WavAudioProcessing.AudioProcessingKind.Normalize, false, true);
+        }
+
      
 
         }

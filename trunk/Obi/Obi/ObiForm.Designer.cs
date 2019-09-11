@@ -240,6 +240,7 @@ namespace Obi
             this.mStatusStrip = new System.Windows.Forms.StatusStrip();
             this.mStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.mStatusProgressBar = new System.Windows.Forms.ToolStripProgressBar();
+            this.m_NormalizeAllToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mProjectView = new Obi.ProjectView.ProjectView();
             this.mMenuStrip.SuspendLayout();
             this.mStatusStrip.SuspendLayout();
@@ -1593,7 +1594,8 @@ namespace Obi
             this.m_ChangeVolumeToolStripMenuItem,
             this.m_FadeInToolStripMenuItem,
             this.m_FadeOutToolStripMenuItem,
-            this.m_NormalizeToolStripMenuItem});
+            this.m_NormalizeToolStripMenuItem,
+            this.m_NormalizeAllToolStripMenuItem});
             this.mTools_AudioProcessingNew.Name = "mTools_AudioProcessingNew";
             resources.ApplyResources(this.mTools_AudioProcessingNew, "mTools_AudioProcessingNew");
             // 
@@ -1740,6 +1742,12 @@ namespace Obi
             resources.ApplyResources(this.mStatusProgressBar, "mStatusProgressBar");
             this.mStatusProgressBar.Style = System.Windows.Forms.ProgressBarStyle.Continuous;
             // 
+            // m_NormalizeAllToolStripMenuItem
+            // 
+            this.m_NormalizeAllToolStripMenuItem.Name = "m_NormalizeAllToolStripMenuItem";
+            resources.ApplyResources(this.m_NormalizeAllToolStripMenuItem, "m_NormalizeAllToolStripMenuItem");
+            this.m_NormalizeAllToolStripMenuItem.Click += new System.EventHandler(this.m_NormalizeAllToolStripMenuItem_Click);
+            // 
             // mProjectView
             // 
             this.mProjectView.BackColor = System.Drawing.SystemColors.Control;
@@ -1747,6 +1755,7 @@ namespace Obi
             this.mProjectView.Clipboard = null;
             resources.ApplyResources(this.mProjectView, "mProjectView");
             this.mProjectView.FindInTextVisible = false;
+            this.mProjectView.IsAudioProcessingPerformed = false;
             this.mProjectView.MetadataViewVisible = true;
             this.mProjectView.Name = "mProjectView";
             this.mProjectView.ObiForm = null;
@@ -1997,6 +2006,7 @@ namespace Obi
         private System.Windows.Forms.ToolStripMenuItem m_FadeInToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem m_FadeOutToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem m_NormalizeToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem m_NormalizeAllToolStripMenuItem;
     }
 }
 
