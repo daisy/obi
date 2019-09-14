@@ -4732,6 +4732,15 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Normalization Completed.
+        /// </summary>
+        internal static string NormalizationCompleted {
+            get {
+                return ResourceManager.GetString("NormalizationCompleted", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Normalize.
         /// </summary>
         internal static string Normalize {
