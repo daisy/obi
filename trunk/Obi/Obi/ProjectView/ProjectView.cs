@@ -6233,7 +6233,7 @@ for (int j = 0;
                             }
                             //watch.Stop();
                             //Console.WriteLine("Time elapsed during normalization: {0:hh\\:mm\\:ss}", watch.Elapsed);
-                            //MessageBox.Show("Normalization Complete");
+                            MessageBox.Show(Localizer.Message("NormalizationCompleted"), Localizer.Message("information_caption"), MessageBoxButtons.OK, MessageBoxIcon.Information);
                             if (System.IO.Directory.Exists(directoryFullPath))
                             {
                                 System.IO.Directory.Delete(directoryFullPath, true);
