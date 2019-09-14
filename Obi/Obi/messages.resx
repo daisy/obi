@@ -3136,4 +3136,7 @@ Error text: {1}</value>
   <data name="CleanUpAfterAudioProcessing" xml:space="preserve">
     <value>You have performed audio processing. It is recommended to perform Cleanup. Press Yes if you want to perform Cleanup now. Cleanup will also save your project. If you want to do it later manually press No.</value>
   </data>
+  <data name="NormalizationCompleted" xml:space="preserve">
+    <value>Normalization Completed</value>
+  </data>
 </root>
