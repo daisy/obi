@@ -3532,4 +3532,31 @@
   <data name="m_pasteMultiplePhrasesToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Coller Phrases Multiples</value>
   </data>
+  <data name="mShowPeakMeterInsideObiMenuItem.Text" xml:space="preserve">
+    <value>Afficher le &amp;vu-mètre dans OBI</value>
+  </data>
+  <data name="m_AddViewCommentToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;Ajouter/Afficher commentaire</value>
+  </data>
+  <data name="m_ClearCommentToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;Effacer commentaire</value>
+  </data>
+  <data name="m_CommentToolStripMenuItem.Text" xml:space="preserve">
+    <value>Commentaire À&amp;Faire </value>
+  </data>
+  <data name="m_ChangeVolumeToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;Changer le volume</value>
+  </data>
+  <data name="m_FadeInToolStripMenuItem.Text" xml:space="preserve">
+    <value>Fondu en &amp;entrée</value>
+  </data>
+  <data name="m_FadeOutToolStripMenuItem.Text" xml:space="preserve">
+    <value>Fondu en &amp;sortie</value>
+  </data>
+  <data name="m_NormalizeToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;Normaliser</value>
+  </data>
+  <data name="mTools_AudioProcessingNew.Text" xml:space="preserve">
+    <value>Traitement audio (&amp;nouveau)</value>
+  </data>
 </root>

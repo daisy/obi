@@ -112,10 +112,10 @@
     <value>2.0</value>
   </resheader>
   <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="clear_recent_caption" xml:space="preserve">
     <value>Effacer la liste des projets récents?</value>
@@ -2810,5 +2810,62 @@ tester "Figer la largeur du volet du contenu" ?(Recommandé)</value>
   </data>
   <data name="title_bar_ReadOnly" xml:space="preserve">
     <value>{0}{1} ({2}) - {3} [{4}]({5})</value>
+  </data>
+  <data name="RecordUsingSingleKeyFromTOCMessage" xml:space="preserve">
+    <value>L'enregistrement démarrera à la fin de la section. Voulez-vous continuer ?</value>
+  </data>
+  <data name="Audio_RecordUsingSingleKeyFromTOC" xml:space="preserve">
+    <value>Démarrer et arrêter l'enregisrement en utilisant une touche de raccourci à partir du volet TDM</value>
+  </data>
+  <data name="Project_DisplayWarningsForSectionDelete" xml:space="preserve">
+    <value>Prévenir avant d'effacer une section</value>
+  </data>
+  <data name="KeyS_AddCommentSingleKey" xml:space="preserve">
+    <value>Ajouter un commentaire: touche de raccourci</value>
+  </data>
+  <data name="CommentAttachedFlagForAccessibleName" xml:space="preserve">
+    <value>est commenté</value>
+  </data>
+  <data name="FadeInProcess" xml:space="preserve">
+    <value>Fondu en entrée de la sélection</value>
+  </data>
+  <data name="FadeOutProcess" xml:space="preserve">
+    <value>Fondu en sortie de la sélection</value>
+  </data>
+  <data name="NormalizeProcess" xml:space="preserve">
+    <value>Normaliser la sélection</value>
+  </data>
+  <data name="FadeInDuration" xml:space="preserve">
+    <value>Début de la durée de Fondu en entrée</value>
+  </data>
+  <data name="FadeOutDuration" xml:space="preserve">
+    <value>Début de la durée de Fondu en sortie</value>
+  </data>
+  <data name="TextInfoForFadeInOutOperation" xml:space="preserve">
+    <value>La durée totale de la sélection est de {0} secondes</value>
+  </data>
+  <data name="FadeInDurationAccessibleName" xml:space="preserve">
+    <value>Régler le début de la durée de Fondu en entrée (en secondes)</value>
+  </data>
+  <data name="FadeOutDurationAccessibleName" xml:space="preserve">
+    <value>Régler le début de la durée de Fondu en sortie (en secondes)</value>
+  </data>
+  <data name="FadeIn" xml:space="preserve">
+    <value>Fondu en entrée</value>
+  </data>
+  <data name="FadeOut" xml:space="preserve">
+    <value>Fondu en sortie</value>
+  </data>
+  <data name="Normalize" xml:space="preserve">
+    <value>Normaliser la sélection</value>
+  </data>
+  <data name="NormalizeAceesibleName" xml:space="preserve">
+    <value>Régler le paramètre pour augmenter/diminuer le volume pendant le processus de normalisation</value>
+  </data>
+  <data name="NormalizeAceesibleNameForSlider" xml:space="preserve">
+    <value>Faire glisser pour augmenter/diminuer le volume de la sélection. Glisser vers la droite augmentera le volume pendant le processus de normalisation</value>
+  </data>
+  <data name="CleanUpAfterAudioProcessing" xml:space="preserve">
+    <value>Vous venez d'opérer un traitement sur l'audio. Il est recommandé de procéder à un nettoyage. Appuyez sur Oui si vous souhaitez lancer le Nettoyage dès maintenant. Le nettoyage sauvegardera également votre projet. Appuyez sur Non si vous souhaitez le lancer ultérieurement.</value>
   </data>
 </root>
