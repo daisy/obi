@@ -2836,10 +2836,10 @@ tester "Figer la largeur du volet du contenu" ?(Recommandé)</value>
     <value>Normaliser la sélection</value>
   </data>
   <data name="FadeInDuration" xml:space="preserve">
-    <value>Début de la durée de Fondu en entrée</value>
+    <value>Début de la durée de Fondu en entrée:</value>
   </data>
   <data name="FadeOutDuration" xml:space="preserve">
-    <value>Début de la durée de Fondu en sortie</value>
+    <value>Début de la durée de Fondu en sortie:</value>
   </data>
   <data name="TextInfoForFadeInOutOperation" xml:space="preserve">
     <value>La durée totale de la sélection est de {0} secondes</value>
