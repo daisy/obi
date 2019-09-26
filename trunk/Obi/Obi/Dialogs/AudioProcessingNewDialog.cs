@@ -53,8 +53,8 @@ namespace Obi.Dialogs
                     //m_lbl_Parameters.Location = new Point(0, m_lbl_Parameters.Location.Y);
                 }
 
-                m_numericUpDown1.Location = new Point(m_lbl_Seconds.Location.X, m_numericUpDown1.Location.Y);
-                m_lbl_Seconds.Location = new Point(m_lbl_Low.Location.X, m_numericUpDown1.Location.Y);
+                m_numericUpDown1.Location = new Point(m_lbl_Parameters.Location.X + m_lbl_Parameters.Width, m_numericUpDown1.Location.Y);
+                m_lbl_Seconds.Location = new Point(m_numericUpDown1.Location.X + m_numericUpDown1.Width, m_numericUpDown1.Location.Y);
                 double durationiInSeconds = durationOfFadeInOut * 0.001;
                 m_IsAudioProcessingParameterInSeconds = true;
                 m_numericUpDown1.Maximum = (decimal)durationiInSeconds;
