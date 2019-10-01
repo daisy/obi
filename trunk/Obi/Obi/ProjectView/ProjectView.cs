@@ -5541,7 +5541,7 @@ for (int j = 0;
             if (AssignSpecialNodeDialog.DialogResult == DialogResult.OK)
             {
                 customClass = AssignSpecialNodeDialog.SelectedSpecialNode;
-                m_IsAudioProcessingChecked = AssignSpecialNodeDialog.IsAudioProcessingChecked || AssignSpecialNodeDialog.IsChangeVolumeChecked || AssignSpecialNodeDialog.IsNormalizeChecked;
+                m_IsAudioProcessingChecked = AssignSpecialNodeDialog.IsChangeVolumeChecked || AssignSpecialNodeDialog.IsNormalizeChecked || AssignSpecialNodeDialog.IsSpeechRateChecked;
 
                 if (AssignSpecialNodeDialog.IsRenumberChecked)
                     RenumberPage();
@@ -5555,15 +5555,17 @@ for (int j = 0;
                     }
                     TimeElasped(startNode, endNode);
                 }
-                else if (AssignSpecialNodeDialog.IsAudioProcessingChecked)
-                {
-                    //Obi.Dialogs.AudioProcessingDialog dialog = new Obi.Dialogs.AudioProcessingDialog();
-                    //if (dialog.ShowDialog() == DialogResult.OK)
-                    //{
-                    ProcessAudioForMultiplePhrases();
-                    //}
+                //else if (AssignSpecialNodeDialog.IsAudioProcessingChecked)
+                //{
+                //    //Obi.Dialogs.AudioProcessingDialog dialog = new Obi.Dialogs.AudioProcessingDialog();
+                //    //if (dialog.ShowDialog() == DialogResult.OK)
+                //    //{
 
-                }
+                //    //ProcessAudioForMultiplePhrases();
+
+                //    //}
+
+                //}
                 else if (AssignSpecialNodeDialog.IsChangeVolumeChecked)
                 {
                     this.AudioProcessing(WavAudioProcessing.AudioProcessingKind.Amplify, true);
@@ -5571,6 +5573,10 @@ for (int j = 0;
                 else if (AssignSpecialNodeDialog.IsNormalizeChecked)
                 {
                     this.AudioProcessing(WavAudioProcessing.AudioProcessingKind.Normalize, true);
+                }
+                else if (AssignSpecialNodeDialog.IsSpeechRateChecked)
+                {
+                    this.AudioProcessing(WavAudioProcessing.AudioProcessingKind.SoundTouch, true);
                 }
 
                 else if (AssignSpecialNodeDialog.IsCopyChecked || AssignSpecialNodeDialog.IsCutChecked)
@@ -5674,7 +5680,7 @@ for (int j = 0;
         public void AudioProcessingOnMultiplePhrases(NodeSelection selectNode)
         {
             //this.Selection = selectNode;
-            ProcessAudio();
+            //ProcessAudio();
             if (selectNode.Node.FollowingNode != mContentView.BeginSpecialNode)
             {
                 this.Selection = new NodeSelection(selectNode.Node.FollowingNode, mContentView);
@@ -6174,9 +6180,10 @@ for (int j = 0;
 
             AudioLib.WavAudioProcessing.AudioProcessingKind audioProcessingKind = audioProcessingNaudioKind;
             Obi.Dialogs.AudioProcessingNewDialog dialog = null;
-            if (audioProcessingKind == WavAudioProcessing.AudioProcessingKind.Amplify || audioProcessingKind == WavAudioProcessing.AudioProcessingKind.Normalize)
+            if (audioProcessingKind == WavAudioProcessing.AudioProcessingKind.Amplify || audioProcessingKind == WavAudioProcessing.AudioProcessingKind.Normalize
+                 || audioProcessingKind == WavAudioProcessing.AudioProcessingKind.SoundTouch)
             {
-                dialog = new Obi.Dialogs.AudioProcessingNewDialog(audioProcessingNaudioKind, ObiForm.Settings, 0); //@fontconfig
+                dialog = new Obi.Dialogs.AudioProcessingNewDialog(audioProcessingNaudioKind, ObiForm.Settings, 0, audioProcessingAll); //@fontconfig
             }
             else if (audioProcessingKind == WavAudioProcessing.AudioProcessingKind.FadeIn || audioProcessingKind == WavAudioProcessing.AudioProcessingKind.FadeOut)
             {
@@ -6184,170 +6191,188 @@ for (int j = 0;
             }
             if (dialog != null && dialog.ShowDialog() == DialogResult.OK)
             {
+
                 float val = 0;
                 val = dialog.AudioProcessingParameter;
 
-                if (!IsAudioProcessingOnMultiPhrases)
+                if (!dialog.IsUseNAudioForAudioProcessing || audioProcessingKind == WavAudioProcessing.AudioProcessingKind.SoundTouch)
                 {
-                    try
+                    if (!IsAudioProcessingOnMultiPhrases)
+                        this.ProcessAudio(audioProcessingNaudioKind, val);
+                    else
+                        this.ProcessAudioForMultiplePhrases(audioProcessingNaudioKind, val);
+                }
+                else
+                {
+
+                    if (!IsAudioProcessingOnMultiPhrases)
                     {
-                        string tempDirectoryName = "AudioProcessing";
-                        string directoryFullPath = System.IO.Path.Combine(mPresentation.DataProviderManager.DataFileDirectoryFullPath,
-                            tempDirectoryName);
-                        if (System.IO.Directory.Exists(directoryFullPath)) System.IO.Directory.Delete(directoryFullPath, true);
-                        System.IO.Directory.CreateDirectory(directoryFullPath);
-
-
-                        //string audioFileFullPath = CreateAudioFileFromNode(nodeToSelect, directoryFullPath, null);
-                        string audioFileFullPath = null;
-
-                        //m_IsAudioProcessingChecked = true;
-                        //Obi.Dialogs.ProgressDialog progress = new Obi.Dialogs.ProgressDialog(Localizer.Message("AudioFileExport_progress_dialog_title"),
-                        //      delegate(Dialogs.ProgressDialog progress1)
-                        //      {
-                        //          audioFileFullPath = CreateAudioFileFromNode(nodeToSelect, directoryFullPath, null);
-                        //      });
-
-                        //progress.ShowDialog();
-                        //if (progress.Exception != null) throw progress.Exception;
-
-                        if (audioProcessingAll && audioProcessingKind == AudioLib.WavAudioProcessing.AudioProcessingKind.Normalize)
+                        try
                         {
-                            if (this.Presentation != null && this.Presentation.FirstSection != null)
-                            {
-                                SectionNode tempSectionNode = this.Presentation.FirstSection;
-                                AudioLib.WavAudioProcessing audioPorcess = new AudioLib.WavAudioProcessing();
-                                string audioProcessedFile = null;
-                                m_IsAudioProcessingChecked = true;
-                                while (tempSectionNode != null)
-                                {
-                                    Obi.Dialogs.ProgressDialog progress = new Obi.Dialogs.ProgressDialog(Localizer.Message("AudioFileExport_progress_dialog_title"),
-                              delegate(Dialogs.ProgressDialog progress1)
-                              {
-                                  audioFileFullPath = CreateAudioFileFromNode(nodeToSelect, directoryFullPath, null);
-                                  if(audioFileFullPath != null)
-                                  audioProcessedFile = audioPorcess.Normalize(audioFileFullPath, val);
-                              });
-                                    progress.ShowDialog();
-                                    if (progress.Exception != null) throw progress.Exception;
-                                    if (audioFileFullPath != null)
-                                    {
+                            string tempDirectoryName = "AudioProcessing";
+                            string directoryFullPath = System.IO.Path.Combine(mPresentation.DataProviderManager.DataFileDirectoryFullPath,
+                                tempDirectoryName);
+                            if (System.IO.Directory.Exists(directoryFullPath)) System.IO.Directory.Delete(directoryFullPath, true);
+                            System.IO.Directory.CreateDirectory(directoryFullPath);
 
-                                        if (audioProcessedFile != null && System.IO.File.Exists(audioFileFullPath) && System.IO.File.Exists(audioProcessedFile))
+
+                            //string audioFileFullPath = CreateAudioFileFromNode(nodeToSelect, directoryFullPath, null);
+                            string audioFileFullPath = null;
+
+                            //m_IsAudioProcessingChecked = true;
+                            //Obi.Dialogs.ProgressDialog progress = new Obi.Dialogs.ProgressDialog(Localizer.Message("AudioFileExport_progress_dialog_title"),
+                            //      delegate(Dialogs.ProgressDialog progress1)
+                            //      {
+                            //          audioFileFullPath = CreateAudioFileFromNode(nodeToSelect, directoryFullPath, null);
+                            //      });
+
+                            //progress.ShowDialog();
+                            //if (progress.Exception != null) throw progress.Exception;
+
+                            if (audioProcessingAll && audioProcessingKind == AudioLib.WavAudioProcessing.AudioProcessingKind.Normalize)
+                            {
+                                if (this.Presentation != null && this.Presentation.FirstSection != null)
+                                {
+                                    SectionNode tempSectionNode = this.Presentation.FirstSection;
+                                    AudioLib.WavAudioProcessing audioPorcess = new AudioLib.WavAudioProcessing();
+                                    string audioProcessedFile = null;
+                                    m_IsAudioProcessingChecked = false;
+
+                                    while (tempSectionNode != null)
+                                    {
+                                  //      Obi.Dialogs.ProgressDialog progress = new Obi.Dialogs.ProgressDialog(Localizer.Message("AudioFileExport_progress_dialog_title"),
+                                  //delegate(Dialogs.ProgressDialog progress1)
+                                  //{
+                                  //    audioFileFullPath = CreateAudioFileFromNode(nodeToSelect, directoryFullPath, null);
+                                  //    if (audioFileFullPath != null)
+                                  //        audioProcessedFile = audioPorcess.Normalize(audioFileFullPath, val);
+                                  //});
+                                        //progress.ShowDialog();
+                                        //if (progress.Exception != null) throw progress.Exception;
+
+                                        audioFileFullPath = CreateAudioFileFromNode(tempSectionNode, directoryFullPath, null);
+                                       
+                                        if (audioFileFullPath != null)
                                         {
-                                            ReplaceAudioOfSelectedNode(audioProcessedFile, true, tempSectionNode);
-                                            //System.IO.File.Delete(audioFileFullPath);
+                                            audioProcessedFile = audioPorcess.Normalize(audioFileFullPath, val);
+                                            if (audioProcessedFile != null && System.IO.File.Exists(audioFileFullPath) && System.IO.File.Exists(audioProcessedFile))
+                                            {
+                                                ReplaceAudioOfSelectedNode(audioProcessedFile, true, tempSectionNode);
+                                                System.IO.File.Delete(audioFileFullPath);
+                                            }
+                                            if (tempSectionNode.FollowingSection != null)
+                                            {
+                                                tempSectionNode = (SectionNode)tempSectionNode.FollowingSection;
+                                            }
+                                            else
+                                            {
+                                                tempSectionNode = null;
+                                            }
                                         }
-                                        if (tempSectionNode.FollowingSection != null)
-                                        {
-                                            tempSectionNode = (SectionNode)tempSectionNode.FollowingSection;
-                                        }
-                                        else
-                                        {
-                                            tempSectionNode = null;
-                                        }
+                                        m_IsAudioprocessingPerformed = true;
+
+
                                     }
-                                    m_IsAudioprocessingPerformed = true;
+                                }
+                                MessageBox.Show(Localizer.Message("NormalizationCompleted"), Localizer.Message("information_caption"), MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                if (System.IO.Directory.Exists(directoryFullPath))
+                                {
+                                    System.IO.Directory.Delete(directoryFullPath, true);
                                 }
                             }
-                            MessageBox.Show(Localizer.Message("NormalizationCompleted"), Localizer.Message("information_caption"), MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                            else
+                            {
+                                m_IsAudioProcessingChecked = true;
+                                AudioLib.WavAudioProcessing audioPorcess = new AudioLib.WavAudioProcessing();
+                                string audioProcessedFile = null;
+                                Obi.Dialogs.ProgressDialog progress = new Obi.Dialogs.ProgressDialog(Localizer.Message("AudioFileExport_progress_dialog_title"),
+                                      delegate(Dialogs.ProgressDialog progress1)
+                                      {
+                                          audioFileFullPath = CreateAudioFileFromNode(nodeToSelect, directoryFullPath, null);
+                                          if (audioFileFullPath != null)
+                                          {
+                                              if (audioProcessingKind == AudioLib.WavAudioProcessing.AudioProcessingKind.Amplify)
+                                              {
+                                                  audioProcessedFile = audioPorcess.IncreaseAmplitude(audioFileFullPath, val);
+                                              }
+                                              else if (audioProcessingKind == AudioLib.WavAudioProcessing.AudioProcessingKind.FadeIn)
+                                              {
+                                                  audioProcessedFile = audioPorcess.FadeIn(audioFileFullPath, val);
+                                              }
+                                              else if (audioProcessingKind == AudioLib.WavAudioProcessing.AudioProcessingKind.FadeOut)
+                                              {
+                                                  audioProcessedFile = audioPorcess.FadeOut(audioFileFullPath, val);
+                                              }
+                                              else if (audioProcessingKind == AudioLib.WavAudioProcessing.AudioProcessingKind.Normalize)
+                                              {
+                                                  audioProcessedFile = audioPorcess.Normalize(audioFileFullPath, val);
+                                              }
+                                          }
+                                      });
+
+                                progress.ShowDialog();
+                                if (progress.Exception != null) throw progress.Exception;
+
+                                if (audioFileFullPath != null)
+                                {
+
+                                    if (audioProcessedFile != null && System.IO.File.Exists(audioFileFullPath) && System.IO.File.Exists(audioProcessedFile))
+                                    {
+                                        ReplaceAudioOfSelectedNode(audioProcessedFile, true, nodeToSelect);
+                                        m_IsAudioprocessingPerformed = true;
+                                        if (System.IO.Directory.Exists(directoryFullPath))
+                                        {
+                                            System.IO.File.Delete(audioFileFullPath);
+                                            System.IO.Directory.Delete(directoryFullPath, true);
+                                        }
+                                    }
+                                    m_IsAudioProcessingChecked = false;
+
+                                }
+                            }
+                        }
+                        catch (System.Exception ex)
+                        {
+                            WriteToLogFile(ex.ToString());
+                            MessageBox.Show(ex.ToString());
+                        }
+                    }
+                    else
+                    {
+                        try
+                        {
+                            string tempDirectoryName = "AudioProcessing";
+                            string directoryFullPath = System.IO.Path.Combine(mPresentation.DataProviderManager.DataFileDirectoryFullPath,
+                                tempDirectoryName);
+                            if (System.IO.Directory.Exists(directoryFullPath)) System.IO.Directory.Delete(directoryFullPath, true);
+                            System.IO.Directory.CreateDirectory(directoryFullPath);
+
+
+                            Dictionary<ObiNode, string> dictionaryOfFilePaths = new Dictionary<ObiNode, string>();
+                            dictionaryOfFilePaths = AudioProcessingDictionary(dictionaryOfFilePaths, nodeToSelect, audioProcessingKind, val, directoryFullPath);
+
+                            ReplaceAudioInMultiplePhrases(dictionaryOfFilePaths);
+                            m_IsAudioprocessingPerformed = true;
+
                             if (System.IO.Directory.Exists(directoryFullPath))
                             {
                                 System.IO.Directory.Delete(directoryFullPath, true);
                             }
-                        }
 
-                        else
+
+                        }
+                        catch (System.Exception ex)
                         {
-                            m_IsAudioProcessingChecked = true;
-                            AudioLib.WavAudioProcessing audioPorcess = new AudioLib.WavAudioProcessing();
-                            string audioProcessedFile = null;
-                            Obi.Dialogs.ProgressDialog progress = new Obi.Dialogs.ProgressDialog(Localizer.Message("AudioFileExport_progress_dialog_title"),
-                                  delegate(Dialogs.ProgressDialog progress1)
-                                  {
-                                      audioFileFullPath = CreateAudioFileFromNode(nodeToSelect, directoryFullPath, null);
-                                      if (audioFileFullPath != null)
-                                      {
-                                          if (audioProcessingKind == AudioLib.WavAudioProcessing.AudioProcessingKind.Amplify)
-                                          {
-                                              audioProcessedFile = audioPorcess.IncreaseAmplitude(audioFileFullPath, val);
-                                          }
-                                          else if (audioProcessingKind == AudioLib.WavAudioProcessing.AudioProcessingKind.FadeIn)
-                                          {
-                                              audioProcessedFile = audioPorcess.FadeIn(audioFileFullPath, val);
-                                          }
-                                          else if (audioProcessingKind == AudioLib.WavAudioProcessing.AudioProcessingKind.FadeOut)
-                                          {
-                                              audioProcessedFile = audioPorcess.FadeOut(audioFileFullPath, val);
-                                          }
-                                          else if (audioProcessingKind == AudioLib.WavAudioProcessing.AudioProcessingKind.Normalize)
-                                          {
-                                              audioProcessedFile = audioPorcess.Normalize(audioFileFullPath, val);
-                                          }
-                                      }
-                                  });
-
-                            progress.ShowDialog();
-                            if (progress.Exception != null) throw progress.Exception;
-
-                            if (audioFileFullPath != null)
-                            { 
-                                
-                                if (audioProcessedFile != null && System.IO.File.Exists(audioFileFullPath) && System.IO.File.Exists(audioProcessedFile))
-                                {
-                                    ReplaceAudioOfSelectedNode(audioProcessedFile, true, nodeToSelect);
-                                    m_IsAudioprocessingPerformed = true;
-                                    if (System.IO.Directory.Exists(directoryFullPath))
-                                    {
-                                        System.IO.File.Delete(audioFileFullPath);
-                                        System.IO.Directory.Delete(directoryFullPath, true);
-                                    }
-                                }
-                                m_IsAudioProcessingChecked = false;
-
-                            }
+                            WriteToLogFile(ex.ToString());
+                            MessageBox.Show(ex.ToString());
                         }
-                    }
-                    catch (System.Exception ex)
-                    {
-                        WriteToLogFile(ex.ToString());
-                        MessageBox.Show(ex.ToString());
-                    }
-                }
-                else
-                {
-                    try
-                    {
-                        string tempDirectoryName = "AudioProcessing";
-                        string directoryFullPath = System.IO.Path.Combine(mPresentation.DataProviderManager.DataFileDirectoryFullPath,
-                            tempDirectoryName);
-                        if (System.IO.Directory.Exists(directoryFullPath)) System.IO.Directory.Delete(directoryFullPath, true);
-                        System.IO.Directory.CreateDirectory(directoryFullPath);
-
-
-                        Dictionary<ObiNode, string> dictionaryOfFilePaths = new Dictionary<ObiNode, string>();
-                        dictionaryOfFilePaths = AudioProcessingDictionary(dictionaryOfFilePaths, nodeToSelect, audioProcessingKind, val, directoryFullPath);
-
-                        ReplaceAudioInMultiplePhrases(dictionaryOfFilePaths);
-                        m_IsAudioprocessingPerformed = true;
-
-                        if (System.IO.Directory.Exists(directoryFullPath))
-                        {
-                            System.IO.Directory.Delete(directoryFullPath, true);
-                        }
-
-
-                    }
-                    catch (System.Exception ex)
-                    {
-                        WriteToLogFile(ex.ToString());
-                        MessageBox.Show(ex.ToString());
                     }
                 }
             }
         }
 
-        public void ProcessAudio()
+        public void ProcessAudio(AudioLib.WavAudioProcessing.AudioProcessingKind kindOfAudioProcessing, float audioProcessingParameter)
         {
 if (CanExportSelectedNodeAudio)
 {
@@ -6360,11 +6385,22 @@ if (CanExportSelectedNodeAudio)
     }
     bool SelectionChangedPlaybackEnabled = mTransportBar.SelectionChangedPlaybackEnabled;
     mTransportBar.SelectionChangedPlaybackEnabled = false;
-    Obi.Dialogs.AudioProcessingDialog dialog = new Obi.Dialogs.AudioProcessingDialog(ObiForm.Settings); //@fontconfig
-    if (dialog.ShowDialog() == DialogResult.OK)
+    //Obi.Dialogs.AudioProcessingDialog dialog = new Obi.Dialogs.AudioProcessingDialog(ObiForm.Settings); //@fontconfig
+    //if (dialog.ShowDialog() == DialogResult.OK)
+    Audio.AudioFormatConverter.AudioProcessingKind audioProcessingKind = Audio.AudioFormatConverter.AudioProcessingKind.Amplify;
+   
+    if( kindOfAudioProcessing == WavAudioProcessing.AudioProcessingKind.Normalize)
     {
-        Audio.AudioFormatConverter.AudioProcessingKind audioProcessingKind = dialog.AudioProcess;
-        float val = dialog.AudioProcessingParameter;
+        audioProcessingKind = Audio.AudioFormatConverter.AudioProcessingKind.Normalize;
+    }
+    else if (kindOfAudioProcessing == WavAudioProcessing.AudioProcessingKind.SoundTouch)
+    {
+        audioProcessingKind = Audio.AudioFormatConverter.AudioProcessingKind.SoundTouch;
+    }
+    if(audioProcessingKind == Audio.AudioFormatConverter.AudioProcessingKind.Amplify || audioProcessingKind == Audio.AudioFormatConverter.AudioProcessingKind.Normalize
+          || audioProcessingKind == Audio.AudioFormatConverter.AudioProcessingKind.SoundTouch)
+    {
+        float val = audioProcessingParameter;
         try
         {
             string tempDirectoryName = "AudioProcessing";
@@ -6437,7 +6473,7 @@ if (CanExportSelectedNodeAudio)
             };
             return dictionaryOfFilePaths;
         }
-        public void ProcessAudioForMultiplePhrases()
+        public void ProcessAudioForMultiplePhrases(AudioLib.WavAudioProcessing.AudioProcessingKind kindOfAudioProcessing, float audioProcessingParameter)
         {
             if (m_IsAudioProcessingChecked)
             {
@@ -6452,11 +6488,22 @@ if (CanExportSelectedNodeAudio)
 
                 bool SelectionChangedPlaybackEnabled = mTransportBar.SelectionChangedPlaybackEnabled;
                 mTransportBar.SelectionChangedPlaybackEnabled = false;
-                Obi.Dialogs.AudioProcessingDialog dialog = new Obi.Dialogs.AudioProcessingDialog(ObiForm.Settings); //@fontconfig
-                if (dialog.ShowDialog() == DialogResult.OK)
+                //Obi.Dialogs.AudioProcessingDialog dialog = new Obi.Dialogs.AudioProcessingDialog(ObiForm.Settings); //@fontconfig
+                //if (dialog.ShowDialog() == DialogResult.OK)
+
+                Audio.AudioFormatConverter.AudioProcessingKind audioProcessingKind = Audio.AudioFormatConverter.AudioProcessingKind.Amplify;
+
+                if (kindOfAudioProcessing == WavAudioProcessing.AudioProcessingKind.Normalize)
                 {
-                    Audio.AudioFormatConverter.AudioProcessingKind audioProcessingKind = dialog.AudioProcess;
-                    float val = dialog.AudioProcessingParameter;
+                    audioProcessingKind = Audio.AudioFormatConverter.AudioProcessingKind.Normalize;
+                }
+                else if (kindOfAudioProcessing == WavAudioProcessing.AudioProcessingKind.SoundTouch)
+                {
+                    audioProcessingKind = Audio.AudioFormatConverter.AudioProcessingKind.SoundTouch;
+                }
+
+                {
+                    float val = audioProcessingParameter;
                     try
                     {
                         string tempDirectoryName = "AudioProcessing";

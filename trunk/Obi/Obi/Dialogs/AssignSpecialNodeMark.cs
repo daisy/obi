@@ -36,8 +36,8 @@ namespace Obi.Dialogs
         public bool IsRenumberChecked
         { get { return m_rdb_btn_RenumberPages.Checked; } }
 
-        public bool IsAudioProcessingChecked
-        { get { return m_rtb_btn_AudioProcessing.Checked; } }
+        public bool IsSpeechRateChecked
+        { get { return m_rdb_btn_SpeechRate.Checked; } }
 
         public bool IsChangeVolumeChecked
         { get { return m_rdb_btn_ChangeVolume.Checked; } }

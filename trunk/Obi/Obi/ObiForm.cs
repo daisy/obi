@@ -2734,8 +2734,8 @@ namespace Obi
                 mTools_PreferencesMenuItem.Enabled = !mProjectView.TransportBar.IsRecorderActive;
                 PipelineMenuItemsEnabled = mSession.HasProject && !mProjectView.TransportBar.IsRecorderActive;
                 m_ToolsLangPack.Enabled = !mProjectView.TransportBar.IsRecorderActive;
-                mTools_AudioProcessing.Enabled = mTools_AudioProcessingNew.Enabled = 
-                            m_ChangeVolumeToolStripMenuItem.Enabled = m_NormalizeToolStripMenuItem.Enabled =  mProjectView.CanExportSelectedNodeAudio;
+                mTools_AudioProcessingNew.Enabled = 
+                            m_ChangeVolumeToolStripMenuItem.Enabled = m_NormalizeToolStripMenuItem.Enabled = m_SpeechRateToolStripMenuItem.Enabled = mProjectView.CanExportSelectedNodeAudio;
                 m_FadeInToolStripMenuItem.Enabled = m_FadeOutToolStripMenuItem.Enabled =  mProjectView.CanShowFadeInFadeOutDialog;
                 m_Tools_QuickCleanupToolStripMenuItem.Enabled = mSettings.Audio_EnableFileDataProviderPreservation;
             }
@@ -6276,15 +6276,15 @@ ref string exportDirectoryEPUB3)
 
             private void mTools_AudioProcessing_Click(object sender, EventArgs e)
             {
-                if (mProjectView.TransportBar.IsPlayerActive)
-                {
-                    if (mProjectView.TransportBar.CurrentState == Obi.ProjectView.TransportBar.State.Playing) mProjectView.TransportBar.Pause();
-                    mProjectView.TransportBar.Stop();
-                }
-                if (mProjectView.CanExportSelectedNodeAudio)
-                {
-                    mProjectView.ProcessAudio();
-                }
+                //if (mProjectView.TransportBar.IsPlayerActive)
+                //{
+                //    if (mProjectView.TransportBar.CurrentState == Obi.ProjectView.TransportBar.State.Playing) mProjectView.TransportBar.Pause();
+                //    mProjectView.TransportBar.Stop();
+                //}
+                //if (mProjectView.CanExportSelectedNodeAudio)
+                //{
+                //    mProjectView.ProcessAudio();
+                //}
             }
 
             private void mMergeWithNextSectionToolStripMenuItem_Click(object sender, EventArgs e)
@@ -6576,27 +6576,63 @@ ref string exportDirectoryEPUB3)
                     if (mProjectView.TransportBar.CurrentState == Obi.ProjectView.TransportBar.State.Playing) mProjectView.TransportBar.Pause();
                     mProjectView.TransportBar.Stop();
                 }
+                if (mProjectView.CanExportSelectedNodeAudio)
                 mProjectView.AudioProcessing(AudioLib.WavAudioProcessing.AudioProcessingKind.Amplify);
             }
 
             private void m_FadeInToolStripMenuItem_Click(object sender, EventArgs e)
             {
+                if (mProjectView.TransportBar.IsPlayerActive)
+                {
+                    if (mProjectView.TransportBar.CurrentState == Obi.ProjectView.TransportBar.State.Playing) mProjectView.TransportBar.Pause();
+                    mProjectView.TransportBar.Stop();
+                }
+                if (mProjectView.CanExportSelectedNodeAudio)
                 mProjectView.AudioProcessing(AudioLib.WavAudioProcessing.AudioProcessingKind.FadeIn);
             }
 
             private void m_FadeOutToolStripMenuItem_Click(object sender, EventArgs e)
             {
+                if (mProjectView.TransportBar.IsPlayerActive)
+                {
+                    if (mProjectView.TransportBar.CurrentState == Obi.ProjectView.TransportBar.State.Playing) mProjectView.TransportBar.Pause();
+                    mProjectView.TransportBar.Stop();
+                }
+                if (mProjectView.CanExportSelectedNodeAudio)
                 mProjectView.AudioProcessing(AudioLib.WavAudioProcessing.AudioProcessingKind.FadeOut);
             }
 
             private void m_NormalizeToolStripMenuItem_Click(object sender, EventArgs e)
             {
+                if (mProjectView.TransportBar.IsPlayerActive)
+                {
+                    if (mProjectView.TransportBar.CurrentState == Obi.ProjectView.TransportBar.State.Playing) mProjectView.TransportBar.Pause();
+                    mProjectView.TransportBar.Stop();
+                }
+                if (mProjectView.CanExportSelectedNodeAudio)
                 mProjectView.AudioProcessing(AudioLib.WavAudioProcessing.AudioProcessingKind.Normalize);
             }
 
             private void m_NormalizeAllToolStripMenuItem_Click(object sender, EventArgs e)
             {
+                if (mProjectView.TransportBar.IsPlayerActive)
+                {
+                    if (mProjectView.TransportBar.CurrentState == Obi.ProjectView.TransportBar.State.Playing) mProjectView.TransportBar.Pause();
+                    mProjectView.TransportBar.Stop();
+                }
+                if (mProjectView.CanExportSelectedNodeAudio)
                 mProjectView.AudioProcessing(AudioLib.WavAudioProcessing.AudioProcessingKind.Normalize, false, true);
+            }
+
+            private void m_SpeechRateToolStripMenuItem_Click(object sender, EventArgs e)
+            {
+                if (mProjectView.TransportBar.IsPlayerActive)
+                {
+                    if (mProjectView.TransportBar.CurrentState == Obi.ProjectView.TransportBar.State.Playing) mProjectView.TransportBar.Pause();
+                    mProjectView.TransportBar.Stop();
+                }
+                if (mProjectView.CanExportSelectedNodeAudio)
+                    mProjectView.AudioProcessing(AudioLib.WavAudioProcessing.AudioProcessingKind.SoundTouch);
             }
 
 

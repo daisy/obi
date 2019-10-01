@@ -7345,6 +7345,42 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Speech Rate.
+        /// </summary>
+        internal static string SpeechRate {
+            get {
+                return ResourceManager.GetString("SpeechRate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Set Parameter to Increase/Decrease speech rate.
+        /// </summary>
+        internal static string SpeechRateAceesibleName {
+            get {
+                return ResourceManager.GetString("SpeechRateAceesibleName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Slide to Increase/Decrease speech rate. Right sliding will increase speech rate.
+        /// </summary>
+        internal static string SpeechRateAceesibleNameForSlider {
+            get {
+                return ResourceManager.GetString("SpeechRateAceesibleNameForSlider", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Change speech rate of selected audio:.
+        /// </summary>
+        internal static string SpeechRateOfSeclection {
+            get {
+                return ResourceManager.GetString("SpeechRateOfSeclection", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to split phrase.
         /// </summary>
         internal static string split_phrase {

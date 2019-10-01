@@ -4100,9 +4100,6 @@ if (thresholdAboveLastNode >= stripControl.Node.PhraseChildCount) thresholdAbove
             Context_Delete_deleteFollowingPhrasesMenuItem.ShortcutKeyDisplayString = ObiForm.RefineKeyboardShortcutStringForAccessibleName(keyboardShortcuts.FormatKeyboardShorcut(keyboardShortcuts.MenuNameDictionary["mDeleteFollowingPhrasesToolStripMenuItem"].Value.ToString()));
             Context_Delete_deleteFollowingPhrasesMenuItem.AccessibleName = Context_Delete_deleteFollowingPhrasesMenuItem.Text.Replace("&", "") + " " + Context_Delete_deleteFollowingPhrasesMenuItem.ShortcutKeyDisplayString;
 
-            Context_AudioProcessing.ShortcutKeyDisplayString = ObiForm.RefineKeyboardShortcutStringForAccessibleName(keyboardShortcuts.FormatKeyboardShorcut(keyboardShortcuts.MenuNameDictionary["mTools_AudioProcessing"].Value.ToString()));
-            Context_AudioProcessing.AccessibleName = Context_AudioProcessing.Text.Replace("&", "") + " " + Context_AudioProcessing.ShortcutKeyDisplayString;
-
             Context_ExportAudioMenuItem.ShortcutKeyDisplayString = ObiForm.RefineKeyboardShortcutStringForAccessibleName(keyboardShortcuts.FormatKeyboardShorcut(keyboardShortcuts.MenuNameDictionary["mTools_ExportSelectedAudioMenuItem"].Value.ToString()));
             Context_ExportAudioMenuItem.AccessibleName = Context_ExportAudioMenuItem.Text.Replace("&", "") + " " + Context_ExportAudioMenuItem.ShortcutKeyDisplayString;
 
@@ -4126,6 +4123,9 @@ if (thresholdAboveLastNode >= stripControl.Node.PhraseChildCount) thresholdAbove
 
             m_NormalizeToolStripMenuItem.ShortcutKeyDisplayString = ObiForm.RefineKeyboardShortcutStringForAccessibleName(keyboardShortcuts.FormatKeyboardShorcut(keyboardShortcuts.MenuNameDictionary["m_NormalizeToolStripMenuItem"].Value.ToString()));
             m_NormalizeToolStripMenuItem.AccessibleName = m_NormalizeToolStripMenuItem.Text.Replace("&", "") + " " + m_NormalizeToolStripMenuItem.ShortcutKeyDisplayString;
+
+            m_SpeechRateToolStripMenuItem.ShortcutKeyDisplayString = ObiForm.RefineKeyboardShortcutStringForAccessibleName(keyboardShortcuts.FormatKeyboardShorcut(keyboardShortcuts.MenuNameDictionary["mTools_AudioProcessing"].Value.ToString()));
+            m_SpeechRateToolStripMenuItem.AccessibleName = m_SpeechRateToolStripMenuItem.Text.Replace("&", "") + " " + m_SpeechRateToolStripMenuItem.ShortcutKeyDisplayString;
 
         }
 
@@ -5272,8 +5272,8 @@ if (thresholdAboveLastNode >= stripControl.Node.PhraseChildCount) thresholdAbove
             Context_GenerateSpeechForPageMenuItem.Enabled = mProjectView.CanGenerateSpeechForPage;
             Context_SettingsFromsilencePhraseToolStripMenuItem.Enabled = mProjectView.CanUpdatePhraseDetectionSettingsFromSilencePhrase;
             Context_ReplaceAudioMenuItem.Enabled = mProjectView.CanExportSelectedNodeAudio;
-            Context_AudioProcessing.Enabled =  Context_AudioProcessingNew.Enabled = m_ChangeVolumeToolStripMenuItem.Enabled = 
-                                       m_NormalizeToolStripMenuItem.Enabled = mProjectView.CanExportSelectedNodeAudio;
+            Context_AudioProcessingNew.Enabled = m_ChangeVolumeToolStripMenuItem.Enabled = 
+                                       m_NormalizeToolStripMenuItem.Enabled = m_SpeechRateToolStripMenuItem.Enabled = mProjectView.CanExportSelectedNodeAudio;
             m_FadeInToolStripMenuItem.Enabled = m_FadeOutToolStripMenuItem.Enabled = mProjectView.CanShowFadeInFadeOutDialog;
             ContextBeginMarkToolStripMenuItem.Enabled = mProjectView.CanBeginSpecialNote;
             ContextEndMarkToolStripMenuItem.Enabled = mProjectView.CanEndSpecialNote;
@@ -6177,17 +6177,17 @@ Block lastBlock = ActiveStrip.LastBlock ;
 
         private void Context_AudioProcessing_Click(object sender, EventArgs e)
         {
-            if (mProjectView.TransportBar.IsPlayerActive)
-            {
-                if (mProjectView.TransportBar.CurrentState == Obi.ProjectView.TransportBar.State.Playing) mProjectView.TransportBar.Pause();
-                mProjectView.TransportBar.Stop();
-            }
-            if (mProjectView.CanExportSelectedNodeAudio)
-            {
+            //if (mProjectView.TransportBar.IsPlayerActive)
+            //{
+            //    if (mProjectView.TransportBar.CurrentState == Obi.ProjectView.TransportBar.State.Playing) mProjectView.TransportBar.Pause();
+            //    mProjectView.TransportBar.Stop();
+            //}
+            //if (mProjectView.CanExportSelectedNodeAudio)
+            //{
                 
-                    mProjectView.ProcessAudio();
+            //        mProjectView.ProcessAudio();
                 
-            }
+            //}
         }
 
         private void Context_MergeWithNextSectionMenuItem_Click(object sender, EventArgs e)
@@ -6260,22 +6260,52 @@ Block lastBlock = ActiveStrip.LastBlock ;
 
         private void m_FadeInToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            if (mProjectView.TransportBar.IsPlayerActive)
+            {
+                if (mProjectView.TransportBar.CurrentState == Obi.ProjectView.TransportBar.State.Playing) mProjectView.TransportBar.Pause();
+                mProjectView.TransportBar.Stop();
+            }
             mProjectView.AudioProcessing(AudioLib.WavAudioProcessing.AudioProcessingKind.FadeIn);
         }
 
         private void m_FadeOutToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            if (mProjectView.TransportBar.IsPlayerActive)
+            {
+                if (mProjectView.TransportBar.CurrentState == Obi.ProjectView.TransportBar.State.Playing) mProjectView.TransportBar.Pause();
+                mProjectView.TransportBar.Stop();
+            }
             mProjectView.AudioProcessing(AudioLib.WavAudioProcessing.AudioProcessingKind.FadeOut);
         }
 
         private void m_NormalizeToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            if (mProjectView.TransportBar.IsPlayerActive)
+            {
+                if (mProjectView.TransportBar.CurrentState == Obi.ProjectView.TransportBar.State.Playing) mProjectView.TransportBar.Pause();
+                mProjectView.TransportBar.Stop();
+            }
             mProjectView.AudioProcessing(AudioLib.WavAudioProcessing.AudioProcessingKind.Normalize);
         }
 
         private void m_NormalizeAllToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            if (mProjectView.TransportBar.IsPlayerActive)
+            {
+                if (mProjectView.TransportBar.CurrentState == Obi.ProjectView.TransportBar.State.Playing) mProjectView.TransportBar.Pause();
+                mProjectView.TransportBar.Stop();
+            }
             mProjectView.AudioProcessing(AudioLib.WavAudioProcessing.AudioProcessingKind.Normalize, false, true);
+        }
+
+        private void m_SpeechRateToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (mProjectView.TransportBar.IsPlayerActive)
+            {
+                if (mProjectView.TransportBar.CurrentState == Obi.ProjectView.TransportBar.State.Playing) mProjectView.TransportBar.Pause();
+                mProjectView.TransportBar.Stop();
+            }
+            mProjectView.AudioProcessing(AudioLib.WavAudioProcessing.AudioProcessingKind.SoundTouch);
         }
 
      

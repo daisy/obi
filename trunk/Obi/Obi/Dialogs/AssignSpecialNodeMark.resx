@@ -238,7 +238,7 @@
     <value>m_gp_box_operation</value>
   </data>
   <data name="&gt;&gt;m_rdb_btn_SpecialPhrase.ZOrder" xml:space="preserve">
-    <value>7</value>
+    <value>8</value>
   </data>
   <data name="m_rdb_btn_RenumberPages.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -273,20 +273,47 @@
   <data name="helpProvider1.HelpNamespace" xml:space="preserve">
     <value>Obi Help.chm</value>
   </data>
+  <data name="m_rdb_btn_SpeechRate.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="m_rdb_btn_SpeechRate.Location" type="System.Drawing.Point, System.Drawing">
+    <value>157, 92</value>
+  </data>
+  <data name="m_rdb_btn_SpeechRate.Size" type="System.Drawing.Size, System.Drawing">
+    <value>88, 17</value>
+  </data>
+  <data name="m_rdb_btn_SpeechRate.TabIndex" type="System.Int32, mscorlib">
+    <value>7</value>
+  </data>
+  <data name="m_rdb_btn_SpeechRate.Text" xml:space="preserve">
+    <value>&amp;Speech Rate</value>
+  </data>
+  <data name="&gt;&gt;m_rdb_btn_SpeechRate.Name" xml:space="preserve">
+    <value>m_rdb_btn_SpeechRate</value>
+  </data>
+  <data name="&gt;&gt;m_rdb_btn_SpeechRate.Type" xml:space="preserve">
+    <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_rdb_btn_SpeechRate.Parent" xml:space="preserve">
+    <value>m_gp_box_operation</value>
+  </data>
+  <data name="&gt;&gt;m_rdb_btn_SpeechRate.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
   <data name="m_rdb_btn_Normalize.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
   <data name="m_rdb_btn_Normalize.Location" type="System.Drawing.Point, System.Drawing">
-    <value>156, 92</value>
+    <value>157, 55</value>
   </data>
   <data name="m_rdb_btn_Normalize.Size" type="System.Drawing.Size, System.Drawing">
-    <value>99, 17</value>
+    <value>71, 17</value>
   </data>
   <data name="m_rdb_btn_Normalize.TabIndex" type="System.Int32, mscorlib">
-    <value>7</value>
+    <value>6</value>
   </data>
   <data name="m_rdb_btn_Normalize.Text" xml:space="preserve">
-    <value>Normalize(New)</value>
+    <value>Normalize</value>
   </data>
   <data name="&gt;&gt;m_rdb_btn_Normalize.Name" xml:space="preserve">
     <value>m_rdb_btn_Normalize</value>
@@ -298,22 +325,22 @@
     <value>m_gp_box_operation</value>
   </data>
   <data name="&gt;&gt;m_rdb_btn_Normalize.ZOrder" xml:space="preserve">
-    <value>0</value>
+    <value>1</value>
   </data>
   <data name="m_rdb_btn_ChangeVolume.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
   <data name="m_rdb_btn_ChangeVolume.Location" type="System.Drawing.Point, System.Drawing">
-    <value>156, 55</value>
+    <value>157, 19</value>
   </data>
   <data name="m_rdb_btn_ChangeVolume.Size" type="System.Drawing.Size, System.Drawing">
-    <value>128, 17</value>
+    <value>100, 17</value>
   </data>
   <data name="m_rdb_btn_ChangeVolume.TabIndex" type="System.Int32, mscorlib">
-    <value>6</value>
+    <value>5</value>
   </data>
   <data name="m_rdb_btn_ChangeVolume.Text" xml:space="preserve">
-    <value>Change &amp;Volume(New)</value>
+    <value>Change &amp;Volume</value>
   </data>
   <data name="&gt;&gt;m_rdb_btn_ChangeVolume.Name" xml:space="preserve">
     <value>m_rdb_btn_ChangeVolume</value>
@@ -325,7 +352,7 @@
     <value>m_gp_box_operation</value>
   </data>
   <data name="&gt;&gt;m_rdb_btn_ChangeVolume.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>2</value>
   </data>
   <data name="m_rdb_Delete.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -352,7 +379,7 @@
     <value>m_gp_box_operation</value>
   </data>
   <data name="&gt;&gt;m_rdb_Delete.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>3</value>
   </data>
   <data name="m_rdb_Merge.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -379,7 +406,7 @@
     <value>m_gp_box_operation</value>
   </data>
   <data name="&gt;&gt;m_rdb_Merge.ZOrder" xml:space="preserve">
-    <value>3</value>
+    <value>4</value>
   </data>
   <data name="m_rdb_Copy.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -406,7 +433,7 @@
     <value>m_gp_box_operation</value>
   </data>
   <data name="&gt;&gt;m_rdb_Copy.ZOrder" xml:space="preserve">
-    <value>4</value>
+    <value>5</value>
   </data>
   <data name="m_rdb_Cut.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -433,7 +460,7 @@
     <value>m_gp_box_operation</value>
   </data>
   <data name="&gt;&gt;m_rdb_Cut.ZOrder" xml:space="preserve">
-    <value>5</value>
+    <value>6</value>
   </data>
   <data name="m_rtb_btn_TimeElapsed.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -460,34 +487,7 @@
     <value>m_gp_box_operation</value>
   </data>
   <data name="&gt;&gt;m_rtb_btn_TimeElapsed.ZOrder" xml:space="preserve">
-    <value>6</value>
-  </data>
-  <data name="m_rtb_btn_AudioProcessing.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="m_rtb_btn_AudioProcessing.Location" type="System.Drawing.Point, System.Drawing">
-    <value>156, 19</value>
-  </data>
-  <data name="m_rtb_btn_AudioProcessing.Size" type="System.Drawing.Size, System.Drawing">
-    <value>129, 17</value>
-  </data>
-  <data name="m_rtb_btn_AudioProcessing.TabIndex" type="System.Int32, mscorlib">
-    <value>5</value>
-  </data>
-  <data name="m_rtb_btn_AudioProcessing.Text" xml:space="preserve">
-    <value>&amp;Audio Processing(Old)</value>
-  </data>
-  <data name="&gt;&gt;m_rtb_btn_AudioProcessing.Name" xml:space="preserve">
-    <value>m_rtb_btn_AudioProcessing</value>
-  </data>
-  <data name="&gt;&gt;m_rtb_btn_AudioProcessing.Type" xml:space="preserve">
-    <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;m_rtb_btn_AudioProcessing.Parent" xml:space="preserve">
-    <value>m_gp_box_operation</value>
-  </data>
-  <data name="&gt;&gt;m_rtb_btn_AudioProcessing.ZOrder" xml:space="preserve">
-    <value>8</value>
+    <value>7</value>
   </data>
   <data name="m_gp_box_operation.Location" type="System.Drawing.Point, System.Drawing">
     <value>12, 12</value>

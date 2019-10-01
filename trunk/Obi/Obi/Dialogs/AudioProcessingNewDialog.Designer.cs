@@ -45,6 +45,7 @@ namespace Obi.Dialogs
             this.m_btn_Cancel = new System.Windows.Forms.Button();
             this.helpProvider1 = new System.Windows.Forms.HelpProvider();
             this.m_InfoToolTip = new System.Windows.Forms.ToolTip(this.components);
+            this.m_NAudioForAudioProcessing = new System.Windows.Forms.CheckBox();
             this.m_gpbox_Process.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.m_AmplifyParameter)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.m_numericUpDown1)).BeginInit();
@@ -164,12 +165,21 @@ namespace Obi.Dialogs
             this.m_btn_Cancel.UseVisualStyleBackColor = true;
             this.m_btn_Cancel.Click += new System.EventHandler(this.m_btn_Cancel_Click);
             // 
+            // m_NAudioForAudioProcessing
+            // 
+            resources.ApplyResources(this.m_NAudioForAudioProcessing, "m_NAudioForAudioProcessing");
+            this.m_NAudioForAudioProcessing.Checked = true;
+            this.m_NAudioForAudioProcessing.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.m_NAudioForAudioProcessing.Name = "m_NAudioForAudioProcessing";
+            this.m_NAudioForAudioProcessing.UseVisualStyleBackColor = true;
+            // 
             // AudioProcessingNewDialog
             // 
             this.AcceptButton = this.m_btn_OK;
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.m_btn_Cancel;
+            this.Controls.Add(this.m_NAudioForAudioProcessing);
             this.Controls.Add(this.m_btn_Cancel);
             this.Controls.Add(this.m_tb_NoiseReductionFreqency);
             this.Controls.Add(this.m_btn_OK);
@@ -203,5 +213,6 @@ namespace Obi.Dialogs
         private System.Windows.Forms.Label m_lbl_High;
         private System.Windows.Forms.Label m_lbl_Low;
         private System.Windows.Forms.Label m_lbl_Seconds;
+        private System.Windows.Forms.CheckBox m_NAudioForAudioProcessing;
     }
 }
