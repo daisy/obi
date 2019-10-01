@@ -222,7 +222,8 @@ namespace Obi
             this.m_FadeInToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.m_FadeOutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.m_NormalizeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.mTools_AudioProcessing = new System.Windows.Forms.ToolStripMenuItem();
+            this.m_NormalizeAllToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.m_SpeechRateToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mTools_ExportSelectedAudioMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mTools_CleanUnreferencedAudioMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.m_Tools_CompleteCleanupToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -240,7 +241,6 @@ namespace Obi
             this.mStatusStrip = new System.Windows.Forms.StatusStrip();
             this.mStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.mStatusProgressBar = new System.Windows.Forms.ToolStripProgressBar();
-            this.m_NormalizeAllToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mProjectView = new Obi.ProjectView.ProjectView();
             this.mMenuStrip.SuspendLayout();
             this.mStatusStrip.SuspendLayout();
@@ -1562,7 +1562,6 @@ namespace Obi
             this.m_ToolsLangPack,
             this.toolStripSeparator16,
             this.mTools_AudioProcessingNew,
-            this.mTools_AudioProcessing,
             this.mTools_ExportSelectedAudioMenuItem,
             this.mTools_CleanUnreferencedAudioMenuItem,
             this.mTools_ExportAsDAISYMenuItem,
@@ -1595,7 +1594,8 @@ namespace Obi
             this.m_FadeInToolStripMenuItem,
             this.m_FadeOutToolStripMenuItem,
             this.m_NormalizeToolStripMenuItem,
-            this.m_NormalizeAllToolStripMenuItem});
+            this.m_NormalizeAllToolStripMenuItem,
+            this.m_SpeechRateToolStripMenuItem});
             this.mTools_AudioProcessingNew.Name = "mTools_AudioProcessingNew";
             resources.ApplyResources(this.mTools_AudioProcessingNew, "mTools_AudioProcessingNew");
             // 
@@ -1623,11 +1623,17 @@ namespace Obi
             resources.ApplyResources(this.m_NormalizeToolStripMenuItem, "m_NormalizeToolStripMenuItem");
             this.m_NormalizeToolStripMenuItem.Click += new System.EventHandler(this.m_NormalizeToolStripMenuItem_Click);
             // 
-            // mTools_AudioProcessing
+            // m_NormalizeAllToolStripMenuItem
             // 
-            this.mTools_AudioProcessing.Name = "mTools_AudioProcessing";
-            resources.ApplyResources(this.mTools_AudioProcessing, "mTools_AudioProcessing");
-            this.mTools_AudioProcessing.Click += new System.EventHandler(this.mTools_AudioProcessing_Click);
+            this.m_NormalizeAllToolStripMenuItem.Name = "m_NormalizeAllToolStripMenuItem";
+            resources.ApplyResources(this.m_NormalizeAllToolStripMenuItem, "m_NormalizeAllToolStripMenuItem");
+            this.m_NormalizeAllToolStripMenuItem.Click += new System.EventHandler(this.m_NormalizeAllToolStripMenuItem_Click);
+            // 
+            // m_SpeechRateToolStripMenuItem
+            // 
+            this.m_SpeechRateToolStripMenuItem.Name = "m_SpeechRateToolStripMenuItem";
+            resources.ApplyResources(this.m_SpeechRateToolStripMenuItem, "m_SpeechRateToolStripMenuItem");
+            this.m_SpeechRateToolStripMenuItem.Click += new System.EventHandler(this.m_SpeechRateToolStripMenuItem_Click);
             // 
             // mTools_ExportSelectedAudioMenuItem
             // 
@@ -1741,12 +1747,6 @@ namespace Obi
             this.mStatusProgressBar.Name = "mStatusProgressBar";
             resources.ApplyResources(this.mStatusProgressBar, "mStatusProgressBar");
             this.mStatusProgressBar.Style = System.Windows.Forms.ProgressBarStyle.Continuous;
-            // 
-            // m_NormalizeAllToolStripMenuItem
-            // 
-            this.m_NormalizeAllToolStripMenuItem.Name = "m_NormalizeAllToolStripMenuItem";
-            resources.ApplyResources(this.m_NormalizeAllToolStripMenuItem, "m_NormalizeAllToolStripMenuItem");
-            this.m_NormalizeAllToolStripMenuItem.Click += new System.EventHandler(this.m_NormalizeAllToolStripMenuItem_Click);
             // 
             // mProjectView
             // 
@@ -1982,7 +1982,6 @@ namespace Obi
         private System.Windows.Forms.ToolStripMenuItem mForwardElapseToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mBackwardElapseToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem m_EPUB3ValidatorToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem mTools_AudioProcessing;
         private System.Windows.Forms.ToolStripMenuItem mMergeWithNextSectionToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mMultiSectionOperations;
         private System.Windows.Forms.ToolStripMenuItem MultiPhraseOperationMenuItem;
@@ -2007,6 +2006,7 @@ namespace Obi
         private System.Windows.Forms.ToolStripMenuItem m_FadeOutToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem m_NormalizeToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem m_NormalizeAllToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem m_SpeechRateToolStripMenuItem;
     }
 }
 

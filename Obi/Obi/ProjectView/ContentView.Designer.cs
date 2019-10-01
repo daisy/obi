@@ -101,7 +101,8 @@ namespace Obi.ProjectView
             this.m_FadeInToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.m_FadeOutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.m_NormalizeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.Context_AudioProcessing = new System.Windows.Forms.ToolStripMenuItem();
+            this.m_NormalizeAllToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.m_SpeechRateToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.Context_ExportReplaceAudioMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.Context_ExportAudioMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.Context_ReplaceAudioMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -113,7 +114,6 @@ namespace Obi.ProjectView
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.verticalScrollToolStripContainer1 = new Obi.ProjectView.VerticalScrollToolStripContainer();
             this.contentViewLabel1 = new Obi.ProjectView.ContentViewLabel();
-            this.m_NormalizeAllToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mContextMenuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -154,7 +154,6 @@ namespace Obi.ProjectView
             this.Context_DeleteMenuItem,
             this.toolStripSeparator5,
             this.Context_AudioProcessingNew,
-            this.Context_AudioProcessing,
             this.Context_ExportReplaceAudioMenuItem,
             this.Context_PropertiesMenuItem});
             this.mContextMenuStrip.Name = "mContextMenuStrip";
@@ -591,7 +590,8 @@ namespace Obi.ProjectView
             this.m_FadeInToolStripMenuItem,
             this.m_FadeOutToolStripMenuItem,
             this.m_NormalizeToolStripMenuItem,
-            this.m_NormalizeAllToolStripMenuItem});
+            this.m_NormalizeAllToolStripMenuItem,
+            this.m_SpeechRateToolStripMenuItem});
             this.Context_AudioProcessingNew.Name = "Context_AudioProcessingNew";
             resources.ApplyResources(this.Context_AudioProcessingNew, "Context_AudioProcessingNew");
             // 
@@ -619,11 +619,17 @@ namespace Obi.ProjectView
             resources.ApplyResources(this.m_NormalizeToolStripMenuItem, "m_NormalizeToolStripMenuItem");
             this.m_NormalizeToolStripMenuItem.Click += new System.EventHandler(this.m_NormalizeToolStripMenuItem_Click);
             // 
-            // Context_AudioProcessing
+            // m_NormalizeAllToolStripMenuItem
             // 
-            this.Context_AudioProcessing.Name = "Context_AudioProcessing";
-            resources.ApplyResources(this.Context_AudioProcessing, "Context_AudioProcessing");
-            this.Context_AudioProcessing.Click += new System.EventHandler(this.Context_AudioProcessing_Click);
+            this.m_NormalizeAllToolStripMenuItem.Name = "m_NormalizeAllToolStripMenuItem";
+            resources.ApplyResources(this.m_NormalizeAllToolStripMenuItem, "m_NormalizeAllToolStripMenuItem");
+            this.m_NormalizeAllToolStripMenuItem.Click += new System.EventHandler(this.m_NormalizeAllToolStripMenuItem_Click);
+            // 
+            // m_SpeechRateToolStripMenuItem
+            // 
+            this.m_SpeechRateToolStripMenuItem.Name = "m_SpeechRateToolStripMenuItem";
+            resources.ApplyResources(this.m_SpeechRateToolStripMenuItem, "m_SpeechRateToolStripMenuItem");
+            this.m_SpeechRateToolStripMenuItem.Click += new System.EventHandler(this.m_SpeechRateToolStripMenuItem_Click);
             // 
             // Context_ExportReplaceAudioMenuItem
             // 
@@ -700,12 +706,6 @@ namespace Obi.ProjectView
             this.contentViewLabel1.Name_SectionDisplayed = "No section selected.";
             this.contentViewLabel1.sectionSelected = false;
             this.contentViewLabel1.zoomFactor = 1F;
-            // 
-            // m_NormalizeAllToolStripMenuItem
-            // 
-            this.m_NormalizeAllToolStripMenuItem.Name = "m_NormalizeAllToolStripMenuItem";
-            resources.ApplyResources(this.m_NormalizeAllToolStripMenuItem, "m_NormalizeAllToolStripMenuItem");
-            this.m_NormalizeAllToolStripMenuItem.Click += new System.EventHandler(this.m_NormalizeAllToolStripMenuItem_Click);
             // 
             // ContentView
             // 
@@ -797,7 +797,6 @@ namespace Obi.ProjectView
         private System.Windows.Forms.ToolStripMenuItem Context_Delete_deleteFollowingPhrasesMenuItem;
         private System.Windows.Forms.ToolStripMenuItem Context_ExportAudioMenuItem;
         private System.Windows.Forms.ToolStripMenuItem Context_ReplaceAudioMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem Context_AudioProcessing;
         private System.Windows.Forms.ToolStripMenuItem Context_MergeWithNextSectionMenuItem;
         private System.Windows.Forms.ToolStripMenuItem Context_MultiSectionOperations;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
@@ -813,5 +812,6 @@ namespace Obi.ProjectView
         private System.Windows.Forms.ToolStripMenuItem m_FadeOutToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem m_NormalizeToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem m_NormalizeAllToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem m_SpeechRateToolStripMenuItem;
     }
 }

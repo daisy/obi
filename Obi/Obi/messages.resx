@@ -3139,4 +3139,16 @@ Error text: {1}</value>
   <data name="NormalizationCompleted" xml:space="preserve">
     <value>Normalization Completed</value>
   </data>
+  <data name="SpeechRateOfSeclection" xml:space="preserve">
+    <value>Change speech rate of selected audio:</value>
+  </data>
+  <data name="SpeechRate" xml:space="preserve">
+    <value>Speech Rate</value>
+  </data>
+  <data name="SpeechRateAceesibleName" xml:space="preserve">
+    <value>Set Parameter to Increase/Decrease speech rate</value>
+  </data>
+  <data name="SpeechRateAceesibleNameForSlider" xml:space="preserve">
+    <value>Slide to Increase/Decrease speech rate. Right sliding will increase speech rate</value>
+  </data>
 </root>
