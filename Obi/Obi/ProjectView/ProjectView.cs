@@ -6222,6 +6222,7 @@ for (int j = 0;
                             {
                                 if (this.Presentation != null && this.Presentation.FirstSection != null)
                                 {
+                                    m_IsAudioProcessingChecked = true;
                                     SectionNode tempSectionNode = this.Presentation.FirstSection;
                                     AudioLib.WavAudioProcessing audioPorcess = new AudioLib.WavAudioProcessing();
                                     string audioProcessedFile = null;
