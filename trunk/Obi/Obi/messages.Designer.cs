@@ -7597,6 +7597,24 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The value 1.0 means 0dB gain..
+        /// </summary>
+        internal static string TextInfoForNormalization {
+            get {
+                return ResourceManager.GetString("TextInfoForNormalization", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The value 1.0 means there will be no change in the speech rate..
+        /// </summary>
+        internal static string TextInfoForSpeechRate {
+            get {
+                return ResourceManager.GetString("TextInfoForSpeechRate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Low:.
         /// </summary>
         internal static string TextVuMeter_LowIndicator {

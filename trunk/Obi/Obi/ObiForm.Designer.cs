@@ -222,7 +222,6 @@ namespace Obi
             this.m_FadeInToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.m_FadeOutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.m_NormalizeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.m_NormalizeAllToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.m_SpeechRateToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mTools_ExportSelectedAudioMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mTools_CleanUnreferencedAudioMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -1594,7 +1593,6 @@ namespace Obi
             this.m_FadeInToolStripMenuItem,
             this.m_FadeOutToolStripMenuItem,
             this.m_NormalizeToolStripMenuItem,
-            this.m_NormalizeAllToolStripMenuItem,
             this.m_SpeechRateToolStripMenuItem});
             this.mTools_AudioProcessingNew.Name = "mTools_AudioProcessingNew";
             resources.ApplyResources(this.mTools_AudioProcessingNew, "mTools_AudioProcessingNew");
@@ -1622,12 +1620,6 @@ namespace Obi
             this.m_NormalizeToolStripMenuItem.Name = "m_NormalizeToolStripMenuItem";
             resources.ApplyResources(this.m_NormalizeToolStripMenuItem, "m_NormalizeToolStripMenuItem");
             this.m_NormalizeToolStripMenuItem.Click += new System.EventHandler(this.m_NormalizeToolStripMenuItem_Click);
-            // 
-            // m_NormalizeAllToolStripMenuItem
-            // 
-            this.m_NormalizeAllToolStripMenuItem.Name = "m_NormalizeAllToolStripMenuItem";
-            resources.ApplyResources(this.m_NormalizeAllToolStripMenuItem, "m_NormalizeAllToolStripMenuItem");
-            this.m_NormalizeAllToolStripMenuItem.Click += new System.EventHandler(this.m_NormalizeAllToolStripMenuItem_Click);
             // 
             // m_SpeechRateToolStripMenuItem
             // 
@@ -2005,7 +1997,6 @@ namespace Obi
         private System.Windows.Forms.ToolStripMenuItem m_FadeInToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem m_FadeOutToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem m_NormalizeToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem m_NormalizeAllToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem m_SpeechRateToolStripMenuItem;
     }
 }
