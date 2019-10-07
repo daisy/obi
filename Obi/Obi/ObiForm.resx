@@ -1914,12 +1914,6 @@
   <data name="m_NormalizeToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Normalize</value>
   </data>
-  <data name="m_NormalizeAllToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>232, 22</value>
-  </data>
-  <data name="m_NormalizeAllToolStripMenuItem.Text" xml:space="preserve">
-    <value>Normalize &amp;All</value>
-  </data>
   <data name="m_SpeechRateToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>232, 22</value>
   </data>
@@ -2143,7 +2137,7 @@
     <value>mProjectView</value>
   </data>
   <data name="&gt;&gt;mProjectView.Type" xml:space="preserve">
-    <value>Obi.ProjectView.ProjectView, Obi, Version=4.4.7.36990, Culture=neutral, PublicKeyToken=null</value>
+    <value>Obi.ProjectView.ProjectView, Obi, Version=4.4.7.23941, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;mProjectView.Parent" xml:space="preserve">
     <value>$this</value>
@@ -3569,12 +3563,6 @@
     <value>m_NormalizeToolStripMenuItem</value>
   </data>
   <data name="&gt;&gt;m_NormalizeToolStripMenuItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;m_NormalizeAllToolStripMenuItem.Name" xml:space="preserve">
-    <value>m_NormalizeAllToolStripMenuItem</value>
-  </data>
-  <data name="&gt;&gt;m_NormalizeAllToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;m_SpeechRateToolStripMenuItem.Name" xml:space="preserve">

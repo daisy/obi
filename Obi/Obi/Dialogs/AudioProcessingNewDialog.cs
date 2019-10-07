@@ -27,7 +27,7 @@ namespace Obi.Dialogs
             }
 
         }
-        public AudioProcessingNewDialog(AudioLib.WavAudioProcessing.AudioProcessingKind typeOfAudioProcessing, Settings settings, double durationOfFadeInOut, bool audioProcessingAll = false)
+        public AudioProcessingNewDialog(AudioLib.WavAudioProcessing.AudioProcessingKind typeOfAudioProcessing, Settings settings, double durationOfFadeInOut)
         {
             InitializeComponent();
 
@@ -70,6 +70,7 @@ namespace Obi.Dialogs
             {
                 m_lbl_Process.Text = Localizer.Message("NormalizeProcess");
                 this.Text = Localizer.Message("Normalize");
+                m_txt_info.Text = Localizer.Message("TextInfoForNormalization");
                 this.AccessibleName = Localizer.Message("Normalize");
                 m_numericUpDown1.AccessibleName = Localizer.Message("NormalizeAceesibleName");
                 m_AmplifyParameter.AccessibleName = Localizer.Message("NormalizeAceesibleNameForSlider");
@@ -78,6 +79,7 @@ namespace Obi.Dialogs
             {
                 m_lbl_Process.Text = Localizer.Message("SpeechRateOfSeclection");
                 this.Text = Localizer.Message("SpeechRate");
+                m_txt_info.Text = Localizer.Message("TextInfoForSpeechRate");
                 this.AccessibleName = Localizer.Message("SpeechRate");
                 m_numericUpDown1.AccessibleName = Localizer.Message("SpeechRateAceesibleName");
                 m_AmplifyParameter.AccessibleName = Localizer.Message("SpeechRateAceesibleNameForSlider");
@@ -85,11 +87,6 @@ namespace Obi.Dialogs
             }
             m_cb_Process.SelectedIndex = 0;
             m_InfoToolTip.SetToolTip(m_txt_info, m_txt_info.Text);
-            if (audioProcessingAll)
-            {
-                m_NAudioForAudioProcessing.Visible = false;
-            }
-
             helpProvider1.HelpNamespace = Localizer.Message("CHMhelp_file_name");
             helpProvider1.SetHelpNavigator(this, HelpNavigator.Topic);
             helpProvider1.SetHelpKeyword(this, "HTML Files/Creating a DTB/Working with Audio/Audio processing.htm");
@@ -118,18 +115,7 @@ namespace Obi.Dialogs
             }
         }
 
-        //public Obi.Audio.AudioProcessing.AudioProcessingKind AudioProcessNaudio
-        //{
-        //    get
-        //    {
-        //        int index = m_cb_Process.SelectedIndex;
-        //        return index == 0 ? Obi.Audio.AudioProcessing.AudioProcessingKind.Amplify :
-        //            index == 1 ? Audio.AudioProcessing.AudioProcessingKind.FadeIn :
-        //            index == 2 ? Audio.AudioProcessing.AudioProcessingKind.FadeOut :
-        //            index == 3 ? Audio.AudioProcessing.AudioProcessingKind.Normalize :
-        //            Audio.AudioProcessing.AudioProcessingKind.NoiseReduction;
-        //    }
-        //}
+     
 
 
         public float AudioProcessingParameter

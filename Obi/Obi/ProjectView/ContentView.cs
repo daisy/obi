@@ -6288,15 +6288,6 @@ Block lastBlock = ActiveStrip.LastBlock ;
             mProjectView.AudioProcessing(AudioLib.WavAudioProcessing.AudioProcessingKind.Normalize);
         }
 
-        private void m_NormalizeAllToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            if (mProjectView.TransportBar.IsPlayerActive)
-            {
-                if (mProjectView.TransportBar.CurrentState == Obi.ProjectView.TransportBar.State.Playing) mProjectView.TransportBar.Pause();
-                mProjectView.TransportBar.Stop();
-            }
-            mProjectView.AudioProcessing(AudioLib.WavAudioProcessing.AudioProcessingKind.Normalize, false, true);
-        }
 
         private void m_SpeechRateToolStripMenuItem_Click(object sender, EventArgs e)
         {
