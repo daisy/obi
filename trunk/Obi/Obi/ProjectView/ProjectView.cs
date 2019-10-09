@@ -6200,6 +6200,14 @@ for (int j = 0;
                         this.ProcessAudio(audioProcessingNaudioKind, val);
                     else
                         this.ProcessAudioForMultiplePhrases(audioProcessingNaudioKind, val);
+                    m_IsAudioprocessingPerformed = true;
+                    if (nodeToSelect is SectionNode)
+                    {
+                        if (audioProcessingKind == AudioLib.WavAudioProcessing.AudioProcessingKind.Normalize)
+                            MessageBox.Show(Localizer.Message("NormalizationCompleted"), Localizer.Message("information_caption"), MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        else if (audioProcessingKind == AudioLib.WavAudioProcessing.AudioProcessingKind.SoundTouch)
+                            MessageBox.Show(Localizer.Message("SpeechRateCompleted"), Localizer.Message("information_caption"), MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
                 }
                 else
                 {
@@ -6251,7 +6259,7 @@ for (int j = 0;
                             if (audioFileFullPath != null)
                             {
 
-                                if (audioProcessedFile != null && System.IO.File.Exists(audioFileFullPath) && System.IO.File.Exists(audioProcessedFile))
+                                if (audioProcessedFile != null && nodeToSelect != null && System.IO.File.Exists(audioFileFullPath) && System.IO.File.Exists(audioProcessedFile))
                                 {
                                     ReplaceAudioOfSelectedNode(audioProcessedFile, true, nodeToSelect);
                                     m_IsAudioprocessingPerformed = true;
@@ -6263,6 +6271,13 @@ for (int j = 0;
                                 }
                                 m_IsAudioProcessingChecked = false;
 
+                            }
+                            if (nodeToSelect is SectionNode)
+                            {
+                                if (audioProcessingKind == AudioLib.WavAudioProcessing.AudioProcessingKind.Normalize)
+                                    MessageBox.Show(Localizer.Message("NormalizationCompleted"), Localizer.Message("information_caption"), MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                else if (audioProcessingKind == AudioLib.WavAudioProcessing.AudioProcessingKind.Amplify)
+                                    MessageBox.Show(Localizer.Message("ChangeVolumeCompleted"), Localizer.Message("information_caption"), MessageBoxButtons.OK, MessageBoxIcon.Information);
                             }
                         }
 

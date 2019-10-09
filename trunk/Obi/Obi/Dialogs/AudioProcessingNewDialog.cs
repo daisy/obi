@@ -11,6 +11,7 @@ namespace Obi.Dialogs
     public partial class AudioProcessingNewDialog : Form
     {
         private bool m_IsAudioProcessingParameterInSeconds = false;
+        private AudioLib.WavAudioProcessing.AudioProcessingKind m_AudioProcessingType;
         public AudioProcessingNewDialog(Settings settings)
         {
             InitializeComponent();
@@ -31,6 +32,7 @@ namespace Obi.Dialogs
         {
             InitializeComponent();
 
+            m_AudioProcessingType = typeOfAudioProcessing;
             m_txt_info.Text = Localizer.Message("AudioProcessing_InfoText");
             if (AudioLib.WavAudioProcessing.AudioProcessingKind.FadeIn == typeOfAudioProcessing || AudioLib.WavAudioProcessing.AudioProcessingKind.FadeOut == typeOfAudioProcessing)
             {
@@ -74,6 +76,7 @@ namespace Obi.Dialogs
                 this.AccessibleName = Localizer.Message("Normalize");
                 m_numericUpDown1.AccessibleName = Localizer.Message("NormalizeAceesibleName");
                 m_AmplifyParameter.AccessibleName = Localizer.Message("NormalizeAceesibleNameForSlider");
+                m_NAudioForAudioProcessing.Visible = true;
             }
             else if (AudioLib.WavAudioProcessing.AudioProcessingKind.SoundTouch == typeOfAudioProcessing)
             {
@@ -84,6 +87,7 @@ namespace Obi.Dialogs
                 m_numericUpDown1.AccessibleName = Localizer.Message("SpeechRateAceesibleName");
                 m_AmplifyParameter.AccessibleName = Localizer.Message("SpeechRateAceesibleNameForSlider");
                 m_NAudioForAudioProcessing.Visible = false;
+                m_numericUpDown1.Minimum = 0.6M;
             }
             m_cb_Process.SelectedIndex = 0;
             m_InfoToolTip.SetToolTip(m_txt_info, m_txt_info.Text);
@@ -169,7 +173,7 @@ namespace Obi.Dialogs
 
         private void m_numericUpDown1_ValueChanged(object sender, EventArgs e)
         {
-            if (this.ActiveControl == m_numericUpDown1)
+            if (this.ActiveControl == m_numericUpDown1 && m_AudioProcessingType != AudioLib.WavAudioProcessing.AudioProcessingKind.SoundTouch)
             {
                 if (!m_IsAudioProcessingParameterInSeconds)
                 {
@@ -189,11 +193,33 @@ namespace Obi.Dialogs
                         m_AmplifyParameter.Value = 3;
                 }
             }
+            else if (this.ActiveControl == m_numericUpDown1 && m_AudioProcessingType == AudioLib.WavAudioProcessing.AudioProcessingKind.SoundTouch)
+            {
+                if (!m_IsAudioProcessingParameterInSeconds)
+                {
+            
+                    if (m_numericUpDown1.Value > (decimal)0.60 && m_numericUpDown1.Value <= (decimal)0.70)
+                        m_AmplifyParameter.Value = -3;
+                    else if (m_numericUpDown1.Value > (decimal)0.70 && m_numericUpDown1.Value <= (decimal)0.80)
+                        m_AmplifyParameter.Value = -2;
+                    else if (m_numericUpDown1.Value > (decimal)0.80 && m_numericUpDown1.Value <= (decimal)0.90)
+                        m_AmplifyParameter.Value = -1;
+                    else if (m_numericUpDown1.Value > (decimal)0.90 && m_numericUpDown1.Value <= (decimal)1)
+                        m_AmplifyParameter.Value = 0;
+                    else if (m_numericUpDown1.Value > 1 && m_numericUpDown1.Value <= 2)
+                        m_AmplifyParameter.Value = 1;
+                    else if (m_numericUpDown1.Value > 2 && m_numericUpDown1.Value <= 3)
+                        m_AmplifyParameter.Value = 2;
+                    else if (m_numericUpDown1.Value > 3 && m_numericUpDown1.Value <= 4)
+                        m_AmplifyParameter.Value = 3;
+                }
+            }
+
         }
 
         private void m_AmplifyParameter_ValueChanged(object sender, EventArgs e)
         {
-            if (this.ActiveControl == m_AmplifyParameter)
+            if (this.ActiveControl == m_AmplifyParameter && m_AudioProcessingType != AudioLib.WavAudioProcessing.AudioProcessingKind.SoundTouch)
             {
                 float value = 0;
                 if (m_AmplifyParameter.Value == 0)
@@ -223,6 +249,39 @@ namespace Obi.Dialogs
                 else if (m_AmplifyParameter.Value == -3)
                 {
                     value = (float)0.25;
+                }
+                m_numericUpDown1.Value = (decimal)value;
+            }
+            else if (this.ActiveControl == m_AmplifyParameter && m_AudioProcessingType == AudioLib.WavAudioProcessing.AudioProcessingKind.SoundTouch)
+            {
+                float value = 0;
+                if (m_AmplifyParameter.Value == 0)
+                {
+                    value = 1;
+                }
+                else if (m_AmplifyParameter.Value == 1)
+                {
+                    value = 2;
+                }
+                else if (m_AmplifyParameter.Value == 2)
+                {
+                    value = 3;
+                }
+                else if (m_AmplifyParameter.Value == 3)
+                {
+                    value = 4;
+                }
+                else if (m_AmplifyParameter.Value == -1)
+                {
+                    value = (float)0.90;
+                }
+                else if (m_AmplifyParameter.Value == -2)
+                {
+                    value = (float)0.80;
+                }
+                else if (m_AmplifyParameter.Value == -3)
+                {
+                    value = (float)0.70;
                 }
                 m_numericUpDown1.Value = (decimal)value;
             }

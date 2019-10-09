@@ -862,6 +862,15 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Volume changed for selected section.
+        /// </summary>
+        internal static string ChangeVolumeCompleted {
+            get {
+                return ResourceManager.GetString("ChangeVolumeCompleted", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to {0}. Please select from the following options..
         /// </summary>
         internal static string CheckUpdate_LabelText {
@@ -4732,7 +4741,7 @@ namespace Obi {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Normalization Completed.
+        ///   Looks up a localized string similar to Normalization completed.
         /// </summary>
         internal static string NormalizationCompleted {
             get {
@@ -7368,6 +7377,15 @@ namespace Obi {
         internal static string SpeechRateAceesibleNameForSlider {
             get {
                 return ResourceManager.GetString("SpeechRateAceesibleNameForSlider", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Speech Rate changed for selected section.
+        /// </summary>
+        internal static string SpeechRateCompleted {
+            get {
+                return ResourceManager.GetString("SpeechRateCompleted", resourceCulture);
             }
         }
         

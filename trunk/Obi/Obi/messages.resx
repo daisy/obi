@@ -3137,7 +3137,13 @@ Error text: {1}</value>
     <value>You have performed audio processing. It is recommended to perform Cleanup. Press Yes if you want to perform Cleanup now. Cleanup will also save your project. If you want to do it later manually press No.</value>
   </data>
   <data name="NormalizationCompleted" xml:space="preserve">
-    <value>Normalization Completed</value>
+    <value>Normalization completed</value>
+  </data>
+  <data name="ChangeVolumeCompleted" xml:space="preserve">
+    <value>Volume changed for selected section</value>
+  </data>
+  <data name="SpeechRateCompleted" xml:space="preserve">
+    <value>Speech Rate changed for selected section</value>
   </data>
   <data name="SpeechRateOfSeclection" xml:space="preserve">
     <value>Change speech rate of selected audio:</value>
