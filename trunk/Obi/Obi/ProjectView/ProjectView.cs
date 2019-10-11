@@ -6207,7 +6207,7 @@ for (int j = 0;
                     else
                         this.ProcessAudioForMultiplePhrases(audioProcessingNaudioKind, val);
                     m_IsAudioprocessingPerformed = true;
-                    if (nodeToSelect is SectionNode)
+                    if (nodeToSelect is SectionNode || IsAudioProcessingOnMultiPhrases)
                     {
                         if (audioProcessingKind == AudioLib.WavAudioProcessing.AudioProcessingKind.Normalize)
                             MessageBox.Show(Localizer.Message("NormalizationCompleted"), Localizer.Message("information_caption"), MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -6262,6 +6262,9 @@ for (int j = 0;
                             progress.ShowDialog();
                             if (progress.Exception != null) throw progress.Exception;
 
+                            System.Diagnostics.Stopwatch watch = new System.Diagnostics.Stopwatch();
+                            watch.Start();
+
                             if (audioFileFullPath != null)
                             {
 
@@ -6278,6 +6281,8 @@ for (int j = 0;
                                 m_IsAudioProcessingChecked = false;
 
                             }
+                            watch.Stop();
+                            Console.WriteLine("Time elapsed when progress bar is not shown: {0:hh\\:mm\\:ss}", watch.Elapsed);
                             if (nodeToSelect is SectionNode)
                             {
                                 if (audioProcessingKind == AudioLib.WavAudioProcessing.AudioProcessingKind.Normalize)
@@ -6314,7 +6319,10 @@ for (int j = 0;
                             {
                                 System.IO.Directory.Delete(directoryFullPath, true);
                             }
-
+                            if (audioProcessingKind == AudioLib.WavAudioProcessing.AudioProcessingKind.Normalize)
+                                MessageBox.Show(Localizer.Message("NormalizationCompleted"), Localizer.Message("information_caption"), MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            else if (audioProcessingKind == AudioLib.WavAudioProcessing.AudioProcessingKind.Amplify)
+                                MessageBox.Show(Localizer.Message("ChangeVolumeCompleted"), Localizer.Message("information_caption"), MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                         }
                         catch (System.Exception ex)

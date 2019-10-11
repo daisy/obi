@@ -40,7 +40,6 @@ namespace Obi.Dialogs
             this.m_lbl_Parameters = new System.Windows.Forms.Label();
             this.m_lbl_Process = new System.Windows.Forms.Label();
             this.m_tb_NoiseReductionFreqency = new System.Windows.Forms.TextBox();
-            this.m_cb_Process = new System.Windows.Forms.ComboBox();
             this.m_btn_OK = new System.Windows.Forms.Button();
             this.m_btn_Cancel = new System.Windows.Forms.Button();
             this.helpProvider1 = new System.Windows.Forms.HelpProvider();
@@ -137,19 +136,6 @@ namespace Obi.Dialogs
             resources.ApplyResources(this.m_tb_NoiseReductionFreqency, "m_tb_NoiseReductionFreqency");
             this.m_tb_NoiseReductionFreqency.Name = "m_tb_NoiseReductionFreqency";
             // 
-            // m_cb_Process
-            // 
-            this.m_cb_Process.FormattingEnabled = true;
-            this.m_cb_Process.Items.AddRange(new object[] {
-            resources.GetString("m_cb_Process.Items"),
-            resources.GetString("m_cb_Process.Items1"),
-            resources.GetString("m_cb_Process.Items2"),
-            resources.GetString("m_cb_Process.Items3"),
-            resources.GetString("m_cb_Process.Items4")});
-            resources.ApplyResources(this.m_cb_Process, "m_cb_Process");
-            this.m_cb_Process.Name = "m_cb_Process";
-            this.m_cb_Process.SelectedIndexChanged += new System.EventHandler(this.m_cb_Process_SelectedIndexChanged);
-            // 
             // m_btn_OK
             // 
             resources.ApplyResources(this.m_btn_OK, "m_btn_OK");
@@ -184,7 +170,6 @@ namespace Obi.Dialogs
             this.Controls.Add(this.m_tb_NoiseReductionFreqency);
             this.Controls.Add(this.m_btn_OK);
             this.Controls.Add(this.m_gpbox_Process);
-            this.Controls.Add(this.m_cb_Process);
             this.MaximizeBox = false;
             this.Name = "AudioProcessingNewDialog";
             this.m_gpbox_Process.ResumeLayout(false);
@@ -199,7 +184,6 @@ namespace Obi.Dialogs
         #endregion
 
         private System.Windows.Forms.GroupBox m_gpbox_Process;
-        private System.Windows.Forms.ComboBox m_cb_Process;
         private System.Windows.Forms.Label m_lbl_Process;
         private System.Windows.Forms.NumericUpDown m_numericUpDown1;
         private System.Windows.Forms.Label m_lbl_Parameters;
