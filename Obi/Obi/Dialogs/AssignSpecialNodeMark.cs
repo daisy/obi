@@ -147,5 +147,10 @@ namespace Obi.Dialogs
             m_cmbBoxSpecialNode.Visible = false;
         }
 
+        private void m_rdb_btn_SpeechRate_CheckedChanged(object sender, EventArgs e)
+        {
+            m_cmbBoxSpecialNode.Visible = false;
+        }
+
     }
 }

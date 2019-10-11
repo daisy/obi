@@ -36,6 +36,7 @@ namespace Obi.Dialogs
             this.m_rdb_btn_RenumberPages = new System.Windows.Forms.RadioButton();
             this.helpProvider1 = new System.Windows.Forms.HelpProvider();
             this.m_gp_box_operation = new System.Windows.Forms.GroupBox();
+            this.m_rdb_btn_SpeechRate = new System.Windows.Forms.RadioButton();
             this.m_rdb_btn_Normalize = new System.Windows.Forms.RadioButton();
             this.m_rdb_btn_ChangeVolume = new System.Windows.Forms.RadioButton();
             this.m_rdb_Delete = new System.Windows.Forms.RadioButton();
@@ -43,7 +44,6 @@ namespace Obi.Dialogs
             this.m_rdb_Copy = new System.Windows.Forms.RadioButton();
             this.m_rdb_Cut = new System.Windows.Forms.RadioButton();
             this.m_rtb_btn_TimeElapsed = new System.Windows.Forms.RadioButton();
-            this.m_rdb_btn_SpeechRate = new System.Windows.Forms.RadioButton();
             this.m_gp_box_operation.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -112,6 +112,13 @@ namespace Obi.Dialogs
             this.helpProvider1.SetShowHelp(this.m_gp_box_operation, ((bool)(resources.GetObject("m_gp_box_operation.ShowHelp"))));
             this.m_gp_box_operation.TabStop = false;
             // 
+            // m_rdb_btn_SpeechRate
+            // 
+            resources.ApplyResources(this.m_rdb_btn_SpeechRate, "m_rdb_btn_SpeechRate");
+            this.m_rdb_btn_SpeechRate.Name = "m_rdb_btn_SpeechRate";
+            this.m_rdb_btn_SpeechRate.UseVisualStyleBackColor = true;
+            this.m_rdb_btn_SpeechRate.CheckedChanged += new System.EventHandler(this.m_rdb_btn_SpeechRate_CheckedChanged);
+            // 
             // m_rdb_btn_Normalize
             // 
             resources.ApplyResources(this.m_rdb_btn_Normalize, "m_rdb_btn_Normalize");
@@ -160,13 +167,6 @@ namespace Obi.Dialogs
             this.m_rtb_btn_TimeElapsed.Name = "m_rtb_btn_TimeElapsed";
             this.m_rtb_btn_TimeElapsed.UseVisualStyleBackColor = true;
             this.m_rtb_btn_TimeElapsed.CheckedChanged += new System.EventHandler(this.m_rtb_btn_TimeElapsed_CheckedChanged);
-            // 
-            // m_rdb_btn_SpeechRate
-            // 
-            resources.ApplyResources(this.m_rdb_btn_SpeechRate, "m_rdb_btn_SpeechRate");
-            this.m_rdb_btn_SpeechRate.Name = "m_rdb_btn_SpeechRate";
-            this.m_rdb_btn_SpeechRate.TabStop = true;
-            this.m_rdb_btn_SpeechRate.UseVisualStyleBackColor = true;
             // 
             // AssignSpecialNodeMark
             // 

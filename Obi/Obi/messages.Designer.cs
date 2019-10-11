@@ -862,7 +862,7 @@ namespace Obi {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Volume changed for selected section.
+        ///   Looks up a localized string similar to Volume changed successfully.
         /// </summary>
         internal static string ChangeVolumeCompleted {
             get {
@@ -4741,7 +4741,7 @@ namespace Obi {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Normalization completed.
+        ///   Looks up a localized string similar to Normalization completed successfully.
         /// </summary>
         internal static string NormalizationCompleted {
             get {
@@ -7381,7 +7381,7 @@ namespace Obi {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Speech Rate changed for selected section.
+        ///   Looks up a localized string similar to Speech Rate changed successfully.
         /// </summary>
         internal static string SpeechRateCompleted {
             get {

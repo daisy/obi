@@ -15,7 +15,6 @@ namespace Obi.Dialogs
         public AudioProcessingNewDialog(Settings settings)
         {
             InitializeComponent();
-            m_cb_Process.SelectedIndex = 0;
             m_txt_info.Text = Localizer.Message("AudioProcessing_InfoText");
             m_InfoToolTip.SetToolTip(m_txt_info, m_txt_info.Text);
 
@@ -89,7 +88,6 @@ namespace Obi.Dialogs
                 m_NAudioForAudioProcessing.Visible = false;
                 m_numericUpDown1.Minimum = 0.6M;
             }
-            m_cb_Process.SelectedIndex = 0;
             m_InfoToolTip.SetToolTip(m_txt_info, m_txt_info.Text);
             helpProvider1.HelpNamespace = Localizer.Message("CHMhelp_file_name");
             helpProvider1.SetHelpNavigator(this, HelpNavigator.Topic);
@@ -108,17 +106,7 @@ namespace Obi.Dialogs
             }
         }
 
-        public Obi.Audio.AudioFormatConverter.AudioProcessingKind AudioProcess
-        {
-            get
-            {
-                int index = m_cb_Process.SelectedIndex;
-                return index == 0 ? Obi.Audio.AudioFormatConverter.AudioProcessingKind.Amplify :
-                    index == 1 ? Audio.AudioFormatConverter.AudioProcessingKind.Normalize :
-                    Audio.AudioFormatConverter.AudioProcessingKind.SoundTouch;
-            }
-        }
-
+       
      
 
 
@@ -152,24 +140,7 @@ namespace Obi.Dialogs
             Close();
         }
 
-        private void m_cb_Process_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            int index = m_cb_Process.SelectedIndex;
-            if (index == 1 || index == 2 || index == 3 || index == 4)
-            {
-                m_numericUpDown1.Visible = false;
-                if (index == 4)
-                {
-                    m_tb_NoiseReductionFreqency.Visible = true;
-                    m_tb_NoiseReductionFreqency.Location = m_numericUpDown1.Location;
-                }
-            }
-            else
-            {
-                m_numericUpDown1.Visible = true;
-                m_tb_NoiseReductionFreqency.Visible = false;
-            }
-        }
+      
 
         private void m_numericUpDown1_ValueChanged(object sender, EventArgs e)
         {
