@@ -6262,9 +6262,6 @@ for (int j = 0;
                             progress.ShowDialog();
                             if (progress.Exception != null) throw progress.Exception;
 
-                            System.Diagnostics.Stopwatch watch = new System.Diagnostics.Stopwatch();
-                            watch.Start();
-
                             if (audioFileFullPath != null)
                             {
 
@@ -6281,8 +6278,6 @@ for (int j = 0;
                                 m_IsAudioProcessingChecked = false;
 
                             }
-                            watch.Stop();
-                            Console.WriteLine("Time elapsed when progress bar is not shown: {0:hh\\:mm\\:ss}", watch.Elapsed);
                             if (nodeToSelect is SectionNode)
                             {
                                 if (audioProcessingKind == AudioLib.WavAudioProcessing.AudioProcessingKind.Normalize)
