@@ -2868,4 +2868,31 @@ tester "Figer la largeur du volet du contenu" ?(Recommandé)</value>
   <data name="CleanUpAfterAudioProcessing" xml:space="preserve">
     <value>Vous venez d'opérer un traitement sur l'audio. Il est recommandé de procéder à un nettoyage. Appuyez sur Oui si vous souhaitez lancer le Nettoyage dès maintenant. Le nettoyage sauvegardera également votre projet. Appuyez sur Non si vous souhaitez le lancer ultérieurement.</value>
   </data>
+  <data name="NormalizationCompleted" xml:space="preserve">
+    <value>Normalisation terminée avec succès</value>
+  </data>
+  <data name="ChangeVolumeCompleted" xml:space="preserve">
+    <value>Volume modifié avec succès</value>
+  </data>
+  <data name="SpeechRateCompleted" xml:space="preserve">
+    <value>Speech Rate modifié avec succès</value>
+  </data>
+  <data name="SpeechRateOfSeclection" xml:space="preserve">
+    <value>Changer le débit vocal de l'audio sélectionné:</value>
+  </data>
+  <data name="SpeechRate" xml:space="preserve">
+    <value>Speech Rate</value>
+  </data>
+  <data name="SpeechRateAceesibleName" xml:space="preserve">
+    <value>Définir le paramètre pour augmenter / diminuer le débit de la parole</value>
+  </data>
+  <data name="SpeechRateAceesibleNameForSlider" xml:space="preserve">
+    <value>Faites glisser pour augmenter / diminuer le débit de la parole. Un glissement droit augmentera le débit de la parole</value>
+  </data>
+  <data name="TextInfoForNormalization" xml:space="preserve">
+    <value>La valeur 1.0 signifie un gain de 0 dB.</value>
+  </data>
+  <data name="TextInfoForSpeechRate" xml:space="preserve">
+    <value>La valeur 1.0 signifie qu'il n'y aura pas de changement dans le débit de la parole.</value>
+  </data>
 </root>
