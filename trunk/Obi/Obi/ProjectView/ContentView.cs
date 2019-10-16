@@ -4124,8 +4124,8 @@ if (thresholdAboveLastNode >= stripControl.Node.PhraseChildCount) thresholdAbove
             m_NormalizeToolStripMenuItem.ShortcutKeyDisplayString = ObiForm.RefineKeyboardShortcutStringForAccessibleName(keyboardShortcuts.FormatKeyboardShorcut(keyboardShortcuts.MenuNameDictionary["m_NormalizeToolStripMenuItem"].Value.ToString()));
             m_NormalizeToolStripMenuItem.AccessibleName = m_NormalizeToolStripMenuItem.Text.Replace("&", "") + " " + m_NormalizeToolStripMenuItem.ShortcutKeyDisplayString;
 
-            m_SpeechRateToolStripMenuItem.ShortcutKeyDisplayString = ObiForm.RefineKeyboardShortcutStringForAccessibleName(keyboardShortcuts.FormatKeyboardShorcut(keyboardShortcuts.MenuNameDictionary["mTools_AudioProcessing"].Value.ToString()));
-            m_SpeechRateToolStripMenuItem.AccessibleName = m_SpeechRateToolStripMenuItem.Text.Replace("&", "") + " " + m_SpeechRateToolStripMenuItem.ShortcutKeyDisplayString;
+            //m_SpeechRateToolStripMenuItem.ShortcutKeyDisplayString = ObiForm.RefineKeyboardShortcutStringForAccessibleName(keyboardShortcuts.FormatKeyboardShorcut(keyboardShortcuts.MenuNameDictionary["mTools_AudioProcessing"].Value.ToString()));
+            //m_SpeechRateToolStripMenuItem.AccessibleName = m_SpeechRateToolStripMenuItem.Text.Replace("&", "") + " " + m_SpeechRateToolStripMenuItem.ShortcutKeyDisplayString;
 
         }
 

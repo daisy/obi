@@ -1588,6 +1588,7 @@ namespace Obi
             // 
             // mTools_AudioProcessingNew
             // 
+            resources.ApplyResources(this.mTools_AudioProcessingNew, "mTools_AudioProcessingNew");
             this.mTools_AudioProcessingNew.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.m_ChangeVolumeToolStripMenuItem,
             this.m_FadeInToolStripMenuItem,
@@ -1595,36 +1596,35 @@ namespace Obi
             this.m_NormalizeToolStripMenuItem,
             this.m_SpeechRateToolStripMenuItem});
             this.mTools_AudioProcessingNew.Name = "mTools_AudioProcessingNew";
-            resources.ApplyResources(this.mTools_AudioProcessingNew, "mTools_AudioProcessingNew");
             // 
             // m_ChangeVolumeToolStripMenuItem
             // 
-            this.m_ChangeVolumeToolStripMenuItem.Name = "m_ChangeVolumeToolStripMenuItem";
             resources.ApplyResources(this.m_ChangeVolumeToolStripMenuItem, "m_ChangeVolumeToolStripMenuItem");
+            this.m_ChangeVolumeToolStripMenuItem.Name = "m_ChangeVolumeToolStripMenuItem";
             this.m_ChangeVolumeToolStripMenuItem.Click += new System.EventHandler(this.m_ChangeVolumeToolStripMenuItem_Click);
             // 
             // m_FadeInToolStripMenuItem
             // 
-            this.m_FadeInToolStripMenuItem.Name = "m_FadeInToolStripMenuItem";
             resources.ApplyResources(this.m_FadeInToolStripMenuItem, "m_FadeInToolStripMenuItem");
+            this.m_FadeInToolStripMenuItem.Name = "m_FadeInToolStripMenuItem";
             this.m_FadeInToolStripMenuItem.Click += new System.EventHandler(this.m_FadeInToolStripMenuItem_Click);
             // 
             // m_FadeOutToolStripMenuItem
             // 
-            this.m_FadeOutToolStripMenuItem.Name = "m_FadeOutToolStripMenuItem";
             resources.ApplyResources(this.m_FadeOutToolStripMenuItem, "m_FadeOutToolStripMenuItem");
+            this.m_FadeOutToolStripMenuItem.Name = "m_FadeOutToolStripMenuItem";
             this.m_FadeOutToolStripMenuItem.Click += new System.EventHandler(this.m_FadeOutToolStripMenuItem_Click);
             // 
             // m_NormalizeToolStripMenuItem
             // 
-            this.m_NormalizeToolStripMenuItem.Name = "m_NormalizeToolStripMenuItem";
             resources.ApplyResources(this.m_NormalizeToolStripMenuItem, "m_NormalizeToolStripMenuItem");
+            this.m_NormalizeToolStripMenuItem.Name = "m_NormalizeToolStripMenuItem";
             this.m_NormalizeToolStripMenuItem.Click += new System.EventHandler(this.m_NormalizeToolStripMenuItem_Click);
             // 
             // m_SpeechRateToolStripMenuItem
             // 
-            this.m_SpeechRateToolStripMenuItem.Name = "m_SpeechRateToolStripMenuItem";
             resources.ApplyResources(this.m_SpeechRateToolStripMenuItem, "m_SpeechRateToolStripMenuItem");
+            this.m_SpeechRateToolStripMenuItem.Name = "m_SpeechRateToolStripMenuItem";
             this.m_SpeechRateToolStripMenuItem.Click += new System.EventHandler(this.m_SpeechRateToolStripMenuItem_Click);
             // 
             // mTools_ExportSelectedAudioMenuItem

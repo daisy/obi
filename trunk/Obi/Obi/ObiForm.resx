@@ -1878,6 +1878,12 @@
   <data name="toolStripSeparator16.Size" type="System.Drawing.Size, System.Drawing">
     <value>227, 6</value>
   </data>
+  <data name="mTools_AudioProcessingNew.AccessibleName" xml:space="preserve">
+    <value>Audio Processing</value>
+  </data>
+  <data name="m_ChangeVolumeToolStripMenuItem.AccessibleName" xml:space="preserve">
+    <value>Change Volume Ctrl+Shift+U</value>
+  </data>
   <data name="m_ChangeVolumeToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>Ctrl+Shift+U</value>
   </data>
@@ -1886,6 +1892,9 @@
   </data>
   <data name="m_ChangeVolumeToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Change Volume</value>
+  </data>
+  <data name="m_FadeInToolStripMenuItem.AccessibleName" xml:space="preserve">
+    <value>Fade In Ctrl+Shift+I</value>
   </data>
   <data name="m_FadeInToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>Ctrl+Shift+I</value>
@@ -1896,6 +1905,9 @@
   <data name="m_FadeInToolStripMenuItem.Text" xml:space="preserve">
     <value>Fade &amp;In</value>
   </data>
+  <data name="m_FadeOutToolStripMenuItem.AccessibleName" xml:space="preserve">
+    <value>Fade Out Ctrl+Shift+O</value>
+  </data>
   <data name="m_FadeOutToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>Ctrl+Shift+O</value>
   </data>
@@ -1905,6 +1917,9 @@
   <data name="m_FadeOutToolStripMenuItem.Text" xml:space="preserve">
     <value>Fade &amp;Out</value>
   </data>
+  <data name="m_NormalizeToolStripMenuItem.AccessibleName" xml:space="preserve">
+    <value>Normalize Ctrl+Shift+Z</value>
+  </data>
   <data name="m_NormalizeToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>Ctrl+Shift+Z</value>
   </data>
@@ -1913,6 +1928,9 @@
   </data>
   <data name="m_NormalizeToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Normalize</value>
+  </data>
+  <data name="m_SpeechRateToolStripMenuItem.AccessibleName" xml:space="preserve">
+    <value>Speech Rate</value>
   </data>
   <data name="m_SpeechRateToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>232, 22</value>
@@ -2137,7 +2155,7 @@
     <value>mProjectView</value>
   </data>
   <data name="&gt;&gt;mProjectView.Type" xml:space="preserve">
-    <value>Obi.ProjectView.ProjectView, Obi, Version=4.4.7.23941, Culture=neutral, PublicKeyToken=null</value>
+    <value>Obi.ProjectView.ProjectView, Obi, Version=4.4.7.34725, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;mProjectView.Parent" xml:space="preserve">
     <value>$this</value>
