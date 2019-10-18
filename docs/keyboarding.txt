@@ -1,9 +1,0 @@
-# Keyboard navigation
-
-First draft by Julien, 29 October 2007
-
-<div id="toc">Table Of Contents</div>
-
-## Introduction
-
-Navigating through the interface, playing back audio, position versus selection.
