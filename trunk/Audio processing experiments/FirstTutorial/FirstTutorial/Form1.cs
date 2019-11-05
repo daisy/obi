@@ -41,6 +41,7 @@ namespace FirstTutorial
             FadeOutDurationButton.Enabled = true;
             FadeInDurationButton.Enabled = true;
             m_NoiseReductionButton.Enabled = true;
+            m_ffmpegNoiseReduction.Enabled = true;
 
         }
 
@@ -201,13 +202,7 @@ namespace FirstTutorial
                 if (!File.Exists(fileName))
                     throw new FileNotFoundException("Invalid source file path " + fileName);
 
-                //string configFilePath = Path.Combine(ffmpegWorkingDir, "fmpeg_config.xml");
-                //if (!File.Exists(configFilePath))
-                //    throw new FileNotFoundException("Invalid compression configuration file path " + configFilePath);
-
-                //if(!File.Exists(outPath))
-                //WaveFileWriter.CreateWaveFile16(outPath, reader);
-
+          
                 m_process = new Process();
 
                 m_process.StartInfo.FileName = ffmpegPath;
@@ -223,31 +218,7 @@ namespace FirstTutorial
                 m_process.WaitForExit();
 
 
-                //if (!m_process.StartInfo.UseShellExecute && m_process.ExitCode != 0)
-                //    {
-                //        StreamReader stdErr = m_process.StandardError;
-                //        if (!stdErr.EndOfStream)
-                //        {
-                //            string toLog = stdErr.ReadToEnd();
-                //            if (!string.IsNullOrEmpty(toLog))
-                //            {
-                //                Console.WriteLine(toLog);
-                //            }
-                //        }
-                //    }
-                //    else if (!m_process.StartInfo.UseShellExecute)
-                //    {
-                //        StreamReader stdOut = m_process.StandardOutput;
-                //        if (!stdOut.EndOfStream)
-                //        {
-                //            string toLog = stdOut.ReadToEnd();
-                //            if (!string.IsNullOrEmpty(toLog))
-                //            {
-                //                Console.WriteLine(toLog);
-                //            }
-                //        }
-                //    }
-                
+                                
 
             }
         }

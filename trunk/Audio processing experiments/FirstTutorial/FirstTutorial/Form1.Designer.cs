@@ -259,6 +259,7 @@
             // 
             // m_ffmpegNoiseReduction
             // 
+            this.m_ffmpegNoiseReduction.Enabled = false;
             this.m_ffmpegNoiseReduction.Location = new System.Drawing.Point(101, 388);
             this.m_ffmpegNoiseReduction.Name = "m_ffmpegNoiseReduction";
             this.m_ffmpegNoiseReduction.Size = new System.Drawing.Size(391, 23);
