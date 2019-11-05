@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
+using System.IO;
+using System.Diagnostics;
 using NAudio.Wave;
 using NAudio.Wave.SampleProviders;
 using NAudio.Wave.WaveFormats;
@@ -22,6 +24,7 @@ namespace FirstTutorial
 
         private string fileName = string.Empty;
         private OpenFileDialog open = new OpenFileDialog();
+        private Process m_process = null;
 
         private void button1_Click(object sender, EventArgs e)
         {
@@ -182,6 +185,71 @@ namespace FirstTutorial
                 
             }
 
+        }
+
+        private void m_ffmpegNoiseReduction_Click(object sender, EventArgs e)
+        {
+            string outputFileName = fileName.Substring(0, fileName.Length - 4);
+            var outPath = outputFileName + "ffmpegNoiseReduction.wav";
+            using (var reader = new AudioFileReader(open.FileName))
+            {
+                string ffmpegWorkingDir = Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location);
+                string ffmpegPath = Path.Combine(ffmpegWorkingDir, "ffmpeg.exe");
+                if (!File.Exists(ffmpegPath))
+                    throw new FileNotFoundException("Invalid compression library path " + ffmpegPath);
+
+                if (!File.Exists(fileName))
+                    throw new FileNotFoundException("Invalid source file path " + fileName);
+
+                //string configFilePath = Path.Combine(ffmpegWorkingDir, "fmpeg_config.xml");
+                //if (!File.Exists(configFilePath))
+                //    throw new FileNotFoundException("Invalid compression configuration file path " + configFilePath);
+
+                //if(!File.Exists(outPath))
+                //WaveFileWriter.CreateWaveFile16(outPath, reader);
+
+                m_process = new Process();
+
+                m_process.StartInfo.FileName = ffmpegPath;
+
+                m_process.StartInfo.RedirectStandardOutput = true;
+                //m_process.StartInfo.RedirectStandardError = false;
+                m_process.StartInfo.UseShellExecute = false;
+                //m_process.StartInfo.WindowStyle = ProcessWindowStyle.Hidden;
+                m_process.StartInfo.Arguments = string.Format("-i " + (char)34 + fileName + (char)34 + " -af " + (char)34 + "highpass=200, lowpass=3000" + (char)34 + " "+ (char)34 + outPath + (char)34);
+
+                
+                m_process.Start();
+                m_process.WaitForExit();
+
+
+                //if (!m_process.StartInfo.UseShellExecute && m_process.ExitCode != 0)
+                //    {
+                //        StreamReader stdErr = m_process.StandardError;
+                //        if (!stdErr.EndOfStream)
+                //        {
+                //            string toLog = stdErr.ReadToEnd();
+                //            if (!string.IsNullOrEmpty(toLog))
+                //            {
+                //                Console.WriteLine(toLog);
+                //            }
+                //        }
+                //    }
+                //    else if (!m_process.StartInfo.UseShellExecute)
+                //    {
+                //        StreamReader stdOut = m_process.StandardOutput;
+                //        if (!stdOut.EndOfStream)
+                //        {
+                //            string toLog = stdOut.ReadToEnd();
+                //            if (!string.IsNullOrEmpty(toLog))
+                //            {
+                //                Console.WriteLine(toLog);
+                //            }
+                //        }
+                //    }
+                
+
+            }
         }
     }
 }
