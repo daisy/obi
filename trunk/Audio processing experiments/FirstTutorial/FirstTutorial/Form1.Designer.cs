@@ -48,6 +48,7 @@
             this.m_NoiseReductionButton = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
             this.m_BandPassFrequencyTextBox = new System.Windows.Forms.TextBox();
+            this.m_ffmpegNoiseReduction = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // button1
@@ -227,37 +228,51 @@
             // m_NoiseReductionButton
             // 
             this.m_NoiseReductionButton.Enabled = false;
-            this.m_NoiseReductionButton.Location = new System.Drawing.Point(276, 388);
+            this.m_NoiseReductionButton.Location = new System.Drawing.Point(276, 452);
             this.m_NoiseReductionButton.Name = "m_NoiseReductionButton";
             this.m_NoiseReductionButton.Size = new System.Drawing.Size(157, 23);
             this.m_NoiseReductionButton.TabIndex = 19;
             this.m_NoiseReductionButton.Text = "Noise Reduction";
             this.m_NoiseReductionButton.UseVisualStyleBackColor = true;
+            this.m_NoiseReductionButton.Visible = false;
             this.m_NoiseReductionButton.Click += new System.EventHandler(this.m_NoiseReductionButton_Click);
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(-2, 393);
+            this.label4.Location = new System.Drawing.Point(-2, 457);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(111, 13);
             this.label4.TabIndex = 17;
             this.label4.Text = "Band Pass Frequency";
+            this.label4.Visible = false;
             // 
             // m_BandPassFrequencyTextBox
             // 
             this.m_BandPassFrequencyTextBox.AccessibleName = "Band Pass Filter Frequency";
-            this.m_BandPassFrequencyTextBox.Location = new System.Drawing.Point(131, 390);
+            this.m_BandPassFrequencyTextBox.Location = new System.Drawing.Point(131, 454);
             this.m_BandPassFrequencyTextBox.Name = "m_BandPassFrequencyTextBox";
             this.m_BandPassFrequencyTextBox.Size = new System.Drawing.Size(100, 20);
             this.m_BandPassFrequencyTextBox.TabIndex = 18;
             this.m_BandPassFrequencyTextBox.Text = "3000";
+            this.m_BandPassFrequencyTextBox.Visible = false;
+            // 
+            // m_ffmpegNoiseReduction
+            // 
+            this.m_ffmpegNoiseReduction.Location = new System.Drawing.Point(101, 388);
+            this.m_ffmpegNoiseReduction.Name = "m_ffmpegNoiseReduction";
+            this.m_ffmpegNoiseReduction.Size = new System.Drawing.Size(391, 23);
+            this.m_ffmpegNoiseReduction.TabIndex = 20;
+            this.m_ffmpegNoiseReduction.Text = "ffmpeg Noise Reduction";
+            this.m_ffmpegNoiseReduction.UseVisualStyleBackColor = true;
+            this.m_ffmpegNoiseReduction.Click += new System.EventHandler(this.m_ffmpegNoiseReduction_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(643, 498);
+            this.Controls.Add(this.m_ffmpegNoiseReduction);
             this.Controls.Add(this.m_BandPassFrequencyTextBox);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.m_NoiseReductionButton);
@@ -307,6 +322,7 @@
         private System.Windows.Forms.Button m_NoiseReductionButton;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox m_BandPassFrequencyTextBox;
+        private System.Windows.Forms.Button m_ffmpegNoiseReduction;
     }
 }
 
