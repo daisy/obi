@@ -5020,6 +5020,15 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to It is recommended to enable &quot;Enlarge phrases as per increase in screen resolution&quot; for better performance. Press yes to enable it now. You can do it later also from the project tab of preferences.
+        /// </summary>
+        internal static string ObiConfig_IncreasePhraseHightForHigherResolution {
+            get {
+                return ResourceManager.GetString("ObiConfig_IncreasePhraseHightForHigherResolution", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Unable to find pipeline scripts at {0}. Features dependent on it may not work..
         /// </summary>
         internal static string ObiForm_PipelineNotFound {
