@@ -17,7 +17,7 @@ namespace Obi.Dialogs
         private ProjectView.ProjectView m_ProjectView;
         private ObiForm m_Form;
         int m_PredefinedProfilesCount;
-        private const int m_BaseScreenResolution = 768; //@ScreenResolution
+        private const int m_BaseScreenResolution = 600; //@ScreenResolution
         
         public ObiConfiguration()
         {
@@ -301,7 +301,7 @@ namespace Obi.Dialogs
 
                 if (screenResolution.Height > m_BaseScreenResolution) //@ScreenResolution
                 {
-                    DialogResult tempResult = MessageBox.Show(Localizer.Message("ObiConfig_IncreasePhraseHightForHigherResolution"), Localizer.Message("Caption_Information"), MessageBoxButtons.YesNo);
+                    DialogResult tempResult = MessageBox.Show(Localizer.Message("ObiConfig_IncreasePhraseHightForHigherResolution"), Localizer.Message("Caption_Information"), MessageBoxButtons.YesNo,MessageBoxIcon.Information);
                     if (tempResult == System.Windows.Forms.DialogResult.Yes)
                         m_Form.Settings.Project_IncreasePhraseHightForHigherResolution = true;
                 }

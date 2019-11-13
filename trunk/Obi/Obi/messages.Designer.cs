@@ -5020,7 +5020,8 @@ namespace Obi {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to It is recommended to enable &quot;Enlarge phrases as per increase in screen resolution&quot; for better performance. Press yes to enable it now. You can do it later also from the project tab of preferences.
+        ///   Looks up a localized string similar to The resolution of your screen is quite high, which can reduce performance of Obi. It is recommended to activate the option &quot;Enlarge phrases as per increase in screen resolution&quot;. Please use &quot;Yes&quot; button to activate the option now.
+        ///You can do it later also from the project tab of preferences dialog..
         /// </summary>
         internal static string ObiConfig_IncreasePhraseHightForHigherResolution {
             get {
