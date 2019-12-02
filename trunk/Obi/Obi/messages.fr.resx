@@ -2869,30 +2869,34 @@ tester "Figer la largeur du volet du contenu" ?(Recommandé)</value>
     <value>Vous venez d'opérer un traitement sur l'audio. Il est recommandé de procéder à un nettoyage. Appuyez sur Oui si vous souhaitez lancer le Nettoyage dès maintenant. Le nettoyage sauvegardera également votre projet. Appuyez sur Non si vous souhaitez le lancer ultérieurement.</value>
   </data>
   <data name="NormalizationCompleted" xml:space="preserve">
-    <value>Normalisation terminée avec succès</value>
+    <value>La normalisation a été appliquée avec succès</value>
   </data>
   <data name="ChangeVolumeCompleted" xml:space="preserve">
-    <value>Volume modifié avec succès</value>
+    <value>Le volume a été modifié avec succès</value>
   </data>
   <data name="SpeechRateCompleted" xml:space="preserve">
-    <value>Speech Rate modifié avec succès</value>
+    <value>Le volume a été modifié avec succès</value>
   </data>
   <data name="SpeechRateOfSeclection" xml:space="preserve">
-    <value>Changer le débit vocal de l'audio sélectionné:</value>
+    <value>Le débit a été modifié avec succès:</value>
   </data>
   <data name="SpeechRate" xml:space="preserve">
-    <value>Speech Rate</value>
+    <value>Débit de la parole</value>
   </data>
   <data name="SpeechRateAceesibleName" xml:space="preserve">
-    <value>Définir le paramètre pour augmenter / diminuer le débit de la parole</value>
+    <value>Réglage de paramètre pour augmenter/diminuer le débit</value>
   </data>
   <data name="SpeechRateAceesibleNameForSlider" xml:space="preserve">
-    <value>Faites glisser pour augmenter / diminuer le débit de la parole. Un glissement droit augmentera le débit de la parole</value>
+    <value>Faire glisser pour augmenter/diminuer le débit de la parole. Glisser vers la droite augmente le débit.</value>
   </data>
   <data name="TextInfoForNormalization" xml:space="preserve">
-    <value>La valeur 1.0 signifie un gain de 0 dB.</value>
+    <value>La valeur 1.0 renvoie à un gain de 0dB.</value>
   </data>
   <data name="TextInfoForSpeechRate" xml:space="preserve">
-    <value>La valeur 1.0 signifie qu'il n'y aura pas de changement dans le débit de la parole.</value>
+    <value>La valeur 1.0 signifie qu'il n'y aura pas de changement appliqué au débit de la parole.</value>
+  </data>
+  <data name="ObiConfig_IncreasePhraseHightForHigherResolution" xml:space="preserve">
+    <value>La résolution de votre écran est très haute, ce qui peut réduire les performances d'Obi. Il est recommandé d'ativer l'option "Ajuster l'affichage des phrases en fonction de la résolution de votre écran". Appuyez sur "Oui" pour activer cette option dès maintenant.
+    Vous pourrez également le faire ultérieurement à partir de l'onglet Projet de la boîte de dialogue Préférences.</value>
   </data>
 </root>

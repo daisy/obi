@@ -287,11 +287,15 @@
   <data name="m_NAudioForAudioProcessing.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
   </data>
+  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="m_NAudioForAudioProcessing.ShowHelp" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
   <data name="m_NAudioForAudioProcessing.Size" type="System.Drawing.Size, System.Drawing">
     <value>226, 19</value>
   </data>
   <data name="m_NAudioForAudioProcessing.Text" xml:space="preserve">
-    <value>Utiliser NAudio pour la normalisation</value>
+    <value>Utiliser Naudio pour la normalisation</value>
   </data>
   <data name="$this.AccessibleName" xml:space="preserve">
     <value>Changer le volume</value>
