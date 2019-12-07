@@ -24,11 +24,22 @@ namespace Obi.Dialogs
         private List<double> m_3gpBitrates;
         private List<string> m_EncodingOptions;
         private Settings mSettings; //@fontconfig
+        private bool m_IsMegaVoiceConnect = false;
+        private string m_TemprorayPathOfMegavoiceExport = string.Empty;
 
-        public ExportDirectory(string path, string xukPath, bool encodeToMP3, double bitRate, bool appendSectionNameToAudioFile, string encodingType, Settings settings)
+        public ExportDirectory(string path, string xukPath, bool encodeToMP3, double bitRate, bool appendSectionNameToAudioFile, string encodingType, Settings settings, bool isMegaVoiceConnect = false)
         {
             InitializeComponent();
-            mPathTextBox.Text = path;
+            if (!isMegaVoiceConnect)
+            {
+                mPathTextBox.Text = path;
+            }
+            else
+            {
+                mPathTextBox.Text = string.Empty;
+                m_TemprorayPathOfMegavoiceExport = path;
+            }
+
             mXukPath = xukPath;
             mCanClose = true;
             mSettings = settings; //@fontconfig
@@ -140,6 +151,7 @@ namespace Obi.Dialogs
             {
                 m_btnAdvance.Enabled = encodeToMP3;
             }
+            m_IsMegaVoiceConnect = isMegaVoiceConnect;
             m_checkBoxAddSectionNameToAudioFileName.Checked = appendSectionNameToAudioFile;
             helpProvider1.HelpNamespace = Localizer.Message("CHMhelp_file_name");
             helpProvider1.SetHelpNavigator(this, HelpNavigator.Topic);
@@ -181,6 +193,10 @@ namespace Obi.Dialogs
                 {
                 return m_ComboSelectLevelForAudioFiles.SelectedIndex == 0? 100 : m_ComboSelectLevelForAudioFiles.SelectedIndex;
                 }
+                set
+                {
+                    m_ComboSelectLevelForAudioFiles.SelectedIndex = 1;
+                }
             }
         public bool EncodeAudioFiles
         {
@@ -211,6 +227,10 @@ namespace Obi.Dialogs
         public bool AppendSectionNameToAudioFileName
         {
             get { return m_checkBoxAddSectionNameToAudioFileName.Checked; }
+            set
+            {
+                m_checkBoxAddSectionNameToAudioFileName.Checked = value;
+            }
         }
 
         public bool LimitLengthOfAudioFileNames
@@ -296,6 +316,31 @@ namespace Obi.Dialogs
             dialog.ShowNewFolderButton = true;
             if (dialog.ShowDialog() == DialogResult.OK && ObiForm.CheckProjectDirectory_Safe(dialog.SelectedPath, true))
             {
+                if (m_IsMegaVoiceConnect)
+                {
+                    var drives = DriveInfo.GetDrives();
+                    bool isRemovableDrive = false;
+                    //List<string> temp = new List<string>();
+                    foreach (var drive in drives)
+                    {
+                        if (drive.DriveType == DriveType.Removable)
+                        {
+                            Console.WriteLine(drive.Name);
+                            //temp.Add(drive.Name);
+                            if(dialog.SelectedPath.Contains(drive.Name))
+                            {
+                                isRemovableDrive = true;
+                            }
+                        }
+                    }
+                    if (!isRemovableDrive)
+                    {
+                      DialogResult tempResult = MessageBox.Show("This is not a USB/Removable Drive.Do you want to continue?", Localizer.Message("Caption_Information"),MessageBoxButtons.YesNo);
+                      if (tempResult == DialogResult.No)
+                          return;
+                    }
+                    
+                }
                 mPathTextBox.Text = dialog.SelectedPath;
             }
         }
@@ -309,7 +354,19 @@ namespace Obi.Dialogs
 
         private void mOKButton_Click(object sender, EventArgs e)
         {
-            mCanClose = ObiForm.CheckProjectDirectory_Safe(DirectoryPath, true);
+            if (!m_IsMegaVoiceConnect)
+            {
+                mCanClose = ObiForm.CheckProjectDirectory_Safe(DirectoryPath, true);
+            }
+            else
+            {
+                if (!string.IsNullOrEmpty(mPathTextBox.Text))
+                {
+                    mCanClose = ObiForm.CheckProjectDirectory_Safe(m_TemprorayPathOfMegavoiceExport, true, false);
+                }
+                mCanClose = ObiForm.CheckProjectDirectory_Safe(mPathTextBox.Text, true);
+
+            }
             if (mCanClose && m_chkBoxCreateMediaOverlays.Enabled)
             {
                 mSettings.Export_EpubCreateMediaOverlays = m_chkBoxCreateMediaOverlays.Checked;

@@ -773,20 +773,20 @@ namespace Obi
             /// <summary>
             /// Check that a directory can host a project or export.
             /// </summary>
-            public static bool CheckProjectDirectory(string path, bool checkEmpty)
+            public static bool CheckProjectDirectory(string path, bool checkEmpty, bool showMessageBox = true)
             {
-                return Directory.Exists(path) ? CheckEmpty(path, checkEmpty) : DidCreateDirectory(path, true);
+                return Directory.Exists(path) ? CheckEmpty(path, checkEmpty,showMessageBox) : DidCreateDirectory(path, true);
             }
 
             /// <summary>
             /// Check that a directory can host a project or export. Safe version.
             /// </summary>
-            public static bool CheckProjectDirectory_Safe(string path, bool checkEmpty)
+            public static bool CheckProjectDirectory_Safe(string path, bool checkEmpty, bool showMessageBox = true)
             {
                 bool check = false;
                 try
                 {
-                    check = CheckProjectDirectory(path, checkEmpty);
+                    check = CheckProjectDirectory(path, checkEmpty, showMessageBox);
                 }
                 catch (Exception)
                 {
@@ -2815,11 +2815,13 @@ namespace Obi
                 string exportPathDAISY202 = "";
                 string exportPathEPUB3 = "";
                 string exportPathXHTML = "";
+                string exportPathMegaVoice = "";
 
                 urakawa.daisy.export.Daisy3_Export DAISY3ExportInstance = null;
                 urakawa.daisy.export.Daisy3_Export DAISY202ExportInstance = null;
                 urakawa.daisy.export.Daisy3_Export EPUB3_ExportInstance = null;
                 ImportExport.ExportStructure XHTML_ExportInstance = null;
+                ImportExport.MegaVoiceExport MegaVoice_ExportInstance = null;
                 
 
                 
@@ -2860,9 +2862,11 @@ namespace Obi
                                     ref DAISY202ExportInstance,
                                     ref exportPathDAISY202,
                                     ref EPUB3_ExportInstance,
-ref exportPathEPUB3,
-ref XHTML_ExportInstance,
-                                    ref exportPathXHTML) == false)
+                                    ref exportPathEPUB3,
+                                    ref XHTML_ExportInstance,
+                                    ref exportPathXHTML,
+                                    ref MegaVoice_ExportInstance,
+                                    ref exportPathMegaVoice) == false)
                                 {
                                     return;
                                 }
@@ -2895,6 +2899,11 @@ ref XHTML_ExportInstance,
                                                        if (XHTML_ExportInstance != null)
                                                        {
                                                            XHTML_ExportInstance.CreateFileSet();
+                                                       }
+                                                       if (MegaVoice_ExportInstance != null)
+                                                       {
+                                                           mSession.Presentation.ExportToZ(exportPathMegaVoice, mSession.Path,
+                                                                                           MegaVoice_ExportInstance);
                                                        }
                                                    });
 
@@ -3000,9 +3009,10 @@ ref string exportDirectoryDAISY3,
                 ref urakawa.daisy.export.Daisy3_Export EPUB3_ExportInstance,
                 ref string exportDirectoryEPUB3,
                 ref  ImportExport.ExportStructure XHTML_ExportInstance, 
-                ref  string exportDirectoryXHTML )
+                ref  string exportDirectoryXHTML,
+                ref ImportExport.MegaVoiceExport MegaVoice_ExportInstance,
+                ref string exportDirectoryMegaVoice)
             {
-
                 Dialogs.chooseDaisy3orDaisy202 chooseDialog = new chooseDaisy3orDaisy202(this.mSettings);
                 if (chooseDialog.ShowDialog() == DialogResult.OK)
                 {
@@ -3032,8 +3042,14 @@ ref string exportDirectoryDAISY3,
                                                        Program.SafeName(
                                                            string.Format(Localizer.Message("default_XHTMLExport_dirname"), "")));
                     }
+                    if (chooseDialog.ExportMegaVoice)
+                    {
+                        exportDirectoryMegaVoice = Path.Combine(Directory.GetParent(mSession.Path).FullName,
+                                                        Program.SafeName(
+                                                            string.Format(Localizer.Message("default_MegaVoiceExport_dirname"), "")));
+                    }
                 }
-                if (string.IsNullOrEmpty(exportDirectoryDAISY3) && string.IsNullOrEmpty(exportDirectoryDAISY202) && string.IsNullOrEmpty(exportDirectoryEPUB3) && string.IsNullOrEmpty(exportDirectoryXHTML))
+                if (string.IsNullOrEmpty(exportDirectoryDAISY3) && string.IsNullOrEmpty(exportDirectoryDAISY202) && string.IsNullOrEmpty(exportDirectoryEPUB3) && string.IsNullOrEmpty(exportDirectoryXHTML) &&  string.IsNullOrEmpty(exportDirectoryMegaVoice))
                 {
                     return false;
                 }
@@ -3042,6 +3058,7 @@ ref string exportDirectoryDAISY3,
                 Dialogs.ExportDirectory ExportDialogDAISY202 = null;
                 Dialogs.ExportDirectory ExportDialogEPUB3 = null;
                 Dialogs.ExportDirectory ExportDialogXhtml = null;
+                Dialogs.ExportDirectory ExportDialogMegaVoice = null;
 
                 if (chooseDialog.ExportDaisy3)
                 {
@@ -3110,7 +3127,24 @@ ref string exportDirectoryDAISY3,
                     if (ExportDialogXhtml.ShowDialog() != DialogResult.OK) ExportDialogXhtml = null;
 
                 }
-                if (ExportDialogDAISY3 != null || ExportDialogDAISY202 != null || ExportDialogEPUB3 != null || ExportDialogXhtml != null)
+
+                if (chooseDialog.ExportMegaVoice)
+                {
+                    ExportDialogMegaVoice =
+                        new ExportDirectory(exportDirectoryMegaVoice,
+                                            mSession.Path, mSettings.Export_EncodeAudioFiles, (mSettings.ExportEncodingBitRate),
+                                            mSettings.Export_AppendSectionNameToAudioFile, mSettings.EncodingFileFormat, this.mSettings,true); //@fontconfig
+                    // null string temprorarily used instead of -mProjectView.Presentation.Title- to avoid unicode character problem in path for pipeline
+                    ExportDialogMegaVoice.LevelSelection = 1;
+                    ExportDialogMegaVoice.AppendSectionNameToAudioFileName = true;
+
+                    ExportDialogMegaVoice.AdditionalTextForTitle = "MegaVoice Connect";
+                    ExportDialogMegaVoice.LimitLengthOfAudioFileNames = true;
+                    ExportDialogMegaVoice.AudioFileNameCharsLimit = 100;
+                    if (ExportDialogMegaVoice.ShowDialog() != DialogResult.OK) ExportDialogMegaVoice = null;
+                }
+
+                if (ExportDialogDAISY3 != null || ExportDialogDAISY202 != null || ExportDialogEPUB3 != null || ExportDialogXhtml != null || ExportDialogMegaVoice != null)
                 {
 
                     // Need the trailing slash, otherwise exported data ends up in a folder one level
@@ -3119,10 +3153,11 @@ ref string exportDirectoryDAISY3,
                     string exportPathDAISY202 = ExportDialogDAISY202 != null ? ExportDialogDAISY202.DirectoryPath : null;
                     string exportPathEPUB3 = ExportDialogEPUB3 != null ? ExportDialogEPUB3.DirectoryPath : null;
                     string exportPathXhtml = ExportDialogXhtml != null ? ExportDialogXhtml.DirectoryPath : null;
+                    string exportPathMegaVoice = ExportDialogMegaVoice != null ? exportDirectoryMegaVoice : null;
                     
                     Dialogs.ExportDirectory dialog = ExportDialogDAISY3 != null ? ExportDialogDAISY3 : 
                         ExportDialogDAISY202 != null ? ExportDialogDAISY202 : 
-                        ExportDialogEPUB3 != null? ExportDialogEPUB3: ExportDialogXhtml;
+                        ExportDialogEPUB3 != null? ExportDialogEPUB3: ExportDialogXhtml != null? ExportDialogXhtml : ExportDialogMegaVoice;
 
                     if (dialog != ExportDialogXhtml)
                     {
@@ -3151,6 +3186,12 @@ ref string exportDirectoryDAISY3,
                     {
                         exportPathXhtml  += Path.DirectorySeparatorChar;
                     }
+
+                    if (!string.IsNullOrEmpty(exportPathMegaVoice) && !exportPathMegaVoice.EndsWith(Path.DirectorySeparatorChar.ToString()))
+                    {
+                        exportPathMegaVoice += Path.DirectorySeparatorChar;
+                    }
+
                     if (ExportDialogDAISY3 != null)
                     {
                         DAISY3ExportInstance = new Obi.ImportExport.DAISY3_ObiExport(
@@ -3219,10 +3260,27 @@ ref string exportDirectoryDAISY3,
                         if (mSettings.Project_VAXhtmlExport) XHTML_ExportInstance.Profile_VA = true;
                         
                     }
+
+                    if (ExportDialogMegaVoice != null)
+                    {
+                        string MegavoiceFinalExportPath = ExportDialogMegaVoice.DirectoryPath + "\\" +  Path.GetFileName(Path.GetDirectoryName(mSession.Path));
+                        MegaVoice_ExportInstance = new Obi.ImportExport.MegaVoiceExport(
+                            mSession.Presentation, exportPathMegaVoice, null, ExportDialogMegaVoice.EncodeAudioFiles, ExportDialogMegaVoice.BitRate,
+                            AudioLib.SampleRate.Hz44100,
+                            mProjectView.Presentation.MediaDataManager.DefaultPCMFormat.Data.NumberOfChannels == 2,
+                            false, ExportDialogMegaVoice.LevelSelection, MegavoiceFinalExportPath);
+
+                        MegaVoice_ExportInstance.AddSectionNameToAudioFile = ExportDialogMegaVoice.AppendSectionNameToAudioFileName;
+                        MegaVoice_ExportInstance.AudioFileNameCharsLimit = ExportDialogMegaVoice.AudioFileNameCharsLimit;
+                        if (ExportDialogMegaVoice.EnabledAdvancedParameters) MegaVoice_ExportInstance.SetAdditionalMp3EncodingParameters(ExportDialogMegaVoice.Mp3ChannelMode, ExportDialogMegaVoice.Mp3ReSample, ExportDialogMegaVoice.Mp3RePlayGain);
+                        ((Obi.ImportExport.DAISY3_ObiExport)MegaVoice_ExportInstance).AlwaysIgnoreIndentation = mSettings.Project_Export_AlwaysIgnoreIndentation;
+                        MegaVoice_ExportInstance.EncodingFileFormat = ExportDialogMegaVoice.EncodingFileFormat;
+                    }
                     exportDirectoryDAISY202 = exportPathDAISY202;
                     exportDirectoryDAISY3 = exportPathDAISY3;
                     exportDirectoryEPUB3 = exportPathEPUB3;
                     exportDirectoryXHTML = exportPathXhtml;
+                    exportDirectoryMegaVoice = exportPathMegaVoice;
                     return true;
                 }
                 //else if (ExportDialogXhtml != null)
@@ -4790,20 +4848,24 @@ ref string exportDirectoryEPUB3)
             /// Check if a directory is empty or not; ask the user to confirm
             /// that they mean this directory even though it is not empty.
             /// </summary>
-            public static bool CheckEmpty(string path, bool checkEmpty)
+            public static bool CheckEmpty(string path, bool checkEmpty,bool showMessagebox = true)
             {
                 if (checkEmpty &&
                     (Directory.GetFiles(path).Length > 0 || Directory.GetDirectories(path).Length > 0))
                 {
-                    DialogResult result = MessageBox.Show(
-                        String.Format(Localizer.Message("really_use_directory_text"), path),
-                        Localizer.Message("really_use_directory_caption"),
-                        // MessageBoxButtons.YesNoCancel,
-                        MessageBoxButtons.YesNoCancel,
-                        MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
-                    if (result == DialogResult.Cancel)
+                    DialogResult result = DialogResult.Yes;
+                    if (showMessagebox)
                     {
-                        return false;
+                        result = MessageBox.Show(
+                            String.Format(Localizer.Message("really_use_directory_text"), path),
+                            Localizer.Message("really_use_directory_caption"),
+                            // MessageBoxButtons.YesNoCancel,
+                            MessageBoxButtons.YesNoCancel,
+                            MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
+                        if (result == DialogResult.Cancel)
+                        {
+                            return false;
+                        }
                     }
                     if (result == DialogResult.Yes)
                     {
