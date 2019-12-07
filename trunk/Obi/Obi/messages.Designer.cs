@@ -8093,6 +8093,15 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to This is not a USB / Removable Drive.Do you want to continue ?.
+        /// </summary>
+        internal static string USBDriveCheck {
+            get {
+                return ResourceManager.GetString("USBDriveCheck", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Use Default Values.
         /// </summary>
         internal static string UseDefaultValues {

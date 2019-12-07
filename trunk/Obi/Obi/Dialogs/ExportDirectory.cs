@@ -54,7 +54,14 @@ namespace Obi.Dialogs
             m_Mp3Mp4Bitrates = new List<double>(new double[] { 32, 40, 48, 56, 64, 96, 128, 160, 196,224,256,320 });
             m_AmrBitrates = new List<double>(new double[] { 4.75, 5.15, 5.90, 6.70, 7.40, 7.95, 10.20, 12.20 });
             m_3gpBitrates = new List<double>(new double[] { 4.75, 5.15, 5.90, 6.70, 7.40, 7.95, 10.20, 12.20, 14.25, 15.85, 18.25, 19.85, 23.05, 23.85 });
-            m_EncodingOptions = new List<string>(new string[] { "MP3", "MP4 (M4A)", "AMR", "3GP" });
+            if (!isMegaVoiceConnect)
+            {
+                m_EncodingOptions = new List<string>(new string[] { "MP3", "MP4 (M4A)", "AMR", "3GP" });
+            }
+            else
+            {
+                m_EncodingOptions = new List<string>(new string[] { "MP3", "MP4 (M4A)"});
+            }
             m_comboBoxEncodingType.Items.Clear();
             string ffmpegWorkingDir = Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location);
             string ffmpegPath = Path.Combine(ffmpegWorkingDir, "ffmpeg.exe");
@@ -335,7 +342,7 @@ namespace Obi.Dialogs
                     }
                     if (!isRemovableDrive)
                     {
-                      DialogResult tempResult = MessageBox.Show("This is not a USB/Removable Drive.Do you want to continue?", Localizer.Message("Caption_Information"),MessageBoxButtons.YesNo);
+                        DialogResult tempResult = MessageBox.Show(Localizer.Message("USBDriveCheck"), Localizer.Message("Caption_Information"), MessageBoxButtons.YesNo);
                       if (tempResult == DialogResult.No)
                           return;
                     }
