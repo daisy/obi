@@ -1639,6 +1639,15 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to {0}Megavoice Export.
+        /// </summary>
+        internal static string default_MegaVoiceExport_dirname {
+            get {
+                return ResourceManager.GetString("default_MegaVoiceExport_dirname", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to N/A.
         /// </summary>
         internal static string default_organization {

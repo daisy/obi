@@ -3167,4 +3167,7 @@ Error text: {1}</value>
     <value>The resolution of your screen is quite high, which can reduce performance of Obi. It is recommended to activate the option "Enlarge phrases as per increase in screen resolution". Please use "Yes" button to activate the option now.
 You can do it later also from the project tab of preferences dialog.</value>
   </data>
+  <data name="default_MegaVoiceExport_dirname" xml:space="preserve">
+    <value>{0}Megavoice Export</value>
+  </data>
 </root>

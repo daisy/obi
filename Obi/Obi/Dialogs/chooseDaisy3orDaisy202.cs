@@ -52,6 +52,13 @@ namespace Obi.Dialogs
                 return m_cbXhtml.Checked;
             }
         }
+        public bool ExportMegaVoice
+        {
+            get
+            {
+                return m_chMegaVoice.Checked;
+            }
+        }
 
 
         public Obi.ImportExport.ExportFormat chooseOption 

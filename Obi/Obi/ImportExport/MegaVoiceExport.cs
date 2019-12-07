@@ -35,7 +35,10 @@ namespace Obi.ImportExport
             m_MegaVoiceExportPath = megaVoiceExportPath;
         }
 
-
+        public void CreateFiles()
+        {
+            CreateOpfDocument();
+        }
 protected override void CreateOpfDocument()
         {
             base.CreateOpfDocument();
@@ -50,7 +53,7 @@ protected override void CreateOpfDocument()
                     foreach (string str in m_FilesList_SmilAudio)
                     {
                         String strFilePath = Path.Combine(m_OutputDirectory, str);
-                        System.Windows.Forms.MessageBox.Show(strFilePath);
+                        //System.Windows.Forms.MessageBox.Show(strFilePath);
                         if (File.Exists(strFilePath))
                         {
                             string destinationFilePath = Path.Combine(m_MegaVoiceExportPath, Path.GetFileName(strFilePath));
