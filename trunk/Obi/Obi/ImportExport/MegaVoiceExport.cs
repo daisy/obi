@@ -35,11 +35,7 @@ namespace Obi.ImportExport
             m_MegaVoiceExportPath = megaVoiceExportPath;
         }
 
-        public void CreateFiles()
-        {
-            CreateOpfDocument();
-        }
-protected override void CreateOpfDocument()
+        protected override void CreateOpfDocument()
         {
             base.CreateOpfDocument();
             try
