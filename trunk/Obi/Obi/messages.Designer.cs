@@ -1639,7 +1639,7 @@ namespace Obi {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {0}Megavoice Export.
+        ///   Looks up a localized string similar to {0}Megavoice Export Temporary.
         /// </summary>
         internal static string default_MegaVoiceExport_dirname {
             get {
@@ -2337,6 +2337,15 @@ namespace Obi {
         internal static string ExportAudioOfSelectedNode_Completed {
             get {
                 return ResourceManager.GetString("ExportAudioOfSelectedNode_Completed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Export Directory path is empty. Kindly provide valid path..
+        /// </summary>
+        internal static string ExportDirectoryPathEmpty {
+            get {
+                return ResourceManager.GetString("ExportDirectoryPathEmpty", resourceCulture);
             }
         }
         

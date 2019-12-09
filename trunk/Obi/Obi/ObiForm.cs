@@ -2816,6 +2816,7 @@ namespace Obi
                 string exportPathEPUB3 = "";
                 string exportPathXHTML = "";
                 string exportPathMegaVoice = "";
+                string exportPathMegaVoiceFinal = "";
 
                 urakawa.daisy.export.Daisy3_Export DAISY3ExportInstance = null;
                 urakawa.daisy.export.Daisy3_Export DAISY202ExportInstance = null;
@@ -2866,7 +2867,8 @@ namespace Obi
                                     ref XHTML_ExportInstance,
                                     ref exportPathXHTML,
                                     ref MegaVoice_ExportInstance,
-                                    ref exportPathMegaVoice) == false)
+                                    ref exportPathMegaVoice,
+                                    ref exportPathMegaVoiceFinal) == false)
                                 {
                                     return;
                                 }
@@ -2914,6 +2916,7 @@ namespace Obi
                                         if(DAISY3ExportInstance != null )  DAISY3ExportInstance.RequestCancellation = true;
                                         if (DAISY202ExportInstance != null) DAISY202ExportInstance.RequestCancellation = true;
                                         if (EPUB3_ExportInstance != null) EPUB3_ExportInstance.RequestCancellation = true;
+                                        if (MegaVoice_ExportInstance != null) MegaVoice_ExportInstance.RequestCancellation = true;
                                     });
                             if (DAISY3ExportInstance != null) DAISY3ExportInstance.ProgressChangedEvent +=
                                 new System.ComponentModel.ProgressChangedEventHandler(progress.UpdateProgressBar);
@@ -2921,13 +2924,16 @@ namespace Obi
                                 new System.ComponentModel.ProgressChangedEventHandler(progress.UpdateProgressBar);
                             if (EPUB3_ExportInstance != null) EPUB3_ExportInstance.ProgressChangedEvent +=
                                  new System.ComponentModel.ProgressChangedEventHandler(progress.UpdateProgressBar);
+                            if (MegaVoice_ExportInstance != null) MegaVoice_ExportInstance.ProgressChangedEvent +=
+                                new System.ComponentModel.ProgressChangedEventHandler(progress.UpdateProgressBar);
                             progress.ShowDialog();
                             
                             if (progress.Exception != null) throw progress.Exception;
 
                             if ((DAISY3ExportInstance != null && DAISY3ExportInstance.RequestCancellation)
                                 || (DAISY202ExportInstance != null && DAISY202ExportInstance.RequestCancellation)
-                                || (EPUB3_ExportInstance != null && EPUB3_ExportInstance.RequestCancellation))
+                                || (EPUB3_ExportInstance != null && EPUB3_ExportInstance.RequestCancellation)
+                                || (MegaVoice_ExportInstance != null && MegaVoice_ExportInstance.RequestCancellation))
                             {
                                 mProjectView.TransportBar.Enabled = true;
                                 return;
@@ -2952,6 +2958,17 @@ namespace Obi
 
                             string displayPath = (exportPathDAISY3 != null && exportPathDAISY202 != null) ? exportPathDAISY3 + "\n" + exportPathDAISY202 :
                                 exportPathDAISY3 != null ? exportPathDAISY3 : exportPathDAISY202;
+                            if (exportPathMegaVoiceFinal != null)
+                            {
+                                if (string.IsNullOrEmpty(displayPath))
+                                {
+                                    displayPath = exportPathMegaVoiceFinal;
+                                }
+                                else
+                                {
+                                    displayPath += "\n" + exportPathMegaVoiceFinal;
+                                }
+                            }
                             if (exportPathEPUB3 != null)
                             {
                                 if (string.IsNullOrEmpty(displayPath) )
@@ -3011,7 +3028,8 @@ ref string exportDirectoryDAISY3,
                 ref  ImportExport.ExportStructure XHTML_ExportInstance, 
                 ref  string exportDirectoryXHTML,
                 ref ImportExport.MegaVoiceExport MegaVoice_ExportInstance,
-                ref string exportDirectoryMegaVoice)
+                ref string exportDirectoryMegaVoice,
+                ref string MegavoiceFinalExportPath )
             {
                 Dialogs.chooseDaisy3orDaisy202 chooseDialog = new chooseDaisy3orDaisy202(this.mSettings);
                 if (chooseDialog.ShowDialog() == DialogResult.OK)
@@ -3263,7 +3281,7 @@ ref string exportDirectoryDAISY3,
 
                     if (ExportDialogMegaVoice != null)
                     {
-                        string MegavoiceFinalExportPath = ExportDialogMegaVoice.DirectoryPath + "\\" +  Path.GetFileName(Path.GetDirectoryName(mSession.Path));
+                        MegavoiceFinalExportPath = ExportDialogMegaVoice.DirectoryPath + "\\" +  Path.GetFileName(Path.GetDirectoryName(mSession.Path));
                         MegaVoice_ExportInstance = new Obi.ImportExport.MegaVoiceExport(
                             mSession.Presentation, exportPathMegaVoice, null, ExportDialogMegaVoice.EncodeAudioFiles, ExportDialogMegaVoice.BitRate,
                             AudioLib.SampleRate.Hz44100,

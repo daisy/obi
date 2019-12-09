@@ -3168,9 +3168,12 @@ Error text: {1}</value>
 You can do it later also from the project tab of preferences dialog.</value>
   </data>
   <data name="default_MegaVoiceExport_dirname" xml:space="preserve">
-    <value>{0}Megavoice Export</value>
+    <value>{0}Megavoice Export Temporary</value>
   </data>
   <data name="USBDriveCheck" xml:space="preserve">
     <value>This is not a USB / Removable Drive.Do you want to continue ?</value>
+  </data>
+  <data name="ExportDirectoryPathEmpty" xml:space="preserve">
+    <value>Export Directory path is empty. Kindly provide valid path.</value>
   </data>
 </root>
