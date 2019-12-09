@@ -321,7 +321,7 @@ namespace Obi.Dialogs
             FolderBrowserDialog dialog = new FolderBrowserDialog();
             dialog.SelectedPath = mPathTextBox.Text;
             dialog.ShowNewFolderButton = true;
-            if (dialog.ShowDialog() == DialogResult.OK && ObiForm.CheckProjectDirectory_Safe(dialog.SelectedPath, true))
+            if (dialog.ShowDialog() == DialogResult.OK && (m_IsMegaVoiceConnect || ObiForm.CheckProjectDirectory_Safe(dialog.SelectedPath, true)))
             {
                 if (m_IsMegaVoiceConnect)
                 {
@@ -361,6 +361,12 @@ namespace Obi.Dialogs
 
         private void mOKButton_Click(object sender, EventArgs e)
         {
+            if (string.IsNullOrEmpty(mPathTextBox.Text))
+            {
+                MessageBox.Show(Localizer.Message("ExportDirectoryPathEmpty"), Localizer.Message("Caption_Error"), MessageBoxButtons.OK, MessageBoxIcon.Error);
+                mCanClose = false;
+                return;
+            }
             if (!m_IsMegaVoiceConnect)
             {
                 mCanClose = ObiForm.CheckProjectDirectory_Safe(DirectoryPath, true);
@@ -371,7 +377,6 @@ namespace Obi.Dialogs
                 {
                     mCanClose = ObiForm.CheckProjectDirectory_Safe(m_TemprorayPathOfMegavoiceExport, true, false);
                 }
-                mCanClose = ObiForm.CheckProjectDirectory_Safe(mPathTextBox.Text, true);
 
             }
             if (mCanClose && m_chkBoxCreateMediaOverlays.Enabled)
