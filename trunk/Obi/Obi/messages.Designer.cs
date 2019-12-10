@@ -2359,6 +2359,15 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Book with the same name exists. Do you want to overwrite it ?.
+        /// </summary>
+        internal static string ExportFolderExistsMegavoice {
+            get {
+                return ResourceManager.GetString("ExportFolderExistsMegavoice", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to You are about to save a project file to {0}. It is recommended that you use the .obi file extension. Are you sure you want to keep the selected extension?.
         /// </summary>
         internal static string extension_warning {
@@ -8102,7 +8111,7 @@ namespace Obi {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to This is not a USB / Removable Drive.Do you want to continue ?.
+        ///   Looks up a localized string similar to Either you are not exporting to removable drive or it is not a root in a removable drive. Do you still want to continue ?.
         /// </summary>
         internal static string USBDriveCheck {
             get {
