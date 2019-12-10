@@ -3171,9 +3171,12 @@ You can do it later also from the project tab of preferences dialog.</value>
     <value>{0}Megavoice Export Temporary</value>
   </data>
   <data name="USBDriveCheck" xml:space="preserve">
-    <value>This is not a USB / Removable Drive.Do you want to continue ?</value>
+    <value>Either you are not exporting to removable drive or it is not a root in a removable drive. Do you still want to continue ?</value>
   </data>
   <data name="ExportDirectoryPathEmpty" xml:space="preserve">
     <value>Export Directory path is empty. Kindly provide valid path.</value>
+  </data>
+  <data name="ExportFolderExistsMegavoice" xml:space="preserve">
+    <value>Book with the same name exists. Do you want to overwrite it ?</value>
   </data>
 </root>

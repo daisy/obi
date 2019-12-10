@@ -336,13 +336,14 @@ namespace Obi.Dialogs
                             //temp.Add(drive.Name);
                             if(dialog.SelectedPath.Contains(drive.Name))
                             {
+                                if(dialog.SelectedPath == drive.Name)
                                 isRemovableDrive = true;
                             }
                         }
                     }
                     if (!isRemovableDrive)
                     {
-                        DialogResult tempResult = MessageBox.Show(Localizer.Message("USBDriveCheck"), Localizer.Message("Caption_Information"), MessageBoxButtons.YesNo);
+                        DialogResult tempResult = MessageBox.Show(Localizer.Message("USBDriveCheck"), Localizer.Message("Caption_Information"), MessageBoxButtons.YesNo,MessageBoxIcon.Information);
                       if (tempResult == DialogResult.No)
                           return;
                     }
