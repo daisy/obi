@@ -26,8 +26,9 @@ namespace Obi.Dialogs
         private Settings mSettings; //@fontconfig
         private bool m_IsMegaVoiceConnect = false;
         private string m_TemprorayPathOfMegavoiceExport = string.Empty;
+        private string m_MegaVoiceExportFileName = string.Empty;
 
-        public ExportDirectory(string path, string xukPath, bool encodeToMP3, double bitRate, bool appendSectionNameToAudioFile, string encodingType, Settings settings, bool isMegaVoiceConnect = false)
+        public ExportDirectory(string path, string xukPath, bool encodeToMP3, double bitRate, bool appendSectionNameToAudioFile, string encodingType, Settings settings, bool isMegaVoiceConnect = false,string megaVoiceFileName = "")
         {
             InitializeComponent();
             if (!isMegaVoiceConnect)
@@ -38,6 +39,7 @@ namespace Obi.Dialogs
             {
                 mPathTextBox.Text = string.Empty;
                 m_TemprorayPathOfMegavoiceExport = path;
+                m_MegaVoiceExportFileName = megaVoiceFileName;
             }
 
             mXukPath = xukPath;
@@ -374,8 +376,19 @@ namespace Obi.Dialogs
             }
             else
             {
-                if (!string.IsNullOrEmpty(mPathTextBox.Text))
+                if (!string.IsNullOrEmpty(mPathTextBox.Text) &&  !string.IsNullOrEmpty(m_MegaVoiceExportFileName))
                 {
+                    string MegaVoiceExportFinalPath = mPathTextBox.Text + "\\" + m_MegaVoiceExportFileName;
+                    if (Directory.Exists(MegaVoiceExportFinalPath))
+                    {
+                        DialogResult tempResult = MessageBox.Show(Localizer.Message("ExportFolderExistsMegavoice"), Localizer.Message("Caption_Warning"),
+                             MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                        if (tempResult == DialogResult.No)
+                        {
+                            mCanClose = false;
+                            return;
+                        }
+                    }
                     mCanClose = ObiForm.CheckProjectDirectory_Safe(m_TemprorayPathOfMegavoiceExport, true, false);
                 }
 

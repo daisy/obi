@@ -3148,15 +3148,20 @@ ref string exportDirectoryDAISY3,
 
                 if (chooseDialog.ExportMegaVoice)
                 {
+                    string FileName = Path.GetFileName(Path.GetDirectoryName(mSession.Path));
+                    if (FileName.Length > 58)
+                    {
+                        FileName = FileName.Substring(0, 58);
+                    }
                     ExportDialogMegaVoice =
                         new ExportDirectory(exportDirectoryMegaVoice,
                                             mSession.Path, mSettings.Export_EncodeAudioFiles, (mSettings.ExportEncodingBitRate),
-                                            mSettings.Export_AppendSectionNameToAudioFile, mSettings.EncodingFileFormat, this.mSettings,true); //@fontconfig
+                                            mSettings.Export_AppendSectionNameToAudioFile, mSettings.EncodingFileFormat, this.mSettings,true,FileName); //@fontconfig
                     // null string temprorarily used instead of -mProjectView.Presentation.Title- to avoid unicode character problem in path for pipeline
                     ExportDialogMegaVoice.LevelSelection = 1;
                     ExportDialogMegaVoice.AppendSectionNameToAudioFileName = true;
 
-                    ExportDialogMegaVoice.AdditionalTextForTitle = "MegaVoice Connect";
+                    ExportDialogMegaVoice.AdditionalTextForTitle = Localizer.Message("ExportDialogTitleForMegaVoiceExport");
                     ExportDialogMegaVoice.LimitLengthOfAudioFileNames = true;
                     ExportDialogMegaVoice.AudioFileNameCharsLimit = 100;
                     if (ExportDialogMegaVoice.ShowDialog() != DialogResult.OK) ExportDialogMegaVoice = null;
@@ -3281,7 +3286,12 @@ ref string exportDirectoryDAISY3,
 
                     if (ExportDialogMegaVoice != null)
                     {
-                        MegavoiceFinalExportPath = ExportDialogMegaVoice.DirectoryPath + "\\" +  Path.GetFileName(Path.GetDirectoryName(mSession.Path));
+                        string FileName = Path.GetFileName(Path.GetDirectoryName(mSession.Path));
+                        if (FileName.Length > 58)
+                        {
+                          FileName = FileName.Substring(0, 58);
+                        }
+                        MegavoiceFinalExportPath = ExportDialogMegaVoice.DirectoryPath + "\\" +  FileName;
                         MegaVoice_ExportInstance = new Obi.ImportExport.MegaVoiceExport(
                             mSession.Presentation, exportPathMegaVoice, null, ExportDialogMegaVoice.EncodeAudioFiles, ExportDialogMegaVoice.BitRate,
                             AudioLib.SampleRate.Hz44100,
