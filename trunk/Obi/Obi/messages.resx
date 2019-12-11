@@ -3179,4 +3179,7 @@ You can do it later also from the project tab of preferences dialog.</value>
   <data name="ExportFolderExistsMegavoice" xml:space="preserve">
     <value>Book with the same name exists. Do you want to overwrite it ?</value>
   </data>
+  <data name="ExportDialogTitleForMegaVoiceExport" xml:space="preserve">
+    <value>MegaVoice (Envoy Connect)</value>
+  </data>
 </root>

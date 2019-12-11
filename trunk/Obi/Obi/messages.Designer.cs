@@ -2341,6 +2341,15 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to MegaVoice (Envoy Connect).
+        /// </summary>
+        internal static string ExportDialogTitleForMegaVoiceExport {
+            get {
+                return ResourceManager.GetString("ExportDialogTitleForMegaVoiceExport", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Export Directory path is empty. Kindly provide valid path..
         /// </summary>
         internal static string ExportDirectoryPathEmpty {

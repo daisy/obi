@@ -46,15 +46,6 @@ namespace Obi.ImportExport
                     {
                         Directory.CreateDirectory(m_MegaVoiceExportPath);
                     }
-                    else
-                    {
-                        System.Windows.Forms.DialogResult tempResult = System.Windows.Forms.MessageBox.Show(Localizer.Message("ExportFolderExistsMegavoice"), Localizer.Message("Caption_Warning"),
-                               System.Windows.Forms.MessageBoxButtons.YesNo, System.Windows.Forms.MessageBoxIcon.Warning);
-                        if (tempResult == System.Windows.Forms.DialogResult.No)
-                        {
-                            return;
-                        }
-                    }
                     foreach (string str in m_FilesList_SmilAudio)
                     {
                         String strFilePath = Path.Combine(m_OutputDirectory, str);
