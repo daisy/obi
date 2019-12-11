@@ -295,13 +295,13 @@
     <value>48, 169</value>
   </data>
   <data name="m_chMegaVoice.Size" type="System.Drawing.Size, System.Drawing">
-    <value>123, 17</value>
+    <value>162, 17</value>
   </data>
   <data name="m_chMegaVoice.TabIndex" type="System.Int32, mscorlib">
     <value>4</value>
   </data>
   <data name="m_chMegaVoice.Text" xml:space="preserve">
-    <value>MegaVoice Connect</value>
+    <value>MegaVoice (Envoy Connect)</value>
   </data>
   <data name="&gt;&gt;m_chMegaVoice.Name" xml:space="preserve">
     <value>m_chMegaVoice</value>
