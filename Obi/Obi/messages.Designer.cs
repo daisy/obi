@@ -1810,6 +1810,15 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Deletion of temporary folder created during export of MegaVoice (Envoy Connect) is not sucessfull because &quot;{0}&quot;. To free up your space you can delete it manually. The path of temporary folder is: {1}.
+        /// </summary>
+        internal static string DidnotDeleteTempMegaVoiceFolder {
+            get {
+                return ResourceManager.GetString("DidnotDeleteTempMegaVoiceFolder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Error exporting to DAISY/EPUB.
         /// </summary>
         internal static string didnt_save_as_daisy_caption {
