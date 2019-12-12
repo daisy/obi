@@ -1810,7 +1810,7 @@ namespace Obi {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Deletion of temporary folder created during export of MegaVoice (Envoy Connect) is not sucessfull because &quot;{0}&quot;. To free up your space you can delete it manually. The path of temporary folder is: {1}.
+        ///   Looks up a localized string similar to Deletion of temporary folder created during export of MegaVoice (Envoy Connect) is not successful because &quot;{0}&quot;. To free up your space you can delete it manually. The path of temporary folder is: {1}.
         /// </summary>
         internal static string DidnotDeleteTempMegaVoiceFolder {
             get {
