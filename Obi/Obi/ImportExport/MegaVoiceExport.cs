@@ -38,32 +38,26 @@ namespace Obi.ImportExport
         protected override void CreateOpfDocument()
         {
             base.CreateOpfDocument();
-            try
+
+            if (m_MegaVoiceExportPath != null)
             {
-                if (m_MegaVoiceExportPath != null)
+                if (!Directory.Exists(m_MegaVoiceExportPath))
                 {
-                    if (!Directory.Exists(m_MegaVoiceExportPath))
+                    Directory.CreateDirectory(m_MegaVoiceExportPath);
+                }
+                foreach (string str in m_FilesList_SmilAudio)
+                {
+                    String strFilePath = Path.Combine(m_OutputDirectory, str);
+                    if (File.Exists(strFilePath))
                     {
-                        Directory.CreateDirectory(m_MegaVoiceExportPath);
-                    }
-                    foreach (string str in m_FilesList_SmilAudio)
-                    {
-                        String strFilePath = Path.Combine(m_OutputDirectory, str);
-                        //System.Windows.Forms.MessageBox.Show(strFilePath);
-                        if (File.Exists(strFilePath))
-                        {
-                            string destinationFilePath = Path.Combine(m_MegaVoiceExportPath, Path.GetFileName(strFilePath));
+                        string destinationFilePath = Path.Combine(m_MegaVoiceExportPath, Path.GetFileName(strFilePath));
 
 
-                            File.Copy(strFilePath, destinationFilePath, true);
-                        }
+                        File.Copy(strFilePath, destinationFilePath, true);
                     }
                 }
             }
-            catch (System.Exception ex)
-            {
-                System.Windows.Forms.MessageBox.Show(ex.ToString());
-            }
+            
         }
 
     }

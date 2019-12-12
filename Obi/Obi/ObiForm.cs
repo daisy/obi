@@ -3017,6 +3017,13 @@ namespace Obi
                 //}
                 mProjectView.TransportBar.Enabled = true;
                 Ready();
+                if (exportPathMegaVoice != null)
+                {
+                    if (Directory.Exists(exportPathMegaVoice))
+                    {
+                        Directory.Delete(exportPathMegaVoice, true);
+                    }
+                }
             }
 
             private bool ConfigureExportWithUserInterface(ref urakawa.daisy.export.Daisy3_Export DAISY3ExportInstance,
@@ -3160,6 +3167,7 @@ ref string exportDirectoryDAISY3,
                     // null string temprorarily used instead of -mProjectView.Presentation.Title- to avoid unicode character problem in path for pipeline
                     ExportDialogMegaVoice.LevelSelection = 1;
                     ExportDialogMegaVoice.AppendSectionNameToAudioFileName = true;
+                    ExportDialogMegaVoice.EncodeAudioFiles = true;
 
                     ExportDialogMegaVoice.AdditionalTextForTitle = Localizer.Message("ExportDialogTitleForMegaVoiceExport");
                     ExportDialogMegaVoice.LimitLengthOfAudioFileNames = true;

@@ -210,6 +210,10 @@ namespace Obi.Dialogs
         public bool EncodeAudioFiles
         {
             get { return m_IsEncoderCheck; }
+            set
+            {
+                m_checkBoxEncoder.Checked = value;
+            }
         }
 
         public double BitRate

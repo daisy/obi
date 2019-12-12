@@ -3171,7 +3171,7 @@ You can do it later also from the project tab of preferences dialog.</value>
     <value>{0}Megavoice Export Temporary</value>
   </data>
   <data name="USBDriveCheck" xml:space="preserve">
-    <value>Either you are not exporting to removable drive or it is not a root in a removable drive. Do you still want to continue ?</value>
+    <value>Either you are not exporting to removable drive or it is not a root directory in a removable drive. Do you still want to continue ?</value>
   </data>
   <data name="ExportDirectoryPathEmpty" xml:space="preserve">
     <value>Export Directory path is empty. Kindly provide valid path.</value>
