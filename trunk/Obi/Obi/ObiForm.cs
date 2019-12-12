@@ -3017,12 +3017,20 @@ namespace Obi
                 //}
                 mProjectView.TransportBar.Enabled = true;
                 Ready();
-                if (exportPathMegaVoice != null)
+
+                try
                 {
-                    if (Directory.Exists(exportPathMegaVoice))
+                    if (exportPathMegaVoice != null)
                     {
-                        Directory.Delete(exportPathMegaVoice, true);
+                        if (Directory.Exists(exportPathMegaVoice))
+                        {
+                            Directory.Delete(exportPathMegaVoice, true);
+                        }
                     }
+                }
+                catch (Exception e)
+                {
+                    MessageBox.Show(String.Format(Localizer.Message("DidnotDeleteTempMegaVoiceFolder"), e.Message, exportPathMegaVoice), Localizer.Message("Caption_Information"),MessageBoxButtons.OK,MessageBoxIcon.Information);
                 }
             }
 
