@@ -8120,7 +8120,7 @@ namespace Obi {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Either you are not exporting to removable drive or it is not a root in a removable drive. Do you still want to continue ?.
+        ///   Looks up a localized string similar to Either you are not exporting to removable drive or it is not a root directory in a removable drive. Do you still want to continue ?.
         /// </summary>
         internal static string USBDriveCheck {
             get {
