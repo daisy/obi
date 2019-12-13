@@ -17,7 +17,7 @@ namespace Obi.Dialogs
         private ProjectView.ProjectView m_ProjectView;
         private ObiForm m_Form;
         int m_PredefinedProfilesCount;
-        private const int m_BaseScreenResolution = 600; //@ScreenResolution
+        private const int m_BaseScreenResolution = 768; //@ScreenResolution
         
         public ObiConfiguration()
         {
