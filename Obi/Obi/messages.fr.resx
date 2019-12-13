@@ -2899,4 +2899,22 @@ tester "Figer la largeur du volet du contenu" ?(Recommandé)</value>
     <value>La résolution de votre écran est très haute, ce qui peut réduire les performances d'Obi. Il est recommandé d'ativer l'option "Ajuster l'affichage des phrases en fonction de la résolution de votre écran". Appuyez sur "Oui" pour activer cette option dès maintenant.
     Vous pourrez également le faire ultérieurement à partir de l'onglet Projet de la boîte de dialogue Préférences.</value>
   </data>
+  <data name="default_MegaVoiceExport_dirname" xml:space="preserve">
+    <value>{0}Megavoice Export Temporary</value>
+  </data>
+  <data name="USBDriveCheck" xml:space="preserve">
+    <value>Soit vous n'exportez pas vers un lecteur amovible, soit ce n'est pas un répertoire racine dans un lecteur amovible. Voulez-vous toujours continuer ?</value>
+  </data>
+  <data name="ExportDirectoryPathEmpty" xml:space="preserve">
+    <value>Le chemin du répertoire d'exportation est vide. Veuillez fournir un chemin valide.</value>
+  </data>
+  <data name="ExportFolderExistsMegavoice" xml:space="preserve">
+    <value>Il existe un livre du même nom. Voulez-vous l'écraser?</value>
+  </data>
+  <data name="ExportDialogTitleForMegaVoiceExport" xml:space="preserve">
+    <value>MegaVoice (Envoy Connect)</value>
+  </data>
+  <data name="DidnotDeleteTempMegaVoiceFolder" xml:space="preserve">
+    <value>La suppression du dossier temporaire créé lors de l'exportation de MegaVoice (Envoy Connect) n'a pas réussi car "{0}". Pour libérer de l'espace, vous pouvez le supprimer manuellement. Le chemin du dossier temporaire est: {1}</value>
+  </data>
 </root>
