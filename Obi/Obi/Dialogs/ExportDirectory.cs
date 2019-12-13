@@ -349,7 +349,7 @@ namespace Obi.Dialogs
                     }
                     if (!isRemovableDrive)
                     {
-                        DialogResult tempResult = MessageBox.Show(Localizer.Message("USBDriveCheck"), Localizer.Message("Caption_Information"), MessageBoxButtons.YesNo,MessageBoxIcon.Information);
+                        DialogResult tempResult = MessageBox.Show(Localizer.Message("USBDriveCheck"), Localizer.Message("Caption_Information"), MessageBoxButtons.YesNo,MessageBoxIcon.Information, MessageBoxDefaultButton.Button2);
                       if (tempResult == DialogResult.No)
                           return;
                     }
