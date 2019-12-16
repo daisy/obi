@@ -85,6 +85,7 @@ namespace Obi.Dialogs
                 m_RestrictToSingleDAISYChoice = value;
                 m_cbEpub3.Enabled = !value;
                 m_cbXhtml.Enabled = !value;
+                m_chMegaVoice.Enabled = !value;
             }
             }
 
