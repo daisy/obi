@@ -45,6 +45,18 @@ namespace Obi.ImportExport
                 {
                     Directory.CreateDirectory(m_MegaVoiceExportPath);
                 }
+                else
+                {
+                    DirectoryInfo di = new DirectoryInfo(m_MegaVoiceExportPath);
+                    foreach (FileInfo file in di.EnumerateFiles())
+                    {
+                        file.Delete();
+                    }
+                    foreach (DirectoryInfo dir in di.EnumerateDirectories())
+                    {
+                        dir.Delete(true);
+                    }
+                }
                 foreach (string str in m_FilesList_SmilAudio)
                 {
                     String strFilePath = Path.Combine(m_OutputDirectory, str);
