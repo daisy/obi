@@ -175,17 +175,21 @@ namespace FirstTutorial
         private void m_NoiseReductionButton_Click(object sender, EventArgs e)
         {
             string outputFileName = fileName.Substring(0, fileName.Length - 4);
-            var outPath = outputFileName + "NoiseREduction.wav";
+            var outPath = outputFileName + "NoiseReduction.wav";
+            var outPathFinal = outputFileName + "NoiseReductionFinal.wav";
             using (var reader = new AudioFileReader(open.FileName))
             {
                 int BandPassFreqency = Int32.Parse(m_BandPassFrequencyTextBox.Text);
                 // reader is the source for filter
                 var filter = new MyWaveProvider(reader, BandPassFreqency);
                 WaveFileWriter.CreateWaveFile16(outPath, filter);
-
+                var tempReader = new AudioFileReader(outPath);
+                filter = new MyWaveProvider(tempReader, BandPassFreqency, true);
+                WaveFileWriter.CreateWaveFile16(outPathFinal, filter);
                 
             }
-
+            
+            //File.Delete(outPath);
         }
 
         private void m_ffmpegNoiseReduction_Click(object sender, EventArgs e)
@@ -211,7 +215,7 @@ namespace FirstTutorial
                 //m_process.StartInfo.RedirectStandardError = false;
                 m_process.StartInfo.UseShellExecute = false;
                 //m_process.StartInfo.WindowStyle = ProcessWindowStyle.Hidden;
-                m_process.StartInfo.Arguments = string.Format("-i " + (char)34 + fileName + (char)34 + " -af " + (char)34 + "highpass=200, lowpass=3000" + (char)34 + " "+ (char)34 + outPath + (char)34);
+                m_process.StartInfo.Arguments = string.Format("-i " + (char)34 + fileName + (char)34 + " -af " + (char)34 + "highpass=1000, lowpass=3000" + (char)34 + " "+ (char)34 + outPath + (char)34);
 
                 
                 m_process.Start();

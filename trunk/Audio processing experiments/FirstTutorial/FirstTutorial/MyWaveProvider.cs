@@ -12,17 +12,19 @@ namespace FirstTutorial
     {
         private ISampleProvider sourceProvider;
         private float bandPassFreqency;
+        private bool isLowPassFilter;
 
         private int channels;
         private BiQuadFilter[] filters;
 
-        public MyWaveProvider(ISampleProvider sourceProvider, int BandPassFreqency)
+        public MyWaveProvider(ISampleProvider sourceProvider, int BandPassFreqency,bool IsLowPass = false)
         {
             this.sourceProvider = sourceProvider;
             this.bandPassFreqency = BandPassFreqency;
 
             channels = sourceProvider.WaveFormat.Channels;
             filters = new BiQuadFilter[channels];
+            isLowPassFilter = IsLowPass;
             CreateFilters();
         }
 
@@ -30,7 +32,15 @@ namespace FirstTutorial
         {
             for (int n = 0; n < channels; n++)
             {
-                filters[n] = BiQuadFilter.BandPassFilterConstantPeakGain(44100, bandPassFreqency, 1);
+                //filters[n] = BiQuadFilter.BandPassFilterConstantPeakGain(44100, bandPassFreqency, 1);
+                if (!isLowPassFilter)
+                {
+                    filters[n] = BiQuadFilter.HighPassFilter(44100, 500, 1);
+                }
+                else
+                {
+                    filters[n] = BiQuadFilter.LowPassFilter(44100, 3000, 1);
+                }
 
             }
         }
