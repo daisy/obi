@@ -181,15 +181,14 @@ namespace FirstTutorial
             {
                 int BandPassFreqency = Int32.Parse(m_BandPassFrequencyTextBox.Text);
                 // reader is the source for filter
-                var filter = new MyWaveProvider(reader, BandPassFreqency);
-                WaveFileWriter.CreateWaveFile16(outPath, filter);
-                var tempReader = new AudioFileReader(outPath);
-                filter = new MyWaveProvider(tempReader, BandPassFreqency, true);
+                var filterTemp = new MyWaveProvider(reader, BandPassFreqency);
+                //WaveFileWriter.CreateWaveFile16(outPath, filter);
+                //var tempReader = new AudioFileReader(outPath);
+                //filter = new MyWaveProvider(tempReader, BandPassFreqency, true);
+               var filter = new MyWaveProvider(filterTemp, BandPassFreqency, true);
                 WaveFileWriter.CreateWaveFile16(outPathFinal, filter);
                 
             }
-            
-            //File.Delete(outPath);
         }
 
         private void m_ffmpegNoiseReduction_Click(object sender, EventArgs e)
