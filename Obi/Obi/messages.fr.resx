@@ -2903,18 +2903,18 @@ tester "Figer la largeur du volet du contenu" ?(Recommandé)</value>
     <value>{0}Megavoice Export Temporary</value>
   </data>
   <data name="USBDriveCheck" xml:space="preserve">
-    <value>Soit vous n'exportez pas vers un lecteur amovible, soit ce n'est pas un répertoire racine dans un lecteur amovible. Voulez-vous toujours continuer ?</value>
+    <value>Vous n’exportez pas vers un média amovible ou il ne s’agit pas d’un emplacement situé à la racine d’un média amovible. Souhaitez-vous vraiment continuer ?</value>
   </data>
   <data name="ExportDirectoryPathEmpty" xml:space="preserve">
-    <value>Le chemin du répertoire d'exportation est vide. Veuillez fournir un chemin valide.</value>
+    <value>Le chemin d’accès pour le répertoire d’exportation est vide. Veuillez spécifier un chemin valide.</value>
   </data>
   <data name="ExportFolderExistsMegavoice" xml:space="preserve">
-    <value>Il existe un livre du même nom. Voulez-vous l'écraser?</value>
+    <value>Un livre portant le même nom existe déjà. Souhaitez-vous le remplacer ?</value>
   </data>
   <data name="ExportDialogTitleForMegaVoiceExport" xml:space="preserve">
     <value>MegaVoice (Envoy Connect)</value>
   </data>
   <data name="DidnotDeleteTempMegaVoiceFolder" xml:space="preserve">
-    <value>La suppression du dossier temporaire créé lors de l'exportation de MegaVoice (Envoy Connect) n'a pas réussi car "{0}". Pour libérer de l'espace, vous pouvez le supprimer manuellement. Le chemin du dossier temporaire est: {1}</value>
+    <value>La suppression du dossier temporaire créé Durant l’exportation de MegaVoice (Envoy Connect) n’a pu aller à son terme car "{0}". Pour libérer cet espace vous pouvez le supprimer manuellement. Le chemin d’accès de ce dossier temporaire est : {1}</value>
   </data>
 </root>
