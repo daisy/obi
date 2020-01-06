@@ -228,13 +228,12 @@
             // m_NoiseReductionButton
             // 
             this.m_NoiseReductionButton.Enabled = false;
-            this.m_NoiseReductionButton.Location = new System.Drawing.Point(276, 452);
+            this.m_NoiseReductionButton.Location = new System.Drawing.Point(101, 431);
             this.m_NoiseReductionButton.Name = "m_NoiseReductionButton";
-            this.m_NoiseReductionButton.Size = new System.Drawing.Size(157, 23);
+            this.m_NoiseReductionButton.Size = new System.Drawing.Size(391, 23);
             this.m_NoiseReductionButton.TabIndex = 19;
-            this.m_NoiseReductionButton.Text = "Noise Reduction";
+            this.m_NoiseReductionButton.Text = "NAudio Noise Reduction";
             this.m_NoiseReductionButton.UseVisualStyleBackColor = true;
-            this.m_NoiseReductionButton.Visible = false;
             this.m_NoiseReductionButton.Click += new System.EventHandler(this.m_NoiseReductionButton_Click);
             // 
             // label4
