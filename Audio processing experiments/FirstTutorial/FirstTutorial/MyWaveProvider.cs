@@ -35,7 +35,7 @@ namespace FirstTutorial
                 //filters[n] = BiQuadFilter.BandPassFilterConstantPeakGain(44100, bandPassFreqency, 1);
                 if (!isLowPassFilter)
                 {
-                    filters[n] = BiQuadFilter.HighPassFilter(44100, 500, 1);
+                    filters[n] = BiQuadFilter.HighPassFilter(44100, 200, 1);
                 }
                 else
                 {

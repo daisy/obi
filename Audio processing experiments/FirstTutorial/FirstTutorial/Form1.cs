@@ -185,7 +185,7 @@ namespace FirstTutorial
                 //WaveFileWriter.CreateWaveFile16(outPath, filter);
                 //var tempReader = new AudioFileReader(outPath);
                 //filter = new MyWaveProvider(tempReader, BandPassFreqency, true);
-               var filter = new MyWaveProvider(filterTemp, BandPassFreqency, true);
+                 var filter = new MyWaveProvider(filterTemp, BandPassFreqency, true);
                 WaveFileWriter.CreateWaveFile16(outPathFinal, filter);
                 
             }
@@ -214,7 +214,7 @@ namespace FirstTutorial
                 //m_process.StartInfo.RedirectStandardError = false;
                 m_process.StartInfo.UseShellExecute = false;
                 //m_process.StartInfo.WindowStyle = ProcessWindowStyle.Hidden;
-                m_process.StartInfo.Arguments = string.Format("-i " + (char)34 + fileName + (char)34 + " -af " + (char)34 + "highpass=1000, lowpass=3000" + (char)34 + " "+ (char)34 + outPath + (char)34);
+                m_process.StartInfo.Arguments = string.Format("-i " + (char)34 + fileName + (char)34 + " -af " + (char)34 + "highpass=200, lowpass=3000" + (char)34 + " "+ (char)34 + outPath + (char)34);
 
                 
                 m_process.Start();
