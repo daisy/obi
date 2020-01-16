@@ -5568,15 +5568,15 @@ for (int j = 0;
                 //}
                 else if (AssignSpecialNodeDialog.IsChangeVolumeChecked)
                 {
-                    this.AudioProcessing(WavAudioProcessing.AudioProcessingKind.Amplify, true);
+                    this.AudioProcessing(AudioLib.WavAudioProcessing.AudioProcessingKind.Amplify, true);
                 }
                 else if (AssignSpecialNodeDialog.IsNormalizeChecked)
                 {
-                    this.AudioProcessing(WavAudioProcessing.AudioProcessingKind.Normalize, true);
+                    this.AudioProcessing(AudioLib.WavAudioProcessing.AudioProcessingKind.Normalize, true);
                 }
                 else if (AssignSpecialNodeDialog.IsSpeechRateChecked)
                 {
-                    this.AudioProcessing(WavAudioProcessing.AudioProcessingKind.SoundTouch, true);
+                    this.AudioProcessing(AudioLib.WavAudioProcessing.AudioProcessingKind.SoundTouch, true);
                 }
 
                 else if (AssignSpecialNodeDialog.IsCopyChecked || AssignSpecialNodeDialog.IsCutChecked)
@@ -6162,6 +6162,11 @@ for (int j = 0;
             return dictionaryOfFilePaths;
         }
 
+        public void AudioProcessing(WavAudioProcessing.AudioProcessingKind audioProcessingNaudioKind, bool IsAudioProcessingOnMultiPhrases = false)
+        {
+            AudioProcessing(AudioLib.WavAudioProcessing.AudioProcessingKind.SoundTouch, false);
+        }
+
         public void AudioProcessing(AudioLib.WavAudioProcessing.AudioProcessingKind audioProcessingNaudioKind, bool IsAudioProcessingOnMultiPhrases = false)
         {
             ObiNode nodeToSelect = null;
@@ -6185,22 +6190,27 @@ for (int j = 0;
 
             AudioLib.WavAudioProcessing.AudioProcessingKind audioProcessingKind = audioProcessingNaudioKind;
             Obi.Dialogs.AudioProcessingNewDialog dialog = null;
-            if (audioProcessingKind == WavAudioProcessing.AudioProcessingKind.Amplify || audioProcessingKind == WavAudioProcessing.AudioProcessingKind.Normalize
-                 || audioProcessingKind == WavAudioProcessing.AudioProcessingKind.SoundTouch)
+            Obi.Dialogs.AudioProcessingNoiseReduction dialogNoiseReduction = null;
+            if (audioProcessingKind == AudioLib.WavAudioProcessing.AudioProcessingKind.Amplify || audioProcessingKind == AudioLib.WavAudioProcessing.AudioProcessingKind.Normalize)
             {
                 dialog = new Obi.Dialogs.AudioProcessingNewDialog(audioProcessingNaudioKind, ObiForm.Settings, 0); //@fontconfig
             }
-            else if (audioProcessingKind == WavAudioProcessing.AudioProcessingKind.FadeIn || audioProcessingKind == WavAudioProcessing.AudioProcessingKind.FadeOut)
+            else if (audioProcessingKind == AudioLib.WavAudioProcessing.AudioProcessingKind.FadeIn || audioProcessingKind == AudioLib.WavAudioProcessing.AudioProcessingKind.FadeOut)
             {
                 dialog = new Obi.Dialogs.AudioProcessingNewDialog(audioProcessingNaudioKind, ObiForm.Settings, nodeToSelect.Duration);
             }
-            if (dialog != null && dialog.ShowDialog() == DialogResult.OK)
+            else //if(audioProcessingKind == AudioLib.WavAudioProcessing.AudioProcessingKind.SoundTouch)
+            {
+                dialogNoiseReduction = new Dialogs.AudioProcessingNoiseReduction();
+            }
+            if (dialog != null && dialog.ShowDialog() == DialogResult.OK || dialogNoiseReduction != null && dialogNoiseReduction.ShowDialog() == DialogResult.OK)
             {
 
                 float val = 0;
+                if(dialog != null)
                 val = dialog.AudioProcessingParameter;
 
-                if (!dialog.IsUseNAudioForAudioProcessing || audioProcessingKind == WavAudioProcessing.AudioProcessingKind.SoundTouch)
+                if (dialog != null && (!dialog.IsUseNAudioForAudioProcessing ))//|| audioProcessingKind == AudioLib.WavAudioProcessing.AudioProcessingKind.SoundTouch))
                 {
                     if (!IsAudioProcessingOnMultiPhrases)
                         this.ProcessAudio(audioProcessingNaudioKind, val);
@@ -6211,8 +6221,8 @@ for (int j = 0;
                     {
                         if (audioProcessingKind == AudioLib.WavAudioProcessing.AudioProcessingKind.Normalize)
                             MessageBox.Show(Localizer.Message("NormalizationCompleted"), Localizer.Message("information_caption"), MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        else if (audioProcessingKind == AudioLib.WavAudioProcessing.AudioProcessingKind.SoundTouch)
-                            MessageBox.Show(Localizer.Message("SpeechRateCompleted"), Localizer.Message("information_caption"), MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        //else if (audioProcessingKind == AudioLib.WavAudioProcessing.AudioProcessingKind.SoundTouch)
+                        //    MessageBox.Show(Localizer.Message("SpeechRateCompleted"), Localizer.Message("information_caption"), MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
                 }
                 else
@@ -6255,6 +6265,14 @@ for (int j = 0;
                                           else if (audioProcessingKind == AudioLib.WavAudioProcessing.AudioProcessingKind.Normalize)
                                           {
                                               audioProcessedFile = audioPorcess.Normalize(audioFileFullPath, val);
+                                          }
+                                          else 
+                                          {
+                                              WavAudioProcessing audioPorcesstemp = new WavAudioProcessing();
+                                              if (dialogNoiseReduction.IsNAudioNoiseReduction)
+                                                  audioProcessedFile = audioPorcesstemp.NoiseReductionNAudio(audioFileFullPath);
+                                              else
+                                                  audioProcessedFile = audioPorcesstemp.NoiseReductionFfmpeg(audioFileFullPath);
                                           }
                                       }
                                   },ObiForm.Settings);
@@ -6347,11 +6365,11 @@ if (CanExportSelectedNodeAudio)
     //if (dialog.ShowDialog() == DialogResult.OK)
     Audio.AudioFormatConverter.AudioProcessingKind audioProcessingKind = Audio.AudioFormatConverter.AudioProcessingKind.Amplify;
    
-    if( kindOfAudioProcessing == WavAudioProcessing.AudioProcessingKind.Normalize)
+    if( kindOfAudioProcessing == AudioLib.WavAudioProcessing.AudioProcessingKind.Normalize)
     {
         audioProcessingKind = Audio.AudioFormatConverter.AudioProcessingKind.Normalize;
     }
-    else if (kindOfAudioProcessing == WavAudioProcessing.AudioProcessingKind.SoundTouch)
+    else if (kindOfAudioProcessing == AudioLib.WavAudioProcessing.AudioProcessingKind.SoundTouch)
     {
         audioProcessingKind = Audio.AudioFormatConverter.AudioProcessingKind.SoundTouch;
     }
@@ -6451,11 +6469,11 @@ if (CanExportSelectedNodeAudio)
 
                 Audio.AudioFormatConverter.AudioProcessingKind audioProcessingKind = Audio.AudioFormatConverter.AudioProcessingKind.Amplify;
 
-                if (kindOfAudioProcessing == WavAudioProcessing.AudioProcessingKind.Normalize)
+                if (kindOfAudioProcessing == AudioLib.WavAudioProcessing.AudioProcessingKind.Normalize)
                 {
                     audioProcessingKind = Audio.AudioFormatConverter.AudioProcessingKind.Normalize;
                 }
-                else if (kindOfAudioProcessing == WavAudioProcessing.AudioProcessingKind.SoundTouch)
+                else if (kindOfAudioProcessing == AudioLib.WavAudioProcessing.AudioProcessingKind.SoundTouch)
                 {
                     audioProcessingKind = Audio.AudioFormatConverter.AudioProcessingKind.SoundTouch;
                 }

@@ -98,6 +98,9 @@
     <Reference Include="Microsoft.DirectX.DirectSound, Version=1.0.2902.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35">
       <HintPath>..\..\..\..\..\..\..\..\..\..\WINDOWS\Microsoft.NET\DirectX for Managed Code\1.0.2902.0\Microsoft.DirectX.DirectSound.dll</HintPath>
     </Reference>
+    <Reference Include="NAudio">
+      <HintPath>..\..\..\..\urakawa-sdk\trunk\csharp\audio\NAudio\bin\DebugNET4\NAudio.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Deployment" />
@@ -172,6 +175,12 @@
     </Compile>
     <Compile Include="Dialogs\AudioProcessingNewDialog.Designer.cs">
       <DependentUpon>AudioProcessingNewDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\AudioProcessingNoiseReduction.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\AudioProcessingNoiseReduction.Designer.cs">
+      <DependentUpon>AudioProcessingNoiseReduction.cs</DependentUpon>
     </Compile>
     <Compile Include="Dialogs\AudioSettings.cs">
       <SubType>Form</SubType>
@@ -468,6 +477,7 @@
     <Compile Include="PriorityQueue.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="ProjectUpgrader.cs" />
+    <Compile Include="ProjectView\BiQuadFilter.cs" />
     <Compile Include="ProjectView\Block.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -492,6 +502,7 @@
     <Compile Include="ProjectView\ContentViewLabel.Designer.cs">
       <DependentUpon>ContentViewLabel.cs</DependentUpon>
     </Compile>
+    <Compile Include="ProjectView\MyWaveProvider.cs" />
     <Compile Include="ProjectView\StripCursor.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -552,6 +563,7 @@
     <Compile Include="ProjectView\VerticalScrollToolStripContainer.Designer.cs">
       <DependentUpon>VerticalScrollToolStripContainer.cs</DependentUpon>
     </Compile>
+    <Compile Include="ProjectView\WavAudioProcessing.cs" />
     <Compile Include="ProjectView\Waveform.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -633,6 +645,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\AudioProcessingNewDialog.resx">
       <DependentUpon>AudioProcessingNewDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\AudioProcessingNoiseReduction.resx">
+      <DependentUpon>AudioProcessingNoiseReduction.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\AudioSettings.de.resx">
       <DependentUpon>AudioSettings.cs</DependentUpon>
