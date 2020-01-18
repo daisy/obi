@@ -117,7 +117,7 @@ namespace Obi.ProjectView
             }
         }
 
-        public string  NoiseReductionNAudio(string fileName)
+        public string  NoiseReductionNAudio(string fileName, float highPass, float LowPass)
         {
             
             string outputFileName = fileName.Substring(0, fileName.Length - 4);
@@ -125,15 +125,15 @@ namespace Obi.ProjectView
             using (var reader = new AudioFileReader(fileName))
             {
                 // reader is the source for filter
-                var filterTemp = new MyWaveProvider(reader);
-                var filter = new MyWaveProvider(filterTemp, true);
+                var filterTemp = new MyWaveProvider(reader,highPass);
+                var filter = new MyWaveProvider(filterTemp, LowPass, true);
                 WaveFileWriter.CreateWaveFile16(outPath, filter);
                 return outPath;
 
             }
         }
 
-        public string NoiseReductionFfmpeg(string fileName)
+        public string NoiseReductionFfmpeg(string fileName, float highPass, float LowPass)
         {
             string outputFileName = fileName.Substring(0, fileName.Length - 4);
             var outPath = outputFileName + "ffmpegNoiseReduction.wav";
@@ -156,7 +156,9 @@ namespace Obi.ProjectView
                 //m_process.StartInfo.RedirectStandardError = false;
                 m_process.StartInfo.UseShellExecute = false;
                 //m_process.StartInfo.WindowStyle = ProcessWindowStyle.Hidden;
-                m_process.StartInfo.Arguments = string.Format("-i " + (char)34 + fileName + (char)34 + " -af " + (char)34 + "highpass=200, lowpass=3000" + (char)34 + " " + (char)34 + outPath + (char)34);
+                //m_process.StartInfo.Arguments = string.Format("-i " + (char)34 + fileName + (char)34 + " -af " + (char)34 + "highpass=200, lowpass=3000" + (char)34 + " " + (char)34 + outPath + (char)34);
+
+                m_process.StartInfo.Arguments = string.Format("-i " + (char)34 + fileName + (char)34 + " -af " + (char)34 + "highpass=" + highPass + ", lowpass=" + LowPass  + (char)34 + " " + (char)34 + outPath + (char)34);
 
 
                 m_process.Start();
