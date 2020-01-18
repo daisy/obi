@@ -17,28 +17,27 @@ namespace Obi.ProjectView
         private int channels;
         private BiQuadFilter[] filters;
 
-        public MyWaveProvider(ISampleProvider sourceProvider,bool IsLowPass = false)
+        public MyWaveProvider(ISampleProvider sourceProvider, float cutOffFreqency, bool IsLowPass = false)
         {
             this.sourceProvider = sourceProvider;
 
             channels = sourceProvider.WaveFormat.Channels;
             filters = new BiQuadFilter[channels];
             isLowPassFilter = IsLowPass;
-            CreateFilters();
+            CreateFilters(cutOffFreqency);
         }
 
-        private void CreateFilters()
+        private void CreateFilters(float cutOffFreqency)
         {
             for (int n = 0; n < channels; n++)
             {
-                //filters[n] = BiQuadFilter.BandPassFilterConstantPeakGain(44100, bandPassFreqency, 1);
                 if (!isLowPassFilter)
                 {
-                    filters[n] = BiQuadFilter.HighPassFilter(44100, 200, 1);
+                    filters[n] = BiQuadFilter.HighPassFilter(44100, cutOffFreqency, 1);
                 }
                 else
                 {
-                    filters[n] = BiQuadFilter.LowPassFilter(44100, 3000, 1);
+                    filters[n] = BiQuadFilter.LowPassFilter(44100, cutOffFreqency, 1);
                 }
 
             }

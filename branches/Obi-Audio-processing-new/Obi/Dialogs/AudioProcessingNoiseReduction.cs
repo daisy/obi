@@ -14,6 +14,10 @@ namespace Obi.Dialogs
         public AudioProcessingNoiseReduction()
         {
             InitializeComponent();
+            int highpass = 200;
+            int lowpass = 3000;
+            m_tb_HighPass.Text = highpass.ToString() ;
+            m_tb_LowPass.Text = lowpass.ToString();
         }
 
         public bool IsNAudioNoiseReduction
@@ -24,5 +28,24 @@ namespace Obi.Dialogs
             }
         }
 
+        public float HighPass
+        {
+            get
+            {
+                float highPassVal = 200;
+                bool isFloat = float.TryParse(m_tb_HighPass.Text, out highPassVal);
+                return highPassVal;
+            }
+        }
+
+        public float LowPass
+        {
+            get
+            {
+                float LowPassVal = 3000;
+                bool isFloat = float.TryParse(m_tb_LowPass.Text, out LowPassVal);
+                return LowPassVal;
+            }
+        }
     }
 }
