@@ -210,14 +210,25 @@ namespace FirstTutorial
 
                 m_process.StartInfo.FileName = ffmpegPath;
 
-                m_process.StartInfo.RedirectStandardOutput = true;
-                //m_process.StartInfo.RedirectStandardError = false;
-                m_process.StartInfo.UseShellExecute = false;
-                //m_process.StartInfo.WindowStyle = ProcessWindowStyle.Hidden;
-                m_process.StartInfo.Arguments = string.Format("-i " + (char)34 + fileName + (char)34 + " -af " + (char)34 + "highpass=200, lowpass=3000" + (char)34 + " "+ (char)34 + outPath + (char)34);
+                //m_process.StartInfo.RedirectStandardOutput = true;
+                ////m_process.StartInfo.RedirectStandardError = false;
+                //m_process.StartInfo.UseShellExecute = false;
+                ////m_process.StartInfo.WindowStyle = ProcessWindowStyle.Hidden;
 
-                
-                m_process.Start();
+                m_process.StartInfo.RedirectStandardOutput = false;
+                m_process.StartInfo.RedirectStandardError = false;
+                m_process.StartInfo.UseShellExecute = true;
+                m_process.StartInfo.WindowStyle = ProcessWindowStyle.Hidden;
+
+
+                //m_process.StartInfo.Arguments = string.Format("-i " + (char)34 + fileName + (char)34 + " -af " + (char)34 + "highpass=200, lowpass=3000" + (char)34 + " "+ (char)34 + outPath + (char)34);
+
+
+                m_process.StartInfo.Arguments = string.Format("-y -i " + "\"" + fileName + "\"" + " -af afftdn=nr=50:nf=-20 " + "\"" + outPath + "\"");
+                //m_process.StartInfo.Arguments = string.Format("-i " + (char)34 + fileName + (char)34 + " -af " + (char)34 + "highpass=200, lowpass=3000" + (char)34 + " " + (char)34 + outPath + (char)34);
+
+
+                m_process.Start();               
                 m_process.WaitForExit();
 
 
