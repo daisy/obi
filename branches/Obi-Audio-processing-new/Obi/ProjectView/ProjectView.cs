@@ -6270,9 +6270,11 @@ for (int j = 0;
                                           {
                                               WavAudioProcessing audioPorcesstemp = new WavAudioProcessing();
                                               if (dialogNoiseReduction.IsNAudioNoiseReduction)
-                                                  audioProcessedFile = audioPorcesstemp.NoiseReductionNAudio(audioFileFullPath,dialogNoiseReduction.HighPass,dialogNoiseReduction.LowPass);
-                                              else
+                                                  audioProcessedFile = audioPorcesstemp.NoiseReductionNAudio(audioFileFullPath, dialogNoiseReduction.HighPass, dialogNoiseReduction.LowPass);
+                                              else if (dialogNoiseReduction.IsFfmpegNoiseReduction)
                                                   audioProcessedFile = audioPorcesstemp.NoiseReductionFfmpeg(audioFileFullPath, dialogNoiseReduction.HighPass, dialogNoiseReduction.LowPass);
+                                              else if (dialogNoiseReduction.IsFfmpegAfftdnNoiseReduction)
+                                                  audioProcessedFile = audioPorcesstemp.NoiseReductionFfmpegAfftdn(audioFileFullPath, dialogNoiseReduction.NoiseReductionInDb, dialogNoiseReduction.NoiseFloorInDb);
                                           }
                                       }
                                   },ObiForm.Settings);
