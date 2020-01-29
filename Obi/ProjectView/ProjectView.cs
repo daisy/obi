@@ -6275,6 +6275,8 @@ for (int j = 0;
                                                   audioProcessedFile = audioPorcesstemp.NoiseReductionFfmpeg(audioFileFullPath, dialogNoiseReduction.HighPass, dialogNoiseReduction.LowPass);
                                               else if (dialogNoiseReduction.IsFfmpegAfftdnNoiseReduction)
                                                   audioProcessedFile = audioPorcesstemp.NoiseReductionFfmpegAfftdn(audioFileFullPath, dialogNoiseReduction.NoiseReductionInDb, dialogNoiseReduction.NoiseFloorInDb);
+                                              else if (dialogNoiseReduction.IsFfmpegAnlmdnNoiseReduction)
+                                                  audioProcessedFile = audioPorcesstemp.NoiseReductionFfmpegAnlmdn(audioFileFullPath, dialogNoiseReduction.DenoisingStrength);
                                           }
                                       }
                                   },ObiForm.Settings);
