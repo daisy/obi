@@ -36,6 +36,14 @@ namespace Obi.Dialogs
             }
         }
 
+        public bool IsFfmpegAnlmdnNoiseReduction
+        {
+            get
+            {
+                return m_rbFfmpegAnlmdnNoiseReduction.Checked;
+            }
+        }
+
         public bool IsFfmpegNoiseReduction
         {
             get
@@ -81,12 +89,22 @@ namespace Obi.Dialogs
             }
         }
 
+        public decimal DenoisingStrength
+        {
+            get
+            {
+                return m_SetDenoisingStrength.Value;
+            }
+        }
+
         private void m_rbFfmpegAfftdnNoiseReduction_CheckedChanged(object sender, EventArgs e)
         {
             if (m_rbFfmpegAfftdnNoiseReduction.Checked)
             {
                 m_SetNoiseReduction.Enabled = true;
                 m_SetNoiseFloor.Enabled = true;
+
+                m_SetDenoisingStrength.Enabled = false;
                 m_tb_HighPass.Enabled = false;
                 m_tb_LowPass.Enabled = false;
             }
@@ -98,6 +116,8 @@ namespace Obi.Dialogs
             {
                 m_tb_HighPass.Enabled = true;
                 m_tb_LowPass.Enabled = true;
+
+                m_SetDenoisingStrength.Enabled = false;
                 m_SetNoiseReduction.Enabled = false;
                 m_SetNoiseFloor.Enabled = false;
             }
@@ -109,8 +129,23 @@ namespace Obi.Dialogs
             {
                 m_tb_HighPass.Enabled = true;
                 m_tb_LowPass.Enabled = true;
+
+                m_SetDenoisingStrength.Enabled = false;
                 m_SetNoiseReduction.Enabled = false;
                 m_SetNoiseFloor.Enabled = false;
+            }
+        }
+
+        private void m_rbFfmpegAnlmdnNoiseReduction_CheckedChanged(object sender, EventArgs e)
+        {
+            if (m_rbFfmpegAnlmdnNoiseReduction.Checked)
+            {
+                m_SetDenoisingStrength.Enabled = true;
+
+                m_SetNoiseReduction.Enabled = false;
+                m_SetNoiseFloor.Enabled = false;
+                m_tb_HighPass.Enabled = false;
+                m_tb_LowPass.Enabled = false;
             }
         }
     }

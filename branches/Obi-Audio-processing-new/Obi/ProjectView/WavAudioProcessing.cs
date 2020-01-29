@@ -209,6 +209,45 @@ namespace Obi.ProjectView
             }
         }
 
+
+        public string NoiseReductionFfmpegAnlmdn(string fileName, decimal denoisingStrength)
+        {
+            string outputFileName = fileName.Substring(0, fileName.Length - 4);
+            var outPath = outputFileName + "ffmpegNoiseReduction.wav";
+            using (var reader = new AudioFileReader(fileName))
+            {
+                string ffmpegWorkingDir = Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location);
+                string ffmpegPath = Path.Combine(ffmpegWorkingDir, "ffmpeg.exe");
+                if (!File.Exists(ffmpegPath))
+                    throw new FileNotFoundException("Invalid compression library path " + ffmpegPath);
+
+                if (!File.Exists(fileName))
+                    throw new FileNotFoundException("Invalid source file path " + fileName);
+
+
+                Process m_process = new Process();
+
+                m_process.StartInfo.FileName = ffmpegPath;
+
+                m_process.StartInfo.RedirectStandardOutput = false;
+                m_process.StartInfo.RedirectStandardError = false;
+                m_process.StartInfo.UseShellExecute = true;
+                m_process.StartInfo.WindowStyle = ProcessWindowStyle.Hidden;
+
+                //-y -i "004_a_word_on_life_skills.wav" -af anlmdn=s=10 "004_a_word_on_life_skillsNoiseReductionAnlmdn.wav"
+                m_process.StartInfo.Arguments = string.Format("-y -i " + "\"" + fileName + "\"" + " -af anlmdn=s=" + denoisingStrength + " \"" + outPath + "\"");
+
+
+                m_process.Start();
+                m_process.WaitForExit();
+
+                return outPath;
+
+
+
+            }
+        }
+
         public enum AudioProcessingKind { Amplify, FadeIn, FadeOut, Normalize, SoundTouch, NoiseReduction} ;
     }
 }
