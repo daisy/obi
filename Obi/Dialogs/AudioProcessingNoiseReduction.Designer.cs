@@ -287,6 +287,7 @@
             // 
             // m_SetNoiseLevelInPercent
             // 
+            this.m_SetNoiseLevelInPercent.AccessibleName = "Set Noise Level (in percent)";
             this.m_SetNoiseLevelInPercent.DecimalPlaces = 1;
             this.m_SetNoiseLevelInPercent.Location = new System.Drawing.Point(306, 152);
             this.m_SetNoiseLevelInPercent.Name = "m_SetNoiseLevelInPercent";
