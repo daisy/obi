@@ -6185,6 +6185,7 @@ for (int j = 0;
 
             AudioLib.WavAudioProcessing.AudioProcessingKind audioProcessingKind = audioProcessingNaudioKind;
             Obi.Dialogs.AudioProcessingNewDialog dialog = null;
+            Obi.Dialogs.AudioProcessingNoiseReduction dialogNoiseReduction = null;
             if (audioProcessingKind == WavAudioProcessing.AudioProcessingKind.Amplify || audioProcessingKind == WavAudioProcessing.AudioProcessingKind.Normalize
                  || audioProcessingKind == WavAudioProcessing.AudioProcessingKind.SoundTouch)
             {
@@ -6194,13 +6195,18 @@ for (int j = 0;
             {
                 dialog = new Obi.Dialogs.AudioProcessingNewDialog(audioProcessingNaudioKind, ObiForm.Settings, nodeToSelect.Duration);
             }
-            if (dialog != null && dialog.ShowDialog() == DialogResult.OK)
+            else if(audioProcessingKind == WavAudioProcessing.AudioProcessingKind.NoiseReduction)
+            {
+                dialogNoiseReduction = new Dialogs.AudioProcessingNoiseReduction();
+            }
+            if (dialog != null && dialog.ShowDialog() == DialogResult.OK || dialogNoiseReduction != null && dialogNoiseReduction.ShowDialog() == DialogResult.OK)
             {
 
                 float val = 0;
+                if (dialog != null)
                 val = dialog.AudioProcessingParameter;
 
-                if (!dialog.IsUseNAudioForAudioProcessing || audioProcessingKind == WavAudioProcessing.AudioProcessingKind.SoundTouch)
+                if ((dialog != null && !dialog.IsUseNAudioForAudioProcessing) || audioProcessingKind == WavAudioProcessing.AudioProcessingKind.SoundTouch)
                 {
                     if (!IsAudioProcessingOnMultiPhrases)
                         this.ProcessAudio(audioProcessingNaudioKind, val);
@@ -6255,6 +6261,10 @@ for (int j = 0;
                                           else if (audioProcessingKind == AudioLib.WavAudioProcessing.AudioProcessingKind.Normalize)
                                           {
                                               audioProcessedFile = audioPorcess.Normalize(audioFileFullPath, val);
+                                          }
+                                          else if (audioProcessingKind == AudioLib.WavAudioProcessing.AudioProcessingKind.NoiseReduction)
+                                          {
+                                              audioProcessedFile = audioPorcess.NoiseReductionFfmpegAfftdn(audioFileFullPath, dialogNoiseReduction.NoiseReductionInDb, dialogNoiseReduction.NoiseFloorInDb);
                                           }
                                       }
                                   },ObiForm.Settings);

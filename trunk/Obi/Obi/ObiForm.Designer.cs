@@ -241,6 +241,7 @@ namespace Obi
             this.mStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.mStatusProgressBar = new System.Windows.Forms.ToolStripProgressBar();
             this.mProjectView = new Obi.ProjectView.ProjectView();
+            this.m_NoiseReductionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mMenuStrip.SuspendLayout();
             this.mStatusStrip.SuspendLayout();
             this.SuspendLayout();
@@ -1594,7 +1595,8 @@ namespace Obi
             this.m_FadeInToolStripMenuItem,
             this.m_FadeOutToolStripMenuItem,
             this.m_NormalizeToolStripMenuItem,
-            this.m_SpeechRateToolStripMenuItem});
+            this.m_SpeechRateToolStripMenuItem,
+            this.m_NoiseReductionToolStripMenuItem});
             this.mTools_AudioProcessingNew.Name = "mTools_AudioProcessingNew";
             // 
             // m_ChangeVolumeToolStripMenuItem
@@ -1758,6 +1760,12 @@ namespace Obi
             this.mProjectView.TOCViewWidth = 302;
             this.mProjectView.TransportBarVisible = false;
             this.mProjectView.ZoomWaveformIncrementFactor = 0D;
+            // 
+            // m_NoiseReductionToolStripMenuItem
+            // 
+            this.m_NoiseReductionToolStripMenuItem.Name = "m_NoiseReductionToolStripMenuItem";
+            resources.ApplyResources(this.m_NoiseReductionToolStripMenuItem, "m_NoiseReductionToolStripMenuItem");
+            this.m_NoiseReductionToolStripMenuItem.Click += new System.EventHandler(this.m_NoiseReductionToolStripMenuItem_Click);
             // 
             // ObiForm
             // 
@@ -1998,6 +2006,7 @@ namespace Obi
         private System.Windows.Forms.ToolStripMenuItem m_FadeOutToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem m_NormalizeToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem m_SpeechRateToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem m_NoiseReductionToolStripMenuItem;
     }
 }
 
