@@ -36,6 +36,7 @@ namespace Obi.Dialogs
             this.m_rdb_btn_RenumberPages = new System.Windows.Forms.RadioButton();
             this.helpProvider1 = new System.Windows.Forms.HelpProvider();
             this.m_gp_box_operation = new System.Windows.Forms.GroupBox();
+            this.m_rdb_btn_NoiseReduction = new System.Windows.Forms.RadioButton();
             this.m_rdb_btn_SpeechRate = new System.Windows.Forms.RadioButton();
             this.m_rdb_btn_Normalize = new System.Windows.Forms.RadioButton();
             this.m_rdb_btn_ChangeVolume = new System.Windows.Forms.RadioButton();
@@ -97,6 +98,7 @@ namespace Obi.Dialogs
             // 
             // m_gp_box_operation
             // 
+            this.m_gp_box_operation.Controls.Add(this.m_rdb_btn_NoiseReduction);
             this.m_gp_box_operation.Controls.Add(this.m_rdb_btn_SpeechRate);
             this.m_gp_box_operation.Controls.Add(this.m_rdb_btn_Normalize);
             this.m_gp_box_operation.Controls.Add(this.m_rdb_btn_ChangeVolume);
@@ -111,6 +113,13 @@ namespace Obi.Dialogs
             this.m_gp_box_operation.Name = "m_gp_box_operation";
             this.helpProvider1.SetShowHelp(this.m_gp_box_operation, ((bool)(resources.GetObject("m_gp_box_operation.ShowHelp"))));
             this.m_gp_box_operation.TabStop = false;
+            // 
+            // m_rdb_btn_NoiseReduction
+            // 
+            resources.ApplyResources(this.m_rdb_btn_NoiseReduction, "m_rdb_btn_NoiseReduction");
+            this.m_rdb_btn_NoiseReduction.Name = "m_rdb_btn_NoiseReduction";
+            this.m_rdb_btn_NoiseReduction.UseVisualStyleBackColor = true;
+            this.m_rdb_btn_NoiseReduction.CheckedChanged += new System.EventHandler(this.m_rdb_btn_NoiseReduction_CheckedChanged);
             // 
             // m_rdb_btn_SpeechRate
             // 
@@ -203,5 +212,6 @@ namespace Obi.Dialogs
         private System.Windows.Forms.RadioButton m_rdb_btn_Normalize;
         private System.Windows.Forms.RadioButton m_rdb_btn_ChangeVolume;
         private System.Windows.Forms.RadioButton m_rdb_btn_SpeechRate;
+        private System.Windows.Forms.RadioButton m_rdb_btn_NoiseReduction;
     }
 }

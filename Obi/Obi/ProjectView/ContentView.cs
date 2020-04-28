@@ -6299,6 +6299,17 @@ Block lastBlock = ActiveStrip.LastBlock ;
             mProjectView.AudioProcessing(AudioLib.WavAudioProcessing.AudioProcessingKind.SoundTouch);
         }
 
+        private void m_NoiseReductionToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (mProjectView.TransportBar.IsPlayerActive)
+            {
+                if (mProjectView.TransportBar.CurrentState == Obi.ProjectView.TransportBar.State.Playing) mProjectView.TransportBar.Pause();
+                mProjectView.TransportBar.Stop();
+            }
+            if (mProjectView.CanExportSelectedNodeAudio)
+                mProjectView.AudioProcessing(AudioLib.WavAudioProcessing.AudioProcessingKind.NoiseReduction);
+        }
+
      
 
         }
