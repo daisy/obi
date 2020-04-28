@@ -45,6 +45,9 @@ namespace Obi.Dialogs
         public bool IsNormalizeChecked
         { get { return m_rdb_btn_Normalize.Checked; } }
 
+        public bool IsNoiseReductionChecked
+        { get { return m_rdb_btn_NoiseReduction.Checked; } }
+
         public bool IsCopyChecked
         {
             get { return m_rdb_Copy.Checked; }
@@ -150,6 +153,12 @@ namespace Obi.Dialogs
         private void m_rdb_btn_SpeechRate_CheckedChanged(object sender, EventArgs e)
         {
             m_cmbBoxSpecialNode.Visible = false;
+        }
+
+        private void m_rdb_btn_NoiseReduction_CheckedChanged(object sender, EventArgs e)
+        {
+            m_cmbBoxSpecialNode.Visible = false;
+
         }
 
     }

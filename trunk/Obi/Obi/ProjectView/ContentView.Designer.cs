@@ -102,6 +102,7 @@ namespace Obi.ProjectView
             this.m_FadeOutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.m_NormalizeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.m_SpeechRateToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.m_NoiseReductionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.Context_ExportReplaceAudioMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.Context_ExportAudioMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.Context_ReplaceAudioMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -589,7 +590,8 @@ namespace Obi.ProjectView
             this.m_FadeInToolStripMenuItem,
             this.m_FadeOutToolStripMenuItem,
             this.m_NormalizeToolStripMenuItem,
-            this.m_SpeechRateToolStripMenuItem});
+            this.m_SpeechRateToolStripMenuItem,
+            this.m_NoiseReductionToolStripMenuItem});
             this.Context_AudioProcessingNew.Name = "Context_AudioProcessingNew";
             resources.ApplyResources(this.Context_AudioProcessingNew, "Context_AudioProcessingNew");
             // 
@@ -622,6 +624,12 @@ namespace Obi.ProjectView
             this.m_SpeechRateToolStripMenuItem.Name = "m_SpeechRateToolStripMenuItem";
             resources.ApplyResources(this.m_SpeechRateToolStripMenuItem, "m_SpeechRateToolStripMenuItem");
             this.m_SpeechRateToolStripMenuItem.Click += new System.EventHandler(this.m_SpeechRateToolStripMenuItem_Click);
+            // 
+            // m_NoiseReductionToolStripMenuItem
+            // 
+            this.m_NoiseReductionToolStripMenuItem.Name = "m_NoiseReductionToolStripMenuItem";
+            resources.ApplyResources(this.m_NoiseReductionToolStripMenuItem, "m_NoiseReductionToolStripMenuItem");
+            this.m_NoiseReductionToolStripMenuItem.Click += new System.EventHandler(this.m_NoiseReductionToolStripMenuItem_Click);
             // 
             // Context_ExportReplaceAudioMenuItem
             // 
@@ -804,5 +812,6 @@ namespace Obi.ProjectView
         private System.Windows.Forms.ToolStripMenuItem m_FadeOutToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem m_NormalizeToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem m_SpeechRateToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem m_NoiseReductionToolStripMenuItem;
     }
 }

@@ -5541,7 +5541,7 @@ for (int j = 0;
             if (AssignSpecialNodeDialog.DialogResult == DialogResult.OK)
             {
                 customClass = AssignSpecialNodeDialog.SelectedSpecialNode;
-                m_IsAudioProcessingChecked = AssignSpecialNodeDialog.IsChangeVolumeChecked || AssignSpecialNodeDialog.IsNormalizeChecked || AssignSpecialNodeDialog.IsSpeechRateChecked;
+                m_IsAudioProcessingChecked = AssignSpecialNodeDialog.IsChangeVolumeChecked || AssignSpecialNodeDialog.IsNormalizeChecked || AssignSpecialNodeDialog.IsSpeechRateChecked || AssignSpecialNodeDialog.IsNoiseReductionChecked;
 
                 if (AssignSpecialNodeDialog.IsRenumberChecked)
                     RenumberPage();
@@ -5577,6 +5577,10 @@ for (int j = 0;
                 else if (AssignSpecialNodeDialog.IsSpeechRateChecked)
                 {
                     this.AudioProcessing(WavAudioProcessing.AudioProcessingKind.SoundTouch, true);
+                }
+                else if (AssignSpecialNodeDialog.IsNoiseReductionChecked)
+                {
+                    this.AudioProcessing(WavAudioProcessing.AudioProcessingKind.NoiseReduction, true);
                 }
 
                 else if (AssignSpecialNodeDialog.IsCopyChecked || AssignSpecialNodeDialog.IsCutChecked)
@@ -6122,7 +6126,8 @@ for (int j = 0;
         }
 
         private Dictionary<ObiNode, string> AudioProcessingDictionary(Dictionary<ObiNode, string> dictionaryOfFilePaths, ObiNode nodeToSelect, 
-            AudioLib.WavAudioProcessing.AudioProcessingKind audioProcessingKind, float AudioProcessingParameter,string directoryFullPath)
+            AudioLib.WavAudioProcessing.AudioProcessingKind audioProcessingKind, float AudioProcessingParameter,string directoryFullPath,
+            decimal noiseReductionInDB = 0, decimal noiseFloorInDB = 0)
         {
 
             Obi.Dialogs.ProgressDialog progress = new Obi.Dialogs.ProgressDialog(Localizer.Message("AudioFileExport_progress_dialog_title"),
@@ -6142,6 +6147,10 @@ for (int j = 0;
                                               else if (audioProcessingKind == AudioLib.WavAudioProcessing.AudioProcessingKind.Normalize)
                                               {
                                                   audioProcessedFile = audioPorcess.Normalize(audioFileFullPath, AudioProcessingParameter);
+                                              }
+                                              else if (audioProcessingKind == AudioLib.WavAudioProcessing.AudioProcessingKind.NoiseReduction)
+                                              {
+                                                  audioProcessedFile = audioPorcess.NoiseReductionFfmpegAfftdn(audioFileFullPath, noiseReductionInDB, noiseFloorInDB);
                                               }
                                               dictionaryOfFilePaths.Add(nodeToSelect, audioProcessedFile);
                                           }
@@ -6315,7 +6324,15 @@ for (int j = 0;
 
 
                             Dictionary<ObiNode, string> dictionaryOfFilePaths = new Dictionary<ObiNode, string>();
-                            dictionaryOfFilePaths = AudioProcessingDictionary(dictionaryOfFilePaths, nodeToSelect, audioProcessingKind, val, directoryFullPath);
+                            if (audioProcessingKind == WavAudioProcessing.AudioProcessingKind.NoiseReduction)
+                            {
+                                dictionaryOfFilePaths = AudioProcessingDictionary(dictionaryOfFilePaths, nodeToSelect, audioProcessingKind, val, directoryFullPath, 
+                                    dialogNoiseReduction.NoiseReductionInDb, dialogNoiseReduction.NoiseFloorInDb);
+                            }
+                            else
+                            {
+                                dictionaryOfFilePaths = AudioProcessingDictionary(dictionaryOfFilePaths, nodeToSelect, audioProcessingKind, val, directoryFullPath);
+                            }
 
                             ReplaceAudioInMultiplePhrases(dictionaryOfFilePaths);
                             m_IsAudioprocessingPerformed = true;
