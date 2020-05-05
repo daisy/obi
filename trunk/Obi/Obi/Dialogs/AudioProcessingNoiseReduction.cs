@@ -16,7 +16,7 @@ namespace Obi.Dialogs
         public AudioProcessingNoiseReduction()
         {
             InitializeComponent();
-            m_SelectPresetComboBox.SelectedIndex = 0;
+            m_SelectPresetComboBox.SelectedIndex = 1;
         }
 
     

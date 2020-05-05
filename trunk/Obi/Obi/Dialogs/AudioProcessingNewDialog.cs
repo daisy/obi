@@ -58,7 +58,7 @@ namespace Obi.Dialogs
                 m_lbl_Seconds.Location = new Point(m_numericUpDown1.Location.X + m_numericUpDown1.Width, m_numericUpDown1.Location.Y);
                 double durationiInSeconds = durationOfFadeInOut * 0.001;
                 m_IsAudioProcessingParameterInSeconds = true;
-                m_numericUpDown1.Maximum = (decimal)durationiInSeconds;
+                m_numericUpDown1.Maximum = m_StartTimeNumericUpDown.Maximum = (decimal)durationiInSeconds;
                 m_numericUpDown1.Value = (decimal)durationiInSeconds;
                 m_txt_info.Text = string.Format(Localizer.Message("TextInfoForFadeInOutOperation"),Math.Round(m_numericUpDown1.Value,2));
                 m_AmplifyParameter.Visible = false;
@@ -66,6 +66,9 @@ namespace Obi.Dialogs
                 m_lbl_High.Visible = false;
                 m_lbl_Seconds.Visible = true;
                 m_NAudioForAudioProcessing.Visible = false;
+                m_lbl_StartTime.Visible = true;
+                m_StartTimeNumericUpDown.Visible = true;
+                m_lbl_StartTimeSeconds.Visible = true;
             }
             else if (AudioLib.WavAudioProcessing.AudioProcessingKind.Normalize == typeOfAudioProcessing)
             {
@@ -114,21 +117,24 @@ namespace Obi.Dialogs
         {
             get
             {
-                if (m_IsAudioProcessingParameterInSeconds)
-                {
-                    return (float)m_numericUpDown1.Value * 1000;
-                }
+                //if (m_IsAudioProcessingParameterInSeconds)
+                //{
+                //    return (float)m_numericUpDown1.Value * 1000;
+                //}
                 return (float) m_numericUpDown1.Value;
             }
         }
 
-        public int NoiseReductionParameter
+        public float FadeEffectStartTime
         {
             get
             {
-                return (Int32.Parse(m_tb_NoiseReductionFreqency.Text));
+
+                return (float)m_StartTimeNumericUpDown.Value;
+
             }
         }
+
         private void m_btn_OK_Click(object sender, EventArgs e)
         {
             DialogResult = DialogResult.OK;

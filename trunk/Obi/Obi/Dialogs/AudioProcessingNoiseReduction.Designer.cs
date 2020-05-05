@@ -116,7 +116,7 @@
             this.m_SetNoiseLevelInPercent.Size = new System.Drawing.Size(56, 20);
             this.m_SetNoiseLevelInPercent.TabIndex = 5;
             this.m_SetNoiseLevelInPercent.Value = new decimal(new int[] {
-            100,
+            75,
             0,
             0,
             0});
@@ -141,7 +141,7 @@
             this.m_SetNoiseLevelTrackBar.Size = new System.Drawing.Size(247, 45);
             this.m_SetNoiseLevelTrackBar.TabIndex = 4;
             this.m_SetNoiseLevelTrackBar.TickFrequency = 6;
-            this.m_SetNoiseLevelTrackBar.Value = 100;
+            this.m_SetNoiseLevelTrackBar.Value = 75;
             this.m_SetNoiseLevelTrackBar.ValueChanged += new System.EventHandler(this.m_SetNoiseLevelTrackBar_ValueChanged);
             // 
             // label7

@@ -118,10 +118,113 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="m_lbl_StartTimeSeconds.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="m_lbl_StartTimeSeconds.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="m_lbl_StartTimeSeconds.Location" type="System.Drawing.Point, System.Drawing">
+    <value>228, 86</value>
+  </data>
+  <metadata name="helpProvider1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 17</value>
+  </metadata>
+  <data name="m_lbl_StartTimeSeconds.ShowHelp" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="m_lbl_StartTimeSeconds.Size" type="System.Drawing.Size, System.Drawing">
+    <value>55, 15</value>
+  </data>
+  <data name="m_lbl_StartTimeSeconds.TabIndex" type="System.Int32, mscorlib">
+    <value>6</value>
+  </data>
+  <data name="m_lbl_StartTimeSeconds.Text" xml:space="preserve">
+    <value>Seconds</value>
+  </data>
+  <data name="m_lbl_StartTimeSeconds.Visible" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="&gt;&gt;m_lbl_StartTimeSeconds.Name" xml:space="preserve">
+    <value>m_lbl_StartTimeSeconds</value>
+  </data>
+  <data name="&gt;&gt;m_lbl_StartTimeSeconds.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_lbl_StartTimeSeconds.Parent" xml:space="preserve">
+    <value>m_gpbox_Process</value>
+  </data>
+  <data name="&gt;&gt;m_lbl_StartTimeSeconds.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="m_StartTimeNumericUpDown.AccessibleName" xml:space="preserve">
+    <value>Start Time of fade effect in seconds</value>
+  </data>
+  <data name="m_StartTimeNumericUpDown.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 9pt</value>
+  </data>
+  <data name="m_StartTimeNumericUpDown.Location" type="System.Drawing.Point, System.Drawing">
+    <value>152, 84</value>
+  </data>
+  <data name="m_StartTimeNumericUpDown.ShowHelp" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="m_StartTimeNumericUpDown.Size" type="System.Drawing.Size, System.Drawing">
+    <value>68, 21</value>
+  </data>
+  <data name="m_StartTimeNumericUpDown.TabIndex" type="System.Int32, mscorlib">
+    <value>5</value>
+  </data>
+  <data name="m_StartTimeNumericUpDown.Visible" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="&gt;&gt;m_StartTimeNumericUpDown.Name" xml:space="preserve">
+    <value>m_StartTimeNumericUpDown</value>
+  </data>
+  <data name="&gt;&gt;m_StartTimeNumericUpDown.Type" xml:space="preserve">
+    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_StartTimeNumericUpDown.Parent" xml:space="preserve">
+    <value>m_gpbox_Process</value>
+  </data>
+  <data name="&gt;&gt;m_StartTimeNumericUpDown.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="m_lbl_StartTime.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="m_lbl_StartTime.Location" type="System.Drawing.Point, System.Drawing">
+    <value>7, 84</value>
+  </data>
+  <data name="m_lbl_StartTime.Size" type="System.Drawing.Size, System.Drawing">
+    <value>138, 15</value>
+  </data>
+  <data name="m_lbl_StartTime.TabIndex" type="System.Int32, mscorlib">
+    <value>4</value>
+  </data>
+  <data name="m_lbl_StartTime.Text" xml:space="preserve">
+    <value>Start Time of fade effect:</value>
+  </data>
+  <data name="m_lbl_StartTime.Visible" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="&gt;&gt;m_lbl_StartTime.Name" xml:space="preserve">
+    <value>m_lbl_StartTime</value>
+  </data>
+  <data name="&gt;&gt;m_lbl_StartTime.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_lbl_StartTime.Parent" xml:space="preserve">
+    <value>m_gpbox_Process</value>
+  </data>
+  <data name="&gt;&gt;m_lbl_StartTime.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
   <data name="m_lbl_Seconds.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
-  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="m_lbl_Seconds.Location" type="System.Drawing.Point, System.Drawing">
     <value>212, 55</value>
   </data>
@@ -147,7 +250,7 @@
     <value>m_gpbox_Process</value>
   </data>
   <data name="&gt;&gt;m_lbl_Seconds.ZOrder" xml:space="preserve">
-    <value>0</value>
+    <value>3</value>
   </data>
   <data name="m_lbl_High.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -174,7 +277,7 @@
     <value>m_gpbox_Process</value>
   </data>
   <data name="&gt;&gt;m_lbl_High.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>4</value>
   </data>
   <data name="m_lbl_Low.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -201,7 +304,7 @@
     <value>m_gpbox_Process</value>
   </data>
   <data name="&gt;&gt;m_lbl_Low.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>5</value>
   </data>
   <data name="m_AmplifyParameter.AccessibleName" xml:space="preserve">
     <value>Slide to Increase/Decrease volume of selection. Right sliding will increase volume</value>
@@ -225,16 +328,16 @@
     <value>m_gpbox_Process</value>
   </data>
   <data name="&gt;&gt;m_AmplifyParameter.ZOrder" xml:space="preserve">
-    <value>3</value>
+    <value>6</value>
   </data>
   <data name="m_txt_info.Location" type="System.Drawing.Point, System.Drawing">
-    <value>21, 100</value>
+    <value>19, 113</value>
   </data>
   <data name="m_txt_info.Size" type="System.Drawing.Size, System.Drawing">
     <value>398, 21</value>
   </data>
   <data name="m_txt_info.TabIndex" type="System.Int32, mscorlib">
-    <value>4</value>
+    <value>7</value>
   </data>
   <data name="m_txt_info.Text" xml:space="preserve">
     <value>The value 1.0 means there will be no change in the audio.</value>
@@ -249,7 +352,7 @@
     <value>m_gpbox_Process</value>
   </data>
   <data name="&gt;&gt;m_txt_info.ZOrder" xml:space="preserve">
-    <value>4</value>
+    <value>7</value>
   </data>
   <data name="m_numericUpDown1.AccessibleName" xml:space="preserve">
     <value>Set Parameter to Increase/Decrease volume of selection</value>
@@ -276,7 +379,7 @@
     <value>m_gpbox_Process</value>
   </data>
   <data name="&gt;&gt;m_numericUpDown1.ZOrder" xml:space="preserve">
-    <value>5</value>
+    <value>8</value>
   </data>
   <data name="m_lbl_Parameters.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -303,7 +406,7 @@
     <value>m_gpbox_Process</value>
   </data>
   <data name="&gt;&gt;m_lbl_Parameters.ZOrder" xml:space="preserve">
-    <value>6</value>
+    <value>9</value>
   </data>
   <data name="m_lbl_Process.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -330,13 +433,13 @@
     <value>m_gpbox_Process</value>
   </data>
   <data name="&gt;&gt;m_lbl_Process.ZOrder" xml:space="preserve">
-    <value>7</value>
+    <value>10</value>
   </data>
   <data name="m_gpbox_Process.Location" type="System.Drawing.Point, System.Drawing">
     <value>5, 9</value>
   </data>
   <data name="m_gpbox_Process.Size" type="System.Drawing.Size, System.Drawing">
-    <value>569, 134</value>
+    <value>569, 143</value>
   </data>
   <data name="m_gpbox_Process.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
@@ -351,47 +454,19 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;m_gpbox_Process.ZOrder" xml:space="preserve">
-    <value>4</value>
-  </data>
-  <data name="m_tb_NoiseReductionFreqency.Location" type="System.Drawing.Point, System.Drawing">
-    <value>104, 261</value>
-  </data>
-  <data name="m_tb_NoiseReductionFreqency.Size" type="System.Drawing.Size, System.Drawing">
-    <value>100, 21</value>
-  </data>
-  <data name="m_tb_NoiseReductionFreqency.TabIndex" type="System.Int32, mscorlib">
     <value>3</value>
   </data>
-  <data name="m_tb_NoiseReductionFreqency.Text" xml:space="preserve">
-    <value>3000</value>
-  </data>
-  <data name="m_tb_NoiseReductionFreqency.Visible" type="System.Boolean, mscorlib">
-    <value>False</value>
-  </data>
-  <data name="&gt;&gt;m_tb_NoiseReductionFreqency.Name" xml:space="preserve">
-    <value>m_tb_NoiseReductionFreqency</value>
-  </data>
-  <data name="&gt;&gt;m_tb_NoiseReductionFreqency.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;m_tb_NoiseReductionFreqency.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;m_tb_NoiseReductionFreqency.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="m_btn_OK.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Flat</value>
   </data>
   <data name="m_btn_OK.Location" type="System.Drawing.Point, System.Drawing">
-    <value>196, 199</value>
+    <value>196, 184</value>
   </data>
   <data name="m_btn_OK.Size" type="System.Drawing.Size, System.Drawing">
     <value>92, 32</value>
   </data>
   <data name="m_btn_OK.TabIndex" type="System.Int32, mscorlib">
-    <value>6</value>
+    <value>9</value>
   </data>
   <data name="m_btn_OK.Text" xml:space="preserve">
     <value>&amp;OK</value>
@@ -406,19 +481,19 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;m_btn_OK.ZOrder" xml:space="preserve">
-    <value>3</value>
+    <value>2</value>
   </data>
   <data name="m_btn_Cancel.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Flat</value>
   </data>
   <data name="m_btn_Cancel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>319, 199</value>
+    <value>319, 184</value>
   </data>
   <data name="m_btn_Cancel.Size" type="System.Drawing.Size, System.Drawing">
     <value>92, 32</value>
   </data>
   <data name="m_btn_Cancel.TabIndex" type="System.Int32, mscorlib">
-    <value>7</value>
+    <value>10</value>
   </data>
   <data name="m_btn_Cancel.Text" xml:space="preserve">
     <value>&amp;Cancel</value>
@@ -435,9 +510,6 @@
   <data name="&gt;&gt;m_btn_Cancel.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
-  <metadata name="helpProvider1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 17</value>
-  </metadata>
   <metadata name="m_InfoToolTip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>144, 17</value>
   </metadata>
@@ -445,13 +517,13 @@
     <value>True</value>
   </data>
   <data name="m_NAudioForAudioProcessing.Location" type="System.Drawing.Point, System.Drawing">
-    <value>26, 165</value>
+    <value>26, 158</value>
   </data>
   <data name="m_NAudioForAudioProcessing.Size" type="System.Drawing.Size, System.Drawing">
     <value>188, 19</value>
   </data>
   <data name="m_NAudioForAudioProcessing.TabIndex" type="System.Int32, mscorlib">
-    <value>5</value>
+    <value>8</value>
   </data>
   <data name="m_NAudioForAudioProcessing.Text" xml:space="preserve">
     <value>Use NAudio for Normalization</value>
@@ -481,7 +553,7 @@
     <value>7, 15</value>
   </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>582, 246</value>
+    <value>582, 226</value>
   </data>
   <data name="$this.Font" type="System.Drawing.Font, System.Drawing">
     <value>Microsoft Sans Serif, 9pt</value>
