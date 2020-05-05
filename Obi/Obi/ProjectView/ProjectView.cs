@@ -6261,11 +6261,11 @@ for (int j = 0;
                                           }
                                           else if (audioProcessingKind == AudioLib.WavAudioProcessing.AudioProcessingKind.FadeIn)
                                           {
-                                              audioProcessedFile = audioPorcess.FadeIn(audioFileFullPath, val);
+                                              audioProcessedFile = audioPorcess.FadeIn(audioFileFullPath, val, dialog.FadeEffectStartTime);
                                           }
                                           else if (audioProcessingKind == AudioLib.WavAudioProcessing.AudioProcessingKind.FadeOut)
                                           {
-                                              audioProcessedFile = audioPorcess.FadeOut(audioFileFullPath, val);
+                                              audioProcessedFile = audioPorcess.FadeOut(audioFileFullPath, val, dialog.FadeEffectStartTime);
                                           }
                                           else if (audioProcessingKind == AudioLib.WavAudioProcessing.AudioProcessingKind.Normalize)
                                           {
@@ -6281,6 +6281,7 @@ for (int j = 0;
                             progress.ShowDialog();
                             if (progress.Exception != null) throw progress.Exception;
 
+                            //string temp = audioPorcess.NoiseReductionFfmpegAfftdn(audioFileFullPath, dialogNoiseReduction.NoiseReductionInDb, dialogNoiseReduction.NoiseFloorInDb);
                             if (audioFileFullPath != null)
                             {
 
