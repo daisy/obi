@@ -2736,7 +2736,7 @@ namespace Obi
                 m_ToolsLangPack.Enabled = !mProjectView.TransportBar.IsRecorderActive;
                 mTools_AudioProcessingNew.Enabled = 
                             m_ChangeVolumeToolStripMenuItem.Enabled = m_NormalizeToolStripMenuItem.Enabled = m_SpeechRateToolStripMenuItem.Enabled = mProjectView.CanExportSelectedNodeAudio;
-                m_FadeInToolStripMenuItem.Enabled = m_FadeOutToolStripMenuItem.Enabled =  mProjectView.CanShowFadeInFadeOutDialog;
+                m_FadeInToolStripMenuItem.Enabled = m_FadeOutToolStripMenuItem.Enabled = m_AudioMixerToolStripMenuItem.Enabled =  mProjectView.CanShowFadeInFadeOutDialog;
                 m_Tools_QuickCleanupToolStripMenuItem.Enabled = mSettings.Audio_EnableFileDataProviderPreservation;
             }
 
@@ -6740,6 +6740,18 @@ ref string exportDirectoryEPUB3)
                 }
                 if (mProjectView.CanExportSelectedNodeAudio)
                     mProjectView.AudioProcessing(AudioLib.WavAudioProcessing.AudioProcessingKind.NoiseReduction);
+            }
+
+            private void m_AudioMixerToolStripMenuItem_Click(object sender, EventArgs e)
+            {
+                if (mProjectView.TransportBar.IsPlayerActive)
+                {
+                    if (mProjectView.TransportBar.CurrentState == Obi.ProjectView.TransportBar.State.Playing) mProjectView.TransportBar.Pause();
+                    mProjectView.TransportBar.Stop();
+                }
+                if (mProjectView.CanExportSelectedNodeAudio)
+                    mProjectView.AudioProcessing(AudioLib.WavAudioProcessing.AudioProcessingKind.AudioMixing);
+
             }
 
 

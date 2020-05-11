@@ -5274,7 +5274,7 @@ if (thresholdAboveLastNode >= stripControl.Node.PhraseChildCount) thresholdAbove
             Context_ReplaceAudioMenuItem.Enabled = mProjectView.CanExportSelectedNodeAudio;
             Context_AudioProcessingNew.Enabled = m_ChangeVolumeToolStripMenuItem.Enabled = 
                                        m_NormalizeToolStripMenuItem.Enabled = m_SpeechRateToolStripMenuItem.Enabled = mProjectView.CanExportSelectedNodeAudio;
-            m_FadeInToolStripMenuItem.Enabled = m_FadeOutToolStripMenuItem.Enabled = mProjectView.CanShowFadeInFadeOutDialog;
+            m_FadeInToolStripMenuItem.Enabled = m_FadeOutToolStripMenuItem.Enabled = m_AudioMixingToolStripMenuItem.Enabled = mProjectView.CanShowFadeInFadeOutDialog;
             ContextBeginMarkToolStripMenuItem.Enabled = mProjectView.CanBeginSpecialNote;
             ContextEndMarkToolStripMenuItem.Enabled = mProjectView.CanEndSpecialNote;
             ContextPasteMultiplePhrasesToolStripMenuItem.Enabled = !mProjectView.TransportBar.IsRecorderActive && mProjectView.CanPasteMultiplePhrases && !Settings.Project_ReadOnlyMode;
@@ -6308,6 +6308,18 @@ Block lastBlock = ActiveStrip.LastBlock ;
             }
             if (mProjectView.CanExportSelectedNodeAudio)
                 mProjectView.AudioProcessing(AudioLib.WavAudioProcessing.AudioProcessingKind.NoiseReduction);
+        }
+
+        private void m_AudioMixingToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (mProjectView.TransportBar.IsPlayerActive)
+            {
+                if (mProjectView.TransportBar.CurrentState == Obi.ProjectView.TransportBar.State.Playing) mProjectView.TransportBar.Pause();
+                mProjectView.TransportBar.Stop();
+            }
+            if (mProjectView.CanExportSelectedNodeAudio)
+                mProjectView.AudioProcessing(AudioLib.WavAudioProcessing.AudioProcessingKind.AudioMixing);
+
         }
 
      
