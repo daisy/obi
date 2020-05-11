@@ -6195,6 +6195,7 @@ for (int j = 0;
             AudioLib.WavAudioProcessing.AudioProcessingKind audioProcessingKind = audioProcessingNaudioKind;
             Obi.Dialogs.AudioProcessingNewDialog dialog = null;
             Obi.Dialogs.AudioProcessingNoiseReduction dialogNoiseReduction = null;
+            Obi.Dialogs.AudioMixer dialogAudioMixing = null;
             if (audioProcessingKind == WavAudioProcessing.AudioProcessingKind.Amplify || audioProcessingKind == WavAudioProcessing.AudioProcessingKind.Normalize
                  || audioProcessingKind == WavAudioProcessing.AudioProcessingKind.SoundTouch)
             {
@@ -6208,7 +6209,12 @@ for (int j = 0;
             {
                 dialogNoiseReduction = new Dialogs.AudioProcessingNoiseReduction();
             }
-            if (dialog != null && dialog.ShowDialog() == DialogResult.OK || dialogNoiseReduction != null && dialogNoiseReduction.ShowDialog() == DialogResult.OK)
+            else if (audioProcessingKind == WavAudioProcessing.AudioProcessingKind.AudioMixing)
+            {
+                dialogAudioMixing = new Dialogs.AudioMixer();
+            }
+            if (dialog != null && dialog.ShowDialog() == DialogResult.OK || dialogNoiseReduction != null && dialogNoiseReduction.ShowDialog() == DialogResult.OK 
+                 || dialogAudioMixing != null && dialogAudioMixing.ShowDialog() == DialogResult.OK)
             {
 
                 float val = 0;
@@ -6274,6 +6280,10 @@ for (int j = 0;
                                           else if (audioProcessingKind == AudioLib.WavAudioProcessing.AudioProcessingKind.NoiseReduction)
                                           {
                                               audioProcessedFile = audioPorcess.NoiseReductionFfmpegAfftdn(audioFileFullPath, dialogNoiseReduction.NoiseReductionInDb, dialogNoiseReduction.NoiseFloorInDb);
+                                          }
+                                          else if (audioProcessingKind == WavAudioProcessing.AudioProcessingKind.AudioMixing)
+                                          {
+                                              audioProcessedFile = audioPorcess.AudioMixing(audioFileFullPath, dialogAudioMixing.AudioForMixing, dialogAudioMixing.WeightOfAudio,  dialogAudioMixing.DropoutTansition, dialogAudioMixing.IsEndOfStreamDurationChecked);
                                           }
                                       }
                                   },ObiForm.Settings);

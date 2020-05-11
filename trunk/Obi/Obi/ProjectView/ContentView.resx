@@ -569,6 +569,12 @@
   <data name="m_NoiseReductionToolStripMenuItem.Text" xml:space="preserve">
     <value>Noise &amp;Reduction</value>
   </data>
+  <data name="m_AudioMixingToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>161, 22</value>
+  </data>
+  <data name="m_AudioMixingToolStripMenuItem.Text" xml:space="preserve">
+    <value>Audio Mixing</value>
+  </data>
   <data name="Context_AudioProcessingNew.Size" type="System.Drawing.Size, System.Drawing">
     <value>208, 22</value>
   </data>
@@ -610,7 +616,7 @@
     <value>Pr&amp;operties</value>
   </data>
   <data name="mContextMenuStrip.Size" type="System.Drawing.Size, System.Drawing">
-    <value>209, 754</value>
+    <value>209, 726</value>
   </data>
   <data name="&gt;&gt;mContextMenuStrip.Name" xml:space="preserve">
     <value>mContextMenuStrip</value>
@@ -745,7 +751,7 @@
     <value>verticalScrollToolStripContainer1</value>
   </data>
   <data name="&gt;&gt;verticalScrollToolStripContainer1.Type" xml:space="preserve">
-    <value>Obi.ProjectView.VerticalScrollToolStripContainer, Obi, Version=4.5.0.27914, Culture=neutral, PublicKeyToken=null</value>
+    <value>Obi.ProjectView.VerticalScrollToolStripContainer, Obi, Version=4.5.0.32813, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;verticalScrollToolStripContainer1.Parent" xml:space="preserve">
     <value>$this</value>
@@ -778,7 +784,7 @@
     <value>contentViewLabel1</value>
   </data>
   <data name="&gt;&gt;contentViewLabel1.Type" xml:space="preserve">
-    <value>Obi.ProjectView.ContentViewLabel, Obi, Version=4.5.0.27914, Culture=neutral, PublicKeyToken=null</value>
+    <value>Obi.ProjectView.ContentViewLabel, Obi, Version=4.5.0.32813, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;contentViewLabel1.Parent" xml:space="preserve">
     <value>$this</value>
@@ -1225,6 +1231,12 @@
     <value>m_NoiseReductionToolStripMenuItem</value>
   </data>
   <data name="&gt;&gt;m_NoiseReductionToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_AudioMixingToolStripMenuItem.Name" xml:space="preserve">
+    <value>m_AudioMixingToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;m_AudioMixingToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;Context_ExportReplaceAudioMenuItem.Name" xml:space="preserve">
