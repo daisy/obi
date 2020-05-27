@@ -6335,105 +6335,17 @@ for (int j = 0;
 
 
                             Dictionary<ObiNode, string> dictionaryOfFilePaths = new Dictionary<ObiNode, string>();
-
-                            List<double> durationOfPhrases = new List<double>();
-
                             if (audioProcessingKind == WavAudioProcessing.AudioProcessingKind.NoiseReduction)
                             {
-
-                                string audioFileFullPath = null;
-                                string audioProcessedFile = null;
-
-                                double tempduration = 0;
-                                while (nodeToSelect.Index < mContentView.EndSpecialNode.Index && nodeToSelect.Parent == mContentView.EndSpecialNode.Parent)
-                                {
-                                    tempduration = tempduration + nodeToSelect.Duration;
-                                    durationOfPhrases.Add(tempduration);
-
-                                    if (nodeToSelect.FollowingNode != null)
-                                    {
-                                        nodeToSelect = nodeToSelect.FollowingNode;
-                                    }
-                                    else
-                                    {
-                                        break;
-                                    }
-                                }
-
-
-                                MergeRangeOfPhrasesInSection(false, true);
-                                Obi.Dialogs.ProgressDialog progress = new Obi.Dialogs.ProgressDialog(Localizer.Message("AudioFileExport_progress_dialog_title"),
-                                 delegate()
-                                 {
-
-                                     nodeToSelect = Selection.Node;
-                                     audioFileFullPath = CreateAudioFileFromNode(nodeToSelect, directoryFullPath, null);
-                                     AudioLib.WavAudioProcessing audioPorcess = new AudioLib.WavAudioProcessing();
-                                     audioProcessedFile = audioPorcess.NoiseReductionFfmpegAfftdn(audioFileFullPath, dialogNoiseReduction.NoiseReductionInDb, dialogNoiseReduction.NoiseFloorInDb);
-
-                                 }, ObiForm.Settings);
-
-                                progress.ShowDialog();
-                                if (progress.Exception != null) throw progress.Exception;
-
-                                if (audioFileFullPath != null)
-                                {
-
-                                    if (audioProcessedFile != null && nodeToSelect != null && System.IO.File.Exists(audioFileFullPath) && System.IO.File.Exists(audioProcessedFile))
-                                    {
-                                        ReplaceAudioOfSelectedNode(audioProcessedFile, true, nodeToSelect);
-                                        m_IsAudioprocessingPerformed = true;
-                                        if (System.IO.Directory.Exists(directoryFullPath))
-                                        {
-                                            System.IO.File.Delete(audioFileFullPath);
-                                            System.IO.Directory.Delete(directoryFullPath, true);
-                                        }
-                                    }
-                                    m_IsAudioProcessingChecked = false;
-
-                                }
-
-                                try
-                                {
-                                    CompositeCommand command = SplitMultiplePhrasesAfterNoiseReductionCommand(durationOfPhrases);
-                                    mPresentation.Do(command);
-                                }
-                                catch (Exception e)
-                                {
-                                    MessageBox.Show(e.Message);
-                                }
-
-                                //int tempCount = 0;
-                                //while (tempCount < durationOfPhrases.Count)
-                                //{
-                                //    if (this.Selection is NodeSelection)
-                                //    {
-                                //        this.Selection = new AudioSelection((PhraseNode)Selection.Node, mContentView, new AudioRange(durationOfPhrases[tempCount]));
-                                //    }
-                                //    if (this.Selection is AudioSelection)
-                                //    {
-                                //        AudioSelection audioSel = (AudioSelection)Selection;
-
-                                //        audioSel.AudioRange.SelectionBeginTime = durationOfPhrases[tempCount];
-                                //        this.SplitPhrase();
-                                //        tempCount++;
-                                //    }
-                                //}
-
-
-
-                                //dictionaryOfFilePaths = AudioProcessingDictionary(dictionaryOfFilePaths, nodeToSelect, audioProcessingKind, val, directoryFullPath, 
-                                //    dialogNoiseReduction.NoiseReductionInDb, dialogNoiseReduction.NoiseFloorInDb);
+                                dictionaryOfFilePaths = AudioProcessingDictionary(dictionaryOfFilePaths, nodeToSelect, audioProcessingKind, val, directoryFullPath, 
+                                    dialogNoiseReduction.NoiseReductionInDb, dialogNoiseReduction.NoiseFloorInDb);
                             }
                             else
                             {
                                 dictionaryOfFilePaths = AudioProcessingDictionary(dictionaryOfFilePaths, nodeToSelect, audioProcessingKind, val, directoryFullPath);
-                                ReplaceAudioInMultiplePhrases(dictionaryOfFilePaths);
                             }
 
-                            //ReplaceAudioInMultiplePhrases(dictionaryOfFilePaths);
-                            
-
+                            ReplaceAudioInMultiplePhrases(dictionaryOfFilePaths);
                             m_IsAudioprocessingPerformed = true;
 
                             if (System.IO.Directory.Exists(directoryFullPath))
@@ -6455,35 +6367,6 @@ for (int j = 0;
                 }
             }
         }
-
-        private CompositeCommand SplitMultiplePhrasesAfterNoiseReductionCommand(List<double> durationOfPhrases)
-        {
-            CompositeCommand SplitCommand = mPresentation.CreateCompositeCommand("SplitPhrasesCmd");
-
-            int tempCount = durationOfPhrases.Count -1;
-            while (tempCount >= 0)
-            {
-               
-                if (this.Selection is NodeSelection)
-                {
-                    this.Selection = new AudioSelection((PhraseNode)Selection.Node, mContentView, new AudioRange(durationOfPhrases[tempCount]));
-                }
-
-                if (this.Selection is AudioSelection)
-                {
-                    AudioSelection audioSel = (AudioSelection)Selection;
-
-                    audioSel.AudioRange.SelectionBeginTime = durationOfPhrases[tempCount];
-                    CompositeCommand splitAudiocmd = Commands.Node.SplitAudio.GetSplitCommand(this);
-                    SplitCommand.ChildCommands.Insert(SplitCommand.ChildCommands.Count, splitAudiocmd);
-                                   tempCount--;
-                    
-                }
-            }
-            return SplitCommand;
-
-        }
-
 
         public void ProcessAudio(AudioLib.WavAudioProcessing.AudioProcessingKind kindOfAudioProcessing, float audioProcessingParameter)
         {
