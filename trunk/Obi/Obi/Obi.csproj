@@ -161,6 +161,12 @@
     <Compile Include="Dialogs\AssignSpecialNodeMark.Designer.cs">
       <DependentUpon>AssignSpecialNodeMark.cs</DependentUpon>
     </Compile>
+    <Compile Include="Dialogs\AudioMixer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\AudioMixer.Designer.cs">
+      <DependentUpon>AudioMixer.cs</DependentUpon>
+    </Compile>
     <Compile Include="Dialogs\AudioProcessingDialog.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -172,6 +178,12 @@
     </Compile>
     <Compile Include="Dialogs\AudioProcessingNewDialog.Designer.cs">
       <DependentUpon>AudioProcessingNewDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\AudioProcessingNoiseReduction.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\AudioProcessingNoiseReduction.Designer.cs">
+      <DependentUpon>AudioProcessingNoiseReduction.cs</DependentUpon>
     </Compile>
     <Compile Include="Dialogs\AudioSettings.cs">
       <SubType>Form</SubType>
@@ -620,6 +632,9 @@
     <EmbeddedResource Include="Dialogs\AssociateSpecialNode.zh-Hant.resx">
       <DependentUpon>AssociateSpecialNode.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\AudioMixer.resx">
+      <DependentUpon>AudioMixer.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\AudioProcessingDialog.de.resx">
       <DependentUpon>AudioProcessingDialog.cs</DependentUpon>
     </EmbeddedResource>
@@ -634,6 +649,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\AudioProcessingNewDialog.resx">
       <DependentUpon>AudioProcessingNewDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\AudioProcessingNoiseReduction.resx">
+      <DependentUpon>AudioProcessingNoiseReduction.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\AudioSettings.de.resx">
       <DependentUpon>AudioSettings.cs</DependentUpon>
