@@ -6284,6 +6284,7 @@ for (int j = 0;
                                           else if (audioProcessingKind == WavAudioProcessing.AudioProcessingKind.AudioMixing)
                                           {
                                               audioProcessedFile = audioPorcess.AudioMixing(audioFileFullPath, dialogAudioMixing.AudioForMixing, dialogAudioMixing.WeightOfAudio,  dialogAudioMixing.DropoutTansition, dialogAudioMixing.IsEndOfStreamDurationChecked);
+                                              audioProcessedFile = Audio.AudioFormatConverter.ConvertedFile(audioProcessedFile, mPresentation);
                                           }
                                       }
                                   },ObiForm.Settings);
