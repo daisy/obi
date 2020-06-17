@@ -6255,6 +6255,7 @@ for (int j = 0;
                             m_IsAudioProcessingChecked = true;
                             AudioLib.WavAudioProcessing audioPorcess = new AudioLib.WavAudioProcessing();
                             string audioProcessedFile = null;
+                            double durationOfPhraseBeforeAudioMixing = 0;
                             Obi.Dialogs.ProgressDialog progress = new Obi.Dialogs.ProgressDialog(Localizer.Message("AudioFileExport_progress_dialog_title"),
                                   delegate()
                                   {
@@ -6283,8 +6284,20 @@ for (int j = 0;
                                           }
                                           else if (audioProcessingKind == WavAudioProcessing.AudioProcessingKind.AudioMixing)
                                           {
-                                              audioProcessedFile = audioPorcess.AudioMixing(audioFileFullPath, dialogAudioMixing.AudioForMixing, dialogAudioMixing.WeightOfAudio,  dialogAudioMixing.DropoutTansition, dialogAudioMixing.IsEndOfStreamDurationChecked);
-                                              audioProcessedFile = Audio.AudioFormatConverter.ConvertedFile(audioProcessedFile, mPresentation);
+                                              if (dialogAudioMixing.IsSecondAudioToMixSelected)
+                                              {
+                                                  audioProcessedFile = audioPorcess.AudioMixing(audioFileFullPath, dialogAudioMixing.AudioForMixing, dialogAudioMixing.WeightOfAudio, dialogAudioMixing.DropoutTansition, dialogAudioMixing.IsEndOfStreamDurationChecked,
+                                                      dialogAudioMixing.IsSecondAudioToMixSelected, dialogAudioMixing.SecondAudioForMixing, dialogAudioMixing.WeightOfSecondAudio);
+                                              }
+                                              else
+                                              {
+                                                  audioProcessedFile = audioPorcess.AudioMixing(audioFileFullPath, dialogAudioMixing.AudioForMixing, dialogAudioMixing.WeightOfAudio, dialogAudioMixing.DropoutTansition, dialogAudioMixing.IsEndOfStreamDurationChecked);
+                                              }
+                                              string[] tempaudioProcessedFile = new string[1];
+                                              tempaudioProcessedFile[0] = audioProcessedFile;
+                                              tempaudioProcessedFile = Audio.AudioFormatConverter.ConvertFiles(tempaudioProcessedFile, mPresentation);
+                                              audioProcessedFile = tempaudioProcessedFile[0];
+                                              durationOfPhraseBeforeAudioMixing = nodeToSelect.Duration;
                                           }
                                       }
                                   },ObiForm.Settings);
@@ -6315,6 +6328,28 @@ for (int j = 0;
                                     MessageBox.Show(Localizer.Message("NormalizationCompleted"), Localizer.Message("information_caption"), MessageBoxButtons.OK, MessageBoxIcon.Information);
                                 else if (audioProcessingKind == AudioLib.WavAudioProcessing.AudioProcessingKind.Amplify)
                                     MessageBox.Show(Localizer.Message("ChangeVolumeCompleted"), Localizer.Message("information_caption"), MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            }
+
+                            if (audioProcessingKind == WavAudioProcessing.AudioProcessingKind.AudioMixing && dialogAudioMixing != null && dialogAudioMixing.IsDurationOfMixingAudioChecked)
+                            {
+                                if ((durationOfPhraseBeforeAudioMixing + dialogAudioMixing.DuartionOfMixingAudioAfterPhraseEnds) < this.Selection.Node.Duration)
+                                {
+                                    if (this.Selection is NodeSelection && this.Selection.Node is PhraseNode)
+                                    {
+                                        this.Selection = new AudioSelection((PhraseNode)Selection.Node, mContentView, new AudioRange(durationOfPhraseBeforeAudioMixing + dialogAudioMixing.DuartionOfMixingAudioAfterPhraseEnds));
+                                    }
+                                    if (this.Selection is AudioSelection)
+                                    {
+                                        AudioSelection audioSel = (AudioSelection)Selection;
+
+                                        audioSel.AudioRange.SelectionBeginTime = durationOfPhraseBeforeAudioMixing + dialogAudioMixing.DuartionOfMixingAudioAfterPhraseEnds;
+
+                                        SplitPhrase();
+                                        Delete();
+                                        this.Selection = new NodeSelection(Selection.Node.PrecedingNode, mContentView);
+                                    }
+                                }
+
                             }
                         }
 
