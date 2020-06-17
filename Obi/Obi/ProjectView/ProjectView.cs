@@ -6253,7 +6253,7 @@ for (int j = 0;
                             string audioFileFullPath = null;
 
                             m_IsAudioProcessingChecked = true;
-                            AudioLib.WavAudioProcessing audioPorcess = new AudioLib.WavAudioProcessing();
+                            AudioLib.WavAudioProcessing audioProcess = new AudioLib.WavAudioProcessing();
                             string audioProcessedFile = null;
                             double durationOfPhraseBeforeAudioMixing = 0;
                             Obi.Dialogs.ProgressDialog progress = new Obi.Dialogs.ProgressDialog(Localizer.Message("AudioFileExport_progress_dialog_title"),
@@ -6264,34 +6264,34 @@ for (int j = 0;
                                       {
                                           if (audioProcessingKind == AudioLib.WavAudioProcessing.AudioProcessingKind.Amplify)
                                           {
-                                              audioProcessedFile = audioPorcess.IncreaseAmplitude(audioFileFullPath, val);
+                                              audioProcessedFile = audioProcess.IncreaseAmplitude(audioFileFullPath, val);
                                           }
                                           else if (audioProcessingKind == AudioLib.WavAudioProcessing.AudioProcessingKind.FadeIn)
                                           {
-                                              audioProcessedFile = audioPorcess.FadeIn(audioFileFullPath, val, dialog.FadeEffectStartTime);
+                                              audioProcessedFile = audioProcess.FadeIn(audioFileFullPath, val, dialog.FadeEffectStartTime);
                                           }
                                           else if (audioProcessingKind == AudioLib.WavAudioProcessing.AudioProcessingKind.FadeOut)
                                           {
-                                              audioProcessedFile = audioPorcess.FadeOut(audioFileFullPath, val, dialog.FadeEffectStartTime);
+                                              audioProcessedFile = audioProcess.FadeOut(audioFileFullPath, val, dialog.FadeEffectStartTime);
                                           }
                                           else if (audioProcessingKind == AudioLib.WavAudioProcessing.AudioProcessingKind.Normalize)
                                           {
-                                              audioProcessedFile = audioPorcess.Normalize(audioFileFullPath, val);
+                                              audioProcessedFile = audioProcess.Normalize(audioFileFullPath, val);
                                           }
                                           else if (audioProcessingKind == AudioLib.WavAudioProcessing.AudioProcessingKind.NoiseReduction)
                                           {
-                                              audioProcessedFile = audioPorcess.NoiseReductionFfmpegAfftdn(audioFileFullPath, dialogNoiseReduction.NoiseReductionInDb, dialogNoiseReduction.NoiseFloorInDb);
+                                              audioProcessedFile = audioProcess.NoiseReductionFfmpegAfftdn(audioFileFullPath, dialogNoiseReduction.NoiseReductionInDb, dialogNoiseReduction.NoiseFloorInDb);
                                           }
                                           else if (audioProcessingKind == WavAudioProcessing.AudioProcessingKind.AudioMixing)
                                           {
                                               if (dialogAudioMixing.IsSecondAudioToMixSelected)
                                               {
-                                                  audioProcessedFile = audioPorcess.AudioMixing(audioFileFullPath, dialogAudioMixing.AudioForMixing, dialogAudioMixing.WeightOfAudio, dialogAudioMixing.DropoutTansition, dialogAudioMixing.IsEndOfStreamDurationChecked,
+                                                  audioProcessedFile = audioProcess.AudioMixing(audioFileFullPath, dialogAudioMixing.AudioForMixing, dialogAudioMixing.WeightOfAudio, dialogAudioMixing.DropoutTansition, dialogAudioMixing.IsEndOfStreamDurationChecked,
                                                       dialogAudioMixing.IsSecondAudioToMixSelected, dialogAudioMixing.SecondAudioForMixing, dialogAudioMixing.WeightOfSecondAudio);
                                               }
                                               else
                                               {
-                                                  audioProcessedFile = audioPorcess.AudioMixing(audioFileFullPath, dialogAudioMixing.AudioForMixing, dialogAudioMixing.WeightOfAudio, dialogAudioMixing.DropoutTansition, dialogAudioMixing.IsEndOfStreamDurationChecked);
+                                                  audioProcessedFile = audioProcess.AudioMixing(audioFileFullPath, dialogAudioMixing.AudioForMixing, dialogAudioMixing.WeightOfAudio, dialogAudioMixing.DropoutTansition, dialogAudioMixing.IsEndOfStreamDurationChecked);
                                               }
                                               string[] tempaudioProcessedFile = new string[1];
                                               tempaudioProcessedFile[0] = audioProcessedFile;

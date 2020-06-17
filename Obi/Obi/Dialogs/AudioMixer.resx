@@ -117,13 +117,13 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="textBox1.Text" xml:space="preserve">
+  <data name="m_txtNote.Text" xml:space="preserve">
     <value>Note:-
 -&gt; Weight of audio:-
 It specifies volume of mixing audio. Here if you set weight as 1 then there is no modification in the volume of mixing audio.
 
--&gt; Dropout_transition :-
-It is the time taken for resetting volume of mixing audio when phrase audio ends.
+-&gt; Dropout transition :-
+The transition time is the time taken for resetting volume of mixing audio when phrase audio ends.
 
 -&gt; Set end of stream duration to phrase duration:-
 If checked then resulting phrase after mixing audio will have same duration as that of original phrase.</value>
