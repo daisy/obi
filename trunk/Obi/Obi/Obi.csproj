@@ -98,6 +98,10 @@
     <Reference Include="Microsoft.DirectX.DirectSound, Version=1.0.2902.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35">
       <HintPath>..\..\..\..\..\..\..\..\..\..\WINDOWS\Microsoft.NET\DirectX for Managed Code\1.0.2902.0\Microsoft.DirectX.DirectSound.dll</HintPath>
     </Reference>
+    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>.\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Deployment" />
@@ -454,6 +458,7 @@
     <Compile Include="ImportExport\ExportStructure.cs" />
     <Compile Include="ImportExport\ImportTOC.cs" />
     <Compile Include="ImportExport\MegaVoiceExport.cs" />
+    <Compile Include="ImportExport\WPAudioBook_ObiExport.cs" />
     <Compile Include="ImportExport\XslResolver.cs">
       <SubType>Code</SubType>
     </Compile>
