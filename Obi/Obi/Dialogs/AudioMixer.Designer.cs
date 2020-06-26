@@ -143,13 +143,14 @@
             this.m_lblDropoutTransition.AutoSize = true;
             this.m_lblDropoutTransition.Location = new System.Drawing.Point(32, 163);
             this.m_lblDropoutTransition.Name = "m_lblDropoutTransition";
-            this.m_lblDropoutTransition.Size = new System.Drawing.Size(94, 13);
+            this.m_lblDropoutTransition.Size = new System.Drawing.Size(156, 13);
             this.m_lblDropoutTransition.TabIndex = 10;
-            this.m_lblDropoutTransition.Text = "Dropout Transition";
+            this.m_lblDropoutTransition.Text = "Dropout Transition (in Seconds)";
             // 
             // m_DropoutTransitionNumericUpDown
             // 
-            this.m_DropoutTransitionNumericUpDown.Location = new System.Drawing.Point(134, 156);
+            this.m_DropoutTransitionNumericUpDown.AccessibleName = "";
+            this.m_DropoutTransitionNumericUpDown.Location = new System.Drawing.Point(204, 161);
             this.m_DropoutTransitionNumericUpDown.Maximum = new decimal(new int[] {
             10,
             0,
@@ -167,7 +168,7 @@
             // m_lblSeconds
             // 
             this.m_lblSeconds.AutoSize = true;
-            this.m_lblSeconds.Location = new System.Drawing.Point(198, 158);
+            this.m_lblSeconds.Location = new System.Drawing.Point(268, 163);
             this.m_lblSeconds.Name = "m_lblSeconds";
             this.m_lblSeconds.Size = new System.Drawing.Size(49, 13);
             this.m_lblSeconds.TabIndex = 12;
@@ -195,7 +196,7 @@
             // 
             // m_DurationOfMixingAudioNumericUpDown
             // 
-            this.m_DurationOfMixingAudioNumericUpDown.AccessibleName = "Set duration of mixing audio after phrase ends";
+            this.m_DurationOfMixingAudioNumericUpDown.AccessibleName = "Set duration of mixing audio after phrase ends (in seconds)";
             this.m_DurationOfMixingAudioNumericUpDown.Enabled = false;
             this.m_DurationOfMixingAudioNumericUpDown.Location = new System.Drawing.Point(282, 228);
             this.m_DurationOfMixingAudioNumericUpDown.Maximum = new decimal(new int[] {
