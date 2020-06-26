@@ -120,10 +120,10 @@
   <data name="m_txtNote.Text" xml:space="preserve">
     <value>Note:-
 -&gt; Weight of audio:-
-It specifies volume of mixing audio. Here if you set weight as 1 then there is no modification in the volume of mixing audio.
+It specifies volume of mixing audio. If you set weight as 1 then there is no modification in the volume of mixing audio.
 
 -&gt; Dropout transition :-
-The transition time is the time taken for resetting volume of mixing audio when phrase audio ends.
+The time duration after end of phrase, after which weight of mixing audio returns to 1.0.
 
 -&gt; Set end of stream duration to phrase duration:-
 If checked then resulting phrase after mixing audio will have same duration as that of original phrase.</value>
