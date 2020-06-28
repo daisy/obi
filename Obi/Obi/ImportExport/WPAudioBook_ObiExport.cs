@@ -76,17 +76,34 @@ namespace Obi.ImportExport
 
         protected override void CreateOpfDocument()
         {
-            JProperty context = new JProperty("@context", new JArray("https://schema.org", "https://www.w3.org/ns/wp-context"));
+            // collect relevant metadata
+            ObiPresentation presentation = (ObiPresentation)m_Presentation;
 
+            urakawa.metadata.Metadata identifierMetadata = presentation.GetFirstMetadataItem("dc:Identifier");
+            string bookIdentifier = identifierMetadata != null ? identifierMetadata.NameContentAttribute.Value : "";
+
+            urakawa.metadata.Metadata titleMetadata = presentation.GetFirstMetadataItem("dc:Title");
+            string bookTitle = titleMetadata != null ? titleMetadata.NameContentAttribute.Value : "";
+
+            urakawa.metadata.Metadata publisherMetadata = presentation.GetFirstMetadataItem("dc:Publisher");
+            string bookPublisher = publisherMetadata != null ? publisherMetadata.NameContentAttribute.Value : "";
+
+            urakawa.metadata.Metadata createrMetadata = presentation.GetFirstMetadataItem("dc:Creator");
+            string bookAuthor = createrMetadata != null ? createrMetadata.NameContentAttribute.Value : "";
+
+            urakawa.metadata.Metadata narratorMetadata = presentation.GetFirstMetadataItem("dtb:narrator");
+            string bookReadBy = narratorMetadata != null ? narratorMetadata.NameContentAttribute.Value : "";
+
+            JProperty context = new JProperty("@context", new JArray("https://schema.org", "https://www.w3.org/ns/wp-context"));
             JObject audioBookObject = new JObject(context,
                 new JProperty("conformsTo", "https://www.w3.org/TR/audiobooks/"),
             new JProperty("type", "Audiobook"),
-            new JProperty("@id", "https://librivox.org/flatland-a-romance-of-many-dimensions-by-edwin-abbott-abbott/"),
+            new JProperty("@id", bookIdentifier),
             new JProperty("url", "https://w3c.github.io/wpub/experiments/audiobook/"),
-            new JProperty("name", "Flatland: A Romance of Many Dimensions"),
-            new JProperty("author", "Edwin Abbott Abbott"),
-            new JProperty("readBy", "Ruth Golding"),
-            new JProperty("publisher", "Librivox"),
+            new JProperty("name", bookTitle),
+            new JProperty("author", bookAuthor),
+            new JProperty("readBy", bookReadBy),
+            new JProperty("publisher", bookPublisher),
             new JProperty("inLanguage", "en"),
             new JProperty("dateModified", "2018-06-14T19:32:18Z"),
             new JProperty("datePublished", "2008-10-12"),
