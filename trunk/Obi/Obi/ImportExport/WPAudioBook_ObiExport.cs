@@ -26,6 +26,9 @@ namespace Obi.ImportExport
         protected Dictionary<XmlDocument, string> m_AnchorSmilDoc_SmileFileNameMap = new Dictionary<XmlDocument, string>();
 
         protected const string m_Filename_Manifest = "manifest.json";
+        JArray M_PlaylistArray = null;
+        int m_BookDuration = 0;
+
         public WPAudioBook_ObiExport(ObiPresentation presentation, string exportDirectory, List<string> navListElementNamesList, bool encodeToMp3, double mp3BitRate,
             SampleRate sampleRate, bool stereo, bool skipACM, int audioFileSectionLevel)
             : base(presentation, exportDirectory, navListElementNamesList, encodeToMp3, mp3BitRate,
@@ -35,6 +38,8 @@ namespace Obi.ImportExport
             m_Filename_Content = null;
             m_AudioFileSectionLevel = audioFileSectionLevel;
             GeneratorName = "Obi";
+            M_PlaylistArray = new JArray();
+            m_BookDuration = 0;
         }
 
 
@@ -85,7 +90,7 @@ namespace Obi.ImportExport
             new JProperty("inLanguage", "en"),
             new JProperty("dateModified", "2018-06-14T19:32:18Z"),
             new JProperty("datePublished", "2008-10-12"),
-            new JProperty("duration", "PT15153S"),
+            new JProperty("duration", "PT"+ m_BookDuration.ToString() + "S"),
             new JProperty("license", "https://creativecommons.org/publicdomain/zero/1.0/"));
 
             // resources
@@ -103,19 +108,11 @@ namespace Obi.ImportExport
 
             resourcesArray.Add(tocObject);
 
-            JArray playlistArray = new JArray();
-            Console.WriteLine("Count of list: " + m_FilesList_SmilAudio.Count.ToString());
-            foreach (string audioFileName in m_FilesList_SmilAudio)
-            {
-                playlistArray.Add(new JObject(new JProperty("url", audioFileName),
-                    new JProperty("encodingFormat", "audio/mpeg"),
-                    new JProperty("duration", 1371),
-                    new JProperty("name", "Part 1, Sections 1 - 3")));
-            }
             
-
+            Console.WriteLine("Count of list: " + m_FilesList_SmilAudio.Count.ToString());
+            
             audioBookObject.Add(new JProperty("resources", resourcesArray));
-            audioBookObject.Add(new JProperty("readingOrder", playlistArray));
+            audioBookObject.Add(new JProperty("readingOrder", M_PlaylistArray));
 
             // serialize to file
             string filePath = Path.Combine(m_OutputDirectory, m_Filename_Manifest);
@@ -193,8 +190,17 @@ if (urakawa.data.DataProviderFactory.CSS_EXTENSION.Equals(ext, StringComparison.
                             string audioFileName = AddSectionNameToAudioFile ? AddSectionNameToAudioFileName(externalAudio.Src, section.Label) : Path.GetFileName(externalAudio.Src);
                             Console.WriteLine("file name: " + audioFileName);
                             // add audio file name in audio files list for use in opf creation 
-                            if (!m_FilesList_SmilAudio.Contains(audioFileName)) m_FilesList_SmilAudio.Add(audioFileName);
+                            if (!m_FilesList_SmilAudio.Contains(audioFileName))
+                            {
+                                m_FilesList_SmilAudio.Add(audioFileName);
 
+                                int timeDuration = (int) (section.Duration / 1000);
+                                m_BookDuration += timeDuration;
+                                M_PlaylistArray.Add(new JObject(new JProperty("url", audioFileName),
+                    new JProperty("encodingFormat", "audio/mpeg"),
+                    new JProperty("duration", timeDuration ),
+                    new JProperty("name", section.Label)));
+                            }
                             // add to duration 
                             //durationOfCurrentSmil.Add(externalAudio.Duration);
                         }
