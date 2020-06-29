@@ -94,30 +94,36 @@ namespace Obi.ImportExport
             urakawa.metadata.Metadata narratorMetadata = presentation.GetFirstMetadataItem("dtb:narrator");
             string bookReadBy = narratorMetadata != null ? narratorMetadata.NameContentAttribute.Value : "";
 
+            urakawa.metadata.Metadata publishedDateMetadata = presentation.GetFirstMetadataItem("dc:Date");
+            string bookPublishDate = publishedDateMetadata != null ? publishedDateMetadata.NameContentAttribute.Value : "";
+
+            urakawa.metadata.Metadata languageMetadata = presentation.GetFirstMetadataItem("dc:Language");
+            string bookLanguage = languageMetadata != null ? languageMetadata.NameContentAttribute.Value : "";
+
             JProperty context = new JProperty("@context", new JArray("https://schema.org", "https://www.w3.org/ns/wp-context"));
             JObject audioBookObject = new JObject(context,
                 new JProperty("conformsTo", "https://www.w3.org/TR/audiobooks/"),
             new JProperty("type", "Audiobook"),
             new JProperty("@id", bookIdentifier),
-            new JProperty("url", "https://w3c.github.io/wpub/experiments/audiobook/"),
+            //new JProperty("url", "https://w3c.github.io/wpub/experiments/audiobook/"),
             new JProperty("name", bookTitle),
             new JProperty("author", bookAuthor),
             new JProperty("readBy", bookReadBy),
             new JProperty("publisher", bookPublisher),
-            new JProperty("inLanguage", "en"),
-            new JProperty("dateModified", "2018-06-14T19:32:18Z"),
-            new JProperty("datePublished", "2008-10-12"),
-            new JProperty("duration", "PT"+ m_BookDuration.ToString() + "S"),
-            new JProperty("license", "https://creativecommons.org/publicdomain/zero/1.0/"));
+            new JProperty("inLanguage", bookLanguage),
+            new JProperty("datePublished", bookPublishDate),
+            new JProperty("duration", "PT" + m_BookDuration.ToString() + "S"));
+            //new JProperty("license", "https://creativecommons.org/publicdomain/zero/1.0/")
+            
 
             // resources
             JArray resourcesArray = new JArray();
 
-            JObject coverObject = new JObject(new JProperty("rel", "cover"),
-                new JProperty("url", "http://ia800704.us.archive.org/9/items/LibrivoxCdCoverArt12/Flatland_1109.jpg"),
-                new JProperty("encodingFormat", "image/jpeg"));
+            //JObject coverObject = new JObject(new JProperty("rel", "cover"),
+                //new JProperty("url", "http://ia800704.us.archive.org/9/items/LibrivoxCdCoverArt12/Flatland_1109.jpg"),
+                //new JProperty("encodingFormat", "image/jpeg"));
 
-            resourcesArray.Add(coverObject);
+            //resourcesArray.Add(coverObject);
 
             JObject tocObject = new JObject(new JProperty("rel", "contents"),
                 new JProperty("url", "toc.html"),
@@ -190,7 +196,35 @@ if (urakawa.data.DataProviderFactory.CSS_EXTENSION.Equals(ext, StringComparison.
 
         protected override void CreateNcxAndSmilDocuments()
         {
+            XmlDocument navigationDocument = CreateStub_NavigationDocument();
+            XmlNode headNode = navigationDocument.GetElementsByTagName("head")[0];
+
+            XmlNode scriptNode = navigationDocument.CreateElement(null, "script", headNode.NamespaceURI);
+            headNode.AppendChild(scriptNode);
+            XmlDocumentHelper.CreateAppendXmlAttribute(navigationDocument, scriptNode, "type", "application/ld+json");
+
+            JProperty context = new JProperty("@context", new JArray("https://schema.org", "https://www.w3.org/ns/wp-context"));
+            JObject audioBookObject = new JObject(context,
+                            new JProperty("conformsTo", "https://www.w3.org/TR/audiobooks/"),
+                        new JProperty("url", m_Filename_Manifest));
+            string strJObject = JsonConvert.SerializeObject(audioBookObject);
+            scriptNode.AppendChild(navigationDocument.CreateTextNode(strJObject));
+
+            // add TOC elements
+            Dictionary<urakawa.core.TreeNode, XmlNode> headingNodeToXmlNodeMap = new Dictionary<TreeNode,XmlNode>();
+
+            XmlNode bodyNode = navigationDocument.GetElementsByTagName("body")[0];
+            XmlNode htmlSectionNode = navigationDocument.CreateElement("section", bodyNode.NamespaceURI);
+            XmlDocumentHelper.CreateAppendXmlAttribute(navigationDocument, htmlSectionNode, "role", "doc-toc");
+            bodyNode.AppendChild(htmlSectionNode);
+
+            XmlNode ulNode = navigationDocument.CreateElement("ul", bodyNode.NamespaceURI);
+            htmlSectionNode.AppendChild(ulNode);
+            headingNodeToXmlNodeMap.Add(((ObiPresentation)m_Presentation).RootNode, ulNode);
+
             m_FilesList_SmilAudio = new List<string>();
+            urakawa.core.TreeNode parentTreeNode = null;
+
             Console.WriteLine(m_ListOfLevels.ToString());
             foreach (urakawa.core.TreeNode urakawaNode in m_ListOfLevels)
             {
@@ -198,8 +232,41 @@ if (urakawa.data.DataProviderFactory.CSS_EXTENSION.Equals(ext, StringComparison.
                 urakawaNode.AcceptDepthFirst(
                 delegate(urakawa.core.TreeNode n)
                 {
-                    if (n is SectionNode) section = (SectionNode)n;
-                    
+                    if (n is SectionNode)
+                    {
+                        section = (SectionNode)n;
+                        /*
+                        // add to HTML TOC
+                        XmlNode liNode = null;
+                        if (n.Parent == n.Root)
+                        {
+                            Console.WriteLine("if (n.Parent == n.Root ): " + section.Label);
+                            liNode = navigationDocument.CreateElement("li", bodyNode.NamespaceURI);
+                            headingNodeToXmlNodeMap[n.Parent].AppendChild(liNode);
+                        }
+                        else if (n.Parent == parentTreeNode)
+                        {
+                            Console.WriteLine("else if(n.Parent == parentTreeNode): " + section.Label);
+                            XmlNode childUlNode = navigationDocument.CreateElement("ul", bodyNode.NamespaceURI);
+                            headingNodeToXmlNodeMap[n.Parent].AppendChild(childUlNode);
+                            liNode = navigationDocument.CreateElement("li", bodyNode.NamespaceURI);
+                            childUlNode.AppendChild(liNode);
+                        }
+                        else if (n.Parent == parentTreeNode.Parent)
+                        {
+                            Console.WriteLine("else: " + section.Label);
+                            liNode = navigationDocument.CreateElement("li", bodyNode.NamespaceURI);
+                            headingNodeToXmlNodeMap[n.Parent].ParentNode.AppendChild(liNode);
+                        }
+                        else
+                        { 
+                        }
+                        headingNodeToXmlNodeMap.Add(n, liNode);
+                        liNode.AppendChild(navigationDocument.CreateTextNode(section.Label));
+                        parentTreeNode = n;
+                        //XmlDocumentHelper.CreateAppendXmlAttribute(navigationDocument, htmlSectionNode, "role", "doc-toc");
+                         */ 
+                    }
                         urakawa.media.ExternalAudioMedia externalAudio = GetExternalAudioMedia(n);
                         if (externalAudio != null)
                         {
@@ -227,8 +294,43 @@ if (urakawa.data.DataProviderFactory.CSS_EXTENSION.Equals(ext, StringComparison.
                 delegate(urakawa.core.TreeNode n) { });
             }
 
+            XmlReaderWriterHelper.WriteXmlDocument(navigationDocument, Path.Combine(m_OutputDirectory, "entry.htm"), AlwaysIgnoreIndentation ? GetXmlWriterSettings(false) : null);
         }
 
+        protected XmlDocument CreateStub_NavigationDocument()
+        {
+            XmlDocument navigationDocument = new XmlDocument();
+            navigationDocument.XmlResolver = null;
+
+            navigationDocument.CreateXmlDeclaration("1.0", "utf-8", null);
+            //navigationDocument.AppendChild(navigationDocument.CreateDocumentType("html",
+            //"-//W3C//DTD XHTML 1.0 Transitional//EN",
+            //"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd",
+            //null));
+
+            XmlNode rootNode = navigationDocument.CreateElement(null,
+                "html",
+                "http://www.w3.org/1999/xhtml");
+
+            navigationDocument.AppendChild(rootNode);
+
+            //XmlDocumentHelper.CreateAppendXmlAttribute(navigationDocument, rootNode, "xmlns:epub", "http://www.idpf.org/2007/ops");
+            //XmlDocumentHelper.CreateAppendXmlAttribute(navigationDocument, rootNode, "version", "2005-1");
+            //XmlDocumentHelper.CreateAppendXmlAttribute(navigationDocument, rootNode,
+            //XmlReaderWriterHelper.XmlLang,
+            //(string.IsNullOrEmpty(m_Presentation.Language)
+            //? "en-US"
+            //: m_Presentation.Language));
+
+
+            XmlNode headNode = navigationDocument.CreateElement(null, "head", rootNode.NamespaceURI);
+            rootNode.AppendChild(headNode);
+
+            XmlNode bodyNode = navigationDocument.CreateElement(null, "body", rootNode.NamespaceURI);
+            rootNode.AppendChild(bodyNode);
+
+            return navigationDocument;
+        }
         void CreateNcxAndSmilDocuments_old()
         {
             XmlDocument ncxDocument = CreateStub_NcxDocument();
