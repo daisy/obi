@@ -139,15 +139,15 @@ namespace Obi.Dialogs
             {
                 m_txtSelectSecondAudioForMixing.Enabled = true;
                 m_btnBrowseSecondAudio.Enabled = true;
-                m_lblWeightOfSecondAudioSound.Visible = true;
-                m_WeightOfSecondAudioSoundNumericUpDown.Visible = true;
+                m_lblWeightOfSecondAudioSound.Enabled = true;
+                m_WeightOfSecondAudioSoundNumericUpDown.Enabled = true;
             }
             else
             {
                 m_txtSelectSecondAudioForMixing.Enabled = false;
                 m_btnBrowseSecondAudio.Enabled = false;
-                m_lblWeightOfSecondAudioSound.Visible = false;
-                m_WeightOfSecondAudioSoundNumericUpDown.Visible = false;
+                m_lblWeightOfSecondAudioSound.Enabled = false;
+                m_WeightOfSecondAudioSoundNumericUpDown.Enabled = false;
             }
         }
 
