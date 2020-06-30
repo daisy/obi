@@ -25,7 +25,8 @@ namespace Obi.ImportExport
         protected Dictionary<urakawa.core.TreeNode, string> m_Skippable_UpstreamIdMap = new Dictionary<TreeNode, string>();
         protected Dictionary<XmlDocument, string> m_AnchorSmilDoc_SmileFileNameMap = new Dictionary<XmlDocument, string>();
 
-        protected const string m_Filename_Manifest = "manifest.json";
+        protected const string m_Filename_Manifest = "publication.json";
+        protected const string m_Filename_EntryFile = "index.html";
         JArray M_PlaylistArray = null;
         int m_BookDuration = 0;
 
@@ -126,7 +127,7 @@ namespace Obi.ImportExport
             //resourcesArray.Add(coverObject);
 
             JObject tocObject = new JObject(new JProperty("rel", "contents"),
-                new JProperty("url", "toc.html"),
+                new JProperty("url", m_Filename_EntryFile),
                 new JProperty("encodingFormat", "text/html"));
 
             resourcesArray.Add(tocObject);
@@ -199,29 +200,45 @@ if (urakawa.data.DataProviderFactory.CSS_EXTENSION.Equals(ext, StringComparison.
             XmlDocument navigationDocument = CreateStub_NavigationDocument();
             XmlNode headNode = navigationDocument.GetElementsByTagName("head")[0];
 
-            XmlNode scriptNode = navigationDocument.CreateElement(null, "script", headNode.NamespaceURI);
-            headNode.AppendChild(scriptNode);
-            XmlDocumentHelper.CreateAppendXmlAttribute(navigationDocument, scriptNode, "type", "application/ld+json");
+            //XmlNode scriptNode = navigationDocument.CreateElement(null, "script", headNode.NamespaceURI);
+            //headNode.AppendChild(scriptNode);
+            //XmlDocumentHelper.CreateAppendXmlAttribute(navigationDocument, scriptNode, "type", "application/ld+json");
 
-            JProperty context = new JProperty("@context", new JArray("https://schema.org", "https://www.w3.org/ns/wp-context"));
-            JObject audioBookObject = new JObject(context,
-                            new JProperty("conformsTo", "https://www.w3.org/TR/audiobooks/"),
-                        new JProperty("url", m_Filename_Manifest));
-            string strJObject = JsonConvert.SerializeObject(audioBookObject);
-            scriptNode.AppendChild(navigationDocument.CreateTextNode(strJObject));
+            //JProperty context = new JProperty("@context", new JArray("https://schema.org", "https://www.w3.org/ns/wp-context"));
+            //JObject audioBookObject = new JObject(context,
+                            //new JProperty("conformsTo", "https://www.w3.org/TR/audiobooks/"),
+                        //new JProperty("url", m_Filename_Manifest));
+            //string strJObject = JsonConvert.SerializeObject(audioBookObject);
+            //scriptNode.AppendChild(navigationDocument.CreateTextNode(strJObject));
+
+            urakawa.metadata.Metadata titleMetadata = ((ObiPresentation)m_Presentation).GetFirstMetadataItem("dc:Title");
+            string bookTitle = titleMetadata != null ? titleMetadata.NameContentAttribute.Value : "";
+
+            XmlNode titleNode = navigationDocument.CreateElement("title", headNode.NamespaceURI);
+            titleNode.AppendChild(navigationDocument.CreateTextNode(bookTitle));
+            headNode.AppendChild(titleNode);
+
+            XmlNode linkNode = navigationDocument.CreateElement("link", headNode.NamespaceURI);
+            XmlDocumentHelper.CreateAppendXmlAttribute(navigationDocument, linkNode, "rel", "publication");
+            XmlDocumentHelper.CreateAppendXmlAttribute(navigationDocument, linkNode, "href", m_Filename_Manifest);
+            headNode.AppendChild(linkNode);
 
             // add TOC elements
             Dictionary<urakawa.core.TreeNode, XmlNode> headingNodeToXmlNodeMap = new Dictionary<TreeNode,XmlNode>();
 
             XmlNode bodyNode = navigationDocument.GetElementsByTagName("body")[0];
-            XmlNode htmlSectionNode = navigationDocument.CreateElement("section", bodyNode.NamespaceURI);
-            XmlDocumentHelper.CreateAppendXmlAttribute(navigationDocument, htmlSectionNode, "role", "doc-toc");
-            bodyNode.AppendChild(htmlSectionNode);
+            XmlNode NavNode = navigationDocument.CreateElement("nav", bodyNode.NamespaceURI);
+            XmlDocumentHelper.CreateAppendXmlAttribute(navigationDocument, NavNode, "role", "doc-toc");
+            bodyNode.AppendChild(NavNode);
+
+            // add itle as first heading.
+            XmlNode h1Node = navigationDocument.CreateElement(null, "h1", NavNode.NamespaceURI);
+            h1Node.AppendChild(navigationDocument.CreateTextNode(bookTitle));
+            NavNode.AppendChild(h1Node);
 
             XmlNode ulNode = navigationDocument.CreateElement("ul", bodyNode.NamespaceURI);
-            htmlSectionNode.AppendChild(ulNode);
-            headingNodeToXmlNodeMap.Add(((ObiPresentation)m_Presentation).RootNode, ulNode);
-
+            NavNode.AppendChild(ulNode);
+            
             m_FilesList_SmilAudio = new List<string>();
             urakawa.core.TreeNode parentTreeNode = null;
 
@@ -235,66 +252,99 @@ if (urakawa.data.DataProviderFactory.CSS_EXTENSION.Equals(ext, StringComparison.
                     if (n is SectionNode)
                     {
                         section = (SectionNode)n;
-                        /*
-                        // add to HTML TOC
-                        XmlNode liNode = null;
-                        if (n.Parent == n.Root)
-                        {
-                            Console.WriteLine("if (n.Parent == n.Root ): " + section.Label);
-                            liNode = navigationDocument.CreateElement("li", bodyNode.NamespaceURI);
-                            headingNodeToXmlNodeMap[n.Parent].AppendChild(liNode);
-                        }
-                        else if (n.Parent == parentTreeNode)
-                        {
-                            Console.WriteLine("else if(n.Parent == parentTreeNode): " + section.Label);
-                            XmlNode childUlNode = navigationDocument.CreateElement("ul", bodyNode.NamespaceURI);
-                            headingNodeToXmlNodeMap[n.Parent].AppendChild(childUlNode);
-                            liNode = navigationDocument.CreateElement("li", bodyNode.NamespaceURI);
-                            childUlNode.AppendChild(liNode);
-                        }
-                        else if (n.Parent == parentTreeNode.Parent)
-                        {
-                            Console.WriteLine("else: " + section.Label);
-                            liNode = navigationDocument.CreateElement("li", bodyNode.NamespaceURI);
-                            headingNodeToXmlNodeMap[n.Parent].ParentNode.AppendChild(liNode);
-                        }
-                        else
-                        { 
-                        }
-                        headingNodeToXmlNodeMap.Add(n, liNode);
-                        liNode.AppendChild(navigationDocument.CreateTextNode(section.Label));
-                        parentTreeNode = n;
-                        //XmlDocumentHelper.CreateAppendXmlAttribute(navigationDocument, htmlSectionNode, "role", "doc-toc");
-                         */ 
                     }
                         urakawa.media.ExternalAudioMedia externalAudio = GetExternalAudioMedia(n);
                         if (externalAudio != null)
-                        {
-                            
+                        {//0
+
                             string audioFileName = AddSectionNameToAudioFile ? AddSectionNameToAudioFileName(externalAudio.Src, section.Label) : Path.GetFileName(externalAudio.Src);
                             Console.WriteLine("file name: " + audioFileName);
                             // add audio file name in audio files list for use in opf creation 
                             if (!m_FilesList_SmilAudio.Contains(audioFileName))
-                            {
+                            {//1
                                 m_FilesList_SmilAudio.Add(audioFileName);
 
-                                int timeDuration = (int) (section.Duration / 1000);
+                                int timeDuration = (int)(section.Duration / 1000);
                                 m_BookDuration += timeDuration;
                                 M_PlaylistArray.Add(new JObject(new JProperty("url", audioFileName),
                     new JProperty("encodingFormat", "audio/mpeg"),
-                    new JProperty("duration", timeDuration ),
+                    new JProperty("duration", timeDuration),
                     new JProperty("name", section.Label)));
-                            }
-                            // add to duration 
-                            //durationOfCurrentSmil.Add(externalAudio.Duration);
-                        }
+
+                                // add to HTML TOC
+                                parentTreeNode = section.Parent;
+                                XmlNode liNode = null;
+
+                                if (parentTreeNode == section.Root)
+                                {//2
+                                    Console.WriteLine("if (n.Parent == n.Root ): " + section.Label);
+                                    liNode = navigationDocument.CreateElement("li", bodyNode.NamespaceURI);
+                                    ulNode.AppendChild(liNode);
+                                }//-2
+                                else if (headingNodeToXmlNodeMap.ContainsKey(parentTreeNode))
+                                {//2
+                                    Console.WriteLine("else if (headingNodeToXmlNodeMap.ContainsKey(section.Parent))" + section.Label);
+                                    XmlNode liParent = headingNodeToXmlNodeMap[parentTreeNode];
+                                    XmlNode ulChild = XmlDocumentHelper.GetFirstChildElementOrSelfWithName(liParent, false, "ul", null);
+
+                                    if (ulChild == null)
+                                    {//3
+                                        ulChild = navigationDocument.CreateElement(null, "ul", NavNode.NamespaceURI);
+                                        liParent.AppendChild(ulChild);
+                                    }//-3
+                                    liNode = navigationDocument.CreateElement("li", bodyNode.NamespaceURI);
+                                    ulChild.AppendChild(liNode);
+
+                                }//-2
+                                else
+                                {//2
+                                    // search up the node
+                                    parentTreeNode = section;
+                                    int counter = 0;
+                                    while (parentTreeNode != null && counter <= 6)
+                                    {   //3
+                                        parentTreeNode = parentTreeNode.Parent;
+                                        if (parentTreeNode != null && headingNodeToXmlNodeMap.ContainsKey(parentTreeNode))
+                                        {//4
+                                            XmlNode liParent = headingNodeToXmlNodeMap[parentTreeNode];
+                                            XmlNode ulChild = XmlDocumentHelper.GetFirstChildElementOrSelfWithName(liParent, false, "ul", null);
+                                            if (ulChild == null)
+                                            {
+                                                ulChild = navigationDocument.CreateElement(null, "ul", NavNode.NamespaceURI);
+                                                liParent.AppendChild(ulChild);
+                                            }
+                                            liNode = navigationDocument.CreateElement(null, "li", NavNode.NamespaceURI);
+                                            ulChild.AppendChild(liNode);
+
+                                            break;
+                                        }//-4
+                                        counter++;
+                                    }//-3
+
+                                    if (parentTreeNode == null || counter > 7)
+                                    {//3
+                                        liNode = navigationDocument.CreateElement(null, "li", NavNode.NamespaceURI);
+                                        ulNode.AppendChild(liNode);
+
+                                    }//-3
+
+                                        
+
+                                }//-2
+                                headingNodeToXmlNodeMap.Add(section, liNode);
+                                XmlNode anchorNode = navigationDocument.CreateElement(null, "a", NavNode.NamespaceURI);
+                                anchorNode.AppendChild(navigationDocument.CreateTextNode(section.Label));
+                                XmlDocumentHelper.CreateAppendXmlAttribute(navigationDocument, anchorNode, "href", audioFileName);
+                                liNode.AppendChild(anchorNode);
+                            }//-1
+                        }//-0
                         return true;
                     
                 },
                 delegate(urakawa.core.TreeNode n) { });
             }
 
-            XmlReaderWriterHelper.WriteXmlDocument(navigationDocument, Path.Combine(m_OutputDirectory, "entry.htm"), AlwaysIgnoreIndentation ? GetXmlWriterSettings(false) : null);
+            XmlReaderWriterHelper.WriteXmlDocument(navigationDocument, Path.Combine(m_OutputDirectory, m_Filename_EntryFile), AlwaysIgnoreIndentation ? GetXmlWriterSettings(false) : null);
         }
 
         protected XmlDocument CreateStub_NavigationDocument()
