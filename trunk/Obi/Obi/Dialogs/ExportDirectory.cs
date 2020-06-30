@@ -207,6 +207,15 @@ namespace Obi.Dialogs
                     m_ComboSelectLevelForAudioFiles.SelectedIndex = 1;
                 }
             }
+
+        public bool SelectLevelForAudioLevelsEnabled
+        {
+            set
+            {
+                m_ComboSelectLevelForAudioFiles.Enabled = value;
+            }
+        }
+
         public bool EncodeAudioFiles
         {
             get { return m_IsEncoderCheck; }

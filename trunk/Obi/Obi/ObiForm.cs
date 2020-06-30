@@ -2817,12 +2817,14 @@ namespace Obi
                 string exportPathXHTML = "";
                 string exportPathMegaVoice = "";
                 string exportPathMegaVoiceFinal = "";
+                string exportPathWPAudioBook = "";
 
                 urakawa.daisy.export.Daisy3_Export DAISY3ExportInstance = null;
                 urakawa.daisy.export.Daisy3_Export DAISY202ExportInstance = null;
                 urakawa.daisy.export.Daisy3_Export EPUB3_ExportInstance = null;
                 ImportExport.ExportStructure XHTML_ExportInstance = null;
                 ImportExport.MegaVoiceExport MegaVoice_ExportInstance = null;
+                ImportExport.WPAudioBook_ObiExport WPAudioBook_ExportInstance = null;
                 
 
                 
@@ -2868,7 +2870,9 @@ namespace Obi
                                     ref exportPathXHTML,
                                     ref MegaVoice_ExportInstance,
                                     ref exportPathMegaVoice,
-                                    ref exportPathMegaVoiceFinal) == false)
+                                    ref exportPathMegaVoiceFinal,
+                                    ref WPAudioBook_ExportInstance,
+                                    ref exportPathWPAudioBook) == false)
                                 {
                                     return;
                                 }
@@ -2907,6 +2911,10 @@ namespace Obi
                                                            mSession.Presentation.ExportToZ(exportPathMegaVoice, mSession.Path,
                                                                                            MegaVoice_ExportInstance);
                                                        }
+                                                       if (WPAudioBook_ExportInstance != null)
+                                                       {
+                                                           mSession.Presentation.ExportToZ(exportPathWPAudioBook, mSession.Path, WPAudioBook_ExportInstance);
+                                                       }
                                                    });
 
                             progress.OperationCancelled +=
@@ -2917,6 +2925,7 @@ namespace Obi
                                         if (DAISY202ExportInstance != null) DAISY202ExportInstance.RequestCancellation = true;
                                         if (EPUB3_ExportInstance != null) EPUB3_ExportInstance.RequestCancellation = true;
                                         if (MegaVoice_ExportInstance != null) MegaVoice_ExportInstance.RequestCancellation = true;
+                                        if (WPAudioBook_ExportInstance != null) WPAudioBook_ExportInstance.RequestCancellation = true;
                                     });
                             if (DAISY3ExportInstance != null) DAISY3ExportInstance.ProgressChangedEvent +=
                                 new System.ComponentModel.ProgressChangedEventHandler(progress.UpdateProgressBar);
@@ -2926,6 +2935,8 @@ namespace Obi
                                  new System.ComponentModel.ProgressChangedEventHandler(progress.UpdateProgressBar);
                             if (MegaVoice_ExportInstance != null) MegaVoice_ExportInstance.ProgressChangedEvent +=
                                 new System.ComponentModel.ProgressChangedEventHandler(progress.UpdateProgressBar);
+                            if (WPAudioBook_ExportInstance != null) WPAudioBook_ExportInstance.ProgressChangedEvent +=
+                                 new System.ComponentModel.ProgressChangedEventHandler(progress.UpdateProgressBar);
                             progress.ShowDialog();
                             
                             if (progress.Exception != null) throw progress.Exception;
@@ -2933,7 +2944,8 @@ namespace Obi
                             if ((DAISY3ExportInstance != null && DAISY3ExportInstance.RequestCancellation)
                                 || (DAISY202ExportInstance != null && DAISY202ExportInstance.RequestCancellation)
                                 || (EPUB3_ExportInstance != null && EPUB3_ExportInstance.RequestCancellation)
-                                || (MegaVoice_ExportInstance != null && MegaVoice_ExportInstance.RequestCancellation))
+                                || (MegaVoice_ExportInstance != null && MegaVoice_ExportInstance.RequestCancellation)
+                                || WPAudioBook_ExportInstance != null && WPAudioBook_ExportInstance.RequestCancellation)
                             {
                                 mProjectView.TransportBar.Enabled = true;
                                 return;
@@ -2991,6 +3003,17 @@ namespace Obi
                                     displayPath = displayPath + "\n" + exportPathXHTML;
                                 }
                             }
+                            if (exportPathWPAudioBook != null)
+                            {
+                                if (string.IsNullOrEmpty(displayPath))
+                                {
+                                    displayPath = exportPathWPAudioBook;
+                                }
+                                else
+                                {
+                                    displayPath += "\n" + exportPathWPAudioBook;
+                                }
+                            }
                             MessageBox.Show(String.Format(Localizer.Message("saved_as_daisy_text"), displayPath),
                                             Localizer.Message("saved_as_daisy_caption"), MessageBoxButtons.OK,
                                             MessageBoxIcon.Information);
@@ -3044,7 +3067,9 @@ ref string exportDirectoryDAISY3,
                 ref  string exportDirectoryXHTML,
                 ref ImportExport.MegaVoiceExport MegaVoice_ExportInstance,
                 ref string exportDirectoryMegaVoice,
-                ref string MegavoiceFinalExportPath )
+                ref string MegavoiceFinalExportPath,
+                ref ImportExport.WPAudioBook_ObiExport WPAudioBooks_ExportInstance,
+                ref string exportDirectoryWPAudioBook)
             {
                 Dialogs.chooseDaisy3orDaisy202 chooseDialog = new chooseDaisy3orDaisy202(this.mSettings);
                 if (chooseDialog.ShowDialog() == DialogResult.OK)
@@ -3081,8 +3106,15 @@ ref string exportDirectoryDAISY3,
                                                         Program.SafeName(
                                                             string.Format(Localizer.Message("default_MegaVoiceExport_dirname"), "")));
                     }
+                    if (chooseDialog.ExportWPAudioBook)
+                    {
+                        exportDirectoryWPAudioBook = Path.Combine(Directory.GetParent(mSession.Path).FullName,
+                                                        Program.SafeName(
+                                                            string.Format(Localizer.Message("default_WPAudioBookExport_dirname"), "")));
+                    }
                 }
-                if (string.IsNullOrEmpty(exportDirectoryDAISY3) && string.IsNullOrEmpty(exportDirectoryDAISY202) && string.IsNullOrEmpty(exportDirectoryEPUB3) && string.IsNullOrEmpty(exportDirectoryXHTML) &&  string.IsNullOrEmpty(exportDirectoryMegaVoice))
+                if (string.IsNullOrEmpty(exportDirectoryDAISY3) && string.IsNullOrEmpty(exportDirectoryDAISY202) && string.IsNullOrEmpty(exportDirectoryEPUB3) && 
+                    string.IsNullOrEmpty(exportDirectoryXHTML) &&  string.IsNullOrEmpty(exportDirectoryMegaVoice) && string.IsNullOrEmpty(exportDirectoryWPAudioBook))
                 {
                     return false;
                 }
@@ -3092,6 +3124,7 @@ ref string exportDirectoryDAISY3,
                 Dialogs.ExportDirectory ExportDialogEPUB3 = null;
                 Dialogs.ExportDirectory ExportDialogXhtml = null;
                 Dialogs.ExportDirectory ExportDialogMegaVoice = null;
+                Dialogs.ExportDirectory ExportDialogWPAudioBook = null;
 
                 if (chooseDialog.ExportDaisy3)
                 {
@@ -3183,7 +3216,31 @@ ref string exportDirectoryDAISY3,
                     if (ExportDialogMegaVoice.ShowDialog() != DialogResult.OK) ExportDialogMegaVoice = null;
                 }
 
-                if (ExportDialogDAISY3 != null || ExportDialogDAISY202 != null || ExportDialogEPUB3 != null || ExportDialogXhtml != null || ExportDialogMegaVoice != null)
+                if (chooseDialog.ExportWPAudioBook)
+                {
+                    string FileName = Path.GetFileName(Path.GetDirectoryName(mSession.Path));
+                    if (FileName.Length > 58)
+                    {
+                        FileName = FileName.Substring(0, 58);
+                    }
+                    ExportDialogWPAudioBook =
+                        new ExportDirectory(exportDirectoryWPAudioBook,
+                                            mSession.Path, mSettings.Export_EncodeAudioFiles, (mSettings.ExportEncodingBitRate),
+                                            mSettings.Export_AppendSectionNameToAudioFile, mSettings.EncodingFileFormat, this.mSettings); //@fontconfig
+                    // null string temprorarily used instead of -mProjectView.Presentation.Title- to avoid unicode character problem in path for pipeline
+                    ExportDialogWPAudioBook.LevelSelection = 1;
+                    ExportDialogWPAudioBook.SelectLevelForAudioLevelsEnabled = false;
+                    //ExportDialogWPAudioBook.AppendSectionNameToAudioFileName = true;
+                    ExportDialogWPAudioBook.EncodeAudioFiles = true;
+
+                    ExportDialogWPAudioBook.AdditionalTextForTitle = Localizer.Message("ExportDialogTitleForWPAudioBookExport");
+                    //ExportDialogWPAudioBook.LimitLengthOfAudioFileNames = true;
+                    //ExportDialogWPAudioBook.AudioFileNameCharsLimit = 100;
+                    if (ExportDialogWPAudioBook.ShowDialog() != DialogResult.OK) ExportDialogWPAudioBook = null;
+                    
+                }
+
+                if (ExportDialogDAISY3 != null || ExportDialogDAISY202 != null || ExportDialogEPUB3 != null || ExportDialogXhtml != null || ExportDialogMegaVoice != null || ExportDialogWPAudioBook != null)
                 {
 
                     // Need the trailing slash, otherwise exported data ends up in a folder one level
@@ -3193,10 +3250,12 @@ ref string exportDirectoryDAISY3,
                     string exportPathEPUB3 = ExportDialogEPUB3 != null ? ExportDialogEPUB3.DirectoryPath : null;
                     string exportPathXhtml = ExportDialogXhtml != null ? ExportDialogXhtml.DirectoryPath : null;
                     string exportPathMegaVoice = ExportDialogMegaVoice != null ? exportDirectoryMegaVoice : null;
+                    string exportPathWPAudioBook = ExportDialogWPAudioBook != null ? exportDirectoryWPAudioBook : null;
                     
                     Dialogs.ExportDirectory dialog = ExportDialogDAISY3 != null ? ExportDialogDAISY3 : 
                         ExportDialogDAISY202 != null ? ExportDialogDAISY202 : 
-                        ExportDialogEPUB3 != null? ExportDialogEPUB3: ExportDialogXhtml != null? ExportDialogXhtml : ExportDialogMegaVoice;
+                        ExportDialogEPUB3 != null? ExportDialogEPUB3: ExportDialogXhtml != null? ExportDialogXhtml :
+                        ExportDialogMegaVoice != null ? ExportDialogMegaVoice : ExportDialogWPAudioBook;
 
                     if (dialog != ExportDialogXhtml)
                     {
@@ -3229,6 +3288,11 @@ ref string exportDirectoryDAISY3,
                     if (!string.IsNullOrEmpty(exportPathMegaVoice) && !exportPathMegaVoice.EndsWith(Path.DirectorySeparatorChar.ToString()))
                     {
                         exportPathMegaVoice += Path.DirectorySeparatorChar;
+                    }
+
+                    if (!string.IsNullOrEmpty(exportPathWPAudioBook) && !exportPathWPAudioBook.EndsWith(Path.DirectorySeparatorChar.ToString()))
+                    {
+                        exportPathWPAudioBook += Path.DirectorySeparatorChar;
                     }
 
                     if (ExportDialogDAISY3 != null)
@@ -3320,11 +3384,26 @@ ref string exportDirectoryDAISY3,
                         ((Obi.ImportExport.DAISY3_ObiExport)MegaVoice_ExportInstance).AlwaysIgnoreIndentation = mSettings.Project_Export_AlwaysIgnoreIndentation;
                         MegaVoice_ExportInstance.EncodingFileFormat = ExportDialogMegaVoice.EncodingFileFormat;
                     }
+                    if (ExportDialogWPAudioBook != null)
+                    {
+                        WPAudioBooks_ExportInstance = new Obi.ImportExport.WPAudioBook_ObiExport(
+                            mSession.Presentation, exportPathWPAudioBook, null, ExportDialogWPAudioBook.EncodeAudioFiles, ExportDialogWPAudioBook.BitRate,
+                            AudioLib.SampleRate.Hz44100,
+                            mProjectView.Presentation.MediaDataManager.DefaultPCMFormat.Data.NumberOfChannels == 2,
+                            false, ExportDialogWPAudioBook.LevelSelection);
+
+                        WPAudioBooks_ExportInstance.AddSectionNameToAudioFile = ExportDialogWPAudioBook.AppendSectionNameToAudioFileName;
+                        WPAudioBooks_ExportInstance.AudioFileNameCharsLimit = ExportDialogWPAudioBook.AudioFileNameCharsLimit;
+                        if (ExportDialogWPAudioBook.EnabledAdvancedParameters) WPAudioBooks_ExportInstance.SetAdditionalMp3EncodingParameters(ExportDialogWPAudioBook.Mp3ChannelMode, ExportDialogWPAudioBook.Mp3ReSample, ExportDialogWPAudioBook.Mp3RePlayGain);
+                        ((Obi.ImportExport.WPAudioBook_ObiExport)WPAudioBooks_ExportInstance).AlwaysIgnoreIndentation = false;
+                        WPAudioBooks_ExportInstance.EncodingFileFormat = ExportDialogWPAudioBook.EncodingFileFormat;
+                    }
                     exportDirectoryDAISY202 = exportPathDAISY202;
                     exportDirectoryDAISY3 = exportPathDAISY3;
                     exportDirectoryEPUB3 = exportPathEPUB3;
                     exportDirectoryXHTML = exportPathXhtml;
                     exportDirectoryMegaVoice = exportPathMegaVoice;
+                    exportDirectoryWPAudioBook = exportPathWPAudioBook;
                     return true;
                 }
                 //else if (ExportDialogXhtml != null)

@@ -59,6 +59,13 @@ namespace Obi.Dialogs
                 return m_chMegaVoice.Checked;
             }
         }
+        public bool ExportWPAudioBook
+        {
+            get
+            {
+                return m_cbWPAudioBook.Checked;
+            }
+        }
 
 
         public Obi.ImportExport.ExportFormat chooseOption 
