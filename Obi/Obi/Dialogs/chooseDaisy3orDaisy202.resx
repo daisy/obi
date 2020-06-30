@@ -123,14 +123,14 @@
   </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="m_OKBtn.Location" type="System.Drawing.Point, System.Drawing">
-    <value>26, 202</value>
+    <value>26, 254</value>
   </data>
   <data name="m_OKBtn.Size" type="System.Drawing.Size, System.Drawing">
     <value>75, 23</value>
   </data>
   <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="m_OKBtn.TabIndex" type="System.Int32, mscorlib">
-    <value>5</value>
+    <value>6</value>
   </data>
   <data name="m_OKBtn.Text" xml:space="preserve">
     <value>OK</value>
@@ -145,19 +145,19 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;m_OKBtn.ZOrder" xml:space="preserve">
-    <value>6</value>
+    <value>7</value>
   </data>
   <data name="m_BtnCancel.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Flat</value>
   </data>
   <data name="m_BtnCancel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>148, 202</value>
+    <value>148, 254</value>
   </data>
   <data name="m_BtnCancel.Size" type="System.Drawing.Size, System.Drawing">
     <value>75, 23</value>
   </data>
   <data name="m_BtnCancel.TabIndex" type="System.Int32, mscorlib">
-    <value>6</value>
+    <value>7</value>
   </data>
   <data name="m_BtnCancel.Text" xml:space="preserve">
     <value>Cancel</value>
@@ -172,7 +172,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;m_BtnCancel.ZOrder" xml:space="preserve">
-    <value>5</value>
+    <value>6</value>
   </data>
   <metadata name="helpProvider1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
@@ -205,7 +205,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;m_cbDaisy3.ZOrder" xml:space="preserve">
-    <value>4</value>
+    <value>5</value>
   </data>
   <data name="m_cbDaisy202.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -232,7 +232,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;m_cbDaisy202.ZOrder" xml:space="preserve">
-    <value>3</value>
+    <value>4</value>
   </data>
   <data name="m_cbEpub3.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -259,7 +259,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;m_cbEpub3.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>3</value>
   </data>
   <data name="m_cbXhtml.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -286,7 +286,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;m_cbXhtml.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>2</value>
   </data>
   <data name="m_chMegaVoice.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -313,6 +313,39 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;m_chMegaVoice.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="m_cbWPAudioBook.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="m_cbWPAudioBook.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="m_cbWPAudioBook.Location" type="System.Drawing.Point, System.Drawing">
+    <value>48, 210</value>
+  </data>
+  <data name="m_cbWPAudioBook.ShowHelp" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="m_cbWPAudioBook.Size" type="System.Drawing.Size, System.Drawing">
+    <value>99, 17</value>
+  </data>
+  <data name="m_cbWPAudioBook.TabIndex" type="System.Int32, mscorlib">
+    <value>5</value>
+  </data>
+  <data name="m_cbWPAudioBook.Text" xml:space="preserve">
+    <value>WP AudioBook</value>
+  </data>
+  <data name="&gt;&gt;m_cbWPAudioBook.Name" xml:space="preserve">
+    <value>m_cbWPAudioBook</value>
+  </data>
+  <data name="&gt;&gt;m_cbWPAudioBook.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_cbWPAudioBook.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;m_cbWPAudioBook.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
@@ -322,7 +355,7 @@
     <value>6, 13</value>
   </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>268, 246</value>
+    <value>268, 294</value>
   </data>
   <data name="$this.ShowHelp" type="System.Boolean, mscorlib">
     <value>True</value>

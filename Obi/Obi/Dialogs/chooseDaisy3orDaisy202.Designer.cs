@@ -37,6 +37,7 @@ namespace Obi.Dialogs
             this.m_cbEpub3 = new System.Windows.Forms.CheckBox();
             this.m_cbXhtml = new System.Windows.Forms.CheckBox();
             this.m_chMegaVoice = new System.Windows.Forms.CheckBox();
+            this.m_cbWPAudioBook = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // m_OKBtn
@@ -92,12 +93,20 @@ namespace Obi.Dialogs
             this.m_chMegaVoice.Name = "m_chMegaVoice";
             this.m_chMegaVoice.UseVisualStyleBackColor = true;
             // 
+            // m_cbWPAudioBook
+            // 
+            resources.ApplyResources(this.m_cbWPAudioBook, "m_cbWPAudioBook");
+            this.m_cbWPAudioBook.Name = "m_cbWPAudioBook";
+            this.helpProvider1.SetShowHelp(this.m_cbWPAudioBook, ((bool)(resources.GetObject("m_cbWPAudioBook.ShowHelp"))));
+            this.m_cbWPAudioBook.UseVisualStyleBackColor = true;
+            // 
             // chooseDaisy3orDaisy202
             // 
             this.AcceptButton = this.m_OKBtn;
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.m_BtnCancel;
+            this.Controls.Add(this.m_cbWPAudioBook);
             this.Controls.Add(this.m_chMegaVoice);
             this.Controls.Add(this.m_cbXhtml);
             this.Controls.Add(this.m_cbEpub3);
@@ -125,5 +134,6 @@ namespace Obi.Dialogs
         private System.Windows.Forms.CheckBox m_cbEpub3;
         private System.Windows.Forms.CheckBox m_cbXhtml;
         private System.Windows.Forms.CheckBox m_chMegaVoice;
+        private System.Windows.Forms.CheckBox m_cbWPAudioBook;
     }
 }

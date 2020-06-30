@@ -1684,6 +1684,15 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to {0}WP AudioBook Export.
+        /// </summary>
+        internal static string default_WPAudioBookExport_dirname {
+            get {
+                return ResourceManager.GetString("default_WPAudioBookExport_dirname", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to {0}Xhtml Export.
         /// </summary>
         internal static string default_XHTMLExport_dirname {
@@ -2355,6 +2364,15 @@ namespace Obi {
         internal static string ExportDialogTitleForMegaVoiceExport {
             get {
                 return ResourceManager.GetString("ExportDialogTitleForMegaVoiceExport", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to WP AudioBook.
+        /// </summary>
+        internal static string ExportDialogTitleForWPAudioBookExport {
+            get {
+                return ResourceManager.GetString("ExportDialogTitleForWPAudioBookExport", resourceCulture);
             }
         }
         
