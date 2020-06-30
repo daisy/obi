@@ -105,7 +105,7 @@ namespace Obi.ImportExport
             JObject audioBookObject = new JObject(context,
                 new JProperty("conformsTo", "https://www.w3.org/TR/audiobooks/"),
             new JProperty("type", "Audiobook"),
-            new JProperty("@id", bookIdentifier),
+            new JProperty("id", bookIdentifier),
             //new JProperty("url", "https://w3c.github.io/wpub/experiments/audiobook/"),
             new JProperty("name", bookTitle),
             new JProperty("author", bookAuthor),
@@ -268,7 +268,7 @@ if (urakawa.data.DataProviderFactory.CSS_EXTENSION.Equals(ext, StringComparison.
                                 m_BookDuration += timeDuration;
                                 M_PlaylistArray.Add(new JObject(new JProperty("url", audioFileName),
                     new JProperty("encodingFormat", "audio/mpeg"),
-                    new JProperty("duration", timeDuration),
+                    new JProperty("duration", "PT" + timeDuration + "S"),
                     new JProperty("name", section.Label)));
 
                                 // add to HTML TOC
