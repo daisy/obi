@@ -32,12 +32,12 @@ namespace Obi.Dialogs
             this.m_OKBtn = new System.Windows.Forms.Button();
             this.m_BtnCancel = new System.Windows.Forms.Button();
             this.helpProvider1 = new System.Windows.Forms.HelpProvider();
+            this.m_cbWPAudioBook = new System.Windows.Forms.CheckBox();
             this.m_cbDaisy3 = new System.Windows.Forms.CheckBox();
             this.m_cbDaisy202 = new System.Windows.Forms.CheckBox();
             this.m_cbEpub3 = new System.Windows.Forms.CheckBox();
             this.m_cbXhtml = new System.Windows.Forms.CheckBox();
             this.m_chMegaVoice = new System.Windows.Forms.CheckBox();
-            this.m_cbWPAudioBook = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // m_OKBtn
@@ -58,6 +58,13 @@ namespace Obi.Dialogs
             // helpProvider1
             // 
             resources.ApplyResources(this.helpProvider1, "helpProvider1");
+            // 
+            // m_cbWPAudioBook
+            // 
+            resources.ApplyResources(this.m_cbWPAudioBook, "m_cbWPAudioBook");
+            this.m_cbWPAudioBook.Name = "m_cbWPAudioBook";
+            this.helpProvider1.SetShowHelp(this.m_cbWPAudioBook, ((bool)(resources.GetObject("m_cbWPAudioBook.ShowHelp"))));
+            this.m_cbWPAudioBook.UseVisualStyleBackColor = true;
             // 
             // m_cbDaisy3
             // 
@@ -92,13 +99,6 @@ namespace Obi.Dialogs
             resources.ApplyResources(this.m_chMegaVoice, "m_chMegaVoice");
             this.m_chMegaVoice.Name = "m_chMegaVoice";
             this.m_chMegaVoice.UseVisualStyleBackColor = true;
-            // 
-            // m_cbWPAudioBook
-            // 
-            resources.ApplyResources(this.m_cbWPAudioBook, "m_cbWPAudioBook");
-            this.m_cbWPAudioBook.Name = "m_cbWPAudioBook";
-            this.helpProvider1.SetShowHelp(this.m_cbWPAudioBook, ((bool)(resources.GetObject("m_cbWPAudioBook.ShowHelp"))));
-            this.m_cbWPAudioBook.UseVisualStyleBackColor = true;
             // 
             // chooseDaisy3orDaisy202
             // 

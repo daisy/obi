@@ -3228,7 +3228,7 @@ ref string exportDirectoryDAISY3,
                                             mSession.Path, mSettings.Export_EncodeAudioFiles, (mSettings.ExportEncodingBitRate),
                                             mSettings.Export_AppendSectionNameToAudioFile, mSettings.EncodingFileFormat, this.mSettings); //@fontconfig
                     // null string temprorarily used instead of -mProjectView.Presentation.Title- to avoid unicode character problem in path for pipeline
-                    ExportDialogWPAudioBook.LevelSelection = 1;
+                    ExportDialogWPAudioBook.LevelSelection = 0;
                     ExportDialogWPAudioBook.SelectLevelForAudioLevelsEnabled = false;
                     //ExportDialogWPAudioBook.AppendSectionNameToAudioFileName = true;
                     ExportDialogWPAudioBook.EncodeAudioFiles = true;
