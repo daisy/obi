@@ -101,9 +101,18 @@ namespace Obi.ImportExport
             urakawa.metadata.Metadata languageMetadata = presentation.GetFirstMetadataItem("dc:Language");
             string bookLanguage = languageMetadata != null ? languageMetadata.NameContentAttribute.Value : "";
 
-            JProperty context = new JProperty("@context", new JArray("https://schema.org", "https://www.w3.org/ns/wp-context"));
+            JProperty context = new JProperty("@context", new JArray("https://schema.org", "https://www.w3.org/ns/pub-context"));
+            JProperty accessMode = new JProperty("accessMode", new JArray("textual", "auditory"));
+            JProperty accessibilityFeature = new JProperty("accessibilityFeature", new JArray("readingOrder", "tableOfContents"));
+            JProperty accessibilitySummary = new JProperty("accessibilitySummary", "This is an audio book with table of contents.");
+
+            JObject accessSufficientObject = new JObject( new JProperty("type", "ItemList"),
+                new JProperty("itemListElement", new JArray("auditory")),
+                new JProperty ("description", "All content in audio"));
+            JProperty accessModeSufficient = new JProperty("accessModeSufficient", new JArray(accessSufficientObject));
+
             JObject audioBookObject = new JObject(context,
-                new JProperty("conformsTo", "https://www.w3.org/TR/audiobooks/"),
+                new JProperty("conformsTo", "https://www.w3.org/TR/audiobooks"),
             new JProperty("type", "Audiobook"),
             new JProperty("id", bookIdentifier),
             //new JProperty("url", "https://w3c.github.io/wpub/experiments/audiobook/"),
@@ -113,18 +122,43 @@ namespace Obi.ImportExport
             new JProperty("publisher", bookPublisher),
             new JProperty("inLanguage", bookLanguage),
             new JProperty("datePublished", bookPublishDate),
-            new JProperty("duration", "PT" + m_BookDuration.ToString() + "S"));
+            new JProperty("duration", "PT" + m_BookDuration.ToString() + "S"),
+            accessibilityFeature,
+            accessibilitySummary,
+            accessMode,
+            accessModeSufficient);
             //new JProperty("license", "https://creativecommons.org/publicdomain/zero/1.0/")
             
 
             // resources
             JArray resourcesArray = new JArray();
 
-            //JObject coverObject = new JObject(new JProperty("rel", "cover"),
-                //new JProperty("url", "http://ia800704.us.archive.org/9/items/LibrivoxCdCoverArt12/Flatland_1109.jpg"),
-                //new JProperty("encodingFormat", "image/jpeg"));
+            // create cover and add to resources
+            XmlDocument coverDocument = CreateStub_NavigationDocument();
+            XmlNode headNode = coverDocument.GetElementsByTagName("head")[0];
+            XmlNode titleNode = coverDocument.CreateElement(null, "title", headNode.NamespaceURI);
+            titleNode.AppendChild(coverDocument.CreateTextNode(bookTitle));
+            headNode.AppendChild(titleNode);
 
-            //resourcesArray.Add(coverObject);
+            XmlNode bodyNode = coverDocument.GetElementsByTagName("body")[0];
+            XmlNode h1Node = coverDocument.CreateElement(null, "h1", bodyNode.NamespaceURI);
+            h1Node.AppendChild(coverDocument.CreateTextNode(bookTitle));
+            bodyNode.AppendChild(h1Node);
+
+            XmlNode h2Node = coverDocument.CreateElement(null,"h2", bodyNode.NamespaceURI);
+            h2Node.AppendChild(coverDocument.CreateTextNode("By " + bookAuthor));
+            bodyNode.AppendChild(h2Node);
+
+            string coverFileName = "cover.html";
+            XmlReaderWriterHelper.WriteXmlDocument(coverDocument, Path.Combine(m_OutputDirectory, coverFileName), AlwaysIgnoreIndentation ? GetXmlWriterSettings(false) : null);
+
+            // add the JObject to array of resources
+            JObject coverObject = new JObject(new JProperty("rel", "cover"),
+                new JProperty("url", coverFileName),
+                new JProperty("encodingFormat", "text/html"),
+                new JProperty("name", "Cover"));
+
+            resourcesArray.Add(coverObject);
 
             JObject tocObject = new JObject(new JProperty("rel", "contents"),
                 new JProperty("url", m_Filename_EntryFile),
