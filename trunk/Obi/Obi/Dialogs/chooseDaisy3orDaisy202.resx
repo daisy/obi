@@ -180,6 +180,39 @@
   <data name="helpProvider1.HelpNamespace" xml:space="preserve">
     <value>Obi Help.chm</value>
   </data>
+  <data name="m_cbWPAudioBook.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="m_cbWPAudioBook.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="m_cbWPAudioBook.Location" type="System.Drawing.Point, System.Drawing">
+    <value>48, 210</value>
+  </data>
+  <data name="m_cbWPAudioBook.ShowHelp" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="m_cbWPAudioBook.Size" type="System.Drawing.Size, System.Drawing">
+    <value>104, 17</value>
+  </data>
+  <data name="m_cbWPAudioBook.TabIndex" type="System.Int32, mscorlib">
+    <value>5</value>
+  </data>
+  <data name="m_cbWPAudioBook.Text" xml:space="preserve">
+    <value>WP AudioBooks</value>
+  </data>
+  <data name="&gt;&gt;m_cbWPAudioBook.Name" xml:space="preserve">
+    <value>m_cbWPAudioBook</value>
+  </data>
+  <data name="&gt;&gt;m_cbWPAudioBook.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_cbWPAudioBook.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;m_cbWPAudioBook.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
   <data name="m_cbDaisy3.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
@@ -314,39 +347,6 @@
   </data>
   <data name="&gt;&gt;m_chMegaVoice.ZOrder" xml:space="preserve">
     <value>1</value>
-  </data>
-  <data name="m_cbWPAudioBook.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="m_cbWPAudioBook.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="m_cbWPAudioBook.Location" type="System.Drawing.Point, System.Drawing">
-    <value>48, 210</value>
-  </data>
-  <data name="m_cbWPAudioBook.ShowHelp" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="m_cbWPAudioBook.Size" type="System.Drawing.Size, System.Drawing">
-    <value>99, 17</value>
-  </data>
-  <data name="m_cbWPAudioBook.TabIndex" type="System.Int32, mscorlib">
-    <value>5</value>
-  </data>
-  <data name="m_cbWPAudioBook.Text" xml:space="preserve">
-    <value>WP AudioBook</value>
-  </data>
-  <data name="&gt;&gt;m_cbWPAudioBook.Name" xml:space="preserve">
-    <value>m_cbWPAudioBook</value>
-  </data>
-  <data name="&gt;&gt;m_cbWPAudioBook.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;m_cbWPAudioBook.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;m_cbWPAudioBook.ZOrder" xml:space="preserve">
-    <value>0</value>
   </data>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>

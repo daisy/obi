@@ -204,7 +204,7 @@ namespace Obi.Dialogs
                 }
                 set
                 {
-                    m_ComboSelectLevelForAudioFiles.SelectedIndex = 1;
+                    m_ComboSelectLevelForAudioFiles.SelectedIndex = value;
                 }
             }
 

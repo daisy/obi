@@ -3186,9 +3186,9 @@ You can do it later also from the project tab of preferences dialog.</value>
     <value>Deletion of temporary folder created during export of MegaVoice (Envoy Connect) is not successful because "{0}". To free up your space you can delete it manually. The path of temporary folder is: {1}</value>
   </data>
   <data name="default_WPAudioBookExport_dirname" xml:space="preserve">
-    <value>{0}WP AudioBook Export</value>
+    <value>{0}WP AudioBooks Export</value>
   </data>
   <data name="ExportDialogTitleForWPAudioBookExport" xml:space="preserve">
-    <value>WP AudioBook</value>
+    <value>WP AudioBooks</value>
   </data>
 </root>

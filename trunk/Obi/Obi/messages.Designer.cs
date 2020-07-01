@@ -1684,7 +1684,7 @@ namespace Obi {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {0}WP AudioBook Export.
+        ///   Looks up a localized string similar to {0}WP AudioBooks Export.
         /// </summary>
         internal static string default_WPAudioBookExport_dirname {
             get {
@@ -2368,7 +2368,7 @@ namespace Obi {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to WP AudioBook.
+        ///   Looks up a localized string similar to WP AudioBooks.
         /// </summary>
         internal static string ExportDialogTitleForWPAudioBookExport {
             get {
