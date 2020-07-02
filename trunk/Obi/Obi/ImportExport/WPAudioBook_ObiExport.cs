@@ -112,7 +112,7 @@ namespace Obi.ImportExport
             JProperty accessModeSufficient = new JProperty("accessModeSufficient", new JArray(accessSufficientObject));
 
             JObject audioBookObject = new JObject(context,
-                new JProperty("conformsTo", "https://www.w3.org/TR/audiobooks"),
+                new JProperty("conformsTo", "https://www.w3.org/TR/audiobooks/"),
             new JProperty("type", "Audiobook"),
             new JProperty("id", bookIdentifier),
             //new JProperty("url", "https://w3c.github.io/wpub/experiments/audiobook/"),
