@@ -3250,7 +3250,7 @@ ref string exportDirectoryDAISY3,
                     string exportPathEPUB3 = ExportDialogEPUB3 != null ? ExportDialogEPUB3.DirectoryPath : null;
                     string exportPathXhtml = ExportDialogXhtml != null ? ExportDialogXhtml.DirectoryPath : null;
                     string exportPathMegaVoice = ExportDialogMegaVoice != null ? exportDirectoryMegaVoice : null;
-                    string exportPathWPAudioBook = ExportDialogWPAudioBook != null ? exportDirectoryWPAudioBook : null;
+                    string exportPathWPAudioBook = ExportDialogWPAudioBook != null ? ExportDialogWPAudioBook.DirectoryPath : null;
                     
                     Dialogs.ExportDirectory dialog = ExportDialogDAISY3 != null ? ExportDialogDAISY3 : 
                         ExportDialogDAISY202 != null ? ExportDialogDAISY202 : 
