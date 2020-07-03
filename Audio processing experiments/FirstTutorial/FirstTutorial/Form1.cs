@@ -25,7 +25,7 @@ namespace FirstTutorial
         private string fileName = string.Empty;
         private OpenFileDialog open = new OpenFileDialog();
         private Process m_process = null;
-
+        private CueWaveFileReader reader;
         private void button1_Click(object sender, EventArgs e)
         {
             
@@ -235,6 +235,36 @@ namespace FirstTutorial
                                 
 
             }
+        }
+
+        private void m_MarkCue_Click(object sender, EventArgs e)
+        {
+
+            ShowCueMarkers dialogCueMarker = new ShowCueMarkers();
+            dialogCueMarker.ShowDialog();
+                       
+        }
+
+        private void m_WriteCue_Click(object sender, EventArgs e)
+        {
+            
+
+            System.IO.FileStream fs = new System.IO.FileStream(fileName, System.IO.FileMode.Append);
+            System.IO.BinaryWriter bw = new System.IO.BinaryWriter(fs);
+            char[] cue = new char[] { 'c', 'u', 'e', ' ' };
+            bw.Write(cue, 0, 4); // "cue "
+            bw.Write((int)28); // chunk size = 4 + (24 * # of cues)
+            bw.Write((int)1); // # of cues
+            // first cue point
+            bw.Write((int)0); // unique ID of first cue
+            bw.Write((int)0); // position
+            char[] data = new char[] { 'd', 'a', 't', 'a' };
+            bw.Write(data, 0, 4); // RIFF ID = "data"
+            bw.Write((int)0); // chunk start
+            bw.Write((int)0); // block start
+            bw.Write((int)6895490); // sample offset - in a mono, 16-bits-per-sample WAV            
+            bw.Close();
+            fs.Dispose();
         }
     }
 }
