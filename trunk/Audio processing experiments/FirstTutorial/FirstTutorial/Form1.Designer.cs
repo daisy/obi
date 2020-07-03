@@ -49,6 +49,8 @@
             this.label4 = new System.Windows.Forms.Label();
             this.m_BandPassFrequencyTextBox = new System.Windows.Forms.TextBox();
             this.m_ffmpegNoiseReduction = new System.Windows.Forms.Button();
+            this.m_MarkCue = new System.Windows.Forms.Button();
+            this.m_WriteCue = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // button1
@@ -267,11 +269,33 @@
             this.m_ffmpegNoiseReduction.UseVisualStyleBackColor = true;
             this.m_ffmpegNoiseReduction.Click += new System.EventHandler(this.m_ffmpegNoiseReduction_Click);
             // 
+            // m_MarkCue
+            // 
+            this.m_MarkCue.Location = new System.Drawing.Point(474, 353);
+            this.m_MarkCue.Name = "m_MarkCue";
+            this.m_MarkCue.Size = new System.Drawing.Size(119, 23);
+            this.m_MarkCue.TabIndex = 21;
+            this.m_MarkCue.Text = "Mark Cue";
+            this.m_MarkCue.UseVisualStyleBackColor = true;
+            this.m_MarkCue.Click += new System.EventHandler(this.m_MarkCue_Click);
+            // 
+            // m_WriteCue
+            // 
+            this.m_WriteCue.Location = new System.Drawing.Point(305, 359);
+            this.m_WriteCue.Name = "m_WriteCue";
+            this.m_WriteCue.Size = new System.Drawing.Size(105, 23);
+            this.m_WriteCue.TabIndex = 22;
+            this.m_WriteCue.Text = "Write Cue";
+            this.m_WriteCue.UseVisualStyleBackColor = true;
+            this.m_WriteCue.Click += new System.EventHandler(this.m_WriteCue_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(643, 498);
+            this.Controls.Add(this.m_WriteCue);
+            this.Controls.Add(this.m_MarkCue);
             this.Controls.Add(this.m_ffmpegNoiseReduction);
             this.Controls.Add(this.m_BandPassFrequencyTextBox);
             this.Controls.Add(this.label4);
@@ -323,6 +347,8 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox m_BandPassFrequencyTextBox;
         private System.Windows.Forms.Button m_ffmpegNoiseReduction;
+        private System.Windows.Forms.Button m_MarkCue;
+        private System.Windows.Forms.Button m_WriteCue;
     }
 }
 
