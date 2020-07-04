@@ -136,6 +136,11 @@ namespace Obi.Dialogs
                     mCanClose = false;
                     }
                 }
+            if (m_chkShowCues.Checked)
+            {
+                ShowCuePoints showCues = new ShowCuePoints(m_filePaths);
+                showCues.ShowDialog();
+            }
 
         }
 
