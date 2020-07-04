@@ -56,6 +56,7 @@ namespace Obi.Dialogs
             this.m_rdbPhraseDetectionOnImportedFiles = new System.Windows.Forms.RadioButton();
             this.m_rdbSplitPhrasesOnImport = new System.Windows.Forms.RadioButton();
             this.helpProvider1 = new System.Windows.Forms.HelpProvider();
+            this.m_chkShowCues = new System.Windows.Forms.CheckBox();
             this.m_grpAddFiles.SuspendLayout();
             this.m_grpArrangeAudioFiles.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.m_numCharCountToTruncateFromStart)).BeginInit();
@@ -268,12 +269,19 @@ namespace Obi.Dialogs
             // 
             resources.ApplyResources(this.helpProvider1, "helpProvider1");
             // 
+            // m_chkShowCues
+            // 
+            resources.ApplyResources(this.m_chkShowCues, "m_chkShowCues");
+            this.m_chkShowCues.Name = "m_chkShowCues";
+            this.m_chkShowCues.UseVisualStyleBackColor = true;
+            // 
             // ImportFileSplitSize
             // 
             this.AcceptButton = this.mOKButton;
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.mCancelButton;
+            this.Controls.Add(this.m_chkShowCues);
             this.Controls.Add(this.m_grpSplitPhraseOrPhraseDetection);
             this.Controls.Add(this.m_grpCreateSectionForEachAudioFile);
             this.Controls.Add(this.m_grpAddFiles);
@@ -296,6 +304,7 @@ namespace Obi.Dialogs
             this.m_grpSplitPhraseOrPhraseDetection.ResumeLayout(false);
             this.m_grpSplitPhraseOrPhraseDetection.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -328,5 +337,6 @@ namespace Obi.Dialogs
         private System.Windows.Forms.RadioButton m_rdbImportAudioInSelectedSection;
         private System.Windows.Forms.RadioButton m_rdbImportAudioFileInEachSection;
         private System.Windows.Forms.RadioButton m_rdbCreateAudioFilePerSection;
+        private System.Windows.Forms.CheckBox m_chkShowCues;
     }
 }
