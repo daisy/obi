@@ -2991,6 +2991,11 @@ namespace Obi.ProjectView
                                 // hide new phrases if section's contents are hidden
                                 //HideNewPhrasesInInvisibleSection ( GetSelectedPhraseSection );//@singleSection: original
                                 mContentView.CreateBlocksInStrip (); //@singleSection: new
+                                if (dialog.ShowCuePoints)
+                                {
+                                    Dialogs.ShowCuePoints showCuePoints = new Dialogs.ShowCuePoints(dialog.FilesPaths);
+                                    showCuePoints.ShowDialog();
+                                }
                                 }
                             else
                                 MessageBox.Show ( Localizer.Message ( "Operation_Cancelled" ) + "\n" + string.Format ( Localizer.Message ( "ContentsHidden_PhrasesExceedMaxLimitPerSection" ), MaxVisibleBlocksCount ) );

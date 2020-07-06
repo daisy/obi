@@ -38,11 +38,11 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(70, 26);
+            this.label1.Location = new System.Drawing.Point(129, 28);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(228, 13);
+            this.label1.Size = new System.Drawing.Size(211, 13);
             this.label1.TabIndex = 0;
-            this.label1.Text = "Cue Points in the audio files to be imported are:";
+            this.label1.Text = "Cue points in wave audio files imported are:";
             // 
             // m_chCuePosition
             // 
@@ -62,14 +62,14 @@
             this.m_chCueLabel});
             this.m_CuePointsListView.Location = new System.Drawing.Point(49, 63);
             this.m_CuePointsListView.Name = "m_CuePointsListView";
-            this.m_CuePointsListView.Size = new System.Drawing.Size(280, 246);
+            this.m_CuePointsListView.Size = new System.Drawing.Size(424, 246);
             this.m_CuePointsListView.TabIndex = 1;
             this.m_CuePointsListView.UseCompatibleStateImageBehavior = false;
             // 
             // m_btnOk
             // 
             this.m_btnOk.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.m_btnOk.Location = new System.Drawing.Point(144, 345);
+            this.m_btnOk.Location = new System.Drawing.Point(228, 343);
             this.m_btnOk.Name = "m_btnOk";
             this.m_btnOk.Size = new System.Drawing.Size(75, 23);
             this.m_btnOk.TabIndex = 2;
@@ -82,7 +82,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.m_btnOk;
-            this.ClientSize = new System.Drawing.Size(387, 393);
+            this.ClientSize = new System.Drawing.Size(512, 393);
             this.Controls.Add(this.m_btnOk);
             this.Controls.Add(this.m_CuePointsListView);
             this.Controls.Add(this.label1);

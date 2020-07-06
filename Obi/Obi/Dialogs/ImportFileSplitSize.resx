@@ -1003,13 +1003,13 @@
     <value>25, 523</value>
   </data>
   <data name="m_chkShowCues.Size" type="System.Drawing.Size, System.Drawing">
-    <value>192, 20</value>
+    <value>239, 20</value>
   </data>
   <data name="m_chkShowCues.TabIndex" type="System.Int32, mscorlib">
     <value>24</value>
   </data>
   <data name="m_chkShowCues.Text" xml:space="preserve">
-    <value>Show Cues in the audio files</value>
+    <value>Show cue points in  wave audio files</value>
   </data>
   <data name="&gt;&gt;m_chkShowCues.Name" xml:space="preserve">
     <value>m_chkShowCues</value>

@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using System.IO;
 
 namespace Obi.Dialogs
 {
@@ -13,38 +14,50 @@ namespace Obi.Dialogs
     {
         private string[] m_CueLabels;
         private List<decimal> m_CuePoints;
-        private List<string> m_FilePaths;
+        private string[] m_FilePaths;
 
-        public ShowCuePoints(List<string> filePaths)
+        public ShowCuePoints(string[] filePaths)
         {
             InitializeComponent();
             m_FilePaths = filePaths;
-            int count = 1;
             foreach (string path in m_FilePaths)
             {
-
-                DisplayCuePoints(path,count);
-                count++;
+                DisplayCuePoints(path);
             }
         }
 
 
-        public void DisplayCuePoints(string path,int audiofileCount)
+        public void DisplayCuePoints(string path)
         {
             AudioLib.ReadCueMarkers readCues = new AudioLib.ReadCueMarkers(path);
             m_CueLabels = readCues.ListOfCueLabels;
             m_CuePoints = readCues.ListOfCuePoints;
-            if (m_CuePoints == null || m_CuePoints.Count == 0)
-            {
-                MessageBox.Show("There are no cue points in the audio files being imported");
-                return;
-            }
+           
             int count = 0;
             m_CuePointsListView.View = View.Details;
             m_CuePointsListView.GridLines = true;
             m_CuePointsListView.FullRowSelect = true;
+            string fileName = Path.GetFileName(path);
 
-            m_CuePointsListView.Items.Add(new ListViewItem(new string[] { "Audio "+audiofileCount.ToString() +" :"  , string.Empty }));
+
+            m_CuePointsListView.Items.Add(new ListViewItem(new string[] { string.Empty, string.Empty }));
+            m_CuePointsListView.Items.Add(new ListViewItem(new string[] { fileName + " :", string.Empty }));
+
+            if (m_CuePoints == null || m_CuePoints.Count == 0)
+            {
+                string message;
+                if (Path.GetExtension(path).ToLower() != ".wav")
+                {
+                    string filename = Path.GetFileName(path);
+                    message = "Show cue points work only with wave files";
+                }
+                else
+                {
+                   message = "No Cues available";
+                }
+                m_CuePointsListView.Items.Add(new ListViewItem(new string[] { message, string.Empty }));
+                return;
+            }
 
             foreach (decimal cupoint in m_CuePoints)
             {
