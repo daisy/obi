@@ -56,7 +56,7 @@ namespace Obi.Dialogs
             this.m_rdbPhraseDetectionOnImportedFiles = new System.Windows.Forms.RadioButton();
             this.m_rdbSplitPhrasesOnImport = new System.Windows.Forms.RadioButton();
             this.helpProvider1 = new System.Windows.Forms.HelpProvider();
-            this.m_chkShowCues = new System.Windows.Forms.CheckBox();
+            this.m_rdbShowCues = new System.Windows.Forms.RadioButton();
             this.m_grpAddFiles.SuspendLayout();
             this.m_grpArrangeAudioFiles.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.m_numCharCountToTruncateFromStart)).BeginInit();
@@ -183,6 +183,7 @@ namespace Obi.Dialogs
             // m_grpCreateSectionForEachAudioFile
             // 
             resources.ApplyResources(this.m_grpCreateSectionForEachAudioFile, "m_grpCreateSectionForEachAudioFile");
+            this.m_grpCreateSectionForEachAudioFile.Controls.Add(this.m_rdbShowCues);
             this.m_grpCreateSectionForEachAudioFile.Controls.Add(this.m_rdbCreateAudioFilePerSection);
             this.m_grpCreateSectionForEachAudioFile.Controls.Add(this.m_rdbImportAudioFileInEachSection);
             this.m_grpCreateSectionForEachAudioFile.Controls.Add(this.m_rdbImportAudioInSelectedSection);
@@ -248,6 +249,7 @@ namespace Obi.Dialogs
             this.m_grpSplitPhraseOrPhraseDetection.Controls.Add(this.mPhraseSizeTextBox);
             resources.ApplyResources(this.m_grpSplitPhraseOrPhraseDetection, "m_grpSplitPhraseOrPhraseDetection");
             this.m_grpSplitPhraseOrPhraseDetection.Name = "m_grpSplitPhraseOrPhraseDetection";
+            this.helpProvider1.SetShowHelp(this.m_grpSplitPhraseOrPhraseDetection, ((bool)(resources.GetObject("m_grpSplitPhraseOrPhraseDetection.ShowHelp"))));
             this.m_grpSplitPhraseOrPhraseDetection.TabStop = false;
             // 
             // m_rdbPhraseDetectionOnImportedFiles
@@ -269,11 +271,14 @@ namespace Obi.Dialogs
             // 
             resources.ApplyResources(this.helpProvider1, "helpProvider1");
             // 
-            // m_chkShowCues
+            // m_rdbShowCues
             // 
-            resources.ApplyResources(this.m_chkShowCues, "m_chkShowCues");
-            this.m_chkShowCues.Name = "m_chkShowCues";
-            this.m_chkShowCues.UseVisualStyleBackColor = true;
+            resources.ApplyResources(this.m_rdbShowCues, "m_rdbShowCues");
+            this.m_rdbShowCues.Name = "m_rdbShowCues";
+            this.helpProvider1.SetShowHelp(this.m_rdbShowCues, ((bool)(resources.GetObject("m_rdbShowCues.ShowHelp"))));
+            this.m_rdbShowCues.TabStop = true;
+            this.m_rdbShowCues.UseVisualStyleBackColor = true;
+            this.m_rdbShowCues.CheckedChanged += new System.EventHandler(this.m_rdbShowCues_CheckedChanged);
             // 
             // ImportFileSplitSize
             // 
@@ -281,7 +286,6 @@ namespace Obi.Dialogs
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.mCancelButton;
-            this.Controls.Add(this.m_chkShowCues);
             this.Controls.Add(this.m_grpSplitPhraseOrPhraseDetection);
             this.Controls.Add(this.m_grpCreateSectionForEachAudioFile);
             this.Controls.Add(this.m_grpAddFiles);
@@ -291,6 +295,7 @@ namespace Obi.Dialogs
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "ImportFileSplitSize";
+            this.helpProvider1.SetShowHelp(this, ((bool)(resources.GetObject("$this.ShowHelp"))));
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
@@ -304,7 +309,6 @@ namespace Obi.Dialogs
             this.m_grpSplitPhraseOrPhraseDetection.ResumeLayout(false);
             this.m_grpSplitPhraseOrPhraseDetection.PerformLayout();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -337,6 +341,6 @@ namespace Obi.Dialogs
         private System.Windows.Forms.RadioButton m_rdbImportAudioInSelectedSection;
         private System.Windows.Forms.RadioButton m_rdbImportAudioFileInEachSection;
         private System.Windows.Forms.RadioButton m_rdbCreateAudioFilePerSection;
-        private System.Windows.Forms.CheckBox m_chkShowCues;
+        private System.Windows.Forms.RadioButton m_rdbShowCues;
     }
 }
