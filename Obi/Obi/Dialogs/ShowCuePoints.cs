@@ -12,61 +12,67 @@ namespace Obi.Dialogs
 {
     public partial class ShowCuePoints : Form
     {
-        private string[] m_CueLabels;
-        private List<decimal> m_CuePoints;
-        private string[] m_FilePaths;
+        private Dictionary<string, double[]> m_CuePointsDictionary;
 
-        public ShowCuePoints(string[] filePaths)
+        public ShowCuePoints(Dictionary<string, double[]> cuePointsDictionary)
         {
             InitializeComponent();
-            m_FilePaths = filePaths;
-            foreach (string path in m_FilePaths)
-            {
-                DisplayCuePoints(path);
-            }
+
+            m_CuePointsDictionary = cuePointsDictionary;
+            DisplayCuePoints();
         }
 
-
-        public void DisplayCuePoints(string path)
+        public void DisplayCuePoints()
         {
-            AudioLib.ReadCueMarkers readCues = new AudioLib.ReadCueMarkers(path);
-            m_CueLabels = readCues.ListOfCueLabels;
-            m_CuePoints = readCues.ListOfCuePoints;
-           
-            int count = 0;
-            m_CuePointsListView.View = View.Details;
-            m_CuePointsListView.GridLines = true;
-            m_CuePointsListView.FullRowSelect = true;
-            string fileName = Path.GetFileName(path);
-
-
-            m_CuePointsListView.Items.Add(new ListViewItem(new string[] { string.Empty, string.Empty }));
-            m_CuePointsListView.Items.Add(new ListViewItem(new string[] { fileName + " :", string.Empty }));
-
-            if (m_CuePoints == null || m_CuePoints.Count == 0)
+            foreach (KeyValuePair<string, double[]> entry in m_CuePointsDictionary)
             {
-                string message;
-                if (Path.GetExtension(path).ToLower() != ".wav")
+                string path = entry.Key;
+                AudioLib.ReadCueMarkers readCues = new AudioLib.ReadCueMarkers(path);
+                double[] CuePoints = entry.Value;
+                string[] CueLabels = readCues.ListOfCueLabels;
+
+                int count = 0;
+                m_CuePointsListView.View = View.Details;
+                m_CuePointsListView.GridLines = true;
+                m_CuePointsListView.FullRowSelect = true;
+                string fileName = Path.GetFileName(path);
+
+
+                m_CuePointsListView.Items.Add(new ListViewItem(new string[] { string.Empty, string.Empty }));
+                m_CuePointsListView.Items.Add(new ListViewItem(new string[] { fileName + " :", string.Empty }));
+
+                if (CuePoints == null || CuePoints.Count() == 0)
                 {
-                    string filename = Path.GetFileName(path);
-                    message = "Show cue points work only with wave files";
+                    string message;
+                    if (Path.GetExtension(path).ToLower() != ".wav")
+                    {
+                        string filename = Path.GetFileName(path);
+                        message = "Show cue points work only with wave files";
+                    }
+                    else
+                    {
+                        message = "No Cues available";
+                    }
+                    m_CuePointsListView.Items.Add(new ListViewItem(new string[] { message, string.Empty }));
+
                 }
                 else
                 {
-                   message = "No Cues available";
+
+                    foreach (decimal cupoint in CuePoints)
+                    {
+                        if (CueLabels != null)
+                            m_CuePointsListView.Items.Add(new ListViewItem(new string[] { CuePoints[count].ToString(), CueLabels[count] }));
+                        else
+                        {
+                            m_CuePointsListView.Items.Add(new ListViewItem(new string[] { CuePoints[count].ToString(), string.Empty }));
+                        }
+
+                        count++;
+                    }
+
                 }
-                m_CuePointsListView.Items.Add(new ListViewItem(new string[] { message, string.Empty }));
-                return;
             }
-
-            foreach (decimal cupoint in m_CuePoints)
-            {
-                
-                m_CuePointsListView.Items.Add(new ListViewItem(new string[] { m_CuePoints[count].ToString(), m_CueLabels[count] }));
-
-                count++;
-            }
-
         }
 
     }

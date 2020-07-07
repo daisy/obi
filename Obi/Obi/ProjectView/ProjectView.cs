@@ -2818,6 +2818,14 @@ namespace Obi.ProjectView
                     
                     if (dialog.ShowDialog () == DialogResult.OK)
                         {
+
+                            if (dialog.ShowCuePoints)
+                            {
+                                Dictionary<string, double[]> cuePointsDictionary = ReadCuePoints(dialog.FilesPaths);
+                                Dialogs.ShowCuePoints showCuePoints = new Dialogs.ShowCuePoints(cuePointsDictionary);
+                                showCuePoints.ShowDialog();
+                                return;
+                            }
                             
                             if (dialog.ApplyPhraseDetection)
                             {
@@ -2991,11 +2999,6 @@ namespace Obi.ProjectView
                                 // hide new phrases if section's contents are hidden
                                 //HideNewPhrasesInInvisibleSection ( GetSelectedPhraseSection );//@singleSection: original
                                 mContentView.CreateBlocksInStrip (); //@singleSection: new
-                                if (dialog.ShowCuePoints)
-                                {
-                                    Dialogs.ShowCuePoints showCuePoints = new Dialogs.ShowCuePoints(dialog.FilesPaths);
-                                    showCuePoints.ShowDialog();
-                                }
                                 }
                             else
                                 MessageBox.Show ( Localizer.Message ( "Operation_Cancelled" ) + "\n" + string.Format ( Localizer.Message ( "ContentsHidden_PhrasesExceedMaxLimitPerSection" ), MaxVisibleBlocksCount ) );
@@ -3007,6 +3010,27 @@ namespace Obi.ProjectView
                 
                 }
             }
+
+        private Dictionary<string,double[]> ReadCuePoints(string[] filePaths)
+        {
+            double[] cuePoints;
+            Dictionary<string, double[]> cuePointsDictionary = new Dictionary<string, double[]>();
+            foreach (string path in filePaths)
+            {
+                ReadCueMarkers readCues = new ReadCueMarkers(path);
+                cuePoints = readCues.ListOfCuePoints;
+                if (cuePoints != null)
+                {
+                    cuePointsDictionary.Add(path, cuePoints);
+                }
+                else
+                {
+                    cuePointsDictionary.Add(path, null);
+                }
+            }
+            return cuePointsDictionary;
+            
+        }
 
         private void ApplyPhraseDetectionOnPhraseList(List<PhraseNode> phraseNodes, long threshold, double gap, double before)
         {
