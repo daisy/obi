@@ -603,12 +603,14 @@ namespace Obi.Dialogs
                 m_rdbSplitPhrasesOnImport.Enabled = false;
                 mPhraseSizeTextBox.Enabled = false;
                 m_rdbPhraseDetectionOnImportedFiles.Enabled = false;
+                label1.Enabled = false;
             }
             else
             {
                 m_rdbSplitPhrasesOnImport.Enabled = true;
                 mPhraseSizeTextBox.Enabled = true;
                 m_rdbPhraseDetectionOnImportedFiles.Enabled = true;
+                label1.Enabled = true;
             }
         }
 
