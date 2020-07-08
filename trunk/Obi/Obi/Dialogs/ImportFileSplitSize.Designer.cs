@@ -46,6 +46,7 @@ namespace Obi.Dialogs
             this.m_txtPageIdentificationString = new System.Windows.Forms.TextBox();
             this.m_numCharCountToTruncateFromStart = new System.Windows.Forms.NumericUpDown();
             this.m_grpCreateSectionForEachAudioFile = new System.Windows.Forms.GroupBox();
+            this.m_rdbSplitAtCuePoints = new System.Windows.Forms.RadioButton();
             this.m_rdbCreateAudioFilePerSection = new System.Windows.Forms.RadioButton();
             this.m_rdbImportAudioFileInEachSection = new System.Windows.Forms.RadioButton();
             this.m_rdbImportAudioInSelectedSection = new System.Windows.Forms.RadioButton();
@@ -56,7 +57,6 @@ namespace Obi.Dialogs
             this.m_rdbPhraseDetectionOnImportedFiles = new System.Windows.Forms.RadioButton();
             this.m_rdbSplitPhrasesOnImport = new System.Windows.Forms.RadioButton();
             this.helpProvider1 = new System.Windows.Forms.HelpProvider();
-            this.m_rdbShowCues = new System.Windows.Forms.RadioButton();
             this.m_grpAddFiles.SuspendLayout();
             this.m_grpArrangeAudioFiles.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.m_numCharCountToTruncateFromStart)).BeginInit();
@@ -183,7 +183,7 @@ namespace Obi.Dialogs
             // m_grpCreateSectionForEachAudioFile
             // 
             resources.ApplyResources(this.m_grpCreateSectionForEachAudioFile, "m_grpCreateSectionForEachAudioFile");
-            this.m_grpCreateSectionForEachAudioFile.Controls.Add(this.m_rdbShowCues);
+            this.m_grpCreateSectionForEachAudioFile.Controls.Add(this.m_rdbSplitAtCuePoints);
             this.m_grpCreateSectionForEachAudioFile.Controls.Add(this.m_rdbCreateAudioFilePerSection);
             this.m_grpCreateSectionForEachAudioFile.Controls.Add(this.m_rdbImportAudioFileInEachSection);
             this.m_grpCreateSectionForEachAudioFile.Controls.Add(this.m_rdbImportAudioInSelectedSection);
@@ -195,6 +195,15 @@ namespace Obi.Dialogs
             this.m_grpCreateSectionForEachAudioFile.Controls.Add(this.m_txtPageIdentificationString);
             this.m_grpCreateSectionForEachAudioFile.Name = "m_grpCreateSectionForEachAudioFile";
             this.m_grpCreateSectionForEachAudioFile.TabStop = false;
+            // 
+            // m_rdbSplitAtCuePoints
+            // 
+            resources.ApplyResources(this.m_rdbSplitAtCuePoints, "m_rdbSplitAtCuePoints");
+            this.m_rdbSplitAtCuePoints.Name = "m_rdbSplitAtCuePoints";
+            this.helpProvider1.SetShowHelp(this.m_rdbSplitAtCuePoints, ((bool)(resources.GetObject("m_rdbSplitAtCuePoints.ShowHelp"))));
+            this.m_rdbSplitAtCuePoints.TabStop = true;
+            this.m_rdbSplitAtCuePoints.UseVisualStyleBackColor = true;
+            this.m_rdbSplitAtCuePoints.CheckedChanged += new System.EventHandler(this.m_rdbSplitAtCuePoints_CheckedChanged);
             // 
             // m_rdbCreateAudioFilePerSection
             // 
@@ -271,15 +280,6 @@ namespace Obi.Dialogs
             // 
             resources.ApplyResources(this.helpProvider1, "helpProvider1");
             // 
-            // m_rdbShowCues
-            // 
-            resources.ApplyResources(this.m_rdbShowCues, "m_rdbShowCues");
-            this.m_rdbShowCues.Name = "m_rdbShowCues";
-            this.helpProvider1.SetShowHelp(this.m_rdbShowCues, ((bool)(resources.GetObject("m_rdbShowCues.ShowHelp"))));
-            this.m_rdbShowCues.TabStop = true;
-            this.m_rdbShowCues.UseVisualStyleBackColor = true;
-            this.m_rdbShowCues.CheckedChanged += new System.EventHandler(this.m_rdbShowCues_CheckedChanged);
-            // 
             // ImportFileSplitSize
             // 
             this.AcceptButton = this.mOKButton;
@@ -341,6 +341,6 @@ namespace Obi.Dialogs
         private System.Windows.Forms.RadioButton m_rdbImportAudioInSelectedSection;
         private System.Windows.Forms.RadioButton m_rdbImportAudioFileInEachSection;
         private System.Windows.Forms.RadioButton m_rdbCreateAudioFilePerSection;
-        private System.Windows.Forms.RadioButton m_rdbShowCues;
+        private System.Windows.Forms.RadioButton m_rdbSplitAtCuePoints;
     }
 }
