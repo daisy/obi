@@ -12,9 +12,9 @@ namespace Obi.Dialogs
 {
     public partial class ShowCuePoints : Form
     {
-        private Dictionary<string, double[]> m_CuePointsDictionary;
+        private Dictionary<string, List<double>> m_CuePointsDictionary;
 
-        public ShowCuePoints(Dictionary<string, double[]> cuePointsDictionary)
+        public ShowCuePoints(Dictionary<string, List<double>> cuePointsDictionary)
         {
             InitializeComponent();
 
@@ -24,11 +24,11 @@ namespace Obi.Dialogs
 
         public void DisplayCuePoints()
         {
-            foreach (KeyValuePair<string, double[]> entry in m_CuePointsDictionary)
+            foreach (KeyValuePair<string, List<double>> entry in m_CuePointsDictionary)
             {
                 string path = entry.Key;
                 AudioLib.ReadCueMarkers readCues = new AudioLib.ReadCueMarkers(path);
-                double[] CuePoints = entry.Value;
+                List<double> CuePoints = entry.Value;
                 string[] CueLabels = readCues.ListOfCueLabels;
 
                 int count = 0;

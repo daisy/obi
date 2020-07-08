@@ -2821,9 +2821,9 @@ namespace Obi.ProjectView
 
                             if (dialog.ShowCuePoints)
                             {
-                                ReadCuePoints(dialog.FilesPaths);
-                                //Dialogs.ShowCuePoints showCuePoints = new Dialogs.ShowCuePoints(cuePointsDictionary);
-                                //showCuePoints.ShowDialog();
+                                Dictionary<string, List<double>> cuePointsDictionary = ReadCuePoints(dialog.FilesPaths);
+                                Dialogs.ShowCuePoints showCuePoints = new Dialogs.ShowCuePoints(cuePointsDictionary);
+                                showCuePoints.ShowDialog();
                                 return;
                             }
                             
@@ -3011,10 +3011,10 @@ namespace Obi.ProjectView
                 }
             }
 
-        private Dictionary<string, List<decimal>> ReadCuePoints(string[] filePaths)
+        private Dictionary<string, List<double>> ReadCuePoints(string[] filePaths)
         {
-            List<decimal> cuePoints;
-            Dictionary<string, List<decimal>> cuePointsDictionary = new Dictionary<string, List<decimal>>();
+            List<double> cuePoints;
+            Dictionary<string, List<double>> cuePointsDictionary = new Dictionary<string, List<double>>();
             foreach (string path in filePaths)
             {
                 ReadCueMarkers readCues = new ReadCueMarkers(path);
@@ -3046,7 +3046,7 @@ namespace Obi.ProjectView
                 int counter = 0;
                 foreach(string k in cuePointsDictionary.Keys)
                 {
-                    List<decimal> timeList = cuePointsDictionary[k];
+                    List<double> timeList = cuePointsDictionary[k];
                     PhraseNode p = phrases[counter];
                     for (int i = timeList.Count - 1; i >= 0; i--)
                     {
