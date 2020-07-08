@@ -2821,9 +2821,9 @@ namespace Obi.ProjectView
 
                             if (dialog.ShowCuePoints)
                             {
-                                Dictionary<string, double[]> cuePointsDictionary = ReadCuePoints(dialog.FilesPaths);
-                                Dialogs.ShowCuePoints showCuePoints = new Dialogs.ShowCuePoints(cuePointsDictionary);
-                                showCuePoints.ShowDialog();
+                                ReadCuePoints(dialog.FilesPaths);
+                                //Dialogs.ShowCuePoints showCuePoints = new Dialogs.ShowCuePoints(cuePointsDictionary);
+                                //showCuePoints.ShowDialog();
                                 return;
                             }
                             
@@ -3011,22 +3011,50 @@ namespace Obi.ProjectView
                 }
             }
 
-        private Dictionary<string,double[]> ReadCuePoints(string[] filePaths)
+        private Dictionary<string, List<decimal>> ReadCuePoints(string[] filePaths)
         {
-            double[] cuePoints;
-            Dictionary<string, double[]> cuePointsDictionary = new Dictionary<string, double[]>();
+            List<decimal> cuePoints;
+            Dictionary<string, List<decimal>> cuePointsDictionary = new Dictionary<string, List<decimal>>();
             foreach (string path in filePaths)
             {
                 ReadCueMarkers readCues = new ReadCueMarkers(path);
                 cuePoints = readCues.ListOfCuePoints;
                 if (cuePoints != null)
                 {
-                    cuePointsDictionary.Add(path, cuePoints);
+                    cuePointsDictionary.Add(path,cuePoints);
                 }
                 else
                 {
                     cuePointsDictionary.Add(path, null);
                 }
+            }
+
+            SectionNode section = GetSelectedPhraseSection;
+            if (section != null)
+            {   
+
+                // create phrases
+                List<PhraseNode> phrases = new List<PhraseNode>();
+                foreach (string k in cuePointsDictionary.Keys)
+                {
+                    
+                    PhraseNode p = mPresentation.CreatePhraseNode(k);
+                        phrases.Add(p);
+                }
+                mPresentation.Do(GetImportPhraseCommands(phrases));
+                // split phrases
+                int counter = 0;
+                foreach(string k in cuePointsDictionary.Keys)
+                {
+                    List<decimal> timeList = cuePointsDictionary[k];
+                    PhraseNode p = phrases[counter];
+                    for (int i = timeList.Count - 1; i >= 0; i--)
+                    {
+                        mPresentation.Do(Commands.Node.SplitAudio.GetSplitCommand(this, p, (double)timeList[i]));
+                    }
+                    counter++;
+                }
+
             }
             return cuePointsDictionary;
             
