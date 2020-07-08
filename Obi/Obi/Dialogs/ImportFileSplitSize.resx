@@ -576,37 +576,37 @@
   <data name="m_grpCreateSectionForEachAudioFile.AccessibleName" xml:space="preserve">
     <value>Group box to create section for each audio file.</value>
   </data>
-  <data name="m_rdbShowCues.AutoSize" type="System.Boolean, mscorlib">
+  <data name="m_rdbSplitAtCuePoints.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
-  <data name="m_rdbShowCues.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+  <data name="m_rdbSplitAtCuePoints.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
-  <data name="m_rdbShowCues.Location" type="System.Drawing.Point, System.Drawing">
+  <data name="m_rdbSplitAtCuePoints.Location" type="System.Drawing.Point, System.Drawing">
     <value>9, 190</value>
   </data>
-  <data name="m_rdbShowCues.ShowHelp" type="System.Boolean, mscorlib">
+  <data name="m_rdbSplitAtCuePoints.ShowHelp" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
-  <data name="m_rdbShowCues.Size" type="System.Drawing.Size, System.Drawing">
-    <value>238, 20</value>
+  <data name="m_rdbSplitAtCuePoints.Size" type="System.Drawing.Size, System.Drawing">
+    <value>245, 20</value>
   </data>
-  <data name="m_rdbShowCues.TabIndex" type="System.Int32, mscorlib">
+  <data name="m_rdbSplitAtCuePoints.TabIndex" type="System.Int32, mscorlib">
     <value>19</value>
   </data>
-  <data name="m_rdbShowCues.Text" xml:space="preserve">
-    <value>Show cue points in  wave audio files</value>
+  <data name="m_rdbSplitAtCuePoints.Text" xml:space="preserve">
+    <value>Split at cue points in  wave audio files</value>
   </data>
-  <data name="&gt;&gt;m_rdbShowCues.Name" xml:space="preserve">
-    <value>m_rdbShowCues</value>
+  <data name="&gt;&gt;m_rdbSplitAtCuePoints.Name" xml:space="preserve">
+    <value>m_rdbSplitAtCuePoints</value>
   </data>
-  <data name="&gt;&gt;m_rdbShowCues.Type" xml:space="preserve">
+  <data name="&gt;&gt;m_rdbSplitAtCuePoints.Type" xml:space="preserve">
     <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;m_rdbShowCues.Parent" xml:space="preserve">
+  <data name="&gt;&gt;m_rdbSplitAtCuePoints.Parent" xml:space="preserve">
     <value>m_grpCreateSectionForEachAudioFile</value>
   </data>
-  <data name="&gt;&gt;m_rdbShowCues.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;m_rdbSplitAtCuePoints.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
   <data name="m_rdbCreateAudioFilePerSection.AutoSize" type="System.Boolean, mscorlib">

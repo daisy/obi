@@ -59,13 +59,15 @@ namespace Obi.Dialogs
                 else
                 {
 
-                    foreach (decimal cupoint in CuePoints)
+                    foreach (double tempCuePoint in CuePoints)
                     {
+                         double CuePointInSeconds = tempCuePoint / 1000;
+                        
                         if (CueLabels != null)
-                            m_CuePointsListView.Items.Add(new ListViewItem(new string[] { CuePoints[count].ToString(), CueLabels[count] }));
+                            m_CuePointsListView.Items.Add(new ListViewItem(new string[] { CuePointInSeconds.ToString(), CueLabels[count] }));
                         else
                         {
-                            m_CuePointsListView.Items.Add(new ListViewItem(new string[] { CuePoints[count].ToString(), string.Empty }));
+                            m_CuePointsListView.Items.Add(new ListViewItem(new string[] { CuePointInSeconds.ToString(), string.Empty }));
                         }
 
                         count++;

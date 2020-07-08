@@ -3037,22 +3037,38 @@ namespace Obi.ProjectView
                 List<PhraseNode> phrases = new List<PhraseNode>();
                 foreach (string k in cuePointsDictionary.Keys)
                 {
-                    
-                    PhraseNode p = mPresentation.CreatePhraseNode(k);
+                    if (cuePointsDictionary[k] != null && cuePointsDictionary[k].Count != 0)
+                    {
+                        PhraseNode p = mPresentation.CreatePhraseNode(k);
                         phrases.Add(p);
+                    }                    
                 }
                 mPresentation.Do(GetImportPhraseCommands(phrases));
                 // split phrases
                 int counter = 0;
+                string FilesNotImported = string.Empty;
                 foreach(string k in cuePointsDictionary.Keys)
                 {
                     List<double> timeList = cuePointsDictionary[k];
-                    PhraseNode p = phrases[counter];
-                    for (int i = timeList.Count - 1; i >= 0; i--)
+                    if (timeList != null && timeList.Count != 0)
                     {
-                        mPresentation.Do(Commands.Node.SplitAudio.GetSplitCommand(this, p, (double)timeList[i]));
+                        PhraseNode p = phrases[counter];
+                        for (int i = timeList.Count - 1; i >= 0; i--)
+                        {
+                            mPresentation.Do(Commands.Node.SplitAudio.GetSplitCommand(this, p, (double)timeList[i]));
+                        }
+                        counter++;
                     }
-                    counter++;
+                    else
+                    {
+                        FilesNotImported += System.IO.Path.GetFileName(k) + "\n";
+                    }
+                }
+                if (FilesNotImported != string.Empty)
+                {
+
+                    MessageBox.Show(FilesNotImported + " don't have any cue points or are not in correct wave format so are not imported." +
+                        "If you still want to import them then use regular import", Localizer.Message("Caption_Information"));
                 }
 
             }

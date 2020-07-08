@@ -113,7 +113,7 @@ namespace Obi.Dialogs
         public int CharacterCountToTruncateFromStart { get { return m_rdbCreateAudioFilePerSection.Checked && mchkCountToTruncateFromStart.Checked? Convert.ToInt32(m_numCharCountToTruncateFromStart.Value) : 0 ; } }
 
         public bool ApplyPhraseDetection { get { return m_rdbPhraseDetectionOnImportedFiles.Checked; } }
-        public bool ShowCuePoints { get { return m_rdbShowCues.Checked; } }
+        public bool ShowCuePoints { get { return m_rdbSplitAtCuePoints.Checked; } }
 
         // Check that the duration is a number.
         private void mOKButton_Click(object sender, EventArgs e)
@@ -596,9 +596,9 @@ namespace Obi.Dialogs
             }
 
         }
-        private void m_rdbShowCues_CheckedChanged(object sender, EventArgs e)
+        private void m_rdbSplitAtCuePoints_CheckedChanged(object sender, EventArgs e)
         {
-            if (m_rdbShowCues.Checked)
+            if (m_rdbSplitAtCuePoints.Checked)
             {
                 m_rdbSplitPhrasesOnImport.Enabled = false;
                 mPhraseSizeTextBox.Enabled = false;
