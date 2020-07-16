@@ -2817,16 +2817,7 @@ namespace Obi.ProjectView
                         new Dialogs.ImportFileSplitSize ( ObiForm.Settings , filesPathArray);
                     
                     if (dialog.ShowDialog () == DialogResult.OK)
-                        {
-
-                            if (dialog.ShowCuePoints)
-                            {
-                                Dictionary<string, List<double>> cuePointsDictionary = ReadCuePoints(dialog.FilesPaths);
-                                Dialogs.ShowCuePoints showCuePoints = new Dialogs.ShowCuePoints(cuePointsDictionary);
-                                showCuePoints.ShowDialog();
-                                return;
-                            }
-                            
+                        {                                                   
                             if (dialog.ApplyPhraseDetection)
                             {
                                 Dialogs.SentenceDetection sentenceDetection = new Obi.Dialogs.SentenceDetection(threshold, gap, leadingSilence, this.ObiForm.Settings); //@fontconfig
@@ -2842,7 +2833,15 @@ namespace Obi.ProjectView
                                 }
                             }
                         // if focus is in toc view, shift it to content view
-                            if (Selection.Control == null || Selection.Control is TOCView) Selection = new NodeSelection(Selection.Node, mContentView);  
+                            if (Selection.Control == null || Selection.Control is TOCView) Selection = new NodeSelection(Selection.Node, mContentView);
+
+                            if (dialog.ShowCuePoints)
+                            {
+                                Dictionary<string, List<double>> cuePointsDictionary = ReadCuePoints(dialog.FilesPaths);
+                                Dialogs.ShowCuePoints showCuePoints = new Dialogs.ShowCuePoints(cuePointsDictionary);
+                                showCuePoints.ShowDialog();
+                                return;
+                            }
 
                             filesPathArray = dialog.FilesPaths;
                             Dialogs.ProgressDialog progress_AudioConverter = new Obi.Dialogs.ProgressDialog(Localizer.Message("AudioFileImport_ProcessingFiles"),

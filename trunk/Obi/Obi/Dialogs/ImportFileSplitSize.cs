@@ -603,6 +603,7 @@ namespace Obi.Dialogs
                 m_rdbSplitPhrasesOnImport.Enabled = false;
                 mPhraseSizeTextBox.Enabled = false;
                 m_rdbPhraseDetectionOnImportedFiles.Enabled = false;
+                m_rdbPhraseDetectionOnImportedFiles.Checked = false;
                 label1.Enabled = false;
             }
             else
