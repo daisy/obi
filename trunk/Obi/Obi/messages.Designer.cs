@@ -4741,6 +4741,15 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to {0} don&apos;t have any cue points or are not in wave format so cannot be imported.If you want to import only audio files with cue points then press Yes else press No if you want to perform regular import.
+        /// </summary>
+        internal static string NoCuePoints {
+            get {
+                return ResourceManager.GetString("NoCuePoints", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The node is already associated with some other node. Do you want to continue associating?.
         /// </summary>
         internal static string Node_already_associated {

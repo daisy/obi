@@ -3191,4 +3191,8 @@ You can do it later also from the project tab of preferences dialog.</value>
   <data name="ExportDialogTitleForWPAudioBookExport" xml:space="preserve">
     <value>WP AudioBooks</value>
   </data>
+  <data name="NoCuePoints" xml:space="preserve">
+    <value>{0} don't have any cue points or are not in wave format so cannot be imported.If you want to import only audio files with cue points then press Yes else press No if you want to perform regular import</value>
+  </data>
+  
 </root>
