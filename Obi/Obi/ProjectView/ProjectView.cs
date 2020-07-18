@@ -2838,8 +2838,13 @@ namespace Obi.ProjectView
                             if (dialog.ShowCuePoints)
                             {
                                 Dictionary<string, List<double>> cuePointsDictionary = ReadCuePoints(dialog.FilesPaths);
-                                Dialogs.ShowCuePoints showCuePoints = new Dialogs.ShowCuePoints(cuePointsDictionary);
-                                showCuePoints.ShowDialog();
+                                if (cuePointsDictionary != null)
+                                {
+                                    Dialogs.ShowCuePoints showCuePoints = new Dialogs.ShowCuePoints(cuePointsDictionary);
+                                    showCuePoints.ShowDialog();
+                                }
+                                else
+                                    ImportPhrases();
                                 return;
                             }
 
@@ -3014,62 +3019,75 @@ namespace Obi.ProjectView
         {
             List<double> cuePoints;
             Dictionary<string, List<double>> cuePointsDictionary = new Dictionary<string, List<double>>();
+            string FilesNotImported = string.Empty;
+            DialogResult result = DialogResult.Yes;
             foreach (string path in filePaths)
             {
                 ReadCueMarkers readCues = new ReadCueMarkers(path);
                 cuePoints = readCues.ListOfCuePoints;
-                if (cuePoints != null)
+                if (cuePoints != null && cuePoints.Count != 0)
                 {
                     cuePointsDictionary.Add(path,cuePoints);
                 }
                 else
                 {
                     cuePointsDictionary.Add(path, null);
+                    FilesNotImported += System.IO.Path.GetFileName(path) + "\n";
                 }
             }
 
-            SectionNode section = GetSelectedPhraseSection;
-            if (section != null)
-            {   
 
-                // create phrases
-                List<PhraseNode> phrases = new List<PhraseNode>();
-                foreach (string k in cuePointsDictionary.Keys)
+            if (FilesNotImported != string.Empty)
+            {
+
+                result = MessageBox.Show(String.Format(Localizer.Message("NoCuePoints"), FilesNotImported),
+                        Localizer.Message("Caption_Information"), MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            }
+
+
+            if (result == DialogResult.No)
+            {
+                return null;
+            }
+            else
+            {
+
+                SectionNode section = GetSelectedPhraseSection;
+                if (section != null)
                 {
-                    if (cuePointsDictionary[k] != null && cuePointsDictionary[k].Count != 0)
+
+                    // create phrases
+                    List<PhraseNode> phrases = new List<PhraseNode>();
+                    foreach (string k in cuePointsDictionary.Keys)
                     {
-                        PhraseNode p = mPresentation.CreatePhraseNode(k);
-                        phrases.Add(p);
-                    }                    
-                }
-                mPresentation.Do(GetImportPhraseCommands(phrases));
-                // split phrases
-                int counter = 0;
-                string FilesNotImported = string.Empty;
-                foreach(string k in cuePointsDictionary.Keys)
-                {
-                    List<double> timeList = cuePointsDictionary[k];
-                    if (timeList != null && timeList.Count != 0)
-                    {
-                        PhraseNode p = phrases[counter];
-                        for (int i = timeList.Count - 1; i >= 0; i--)
+                        if (cuePointsDictionary[k] != null && cuePointsDictionary[k].Count != 0)
                         {
-                            mPresentation.Do(Commands.Node.SplitAudio.GetSplitCommand(this, p, (double)timeList[i]));
+                            PhraseNode p = mPresentation.CreatePhraseNode(k);
+                            phrases.Add(p);
                         }
-                        counter++;
                     }
-                    else
+                    mPresentation.Do(GetImportPhraseCommands(phrases));
+                    // split phrases
+                    int counter = 0;
+                    foreach (string k in cuePointsDictionary.Keys)
                     {
-                        FilesNotImported += System.IO.Path.GetFileName(k) + "\n";
+                        List<double> timeList = cuePointsDictionary[k];
+                        if (timeList != null && timeList.Count != 0)
+                        {
+                            PhraseNode p = phrases[counter];
+                            for (int i = timeList.Count - 1; i >= 0; i--)
+                            {
+                                mPresentation.Do(Commands.Node.SplitAudio.GetSplitCommand(this, p, (double)timeList[i]));
+                            }
+                            counter++;
+                        }
+                        //else
+                        //{
+                        //    FilesNotImported += System.IO.Path.GetFileName(k) + "\n";
+                        //}
                     }
-                }
-                if (FilesNotImported != string.Empty)
-                {
 
-                    MessageBox.Show(FilesNotImported + " don't have any cue points or are not in correct wave format so are not imported." +
-                        "If you still want to import them then use regular import", Localizer.Message("Caption_Information"));
                 }
-
             }
             return cuePointsDictionary;
             
