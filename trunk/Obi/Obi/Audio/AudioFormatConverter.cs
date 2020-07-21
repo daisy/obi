@@ -32,12 +32,17 @@ namespace Obi.Audio
 
             m_FilesThatAreRenamed.Clear();
             m_IsFileExists = false;
-
+            string fileExtentionNotSupported = string.Empty;
             for (int i = 0; i < numberOfFiles; i++)
             {
                 if (IsRequestCancellation) return null;
                 convertedFile = ConvertedFile(fileName[i], presentation);
                 if (convertedFile != null) listOfConvertedFiles.Add(convertedFile);
+                else fileExtentionNotSupported += "\n"+ fileName[i];
+            }
+            if (fileExtentionNotSupported != string.Empty)
+            {
+                MessageBox.Show(string.Format(Localizer.Message("AudioFormatConverter_Error_FileExtentionNodSupported"), fileExtentionNotSupported), Localizer.Message("Caption_Error"));
             }
 
             if (m_FilesThatAreRenamed.Count != 0)
@@ -98,7 +103,7 @@ namespace Obi.Audio
                 }
                 else
                 {
-                    MessageBox.Show(string.Format(Localizer.Message("AudioFormatConverter_Error_FileExtentionNodSupported"), filePath), Localizer.Message("Caption_Error"));
+                    //MessageBox.Show(string.Format(Localizer.Message("AudioFormatConverter_Error_FileExtentionNodSupported"), filePath), Localizer.Message("Caption_Error"));
                     return null;
                 }
                 // rename converted file to original file if names are different
