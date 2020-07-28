@@ -1941,7 +1941,7 @@ Error text: {1}</value>
     <value>The project will open from backup file. Do you wish to continue?</value>
   </data>
   <data name="AudioFormatConverter_Error_FileExtentionNodSupported" xml:space="preserve">
-    <value>audio format not recognized. Only .wav, .mp3 and .mp4 files are supported. Skipping import of {0}</value>
+    <value>audio format not recognized. Only .wav, .mp3 and .mp4 files are supported. Skipping import of: {0}</value>
   </data>
   <data name="Load_Original_Project" xml:space="preserve">
     <value>Loading original project</value>
@@ -3193,6 +3193,12 @@ You can do it later also from the project tab of preferences dialog.</value>
   </data>
   <data name="NoCuePoints" xml:space="preserve">
     <value>{0} don't have any cue points or are not in wave format so cannot be imported.If you want to import only audio files with cue points then press Yes else press No if you want to perform regular import</value>
+  </data>
+  <data name="AudioMixingFileNotSelected" xml:space="preserve">
+    <value>Kindly select audio file for mixing</value>
+  </data>
+  <data name="AudioMixingSecondFileNotSelected" xml:space="preserve">
+    <value>Kindly select second audio file for mixing</value>
   </data>
   
 </root>
