@@ -38,7 +38,11 @@ namespace Obi.Audio
                 if (IsRequestCancellation) return null;
                 convertedFile = ConvertedFile(fileName[i], presentation);
                 if (convertedFile != null) listOfConvertedFiles.Add(convertedFile);
-                else fileExtentionNotSupported += "\n"+ fileName[i];
+                else
+                {
+                    string tempFileName = Path.GetFileName(fileName[i]);
+                    fileExtentionNotSupported += "\n" + tempFileName;
+                }
             }
             if (fileExtentionNotSupported != string.Empty)
             {

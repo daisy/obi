@@ -538,11 +538,29 @@ namespace Obi {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to audio format not recognized. Only .wav, .mp3 and .mp4 files are supported. Skipping import of {0}.
+        ///   Looks up a localized string similar to audio format not recognized. Only .wav, .mp3 and .mp4 files are supported. Skipping import of: {0}.
         /// </summary>
         internal static string AudioFormatConverter_Error_FileExtentionNodSupported {
             get {
                 return ResourceManager.GetString("AudioFormatConverter_Error_FileExtentionNodSupported", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Kindly select audio file for mixing.
+        /// </summary>
+        internal static string AudioMixingFileNotSelected {
+            get {
+                return ResourceManager.GetString("AudioMixingFileNotSelected", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Kindly select second audio file for mixing.
+        /// </summary>
+        internal static string AudioMixingSecondFileNotSelected {
+            get {
+                return ResourceManager.GetString("AudioMixingSecondFileNotSelected", resourceCulture);
             }
         }
         

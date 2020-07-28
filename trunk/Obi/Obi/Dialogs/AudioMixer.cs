@@ -151,6 +151,33 @@ namespace Obi.Dialogs
             }
         }
 
+        private void AudioMixer_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            bool tempflag = false;
+            if (m_txtSelectAudioForMixing.Text == string.Empty && m_txtSelectSecondAudioForMixing.Enabled == false)
+            {
+                MessageBox.Show(Localizer.Message("AudioMixingFileNotSelected"), Localizer.Message("Caption_Information"), MessageBoxButtons.OK, MessageBoxIcon.Information);
+                tempflag = true;
+            }
+            else if (m_txtSelectSecondAudioForMixing.Enabled == true && (m_txtSelectAudioForMixing.Text == string.Empty || m_txtSelectSecondAudioForMixing.Text == string.Empty))
+            {
+                if (m_txtSelectAudioForMixing.Text == string.Empty)
+                {
+                    MessageBox.Show(Localizer.Message("AudioMixingFileNotSelected"), Localizer.Message("Caption_Information"), MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                else if (m_txtSelectAudioForMixing.Text != string.Empty && m_txtSelectSecondAudioForMixing.Text == string.Empty)
+                {
+                    MessageBox.Show(Localizer.Message("AudioMixingSecondFileNotSelected"), Localizer.Message("Caption_Information"), MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                tempflag = true;
+            }
+            if (tempflag)
+            {
+                e.Cancel = true;
+            }
+
+        }
+
 
     }
 }
