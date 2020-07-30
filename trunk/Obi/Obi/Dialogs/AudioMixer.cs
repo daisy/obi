@@ -11,6 +11,7 @@ namespace Obi.Dialogs
 {
     public partial class AudioMixer : Form
     {
+        private bool m_IsCancelButtonPressed = false;
         public AudioMixer()
         {
             InitializeComponent();
@@ -153,6 +154,8 @@ namespace Obi.Dialogs
 
         private void AudioMixer_FormClosing(object sender, FormClosingEventArgs e)
         {
+            if (e.CloseReason == CloseReason.UserClosing || m_IsCancelButtonPressed)
+                return;
             bool tempflag = false;
             if (m_txtSelectAudioForMixing.Text == string.Empty && m_txtSelectSecondAudioForMixing.Enabled == false)
             {
@@ -176,6 +179,11 @@ namespace Obi.Dialogs
                 e.Cancel = true;
             }
 
+        }
+
+        private void m_btnCancel_Click(object sender, EventArgs e)
+        {
+            m_IsCancelButtonPressed = true;
         }
 
 
