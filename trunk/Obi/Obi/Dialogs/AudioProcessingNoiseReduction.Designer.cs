@@ -71,11 +71,11 @@
             // m_lblNoiseReduction
             // 
             this.m_lblNoiseReduction.AutoSize = true;
-            this.m_lblNoiseReduction.Location = new System.Drawing.Point(24, 142);
+            this.m_lblNoiseReduction.Location = new System.Drawing.Point(12, 142);
             this.m_lblNoiseReduction.Name = "m_lblNoiseReduction";
             this.m_lblNoiseReduction.Size = new System.Drawing.Size(119, 13);
             this.m_lblNoiseReduction.TabIndex = 7;
-            this.m_lblNoiseReduction.Text = "Noise Reduction( in dB)";
+            this.m_lblNoiseReduction.Text = "Noise &Reduction( in dB)";
             // 
             // m_SetNoiseReduction
             // 
@@ -125,11 +125,11 @@
             // m_lblNoiseLevel
             // 
             this.m_lblNoiseLevel.AutoSize = true;
-            this.m_lblNoiseLevel.Location = new System.Drawing.Point(24, 72);
+            this.m_lblNoiseLevel.Location = new System.Drawing.Point(12, 78);
             this.m_lblNoiseLevel.Name = "m_lblNoiseLevel";
             this.m_lblNoiseLevel.Size = new System.Drawing.Size(122, 13);
             this.m_lblNoiseLevel.TabIndex = 3;
-            this.m_lblNoiseLevel.Text = "Noise Level (in percent):";
+            this.m_lblNoiseLevel.Text = "&Noise Level (in percent):";
             // 
             // m_SetNoiseLevelTrackBar
             // 
@@ -196,7 +196,7 @@
             this.m_lblPreset.Name = "m_lblPreset";
             this.m_lblPreset.Size = new System.Drawing.Size(118, 13);
             this.m_lblPreset.TabIndex = 1;
-            this.m_lblPreset.Text = "Background noise level";
+            this.m_lblPreset.Text = "&Background noise level";
             // 
             // AudioProcessingNoiseReduction
             // 
