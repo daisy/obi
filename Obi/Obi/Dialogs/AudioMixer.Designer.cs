@@ -139,6 +139,7 @@
             this.m_btnCancel.TabIndex = 19;
             this.m_btnCancel.Text = "&Cancel";
             this.m_btnCancel.UseVisualStyleBackColor = true;
+            this.m_btnCancel.Click += new System.EventHandler(this.m_btnCancel_Click);
             // 
             // m_lblDropoutTransition
             // 
