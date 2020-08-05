@@ -3062,8 +3062,17 @@ namespace Obi.ProjectView
                     {
                         if (cuePointsDictionary[k] != null && cuePointsDictionary[k].Count != 0)
                         {
-                            PhraseNode p = mPresentation.CreatePhraseNode(k);
-                            phrases.Add(p);
+                            try
+                            {
+                                PhraseNode p = mPresentation.CreatePhraseNode(k);
+                                phrases.Add(p);
+                            }
+                            catch(Exception e)
+                            {
+                                MessageBox.Show(k +": "+ e.Message,Localizer.Message("Caption_Error"));
+                                return cuePointsDictionary;
+                               
+                            }
                         }
                     }
                     mPresentation.Do(GetImportPhraseCommands(phrases));
@@ -3081,10 +3090,6 @@ namespace Obi.ProjectView
                             }
                             counter++;
                         }
-                        //else
-                        //{
-                        //    FilesNotImported += System.IO.Path.GetFileName(k) + "\n";
-                        //}
                     }
 
                 }
