@@ -2449,7 +2449,7 @@ namespace Obi {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Fade In Duration from beginning:.
+        ///   Looks up a localized string similar to Fade In Duration:.
         /// </summary>
         internal static string FadeInDuration {
             get {
@@ -2458,7 +2458,7 @@ namespace Obi {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Set Fade In duration from beginning (seconds).
+        ///   Looks up a localized string similar to Set Fade In duration (seconds).
         /// </summary>
         internal static string FadeInDurationAccessibleName {
             get {
@@ -2485,7 +2485,7 @@ namespace Obi {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Fade Out Duration from beginning:.
+        ///   Looks up a localized string similar to Fade Out Duration:.
         /// </summary>
         internal static string FadeOutDuration {
             get {
@@ -2494,7 +2494,7 @@ namespace Obi {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Set Fade Out duration beginning (seconds).
+        ///   Looks up a localized string similar to Set Fade Out duration (seconds).
         /// </summary>
         internal static string FadeOutDurationAccessibleName {
             get {

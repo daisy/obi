@@ -31,6 +31,9 @@ namespace Obi.Dialogs
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AudioProcessingNewDialog));
             this.m_gpbox_Process = new System.Windows.Forms.GroupBox();
+            this.m_lbl_StartTimeSeconds = new System.Windows.Forms.Label();
+            this.m_StartTimeNumericUpDown = new System.Windows.Forms.NumericUpDown();
+            this.m_lbl_StartTime = new System.Windows.Forms.Label();
             this.m_lbl_Seconds = new System.Windows.Forms.Label();
             this.m_lbl_High = new System.Windows.Forms.Label();
             this.m_lbl_Low = new System.Windows.Forms.Label();
@@ -44,13 +47,10 @@ namespace Obi.Dialogs
             this.helpProvider1 = new System.Windows.Forms.HelpProvider();
             this.m_InfoToolTip = new System.Windows.Forms.ToolTip(this.components);
             this.m_NAudioForAudioProcessing = new System.Windows.Forms.CheckBox();
-            this.m_lbl_StartTime = new System.Windows.Forms.Label();
-            this.m_StartTimeNumericUpDown = new System.Windows.Forms.NumericUpDown();
-            this.m_lbl_StartTimeSeconds = new System.Windows.Forms.Label();
             this.m_gpbox_Process.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.m_StartTimeNumericUpDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.m_AmplifyParameter)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.m_numericUpDown1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.m_StartTimeNumericUpDown)).BeginInit();
             this.SuspendLayout();
             // 
             // m_gpbox_Process
@@ -69,6 +69,29 @@ namespace Obi.Dialogs
             resources.ApplyResources(this.m_gpbox_Process, "m_gpbox_Process");
             this.m_gpbox_Process.Name = "m_gpbox_Process";
             this.m_gpbox_Process.TabStop = false;
+            // 
+            // m_lbl_StartTimeSeconds
+            // 
+            resources.ApplyResources(this.m_lbl_StartTimeSeconds, "m_lbl_StartTimeSeconds");
+            this.m_lbl_StartTimeSeconds.Name = "m_lbl_StartTimeSeconds";
+            this.helpProvider1.SetShowHelp(this.m_lbl_StartTimeSeconds, ((bool)(resources.GetObject("m_lbl_StartTimeSeconds.ShowHelp"))));
+            // 
+            // m_StartTimeNumericUpDown
+            // 
+            resources.ApplyResources(this.m_StartTimeNumericUpDown, "m_StartTimeNumericUpDown");
+            this.m_StartTimeNumericUpDown.DecimalPlaces = 2;
+            this.m_StartTimeNumericUpDown.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            65536});
+            this.m_StartTimeNumericUpDown.Name = "m_StartTimeNumericUpDown";
+            this.helpProvider1.SetShowHelp(this.m_StartTimeNumericUpDown, ((bool)(resources.GetObject("m_StartTimeNumericUpDown.ShowHelp"))));
+            // 
+            // m_lbl_StartTime
+            // 
+            resources.ApplyResources(this.m_lbl_StartTime, "m_lbl_StartTime");
+            this.m_lbl_StartTime.Name = "m_lbl_StartTime";
             // 
             // m_lbl_Seconds
             // 
@@ -160,29 +183,6 @@ namespace Obi.Dialogs
             this.m_NAudioForAudioProcessing.Name = "m_NAudioForAudioProcessing";
             this.m_NAudioForAudioProcessing.UseVisualStyleBackColor = true;
             // 
-            // m_lbl_StartTime
-            // 
-            resources.ApplyResources(this.m_lbl_StartTime, "m_lbl_StartTime");
-            this.m_lbl_StartTime.Name = "m_lbl_StartTime";
-            // 
-            // m_StartTimeNumericUpDown
-            // 
-            resources.ApplyResources(this.m_StartTimeNumericUpDown, "m_StartTimeNumericUpDown");
-            this.m_StartTimeNumericUpDown.DecimalPlaces = 2;
-            this.m_StartTimeNumericUpDown.Increment = new decimal(new int[] {
-            1,
-            0,
-            0,
-            65536});
-            this.m_StartTimeNumericUpDown.Name = "m_StartTimeNumericUpDown";
-            this.helpProvider1.SetShowHelp(this.m_StartTimeNumericUpDown, ((bool)(resources.GetObject("m_StartTimeNumericUpDown.ShowHelp"))));
-            // 
-            // m_lbl_StartTimeSeconds
-            // 
-            resources.ApplyResources(this.m_lbl_StartTimeSeconds, "m_lbl_StartTimeSeconds");
-            this.m_lbl_StartTimeSeconds.Name = "m_lbl_StartTimeSeconds";
-            this.helpProvider1.SetShowHelp(this.m_lbl_StartTimeSeconds, ((bool)(resources.GetObject("m_lbl_StartTimeSeconds.ShowHelp"))));
-            // 
             // AudioProcessingNewDialog
             // 
             this.AcceptButton = this.m_btn_OK;
@@ -197,9 +197,9 @@ namespace Obi.Dialogs
             this.Name = "AudioProcessingNewDialog";
             this.m_gpbox_Process.ResumeLayout(false);
             this.m_gpbox_Process.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.m_StartTimeNumericUpDown)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.m_AmplifyParameter)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.m_numericUpDown1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.m_StartTimeNumericUpDown)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
