@@ -1633,14 +1633,14 @@ namespace Obi
             // 
             // m_NoiseReductionToolStripMenuItem
             // 
-            this.m_NoiseReductionToolStripMenuItem.Name = "m_NoiseReductionToolStripMenuItem";
             resources.ApplyResources(this.m_NoiseReductionToolStripMenuItem, "m_NoiseReductionToolStripMenuItem");
+            this.m_NoiseReductionToolStripMenuItem.Name = "m_NoiseReductionToolStripMenuItem";
             this.m_NoiseReductionToolStripMenuItem.Click += new System.EventHandler(this.m_NoiseReductionToolStripMenuItem_Click);
             // 
             // m_AudioMixerToolStripMenuItem
             // 
-            this.m_AudioMixerToolStripMenuItem.Name = "m_AudioMixerToolStripMenuItem";
             resources.ApplyResources(this.m_AudioMixerToolStripMenuItem, "m_AudioMixerToolStripMenuItem");
+            this.m_AudioMixerToolStripMenuItem.Name = "m_AudioMixerToolStripMenuItem";
             this.m_AudioMixerToolStripMenuItem.Click += new System.EventHandler(this.m_AudioMixerToolStripMenuItem_Click);
             // 
             // mTools_ExportSelectedAudioMenuItem

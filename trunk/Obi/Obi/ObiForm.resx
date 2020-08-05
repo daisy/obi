@@ -1938,6 +1938,9 @@
   <data name="m_SpeechRateToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Speech Rate</value>
   </data>
+  <data name="m_NoiseReductionToolStripMenuItem.AccessibleName" xml:space="preserve">
+    <value>Noise Reduction Ctrl+Shift+Y</value>
+  </data>
   <data name="m_NoiseReductionToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>Ctrl+Shift+Y</value>
   </data>
@@ -1946,6 +1949,9 @@
   </data>
   <data name="m_NoiseReductionToolStripMenuItem.Text" xml:space="preserve">
     <value>Noise &amp;Reduction</value>
+  </data>
+  <data name="m_AudioMixerToolStripMenuItem.AccessibleName" xml:space="preserve">
+    <value>Audio Mixer Ctrl+Shift+X</value>
   </data>
   <data name="m_AudioMixerToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>Ctrl+Shift+X</value>
@@ -2173,7 +2179,7 @@
     <value>mProjectView</value>
   </data>
   <data name="&gt;&gt;mProjectView.Type" xml:space="preserve">
-    <value>Obi.ProjectView.ProjectView, Obi, Version=4.5.0.30861, Culture=neutral, PublicKeyToken=null</value>
+    <value>Obi.ProjectView.ProjectView, Obi, Version=4.5.0.31417, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;mProjectView.Parent" xml:space="preserve">
     <value>$this</value>
