@@ -103,7 +103,7 @@ namespace Obi.ProjectView
             this.m_NormalizeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.m_SpeechRateToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.m_NoiseReductionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.m_AudioMixingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.m_AudioMixerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.Context_ExportReplaceAudioMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.Context_ExportAudioMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.Context_ReplaceAudioMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -593,7 +593,7 @@ namespace Obi.ProjectView
             this.m_NormalizeToolStripMenuItem,
             this.m_SpeechRateToolStripMenuItem,
             this.m_NoiseReductionToolStripMenuItem,
-            this.m_AudioMixingToolStripMenuItem});
+            this.m_AudioMixerToolStripMenuItem});
             this.Context_AudioProcessingNew.Name = "Context_AudioProcessingNew";
             resources.ApplyResources(this.Context_AudioProcessingNew, "Context_AudioProcessingNew");
             // 
@@ -633,11 +633,11 @@ namespace Obi.ProjectView
             resources.ApplyResources(this.m_NoiseReductionToolStripMenuItem, "m_NoiseReductionToolStripMenuItem");
             this.m_NoiseReductionToolStripMenuItem.Click += new System.EventHandler(this.m_NoiseReductionToolStripMenuItem_Click);
             // 
-            // m_AudioMixingToolStripMenuItem
+            // m_AudioMixerToolStripMenuItem
             // 
-            this.m_AudioMixingToolStripMenuItem.Name = "m_AudioMixingToolStripMenuItem";
-            resources.ApplyResources(this.m_AudioMixingToolStripMenuItem, "m_AudioMixingToolStripMenuItem");
-            this.m_AudioMixingToolStripMenuItem.Click += new System.EventHandler(this.m_AudioMixingToolStripMenuItem_Click);
+            this.m_AudioMixerToolStripMenuItem.Name = "m_AudioMixerToolStripMenuItem";
+            resources.ApplyResources(this.m_AudioMixerToolStripMenuItem, "m_AudioMixerToolStripMenuItem");
+            this.m_AudioMixerToolStripMenuItem.Click += new System.EventHandler(this.m_AudioMixingToolStripMenuItem_Click);
             // 
             // Context_ExportReplaceAudioMenuItem
             // 
@@ -821,6 +821,6 @@ namespace Obi.ProjectView
         private System.Windows.Forms.ToolStripMenuItem m_NormalizeToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem m_SpeechRateToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem m_NoiseReductionToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem m_AudioMixingToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem m_AudioMixerToolStripMenuItem;
     }
 }
