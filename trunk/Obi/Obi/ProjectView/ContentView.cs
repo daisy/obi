@@ -4127,6 +4127,14 @@ if (thresholdAboveLastNode >= stripControl.Node.PhraseChildCount) thresholdAbove
             //m_SpeechRateToolStripMenuItem.ShortcutKeyDisplayString = ObiForm.RefineKeyboardShortcutStringForAccessibleName(keyboardShortcuts.FormatKeyboardShorcut(keyboardShortcuts.MenuNameDictionary["mTools_AudioProcessing"].Value.ToString()));
             //m_SpeechRateToolStripMenuItem.AccessibleName = m_SpeechRateToolStripMenuItem.Text.Replace("&", "") + " " + m_SpeechRateToolStripMenuItem.ShortcutKeyDisplayString;
 
+            m_NoiseReductionToolStripMenuItem.ShortcutKeyDisplayString = ObiForm.RefineKeyboardShortcutStringForAccessibleName(keyboardShortcuts.FormatKeyboardShorcut(keyboardShortcuts.MenuNameDictionary["m_NoiseReductionToolStripMenuItem"].Value.ToString()));
+            m_NoiseReductionToolStripMenuItem.AccessibleName = m_NoiseReductionToolStripMenuItem.Text.Replace("&", "") + " " + m_NoiseReductionToolStripMenuItem.ShortcutKeyDisplayString;
+
+            m_AudioMixerToolStripMenuItem.ShortcutKeyDisplayString = ObiForm.RefineKeyboardShortcutStringForAccessibleName(keyboardShortcuts.FormatKeyboardShorcut(keyboardShortcuts.MenuNameDictionary["m_AudioMixerToolStripMenuItem"].Value.ToString()));
+            m_AudioMixerToolStripMenuItem.AccessibleName = m_AudioMixerToolStripMenuItem.Text.Replace("&", "") + " " + m_AudioMixerToolStripMenuItem.ShortcutKeyDisplayString;
+
+
+
         }
 
         private bool CanUseKeys { get { return (mSelection == null || !(mSelection is TextSelection)) && !m_IsBlocksVisibilityProcessActive; } }
@@ -5274,7 +5282,7 @@ if (thresholdAboveLastNode >= stripControl.Node.PhraseChildCount) thresholdAbove
             Context_ReplaceAudioMenuItem.Enabled = mProjectView.CanExportSelectedNodeAudio;
             Context_AudioProcessingNew.Enabled = m_ChangeVolumeToolStripMenuItem.Enabled = 
                                        m_NormalizeToolStripMenuItem.Enabled = m_SpeechRateToolStripMenuItem.Enabled = mProjectView.CanExportSelectedNodeAudio;
-            m_FadeInToolStripMenuItem.Enabled = m_FadeOutToolStripMenuItem.Enabled = m_AudioMixingToolStripMenuItem.Enabled = mProjectView.CanShowFadeInFadeOutDialog;
+            m_FadeInToolStripMenuItem.Enabled = m_FadeOutToolStripMenuItem.Enabled = m_AudioMixerToolStripMenuItem.Enabled = mProjectView.CanShowFadeInFadeOutDialog;
             ContextBeginMarkToolStripMenuItem.Enabled = mProjectView.CanBeginSpecialNote;
             ContextEndMarkToolStripMenuItem.Enabled = mProjectView.CanEndSpecialNote;
             ContextPasteMultiplePhrasesToolStripMenuItem.Enabled = !mProjectView.TransportBar.IsRecorderActive && mProjectView.CanPasteMultiplePhrases && !Settings.Project_ReadOnlyMode;
