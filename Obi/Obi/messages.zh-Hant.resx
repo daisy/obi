@@ -1095,7 +1095,7 @@
     <value>正在錄製句</value>
   </data>
   <data name="Obi_Wiki_Url" xml:space="preserve">
-    <value>http://daisy.trac.cvsdude.com/obi</value>
+    <value>http://daisy.trac.cloudforge.com/obi</value>
   </data>
   <data name="ErrorInSaving" xml:space="preserve">
     <value>儲存時發生錯誤</value>
