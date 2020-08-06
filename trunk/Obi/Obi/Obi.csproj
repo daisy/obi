@@ -384,6 +384,10 @@
     <Compile Include="Dialogs\SentenceDetection.Designer.cs">
       <DependentUpon>SentenceDetection.cs</DependentUpon>
     </Compile>
+    <Compile Include="Dialogs\ShowCuePoints.cs" />
+    <Compile Include="Dialogs\ShowCuePoints.Designer.cs">
+      <DependentUpon>ShowCuePoints.cs</DependentUpon>
+    </Compile>
     <Compile Include="Dialogs\ShowSource.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -944,6 +948,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\SetPageNumber.zh-Hant.resx">
       <DependentUpon>SetPageNumber.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\ShowCuePoints.resx">
+      <DependentUpon>ShowCuePoints.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\ShowSource.de.resx">
       <DependentUpon>ShowSource.cs</DependentUpon>
