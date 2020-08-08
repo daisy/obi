@@ -2840,8 +2840,8 @@ namespace Obi.ProjectView
                                 Dictionary<string, List<double>> cuePointsDictionary = ReadCuePoints(dialog.FilesPaths);
                                 if (cuePointsDictionary != null)
                                 {
-                                    Dialogs.ShowCuePoints showCuePoints = new Dialogs.ShowCuePoints(cuePointsDictionary);
-                                    showCuePoints.ShowDialog();
+                                    //Dialogs.ShowCuePoints showCuePoints = new Dialogs.ShowCuePoints(cuePointsDictionary);
+                                    //showCuePoints.ShowDialog();
                                 }
                                 else
                                     ImportPhrases();
