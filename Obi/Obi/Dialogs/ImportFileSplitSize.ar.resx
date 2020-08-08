@@ -169,7 +169,7 @@
     <value />
   </data>
   <data name="mOKButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>67, 546</value>
+    <value>67, 561</value>
   </data>
   <data name="mOKButton.TabIndex" type="System.Int32, mscorlib">
     <value>22</value>
@@ -187,7 +187,7 @@
     <value />
   </data>
   <data name="mCancelButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>185, 546</value>
+    <value>185, 561</value>
   </data>
   <data name="mCancelButton.TabIndex" type="System.Int32, mscorlib">
     <value>23</value>
@@ -366,6 +366,15 @@
   <data name="m_grpCreateSectionForEachAudioFile.AccessibleName" xml:space="preserve">
     <value>مربع مجموعة لإنشاء قسم لكل ملف سمعي</value>
   </data>
+  <data name="m_rdbSplitAtCuePoints.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="m_rdbSplitAtCuePoints.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
+    <value>AssociateIndex</value>
+  </data>
+  <data name="m_rdbSplitAtCuePoints.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
   <data name="m_rdbCreateAudioFilePerSection.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
   </data>
@@ -478,7 +487,7 @@
     <value>12, 215</value>
   </data>
   <data name="m_grpCreateSectionForEachAudioFile.Size" type="System.Drawing.Size, System.Drawing">
-    <value>354, 197</value>
+    <value>354, 218</value>
   </data>
   <data name="m_rdbPhraseDetectionOnImportedFiles.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
@@ -523,13 +532,13 @@
     <value />
   </data>
   <data name="m_grpSplitPhraseOrPhraseDetection.Location" type="System.Drawing.Point, System.Drawing">
-    <value>12, 424</value>
+    <value>12, 439</value>
   </data>
   <data name="m_grpSplitPhraseOrPhraseDetection.Size" type="System.Drawing.Size, System.Drawing">
     <value>354, 103</value>
   </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>388, 588</value>
+    <value>388, 605</value>
   </data>
   <data name="$this.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
