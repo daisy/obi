@@ -134,10 +134,6 @@
   <data name="label1.Size" type="System.Drawing.Size, System.Drawing">
     <value>190, 16</value>
   </data>
-  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="label1.TabIndex" type="System.Int32, mscorlib">
-    <value>20</value>
-  </data>
   <data name="label1.Text" xml:space="preserve">
     <value>&amp;Taille de la phrase en minutes:</value>
   </data>
@@ -159,9 +155,6 @@
   <data name="mPhraseSizeTextBox.Size" type="System.Drawing.Size, System.Drawing">
     <value>90, 22</value>
   </data>
-  <data name="mPhraseSizeTextBox.TabIndex" type="System.Int32, mscorlib">
-    <value>21</value>
-  </data>
   <data name="mOKButton.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
   </data>
@@ -172,10 +165,7 @@
     <value />
   </data>
   <data name="mOKButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>110, 538</value>
-  </data>
-  <data name="mOKButton.TabIndex" type="System.Int32, mscorlib">
-    <value>23</value>
+    <value>110, 549</value>
   </data>
   <data name="mCancelButton.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
@@ -187,10 +177,7 @@
     <value />
   </data>
   <data name="mCancelButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>218, 538</value>
-  </data>
-  <data name="mCancelButton.TabIndex" type="System.Int32, mscorlib">
-    <value>24</value>
+    <value>218, 549</value>
   </data>
   <data name="mCancelButton.Text" xml:space="preserve">
     <value>&amp;Annuler</value>
@@ -219,11 +206,11 @@
   <data name="m_btnMoveUp.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
   </data>
-  <data name="m_btnMoveUp.Text" xml:space="preserve">
-    <value>Vers le &amp;Haut</value>
-  </data>
   <data name="m_btnMoveUp.Location" type="System.Drawing.Point, System.Drawing">
     <value>350, 11</value>
+  </data>
+  <data name="m_btnMoveUp.Text" xml:space="preserve">
+    <value>Vers le &amp;Haut</value>
   </data>
   <data name="m_btnMoveDown.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
@@ -249,11 +236,11 @@
   <data name="m_btnAdd.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
   </data>
-  <data name="m_btnAdd.Text" xml:space="preserve">
-    <value>&amp;Ajouter</value>
-  </data>
   <data name="m_btnAdd.Location" type="System.Drawing.Point, System.Drawing">
     <value>350, 72</value>
+  </data>
+  <data name="m_btnAdd.Text" xml:space="preserve">
+    <value>&amp;Ajouter</value>
   </data>
   <data name="m_grpAddFiles.AccessibleName" xml:space="preserve">
     <value>Boîte de groupe pour ajouter et organiser les fichiers.</value>
@@ -268,7 +255,7 @@
     <value />
   </data>
   <data name="m_btnRemove.Location" type="System.Drawing.Point, System.Drawing">
-    <value>351,101</value>
+    <value>351, 101</value>
   </data>
   <data name="m_btnRemove.Text" xml:space="preserve">
     <value>&amp;Retirer</value>
@@ -321,11 +308,11 @@
   <data name="m_grpArrangeAudioFiles.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
   </data>
-  <data name="m_grpArrangeAudioFiles.Text" xml:space="preserve">
-    <value>Organiser les fichiers audio:</value>
-  </data>
   <data name="m_grpArrangeAudioFiles.Size" type="System.Drawing.Size, System.Drawing">
     <value>432, 65</value>
+  </data>
+  <data name="m_grpArrangeAudioFiles.Text" xml:space="preserve">
+    <value>Organiser les fichiers audio:</value>
   </data>
   <data name="m_grpAddFiles.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
@@ -395,6 +382,15 @@
   </data>
   <data name="m_grpCreateSectionForEachAudioFile.AccessibleName" xml:space="preserve">
     <value>Boîte de groupe pour créer une section pour chaque fichier audio.</value>
+  </data>
+  <data name="m_rdbSplitAtCuePoints.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="m_rdbSplitAtCuePoints.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
+    <value>AssociateIndex</value>
+  </data>
+  <data name="m_rdbSplitAtCuePoints.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
   </data>
   <data name="m_rdbCreateAudioFilePerSection.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
@@ -526,7 +522,7 @@
     <value>12, 215</value>
   </data>
   <data name="m_grpCreateSectionForEachAudioFile.Size" type="System.Drawing.Size, System.Drawing">
-    <value>447, 198</value>
+    <value>447, 218</value>
   </data>
   <data name="m_rdbPhraseDetectionOnImportedFiles.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
@@ -539,9 +535,6 @@
   </data>
   <data name="m_rdbPhraseDetectionOnImportedFiles.Size" type="System.Drawing.Size, System.Drawing">
     <value>296, 20</value>
-  </data>
-  <data name="m_rdbPhraseDetectionOnImportedFiles.TabIndex" type="System.Int32, mscorlib">
-    <value>22</value>
   </data>
   <data name="m_rdbPhraseDetectionOnImportedFiles.Text" xml:space="preserve">
     <value>&amp;Détection de phrases sur les fichiers importés</value>
@@ -571,13 +564,13 @@
     <value />
   </data>
   <data name="m_grpSplitPhraseOrPhraseDetection.Location" type="System.Drawing.Point, System.Drawing">
-    <value>12, 419</value>
+    <value>12, 439</value>
   </data>
   <data name="m_grpSplitPhraseOrPhraseDetection.Size" type="System.Drawing.Size, System.Drawing">
     <value>447, 103</value>
   </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>471, 580</value>
+    <value>471, 593</value>
   </data>
   <data name="$this.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />

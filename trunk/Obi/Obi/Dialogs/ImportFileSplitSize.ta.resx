@@ -134,10 +134,6 @@
   <data name="label1.Size" type="System.Drawing.Size, System.Drawing">
     <value>186, 16</value>
   </data>
-  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="label1.TabIndex" type="System.Int32, mscorlib">
-    <value>20</value>
-  </data>
   <data name="label1.Text" xml:space="preserve">
     <value>சொற்றொடரின் &amp;அளவு நிமிடங்களில்:</value>
   </data>
@@ -159,9 +155,6 @@
   <data name="mPhraseSizeTextBox.Size" type="System.Drawing.Size, System.Drawing">
     <value>112, 22</value>
   </data>
-  <data name="mPhraseSizeTextBox.TabIndex" type="System.Int32, mscorlib">
-    <value>21</value>
-  </data>
   <data name="mOKButton.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
   </data>
@@ -172,10 +165,7 @@
     <value />
   </data>
   <data name="mOKButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>40, 533</value>
-  </data>
-  <data name="mOKButton.TabIndex" type="System.Int32, mscorlib">
-    <value>23</value>
+    <value>40, 558</value>
   </data>
   <data name="mOKButton.Text" xml:space="preserve">
     <value>&amp;சரி</value>
@@ -190,10 +180,7 @@
     <value />
   </data>
   <data name="mCancelButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>158, 533</value>
-  </data>
-  <data name="mCancelButton.TabIndex" type="System.Int32, mscorlib">
-    <value>24</value>
+    <value>158, 558</value>
   </data>
   <data name="mCancelButton.Text" xml:space="preserve">
     <value>&amp;இரத்து</value>
@@ -397,6 +384,15 @@
   <data name="m_grpCreateSectionForEachAudioFile.AccessibleName" xml:space="preserve">
     <value>குழு பெட்டி  ஒவ்வொரு ஒலி கோப்புக்கும் ஒரு பகுதி உருவாக்கு</value>
   </data>
+  <data name="m_rdbSplitAtCuePoints.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="m_rdbSplitAtCuePoints.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
+    <value>AssociateIndex</value>
+  </data>
+  <data name="m_rdbSplitAtCuePoints.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
   <data name="m_rdbCreateAudioFilePerSection.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
   </data>
@@ -500,7 +496,7 @@
     <value>12, 215</value>
   </data>
   <data name="m_grpCreateSectionForEachAudioFile.Size" type="System.Drawing.Size, System.Drawing">
-    <value>329, 193</value>
+    <value>329, 218</value>
   </data>
   <data name="m_rdbPhraseDetectionOnImportedFiles.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
@@ -513,9 +509,6 @@
   </data>
   <data name="m_rdbPhraseDetectionOnImportedFiles.Size" type="System.Drawing.Size, System.Drawing">
     <value>339, 20</value>
-  </data>
-  <data name="m_rdbPhraseDetectionOnImportedFiles.TabIndex" type="System.Int32, mscorlib">
-    <value>22</value>
   </data>
   <data name="m_rdbPhraseDetectionOnImportedFiles.Text" xml:space="preserve">
     <value>&amp;இறக்குமதி செய்த கோப்பைகளில் சொற்றொடர் கண்டுபிடித்தல்</value>
@@ -545,13 +538,13 @@
     <value />
   </data>
   <data name="m_grpSplitPhraseOrPhraseDetection.Location" type="System.Drawing.Point, System.Drawing">
-    <value>12, 414</value>
+    <value>12, 439</value>
   </data>
   <data name="m_grpSplitPhraseOrPhraseDetection.Size" type="System.Drawing.Size, System.Drawing">
     <value>329, 103</value>
   </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>351, 577</value>
+    <value>351, 598</value>
   </data>
   <data name="$this.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />

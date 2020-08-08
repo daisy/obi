@@ -118,6 +118,46 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="m_lbl_StartTimeSeconds.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="m_lbl_StartTimeSeconds.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
+    <value>AssociateIndex</value>
+  </data>
+  <data name="m_lbl_StartTimeSeconds.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="m_lbl_StartTimeSeconds.Location" type="System.Drawing.Point, System.Drawing">
+    <value>224, 45</value>
+  </data>
+  <data name="m_lbl_StartTimeSeconds.Size" type="System.Drawing.Size, System.Drawing">
+    <value>62, 15</value>
+  </data>
+  <data name="m_lbl_StartTimeSeconds.Text" xml:space="preserve">
+    <value>Secondes</value>
+  </data>
+  <data name="m_StartTimeNumericUpDown.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="m_StartTimeNumericUpDown.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
+    <value>AssociateIndex</value>
+  </data>
+  <data name="m_StartTimeNumericUpDown.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="m_StartTimeNumericUpDown.Location" type="System.Drawing.Point, System.Drawing">
+    <value>150, 43</value>
+  </data>
+  <data name="m_lbl_StartTime.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="m_lbl_StartTime.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
+    <value>AssociateIndex</value>
+  </data>
+  <data name="m_lbl_StartTime.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
   <data name="m_lbl_Seconds.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
   </data>
@@ -127,9 +167,8 @@
   <data name="m_lbl_Seconds.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
   </data>
-  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="m_lbl_Seconds.Location" type="System.Drawing.Point, System.Drawing">
-    <value>219, 55</value>
+    <value>224, 70</value>
   </data>
   <data name="m_lbl_Seconds.Size" type="System.Drawing.Size, System.Drawing">
     <value>62, 15</value>
@@ -163,6 +202,9 @@
   </data>
   <data name="m_lbl_Low.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
+  </data>
+  <data name="m_lbl_Low.Location" type="System.Drawing.Point, System.Drawing">
+    <value>292, 54</value>
   </data>
   <data name="m_lbl_Low.Size" type="System.Drawing.Size, System.Drawing">
     <value>41, 15</value>
@@ -210,7 +252,7 @@
     <value />
   </data>
   <data name="m_numericUpDown1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>144, 52</value>
+    <value>150, 70</value>
   </data>
   <data name="m_lbl_Parameters.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
@@ -251,21 +293,8 @@
   <data name="m_gpbox_Process.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
   </data>
-  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="m_gpbox_Process.ShowHelp" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
   <data name="m_gpbox_Process.Size" type="System.Drawing.Size, System.Drawing">
-    <value>588, 134</value>
-  </data>
-  <data name="m_tb_NoiseReductionFreqency.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
-  <data name="m_tb_NoiseReductionFreqency.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
-    <value>AssociateIndex</value>
-  </data>
-  <data name="m_tb_NoiseReductionFreqency.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
+    <value>588, 153</value>
   </data>
   <data name="m_btn_OK.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
@@ -297,6 +326,7 @@
   <data name="m_NAudioForAudioProcessing.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
   </data>
+  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="m_NAudioForAudioProcessing.ShowHelp" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
@@ -320,6 +350,12 @@
   </data>
   <data name="$this.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
+  </data>
+  <data name="$this.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="$this.ShowHelp" type="System.Boolean, mscorlib">
+    <value>True</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
     <value>Changer le volume</value>
