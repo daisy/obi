@@ -384,7 +384,9 @@
     <Compile Include="Dialogs\SentenceDetection.Designer.cs">
       <DependentUpon>SentenceDetection.cs</DependentUpon>
     </Compile>
-    <Compile Include="Dialogs\ShowCuePoints.cs" />
+    <Compile Include="Dialogs\ShowCuePoints.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Dialogs\ShowCuePoints.Designer.cs">
       <DependentUpon>ShowCuePoints.cs</DependentUpon>
     </Compile>
