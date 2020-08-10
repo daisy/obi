@@ -131,10 +131,6 @@
   <data name="m_OKBtn.Location" type="System.Drawing.Point, System.Drawing">
     <value>26, 241</value>
   </data>
-  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="m_OKBtn.TabIndex" type="System.Int32, mscorlib">
-    <value>4</value>
-  </data>
   <data name="m_OKBtn.Text" xml:space="preserve">
     <value>स्वीकृत करें</value>
   </data>
@@ -149,9 +145,6 @@
   </data>
   <data name="m_BtnCancel.Location" type="System.Drawing.Point, System.Drawing">
     <value>148, 241</value>
-  </data>
-  <data name="m_BtnCancel.TabIndex" type="System.Int32, mscorlib">
-    <value>5</value>
   </data>
   <data name="m_BtnCancel.Text" xml:space="preserve">
     <value>रद्द करें</value>
@@ -174,6 +167,7 @@
   <data name="m_cbDaisy3.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
   </data>
+  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="m_cbDaisy3.ShowHelp" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
