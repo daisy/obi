@@ -93,6 +93,7 @@ namespace Obi.Dialogs
                 m_cbEpub3.Enabled = !value;
                 m_cbXhtml.Enabled = !value;
                 m_chMegaVoice.Enabled = !value;
+                m_cbWPAudioBook.Enabled = !value;
             }
             }
 
