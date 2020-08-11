@@ -538,7 +538,7 @@ namespace Obi {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to audio format not recognized. Only .wav, .mp3 and .mp4 files are supported. Skipping import of: {0}.
+        ///   Looks up a localized string similar to Audio format not recognized. Only .wav, .mp3 and .mp4 files are supported. Skipping import of following files: {0}.
         /// </summary>
         internal static string AudioFormatConverter_Error_FileExtentionNodSupported {
             get {
@@ -4759,7 +4759,7 @@ namespace Obi {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {0} don&apos;t have any cue points or are not in wave format so cannot be imported.If you want to import only audio files with cue points then press Yes else press No if you want to perform regular import.
+        ///   Looks up a localized string similar to {0} The above audio files don&apos;t have any cue points or are not in wave format so cannot be imported.If you want to import only audio files with cue points then press Yes else press No if you want to perform regular import.
         /// </summary>
         internal static string NoCuePoints {
             get {
