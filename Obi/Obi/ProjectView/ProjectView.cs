@@ -6277,7 +6277,7 @@ for (int j = 0;
             {
                 nodeToSelect = Selection.Node;
             }
-            
+
             double durationOfSelection = DurationOfNodeSelected(nodeToSelect);
             if (durationOfSelection == 0)
             {
@@ -6300,7 +6300,7 @@ for (int j = 0;
             {
                 dialog = new Obi.Dialogs.AudioProcessingNewDialog(audioProcessingNaudioKind, ObiForm.Settings, nodeToSelect.Duration);
             }
-            else if(audioProcessingKind == WavAudioProcessing.AudioProcessingKind.NoiseReduction)
+            else if (audioProcessingKind == WavAudioProcessing.AudioProcessingKind.NoiseReduction)
             {
                 dialogNoiseReduction = new Dialogs.AudioProcessingNoiseReduction();
             }
@@ -6308,13 +6308,13 @@ for (int j = 0;
             {
                 dialogAudioMixing = new Dialogs.AudioMixer();
             }
-            if (dialog != null && dialog.ShowDialog() == DialogResult.OK || dialogNoiseReduction != null && dialogNoiseReduction.ShowDialog() == DialogResult.OK 
+            if (dialog != null && dialog.ShowDialog() == DialogResult.OK || dialogNoiseReduction != null && dialogNoiseReduction.ShowDialog() == DialogResult.OK
                  || dialogAudioMixing != null && dialogAudioMixing.ShowDialog() == DialogResult.OK)
             {
 
                 float val = 0;
                 if (dialog != null)
-                val = dialog.AudioProcessingParameter;
+                    val = dialog.AudioProcessingParameter;
 
                 if ((dialog != null && !dialog.IsUseNAudioForAudioProcessing) || audioProcessingKind == WavAudioProcessing.AudioProcessingKind.SoundTouch)
                 {
@@ -6395,7 +6395,7 @@ for (int j = 0;
                                               durationOfPhraseBeforeAudioMixing = nodeToSelect.Duration;
                                           }
                                       }
-                                  },ObiForm.Settings);
+                                  }, ObiForm.Settings);
 
                             progress.ShowDialog();
                             if (progress.Exception != null) throw progress.Exception;
@@ -6468,7 +6468,7 @@ for (int j = 0;
                             Dictionary<ObiNode, string> dictionaryOfFilePaths = new Dictionary<ObiNode, string>();
                             if (audioProcessingKind == WavAudioProcessing.AudioProcessingKind.NoiseReduction)
                             {
-                                dictionaryOfFilePaths = AudioProcessingDictionary(dictionaryOfFilePaths, nodeToSelect, audioProcessingKind, val, directoryFullPath, 
+                                dictionaryOfFilePaths = AudioProcessingDictionary(dictionaryOfFilePaths, nodeToSelect, audioProcessingKind, val, directoryFullPath,
                                     dialogNoiseReduction.NoiseReductionInDb, dialogNoiseReduction.NoiseFloorInDb);
                             }
                             else
@@ -6497,6 +6497,8 @@ for (int j = 0;
                     }
                 }
             }
+
+            mTransportBar.SelectionChangedPlaybackEnabled = SelectionChangedPlaybackEnabled;
         }
 
         public void ProcessAudio(AudioLib.WavAudioProcessing.AudioProcessingKind kindOfAudioProcessing, float audioProcessingParameter)
