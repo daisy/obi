@@ -203,6 +203,7 @@
             this.AcceptButton = this.m_btn_Ok;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.CancelButton = this.m_btn_Cancel;
             this.ClientSize = new System.Drawing.Size(440, 306);
             this.Controls.Add(this.m_lblPreset);
             this.Controls.Add(this.m_SelectPresetComboBox);
