@@ -307,6 +307,7 @@
             this.AcceptButton = this.m_btnOK;
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.CancelButton = this.m_btnCancel;
             this.ClientSize = new System.Drawing.Size(580, 515);
             this.Controls.Add(this.m_txtNote);
             this.Controls.Add(this.m_WeightOfSecondAudioSoundNumericUpDown);

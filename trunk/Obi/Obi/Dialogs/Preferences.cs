@@ -172,8 +172,12 @@ namespace Obi.Dialogs
                         }
                     }
                     else
-                        mInputDeviceCombo.SelectedIndex = mInputDeviceCombo.Items.IndexOf(mSettings.Audio_LastInputDevice);
-
+                    {
+                        if (mInputDeviceCombo.Items.IndexOf(mSettings.Audio_LastInputDevice) >= 0)
+                            mInputDeviceCombo.SelectedIndex = mInputDeviceCombo.Items.IndexOf(mSettings.Audio_LastInputDevice);
+                        else if (mInputDeviceCombo.Items.Count > 0)
+                            mInputDeviceCombo.SelectedIndex = 0;
+                    }
 
                     AudioPlayer player = mTransportBar.AudioPlayer;
                     // mOutputDeviceCombo.DataSource = player.OutputDevices; avn
@@ -198,7 +202,12 @@ namespace Obi.Dialogs
                         }
                     }
                     else
-                        mOutputDeviceCombo.SelectedIndex = mOutputDeviceCombo.Items.IndexOf(mSettings.Audio_LastOutputDevice);
+                    {
+                        if (mOutputDeviceCombo.Items.IndexOf(mSettings.Audio_LastOutputDevice) >= 0)
+                            mOutputDeviceCombo.SelectedIndex = mOutputDeviceCombo.Items.IndexOf(mSettings.Audio_LastOutputDevice);
+                        else if (mOutputDeviceCombo.Items.Count > 0)
+                            mOutputDeviceCombo.SelectedIndex = 0;
+                    }
                     
                     int sampleRate;
                     int audioChannels;
