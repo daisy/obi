@@ -4759,6 +4759,15 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to No checkbox is checked.In order to export kindly select export format.
+        /// </summary>
+        internal static string NoCheckBoxInExportChecked {
+            get {
+                return ResourceManager.GetString("NoCheckBoxInExportChecked", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to {0} The above audio files don&apos;t have any cue points or are not in wave format so cannot be imported.If you want to import only audio files with cue points then press Yes else press No if you want to perform regular import.
         /// </summary>
         internal static string NoCuePoints {
