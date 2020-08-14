@@ -81,7 +81,10 @@ namespace Obi.Dialogs
 
         private void m_OKBtn_Click(object sender, EventArgs e)
         {
-             this.DialogResult = DialogResult.OK;
+            if (ExportDaisy3 || ExportDaisy2 || ExportEpub3 || ExportXhtml || ExportMegaVoice || ExportWPAudioBook)
+                this.DialogResult = DialogResult.OK;
+            else
+                MessageBox.Show(Localizer.Message("NoCheckBoxInExportChecked"), Localizer.Message("Caption_Information"), MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         private bool m_RestrictToSingleDAISYChoice =false;
