@@ -3201,7 +3201,7 @@ You can do it later also from the project tab of preferences dialog.</value>
     <value>Kindly select second audio file for mixing</value>
   </data>
   <data name="NoCheckBoxInExportChecked" xml:space="preserve">
-    <value>No checkbox is checked.In order to export kindly select export format</value>
+    <value>No checkbox is checked.In order to export kindly select desired export format to export the book</value>
   </data>
   
 </root>

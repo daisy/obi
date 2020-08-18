@@ -199,7 +199,7 @@
     <value>5</value>
   </data>
   <data name="m_cbWPAudioBook.Text" xml:space="preserve">
-    <value>WP AudioBooks</value>
+    <value>&amp;WP AudioBooks</value>
   </data>
   <data name="&gt;&gt;m_cbWPAudioBook.Name" xml:space="preserve">
     <value>m_cbWPAudioBook</value>
@@ -226,7 +226,7 @@
     <value>0</value>
   </data>
   <data name="m_cbDaisy3.Text" xml:space="preserve">
-    <value>DAISY 3</value>
+    <value>&amp;DAISY 3</value>
   </data>
   <data name="&gt;&gt;m_cbDaisy3.Name" xml:space="preserve">
     <value>m_cbDaisy3</value>
@@ -253,7 +253,7 @@
     <value>1</value>
   </data>
   <data name="m_cbDaisy202.Text" xml:space="preserve">
-    <value>Daisy 2.02</value>
+    <value>D&amp;aisy 2.02</value>
   </data>
   <data name="&gt;&gt;m_cbDaisy202.Name" xml:space="preserve">
     <value>m_cbDaisy202</value>
@@ -280,7 +280,7 @@
     <value>2</value>
   </data>
   <data name="m_cbEpub3.Text" xml:space="preserve">
-    <value>Epub 3 Audio Book</value>
+    <value>&amp;Epub 3 Audio Book</value>
   </data>
   <data name="&gt;&gt;m_cbEpub3.Name" xml:space="preserve">
     <value>m_cbEpub3</value>
@@ -307,7 +307,7 @@
     <value>3</value>
   </data>
   <data name="m_cbXhtml.Text" xml:space="preserve">
-    <value>Xhtml Structure</value>
+    <value>&amp;Xhtml Structure</value>
   </data>
   <data name="&gt;&gt;m_cbXhtml.Name" xml:space="preserve">
     <value>m_cbXhtml</value>
@@ -334,7 +334,7 @@
     <value>4</value>
   </data>
   <data name="m_chMegaVoice.Text" xml:space="preserve">
-    <value>MegaVoice (Envoy Connect)</value>
+    <value>&amp;MegaVoice (Envoy Connect)</value>
   </data>
   <data name="&gt;&gt;m_chMegaVoice.Name" xml:space="preserve">
     <value>m_chMegaVoice</value>
