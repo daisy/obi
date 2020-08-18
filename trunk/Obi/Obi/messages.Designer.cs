@@ -4759,7 +4759,7 @@ namespace Obi {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to No checkbox is checked.In order to export kindly select export format.
+        ///   Looks up a localized string similar to No checkbox is checked.In order to export kindly select desired export format to export the book.
         /// </summary>
         internal static string NoCheckBoxInExportChecked {
             get {
