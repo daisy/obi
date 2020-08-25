@@ -22,6 +22,9 @@ namespace Obi.Dialogs
         public ObiConfiguration()
         {
             InitializeComponent();
+            helpProvider1.HelpNamespace = Localizer.Message("CHMhelp_file_name");
+            helpProvider1.SetHelpNavigator(this, HelpNavigator.Topic);
+            helpProvider1.SetHelpKeyword(this, "HTML Files\\Introducing Obi\\Getting Started\\Configurations Dialog.htm");
         }
 
         public ObiConfiguration(ObiForm form, ProjectView.ProjectView projectView,Settings settings) : this()

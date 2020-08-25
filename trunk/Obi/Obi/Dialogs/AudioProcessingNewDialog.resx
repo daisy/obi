@@ -169,7 +169,7 @@
     <value>163, 41</value>
   </data>
   <data name="m_StartTimeNumericUpDown.ShowHelp" type="System.Boolean, mscorlib">
-    <value>True</value>
+    <value>False</value>
   </data>
   <data name="m_StartTimeNumericUpDown.Size" type="System.Drawing.Size, System.Drawing">
     <value>68, 21</value>

@@ -15,6 +15,9 @@ namespace Obi.Dialogs
         public AudioMixer()
         {
             InitializeComponent();
+            helpProvider1.HelpNamespace = Localizer.Message("CHMhelp_file_name");
+            helpProvider1.SetHelpNavigator(this, HelpNavigator.Topic);
+            helpProvider1.SetHelpKeyword(this, "HTML Files/Creating a DTB/Working with Audio/Audio processing.htm");
         }
 
         private void m_btnBrowse_Click(object sender, EventArgs e)
