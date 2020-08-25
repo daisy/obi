@@ -49,6 +49,7 @@
             this.m_lblWeightOfSecondAudioSound = new System.Windows.Forms.Label();
             this.m_WeightOfSecondAudioSoundNumericUpDown = new System.Windows.Forms.NumericUpDown();
             this.m_txtNote = new System.Windows.Forms.TextBox();
+            this.helpProvider1 = new System.Windows.Forms.HelpProvider();
             ((System.ComponentModel.ISupportInitialize)(this.m_WeightOfSoundNumericUpDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.m_DropoutTransitionNumericUpDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.m_DurationOfMixingAudioNumericUpDown)).BeginInit();
@@ -364,5 +365,6 @@
         private System.Windows.Forms.Label m_lblWeightOfSecondAudioSound;
         private System.Windows.Forms.NumericUpDown m_WeightOfSecondAudioSoundNumericUpDown;
         private System.Windows.Forms.TextBox m_txtNote;
+        private System.Windows.Forms.HelpProvider helpProvider1;
     }
 }

@@ -40,6 +40,7 @@
             this.m_lbdB = new System.Windows.Forms.Label();
             this.m_SelectPresetComboBox = new System.Windows.Forms.ComboBox();
             this.m_lblPreset = new System.Windows.Forms.Label();
+            this.helpProvider1 = new System.Windows.Forms.HelpProvider();
             ((System.ComponentModel.ISupportInitialize)(this.m_SetNoiseReduction)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.m_SetNoiseLevelInPercent)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.m_SetNoiseLevelTrackBar)).BeginInit();
@@ -242,5 +243,6 @@
         private System.Windows.Forms.Label m_lbdB;
         private System.Windows.Forms.ComboBox m_SelectPresetComboBox;
         private System.Windows.Forms.Label m_lblPreset;
+        private System.Windows.Forms.HelpProvider helpProvider1;
     }
 }

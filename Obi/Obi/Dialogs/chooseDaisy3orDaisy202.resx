@@ -133,7 +133,7 @@
     <value>6</value>
   </data>
   <data name="m_OKBtn.Text" xml:space="preserve">
-    <value>OK</value>
+    <value>&amp;OK</value>
   </data>
   <data name="&gt;&gt;m_OKBtn.Name" xml:space="preserve">
     <value>m_OKBtn</value>
@@ -160,7 +160,7 @@
     <value>7</value>
   </data>
   <data name="m_BtnCancel.Text" xml:space="preserve">
-    <value>Cancel</value>
+    <value>&amp;Cancel</value>
   </data>
   <data name="&gt;&gt;m_BtnCancel.Name" xml:space="preserve">
     <value>m_BtnCancel</value>

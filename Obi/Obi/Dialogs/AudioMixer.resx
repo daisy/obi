@@ -128,4 +128,7 @@ The time duration after end of phrase, after which weight of mixing audio return
 -&gt; Set end of stream duration to phrase duration:-
 If checked then resulting phrase after mixing audio will have same duration as that of original phrase.</value>
   </data>
+  <metadata name="helpProvider1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 17</value>
+  </metadata>
 </root>

@@ -39,6 +39,7 @@
             this.m_cb_SelectProfile = new System.Windows.Forms.ComboBox();
             this.m_cb_SelectShortcutsProfile = new System.Windows.Forms.ComboBox();
             this.m_tb_ObiConfigInstructions = new System.Windows.Forms.TextBox();
+            this.helpProvider1 = new System.Windows.Forms.HelpProvider();
             this.SuspendLayout();
             // 
             // labelOutputDeviceName
@@ -138,5 +139,6 @@
         private System.Windows.Forms.ComboBox m_cb_SelectProfile;
         private System.Windows.Forms.ComboBox m_cb_SelectShortcutsProfile;
         private System.Windows.Forms.TextBox m_tb_ObiConfigInstructions;
+        private System.Windows.Forms.HelpProvider helpProvider1;
     }
 }
