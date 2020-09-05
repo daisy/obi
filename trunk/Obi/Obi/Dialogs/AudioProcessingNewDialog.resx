@@ -454,19 +454,19 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;m_gpbox_Process.ZOrder" xml:space="preserve">
-    <value>3</value>
+    <value>4</value>
   </data>
   <data name="m_btn_OK.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Flat</value>
   </data>
   <data name="m_btn_OK.Location" type="System.Drawing.Point, System.Drawing">
-    <value>196, 194</value>
+    <value>196, 215</value>
   </data>
   <data name="m_btn_OK.Size" type="System.Drawing.Size, System.Drawing">
     <value>92, 32</value>
   </data>
   <data name="m_btn_OK.TabIndex" type="System.Int32, mscorlib">
-    <value>12</value>
+    <value>13</value>
   </data>
   <data name="m_btn_OK.Text" xml:space="preserve">
     <value>&amp;OK</value>
@@ -481,19 +481,19 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;m_btn_OK.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>3</value>
   </data>
   <data name="m_btn_Cancel.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Flat</value>
   </data>
   <data name="m_btn_Cancel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>319, 194</value>
+    <value>319, 215</value>
   </data>
   <data name="m_btn_Cancel.Size" type="System.Drawing.Size, System.Drawing">
     <value>92, 32</value>
   </data>
   <data name="m_btn_Cancel.TabIndex" type="System.Int32, mscorlib">
-    <value>13</value>
+    <value>14</value>
   </data>
   <data name="m_btn_Cancel.Text" xml:space="preserve">
     <value>&amp;Cancel</value>
@@ -508,7 +508,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;m_btn_Cancel.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>2</value>
   </data>
   <metadata name="m_InfoToolTip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>144, 17</value>
@@ -541,6 +541,36 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;m_NAudioForAudioProcessing.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="m_ApplyOnWholeBook.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="m_ApplyOnWholeBook.Location" type="System.Drawing.Point, System.Drawing">
+    <value>26, 193</value>
+  </data>
+  <data name="m_ApplyOnWholeBook.Size" type="System.Drawing.Size, System.Drawing">
+    <value>138, 19</value>
+  </data>
+  <data name="m_ApplyOnWholeBook.TabIndex" type="System.Int32, mscorlib">
+    <value>12</value>
+  </data>
+  <data name="m_ApplyOnWholeBook.Text" xml:space="preserve">
+    <value>Apply on whole book</value>
+  </data>
+  <data name="m_ApplyOnWholeBook.Visible" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="&gt;&gt;m_ApplyOnWholeBook.Name" xml:space="preserve">
+    <value>m_ApplyOnWholeBook</value>
+  </data>
+  <data name="&gt;&gt;m_ApplyOnWholeBook.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_ApplyOnWholeBook.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;m_ApplyOnWholeBook.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
@@ -553,7 +583,7 @@
     <value>7, 15</value>
   </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>582, 241</value>
+    <value>582, 253</value>
   </data>
   <data name="$this.Font" type="System.Drawing.Font, System.Drawing">
     <value>Microsoft Sans Serif, 9pt</value>

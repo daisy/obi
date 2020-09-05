@@ -4822,6 +4822,15 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Noise Reduction completed successfully.
+        /// </summary>
+        internal static string NoiseReductionCompleted {
+            get {
+                return ResourceManager.GetString("NoiseReductionCompleted", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to normal pages.
         /// </summary>
         internal static string Normal_pages {

@@ -3203,5 +3203,8 @@ You can do it later also from the project tab of preferences dialog.</value>
   <data name="NoCheckBoxInExportChecked" xml:space="preserve">
     <value>No checkbox is checked.In order to export kindly select desired export format to export the book</value>
   </data>
+  <data name="NoiseReductionCompleted" xml:space="preserve">
+    <value>Noise Reduction completed successfully</value>
+  </data>
   
 </root>

@@ -83,6 +83,7 @@ namespace Obi.Dialogs
                 m_lbl_StartTime.Visible = true;
                 m_StartTimeNumericUpDown.Visible = true;
                 m_lbl_StartTimeSeconds.Visible = true;
+                m_ApplyOnWholeBook.Visible = false;
             }
             else if (AudioLib.WavAudioProcessing.AudioProcessingKind.Normalize == typeOfAudioProcessing)
             {
@@ -93,6 +94,7 @@ namespace Obi.Dialogs
                 m_numericUpDown1.AccessibleName = Localizer.Message("NormalizeAceesibleName");
                 m_AmplifyParameter.AccessibleName = Localizer.Message("NormalizeAceesibleNameForSlider");
                 m_NAudioForAudioProcessing.Visible = true;
+                m_ApplyOnWholeBook.Visible = true;
             }
             else if (AudioLib.WavAudioProcessing.AudioProcessingKind.SoundTouch == typeOfAudioProcessing)
             {
@@ -104,6 +106,7 @@ namespace Obi.Dialogs
                 m_AmplifyParameter.AccessibleName = Localizer.Message("SpeechRateAceesibleNameForSlider");
                 m_NAudioForAudioProcessing.Visible = false;
                 m_numericUpDown1.Minimum = 0.6M;
+                m_ApplyOnWholeBook.Visible = false;
             }
             m_InfoToolTip.SetToolTip(m_txt_info, m_txt_info.Text);
             helpProvider1.HelpNamespace = Localizer.Message("CHMhelp_file_name");
@@ -123,7 +126,21 @@ namespace Obi.Dialogs
             }
         }
 
-       
+        public bool IsApplyOnWholeBook
+        {
+            get
+            {
+                return m_ApplyOnWholeBook.Checked;
+            }
+        }
+
+        public bool ShowApplyWholeBookCheckbox
+        {
+            set
+            {
+                m_ApplyOnWholeBook.Visible = value;
+            }
+        }
      
 
 

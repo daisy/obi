@@ -788,5 +788,27 @@ namespace Obi.Dialogs
                 this.Close();
             }
         }
+
+        private void m_btn_NoiseReduction_Click(object sender, EventArgs e)
+        {
+            m_Merge = false;
+            SectionsSelected(false);
+            if (m_lb_listofSectionsToMerge.SelectedItems.Count >= 1)
+            {
+                this.Close();
+                m_ProjectView.AudioProcessing(AudioLib.WavAudioProcessing.AudioProcessingKind.NoiseReduction, false, m_SelectedSectionList);
+            }
+        }
+
+        private void m_btn_Normalize_Click(object sender, EventArgs e)
+        {
+            m_Merge = false;
+            SectionsSelected(false);
+            if (m_lb_listofSectionsToMerge.SelectedItems.Count >= 1)
+            {
+                this.Close();
+                m_ProjectView.AudioProcessing(AudioLib.WavAudioProcessing.AudioProcessingKind.Normalize, false, m_SelectedSectionList);
+            }
+        }
     }
 }
