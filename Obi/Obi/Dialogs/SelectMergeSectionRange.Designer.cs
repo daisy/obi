@@ -49,10 +49,14 @@ namespace Obi.Dialogs
             this.m_lb_listofSectionsToMerge = new System.Windows.Forms.ListBox();
             this.m_tb_SectionsSelected = new System.Windows.Forms.TextBox();
             this.toolTip = new System.Windows.Forms.ToolTip(this.components);
+            this.m_btn_NoiseReduction = new System.Windows.Forms.Button();
+            this.m_btn_Normalize = new System.Windows.Forms.Button();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.m_statusStripForMergeSection.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.m_grp_SectionLevelOperation.SuspendLayout();
             this.m_grp_SectionAudioOperation.SuspendLayout();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // m_statusStripForMergeSection
@@ -191,10 +195,33 @@ namespace Obi.Dialogs
             this.m_tb_SectionsSelected.Name = "m_tb_SectionsSelected";
             this.m_tb_SectionsSelected.ReadOnly = true;
             // 
+            // m_btn_NoiseReduction
+            // 
+            resources.ApplyResources(this.m_btn_NoiseReduction, "m_btn_NoiseReduction");
+            this.m_btn_NoiseReduction.Name = "m_btn_NoiseReduction";
+            this.m_btn_NoiseReduction.UseVisualStyleBackColor = true;
+            this.m_btn_NoiseReduction.Click += new System.EventHandler(this.m_btn_NoiseReduction_Click);
+            // 
+            // m_btn_Normalize
+            // 
+            resources.ApplyResources(this.m_btn_Normalize, "m_btn_Normalize");
+            this.m_btn_Normalize.Name = "m_btn_Normalize";
+            this.m_btn_Normalize.UseVisualStyleBackColor = true;
+            this.m_btn_Normalize.Click += new System.EventHandler(this.m_btn_Normalize_Click);
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.m_btn_NoiseReduction);
+            this.groupBox1.Controls.Add(this.m_btn_Normalize);
+            resources.ApplyResources(this.groupBox1, "groupBox1");
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.TabStop = false;
+            // 
             // SelectMergeSectionRange
             // 
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.m_tb_SectionsSelected);
             this.Controls.Add(this.m_lb_listofSectionsToMerge);
             this.Controls.Add(this.m_grp_SectionAudioOperation);
@@ -206,11 +233,13 @@ namespace Obi.Dialogs
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "SelectMergeSectionRange";
+            this.helpProvider1.SetShowHelp(this, ((bool)(resources.GetObject("$this.ShowHelp"))));
             this.m_statusStripForMergeSection.ResumeLayout(false);
             this.m_statusStripForMergeSection.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             this.m_grp_SectionLevelOperation.ResumeLayout(false);
             this.m_grp_SectionAudioOperation.ResumeLayout(false);
+            this.groupBox1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -237,5 +266,8 @@ namespace Obi.Dialogs
         private System.Windows.Forms.TextBox m_tb_SectionsSelected;
         private System.Windows.Forms.ToolTip toolTip;
         private System.Windows.Forms.Button m_btn_ShowContents;
+        private System.Windows.Forms.Button m_btn_NoiseReduction;
+        private System.Windows.Forms.Button m_btn_Normalize;
+        private System.Windows.Forms.GroupBox groupBox1;
     }
 }

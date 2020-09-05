@@ -47,6 +47,7 @@ namespace Obi.Dialogs
             this.helpProvider1 = new System.Windows.Forms.HelpProvider();
             this.m_InfoToolTip = new System.Windows.Forms.ToolTip(this.components);
             this.m_NAudioForAudioProcessing = new System.Windows.Forms.CheckBox();
+            this.m_ApplyOnWholeBook = new System.Windows.Forms.CheckBox();
             this.m_gpbox_Process.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.m_StartTimeNumericUpDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.m_AmplifyParameter)).BeginInit();
@@ -183,12 +184,19 @@ namespace Obi.Dialogs
             this.m_NAudioForAudioProcessing.Name = "m_NAudioForAudioProcessing";
             this.m_NAudioForAudioProcessing.UseVisualStyleBackColor = true;
             // 
+            // m_ApplyOnWholeBook
+            // 
+            resources.ApplyResources(this.m_ApplyOnWholeBook, "m_ApplyOnWholeBook");
+            this.m_ApplyOnWholeBook.Name = "m_ApplyOnWholeBook";
+            this.m_ApplyOnWholeBook.UseVisualStyleBackColor = true;
+            // 
             // AudioProcessingNewDialog
             // 
             this.AcceptButton = this.m_btn_OK;
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.m_btn_Cancel;
+            this.Controls.Add(this.m_ApplyOnWholeBook);
             this.Controls.Add(this.m_NAudioForAudioProcessing);
             this.Controls.Add(this.m_btn_Cancel);
             this.Controls.Add(this.m_btn_OK);
@@ -224,5 +232,6 @@ namespace Obi.Dialogs
         private System.Windows.Forms.NumericUpDown m_StartTimeNumericUpDown;
         private System.Windows.Forms.Label m_lbl_StartTime;
         private System.Windows.Forms.Label m_lbl_StartTimeSeconds;
+        private System.Windows.Forms.CheckBox m_ApplyOnWholeBook;
     }
 }

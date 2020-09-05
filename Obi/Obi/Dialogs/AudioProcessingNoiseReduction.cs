@@ -40,6 +40,21 @@ namespace Obi.Dialogs
             }
         }
 
+        public bool IsApplyOnWholeBook
+        {
+            get
+            {
+                return m_ApplyOnWholeBook.Checked;
+            }
+        }
+
+        public bool ShowApplyWholeBookCheckbox
+        {
+            set
+            {
+                m_ApplyOnWholeBook.Visible = value;
+            }
+        }
 
 
         private void m_SetNoiseFloor_ValueChanged(object sender, EventArgs e)

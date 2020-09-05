@@ -41,6 +41,7 @@
             this.m_SelectPresetComboBox = new System.Windows.Forms.ComboBox();
             this.m_lblPreset = new System.Windows.Forms.Label();
             this.helpProvider1 = new System.Windows.Forms.HelpProvider();
+            this.m_ApplyOnWholeBook = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.m_SetNoiseReduction)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.m_SetNoiseLevelInPercent)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.m_SetNoiseLevelTrackBar)).BeginInit();
@@ -54,7 +55,7 @@
             this.m_btn_Ok.Location = new System.Drawing.Point(107, 257);
             this.m_btn_Ok.Name = "m_btn_Ok";
             this.m_btn_Ok.Size = new System.Drawing.Size(75, 23);
-            this.m_btn_Ok.TabIndex = 11;
+            this.m_btn_Ok.TabIndex = 12;
             this.m_btn_Ok.Text = "&OK";
             this.m_btn_Ok.UseVisualStyleBackColor = true;
             // 
@@ -65,7 +66,7 @@
             this.m_btn_Cancel.Location = new System.Drawing.Point(239, 257);
             this.m_btn_Cancel.Name = "m_btn_Cancel";
             this.m_btn_Cancel.Size = new System.Drawing.Size(75, 23);
-            this.m_btn_Cancel.TabIndex = 12;
+            this.m_btn_Cancel.TabIndex = 13;
             this.m_btn_Cancel.Text = "&Cancel";
             this.m_btn_Cancel.UseVisualStyleBackColor = true;
             // 
@@ -199,6 +200,18 @@
             this.m_lblPreset.TabIndex = 1;
             this.m_lblPreset.Text = "&Background noise level";
             // 
+            // m_ApplyOnWholeBook
+            // 
+            this.m_ApplyOnWholeBook.AutoSize = true;
+            this.m_ApplyOnWholeBook.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.m_ApplyOnWholeBook.Location = new System.Drawing.Point(15, 220);
+            this.m_ApplyOnWholeBook.Name = "m_ApplyOnWholeBook";
+            this.helpProvider1.SetShowHelp(this.m_ApplyOnWholeBook, true);
+            this.m_ApplyOnWholeBook.Size = new System.Drawing.Size(125, 17);
+            this.m_ApplyOnWholeBook.TabIndex = 11;
+            this.m_ApplyOnWholeBook.Text = "Apply on whole book";
+            this.m_ApplyOnWholeBook.UseVisualStyleBackColor = true;
+            // 
             // AudioProcessingNoiseReduction
             // 
             this.AcceptButton = this.m_btn_Ok;
@@ -206,6 +219,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.m_btn_Cancel;
             this.ClientSize = new System.Drawing.Size(440, 306);
+            this.Controls.Add(this.m_ApplyOnWholeBook);
             this.Controls.Add(this.m_lblPreset);
             this.Controls.Add(this.m_SelectPresetComboBox);
             this.Controls.Add(this.m_lbdB);
@@ -244,5 +258,6 @@
         private System.Windows.Forms.ComboBox m_SelectPresetComboBox;
         private System.Windows.Forms.Label m_lblPreset;
         private System.Windows.Forms.HelpProvider helpProvider1;
+        private System.Windows.Forms.CheckBox m_ApplyOnWholeBook;
     }
 }
