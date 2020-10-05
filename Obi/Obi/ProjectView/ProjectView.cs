@@ -6413,7 +6413,6 @@ for (int j = 0;
 
                             progress.ShowDialog();
                             if (progress.Exception != null) throw progress.Exception;
-
                             //string temp = audioPorcess.NoiseReductionFfmpegAfftdn(audioFileFullPath, dialogNoiseReduction.NoiseReductionInDb, dialogNoiseReduction.NoiseFloorInDb);
                             if (audioFileFullPath != null)
                             {
@@ -6431,6 +6430,7 @@ for (int j = 0;
                                 m_IsAudioProcessingChecked = false;
 
                             }
+
                             if (nodeToSelect is SectionNode)
                             {
                                 if (audioProcessingKind == AudioLib.WavAudioProcessing.AudioProcessingKind.Normalize)
@@ -6547,8 +6547,11 @@ for (int j = 0;
                 float val = 0;
                 if (dialog != null)
                     val = dialog.AudioProcessingParameter;
+                bool skip = false;
                 foreach (SectionNode section in listOfSections)
                 {
+                    if (skip)
+                        break;
 
                     this.Selection = new NodeSelection(section, this.Selection.Control);
                     nodeToSelect = Selection.Node;
@@ -6573,7 +6576,7 @@ for (int j = 0;
 
 
                         Obi.Dialogs.ProgressDialog progress = new Obi.Dialogs.ProgressDialog(Localizer.Message("AudioFileExport_progress_dialog_title"),
-                              delegate()
+                              delegate(Dialogs.ProgressDialog progress1)
                               {
                                   audioFileFullPath = CreateAudioFileFromNode(nodeToSelect, directoryFullPath, null);
                                   if (audioFileFullPath != null)
@@ -6591,7 +6594,8 @@ for (int j = 0;
                                           audioProcessedFile = audioProcess.NoiseReductionFfmpegAfftdn(audioFileFullPath, dialogNoiseReduction.NoiseReductionInDb, dialogNoiseReduction.NoiseFloorInDb);
                                       }
                                   }
-                              }, ObiForm.Settings);
+                              });
+                        progress.OperationCancelled += new Obi.Dialogs.OperationCancelledHandler(delegate(object sender, EventArgs e){ skip = true; });
 
                         progress.ShowDialog();
                         if (progress.Exception != null) throw progress.Exception;
