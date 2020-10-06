@@ -4858,7 +4858,7 @@ namespace Obi {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Operation is cancelled in between so Normalization is completed till section {0}.
+        ///   Looks up a localized string similar to Operation is cencelled in between so Normalization is completed till section {0}.
         /// </summary>
         internal static string NormalizationCancelled {
             get {
