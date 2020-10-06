@@ -6548,6 +6548,7 @@ for (int j = 0;
                 if (dialog != null)
                     val = dialog.AudioProcessingParameter;
                 bool skip = false;
+                string sectionSelected = string.Empty;
                 foreach (SectionNode section in listOfSections)
                 {
                     if (skip)
@@ -6595,7 +6596,7 @@ for (int j = 0;
                                       }
                                   }
                               });
-                        progress.OperationCancelled += new Obi.Dialogs.OperationCancelledHandler(delegate(object sender, EventArgs e){ skip = true; });
+                        progress.OperationCancelled += new Obi.Dialogs.OperationCancelledHandler(delegate(object sender, EventArgs e) { skip = true; sectionSelected = section.Label; });
 
                         progress.ShowDialog();
                         if (progress.Exception != null) throw progress.Exception;
@@ -6619,14 +6620,22 @@ for (int j = 0;
                     }
                 }
 
-                if (nodeToSelect != null && nodeToSelect is SectionNode)
+                if (nodeToSelect != null && nodeToSelect is SectionNode && !skip)
                 {
                     if (audioProcessingKind == AudioLib.WavAudioProcessing.AudioProcessingKind.Normalize)
                         MessageBox.Show(Localizer.Message("NormalizationCompleted"), Localizer.Message("information_caption"), MessageBoxButtons.OK, MessageBoxIcon.Information);
                     else if (audioProcessingKind == AudioLib.WavAudioProcessing.AudioProcessingKind.Amplify)
                         MessageBox.Show(Localizer.Message("ChangeVolumeCompleted"), Localizer.Message("information_caption"), MessageBoxButtons.OK, MessageBoxIcon.Information);
                     else if (audioProcessingKind == AudioLib.WavAudioProcessing.AudioProcessingKind.NoiseReduction)
-                        MessageBox.Show(Localizer.Message("NoiseReductionCompleted"), Localizer.Message("information_caption"), MessageBoxButtons.OK, MessageBoxIcon.Information); 
+                        MessageBox.Show(Localizer.Message("NoiseReductionCompleted"), Localizer.Message("information_caption"), MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                else if(nodeToSelect != null && nodeToSelect is SectionNode && skip)
+                {
+                    if (audioProcessingKind == AudioLib.WavAudioProcessing.AudioProcessingKind.Normalize)
+                        MessageBox.Show(string.Format(Localizer.Message("NormalizationCancelled"), sectionSelected), Localizer.Message("information_caption"), MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    else if (audioProcessingKind == AudioLib.WavAudioProcessing.AudioProcessingKind.NoiseReduction)
+                        MessageBox.Show(string.Format(Localizer.Message("NoiseReductionCancelled"), sectionSelected), Localizer.Message("information_caption"), MessageBoxButtons.OK, MessageBoxIcon.Information);
+
                 }
                 this.Selection = new NodeSelection(tempNodeSelected, this.Selection.Control);
 

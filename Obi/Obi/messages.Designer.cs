@@ -4822,6 +4822,15 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Operation is cencelled in between so Noise Reduction is completed till section {0}.
+        /// </summary>
+        internal static string NoiseReductionCancelled {
+            get {
+                return ResourceManager.GetString("NoiseReductionCancelled", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Noise Reduction completed successfully.
         /// </summary>
         internal static string NoiseReductionCompleted {
@@ -4845,6 +4854,15 @@ namespace Obi {
         internal static string normal_phrase {
             get {
                 return ResourceManager.GetString("normal_phrase", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Operation is cencelled in between so Normalization is completed till section {0}.
+        /// </summary>
+        internal static string NormalizationCancelled {
+            get {
+                return ResourceManager.GetString("NormalizationCancelled", resourceCulture);
             }
         }
         

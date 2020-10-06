@@ -3206,5 +3206,11 @@ You can do it later also from the project tab of preferences dialog.</value>
   <data name="NoiseReductionCompleted" xml:space="preserve">
     <value>Noise Reduction completed successfully</value>
   </data>
+  <data name="NormalizationCancelled" xml:space="preserve">
+    <value>Operation is cencelled in between so Normalization is completed till section {0}</value>
+  </data>
+  <data name="NoiseReductionCancelled" xml:space="preserve">
+    <value>Operation is cencelled in between so Noise Reduction is completed till section {0}</value>
+  </data>
   
 </root>
