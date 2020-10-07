@@ -220,13 +220,13 @@
     <value>48, 13</value>
   </data>
   <data name="m_cbDaisy3.Size" type="System.Drawing.Size, System.Drawing">
-    <value>67, 17</value>
+    <value>61, 17</value>
   </data>
   <data name="m_cbDaisy3.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
   </data>
   <data name="m_cbDaisy3.Text" xml:space="preserve">
-    <value>&amp;DAISY 3</value>
+    <value>&amp;Daisy 3</value>
   </data>
   <data name="&gt;&gt;m_cbDaisy3.Name" xml:space="preserve">
     <value>m_cbDaisy3</value>
