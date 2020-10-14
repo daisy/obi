@@ -50,6 +50,7 @@ namespace Obi.Dialogs
             // 
             // m_cmbBoxSpecialNode
             // 
+            this.m_cmbBoxSpecialNode.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.m_cmbBoxSpecialNode.FormattingEnabled = true;
             this.m_cmbBoxSpecialNode.Items.AddRange(new object[] {
             resources.GetString("m_cmbBoxSpecialNode.Items"),

@@ -96,7 +96,10 @@ namespace Obi.Dialogs
 
         private void m_btn_OK_Click(object sender, EventArgs e)
         {
-            m_SelectedSpecialNode = m_cmbBoxSpecialNode.SelectedItem.ToString();            
+            if (m_cmbBoxSpecialNode.SelectedItem != null)
+            {
+                m_SelectedSpecialNode = m_cmbBoxSpecialNode.SelectedItem.ToString();
+            }
         }
 
         private void m_rdb_btn_SpecialPhrase_CheckedChanged(object sender, EventArgs e)
