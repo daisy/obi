@@ -125,14 +125,10 @@
     <value>Microsoft Sans Serif, 9.75pt</value>
   </data>
   <data name="m_CheckBoxListView.Location" type="System.Drawing.Point, System.Drawing">
-    <value>17, 75</value>
-  </data>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="m_CheckBoxListView.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 4, 4, 4</value>
+    <value>12, 51</value>
   </data>
   <data name="m_CheckBoxListView.Size" type="System.Drawing.Size, System.Drawing">
-    <value>565, 451</value>
+    <value>397, 309</value>
   </data>
   <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="m_CheckBoxListView.TabIndex" type="System.Int32, mscorlib">
@@ -153,6 +149,7 @@
   <data name="m_btnOk.AccessibleName" xml:space="preserve">
     <value>Ok, press to confirm changes</value>
   </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="m_btnOk.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Flat</value>
   </data>
@@ -160,13 +157,10 @@
     <value>Microsoft Sans Serif, 9.75pt</value>
   </data>
   <data name="m_btnOk.Location" type="System.Drawing.Point, System.Drawing">
-    <value>129, 553</value>
-  </data>
-  <data name="m_btnOk.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 4, 4, 4</value>
+    <value>90, 377</value>
   </data>
   <data name="m_btnOk.Size" type="System.Drawing.Size, System.Drawing">
-    <value>141, 51</value>
+    <value>99, 35</value>
   </data>
   <data name="m_btnOk.TabIndex" type="System.Int32, mscorlib">
     <value>2</value>
@@ -196,13 +190,10 @@
     <value>Microsoft Sans Serif, 9.75pt</value>
   </data>
   <data name="m_btnCancel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>336, 553</value>
-  </data>
-  <data name="m_btnCancel.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 4, 4, 4</value>
+    <value>235, 377</value>
   </data>
   <data name="m_btnCancel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>141, 51</value>
+    <value>99, 35</value>
   </data>
   <data name="m_btnCancel.TabIndex" type="System.Int32, mscorlib">
     <value>3</value>
@@ -222,14 +213,14 @@
   <data name="&gt;&gt;m_btnCancel.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
-  <data name="m_tbDialogDesc.Location" type="System.Drawing.Point, System.Drawing">
-    <value>19, 18</value>
+  <data name="m_tbDialogDesc.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 9.75pt</value>
   </data>
-  <data name="m_tbDialogDesc.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 4, 4, 4</value>
+  <data name="m_tbDialogDesc.Location" type="System.Drawing.Point, System.Drawing">
+    <value>13, 12</value>
   </data>
   <data name="m_tbDialogDesc.Size" type="System.Drawing.Size, System.Drawing">
-    <value>565, 28</value>
+    <value>397, 22</value>
   </data>
   <data name="m_tbDialogDesc.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
@@ -250,16 +241,13 @@
     <value>True</value>
   </metadata>
   <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
-    <value>10, 22</value>
+    <value>7, 15</value>
   </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>620, 620</value>
+    <value>434, 423</value>
   </data>
   <data name="$this.Font" type="System.Drawing.Font, System.Drawing">
     <value>Microsoft Sans Serif, 9pt</value>
-  </data>
-  <data name="$this.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 4, 4, 4</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
     <value>Additional Preferences Settings</value>
