@@ -186,7 +186,7 @@ namespace Obi.Dialogs
                             if (m_EndRange > m_OriginalSectionList.Count || m_StartRange > m_OriginalSectionList.Count)
                                 MessageBox.Show(Localizer.Message("SelectPhraseDetection_EndOrStartValMoreThanSectionCount"));
                             else
-                                MessageBox.Show(Localizer.Message("InvalidInput"));
+                                MessageBox.Show(Localizer.Message("InvalidInput"),Localizer.Message("Caption_Error"),MessageBoxButtons.OK,MessageBoxIcon.Error);
                         }
                     }
                 }

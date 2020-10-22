@@ -142,7 +142,7 @@ namespace Obi.Dialogs
             
             if (m_radPage.Checked && phraseIndex < 1 && this.mPageKindComboBox.SelectedIndex < 2)
                 {
-                MessageBox.Show ( Localizer.Message ( "InvalidInput" ) );
+                MessageBox.Show ( Localizer.Message ("InvalidInput"),Localizer.Message("Caption_Error"),MessageBoxButtons.OK,MessageBoxIcon.Error);
                 return;
                 }
             else if (m_radPhrase.Checked)
@@ -150,7 +150,7 @@ namespace Obi.Dialogs
                 phraseIndex = ExtractPhraseIndexFromCombobox ();
                 if (phraseIndex < 1)
                     {
-                    MessageBox.Show ( Localizer.Message ( "InvalidInput" ) );
+                        MessageBox.Show(Localizer.Message("InvalidInput"),Localizer.Message("Caption_Error"), MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                     }
                 else
@@ -163,7 +163,7 @@ namespace Obi.Dialogs
                 {
                     if (TimeInSeconds < 1)
                     {
-                        MessageBox.Show(Localizer.Message("InvalidInput"));
+                        MessageBox.Show(Localizer.Message("InvalidInput"),Localizer.Message("Caption_Error"), MessageBoxButtons.OK, MessageBoxIcon.Error);
                         return;
                     }
                     else                   

@@ -3411,7 +3411,7 @@ for (int j = 0;
                 }
                 if (listOfEmptyPages == null || listOfEmptyPages.Count == 0)
                 {
-                    MessageBox.Show(Localizer.Message("ProjectView_NoEmptyPageFoundForSpeechGeneration"));
+                    MessageBox.Show(Localizer.Message("ProjectView_NoEmptyPageFoundForSpeechGeneration"),Localizer.Message("Caption_Information"),MessageBoxButtons.OK,MessageBoxIcon.Information);
                     return;
                 }
                 bool isException = false ;
@@ -6994,7 +6994,7 @@ public bool ShowOnlySelectedSection
             }
             else if (phrasesToReplace.Count == 0)
             {
-                MessageBox.Show(Localizer.Message("ReplaceCorruptPhrasesWithEmptyNode_NothingFound"));
+                MessageBox.Show(Localizer.Message("ReplaceCorruptPhrasesWithEmptyNode_NothingFound"), Localizer.Message("Caption_Information"), MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
 
