@@ -331,6 +331,22 @@ namespace Obi.Dialogs
                 m_numericUpDownEpubFilenameLengthLimit.Value = value;
             }
         }
+
+        public bool CreateCSVForCues
+        {
+            get
+            {
+                return m_chkBoxCreateCsvForCues.Checked;
+            }
+        }
+
+        public bool CreateCSVForCuesEnabled
+        {
+            set
+            {
+                m_chkBoxCreateCsvForCues.Enabled = value;
+            }
+        }
         private void mSelectButton_Click(object sender, EventArgs e)
         {
             FolderBrowserDialog dialog = new FolderBrowserDialog();
@@ -534,6 +550,19 @@ namespace Obi.Dialogs
             if (m_chkBoxCreateMediaOverlays.Enabled)
             {
                 m_chkBoxCreateMediaOverlays.Checked = mSettings.Export_EpubCreateMediaOverlays;
+            }
+        }
+
+        private void m_chkBoxCreateCsvForCues_CheckedChanged(object sender, EventArgs e)
+        {
+            if (m_chkBoxCreateCsvForCues.Checked)
+            {
+                m_ComboSelectLevelForAudioFiles.SelectedIndex = 0;
+                m_ComboSelectLevelForAudioFiles.Enabled = false;
+            }
+            else
+            {
+                m_ComboSelectLevelForAudioFiles.Enabled = true;
             }
         }              
     }

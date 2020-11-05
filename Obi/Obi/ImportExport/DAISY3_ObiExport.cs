@@ -22,15 +22,17 @@ namespace Obi.ImportExport
         protected Dictionary<XmlNode, urakawa.core.TreeNode> m_AnchorXmlNodeToReferedNodeMap = new Dictionary<XmlNode, urakawa.core.TreeNode>();
         protected Dictionary<urakawa.core.TreeNode, string> m_Skippable_UpstreamIdMap = new Dictionary<TreeNode, string>();
         protected Dictionary<XmlDocument, string> m_AnchorSmilDoc_SmileFileNameMap = new Dictionary<XmlDocument, string>();
+        protected bool m_CreateCSVForCues;
 
         public DAISY3_ObiExport(ObiPresentation presentation, string exportDirectory, List<string> navListElementNamesList, bool encodeToMp3,double mp3BitRate ,
-            SampleRate sampleRate, bool stereo, bool skipACM, int audioFileSectionLevel)
+            SampleRate sampleRate, bool stereo, bool skipACM, int audioFileSectionLevel, bool createCSVForCues = false)
             : base(presentation, exportDirectory, navListElementNamesList, encodeToMp3, mp3BitRate,
             sampleRate, stereo,
             skipACM, false, true)
         {
             m_Filename_Content = null;
             m_AudioFileSectionLevel = audioFileSectionLevel;
+            m_CreateCSVForCues = createCSVForCues;
             GeneratorName = "Obi";
         }
 
@@ -915,8 +917,23 @@ if (urakawa.data.DataProviderFactory.CSS_EXTENSION.Equals(ext, StringComparison.
             m_TotalTime = new Time(smilElapseTime);
             AddMetadata_Ncx(ncxDocument, totalPageCount.ToString(), maxNormalPageNumber.ToString(), maxDepth.ToString(), ncxCustomTestList);
             XmlReaderWriterHelper.WriteXmlDocument(ncxDocument, Path.Combine(m_OutputDirectory, m_Filename_Ncx),AlwaysIgnoreIndentation? GetXmlWriterSettings(false): null);
+            if (m_CreateCSVForCues)
+            {
+                WriteCuePointsToCSV();
+            }
         }
 
+        private void WriteCuePointsToCSV()
+        {            
+            StringBuilder csvContent = new StringBuilder();
+            csvContent.AppendLine("File Name");
+            foreach (var item in m_FilesList_SmilAudio)
+            {
+                csvContent.AppendLine(item);
+            }
+            string csvPath = m_OutputDirectory + "\\CuePoints.csv";
+            File.AppendAllText(csvPath, csvContent.ToString());
+        }
         public bool IsSkippable(EmptyNode node)
         {
 

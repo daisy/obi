@@ -123,14 +123,14 @@
   </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="m_lblDirectoryPath.Location" type="System.Drawing.Point, System.Drawing">
-    <value>13, 19</value>
+    <value>15, 24</value>
   </data>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="m_lblDirectoryPath.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 0, 4, 0</value>
   </data>
   <data name="m_lblDirectoryPath.Size" type="System.Drawing.Size, System.Drawing">
-    <value>104, 16</value>
+    <value>132, 20</value>
   </data>
   <data name="m_lblDirectoryPath.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
@@ -148,7 +148,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;m_lblDirectoryPath.ZOrder" xml:space="preserve">
-    <value>11</value>
+    <value>12</value>
   </data>
   <data name="mPathTextBox.AccessibleName" xml:space="preserve">
     <value>Export directory:</value>
@@ -157,13 +157,13 @@
     <value>Top, Left, Right</value>
   </data>
   <data name="mPathTextBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>125, 17</value>
+    <value>141, 21</value>
   </data>
   <data name="mPathTextBox.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 4, 4, 4</value>
+    <value>4, 5, 4, 5</value>
   </data>
   <data name="mPathTextBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>328, 22</value>
+    <value>369, 26</value>
   </data>
   <data name="mPathTextBox.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
@@ -178,7 +178,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;mPathTextBox.ZOrder" xml:space="preserve">
-    <value>10</value>
+    <value>11</value>
   </data>
   <data name="mSelectButton.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Right</value>
@@ -187,13 +187,13 @@
     <value>Flat</value>
   </data>
   <data name="mSelectButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>461, 13</value>
+    <value>519, 16</value>
   </data>
   <data name="mSelectButton.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 4, 4, 4</value>
+    <value>4, 5, 4, 5</value>
   </data>
   <data name="mSelectButton.Size" type="System.Drawing.Size, System.Drawing">
-    <value>100, 28</value>
+    <value>112, 35</value>
   </data>
   <data name="mSelectButton.TabIndex" type="System.Int32, mscorlib">
     <value>2</value>
@@ -211,7 +211,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;mSelectButton.ZOrder" xml:space="preserve">
-    <value>9</value>
+    <value>10</value>
   </data>
   <data name="mOKButton.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom</value>
@@ -220,13 +220,13 @@
     <value>Flat</value>
   </data>
   <data name="mOKButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>125, 377</value>
+    <value>141, 517</value>
   </data>
   <data name="mOKButton.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 4, 4, 4</value>
+    <value>4, 5, 4, 5</value>
   </data>
   <data name="mOKButton.Size" type="System.Drawing.Size, System.Drawing">
-    <value>100, 28</value>
+    <value>112, 35</value>
   </data>
   <data name="mOKButton.TabIndex" type="System.Int32, mscorlib">
     <value>17</value>
@@ -244,7 +244,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;mOKButton.ZOrder" xml:space="preserve">
-    <value>8</value>
+    <value>9</value>
   </data>
   <data name="mCancelButton.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom</value>
@@ -253,13 +253,13 @@
     <value>Flat</value>
   </data>
   <data name="mCancelButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>276, 377</value>
+    <value>310, 517</value>
   </data>
   <data name="mCancelButton.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 4, 4, 4</value>
+    <value>4, 5, 4, 5</value>
   </data>
   <data name="mCancelButton.Size" type="System.Drawing.Size, System.Drawing">
-    <value>100, 28</value>
+    <value>112, 35</value>
   </data>
   <data name="mCancelButton.TabIndex" type="System.Int32, mscorlib">
     <value>18</value>
@@ -277,16 +277,16 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;mCancelButton.ZOrder" xml:space="preserve">
-    <value>7</value>
+    <value>8</value>
   </data>
   <data name="m_lblSelectLevelForAudioFiles.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
   <data name="m_lblSelectLevelForAudioFiles.Location" type="System.Drawing.Point, System.Drawing">
-    <value>12, 54</value>
+    <value>14, 68</value>
   </data>
   <data name="m_lblSelectLevelForAudioFiles.Size" type="System.Drawing.Size, System.Drawing">
-    <value>218, 16</value>
+    <value>278, 20</value>
   </data>
   <data name="m_lblSelectLevelForAudioFiles.TabIndex" type="System.Int32, mscorlib">
     <value>3</value>
@@ -304,16 +304,19 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;m_lblSelectLevelForAudioFiles.ZOrder" xml:space="preserve">
-    <value>6</value>
+    <value>7</value>
   </data>
   <data name="m_ComboSelectLevelForAudioFiles.AccessibleName" xml:space="preserve">
     <value>Create one audio file per section till:</value>
   </data>
   <data name="m_ComboSelectLevelForAudioFiles.Location" type="System.Drawing.Point, System.Drawing">
-    <value>239, 52</value>
+    <value>269, 65</value>
+  </data>
+  <data name="m_ComboSelectLevelForAudioFiles.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>3, 4, 3, 4</value>
   </data>
   <data name="m_ComboSelectLevelForAudioFiles.Size" type="System.Drawing.Size, System.Drawing">
-    <value>121, 24</value>
+    <value>136, 28</value>
   </data>
   <data name="m_ComboSelectLevelForAudioFiles.TabIndex" type="System.Int32, mscorlib">
     <value>4</value>
@@ -328,7 +331,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;m_ComboSelectLevelForAudioFiles.ZOrder" xml:space="preserve">
-    <value>5</value>
+    <value>6</value>
   </data>
   <data name="m_checkBoxEncoder.AccessibleDescription" xml:space="preserve">
     <value>Encode Audio Files checkbox</value>
@@ -337,10 +340,13 @@
     <value>True</value>
   </data>
   <data name="m_checkBoxEncoder.Location" type="System.Drawing.Point, System.Drawing">
-    <value>9, 23</value>
+    <value>10, 29</value>
+  </data>
+  <data name="m_checkBoxEncoder.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>3, 4, 3, 4</value>
   </data>
   <data name="m_checkBoxEncoder.Size" type="System.Drawing.Size, System.Drawing">
-    <value>139, 20</value>
+    <value>170, 24</value>
   </data>
   <data name="m_checkBoxEncoder.TabIndex" type="System.Int32, mscorlib">
     <value>6</value>
@@ -367,10 +373,10 @@
     <value>True</value>
   </data>
   <data name="m_Bitrate.Location" type="System.Drawing.Point, System.Drawing">
-    <value>165, 57</value>
+    <value>186, 71</value>
   </data>
   <data name="m_Bitrate.Size" type="System.Drawing.Size, System.Drawing">
-    <value>49, 16</value>
+    <value>64, 20</value>
   </data>
   <data name="m_Bitrate.TabIndex" type="System.Int32, mscorlib">
     <value>8</value>
@@ -427,10 +433,13 @@
     <value>320</value>
   </data>
   <data name="m_ComboBoxBitrate.Location" type="System.Drawing.Point, System.Drawing">
-    <value>223, 51</value>
+    <value>251, 64</value>
+  </data>
+  <data name="m_ComboBoxBitrate.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>3, 4, 3, 4</value>
   </data>
   <data name="m_ComboBoxBitrate.Size" type="System.Drawing.Size, System.Drawing">
-    <value>121, 24</value>
+    <value>136, 28</value>
   </data>
   <data name="m_ComboBoxBitrate.TabIndex" type="System.Int32, mscorlib">
     <value>9</value>
@@ -454,10 +463,13 @@
     <value>True</value>
   </data>
   <data name="m_checkBoxAddSectionNameToAudioFileName.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 21</value>
+    <value>7, 26</value>
+  </data>
+  <data name="m_checkBoxAddSectionNameToAudioFileName.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>3, 4, 3, 4</value>
   </data>
   <data name="m_checkBoxAddSectionNameToAudioFileName.Size" type="System.Drawing.Size, System.Drawing">
-    <value>269, 20</value>
+    <value>334, 24</value>
   </data>
   <data name="m_checkBoxAddSectionNameToAudioFileName.TabIndex" type="System.Int32, mscorlib">
     <value>9</value>
@@ -484,10 +496,13 @@
     <value>Flat</value>
   </data>
   <data name="m_btnEncodingOptions.Location" type="System.Drawing.Point, System.Drawing">
-    <value>304, 16</value>
+    <value>342, 20</value>
+  </data>
+  <data name="m_btnEncodingOptions.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>3, 4, 3, 4</value>
   </data>
   <data name="m_btnEncodingOptions.Size" type="System.Drawing.Size, System.Drawing">
-    <value>165, 27</value>
+    <value>186, 34</value>
   </data>
   <data name="m_btnEncodingOptions.TabIndex" type="System.Int32, mscorlib">
     <value>8</value>
@@ -514,10 +529,13 @@
     <value>MP3</value>
   </data>
   <data name="m_comboBoxEncodingType.Location" type="System.Drawing.Point, System.Drawing">
-    <value>9, 51</value>
+    <value>10, 64</value>
+  </data>
+  <data name="m_comboBoxEncodingType.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>3, 4, 3, 4</value>
   </data>
   <data name="m_comboBoxEncodingType.Size" type="System.Drawing.Size, System.Drawing">
-    <value>101, 24</value>
+    <value>113, 28</value>
   </data>
   <data name="m_comboBoxEncodingType.TabIndex" type="System.Int32, mscorlib">
     <value>7</value>
@@ -544,10 +562,13 @@
     <value>Flat</value>
   </data>
   <data name="m_btnAdvance.Location" type="System.Drawing.Point, System.Drawing">
-    <value>368, 51</value>
+    <value>414, 64</value>
+  </data>
+  <data name="m_btnAdvance.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>3, 4, 3, 4</value>
   </data>
   <data name="m_btnAdvance.Size" type="System.Drawing.Size, System.Drawing">
-    <value>100, 23</value>
+    <value>112, 29</value>
   </data>
   <data name="m_btnAdvance.TabIndex" type="System.Int32, mscorlib">
     <value>10</value>
@@ -568,7 +589,13 @@
     <value>2</value>
   </data>
   <data name="m_grpBoxMP3Encoding.Location" type="System.Drawing.Point, System.Drawing">
-    <value>15, 76</value>
+    <value>17, 95</value>
+  </data>
+  <data name="m_grpBoxMP3Encoding.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>3, 4, 3, 4</value>
+  </data>
+  <data name="m_grpBoxMP3Encoding.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>3, 4, 3, 4</value>
   </data>
   <metadata name="helpProvider1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
@@ -580,7 +607,7 @@
     <value>False</value>
   </data>
   <data name="m_grpBoxMP3Encoding.Size" type="System.Drawing.Size, System.Drawing">
-    <value>477, 81</value>
+    <value>537, 101</value>
   </data>
   <data name="m_grpBoxMP3Encoding.TabIndex" type="System.Int32, mscorlib">
     <value>5</value>
@@ -595,58 +622,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;m_grpBoxMP3Encoding.ZOrder" xml:space="preserve">
-    <value>4</value>
-  </data>
-  <data name="&gt;&gt;m_chkBoxFilenameLengthLimit.Name" xml:space="preserve">
-    <value>m_chkBoxFilenameLengthLimit</value>
-  </data>
-  <data name="&gt;&gt;m_chkBoxFilenameLengthLimit.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;m_chkBoxFilenameLengthLimit.Parent" xml:space="preserve">
-    <value>m_grpBoxSectionNameOperation</value>
-  </data>
-  <data name="&gt;&gt;m_chkBoxFilenameLengthLimit.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;m_numericUpDownFilenameLengthLimit.Name" xml:space="preserve">
-    <value>m_numericUpDownFilenameLengthLimit</value>
-  </data>
-  <data name="&gt;&gt;m_numericUpDownFilenameLengthLimit.Type" xml:space="preserve">
-    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;m_numericUpDownFilenameLengthLimit.Parent" xml:space="preserve">
-    <value>m_grpBoxSectionNameOperation</value>
-  </data>
-  <data name="&gt;&gt;m_numericUpDownFilenameLengthLimit.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="m_grpBoxSectionNameOperation.Location" type="System.Drawing.Point, System.Drawing">
-    <value>17, 163</value>
-  </data>
-  <data name="m_grpBoxSectionNameOperation.ShowHelp" type="System.Boolean, mscorlib">
-    <value>False</value>
-  </data>
-  <data name="m_grpBoxSectionNameOperation.Size" type="System.Drawing.Size, System.Drawing">
-    <value>475, 74</value>
-  </data>
-  <data name="m_grpBoxSectionNameOperation.TabIndex" type="System.Int32, mscorlib">
-    <value>8</value>
-  </data>
-  <data name="m_grpBoxSectionNameOperation.Text" xml:space="preserve">
-    <value>Section Name Operation :</value>
-  </data>
-  <data name="&gt;&gt;m_grpBoxSectionNameOperation.Name" xml:space="preserve">
-    <value>m_grpBoxSectionNameOperation</value>
-  </data>
-  <data name="&gt;&gt;m_grpBoxSectionNameOperation.Type" xml:space="preserve">
-    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;m_grpBoxSectionNameOperation.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;m_grpBoxSectionNameOperation.ZOrder" xml:space="preserve">
-    <value>3</value>
+    <value>5</value>
   </data>
   <data name="m_chkBoxFilenameLengthLimit.AccessibleName" xml:space="preserve">
     <value>Filename Length Limit</value>
@@ -658,10 +634,13 @@
     <value>False</value>
   </data>
   <data name="m_chkBoxFilenameLengthLimit.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 48</value>
+    <value>7, 60</value>
+  </data>
+  <data name="m_chkBoxFilenameLengthLimit.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>3, 4, 3, 4</value>
   </data>
   <data name="m_chkBoxFilenameLengthLimit.Size" type="System.Drawing.Size, System.Drawing">
-    <value>165, 20</value>
+    <value>212, 24</value>
   </data>
   <data name="m_chkBoxFilenameLengthLimit.TabIndex" type="System.Int32, mscorlib">
     <value>10</value>
@@ -688,10 +667,13 @@
     <value>False</value>
   </data>
   <data name="m_numericUpDownFilenameLengthLimit.Location" type="System.Drawing.Point, System.Drawing">
-    <value>227, 47</value>
+    <value>255, 59</value>
+  </data>
+  <data name="m_numericUpDownFilenameLengthLimit.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>3, 4, 3, 4</value>
   </data>
   <data name="m_numericUpDownFilenameLengthLimit.Size" type="System.Drawing.Size, System.Drawing">
-    <value>120, 22</value>
+    <value>135, 26</value>
   </data>
   <data name="m_numericUpDownFilenameLengthLimit.TabIndex" type="System.Int32, mscorlib">
     <value>11</value>
@@ -708,6 +690,39 @@
   <data name="&gt;&gt;m_numericUpDownFilenameLengthLimit.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
+  <data name="m_grpBoxSectionNameOperation.Location" type="System.Drawing.Point, System.Drawing">
+    <value>19, 204</value>
+  </data>
+  <data name="m_grpBoxSectionNameOperation.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>3, 4, 3, 4</value>
+  </data>
+  <data name="m_grpBoxSectionNameOperation.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>3, 4, 3, 4</value>
+  </data>
+  <data name="m_grpBoxSectionNameOperation.ShowHelp" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="m_grpBoxSectionNameOperation.Size" type="System.Drawing.Size, System.Drawing">
+    <value>534, 92</value>
+  </data>
+  <data name="m_grpBoxSectionNameOperation.TabIndex" type="System.Int32, mscorlib">
+    <value>8</value>
+  </data>
+  <data name="m_grpBoxSectionNameOperation.Text" xml:space="preserve">
+    <value>Section Name Operation :</value>
+  </data>
+  <data name="&gt;&gt;m_grpBoxSectionNameOperation.Name" xml:space="preserve">
+    <value>m_grpBoxSectionNameOperation</value>
+  </data>
+  <data name="&gt;&gt;m_grpBoxSectionNameOperation.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_grpBoxSectionNameOperation.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;m_grpBoxSectionNameOperation.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
   <data name="m_chkBoxDummyTextHTMLfiles.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
@@ -718,13 +733,16 @@
     <value>NoControl</value>
   </data>
   <data name="m_chkBoxDummyTextHTMLfiles.Location" type="System.Drawing.Point, System.Drawing">
-    <value>20, 315</value>
+    <value>22, 394</value>
+  </data>
+  <data name="m_chkBoxDummyTextHTMLfiles.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>3, 4, 3, 4</value>
   </data>
   <data name="m_chkBoxDummyTextHTMLfiles.ShowHelp" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
   <data name="m_chkBoxDummyTextHTMLfiles.Size" type="System.Drawing.Size, System.Drawing">
-    <value>217, 20</value>
+    <value>278, 24</value>
   </data>
   <data name="m_chkBoxDummyTextHTMLfiles.TabIndex" type="System.Int32, mscorlib">
     <value>15</value>
@@ -742,60 +760,6 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;m_chkBoxDummyTextHTMLfiles.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="&gt;&gt;m_numericUpDownEpubFilenameLengthLimit.Name" xml:space="preserve">
-    <value>m_numericUpDownEpubFilenameLengthLimit</value>
-  </data>
-  <data name="&gt;&gt;m_numericUpDownEpubFilenameLengthLimit.Type" xml:space="preserve">
-    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;m_numericUpDownEpubFilenameLengthLimit.Parent" xml:space="preserve">
-    <value>m_EpubFileNamegroupBox</value>
-  </data>
-  <data name="&gt;&gt;m_numericUpDownEpubFilenameLengthLimit.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;m_chkBoxEpubFilenameLengthLimit.Name" xml:space="preserve">
-    <value>m_chkBoxEpubFilenameLengthLimit</value>
-  </data>
-  <data name="&gt;&gt;m_chkBoxEpubFilenameLengthLimit.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;m_chkBoxEpubFilenameLengthLimit.Parent" xml:space="preserve">
-    <value>m_EpubFileNamegroupBox</value>
-  </data>
-  <data name="&gt;&gt;m_chkBoxEpubFilenameLengthLimit.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="m_EpubFileNamegroupBox.Enabled" type="System.Boolean, mscorlib">
-    <value>False</value>
-  </data>
-  <data name="m_EpubFileNamegroupBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>16, 243</value>
-  </data>
-  <data name="m_EpubFileNamegroupBox.ShowHelp" type="System.Boolean, mscorlib">
-    <value>False</value>
-  </data>
-  <data name="m_EpubFileNamegroupBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>476, 57</value>
-  </data>
-  <data name="m_EpubFileNamegroupBox.TabIndex" type="System.Int32, mscorlib">
-    <value>14</value>
-  </data>
-  <data name="m_EpubFileNamegroupBox.Text" xml:space="preserve">
-    <value>EPUB Filename Length :</value>
-  </data>
-  <data name="&gt;&gt;m_EpubFileNamegroupBox.Name" xml:space="preserve">
-    <value>m_EpubFileNamegroupBox</value>
-  </data>
-  <data name="&gt;&gt;m_EpubFileNamegroupBox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;m_EpubFileNamegroupBox.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;m_EpubFileNamegroupBox.ZOrder" xml:space="preserve">
     <value>2</value>
   </data>
   <data name="m_numericUpDownEpubFilenameLengthLimit.AccessibleName" xml:space="preserve">
@@ -805,10 +769,13 @@
     <value>False</value>
   </data>
   <data name="m_numericUpDownEpubFilenameLengthLimit.Location" type="System.Drawing.Point, System.Drawing">
-    <value>223, 29</value>
+    <value>251, 36</value>
+  </data>
+  <data name="m_numericUpDownEpubFilenameLengthLimit.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>3, 4, 3, 4</value>
   </data>
   <data name="m_numericUpDownEpubFilenameLengthLimit.Size" type="System.Drawing.Size, System.Drawing">
-    <value>120, 22</value>
+    <value>135, 26</value>
   </data>
   <data name="m_numericUpDownEpubFilenameLengthLimit.TabIndex" type="System.Int32, mscorlib">
     <value>13</value>
@@ -835,10 +802,13 @@
     <value>False</value>
   </data>
   <data name="m_chkBoxEpubFilenameLengthLimit.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 31</value>
+    <value>7, 39</value>
+  </data>
+  <data name="m_chkBoxEpubFilenameLengthLimit.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>3, 4, 3, 4</value>
   </data>
   <data name="m_chkBoxEpubFilenameLengthLimit.Size" type="System.Drawing.Size, System.Drawing">
-    <value>196, 20</value>
+    <value>248, 24</value>
   </data>
   <data name="m_chkBoxEpubFilenameLengthLimit.TabIndex" type="System.Int32, mscorlib">
     <value>12</value>
@@ -858,6 +828,42 @@
   <data name="&gt;&gt;m_chkBoxEpubFilenameLengthLimit.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
+  <data name="m_EpubFileNamegroupBox.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="m_EpubFileNamegroupBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>18, 304</value>
+  </data>
+  <data name="m_EpubFileNamegroupBox.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>3, 4, 3, 4</value>
+  </data>
+  <data name="m_EpubFileNamegroupBox.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>3, 4, 3, 4</value>
+  </data>
+  <data name="m_EpubFileNamegroupBox.ShowHelp" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="m_EpubFileNamegroupBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>536, 71</value>
+  </data>
+  <data name="m_EpubFileNamegroupBox.TabIndex" type="System.Int32, mscorlib">
+    <value>14</value>
+  </data>
+  <data name="m_EpubFileNamegroupBox.Text" xml:space="preserve">
+    <value>EPUB Filename Length :</value>
+  </data>
+  <data name="&gt;&gt;m_EpubFileNamegroupBox.Name" xml:space="preserve">
+    <value>m_EpubFileNamegroupBox</value>
+  </data>
+  <data name="&gt;&gt;m_EpubFileNamegroupBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_EpubFileNamegroupBox.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;m_EpubFileNamegroupBox.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
   <data name="m_chkBoxCreateMediaOverlays.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
@@ -865,10 +871,13 @@
     <value>False</value>
   </data>
   <data name="m_chkBoxCreateMediaOverlays.Location" type="System.Drawing.Point, System.Drawing">
-    <value>20, 341</value>
+    <value>22, 426</value>
+  </data>
+  <data name="m_chkBoxCreateMediaOverlays.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>3, 4, 3, 4</value>
   </data>
   <data name="m_chkBoxCreateMediaOverlays.Size" type="System.Drawing.Size, System.Drawing">
-    <value>279, 20</value>
+    <value>346, 24</value>
   </data>
   <data name="m_chkBoxCreateMediaOverlays.TabIndex" type="System.Int32, mscorlib">
     <value>16</value>
@@ -886,22 +895,52 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;m_chkBoxCreateMediaOverlays.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="m_chkBoxCreateCsvForCues.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="m_chkBoxCreateCsvForCues.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="m_chkBoxCreateCsvForCues.Location" type="System.Drawing.Point, System.Drawing">
+    <value>22, 457</value>
+  </data>
+  <data name="m_chkBoxCreateCsvForCues.Size" type="System.Drawing.Size, System.Drawing">
+    <value>390, 24</value>
+  </data>
+  <data name="m_chkBoxCreateCsvForCues.TabIndex" type="System.Int32, mscorlib">
+    <value>19</value>
+  </data>
+  <data name="m_chkBoxCreateCsvForCues.Text" xml:space="preserve">
+    <value>Create CSV containing information of cue points</value>
+  </data>
+  <data name="&gt;&gt;m_chkBoxCreateCsvForCues.Name" xml:space="preserve">
+    <value>m_chkBoxCreateCsvForCues</value>
+  </data>
+  <data name="&gt;&gt;m_chkBoxCreateCsvForCues.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_chkBoxCreateCsvForCues.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;m_chkBoxCreateCsvForCues.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
   <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
-    <value>8, 16</value>
+    <value>9, 20</value>
   </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>574, 409</value>
+    <value>646, 557</value>
   </data>
   <data name="$this.Font" type="System.Drawing.Font, System.Drawing">
     <value>Microsoft Sans Serif, 9.75pt</value>
   </data>
   <data name="$this.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 4, 4, 4</value>
+    <value>4, 5, 4, 5</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
     <value>Select export directory</value>

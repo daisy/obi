@@ -38,12 +38,13 @@ namespace Obi.ImportExport
         private int m_MaxDepth = 0 ;
         private List<string> m_FilesList = null;
         private bool m_IsRemoveAccentsChecked;
+        private bool m_CreateCSVForCues;
         //private bool m_EncodeToMP3;
         //private int m_BitRate_Mp3;
 
         public DAISY202Export(ObiPresentation presentation, string exportDirectory, bool encodeToMp3, double mp3BitRate, 
             AudioLib.SampleRate sampleRate, bool stereo,
-            int audioFileSectionLevel, bool isRemoveAccentsChecked)
+            int audioFileSectionLevel, bool isRemoveAccentsChecked, bool createCSVForCues = false)
             :
             base(presentation, exportDirectory, null, encodeToMp3, mp3BitRate,
             sampleRate, stereo,
@@ -56,7 +57,9 @@ namespace Obi.ImportExport
             m_NextSectionPageAdjustmentDictionary = new Dictionary<SectionNode, EmptyNode>();
             m_AudioFileSectionLevel = audioFileSectionLevel;
             m_FilesList = new List<string>();
+            m_FilesList_SmilAudio = new List<string>();
             m_IsRemoveAccentsChecked = isRemoveAccentsChecked;
+            m_CreateCSVForCues = createCSVForCues;
                 //m_EncodeToMP3 = encodeToMP3;
 
             }
@@ -224,7 +227,24 @@ namespace Obi.ImportExport
 
             WriteXmlDocumentToFile ( smilDocument,
                 Path.Combine ( m_ExportDirectory, "master.smil" ) );
+            if (m_CreateCSVForCues)
+            {
+                WriteCuePointsToCSV();
             }
+
+            }
+
+        private void WriteCuePointsToCSV()
+        {
+            StringBuilder csvContent = new StringBuilder();
+            csvContent.AppendLine("File Name");
+            foreach (var item in m_FilesList_SmilAudio)
+            {
+                csvContent.AppendLine(item);
+            }
+            string csvPath = m_OutputDirectory + "\\CuePoints.csv";
+            File.AppendAllText(csvPath, csvContent.ToString());
+        }
 
         private void CreateElementsForSection ( XmlDocument nccDocument, SectionNode section, int sectionIndex )
             {
@@ -427,7 +447,11 @@ namespace Obi.ImportExport
                                 GetNPTSmiltime(new TimeSpan(externalMedia.ClipEnd.AsTimeSpanTicks)));
                             CreateAppendXmlAttribute(smilDocument, audioNode, "id", "aud" + IncrementID);
                             sectionDuration.Add(externalMedia.Duration);
-                            if (!m_FilesList.Contains(relativeSRC)) m_FilesList.Add(relativeSRC);
+                            if (!m_FilesList.Contains(relativeSRC))
+                            {
+                                m_FilesList.Add(relativeSRC);
+                                m_FilesList_SmilAudio.Add(relativeSRC);
+                            }
 
                     // copy audio element if phrase has  heading role and is not first phrase
                     if (phrase.Role_ == EmptyNode.Role.Heading && !isFirstPhrase)
