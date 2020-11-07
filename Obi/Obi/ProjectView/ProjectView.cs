@@ -6268,14 +6268,19 @@ for (int j = 0;
 
         public void AudioProcessing(AudioLib.WavAudioProcessing.AudioProcessingKind audioProcessingNaudioKind, bool IsAudioProcessingOnMultiPhrases = false, List<SectionNode> sectionsSelectedList =  null)
         {
-            ObiNode nodeToSelect = null;
+             ObiNode nodeToSelect = null;
             if (IsAudioProcessingOnMultiPhrases && mContentView.BeginSpecialNode != null && mContentView.EndSpecialNode != null)
             {
                 nodeToSelect = mContentView.BeginSpecialNode;
             }
-            else
+            else if(nodeToSelect != null)
             {
                 nodeToSelect = Selection.Node;
+            }
+            else if (nodeToSelect == null && (audioProcessingNaudioKind == WavAudioProcessing.AudioProcessingKind.Normalize || audioProcessingNaudioKind == WavAudioProcessing.AudioProcessingKind.NoiseReduction))
+            {
+                nodeToSelect = this.Presentation.FirstSection;
+                Selection = new NodeSelection(nodeToSelect, mTOCView);
             }
 
             double durationOfSelection = DurationOfNodeSelected(nodeToSelect);
@@ -6527,6 +6532,7 @@ for (int j = 0;
                 {
                     Selection = new NodeSelection(Selection.Node.ParentAs<SectionNode>(), mTOCView);
                 }
+
                 ObiNode tempNodeSelected = Selection.Node;
 
                 string tempDirectoryName = "AudioProcessing";
@@ -6618,6 +6624,7 @@ for (int j = 0;
 
                         }
                     }
+                    ObiForm.Save();
                 }
 
                 if (nodeToSelect != null && nodeToSelect is SectionNode && !skip)
