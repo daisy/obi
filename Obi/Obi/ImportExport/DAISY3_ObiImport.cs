@@ -34,7 +34,7 @@ namespace Obi.ImportExport
         
 
         public DAISY3_ObiImport(Session session, Settings settings, string bookfile, string outDir, bool skipACM, SampleRate audioProjectSampleRate, bool stereo)
-            : base(bookfile, outDir, skipACM, audioProjectSampleRate, stereo, false, true)
+            : base(bookfile, false, outDir, skipACM, audioProjectSampleRate, stereo, false, true)
         {
             m_Session = session;
             m_Settings = settings;

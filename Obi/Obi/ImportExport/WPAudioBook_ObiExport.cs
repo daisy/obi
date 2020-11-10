@@ -34,7 +34,7 @@ namespace Obi.ImportExport
             SampleRate sampleRate, bool stereo, bool skipACM, int audioFileSectionLevel)
             : base(presentation, exportDirectory, navListElementNamesList, encodeToMp3, mp3BitRate,
             sampleRate, stereo,
-            skipACM, false, true)
+            skipACM, false, true, "")
         {
             m_Filename_Content = null;
             m_AudioFileSectionLevel = audioFileSectionLevel;

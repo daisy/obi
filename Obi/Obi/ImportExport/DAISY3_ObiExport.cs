@@ -23,12 +23,14 @@ namespace Obi.ImportExport
         protected Dictionary<urakawa.core.TreeNode, string> m_Skippable_UpstreamIdMap = new Dictionary<TreeNode, string>();
         protected Dictionary<XmlDocument, string> m_AnchorSmilDoc_SmileFileNameMap = new Dictionary<XmlDocument, string>();
         protected bool m_CreateCSVForCues;
+              
+        private List<string> m_ToDoPhraseTimeings = new List<string>();
 
         public DAISY3_ObiExport(ObiPresentation presentation, string exportDirectory, List<string> navListElementNamesList, bool encodeToMp3,double mp3BitRate ,
             SampleRate sampleRate, bool stereo, bool skipACM, int audioFileSectionLevel, bool createCSVForCues = false)
             : base(presentation, exportDirectory, navListElementNamesList, encodeToMp3, mp3BitRate,
             sampleRate, stereo,
-            skipACM, false, true)
+            skipACM, false, true, "")
         {
             m_Filename_Content = null;
             m_AudioFileSectionLevel = audioFileSectionLevel;
@@ -514,6 +516,26 @@ if (urakawa.data.DataProviderFactory.CSS_EXTENSION.Equals(ext, StringComparison.
 
                     // add to duration 
                     durationOfCurrentSmil.Add(externalAudio.Duration);
+
+
+                    // If ToDo phrase, then preserve values for CSV file
+                    if (n is EmptyNode && ((EmptyNode)n).TODO)
+                    {
+                        SectionNode s = ((EmptyNode)n).ParentAs<SectionNode>();
+                        double timeToToDoPhrase = 0;
+                        for (int i = 0; i < s.PhraseChildCount; i++)
+                        {
+                            if (s.PhraseChild(i) == n) break;
+                            timeToToDoPhrase += s.PhraseChild(i).Duration;
+                        }
+                        string strToDoInfo = audioFileName + " : " + timeToToDoPhrase.ToString();
+                        if (!m_ToDoPhraseTimeings.Contains(strToDoInfo))
+                        {
+                            m_ToDoPhraseTimeings.Add(strToDoInfo);
+                            Console.WriteLine(strToDoInfo);
+                        }
+                    }
+
                 }
 
                 // if node n is pagenum, add to pageList
