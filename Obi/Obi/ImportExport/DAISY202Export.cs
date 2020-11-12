@@ -39,6 +39,7 @@ namespace Obi.ImportExport
         private List<string> m_FilesList = null;
         private bool m_IsRemoveAccentsChecked;
         private bool m_CreateCSVForCues;
+        private List<string> m_ToDoPhraseTimeings = new List<string>();
         //private bool m_EncodeToMP3;
         //private int m_BitRate_Mp3;
 
@@ -237,12 +238,13 @@ namespace Obi.ImportExport
         private void WriteCuePointsToCSV()
         {
             StringBuilder csvContent = new StringBuilder();
-            csvContent.AppendLine("File Name");
-            foreach (var item in m_FilesList_SmilAudio)
+            csvContent.AppendLine(Localizer.Message("CueCsvColumnHeading"));
+            csvContent.AppendLine("");
+            foreach (var item in m_ToDoPhraseTimeings)
             {
                 csvContent.AppendLine(item);
             }
-            string csvPath = m_OutputDirectory + "\\CuePoints.csv";
+            string csvPath = m_OutputDirectory + Localizer.Message("CueCsvName");
             File.AppendAllText(csvPath, csvContent.ToString());
         }
 
@@ -461,6 +463,26 @@ namespace Obi.ImportExport
                         seqNode_HeadingAudioParent.PrependChild ( audioNodeCopy );
                         sectionDuration.Add ( externalMedia.Duration );
                         }
+                    // If ToDo phrase, then preserve values for CSV file
+                    string audioFileName = relativeSRC;
+                    if (phrase is EmptyNode && ((EmptyNode)phrase).TODO)
+                    {
+                        SectionNode s = ((EmptyNode)phrase).ParentAs<SectionNode>();
+                        double timeToToDoPhrase = 0;
+                        for (int j = 0; i < s.PhraseChildCount; j++)
+                        {
+                            if (s.PhraseChild(j) == phrase) break;
+                            timeToToDoPhrase += s.PhraseChild(j).Duration;
+                        }
+                        timeToToDoPhrase += ((EmptyNode)phrase).TODOCursorPosition;
+                        timeToToDoPhrase = timeToToDoPhrase / 1000;
+                        string strToDoInfo = audioFileName + " , " + timeToToDoPhrase.ToString();
+                        if (!m_ToDoPhraseTimeings.Contains(strToDoInfo))
+                        {
+                            m_ToDoPhraseTimeings.Add(strToDoInfo);
+                            Console.WriteLine(strToDoInfo);
+                        }
+                    }
                 }//Check for audio containing phrase ends
                     isFirstPhrase = false;
 

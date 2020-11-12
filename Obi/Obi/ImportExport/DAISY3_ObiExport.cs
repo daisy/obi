@@ -22,8 +22,8 @@ namespace Obi.ImportExport
         protected Dictionary<XmlNode, urakawa.core.TreeNode> m_AnchorXmlNodeToReferedNodeMap = new Dictionary<XmlNode, urakawa.core.TreeNode>();
         protected Dictionary<urakawa.core.TreeNode, string> m_Skippable_UpstreamIdMap = new Dictionary<TreeNode, string>();
         protected Dictionary<XmlDocument, string> m_AnchorSmilDoc_SmileFileNameMap = new Dictionary<XmlDocument, string>();
-        protected bool m_CreateCSVForCues;
-              
+       
+        private bool m_CreateCSVForCues;              
         private List<string> m_ToDoPhraseTimeings = new List<string>();
 
         public DAISY3_ObiExport(ObiPresentation presentation, string exportDirectory, List<string> navListElementNamesList, bool encodeToMp3,double mp3BitRate ,
@@ -528,7 +528,9 @@ if (urakawa.data.DataProviderFactory.CSS_EXTENSION.Equals(ext, StringComparison.
                             if (s.PhraseChild(i) == n) break;
                             timeToToDoPhrase += s.PhraseChild(i).Duration;
                         }
-                        string strToDoInfo = audioFileName + " : " + timeToToDoPhrase.ToString();
+                        timeToToDoPhrase += ((EmptyNode)n).TODOCursorPosition;
+                        timeToToDoPhrase = timeToToDoPhrase / 1000;
+                        string strToDoInfo = audioFileName + " , " + timeToToDoPhrase.ToString();
                         if (!m_ToDoPhraseTimeings.Contains(strToDoInfo))
                         {
                             m_ToDoPhraseTimeings.Add(strToDoInfo);
@@ -948,12 +950,13 @@ if (urakawa.data.DataProviderFactory.CSS_EXTENSION.Equals(ext, StringComparison.
         private void WriteCuePointsToCSV()
         {            
             StringBuilder csvContent = new StringBuilder();
-            csvContent.AppendLine("File Name");
-            foreach (var item in m_FilesList_SmilAudio)
+            csvContent.AppendLine(Localizer.Message("CueCsvColumnHeading"));
+            csvContent.AppendLine("");
+            foreach (var item in m_ToDoPhraseTimeings)
             {
                 csvContent.AppendLine(item);
             }
-            string csvPath = m_OutputDirectory + "\\CuePoints.csv";
+            string csvPath = m_OutputDirectory + Localizer.Message("CueCsvName");
             File.AppendAllText(csvPath, csvContent.ToString());
         }
         public bool IsSkippable(EmptyNode node)

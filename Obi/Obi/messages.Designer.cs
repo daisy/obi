@@ -1369,6 +1369,24 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to File Name,Cue Point.
+        /// </summary>
+        internal static string CueCsvColumnHeading {
+            get {
+                return ResourceManager.GetString("CueCsvColumnHeading", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to //Cue Points.csv.
+        /// </summary>
+        internal static string CueCsvName {
+            get {
+                return ResourceManager.GetString("CueCsvName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The project has the following custom metadata. It cannot be included in DAISY 2.02 export..
         /// </summary>
         internal static string CustomMetadataD202_NotIncluded {

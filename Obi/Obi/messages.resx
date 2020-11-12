@@ -3212,5 +3212,11 @@ You can do it later also from the project tab of preferences dialog.</value>
   <data name="NoiseReductionCancelled" xml:space="preserve">
     <value>Operation is cancelled in between so Noise Reduction is completed till section {0}</value>
   </data>
+  <data name="CueCsvColumnHeading" xml:space="preserve">
+    <value>File Name,Cue Point</value>
+  </data>
+  <data name="CueCsvName" xml:space="preserve">
+    <value>//Cue Points.csv</value>
+  </data>
   
 </root>
