@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using AudioLib;
+using System.IO;
 
 namespace Obi.Dialogs
 {
@@ -16,6 +17,7 @@ namespace Obi.Dialogs
         private static Settings m_Settings;
         private ProjectView.ProjectView m_ProjectView;
         private ObiForm m_Form;
+        private string m_ProjectDirectoryPath;
         int m_PredefinedProfilesCount;
         private const int m_BaseScreenResolution = 768; //@ScreenResolution
         
@@ -47,7 +49,9 @@ namespace Obi.Dialogs
 
 
             m_tb_ObiConfigInstructions.Text = Localizer.Message("ConfigureObi");
-
+            string path = "C:\\Obi Projects";
+            m_ProjectDirectoryPath = path;
+            m_DirectoryTextbox.Text = m_ProjectDirectoryPath;
         }
 
         private void InitializeInputDevices()
@@ -333,6 +337,23 @@ namespace Obi.Dialogs
             m_Settings.SettingsName = m_cb_SelectProfile.SelectedItem.ToString();
             LoadProfile();
             m_Settings.IsObiConfigurationDone = true;
+            string drive = Path.GetPathRoot(m_DirectoryTextbox.Text);
+            if (Directory.Exists(drive))
+            {
+                if (!Directory.Exists(m_DirectoryTextbox.Text))
+                    Directory.CreateDirectory(m_DirectoryTextbox.Text);
+                m_Settings.Project_DefaultPath = m_DirectoryTextbox.Text;
+            }
+
+        }
+
+        private void m_BrowseButton_Click(object sender, EventArgs e)
+        {
+            FolderBrowserDialog dialog = new FolderBrowserDialog();
+            dialog.SelectedPath = m_ProjectDirectoryPath;
+            dialog.Description = Localizer.Message(Localizer.Message("default_directory_browser"));
+            if (dialog.ShowDialog() == DialogResult.OK) m_DirectoryTextbox.Text = dialog.SelectedPath;
+            m_Settings.Project_DefaultPath = m_DirectoryTextbox.Text;
         }
 
       
