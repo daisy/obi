@@ -6272,8 +6272,8 @@ for (int j = 0;
             if (IsAudioProcessingOnMultiPhrases && mContentView.BeginSpecialNode != null && mContentView.EndSpecialNode != null)
             {
                 nodeToSelect = mContentView.BeginSpecialNode;
-            }
-            else if(nodeToSelect != null)
+            }           
+            else if(Selection != null)
             {
                 nodeToSelect = Selection.Node;
             }
@@ -6282,7 +6282,6 @@ for (int j = 0;
                 nodeToSelect = this.Presentation.FirstSection;
                 Selection = new NodeSelection(nodeToSelect, mTOCView);
             }
-
             double durationOfSelection = DurationOfNodeSelected(nodeToSelect);
             if (durationOfSelection == 0)
             {
@@ -6435,7 +6434,6 @@ for (int j = 0;
                                 m_IsAudioProcessingChecked = false;
 
                             }
-
                             if (nodeToSelect is SectionNode)
                             {
                                 if (audioProcessingKind == AudioLib.WavAudioProcessing.AudioProcessingKind.Normalize)
