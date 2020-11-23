@@ -151,6 +151,15 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Applying operation on whole book may take upto {0}. Do you want to continue ?.
+        /// </summary>
+        internal static string ApplyingOperationOnWholeBook {
+            get {
+                return ResourceManager.GetString("ApplyingOperationOnWholeBook", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to assign role.
         /// </summary>
         internal static string assign_role {
