@@ -2090,8 +2090,26 @@ namespace Obi.ProjectView
             {
                 SectionNode section = mView.GetSelectedPhraseSection;
                 if ( mView.ObiForm.Settings.Audio_RecordInFirstEmptyPhraseWithRecordSectionCommand
-                    && section.PhraseChildCount > 0 && !(section.PhraseChild(0) is PhraseNode) && section.PhraseChild(0).Role_ == EmptyNode.Role.Plain)
-            {
+                    && section.PhraseChildCount > 0 && !(section.PhraseChild(0) is PhraseNode))
+            {   
+                if (section.PhraseChild(0).Role_ == EmptyNode.Role.Page)
+                {
+                    bool hasEmptyPages = true;
+                    for (int i = 0; i < section.PhraseChildCount; i++)
+                    {
+                        if (section.PhraseChild(i) is PhraseNode)
+                        {
+                            hasEmptyPages = false;
+                        }
+                    }
+                    if (hasEmptyPages)
+                    {
+                            EmptyNode newEmptyNode = mView.Presentation.TreeNodeFactory.Create<EmptyNode>();
+                            mView.Presentation.Do(new Obi.Commands.Node.AddEmptyNode(mView, newEmptyNode, section, 0));
+                            mView.SelectFromTransportBar(section.PhraseChild(0), null);
+                    }
+                }
+                    else if   (section.PhraseChild(0).Role_ == EmptyNode.Role.Plain)
                 mView.SelectFromTransportBar(mView.GetSelectedPhraseSection.PhraseChild(0), null);
             }
             }
