@@ -12,6 +12,7 @@ namespace Obi.Dialogs
     {
         private bool m_IsAudioProcessingParameterInSeconds = false;
         private AudioLib.WavAudioProcessing.AudioProcessingKind m_AudioProcessingType;
+        private ProjectView.ProjectView m_ProjectView;
         public AudioProcessingNewDialog(Settings settings)
         {
             InitializeComponent();
@@ -27,11 +28,13 @@ namespace Obi.Dialogs
             }
 
         }
-        public AudioProcessingNewDialog(AudioLib.WavAudioProcessing.AudioProcessingKind typeOfAudioProcessing, Settings settings, double durationOfFadeInOut)
+        public AudioProcessingNewDialog(AudioLib.WavAudioProcessing.AudioProcessingKind typeOfAudioProcessing, ProjectView.ProjectView projectView, Settings settings, double durationOfFadeInOut)
         {
             InitializeComponent();
 
             m_AudioProcessingType = typeOfAudioProcessing;
+            m_ProjectView = projectView;
+
             m_txt_info.Text = Localizer.Message("AudioProcessing_InfoText");
             if (AudioLib.WavAudioProcessing.AudioProcessingKind.FadeIn == typeOfAudioProcessing || AudioLib.WavAudioProcessing.AudioProcessingKind.FadeOut == typeOfAudioProcessing)
             {
@@ -168,6 +171,22 @@ namespace Obi.Dialogs
 
         private void m_btn_OK_Click(object sender, EventArgs e)
         {
+            List<SectionNode> sectionsList = ((ObiRootNode)m_ProjectView.Presentation.RootNode).GetListOfAllSections();
+            double totalDuration = 0;
+            foreach (SectionNode section in sectionsList)
+            {
+                totalDuration += section.Duration;
+            }
+            totalDuration = totalDuration / 2;
+            string durationOfProject = Program.FormatDuration_Long(totalDuration);
+            if (m_ApplyOnWholeBook.Checked)
+            {
+                DialogResult result = MessageBox.Show(string.Format(Localizer.Message("ApplyingOperationOnWholeBook"), durationOfProject), Localizer.Message("Caption_Information"), MessageBoxButtons.YesNo);
+             if (result == System.Windows.Forms.DialogResult.No)
+             {
+                 return;
+             }
+            }
             DialogResult = DialogResult.OK;
             Close();
         }

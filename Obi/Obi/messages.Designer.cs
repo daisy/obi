@@ -151,6 +151,15 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Applying operation on whole book may take upto {0}. Do you want to continue ?.
+        /// </summary>
+        internal static string ApplyingOperationOnWholeBook {
+            get {
+                return ResourceManager.GetString("ApplyingOperationOnWholeBook", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to assign role.
         /// </summary>
         internal static string assign_role {
@@ -1365,6 +1374,24 @@ namespace Obi {
         internal static string crop_audio {
             get {
                 return ResourceManager.GetString("crop_audio", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to File Name,Cue Point.
+        /// </summary>
+        internal static string CueCsvColumnHeading {
+            get {
+                return ResourceManager.GetString("CueCsvColumnHeading", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to //Cue Points.csv.
+        /// </summary>
+        internal static string CueCsvName {
+            get {
+                return ResourceManager.GetString("CueCsvName", resourceCulture);
             }
         }
         

@@ -6272,8 +6272,8 @@ for (int j = 0;
             if (IsAudioProcessingOnMultiPhrases && mContentView.BeginSpecialNode != null && mContentView.EndSpecialNode != null)
             {
                 nodeToSelect = mContentView.BeginSpecialNode;
-            }
-            else if(nodeToSelect != null)
+            }           
+            else if(Selection != null)
             {
                 nodeToSelect = Selection.Node;
             }
@@ -6282,7 +6282,6 @@ for (int j = 0;
                 nodeToSelect = this.Presentation.FirstSection;
                 Selection = new NodeSelection(nodeToSelect, mTOCView);
             }
-
             double durationOfSelection = DurationOfNodeSelected(nodeToSelect);
             if (durationOfSelection == 0)
             {
@@ -6299,17 +6298,17 @@ for (int j = 0;
             if (audioProcessingKind == WavAudioProcessing.AudioProcessingKind.Amplify || audioProcessingKind == WavAudioProcessing.AudioProcessingKind.Normalize
                  || audioProcessingKind == WavAudioProcessing.AudioProcessingKind.SoundTouch)
             {
-                dialog = new Obi.Dialogs.AudioProcessingNewDialog(audioProcessingNaudioKind, ObiForm.Settings, 0); //@fontconfig
+                dialog = new Obi.Dialogs.AudioProcessingNewDialog(audioProcessingNaudioKind,this, ObiForm.Settings, 0); //@fontconfig
                 if (audioProcessingKind == WavAudioProcessing.AudioProcessingKind.Normalize && sectionsSelectedList != null || IsAudioProcessingOnMultiPhrases)
                     dialog.ShowApplyWholeBookCheckbox = false;
             }
             else if (audioProcessingKind == WavAudioProcessing.AudioProcessingKind.FadeIn || audioProcessingKind == WavAudioProcessing.AudioProcessingKind.FadeOut)
             {
-                dialog = new Obi.Dialogs.AudioProcessingNewDialog(audioProcessingNaudioKind, ObiForm.Settings, nodeToSelect.Duration);
+                dialog = new Obi.Dialogs.AudioProcessingNewDialog(audioProcessingNaudioKind,this, ObiForm.Settings, nodeToSelect.Duration);
             }
             else if (audioProcessingKind == WavAudioProcessing.AudioProcessingKind.NoiseReduction)
             {
-                dialogNoiseReduction = new Dialogs.AudioProcessingNoiseReduction();
+                dialogNoiseReduction = new Dialogs.AudioProcessingNoiseReduction(this);
                 if (sectionsSelectedList != null || IsAudioProcessingOnMultiPhrases)
                 dialogNoiseReduction.ShowApplyWholeBookCheckbox = false;
             }
