@@ -2108,6 +2108,7 @@ namespace Obi.ProjectView
                             mView.Presentation.Do(new Obi.Commands.Node.AddEmptyNode(mView, newEmptyNode, section, 0));
                             mView.SelectFromTransportBar(section.PhraseChild(0), null);
                     }
+
                 }
                     else if   (section.PhraseChild(0).Role_ == EmptyNode.Role.Plain)
                 mView.SelectFromTransportBar(mView.GetSelectedPhraseSection.PhraseChild(0), null);
