@@ -98,6 +98,7 @@ namespace Obi.Dialogs
                 m_CheckBoxListView.Items.Add(Localizer.Message("Audio_PreventSplittingPages")); 
                 m_CheckBoxListView.Items.Add(Localizer.Message("Audio_SelectLastPhrasePlayed"));  
                 m_CheckBoxListView.Items.Add(Localizer.Message("Audio_RecordInFirstEmptyPhraseWithRecordSectionCommand"));
+                m_CheckBoxListView.Items.Add(Localizer.Message("Audio_RecordAtStartingOfSectionWithRecordSectionCommand"));
                 m_CheckBoxListView.Items.Add(Localizer.Message("Audio_MergeFirstTwoPhrasesAfterPhraseDetectionWhileRecording")); 
                 m_CheckBoxListView.Items.Add(Localizer.Message("Audio_AutoPlayAfterRecordingStops")); 
                 m_CheckBoxListView.Items.Add(Localizer.Message("Audio_RevertOverwriteBehaviourForRecordOnSelection"));
@@ -125,17 +126,19 @@ namespace Obi.Dialogs
                 m_CheckBoxListView.Items[9].Checked = m_Settings.Audio_SelectLastPhrasePlayed; 
                 m_CheckBoxListView.Items[9].ToolTipText = Localizer.Message("Audio_SelectLastPhrasePlayed"); 
                 m_CheckBoxListView.Items[10].Checked = m_Settings.Audio_RecordInFirstEmptyPhraseWithRecordSectionCommand; 
-                m_CheckBoxListView.Items[10].ToolTipText = Localizer.Message("Audio_RecordInFirstEmptyPhraseWithRecordSectionCommand"); 
-                m_CheckBoxListView.Items[11].Checked = m_Settings.Audio_MergeFirstTwoPhrasesAfterPhraseDetectionWhileRecording; 
-                m_CheckBoxListView.Items[11].ToolTipText = Localizer.Message("Audio_MergeFirstTwoPhrasesAfterPhraseDetectionWhileRecording"); 
-                m_CheckBoxListView.Items[12].Checked = m_Settings.Audio_AutoPlayAfterRecordingStops; 
-                m_CheckBoxListView.Items[12].ToolTipText = Localizer.Message("Audio_AutoPlayAfterRecordingStops"); 
-                m_CheckBoxListView.Items[13].Checked = m_Settings.Audio_RevertOverwriteBehaviourForRecordOnSelection; 
-                m_CheckBoxListView.Items[13].ToolTipText = Localizer.Message("Audio_RevertOverwriteBehaviourForRecordOnSelection");
-                m_CheckBoxListView.Items[14].Checked = m_Settings.Audio_RemoveAccentsFromDaisy2ExportFileNames;
-                m_CheckBoxListView.Items[14].ToolTipText = Localizer.Message("Audio_RemoveAccentsFromDaisy2ExportFileNames");
-                m_CheckBoxListView.Items[15].Checked = m_Settings.Audio_RecordUsingSingleKeyFromTOC;
-                m_CheckBoxListView.Items[15].ToolTipText = Localizer.Message("Audio_RecordUsingSingleKeyFromTOC");
+                m_CheckBoxListView.Items[10].ToolTipText = Localizer.Message("Audio_RecordInFirstEmptyPhraseWithRecordSectionCommand");
+                m_CheckBoxListView.Items[11].Checked = m_Settings.Audio_RecordAtStartingOfSectionWithRecordSectionCommand;
+                m_CheckBoxListView.Items[11].ToolTipText = Localizer.Message("Audio_RecordAtStartingOfSectionWithRecordSectionCommand"); 
+                m_CheckBoxListView.Items[12].Checked = m_Settings.Audio_MergeFirstTwoPhrasesAfterPhraseDetectionWhileRecording; 
+                m_CheckBoxListView.Items[12].ToolTipText = Localizer.Message("Audio_MergeFirstTwoPhrasesAfterPhraseDetectionWhileRecording"); 
+                m_CheckBoxListView.Items[13].Checked = m_Settings.Audio_AutoPlayAfterRecordingStops; 
+                m_CheckBoxListView.Items[13].ToolTipText = Localizer.Message("Audio_AutoPlayAfterRecordingStops"); 
+                m_CheckBoxListView.Items[14].Checked = m_Settings.Audio_RevertOverwriteBehaviourForRecordOnSelection; 
+                m_CheckBoxListView.Items[14].ToolTipText = Localizer.Message("Audio_RevertOverwriteBehaviourForRecordOnSelection");
+                m_CheckBoxListView.Items[15].Checked = m_Settings.Audio_RemoveAccentsFromDaisy2ExportFileNames;
+                m_CheckBoxListView.Items[15].ToolTipText = Localizer.Message("Audio_RemoveAccentsFromDaisy2ExportFileNames");
+                m_CheckBoxListView.Items[16].Checked = m_Settings.Audio_RecordUsingSingleKeyFromTOC;
+                m_CheckBoxListView.Items[16].ToolTipText = Localizer.Message("Audio_RecordUsingSingleKeyFromTOC");
 
             }
 
@@ -172,12 +175,13 @@ namespace Obi.Dialogs
                 m_Settings.Audio_DisableCreationOfNewHeadingsAndPagesWhileRecording = m_CheckBoxListView.Items[7].Checked; 
                 m_Settings.Audio_PreventSplittingPages = m_CheckBoxListView.Items[8].Checked; 
                 m_Settings.Audio_SelectLastPhrasePlayed = m_CheckBoxListView.Items[9].Checked; 
-                m_Settings.Audio_RecordInFirstEmptyPhraseWithRecordSectionCommand = m_CheckBoxListView.Items[10].Checked; 
-                m_Settings.Audio_MergeFirstTwoPhrasesAfterPhraseDetectionWhileRecording = m_CheckBoxListView.Items[11].Checked; 
-                m_Settings.Audio_AutoPlayAfterRecordingStops = m_CheckBoxListView.Items[12].Checked; 
-                m_Settings.Audio_RevertOverwriteBehaviourForRecordOnSelection = m_CheckBoxListView.Items[13].Checked;
-                m_Settings.Audio_RemoveAccentsFromDaisy2ExportFileNames = m_CheckBoxListView.Items[14].Checked;
-                m_Settings.Audio_RecordUsingSingleKeyFromTOC = m_CheckBoxListView.Items[15].Checked;
+                m_Settings.Audio_RecordInFirstEmptyPhraseWithRecordSectionCommand = m_CheckBoxListView.Items[10].Checked;
+                m_Settings.Audio_RecordAtStartingOfSectionWithRecordSectionCommand = m_CheckBoxListView.Items[11].Checked; 
+                m_Settings.Audio_MergeFirstTwoPhrasesAfterPhraseDetectionWhileRecording = m_CheckBoxListView.Items[12].Checked; 
+                m_Settings.Audio_AutoPlayAfterRecordingStops = m_CheckBoxListView.Items[13].Checked; 
+                m_Settings.Audio_RevertOverwriteBehaviourForRecordOnSelection = m_CheckBoxListView.Items[14].Checked;
+                m_Settings.Audio_RemoveAccentsFromDaisy2ExportFileNames = m_CheckBoxListView.Items[15].Checked;
+                m_Settings.Audio_RecordUsingSingleKeyFromTOC = m_CheckBoxListView.Items[16].Checked;
 
             }
         }

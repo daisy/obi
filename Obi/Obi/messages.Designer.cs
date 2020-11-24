@@ -430,6 +430,15 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Record at the starting of section having only empty pages with record section command.
+        /// </summary>
+        internal static string Audio_RecordAtStartingOfSectionWithRecordSectionCommand {
+            get {
+                return ResourceManager.GetString("Audio_RecordAtStartingOfSectionWithRecordSectionCommand", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Record in first empty phrase with record section command.
         /// </summary>
         internal static string Audio_RecordInFirstEmptyPhraseWithRecordSectionCommand {

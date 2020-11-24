@@ -3221,5 +3221,8 @@ You can do it later also from the project tab of preferences dialog.</value>
   <data name="ApplyingOperationOnWholeBook" xml:space="preserve">
     <value>Applying operation on whole book may take upto {0}. Do you want to continue ?</value>
   </data>
+  <data name="Audio_RecordAtStartingOfSectionWithRecordSectionCommand" xml:space="preserve">
+    <value>Record at the starting of section having only empty pages with record section command</value>
+  </data>
   
 </root>

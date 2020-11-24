@@ -295,6 +295,8 @@ namespace Obi
         public bool Project_DisplayWarningsForEditOperations;
         [OptionalField]
         public bool Audio_RecordInFirstEmptyPhraseWithRecordSectionCommand; // if first phrase of section is empty phrase then record section will record on it
+        [OptionalField]
+        public bool Audio_RecordAtStartingOfSectionWithRecordSectionCommand; // if section has only empty page phrases then record at the starting of section
 
         // for Obi 4.0
         [OptionalField]

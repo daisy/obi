@@ -84,6 +84,7 @@ namespace Obi
                newSettings.Audio_ShowSelectionTimeInTransportBar = this.Audio_ShowSelectionTimeInTransportBar;
                newSettings.PlayOnNavigate = this.PlayOnNavigate;
                newSettings.Audio_RecordInFirstEmptyPhraseWithRecordSectionCommand = this.Audio_RecordInFirstEmptyPhraseWithRecordSectionCommand;
+               newSettings.Audio_RecordAtStartingOfSectionWithRecordSectionCommand = this.Audio_RecordAtStartingOfSectionWithRecordSectionCommand;
                newSettings.Audio_MergeFirstTwoPhrasesAfterPhraseDetectionWhileRecording= this.Audio_MergeFirstTwoPhrasesAfterPhraseDetectionWhileRecording;
                newSettings.Audio_AutoPlayAfterRecordingStops = this.Audio_AutoPlayAfterRecordingStops;
                newSettings.Audio_RevertOverwriteBehaviourForRecordOnSelection = this.Audio_RevertOverwriteBehaviourForRecordOnSelection;
@@ -476,6 +477,7 @@ namespace Obi
                && this.PlayOnNavigate == settings.PlayOnNavigate
                && this.Audio_ShowSelectionTimeInTransportBar == settings.Audio_ShowSelectionTimeInTransportBar
                && this.Audio_RecordInFirstEmptyPhraseWithRecordSectionCommand == settings.Audio_RecordInFirstEmptyPhraseWithRecordSectionCommand
+               && this.Audio_RecordAtStartingOfSectionWithRecordSectionCommand == settings.Audio_RecordAtStartingOfSectionWithRecordSectionCommand
                && this.Audio_MergeFirstTwoPhrasesAfterPhraseDetectionWhileRecording == settings.Audio_MergeFirstTwoPhrasesAfterPhraseDetectionWhileRecording
                && this.Audio_AutoPlayAfterRecordingStops== settings.Audio_AutoPlayAfterRecordingStops
                && this.Audio_RevertOverwriteBehaviourForRecordOnSelection == settings.Audio_RevertOverwriteBehaviourForRecordOnSelection
