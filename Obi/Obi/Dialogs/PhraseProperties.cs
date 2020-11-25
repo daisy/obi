@@ -111,45 +111,68 @@ namespace Obi.Dialogs
             m_txtTimeLength.Text = Program.FormatDuration_Long(mNode.Duration);
             // SectionNode section = mView.Selection.Node.ParentAs<SectionNode>();
 
-            if (mView != null && mView.Selection != null && mView.Selection.Node is PhraseNode)
+            if (mView != null && mView.Selection != null)
             {
-                PhraseNode phraseNode = (PhraseNode)mView.Selection.Node;
-
-                if (mView.Selection is AudioSelection)
+              
+                if (mView.Selection.Node is PhraseNode)
                 {
-                    if (((AudioSelection)mView.Selection).AudioRange != null && ((AudioSelection)mView.Selection).AudioRange.HasCursor)
+                    PhraseNode phraseNode = (PhraseNode)mView.Selection.Node;
+
+                    if (mView.Selection is AudioSelection)
                     {
-                        if (!m_IsPause)
+                        if (((AudioSelection)mView.Selection).AudioRange != null && ((AudioSelection)mView.Selection).AudioRange.HasCursor)
                         {
-                            m_TotalCursorTime += ((AudioSelection)mView.Selection).AudioRange.CursorTime;
+                            if (!m_IsPause)
+                            {
+                                m_TotalCursorTime += ((AudioSelection)mView.Selection).AudioRange.CursorTime;
+                            }
+                        }
+                    }
+
+                    if (m_IsPause)
+                    {
+                        m_TotalCursorTime += mView.TransportBar.CurrentPlaylist.CurrentTimeInAsset;
+                        m_IsPause = false;
+                    }
+
+                    if (phraseNode.PrecedingNode != null && phraseNode.Parent == phraseNode.PrecedingNode.Parent)
+                    {
+                        if (phraseNode.PrecedingNode is PhraseNode)
+                            CalculateCursorTime((PhraseNode)phraseNode.PrecedingNode);
+                        else if (phraseNode.PrecedingNode is EmptyNode)
+                        {
+                            FindPhraseNode((EmptyNode)phraseNode.PrecedingNode);
+                        }
+                    }
+
+                    if (phraseNode.Parent is SectionNode)
+                    {
+                        if (((SectionNode)phraseNode.Parent).PrecedingSection != null)
+                        {
+                            CalculateSectionTime(((SectionNode)phraseNode.Parent).PrecedingSection);
+                        }
+                    }
+
+                    //SectionNode secNode = (SectionNode)mView.Selection.Node;
+                    //if (secNode != null)
+                    //{
+                    //    CalculateCursorTime((SectionNode)secNode.PrecedingNode);
+                    //}
+                }
+                else if (mView.Selection.Node is EmptyNode)
+                {
+
+                    EmptyNode emptyNode = (EmptyNode)mView.Selection.Node;
+                    FindPhraseNode(emptyNode);
+
+                    if (emptyNode.Parent is SectionNode)
+                    {
+                        if (((SectionNode)emptyNode.Parent).PrecedingSection != null)
+                        {
+                            CalculateSectionTime(((SectionNode)emptyNode.Parent).PrecedingSection);
                         }
                     }
                 }
-
-                if (m_IsPause)
-                {
-                    m_TotalCursorTime += mView.TransportBar.CurrentPlaylist.CurrentTimeInAsset;
-                    m_IsPause = false;
-                }
-                
-                if (phraseNode.PrecedingNode != null && phraseNode.PrecedingNode is PhraseNode && phraseNode.Parent == phraseNode.PrecedingNode.Parent)
-                {
-                    CalculateCursorTime((PhraseNode)phraseNode.PrecedingNode);
-                }
-
-                if (phraseNode.Parent is SectionNode)
-                {
-                    if (((SectionNode)phraseNode.Parent).PrecedingSection != null)
-                    {
-                        CalculateSectionTime(((SectionNode)phraseNode.Parent).PrecedingSection);
-                    }
-                }
-
-                //SectionNode secNode = (SectionNode)mView.Selection.Node;
-                //if (secNode != null)
-                //{
-                //    CalculateCursorTime((SectionNode)secNode.PrecedingNode);
-                //}
             }
             // m_txtCurrentCursorPosition.Text = mView.TransportBar.CalculateTimeElapsedInSectionForProperties().ToString();
             m_txtCurrentCursorPosition.Text = Program.FormatDuration_Long(m_TotalCursorTime);
@@ -212,7 +235,20 @@ namespace Obi.Dialogs
                 MessageBox.Show(ex.ToString());
             }
         }
-        
+
+        private void FindPhraseNode(EmptyNode emptyNode)
+        {
+            //EmptyNode emptyNode = (EmptyNode)mView.Selection.Node;
+            while (emptyNode.PrecedingNode != null && emptyNode.PrecedingNode is EmptyNode && (emptyNode.PrecedingNode.Parent == emptyNode.Parent))
+            {
+                emptyNode = (EmptyNode)emptyNode.PrecedingNode;
+                if (emptyNode is PhraseNode)
+                {
+                    CalculateCursorTime((PhraseNode)emptyNode);
+                    break;
+                }
+            }
+        }
         private void CalculateCursorTime(PhraseNode phraseNode)
         {
             //if (m_IsPause && mView.Selection != null && mView.Selection is AudioSelection)
@@ -228,6 +264,10 @@ namespace Obi.Dialogs
             if (phraseNode.PrecedingNode != null && phraseNode.PrecedingNode is PhraseNode && (phraseNode.PrecedingNode.Parent == phraseNode.Parent))
             {
                 CalculateCursorTime((PhraseNode) phraseNode.PrecedingNode);
+            }
+            else if (phraseNode.PrecedingNode != null && phraseNode.PrecedingNode is EmptyNode && (phraseNode.PrecedingNode.Parent == phraseNode.Parent))
+            {
+                FindPhraseNode((EmptyNode)phraseNode.PrecedingNode);
             }
 
         }
