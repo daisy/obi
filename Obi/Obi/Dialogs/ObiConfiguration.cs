@@ -337,12 +337,15 @@ namespace Obi.Dialogs
             m_Settings.SettingsName = m_cb_SelectProfile.SelectedItem.ToString();
             LoadProfile();
             m_Settings.IsObiConfigurationDone = true;
-            string drive = Path.GetPathRoot(m_DirectoryTextbox.Text);
-            if (Directory.Exists(drive))
+            if (!string.IsNullOrWhiteSpace(m_DirectoryTextbox.Text))
             {
-                if (!Directory.Exists(m_DirectoryTextbox.Text))
-                    Directory.CreateDirectory(m_DirectoryTextbox.Text);
-                m_Settings.Project_DefaultPath = m_DirectoryTextbox.Text;
+                string drive = Path.GetPathRoot(m_DirectoryTextbox.Text);
+                if (Directory.Exists(drive))
+                {
+                    if (!Directory.Exists(m_DirectoryTextbox.Text))
+                        Directory.CreateDirectory(m_DirectoryTextbox.Text);
+                    m_Settings.Project_DefaultPath = m_DirectoryTextbox.Text;
+                }
             }
 
         }
