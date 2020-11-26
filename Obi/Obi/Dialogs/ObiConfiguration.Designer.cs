@@ -112,6 +112,7 @@
             resources.ApplyResources(this.m_DirectoryTextbox, "m_DirectoryTextbox");
             this.m_DirectoryTextbox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.m_DirectoryTextbox.Name = "m_DirectoryTextbox";
+            this.m_DirectoryTextbox.ReadOnly = true;
             this.helpProvider1.SetShowHelp(this.m_DirectoryTextbox, ((bool)(resources.GetObject("m_DirectoryTextbox.ShowHelp"))));
             // 
             // m_BrowseButton

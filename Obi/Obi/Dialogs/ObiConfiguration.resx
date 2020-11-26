@@ -130,13 +130,13 @@
     <value>NoControl</value>
   </data>
   <data name="labelOutputDeviceName.Location" type="System.Drawing.Point, System.Drawing">
-    <value>45, 158</value>
+    <value>34, 128</value>
   </data>
   <data name="labelOutputDeviceName.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>5, 0, 5, 0</value>
+    <value>4, 0, 4, 0</value>
   </data>
   <data name="labelOutputDeviceName.Size" type="System.Drawing.Size, System.Drawing">
-    <value>147, 18</value>
+    <value>122, 15</value>
   </data>
   <data name="labelOutputDeviceName.TabIndex" type="System.Int32, mscorlib">
     <value>4</value>
@@ -166,13 +166,13 @@
     <value>NoControl</value>
   </data>
   <data name="labelInputDeviceName.Location" type="System.Drawing.Point, System.Drawing">
-    <value>57, 117</value>
+    <value>43, 95</value>
   </data>
   <data name="labelInputDeviceName.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>5, 0, 5, 0</value>
+    <value>4, 0, 4, 0</value>
   </data>
   <data name="labelInputDeviceName.Size" type="System.Drawing.Size, System.Drawing">
-    <value>134, 18</value>
+    <value>113, 15</value>
   </data>
   <data name="labelInputDeviceName.TabIndex" type="System.Int32, mscorlib">
     <value>2</value>
@@ -202,19 +202,16 @@
     <value>NoControl</value>
   </data>
   <data name="m_lblShortcutsProfile.Location" type="System.Drawing.Point, System.Drawing">
-    <value>25, 247</value>
-  </data>
-  <data name="m_lblShortcutsProfile.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 0, 4, 0</value>
+    <value>19, 201</value>
   </data>
   <data name="m_lblShortcutsProfile.Size" type="System.Drawing.Size, System.Drawing">
-    <value>167, 18</value>
+    <value>136, 15</value>
   </data>
   <data name="m_lblShortcutsProfile.TabIndex" type="System.Int32, mscorlib">
     <value>8</value>
   </data>
   <data name="m_lblShortcutsProfile.Text" xml:space="preserve">
-    <value>Select shortcuts profile :</value>
+    <value>Select shortcuts &amp;profile :</value>
   </data>
   <data name="&gt;&gt;m_lblShortcutsProfile.Name" xml:space="preserve">
     <value>m_lblShortcutsProfile</value>
@@ -238,19 +235,16 @@
     <value>NoControl</value>
   </data>
   <data name="m_lblSelectProfile.Location" type="System.Drawing.Point, System.Drawing">
-    <value>95, 207</value>
-  </data>
-  <data name="m_lblSelectProfile.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 0, 4, 0</value>
+    <value>71, 168</value>
   </data>
   <data name="m_lblSelectProfile.Size" type="System.Drawing.Size, System.Drawing">
-    <value>101, 18</value>
+    <value>84, 15</value>
   </data>
   <data name="m_lblSelectProfile.TabIndex" type="System.Int32, mscorlib">
     <value>6</value>
   </data>
   <data name="m_lblSelectProfile.Text" xml:space="preserve">
-    <value>Select profile :</value>
+    <value>&amp;Select profile :</value>
   </data>
   <data name="&gt;&gt;m_lblSelectProfile.Name" xml:space="preserve">
     <value>m_lblSelectProfile</value>
@@ -271,13 +265,10 @@
     <value>Microsoft Sans Serif, 9pt</value>
   </data>
   <data name="m_Ok.Location" type="System.Drawing.Point, System.Drawing">
-    <value>349, 355</value>
-  </data>
-  <data name="m_Ok.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 4, 4, 4</value>
+    <value>262, 288</value>
   </data>
   <data name="m_Ok.Size" type="System.Drawing.Size, System.Drawing">
-    <value>124, 31</value>
+    <value>93, 25</value>
   </data>
   <data name="m_Ok.TabIndex" type="System.Int32, mscorlib">
     <value>13</value>
@@ -301,13 +292,10 @@
     <value>Flat</value>
   </data>
   <data name="m_cb_InputDevice.Location" type="System.Drawing.Point, System.Drawing">
-    <value>256, 112</value>
-  </data>
-  <data name="m_cb_InputDevice.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 4, 4, 4</value>
+    <value>192, 91</value>
   </data>
   <data name="m_cb_InputDevice.Size" type="System.Drawing.Size, System.Drawing">
-    <value>556, 24</value>
+    <value>418, 21</value>
   </data>
   <data name="m_cb_InputDevice.TabIndex" type="System.Int32, mscorlib">
     <value>3</value>
@@ -328,13 +316,10 @@
     <value>Flat</value>
   </data>
   <data name="m_cb_OutPutDevice.Location" type="System.Drawing.Point, System.Drawing">
-    <value>256, 155</value>
-  </data>
-  <data name="m_cb_OutPutDevice.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 4, 4, 4</value>
+    <value>192, 126</value>
   </data>
   <data name="m_cb_OutPutDevice.Size" type="System.Drawing.Size, System.Drawing">
-    <value>556, 24</value>
+    <value>418, 21</value>
   </data>
   <data name="m_cb_OutPutDevice.TabIndex" type="System.Int32, mscorlib">
     <value>5</value>
@@ -355,13 +340,10 @@
     <value>Flat</value>
   </data>
   <data name="m_cb_SelectProfile.Location" type="System.Drawing.Point, System.Drawing">
-    <value>256, 202</value>
-  </data>
-  <data name="m_cb_SelectProfile.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 4, 4, 4</value>
+    <value>192, 164</value>
   </data>
   <data name="m_cb_SelectProfile.Size" type="System.Drawing.Size, System.Drawing">
-    <value>556, 24</value>
+    <value>418, 21</value>
   </data>
   <data name="m_cb_SelectProfile.TabIndex" type="System.Int32, mscorlib">
     <value>7</value>
@@ -382,13 +364,10 @@
     <value>Flat</value>
   </data>
   <data name="m_cb_SelectShortcutsProfile.Location" type="System.Drawing.Point, System.Drawing">
-    <value>256, 245</value>
-  </data>
-  <data name="m_cb_SelectShortcutsProfile.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 4, 4, 4</value>
+    <value>192, 199</value>
   </data>
   <data name="m_cb_SelectShortcutsProfile.Size" type="System.Drawing.Size, System.Drawing">
-    <value>556, 24</value>
+    <value>418, 21</value>
   </data>
   <data name="m_cb_SelectShortcutsProfile.TabIndex" type="System.Int32, mscorlib">
     <value>9</value>
@@ -406,16 +385,13 @@
     <value>4</value>
   </data>
   <data name="m_tb_ObiConfigInstructions.Location" type="System.Drawing.Point, System.Drawing">
-    <value>29, 15</value>
-  </data>
-  <data name="m_tb_ObiConfigInstructions.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 4, 4, 4</value>
+    <value>22, 12</value>
   </data>
   <data name="m_tb_ObiConfigInstructions.Multiline" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
   <data name="m_tb_ObiConfigInstructions.Size" type="System.Drawing.Size, System.Drawing">
-    <value>783, 64</value>
+    <value>588, 53</value>
   </data>
   <data name="m_tb_ObiConfigInstructions.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
@@ -439,16 +415,16 @@
     <value>Default project directory:</value>
   </data>
   <data name="m_DirectoryTextbox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>256, 293</value>
+    <value>192, 238</value>
   </data>
   <data name="m_DirectoryTextbox.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 5, 4, 5</value>
+    <value>3, 4, 3, 4</value>
   </data>
   <data name="m_DirectoryTextbox.ShowHelp" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
   <data name="m_DirectoryTextbox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>382, 22</value>
+    <value>329, 20</value>
   </data>
   <data name="m_DirectoryTextbox.TabIndex" type="System.Int32, mscorlib">
     <value>11</value>
@@ -471,20 +447,23 @@
   <data name="m_BrowseButton.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Flat</value>
   </data>
+  <data name="m_BrowseButton.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 9pt</value>
+  </data>
   <data name="m_BrowseButton.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
   <data name="m_BrowseButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>684, 284</value>
+    <value>538, 233</value>
   </data>
   <data name="m_BrowseButton.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 5, 4, 5</value>
+    <value>3, 4, 3, 4</value>
   </data>
   <data name="m_BrowseButton.ShowHelp" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
   <data name="m_BrowseButton.Size" type="System.Drawing.Size, System.Drawing">
-    <value>96, 39</value>
+    <value>72, 25</value>
   </data>
   <data name="m_BrowseButton.TabIndex" type="System.Int32, mscorlib">
     <value>12</value>
@@ -507,11 +486,17 @@
   <data name="m_lblDefaultProjectDirectory.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
+  <data name="m_lblDefaultProjectDirectory.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 9pt</value>
+  </data>
   <data name="m_lblDefaultProjectDirectory.Location" type="System.Drawing.Point, System.Drawing">
-    <value>29, 298</value>
+    <value>22, 242</value>
+  </data>
+  <data name="m_lblDefaultProjectDirectory.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>2, 0, 2, 0</value>
   </data>
   <data name="m_lblDefaultProjectDirectory.Size" type="System.Drawing.Size, System.Drawing">
-    <value>163, 17</value>
+    <value>138, 15</value>
   </data>
   <data name="m_lblDefaultProjectDirectory.TabIndex" type="System.Int32, mscorlib">
     <value>10</value>
@@ -535,13 +520,10 @@
     <value>True</value>
   </metadata>
   <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
-    <value>8, 16</value>
+    <value>6, 13</value>
   </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>848, 398</value>
-  </data>
-  <data name="$this.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 4, 4, 4</value>
+    <value>636, 323</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
     <value>Configure OBI</value>
