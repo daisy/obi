@@ -2090,30 +2090,26 @@ namespace Obi.ProjectView
             {
                 SectionNode section = mView.GetSelectedPhraseSection;
                 if (mView.ObiForm.Settings.Audio_RecordAtStartingOfSectionWithRecordSectionCommand
-                    && section.PhraseChildCount > 0 && !(section.PhraseChild(0) is PhraseNode))
+                    && section.PhraseChildCount > 0 && !(section.PhraseChild(0) is PhraseNode) && (section.PhraseChild(0).Role_ == EmptyNode.Role.Page))
                 {
-                     if (section.PhraseChild(0).Role_ == EmptyNode.Role.Page)
+                    bool hasEmptyPages = true;
+                    for (int i = 0; i < section.PhraseChildCount; i++)
                     {
-                        bool hasEmptyPages = true;
-                        for (int i = 0; i < section.PhraseChildCount; i++)
+                        if (section.PhraseChild(i) is PhraseNode)
                         {
-                            if (section.PhraseChild(i) is PhraseNode)
-                            {
-                                hasEmptyPages = false;
-                            }
+                            hasEmptyPages = false;
                         }
-                        if (hasEmptyPages)
-                        {
-                            mView.SelectFromTransportBar(section.PhraseChild(0), null);
-                            EmptyNode newEmptyNode = mView.Presentation.TreeNodeFactory.Create<EmptyNode>();
-                            mView.Presentation.Do(new Obi.Commands.Node.AddEmptyNode(mView, newEmptyNode, section, 0));
-                        }
+                    }
+                    if (hasEmptyPages)
+                    {
+                        mView.SelectFromTransportBar(section.PhraseChild(0), null);
+                        EmptyNode newEmptyNode = mView.Presentation.TreeNodeFactory.Create<EmptyNode>();
+                        mView.Presentation.Do(new Obi.Commands.Node.AddEmptyNode(mView, newEmptyNode, section, 0));
                     }
                 }
                 if (mView.ObiForm.Settings.Audio_RecordInFirstEmptyPhraseWithRecordSectionCommand
-                    && section.PhraseChildCount > 0 && !(section.PhraseChild(0) is PhraseNode))
+                    && section.PhraseChildCount > 0 && !(section.PhraseChild(0) is PhraseNode) && (section.PhraseChild(0).Role_ == EmptyNode.Role.Plain))
                 {
-                    if (section.PhraseChild(0).Role_ == EmptyNode.Role.Plain)
                         mView.SelectFromTransportBar(mView.GetSelectedPhraseSection.PhraseChild(0), null);
                 }
             }
