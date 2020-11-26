@@ -3222,7 +3222,7 @@ You can do it later also from the project tab of preferences dialog.</value>
     <value>Applying operation on whole book may take upto {0}. Do you want to continue ?</value>
   </data>
   <data name="Audio_RecordAtStartingOfSectionWithRecordSectionCommand" xml:space="preserve">
-    <value>Record at the starting of section having only empty pages with record section command</value>
+    <value>Record at the starting of section with record section command if section have only empty pages </value>
   </data>
   
 </root>

@@ -430,7 +430,7 @@ namespace Obi {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Record at the starting of section having only empty pages with record section command.
+        ///   Looks up a localized string similar to Record at the starting of section with record section command if section have only empty pages .
         /// </summary>
         internal static string Audio_RecordAtStartingOfSectionWithRecordSectionCommand {
             get {
