@@ -2095,7 +2095,7 @@ namespace Obi.ProjectView
                     bool hasEmptyPages = true;
                     for (int i = 0; i < section.PhraseChildCount; i++)
                     {
-                        if (section.PhraseChild(i) is PhraseNode)
+                        if (section.PhraseChild(i) is PhraseNode || section.PhraseChild(i).Role_ == EmptyNode.Role.Plain)
                         {
                             hasEmptyPages = false;
                         }
