@@ -117,17 +117,28 @@ namespace Obi.Dialogs
 
         private void m_btn_Ok_Click(object sender, EventArgs e)
         {
-            List<SectionNode> sectionsList = ((ObiRootNode)m_ProjectView.Presentation.RootNode).GetListOfAllSections();
-            double totalDuration = 0;
-            foreach (SectionNode section in sectionsList)
-            {
-                totalDuration += section.Duration;
-            }
-            totalDuration = totalDuration / 2;
-            string durationOfProject = Program.FormatDuration_Long(totalDuration);
             if (m_ApplyOnWholeBook.Checked)
             {
-                DialogResult result = MessageBox.Show(string.Format(Localizer.Message("ApplyingOperationOnWholeBook"), durationOfProject), Localizer.Message("Caption_Information"), MessageBoxButtons.YesNo);
+                List<SectionNode> sectionsList = ((ObiRootNode)m_ProjectView.Presentation.RootNode).GetListOfAllSections();
+                double totalDuration = 0;
+                foreach (SectionNode section in sectionsList)
+                {
+                    totalDuration += section.Duration;
+                }
+                totalDuration = totalDuration / 2;
+                int minutes = (int)Math.Floor(totalDuration / (60000));
+                string duration;
+                if (minutes < 60)
+                    duration = " few minutes ";
+                else
+                {
+                    int hours = minutes / 60;
+                    int approxTimeNeededLowerLimit = hours;
+                    int approxTimeNeededUpperLimit = hours + 1;
+                    duration = approxTimeNeededLowerLimit + " hours to " + approxTimeNeededUpperLimit + " hours";
+
+                }
+                DialogResult result = MessageBox.Show(string.Format(Localizer.Message("ApplyingOperationOnWholeBook"), duration), Localizer.Message("Caption_Information"), MessageBoxButtons.YesNo);
                 if (result == System.Windows.Forms.DialogResult.No)
                 {
                     return;

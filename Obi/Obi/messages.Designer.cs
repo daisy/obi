@@ -151,7 +151,7 @@ namespace Obi {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Applying operation on whole book may take upto {0}. Do you want to continue ?.
+        ///   Looks up a localized string similar to Applying operation on whole book is likely to take {0} depending on speed of your system. Do you want to continue ?.
         /// </summary>
         internal static string ApplyingOperationOnWholeBook {
             get {
