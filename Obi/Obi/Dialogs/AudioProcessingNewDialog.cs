@@ -192,7 +192,7 @@ namespace Obi.Dialogs
                     duration = approxTimeNeededLowerLimit + " hours to " + approxTimeNeededUpperLimit + " hours";
 
                 }
-                DialogResult result = MessageBox.Show(string.Format(Localizer.Message("ApplyingOperationOnWholeBook"), duration), Localizer.Message("Caption_Information"), MessageBoxButtons.YesNo);
+                DialogResult result = MessageBox.Show(string.Format(Localizer.Message("ApplyingOperationOnWholeBook"), duration), Localizer.Message("Caption_Information"), MessageBoxButtons.YesNo, MessageBoxIcon.Information);
                 if (result == System.Windows.Forms.DialogResult.No)
                 {
                     return;
