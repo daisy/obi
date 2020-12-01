@@ -601,7 +601,7 @@ namespace Obi {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Processing audio....
+        ///   Looks up a localized string similar to Processing {0} ........
         /// </summary>
         internal static string AudioProcessing_progress_dialog_title {
             get {

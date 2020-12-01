@@ -6578,10 +6578,13 @@ for (int j = 0;
 
                         AudioLib.WavAudioProcessing audioProcess = new AudioLib.WavAudioProcessing();
                         string audioProcessedFile = null;
+                        string label = string.Empty;
+                        if (Selection.Node is SectionNode)
+                        {
+                            label = ((SectionNode)Selection.Node).Label;
+                        }
 
-
-
-                        Obi.Dialogs.ProgressDialog progress = new Obi.Dialogs.ProgressDialog(Localizer.Message("AudioFileExport_progress_dialog_title"),
+                        Obi.Dialogs.ProgressDialog progress = new Obi.Dialogs.ProgressDialog(string.Format(Localizer.Message("AudioProcessing_progress_dialog_title"), label),
                               delegate(Dialogs.ProgressDialog progress1)
                               {
                                   audioFileFullPath = CreateAudioFileFromNode(nodeToSelect, directoryFullPath, null);
