@@ -1387,7 +1387,7 @@ namespace Obi {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to File Name,Cue Point.
+        ///   Looks up a localized string similar to File Name,TODO Timing(in seconds).
         /// </summary>
         internal static string CueCsvColumnHeading {
             get {
@@ -1396,7 +1396,7 @@ namespace Obi {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to //Cue Points.csv.
+        ///   Looks up a localized string similar to //ToDoTimingInAudioFiles.csv.
         /// </summary>
         internal static string CueCsvName {
             get {
