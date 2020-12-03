@@ -129,7 +129,7 @@
   </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="m_lblDirectoryPath.Size" type="System.Drawing.Size, System.Drawing">
-    <value>76, 16</value>
+    <value>94, 20</value>
   </data>
   <data name="m_lblDirectoryPath.Text" xml:space="preserve">
     <value>E&amp;xportpfad:</value>
@@ -189,7 +189,7 @@
     <value />
   </data>
   <data name="m_lblSelectLevelForAudioFiles.Size" type="System.Drawing.Size, System.Drawing">
-    <value>189, 16</value>
+    <value>235, 20</value>
   </data>
   <data name="m_lblSelectLevelForAudioFiles.Text" xml:space="preserve">
     <value>Eine Audi&amp;odatei je Sektion bis:</value>
@@ -219,7 +219,7 @@
     <value />
   </data>
   <data name="m_checkBoxEncoder.Size" type="System.Drawing.Size, System.Drawing">
-    <value>172, 20</value>
+    <value>207, 24</value>
   </data>
   <data name="m_checkBoxEncoder.Text" xml:space="preserve">
     <value>&amp;Encodiere Audiodateien</value>
@@ -255,7 +255,7 @@
     <value />
   </data>
   <data name="m_checkBoxAddSectionNameToAudioFileName.Size" type="System.Drawing.Size, System.Drawing">
-    <value>283, 20</value>
+    <value>348, 24</value>
   </data>
   <data name="m_checkBoxAddSectionNameToAudioFileName.Text" xml:space="preserve">
     <value>Sektionenn&amp;ame im Dateinamen verwenden</value>
@@ -327,7 +327,7 @@
     <value />
   </data>
   <data name="m_chkBoxFilenameLengthLimit.Size" type="System.Drawing.Size, System.Drawing">
-    <value>202, 20</value>
+    <value>250, 24</value>
   </data>
   <data name="m_chkBoxFilenameLengthLimit.Text" xml:space="preserve">
     <value>Ma&amp;x. Länge der Dateinamens</value>
@@ -343,6 +343,9 @@
   </data>
   <data name="m_numericUpDownFilenameLengthLimit.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
+  </data>
+  <data name="m_numericUpDownFilenameLengthLimit.Location" type="System.Drawing.Point, System.Drawing">
+    <value>268, 60</value>
   </data>
   <data name="m_grpBoxSectionNameOperation.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
@@ -366,7 +369,7 @@
     <value />
   </data>
   <data name="m_chkBoxDummyTextHTMLfiles.Size" type="System.Drawing.Size, System.Drawing">
-    <value>250, 20</value>
+    <value>315, 24</value>
   </data>
   <data name="m_chkBoxDummyTextHTMLfiles.Text" xml:space="preserve">
     <value>Blindtext in HTML-Dateien verwenden</value>
@@ -384,7 +387,7 @@
     <value />
   </data>
   <data name="m_numericUpDownEpubFilenameLengthLimit.Location" type="System.Drawing.Point, System.Drawing">
-    <value>247, 29</value>
+    <value>320, 37</value>
   </data>
   <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="m_numericUpDownEpubFilenameLengthLimit.ShowHelp" type="System.Boolean, mscorlib">
@@ -406,7 +409,7 @@
     <value>True</value>
   </data>
   <data name="m_chkBoxEpubFilenameLengthLimit.Size" type="System.Drawing.Size, System.Drawing">
-    <value>235, 20</value>
+    <value>292, 24</value>
   </data>
   <data name="m_chkBoxEpubFilenameLengthLimit.Text" xml:space="preserve">
     <value>Max. Länge der EPUB Dateinamen</value>
@@ -432,11 +435,23 @@
   <data name="m_chkBoxCreateMediaOverlays.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
   </data>
+  <data name="m_chkBoxCreateMediaOverlays.ShowHelp" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
   <data name="m_chkBoxCreateMediaOverlays.Size" type="System.Drawing.Size, System.Drawing">
-    <value>365, 20</value>
+    <value>451, 24</value>
   </data>
   <data name="m_chkBoxCreateMediaOverlays.Text" xml:space="preserve">
     <value>Erstelle Media Overlay-Elemente in der Navigationsdatei</value>
+  </data>
+  <data name="m_chkBoxCreateCsvForCues.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="m_chkBoxCreateCsvForCues.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
+    <value>AssociateIndex</value>
+  </data>
+  <data name="m_chkBoxCreateCsvForCues.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
   </data>
   <data name="$this.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />

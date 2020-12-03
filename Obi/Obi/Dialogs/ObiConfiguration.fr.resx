@@ -117,66 +117,212 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="labelOutputDeviceName.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="labelOutputDeviceName.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
+    <value>AssociateIndex</value>
+  </data>
+  <data name="labelOutputDeviceName.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="labelOutputDeviceName.Location" type="System.Drawing.Point, System.Drawing">
-    <value>55, 128</value>
+    <value>76, 127</value>
   </data>
   <data name="labelOutputDeviceName.Size" type="System.Drawing.Size, System.Drawing">
-    <value>134, 15</value>
+    <value>159, 18</value>
   </data>
   <data name="labelOutputDeviceName.Text" xml:space="preserve">
     <value>Périphérique de &amp;sortie :</value>
   </data>
+  <data name="labelInputDeviceName.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="labelInputDeviceName.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
+    <value>AssociateIndex</value>
+  </data>
+  <data name="labelInputDeviceName.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
   <data name="labelInputDeviceName.Location" type="System.Drawing.Point, System.Drawing">
-    <value>55, 95</value>
+    <value>79, 97</value>
   </data>
   <data name="labelInputDeviceName.Size" type="System.Drawing.Size, System.Drawing">
-    <value>133, 15</value>
+    <value>156, 18</value>
   </data>
   <data name="labelInputDeviceName.Text" xml:space="preserve">
     <value>Périphérique d'&amp;Entrée :</value>
+  </data>
+  <data name="m_lblShortcutsProfile.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="m_lblShortcutsProfile.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
+    <value>AssociateIndex</value>
+  </data>
+  <data name="m_lblShortcutsProfile.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
   </data>
   <data name="m_lblShortcutsProfile.Location" type="System.Drawing.Point, System.Drawing">
     <value>-2, 201</value>
   </data>
   <data name="m_lblShortcutsProfile.Size" type="System.Drawing.Size, System.Drawing">
-    <value>192, 15</value>
+    <value>237, 18</value>
   </data>
   <data name="m_lblShortcutsProfile.Text" xml:space="preserve">
     <value>Choisissez le Profil de raccourcis :</value>
   </data>
+  <data name="m_lblSelectProfile.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="m_lblSelectProfile.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
+    <value>AssociateIndex</value>
+  </data>
+  <data name="m_lblSelectProfile.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
   <data name="m_lblSelectProfile.Location" type="System.Drawing.Point, System.Drawing">
-    <value>74, 168</value>
+    <value>92, 170</value>
   </data>
   <data name="m_lblSelectProfile.Size" type="System.Drawing.Size, System.Drawing">
-    <value>116, 15</value>
+    <value>143, 18</value>
   </data>
   <data name="m_lblSelectProfile.Text" xml:space="preserve">
     <value>Choisissez le Profil :</value>
   </data>
+  <data name="m_Ok.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="m_Ok.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
+    <value>AssociateIndex</value>
+  </data>
+  <data name="m_Ok.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="m_Ok.Location" type="System.Drawing.Point, System.Drawing">
+    <value>349, 310</value>
+  </data>
+  <data name="m_cb_InputDevice.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="m_cb_InputDevice.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
+    <value>AssociateIndex</value>
+  </data>
+  <data name="m_cb_InputDevice.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
   <data name="m_cb_InputDevice.Location" type="System.Drawing.Point, System.Drawing">
-    <value>195, 91</value>
+    <value>259, 91</value>
   </data>
   <data name="m_cb_InputDevice.Size" type="System.Drawing.Size, System.Drawing">
-    <value>415, 21</value>
+    <value>415, 24</value>
+  </data>
+  <data name="m_cb_OutPutDevice.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="m_cb_OutPutDevice.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
+    <value>AssociateIndex</value>
+  </data>
+  <data name="m_cb_OutPutDevice.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
   </data>
   <data name="m_cb_OutPutDevice.Location" type="System.Drawing.Point, System.Drawing">
-    <value>195, 126</value>
+    <value>259, 126</value>
   </data>
   <data name="m_cb_OutPutDevice.Size" type="System.Drawing.Size, System.Drawing">
-    <value>415, 21</value>
+    <value>415, 24</value>
+  </data>
+  <data name="m_cb_SelectProfile.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="m_cb_SelectProfile.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
+    <value>AssociateIndex</value>
+  </data>
+  <data name="m_cb_SelectProfile.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
   </data>
   <data name="m_cb_SelectProfile.Location" type="System.Drawing.Point, System.Drawing">
-    <value>195, 164</value>
+    <value>259, 164</value>
   </data>
   <data name="m_cb_SelectProfile.Size" type="System.Drawing.Size, System.Drawing">
-    <value>415, 21</value>
+    <value>415, 24</value>
+  </data>
+  <data name="m_cb_SelectShortcutsProfile.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="m_cb_SelectShortcutsProfile.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
+    <value>AssociateIndex</value>
+  </data>
+  <data name="m_cb_SelectShortcutsProfile.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
   </data>
   <data name="m_cb_SelectShortcutsProfile.Location" type="System.Drawing.Point, System.Drawing">
-    <value>195, 199</value>
+    <value>259, 199</value>
   </data>
   <data name="m_cb_SelectShortcutsProfile.Size" type="System.Drawing.Size, System.Drawing">
-    <value>415, 21</value>
+    <value>415, 24</value>
+  </data>
+  <data name="m_tb_ObiConfigInstructions.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="m_tb_ObiConfigInstructions.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
+    <value>AssociateIndex</value>
+  </data>
+  <data name="m_tb_ObiConfigInstructions.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="m_DirectoryTextbox.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="m_DirectoryTextbox.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
+    <value>AssociateIndex</value>
+  </data>
+  <data name="m_DirectoryTextbox.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="m_DirectoryTextbox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>256, 249</value>
+  </data>
+  <data name="m_BrowseButton.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="m_BrowseButton.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
+    <value>AssociateIndex</value>
+  </data>
+  <data name="m_BrowseButton.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="m_BrowseButton.Location" type="System.Drawing.Point, System.Drawing">
+    <value>717, 243</value>
+  </data>
+  <data name="m_lblDefaultProjectDirectory.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="m_lblDefaultProjectDirectory.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
+    <value>AssociateIndex</value>
+  </data>
+  <data name="m_lblDefaultProjectDirectory.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="m_lblDefaultProjectDirectory.Location" type="System.Drawing.Point, System.Drawing">
+    <value>67, 249</value>
+  </data>
+  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="m_lblDefaultProjectDirectory.ShowHelp" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
+    <value>848, 362</value>
+  </data>
+  <data name="$this.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="$this.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
+    <value>AssociateIndex</value>
+  </data>
+  <data name="$this.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
   </data>
   <data name="$this.Text" xml:space="preserve">
     <value>Configurer OBI</value>

@@ -132,7 +132,7 @@
     <value>224, 45</value>
   </data>
   <data name="m_lbl_StartTimeSeconds.Size" type="System.Drawing.Size, System.Drawing">
-    <value>62, 15</value>
+    <value>75, 18</value>
   </data>
   <data name="m_lbl_StartTimeSeconds.Text" xml:space="preserve">
     <value>Secondes</value>
@@ -171,7 +171,7 @@
     <value>224, 70</value>
   </data>
   <data name="m_lbl_Seconds.Size" type="System.Drawing.Size, System.Drawing">
-    <value>62, 15</value>
+    <value>75, 18</value>
   </data>
   <data name="m_lbl_Seconds.Text" xml:space="preserve">
     <value>Secondes</value>
@@ -189,7 +189,7 @@
     <value>542, 55</value>
   </data>
   <data name="m_lbl_High.Size" type="System.Drawing.Size, System.Drawing">
-    <value>37, 15</value>
+    <value>44, 18</value>
   </data>
   <data name="m_lbl_High.Text" xml:space="preserve">
     <value>Élevé</value>
@@ -207,7 +207,7 @@
     <value>292, 54</value>
   </data>
   <data name="m_lbl_Low.Size" type="System.Drawing.Size, System.Drawing">
-    <value>41, 15</value>
+    <value>47, 18</value>
   </data>
   <data name="m_lbl_Low.Text" xml:space="preserve">
     <value>Faible</value>
@@ -235,6 +235,9 @@
   </data>
   <data name="m_txt_info.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
+  </data>
+  <data name="m_txt_info.Location" type="System.Drawing.Point, System.Drawing">
+    <value>27, 129</value>
   </data>
   <data name="m_txt_info.Text" xml:space="preserve">
     <value>La valeur 1.0 signifie que l'audio ne sera pas modifié.</value>
@@ -264,7 +267,7 @@
     <value />
   </data>
   <data name="m_lbl_Parameters.Size" type="System.Drawing.Size, System.Drawing">
-    <value>137, 15</value>
+    <value>161, 18</value>
   </data>
   <data name="m_lbl_Parameters.Text" xml:space="preserve">
     <value>Réglage de paramètre :</value>
@@ -279,7 +282,7 @@
     <value />
   </data>
   <data name="m_lbl_Process.Size" type="System.Drawing.Size, System.Drawing">
-    <value>263, 15</value>
+    <value>312, 18</value>
   </data>
   <data name="m_lbl_Process.Text" xml:space="preserve">
     <value>Augmenter/diminuer le volume de la sélection :</value>
@@ -294,7 +297,7 @@
     <value />
   </data>
   <data name="m_gpbox_Process.Size" type="System.Drawing.Size, System.Drawing">
-    <value>588, 153</value>
+    <value>588, 160</value>
   </data>
   <data name="m_btn_OK.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
@@ -305,6 +308,9 @@
   <data name="m_btn_OK.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
   </data>
+  <data name="m_btn_OK.Location" type="System.Drawing.Point, System.Drawing">
+    <value>162, 262</value>
+  </data>
   <data name="m_btn_Cancel.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
   </data>
@@ -313,6 +319,9 @@
   </data>
   <data name="m_btn_Cancel.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
+  </data>
+  <data name="m_btn_Cancel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>320, 262</value>
   </data>
   <data name="m_btn_Cancel.Text" xml:space="preserve">
     <value>&amp;Annuler</value>
@@ -331,16 +340,28 @@
     <value>True</value>
   </data>
   <data name="m_NAudioForAudioProcessing.Size" type="System.Drawing.Size, System.Drawing">
-    <value>226, 19</value>
+    <value>268, 22</value>
   </data>
   <data name="m_NAudioForAudioProcessing.Text" xml:space="preserve">
     <value>Utiliser Naudio pour la normalisation</value>
+  </data>
+  <data name="m_ApplyOnWholeBook.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="m_ApplyOnWholeBook.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
+    <value>AssociateIndex</value>
+  </data>
+  <data name="m_ApplyOnWholeBook.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="m_ApplyOnWholeBook.ShowHelp" type="System.Boolean, mscorlib">
+    <value>True</value>
   </data>
   <data name="$this.AccessibleName" xml:space="preserve">
     <value>Changer le volume</value>
   </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>600, 237</value>
+    <value>604, 319</value>
   </data>
   <data name="$this.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
@@ -350,12 +371,6 @@
   </data>
   <data name="$this.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
-  </data>
-  <data name="$this.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="$this.ShowHelp" type="System.Boolean, mscorlib">
-    <value>True</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
     <value>Changer le volume</value>
