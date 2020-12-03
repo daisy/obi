@@ -3227,5 +3227,16 @@ You can do it later also from the project tab of preferences dialog.</value>
   <data name="AudioProcessing_progress_dialog_title" xml:space="preserve">
     <value>Processing {0} .......</value>
   </data>
-  
+  <data name="AudioProcessingEstimateFewMinutes" xml:space="preserve">
+    <value>few minutes</value>
+  </data>
+  <data name="AudioProcessingEstimateSeveralMinutes" xml:space="preserve">
+    <value>several minutes</value>
+  </data>
+  <data name="AudioProcessingEstimateFewHours" xml:space="preserve">
+    <value>few hours</value>
+  </data>
+  <data name="AudioProcessingApplyOnWholeBook" xml:space="preserve">
+    <value>Kindly apply operation on whole book or select phrase/section on which you want to apply operation</value>
+  </data>
 </root>

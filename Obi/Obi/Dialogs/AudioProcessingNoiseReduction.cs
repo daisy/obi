@@ -14,11 +14,14 @@ namespace Obi.Dialogs
         private bool m_IsSetNoiseLevelDoneFromNumericUpDownControl;
         private bool m_IsSetNoiseReductionDoneFromNumericUpDownControl;
         private ProjectView.ProjectView m_ProjectView;
-        public AudioProcessingNoiseReduction(ProjectView.ProjectView projectView)
+        private bool m_IsSelectionNull = false;
+
+        public AudioProcessingNoiseReduction(ProjectView.ProjectView projectView, bool isSelectionNull)
         {
             InitializeComponent();
             m_SelectPresetComboBox.SelectedIndex = 1;
             m_ProjectView = projectView;
+            m_IsSelectionNull = isSelectionNull;
             helpProvider1.HelpNamespace = Localizer.Message("CHMhelp_file_name");
             helpProvider1.SetHelpNavigator(this, HelpNavigator.Topic);
             helpProvider1.SetHelpKeyword(this, "HTML Files/Creating a DTB/Working with Audio/Audio processing.htm");
@@ -117,6 +120,11 @@ namespace Obi.Dialogs
 
         private void m_btn_Ok_Click(object sender, EventArgs e)
         {
+            if (m_IsSelectionNull && !m_ApplyOnWholeBook.Checked)
+            {
+                MessageBox.Show(Localizer.Message("AudioProcessingApplyOnWholeBook"), Localizer.Message("Caption_Error"), MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
             if (m_ApplyOnWholeBook.Checked)
             {
                 List<SectionNode> sectionsList = ((ObiRootNode)m_ProjectView.Presentation.RootNode).GetListOfAllSections();
@@ -128,16 +136,15 @@ namespace Obi.Dialogs
                 totalDuration = totalDuration / 2;
                 int minutes = (int)Math.Floor(totalDuration / (60000));
                 string duration;
-                if (minutes < 60)
-                    duration = " few minutes ";
-                else
+                if (minutes <= 45)
+                    duration = Localizer.Message("AudioProcessingEstimateFewMinutes");
+                else if (minutes <= 120)
                 {
-                    int hours = minutes / 60;
-                    int approxTimeNeededLowerLimit = hours;
-                    int approxTimeNeededUpperLimit = hours + 1;
-                    duration = approxTimeNeededLowerLimit + " hours to " + approxTimeNeededUpperLimit + " hours";
+                    duration = Localizer.Message("AudioProcessingEstimateSeveralMinutes");
 
                 }
+                else
+                    duration = Localizer.Message("AudioProcessingEstimateFewHours");
                 DialogResult result = MessageBox.Show(string.Format(Localizer.Message("ApplyingOperationOnWholeBook"), duration), Localizer.Message("Caption_Information"),  MessageBoxButtons.YesNo, MessageBoxIcon.Information);
                 if (result == System.Windows.Forms.DialogResult.No)
                 {

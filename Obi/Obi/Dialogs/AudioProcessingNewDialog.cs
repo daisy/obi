@@ -13,6 +13,7 @@ namespace Obi.Dialogs
         private bool m_IsAudioProcessingParameterInSeconds = false;
         private AudioLib.WavAudioProcessing.AudioProcessingKind m_AudioProcessingType;
         private ProjectView.ProjectView m_ProjectView;
+        private bool m_IsSelectionNull = false;
         public AudioProcessingNewDialog(Settings settings)
         {
             InitializeComponent();
@@ -28,12 +29,13 @@ namespace Obi.Dialogs
             }
 
         }
-        public AudioProcessingNewDialog(AudioLib.WavAudioProcessing.AudioProcessingKind typeOfAudioProcessing, ProjectView.ProjectView projectView, Settings settings, double durationOfFadeInOut)
+        public AudioProcessingNewDialog(AudioLib.WavAudioProcessing.AudioProcessingKind typeOfAudioProcessing, ProjectView.ProjectView projectView, Settings settings, double durationOfFadeInOut,bool isSelectionNull = false)
         {
             InitializeComponent();
 
             m_AudioProcessingType = typeOfAudioProcessing;
             m_ProjectView = projectView;
+            m_IsSelectionNull = isSelectionNull;
 
             m_txt_info.Text = Localizer.Message("AudioProcessing_InfoText");
             if (AudioLib.WavAudioProcessing.AudioProcessingKind.FadeIn == typeOfAudioProcessing || AudioLib.WavAudioProcessing.AudioProcessingKind.FadeOut == typeOfAudioProcessing)
@@ -171,6 +173,11 @@ namespace Obi.Dialogs
 
         private void m_btn_OK_Click(object sender, EventArgs e)
         {
+            if (m_IsSelectionNull && !m_ApplyOnWholeBook.Checked)
+            {
+                MessageBox.Show(Localizer.Message("AudioProcessingApplyOnWholeBook"), Localizer.Message("Caption_Error"), MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
             if (m_ApplyOnWholeBook.Checked)
             {
                 List<SectionNode> sectionsList = ((ObiRootNode)m_ProjectView.Presentation.RootNode).GetListOfAllSections();
@@ -182,16 +189,15 @@ namespace Obi.Dialogs
                 totalDuration = totalDuration / 2;
                 int minutes = (int)Math.Floor(totalDuration / (60000));
                 string duration;
-                if (minutes < 60)
-                   duration = " few minutes ";
-                else
+                if (minutes <= 45)
+                    duration = Localizer.Message("AudioProcessingEstimateFewMinutes");
+                else if (minutes <= 120)
                 {
-                    int hours = minutes / 60;
-                    int approxTimeNeededLowerLimit = hours;
-                    int approxTimeNeededUpperLimit = hours + 1;
-                    duration = approxTimeNeededLowerLimit + " hours to " + approxTimeNeededUpperLimit + " hours";
+                    duration = Localizer.Message("AudioProcessingEstimateSeveralMinutes");
 
                 }
+                else
+                    duration = Localizer.Message("AudioProcessingEstimateFewHours");
                 DialogResult result = MessageBox.Show(string.Format(Localizer.Message("ApplyingOperationOnWholeBook"), duration), Localizer.Message("Caption_Information"), MessageBoxButtons.YesNo, MessageBoxIcon.Information);
                 if (result == System.Windows.Forms.DialogResult.No)
                 {

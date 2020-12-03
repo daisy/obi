@@ -6269,6 +6269,7 @@ for (int j = 0;
         public void AudioProcessing(AudioLib.WavAudioProcessing.AudioProcessingKind audioProcessingNaudioKind, bool IsAudioProcessingOnMultiPhrases = false, List<SectionNode> sectionsSelectedList =  null)
         {
              ObiNode nodeToSelect = null;
+             bool IsSelectionNull = false;
             if (IsAudioProcessingOnMultiPhrases && mContentView.BeginSpecialNode != null && mContentView.EndSpecialNode != null)
             {
                 nodeToSelect = mContentView.BeginSpecialNode;
@@ -6281,6 +6282,7 @@ for (int j = 0;
             {
                 nodeToSelect = this.Presentation.FirstSection;
                 Selection = new NodeSelection(nodeToSelect, mTOCView);
+                IsSelectionNull = true;
             }
             double durationOfSelection = DurationOfNodeSelected(nodeToSelect);
             if (durationOfSelection == 0)
@@ -6298,7 +6300,7 @@ for (int j = 0;
             if (audioProcessingKind == WavAudioProcessing.AudioProcessingKind.Amplify || audioProcessingKind == WavAudioProcessing.AudioProcessingKind.Normalize
                  || audioProcessingKind == WavAudioProcessing.AudioProcessingKind.SoundTouch)
             {
-                dialog = new Obi.Dialogs.AudioProcessingNewDialog(audioProcessingNaudioKind,this, ObiForm.Settings, 0); //@fontconfig
+                dialog = new Obi.Dialogs.AudioProcessingNewDialog(audioProcessingNaudioKind,this, ObiForm.Settings, 0, IsSelectionNull); //@fontconfig
                 if (audioProcessingKind == WavAudioProcessing.AudioProcessingKind.Normalize && sectionsSelectedList != null || IsAudioProcessingOnMultiPhrases)
                     dialog.ShowApplyWholeBookCheckbox = false;
             }
@@ -6308,7 +6310,7 @@ for (int j = 0;
             }
             else if (audioProcessingKind == WavAudioProcessing.AudioProcessingKind.NoiseReduction)
             {
-                dialogNoiseReduction = new Dialogs.AudioProcessingNoiseReduction(this);
+                dialogNoiseReduction = new Dialogs.AudioProcessingNoiseReduction(this, IsSelectionNull);
                 if (sectionsSelectedList != null || IsAudioProcessingOnMultiPhrases)
                 dialogNoiseReduction.ShowApplyWholeBookCheckbox = false;
             }

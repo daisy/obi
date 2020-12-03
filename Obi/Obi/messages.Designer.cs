@@ -610,6 +610,42 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Kindly apply operation on whole book or select phrase/section on which you want to apply operation.
+        /// </summary>
+        internal static string AudioProcessingApplyOnWholeBook {
+            get {
+                return ResourceManager.GetString("AudioProcessingApplyOnWholeBook", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to few hours.
+        /// </summary>
+        internal static string AudioProcessingEstimateFewHours {
+            get {
+                return ResourceManager.GetString("AudioProcessingEstimateFewHours", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to few minutes.
+        /// </summary>
+        internal static string AudioProcessingEstimateFewMinutes {
+            get {
+                return ResourceManager.GetString("AudioProcessingEstimateFewMinutes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to several minutes.
+        /// </summary>
+        internal static string AudioProcessingEstimateSeveralMinutes {
+            get {
+                return ResourceManager.GetString("AudioProcessingEstimateSeveralMinutes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Allow overwrite while recording.
         /// </summary>
         internal static string AudioTab_AllowOverwrite {
