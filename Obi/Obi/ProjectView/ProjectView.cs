@@ -6285,7 +6285,7 @@ for (int j = 0;
                 IsSelectionNull = true;
             }
             double durationOfSelection = DurationOfNodeSelected(nodeToSelect);
-            if (durationOfSelection == 0)
+            if (durationOfSelection == 0 && !IsSelectionNull && sectionsSelectedList == null)
             {
                 MessageBox.Show(Localizer.Message("no_audio"), Localizer.Message("no_audio_Caption"), MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
