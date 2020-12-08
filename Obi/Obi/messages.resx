@@ -3224,7 +3224,7 @@ You can do it later also from the project tab of preferences dialog.</value>
   <data name="Audio_RecordAtStartingOfSectionWithRecordSectionCommand" xml:space="preserve">
     <value>Record at the starting of section with record section command if section have only empty pages </value>
   </data>
-  <data name="AudioProcessing_progress_dialog_title" xml:space="preserve">
+  <data name="AudioProcessingNew_progress_dialog_title" xml:space="preserve">
     <value>Processing {0} .......</value>
   </data>
   <data name="AudioProcessingEstimateFewMinutes" xml:space="preserve">

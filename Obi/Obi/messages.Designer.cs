@@ -601,7 +601,7 @@ namespace Obi {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Processing {0} ........
+        ///   Looks up a localized string similar to Processing audio....
         /// </summary>
         internal static string AudioProcessing_progress_dialog_title {
             get {
@@ -642,6 +642,15 @@ namespace Obi {
         internal static string AudioProcessingEstimateSeveralMinutes {
             get {
                 return ResourceManager.GetString("AudioProcessingEstimateSeveralMinutes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Processing {0} ........
+        /// </summary>
+        internal static string AudioProcessingNew_progress_dialog_title {
+            get {
+                return ResourceManager.GetString("AudioProcessingNew_progress_dialog_title", resourceCulture);
             }
         }
         
