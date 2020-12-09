@@ -3489,7 +3489,7 @@ for (int j = 0;
                     {
                         if (!isException &&  listOfEmptyPages!=null && listOfEmptyPages.Count > 0)
                         {
-                            MessageBox.Show(Localizer.Message("ProjectView_GenarteSpeechForAllPages"));
+                            MessageBox.Show(Localizer.Message("ProjectView_GenarteSpeechForAllPages"), Localizer.Message("information_caption"), MessageBoxButtons.OK, MessageBoxIcon.Information);
                             //if (Selection != null && !Selection.Node.IsRooted && selectedPhraseIndex > -1)
                             //{
                                 //if (selectedSection != null && selectedPhraseIndex < selectedSection.PhraseChildCount) Selection = new NodeSelection(selectedSection.PhraseChild(selectedPhraseIndex), mContentView);
