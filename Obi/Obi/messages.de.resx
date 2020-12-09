@@ -1095,7 +1095,7 @@ Fehlertext: {1}</value>
     <value>: Aufnahme Phrase</value>
   </data>
   <data name="Obi_Wiki_Url" xml:space="preserve">
-    <value>http://daisy.trac.cloudforge.com/obi</value>
+    <value>https://github.com/daisy/obi/issues</value>
   </data>
   <data name="ErrorInSaving" xml:space="preserve">
     <value>Fehler beim Speichern </value>

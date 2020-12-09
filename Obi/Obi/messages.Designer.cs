@@ -151,7 +151,7 @@ namespace Obi {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Applying operation on whole book is likely to take {0} depending on speed of your system. Do you want to continue ?.
+        ///   Looks up a localized string similar to Applying operation on whole book is likely to take {0} depending on speed of your system.It will also take additional space equivalent to the size of the project. Do you want to continue ?.
         /// </summary>
         internal static string ApplyingOperationOnWholeBook {
             get {
@@ -5209,7 +5209,7 @@ namespace Obi {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to http://daisy.trac.cloudforge.com/obi.
+        ///   Looks up a localized string similar to https://github.com/daisy/obi/issues.
         /// </summary>
         internal static string Obi_Wiki_Url {
             get {
