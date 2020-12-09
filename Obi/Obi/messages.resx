@@ -3219,7 +3219,7 @@ You can do it later also from the project tab of preferences dialog.</value>
     <value>//ToDoTimingInAudioFiles.csv</value>
   </data>
   <data name="ApplyingOperationOnWholeBook" xml:space="preserve">
-    <value>Applying operation on whole book is likely to take {0} depending on speed of your system. It will also take additional space equivalent to the size of the project. Do you want to continue ?</value>
+    <value>Applying operation on whole book is likely to take {0} depending on speed of your system. It will also take additional space equivalent to the size of the project. Do you want to continue?</value>
   </data>
   <data name="Audio_RecordAtStartingOfSectionWithRecordSectionCommand" xml:space="preserve">
     <value>Record at the starting of section with record section command if section have only empty pages </value>
