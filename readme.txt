@@ -1,47 +1,31 @@
 $Id$
 
-
 About Obi
 
-Obi is the Urakawa Project DAISY/NISO Digital Talking production tool. It is
-a simple Windows application designed to create audio books with a table of
-contents.
+Obi is an open source audio book production tool that produces digital talking books (DTBs) conforming to DAISY 3 (officially, the ANSI/NISO Z39.86), Accessible EPUB 3 & DAISY 2.02 standards.Obi is easy to learn, highly accessible, and powerful navigable audio book production tool that enables anybody to produce accessible and rich DAISY/EPUB 3 content with minimal amount of training.
 
-Current version of Obi is 0.8.4.0 (2007-04-05.)
+Obi is designed for diverse range of users, from the large scale production houses to the home users. It is one of the preferred tools of the new generation distributed production systems, which are build on vast network of volunteers who record at their homes & offices using the cutting edge technologies.
 
+Obi is distributed absolutely free to maximize the dissemination of benefits of the DAISY & accessible EPUB 3 technology. It is released under the LGPL (open source) license which means that not only the tool comes for free, but its source code is available for anyone to run, modify and redistribute.
 
-Installing Obi
+In fact Obi is much more than a production tool, it builds on the following vision.
 
-To install Obi, you first need to install the Microsoft .NET runtime 2.0 and
-the DirectX runtime. The .NET runtime can be installed automatically by the
-Obi installer, but the DirectX runtime must be installed separately. You can
-download a web installer from Microsoft at the following URL:
+* Project vision
 
-  http://www.microsoft.com/downloads/details.aspx?FamilyId=2DA43D38-DB71-4C1B-BC6A-9B6652CD92A3&displaylang=en
+Empower individuals and organizations across the globe to create accessible and feature-rich content overcoming diversities like language, cost constraints & accessibility needs.
 
-Once the DirectX runtime is installed, simply run the installer from this
-archive. The installer will also create a desktop icon and a shortcut.
+Equip the world wide DAISY community with a free, localizable tool to enable accessible content production based on the latest specification, with minimum training and with complete independence.
+Provide the reference implementation for exemplifying the benefits of the latest specification & open-source code base to facilitate further customization.
 
-Note: many Windows XP installation *do* have DirectX installed; however, a
-specific runtime (so-called "managed" runtime) is necessary for Obi to work
-correctly. If Obi cannot start, the DirectX managed runtime may be missing
-so please install it from the above URL.
+Current version of Obi is v4.6 alpha (4.5.4.20658)(2020-08-12)
 
+* Requirements:
 
-Compiling Obi
+Obi will run on Windows Vista, Windows 7, Windows 8 & Windows 10. It needs .NET framework 4.0, DirectX 9 c and 32 bit Java runtime environment 6.0 & above.
 
-Obi can be compiled with Microsoft Visual Studio 2005 or Microsoft Visual C#
-2005 Express Edition. To compile Obi, you must first compile version 0.5 of
-the Urakawa SDK (urakawa.dll) as well as the XukToZed project from the
-implementation directory.
+All of these dependencies will be installed by installer during installation process. To install Obi, please go through installation guide.
 
 
-Credits
+* Running Obi: 
 
-* Team leader: Julien Quint
-* Developers: Marisa DeMeglio, Markus Gylling, Laust Skat Nielsen, Avneesh
-    Singh, Suman Sharma
-* Testers: Miki Azuma, Monthian Buntan, Mayu Hamada, Jack Jansen, Sandeep
-    Kaler, George Kerscher, Lynn Leith, Deepika Sood, Prashant Ranjan Verma.
-* Team management: Dipendra Manocha
-
+Once Obi is installed, you can run Obi by double-clicking on the Obi icon. You can also double click on .obi files to open in Obi. After starting Obi, press F1 for the help manual.
