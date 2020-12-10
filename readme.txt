@@ -1,8 +1,8 @@
 $Id$
-
+  
 About Obi
 
-Obi is an open source audio book production tool that produces digital talking books (DTBs) conforming to DAISY 3 (officially, the ANSI/NISO Z39.86), Accessible EPUB 3 & DAISY 2.02 standards.Obi is easy to learn, highly accessible, and powerful navigable audio book production tool that enables anybody to produce accessible and rich DAISY/EPUB 3 content with minimal amount of training.
+Obi is an open source audio book production tool that produces digital talking books (DTBs) conforming to DAISY 3 (officially, the ANSI/NISO Z39.86), Accessible EPUB 3 & DAISY 2.02 standards. Obi is easy to learn, highly accessible, and powerful navigable audio book production tool that enables anybody to produce accessible and rich DAISY/EPUB 3 content with minimal amount of training.
 
 Obi is designed for diverse range of users, from the large scale production houses to the home users. It is one of the preferred tools of the new generation distributed production systems, which are build on vast network of volunteers who record at their homes & offices using the cutting edge technologies.
 
@@ -10,14 +10,12 @@ Obi is distributed absolutely free to maximize the dissemination of benefits of 
 
 In fact Obi is much more than a production tool, it builds on the following vision.
 
-* Project vision
-
-Empower individuals and organizations across the globe to create accessible and feature-rich content overcoming diversities like language, cost constraints & accessibility needs.
-
-Equip the world wide DAISY community with a free, localizable tool to enable accessible content production based on the latest specification, with minimum training and with complete independence.
+- Empower individuals and organizations across the globe to create accessible and feature-rich content overcoming diversities like language, cost constraints & accessibility needs.
+- Equip the world wide DAISY community with a free, localizable tool to enable accessible content production based on the latest specification, with minimum training and with complete independence.
 Provide the reference implementation for exemplifying the benefits of the latest specification & open-source code base to facilitate further customization.
 
 Current version of Obi is v4.6 alpha (4.5.4.20658)(2020-08-12)
+The latest stable release is v4.5 (2020-03-31)
 
 * Requirements:
 
