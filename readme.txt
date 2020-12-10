@@ -10,8 +10,8 @@ Obi is distributed absolutely free to maximize the dissemination of benefits of 
 
 In fact Obi is much more than a production tool, it builds on the following vision.
 
-- Empower individuals and organizations across the globe to create accessible and feature-rich content overcoming diversities like language, cost constraints & accessibility needs.
-- Equip the world wide DAISY community with a free, localizable tool to enable accessible content production based on the latest specification, with minimum training and with complete independence.
+Empower individuals and organizations across the globe to create accessible and feature-rich content overcoming diversities like language, cost constraints & accessibility needs.
+Equip the world wide DAISY community with a free, localizable tool to enable accessible content production based on the latest specification, with minimum training and with complete independence.
 Provide the reference implementation for exemplifying the benefits of the latest specification & open-source code base to facilitate further customization.
 
 Current version of Obi is v4.6 alpha (4.5.4.20658)(2020-08-12)
