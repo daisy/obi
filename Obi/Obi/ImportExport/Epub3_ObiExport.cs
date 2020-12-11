@@ -24,7 +24,6 @@ using urakawa.property.channel;
 using urakawa.property.xml;
 using urakawa.xuk;
 using XmlAttribute = urakawa.property.xml.XmlAttribute;
-using System.Text;
 
 namespace Obi.ImportExport
 {
@@ -43,13 +42,10 @@ namespace Obi.ImportExport
         private readonly string m_Meta_infFileName = null;
         public const string NS_URL_EPUB = "http://www.idpf.org/2007/ops";
 
-        private bool m_CreateCSVForCues;
-        private List<string> m_ToDoPhraseTimeings = new List<string>();
-
         private Dictionary<string, urakawa.media.ExternalAudioMedia> m_NavIDToExternalAudioMediaMap; //@smilNavDoc
 
         public Epub3_ObiExport(ObiPresentation presentation, string exportDirectory, List<string> navListElementNamesList, bool encodeToMp3,double bitRate_Encoding ,
-            SampleRate sampleRate, bool stereo, bool skipACM, int audioFileSectionLevel, int EPUBFileNameLengthLimit, bool createDummyText, bool createMediaOverlaysForNavDoc,bool createCSVForCues = false):
+            SampleRate sampleRate, bool stereo, bool skipACM, int audioFileSectionLevel, int EPUBFileNameLengthLimit, bool createDummyText, bool createMediaOverlaysForNavDoc):
             base (presentation, exportDirectory, navListElementNamesList, encodeToMp3,bitRate_Encoding ,
             sampleRate, stereo, skipACM, audioFileSectionLevel)
         {
@@ -72,7 +68,6 @@ namespace Obi.ImportExport
               m_Meta_infFileName = "META-INF" ;
               m_CreateDummyText = createDummyText; //@dummytext
               m_CreateSmilForNavDoc = createMediaOverlaysForNavDoc; //@smilNavDoc
-              m_CreateCSVForCues = createCSVForCues;
         }
 
 
@@ -528,26 +523,6 @@ namespace Obi.ImportExport
 
                     // add to duration 
                     durationOfCurrentSmil.Add(externalAudio.Duration);
-
-                    // If ToDo phrase, then preserve values for CSV file
-                    if (n is EmptyNode && ((EmptyNode)n).TODO)
-                    {
-                        SectionNode s = ((EmptyNode)n).ParentAs<SectionNode>();
-                        double timeToToDoPhrase = 0;
-                        for (int i = 0; i < s.PhraseChildCount; i++)
-                        {
-                            if (s.PhraseChild(i) == n) break;
-                            timeToToDoPhrase += s.PhraseChild(i).Duration;
-                        }
-                        timeToToDoPhrase += ((EmptyNode)n).TODOCursorPosition;
-                        timeToToDoPhrase = timeToToDoPhrase / 1000;
-                        string strToDoInfo = audioFileName + " , " + timeToToDoPhrase.ToString();
-                        if (!m_ToDoPhraseTimeings.Contains(strToDoInfo))
-                        {
-                            m_ToDoPhraseTimeings.Add(strToDoInfo);
-                            Console.WriteLine(strToDoInfo);
-                        }
-                    }
                 }
 
                 // if node n is pagenum, add to pageList
@@ -1058,24 +1033,6 @@ namespace Obi.ImportExport
             AddMetadata_Ncx(navigationDocument, totalPageCount.ToString(), maxNormalPageNumber.ToString(), maxDepth.ToString(), null);
             if (m_CreateSmilForNavDoc) CreateSmilForNavDoc(); //@smilNavDoc
             XmlReaderWriterHelper.WriteXmlDocument(navigationDocument, Path.Combine(m_OutputDirectory, m_Filename_NavigationHtml ), AlwaysIgnoreIndentation ? GetXmlWriterSettings(false) : null);
-
-            if (m_CreateCSVForCues)
-            {
-                WriteCuePointsToCSV();
-            }
-        }
-
-        private void WriteCuePointsToCSV()
-        {
-            StringBuilder csvContent = new StringBuilder();
-            csvContent.AppendLine(Localizer.Message("CueCsvColumnHeading"));
-            csvContent.AppendLine("");
-            foreach (var item in m_ToDoPhraseTimeings)
-            {
-                csvContent.AppendLine(item);
-            }
-            string csvPath = m_OutputDirectory + Localizer.Message("CueCsvName");
-            File.AppendAllText(csvPath, csvContent.ToString());
         }
 
         //@smilNavDoc
