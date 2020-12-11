@@ -6586,7 +6586,7 @@ for (int j = 0;
                             label = ((SectionNode)Selection.Node).Label;
                         }
 
-                        Obi.Dialogs.ProgressDialog progress = new Obi.Dialogs.ProgressDialog(string.Format(Localizer.Message("AudioProcessing_progress_dialog_title"), label),
+                        Obi.Dialogs.ProgressDialog progress = new Obi.Dialogs.ProgressDialog(string.Format(Localizer.Message("AudioProcessingNew_progress_dialog_title"), label),
                               delegate(Dialogs.ProgressDialog progress1)
                               {
                                   audioFileFullPath = CreateAudioFileFromNode(nodeToSelect, directoryFullPath, null);
