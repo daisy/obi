@@ -121,14 +121,15 @@
     <value>0, 0</value>
   </metadata>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="m_StatusLabelForMergeSection.Size" type="System.Drawing.Size, System.Drawing">
-    <value>0, 0</value>
-  </data>
   <data name="m_statusStripForMergeSection.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 458</value>
+    <value>0, 564</value>
+  </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="m_statusStripForMergeSection.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>1, 0, 19, 0</value>
   </data>
   <data name="m_statusStripForMergeSection.Size" type="System.Drawing.Size, System.Drawing">
-    <value>848, 19</value>
+    <value>1131, 23</value>
   </data>
   <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="m_statusStripForMergeSection.TabIndex" type="System.Int32, mscorlib">
@@ -152,18 +153,23 @@
   <data name="&gt;&gt;m_statusStripForMergeSection.ZOrder" xml:space="preserve">
     <value>7</value>
   </data>
+  <data name="m_StatusLabelForMergeSection.Size" type="System.Drawing.Size, System.Drawing">
+    <value>0, 0</value>
+  </data>
   <data name="m_btn_SelectAll.AccessibleName" xml:space="preserve">
     <value>Select All</value>
   </data>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="m_btn_SelectAll.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Flat</value>
   </data>
   <data name="m_btn_SelectAll.Location" type="System.Drawing.Point, System.Drawing">
-    <value>9, 14</value>
+    <value>12, 17</value>
+  </data>
+  <data name="m_btn_SelectAll.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 4, 4, 4</value>
   </data>
   <data name="m_btn_SelectAll.Size" type="System.Drawing.Size, System.Drawing">
-    <value>100, 52</value>
+    <value>133, 64</value>
   </data>
   <data name="m_btn_SelectAll.TabIndex" type="System.Int32, mscorlib">
     <value>6</value>
@@ -183,6 +189,45 @@
   <data name="&gt;&gt;m_btn_SelectAll.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
+  <data name="&gt;&gt;m_btn_ShowContents.Name" xml:space="preserve">
+    <value>m_btn_ShowContents</value>
+  </data>
+  <data name="&gt;&gt;m_btn_ShowContents.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_btn_ShowContents.Parent" xml:space="preserve">
+    <value>groupBox2</value>
+  </data>
+  <data name="&gt;&gt;m_btn_ShowContents.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="groupBox2.Location" type="System.Drawing.Point, System.Drawing">
+    <value>311, 309</value>
+  </data>
+  <data name="groupBox2.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 4, 4, 4</value>
+  </data>
+  <data name="groupBox2.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 4, 4, 4</value>
+  </data>
+  <data name="groupBox2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>337, 89</value>
+  </data>
+  <data name="groupBox2.TabIndex" type="System.Int32, mscorlib">
+    <value>5</value>
+  </data>
+  <data name="&gt;&gt;groupBox2.Name" xml:space="preserve">
+    <value>groupBox2</value>
+  </data>
+  <data name="&gt;&gt;groupBox2.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;groupBox2.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;groupBox2.ZOrder" xml:space="preserve">
+    <value>5</value>
+  </data>
   <data name="m_btn_ShowContents.AccessibleName" xml:space="preserve">
     <value>Show Contents</value>
   </data>
@@ -190,10 +235,13 @@
     <value>Flat</value>
   </data>
   <data name="m_btn_ShowContents.Location" type="System.Drawing.Point, System.Drawing">
-    <value>125, 14</value>
+    <value>167, 17</value>
+  </data>
+  <data name="m_btn_ShowContents.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 4, 4, 4</value>
   </data>
   <data name="m_btn_ShowContents.Size" type="System.Drawing.Size, System.Drawing">
-    <value>121, 52</value>
+    <value>161, 64</value>
   </data>
   <data name="m_btn_ShowContents.TabIndex" type="System.Int32, mscorlib">
     <value>7</value>
@@ -213,27 +261,6 @@
   <data name="&gt;&gt;m_btn_ShowContents.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
-  <data name="groupBox2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>233, 251</value>
-  </data>
-  <data name="groupBox2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>253, 72</value>
-  </data>
-  <data name="groupBox2.TabIndex" type="System.Int32, mscorlib">
-    <value>5</value>
-  </data>
-  <data name="&gt;&gt;groupBox2.Name" xml:space="preserve">
-    <value>groupBox2</value>
-  </data>
-  <data name="&gt;&gt;groupBox2.Type" xml:space="preserve">
-    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;groupBox2.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;groupBox2.ZOrder" xml:space="preserve">
-    <value>5</value>
-  </data>
   <metadata name="helpProvider1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>107, 17</value>
   </metadata>
@@ -250,13 +277,16 @@
     <value>NoControl</value>
   </data>
   <data name="m_btn_IncreaseSectionLevel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>99, 14</value>
+    <value>132, 17</value>
+  </data>
+  <data name="m_btn_IncreaseSectionLevel.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 4, 4, 4</value>
   </data>
   <data name="m_btn_IncreaseSectionLevel.ShowHelp" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
   <data name="m_btn_IncreaseSectionLevel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>75, 52</value>
+    <value>100, 64</value>
   </data>
   <data name="m_btn_IncreaseSectionLevel.TabIndex" type="System.Int32, mscorlib">
     <value>9</value>
@@ -286,13 +316,16 @@
     <value>NoControl</value>
   </data>
   <data name="m_btn_DecreaseSectionLevel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>182, 14</value>
+    <value>243, 17</value>
+  </data>
+  <data name="m_btn_DecreaseSectionLevel.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 4, 4, 4</value>
   </data>
   <data name="m_btn_DecreaseSectionLevel.ShowHelp" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
   <data name="m_btn_DecreaseSectionLevel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>70, 52</value>
+    <value>93, 64</value>
   </data>
   <data name="m_btn_DecreaseSectionLevel.TabIndex" type="System.Int32, mscorlib">
     <value>10</value>
@@ -312,6 +345,60 @@
   <data name="&gt;&gt;m_btn_DecreaseSectionLevel.ZOrder" xml:space="preserve">
     <value>2</value>
   </data>
+  <data name="&gt;&gt;m_btn_Merge.Name" xml:space="preserve">
+    <value>m_btn_Merge</value>
+  </data>
+  <data name="&gt;&gt;m_btn_Merge.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_btn_Merge.Parent" xml:space="preserve">
+    <value>m_grp_SectionLevelOperation</value>
+  </data>
+  <data name="&gt;&gt;m_btn_Merge.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;m_btn_Undo.Name" xml:space="preserve">
+    <value>m_btn_Undo</value>
+  </data>
+  <data name="&gt;&gt;m_btn_Undo.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_btn_Undo.Parent" xml:space="preserve">
+    <value>m_grp_SectionLevelOperation</value>
+  </data>
+  <data name="&gt;&gt;m_btn_Undo.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="m_grp_SectionLevelOperation.Location" type="System.Drawing.Point, System.Drawing">
+    <value>656, 309</value>
+  </data>
+  <data name="m_grp_SectionLevelOperation.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 4, 4, 4</value>
+  </data>
+  <data name="m_grp_SectionLevelOperation.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 4, 4, 4</value>
+  </data>
+  <data name="m_grp_SectionLevelOperation.ShowHelp" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="m_grp_SectionLevelOperation.Size" type="System.Drawing.Size, System.Drawing">
+    <value>452, 89</value>
+  </data>
+  <data name="m_grp_SectionLevelOperation.TabIndex" type="System.Int32, mscorlib">
+    <value>7</value>
+  </data>
+  <data name="&gt;&gt;m_grp_SectionLevelOperation.Name" xml:space="preserve">
+    <value>m_grp_SectionLevelOperation</value>
+  </data>
+  <data name="&gt;&gt;m_grp_SectionLevelOperation.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_grp_SectionLevelOperation.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;m_grp_SectionLevelOperation.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
   <data name="m_btn_Merge.AccessibleName" xml:space="preserve">
     <value>Merge</value>
   </data>
@@ -322,13 +409,16 @@
     <value>NoControl</value>
   </data>
   <data name="m_btn_Merge.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 14</value>
+    <value>8, 17</value>
+  </data>
+  <data name="m_btn_Merge.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 4, 4, 4</value>
   </data>
   <data name="m_btn_Merge.ShowHelp" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
   <data name="m_btn_Merge.Size" type="System.Drawing.Size, System.Drawing">
-    <value>86, 52</value>
+    <value>115, 64</value>
   </data>
   <data name="m_btn_Merge.TabIndex" type="System.Int32, mscorlib">
     <value>8</value>
@@ -355,10 +445,13 @@
     <value>Flat</value>
   </data>
   <data name="m_btn_Undo.Location" type="System.Drawing.Point, System.Drawing">
-    <value>258, 14</value>
+    <value>344, 17</value>
+  </data>
+  <data name="m_btn_Undo.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 4, 4, 4</value>
   </data>
   <data name="m_btn_Undo.Size" type="System.Drawing.Size, System.Drawing">
-    <value>75, 52</value>
+    <value>100, 64</value>
   </data>
   <data name="m_btn_Undo.TabIndex" type="System.Int32, mscorlib">
     <value>11</value>
@@ -378,30 +471,6 @@
   <data name="&gt;&gt;m_btn_Undo.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
-  <data name="m_grp_SectionLevelOperation.Location" type="System.Drawing.Point, System.Drawing">
-    <value>492, 251</value>
-  </data>
-  <data name="m_grp_SectionLevelOperation.ShowHelp" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="m_grp_SectionLevelOperation.Size" type="System.Drawing.Size, System.Drawing">
-    <value>339, 72</value>
-  </data>
-  <data name="m_grp_SectionLevelOperation.TabIndex" type="System.Int32, mscorlib">
-    <value>7</value>
-  </data>
-  <data name="&gt;&gt;m_grp_SectionLevelOperation.Name" xml:space="preserve">
-    <value>m_grp_SectionLevelOperation</value>
-  </data>
-  <data name="&gt;&gt;m_grp_SectionLevelOperation.Type" xml:space="preserve">
-    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;m_grp_SectionLevelOperation.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;m_grp_SectionLevelOperation.ZOrder" xml:space="preserve">
-    <value>4</value>
-  </data>
   <data name="m_btn_Close.AccessibleName" xml:space="preserve">
     <value>Close</value>
   </data>
@@ -412,13 +481,16 @@
     <value>NoControl</value>
   </data>
   <data name="m_btn_Close.Location" type="System.Drawing.Point, System.Drawing">
-    <value>350, 434</value>
+    <value>467, 534</value>
+  </data>
+  <data name="m_btn_Close.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 4, 4, 4</value>
   </data>
   <data name="m_btn_Close.ShowHelp" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
   <data name="m_btn_Close.Size" type="System.Drawing.Size, System.Drawing">
-    <value>101, 35</value>
+    <value>135, 43</value>
   </data>
   <data name="m_btn_Close.TabIndex" type="System.Int32, mscorlib">
     <value>16</value>
@@ -448,13 +520,16 @@
     <value>NoControl</value>
   </data>
   <data name="m_btnPause.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 14</value>
+    <value>8, 17</value>
+  </data>
+  <data name="m_btnPause.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 4, 4, 4</value>
   </data>
   <data name="m_btnPause.ShowHelp" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
   <data name="m_btnPause.Size" type="System.Drawing.Size, System.Drawing">
-    <value>89, 49</value>
+    <value>119, 60</value>
   </data>
   <data name="m_btnPause.TabIndex" type="System.Int32, mscorlib">
     <value>3</value>
@@ -484,10 +559,13 @@
     <value>Flat</value>
   </data>
   <data name="m_btn_Stop.Location" type="System.Drawing.Point, System.Drawing">
-    <value>108, 14</value>
+    <value>144, 17</value>
+  </data>
+  <data name="m_btn_Stop.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 4, 4, 4</value>
   </data>
   <data name="m_btn_Stop.Size" type="System.Drawing.Size, System.Drawing">
-    <value>88, 52</value>
+    <value>117, 64</value>
   </data>
   <data name="m_btn_Stop.TabIndex" type="System.Int32, mscorlib">
     <value>4</value>
@@ -514,10 +592,13 @@
     <value>Flat</value>
   </data>
   <data name="m_btn_Play.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 18</value>
+    <value>8, 17</value>
+  </data>
+  <data name="m_btn_Play.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 4, 4, 4</value>
   </data>
   <data name="m_btn_Play.Size" type="System.Drawing.Size, System.Drawing">
-    <value>89, 45</value>
+    <value>119, 60</value>
   </data>
   <data name="m_btn_Play.TabIndex" type="System.Int32, mscorlib">
     <value>3</value>
@@ -538,10 +619,16 @@
     <value>2</value>
   </data>
   <data name="m_grp_SectionAudioOperation.Location" type="System.Drawing.Point, System.Drawing">
-    <value>20, 251</value>
+    <value>27, 309</value>
+  </data>
+  <data name="m_grp_SectionAudioOperation.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 4, 4, 4</value>
+  </data>
+  <data name="m_grp_SectionAudioOperation.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 4, 4, 4</value>
   </data>
   <data name="m_grp_SectionAudioOperation.Size" type="System.Drawing.Size, System.Drawing">
-    <value>207, 72</value>
+    <value>276, 89</value>
   </data>
   <data name="m_grp_SectionAudioOperation.TabIndex" type="System.Int32, mscorlib">
     <value>2</value>
@@ -564,11 +651,17 @@
   <data name="m_lb_listofSectionsToMerge.HorizontalScrollbar" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
+  <data name="m_lb_listofSectionsToMerge.ItemHeight" type="System.Int32, mscorlib">
+    <value>16</value>
+  </data>
   <data name="m_lb_listofSectionsToMerge.Location" type="System.Drawing.Point, System.Drawing">
-    <value>20, 12</value>
+    <value>27, 15</value>
+  </data>
+  <data name="m_lb_listofSectionsToMerge.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 4, 4, 4</value>
   </data>
   <data name="m_lb_listofSectionsToMerge.Size" type="System.Drawing.Size, System.Drawing">
-    <value>805, 212</value>
+    <value>1072, 260</value>
   </data>
   <data name="m_lb_listofSectionsToMerge.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
@@ -586,10 +679,13 @@
     <value>2</value>
   </data>
   <data name="m_tb_SectionsSelected.Location" type="System.Drawing.Point, System.Drawing">
-    <value>20, 408</value>
+    <value>27, 502</value>
+  </data>
+  <data name="m_tb_SectionsSelected.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 4, 4, 4</value>
   </data>
   <data name="m_tb_SectionsSelected.Size" type="System.Drawing.Size, System.Drawing">
-    <value>811, 20</value>
+    <value>1080, 22</value>
   </data>
   <data name="m_tb_SectionsSelected.TabIndex" type="System.Int32, mscorlib">
     <value>15</value>
@@ -613,10 +709,13 @@
     <value>Flat</value>
   </data>
   <data name="m_btn_NoiseReduction.Location" type="System.Drawing.Point, System.Drawing">
-    <value>140, 15</value>
+    <value>187, 18</value>
+  </data>
+  <data name="m_btn_NoiseReduction.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 4, 4, 4</value>
   </data>
   <data name="m_btn_NoiseReduction.Size" type="System.Drawing.Size, System.Drawing">
-    <value>106, 52</value>
+    <value>141, 64</value>
   </data>
   <data name="m_btn_NoiseReduction.TabIndex" type="System.Int32, mscorlib">
     <value>14</value>
@@ -640,10 +739,13 @@
     <value>Flat</value>
   </data>
   <data name="m_btn_Normalize.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 15</value>
+    <value>8, 18</value>
+  </data>
+  <data name="m_btn_Normalize.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 4, 4, 4</value>
   </data>
   <data name="m_btn_Normalize.Size" type="System.Drawing.Size, System.Drawing">
-    <value>109, 52</value>
+    <value>145, 64</value>
   </data>
   <data name="m_btn_Normalize.TabIndex" type="System.Int32, mscorlib">
     <value>13</value>
@@ -664,10 +766,16 @@
     <value>1</value>
   </data>
   <data name="groupBox1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>233, 329</value>
+    <value>311, 405</value>
+  </data>
+  <data name="groupBox1.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 4, 4, 4</value>
+  </data>
+  <data name="groupBox1.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 4, 4, 4</value>
   </data>
   <data name="groupBox1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>253, 73</value>
+    <value>337, 90</value>
   </data>
   <data name="groupBox1.TabIndex" type="System.Int32, mscorlib">
     <value>12</value>
@@ -691,10 +799,13 @@
     <value>54</value>
   </metadata>
   <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
-    <value>6, 13</value>
+    <value>8, 16</value>
   </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>848, 477</value>
+    <value>1131, 587</value>
+  </data>
+  <data name="$this.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 4, 4, 4</value>
   </data>
   <data name="$this.ShowHelp" type="System.Boolean, mscorlib">
     <value>True</value>

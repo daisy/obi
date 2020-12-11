@@ -229,7 +229,6 @@ namespace Obi.Dialogs
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.m_btn_Close);
             this.Controls.Add(this.m_statusStripForMergeSection);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "SelectMergeSectionRange";
