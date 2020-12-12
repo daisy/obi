@@ -780,6 +780,9 @@
   <data name="helpProvider1.HelpNamespace" xml:space="preserve">
     <value>Obi Help.chm</value>
   </data>
+  <data name="m_lblCurrentCursorPosition.AccessibleName" xml:space="preserve">
+    <value>Cursor position in book</value>
+  </data>
   <data name="m_lblCurrentCursorPosition.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
@@ -808,7 +811,7 @@
     <value>3</value>
   </data>
   <data name="m_txtCurrentCursorPosition.AccessibleName" xml:space="preserve">
-    <value>Current cursor position</value>
+    <value>Cursor position in book</value>
   </data>
   <data name="m_txtCurrentCursorPosition.Location" type="System.Drawing.Point, System.Drawing">
     <value>160, 88</value>
