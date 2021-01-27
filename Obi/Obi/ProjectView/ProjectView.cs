@@ -6556,6 +6556,7 @@ for (int j = 0;
                     val = dialog.AudioProcessingParameter;
                 bool skip = false;
                 string sectionSelected = string.Empty;
+                bool isProjectEmpy = true;
                 foreach (SectionNode section in listOfSections)
                 {
                     if (skip)
@@ -6563,6 +6564,11 @@ for (int j = 0;
 
                     this.Selection = new NodeSelection(section, this.Selection.Control);
                     nodeToSelect = Selection.Node;
+
+                    if (nodeToSelect.Duration == 0.0 && isProjectEmpy)
+                        isProjectEmpy = true;
+                    else
+                        isProjectEmpy = false;
 
                     string audioFileFullPath = null;
 
@@ -6631,7 +6637,7 @@ for (int j = 0;
                     ObiForm.Save();
                 }
 
-                if (nodeToSelect != null && nodeToSelect is SectionNode && !skip)
+                if (nodeToSelect != null && nodeToSelect is SectionNode && !skip && !isProjectEmpy)
                 {
                     if (audioProcessingKind == AudioLib.WavAudioProcessing.AudioProcessingKind.Normalize)
                         MessageBox.Show(Localizer.Message("NormalizationCompleted"), Localizer.Message("information_caption"), MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -6650,6 +6656,9 @@ for (int j = 0;
                 }
                 this.Selection = new NodeSelection(tempNodeSelected, this.Selection.Control);
 
+                if(isProjectEmpy)
+                    MessageBox.Show(Localizer.Message("no_audio"), Localizer.Message("no_audio_Caption"), MessageBoxButtons.OK, MessageBoxIcon.Information);
+                
             }
 
             catch (System.Exception ex)
