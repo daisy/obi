@@ -1,0 +1,10 @@
+baseURL = "https://daisy.github.io/obi/"
+languageCode = "en-us"
+title = "OBI"
+description = "hi"
+theme = "daisy"
+publishDir = "site"
+
+[params]
+   title = " ### OBI "
+   description = "Highly accessible navigable books production tool by **[DAISY Consortium](http://daisy.org)**. Latest version: [Obi 4.5](#download)(and Obi 4.6 beta)"
