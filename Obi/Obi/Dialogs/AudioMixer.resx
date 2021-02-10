@@ -117,6 +117,567 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="m_lblSelectAudioForMixing.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="m_lblSelectAudioForMixing.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="m_lblSelectAudioForMixing.Location" type="System.Drawing.Point, System.Drawing">
+    <value>35, 31</value>
+  </data>
+  <metadata name="helpProvider1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 17</value>
+  </metadata>
+  <data name="m_lblSelectAudioForMixing.ShowHelp" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="m_lblSelectAudioForMixing.Size" type="System.Drawing.Size, System.Drawing">
+    <value>161, 18</value>
+  </data>
+  <data name="m_lblSelectAudioForMixing.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="m_lblSelectAudioForMixing.Text" xml:space="preserve">
+    <value>&amp;Select audio for mixing </value>
+  </data>
+  <data name="&gt;&gt;m_lblSelectAudioForMixing.Name" xml:space="preserve">
+    <value>m_lblSelectAudioForMixing</value>
+  </data>
+  <data name="&gt;&gt;m_lblSelectAudioForMixing.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_lblSelectAudioForMixing.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;m_lblSelectAudioForMixing.ZOrder" xml:space="preserve">
+    <value>17</value>
+  </data>
+  <data name="m_btnBrowse.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>Flat</value>
+  </data>
+  <data name="m_btnBrowse.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="m_btnBrowse.Location" type="System.Drawing.Point, System.Drawing">
+    <value>486, 28</value>
+  </data>
+  <data name="m_btnBrowse.ShowHelp" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="m_btnBrowse.Size" type="System.Drawing.Size, System.Drawing">
+    <value>87, 38</value>
+  </data>
+  <data name="m_btnBrowse.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="m_btnBrowse.Text" xml:space="preserve">
+    <value>&amp;Browse</value>
+  </data>
+  <data name="&gt;&gt;m_btnBrowse.Name" xml:space="preserve">
+    <value>m_btnBrowse</value>
+  </data>
+  <data name="&gt;&gt;m_btnBrowse.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_btnBrowse.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;m_btnBrowse.ZOrder" xml:space="preserve">
+    <value>16</value>
+  </data>
+  <data name="m_txtSelectAudioForMixing.AccessibleName" xml:space="preserve">
+    <value>Select audio for mixing</value>
+  </data>
+  <data name="m_txtSelectAudioForMixing.Location" type="System.Drawing.Point, System.Drawing">
+    <value>249, 28</value>
+  </data>
+  <data name="m_txtSelectAudioForMixing.ShowHelp" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="m_txtSelectAudioForMixing.Size" type="System.Drawing.Size, System.Drawing">
+    <value>229, 24</value>
+  </data>
+  <data name="m_txtSelectAudioForMixing.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;m_txtSelectAudioForMixing.Name" xml:space="preserve">
+    <value>m_txtSelectAudioForMixing</value>
+  </data>
+  <data name="&gt;&gt;m_txtSelectAudioForMixing.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_txtSelectAudioForMixing.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;m_txtSelectAudioForMixing.ZOrder" xml:space="preserve">
+    <value>15</value>
+  </data>
+  <data name="m_lblWeightOfSound.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="m_lblWeightOfSound.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="m_lblWeightOfSound.Location" type="System.Drawing.Point, System.Drawing">
+    <value>38, 66</value>
+  </data>
+  <data name="m_lblWeightOfSound.ShowHelp" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="m_lblWeightOfSound.Size" type="System.Drawing.Size, System.Drawing">
+    <value>111, 18</value>
+  </data>
+  <data name="m_lblWeightOfSound.TabIndex" type="System.Int32, mscorlib">
+    <value>3</value>
+  </data>
+  <data name="m_lblWeightOfSound.Text" xml:space="preserve">
+    <value>&amp;Weight of audio</value>
+  </data>
+  <data name="&gt;&gt;m_lblWeightOfSound.Name" xml:space="preserve">
+    <value>m_lblWeightOfSound</value>
+  </data>
+  <data name="&gt;&gt;m_lblWeightOfSound.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_lblWeightOfSound.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;m_lblWeightOfSound.ZOrder" xml:space="preserve">
+    <value>14</value>
+  </data>
+  <data name="m_WeightOfSoundNumericUpDown.AccessibleName" xml:space="preserve">
+    <value>Weight of audio</value>
+  </data>
+  <data name="m_WeightOfSoundNumericUpDown.Location" type="System.Drawing.Point, System.Drawing">
+    <value>249, 64</value>
+  </data>
+  <data name="m_WeightOfSoundNumericUpDown.ShowHelp" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="m_WeightOfSoundNumericUpDown.Size" type="System.Drawing.Size, System.Drawing">
+    <value>68, 24</value>
+  </data>
+  <data name="m_WeightOfSoundNumericUpDown.TabIndex" type="System.Int32, mscorlib">
+    <value>4</value>
+  </data>
+  <data name="&gt;&gt;m_WeightOfSoundNumericUpDown.Name" xml:space="preserve">
+    <value>m_WeightOfSoundNumericUpDown</value>
+  </data>
+  <data name="&gt;&gt;m_WeightOfSoundNumericUpDown.Type" xml:space="preserve">
+    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_WeightOfSoundNumericUpDown.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;m_WeightOfSoundNumericUpDown.ZOrder" xml:space="preserve">
+    <value>13</value>
+  </data>
+  <data name="m_btnOK.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>Flat</value>
+  </data>
+  <data name="m_btnOK.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 9.75pt</value>
+  </data>
+  <data name="m_btnOK.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="m_btnOK.Location" type="System.Drawing.Point, System.Drawing">
+    <value>159, 512</value>
+  </data>
+  <data name="m_btnOK.ShowHelp" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="m_btnOK.Size" type="System.Drawing.Size, System.Drawing">
+    <value>87, 37</value>
+  </data>
+  <data name="m_btnOK.TabIndex" type="System.Int32, mscorlib">
+    <value>18</value>
+  </data>
+  <data name="m_btnOK.Text" xml:space="preserve">
+    <value>&amp;OK</value>
+  </data>
+  <data name="&gt;&gt;m_btnOK.Name" xml:space="preserve">
+    <value>m_btnOK</value>
+  </data>
+  <data name="&gt;&gt;m_btnOK.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_btnOK.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;m_btnOK.ZOrder" xml:space="preserve">
+    <value>12</value>
+  </data>
+  <data name="m_btnCancel.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>Flat</value>
+  </data>
+  <data name="m_btnCancel.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 9.75pt</value>
+  </data>
+  <data name="m_btnCancel.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="m_btnCancel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>311, 512</value>
+  </data>
+  <data name="m_btnCancel.ShowHelp" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="m_btnCancel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>87, 37</value>
+  </data>
+  <data name="m_btnCancel.TabIndex" type="System.Int32, mscorlib">
+    <value>19</value>
+  </data>
+  <data name="m_btnCancel.Text" xml:space="preserve">
+    <value>&amp;Cancel</value>
+  </data>
+  <data name="&gt;&gt;m_btnCancel.Name" xml:space="preserve">
+    <value>m_btnCancel</value>
+  </data>
+  <data name="&gt;&gt;m_btnCancel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_btnCancel.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;m_btnCancel.ZOrder" xml:space="preserve">
+    <value>11</value>
+  </data>
+  <data name="m_lblDropoutTransition.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="m_lblDropoutTransition.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="m_lblDropoutTransition.Location" type="System.Drawing.Point, System.Drawing">
+    <value>36, 169</value>
+  </data>
+  <data name="m_lblDropoutTransition.ShowHelp" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="m_lblDropoutTransition.Size" type="System.Drawing.Size, System.Drawing">
+    <value>204, 18</value>
+  </data>
+  <data name="m_lblDropoutTransition.TabIndex" type="System.Int32, mscorlib">
+    <value>10</value>
+  </data>
+  <data name="m_lblDropoutTransition.Text" xml:space="preserve">
+    <value>&amp;Dropout Transition (Seconds)</value>
+  </data>
+  <data name="&gt;&gt;m_lblDropoutTransition.Name" xml:space="preserve">
+    <value>m_lblDropoutTransition</value>
+  </data>
+  <data name="&gt;&gt;m_lblDropoutTransition.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_lblDropoutTransition.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;m_lblDropoutTransition.ZOrder" xml:space="preserve">
+    <value>10</value>
+  </data>
+  <data name="m_DropoutTransitionNumericUpDown.Location" type="System.Drawing.Point, System.Drawing">
+    <value>250, 167</value>
+  </data>
+  <data name="m_DropoutTransitionNumericUpDown.ShowHelp" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="m_DropoutTransitionNumericUpDown.Size" type="System.Drawing.Size, System.Drawing">
+    <value>68, 24</value>
+  </data>
+  <data name="m_DropoutTransitionNumericUpDown.TabIndex" type="System.Int32, mscorlib">
+    <value>11</value>
+  </data>
+  <data name="&gt;&gt;m_DropoutTransitionNumericUpDown.Name" xml:space="preserve">
+    <value>m_DropoutTransitionNumericUpDown</value>
+  </data>
+  <data name="&gt;&gt;m_DropoutTransitionNumericUpDown.Type" xml:space="preserve">
+    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_DropoutTransitionNumericUpDown.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;m_DropoutTransitionNumericUpDown.ZOrder" xml:space="preserve">
+    <value>9</value>
+  </data>
+  <data name="m_cbStreamDuration.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="m_cbStreamDuration.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="m_cbStreamDuration.Location" type="System.Drawing.Point, System.Drawing">
+    <value>40, 205</value>
+  </data>
+  <data name="m_cbStreamDuration.ShowHelp" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="m_cbStreamDuration.Size" type="System.Drawing.Size, System.Drawing">
+    <value>327, 22</value>
+  </data>
+  <data name="m_cbStreamDuration.TabIndex" type="System.Int32, mscorlib">
+    <value>13</value>
+  </data>
+  <data name="m_cbStreamDuration.Text" xml:space="preserve">
+    <value>Set end of s&amp;tream duration to phrase duration</value>
+  </data>
+  <data name="&gt;&gt;m_cbStreamDuration.Name" xml:space="preserve">
+    <value>m_cbStreamDuration</value>
+  </data>
+  <data name="&gt;&gt;m_cbStreamDuration.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_cbStreamDuration.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;m_cbStreamDuration.ZOrder" xml:space="preserve">
+    <value>8</value>
+  </data>
+  <data name="m_DurationOfMixingAudioNumericUpDown.AccessibleName" xml:space="preserve">
+    <value>Set duration of mixing audio after phrase ends (in seconds)</value>
+  </data>
+  <data name="m_DurationOfMixingAudioNumericUpDown.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="m_DurationOfMixingAudioNumericUpDown.Location" type="System.Drawing.Point, System.Drawing">
+    <value>447, 237</value>
+  </data>
+  <data name="m_DurationOfMixingAudioNumericUpDown.ShowHelp" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="m_DurationOfMixingAudioNumericUpDown.Size" type="System.Drawing.Size, System.Drawing">
+    <value>68, 24</value>
+  </data>
+  <data name="m_DurationOfMixingAudioNumericUpDown.TabIndex" type="System.Int32, mscorlib">
+    <value>15</value>
+  </data>
+  <data name="&gt;&gt;m_DurationOfMixingAudioNumericUpDown.Name" xml:space="preserve">
+    <value>m_DurationOfMixingAudioNumericUpDown</value>
+  </data>
+  <data name="&gt;&gt;m_DurationOfMixingAudioNumericUpDown.Type" xml:space="preserve">
+    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_DurationOfMixingAudioNumericUpDown.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;m_DurationOfMixingAudioNumericUpDown.ZOrder" xml:space="preserve">
+    <value>7</value>
+  </data>
+  <data name="m_cbDuationOfMixingAudio.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="m_cbDuationOfMixingAudio.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="m_cbDuationOfMixingAudio.Location" type="System.Drawing.Point, System.Drawing">
+    <value>41, 239</value>
+  </data>
+  <data name="m_cbDuationOfMixingAudio.ShowHelp" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="m_cbDuationOfMixingAudio.Size" type="System.Drawing.Size, System.Drawing">
+    <value>403, 22</value>
+  </data>
+  <data name="m_cbDuationOfMixingAudio.TabIndex" type="System.Int32, mscorlib">
+    <value>14</value>
+  </data>
+  <data name="m_cbDuationOfMixingAudio.Text" xml:space="preserve">
+    <value>Set duration of &amp;mixing audio after phrase ends (Seconds)</value>
+  </data>
+  <data name="&gt;&gt;m_cbDuationOfMixingAudio.Name" xml:space="preserve">
+    <value>m_cbDuationOfMixingAudio</value>
+  </data>
+  <data name="&gt;&gt;m_cbDuationOfMixingAudio.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_cbDuationOfMixingAudio.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;m_cbDuationOfMixingAudio.ZOrder" xml:space="preserve">
+    <value>6</value>
+  </data>
+  <data name="m_cblSelectSecondAudioForMixing.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="m_cblSelectSecondAudioForMixing.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="m_cblSelectSecondAudioForMixing.Location" type="System.Drawing.Point, System.Drawing">
+    <value>19, 105</value>
+  </data>
+  <data name="m_cblSelectSecondAudioForMixing.ShowHelp" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="m_cblSelectSecondAudioForMixing.Size" type="System.Drawing.Size, System.Drawing">
+    <value>232, 22</value>
+  </data>
+  <data name="m_cblSelectSecondAudioForMixing.TabIndex" type="System.Int32, mscorlib">
+    <value>5</value>
+  </data>
+  <data name="m_cblSelectSecondAudioForMixing.Text" xml:space="preserve">
+    <value>S&amp;elect second audio for mixing</value>
+  </data>
+  <data name="&gt;&gt;m_cblSelectSecondAudioForMixing.Name" xml:space="preserve">
+    <value>m_cblSelectSecondAudioForMixing</value>
+  </data>
+  <data name="&gt;&gt;m_cblSelectSecondAudioForMixing.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_cblSelectSecondAudioForMixing.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;m_cblSelectSecondAudioForMixing.ZOrder" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <data name="m_txtSelectSecondAudioForMixing.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="m_txtSelectSecondAudioForMixing.Location" type="System.Drawing.Point, System.Drawing">
+    <value>250, 102</value>
+  </data>
+  <data name="m_txtSelectSecondAudioForMixing.ShowHelp" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="m_txtSelectSecondAudioForMixing.Size" type="System.Drawing.Size, System.Drawing">
+    <value>229, 24</value>
+  </data>
+  <data name="m_txtSelectSecondAudioForMixing.TabIndex" type="System.Int32, mscorlib">
+    <value>6</value>
+  </data>
+  <data name="&gt;&gt;m_txtSelectSecondAudioForMixing.Name" xml:space="preserve">
+    <value>m_txtSelectSecondAudioForMixing</value>
+  </data>
+  <data name="&gt;&gt;m_txtSelectSecondAudioForMixing.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_txtSelectSecondAudioForMixing.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;m_txtSelectSecondAudioForMixing.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="m_btnBrowseSecondAudio.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="m_btnBrowseSecondAudio.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>Flat</value>
+  </data>
+  <data name="m_btnBrowseSecondAudio.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="m_btnBrowseSecondAudio.Location" type="System.Drawing.Point, System.Drawing">
+    <value>487, 99</value>
+  </data>
+  <data name="m_btnBrowseSecondAudio.ShowHelp" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="m_btnBrowseSecondAudio.Size" type="System.Drawing.Size, System.Drawing">
+    <value>87, 39</value>
+  </data>
+  <data name="m_btnBrowseSecondAudio.TabIndex" type="System.Int32, mscorlib">
+    <value>7</value>
+  </data>
+  <data name="m_btnBrowseSecondAudio.Text" xml:space="preserve">
+    <value>B&amp;rowse</value>
+  </data>
+  <data name="&gt;&gt;m_btnBrowseSecondAudio.Name" xml:space="preserve">
+    <value>m_btnBrowseSecondAudio</value>
+  </data>
+  <data name="&gt;&gt;m_btnBrowseSecondAudio.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_btnBrowseSecondAudio.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;m_btnBrowseSecondAudio.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="m_lblWeightOfSecondAudioSound.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="m_lblWeightOfSecondAudioSound.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="m_lblWeightOfSecondAudioSound.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="m_lblWeightOfSecondAudioSound.Location" type="System.Drawing.Point, System.Drawing">
+    <value>36, 136</value>
+  </data>
+  <data name="m_lblWeightOfSecondAudioSound.ShowHelp" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="m_lblWeightOfSecondAudioSound.Size" type="System.Drawing.Size, System.Drawing">
+    <value>164, 18</value>
+  </data>
+  <data name="m_lblWeightOfSecondAudioSound.TabIndex" type="System.Int32, mscorlib">
+    <value>8</value>
+  </data>
+  <data name="m_lblWeightOfSecondAudioSound.Text" xml:space="preserve">
+    <value>Weight &amp;of second audio</value>
+  </data>
+  <data name="&gt;&gt;m_lblWeightOfSecondAudioSound.Name" xml:space="preserve">
+    <value>m_lblWeightOfSecondAudioSound</value>
+  </data>
+  <data name="&gt;&gt;m_lblWeightOfSecondAudioSound.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_lblWeightOfSecondAudioSound.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;m_lblWeightOfSecondAudioSound.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="m_WeightOfSecondAudioSoundNumericUpDown.AccessibleName" xml:space="preserve">
+    <value>Weight of second audio</value>
+  </data>
+  <data name="m_WeightOfSecondAudioSoundNumericUpDown.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="m_WeightOfSecondAudioSoundNumericUpDown.Location" type="System.Drawing.Point, System.Drawing">
+    <value>249, 134</value>
+  </data>
+  <data name="m_WeightOfSecondAudioSoundNumericUpDown.ShowHelp" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="m_WeightOfSecondAudioSoundNumericUpDown.Size" type="System.Drawing.Size, System.Drawing">
+    <value>68, 24</value>
+  </data>
+  <data name="m_WeightOfSecondAudioSoundNumericUpDown.TabIndex" type="System.Int32, mscorlib">
+    <value>9</value>
+  </data>
+  <data name="&gt;&gt;m_WeightOfSecondAudioSoundNumericUpDown.Name" xml:space="preserve">
+    <value>m_WeightOfSecondAudioSoundNumericUpDown</value>
+  </data>
+  <data name="&gt;&gt;m_WeightOfSecondAudioSoundNumericUpDown.Type" xml:space="preserve">
+    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_WeightOfSecondAudioSoundNumericUpDown.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;m_WeightOfSecondAudioSoundNumericUpDown.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="m_txtNote.Location" type="System.Drawing.Point, System.Drawing">
+    <value>19, 279</value>
+  </data>
+  <data name="m_txtNote.Multiline" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="m_txtNote.ShowHelp" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="m_txtNote.Size" type="System.Drawing.Size, System.Drawing">
+    <value>625, 227</value>
+  </data>
+  <data name="m_txtNote.TabIndex" type="System.Int32, mscorlib">
+    <value>17</value>
+  </data>
   <data name="m_txtNote.Text" xml:space="preserve">
     <value>Note:-
 -&gt; Weight of audio:-
@@ -128,7 +689,46 @@ The time duration after end of phrase, after which weight of mixing audio return
 -&gt; Set end of stream duration to phrase duration:-
 If checked then resulting phrase after mixing audio will have same duration as that of original phrase.</value>
   </data>
-  <metadata name="helpProvider1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 17</value>
+  <data name="&gt;&gt;m_txtNote.Name" xml:space="preserve">
+    <value>m_txtNote</value>
+  </data>
+  <data name="&gt;&gt;m_txtNote.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_txtNote.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;m_txtNote.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
   </metadata>
+  <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
+    <value>9, 18</value>
+  </data>
+  <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
+    <value>670, 561</value>
+  </data>
+  <data name="$this.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 9pt</value>
+  </data>
+  <data name="$this.ShowHelp" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="$this.Text" xml:space="preserve">
+    <value>Audio Mixer</value>
+  </data>
+  <data name="&gt;&gt;helpProvider1.Name" xml:space="preserve">
+    <value>helpProvider1</value>
+  </data>
+  <data name="&gt;&gt;helpProvider1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.HelpProvider, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;$this.Name" xml:space="preserve">
+    <value>AudioMixer</value>
+  </data>
+  <data name="&gt;&gt;$this.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Form, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
 </root>

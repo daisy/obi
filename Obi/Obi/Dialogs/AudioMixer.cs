@@ -117,11 +117,11 @@ namespace Obi.Dialogs
         {
             if (m_cbStreamDuration.Checked)
             {
-                m_cbDuationOfMixingAudio.Visible = m_DurationOfMixingAudioNumericUpDown.Visible = m_lblSecondsDurationOfAudioMixing.Visible = false;
+                m_cbDuationOfMixingAudio.Visible = m_DurationOfMixingAudioNumericUpDown.Visible =  false;
             }
             else
             {
-                m_cbDuationOfMixingAudio.Visible = m_DurationOfMixingAudioNumericUpDown.Visible = m_lblSecondsDurationOfAudioMixing.Visible = true;
+                m_cbDuationOfMixingAudio.Visible = m_DurationOfMixingAudioNumericUpDown.Visible =  true;
             }
         }
 

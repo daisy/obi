@@ -112,15 +112,15 @@
     <value>2.0</value>
   </resheader>
   <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="helpProvider1.HelpNamespace" xml:space="preserve">
     <value>Obi Help.fr.chm</value>
   </data>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="m_lblDirectoryPath.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
   </data>
@@ -130,7 +130,7 @@
   <data name="m_lblDirectoryPath.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
   </data>
-  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="m_lblDirectoryPath.Location" type="System.Drawing.Point, System.Drawing">
     <value>0, 19</value>
   </data>
@@ -428,7 +428,7 @@
   <data name="m_numericUpDownEpubFilenameLengthLimit.Location" type="System.Drawing.Point, System.Drawing">
     <value>372, 37</value>
   </data>
-  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <assembly alias="mscorlib" name="mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="m_numericUpDownEpubFilenameLengthLimit.ShowHelp" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
@@ -512,5 +512,11 @@
   </data>
   <data name="$this.Text" xml:space="preserve">
     <value>Sélectionner un répertoire pour l'exportation</value>
+  </data>
+  <data name="mOKButton.Text" xml:space="preserve">
+    <value>&amp;OK</value>
+  </data>
+  <data name="m_chkBoxCreateCsvForCues.Text" xml:space="preserve">
+    <value>Créer un CSV contenant le TODO Timing</value>
   </data>
 </root>

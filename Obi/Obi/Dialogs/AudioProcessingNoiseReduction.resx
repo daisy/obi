@@ -117,7 +117,430 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="m_btn_Ok.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>Flat</value>
+  </data>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="m_btn_Ok.Location" type="System.Drawing.Point, System.Drawing">
+    <value>143, 316</value>
+  </data>
+  <data name="m_btn_Ok.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 4, 4, 4</value>
+  </data>
+  <data name="m_btn_Ok.Size" type="System.Drawing.Size, System.Drawing">
+    <value>100, 28</value>
+  </data>
+  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="m_btn_Ok.TabIndex" type="System.Int32, mscorlib">
+    <value>12</value>
+  </data>
+  <data name="m_btn_Ok.Text" xml:space="preserve">
+    <value>&amp;OK</value>
+  </data>
+  <data name="&gt;&gt;m_btn_Ok.Name" xml:space="preserve">
+    <value>m_btn_Ok</value>
+  </data>
+  <data name="&gt;&gt;m_btn_Ok.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_btn_Ok.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;m_btn_Ok.ZOrder" xml:space="preserve">
+    <value>12</value>
+  </data>
+  <data name="m_btn_Cancel.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>Flat</value>
+  </data>
+  <data name="m_btn_Cancel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>319, 316</value>
+  </data>
+  <data name="m_btn_Cancel.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 4, 4, 4</value>
+  </data>
+  <data name="m_btn_Cancel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>100, 28</value>
+  </data>
+  <data name="m_btn_Cancel.TabIndex" type="System.Int32, mscorlib">
+    <value>13</value>
+  </data>
+  <data name="m_btn_Cancel.Text" xml:space="preserve">
+    <value>&amp;Cancel</value>
+  </data>
+  <data name="&gt;&gt;m_btn_Cancel.Name" xml:space="preserve">
+    <value>m_btn_Cancel</value>
+  </data>
+  <data name="&gt;&gt;m_btn_Cancel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_btn_Cancel.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;m_btn_Cancel.ZOrder" xml:space="preserve">
+    <value>11</value>
+  </data>
+  <data name="m_lblNoiseReduction.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="m_lblNoiseReduction.Location" type="System.Drawing.Point, System.Drawing">
+    <value>16, 175</value>
+  </data>
+  <data name="m_lblNoiseReduction.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 0, 4, 0</value>
+  </data>
+  <data name="m_lblNoiseReduction.Size" type="System.Drawing.Size, System.Drawing">
+    <value>158, 17</value>
+  </data>
+  <data name="m_lblNoiseReduction.TabIndex" type="System.Int32, mscorlib">
+    <value>7</value>
+  </data>
+  <data name="m_lblNoiseReduction.Text" xml:space="preserve">
+    <value>Noise &amp;Reduction( in dB)</value>
+  </data>
+  <data name="&gt;&gt;m_lblNoiseReduction.Name" xml:space="preserve">
+    <value>m_lblNoiseReduction</value>
+  </data>
+  <data name="&gt;&gt;m_lblNoiseReduction.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_lblNoiseReduction.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;m_lblNoiseReduction.ZOrder" xml:space="preserve">
+    <value>10</value>
+  </data>
+  <data name="m_SetNoiseReduction.AccessibleName" xml:space="preserve">
+    <value>Noise reduction: Set in dB</value>
+  </data>
+  <data name="m_SetNoiseReduction.Location" type="System.Drawing.Point, System.Drawing">
+    <value>408, 208</value>
+  </data>
+  <data name="m_SetNoiseReduction.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 4, 4, 4</value>
+  </data>
+  <data name="m_SetNoiseReduction.Size" type="System.Drawing.Size, System.Drawing">
+    <value>81, 22</value>
+  </data>
+  <data name="m_SetNoiseReduction.TabIndex" type="System.Int32, mscorlib">
+    <value>9</value>
+  </data>
+  <data name="&gt;&gt;m_SetNoiseReduction.Name" xml:space="preserve">
+    <value>m_SetNoiseReduction</value>
+  </data>
+  <data name="&gt;&gt;m_SetNoiseReduction.Type" xml:space="preserve">
+    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_SetNoiseReduction.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;m_SetNoiseReduction.ZOrder" xml:space="preserve">
+    <value>9</value>
+  </data>
+  <data name="m_SetNoiseLevelInPercent.AccessibleName" xml:space="preserve">
+    <value>Noise Level: set in percent</value>
+  </data>
+  <data name="m_SetNoiseLevelInPercent.Location" type="System.Drawing.Point, System.Drawing">
+    <value>408, 116</value>
+  </data>
+  <data name="m_SetNoiseLevelInPercent.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 4, 4, 4</value>
+  </data>
+  <data name="m_SetNoiseLevelInPercent.Size" type="System.Drawing.Size, System.Drawing">
+    <value>75, 22</value>
+  </data>
+  <data name="m_SetNoiseLevelInPercent.TabIndex" type="System.Int32, mscorlib">
+    <value>5</value>
+  </data>
+  <data name="&gt;&gt;m_SetNoiseLevelInPercent.Name" xml:space="preserve">
+    <value>m_SetNoiseLevelInPercent</value>
+  </data>
+  <data name="&gt;&gt;m_SetNoiseLevelInPercent.Type" xml:space="preserve">
+    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_SetNoiseLevelInPercent.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;m_SetNoiseLevelInPercent.ZOrder" xml:space="preserve">
+    <value>8</value>
+  </data>
+  <data name="m_lblNoiseLevel.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="m_lblNoiseLevel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>16, 96</value>
+  </data>
+  <data name="m_lblNoiseLevel.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 0, 4, 0</value>
+  </data>
+  <data name="m_lblNoiseLevel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>163, 17</value>
+  </data>
+  <data name="m_lblNoiseLevel.TabIndex" type="System.Int32, mscorlib">
+    <value>3</value>
+  </data>
+  <data name="m_lblNoiseLevel.Text" xml:space="preserve">
+    <value>&amp;Noise Level (in percent):</value>
+  </data>
+  <data name="&gt;&gt;m_lblNoiseLevel.Name" xml:space="preserve">
+    <value>m_lblNoiseLevel</value>
+  </data>
+  <data name="&gt;&gt;m_lblNoiseLevel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_lblNoiseLevel.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;m_lblNoiseLevel.ZOrder" xml:space="preserve">
+    <value>7</value>
+  </data>
+  <data name="m_SetNoiseLevelTrackBar.AccessibleName" xml:space="preserve">
+    <value>noise level: track bar to increase/decrease in percentage. Right sliding will increase the level.</value>
+  </data>
+  <data name="m_SetNoiseLevelTrackBar.Location" type="System.Drawing.Point, System.Drawing">
+    <value>36, 116</value>
+  </data>
+  <data name="m_SetNoiseLevelTrackBar.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 4, 4, 4</value>
+  </data>
+  <data name="m_SetNoiseLevelTrackBar.Size" type="System.Drawing.Size, System.Drawing">
+    <value>329, 56</value>
+  </data>
+  <data name="m_SetNoiseLevelTrackBar.TabIndex" type="System.Int32, mscorlib">
+    <value>4</value>
+  </data>
+  <data name="&gt;&gt;m_SetNoiseLevelTrackBar.Name" xml:space="preserve">
+    <value>m_SetNoiseLevelTrackBar</value>
+  </data>
+  <data name="&gt;&gt;m_SetNoiseLevelTrackBar.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TrackBar, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_SetNoiseLevelTrackBar.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;m_SetNoiseLevelTrackBar.ZOrder" xml:space="preserve">
+    <value>6</value>
+  </data>
+  <data name="m_lblPercent.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="m_lblPercent.Location" type="System.Drawing.Point, System.Drawing">
+    <value>491, 121</value>
+  </data>
+  <data name="m_lblPercent.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 0, 4, 0</value>
+  </data>
+  <data name="m_lblPercent.Size" type="System.Drawing.Size, System.Drawing">
+    <value>20, 17</value>
+  </data>
+  <data name="m_lblPercent.TabIndex" type="System.Int32, mscorlib">
+    <value>6</value>
+  </data>
+  <data name="m_lblPercent.Text" xml:space="preserve">
+    <value>%</value>
+  </data>
+  <data name="&gt;&gt;m_lblPercent.Name" xml:space="preserve">
+    <value>m_lblPercent</value>
+  </data>
+  <data name="&gt;&gt;m_lblPercent.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_lblPercent.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;m_lblPercent.ZOrder" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <data name="m_SetNoiseReductionTrackBar.AccessibleName" xml:space="preserve">
+    <value>noise reduction: Track bar to increase/decrease in percentage. Right sliding will reduce noise.</value>
+  </data>
+  <data name="m_SetNoiseReductionTrackBar.Location" type="System.Drawing.Point, System.Drawing">
+    <value>36, 208</value>
+  </data>
+  <data name="m_SetNoiseReductionTrackBar.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 4, 4, 4</value>
+  </data>
+  <data name="m_SetNoiseReductionTrackBar.Size" type="System.Drawing.Size, System.Drawing">
+    <value>329, 56</value>
+  </data>
+  <data name="m_SetNoiseReductionTrackBar.TabIndex" type="System.Int32, mscorlib">
+    <value>8</value>
+  </data>
+  <data name="&gt;&gt;m_SetNoiseReductionTrackBar.Name" xml:space="preserve">
+    <value>m_SetNoiseReductionTrackBar</value>
+  </data>
+  <data name="&gt;&gt;m_SetNoiseReductionTrackBar.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TrackBar, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_SetNoiseReductionTrackBar.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;m_SetNoiseReductionTrackBar.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="m_lbdB.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="m_lbdB.Location" type="System.Drawing.Point, System.Drawing">
+    <value>495, 213</value>
+  </data>
+  <data name="m_lbdB.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 0, 4, 0</value>
+  </data>
+  <data name="m_lbdB.Size" type="System.Drawing.Size, System.Drawing">
+    <value>25, 17</value>
+  </data>
+  <data name="m_lbdB.TabIndex" type="System.Int32, mscorlib">
+    <value>10</value>
+  </data>
+  <data name="m_lbdB.Text" xml:space="preserve">
+    <value>dB</value>
+  </data>
+  <data name="&gt;&gt;m_lbdB.Name" xml:space="preserve">
+    <value>m_lbdB</value>
+  </data>
+  <data name="&gt;&gt;m_lbdB.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_lbdB.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;m_lbdB.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="m_SelectPresetComboBox.AccessibleName" xml:space="preserve">
+    <value>Background noise levvel</value>
+  </data>
+  <data name="m_SelectPresetComboBox.Items" xml:space="preserve">
+    <value>Remove strong noise</value>
+  </data>
+  <data name="m_SelectPresetComboBox.Items1" xml:space="preserve">
+    <value>Remove medium noise</value>
+  </data>
+  <data name="m_SelectPresetComboBox.Items2" xml:space="preserve">
+    <value>Remove weak noise </value>
+  </data>
+  <data name="m_SelectPresetComboBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>184, 41</value>
+  </data>
+  <data name="m_SelectPresetComboBox.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 4, 4, 4</value>
+  </data>
+  <data name="m_SelectPresetComboBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>385, 24</value>
+  </data>
+  <data name="m_SelectPresetComboBox.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="&gt;&gt;m_SelectPresetComboBox.Name" xml:space="preserve">
+    <value>m_SelectPresetComboBox</value>
+  </data>
+  <data name="&gt;&gt;m_SelectPresetComboBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_SelectPresetComboBox.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;m_SelectPresetComboBox.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="m_lblPreset.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="m_lblPreset.Location" type="System.Drawing.Point, System.Drawing">
+    <value>16, 44</value>
+  </data>
+  <data name="m_lblPreset.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 0, 4, 0</value>
+  </data>
+  <data name="m_lblPreset.Size" type="System.Drawing.Size, System.Drawing">
+    <value>155, 17</value>
+  </data>
+  <data name="m_lblPreset.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="m_lblPreset.Text" xml:space="preserve">
+    <value>&amp;Background noise level</value>
+  </data>
+  <data name="&gt;&gt;m_lblPreset.Name" xml:space="preserve">
+    <value>m_lblPreset</value>
+  </data>
+  <data name="&gt;&gt;m_lblPreset.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_lblPreset.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;m_lblPreset.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
   <metadata name="helpProvider1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
   </metadata>
+  <data name="m_ApplyOnWholeBook.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="m_ApplyOnWholeBook.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="m_ApplyOnWholeBook.Location" type="System.Drawing.Point, System.Drawing">
+    <value>20, 271</value>
+  </data>
+  <data name="m_ApplyOnWholeBook.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 4, 4, 4</value>
+  </data>
+  <data name="m_ApplyOnWholeBook.ShowHelp" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="m_ApplyOnWholeBook.Size" type="System.Drawing.Size, System.Drawing">
+    <value>160, 21</value>
+  </data>
+  <data name="m_ApplyOnWholeBook.TabIndex" type="System.Int32, mscorlib">
+    <value>11</value>
+  </data>
+  <data name="m_ApplyOnWholeBook.Text" xml:space="preserve">
+    <value>Apply on whole book</value>
+  </data>
+  <data name="&gt;&gt;m_ApplyOnWholeBook.Name" xml:space="preserve">
+    <value>m_ApplyOnWholeBook</value>
+  </data>
+  <data name="&gt;&gt;m_ApplyOnWholeBook.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_ApplyOnWholeBook.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;m_ApplyOnWholeBook.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="$this.Language" type="System.Globalization.CultureInfo, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>fr</value>
+  </metadata>
+  <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
+    <value>8, 16</value>
+  </data>
+  <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
+    <value>587, 377</value>
+  </data>
+  <data name="$this.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 4, 4, 4</value>
+  </data>
+  <data name="$this.Text" xml:space="preserve">
+    <value>Noise Reduction</value>
+  </data>
+  <data name="&gt;&gt;helpProvider1.Name" xml:space="preserve">
+    <value>helpProvider1</value>
+  </data>
+  <data name="&gt;&gt;helpProvider1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.HelpProvider, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;$this.Name" xml:space="preserve">
+    <value>AudioProcessingNoiseReduction</value>
+  </data>
+  <data name="&gt;&gt;$this.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Form, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
 </root>

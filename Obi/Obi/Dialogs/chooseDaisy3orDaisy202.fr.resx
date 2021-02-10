@@ -160,6 +160,10 @@
   <data name="m_cbDaisy3.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
   </data>
+  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="m_cbDaisy3.ShowHelp" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
   <data name="m_cbDaisy202.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
   </data>
@@ -168,6 +172,9 @@
   </data>
   <data name="m_cbDaisy202.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
+  </data>
+  <data name="m_cbDaisy202.ShowHelp" type="System.Boolean, mscorlib">
+    <value>True</value>
   </data>
   <data name="m_cbEpub3.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
@@ -178,9 +185,12 @@
   <data name="m_cbEpub3.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
   </data>
+  <data name="m_cbEpub3.ShowHelp" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="m_cbEpub3.Size" type="System.Drawing.Size, System.Drawing">
-    <value>119, 17</value>
+    <value>153, 21</value>
   </data>
   <data name="m_cbEpub3.Text" xml:space="preserve">
     <value>Livre audio EPUB 3</value>
@@ -194,6 +204,9 @@
   <data name="m_cbXhtml.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
   </data>
+  <data name="m_cbXhtml.ShowHelp" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
   <data name="m_cbXhtml.Text" xml:space="preserve">
     <value>Structure Xhtml</value>
   </data>
@@ -206,8 +219,11 @@
   <data name="m_chMegaVoice.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
   </data>
+  <data name="m_chMegaVoice.ShowHelp" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>268, 291</value>
+    <value>418, 362</value>
   </data>
   <data name="$this.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />

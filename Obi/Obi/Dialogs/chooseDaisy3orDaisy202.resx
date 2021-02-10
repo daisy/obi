@@ -123,10 +123,13 @@
   </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="m_OKBtn.Location" type="System.Drawing.Point, System.Drawing">
-    <value>26, 254</value>
+    <value>35, 313</value>
+  </data>
+  <data name="m_OKBtn.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 4, 4, 4</value>
   </data>
   <data name="m_OKBtn.Size" type="System.Drawing.Size, System.Drawing">
-    <value>75, 23</value>
+    <value>100, 28</value>
   </data>
   <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="m_OKBtn.TabIndex" type="System.Int32, mscorlib">
@@ -151,10 +154,13 @@
     <value>Flat</value>
   </data>
   <data name="m_BtnCancel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>148, 254</value>
+    <value>197, 313</value>
+  </data>
+  <data name="m_BtnCancel.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 4, 4, 4</value>
   </data>
   <data name="m_BtnCancel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>75, 23</value>
+    <value>100, 28</value>
   </data>
   <data name="m_BtnCancel.TabIndex" type="System.Int32, mscorlib">
     <value>7</value>
@@ -187,13 +193,16 @@
     <value>NoControl</value>
   </data>
   <data name="m_cbWPAudioBook.Location" type="System.Drawing.Point, System.Drawing">
-    <value>48, 210</value>
+    <value>64, 258</value>
+  </data>
+  <data name="m_cbWPAudioBook.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 4, 4, 4</value>
   </data>
   <data name="m_cbWPAudioBook.ShowHelp" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
   <data name="m_cbWPAudioBook.Size" type="System.Drawing.Size, System.Drawing">
-    <value>104, 17</value>
+    <value>131, 21</value>
   </data>
   <data name="m_cbWPAudioBook.TabIndex" type="System.Int32, mscorlib">
     <value>5</value>
@@ -217,10 +226,13 @@
     <value>True</value>
   </data>
   <data name="m_cbDaisy3.Location" type="System.Drawing.Point, System.Drawing">
-    <value>48, 13</value>
+    <value>64, 16</value>
+  </data>
+  <data name="m_cbDaisy3.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 4, 4, 4</value>
   </data>
   <data name="m_cbDaisy3.Size" type="System.Drawing.Size, System.Drawing">
-    <value>61, 17</value>
+    <value>77, 21</value>
   </data>
   <data name="m_cbDaisy3.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
@@ -244,10 +256,13 @@
     <value>True</value>
   </data>
   <data name="m_cbDaisy202.Location" type="System.Drawing.Point, System.Drawing">
-    <value>48, 52</value>
+    <value>64, 64</value>
+  </data>
+  <data name="m_cbDaisy202.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 4, 4, 4</value>
   </data>
   <data name="m_cbDaisy202.Size" type="System.Drawing.Size, System.Drawing">
-    <value>76, 17</value>
+    <value>97, 21</value>
   </data>
   <data name="m_cbDaisy202.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
@@ -271,10 +286,13 @@
     <value>True</value>
   </data>
   <data name="m_cbEpub3.Location" type="System.Drawing.Point, System.Drawing">
-    <value>48, 93</value>
+    <value>64, 114</value>
+  </data>
+  <data name="m_cbEpub3.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 4, 4, 4</value>
   </data>
   <data name="m_cbEpub3.Size" type="System.Drawing.Size, System.Drawing">
-    <value>118, 17</value>
+    <value>151, 21</value>
   </data>
   <data name="m_cbEpub3.TabIndex" type="System.Int32, mscorlib">
     <value>2</value>
@@ -298,10 +316,13 @@
     <value>True</value>
   </data>
   <data name="m_cbXhtml.Location" type="System.Drawing.Point, System.Drawing">
-    <value>48, 134</value>
+    <value>64, 165</value>
+  </data>
+  <data name="m_cbXhtml.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 4, 4, 4</value>
   </data>
   <data name="m_cbXhtml.Size" type="System.Drawing.Size, System.Drawing">
-    <value>98, 17</value>
+    <value>127, 21</value>
   </data>
   <data name="m_cbXhtml.TabIndex" type="System.Int32, mscorlib">
     <value>3</value>
@@ -325,10 +346,13 @@
     <value>True</value>
   </data>
   <data name="m_chMegaVoice.Location" type="System.Drawing.Point, System.Drawing">
-    <value>48, 169</value>
+    <value>64, 208</value>
+  </data>
+  <data name="m_chMegaVoice.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 4, 4, 4</value>
   </data>
   <data name="m_chMegaVoice.Size" type="System.Drawing.Size, System.Drawing">
-    <value>162, 17</value>
+    <value>209, 21</value>
   </data>
   <data name="m_chMegaVoice.TabIndex" type="System.Int32, mscorlib">
     <value>4</value>
@@ -352,10 +376,13 @@
     <value>True</value>
   </metadata>
   <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
-    <value>6, 13</value>
+    <value>8, 16</value>
   </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>268, 294</value>
+    <value>325, 362</value>
+  </data>
+  <data name="$this.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 4, 4, 4</value>
   </data>
   <data name="$this.ShowHelp" type="System.Boolean, mscorlib">
     <value>True</value>

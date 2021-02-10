@@ -2917,4 +2917,58 @@ tester "Figer la largeur du volet du contenu" ?(Recommandé)</value>
   <data name="DidnotDeleteTempMegaVoiceFolder" xml:space="preserve">
     <value>La suppression du dossier temporaire créé Durant l’exportation de MegaVoice (Envoy Connect) n’a pu aller à son terme car "{0}". Pour libérer cet espace vous pouvez le supprimer manuellement. Le chemin d’accès de ce dossier temporaire est : {1}</value>
   </data>
+  <data name="default_WPAudioBookExport_dirname" xml:space="preserve">
+    <value>{0}Exportation au format WP AudioBooks</value>
+  </data>
+  <data name="ExportDialogTitleForWPAudioBookExport" xml:space="preserve">
+    <value>WP AudioBooks</value>
+  </data>
+  <data name="NoCuePoints" xml:space="preserve">
+    <value>{0} Les fichiers ci-dessus n’ont pas de points de montage. Vous pouvez néanmoins importer ces fichiers audio sans points de montage s’ils sont bien au format .wav. Appuyer sur Oui pour continuer ou Non pour sélectionner d’autres fichiers.</value>
+  </data>
+  <data name="AudioMixingFileNotSelected" xml:space="preserve">
+    <value>Merci de sélectionner un fichier pour le mixage.</value>
+  </data>
+  <data name="AudioMixingSecondFileNotSelected" xml:space="preserve">
+    <value>Merci de sélectionner un deuxième fichier pour le mixage.</value>
+  </data>
+  <data name="NoCheckBoxInExportChecked" xml:space="preserve">
+    <value>Aucune case à cocher n'est sélectionnée. Pour procéder à l'exportation merci de sélectionner le format désiré pour l'exportation du livre.</value>
+  </data>
+  <data name="NoiseReductionCompleted" xml:space="preserve">
+    <value>Réduction de bruit appliquée avec succès</value>
+  </data>
+  <data name="NormalizationCancelled" xml:space="preserve">
+    <value>L'opération est annulée le temps que la Normalisation s'applique jusqu'à la section {0}</value>
+  </data>
+  <data name="NoiseReductionCancelled" xml:space="preserve">
+    <value>L'opération est annulée le temps que la Réduction de bruit s'applique jusqu'à la section {0}</value>
+  </data>
+  <data name="CueCsvColumnHeading" xml:space="preserve">
+    <value>Nom de fichier,TODO timing(en secondes)</value>
+  </data>
+  <data name="CueCsvName" xml:space="preserve">
+    <value>//ToDoTimingInAudioFiles.csv</value>
+  </data>
+  <data name="ApplyingOperationOnWholeBook" xml:space="preserve">
+    <value>Exécuter l'opération sur l'ensemble du livre devrait prendre {0} en fonction de la vitesse de votre système. Cela augmentera également l'espace occupé pour couvrir l'équivalent de la taille du projet. Voulez-vous continuer ?</value>
+  </data>
+  <data name="Audio_RecordAtStartingOfSectionWithRecordSectionCommand" xml:space="preserve">
+    <value>Enregistrer en début de section avec la commande d'enregistrement de section si la section ne comporte qu'une page vide.</value>
+  </data>
+  <data name="AudioProcessingNew_progress_dialog_title" xml:space="preserve">
+    <value>En cours de traitement {0} …</value>
+  </data>
+  <data name="AudioProcessingEstimateFewMinutes" xml:space="preserve">
+    <value>Quelques minutes</value>
+  </data>
+  <data name="AudioProcessingEstimateSeveralMinutes" xml:space="preserve">
+    <value>Plusieurs minutes</value>
+  </data>
+  <data name="AudioProcessingEstimateFewHours" xml:space="preserve">
+    <value>Quelques heures</value>
+  </data>
+  <data name="AudioProcessingApplyOnWholeBook" xml:space="preserve">
+    <value>Merci d'appliquer l'opération sur l'ensemble du livre ou de sélectionner les phrases/sections sur lesquelles vous souhaitez exécuter l'opération.</value>
+  </data>
 </root>

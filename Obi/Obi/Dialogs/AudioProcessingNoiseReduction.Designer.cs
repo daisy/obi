@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AudioProcessingNoiseReduction));
             this.m_btn_Ok = new System.Windows.Forms.Button();
             this.m_btn_Cancel = new System.Windows.Forms.Button();
             this.m_lblNoiseReduction = new System.Windows.Forms.Label();
@@ -50,49 +51,32 @@
             // 
             // m_btn_Ok
             // 
-            this.m_btn_Ok.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.m_btn_Ok.Location = new System.Drawing.Point(143, 316);
-            this.m_btn_Ok.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            resources.ApplyResources(this.m_btn_Ok, "m_btn_Ok");
             this.m_btn_Ok.Name = "m_btn_Ok";
-            this.m_btn_Ok.Size = new System.Drawing.Size(100, 28);
-            this.m_btn_Ok.TabIndex = 12;
-            this.m_btn_Ok.Text = "&OK";
             this.m_btn_Ok.UseVisualStyleBackColor = true;
             this.m_btn_Ok.Click += new System.EventHandler(this.m_btn_Ok_Click);
             // 
             // m_btn_Cancel
             // 
             this.m_btn_Cancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.m_btn_Cancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.m_btn_Cancel.Location = new System.Drawing.Point(319, 316);
-            this.m_btn_Cancel.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            resources.ApplyResources(this.m_btn_Cancel, "m_btn_Cancel");
             this.m_btn_Cancel.Name = "m_btn_Cancel";
-            this.m_btn_Cancel.Size = new System.Drawing.Size(100, 28);
-            this.m_btn_Cancel.TabIndex = 13;
-            this.m_btn_Cancel.Text = "&Cancel";
             this.m_btn_Cancel.UseVisualStyleBackColor = true;
             // 
             // m_lblNoiseReduction
             // 
-            this.m_lblNoiseReduction.AutoSize = true;
-            this.m_lblNoiseReduction.Location = new System.Drawing.Point(16, 175);
-            this.m_lblNoiseReduction.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            resources.ApplyResources(this.m_lblNoiseReduction, "m_lblNoiseReduction");
             this.m_lblNoiseReduction.Name = "m_lblNoiseReduction";
-            this.m_lblNoiseReduction.Size = new System.Drawing.Size(158, 17);
-            this.m_lblNoiseReduction.TabIndex = 7;
-            this.m_lblNoiseReduction.Text = "Noise &Reduction( in dB)";
             // 
             // m_SetNoiseReduction
             // 
-            this.m_SetNoiseReduction.AccessibleName = "Noise reduction: Set in dB";
+            resources.ApplyResources(this.m_SetNoiseReduction, "m_SetNoiseReduction");
             this.m_SetNoiseReduction.DecimalPlaces = 2;
             this.m_SetNoiseReduction.Increment = new decimal(new int[] {
             10,
             0,
             0,
             0});
-            this.m_SetNoiseReduction.Location = new System.Drawing.Point(408, 208);
-            this.m_SetNoiseReduction.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.m_SetNoiseReduction.Maximum = new decimal(new int[] {
             97,
             0,
@@ -104,8 +88,6 @@
             0,
             131072});
             this.m_SetNoiseReduction.Name = "m_SetNoiseReduction";
-            this.m_SetNoiseReduction.Size = new System.Drawing.Size(81, 22);
-            this.m_SetNoiseReduction.TabIndex = 9;
             this.m_SetNoiseReduction.Value = new decimal(new int[] {
             50,
             0,
@@ -115,13 +97,9 @@
             // 
             // m_SetNoiseLevelInPercent
             // 
-            this.m_SetNoiseLevelInPercent.AccessibleName = "Noise Level: set in percent";
+            resources.ApplyResources(this.m_SetNoiseLevelInPercent, "m_SetNoiseLevelInPercent");
             this.m_SetNoiseLevelInPercent.DecimalPlaces = 1;
-            this.m_SetNoiseLevelInPercent.Location = new System.Drawing.Point(408, 116);
-            this.m_SetNoiseLevelInPercent.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.m_SetNoiseLevelInPercent.Name = "m_SetNoiseLevelInPercent";
-            this.m_SetNoiseLevelInPercent.Size = new System.Drawing.Size(75, 22);
-            this.m_SetNoiseLevelInPercent.TabIndex = 5;
             this.m_SetNoiseLevelInPercent.Value = new decimal(new int[] {
             75,
             0,
@@ -131,107 +109,66 @@
             // 
             // m_lblNoiseLevel
             // 
-            this.m_lblNoiseLevel.AutoSize = true;
-            this.m_lblNoiseLevel.Location = new System.Drawing.Point(16, 96);
-            this.m_lblNoiseLevel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            resources.ApplyResources(this.m_lblNoiseLevel, "m_lblNoiseLevel");
             this.m_lblNoiseLevel.Name = "m_lblNoiseLevel";
-            this.m_lblNoiseLevel.Size = new System.Drawing.Size(163, 17);
-            this.m_lblNoiseLevel.TabIndex = 3;
-            this.m_lblNoiseLevel.Text = "&Noise Level (in percent):";
             // 
             // m_SetNoiseLevelTrackBar
             // 
-            this.m_SetNoiseLevelTrackBar.AccessibleName = "noise level: track bar to increase/decrease in percentage. Right sliding will inc" +
-                "rease the level.";
-            this.m_SetNoiseLevelTrackBar.Location = new System.Drawing.Point(36, 116);
-            this.m_SetNoiseLevelTrackBar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            resources.ApplyResources(this.m_SetNoiseLevelTrackBar, "m_SetNoiseLevelTrackBar");
             this.m_SetNoiseLevelTrackBar.Maximum = 100;
             this.m_SetNoiseLevelTrackBar.Name = "m_SetNoiseLevelTrackBar";
-            this.m_SetNoiseLevelTrackBar.Size = new System.Drawing.Size(329, 56);
-            this.m_SetNoiseLevelTrackBar.TabIndex = 4;
             this.m_SetNoiseLevelTrackBar.TickFrequency = 6;
             this.m_SetNoiseLevelTrackBar.Value = 75;
             this.m_SetNoiseLevelTrackBar.ValueChanged += new System.EventHandler(this.m_SetNoiseLevelTrackBar_ValueChanged);
             // 
             // m_lblPercent
             // 
-            this.m_lblPercent.AutoSize = true;
-            this.m_lblPercent.Location = new System.Drawing.Point(491, 121);
-            this.m_lblPercent.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            resources.ApplyResources(this.m_lblPercent, "m_lblPercent");
             this.m_lblPercent.Name = "m_lblPercent";
-            this.m_lblPercent.Size = new System.Drawing.Size(20, 17);
-            this.m_lblPercent.TabIndex = 6;
-            this.m_lblPercent.Text = "%";
             // 
             // m_SetNoiseReductionTrackBar
             // 
-            this.m_SetNoiseReductionTrackBar.AccessibleName = "noise reduction: Track bar to increase/decrease in percentage. Right sliding will" +
-                " reduce noise.";
-            this.m_SetNoiseReductionTrackBar.Location = new System.Drawing.Point(36, 208);
-            this.m_SetNoiseReductionTrackBar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            resources.ApplyResources(this.m_SetNoiseReductionTrackBar, "m_SetNoiseReductionTrackBar");
             this.m_SetNoiseReductionTrackBar.Maximum = 97;
             this.m_SetNoiseReductionTrackBar.Name = "m_SetNoiseReductionTrackBar";
-            this.m_SetNoiseReductionTrackBar.Size = new System.Drawing.Size(329, 56);
-            this.m_SetNoiseReductionTrackBar.TabIndex = 8;
             this.m_SetNoiseReductionTrackBar.TickFrequency = 10;
             this.m_SetNoiseReductionTrackBar.Value = 50;
             this.m_SetNoiseReductionTrackBar.ValueChanged += new System.EventHandler(this.m_SetNoiseReductionTrackBar_ValueChanged);
             // 
             // m_lbdB
             // 
-            this.m_lbdB.AutoSize = true;
-            this.m_lbdB.Location = new System.Drawing.Point(495, 213);
-            this.m_lbdB.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            resources.ApplyResources(this.m_lbdB, "m_lbdB");
             this.m_lbdB.Name = "m_lbdB";
-            this.m_lbdB.Size = new System.Drawing.Size(25, 17);
-            this.m_lbdB.TabIndex = 10;
-            this.m_lbdB.Text = "dB";
             // 
             // m_SelectPresetComboBox
             // 
-            this.m_SelectPresetComboBox.AccessibleName = "Background noise levvel";
+            resources.ApplyResources(this.m_SelectPresetComboBox, "m_SelectPresetComboBox");
             this.m_SelectPresetComboBox.FormattingEnabled = true;
             this.m_SelectPresetComboBox.Items.AddRange(new object[] {
-            "Remove strong noise",
-            "Remove medium noise",
-            "Remove weak noise "});
-            this.m_SelectPresetComboBox.Location = new System.Drawing.Point(184, 41);
-            this.m_SelectPresetComboBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            resources.GetString("m_SelectPresetComboBox.Items"),
+            resources.GetString("m_SelectPresetComboBox.Items1"),
+            resources.GetString("m_SelectPresetComboBox.Items2")});
             this.m_SelectPresetComboBox.Name = "m_SelectPresetComboBox";
-            this.m_SelectPresetComboBox.Size = new System.Drawing.Size(385, 24);
-            this.m_SelectPresetComboBox.TabIndex = 2;
             this.m_SelectPresetComboBox.SelectedIndexChanged += new System.EventHandler(this.m_SelectPresetComboBox_SelectedIndexChanged);
             // 
             // m_lblPreset
             // 
-            this.m_lblPreset.AutoSize = true;
-            this.m_lblPreset.Location = new System.Drawing.Point(16, 44);
-            this.m_lblPreset.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            resources.ApplyResources(this.m_lblPreset, "m_lblPreset");
             this.m_lblPreset.Name = "m_lblPreset";
-            this.m_lblPreset.Size = new System.Drawing.Size(155, 17);
-            this.m_lblPreset.TabIndex = 1;
-            this.m_lblPreset.Text = "&Background noise level";
             // 
             // m_ApplyOnWholeBook
             // 
-            this.m_ApplyOnWholeBook.AutoSize = true;
-            this.m_ApplyOnWholeBook.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.m_ApplyOnWholeBook.Location = new System.Drawing.Point(20, 271);
-            this.m_ApplyOnWholeBook.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            resources.ApplyResources(this.m_ApplyOnWholeBook, "m_ApplyOnWholeBook");
             this.m_ApplyOnWholeBook.Name = "m_ApplyOnWholeBook";
-            this.helpProvider1.SetShowHelp(this.m_ApplyOnWholeBook, true);
-            this.m_ApplyOnWholeBook.Size = new System.Drawing.Size(160, 21);
-            this.m_ApplyOnWholeBook.TabIndex = 11;
-            this.m_ApplyOnWholeBook.Text = "Apply on whole book";
+            this.helpProvider1.SetShowHelp(this.m_ApplyOnWholeBook, ((bool)(resources.GetObject("m_ApplyOnWholeBook.ShowHelp"))));
             this.m_ApplyOnWholeBook.UseVisualStyleBackColor = true;
             // 
             // AudioProcessingNoiseReduction
             // 
             this.AcceptButton = this.m_btn_Ok;
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.m_btn_Cancel;
-            this.ClientSize = new System.Drawing.Size(587, 377);
             this.Controls.Add(this.m_ApplyOnWholeBook);
             this.Controls.Add(this.m_lblPreset);
             this.Controls.Add(this.m_SelectPresetComboBox);
@@ -245,9 +182,7 @@
             this.Controls.Add(this.m_lblNoiseReduction);
             this.Controls.Add(this.m_btn_Cancel);
             this.Controls.Add(this.m_btn_Ok);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "AudioProcessingNoiseReduction";
-            this.Text = "Noise Reduction";
             ((System.ComponentModel.ISupportInitialize)(this.m_SetNoiseReduction)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.m_SetNoiseLevelInPercent)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.m_SetNoiseLevelTrackBar)).EndInit();
