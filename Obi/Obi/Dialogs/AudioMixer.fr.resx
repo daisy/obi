@@ -279,7 +279,7 @@
     <value />
   </data>
   <data name="m_DurationOfMixingAudioNumericUpDown.Location" type="System.Drawing.Point, System.Drawing">
-    <value>565, 263</value>
+    <value>559, 256</value>
   </data>
   <data name="m_cbDuationOfMixingAudio.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />

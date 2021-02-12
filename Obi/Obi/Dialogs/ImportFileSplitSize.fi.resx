@@ -117,22 +117,12 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="label1.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
-  <data name="label1.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
-    <value>AssociateIndex</value>
-  </data>
-  <data name="label1.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="label1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>32, 53</value>
+    <value>32, 52</value>
   </data>
   <data name="label1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>170, 16</value>
+    <value>212, 20</value>
   </data>
   <data name="label1.Text" xml:space="preserve">
     <value>Lauseen koko &amp;minuuteissa:</value>
@@ -140,44 +130,27 @@
   <data name="mPhraseSizeTextBox.AccessibleName" xml:space="preserve">
     <value>Lauseen koko minuuteissa tekstilaatikko</value>
   </data>
-  <data name="mPhraseSizeTextBox.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
-  <data name="mPhraseSizeTextBox.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
-    <value>AssociateIndex</value>
-  </data>
-  <data name="mPhraseSizeTextBox.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
   <data name="mPhraseSizeTextBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>208, 51</value>
+    <value>254, 51</value>
+  </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="mPhraseSizeTextBox.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 4, 4, 4</value>
   </data>
   <data name="mPhraseSizeTextBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>132, 22</value>
-  </data>
-  <data name="mOKButton.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
-  <data name="mOKButton.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
-    <value>AssociateIndex</value>
-  </data>
-  <data name="mOKButton.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
+    <value>132, 26</value>
   </data>
   <data name="mOKButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>100, 555</value>
+    <value>100, 662</value>
   </data>
-  <data name="mCancelButton.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
-  <data name="mCancelButton.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
-    <value>AssociateIndex</value>
-  </data>
-  <data name="mCancelButton.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
+  <data name="mOKButton.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 4, 4, 4</value>
   </data>
   <data name="mCancelButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>218, 555</value>
+    <value>218, 662</value>
+  </data>
+  <data name="mCancelButton.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 4, 4, 4</value>
   </data>
   <data name="mCancelButton.Text" xml:space="preserve">
     <value>&amp;Peruuta</value>
@@ -185,47 +158,26 @@
   <data name="lstManualArrange.AccessibleName" xml:space="preserve">
     <value>Äänitiedostot pudotusvalikko</value>
   </data>
-  <data name="lstManualArrange.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
+  <data name="lstManualArrange.Location" type="System.Drawing.Point, System.Drawing">
+    <value>11, 13</value>
   </data>
-  <data name="lstManualArrange.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
-    <value>AssociateIndex</value>
+  <data name="lstManualArrange.Size" type="System.Drawing.Size, System.Drawing">
+    <value>359, 144</value>
   </data>
-  <data name="lstManualArrange.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
-  <data name="m_btnMoveUp.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
-  <data name="m_btnMoveUp.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
-    <value>AssociateIndex</value>
-  </data>
-  <data name="m_btnMoveUp.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
+  <data name="m_btnMoveUp.Location" type="System.Drawing.Point, System.Drawing">
+    <value>386, 13</value>
   </data>
   <data name="m_btnMoveUp.Text" xml:space="preserve">
     <value>Siirrä&amp;ylös</value>
   </data>
-  <data name="m_btnMoveDown.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
-  <data name="m_btnMoveDown.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
-    <value>AssociateIndex</value>
-  </data>
-  <data name="m_btnMoveDown.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
+  <data name="m_btnMoveDown.Location" type="System.Drawing.Point, System.Drawing">
+    <value>386, 53</value>
   </data>
   <data name="m_btnMoveDown.Text" xml:space="preserve">
     <value>Siirrä &amp;alas</value>
   </data>
-  <data name="m_btnAdd.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
-  <data name="m_btnAdd.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
-    <value>AssociateIndex</value>
-  </data>
-  <data name="m_btnAdd.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
+  <data name="m_btnAdd.Location" type="System.Drawing.Point, System.Drawing">
+    <value>386, 90</value>
   </data>
   <data name="m_btnAdd.Text" xml:space="preserve">
     <value>&amp;Lisää</value>
@@ -233,14 +185,11 @@
   <data name="m_grpAddFiles.AccessibleName" xml:space="preserve">
     <value>Ryhmävalikko tiedostojen lisäykseen ja järjestelyyn</value>
   </data>
-  <data name="m_btnRemove.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
+  <data name="m_grpAddFiles.Size" type="System.Drawing.Size, System.Drawing">
+    <value>558, 249</value>
   </data>
-  <data name="m_btnRemove.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
-    <value>AssociateIndex</value>
-  </data>
-  <data name="m_btnRemove.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
+  <data name="m_btnRemove.Location" type="System.Drawing.Point, System.Drawing">
+    <value>388, 127</value>
   </data>
   <data name="m_btnRemove.Text" xml:space="preserve">
     <value>Poi&amp;sta</value>
@@ -248,176 +197,71 @@
   <data name="m_grpArrangeAudioFiles.AccessibleName" xml:space="preserve">
     <value>Ryhmävalikko äänitiedostojen järjestelyyn</value>
   </data>
-  <data name="mbtnDesendingOrder.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
-  <data name="mbtnDesendingOrder.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
-    <value>AssociateIndex</value>
-  </data>
-  <data name="mbtnDesendingOrder.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
-  <data name="mbtnDesendingOrder.Location" type="System.Drawing.Point, System.Drawing">
-    <value>193, 25</value>
-  </data>
-  <data name="mbtnDesendingOrder.Size" type="System.Drawing.Size, System.Drawing">
-    <value>132, 26</value>
-  </data>
-  <data name="mbtnDesendingOrder.Text" xml:space="preserve">
-    <value>L&amp;askeva järjestys</value>
-  </data>
-  <data name="mbtnAscendingOrder.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
-  <data name="mbtnAscendingOrder.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
-    <value>AssociateIndex</value>
-  </data>
-  <data name="mbtnAscendingOrder.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
-  <data name="mbtnAscendingOrder.Size" type="System.Drawing.Size, System.Drawing">
-    <value>138, 26</value>
-  </data>
-  <data name="mbtnAscendingOrder.Text" xml:space="preserve">
-    <value>&amp;Nouseva järjestys</value>
-  </data>
-  <data name="m_grpArrangeAudioFiles.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
-  <data name="m_grpArrangeAudioFiles.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
-    <value>AssociateIndex</value>
-  </data>
-  <data name="m_grpArrangeAudioFiles.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
   <data name="m_grpArrangeAudioFiles.Size" type="System.Drawing.Size, System.Drawing">
-    <value>430, 65</value>
+    <value>430, 64</value>
   </data>
   <data name="m_grpArrangeAudioFiles.Text" xml:space="preserve">
     <value>Järjestele äänitiedostot:</value>
   </data>
-  <data name="m_grpAddFiles.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
+  <data name="mbtnDesendingOrder.Location" type="System.Drawing.Point, System.Drawing">
+    <value>245, 19</value>
   </data>
-  <data name="m_grpAddFiles.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
-    <value>AssociateIndex</value>
+  <data name="mbtnDesendingOrder.Size" type="System.Drawing.Size, System.Drawing">
+    <value>167, 32</value>
   </data>
-  <data name="m_grpAddFiles.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
+  <data name="mbtnDesendingOrder.Text" xml:space="preserve">
+    <value>L&amp;askeva järjestys</value>
   </data>
-  <data name="m_grpAddFiles.Size" type="System.Drawing.Size, System.Drawing">
-    <value>459, 209</value>
+  <data name="mbtnAscendingOrder.Location" type="System.Drawing.Point, System.Drawing">
+    <value>22, 23</value>
+  </data>
+  <data name="mbtnAscendingOrder.Size" type="System.Drawing.Size, System.Drawing">
+    <value>169, 32</value>
+  </data>
+  <data name="mbtnAscendingOrder.Text" xml:space="preserve">
+    <value>&amp;Nouseva järjestys</value>
   </data>
   <data name="m_txtCharToReplaceWithSpace.AccessibleName" xml:space="preserve">
     <value>Korvaa välilyönnillä</value>
   </data>
-  <data name="m_txtCharToReplaceWithSpace.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
-  <data name="m_txtCharToReplaceWithSpace.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
-    <value>AssociateIndex</value>
-  </data>
-  <data name="m_txtCharToReplaceWithSpace.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
   <data name="m_txtCharToReplaceWithSpace.Location" type="System.Drawing.Point, System.Drawing">
-    <value>221, 106</value>
+    <value>193, 107</value>
   </data>
   <data name="m_txtPageIdentificationString.AccessibleName" xml:space="preserve">
     <value>Sivun tunniste</value>
   </data>
-  <data name="m_txtPageIdentificationString.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
-  <data name="m_txtPageIdentificationString.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
-    <value>AssociateIndex</value>
-  </data>
-  <data name="m_txtPageIdentificationString.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
   <data name="m_txtPageIdentificationString.Location" type="System.Drawing.Point, System.Drawing">
-    <value>223, 162</value>
+    <value>185, 162</value>
   </data>
   <data name="m_numCharCountToTruncateFromStart.AccessibleName" xml:space="preserve">
     <value>Merkkien lukumäärä sanan alusta määrämittaan sovitettaessa</value>
   </data>
-  <data name="m_numCharCountToTruncateFromStart.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
-  <data name="m_numCharCountToTruncateFromStart.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
-    <value>AssociateIndex</value>
-  </data>
-  <data name="m_numCharCountToTruncateFromStart.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
   <data name="m_numCharCountToTruncateFromStart.Location" type="System.Drawing.Point, System.Drawing">
-    <value>353, 134</value>
+    <value>431, 133</value>
   </data>
   <data name="m_grpCreateSectionForEachAudioFile.AccessibleName" xml:space="preserve">
     <value>Ryhmävalikko kappaleiden luomiseen jokaisesta äänitiedostosta</value>
   </data>
-  <data name="m_rdbSplitAtCuePoints.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
-  <data name="m_rdbSplitAtCuePoints.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
-    <value>AssociateIndex</value>
-  </data>
-  <data name="m_rdbSplitAtCuePoints.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
-  <data name="m_rdbCreateAudioFilePerSection.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
-  <data name="m_rdbCreateAudioFilePerSection.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
-    <value>AssociateIndex</value>
-  </data>
-  <data name="m_rdbCreateAudioFilePerSection.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
+  <data name="m_rdbSplitAtCuePoints.Location" type="System.Drawing.Point, System.Drawing">
+    <value>10, 193</value>
   </data>
   <data name="m_rdbCreateAudioFilePerSection.Location" type="System.Drawing.Point, System.Drawing">
     <value>10, 78</value>
   </data>
-  <data name="m_rdbImportAudioFileInEachSection.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
-  <data name="m_rdbImportAudioFileInEachSection.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
-    <value>AssociateIndex</value>
-  </data>
-  <data name="m_rdbImportAudioFileInEachSection.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
   <data name="m_rdbImportAudioFileInEachSection.Location" type="System.Drawing.Point, System.Drawing">
     <value>10, 52</value>
   </data>
-  <data name="m_rdbImportAudioInSelectedSection.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
-  <data name="m_rdbImportAudioInSelectedSection.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
-    <value>AssociateIndex</value>
-  </data>
-  <data name="m_rdbImportAudioInSelectedSection.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
   <data name="m_rdbImportAudioInSelectedSection.Location" type="System.Drawing.Point, System.Drawing">
-    <value>11, 26</value>
+    <value>11, 27</value>
   </data>
   <data name="mchktPageIdentificationString.AccessibleName" xml:space="preserve">
     <value>Sivun tunniste</value>
-  </data>
-  <data name="mchktPageIdentificationString.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
-  <data name="mchktPageIdentificationString.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
-    <value>AssociateIndex</value>
-  </data>
-  <data name="mchktPageIdentificationString.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
   </data>
   <data name="mchktPageIdentificationString.Location" type="System.Drawing.Point, System.Drawing">
     <value>16, 162</value>
   </data>
   <data name="mchktPageIdentificationString.Size" type="System.Drawing.Size, System.Drawing">
-    <value>108, 20</value>
+    <value>136, 24</value>
   </data>
   <data name="mchktPageIdentificationString.Text" xml:space="preserve">
     <value>S&amp;ivun tunniste</value>
@@ -425,20 +269,11 @@
   <data name="mchkCountToTruncateFromStart.AccessibleName" xml:space="preserve">
     <value>Merkkien lukumäärä sanan alusta määrämittaan sovitettaessa</value>
   </data>
-  <data name="mchkCountToTruncateFromStart.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
-  <data name="mchkCountToTruncateFromStart.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
-    <value>AssociateIndex</value>
-  </data>
-  <data name="mchkCountToTruncateFromStart.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
   <data name="mchkCountToTruncateFromStart.Location" type="System.Drawing.Point, System.Drawing">
-    <value>16, 136</value>
+    <value>16, 137</value>
   </data>
   <data name="mchkCountToTruncateFromStart.Size" type="System.Drawing.Size, System.Drawing">
-    <value>332, 20</value>
+    <value>414, 24</value>
   </data>
   <data name="mchkCountToTruncateFromStart.Text" xml:space="preserve">
     <value># &amp;merkkiä sanan alusta määrämittaan sovitettaessa</value>
@@ -446,95 +281,50 @@
   <data name="mchkToReplaceWithSpace.AccessibleName" xml:space="preserve">
     <value>Korvaa välilyönnillä</value>
   </data>
-  <data name="mchkToReplaceWithSpace.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
-  <data name="mchkToReplaceWithSpace.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
-    <value>AssociateIndex</value>
-  </data>
-  <data name="mchkToReplaceWithSpace.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
   <data name="mchkToReplaceWithSpace.Location" type="System.Drawing.Point, System.Drawing">
     <value>16, 108</value>
   </data>
   <data name="mchkToReplaceWithSpace.Size" type="System.Drawing.Size, System.Drawing">
-    <value>143, 20</value>
+    <value>173, 24</value>
   </data>
   <data name="mchkToReplaceWithSpace.Text" xml:space="preserve">
     <value>Kor&amp;vaa välilyönnillä</value>
   </data>
-  <data name="m_grpCreateSectionForEachAudioFile.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
-  <data name="m_grpCreateSectionForEachAudioFile.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
-    <value>AssociateIndex</value>
-  </data>
-  <data name="m_grpCreateSectionForEachAudioFile.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
   <data name="m_grpCreateSectionForEachAudioFile.Location" type="System.Drawing.Point, System.Drawing">
-    <value>12, 215</value>
+    <value>12, 264</value>
   </data>
   <data name="m_grpCreateSectionForEachAudioFile.Size" type="System.Drawing.Size, System.Drawing">
-    <value>459, 217</value>
+    <value>560, 236</value>
   </data>
-  <data name="m_rdbPhraseDetectionOnImportedFiles.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
+  <data name="m_grpSplitPhraseOrPhraseDetection.Location" type="System.Drawing.Point, System.Drawing">
+    <value>12, 508</value>
   </data>
-  <data name="m_rdbPhraseDetectionOnImportedFiles.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
-    <value>AssociateIndex</value>
+  <data name="m_grpSplitPhraseOrPhraseDetection.Size" type="System.Drawing.Size, System.Drawing">
+    <value>560, 138</value>
   </data>
-  <data name="m_rdbPhraseDetectionOnImportedFiles.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
+  <data name="m_rdbPhraseDetectionOnImportedFiles.Location" type="System.Drawing.Point, System.Drawing">
+    <value>15, 97</value>
   </data>
   <data name="m_rdbPhraseDetectionOnImportedFiles.Size" type="System.Drawing.Size, System.Drawing">
-    <value>256, 20</value>
+    <value>324, 24</value>
   </data>
   <data name="m_rdbPhraseDetectionOnImportedFiles.Text" xml:space="preserve">
     <value>Lauseiden &amp;tunnistus import-tiedostoista</value>
   </data>
-  <data name="m_rdbSplitPhrasesOnImport.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
-  <data name="m_rdbSplitPhrasesOnImport.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
-    <value>AssociateIndex</value>
-  </data>
-  <data name="m_rdbSplitPhrasesOnImport.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
+  <data name="m_rdbSplitPhrasesOnImport.Location" type="System.Drawing.Point, System.Drawing">
+    <value>15, 23</value>
   </data>
   <data name="m_rdbSplitPhrasesOnImport.Size" type="System.Drawing.Size, System.Drawing">
-    <value>197, 20</value>
+    <value>244, 24</value>
   </data>
   <data name="m_rdbSplitPhrasesOnImport.Text" xml:space="preserve">
     <value>&amp;Jaa import-tiedosto lauseiksi</value>
   </data>
-  <data name="m_grpSplitPhraseOrPhraseDetection.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
-  <data name="m_grpSplitPhraseOrPhraseDetection.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
-    <value>AssociateIndex</value>
-  </data>
-  <data name="m_grpSplitPhraseOrPhraseDetection.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
-  <data name="m_grpSplitPhraseOrPhraseDetection.Location" type="System.Drawing.Point, System.Drawing">
-    <value>12, 438</value>
-  </data>
-  <data name="m_grpSplitPhraseOrPhraseDetection.Size" type="System.Drawing.Size, System.Drawing">
-    <value>459, 103</value>
-  </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>481, 595</value>
+    <value>580, 712</value>
   </data>
-  <data name="$this.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
-  <data name="$this.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
-    <value>AssociateIndex</value>
-  </data>
-  <data name="$this.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
+  <data name="$this.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 4, 4, 4</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
     <value>Tuotavien äänitiedostojen asetukset</value>

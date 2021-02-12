@@ -163,7 +163,7 @@
     <value>NoControl</value>
   </data>
   <data name="m_btnBrowse.Location" type="System.Drawing.Point, System.Drawing">
-    <value>486, 28</value>
+    <value>503, 28</value>
   </data>
   <data name="m_btnBrowse.ShowHelp" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -193,7 +193,7 @@
     <value>Select audio for mixing</value>
   </data>
   <data name="m_txtSelectAudioForMixing.Location" type="System.Drawing.Point, System.Drawing">
-    <value>249, 28</value>
+    <value>266, 28</value>
   </data>
   <data name="m_txtSelectAudioForMixing.ShowHelp" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -253,7 +253,7 @@
     <value>Weight of audio</value>
   </data>
   <data name="m_WeightOfSoundNumericUpDown.Location" type="System.Drawing.Point, System.Drawing">
-    <value>249, 64</value>
+    <value>266, 64</value>
   </data>
   <data name="m_WeightOfSoundNumericUpDown.ShowHelp" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -286,7 +286,7 @@
     <value>NoControl</value>
   </data>
   <data name="m_btnOK.Location" type="System.Drawing.Point, System.Drawing">
-    <value>159, 512</value>
+    <value>159, 538</value>
   </data>
   <data name="m_btnOK.ShowHelp" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -322,7 +322,7 @@
     <value>NoControl</value>
   </data>
   <data name="m_btnCancel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>311, 512</value>
+    <value>311, 538</value>
   </data>
   <data name="m_btnCancel.ShowHelp" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -382,7 +382,7 @@
     <value>10</value>
   </data>
   <data name="m_DropoutTransitionNumericUpDown.Location" type="System.Drawing.Point, System.Drawing">
-    <value>250, 167</value>
+    <value>266, 167</value>
   </data>
   <data name="m_DropoutTransitionNumericUpDown.ShowHelp" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -445,7 +445,7 @@
     <value>False</value>
   </data>
   <data name="m_DurationOfMixingAudioNumericUpDown.Location" type="System.Drawing.Point, System.Drawing">
-    <value>447, 237</value>
+    <value>476, 237</value>
   </data>
   <data name="m_DurationOfMixingAudioNumericUpDown.ShowHelp" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -538,7 +538,7 @@
     <value>False</value>
   </data>
   <data name="m_txtSelectSecondAudioForMixing.Location" type="System.Drawing.Point, System.Drawing">
-    <value>250, 102</value>
+    <value>265, 102</value>
   </data>
   <data name="m_txtSelectSecondAudioForMixing.ShowHelp" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -571,7 +571,7 @@
     <value>NoControl</value>
   </data>
   <data name="m_btnBrowseSecondAudio.Location" type="System.Drawing.Point, System.Drawing">
-    <value>487, 99</value>
+    <value>502, 99</value>
   </data>
   <data name="m_btnBrowseSecondAudio.ShowHelp" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -640,7 +640,7 @@
     <value>False</value>
   </data>
   <data name="m_WeightOfSecondAudioSoundNumericUpDown.Location" type="System.Drawing.Point, System.Drawing">
-    <value>249, 134</value>
+    <value>265, 134</value>
   </data>
   <data name="m_WeightOfSecondAudioSoundNumericUpDown.ShowHelp" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -673,7 +673,7 @@
     <value>True</value>
   </data>
   <data name="m_txtNote.Size" type="System.Drawing.Size, System.Drawing">
-    <value>625, 227</value>
+    <value>625, 247</value>
   </data>
   <data name="m_txtNote.TabIndex" type="System.Int32, mscorlib">
     <value>17</value>
@@ -708,7 +708,7 @@ If checked then resulting phrase after mixing audio will have same duration as t
     <value>9, 18</value>
   </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>670, 561</value>
+    <value>670, 582</value>
   </data>
   <data name="$this.Font" type="System.Drawing.Font, System.Drawing">
     <value>Microsoft Sans Serif, 9pt</value>

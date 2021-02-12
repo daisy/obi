@@ -174,13 +174,13 @@
     <value />
   </data>
   <data name="m_btn_ShowContents.Location" type="System.Drawing.Point, System.Drawing">
-    <value>182, 22</value>
+    <value>172, 22</value>
   </data>
   <data name="m_btn_ShowContents.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>5, 5, 5, 5</value>
   </data>
   <data name="m_btn_ShowContents.Size" type="System.Drawing.Size, System.Drawing">
-    <value>126, 54</value>
+    <value>141, 54</value>
   </data>
   <data name="groupBox2.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
@@ -198,7 +198,7 @@
     <value>5, 5, 5, 5</value>
   </data>
   <data name="groupBox2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>341, 89</value>
+    <value>323, 89</value>
   </data>
   <data name="m_btn_IncreaseSectionLevel.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
@@ -210,13 +210,13 @@
     <value />
   </data>
   <data name="m_btn_IncreaseSectionLevel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>131, 22</value>
+    <value>131, 17</value>
   </data>
   <data name="m_btn_IncreaseSectionLevel.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>5, 5, 5, 5</value>
   </data>
   <data name="m_btn_IncreaseSectionLevel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>100, 59</value>
+    <value>100, 54</value>
   </data>
   <data name="m_btn_DecreaseSectionLevel.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
@@ -227,14 +227,11 @@
   <data name="m_btn_DecreaseSectionLevel.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
   </data>
-  <data name="m_btn_DecreaseSectionLevel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>243, 22</value>
-  </data>
   <data name="m_btn_DecreaseSectionLevel.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>5, 5, 5, 5</value>
   </data>
   <data name="m_btn_DecreaseSectionLevel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>93, 59</value>
+    <value>93, 54</value>
   </data>
   <data name="m_btn_Merge.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
@@ -245,14 +242,11 @@
   <data name="m_btn_Merge.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
   </data>
-  <data name="m_btn_Merge.Location" type="System.Drawing.Point, System.Drawing">
-    <value>8, 22</value>
-  </data>
   <data name="m_btn_Merge.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>5, 5, 5, 5</value>
   </data>
   <data name="m_btn_Merge.Size" type="System.Drawing.Size, System.Drawing">
-    <value>115, 59</value>
+    <value>115, 54</value>
   </data>
   <data name="m_btn_Undo.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
@@ -263,18 +257,11 @@
   <data name="m_btn_Undo.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
   </data>
-  <data name="m_btn_Undo.Location" type="System.Drawing.Point, System.Drawing">
-    <value>344, 22</value>
-  </data>
   <data name="m_btn_Undo.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>5, 5, 5, 5</value>
   </data>
-  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="m_btn_Undo.ShowHelp" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
   <data name="m_btn_Undo.Size" type="System.Drawing.Size, System.Drawing">
-    <value>100, 59</value>
+    <value>100, 54</value>
   </data>
   <data name="m_grp_SectionLevelOperation.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
@@ -286,7 +273,7 @@
     <value />
   </data>
   <data name="m_grp_SectionLevelOperation.Location" type="System.Drawing.Point, System.Drawing">
-    <value>680, 309</value>
+    <value>665, 309</value>
   </data>
   <data name="m_grp_SectionLevelOperation.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>5, 5, 5, 5</value>
@@ -307,11 +294,12 @@
     <value />
   </data>
   <data name="m_btn_Close.Location" type="System.Drawing.Point, System.Drawing">
-    <value>517, 568</value>
+    <value>461, 576</value>
   </data>
   <data name="m_btn_Close.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>5, 5, 5, 5</value>
   </data>
+  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="m_btn_Close.TabIndex" type="System.Int32, mscorlib">
     <value>13</value>
   </data>
@@ -348,9 +336,6 @@
   <data name="m_btn_Stop.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>5, 5, 5, 5</value>
   </data>
-  <data name="m_btn_Stop.ShowHelp" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
   <data name="m_btn_Stop.Size" type="System.Drawing.Size, System.Drawing">
     <value>117, 55</value>
   </data>
@@ -363,17 +348,8 @@
   <data name="m_btn_Play.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
   </data>
-  <data name="m_btn_Play.Location" type="System.Drawing.Point, System.Drawing">
-    <value>8, 22</value>
-  </data>
   <data name="m_btn_Play.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>5, 5, 5, 5</value>
-  </data>
-  <data name="m_btn_Play.ShowHelp" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="m_btn_Play.Size" type="System.Drawing.Size, System.Drawing">
-    <value>119, 55</value>
   </data>
   <data name="m_grp_SectionAudioOperation.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
@@ -385,16 +361,13 @@
     <value />
   </data>
   <data name="m_grp_SectionAudioOperation.Location" type="System.Drawing.Point, System.Drawing">
-    <value>40, 309</value>
+    <value>29, 309</value>
   </data>
   <data name="m_grp_SectionAudioOperation.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>5, 5, 5, 5</value>
   </data>
   <data name="m_grp_SectionAudioOperation.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>5, 5, 5, 5</value>
-  </data>
-  <data name="m_grp_SectionAudioOperation.ShowHelp" type="System.Boolean, mscorlib">
-    <value>True</value>
   </data>
   <data name="m_grp_SectionAudioOperation.Size" type="System.Drawing.Size, System.Drawing">
     <value>263, 89</value>
@@ -411,11 +384,8 @@
   <data name="m_lb_listofSectionsToMerge.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>5, 5, 5, 5</value>
   </data>
-  <data name="m_lb_listofSectionsToMerge.ShowHelp" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
   <data name="m_lb_listofSectionsToMerge.Size" type="System.Drawing.Size, System.Drawing">
-    <value>1105, 260</value>
+    <value>1084, 260</value>
   </data>
   <data name="m_tb_SectionsSelected.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
@@ -427,16 +397,13 @@
     <value />
   </data>
   <data name="m_tb_SectionsSelected.Location" type="System.Drawing.Point, System.Drawing">
-    <value>40, 521</value>
+    <value>29, 538</value>
   </data>
   <data name="m_tb_SectionsSelected.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>5, 5, 5, 5</value>
   </data>
-  <data name="m_tb_SectionsSelected.ShowHelp" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
   <data name="m_tb_SectionsSelected.Size" type="System.Drawing.Size, System.Drawing">
-    <value>1084, 22</value>
+    <value>1088, 22</value>
   </data>
   <data name="m_tb_SectionsSelected.TabIndex" type="System.Int32, mscorlib">
     <value>12</value>
@@ -451,16 +418,13 @@
     <value />
   </data>
   <data name="m_btn_NoiseReduction.Location" type="System.Drawing.Point, System.Drawing">
-    <value>224, 22</value>
+    <value>249, 22</value>
   </data>
   <data name="m_btn_NoiseReduction.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>5, 5, 5, 5</value>
   </data>
-  <data name="m_btn_NoiseReduction.ShowHelp" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
   <data name="m_btn_NoiseReduction.Size" type="System.Drawing.Size, System.Drawing">
-    <value>124, 54</value>
+    <value>188, 55</value>
   </data>
   <data name="m_btn_Normalize.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
@@ -477,11 +441,8 @@
   <data name="m_btn_Normalize.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>5, 5, 5, 5</value>
   </data>
-  <data name="m_btn_Normalize.ShowHelp" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
   <data name="m_btn_Normalize.Size" type="System.Drawing.Size, System.Drawing">
-    <value>125, 54</value>
+    <value>193, 55</value>
   </data>
   <data name="groupBox1.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
@@ -493,7 +454,7 @@
     <value />
   </data>
   <data name="groupBox1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>405, 408</value>
+    <value>313, 417</value>
   </data>
   <data name="groupBox1.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>5, 5, 5, 5</value>
@@ -501,14 +462,11 @@
   <data name="groupBox1.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>5, 5, 5, 5</value>
   </data>
-  <data name="groupBox1.ShowHelp" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
   <data name="groupBox1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>374, 87</value>
+    <value>449, 93</value>
   </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>1162, 634</value>
+    <value>1192, 633</value>
   </data>
   <data name="$this.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />

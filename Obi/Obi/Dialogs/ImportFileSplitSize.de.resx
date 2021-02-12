@@ -132,7 +132,7 @@
     <value>72, 53</value>
   </data>
   <data name="label1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>155, 16</value>
+    <value>195, 20</value>
   </data>
   <data name="label1.Text" xml:space="preserve">
     <value>Phrasen&amp;dauer in Minuten</value>
@@ -162,7 +162,7 @@
     <value />
   </data>
   <data name="mOKButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>75, 561</value>
+    <value>105, 695</value>
   </data>
   <data name="mCancelButton.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
@@ -174,7 +174,7 @@
     <value />
   </data>
   <data name="mCancelButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>193, 561</value>
+    <value>223, 694</value>
   </data>
   <data name="mCancelButton.Text" xml:space="preserve">
     <value>A&amp;bbrechen</value>
@@ -192,7 +192,7 @@
     <value />
   </data>
   <data name="lstManualArrange.Size" type="System.Drawing.Size, System.Drawing">
-    <value>281, 116</value>
+    <value>281, 104</value>
   </data>
   <data name="m_btnMoveUp.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
@@ -219,7 +219,7 @@
     <value />
   </data>
   <data name="m_btnMoveDown.Location" type="System.Drawing.Point, System.Drawing">
-    <value>309, 43</value>
+    <value>309, 52</value>
   </data>
   <data name="m_btnMoveDown.Text" xml:space="preserve">
     <value>&amp;Runter</value>
@@ -234,7 +234,7 @@
     <value />
   </data>
   <data name="m_btnAdd.Location" type="System.Drawing.Point, System.Drawing">
-    <value>309, 72</value>
+    <value>309, 92</value>
   </data>
   <data name="m_btnAdd.Text" xml:space="preserve">
     <value>&amp;Anfügen</value>
@@ -252,7 +252,7 @@
     <value />
   </data>
   <data name="m_btnRemove.Location" type="System.Drawing.Point, System.Drawing">
-    <value>311, 101</value>
+    <value>311, 135</value>
   </data>
   <data name="m_btnRemove.Text" xml:space="preserve">
     <value>&amp;Entfernen</value>
@@ -270,7 +270,10 @@
     <value />
   </data>
   <data name="mbtnDesendingOrder.Location" type="System.Drawing.Point, System.Drawing">
-    <value>209, 26</value>
+    <value>247, 26</value>
+  </data>
+  <data name="mbtnDesendingOrder.Size" type="System.Drawing.Size, System.Drawing">
+    <value>195, 32</value>
   </data>
   <data name="mbtnDesendingOrder.Text" xml:space="preserve">
     <value>&amp;Aufsteigend sortieren</value>
@@ -288,7 +291,7 @@
     <value>20, 27</value>
   </data>
   <data name="mbtnAscendingOrder.Size" type="System.Drawing.Size, System.Drawing">
-    <value>158, 26</value>
+    <value>187, 32</value>
   </data>
   <data name="mbtnAscendingOrder.Text" xml:space="preserve">
     <value>Ab&amp;steigend sortieren</value>
@@ -303,7 +306,7 @@
     <value />
   </data>
   <data name="m_grpArrangeAudioFiles.Size" type="System.Drawing.Size, System.Drawing">
-    <value>387, 65</value>
+    <value>454, 65</value>
   </data>
   <data name="m_grpArrangeAudioFiles.Text" xml:space="preserve">
     <value>Audiodateien ordnen</value>
@@ -318,7 +321,7 @@
     <value />
   </data>
   <data name="m_grpAddFiles.Size" type="System.Drawing.Size, System.Drawing">
-    <value>413, 210</value>
+    <value>478, 260</value>
   </data>
   <data name="m_txtCharToReplaceWithSpace.AccessibleName" xml:space="preserve">
     <value>mit Leerzeichen ersetzen</value>
@@ -333,7 +336,7 @@
     <value />
   </data>
   <data name="m_txtCharToReplaceWithSpace.Location" type="System.Drawing.Point, System.Drawing">
-    <value>291, 100</value>
+    <value>291, 129</value>
   </data>
   <data name="m_txtPageIdentificationString.AccessibleName" xml:space="preserve">
     <value>Seitenkennung</value>
@@ -348,7 +351,7 @@
     <value />
   </data>
   <data name="m_txtPageIdentificationString.Location" type="System.Drawing.Point, System.Drawing">
-    <value>289, 156</value>
+    <value>289, 185</value>
   </data>
   <data name="m_numCharCountToTruncateFromStart.AccessibleName" xml:space="preserve">
     <value>Anzahl Zeichen zu Beginn abschneiden</value>
@@ -363,7 +366,7 @@
     <value />
   </data>
   <data name="m_numCharCountToTruncateFromStart.Location" type="System.Drawing.Point, System.Drawing">
-    <value>291, 128</value>
+    <value>364, 157</value>
   </data>
   <data name="m_grpCreateSectionForEachAudioFile.AccessibleName" xml:space="preserve">
     <value>Feld zum Einstellen einer Sektion je Audiodatei</value>
@@ -377,6 +380,9 @@
   <data name="m_rdbSplitAtCuePoints.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
   </data>
+  <data name="m_rdbSplitAtCuePoints.Location" type="System.Drawing.Point, System.Drawing">
+    <value>10, 211</value>
+  </data>
   <data name="m_rdbCreateAudioFilePerSection.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
   </data>
@@ -387,7 +393,7 @@
     <value />
   </data>
   <data name="m_rdbCreateAudioFilePerSection.Size" type="System.Drawing.Size, System.Drawing">
-    <value>256, 20</value>
+    <value>316, 24</value>
   </data>
   <data name="m_rdbCreateAudioFilePerSection.Text" xml:space="preserve">
     <value>Eine Se&amp;ktion für jede Audiodatei bilden</value>
@@ -402,7 +408,7 @@
     <value />
   </data>
   <data name="m_rdbImportAudioFileInEachSection.Size" type="System.Drawing.Size, System.Drawing">
-    <value>358, 20</value>
+    <value>452, 24</value>
   </data>
   <data name="m_rdbImportAudioFileInEachSection.Text" xml:space="preserve">
     <value>A&amp;udiodatei in jedem Abschnitt importieren (aus Auswahl)</value>
@@ -417,7 +423,7 @@
     <value />
   </data>
   <data name="m_rdbImportAudioInSelectedSection.Size" type="System.Drawing.Size, System.Drawing">
-    <value>350, 20</value>
+    <value>434, 24</value>
   </data>
   <data name="m_rdbImportAudioInSelectedSection.Text" xml:space="preserve">
     <value>&amp;Importieren Sie Audiodateien im ausgewählten Sektion</value>
@@ -435,10 +441,10 @@
     <value />
   </data>
   <data name="mchktPageIdentificationString.Location" type="System.Drawing.Point, System.Drawing">
-    <value>30, 153</value>
+    <value>30, 182</value>
   </data>
   <data name="mchktPageIdentificationString.Size" type="System.Drawing.Size, System.Drawing">
-    <value>116, 20</value>
+    <value>140, 24</value>
   </data>
   <data name="mchktPageIdentificationString.Text" xml:space="preserve">
     <value>Sei&amp;tenkennung</value>
@@ -456,10 +462,10 @@
     <value />
   </data>
   <data name="mchkCountToTruncateFromStart.Location" type="System.Drawing.Point, System.Drawing">
-    <value>31, 127</value>
+    <value>31, 156</value>
   </data>
   <data name="mchkCountToTruncateFromStart.Size" type="System.Drawing.Size, System.Drawing">
-    <value>260, 20</value>
+    <value>324, 24</value>
   </data>
   <data name="mchkCountToTruncateFromStart.Text" xml:space="preserve">
     <value>Anzahl &amp;Zeichen zu Beginn abschneiden</value>
@@ -477,10 +483,10 @@
     <value />
   </data>
   <data name="mchkToReplaceWithSpace.Location" type="System.Drawing.Point, System.Drawing">
-    <value>30, 99</value>
+    <value>30, 128</value>
   </data>
   <data name="mchkToReplaceWithSpace.Size" type="System.Drawing.Size, System.Drawing">
-    <value>174, 20</value>
+    <value>221, 24</value>
   </data>
   <data name="mchkToReplaceWithSpace.Text" xml:space="preserve">
     <value>&amp;mit Leerzeichen ersetzen</value>
@@ -495,7 +501,7 @@
     <value />
   </data>
   <data name="m_grpCreateSectionForEachAudioFile.Size" type="System.Drawing.Size, System.Drawing">
-    <value>413, 217</value>
+    <value>484, 254</value>
   </data>
   <data name="m_rdbPhraseDetectionOnImportedFiles.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
@@ -507,7 +513,7 @@
     <value />
   </data>
   <data name="m_rdbPhraseDetectionOnImportedFiles.Size" type="System.Drawing.Size, System.Drawing">
-    <value>252, 20</value>
+    <value>315, 24</value>
   </data>
   <data name="m_rdbPhraseDetectionOnImportedFiles.Text" xml:space="preserve">
     <value>&amp;Phrasen in importiertem Ton erkennen</value>
@@ -522,7 +528,7 @@
     <value />
   </data>
   <data name="m_rdbSplitPhrasesOnImport.Size" type="System.Drawing.Size, System.Drawing">
-    <value>196, 20</value>
+    <value>246, 24</value>
   </data>
   <data name="m_rdbSplitPhrasesOnImport.Text" xml:space="preserve">
     <value>P&amp;hrasen beim Import trennen</value>
@@ -537,13 +543,13 @@
     <value />
   </data>
   <data name="m_grpSplitPhraseOrPhraseDetection.Location" type="System.Drawing.Point, System.Drawing">
-    <value>12, 437</value>
+    <value>12, 531</value>
   </data>
   <data name="m_grpSplitPhraseOrPhraseDetection.Size" type="System.Drawing.Size, System.Drawing">
-    <value>413, 103</value>
+    <value>486, 147</value>
   </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>437, 601</value>
+    <value>511, 747</value>
   </data>
   <data name="$this.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />

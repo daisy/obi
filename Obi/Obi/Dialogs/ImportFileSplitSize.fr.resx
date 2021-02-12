@@ -195,7 +195,7 @@
     <value />
   </data>
   <data name="lstManualArrange.Size" type="System.Drawing.Size, System.Drawing">
-    <value>335, 104</value>
+    <value>378, 144</value>
   </data>
   <data name="m_btnMoveUp.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
@@ -207,7 +207,7 @@
     <value />
   </data>
   <data name="m_btnMoveUp.Location" type="System.Drawing.Point, System.Drawing">
-    <value>350, 11</value>
+    <value>410, 11</value>
   </data>
   <data name="m_btnMoveUp.Size" type="System.Drawing.Size, System.Drawing">
     <value>104, 32</value>
@@ -225,7 +225,7 @@
     <value />
   </data>
   <data name="m_btnMoveDown.Location" type="System.Drawing.Point, System.Drawing">
-    <value>350, 43</value>
+    <value>410, 54</value>
   </data>
   <data name="m_btnMoveDown.Size" type="System.Drawing.Size, System.Drawing">
     <value>104, 29</value>
@@ -243,7 +243,7 @@
     <value />
   </data>
   <data name="m_btnAdd.Location" type="System.Drawing.Point, System.Drawing">
-    <value>350, 72</value>
+    <value>410, 97</value>
   </data>
   <data name="m_btnAdd.Size" type="System.Drawing.Size, System.Drawing">
     <value>104, 29</value>
@@ -264,7 +264,7 @@
     <value />
   </data>
   <data name="m_btnRemove.Location" type="System.Drawing.Point, System.Drawing">
-    <value>351, 101</value>
+    <value>411, 143</value>
   </data>
   <data name="m_btnRemove.Size" type="System.Drawing.Size, System.Drawing">
     <value>103, 29</value>

@@ -132,7 +132,7 @@
     <value>13, 51</value>
   </data>
   <data name="label1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>186, 16</value>
+    <value>292, 20</value>
   </data>
   <data name="label1.Text" xml:space="preserve">
     <value>சொற்றொடரின் &amp;அளவு நிமிடங்களில்:</value>
@@ -150,10 +150,10 @@
     <value />
   </data>
   <data name="mPhraseSizeTextBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>210, 51</value>
+    <value>322, 51</value>
   </data>
   <data name="mPhraseSizeTextBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>112, 22</value>
+    <value>112, 26</value>
   </data>
   <data name="mOKButton.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
@@ -165,7 +165,7 @@
     <value />
   </data>
   <data name="mOKButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>40, 558</value>
+    <value>144, 719</value>
   </data>
   <data name="mOKButton.Text" xml:space="preserve">
     <value>&amp;சரி</value>
@@ -180,7 +180,7 @@
     <value />
   </data>
   <data name="mCancelButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>158, 558</value>
+    <value>262, 719</value>
   </data>
   <data name="mCancelButton.Text" xml:space="preserve">
     <value>&amp;இரத்து</value>
@@ -198,7 +198,7 @@
     <value />
   </data>
   <data name="lstManualArrange.Size" type="System.Drawing.Size, System.Drawing">
-    <value>205, 116</value>
+    <value>367, 144</value>
   </data>
   <data name="m_btnMoveUp.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
@@ -210,10 +210,10 @@
     <value />
   </data>
   <data name="m_btnMoveUp.Location" type="System.Drawing.Point, System.Drawing">
-    <value>221, 11</value>
+    <value>395, 17</value>
   </data>
   <data name="m_btnMoveUp.Size" type="System.Drawing.Size, System.Drawing">
-    <value>91, 23</value>
+    <value>102, 30</value>
   </data>
   <data name="m_btnMoveUp.Text" xml:space="preserve">
     <value>மேலே நகரு</value>
@@ -228,7 +228,7 @@
     <value />
   </data>
   <data name="m_btnMoveDown.Location" type="System.Drawing.Point, System.Drawing">
-    <value>221, 43</value>
+    <value>395, 59</value>
   </data>
   <data name="m_btnMoveDown.Text" xml:space="preserve">
     <value>கீழே நகரு</value>
@@ -243,7 +243,7 @@
     <value />
   </data>
   <data name="m_btnAdd.Location" type="System.Drawing.Point, System.Drawing">
-    <value>221, 72</value>
+    <value>395, 101</value>
   </data>
   <data name="m_btnAdd.Text" xml:space="preserve">
     <value>&amp; சேர்</value>
@@ -261,7 +261,10 @@
     <value />
   </data>
   <data name="m_btnRemove.Location" type="System.Drawing.Point, System.Drawing">
-    <value>223, 101</value>
+    <value>394, 143</value>
+  </data>
+  <data name="m_btnRemove.Size" type="System.Drawing.Size, System.Drawing">
+    <value>103, 29</value>
   </data>
   <data name="m_btnRemove.Text" xml:space="preserve">
     <value>&amp; நீக்கு</value>
@@ -279,10 +282,10 @@
     <value />
   </data>
   <data name="mbtnDesendingOrder.Location" type="System.Drawing.Point, System.Drawing">
-    <value>168, 34</value>
+    <value>279, 31</value>
   </data>
   <data name="mbtnDesendingOrder.Size" type="System.Drawing.Size, System.Drawing">
-    <value>132, 26</value>
+    <value>169, 37</value>
   </data>
   <data name="mbtnDesendingOrder.Text" xml:space="preserve">
     <value>&amp;இறங்கு வரிசை</value>
@@ -297,10 +300,10 @@
     <value />
   </data>
   <data name="mbtnAscendingOrder.Location" type="System.Drawing.Point, System.Drawing">
-    <value>10, 34</value>
+    <value>51, 31</value>
   </data>
   <data name="mbtnAscendingOrder.Size" type="System.Drawing.Size, System.Drawing">
-    <value>118, 26</value>
+    <value>158, 37</value>
   </data>
   <data name="mbtnAscendingOrder.Text" xml:space="preserve">
     <value>ஏறு வரிசை</value>
@@ -315,7 +318,7 @@
     <value />
   </data>
   <data name="m_grpArrangeAudioFiles.Size" type="System.Drawing.Size, System.Drawing">
-    <value>315, 65</value>
+    <value>467, 76</value>
   </data>
   <data name="m_grpArrangeAudioFiles.Text" xml:space="preserve">
     <value>ஒலி கோப்புகளை வகைப்படுத்து:</value>
@@ -330,7 +333,7 @@
     <value />
   </data>
   <data name="m_grpAddFiles.Size" type="System.Drawing.Size, System.Drawing">
-    <value>329, 209</value>
+    <value>548, 256</value>
   </data>
   <data name="m_txtCharToReplaceWithSpace.AccessibleName" xml:space="preserve">
     <value>இடத்திற்கு பதிலாக மாற்ற </value>
@@ -345,10 +348,10 @@
     <value />
   </data>
   <data name="m_txtCharToReplaceWithSpace.Location" type="System.Drawing.Point, System.Drawing">
-    <value>221, 105</value>
+    <value>280, 128</value>
   </data>
   <data name="m_txtCharToReplaceWithSpace.Size" type="System.Drawing.Size, System.Drawing">
-    <value>100, 22</value>
+    <value>100, 26</value>
   </data>
   <data name="m_txtPageIdentificationString.AccessibleName" xml:space="preserve">
     <value>பக்க அடையாளம் </value>
@@ -363,7 +366,7 @@
     <value />
   </data>
   <data name="m_txtPageIdentificationString.Location" type="System.Drawing.Point, System.Drawing">
-    <value>223, 161</value>
+    <value>223, 184</value>
   </data>
   <data name="m_numCharCountToTruncateFromStart.AccessibleName" xml:space="preserve">
     <value>ஆரம்ப எழுத்து ஒழுங்கமைப்பின் எண்ணிக்கை
@@ -379,7 +382,7 @@
     <value />
   </data>
   <data name="m_numCharCountToTruncateFromStart.Location" type="System.Drawing.Point, System.Drawing">
-    <value>223, 133</value>
+    <value>310, 156</value>
   </data>
   <data name="m_grpCreateSectionForEachAudioFile.AccessibleName" xml:space="preserve">
     <value>குழு பெட்டி  ஒவ்வொரு ஒலி கோப்புக்கும் ஒரு பகுதி உருவாக்கு</value>
@@ -433,10 +436,10 @@
     <value />
   </data>
   <data name="mchktPageIdentificationString.Location" type="System.Drawing.Point, System.Drawing">
-    <value>32, 161</value>
+    <value>32, 184</value>
   </data>
   <data name="mchktPageIdentificationString.Size" type="System.Drawing.Size, System.Drawing">
-    <value>115, 20</value>
+    <value>167, 24</value>
   </data>
   <data name="mchktPageIdentificationString.Text" xml:space="preserve">
     <value>பக்க &amp;அடையாளம்</value>
@@ -454,10 +457,10 @@
     <value />
   </data>
   <data name="mchkCountToTruncateFromStart.Location" type="System.Drawing.Point, System.Drawing">
-    <value>33, 135</value>
+    <value>33, 158</value>
   </data>
   <data name="mchkCountToTruncateFromStart.Size" type="System.Drawing.Size, System.Drawing">
-    <value>183, 20</value>
+    <value>271, 24</value>
   </data>
   <data name="mchkCountToTruncateFromStart.Text" xml:space="preserve">
     <value># ஆரம்ப எழுத்து ஒழுங்கமைப்பு</value>
@@ -475,10 +478,10 @@
     <value />
   </data>
   <data name="mchkToReplaceWithSpace.Location" type="System.Drawing.Point, System.Drawing">
-    <value>32, 107</value>
+    <value>32, 130</value>
   </data>
   <data name="mchkToReplaceWithSpace.Size" type="System.Drawing.Size, System.Drawing">
-    <value>155, 20</value>
+    <value>232, 24</value>
   </data>
   <data name="mchkToReplaceWithSpace.Text" xml:space="preserve">
     <value>&amp;இடத்திற்கு பதிலாக மாற்ற</value>
@@ -493,10 +496,10 @@
     <value />
   </data>
   <data name="m_grpCreateSectionForEachAudioFile.Location" type="System.Drawing.Point, System.Drawing">
-    <value>12, 215</value>
+    <value>12, 272</value>
   </data>
   <data name="m_grpCreateSectionForEachAudioFile.Size" type="System.Drawing.Size, System.Drawing">
-    <value>329, 218</value>
+    <value>550, 289</value>
   </data>
   <data name="m_rdbPhraseDetectionOnImportedFiles.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
@@ -508,7 +511,7 @@
     <value />
   </data>
   <data name="m_rdbPhraseDetectionOnImportedFiles.Size" type="System.Drawing.Size, System.Drawing">
-    <value>339, 20</value>
+    <value>516, 24</value>
   </data>
   <data name="m_rdbPhraseDetectionOnImportedFiles.Text" xml:space="preserve">
     <value>&amp;இறக்குமதி செய்த கோப்பைகளில் சொற்றொடர் கண்டுபிடித்தல்</value>
@@ -523,7 +526,7 @@
     <value />
   </data>
   <data name="m_rdbSplitPhrasesOnImport.Size" type="System.Drawing.Size, System.Drawing">
-    <value>316, 20</value>
+    <value>480, 24</value>
   </data>
   <data name="m_rdbSplitPhrasesOnImport.Text" xml:space="preserve">
     <value>&amp;இறக்குமதி செய்யும்பொழுது சொற்றொடர்களை பிரிக்கவும்</value>
@@ -538,13 +541,13 @@
     <value />
   </data>
   <data name="m_grpSplitPhraseOrPhraseDetection.Location" type="System.Drawing.Point, System.Drawing">
-    <value>12, 439</value>
+    <value>12, 561</value>
   </data>
   <data name="m_grpSplitPhraseOrPhraseDetection.Size" type="System.Drawing.Size, System.Drawing">
-    <value>329, 103</value>
+    <value>550, 138</value>
   </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>351, 598</value>
+    <value>614, 781</value>
   </data>
   <data name="$this.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />

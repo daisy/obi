@@ -117,25 +117,16 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="m_statusStripForMergeSection.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
-  <data name="m_statusStripForMergeSection.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
-    <value>AssociateIndex</value>
-  </data>
-  <data name="m_statusStripForMergeSection.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="m_statusStripForMergeSection.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 606</value>
+    <value>0, 630</value>
   </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="m_statusStripForMergeSection.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>1, 0, 25, 0</value>
   </data>
   <data name="m_statusStripForMergeSection.Size" type="System.Drawing.Size, System.Drawing">
-    <value>980, 19</value>
+    <value>1098, 19</value>
   </data>
   <data name="m_btn_SelectAll.AccessibleName" xml:space="preserve">
     <value>Valitse kaikki</value>
@@ -143,53 +134,14 @@
   <data name="m_btn_SelectAll.Font" type="System.Drawing.Font, System.Drawing">
     <value>Microsoft Sans Serif, 9pt</value>
   </data>
-  <data name="m_btn_SelectAll.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
-  <data name="m_btn_SelectAll.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
-    <value>AssociateIndex</value>
-  </data>
-  <data name="m_btn_SelectAll.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
   <data name="m_btn_SelectAll.Location" type="System.Drawing.Point, System.Drawing">
     <value>12, 22</value>
   </data>
   <data name="m_btn_SelectAll.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>5, 5, 5, 5</value>
   </data>
-  <data name="m_btn_SelectAll.Size" type="System.Drawing.Size, System.Drawing">
-    <value>133, 54</value>
-  </data>
   <data name="m_btn_SelectAll.Text" xml:space="preserve">
     <value>Valitse &amp;kaikki</value>
-  </data>
-  <data name="m_btn_ShowContents.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
-  <data name="m_btn_ShowContents.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
-    <value>AssociateIndex</value>
-  </data>
-  <data name="m_btn_ShowContents.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
-  <data name="m_btn_ShowContents.Location" type="System.Drawing.Point, System.Drawing">
-    <value>155, 22</value>
-  </data>
-  <data name="m_btn_ShowContents.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>5, 5, 5, 5</value>
-  </data>
-  <data name="m_btn_ShowContents.Size" type="System.Drawing.Size, System.Drawing">
-    <value>168, 54</value>
-  </data>
-  <data name="groupBox2.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
-  <data name="groupBox2.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
-    <value>AssociateIndex</value>
-  </data>
-  <data name="groupBox2.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
   </data>
   <data name="groupBox2.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>5, 5, 5, 5</value>
@@ -198,28 +150,25 @@
     <value>5, 5, 5, 5</value>
   </data>
   <data name="groupBox2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>332, 89</value>
+    <value>318, 93</value>
+  </data>
+  <data name="m_btn_ShowContents.Location" type="System.Drawing.Point, System.Drawing">
+    <value>155, 22</value>
+  </data>
+  <data name="m_btn_ShowContents.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>5, 5, 5, 5</value>
+  </data>
+  <data name="m_btn_ShowContents.Size" type="System.Drawing.Size, System.Drawing">
+    <value>138, 64</value>
   </data>
   <data name="m_btn_IncreaseSectionLevel.AccessibleName" xml:space="preserve">
     <value>Nosta kappaleen taso</value>
   </data>
-  <data name="m_btn_IncreaseSectionLevel.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
-  <data name="m_btn_IncreaseSectionLevel.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
-    <value>AssociateIndex</value>
-  </data>
-  <data name="m_btn_IncreaseSectionLevel.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
   <data name="m_btn_IncreaseSectionLevel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>131, 22</value>
+    <value>131, 17</value>
   </data>
   <data name="m_btn_IncreaseSectionLevel.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>5, 5, 5, 5</value>
-  </data>
-  <data name="m_btn_IncreaseSectionLevel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>100, 59</value>
   </data>
   <data name="m_btn_IncreaseSectionLevel.Text" xml:space="preserve">
     <value>&amp;Nosta</value>
@@ -227,90 +176,14 @@
   <data name="m_btn_DecreaseSectionLevel.AccessibleName" xml:space="preserve">
     <value>Alenna kappaleen taso</value>
   </data>
-  <data name="m_btn_DecreaseSectionLevel.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
-  <data name="m_btn_DecreaseSectionLevel.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
-    <value>AssociateIndex</value>
-  </data>
-  <data name="m_btn_DecreaseSectionLevel.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
-  <data name="m_btn_DecreaseSectionLevel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>243, 22</value>
-  </data>
   <data name="m_btn_DecreaseSectionLevel.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>5, 5, 5, 5</value>
-  </data>
-  <data name="m_btn_DecreaseSectionLevel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>117, 59</value>
   </data>
   <data name="m_btn_DecreaseSectionLevel.Text" xml:space="preserve">
     <value>&amp;Alenna kappaleen taso</value>
   </data>
-  <data name="m_btn_Merge.AccessibleName" xml:space="preserve">
-    <value>Yhdistä</value>
-  </data>
-  <data name="m_btn_Merge.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
-  <data name="m_btn_Merge.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
-    <value>AssociateIndex</value>
-  </data>
-  <data name="m_btn_Merge.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
-  <data name="m_btn_Merge.Location" type="System.Drawing.Point, System.Drawing">
-    <value>8, 22</value>
-  </data>
-  <data name="m_btn_Merge.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>5, 5, 5, 5</value>
-  </data>
-  <data name="m_btn_Merge.Size" type="System.Drawing.Size, System.Drawing">
-    <value>115, 59</value>
-  </data>
-  <data name="m_btn_Merge.Text" xml:space="preserve">
-    <value>&amp;Yhdistä</value>
-  </data>
-  <data name="m_btn_Undo.AccessibleName" xml:space="preserve">
-    <value>Kumoa</value>
-  </data>
-  <data name="m_btn_Undo.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
-  <data name="m_btn_Undo.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
-    <value>AssociateIndex</value>
-  </data>
-  <data name="m_btn_Undo.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
-  <data name="m_btn_Undo.Location" type="System.Drawing.Point, System.Drawing">
-    <value>372, 22</value>
-  </data>
-  <data name="m_btn_Undo.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>5, 5, 5, 5</value>
-  </data>
-  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="m_btn_Undo.ShowHelp" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="m_btn_Undo.Size" type="System.Drawing.Size, System.Drawing">
-    <value>100, 59</value>
-  </data>
-  <data name="m_btn_Undo.Text" xml:space="preserve">
-    <value>&amp;Kumoa</value>
-  </data>
-  <data name="m_grp_SectionLevelOperation.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
-  <data name="m_grp_SectionLevelOperation.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
-    <value>AssociateIndex</value>
-  </data>
-  <data name="m_grp_SectionLevelOperation.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
   <data name="m_grp_SectionLevelOperation.Location" type="System.Drawing.Point, System.Drawing">
-    <value>670, 309</value>
+    <value>631, 309</value>
   </data>
   <data name="m_grp_SectionLevelOperation.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>5, 5, 5, 5</value>
@@ -319,7 +192,25 @@
     <value>5, 5, 5, 5</value>
   </data>
   <data name="m_grp_SectionLevelOperation.Size" type="System.Drawing.Size, System.Drawing">
-    <value>484, 89</value>
+    <value>452, 93</value>
+  </data>
+  <data name="m_btn_Merge.AccessibleName" xml:space="preserve">
+    <value>Yhdistä</value>
+  </data>
+  <data name="m_btn_Merge.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>5, 5, 5, 5</value>
+  </data>
+  <data name="m_btn_Merge.Text" xml:space="preserve">
+    <value>&amp;Yhdistä</value>
+  </data>
+  <data name="m_btn_Undo.AccessibleName" xml:space="preserve">
+    <value>Kumoa</value>
+  </data>
+  <data name="m_btn_Undo.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>5, 5, 5, 5</value>
+  </data>
+  <data name="m_btn_Undo.Text" xml:space="preserve">
+    <value>&amp;Kumoa</value>
   </data>
   <data name="m_btn_Close.AccessibleName" xml:space="preserve">
     <value>Sulje</value>
@@ -327,21 +218,13 @@
   <data name="m_btn_Close.Font" type="System.Drawing.Font, System.Drawing">
     <value>Microsoft Sans Serif, 9pt</value>
   </data>
-  <data name="m_btn_Close.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
-  <data name="m_btn_Close.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
-    <value>AssociateIndex</value>
-  </data>
-  <data name="m_btn_Close.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
   <data name="m_btn_Close.Location" type="System.Drawing.Point, System.Drawing">
-    <value>382, 568</value>
+    <value>469, 576</value>
   </data>
   <data name="m_btn_Close.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>5, 5, 5, 5</value>
   </data>
+  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="m_btn_Close.TabIndex" type="System.Int32, mscorlib">
     <value>13</value>
   </data>
@@ -351,15 +234,6 @@
   <data name="m_btnPause.AccessibleName" xml:space="preserve">
     <value>Tauko</value>
   </data>
-  <data name="m_btnPause.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
-  <data name="m_btnPause.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
-    <value>AssociateIndex</value>
-  </data>
-  <data name="m_btnPause.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
   <data name="m_btnPause.Location" type="System.Drawing.Point, System.Drawing">
     <value>8, 22</value>
   </data>
@@ -367,73 +241,10 @@
     <value>5, 5, 5, 5</value>
   </data>
   <data name="m_btnPause.Size" type="System.Drawing.Size, System.Drawing">
-    <value>119, 55</value>
+    <value>119, 64</value>
   </data>
   <data name="m_btnPause.Text" xml:space="preserve">
     <value>&amp;Tauko</value>
-  </data>
-  <data name="m_btn_Stop.AccessibleName" xml:space="preserve">
-    <value>Seis</value>
-  </data>
-  <data name="m_btn_Stop.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
-  <data name="m_btn_Stop.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
-    <value>AssociateIndex</value>
-  </data>
-  <data name="m_btn_Stop.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
-  <data name="m_btn_Stop.Location" type="System.Drawing.Point, System.Drawing">
-    <value>135, 22</value>
-  </data>
-  <data name="m_btn_Stop.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>5, 5, 5, 5</value>
-  </data>
-  <data name="m_btn_Stop.ShowHelp" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="m_btn_Stop.Size" type="System.Drawing.Size, System.Drawing">
-    <value>117, 55</value>
-  </data>
-  <data name="m_btn_Stop.Text" xml:space="preserve">
-    <value>S&amp;eis</value>
-  </data>
-  <data name="m_btn_Play.AccessibleName" xml:space="preserve">
-    <value>Toista</value>
-  </data>
-  <data name="m_btn_Play.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
-  <data name="m_btn_Play.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
-    <value>AssociateIndex</value>
-  </data>
-  <data name="m_btn_Play.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
-  <data name="m_btn_Play.Location" type="System.Drawing.Point, System.Drawing">
-    <value>8, 22</value>
-  </data>
-  <data name="m_btn_Play.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>5, 5, 5, 5</value>
-  </data>
-  <data name="m_btn_Play.ShowHelp" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="m_btn_Play.Size" type="System.Drawing.Size, System.Drawing">
-    <value>119, 55</value>
-  </data>
-  <data name="m_btn_Play.Text" xml:space="preserve">
-    <value>&amp;Toista</value>
-  </data>
-  <data name="m_grp_SectionAudioOperation.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
-  <data name="m_grp_SectionAudioOperation.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
-    <value>AssociateIndex</value>
-  </data>
-  <data name="m_grp_SectionAudioOperation.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
   </data>
   <data name="m_grp_SectionAudioOperation.Location" type="System.Drawing.Point, System.Drawing">
     <value>40, 309</value>
@@ -444,65 +255,53 @@
   <data name="m_grp_SectionAudioOperation.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>5, 5, 5, 5</value>
   </data>
-  <data name="m_grp_SectionAudioOperation.ShowHelp" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
   <data name="m_grp_SectionAudioOperation.Size" type="System.Drawing.Size, System.Drawing">
-    <value>263, 89</value>
+    <value>263, 93</value>
+  </data>
+  <data name="m_btn_Stop.AccessibleName" xml:space="preserve">
+    <value>Seis</value>
+  </data>
+  <data name="m_btn_Stop.Location" type="System.Drawing.Point, System.Drawing">
+    <value>135, 22</value>
+  </data>
+  <data name="m_btn_Stop.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>5, 5, 5, 5</value>
+  </data>
+  <data name="m_btn_Stop.Text" xml:space="preserve">
+    <value>S&amp;eis</value>
+  </data>
+  <data name="m_btn_Play.AccessibleName" xml:space="preserve">
+    <value>Toista</value>
+  </data>
+  <data name="m_btn_Play.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>5, 5, 5, 5</value>
+  </data>
+  <data name="m_btn_Play.Size" type="System.Drawing.Size, System.Drawing">
+    <value>119, 64</value>
+  </data>
+  <data name="m_btn_Play.Text" xml:space="preserve">
+    <value>&amp;Toista</value>
   </data>
   <data name="m_lb_listofSectionsToMerge.AccessibleName" xml:space="preserve">
     <value>Kappalelista</value>
   </data>
-  <data name="m_lb_listofSectionsToMerge.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
-  <data name="m_lb_listofSectionsToMerge.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
-    <value>AssociateIndex</value>
-  </data>
-  <data name="m_lb_listofSectionsToMerge.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
   <data name="m_lb_listofSectionsToMerge.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>5, 5, 5, 5</value>
   </data>
-  <data name="m_lb_listofSectionsToMerge.ShowHelp" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
   <data name="m_lb_listofSectionsToMerge.Size" type="System.Drawing.Size, System.Drawing">
-    <value>1127, 260</value>
-  </data>
-  <data name="m_tb_SectionsSelected.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
-  <data name="m_tb_SectionsSelected.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
-    <value>AssociateIndex</value>
-  </data>
-  <data name="m_tb_SectionsSelected.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
+    <value>1048, 260</value>
   </data>
   <data name="m_tb_SectionsSelected.Location" type="System.Drawing.Point, System.Drawing">
-    <value>20, 527</value>
+    <value>40, 534</value>
   </data>
   <data name="m_tb_SectionsSelected.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>5, 5, 5, 5</value>
   </data>
-  <data name="m_tb_SectionsSelected.ShowHelp" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
   <data name="m_tb_SectionsSelected.Size" type="System.Drawing.Size, System.Drawing">
-    <value>936, 22</value>
+    <value>1043, 22</value>
   </data>
   <data name="m_tb_SectionsSelected.TabIndex" type="System.Int32, mscorlib">
     <value>12</value>
-  </data>
-  <data name="m_btn_NoiseReduction.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
-  <data name="m_btn_NoiseReduction.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
-    <value>AssociateIndex</value>
-  </data>
-  <data name="m_btn_NoiseReduction.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
   </data>
   <data name="m_btn_NoiseReduction.Location" type="System.Drawing.Point, System.Drawing">
     <value>249, 22</value>
@@ -510,44 +309,20 @@
   <data name="m_btn_NoiseReduction.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>5, 5, 5, 5</value>
   </data>
-  <data name="m_btn_NoiseReduction.ShowHelp" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
   <data name="m_btn_NoiseReduction.Size" type="System.Drawing.Size, System.Drawing">
     <value>188, 64</value>
   </data>
-  <data name="m_btn_Normalize.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
-  <data name="m_btn_Normalize.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
-    <value>AssociateIndex</value>
-  </data>
-  <data name="m_btn_Normalize.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
   <data name="m_btn_Normalize.Location" type="System.Drawing.Point, System.Drawing">
-    <value>11, 22</value>
+    <value>27, 22</value>
   </data>
   <data name="m_btn_Normalize.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>5, 5, 5, 5</value>
   </data>
-  <data name="m_btn_Normalize.ShowHelp" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
   <data name="m_btn_Normalize.Size" type="System.Drawing.Size, System.Drawing">
     <value>193, 64</value>
   </data>
-  <data name="groupBox1.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
-  <data name="groupBox1.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
-    <value>AssociateIndex</value>
-  </data>
-  <data name="groupBox1.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
   <data name="groupBox1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>262, 408</value>
+    <value>335, 412</value>
   </data>
   <data name="groupBox1.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>5, 5, 5, 5</value>
@@ -555,23 +330,11 @@
   <data name="groupBox1.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>5, 5, 5, 5</value>
   </data>
-  <data name="groupBox1.ShowHelp" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
   <data name="groupBox1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>449, 97</value>
+    <value>449, 99</value>
   </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>1198, 625</value>
-  </data>
-  <data name="$this.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
-  <data name="$this.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
-    <value>AssociateIndex</value>
-  </data>
-  <data name="$this.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
+    <value>1098, 649</value>
   </data>
   <data name="$this.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>5, 5, 5, 5</value>

@@ -132,7 +132,7 @@
     <value>28, 53</value>
   </data>
   <data name="label1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>137, 16</value>
+    <value>163, 20</value>
   </data>
   <data name="label1.Text" xml:space="preserve">
     <value>フレーズサイズ(分）：(&amp;z)</value>
@@ -150,10 +150,10 @@
     <value />
   </data>
   <data name="mPhraseSizeTextBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>170, 51</value>
+    <value>208, 53</value>
   </data>
   <data name="mPhraseSizeTextBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>132, 22</value>
+    <value>132, 26</value>
   </data>
   <data name="mOKButton.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
@@ -165,7 +165,7 @@
     <value />
   </data>
   <data name="mOKButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>40, 562</value>
+    <value>40, 694</value>
   </data>
   <data name="mCancelButton.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
@@ -177,7 +177,7 @@
     <value />
   </data>
   <data name="mCancelButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>158, 562</value>
+    <value>158, 695</value>
   </data>
   <data name="mCancelButton.Text" xml:space="preserve">
     <value>キャンセル(&amp;C)</value>
@@ -258,7 +258,7 @@
     <value />
   </data>
   <data name="mbtnDesendingOrder.Location" type="System.Drawing.Point, System.Drawing">
-    <value>164, 25</value>
+    <value>172, 31</value>
   </data>
   <data name="mbtnDesendingOrder.Size" type="System.Drawing.Size, System.Drawing">
     <value>132, 26</value>
@@ -302,6 +302,9 @@
   <data name="m_grpAddFiles.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
   </data>
+  <data name="m_grpAddFiles.Size" type="System.Drawing.Size, System.Drawing">
+    <value>415, 261</value>
+  </data>
   <data name="m_txtCharToReplaceWithSpace.AccessibleName" xml:space="preserve">
     <value>スペースと差し替え</value>
   </data>
@@ -315,7 +318,7 @@
     <value />
   </data>
   <data name="m_txtCharToReplaceWithSpace.Location" type="System.Drawing.Point, System.Drawing">
-    <value>221, 97</value>
+    <value>221, 116</value>
   </data>
   <data name="m_txtPageIdentificationString.AccessibleName" xml:space="preserve">
     <value>ページID</value>
@@ -330,7 +333,7 @@
     <value />
   </data>
   <data name="m_txtPageIdentificationString.Location" type="System.Drawing.Point, System.Drawing">
-    <value>223, 153</value>
+    <value>223, 172</value>
   </data>
   <data name="m_numCharCountToTruncateFromStart.AccessibleName" xml:space="preserve">
     <value>調整のための頭文字の数</value>
@@ -345,7 +348,7 @@
     <value />
   </data>
   <data name="m_numCharCountToTruncateFromStart.Location" type="System.Drawing.Point, System.Drawing">
-    <value>223, 125</value>
+    <value>260, 144</value>
   </data>
   <data name="m_grpCreateSectionForEachAudioFile.AccessibleName" xml:space="preserve">
     <value>各音声ファイルごとに見出しを生成するためのグループボックス</value>
@@ -358,6 +361,9 @@
   </data>
   <data name="m_rdbSplitAtCuePoints.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
+  </data>
+  <data name="m_rdbSplitAtCuePoints.Location" type="System.Drawing.Point, System.Drawing">
+    <value>10, 215</value>
   </data>
   <data name="m_rdbCreateAudioFilePerSection.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
@@ -408,10 +414,10 @@
     <value />
   </data>
   <data name="mchktPageIdentificationString.Location" type="System.Drawing.Point, System.Drawing">
-    <value>24, 153</value>
+    <value>24, 172</value>
   </data>
   <data name="mchktPageIdentificationString.Size" type="System.Drawing.Size, System.Drawing">
-    <value>87, 20</value>
+    <value>106, 24</value>
   </data>
   <data name="mchktPageIdentificationString.Text" xml:space="preserve">
     <value>ページID(&amp;I)</value>
@@ -429,10 +435,10 @@
     <value />
   </data>
   <data name="mchkCountToTruncateFromStart.Location" type="System.Drawing.Point, System.Drawing">
-    <value>25, 127</value>
+    <value>25, 146</value>
   </data>
   <data name="mchkCountToTruncateFromStart.Size" type="System.Drawing.Size, System.Drawing">
-    <value>192, 20</value>
+    <value>223, 24</value>
   </data>
   <data name="mchkCountToTruncateFromStart.Text" xml:space="preserve">
     <value>調整のための頭文字の数(&amp;c)</value>
@@ -450,10 +456,10 @@
     <value />
   </data>
   <data name="mchkToReplaceWithSpace.Location" type="System.Drawing.Point, System.Drawing">
-    <value>24, 99</value>
+    <value>24, 118</value>
   </data>
   <data name="mchkToReplaceWithSpace.Size" type="System.Drawing.Size, System.Drawing">
-    <value>152, 20</value>
+    <value>177, 24</value>
   </data>
   <data name="mchkToReplaceWithSpace.Text" xml:space="preserve">
     <value>スペースと差し替え(&amp;T)</value>
@@ -468,10 +474,10 @@
     <value />
   </data>
   <data name="m_grpCreateSectionForEachAudioFile.Location" type="System.Drawing.Point, System.Drawing">
-    <value>12, 215</value>
+    <value>12, 276</value>
   </data>
   <data name="m_grpCreateSectionForEachAudioFile.Size" type="System.Drawing.Size, System.Drawing">
-    <value>354, 222</value>
+    <value>417, 252</value>
   </data>
   <data name="m_rdbPhraseDetectionOnImportedFiles.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
@@ -483,7 +489,7 @@
     <value />
   </data>
   <data name="m_rdbPhraseDetectionOnImportedFiles.Size" type="System.Drawing.Size, System.Drawing">
-    <value>244, 20</value>
+    <value>282, 24</value>
   </data>
   <data name="m_rdbPhraseDetectionOnImportedFiles.Text" xml:space="preserve">
     <value>ファイルインポート時のフレーズ検知(&amp;P)</value>
@@ -498,7 +504,7 @@
     <value />
   </data>
   <data name="m_rdbSplitPhrasesOnImport.Size" type="System.Drawing.Size, System.Drawing">
-    <value>213, 20</value>
+    <value>247, 24</value>
   </data>
   <data name="m_rdbSplitPhrasesOnImport.Text" xml:space="preserve">
     <value>インポート時にフレーズを分割(&amp;S)</value>
@@ -513,10 +519,13 @@
     <value />
   </data>
   <data name="m_grpSplitPhraseOrPhraseDetection.Location" type="System.Drawing.Point, System.Drawing">
-    <value>12, 443</value>
+    <value>12, 554</value>
+  </data>
+  <data name="m_grpSplitPhraseOrPhraseDetection.Size" type="System.Drawing.Size, System.Drawing">
+    <value>417, 129</value>
   </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>381, 603</value>
+    <value>449, 744</value>
   </data>
   <data name="$this.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
@@ -526,9 +535,6 @@
   </data>
   <data name="$this.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
-  </data>
-  <data name="$this.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
     <value>音声ファイルインポート設定</value>

@@ -129,7 +129,7 @@
   </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="m_OKBtn.Location" type="System.Drawing.Point, System.Drawing">
-    <value>26, 241</value>
+    <value>26, 297</value>
   </data>
   <data name="m_OKBtn.Text" xml:space="preserve">
     <value>स्वीकृत करें</value>
@@ -144,7 +144,7 @@
     <value />
   </data>
   <data name="m_BtnCancel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>148, 241</value>
+    <value>148, 297</value>
   </data>
   <data name="m_BtnCancel.Text" xml:space="preserve">
     <value>रद्द करें</value>
@@ -172,7 +172,7 @@
     <value>True</value>
   </data>
   <data name="m_cbDaisy3.Size" type="System.Drawing.Size, System.Drawing">
-    <value>54, 17</value>
+    <value>60, 21</value>
   </data>
   <data name="m_cbDaisy3.Text" xml:space="preserve">
     <value>डेज़ी ३</value>
@@ -190,7 +190,7 @@
     <value>True</value>
   </data>
   <data name="m_cbDaisy202.Size" type="System.Drawing.Size, System.Drawing">
-    <value>69, 17</value>
+    <value>77, 21</value>
   </data>
   <data name="m_cbDaisy202.Text" xml:space="preserve">
     <value>डेज़ी २.०२</value>
@@ -208,7 +208,7 @@
     <value>True</value>
   </data>
   <data name="m_cbEpub3.Size" type="System.Drawing.Size, System.Drawing">
-    <value>120, 17</value>
+    <value>138, 21</value>
   </data>
   <data name="m_cbEpub3.Text" xml:space="preserve">
     <value>EPUB 3 ऑडियो बुक</value>
@@ -238,7 +238,7 @@
     <value>True</value>
   </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>268, 282</value>
+    <value>323, 335</value>
   </data>
   <data name="$this.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />

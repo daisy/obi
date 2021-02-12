@@ -254,6 +254,7 @@
             this.Controls.Add(this.m_txtSelectAudioForMixing);
             this.Controls.Add(this.m_btnBrowse);
             this.Controls.Add(this.m_lblSelectAudioForMixing);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Name = "AudioMixer";
             this.helpProvider1.SetShowHelp(this, ((bool)(resources.GetObject("$this.ShowHelp"))));
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.AudioMixer_FormClosing);

@@ -132,7 +132,7 @@
     <value>13, 51</value>
   </data>
   <data name="label1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>115, 16</value>
+    <value>137, 20</value>
   </data>
   <data name="label1.Text" xml:space="preserve">
     <value>句的分鐘長度(&amp;z:)</value>
@@ -153,7 +153,7 @@
     <value>162, 51</value>
   </data>
   <data name="mPhraseSizeTextBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>132, 22</value>
+    <value>132, 26</value>
   </data>
   <data name="mOKButton.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
@@ -165,7 +165,7 @@
     <value />
   </data>
   <data name="mOKButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>40, 569</value>
+    <value>40, 720</value>
   </data>
   <data name="mOKButton.Text" xml:space="preserve">
     <value>確定(&amp;O)</value>
@@ -180,7 +180,7 @@
     <value />
   </data>
   <data name="mCancelButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>158, 569</value>
+    <value>158, 720</value>
   </data>
   <data name="mCancelButton.Text" xml:space="preserve">
     <value>取消(&amp;C)</value>
@@ -198,7 +198,7 @@
     <value />
   </data>
   <data name="lstManualArrange.Size" type="System.Drawing.Size, System.Drawing">
-    <value>205, 116</value>
+    <value>205, 104</value>
   </data>
   <data name="m_btnMoveUp.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
@@ -210,10 +210,10 @@
     <value />
   </data>
   <data name="m_btnMoveUp.Location" type="System.Drawing.Point, System.Drawing">
-    <value>221, 11</value>
+    <value>275, 19</value>
   </data>
   <data name="m_btnMoveUp.Size" type="System.Drawing.Size, System.Drawing">
-    <value>91, 23</value>
+    <value>101, 35</value>
   </data>
   <data name="m_btnMoveUp.Text" xml:space="preserve">
     <value>上移(&amp;U)</value>
@@ -228,7 +228,7 @@
     <value />
   </data>
   <data name="m_btnMoveDown.Location" type="System.Drawing.Point, System.Drawing">
-    <value>221, 43</value>
+    <value>275, 62</value>
   </data>
   <data name="m_btnMoveDown.Text" xml:space="preserve">
     <value>下移(&amp;D)</value>
@@ -243,7 +243,7 @@
     <value />
   </data>
   <data name="m_btnAdd.Location" type="System.Drawing.Point, System.Drawing">
-    <value>221, 72</value>
+    <value>275, 101</value>
   </data>
   <data name="m_btnAdd.Text" xml:space="preserve">
     <value>新增(&amp;A)</value>
@@ -261,7 +261,7 @@
     <value />
   </data>
   <data name="m_btnRemove.Location" type="System.Drawing.Point, System.Drawing">
-    <value>223, 101</value>
+    <value>277, 141</value>
   </data>
   <data name="m_btnRemove.Text" xml:space="preserve">
     <value>移除(&amp;R)</value>
@@ -282,7 +282,7 @@
     <value>168, 32</value>
   </data>
   <data name="mbtnDesendingOrder.Size" type="System.Drawing.Size, System.Drawing">
-    <value>132, 26</value>
+    <value>132, 40</value>
   </data>
   <data name="mbtnDesendingOrder.Text" xml:space="preserve">
     <value>降序(&amp;e)</value>
@@ -300,7 +300,7 @@
     <value>10, 32</value>
   </data>
   <data name="mbtnAscendingOrder.Size" type="System.Drawing.Size, System.Drawing">
-    <value>118, 26</value>
+    <value>118, 40</value>
   </data>
   <data name="mbtnAscendingOrder.Text" xml:space="preserve">
     <value>升序(&amp;A)</value>
@@ -315,7 +315,7 @@
     <value />
   </data>
   <data name="m_grpArrangeAudioFiles.Size" type="System.Drawing.Size, System.Drawing">
-    <value>315, 65</value>
+    <value>315, 96</value>
   </data>
   <data name="m_grpArrangeAudioFiles.Text" xml:space="preserve">
     <value>編排音訊檔</value>
@@ -330,7 +330,7 @@
     <value />
   </data>
   <data name="m_grpAddFiles.Size" type="System.Drawing.Size, System.Drawing">
-    <value>329, 209</value>
+    <value>405, 276</value>
   </data>
   <data name="m_txtCharToReplaceWithSpace.AccessibleName" xml:space="preserve">
     <value>加入空白播放</value>
@@ -345,10 +345,10 @@
     <value />
   </data>
   <data name="m_txtCharToReplaceWithSpace.Location" type="System.Drawing.Point, System.Drawing">
-    <value>221, 105</value>
+    <value>221, 125</value>
   </data>
   <data name="m_txtCharToReplaceWithSpace.Size" type="System.Drawing.Size, System.Drawing">
-    <value>100, 22</value>
+    <value>100, 26</value>
   </data>
   <data name="m_txtPageIdentificationString.AccessibleName" xml:space="preserve">
     <value>頁標識</value>
@@ -363,7 +363,7 @@
     <value />
   </data>
   <data name="m_txtPageIdentificationString.Location" type="System.Drawing.Point, System.Drawing">
-    <value>223, 161</value>
+    <value>223, 181</value>
   </data>
   <data name="m_numCharCountToTruncateFromStart.AccessibleName" xml:space="preserve">
     <value>從開端抽取的字符數</value>
@@ -378,7 +378,7 @@
     <value />
   </data>
   <data name="m_numCharCountToTruncateFromStart.Location" type="System.Drawing.Point, System.Drawing">
-    <value>223, 133</value>
+    <value>247, 153</value>
   </data>
   <data name="m_grpCreateSectionForEachAudioFile.AccessibleName" xml:space="preserve">
     <value>為每一音訊檔建立分節群組框</value>
@@ -391,6 +391,9 @@
   </data>
   <data name="m_rdbSplitAtCuePoints.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
+  </data>
+  <data name="m_rdbSplitAtCuePoints.Location" type="System.Drawing.Point, System.Drawing">
+    <value>10, 221</value>
   </data>
   <data name="m_rdbCreateAudioFilePerSection.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
@@ -432,10 +435,10 @@
     <value />
   </data>
   <data name="mchktPageIdentificationString.Location" type="System.Drawing.Point, System.Drawing">
-    <value>38, 161</value>
+    <value>38, 181</value>
   </data>
   <data name="mchktPageIdentificationString.Size" type="System.Drawing.Size, System.Drawing">
-    <value>83, 20</value>
+    <value>98, 24</value>
   </data>
   <data name="mchktPageIdentificationString.Text" xml:space="preserve">
     <value>頁標識(&amp;I)</value>
@@ -453,10 +456,10 @@
     <value />
   </data>
   <data name="mchkCountToTruncateFromStart.Location" type="System.Drawing.Point, System.Drawing">
-    <value>39, 135</value>
+    <value>39, 155</value>
   </data>
   <data name="mchkCountToTruncateFromStart.Size" type="System.Drawing.Size, System.Drawing">
-    <value>177, 20</value>
+    <value>205, 24</value>
   </data>
   <data name="mchkCountToTruncateFromStart.Text" xml:space="preserve">
     <value>從開端抽取的字符數(&amp;c)</value>
@@ -474,10 +477,10 @@
     <value />
   </data>
   <data name="mchkToReplaceWithSpace.Location" type="System.Drawing.Point, System.Drawing">
-    <value>38, 107</value>
+    <value>38, 127</value>
   </data>
   <data name="mchkToReplaceWithSpace.Size" type="System.Drawing.Size, System.Drawing">
-    <value>134, 20</value>
+    <value>155, 24</value>
   </data>
   <data name="mchkToReplaceWithSpace.Text" xml:space="preserve">
     <value>加入空白播放(&amp;T)</value>
@@ -492,10 +495,10 @@
     <value />
   </data>
   <data name="m_grpCreateSectionForEachAudioFile.Location" type="System.Drawing.Point, System.Drawing">
-    <value>12, 215</value>
+    <value>12, 292</value>
   </data>
   <data name="m_grpCreateSectionForEachAudioFile.Size" type="System.Drawing.Size, System.Drawing">
-    <value>329, 223</value>
+    <value>407, 266</value>
   </data>
   <data name="m_rdbPhraseDetectionOnImportedFiles.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
@@ -507,7 +510,7 @@
     <value />
   </data>
   <data name="m_rdbPhraseDetectionOnImportedFiles.Size" type="System.Drawing.Size, System.Drawing">
-    <value>208, 20</value>
+    <value>240, 24</value>
   </data>
   <data name="m_rdbPhraseDetectionOnImportedFiles.Text" xml:space="preserve">
     <value>在匯入的檔案使用句偵測(&amp;P)</value>
@@ -522,7 +525,7 @@
     <value />
   </data>
   <data name="m_rdbSplitPhrasesOnImport.Size" type="System.Drawing.Size, System.Drawing">
-    <value>148, 20</value>
+    <value>172, 24</value>
   </data>
   <data name="m_rdbSplitPhrasesOnImport.Text" xml:space="preserve">
     <value>在匯入時分割句(&amp;S)</value>
@@ -537,13 +540,13 @@
     <value />
   </data>
   <data name="m_grpSplitPhraseOrPhraseDetection.Location" type="System.Drawing.Point, System.Drawing">
-    <value>12, 450</value>
+    <value>12, 566</value>
   </data>
   <data name="m_grpSplitPhraseOrPhraseDetection.Size" type="System.Drawing.Size, System.Drawing">
-    <value>329, 103</value>
+    <value>407, 129</value>
   </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>351, 605</value>
+    <value>431, 769</value>
   </data>
   <data name="$this.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />

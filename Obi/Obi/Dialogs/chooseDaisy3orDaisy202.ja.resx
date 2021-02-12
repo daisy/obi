@@ -129,7 +129,7 @@
   </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="m_OKBtn.Location" type="System.Drawing.Point, System.Drawing">
-    <value>26, 246</value>
+    <value>26, 318</value>
   </data>
   <data name="m_BtnCancel.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
@@ -141,7 +141,7 @@
     <value />
   </data>
   <data name="m_BtnCancel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>148, 246</value>
+    <value>148, 318</value>
   </data>
   <data name="m_BtnCancel.Text" xml:space="preserve">
     <value>キャンセル</value>
@@ -181,7 +181,7 @@
     <value>True</value>
   </data>
   <data name="m_cbDaisy202.Size" type="System.Drawing.Size, System.Drawing">
-    <value>82, 17</value>
+    <value>102, 21</value>
   </data>
   <data name="m_cbDaisy202.Text" xml:space="preserve">
     <value>DAISY 2.02</value>
@@ -199,7 +199,7 @@
     <value>True</value>
   </data>
   <data name="m_cbEpub3.Size" type="System.Drawing.Size, System.Drawing">
-    <value>136, 17</value>
+    <value>164, 21</value>
   </data>
   <data name="m_cbEpub3.Text" xml:space="preserve">
     <value>EPUB 3 オーディオブック</value>

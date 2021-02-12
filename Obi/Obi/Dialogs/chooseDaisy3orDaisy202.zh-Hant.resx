@@ -129,7 +129,7 @@
   </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="m_OKBtn.Location" type="System.Drawing.Point, System.Drawing">
-    <value>26, 240</value>
+    <value>26, 306</value>
   </data>
   <data name="m_OKBtn.Text" xml:space="preserve">
     <value>確定</value>
@@ -144,7 +144,7 @@
     <value />
   </data>
   <data name="m_BtnCancel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>148, 240</value>
+    <value>148, 306</value>
   </data>
   <data name="m_BtnCancel.Text" xml:space="preserve">
     <value>取消</value>
@@ -184,7 +184,7 @@
     <value>True</value>
   </data>
   <data name="m_cbDaisy202.Size" type="System.Drawing.Size, System.Drawing">
-    <value>82, 17</value>
+    <value>102, 21</value>
   </data>
   <data name="m_cbDaisy202.Text" xml:space="preserve">
     <value>DAISY 2.02</value>
@@ -202,7 +202,7 @@
     <value>True</value>
   </data>
   <data name="m_cbEpub3.Size" type="System.Drawing.Size, System.Drawing">
-    <value>103, 17</value>
+    <value>125, 21</value>
   </data>
   <data name="m_cbEpub3.Text" xml:space="preserve">
     <value>EPUB 3語音書 </value>
@@ -232,7 +232,7 @@
     <value>True</value>
   </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>268, 272</value>
+    <value>321, 355</value>
   </data>
   <data name="$this.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
