@@ -190,13 +190,13 @@
     <value>4, 0, 4, 0</value>
   </data>
   <data name="m_lblNoiseReduction.Size" type="System.Drawing.Size, System.Drawing">
-    <value>158, 17</value>
+    <value>162, 17</value>
   </data>
   <data name="m_lblNoiseReduction.TabIndex" type="System.Int32, mscorlib">
     <value>7</value>
   </data>
   <data name="m_lblNoiseReduction.Text" xml:space="preserve">
-    <value>Noise &amp;Reduction( in dB)</value>
+    <value>Noise &amp;Reduction( in dB):</value>
   </data>
   <data name="&gt;&gt;m_lblNoiseReduction.Name" xml:space="preserve">
     <value>m_lblNoiseReduction</value>
@@ -454,13 +454,13 @@
     <value>4, 0, 4, 0</value>
   </data>
   <data name="m_lblPreset.Size" type="System.Drawing.Size, System.Drawing">
-    <value>155, 17</value>
+    <value>159, 17</value>
   </data>
   <data name="m_lblPreset.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
   </data>
   <data name="m_lblPreset.Text" xml:space="preserve">
-    <value>&amp;Background noise level</value>
+    <value>&amp;Background noise level:</value>
   </data>
   <data name="&gt;&gt;m_lblPreset.Name" xml:space="preserve">
     <value>m_lblPreset</value>
@@ -515,9 +515,6 @@
   </data>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
-  </metadata>
-  <metadata name="$this.Language" type="System.Globalization.CultureInfo, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>fr</value>
   </metadata>
   <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
     <value>8, 16</value>

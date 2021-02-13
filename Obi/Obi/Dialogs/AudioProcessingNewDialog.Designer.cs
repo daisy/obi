@@ -201,6 +201,7 @@ namespace Obi.Dialogs
             this.Controls.Add(this.m_btn_Cancel);
             this.Controls.Add(this.m_btn_OK);
             this.Controls.Add(this.m_gpbox_Process);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.MaximizeBox = false;
             this.Name = "AudioProcessingNewDialog";
             this.m_gpbox_Process.ResumeLayout(false);

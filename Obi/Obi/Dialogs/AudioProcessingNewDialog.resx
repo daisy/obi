@@ -127,7 +127,10 @@
   </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="m_lbl_StartTimeSeconds.Location" type="System.Drawing.Point, System.Drawing">
-    <value>229, 44</value>
+    <value>302, 53</value>
+  </data>
+  <data name="m_lbl_StartTimeSeconds.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 0, 4, 0</value>
   </data>
   <metadata name="helpProvider1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
@@ -136,7 +139,7 @@
     <value>True</value>
   </data>
   <data name="m_lbl_StartTimeSeconds.Size" type="System.Drawing.Size, System.Drawing">
-    <value>55, 15</value>
+    <value>67, 18</value>
   </data>
   <data name="m_lbl_StartTimeSeconds.TabIndex" type="System.Int32, mscorlib">
     <value>3</value>
@@ -166,13 +169,16 @@
     <value>Microsoft Sans Serif, 9pt</value>
   </data>
   <data name="m_StartTimeNumericUpDown.Location" type="System.Drawing.Point, System.Drawing">
-    <value>163, 41</value>
+    <value>210, 49</value>
+  </data>
+  <data name="m_StartTimeNumericUpDown.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 4, 4, 4</value>
   </data>
   <data name="m_StartTimeNumericUpDown.ShowHelp" type="System.Boolean, mscorlib">
     <value>False</value>
   </data>
   <data name="m_StartTimeNumericUpDown.Size" type="System.Drawing.Size, System.Drawing">
-    <value>68, 21</value>
+    <value>87, 24</value>
   </data>
   <data name="m_StartTimeNumericUpDown.TabIndex" type="System.Int32, mscorlib">
     <value>2</value>
@@ -196,10 +202,13 @@
     <value>True</value>
   </data>
   <data name="m_lbl_StartTime.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 43</value>
+    <value>8, 52</value>
+  </data>
+  <data name="m_lbl_StartTime.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 0, 4, 0</value>
   </data>
   <data name="m_lbl_StartTime.Size" type="System.Drawing.Size, System.Drawing">
-    <value>138, 15</value>
+    <value>169, 18</value>
   </data>
   <data name="m_lbl_StartTime.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
@@ -226,10 +235,13 @@
     <value>True</value>
   </data>
   <data name="m_lbl_Seconds.Location" type="System.Drawing.Point, System.Drawing">
-    <value>212, 73</value>
+    <value>273, 88</value>
+  </data>
+  <data name="m_lbl_Seconds.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 0, 4, 0</value>
   </data>
   <data name="m_lbl_Seconds.Size" type="System.Drawing.Size, System.Drawing">
-    <value>55, 15</value>
+    <value>67, 18</value>
   </data>
   <data name="m_lbl_Seconds.TabIndex" type="System.Int32, mscorlib">
     <value>6</value>
@@ -256,10 +268,13 @@
     <value>True</value>
   </data>
   <data name="m_lbl_High.Location" type="System.Drawing.Point, System.Drawing">
-    <value>532, 73</value>
+    <value>684, 88</value>
+  </data>
+  <data name="m_lbl_High.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 0, 4, 0</value>
   </data>
   <data name="m_lbl_High.Size" type="System.Drawing.Size, System.Drawing">
-    <value>33, 15</value>
+    <value>38, 18</value>
   </data>
   <data name="m_lbl_High.TabIndex" type="System.Int32, mscorlib">
     <value>9</value>
@@ -283,10 +298,13 @@
     <value>True</value>
   </data>
   <data name="m_lbl_Low.Location" type="System.Drawing.Point, System.Drawing">
-    <value>285, 72</value>
+    <value>366, 86</value>
+  </data>
+  <data name="m_lbl_Low.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 0, 4, 0</value>
   </data>
   <data name="m_lbl_Low.Size" type="System.Drawing.Size, System.Drawing">
-    <value>30, 15</value>
+    <value>36, 18</value>
   </data>
   <data name="m_lbl_Low.TabIndex" type="System.Int32, mscorlib">
     <value>7</value>
@@ -310,10 +328,13 @@
     <value>Slide to Increase/Decrease volume of selection. Right sliding will increase volume</value>
   </data>
   <data name="m_AmplifyParameter.Location" type="System.Drawing.Point, System.Drawing">
-    <value>316, 72</value>
+    <value>406, 86</value>
+  </data>
+  <data name="m_AmplifyParameter.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 4, 4, 4</value>
   </data>
   <data name="m_AmplifyParameter.Size" type="System.Drawing.Size, System.Drawing">
-    <value>213, 45</value>
+    <value>274, 56</value>
   </data>
   <data name="m_AmplifyParameter.TabIndex" type="System.Int32, mscorlib">
     <value>8</value>
@@ -331,10 +352,13 @@
     <value>6</value>
   </data>
   <data name="m_txt_info.Location" type="System.Drawing.Point, System.Drawing">
-    <value>19, 124</value>
+    <value>24, 149</value>
+  </data>
+  <data name="m_txt_info.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 4, 4, 4</value>
   </data>
   <data name="m_txt_info.Size" type="System.Drawing.Size, System.Drawing">
-    <value>398, 21</value>
+    <value>511, 24</value>
   </data>
   <data name="m_txt_info.TabIndex" type="System.Int32, mscorlib">
     <value>10</value>
@@ -361,10 +385,13 @@
     <value>Microsoft Sans Serif, 9pt</value>
   </data>
   <data name="m_numericUpDown1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>133, 70</value>
+    <value>171, 84</value>
+  </data>
+  <data name="m_numericUpDown1.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 4, 4, 4</value>
   </data>
   <data name="m_numericUpDown1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>68, 21</value>
+    <value>87, 24</value>
   </data>
   <data name="m_numericUpDown1.TabIndex" type="System.Int32, mscorlib">
     <value>5</value>
@@ -385,10 +412,13 @@
     <value>True</value>
   </data>
   <data name="m_lbl_Parameters.Location" type="System.Drawing.Point, System.Drawing">
-    <value>7, 72</value>
+    <value>9, 86</value>
+  </data>
+  <data name="m_lbl_Parameters.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 0, 4, 0</value>
   </data>
   <data name="m_lbl_Parameters.Size" type="System.Drawing.Size, System.Drawing">
-    <value>92, 15</value>
+    <value>111, 18</value>
   </data>
   <data name="m_lbl_Parameters.TabIndex" type="System.Int32, mscorlib">
     <value>4</value>
@@ -412,10 +442,13 @@
     <value>True</value>
   </data>
   <data name="m_lbl_Process.Location" type="System.Drawing.Point, System.Drawing">
-    <value>7, 16</value>
+    <value>9, 19</value>
+  </data>
+  <data name="m_lbl_Process.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 0, 4, 0</value>
   </data>
   <data name="m_lbl_Process.Size" type="System.Drawing.Size, System.Drawing">
-    <value>224, 15</value>
+    <value>272, 18</value>
   </data>
   <data name="m_lbl_Process.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
@@ -436,10 +469,16 @@
     <value>10</value>
   </data>
   <data name="m_gpbox_Process.Location" type="System.Drawing.Point, System.Drawing">
-    <value>5, 9</value>
+    <value>6, 11</value>
+  </data>
+  <data name="m_gpbox_Process.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 4, 4, 4</value>
+  </data>
+  <data name="m_gpbox_Process.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 4, 4, 4</value>
   </data>
   <data name="m_gpbox_Process.Size" type="System.Drawing.Size, System.Drawing">
-    <value>569, 153</value>
+    <value>732, 184</value>
   </data>
   <data name="m_gpbox_Process.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
@@ -460,10 +499,13 @@
     <value>Flat</value>
   </data>
   <data name="m_btn_OK.Location" type="System.Drawing.Point, System.Drawing">
-    <value>196, 215</value>
+    <value>252, 258</value>
+  </data>
+  <data name="m_btn_OK.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 4, 4, 4</value>
   </data>
   <data name="m_btn_OK.Size" type="System.Drawing.Size, System.Drawing">
-    <value>92, 32</value>
+    <value>118, 38</value>
   </data>
   <data name="m_btn_OK.TabIndex" type="System.Int32, mscorlib">
     <value>13</value>
@@ -487,10 +529,13 @@
     <value>Flat</value>
   </data>
   <data name="m_btn_Cancel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>319, 215</value>
+    <value>410, 258</value>
+  </data>
+  <data name="m_btn_Cancel.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 4, 4, 4</value>
   </data>
   <data name="m_btn_Cancel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>92, 32</value>
+    <value>118, 38</value>
   </data>
   <data name="m_btn_Cancel.TabIndex" type="System.Int32, mscorlib">
     <value>14</value>
@@ -517,10 +562,13 @@
     <value>True</value>
   </data>
   <data name="m_NAudioForAudioProcessing.Location" type="System.Drawing.Point, System.Drawing">
-    <value>26, 168</value>
+    <value>33, 202</value>
+  </data>
+  <data name="m_NAudioForAudioProcessing.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 4, 4, 4</value>
   </data>
   <data name="m_NAudioForAudioProcessing.Size" type="System.Drawing.Size, System.Drawing">
-    <value>188, 19</value>
+    <value>227, 22</value>
   </data>
   <data name="m_NAudioForAudioProcessing.TabIndex" type="System.Int32, mscorlib">
     <value>11</value>
@@ -547,10 +595,13 @@
     <value>True</value>
   </data>
   <data name="m_ApplyOnWholeBook.Location" type="System.Drawing.Point, System.Drawing">
-    <value>26, 193</value>
+    <value>33, 232</value>
+  </data>
+  <data name="m_ApplyOnWholeBook.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 4, 4, 4</value>
   </data>
   <data name="m_ApplyOnWholeBook.Size" type="System.Drawing.Size, System.Drawing">
-    <value>138, 19</value>
+    <value>167, 22</value>
   </data>
   <data name="m_ApplyOnWholeBook.TabIndex" type="System.Int32, mscorlib">
     <value>12</value>
@@ -580,13 +631,16 @@
     <value>Change Volume</value>
   </data>
   <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
-    <value>7, 15</value>
+    <value>9, 18</value>
   </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>582, 253</value>
+    <value>748, 304</value>
   </data>
   <data name="$this.Font" type="System.Drawing.Font, System.Drawing">
     <value>Microsoft Sans Serif, 9pt</value>
+  </data>
+  <data name="$this.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 4, 4, 4</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
     <value>Change Volume</value>

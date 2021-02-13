@@ -51,10 +51,10 @@
             // 
             // m_btn_Ok
             // 
+            this.m_btn_Ok.DialogResult = System.Windows.Forms.DialogResult.OK;
             resources.ApplyResources(this.m_btn_Ok, "m_btn_Ok");
             this.m_btn_Ok.Name = "m_btn_Ok";
             this.m_btn_Ok.UseVisualStyleBackColor = true;
-            this.m_btn_Ok.Click += new System.EventHandler(this.m_btn_Ok_Click);
             // 
             // m_btn_Cancel
             // 

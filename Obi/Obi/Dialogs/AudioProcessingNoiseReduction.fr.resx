@@ -117,70 +117,15 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="m_btn_Ok.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
-  <data name="m_btn_Ok.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
-    <value>AssociateIndex</value>
-  </data>
-  <data name="m_btn_Ok.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
-  <data name="m_btn_Cancel.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
-  <data name="m_btn_Cancel.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
-    <value>AssociateIndex</value>
-  </data>
-  <data name="m_btn_Cancel.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
-  <data name="m_lblNoiseReduction.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
-  <data name="m_lblNoiseReduction.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
-    <value>AssociateIndex</value>
-  </data>
-  <data name="m_lblNoiseReduction.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="m_lblNoiseReduction.Size" type="System.Drawing.Size, System.Drawing">
-    <value>156, 17</value>
+    <value>160, 17</value>
   </data>
   <data name="m_lblNoiseReduction.Text" xml:space="preserve">
-    <value>&amp;Réduction de Bruit (dB)</value>
-  </data>
-  <data name="m_SetNoiseReduction.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
-  <data name="m_SetNoiseReduction.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
-    <value>AssociateIndex</value>
-  </data>
-  <data name="m_SetNoiseReduction.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
+    <value>&amp;Réduction de Bruit (dB):</value>
   </data>
   <data name="m_SetNoiseLevelInPercent.AccessibleName" xml:space="preserve">
     <value>Niveau de bruit (pourcentage)</value>
-  </data>
-  <data name="m_SetNoiseLevelInPercent.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
-  <data name="m_SetNoiseLevelInPercent.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
-    <value>AssociateIndex</value>
-  </data>
-  <data name="m_SetNoiseLevelInPercent.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
-  <data name="m_lblNoiseLevel.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
-  <data name="m_lblNoiseLevel.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
-    <value>AssociateIndex</value>
-  </data>
-  <data name="m_lblNoiseLevel.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
   </data>
   <data name="m_lblNoiseLevel.Size" type="System.Drawing.Size, System.Drawing">
     <value>202, 17</value>
@@ -191,92 +136,20 @@
   <data name="m_SetNoiseLevelTrackBar.AccessibleName" xml:space="preserve">
     <value>Niveau de bruit: barre de suivi pour augmenter / diminuer en pourcentage. Le glissement à droite augmentera le niveau</value>
   </data>
-  <data name="m_SetNoiseLevelTrackBar.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
-  <data name="m_SetNoiseLevelTrackBar.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
-    <value>AssociateIndex</value>
-  </data>
-  <data name="m_SetNoiseLevelTrackBar.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
-  <data name="m_lblPercent.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
-  <data name="m_lblPercent.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
-    <value>AssociateIndex</value>
-  </data>
-  <data name="m_lblPercent.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
   <data name="m_SetNoiseReductionTrackBar.AccessibleName" xml:space="preserve">
     <value>Réduction de Bruit : Barre de suivi pour augmenter / diminuer le pourcentage. Le glissement à droite réduira le bruit.</value>
   </data>
-  <data name="m_SetNoiseReductionTrackBar.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
-  <data name="m_SetNoiseReductionTrackBar.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
-    <value>AssociateIndex</value>
-  </data>
-  <data name="m_SetNoiseReductionTrackBar.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
-  <data name="m_lbdB.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
-  <data name="m_lbdB.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
-    <value>AssociateIndex</value>
-  </data>
-  <data name="m_lbdB.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
-  <data name="m_SelectPresetComboBox.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
-  <data name="m_SelectPresetComboBox.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
-    <value>AssociateIndex</value>
-  </data>
-  <data name="m_SelectPresetComboBox.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
-  <data name="m_lblPreset.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
-  <data name="m_lblPreset.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
-    <value>AssociateIndex</value>
-  </data>
-  <data name="m_lblPreset.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
   <data name="m_lblPreset.Size" type="System.Drawing.Size, System.Drawing">
-    <value>156, 17</value>
+    <value>160, 17</value>
   </data>
   <data name="m_lblPreset.Text" xml:space="preserve">
-    <value>&amp;Niveau de bruit de fond</value>
-  </data>
-  <data name="m_ApplyOnWholeBook.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
-  <data name="m_ApplyOnWholeBook.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
-    <value>AssociateIndex</value>
-  </data>
-  <data name="m_ApplyOnWholeBook.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
+    <value>&amp;Niveau de bruit de fond:</value>
   </data>
   <data name="m_ApplyOnWholeBook.Size" type="System.Drawing.Size, System.Drawing">
     <value>223, 21</value>
   </data>
   <data name="m_ApplyOnWholeBook.Text" xml:space="preserve">
     <value>&amp;Appliquer à l'ensemble du livre</value>
-  </data>
-  <data name="$this.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
-  <data name="$this.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
-    <value>AssociateIndex</value>
-  </data>
-  <data name="$this.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
   </data>
   <data name="$this.Text" xml:space="preserve">
     <value>Réduction de Bruit</value>
