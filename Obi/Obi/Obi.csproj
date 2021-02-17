@@ -1483,7 +1483,6 @@
     <Content Include="images\DAISY_Consortium_logo.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="images\icons\bullet_arrow_down.png" />
     <Content Include="FindBarCollapse.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
