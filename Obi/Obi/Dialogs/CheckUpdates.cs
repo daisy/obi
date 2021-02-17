@@ -134,7 +134,7 @@ namespace Obi.Dialogs
 
         private string GetReleaseInfoFileContents()
         {
-            Uri releaseInfoFileUri = new Uri("http://data.daisy.org/projects/obi/releases/latest-release.txt");
+            Uri releaseInfoFileUri = new Uri("https://dl.daisy.org/tools/Obi/latest-release.txt");
             System.Net.HttpWebRequest request = (System.Net.HttpWebRequest)
                 System.Net.WebRequest.Create(releaseInfoFileUri);
             System.Net.HttpWebResponse response =
