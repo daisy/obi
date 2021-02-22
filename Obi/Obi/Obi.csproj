@@ -642,6 +642,9 @@
     <EmbeddedResource Include="Dialogs\AssociateSpecialNode.zh-Hant.resx">
       <DependentUpon>AssociateSpecialNode.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\AudioMixer.fr.resx">
+      <DependentUpon>AudioMixer.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\AudioMixer.resx">
       <DependentUpon>AudioMixer.cs</DependentUpon>
     </EmbeddedResource>
@@ -659,6 +662,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\AudioProcessingNewDialog.resx">
       <DependentUpon>AudioProcessingNewDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\AudioProcessingNoiseReduction.fr.resx">
+      <DependentUpon>AudioProcessingNoiseReduction.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\AudioProcessingNoiseReduction.resx">
       <DependentUpon>AudioProcessingNoiseReduction.cs</DependentUpon>
