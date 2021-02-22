@@ -4849,7 +4849,7 @@ namespace Obi {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {0} The above audio files don&apos;t have any cue points. You can still import audio files without cue points if it is in correct wave format. Press yes to continue or no to select another audio file..
+        ///   Looks up a localized string similar to {0} The above audio files don&apos;t have any cue points so cannot be imported. You can still import remaining audio files having cue points. Press yes to continue or no to select another set of audio files..
         /// </summary>
         internal static string NoCuePoints {
             get {

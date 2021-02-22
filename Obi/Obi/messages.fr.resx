@@ -2924,7 +2924,7 @@ tester "Figer la largeur du volet du contenu" ?(Recommandé)</value>
     <value>WP AudioBooks</value>
   </data>
   <data name="NoCuePoints" xml:space="preserve">
-    <value>{0} Les fichiers ci-dessus n’ont pas de points de montage. Vous pouvez néanmoins importer ces fichiers audio sans points de montage s’ils sont bien au format .wav. Appuyer sur Oui pour continuer ou Non pour sélectionner d’autres fichiers.</value>
+    <value>{0} Les fichiers audio ci-dessus n'ont pas de points de repère et ne peuvent donc pas être importés. Vous pouvez toujours importer les fichiers audio restants ayant des points de repère. Appuyez sur oui pour continuer ou sur non pour sélectionner un autre ensemble de fichiers audio.</value>
   </data>
   <data name="AudioMixingFileNotSelected" xml:space="preserve">
     <value>Merci de sélectionner un fichier pour le mixage.</value>

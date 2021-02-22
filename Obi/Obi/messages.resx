@@ -3192,7 +3192,7 @@ You can do it later also from the project tab of preferences dialog.</value>
     <value>WP AudioBooks</value>
   </data>
   <data name="NoCuePoints" xml:space="preserve">
-    <value>{0} The above audio files don't have any cue points. You can still import audio files without cue points if it is in correct wave format. Press yes to continue or no to select another audio file.</value>
+    <value>{0} The above audio files don't have any cue points so cannot be imported. You can still import remaining audio files having cue points. Press yes to continue or no to select another set of audio files.</value>
   </data>
   <data name="AudioMixingFileNotSelected" xml:space="preserve">
     <value>Kindly select audio file for mixing</value>
