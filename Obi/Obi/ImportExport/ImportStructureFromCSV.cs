@@ -10,12 +10,13 @@ namespace Obi.ImportExport
     public class ImportStructureFromCSV 
     {
         private ObiPresentation m_Presentation ;
+        private List<string> m_audioFilePath = new List<string>();
 
         public ImportStructureFromCSV()
         {
         }
 
-            public void ImportFromCSVFile(string CSVFullPath, ObiPresentation presentation)
+        public void ImportFromCSVFile(string CSVFullPath, ObiPresentation presentation)
         {   
             m_Presentation = presentation;
         List<int> levelsList = new List<int> ();
@@ -28,14 +29,22 @@ namespace Obi.ImportExport
                 //pagesPerSection.Add(0);
                 //pagesPerSection.Add(2);
                 ReadListsFromCSVFile(levelsList, sectionNames, pagesPerSection, CSVFullPath);
-                CreateStructure(levelsList, sectionNames, pagesPerSection);
+                CreateStructure(levelsList, sectionNames, pagesPerSection, m_audioFilePath);
         }
 
+        public List<string> AudioFilePaths
+        {
+            get
+            {
+                return m_audioFilePath;
+            }
+        }
         private void ReadListsFromCSVFile(List<int> levelsList, List<string> sectionNamesList, List<int> pagesPerSection, string CSVFullPath)
         {
             string[] linesInFiles = File.ReadAllLines(CSVFullPath);
+
+            List<string> audioFilePath = new List<string>();
                     
-            string tempString = "";
 
             foreach (string line in linesInFiles)
             {
@@ -95,15 +104,32 @@ namespace Obi.ImportExport
                             }
 
                         }
+                        if (i == 3)
+                        {
+                            if (cellsInLineArray[i] == "")
+                            {
+                                cellsInLineArray[i] = "Untitled";
+                                audioFilePath.Add(string.Empty);
+
+                            }
+                            else
+                            {
+                                string filePath = cellsInLineArray[i]; //"D:\\Obi Books\\Sample.wav";
+                                audioFilePath.Add(filePath);
+                            }
+                        }
+                        
                     }
 
                 }
 
             }
             Console.WriteLine("lists loaded");
+            m_audioFilePath = audioFilePath;
         }
 
-        private void CreateStructure(List<int> levelsList, List<string> sectionNamesList, List<int> pagesPerSection)
+
+        private void CreateStructure(List<int> levelsList, List<string> sectionNamesList, List<int> pagesPerSection, List<string> audioFilePath)
         {
             List<ObiNode> listOfSectionNodes = new List<ObiNode>();
             listOfSectionNodes.Add((ObiNode)m_Presentation.RootNode);

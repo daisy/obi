@@ -2783,6 +2783,48 @@ namespace Obi.ProjectView
         // Blocks
 
 
+        public void ImportAudioInCSVImport(List<string> audioFilePaths)
+        {
+            this.Selection = new NodeSelection((ObiNode)FirstSectionOfTOCView, mContentView);
+            List<PhraseNode> phrases = new List<PhraseNode>();
+            List<string> tempAudioFilePaths = new List<string>();
+
+            string[] tempAudioFilePathsArray = new string[1];
+            foreach (string path in audioFilePaths)
+            {
+                tempAudioFilePathsArray[0] = path;
+                if (path != string.Empty && System.IO.File.Exists(path) && System.IO.Path.GetExtension(path) == ".wav")
+                    tempAudioFilePathsArray = Audio.AudioFormatConverter.ConvertFiles(tempAudioFilePathsArray, mPresentation);
+                else
+                    tempAudioFilePathsArray[0] = string.Empty;
+
+                tempAudioFilePaths.Add(tempAudioFilePathsArray[0]);
+
+            }
+            
+
+            foreach (string path in tempAudioFilePaths)
+            {
+                try
+                {
+                    if (path != string.Empty)
+                    {
+                        PhraseNode p = mPresentation.CreatePhraseNode(path);
+                        phrases.Add(p);
+                    }
+                    else
+                        phrases.Add(null);
+                }
+                catch (Exception e)
+                {
+                    System.Windows.Forms.MessageBox.Show(path + ": " + e.Message, Localizer.Message("Caption_Error"));
+
+                }
+            }
+
+
+            mPresentation.Do(this.GetCommandForImportAudioFileInEachSection(phrases));
+        }
 
         /// <summary>
         /// Import new phrases in the strip, one block per file.
@@ -3127,7 +3169,7 @@ namespace Obi.ProjectView
         }
 
         // Create a command to import phrases
-        private CompositeCommand GetImportPhraseCommands(List<PhraseNode> phraseNodes)
+        public CompositeCommand GetImportPhraseCommands(List<PhraseNode> phraseNodes)
             {
             CompositeCommand command = Presentation.CreateCompositeCommand ( Localizer.Message ( "import_phrases" ) );
             ObiNode parent;
@@ -3348,8 +3390,11 @@ for (int j = 0;
             {
                 if (phraseNodes.Count <= phraseCounter) break;
 
-                Commands.Node.AddNode addCmd = new Commands.Node.AddNode(this, phraseNodes[phraseCounter], section, section.PhraseChildCount, false);
-                command.ChildCommands.Insert(command.ChildCommands.Count, addCmd);
+                if (phraseNodes[phraseCounter] != null)
+                {
+                    Commands.Node.AddNode addCmd = new Commands.Node.AddNode(this, phraseNodes[phraseCounter], section, section.PhraseChildCount, false);
+                    command.ChildCommands.Insert(command.ChildCommands.Count, addCmd);
+                }
                 phraseCounter++;
             }
 //if ( != null) command.ChildCommands.Insert(command.ChildCommands.Count, new Commands.UpdateSelection(this, new NodeSelection(newSectionNode, mContentView)));

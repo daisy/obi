@@ -623,6 +623,7 @@ namespace Obi
             {
                 mSession.CreateNewPresentationInBackend(path, title, false, id, mSettings, true, audioChannels, audioSampleRate);
                 ImportExport.DAISY202Import import = new Obi.ImportExport.DAISY202Import(xhtmlPath, mSession.Presentation, mSettings);
+                List<string> audioFilePaths = new List<string>();
                 
                                 
                 ProgressDialog progress = new ProgressDialog(Localizer.Message("import_progress_dialog_title"),
@@ -633,6 +634,8 @@ namespace Obi
                                                                      {
                                                                          ImportExport.ImportStructureFromCSV csvImport = new Obi.ImportExport.ImportStructureFromCSV();
                                                                          csvImport.ImportFromCSVFile(xhtmlPath, mSession.Presentation);
+                                                                         audioFilePaths = csvImport.AudioFilePaths;
+                                                                         
                                                                      }
                                                                      else
                                                                      {
@@ -662,6 +665,8 @@ namespace Obi
                                                                          import != null && import.ErrorsList.Count > 0 ? Localizer.Message("ImportErrorCorrectionText") : "",
                                                                          path),
                                                                  import != null ? import.ErrorsList : null);
+
+                mProjectView.ImportAudioInCSVImport(audioFilePaths);
                 reportDialog.ShowDialog();
                 return !import.RequestCancellation; 
             }
