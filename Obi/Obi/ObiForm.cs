@@ -633,9 +633,8 @@ namespace Obi
                                                                          || Path.GetExtension(xhtmlPath).ToLower() == ".txt")
                                                                      {
                                                                          ImportExport.ImportStructureFromCSV csvImport = new Obi.ImportExport.ImportStructureFromCSV();
-                                                                         csvImport.ImportFromCSVFile(xhtmlPath, mSession.Presentation);
-                                                                         audioFilePaths = csvImport.AudioFilePaths;
-                                                                         
+                                                                         csvImport.ImportFromCSVFile(xhtmlPath, mSession.Presentation, mProjectView);
+                                                                         audioFilePaths = csvImport.AudioFilePaths;                                                                         
                                                                      }
                                                                      else
                                                                      {
@@ -666,7 +665,6 @@ namespace Obi
                                                                          path),
                                                                  import != null ? import.ErrorsList : null);
 
-                mProjectView.ImportAudioInCSVImport(audioFilePaths);
                 reportDialog.ShowDialog();
                 return !import.RequestCancellation; 
             }

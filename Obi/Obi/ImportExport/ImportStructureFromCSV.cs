@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using urakawa.command;
 
 namespace Obi.ImportExport
 {
@@ -11,25 +12,27 @@ namespace Obi.ImportExport
     {
         private ObiPresentation m_Presentation ;
         private List<string> m_audioFilePath = new List<string>();
+        private ProjectView.ProjectView m_ProjectView;
 
         public ImportStructureFromCSV()
         {
         }
 
-        public void ImportFromCSVFile(string CSVFullPath, ObiPresentation presentation)
-        {   
+        public void ImportFromCSVFile(string CSVFullPath, ObiPresentation presentation, ProjectView.ProjectView projectView)
+        {
             m_Presentation = presentation;
-        List<int> levelsList = new List<int> ();
-                List<string> sectionNames = new List<string>() ;
-                List <int> pagesPerSection = new List<int>() ;
-                //levelsList.Add(1);
-                //levelsList.Add(2);
-                //sectionNames.Add("first");
-                //sectionNames.Add("second");
-                //pagesPerSection.Add(0);
-                //pagesPerSection.Add(2);
-                ReadListsFromCSVFile(levelsList, sectionNames, pagesPerSection, CSVFullPath);
-                CreateStructure(levelsList, sectionNames, pagesPerSection, m_audioFilePath);
+            m_ProjectView = projectView;
+            List<int> levelsList = new List<int>();
+            List<string> sectionNames = new List<string>();
+            List<int> pagesPerSection = new List<int>();
+            //levelsList.Add(1);
+            //levelsList.Add(2);
+            //sectionNames.Add("first");
+            //sectionNames.Add("second");
+            //pagesPerSection.Add(0);
+            //pagesPerSection.Add(2);
+            ReadListsFromCSVFile(levelsList, sectionNames, pagesPerSection, CSVFullPath);
+            CreateStructure(levelsList, sectionNames, pagesPerSection, m_audioFilePath);
         }
 
         public List<string> AudioFilePaths
@@ -114,7 +117,7 @@ namespace Obi.ImportExport
                             }
                             else
                             {
-                                string filePath = cellsInLineArray[i]; //"D:\\Obi Books\\Sample.wav";
+                                string filePath = cellsInLineArray[i]; 
                                 audioFilePath.Add(filePath);
                             }
                         }
@@ -171,7 +174,51 @@ namespace Obi.ImportExport
                 Console.WriteLine("page : " + pageNode.PageNumber.ToString());
                     }
                 }
+                if (audioFilePath.Count > i && audioFilePath[i] != null)
+                {
+                    ImportAudio(audioFilePath[i], section);
+                }
             }
+        }
+
+        public void ImportAudio(string path,SectionNode sectionNode)
+        {
+             List<string> tempAudioFilePaths = new List<string>();
+             string[] tempAudioFilePathsArray = new string[1];
+
+            if (path != string.Empty && System.IO.File.Exists(path) && System.IO.Path.GetExtension(path) == ".wav")
+            {
+                tempAudioFilePathsArray[0] = path;
+                tempAudioFilePathsArray = Audio.AudioFormatConverter.ConvertFiles(tempAudioFilePathsArray, m_Presentation);
+            }
+            else
+                tempAudioFilePathsArray[0] = string.Empty;
+
+            path = tempAudioFilePathsArray[0];
+
+            try
+            {
+                if (path != string.Empty)
+                {
+                    PhraseNode phraseNode = m_Presentation.CreatePhraseNode(path);
+
+                    if (phraseNode != null)
+                        m_Presentation.Do(this.GetCommandForImportAudioFileInEachSection(phraseNode, sectionNode));
+                }
+            }
+            catch (Exception e)
+            {
+                System.Windows.Forms.MessageBox.Show(path + ": " + e.Message, Localizer.Message("Caption_Error"));
+            }
+        }
+
+
+        private CompositeCommand GetCommandForImportAudioFileInEachSection(PhraseNode phraseNode, SectionNode section)
+        {
+            CompositeCommand command = m_Presentation.CreateCompositeCommand(Localizer.Message("import_phrases"));
+            Commands.Node.AddNode addCmd = new Commands.Node.AddNode(m_ProjectView, phraseNode, section, section.PhraseChildCount, false);
+            command.ChildCommands.Insert(command.ChildCommands.Count, addCmd);
+            return command;
         }
 
     }
