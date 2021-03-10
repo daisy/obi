@@ -163,6 +163,11 @@ namespace Obi.ImportExport
                 }
                 currentSection = section;
                 listOfSectionNodes.Add(section);
+
+                if (audioFilePath.Count > i && audioFilePath[i] != null)
+                {
+                    ImportAudio(audioFilePath[i], section);
+                }
                 if (pagesPerSection[i] > 0)
                 {
                     for(int j = 0; j < pagesPerSection[i]; j++)
@@ -174,10 +179,10 @@ namespace Obi.ImportExport
                 Console.WriteLine("page : " + pageNode.PageNumber.ToString());
                     }
                 }
-                if (audioFilePath.Count > i && audioFilePath[i] != null)
-                {
-                    ImportAudio(audioFilePath[i], section);
-                }
+                //if (audioFilePath.Count > i && audioFilePath[i] != null)
+                //{
+                //    ImportAudio(audioFilePath[i], section);
+                //}
             }
         }
 
