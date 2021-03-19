@@ -5417,6 +5417,15 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Page.
+        /// </summary>
+        internal static string PageForTTSLoclization {
+            get {
+                return ResourceManager.GetString("PageForTTSLoclization", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Please enter a valid page number.
         /// </summary>
         internal static string PageNumber_ReEnterValidNumber {

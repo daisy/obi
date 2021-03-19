@@ -2724,4 +2724,7 @@ Error text: {1}</value>
   <data name="Pages" xml:space="preserve">
     <value>Páginas:</value>
   </data>
+  <data name="PageForTTSLoclization" xml:space="preserve">
+    <value>Página</value>
+  </data>
 </root>

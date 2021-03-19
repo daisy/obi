@@ -3239,4 +3239,7 @@ You can do it later also from the project tab of preferences dialog.</value>
   <data name="AudioProcessingApplyOnWholeBook" xml:space="preserve">
     <value>Kindly apply operation on whole book or select phrase/section on which you want to apply operation</value>
   </data>
+  <data name="PageForTTSLoclization" xml:space="preserve">
+    <value>Page</value>
+  </data>
 </root>
