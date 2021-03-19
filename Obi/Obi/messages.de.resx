@@ -2739,4 +2739,7 @@ Fehlertext: {1}</value>
   <data name="TimeElapsedCannotBeCalculated" xml:space="preserve">
     <value>Die verstrichene Zeit kann nicht berechnet werden, da die Endmarke vor Beginn der Markierung steht</value>
   </data>
+  <data name="PageForTTSLoclization" xml:space="preserve">
+    <value>Seite</value>
+  </data>
 </root>

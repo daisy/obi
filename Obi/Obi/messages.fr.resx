@@ -2971,4 +2971,7 @@ tester "Figer la largeur du volet du contenu" ?(Recommandé)</value>
   <data name="AudioProcessingApplyOnWholeBook" xml:space="preserve">
     <value>Merci d'appliquer l'opération sur l'ensemble du livre ou de sélectionner les phrases/sections sur lesquelles vous souhaitez exécuter l'opération.</value>
   </data>
+  <data name="PageForTTSLoclization" xml:space="preserve">
+    <value>Page</value>
+  </data>
 </root>

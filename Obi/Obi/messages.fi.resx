@@ -2689,4 +2689,7 @@ Error text: {1}</value>
   <data name="Rollback_Disabled" xml:space="preserve">
     <value>Siistiminen Palautus on poistettu käytöstä. Salli alkaen projekti esiasetukset.</value>
   </data>
+  <data name="PageForTTSLoclization" xml:space="preserve">
+    <value>Sivu</value>
+  </data>
 </root>

@@ -2474,4 +2474,7 @@
   <data name="Audio_AlwaysMonitoringRecordingToolBar" xml:space="preserve">
     <value>Always Monitor in Recording Toolbar</value>
   </data>
+  <data name="PageForTTSLoclization" xml:space="preserve">
+    <value>页</value>
+  </data>
 </root>

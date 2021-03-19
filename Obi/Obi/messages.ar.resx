@@ -2408,4 +2408,7 @@
   <data name="AudioProcessing_progress_dialog_title" xml:space="preserve">
     <value>Processing audio...</value>
   </data>
+  <data name="PageForTTSLoclization" xml:space="preserve">
+    <value>صفحة</value>
+  </data>
 </root>

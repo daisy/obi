@@ -2327,4 +2327,7 @@
   <data name="Transport_RecordingOptions" xml:space="preserve">
     <value>Recording Options</value>
   </data>
+  <data name="PageForTTSLoclization" xml:space="preserve">
+    <value>பக்கம்</value>
+  </data>
 </root>

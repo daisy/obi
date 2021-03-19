@@ -2688,4 +2688,7 @@ Texto de error: {1}</value>
   <data name="Rollback_Disabled" xml:space="preserve">
     <value>CLimpieza Revertir está desactivado.Habilitar desde proyecto preferencias.</value>
   </data>
+  <data name="PageForTTSLoclization" xml:space="preserve">
+    <value>Página</value>
+  </data>
 </root>

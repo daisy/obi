@@ -2397,4 +2397,7 @@
   <data name="AssociateNode_SelectedNodeGroupBox" xml:space="preserve">
     <value>Selected node</value>
   </data>
+  <data name="PageForTTSLoclization" xml:space="preserve">
+    <value>ページ</value>
+  </data>
 </root>

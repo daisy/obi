@@ -2429,4 +2429,7 @@
   <data name="MergeOptions_Merge" xml:space="preserve">
     <value>合併</value>
   </data>
+  <data name="PageForTTSLoclization" xml:space="preserve">
+    <value>頁</value>
+  </data>
 </root>
