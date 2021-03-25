@@ -123,10 +123,14 @@
   </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="m_lbGapsInPages.Location" type="System.Drawing.Point, System.Drawing">
-    <value>12, 38</value>
+    <value>16, 47</value>
+  </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="m_lbGapsInPages.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 0, 4, 0</value>
   </data>
   <data name="m_lbGapsInPages.Size" type="System.Drawing.Size, System.Drawing">
-    <value>108, 13</value>
+    <value>147, 17</value>
   </data>
   <data name="m_lbGapsInPages.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
@@ -150,10 +154,13 @@
     <value>True</value>
   </data>
   <data name="m_lbStartingSectionIndex.Location" type="System.Drawing.Point, System.Drawing">
-    <value>12, 104</value>
+    <value>16, 128</value>
+  </data>
+  <data name="m_lbStartingSectionIndex.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 0, 4, 0</value>
   </data>
   <data name="m_lbStartingSectionIndex.Size" type="System.Drawing.Size, System.Drawing">
-    <value>111, 13</value>
+    <value>147, 17</value>
   </data>
   <data name="m_lbStartingSectionIndex.TabIndex" type="System.Int32, mscorlib">
     <value>3</value>
@@ -174,10 +181,13 @@
     <value>6</value>
   </data>
   <data name="m_cbStartingSectionIndex.Location" type="System.Drawing.Point, System.Drawing">
-    <value>140, 104</value>
+    <value>187, 128</value>
+  </data>
+  <data name="m_cbStartingSectionIndex.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 4, 4, 4</value>
   </data>
   <data name="m_cbStartingSectionIndex.Size" type="System.Drawing.Size, System.Drawing">
-    <value>76, 21</value>
+    <value>100, 24</value>
   </data>
   <data name="m_cbStartingSectionIndex.TabIndex" type="System.Int32, mscorlib">
     <value>4</value>
@@ -198,10 +208,13 @@
     <value>True</value>
   </data>
   <data name="m_rbGenerateTTS.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 28</value>
+    <value>8, 34</value>
+  </data>
+  <data name="m_rbGenerateTTS.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 4, 4, 4</value>
   </data>
   <data name="m_rbGenerateTTS.Size" type="System.Drawing.Size, System.Drawing">
-    <value>160, 17</value>
+    <value>207, 21</value>
   </data>
   <data name="m_rbGenerateTTS.TabIndex" type="System.Int32, mscorlib">
     <value>6</value>
@@ -219,16 +232,19 @@
     <value>m_gpPages</value>
   </data>
   <data name="&gt;&gt;m_rbGenerateTTS.ZOrder" xml:space="preserve">
-    <value>0</value>
+    <value>4</value>
   </data>
   <data name="m_rbKeepEmptyPages.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
   <data name="m_rbKeepEmptyPages.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 64</value>
+    <value>8, 79</value>
+  </data>
+  <data name="m_rbKeepEmptyPages.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 4, 4, 4</value>
   </data>
   <data name="m_rbKeepEmptyPages.Size" type="System.Drawing.Size, System.Drawing">
-    <value>113, 17</value>
+    <value>145, 21</value>
   </data>
   <data name="m_rbKeepEmptyPages.TabIndex" type="System.Int32, mscorlib">
     <value>7</value>
@@ -246,9 +262,8 @@
     <value>m_gpPages</value>
   </data>
   <data name="&gt;&gt;m_rbKeepEmptyPages.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>5</value>
   </data>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="m_btnOk.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Flat</value>
   </data>
@@ -256,13 +271,16 @@
     <value>Microsoft Sans Serif, 9pt</value>
   </data>
   <data name="m_btnOk.Location" type="System.Drawing.Point, System.Drawing">
-    <value>32, 269</value>
+    <value>124, 376</value>
+  </data>
+  <data name="m_btnOk.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 4, 4, 4</value>
   </data>
   <data name="m_btnOk.Size" type="System.Drawing.Size, System.Drawing">
-    <value>88, 29</value>
+    <value>117, 36</value>
   </data>
   <data name="m_btnOk.TabIndex" type="System.Int32, mscorlib">
-    <value>8</value>
+    <value>12</value>
   </data>
   <data name="m_btnOk.Text" xml:space="preserve">
     <value>&amp;OK</value>
@@ -286,13 +304,16 @@
     <value>Microsoft Sans Serif, 9pt</value>
   </data>
   <data name="m_btnCancel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>128, 269</value>
+    <value>252, 376</value>
+  </data>
+  <data name="m_btnCancel.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 4, 4, 4</value>
   </data>
   <data name="m_btnCancel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>88, 29</value>
+    <value>117, 36</value>
   </data>
   <data name="m_btnCancel.TabIndex" type="System.Int32, mscorlib">
-    <value>9</value>
+    <value>13</value>
   </data>
   <data name="m_btnCancel.Text" xml:space="preserve">
     <value>&amp;Cancel</value>
@@ -309,11 +330,128 @@
   <data name="&gt;&gt;m_btnCancel.ZOrder" xml:space="preserve">
     <value>3</value>
   </data>
+  <data name="m_btnBrowse.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="m_btnBrowse.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>Flat</value>
+  </data>
+  <data name="m_btnBrowse.Location" type="System.Drawing.Point, System.Drawing">
+    <value>437, 144</value>
+  </data>
+  <data name="m_btnBrowse.Size" type="System.Drawing.Size, System.Drawing">
+    <value>97, 37</value>
+  </data>
+  <data name="m_btnBrowse.TabIndex" type="System.Int32, mscorlib">
+    <value>11</value>
+  </data>
+  <data name="m_btnBrowse.Text" xml:space="preserve">
+    <value>Browse</value>
+  </data>
+  <data name="&gt;&gt;m_btnBrowse.Name" xml:space="preserve">
+    <value>m_btnBrowse</value>
+  </data>
+  <data name="&gt;&gt;m_btnBrowse.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_btnBrowse.Parent" xml:space="preserve">
+    <value>m_gpPages</value>
+  </data>
+  <data name="&gt;&gt;m_btnBrowse.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="m_txtSelectCustomizedAudio.AccessibleName" xml:space="preserve">
+    <value>Select file with customized audio</value>
+  </data>
+  <data name="m_txtSelectCustomizedAudio.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="m_txtSelectCustomizedAudio.Location" type="System.Drawing.Point, System.Drawing">
+    <value>224, 151</value>
+  </data>
+  <data name="m_txtSelectCustomizedAudio.Size" type="System.Drawing.Size, System.Drawing">
+    <value>182, 22</value>
+  </data>
+  <data name="m_txtSelectCustomizedAudio.TabIndex" type="System.Int32, mscorlib">
+    <value>10</value>
+  </data>
+  <data name="&gt;&gt;m_txtSelectCustomizedAudio.Name" xml:space="preserve">
+    <value>m_txtSelectCustomizedAudio</value>
+  </data>
+  <data name="&gt;&gt;m_txtSelectCustomizedAudio.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_txtSelectCustomizedAudio.Parent" xml:space="preserve">
+    <value>m_gpPages</value>
+  </data>
+  <data name="&gt;&gt;m_txtSelectCustomizedAudio.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="label1.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="label1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>7, 156</value>
+  </data>
+  <data name="label1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>211, 17</value>
+  </data>
+  <data name="label1.TabIndex" type="System.Int32, mscorlib">
+    <value>9</value>
+  </data>
+  <data name="label1.Text" xml:space="preserve">
+    <value>Select file with customized audio</value>
+  </data>
+  <data name="&gt;&gt;label1.Name" xml:space="preserve">
+    <value>label1</value>
+  </data>
+  <data name="&gt;&gt;label1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label1.Parent" xml:space="preserve">
+    <value>m_gpPages</value>
+  </data>
+  <data name="&gt;&gt;label1.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="m_rbPagesWithCustomizedAudio.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="m_rbPagesWithCustomizedAudio.Location" type="System.Drawing.Point, System.Drawing">
+    <value>8, 121</value>
+  </data>
+  <data name="m_rbPagesWithCustomizedAudio.Size" type="System.Drawing.Size, System.Drawing">
+    <value>211, 21</value>
+  </data>
+  <data name="m_rbPagesWithCustomizedAudio.TabIndex" type="System.Int32, mscorlib">
+    <value>8</value>
+  </data>
+  <data name="m_rbPagesWithCustomizedAudio.Text" xml:space="preserve">
+    <value>Pages with customized audio</value>
+  </data>
+  <data name="&gt;&gt;m_rbPagesWithCustomizedAudio.Name" xml:space="preserve">
+    <value>m_rbPagesWithCustomizedAudio</value>
+  </data>
+  <data name="&gt;&gt;m_rbPagesWithCustomizedAudio.Type" xml:space="preserve">
+    <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_rbPagesWithCustomizedAudio.Parent" xml:space="preserve">
+    <value>m_gpPages</value>
+  </data>
+  <data name="&gt;&gt;m_rbPagesWithCustomizedAudio.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
   <data name="m_gpPages.Location" type="System.Drawing.Point, System.Drawing">
-    <value>15, 141</value>
+    <value>20, 174</value>
+  </data>
+  <data name="m_gpPages.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 4, 4, 4</value>
+  </data>
+  <data name="m_gpPages.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 4, 4, 4</value>
   </data>
   <data name="m_gpPages.Size" type="System.Drawing.Size, System.Drawing">
-    <value>225, 100</value>
+    <value>548, 194</value>
   </data>
   <data name="m_gpPages.TabIndex" type="System.Int32, mscorlib">
     <value>5</value>
@@ -331,10 +469,13 @@
     <value>2</value>
   </data>
   <data name="m_nudGapsInPages.Location" type="System.Drawing.Point, System.Drawing">
-    <value>140, 36</value>
+    <value>187, 44</value>
+  </data>
+  <data name="m_nudGapsInPages.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 4, 4, 4</value>
   </data>
   <data name="m_nudGapsInPages.Size" type="System.Drawing.Size, System.Drawing">
-    <value>76, 20</value>
+    <value>101, 22</value>
   </data>
   <data name="m_nudGapsInPages.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
@@ -355,10 +496,13 @@
     <value>True</value>
   </data>
   <data name="m_cbCreatePagesAtEnd.Location" type="System.Drawing.Point, System.Drawing">
-    <value>15, 72</value>
+    <value>20, 89</value>
+  </data>
+  <data name="m_cbCreatePagesAtEnd.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 4, 4, 4</value>
   </data>
   <data name="m_cbCreatePagesAtEnd.Size" type="System.Drawing.Size, System.Drawing">
-    <value>230, 17</value>
+    <value>303, 21</value>
   </data>
   <data name="m_cbCreatePagesAtEnd.TabIndex" type="System.Int32, mscorlib">
     <value>2</value>
@@ -385,10 +529,13 @@
     <value>Auto Page Generation</value>
   </data>
   <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
-    <value>6, 13</value>
+    <value>8, 16</value>
   </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>249, 310</value>
+    <value>593, 427</value>
+  </data>
+  <data name="$this.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 4, 4, 4</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
     <value>Auto Page Generation</value>

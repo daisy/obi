@@ -3396,7 +3396,7 @@ for (int j = 0;
             }
         }
 
-        public void GenerateSpeechForPage(bool forAllEmptyPages)
+        public void GenerateSpeechForPage(bool forAllEmptyPages, string customizedAudioPath = "")
         {
             if (CanGenerateSpeechForPage || CanGenerateSpeechForAllEmptyPages)
             {
@@ -3420,6 +3420,7 @@ for (int j = 0;
                 EmptyNode nodeToBeSelected = null;
 
                 string pageInLocalization = Localizer.Message("PageForTTSLoclization");
+                AudioLib.WavAudioProcessing Convcatenate = new AudioLib.WavAudioProcessing();
                 
                 try
                     {
@@ -3438,12 +3439,27 @@ for (int j = 0;
                 {
                     if (cancelOperation) return;
                     PageNumber number = listOfEmptyPages[i].PageNumber;
-                    string text = pageInLocalization + (number.Kind == PageKind.Front ? " front, " + number.Number.ToString() : number.Kind == PageKind.Normal ? ", " + number.Number.ToString() : ", " + number.Unquoted);
+                    string text;
+                    if(customizedAudioPath == string.Empty)
+                        text = pageInLocalization + (number.Kind == PageKind.Front ? " front, " + number.Number.ToString() : number.Kind == PageKind.Normal ? ", " + number.Number.ToString() : ", " + number.Unquoted);
+                    else
+                        text = (number.Kind == PageKind.Front ? " front, " + number.Number.ToString() : number.Kind == PageKind.Normal ? ", " + number.Number.ToString() : ", " + number.Unquoted);
+
                     string filePath = System.IO.Path.Combine(mPresentation.DataProviderManager.DataFileDirectoryFullPath, mPresentation.DataProviderManager.GetNewDataFileRelPath(".wav", ""));
                     Audio.AudioFormatConverter.InitializeTTS(ObiForm.Settings, mPresentation.MediaDataManager.DefaultPCMFormat.Data);
                     Audio.AudioFormatConverter.Speak(text, filePath, ObiForm.Settings, mPresentation.MediaDataManager.DefaultPCMFormat.Data);
                     //if (ProgressChanged != null)
                         //ProgressChanged(this, new ProgressChangedEventArgs( Convert.ToInt32((i*100)/100) , "" ));
+                    //string ConcatenatingAudio = "D:\\Obi Books\\Sample.wav";
+                    if (customizedAudioPath != string.Empty)
+                    {
+                        string[] tempaudioProcessedFile = new string[1];
+                        tempaudioProcessedFile[0] = customizedAudioPath;
+                        tempaudioProcessedFile = Audio.AudioFormatConverter.ConvertFiles(tempaudioProcessedFile, mPresentation);
+                        customizedAudioPath = tempaudioProcessedFile[0];
+                        string ConcatenatingAudio = customizedAudioPath;
+                        filePath = Convcatenate.ConcatenatingAudio(ConcatenatingAudio, filePath);
+                    }
 
                 if (System.IO.File.Exists(filePath))
                 {
@@ -7643,7 +7659,10 @@ public bool ShowOnlySelectedSection
 
             if (autoPageGeneration.GenerateSpeech)
             {
-                this.GenerateSpeechForPage(true);
+                if (autoPageGeneration.CustomizedAudioPath != string.Empty)
+                    this.GenerateSpeechForPage(true, autoPageGeneration.CustomizedAudioPath);
+                else
+                    this.GenerateSpeechForPage(true);
             }
         }
         public void AutoPageGeneration()

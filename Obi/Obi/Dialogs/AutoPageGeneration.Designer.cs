@@ -37,6 +37,10 @@
             this.m_btnOk = new System.Windows.Forms.Button();
             this.m_btnCancel = new System.Windows.Forms.Button();
             this.m_gpPages = new System.Windows.Forms.GroupBox();
+            this.m_btnBrowse = new System.Windows.Forms.Button();
+            this.m_txtSelectCustomizedAudio = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.m_rbPagesWithCustomizedAudio = new System.Windows.Forms.RadioButton();
             this.m_nudGapsInPages = new System.Windows.Forms.NumericUpDown();
             this.m_cbCreatePagesAtEnd = new System.Windows.Forms.CheckBox();
             this.m_gpPages.SuspendLayout();
@@ -92,11 +96,41 @@
             // 
             // m_gpPages
             // 
+            this.m_gpPages.Controls.Add(this.m_btnBrowse);
+            this.m_gpPages.Controls.Add(this.m_txtSelectCustomizedAudio);
+            this.m_gpPages.Controls.Add(this.label1);
+            this.m_gpPages.Controls.Add(this.m_rbPagesWithCustomizedAudio);
             this.m_gpPages.Controls.Add(this.m_rbGenerateTTS);
             this.m_gpPages.Controls.Add(this.m_rbKeepEmptyPages);
             resources.ApplyResources(this.m_gpPages, "m_gpPages");
             this.m_gpPages.Name = "m_gpPages";
             this.m_gpPages.TabStop = false;
+            // 
+            // m_btnBrowse
+            // 
+            resources.ApplyResources(this.m_btnBrowse, "m_btnBrowse");
+            this.m_btnBrowse.Name = "m_btnBrowse";
+            this.m_btnBrowse.UseVisualStyleBackColor = true;
+            this.m_btnBrowse.Click += new System.EventHandler(this.m_btnBrowse_Click);
+            // 
+            // m_txtSelectCustomizedAudio
+            // 
+            resources.ApplyResources(this.m_txtSelectCustomizedAudio, "m_txtSelectCustomizedAudio");
+            this.m_txtSelectCustomizedAudio.Name = "m_txtSelectCustomizedAudio";
+            this.m_txtSelectCustomizedAudio.ReadOnly = true;
+            // 
+            // label1
+            // 
+            resources.ApplyResources(this.label1, "label1");
+            this.label1.Name = "label1";
+            // 
+            // m_rbPagesWithCustomizedAudio
+            // 
+            resources.ApplyResources(this.m_rbPagesWithCustomizedAudio, "m_rbPagesWithCustomizedAudio");
+            this.m_rbPagesWithCustomizedAudio.Name = "m_rbPagesWithCustomizedAudio";
+            this.m_rbPagesWithCustomizedAudio.TabStop = true;
+            this.m_rbPagesWithCustomizedAudio.UseVisualStyleBackColor = true;
+            this.m_rbPagesWithCustomizedAudio.CheckedChanged += new System.EventHandler(this.m_rbPagesWithCustomizedAudio_CheckedChanged);
             // 
             // m_nudGapsInPages
             // 
@@ -159,5 +193,9 @@
         private System.Windows.Forms.GroupBox m_gpPages;
         private System.Windows.Forms.NumericUpDown m_nudGapsInPages;
         private System.Windows.Forms.CheckBox m_cbCreatePagesAtEnd;
+        private System.Windows.Forms.Button m_btnBrowse;
+        private System.Windows.Forms.TextBox m_txtSelectCustomizedAudio;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.RadioButton m_rbPagesWithCustomizedAudio;
     }
 }

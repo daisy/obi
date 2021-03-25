@@ -57,7 +57,7 @@ namespace Obi.Dialogs
         {
             get
             {
-                return m_rbGenerateTTS.Checked;
+                return m_rbGenerateTTS.Checked || m_rbPagesWithCustomizedAudio.Checked;
             }
         }
         public bool CanAddPage
@@ -75,12 +75,20 @@ namespace Obi.Dialogs
                 return m_cbCreatePagesAtEnd.Checked;
             }
         }
+
+        public string CustomizedAudioPath
+        {
+            get
+            {
+                return m_txtSelectCustomizedAudio.Text;
+            }
+        }
    
         private void m_btnOk_Click(object sender, EventArgs e)
         {           
             m_CanAddPage = AddPage();
 
-            if (!m_CanAddPage)
+            if (!m_CanAddPage || (m_rbPagesWithCustomizedAudio.Checked && m_txtSelectCustomizedAudio.Text == string.Empty))
             {
 
                 this.DialogResult = DialogResult.None;
@@ -146,6 +154,32 @@ namespace Obi.Dialogs
             else
             {
                 m_nudGapsInPages.Enabled = true;
+            }
+        }
+
+        private void m_rbPagesWithCustomizedAudio_CheckedChanged(object sender, EventArgs e)
+        {
+            if (m_rbPagesWithCustomizedAudio.Checked)
+            {
+                m_txtSelectCustomizedAudio.Enabled = true;
+                m_btnBrowse.Enabled = true;
+            }
+            else
+            {
+                m_txtSelectCustomizedAudio.Enabled = false;
+                m_txtSelectCustomizedAudio.Text = string.Empty;
+                m_btnBrowse.Enabled = false;
+            }
+        }
+
+        private void m_btnBrowse_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog select_File = new OpenFileDialog();
+            select_File.Filter = Localizer.Message("audio_file_filter");
+            if (select_File.ShowDialog() != DialogResult.OK) return;
+            else
+            {
+                m_txtSelectCustomizedAudio.Text = select_File.FileName;
             }
         }
     }
