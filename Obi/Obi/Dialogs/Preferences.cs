@@ -259,6 +259,8 @@ namespace Obi.Dialogs
                 installedTTSVoices = AudioFormatConverter.InstalledTTSVoices;
                 if (installedTTSVoices != null && installedTTSVoices.Count > 0)
                 {
+                    if (mTTSvoiceCombo.Items.Count != 0)
+                        mTTSvoiceCombo.Items.Clear();
                     mTTSvoiceCombo.Items.AddRange(installedTTSVoices.ToArray());
                     if (string.IsNullOrEmpty(mSettings.Audio_TTSVoice))
                     {
