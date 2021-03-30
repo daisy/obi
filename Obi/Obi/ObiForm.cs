@@ -5973,12 +5973,24 @@ ref string exportDirectoryEPUB3)
 
             private void selectedPageToolStripMenuItem_Click(object sender, EventArgs e)
             {
-                mProjectView.GenerateSpeechForPage(false);
+                ChoosePageAudio pageAudioDialog = new ChoosePageAudio();
+                NodeSelection tempSelection = mProjectView.Selection;
+                if (pageAudioDialog.ShowDialog() == DialogResult.OK)
+                {
+                    mProjectView.Selection = tempSelection;
+                    mProjectView.GenerateSpeechForPage(false, pageAudioDialog.RecordedAudioPath);
+                }
+                //mProjectView.GenerateSpeechForPage(false);
             }
 
             private void allEmptyPagesToolStripMenuItem_Click(object sender, EventArgs e)
             {
-                mProjectView.GenerateSpeechForPage(true);
+                ChoosePageAudio pageAudioDialog = new ChoosePageAudio();
+                if (pageAudioDialog.ShowDialog() == DialogResult.OK)
+                {
+                    mProjectView.GenerateSpeechForPage(true, pageAudioDialog.RecordedAudioPath);
+                }
+                //mProjectView.GenerateSpeechForPage(true);
             }
 
             private void settingsFromSilencePhraseToolStripMenuItem_Click(object sender, EventArgs e)

@@ -361,7 +361,7 @@
     <value>0</value>
   </data>
   <data name="m_txtSelectCustomizedAudio.AccessibleName" xml:space="preserve">
-    <value>Select file with customized audio</value>
+    <value>Select file with recorded audio</value>
   </data>
   <data name="m_txtSelectCustomizedAudio.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
@@ -394,13 +394,13 @@
     <value>7, 156</value>
   </data>
   <data name="label1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>211, 17</value>
+    <value>197, 17</value>
   </data>
   <data name="label1.TabIndex" type="System.Int32, mscorlib">
     <value>9</value>
   </data>
   <data name="label1.Text" xml:space="preserve">
-    <value>Select file with customized audio</value>
+    <value>Select file with recorded audio</value>
   </data>
   <data name="&gt;&gt;label1.Name" xml:space="preserve">
     <value>label1</value>
@@ -421,13 +421,13 @@
     <value>8, 121</value>
   </data>
   <data name="m_rbPagesWithCustomizedAudio.Size" type="System.Drawing.Size, System.Drawing">
-    <value>211, 21</value>
+    <value>197, 21</value>
   </data>
   <data name="m_rbPagesWithCustomizedAudio.TabIndex" type="System.Int32, mscorlib">
     <value>8</value>
   </data>
   <data name="m_rbPagesWithCustomizedAudio.Text" xml:space="preserve">
-    <value>Pages with customized audio</value>
+    <value>Pages with recorded audio</value>
   </data>
   <data name="&gt;&gt;m_rbPagesWithCustomizedAudio.Name" xml:space="preserve">
     <value>m_rbPagesWithCustomizedAudio</value>
