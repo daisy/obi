@@ -220,7 +220,7 @@ En conséquence, les modifications apportées aux réglages effectués lors de c
     <value>Erreur de suppression de fichier {0}. ({1})</value>
   </data>
   <data name="audio_file_filter" xml:space="preserve">
-    <value>Fichiers audio (*.wav;*.mp3;*.mp4)|*.wav;*.mp3;*.mp4|tout fichier|*.*</value>
+    <value>Fichiers audio (*.wav;*.mp3;*.mp4;*.m4a)|*.wav;*.mp3;*.mp4;*.m4a|tout fichier|*.*</value>
   </data>
   <data name="Monitoring" xml:space="preserve">
     <value>Monitoring de l'entrée audio...</value>
