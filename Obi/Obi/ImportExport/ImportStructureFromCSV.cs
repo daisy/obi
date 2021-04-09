@@ -191,7 +191,7 @@ namespace Obi.ImportExport
              List<string> tempAudioFilePaths = new List<string>();
              string[] tempAudioFilePathsArray = new string[1];
 
-            if (path != string.Empty && System.IO.File.Exists(path) && System.IO.Path.GetExtension(path) == ".wav")
+             if (path != string.Empty && System.IO.File.Exists(path) && (System.IO.Path.GetExtension(path).ToLower() == ".wav" || System.IO.Path.GetExtension(path).ToLower() == ".mp3" || System.IO.Path.GetExtension(path).ToLower() == ".mp4" || System.IO.Path.GetExtension(path).ToLower() == ".m4a"))
             {
                 tempAudioFilePathsArray[0] = path;
                 tempAudioFilePathsArray = Audio.AudioFormatConverter.ConvertFiles(tempAudioFilePathsArray, m_Presentation);
