@@ -103,6 +103,8 @@ namespace Obi.Audio
                 {
                     AudioLibPCMFormat pcmFormat = new AudioLibPCMFormat((ushort)channels, (uint)samplingRate, (ushort)bitDepth);
                     AudioLibPCMFormat originalPCMFormat = null;
+                    ProjectView.ProjectView.WriteToLogFile_Static("File Path of audioConverter " + filePath);
+                    ProjectView.ProjectView.WriteToLogFile_Static("Directory Path of audioConverter " + directoryPath);
                     convertedFile = audioConverter.UnCompressMp4_AACFile(filePath, directoryPath, pcmFormat, out originalPCMFormat);
                 }
                 else
@@ -113,6 +115,8 @@ namespace Obi.Audio
                 // rename converted file to original file if names are different
                 if (Path.GetFileName(filePath) != Path.GetFileName(convertedFile))
                 {
+                    ProjectView.ProjectView.WriteToLogFile_Static("Converted file path before path combine operation " + convertedFile);
+                    ProjectView.ProjectView.WriteToLogFile_Static("File Path before path combine operation " + filePath);
                     string newConvertedFilePath = Path.Combine(Path.GetDirectoryName(convertedFile), Path.GetFileNameWithoutExtension(filePath) + ".wav");
                     for (int i = 0; i < 99999 && File.Exists(newConvertedFilePath); i++)
                     {
