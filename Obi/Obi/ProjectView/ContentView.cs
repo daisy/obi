@@ -6040,6 +6040,7 @@ Block lastBlock = ActiveStrip.LastBlock ;
                 else
                 {
                     ActiveStrip.ShowEditLabelToAddComment();
+                    EnsureControlVisible((Control)ActiveStrip);
                 }
                 return true;
             }

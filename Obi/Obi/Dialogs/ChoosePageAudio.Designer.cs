@@ -41,7 +41,7 @@
             // 
             this.radioButton1.AutoSize = true;
             this.radioButton1.Checked = true;
-            this.radioButton1.Location = new System.Drawing.Point(25, 105);
+            this.radioButton1.Location = new System.Drawing.Point(25, 44);
             this.radioButton1.Name = "radioButton1";
             this.radioButton1.Size = new System.Drawing.Size(207, 21);
             this.radioButton1.TabIndex = 0;
@@ -54,7 +54,7 @@
             this.m_btnBrowse.Enabled = false;
             this.m_btnBrowse.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.m_btnBrowse.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.m_btnBrowse.Location = new System.Drawing.Point(454, 178);
+            this.m_btnBrowse.Location = new System.Drawing.Point(454, 117);
             this.m_btnBrowse.Name = "m_btnBrowse";
             this.m_btnBrowse.Size = new System.Drawing.Size(97, 37);
             this.m_btnBrowse.TabIndex = 15;
@@ -66,7 +66,7 @@
             // 
             this.m_txtSelectRecordedAudio.AccessibleName = "Select file with recorded audio";
             this.m_txtSelectRecordedAudio.Enabled = false;
-            this.m_txtSelectRecordedAudio.Location = new System.Drawing.Point(241, 185);
+            this.m_txtSelectRecordedAudio.Location = new System.Drawing.Point(241, 124);
             this.m_txtSelectRecordedAudio.Name = "m_txtSelectRecordedAudio";
             this.m_txtSelectRecordedAudio.ReadOnly = true;
             this.m_txtSelectRecordedAudio.Size = new System.Drawing.Size(182, 22);
@@ -76,7 +76,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label1.Location = new System.Drawing.Point(24, 190);
+            this.label1.Location = new System.Drawing.Point(24, 129);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(197, 17);
             this.label1.TabIndex = 13;
@@ -86,7 +86,7 @@
             // 
             this.m_rbPagesWithRecordedAudio.AutoSize = true;
             this.m_rbPagesWithRecordedAudio.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.m_rbPagesWithRecordedAudio.Location = new System.Drawing.Point(25, 155);
+            this.m_rbPagesWithRecordedAudio.Location = new System.Drawing.Point(25, 94);
             this.m_rbPagesWithRecordedAudio.Name = "m_rbPagesWithRecordedAudio";
             this.m_rbPagesWithRecordedAudio.Size = new System.Drawing.Size(197, 21);
             this.m_rbPagesWithRecordedAudio.TabIndex = 12;
@@ -100,7 +100,7 @@
             this.m_btnCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.m_btnCancel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
             this.m_btnCancel.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.m_btnCancel.Location = new System.Drawing.Point(306, 271);
+            this.m_btnCancel.Location = new System.Drawing.Point(306, 210);
             this.m_btnCancel.Margin = new System.Windows.Forms.Padding(4);
             this.m_btnCancel.Name = "m_btnCancel";
             this.m_btnCancel.Size = new System.Drawing.Size(117, 36);
@@ -114,7 +114,7 @@
             this.m_btnOk.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.m_btnOk.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
             this.m_btnOk.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.m_btnOk.Location = new System.Drawing.Point(178, 271);
+            this.m_btnOk.Location = new System.Drawing.Point(178, 210);
             this.m_btnOk.Margin = new System.Windows.Forms.Padding(4);
             this.m_btnOk.Name = "m_btnOk";
             this.m_btnOk.Size = new System.Drawing.Size(117, 36);
@@ -128,7 +128,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.m_btnCancel;
-            this.ClientSize = new System.Drawing.Size(601, 355);
+            this.ClientSize = new System.Drawing.Size(601, 282);
             this.Controls.Add(this.m_btnCancel);
             this.Controls.Add(this.m_btnOk);
             this.Controls.Add(this.m_btnBrowse);
