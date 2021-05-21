@@ -5862,7 +5862,14 @@ Block lastBlock = ActiveStrip.LastBlock ;
 
         private void Context_GenerateSpeechForPageMenuItem_Click(object sender, EventArgs e)
         {
-            mProjectView.GenerateSpeechForPage( false);
+            Obi.Dialogs.ChoosePageAudio pageAudioDialog = new Obi.Dialogs.ChoosePageAudio();
+            NodeSelection tempSelection = mProjectView.Selection;
+            if (pageAudioDialog.ShowDialog() == DialogResult.OK)
+            {
+                mProjectView.Selection = tempSelection;
+                mProjectView.GenerateSpeechForPage(false, pageAudioDialog.RecordedAudioPath);
+            }
+            //mProjectView.GenerateSpeechForPage( false);
         }
 
         private void settingsFromsilencePhraseToolStripMenuItem_Click(object sender, EventArgs e)
