@@ -44,7 +44,8 @@ namespace Obi.ImportExport
         }
         private void ReadListsFromCSVFile(List<int> levelsList, List<string> sectionNamesList, List<int> pagesPerSection, string CSVFullPath)
         {
-            string[] linesInFiles = File.ReadAllLines(CSVFullPath);
+            string[] linesInFiles = File.ReadAllLines(CSVFullPath, System.Text.Encoding.Default);
+
 
             List<string> audioFilePath = new List<string>();
                     
@@ -109,7 +110,7 @@ namespace Obi.ImportExport
                         }
                         if (i == 3)
                         {
-                            if (cellsInLineArray[i] == "")
+                            if (cellsInLineArray[i] == string.Empty || string.IsNullOrWhiteSpace(cellsInLineArray[i]))
                             {
                                 cellsInLineArray[i] = "Untitled";
                                 audioFilePath.Add(string.Empty);
@@ -117,6 +118,10 @@ namespace Obi.ImportExport
                             }
                             else
                             {
+                                if (Path.GetPathRoot(cellsInLineArray[i]) == string.Empty)
+                                {
+                                    cellsInLineArray[i] = Path.GetDirectoryName(CSVFullPath) + "\\" + cellsInLineArray[i];
+                                }
                                 string filePath = cellsInLineArray[i]; 
                                 audioFilePath.Add(filePath);
                             }
