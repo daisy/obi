@@ -198,6 +198,8 @@ namespace Obi
             this.mGenerateSpeechToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.selectedPageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.allEmptyPagesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.selectedPageAudioFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.allEmptyPagesAudioFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
             this.navigationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mPreviousSectionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -1437,7 +1439,9 @@ namespace Obi
             resources.ApplyResources(this.mGenerateSpeechToolStripMenuItem, "mGenerateSpeechToolStripMenuItem");
             this.mGenerateSpeechToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.selectedPageToolStripMenuItem,
-            this.allEmptyPagesToolStripMenuItem});
+            this.allEmptyPagesToolStripMenuItem,
+            this.selectedPageAudioFileToolStripMenuItem,
+            this.allEmptyPagesAudioFileToolStripMenuItem});
             this.mGenerateSpeechToolStripMenuItem.Name = "mGenerateSpeechToolStripMenuItem";
             // 
             // selectedPageToolStripMenuItem
@@ -1451,6 +1455,18 @@ namespace Obi
             resources.ApplyResources(this.allEmptyPagesToolStripMenuItem, "allEmptyPagesToolStripMenuItem");
             this.allEmptyPagesToolStripMenuItem.Name = "allEmptyPagesToolStripMenuItem";
             this.allEmptyPagesToolStripMenuItem.Click += new System.EventHandler(this.allEmptyPagesToolStripMenuItem_Click);
+            // 
+            // selectedPageAudioFileToolStripMenuItem
+            // 
+            this.selectedPageAudioFileToolStripMenuItem.Name = "selectedPageAudioFileToolStripMenuItem";
+            resources.ApplyResources(this.selectedPageAudioFileToolStripMenuItem, "selectedPageAudioFileToolStripMenuItem");
+            this.selectedPageAudioFileToolStripMenuItem.Click += new System.EventHandler(this.selectedPageAudioFileToolStripMenuItem_Click);
+            // 
+            // allEmptyPagesAudioFileToolStripMenuItem
+            // 
+            this.allEmptyPagesAudioFileToolStripMenuItem.Name = "allEmptyPagesAudioFileToolStripMenuItem";
+            resources.ApplyResources(this.allEmptyPagesAudioFileToolStripMenuItem, "allEmptyPagesAudioFileToolStripMenuItem");
+            this.allEmptyPagesAudioFileToolStripMenuItem.Click += new System.EventHandler(this.allEmptyPagesAudioFileToolStripMenuItem_Click);
             // 
             // toolStripSeparator5
             // 
@@ -1771,7 +1787,7 @@ namespace Obi
             this.mProjectView.SaveZoomWaveformZoomLevel = false;
             this.mProjectView.Selection = null;
             this.mProjectView.TOCViewVisible = true;
-            this.mProjectView.TOCViewWidth = 302;
+            this.mProjectView.TOCViewWidth = 402;
             this.mProjectView.TransportBarVisible = false;
             this.mProjectView.ZoomWaveformIncrementFactor = 0D;
             // 
@@ -2016,6 +2032,8 @@ namespace Obi
         private System.Windows.Forms.ToolStripMenuItem m_SpeechRateToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem m_NoiseReductionToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem m_AudioMixerToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem selectedPageAudioFileToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem allEmptyPagesAudioFileToolStripMenuItem;
     }
 }
 

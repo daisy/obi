@@ -41,6 +41,7 @@ namespace Obi.ProjectView
             this.Context_AddBlankPhraseMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.Context_AddEmptyPagesMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.Context_GenerateSpeechForPageMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.Context_GenerateSpeechForPageAudioFileMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.Context_ImportAudioFilesMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.Context_FineNavigationMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.Context_SplitPhraseMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -131,6 +132,7 @@ namespace Obi.ProjectView
             this.Context_AddBlankPhraseMenuItem,
             this.Context_AddEmptyPagesMenuItem,
             this.Context_GenerateSpeechForPageMenuItem,
+            this.Context_GenerateSpeechForPageAudioFileMenuItem,
             this.Context_ImportAudioFilesMenuItem,
             this.Context_FineNavigationMenuItem,
             this.Context_SplitPhraseMenuItem,
@@ -219,6 +221,12 @@ namespace Obi.ProjectView
             this.Context_GenerateSpeechForPageMenuItem.Name = "Context_GenerateSpeechForPageMenuItem";
             resources.ApplyResources(this.Context_GenerateSpeechForPageMenuItem, "Context_GenerateSpeechForPageMenuItem");
             this.Context_GenerateSpeechForPageMenuItem.Click += new System.EventHandler(this.Context_GenerateSpeechForPageMenuItem_Click);
+            // 
+            // Context_GenerateSpeechForPageAudioFileMenuItem
+            // 
+            this.Context_GenerateSpeechForPageAudioFileMenuItem.Name = "Context_GenerateSpeechForPageAudioFileMenuItem";
+            resources.ApplyResources(this.Context_GenerateSpeechForPageAudioFileMenuItem, "Context_GenerateSpeechForPageAudioFileMenuItem");
+            this.Context_GenerateSpeechForPageAudioFileMenuItem.Click += new System.EventHandler(this.Context_GenerateSpeechForPageAudioFileMenuItem_Click);
             // 
             // Context_ImportAudioFilesMenuItem
             // 
@@ -822,5 +830,6 @@ namespace Obi.ProjectView
         private System.Windows.Forms.ToolStripMenuItem m_SpeechRateToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem m_NoiseReductionToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem m_AudioMixerToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem Context_GenerateSpeechForPageAudioFileMenuItem;
     }
 }

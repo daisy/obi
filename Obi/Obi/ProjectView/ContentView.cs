@@ -3995,6 +3995,9 @@ if (thresholdAboveLastNode >= stripControl.Node.PhraseChildCount) thresholdAbove
             Context_GenerateSpeechForPageMenuItem.ShortcutKeyDisplayString = ObiForm.RefineKeyboardShortcutStringForAccessibleName(keyboardShortcuts.FormatKeyboardShorcut(keyboardShortcuts.MenuNameDictionary["selectedPageToolStripMenuItem"].Value.ToString()));
             Context_GenerateSpeechForPageMenuItem.AccessibleName = Context_GenerateSpeechForPageMenuItem.Text.Replace("&", "") + " " + Context_GenerateSpeechForPageMenuItem.ShortcutKeyDisplayString;
 
+            Context_GenerateSpeechForPageAudioFileMenuItem.ShortcutKeyDisplayString = ObiForm.RefineKeyboardShortcutStringForAccessibleName(keyboardShortcuts.FormatKeyboardShorcut(keyboardShortcuts.MenuNameDictionary["selectedPageAudioFileToolStripMenuItem"].Value.ToString()));
+            Context_GenerateSpeechForPageAudioFileMenuItem.AccessibleName = Context_GenerateSpeechForPageAudioFileMenuItem.Text.Replace("&", "") + " " + Context_GenerateSpeechForPageAudioFileMenuItem.ShortcutKeyDisplayString;
+
             Context_ImportAudioFilesMenuItem.ShortcutKeyDisplayString = ObiForm.RefineKeyboardShortcutStringForAccessibleName(keyboardShortcuts.FormatKeyboardShorcut(keyboardShortcuts.MenuNameDictionary["mImportAudioFileToolStripMenuItem"].Value.ToString()));
             Context_ImportAudioFilesMenuItem.AccessibleName = Context_ImportAudioFilesMenuItem.Text.Replace("&", "") + " " + Context_ImportAudioFilesMenuItem.ShortcutKeyDisplayString;
 
@@ -5277,7 +5280,7 @@ if (thresholdAboveLastNode >= stripControl.Node.PhraseChildCount) thresholdAbove
             //Context_Skippable_AssociateSpecialNodeMarkToolStripMenuItem.Enabled = mProjectView != null && !mProjectView.TransportBar.IsRecorderActive && (mProjectView.Selection == null || (mProjectView.Selection != null && mProjectView.Selection.Node is EmptyNode && ((EmptyNode)mProjectView.Selection.Node).Role_ != EmptyNode.Role.Custom && ((EmptyNode)mProjectView.Selection.Node).Role_ != EmptyNode.Role.Plain));
             Context_Skippable_AssociateSpecialNodeMarkToolStripMenuItem.Enabled = mProjectView.CanAssociateNode;   //@AssociateNode
             Context_Skippable_ClearRoleFromNoteToolStripMenuItem.Enabled = mProjectView.CanClearSkippableRole;
-            Context_GenerateSpeechForPageMenuItem.Enabled = mProjectView.CanGenerateSpeechForPage;
+            Context_GenerateSpeechForPageMenuItem.Enabled = Context_GenerateSpeechForPageAudioFileMenuItem.Enabled = mProjectView.CanGenerateSpeechForPage;
             Context_SettingsFromsilencePhraseToolStripMenuItem.Enabled = mProjectView.CanUpdatePhraseDetectionSettingsFromSilencePhrase;
             Context_ReplaceAudioMenuItem.Enabled = mProjectView.CanExportSelectedNodeAudio;
             Context_AudioProcessingNew.Enabled = m_ChangeVolumeToolStripMenuItem.Enabled = 
@@ -5862,14 +5865,7 @@ Block lastBlock = ActiveStrip.LastBlock ;
 
         private void Context_GenerateSpeechForPageMenuItem_Click(object sender, EventArgs e)
         {
-            Obi.Dialogs.ChoosePageAudio pageAudioDialog = new Obi.Dialogs.ChoosePageAudio();
-            NodeSelection tempSelection = mProjectView.Selection;
-            if (pageAudioDialog.ShowDialog() == DialogResult.OK)
-            {
-                mProjectView.Selection = tempSelection;
-                mProjectView.GenerateSpeechForPage(false, pageAudioDialog.RecordedAudioPath);
-            }
-            //mProjectView.GenerateSpeechForPage( false);
+            mProjectView.GenerateSpeechForPage(false);
         }
 
         private void settingsFromsilencePhraseToolStripMenuItem_Click(object sender, EventArgs e)
@@ -6336,6 +6332,17 @@ Block lastBlock = ActiveStrip.LastBlock ;
             if (mProjectView.CanExportSelectedNodeAudio)
                 mProjectView.AudioProcessing(AudioLib.WavAudioProcessing.AudioProcessingKind.AudioMixing);
 
+        }
+
+        private void Context_GenerateSpeechForPageAudioFileMenuItem_Click(object sender, EventArgs e)
+        {
+            Obi.Dialogs.ChoosePageAudio pageAudioDialog = new Obi.Dialogs.ChoosePageAudio();
+            NodeSelection tempSelection = mProjectView.Selection;
+            if (pageAudioDialog.ShowDialog() == DialogResult.OK)
+            {
+                mProjectView.Selection = tempSelection;
+                mProjectView.GenerateSpeechForPage(false, pageAudioDialog.RecordedAudioPath);
+            }
         }
 
      

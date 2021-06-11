@@ -2527,8 +2527,8 @@ namespace Obi
                 mFastForwardToolStripMenuItem.Enabled = mProjectView.CanFastForward;
                 mRewindToolStripMenuItem.Enabled = mSession.HasProject && mProjectView.CanRewind;
                 navigationToolStripMenuItem.Enabled = mSession.HasProject;
-                allEmptyPagesToolStripMenuItem.Enabled = mProjectView.CanGenerateSpeechForAllEmptyPages;
-                selectedPageToolStripMenuItem.Enabled = mProjectView.CanGenerateSpeechForPage;
+                allEmptyPagesToolStripMenuItem.Enabled = allEmptyPagesAudioFileToolStripMenuItem.Enabled = mProjectView.CanGenerateSpeechForAllEmptyPages;
+                selectedPageToolStripMenuItem.Enabled = selectedPageAudioFileToolStripMenuItem.Enabled = mProjectView.CanGenerateSpeechForPage;
                 mGenerateSpeechToolStripMenuItem.Enabled = mSession.HasProject && !mProjectView.TransportBar.IsRecorderActive;
                 mFastPlaytoolStripMenuItem.Enabled = mSession.HasProject && !mProjectView.TransportBar.IsRecorderActive;
                 mRecordToolStripMenuItem.Enabled = mSession.HasProject && mProjectView.TransportBar.CanRecord;
@@ -5973,24 +5973,12 @@ ref string exportDirectoryEPUB3)
 
             private void selectedPageToolStripMenuItem_Click(object sender, EventArgs e)
             {
-                ChoosePageAudio pageAudioDialog = new ChoosePageAudio();
-                NodeSelection tempSelection = mProjectView.Selection;
-                if (pageAudioDialog.ShowDialog() == DialogResult.OK)
-                {
-                    mProjectView.Selection = tempSelection;
-                    mProjectView.GenerateSpeechForPage(false, pageAudioDialog.RecordedAudioPath);
-                }
-                //mProjectView.GenerateSpeechForPage(false);
+                mProjectView.GenerateSpeechForPage(false);
             }
 
             private void allEmptyPagesToolStripMenuItem_Click(object sender, EventArgs e)
             {
-                ChoosePageAudio pageAudioDialog = new ChoosePageAudio();
-                if (pageAudioDialog.ShowDialog() == DialogResult.OK)
-                {
-                    mProjectView.GenerateSpeechForPage(true, pageAudioDialog.RecordedAudioPath);
-                }
-                //mProjectView.GenerateSpeechForPage(true);
+                mProjectView.GenerateSpeechForPage(true);
             }
 
             private void settingsFromSilencePhraseToolStripMenuItem_Click(object sender, EventArgs e)
@@ -6849,6 +6837,26 @@ ref string exportDirectoryEPUB3)
                 if (mProjectView.CanExportSelectedNodeAudio)
                     mProjectView.AudioProcessing(AudioLib.WavAudioProcessing.AudioProcessingKind.AudioMixing);
 
+            }
+
+            private void selectedPageAudioFileToolStripMenuItem_Click(object sender, EventArgs e)
+            {
+                ChoosePageAudio pageAudioDialog = new ChoosePageAudio();
+                NodeSelection tempSelection = mProjectView.Selection;
+                if (pageAudioDialog.ShowDialog() == DialogResult.OK)
+                {
+                    mProjectView.Selection = tempSelection;
+                    mProjectView.GenerateSpeechForPage(false, pageAudioDialog.RecordedAudioPath);
+                }
+            }
+
+            private void allEmptyPagesAudioFileToolStripMenuItem_Click(object sender, EventArgs e)
+            {
+                ChoosePageAudio pageAudioDialog = new ChoosePageAudio();
+                if (pageAudioDialog.ShowDialog() == DialogResult.OK)
+                {
+                    mProjectView.GenerateSpeechForPage(true, pageAudioDialog.RecordedAudioPath);
+                }
             }
 
 

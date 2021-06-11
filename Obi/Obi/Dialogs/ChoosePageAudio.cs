@@ -35,19 +35,5 @@ namespace Obi.Dialogs
             }
         }
 
-        private void m_rbPagesWithRecordedAudio_CheckedChanged(object sender, EventArgs e)
-        {
-            if (m_rbPagesWithRecordedAudio.Checked)
-            {
-                m_txtSelectRecordedAudio.Enabled = true;
-                m_btnBrowse.Enabled = true;
-            }
-            else
-            {
-                m_txtSelectRecordedAudio.Enabled = false;
-                m_txtSelectRecordedAudio.Text = string.Empty;
-                m_btnBrowse.Enabled = false;
-            }
-        }
     }
 }
