@@ -41,7 +41,8 @@ namespace Obi.ProjectView
             this.Context_AddBlankPhraseMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.Context_AddEmptyPagesMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.Context_GenerateSpeechForPageMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.Context_GenerateSpeechForPageAudioFileMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.Context_SelectedPageTTSToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.Context_SelectedPageAudioFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.Context_ImportAudioFilesMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.Context_FineNavigationMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.Context_SplitPhraseMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -132,7 +133,6 @@ namespace Obi.ProjectView
             this.Context_AddBlankPhraseMenuItem,
             this.Context_AddEmptyPagesMenuItem,
             this.Context_GenerateSpeechForPageMenuItem,
-            this.Context_GenerateSpeechForPageAudioFileMenuItem,
             this.Context_ImportAudioFilesMenuItem,
             this.Context_FineNavigationMenuItem,
             this.Context_SplitPhraseMenuItem,
@@ -218,15 +218,23 @@ namespace Obi.ProjectView
             // 
             // Context_GenerateSpeechForPageMenuItem
             // 
+            this.Context_GenerateSpeechForPageMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.Context_SelectedPageTTSToolStripMenuItem,
+            this.Context_SelectedPageAudioFileToolStripMenuItem});
             this.Context_GenerateSpeechForPageMenuItem.Name = "Context_GenerateSpeechForPageMenuItem";
             resources.ApplyResources(this.Context_GenerateSpeechForPageMenuItem, "Context_GenerateSpeechForPageMenuItem");
-            this.Context_GenerateSpeechForPageMenuItem.Click += new System.EventHandler(this.Context_GenerateSpeechForPageMenuItem_Click);
             // 
-            // Context_GenerateSpeechForPageAudioFileMenuItem
+            // Context_SelectedPageTTSToolStripMenuItem
             // 
-            this.Context_GenerateSpeechForPageAudioFileMenuItem.Name = "Context_GenerateSpeechForPageAudioFileMenuItem";
-            resources.ApplyResources(this.Context_GenerateSpeechForPageAudioFileMenuItem, "Context_GenerateSpeechForPageAudioFileMenuItem");
-            this.Context_GenerateSpeechForPageAudioFileMenuItem.Click += new System.EventHandler(this.Context_GenerateSpeechForPageAudioFileMenuItem_Click);
+            this.Context_SelectedPageTTSToolStripMenuItem.Name = "Context_SelectedPageTTSToolStripMenuItem";
+            resources.ApplyResources(this.Context_SelectedPageTTSToolStripMenuItem, "Context_SelectedPageTTSToolStripMenuItem");
+            this.Context_SelectedPageTTSToolStripMenuItem.Click += new System.EventHandler(this.Context_SelectedPageTTSToolStripMenuItem_Click);
+            // 
+            // Context_SelectedPageAudioFileToolStripMenuItem
+            // 
+            this.Context_SelectedPageAudioFileToolStripMenuItem.Name = "Context_SelectedPageAudioFileToolStripMenuItem";
+            resources.ApplyResources(this.Context_SelectedPageAudioFileToolStripMenuItem, "Context_SelectedPageAudioFileToolStripMenuItem");
+            this.Context_SelectedPageAudioFileToolStripMenuItem.Click += new System.EventHandler(this.Context_SelectedPageAudioFileToolStripMenuItem_Click);
             // 
             // Context_ImportAudioFilesMenuItem
             // 
@@ -830,6 +838,7 @@ namespace Obi.ProjectView
         private System.Windows.Forms.ToolStripMenuItem m_SpeechRateToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem m_NoiseReductionToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem m_AudioMixerToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem Context_GenerateSpeechForPageAudioFileMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem Context_SelectedPageTTSToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem Context_SelectedPageAudioFileToolStripMenuItem;
     }
 }

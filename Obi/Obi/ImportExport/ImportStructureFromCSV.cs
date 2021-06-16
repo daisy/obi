@@ -44,7 +44,7 @@ namespace Obi.ImportExport
         }
         private void ReadListsFromCSVFile(List<int> levelsList, List<string> sectionNamesList, List<int> pagesPerSection, string CSVFullPath)
         {
-            string[] linesInFiles = File.ReadAllLines(CSVFullPath, System.Text.Encoding.Default);
+            string[] linesInFiles = File.ReadAllLines(CSVFullPath);
 
 
             List<string> audioFilePath = new List<string>();

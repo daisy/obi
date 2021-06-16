@@ -28,11 +28,13 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ChoosePageAudio));
             this.m_btnBrowse = new System.Windows.Forms.Button();
             this.m_txtSelectRecordedAudio = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.m_btnCancel = new System.Windows.Forms.Button();
             this.m_btnOk = new System.Windows.Forms.Button();
+            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
             this.SuspendLayout();
             // 
             // m_btnBrowse
@@ -72,11 +74,11 @@
             this.m_btnCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.m_btnCancel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
             this.m_btnCancel.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.m_btnCancel.Location = new System.Drawing.Point(306, 210);
+            this.m_btnCancel.Location = new System.Drawing.Point(306, 253);
             this.m_btnCancel.Margin = new System.Windows.Forms.Padding(4);
             this.m_btnCancel.Name = "m_btnCancel";
             this.m_btnCancel.Size = new System.Drawing.Size(117, 36);
-            this.m_btnCancel.TabIndex = 5;
+            this.m_btnCancel.TabIndex = 6;
             this.m_btnCancel.Text = "&Cancel";
             this.m_btnCancel.UseVisualStyleBackColor = true;
             // 
@@ -86,13 +88,22 @@
             this.m_btnOk.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.m_btnOk.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
             this.m_btnOk.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.m_btnOk.Location = new System.Drawing.Point(178, 210);
+            this.m_btnOk.Location = new System.Drawing.Point(178, 253);
             this.m_btnOk.Margin = new System.Windows.Forms.Padding(4);
             this.m_btnOk.Name = "m_btnOk";
             this.m_btnOk.Size = new System.Drawing.Size(117, 36);
-            this.m_btnOk.TabIndex = 4;
+            this.m_btnOk.TabIndex = 5;
             this.m_btnOk.Text = "&OK";
             this.m_btnOk.UseVisualStyleBackColor = true;
+            // 
+            // richTextBox1
+            // 
+            this.richTextBox1.Location = new System.Drawing.Point(27, 135);
+            this.richTextBox1.Name = "richTextBox1";
+            this.richTextBox1.ReadOnly = true;
+            this.richTextBox1.Size = new System.Drawing.Size(524, 62);
+            this.richTextBox1.TabIndex = 4;
+            this.richTextBox1.Text = resources.GetString("richTextBox1.Text");
             // 
             // ChoosePageAudio
             // 
@@ -100,7 +111,8 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.m_btnCancel;
-            this.ClientSize = new System.Drawing.Size(601, 282);
+            this.ClientSize = new System.Drawing.Size(601, 311);
+            this.Controls.Add(this.richTextBox1);
             this.Controls.Add(this.m_btnCancel);
             this.Controls.Add(this.m_btnOk);
             this.Controls.Add(this.m_btnBrowse);
@@ -120,5 +132,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button m_btnCancel;
         private System.Windows.Forms.Button m_btnOk;
+        private System.Windows.Forms.RichTextBox richTextBox1;
     }
 }
