@@ -3141,6 +3141,7 @@ ref string exportDirectoryDAISY3,
                     ExportDialogDAISY3.LimitLengthOfAudioFileNames = mSettings.Export_LimitAudioFilesLength &&
                                                          mSettings.Export_AppendSectionNameToAudioFile;
                     ExportDialogDAISY3.CreateCSVForCuesEnabled = true;
+                    ExportDialogDAISY3.AddCuePointsInAudioEnabled = true;
                     ExportDialogDAISY3.AudioFileNameCharsLimit = Settings.Export_AudioFilesNamesLengthLimit >= 0 ? Settings.Export_AudioFilesNamesLengthLimit : 8;
                     if (ExportDialogDAISY3.ShowDialog() != DialogResult.OK) ExportDialogDAISY3 = null;
                 }
@@ -3156,6 +3157,7 @@ ref string exportDirectoryDAISY3,
                     ExportDialogDAISY202.LimitLengthOfAudioFileNames = mSettings.Export_LimitAudioFilesLength &&
                                                          mSettings.Export_AppendSectionNameToAudioFile;
                     ExportDialogDAISY202.CreateCSVForCuesEnabled = true;
+                    ExportDialogDAISY202.AddCuePointsInAudioEnabled = true;
                     ExportDialogDAISY202.AudioFileNameCharsLimit = Settings.Export_AudioFilesNamesLengthLimit >= 0 ? Settings.Export_AudioFilesNamesLengthLimit : 8;
                     if (ExportDialogDAISY202.ShowDialog() != DialogResult.OK) ExportDialogDAISY202 = null;
                 }
@@ -3307,7 +3309,7 @@ ref string exportDirectoryDAISY3,
                             mSession.Presentation, exportPathDAISY3, null, ExportDialogDAISY3.EncodeAudioFiles, ExportDialogDAISY3.BitRate,
                             AudioLib.SampleRate.Hz44100,
                             mProjectView.Presentation.MediaDataManager.DefaultPCMFormat.Data.NumberOfChannels == 2,
-                            false, ExportDialogDAISY3.LevelSelection, ExportDialogDAISY3.CreateCSVForCues);
+                            false, ExportDialogDAISY3.LevelSelection, ExportDialogDAISY3.CreateCSVForCues, ExportDialogDAISY3.AddCuePoints, ExportDialogDAISY3.IsInsertCuePoints);
 
                         DAISY3ExportInstance.AddSectionNameToAudioFile = ExportDialogDAISY3.AppendSectionNameToAudioFileName;
                         DAISY3ExportInstance.AudioFileNameCharsLimit = ExportDialogDAISY3.AudioFileNameCharsLimit;
@@ -3320,7 +3322,7 @@ ref string exportDirectoryDAISY3,
                         DAISY202ExportInstance = new Obi.ImportExport.DAISY202Export(
                             mSession.Presentation, exportPathDAISY202, ExportDialogDAISY202.EncodeAudioFiles, ExportDialogDAISY202.BitRate,
                             AudioLib.SampleRate.Hz44100, mSettings.Audio_Channels == 2,
-                            ExportDialogDAISY202.LevelSelection, mSettings.Audio_RemoveAccentsFromDaisy2ExportFileNames, ExportDialogDAISY202.CreateCSVForCues);
+                            ExportDialogDAISY202.LevelSelection, mSettings.Audio_RemoveAccentsFromDaisy2ExportFileNames, ExportDialogDAISY202.CreateCSVForCues, ExportDialogDAISY202.AddCuePoints, ExportDialogDAISY202.IsInsertCuePoints);
 
                         DAISY202ExportInstance.AddSectionNameToAudioFile = ExportDialogDAISY202.AppendSectionNameToAudioFileName;
                         DAISY202ExportInstance.AudioFileNameCharsLimit = ExportDialogDAISY202.AudioFileNameCharsLimit;

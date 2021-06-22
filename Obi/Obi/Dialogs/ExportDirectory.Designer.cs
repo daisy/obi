@@ -54,6 +54,7 @@ namespace Obi.Dialogs
             this.m_chkBoxEpubFilenameLengthLimit = new System.Windows.Forms.CheckBox();
             this.m_chkBoxCreateMediaOverlays = new System.Windows.Forms.CheckBox();
             this.m_chkBoxCreateCsvForCues = new System.Windows.Forms.CheckBox();
+            this.m_chkBoxAddCuePointsInAudio = new System.Windows.Forms.CheckBox();
             this.m_grpBoxMP3Encoding.SuspendLayout();
             this.m_grpBoxSectionNameOperation.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.m_numericUpDownFilenameLengthLimit)).BeginInit();
@@ -248,12 +249,20 @@ namespace Obi.Dialogs
             this.m_chkBoxCreateCsvForCues.UseVisualStyleBackColor = true;
             this.m_chkBoxCreateCsvForCues.CheckedChanged += new System.EventHandler(this.m_chkBoxCreateCsvForCues_CheckedChanged);
             // 
+            // m_chkBoxAddCuePointsInAudio
+            // 
+            resources.ApplyResources(this.m_chkBoxAddCuePointsInAudio, "m_chkBoxAddCuePointsInAudio");
+            this.m_chkBoxAddCuePointsInAudio.Name = "m_chkBoxAddCuePointsInAudio";
+            this.m_chkBoxAddCuePointsInAudio.UseVisualStyleBackColor = true;
+            this.m_chkBoxAddCuePointsInAudio.CheckedChanged += new System.EventHandler(this.m_chkBoxAddCuePointsInAudio_CheckedChanged);
+            // 
             // ExportDirectory
             // 
             this.AcceptButton = this.mOKButton;
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.mCancelButton;
+            this.Controls.Add(this.m_chkBoxAddCuePointsInAudio);
             this.Controls.Add(this.m_chkBoxCreateCsvForCues);
             this.Controls.Add(this.m_chkBoxCreateMediaOverlays);
             this.Controls.Add(this.m_chkBoxDummyTextHTMLfiles);
@@ -314,5 +323,6 @@ namespace Obi.Dialogs
         private System.Windows.Forms.Button m_btnEncodingOptions;
         private System.Windows.Forms.CheckBox m_chkBoxCreateMediaOverlays;
         private System.Windows.Forms.CheckBox m_chkBoxCreateCsvForCues;
+        private System.Windows.Forms.CheckBox m_chkBoxAddCuePointsInAudio;
     }
 }

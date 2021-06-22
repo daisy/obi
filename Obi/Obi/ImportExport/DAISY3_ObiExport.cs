@@ -23,11 +23,14 @@ namespace Obi.ImportExport
         protected Dictionary<urakawa.core.TreeNode, string> m_Skippable_UpstreamIdMap = new Dictionary<TreeNode, string>();
         protected Dictionary<XmlDocument, string> m_AnchorSmilDoc_SmileFileNameMap = new Dictionary<XmlDocument, string>();
        
-        private bool m_CreateCSVForCues;              
+        private bool m_CreateCSVForCues;
+        private bool m_AddCuePoints;
+        private bool m_InsertCuePointsInBook;
         private List<string> m_ToDoPhraseTimeings = new List<string>();
+        private Dictionary<string, List<double>> m_TodoCueMarkersDictionary = new Dictionary<string, List<double>>();
 
         public DAISY3_ObiExport(ObiPresentation presentation, string exportDirectory, List<string> navListElementNamesList, bool encodeToMp3,double mp3BitRate ,
-            SampleRate sampleRate, bool stereo, bool skipACM, int audioFileSectionLevel, bool createCSVForCues = false)
+            SampleRate sampleRate, bool stereo, bool skipACM, int audioFileSectionLevel, bool createCSVForCues = false, bool addCuePoints = false, bool insertCuePointsInBook = false)
             : base(presentation, exportDirectory, navListElementNamesList, encodeToMp3, mp3BitRate,
             sampleRate, stereo,
             skipACM, false, true, "")
@@ -35,6 +38,12 @@ namespace Obi.ImportExport
             m_Filename_Content = null;
             m_AudioFileSectionLevel = audioFileSectionLevel;
             m_CreateCSVForCues = createCSVForCues;
+            m_AddCuePoints = addCuePoints;
+            if (m_AddCuePoints)
+                m_InsertCuePointsInBook = insertCuePointsInBook;
+            else
+                m_InsertCuePointsInBook = false;
+
             GeneratorName = "Obi";
         }
 
@@ -186,6 +195,8 @@ if (urakawa.data.DataProviderFactory.CSS_EXTENSION.Equals(ext, StringComparison.
 
                         return false;
                     }
+
+
                     urakawa.media.ExternalAudioMedia externalAudio = GetExternalAudioMedia(n);
                     if (externalAudio == null
                         || (n is EmptyNode
@@ -517,9 +528,10 @@ if (urakawa.data.DataProviderFactory.CSS_EXTENSION.Equals(ext, StringComparison.
                     // add to duration 
                     durationOfCurrentSmil.Add(externalAudio.Duration);
 
+                    string audioFilePath = Path.Combine(m_OutputDirectory, audioFileName);
 
                     // If ToDo phrase, then preserve values for CSV file
-                    if (n is EmptyNode && ((EmptyNode)n).TODO)
+                    if (n is EmptyNode && ((EmptyNode)n).TODO && (m_AddCuePoints || m_CreateCSVForCues))
                     {
                         SectionNode s = ((EmptyNode)n).ParentAs<SectionNode>();
                         double timeToToDoPhrase = 0;
@@ -530,12 +542,26 @@ if (urakawa.data.DataProviderFactory.CSS_EXTENSION.Equals(ext, StringComparison.
                         }
                         timeToToDoPhrase += ((EmptyNode)n).TODOCursorPosition;
                         timeToToDoPhrase = timeToToDoPhrase / 1000;
-                        string strToDoInfo = audioFileName + " , " + timeToToDoPhrase.ToString();
-                        if (!m_ToDoPhraseTimeings.Contains(strToDoInfo))
+                        if (m_CreateCSVForCues)
                         {
-                            m_ToDoPhraseTimeings.Add(strToDoInfo);
-                            Console.WriteLine(strToDoInfo);
+                            string strToDoInfo = audioFileName + " , " + timeToToDoPhrase.ToString();
+                            if (!m_ToDoPhraseTimeings.Contains(strToDoInfo))
+                            {
+                                m_ToDoPhraseTimeings.Add(strToDoInfo);
+                            }
                         }
+
+                        if (m_AddCuePoints)
+                        {
+                            if (!m_TodoCueMarkersDictionary.ContainsKey(audioFilePath))
+                            {
+                                m_TodoCueMarkersDictionary.Add(audioFilePath, new List<double> { timeToToDoPhrase });
+                            }
+                            else
+                                m_TodoCueMarkersDictionary[audioFilePath].Add(timeToToDoPhrase);
+                        }
+
+
                     }
 
                 }
@@ -941,9 +967,15 @@ if (urakawa.data.DataProviderFactory.CSS_EXTENSION.Equals(ext, StringComparison.
             m_TotalTime = new Time(smilElapseTime);
             AddMetadata_Ncx(ncxDocument, totalPageCount.ToString(), maxNormalPageNumber.ToString(), maxDepth.ToString(), ncxCustomTestList);
             XmlReaderWriterHelper.WriteXmlDocument(ncxDocument, Path.Combine(m_OutputDirectory, m_Filename_Ncx),AlwaysIgnoreIndentation? GetXmlWriterSettings(false): null);
+
             if (m_CreateCSVForCues)
             {
                 WriteCuePointsToCSV();
+            }
+            if (m_AddCuePoints)
+            {
+                WriteCueMarkers AddCueMarker = new WriteCueMarkers();
+                AddCueMarker.WriteCues(m_TodoCueMarkersDictionary,m_InsertCuePointsInBook);
             }
         }
 

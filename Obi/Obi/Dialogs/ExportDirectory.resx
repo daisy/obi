@@ -148,7 +148,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;m_lblDirectoryPath.ZOrder" xml:space="preserve">
-    <value>12</value>
+    <value>13</value>
   </data>
   <data name="mPathTextBox.AccessibleName" xml:space="preserve">
     <value>Export directory:</value>
@@ -178,7 +178,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;mPathTextBox.ZOrder" xml:space="preserve">
-    <value>11</value>
+    <value>12</value>
   </data>
   <data name="mSelectButton.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Right</value>
@@ -211,7 +211,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;mSelectButton.ZOrder" xml:space="preserve">
-    <value>10</value>
+    <value>11</value>
   </data>
   <data name="mOKButton.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom</value>
@@ -220,7 +220,7 @@
     <value>Flat</value>
   </data>
   <data name="mOKButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>141, 517</value>
+    <value>141, 564</value>
   </data>
   <data name="mOKButton.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 5, 4, 5</value>
@@ -244,7 +244,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;mOKButton.ZOrder" xml:space="preserve">
-    <value>9</value>
+    <value>10</value>
   </data>
   <data name="mCancelButton.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom</value>
@@ -253,7 +253,7 @@
     <value>Flat</value>
   </data>
   <data name="mCancelButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>310, 517</value>
+    <value>310, 564</value>
   </data>
   <data name="mCancelButton.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 5, 4, 5</value>
@@ -277,7 +277,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;mCancelButton.ZOrder" xml:space="preserve">
-    <value>8</value>
+    <value>9</value>
   </data>
   <data name="m_lblSelectLevelForAudioFiles.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -304,7 +304,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;m_lblSelectLevelForAudioFiles.ZOrder" xml:space="preserve">
-    <value>7</value>
+    <value>8</value>
   </data>
   <data name="m_ComboSelectLevelForAudioFiles.AccessibleName" xml:space="preserve">
     <value>Create one audio file per section till:</value>
@@ -331,7 +331,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;m_ComboSelectLevelForAudioFiles.ZOrder" xml:space="preserve">
-    <value>6</value>
+    <value>7</value>
   </data>
   <data name="m_checkBoxEncoder.AccessibleDescription" xml:space="preserve">
     <value>Encode Audio Files checkbox</value>
@@ -622,7 +622,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;m_grpBoxMP3Encoding.ZOrder" xml:space="preserve">
-    <value>5</value>
+    <value>6</value>
   </data>
   <data name="m_chkBoxFilenameLengthLimit.AccessibleName" xml:space="preserve">
     <value>Filename Length Limit</value>
@@ -721,7 +721,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;m_grpBoxSectionNameOperation.ZOrder" xml:space="preserve">
-    <value>4</value>
+    <value>5</value>
   </data>
   <data name="m_chkBoxDummyTextHTMLfiles.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -760,7 +760,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;m_chkBoxDummyTextHTMLfiles.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>3</value>
   </data>
   <data name="m_numericUpDownEpubFilenameLengthLimit.AccessibleName" xml:space="preserve">
     <value>Numeric Up Down EPUB File name Length Limit</value>
@@ -862,7 +862,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;m_EpubFileNamegroupBox.ZOrder" xml:space="preserve">
-    <value>3</value>
+    <value>4</value>
   </data>
   <data name="m_chkBoxCreateMediaOverlays.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -895,7 +895,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;m_chkBoxCreateMediaOverlays.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>2</value>
   </data>
   <data name="m_chkBoxCreateCsvForCues.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -925,6 +925,36 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;m_chkBoxCreateCsvForCues.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="m_chkBoxAddCuePointsInAudio.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="m_chkBoxAddCuePointsInAudio.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="m_chkBoxAddCuePointsInAudio.Location" type="System.Drawing.Point, System.Drawing">
+    <value>22, 487</value>
+  </data>
+  <data name="m_chkBoxAddCuePointsInAudio.Size" type="System.Drawing.Size, System.Drawing">
+    <value>276, 24</value>
+  </data>
+  <data name="m_chkBoxAddCuePointsInAudio.TabIndex" type="System.Int32, mscorlib">
+    <value>20</value>
+  </data>
+  <data name="m_chkBoxAddCuePointsInAudio.Text" xml:space="preserve">
+    <value>Write TODO Timing as cue point</value>
+  </data>
+  <data name="&gt;&gt;m_chkBoxAddCuePointsInAudio.Name" xml:space="preserve">
+    <value>m_chkBoxAddCuePointsInAudio</value>
+  </data>
+  <data name="&gt;&gt;m_chkBoxAddCuePointsInAudio.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_chkBoxAddCuePointsInAudio.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;m_chkBoxAddCuePointsInAudio.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
@@ -934,7 +964,7 @@
     <value>9, 20</value>
   </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>646, 557</value>
+    <value>646, 604</value>
   </data>
   <data name="$this.Font" type="System.Drawing.Font, System.Drawing">
     <value>Microsoft Sans Serif, 9.75pt</value>

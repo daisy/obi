@@ -2503,6 +2503,15 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to If you want to insert cue points in Daisy book kindly press yes or press no if you want copy of audio files having cue points in a seperate folder..
+        /// </summary>
+        internal static string ExportInsertCuePointOrCopy {
+            get {
+                return ResourceManager.GetString("ExportInsertCuePointOrCopy", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to You are about to save a project file to {0}. It is recommended that you use the .obi file extension. Are you sure you want to keep the selected extension?.
         /// </summary>
         internal static string extension_warning {

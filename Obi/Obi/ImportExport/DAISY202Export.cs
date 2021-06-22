@@ -12,6 +12,7 @@ using urakawa.media.timing;
 using urakawa.property.channel;
 using urakawa.metadata;
 using urakawa.daisy.export.visitor;
+using AudioLib;
 
 namespace Obi.ImportExport
     {
@@ -39,13 +40,16 @@ namespace Obi.ImportExport
         private List<string> m_FilesList = null;
         private bool m_IsRemoveAccentsChecked;
         private bool m_CreateCSVForCues;
+        private bool m_AddCuePoints;
+        private bool m_InsertCuePointsInBook;
         private List<string> m_ToDoPhraseTimeings = new List<string>();
+        private Dictionary<string, List<double>> m_TodoCueMarkersDictionary = new Dictionary<string, List<double>>();
         //private bool m_EncodeToMP3;
         //private int m_BitRate_Mp3;
 
         public DAISY202Export(ObiPresentation presentation, string exportDirectory, bool encodeToMp3, double mp3BitRate, 
             AudioLib.SampleRate sampleRate, bool stereo,
-            int audioFileSectionLevel, bool isRemoveAccentsChecked, bool createCSVForCues = false)
+            int audioFileSectionLevel, bool isRemoveAccentsChecked, bool createCSVForCues = false, bool addCuePoints = false, bool insertCuePointsInBook = false)
             :
             base(presentation, exportDirectory, null, encodeToMp3, mp3BitRate,
             sampleRate, stereo,
@@ -61,6 +65,12 @@ namespace Obi.ImportExport
             m_FilesList_SmilAudio = new List<string>();
             m_IsRemoveAccentsChecked = isRemoveAccentsChecked;
             m_CreateCSVForCues = createCSVForCues;
+            m_AddCuePoints = addCuePoints;
+            if (m_AddCuePoints)
+                m_InsertCuePointsInBook = insertCuePointsInBook;
+            else
+                m_InsertCuePointsInBook = false;
+
                 //m_EncodeToMP3 = encodeToMP3;
 
             }
@@ -231,6 +241,11 @@ namespace Obi.ImportExport
             if (m_CreateCSVForCues)
             {
                 WriteCuePointsToCSV();
+            }
+            if (m_AddCuePoints)
+            {
+                WriteCueMarkers AddCueMarker = new WriteCueMarkers();
+                AddCueMarker.WriteCues(m_TodoCueMarkersDictionary, m_InsertCuePointsInBook);
             }
 
             }
@@ -465,24 +480,38 @@ namespace Obi.ImportExport
                         }
                     // If ToDo phrase, then preserve values for CSV file
                     string audioFileName = relativeSRC;
-                    if (phrase is EmptyNode && ((EmptyNode)phrase).TODO)
-                    {
-                        SectionNode s = ((EmptyNode)phrase).ParentAs<SectionNode>();
-                        double timeToToDoPhrase = 0;
-                        for (int j = 0; i < s.PhraseChildCount; j++)
-                        {
-                            if (s.PhraseChild(j) == phrase) break;
-                            timeToToDoPhrase += s.PhraseChild(j).Duration;
-                        }
-                        timeToToDoPhrase += ((EmptyNode)phrase).TODOCursorPosition;
-                        timeToToDoPhrase = timeToToDoPhrase / 1000;
-                        string strToDoInfo = audioFileName + " , " + timeToToDoPhrase.ToString();
-                        if (!m_ToDoPhraseTimeings.Contains(strToDoInfo))
-                        {
-                            m_ToDoPhraseTimeings.Add(strToDoInfo);
-                            Console.WriteLine(strToDoInfo);
-                        }
-                    }
+                    string audioFilePath = Path.Combine(m_OutputDirectory, audioFileName);
+                       if (phrase is EmptyNode && ((EmptyNode)phrase).TODO && (m_AddCuePoints || m_CreateCSVForCues))
+                       {
+                           SectionNode s = ((EmptyNode)phrase).ParentAs<SectionNode>();
+                           double timeToToDoPhrase = 0;
+                           for (int j = 0; i < s.PhraseChildCount; j++)
+                           {
+                               if (s.PhraseChild(j) == phrase) break;
+                               timeToToDoPhrase += s.PhraseChild(j).Duration;
+                           }
+                           timeToToDoPhrase += ((EmptyNode)phrase).TODOCursorPosition;
+                           timeToToDoPhrase = timeToToDoPhrase / 1000;
+                           if (m_CreateCSVForCues)
+                           {
+                               string strToDoInfo = audioFileName + " , " + timeToToDoPhrase.ToString();
+                               if (!m_ToDoPhraseTimeings.Contains(strToDoInfo))
+                               {
+                                   m_ToDoPhraseTimeings.Add(strToDoInfo);
+                                   Console.WriteLine(strToDoInfo);
+                               }
+                           }
+                           if (m_AddCuePoints)
+                           {
+                               if (!m_TodoCueMarkersDictionary.ContainsKey(audioFilePath))
+                               {
+                                   m_TodoCueMarkersDictionary.Add(audioFilePath, new List<double> { timeToToDoPhrase });
+                               }
+                               else
+                                   m_TodoCueMarkersDictionary[audioFilePath].Add(timeToToDoPhrase);
+                           }
+
+                       }
                 }//Check for audio containing phrase ends
                     isFirstPhrase = false;
 

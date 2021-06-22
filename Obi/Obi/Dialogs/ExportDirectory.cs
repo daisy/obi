@@ -27,6 +27,7 @@ namespace Obi.Dialogs
         private bool m_IsMegaVoiceConnect = false;
         private string m_TemprorayPathOfMegavoiceExport = string.Empty;
         private string m_MegaVoiceExportFileName = string.Empty;
+        private bool m_IsInsertCuePoints = false;
 
         public ExportDirectory(string path, string xukPath, bool encodeToMP3, double bitRate, bool appendSectionNameToAudioFile, string encodingType, Settings settings, bool isMegaVoiceConnect = false,string megaVoiceFileName = "")
         {
@@ -347,6 +348,30 @@ namespace Obi.Dialogs
                 m_chkBoxCreateCsvForCues.Enabled = value;
             }
         }
+
+        public bool AddCuePointsInAudioEnabled
+        {
+            set
+            {
+                m_chkBoxAddCuePointsInAudio.Enabled = value;
+            }
+        }
+
+        public bool AddCuePoints
+        {
+            get 
+            {
+                return m_chkBoxAddCuePointsInAudio.Checked;
+            }
+        }
+
+        public bool IsInsertCuePoints
+        {
+            get
+            {
+                return m_IsInsertCuePoints;
+            }
+        }
         private void mSelectButton_Click(object sender, EventArgs e)
         {
             FolderBrowserDialog dialog = new FolderBrowserDialog();
@@ -425,6 +450,14 @@ namespace Obi.Dialogs
             if (mCanClose && m_chkBoxCreateMediaOverlays.Enabled)
             {
                 mSettings.Export_EpubCreateMediaOverlays = m_chkBoxCreateMediaOverlays.Checked;
+            }
+            if (m_chkBoxAddCuePointsInAudio.Checked)
+            {
+                DialogResult result = MessageBox.Show(Localizer.Message("ExportInsertCuePointOrCopy"), Localizer.Message("Caption_Information"), MessageBoxButtons.YesNo);
+                if (result == DialogResult.Yes)
+                {
+                    m_IsInsertCuePoints = true;
+                }
             }
         }
 
@@ -562,7 +595,37 @@ namespace Obi.Dialogs
             }
             else
             {
-                m_ComboSelectLevelForAudioFiles.Enabled = true;
+                if (m_chkBoxAddCuePointsInAudio.Checked)
+                {
+                    m_ComboSelectLevelForAudioFiles.Enabled = false;
+                }
+                else
+                {
+                    m_ComboSelectLevelForAudioFiles.Enabled = true;
+                }
+            }
+        }
+
+        private void m_chkBoxAddCuePointsInAudio_CheckedChanged(object sender, EventArgs e)
+        {
+            if (m_chkBoxAddCuePointsInAudio.Checked)
+            {
+                m_ComboSelectLevelForAudioFiles.SelectedIndex = 0;
+                m_ComboSelectLevelForAudioFiles.Enabled = false;
+                m_checkBoxEncoder.Enabled = false;
+                m_checkBoxEncoder.Checked = false;
+            }
+            else
+            {
+                if (m_chkBoxCreateCsvForCues.Checked)
+                {
+                    m_ComboSelectLevelForAudioFiles.Enabled = false;
+                }
+                else
+                {
+                    m_ComboSelectLevelForAudioFiles.Enabled = true;
+                }
+                m_checkBoxEncoder.Enabled = true;
             }
         }              
     }
