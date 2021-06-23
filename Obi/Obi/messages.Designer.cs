@@ -2503,7 +2503,7 @@ namespace Obi {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to If you want to insert cue points in Daisy book kindly press yes or press no if you want copy of audio files having cue points in a seperate folder..
+        ///   Looks up a localized string similar to If you want to insert cue points in Daisy book kindly press yes or press no if you want to write audio files with cue points in a seperate folder..
         /// </summary>
         internal static string ExportInsertCuePointOrCopy {
             get {
