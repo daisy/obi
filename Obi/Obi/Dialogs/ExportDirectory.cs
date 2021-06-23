@@ -28,6 +28,7 @@ namespace Obi.Dialogs
         private string m_TemprorayPathOfMegavoiceExport = string.Empty;
         private string m_MegaVoiceExportFileName = string.Empty;
         private bool m_IsInsertCuePoints = false;
+        private bool m_IsCueMarkingAllowed = false;
 
         public ExportDirectory(string path, string xukPath, bool encodeToMP3, double bitRate, bool appendSectionNameToAudioFile, string encodingType, Settings settings, bool isMegaVoiceConnect = false,string megaVoiceFileName = "")
         {
@@ -353,7 +354,18 @@ namespace Obi.Dialogs
         {
             set
             {
-                m_chkBoxAddCuePointsInAudio.Enabled = value;
+                if (m_checkBoxEncoder.Checked)
+                {
+                    m_chkBoxAddCuePointsInAudio.Enabled = false;
+                }
+                else
+                {
+                    m_chkBoxAddCuePointsInAudio.Enabled = value;
+                }
+                if (value)
+                {
+                    m_IsCueMarkingAllowed = true;
+                }
             }
         }
 
@@ -453,7 +465,7 @@ namespace Obi.Dialogs
             }
             if (m_chkBoxAddCuePointsInAudio.Checked)
             {
-                DialogResult result = MessageBox.Show(Localizer.Message("ExportInsertCuePointOrCopy"), Localizer.Message("Caption_Information"), MessageBoxButtons.YesNo);
+                DialogResult result = MessageBox.Show(string.Format(Localizer.Message("ExportInsertCuePointOrCopy"),"\n"), Localizer.Message("Caption_Information"), MessageBoxButtons.YesNo);
                 if (result == DialogResult.Yes)
                 {
                     m_IsInsertCuePoints = true;
@@ -472,6 +484,18 @@ namespace Obi.Dialogs
 
         private void m_checkBoxMP3Encoder_CheckedChanged(object sender, EventArgs e)
         {
+            if (m_IsCueMarkingAllowed)
+            {
+                if (m_checkBoxEncoder.Checked)
+                {
+                    m_chkBoxAddCuePointsInAudio.Enabled = false;
+                    m_chkBoxAddCuePointsInAudio.Checked = false;
+                }
+                else
+                {
+                    m_chkBoxAddCuePointsInAudio.Enabled = true;
+                }
+            }
             m_IsEncoderCheck = m_checkBoxEncoder.Checked;
             m_comboBoxEncodingType.Enabled = m_checkBoxEncoder.Checked;
             m_ComboBoxBitrate.Enabled = m_checkBoxEncoder.Checked;

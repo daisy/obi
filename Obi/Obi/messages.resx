@@ -3192,7 +3192,7 @@ You can do it later also from the project tab of preferences dialog.</value>
     <value>WP AudioBooks</value>
   </data>
   <data name="NoCuePoints" xml:space="preserve">
-    <value>{0} The above audio files don't have any cue points so cannot be imported. You can still import remaining audio files having cue points. Press yes to continue or no to select another set of audio files.</value>
+    <value>{0} The above audio files don't have any cue marks so cannot be imported. You can still import remaining audio files having cue marks. Press yes to continue or no to select another set of audio files.</value>
   </data>
   <data name="AudioMixingFileNotSelected" xml:space="preserve">
     <value>Kindly select audio file for mixing</value>
@@ -3243,6 +3243,6 @@ You can do it later also from the project tab of preferences dialog.</value>
     <value>Page</value>
   </data>
   <data name="ExportInsertCuePointOrCopy" xml:space="preserve">
-    <value>If you want to insert cue points in Daisy book kindly press yes or press no if you want to write audio files with cue points in a seperate folder.</value>
+    <value>If you want to insert cue marks in Daisy book kindly press yes, {0} or press no if you want to write audio files with cue marks in a seperate folder.</value>
   </data>
 </root>

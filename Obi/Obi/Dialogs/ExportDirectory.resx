@@ -937,13 +937,13 @@
     <value>22, 487</value>
   </data>
   <data name="m_chkBoxAddCuePointsInAudio.Size" type="System.Drawing.Size, System.Drawing">
-    <value>276, 24</value>
+    <value>272, 24</value>
   </data>
   <data name="m_chkBoxAddCuePointsInAudio.TabIndex" type="System.Int32, mscorlib">
     <value>18</value>
   </data>
   <data name="m_chkBoxAddCuePointsInAudio.Text" xml:space="preserve">
-    <value>Write TODO Timing as cue point</value>
+    <value>Write TODO timing as cue mark</value>
   </data>
   <data name="&gt;&gt;m_chkBoxAddCuePointsInAudio.Name" xml:space="preserve">
     <value>m_chkBoxAddCuePointsInAudio</value>

@@ -634,13 +634,13 @@
     <value>True</value>
   </data>
   <data name="m_rdbSplitAtCuePoints.Size" type="System.Drawing.Size, System.Drawing">
-    <value>311, 24</value>
+    <value>307, 24</value>
   </data>
   <data name="m_rdbSplitAtCuePoints.TabIndex" type="System.Int32, mscorlib">
     <value>19</value>
   </data>
   <data name="m_rdbSplitAtCuePoints.Text" xml:space="preserve">
-    <value>Split at cue points in  wave audio files</value>
+    <value>Split at cue marks in wave audio files</value>
   </data>
   <data name="&gt;&gt;m_rdbSplitAtCuePoints.Name" xml:space="preserve">
     <value>m_rdbSplitAtCuePoints</value>

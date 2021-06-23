@@ -2503,7 +2503,7 @@ namespace Obi {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to If you want to insert cue points in Daisy book kindly press yes or press no if you want to write audio files with cue points in a seperate folder..
+        ///   Looks up a localized string similar to If you want to insert cue marks in Daisy book kindly press yes, {0} or press no if you want to write audio files with cue marks in a seperate folder..
         /// </summary>
         internal static string ExportInsertCuePointOrCopy {
             get {
@@ -4858,7 +4858,7 @@ namespace Obi {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {0} The above audio files don&apos;t have any cue points so cannot be imported. You can still import remaining audio files having cue points. Press yes to continue or no to select another set of audio files..
+        ///   Looks up a localized string similar to {0} The above audio files don&apos;t have any cue marks so cannot be imported. You can still import remaining audio files having cue marks. Press yes to continue or no to select another set of audio files..
         /// </summary>
         internal static string NoCuePoints {
             get {
