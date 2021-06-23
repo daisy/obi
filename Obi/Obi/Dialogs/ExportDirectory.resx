@@ -229,7 +229,7 @@
     <value>112, 35</value>
   </data>
   <data name="mOKButton.TabIndex" type="System.Int32, mscorlib">
-    <value>18</value>
+    <value>19</value>
   </data>
   <data name="mOKButton.Text" xml:space="preserve">
     <value>&amp;OK</value>
@@ -262,7 +262,7 @@
     <value>112, 35</value>
   </data>
   <data name="mCancelButton.TabIndex" type="System.Int32, mscorlib">
-    <value>19</value>
+    <value>20</value>
   </data>
   <data name="mCancelButton.Text" xml:space="preserve">
     <value>&amp;Cancel</value>
@@ -940,7 +940,7 @@
     <value>276, 24</value>
   </data>
   <data name="m_chkBoxAddCuePointsInAudio.TabIndex" type="System.Int32, mscorlib">
-    <value>20</value>
+    <value>18</value>
   </data>
   <data name="m_chkBoxAddCuePointsInAudio.Text" xml:space="preserve">
     <value>Write TODO Timing as cue point</value>

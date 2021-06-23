@@ -3022,7 +3022,8 @@ namespace Obi.ProjectView
             DialogResult result = DialogResult.Yes;
             foreach (string path in filePaths)
             {
-                ReadCueMarkers readCues = new ReadCueMarkers(path);
+                ReadWriteCueMarkers readCues = new ReadWriteCueMarkers();
+                readCues.ReadCues(path);
                 cuePoints = readCues.ListOfCuePoints;
                 if (cuePoints != null && cuePoints.Count != 0)
                 {

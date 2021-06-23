@@ -974,7 +974,7 @@ if (urakawa.data.DataProviderFactory.CSS_EXTENSION.Equals(ext, StringComparison.
             }
             if (m_AddCuePoints)
             {
-                WriteCueMarkers AddCueMarker = new WriteCueMarkers();
+                ReadWriteCueMarkers AddCueMarker = new ReadWriteCueMarkers();
                 AddCueMarker.WriteCues(m_TodoCueMarkersDictionary,m_InsertCuePointsInBook);
             }
         }

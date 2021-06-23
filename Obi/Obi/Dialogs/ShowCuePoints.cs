@@ -27,7 +27,8 @@ namespace Obi.Dialogs
             foreach (KeyValuePair<string, List<double>> entry in m_CuePointsDictionary)
             {
                 string path = entry.Key;
-                AudioLib.ReadCueMarkers readCues = new AudioLib.ReadCueMarkers(path);
+                AudioLib.ReadWriteCueMarkers readCues = new AudioLib.ReadWriteCueMarkers();
+                readCues.ReadCues(path);
                 List<double> CuePoints = entry.Value;
                 string[] CueLabels = readCues.ListOfCueLabels;
 

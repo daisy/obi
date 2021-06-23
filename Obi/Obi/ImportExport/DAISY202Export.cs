@@ -244,7 +244,7 @@ namespace Obi.ImportExport
             }
             if (m_AddCuePoints)
             {
-                WriteCueMarkers AddCueMarker = new WriteCueMarkers();
+                ReadWriteCueMarkers AddCueMarker = new ReadWriteCueMarkers();
                 AddCueMarker.WriteCues(m_TodoCueMarkersDictionary, m_InsertCuePointsInBook);
             }
 
