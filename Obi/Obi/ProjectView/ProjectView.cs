@@ -7760,7 +7760,15 @@ public bool ShowOnlySelectedSection
                         EmptyNode n = tempSection.PhraseChild(j);
                         if (n.IsRooted && n.Role_ == EmptyNode.Role.Page)
                         {
-                            Commands.Node.Delete deleteCmd = new Commands.Node.Delete(this, n, false);
+                            Commands.Node.Delete deleteCmd;
+                            if (this.Selection.Node == n)
+                            {
+                                deleteCmd = new Commands.Node.Delete(this, n, true, true);
+                            }
+                            else
+                            {
+                               deleteCmd = new Commands.Node.Delete(this, n, false);
+                            }
                             cmd.ChildCommands.Insert(cmd.ChildCommands.Count, deleteCmd);
                         }
                     }

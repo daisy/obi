@@ -19,20 +19,21 @@ namespace Obi.Commands.Node
         /// <summary>
         /// Create a new delete section command from a view.
         /// </summary>
-        public Delete(ProjectView.ProjectView view, ObiNode node, string label)
-            : this(view, node, node.ParentAs<ObiNode>(), node.Index, true)
+        public Delete(ProjectView.ProjectView view, ObiNode node, string label, bool IsAutoPageGenerationInvoked = false)
+            : this(view, node, node.ParentAs<ObiNode>(), node.Index, true, IsAutoPageGenerationInvoked)
         {
             SetDescriptions(label);
         }
 
-        public Delete(ProjectView.ProjectView view, ObiNode node, ObiNode parent, int index, bool update): base(view)
+        public Delete(ProjectView.ProjectView view, ObiNode node, ObiNode parent, int index, bool update, bool IsAutoPageGenerationInvoked = false)
+            : base(view)
         {
             mNode = node;
             mParent = parent;
             mIndex = index;
             if (view.Selection != null && view.Selection.Node == node)
             {
-                mAfter = GetPostDeleteSelection();
+                mAfter = GetPostDeleteSelection(IsAutoPageGenerationInvoked);
             }
             else
             {
@@ -48,8 +49,8 @@ namespace Obi.Commands.Node
         /// <summary>
         /// Create a delete node command with no label and update selection flag (normally to be set to false.)
         /// </summary>
-        public Delete(ProjectView.ProjectView view, ObiNode node, bool update)
-            : this(view, node, "")
+        public Delete(ProjectView.ProjectView view, ObiNode node, bool update, bool IsAutoPageGenerationInvoked = false)
+            : this(view, node, "", IsAutoPageGenerationInvoked)
         {
             UpdateSelection = update;
         }
@@ -110,7 +111,7 @@ namespace Obi.Commands.Node
         }
 
         // Determine what the selection will be after deletion
-        private NodeSelection GetPostDeleteSelection()
+        private NodeSelection GetPostDeleteSelection(bool IsAutoPageGenerationInvoked)
         {
             ObiNode node = null;
             if (mNode is SectionNode)
@@ -143,6 +144,16 @@ namespace Obi.Commands.Node
                     (ObiNode)parent.PhraseChild(index + 1) :
                     index > 0 ? (ObiNode)parent.PhraseChild(index - 1) :
                     (ObiNode)parent;
+                if (IsAutoPageGenerationInvoked && node!= null && node is EmptyNode)
+                {
+                    while (node.Parent == parent && (!(node is PhraseNode) || (node is PhraseNode && ((node as PhraseNode).Role_ == PhraseNode.Role.Page)) &&  node is EmptyNode))
+                    {
+                        if (node.PrecedingNode != null)
+                            node = node.PrecedingNode;
+                        else
+                            break;
+                    }
+                }
             }
             return node == null ? null : new NodeSelection(node, View.Selection.Control);
         }
