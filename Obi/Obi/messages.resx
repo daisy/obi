@@ -3245,7 +3245,4 @@ You can do it later also from the project tab of preferences dialog.</value>
   <data name="ExportInsertCuePointOrCopy" xml:space="preserve">
     <value>If you want to insert cue marks in Daisy book kindly press yes, {0} or press no if you want to write audio files with cue marks in a seperate folder.</value>
   </data>
-  <data name="ChoosePageAudioFileNotSelected" xml:space="preserve">
-    <value>Kindly select file with recorded audio</value>
-  </data>
 </root>

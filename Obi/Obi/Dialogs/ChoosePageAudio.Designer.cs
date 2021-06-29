@@ -83,7 +83,6 @@
             this.m_btnCancel.TabIndex = 6;
             this.m_btnCancel.Text = "&Cancel";
             this.m_btnCancel.UseVisualStyleBackColor = true;
-            this.m_btnCancel.Click += new System.EventHandler(this.m_btnCancel_Click);
             // 
             // m_btnOk
             // 
@@ -125,7 +124,6 @@
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "ChoosePageAudio";
             this.Text = "Choose Page Audio";
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ChoosePageAudio_FormClosing);
             this.ResumeLayout(false);
             this.PerformLayout();
 
