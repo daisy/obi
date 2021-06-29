@@ -1033,6 +1033,15 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Kindly select file with recorded audio.
+        /// </summary>
+        internal static string ChoosePageAudioFileNotSelected {
+            get {
+                return ResourceManager.GetString("ChoosePageAudioFileNotSelected", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Failed to clean project.
         /// </summary>
         internal static string clean_failed_caption {
