@@ -6843,6 +6843,11 @@ ref string exportDirectoryEPUB3)
 
             private void selectedPageAudioFileToolStripMenuItem_Click(object sender, EventArgs e)
             {
+                if (mProjectView.TransportBar.IsPlayerActive)
+                {
+                    if (mProjectView.TransportBar.CurrentState == Obi.ProjectView.TransportBar.State.Playing) mProjectView.TransportBar.Pause();
+                    mProjectView.TransportBar.Stop();
+                }
                 ChoosePageAudio pageAudioDialog = new ChoosePageAudio();
                 NodeSelection tempSelection = mProjectView.Selection;
                 if (pageAudioDialog.ShowDialog() == DialogResult.OK)
@@ -6854,6 +6859,11 @@ ref string exportDirectoryEPUB3)
 
             private void allEmptyPagesAudioFileToolStripMenuItem_Click(object sender, EventArgs e)
             {
+                if (mProjectView.TransportBar.IsPlayerActive)
+                {
+                    if (mProjectView.TransportBar.CurrentState == Obi.ProjectView.TransportBar.State.Playing) mProjectView.TransportBar.Pause();
+                    mProjectView.TransportBar.Stop();
+                }
                 ChoosePageAudio pageAudioDialog = new ChoosePageAudio();
                 if (pageAudioDialog.ShowDialog() == DialogResult.OK)
                 {
