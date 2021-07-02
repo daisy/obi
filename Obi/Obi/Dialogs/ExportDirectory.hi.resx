@@ -168,7 +168,7 @@
     <value />
   </data>
   <data name="mOKButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>141, 533</value>
+    <value>141, 554</value>
   </data>
   <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="mOKButton.TabIndex" type="System.Int32, mscorlib">
@@ -187,7 +187,7 @@
     <value />
   </data>
   <data name="mCancelButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>310, 533</value>
+    <value>310, 554</value>
   </data>
   <data name="mCancelButton.TabIndex" type="System.Int32, mscorlib">
     <value>16</value>
@@ -411,6 +411,9 @@
   <data name="m_chkBoxDummyTextHTMLfiles.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
   </data>
+  <data name="m_chkBoxDummyTextHTMLfiles.Location" type="System.Drawing.Point, System.Drawing">
+    <value>23, 397</value>
+  </data>
   <data name="m_chkBoxDummyTextHTMLfiles.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>3, 5, 3, 5</value>
   </data>
@@ -432,6 +435,9 @@
   <data name="m_numericUpDownEpubFilenameLengthLimit.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>3, 5, 3, 5</value>
   </data>
+  <data name="m_numericUpDownEpubFilenameLengthLimit.ShowHelp" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
   <data name="m_chkBoxEpubFilenameLengthLimit.AccessibleName" xml:space="preserve">
     <value>EPUB फाइल के नाम की अधिकतम सीमा</value>
   </data>
@@ -446,6 +452,9 @@
   </data>
   <data name="m_chkBoxEpubFilenameLengthLimit.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>3, 5, 3, 5</value>
+  </data>
+  <data name="m_chkBoxEpubFilenameLengthLimit.ShowHelp" type="System.Boolean, mscorlib">
+    <value>True</value>
   </data>
   <data name="m_chkBoxEpubFilenameLengthLimit.Size" type="System.Drawing.Size, System.Drawing">
     <value>268, 24</value>
@@ -486,6 +495,9 @@
   <data name="m_chkBoxCreateMediaOverlays.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>3, 5, 3, 5</value>
   </data>
+  <data name="m_chkBoxCreateMediaOverlays.ShowHelp" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
   <data name="m_chkBoxCreateCsvForCues.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
   </data>
@@ -496,13 +508,28 @@
     <value />
   </data>
   <data name="m_chkBoxCreateCsvForCues.Location" type="System.Drawing.Point, System.Drawing">
-    <value>23, 470</value>
+    <value>23, 464</value>
   </data>
   <data name="m_chkBoxCreateCsvForCues.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>3, 4, 3, 4</value>
   </data>
+  <data name="m_chkBoxCreateCsvForCues.ShowHelp" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="m_chkBoxAddCuePointsInAudio.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="m_chkBoxAddCuePointsInAudio.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
+    <value>AssociateIndex</value>
+  </data>
+  <data name="m_chkBoxAddCuePointsInAudio.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="m_chkBoxAddCuePointsInAudio.Location" type="System.Drawing.Point, System.Drawing">
+    <value>23, 495</value>
+  </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>646, 573</value>
+    <value>646, 594</value>
   </data>
   <data name="$this.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
