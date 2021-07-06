@@ -345,6 +345,9 @@ public bool Project_ImportNCCFileWithWindows1252Encoding ; // useful for importi
         [OptionalField]
         public bool ShowGraphicalPeakMeterInsideObiAtStartup;
 
+        [OptionalField]
+        public bool Project_CSVImportHavingSemicolon;
+
         protected static void InitializeDefaultSettings(Settings settings)
         {
             settings.Audio_Channels = 1;
@@ -501,6 +504,7 @@ public bool Project_ImportNCCFileWithWindows1252Encoding ; // useful for importi
             settings.Audio_RecordUsingSingleKeyFromTOC = false;
             settings.Project_DisplayWarningsForSectionDelete = false;
             settings.ShowGraphicalPeakMeterInsideObiAtStartup = false;
+            settings.Project_CSVImportHavingSemicolon = false;
         }
 
         /// <summary>

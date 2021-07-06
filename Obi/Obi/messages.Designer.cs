@@ -6182,6 +6182,15 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Use semicolon as separator instead of comma while creating a project by importing a CSV file.
+        /// </summary>
+        internal static string Project_CSVImportHavingSemicolon {
+            get {
+                return ResourceManager.GetString("Project_CSVImportHavingSemicolon", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Disable roll back for clean up.
         /// </summary>
         internal static string Project_DisableRollBackForCleanUp {

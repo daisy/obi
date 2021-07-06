@@ -3248,4 +3248,7 @@ You can do it later also from the project tab of preferences dialog.</value>
   <data name="ChoosePageAudioFileNotSelected" xml:space="preserve">
     <value>Kindly select file with recorded audio</value>
   </data>
+  <data name="Project_CSVImportHavingSemicolon" xml:space="preserve">
+    <value>Use semicolon as separator instead of comma while creating a project by importing a CSV file</value>
+  </data>
 </root>

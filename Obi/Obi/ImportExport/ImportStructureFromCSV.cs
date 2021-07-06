@@ -58,7 +58,10 @@ namespace Obi.ImportExport
                 string[] cellsInLineArray = null;
                 if (Path.GetExtension(CSVFullPath).ToLower() == ".csv")
                 {
-                    cellsInLineArray = line.Split(',');
+                    if (m_ProjectView.ObiForm.Settings.Project_CSVImportHavingSemicolon)                    
+                        cellsInLineArray = line.Split(';');                    
+                    else
+                        cellsInLineArray = line.Split(',');
                 }
                 else
                 {
