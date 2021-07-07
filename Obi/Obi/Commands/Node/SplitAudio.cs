@@ -156,7 +156,7 @@ namespace Obi.Commands.Node
         /// Create the phrase detection command.
         /// </summary>
         public static CompositeCommand GetPhraseDetectionCommand(ProjectView.ProjectView view, ObiNode node,
-            long threshold, double gap, double before, bool mergeFirstTwoPhrases)
+            long threshold, double gap, double before, bool mergeFirstTwoPhrases, ObiPresentation presentation = null)
         {
         List<PhraseNode> phraseNodesList = new List<PhraseNode> ();
         if (node is PhraseNode)
@@ -173,7 +173,12 @@ namespace Obi.Commands.Node
                 }
             }
             List<List<PhraseNode>> phrasesToMerge = new List<List<PhraseNode>>();
-            CompositeCommand command = view.Presentation.CreateCompositeCommand(Localizer.Message("phrase_detection"));
+            CompositeCommand command = null;
+            if (view.Presentation == null && presentation != null)
+                command = presentation.CreateCompositeCommand(Localizer.Message("phrase_detection"));
+            else
+                command = view.Presentation.CreateCompositeCommand(Localizer.Message("phrase_detection"));
+
             // if phrase is selected but phrase detection node is section,select section
             if ( node is SectionNode && view.GetSelectedPhraseSection != null 
                 && view.GetSelectedPhraseSection == node )
@@ -189,9 +194,13 @@ namespace Obi.Commands.Node
                 PhraseNode phrase = phraseNodesList[j];
                 
                 if ( j == 0 )  index = phrase.Index + 1;
-
-                System.Collections.Generic.List<PhraseNode> phrases = view.Presentation.CreatePhraseNodesFromAudioAssetList (
-                    Obi.Audio.PhraseDetection.Apply ( phrase.Audio.Copy (), threshold, gap, before ) );
+                System.Collections.Generic.List<PhraseNode> phrases = null;
+                if (view.Presentation == null && presentation != null)
+                    phrases = presentation.CreatePhraseNodesFromAudioAssetList(
+                    Obi.Audio.PhraseDetection.Apply(phrase.Audio.Copy(), threshold, gap, before));
+                else 
+                    phrases = view.Presentation.CreatePhraseNodesFromAudioAssetList(
+                        Obi.Audio.PhraseDetection.Apply(phrase.Audio.Copy(), threshold, gap, before));
                 for (int i = 0; i < phrases.Count; ++i)
                     {
                     // Copy page/heading role for the first phrase only

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using urakawa.command;
+using System.Windows.Forms;
 
 namespace Obi.ImportExport
 {
@@ -13,6 +14,10 @@ namespace Obi.ImportExport
         private ObiPresentation m_Presentation ;
         private List<string> m_audioFilePath = new List<string>();
         private ProjectView.ProjectView m_ProjectView;
+        private bool m_IsPhraseDetectionSettingsShown = false;
+        private long m_Threshold;
+        private double m_Gap;
+        private double m_LeadingSilence; 
 
         public ImportStructureFromCSV()
         {
@@ -196,6 +201,10 @@ namespace Obi.ImportExport
 
         public void ImportAudio(string path,SectionNode sectionNode)
         {
+            bool applyPhraseDetection = true;
+
+          
+
              List<string> tempAudioFilePaths = new List<string>();
              string[] tempAudioFilePathsArray = new string[1];
 
@@ -210,6 +219,28 @@ namespace Obi.ImportExport
 
             path = tempAudioFilePathsArray[0];
 
+            if (applyPhraseDetection && !m_IsPhraseDetectionSettingsShown)
+            {
+                m_Threshold = (long)m_ProjectView.ObiForm.Settings.Audio_DefaultThreshold;
+                m_Gap = (double)m_ProjectView.ObiForm.Settings.Audio_DefaultGap;
+                m_LeadingSilence = (double)m_ProjectView.ObiForm.Settings.Audio_DefaultLeadingSilence;
+                Dialogs.SentenceDetection sentenceDetection = new Obi.Dialogs.SentenceDetection(m_Threshold, m_Gap, m_LeadingSilence, m_ProjectView.ObiForm.Settings); //@fontconfig
+                if (sentenceDetection.ShowDialog() == DialogResult.OK)
+                {
+                    m_Threshold = sentenceDetection.Threshold;
+                    m_Gap = sentenceDetection.Gap;
+                    m_LeadingSilence = sentenceDetection.LeadingSilence;
+                    m_IsPhraseDetectionSettingsShown = true;
+                }
+                else
+                {
+                    return;
+                }
+            }
+            else
+            {
+
+            }
             try
             {
                 if (path != string.Empty)
@@ -218,12 +249,18 @@ namespace Obi.ImportExport
 
                     if (phraseNode != null)
                         m_Presentation.Do(this.GetCommandForImportAudioFileInEachSection(phraseNode, sectionNode));
+                    if (applyPhraseDetection)
+                    {
+                        ApplyPhraseDetectionOnPhrase(phraseNode, m_Threshold, m_Gap, m_LeadingSilence);
+                    }
                 }
             }
             catch (Exception e)
             {
                 System.Windows.Forms.MessageBox.Show(path + ": " + e.Message, Localizer.Message("Caption_Error"));
             }
+
+           
         }
 
 
@@ -235,5 +272,11 @@ namespace Obi.ImportExport
             return command;
         }
 
+        private void ApplyPhraseDetectionOnPhrase(PhraseNode phraseNode, long threshold, double gap, double before)
+        {
+            urakawa.command.CompositeCommand phraseDetectionCommand = null;
+            phraseDetectionCommand = Commands.Node.SplitAudio.GetPhraseDetectionCommand(m_ProjectView, phraseNode, threshold, gap, before, m_ProjectView.ObiForm.Settings.Audio_MergeFirstTwoPhrasesAfterPhraseDetection,m_Presentation);
+            m_Presentation.Do(phraseDetectionCommand);
+        }
     }
 }
