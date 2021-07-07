@@ -59,6 +59,7 @@ namespace Obi.Dialogs
                 m_CheckBoxListView.Items.Add(Localizer.Message("Project_SaveTOCViewWidth"));
                 m_CheckBoxListView.Items.Add(Localizer.Message("Project_MaximumPhrasesSelectLimit"));
                 m_CheckBoxListView.Items.Add(Localizer.Message("Project_CSVImportHavingSemicolon"));
+                m_CheckBoxListView.Items.Add(Localizer.Message("Project_CSVImportPhraseDetection"));
 
 
                 
@@ -82,7 +83,9 @@ namespace Obi.Dialogs
                 m_CheckBoxListView.Items[7].Checked = m_Settings.Project_MaximumPhrasesSelectLimit;
                 m_CheckBoxListView.Items[7].ToolTipText = Localizer.Message("Project_MaximumPhrasesSelectLimit");
                 m_CheckBoxListView.Items[8].Checked = m_Settings.Project_CSVImportHavingSemicolon;
-                m_CheckBoxListView.Items[8].ToolTipText = Localizer.Message("Project_CSVImportHavingSemicolon"); 
+                m_CheckBoxListView.Items[8].ToolTipText = Localizer.Message("Project_CSVImportHavingSemicolon");
+                m_CheckBoxListView.Items[9].Checked = m_Settings.Project_CSVImportPhraseDetection;
+                m_CheckBoxListView.Items[9].ToolTipText = Localizer.Message("Project_CSVImportPhraseDetection");
             }
             else
             {   //helpProvider1.HelpNamespace = Localizer.Message("CHMhelp_file_name");
@@ -166,6 +169,7 @@ namespace Obi.Dialogs
                 m_Settings.Project_SaveTOCViewWidth = m_CheckBoxListView.Items[6].Checked; 
                 m_Settings.Project_MaximumPhrasesSelectLimit = m_CheckBoxListView.Items[7].Checked;
                 m_Settings.Project_CSVImportHavingSemicolon = m_CheckBoxListView.Items[8].Checked;
+                m_Settings.Project_CSVImportPhraseDetection = m_CheckBoxListView.Items[9].Checked;
             }
             else
             {

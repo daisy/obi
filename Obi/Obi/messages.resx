@@ -3251,4 +3251,7 @@ You can do it later also from the project tab of preferences dialog.</value>
   <data name="Project_CSVImportHavingSemicolon" xml:space="preserve">
     <value>Use semicolon as separator instead of comma while creating a project by importing a CSV file</value>
   </data>
+  <data name="Project_CSVImportPhraseDetection" xml:space="preserve">
+    <value>Apply phrase detection while creating a project by importing a CSV file</value>
+  </data>
 </root>

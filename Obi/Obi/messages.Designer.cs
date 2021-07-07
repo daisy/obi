@@ -6191,6 +6191,15 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Apply phrase detection while creating a project by importing a CSV file.
+        /// </summary>
+        internal static string Project_CSVImportPhraseDetection {
+            get {
+                return ResourceManager.GetString("Project_CSVImportPhraseDetection", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Disable roll back for clean up.
         /// </summary>
         internal static string Project_DisableRollBackForCleanUp {

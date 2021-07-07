@@ -200,11 +200,7 @@ namespace Obi.ImportExport
         }
 
         public void ImportAudio(string path,SectionNode sectionNode)
-        {
-            bool applyPhraseDetection = true;
-
-          
-
+        { 
              List<string> tempAudioFilePaths = new List<string>();
              string[] tempAudioFilePathsArray = new string[1];
 
@@ -219,7 +215,7 @@ namespace Obi.ImportExport
 
             path = tempAudioFilePathsArray[0];
 
-            if (applyPhraseDetection && !m_IsPhraseDetectionSettingsShown)
+            if (m_ProjectView.ObiForm.Settings.Project_CSVImportPhraseDetection && !m_IsPhraseDetectionSettingsShown)
             {
                 m_Threshold = (long)m_ProjectView.ObiForm.Settings.Audio_DefaultThreshold;
                 m_Gap = (double)m_ProjectView.ObiForm.Settings.Audio_DefaultGap;
@@ -249,7 +245,7 @@ namespace Obi.ImportExport
 
                     if (phraseNode != null)
                         m_Presentation.Do(this.GetCommandForImportAudioFileInEachSection(phraseNode, sectionNode));
-                    if (applyPhraseDetection)
+                    if (m_ProjectView.ObiForm.Settings.Project_CSVImportPhraseDetection)
                     {
                         ApplyPhraseDetectionOnPhrase(phraseNode, m_Threshold, m_Gap, m_LeadingSilence);
                     }

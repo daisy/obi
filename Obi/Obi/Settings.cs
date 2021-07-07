@@ -348,6 +348,9 @@ public bool Project_ImportNCCFileWithWindows1252Encoding ; // useful for importi
         [OptionalField]
         public bool Project_CSVImportHavingSemicolon;
 
+        [OptionalField]
+        public bool Project_CSVImportPhraseDetection;
+
         protected static void InitializeDefaultSettings(Settings settings)
         {
             settings.Audio_Channels = 1;
@@ -505,6 +508,7 @@ public bool Project_ImportNCCFileWithWindows1252Encoding ; // useful for importi
             settings.Project_DisplayWarningsForSectionDelete = false;
             settings.ShowGraphicalPeakMeterInsideObiAtStartup = false;
             settings.Project_CSVImportHavingSemicolon = false;
+            settings.Project_CSVImportPhraseDetection = false;
         }
 
         /// <summary>
