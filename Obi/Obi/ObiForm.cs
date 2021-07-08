@@ -634,7 +634,14 @@ namespace Obi
                                                                      {
                                                                          ImportExport.ImportStructureFromCSV csvImport = new Obi.ImportExport.ImportStructureFromCSV();
                                                                          csvImport.ImportFromCSVFile(xhtmlPath, mSession.Presentation, mProjectView);
-                                                                         audioFilePaths = csvImport.AudioFilePaths;                                                                         
+                                                                         audioFilePaths = csvImport.AudioFilePaths;
+                                                                         string DirectoryName = Path.GetDirectoryName(xhtmlPath);
+                                                                         string metaDataFilePath = DirectoryName + "\\metadata.csv"; 
+                                                                         if(File.Exists(metaDataFilePath))
+                                                                         {
+                                                                             ImportExport.ImportMetadata metadataImport = new ImportMetadata();
+                                                                             metadataImport.ImportFromCSVFile(metaDataFilePath, mSession.Presentation);
+                                                                         }
                                                                      }
                                                                      else
                                                                      {
