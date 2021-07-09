@@ -196,6 +196,8 @@ private static Dictionary <string,string> m_SkippableLocalizedNameMap = null ;
             mCustomRole = node.mCustomRole;
             mPageNumber = node.mPageNumber != null ? node.mPageNumber.Clone() : null;
             mTODO = node.TODO;
+            if(node.m_CommentText != null)
+            m_CommentText = node.m_CommentText;
         }
 
         /// <summary>
