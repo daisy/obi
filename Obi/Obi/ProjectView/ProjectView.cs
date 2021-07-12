@@ -3419,6 +3419,7 @@ for (int j = 0;
                 }
                 bool isException = false ;
                 EmptyNode nodeToBeSelected = null;
+                bool cancelOperation = false;
 
                 string pageInLocalization = Localizer.Message("PageForTTSLoclization");
                 AudioLib.WavAudioProcessing Convcatenate = new AudioLib.WavAudioProcessing();
@@ -3431,7 +3432,7 @@ for (int j = 0;
                         {
                             cmd.ChildCommands.Insert( cmd.ChildCommands.Count, new Commands.UpdateSelection (this, new NodeSelection(Selection.Node,Selection.Control)) );
                         }
-                        bool cancelOperation = false;
+                        cancelOperation = false;
                     Dialogs.ProgressDialog progress = new Dialogs.ProgressDialog ( Localizer.Message ( "SpeechGenerationProgress" ),
                         delegate(Dialogs.ProgressDialog progress1)
                             {
@@ -3510,7 +3511,10 @@ for (int j = 0;
                     {
                         if (!isException &&  listOfEmptyPages!=null && listOfEmptyPages.Count > 0)
                         {
-                            MessageBox.Show(Localizer.Message("ProjectView_GenarteSpeechForAllPages"), Localizer.Message("information_caption"), MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            if (!cancelOperation)
+                                MessageBox.Show(Localizer.Message("ProjectView_GenarteSpeechForAllPages"), Localizer.Message("information_caption"), MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            else
+                                MessageBox.Show(Localizer.Message("ProjectView_GenarteSpeechForAllPagesCancelled"), Localizer.Message("information_caption"), MessageBoxButtons.OK, MessageBoxIcon.Information);
                             //if (Selection != null && !Selection.Node.IsRooted && selectedPhraseIndex > -1)
                             //{
                                 //if (selectedSection != null && selectedPhraseIndex < selectedSection.PhraseChildCount) Selection = new NodeSelection(selectedSection.PhraseChild(selectedPhraseIndex), mContentView);
