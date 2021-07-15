@@ -17,7 +17,8 @@ namespace Obi.ImportExport
         private bool m_IsPhraseDetectionSettingsShown = false;
         private long m_Threshold;
         private double m_Gap;
-        private double m_LeadingSilence; 
+        private double m_LeadingSilence;
+        private string m_audioFilesNotImported = string.Empty;
 
         public ImportStructureFromCSV()
         {
@@ -45,6 +46,14 @@ namespace Obi.ImportExport
             get
             {
                 return m_audioFilePath;
+            }
+        }
+
+        public string AudioFilesNotImported
+        {
+            get
+            {
+                return m_audioFilesNotImported;
             }
         }
         private void ReadListsFromCSVFile(List<int> levelsList, List<string> sectionNamesList, List<int> pagesPerSection, string CSVFullPath)
@@ -204,14 +213,18 @@ namespace Obi.ImportExport
              List<string> tempAudioFilePaths = new List<string>();
              string[] tempAudioFilePathsArray = new string[1];
 
-             if (path != string.Empty && System.IO.File.Exists(path) && (System.IO.Path.GetExtension(path).ToLower() == ".wav" || System.IO.Path.GetExtension(path).ToLower() == ".mp3" 
+             if (path != string.Empty && System.IO.File.Exists(path) && (System.IO.Path.GetExtension(path).ToLower() == ".wav" || System.IO.Path.GetExtension(path).ToLower() == ".mp3"
                  || System.IO.Path.GetExtension(path).ToLower() == ".mp4" || System.IO.Path.GetExtension(path).ToLower() == ".m4a"))
-            {
-                tempAudioFilePathsArray[0] = path;
-                tempAudioFilePathsArray = Audio.AudioFormatConverter.ConvertFiles(tempAudioFilePathsArray, m_Presentation);
-            }
-            else
-                tempAudioFilePathsArray[0] = string.Empty;
+             {
+                 tempAudioFilePathsArray[0] = path;
+                 tempAudioFilePathsArray = Audio.AudioFormatConverter.ConvertFiles(tempAudioFilePathsArray, m_Presentation);
+             }
+             else
+             {
+                 tempAudioFilePathsArray[0] = string.Empty;
+                 if (path != string.Empty)
+                     m_audioFilesNotImported +=  ", "+ Path.GetFileName(path);
+             }
 
             path = tempAudioFilePathsArray[0];
 
@@ -221,21 +234,13 @@ namespace Obi.ImportExport
                 m_Gap = (double)m_ProjectView.ObiForm.Settings.Audio_DefaultGap;
                 m_LeadingSilence = (double)m_ProjectView.ObiForm.Settings.Audio_DefaultLeadingSilence;
                 Dialogs.SentenceDetection sentenceDetection = new Obi.Dialogs.SentenceDetection(m_Threshold, m_Gap, m_LeadingSilence, m_ProjectView.ObiForm.Settings); //@fontconfig
+                m_IsPhraseDetectionSettingsShown = true;
                 if (sentenceDetection.ShowDialog() == DialogResult.OK)
                 {
                     m_Threshold = sentenceDetection.Threshold;
                     m_Gap = sentenceDetection.Gap;
                     m_LeadingSilence = sentenceDetection.LeadingSilence;
-                    m_IsPhraseDetectionSettingsShown = true;
                 }
-                else
-                {
-                    return;
-                }
-            }
-            else
-            {
-
             }
             try
             {

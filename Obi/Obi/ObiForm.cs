@@ -624,6 +624,7 @@ namespace Obi
                 mSession.CreateNewPresentationInBackend(path, title, false, id, mSettings, true, audioChannels, audioSampleRate);
                 ImportExport.DAISY202Import import = new Obi.ImportExport.DAISY202Import(xhtmlPath, mSession.Presentation, mSettings);
                 List<string> audioFilePaths = new List<string>();
+                string audioFilesNotImportedDuringCSVImport = string.Empty;
                 
                                 
                 ProgressDialog progress = new ProgressDialog(Localizer.Message("import_progress_dialog_title"),
@@ -635,6 +636,7 @@ namespace Obi
                                                                          ImportExport.ImportStructureFromCSV csvImport = new Obi.ImportExport.ImportStructureFromCSV();
                                                                          csvImport.ImportFromCSVFile(xhtmlPath, mSession.Presentation, mProjectView);
                                                                          audioFilePaths = csvImport.AudioFilePaths;
+                                                                         audioFilesNotImportedDuringCSVImport = csvImport.AudioFilesNotImported;
                                                                          string DirectoryName = Path.GetDirectoryName(xhtmlPath);
                                                                          string metaDataFilePath = DirectoryName + "\\metadata.csv"; 
                                                                          if(File.Exists(metaDataFilePath))
@@ -663,14 +665,30 @@ namespace Obi
                     new System.ComponentModel.ProgressChangedEventHandler(progress.UpdateProgressBar);
                 progress.ShowDialog();
                 if (progress.Exception != null) throw progress.Exception;
-                
-                Dialogs.ReportDialog reportDialog = new ReportDialog(Localizer.Message("Report_for_import"),
-                    import.RequestCancellation ? Localizer.Message("import_cancelled")
-                                                                     : String.Format(
-                                                                         Localizer.Message("import_output_path"),
-                                                                         import != null && import.ErrorsList.Count > 0 ? Localizer.Message("ImportErrorCorrectionText") : "",
-                                                                         path),
-                                                                 import != null ? import.ErrorsList : null);
+
+                Dialogs.ReportDialog reportDialog;
+                if (audioFilesNotImportedDuringCSVImport != string.Empty)
+                {
+                    reportDialog = new ReportDialog(Localizer.Message("Report_for_import"),
+                           import.RequestCancellation ? Localizer.Message("import_cancelled")
+                                                                            : String.Format(
+                                                                                Localizer.Message("ImportOfCSVWhenSomeFilesNotImported"),
+                                                                                import != null && import.ErrorsList.Count > 0 ? Localizer.Message("ImportErrorCorrectionText") : "",
+                                                                                path, string.Format(Localizer.Message("FilesNotImportedDuringCSVImport"), audioFilesNotImportedDuringCSVImport)),
+                                                                        import != null ? import.ErrorsList : null);
+                    
+                }
+                else
+                {
+                    reportDialog = new ReportDialog(Localizer.Message("Report_for_import"),
+                           import.RequestCancellation ? Localizer.Message("import_cancelled")
+                                                                            : String.Format(
+                                                                                Localizer.Message("import_output_path"),
+                                                                                import != null && import.ErrorsList.Count > 0 ? Localizer.Message("ImportErrorCorrectionText") : "",
+                                                                                path),
+                                                                        import != null ? import.ErrorsList : null);
+                    
+                }
 
                 reportDialog.ShowDialog();
                 return !import.RequestCancellation; 

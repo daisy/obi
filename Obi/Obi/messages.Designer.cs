@@ -2620,6 +2620,15 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to but some files namely {0} are not imported .
+        /// </summary>
+        internal static string FilesNotImportedDuringCSVImport {
+            get {
+                return ResourceManager.GetString("FilesNotImportedDuringCSVImport", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to XHTML, Opf, XML, Csv, Txt, Epub file (*.htm;*.html;*.xhtml;*.opf;*.xml;*.epub;*.csv;*.txt)|*.htm;*.html;*.xhtml;*.opf;*.xml;*.epub;*.csv;*.txt|Any file|*.*.
         /// </summary>
         internal static string filter {
@@ -3012,6 +3021,15 @@ namespace Obi {
         internal static string importing_file {
             get {
                 return ResourceManager.GetString("importing_file", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The daisy book is successfully imported {0} at {1} {2}.
+        /// </summary>
+        internal static string ImportOfCSVWhenSomeFilesNotImported {
+            get {
+                return ResourceManager.GetString("ImportOfCSVWhenSomeFilesNotImported", resourceCulture);
             }
         }
         
@@ -6502,6 +6520,15 @@ namespace Obi {
         internal static string ProjectView_GenarteSpeechForAllPages {
             get {
                 return ResourceManager.GetString("ProjectView_GenarteSpeechForAllPages", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Speech is not generated for all pages. Process is cancelled in between..
+        /// </summary>
+        internal static string ProjectView_GenarteSpeechForAllPagesCancelled {
+            get {
+                return ResourceManager.GetString("ProjectView_GenarteSpeechForAllPagesCancelled", resourceCulture);
             }
         }
         

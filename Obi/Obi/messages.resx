@@ -3254,4 +3254,13 @@ You can do it later also from the project tab of preferences dialog.</value>
   <data name="Project_CSVImportPhraseDetection" xml:space="preserve">
     <value>Apply phrase detection while creating a project by importing a CSV file</value>
   </data>
+  <data name="ProjectView_GenarteSpeechForAllPagesCancelled" xml:space="preserve">
+    <value>Speech is not generated for all pages. Process is cancelled in between.</value>
+  </data>
+  <data name="FilesNotImportedDuringCSVImport" xml:space="preserve">
+    <value>but some files namely {0} are not imported </value>
+  </data>
+  <data name="ImportOfCSVWhenSomeFilesNotImported" xml:space="preserve">
+    <value>The daisy book is successfully imported {0} at {1} {2}</value>
+  </data>
 </root>
