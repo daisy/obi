@@ -669,7 +669,10 @@ namespace Obi
                 {
                     System.Diagnostics.Debug.Assert(revisionDate != null);
                     //int rev = Int32.Parse(revision.getContent()) + 1;
-                    int rev = Int32.Parse(revision.NameContentAttribute.Value) + 1;//sdk2
+                    //int rev = Int32.Parse(revision.NameContentAttribute.Value) + 1;//sdk2
+                    int rev;
+                    Int32.TryParse(revision.NameContentAttribute.Value, out rev);
+                    rev = rev + 1;
                     SetMetadataEntryContent(revision, rev.ToString());
                     if (revisionDate == null)
                         SetSingleMetadataItem(Metadata.DTB_REVISION_DATE, date);
