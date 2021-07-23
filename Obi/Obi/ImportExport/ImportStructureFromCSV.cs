@@ -135,12 +135,31 @@ namespace Obi.ImportExport
                             }
                             else
                             {
-                                if (Path.GetPathRoot(cellsInLineArray[i]) == string.Empty)
+                                try
                                 {
-                                    cellsInLineArray[i] = Path.GetDirectoryName(CSVFullPath) + "\\" + cellsInLineArray[i];
+                                    if (Path.GetPathRoot(cellsInLineArray[i]) == string.Empty)
+                                    {
+                                        cellsInLineArray[i] = Path.GetDirectoryName(CSVFullPath) + "\\" + cellsInLineArray[i];
+                                    }
+                                    string filePath = cellsInLineArray[i];
+                                    audioFilePath.Add(filePath);
                                 }
-                                string filePath = cellsInLineArray[i]; 
-                                audioFilePath.Add(filePath);
+                                catch (ArgumentException ex)
+                                {
+                                    string audioFile = string.Empty;
+                                    for (int j = i; j < cellsInLineArray.Length; j++)
+                                    {
+                                        //audioFile.Trim(new Char[] { '"' });
+                                        audioFile += cellsInLineArray[j];
+                                    }
+
+                                    audioFile = audioFile.Replace("\"", string.Empty).Trim();
+                                    m_audioFilesNotImported += ", " + audioFile;
+                                }
+                                catch (Exception ex)
+                                {
+                                    MessageBox.Show(ex.ToString());
+                                }
                             }
                         }
                         
