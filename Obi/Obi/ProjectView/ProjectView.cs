@@ -4390,6 +4390,7 @@ for (int j = 0;
         protected override bool ProcessCmdKey ( ref Message msg, Keys key )
             {
             if (!CanUseKey ( key )) return false;
+            if (IsFindTextActive()) return false;
             SetF1Help(key);
             if (key==keyboardShortcuts.ContentView_FastPlayNormalizeWithElapseBack.Value || key==keyboardShortcuts.ContentView_FastPlayWithElapseForward.Value)
             {
@@ -4403,6 +4404,15 @@ for (int j = 0;
 
         // Trap the delete key to prevent deleting a node during text editing
         private bool CanUseKey ( Keys key ) { return !((Selection is TextSelection || mFindInText.ContainsFocus) && key == Keys.Delete); }
+
+        private bool IsFindTextActive()
+        {
+            if (mFindInText.ContainsFocus)
+            {
+                return true;
+            }
+            return false;
+        }
 
         private void SetF1Help(Keys key)
         {

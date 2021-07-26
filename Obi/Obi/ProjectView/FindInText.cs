@@ -495,64 +495,79 @@ namespace Obi.ProjectView
 
             ObiNode foundNode = null;
             if (direction == SearchDirection.NEXT)
-                {
+            {
 
                 int iterationIndex = currentlySelectedNode == null ? -1 : currentlySelectedNode.Index;
 
                 for (int i = 0; i < m_SectionActiveInContentView.PhraseChildCount; ++i)
-                    {
+                {
                     ++iterationIndex;
                     if (iterationIndex >= m_SectionActiveInContentView.PhraseChildCount)
-                        {
+                    {
                         iterationIndex = 0;
-                        System.Media.SystemSounds.Beep.Play ();
-                        }
-                    if (m_SectionActiveInContentView.PhraseChild ( iterationIndex ).BaseStringShort ().Contains ( searchString.ToLower () ))
-                        {
-                        foundNode = m_SectionActiveInContentView.PhraseChild ( iterationIndex );
+                        System.Media.SystemSounds.Beep.Play();
+                    }
+                    if (m_SectionActiveInContentView.PhraseChild(iterationIndex).BaseStringShort().Contains(searchString.ToLower()))
+                    {
+                        foundNode = m_SectionActiveInContentView.PhraseChild(iterationIndex);
                         if (!mFoundFirst) mFoundFirst = true;
                         break;
-                        }
+                    }
 
                     if (iterationIndex == m_SectionActiveInContentView.PhraseChildCount - 1
-                        && m_SectionActiveInContentView.Label.ToLower ().Contains ( searchString.ToLower () ))
-                        {
+                        && m_SectionActiveInContentView.Label.ToLower().Contains(searchString.ToLower()))
+                    {
                         foundNode = m_SectionActiveInContentView;
                         if (!mFoundFirst) mFoundFirst = true;
                         break;
-                        }
+                    }
 
+                    if (m_SectionActiveInContentView.PhraseChild(iterationIndex).TODO
+                        && m_SectionActiveInContentView.PhraseChild(iterationIndex).CommentText != null && m_SectionActiveInContentView.PhraseChild(iterationIndex).CommentText.ToLower().Contains(searchString.ToLower()))
+                    {
+                        foundNode = m_SectionActiveInContentView.PhraseChild(iterationIndex);
+                        if (!mFoundFirst) mFoundFirst = true;
+                        break;
                     }
 
                 }
+
+            }
             else
-                {
+            {
                 int iterationIndex = currentlySelectedNode == null ? m_SectionActiveInContentView.PhraseChildCount : currentlySelectedNode.Index;
 
                 for (int i = m_SectionActiveInContentView.PhraseChildCount - 1; i >= 0; --i)
-                    {
+                {
                     --iterationIndex;
                     if (iterationIndex < 0)
-                        {
+                    {
                         iterationIndex = m_SectionActiveInContentView.PhraseChildCount - 1;
-                        System.Media.SystemSounds.Beep.Play ();
-                        }
-                    if (m_SectionActiveInContentView.PhraseChild ( iterationIndex ).BaseStringShort ().ToLower ().Contains ( searchString.ToLower () ))
-                        {
-                        foundNode = m_SectionActiveInContentView.PhraseChild ( iterationIndex );
+                        System.Media.SystemSounds.Beep.Play();
+                    }
+                    if (m_SectionActiveInContentView.PhraseChild(iterationIndex).BaseStringShort().ToLower().Contains(searchString.ToLower()))
+                    {
+                        foundNode = m_SectionActiveInContentView.PhraseChild(iterationIndex);
                         break;
-                        }
+                    }
 
                     if (iterationIndex == 0
-                        && m_SectionActiveInContentView.Label.ToLower ().Contains ( searchString.ToLower () ))
-                        {
+                        && m_SectionActiveInContentView.Label.ToLower().Contains(searchString.ToLower()))
+                    {
                         foundNode = m_SectionActiveInContentView;
                         break;
-                        }
-
+                    }
+                    if (m_SectionActiveInContentView.PhraseChild(iterationIndex).TODO
+                       && m_SectionActiveInContentView.PhraseChild(iterationIndex).CommentText != null && m_SectionActiveInContentView.PhraseChild(iterationIndex).CommentText.ToLower().Contains(searchString.ToLower()))
+                    {
+                        foundNode = m_SectionActiveInContentView.PhraseChild(iterationIndex);
+                        if (!mFoundFirst) mFoundFirst = true;
+                        break;
                     }
 
                 }
+
+            }
             if (foundNode != null && m_ContentView != null)
                 {
                 if (m_FindStartNode != null && m_FindStartNode == foundNode)
