@@ -3025,11 +3025,11 @@ namespace Obi {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The daisy book is successfully imported {0} at {1} {2}.
+        ///   Looks up a localized string similar to CSV is successfully imported {0} at {1} {2}.
         /// </summary>
-        internal static string ImportOfCSVWhenSomeFilesNotImported {
+        internal static string ImportOfCSVStatus {
             get {
-                return ResourceManager.GetString("ImportOfCSVWhenSomeFilesNotImported", resourceCulture);
+                return ResourceManager.GetString("ImportOfCSVStatus", resourceCulture);
             }
         }
         

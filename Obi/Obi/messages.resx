@@ -3260,7 +3260,7 @@ You can do it later also from the project tab of preferences dialog.</value>
   <data name="FilesNotImportedDuringCSVImport" xml:space="preserve">
     <value>but some files namely {0} are not imported </value>
   </data>
-  <data name="ImportOfCSVWhenSomeFilesNotImported" xml:space="preserve">
-    <value>The daisy book is successfully imported {0} at {1} {2}</value>
+  <data name="ImportOfCSVStatus" xml:space="preserve">
+    <value>CSV is successfully imported {0} at {1} {2}</value>
   </data>
 </root>

@@ -672,7 +672,7 @@ namespace Obi
                     reportDialog = new ReportDialog(Localizer.Message("Report_for_import"),
                            import.RequestCancellation ? Localizer.Message("import_cancelled")
                                                                             : String.Format(
-                                                                                Localizer.Message("ImportOfCSVWhenSomeFilesNotImported"),
+                                                                                Localizer.Message("ImportOfCSVStatus"),
                                                                                 import != null && import.ErrorsList.Count > 0 ? Localizer.Message("ImportErrorCorrectionText") : "",
                                                                                 path, string.Format(Localizer.Message("FilesNotImportedDuringCSVImport"), audioFilesNotImportedDuringCSVImport)),
                                                                         import != null ? import.ErrorsList : null);
@@ -683,9 +683,9 @@ namespace Obi
                     reportDialog = new ReportDialog(Localizer.Message("Report_for_import"),
                            import.RequestCancellation ? Localizer.Message("import_cancelled")
                                                                             : String.Format(
-                                                                                Localizer.Message("import_output_path"),
+                                                                                Localizer.Message("ImportOfCSVStatus"),
                                                                                 import != null && import.ErrorsList.Count > 0 ? Localizer.Message("ImportErrorCorrectionText") : "",
-                                                                                path),
+                                                                                path,string.Empty),
                                                                         import != null ? import.ErrorsList : null);
                     
                 }

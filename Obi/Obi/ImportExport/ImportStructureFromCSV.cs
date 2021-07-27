@@ -244,8 +244,8 @@ namespace Obi.ImportExport
                  if (path != string.Empty)
                      m_audioFilesNotImported +=  ", "+ Path.GetFileName(path);
              }
-
-            path = tempAudioFilePathsArray[0];
+            if(tempAudioFilePathsArray.Length != 0)
+              path = tempAudioFilePathsArray[0];
 
             if (m_ProjectView.ObiForm.Settings.Project_CSVImportPhraseDetection && !m_IsPhraseDetectionSettingsShown)
             {
