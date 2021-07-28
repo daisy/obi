@@ -137,6 +137,7 @@ namespace Obi.ImportExport
                             {
                                 try
                                 {
+                                    cellsInLineArray[i] = cellsInLineArray[i].Trim();
                                     if (Path.GetPathRoot(cellsInLineArray[i]) == string.Empty)
                                     {
                                         cellsInLineArray[i] = Path.GetDirectoryName(CSVFullPath) + "\\" + cellsInLineArray[i];
