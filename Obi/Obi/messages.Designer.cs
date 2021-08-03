@@ -1224,6 +1224,15 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Comment Text: .
+        /// </summary>
+        internal static string CommentText {
+            get {
+                return ResourceManager.GetString("CommentText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Welcome to OBI. Please select appropriate settings from the options provided below. If you would like to configure Obi as per default settings, you can simply click on OK button or press the enter key and proceed. You can always change settings later from Obi Preferences..
         /// </summary>
         internal static string ConfigureObi {

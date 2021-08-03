@@ -3263,4 +3263,7 @@ You can do it later also from the project tab of preferences dialog.</value>
   <data name="ImportOfCSVStatus" xml:space="preserve">
     <value>CSV is successfully imported {0} at {1} {2}</value>
   </data>
+  <data name="CommentText" xml:space="preserve">
+    <value>Comment Text: </value>
+  </data>
 </root>

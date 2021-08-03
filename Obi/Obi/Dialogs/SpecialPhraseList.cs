@@ -99,8 +99,14 @@ namespace Obi.Dialogs
                             case 1:
                                 if (n is EmptyNode && ((EmptyNode)n).TODO && ((EmptyNode)n).CommentText != null)
                                 {
+                                    string commentText = string.Empty;
+                                    if (((EmptyNode)n).CommentText.Length > 20)
+                                        commentText = ((EmptyNode)n).CommentText.Substring(0, 20) + "...";
+                                    else
+                                        commentText = ((EmptyNode)n).CommentText;
+
                                     sectionName = ((EmptyNode) n).ParentAs<SectionNode>().Label + " : " +
-                                                  ((EmptyNode) n);
+                                                  ((EmptyNode)n) + " " + Localizer.Message("CommentText") + commentText;
                                     m_lbSpecialPhrasesList.Items.Add(sectionName);
                                     backendList.Add(((EmptyNode) n));
                                 }
