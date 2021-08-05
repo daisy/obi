@@ -718,7 +718,7 @@ namespace Obi.ProjectView
                         ((SectionNode)mSelection.Node).SectionChildCount > 0);
                 }
             }
-        public bool EnableMultiSectionOperation { get { return Selection != null && Selection.Node is SectionNode && Selection.Node.IsRooted && !mTransportBar.IsRecorderActive; } }
+        public bool EnableMultiSectionOperation { get { return Selection != null && (Selection.Node is SectionNode || Selection.Node is EmptyNode) && Selection.Node.IsRooted && !mTransportBar.IsRecorderActive; } }
         public bool CanDeleteFollowingPhrasesInSection
             {
             get
