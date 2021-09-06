@@ -13,6 +13,11 @@ namespace Obi.ImportExport
     {
         private ObiPresentation m_Presentation ;
         private List<string> m_audioFilePath = new List<string>();
+        List<string> m_AudioFilePath1 = new List<string>();
+        List<string> m_AudioFilePath2 = new List<string>();
+        List<string> m_AudioFilePath3 = new List<string>();
+        List<string> m_AudioFilePath4 = new List<string>();
+        List<string> m_AudioFilePath5 = new List<string>();
         private ProjectView.ProjectView m_ProjectView;
         private bool m_IsPhraseDetectionSettingsShown = false;
         private long m_Threshold;
@@ -61,7 +66,6 @@ namespace Obi.ImportExport
             string[] linesInFiles = File.ReadAllLines(CSVFullPath);
 
 
-            List<string> audioFilePath = new List<string>();
                     
 
             foreach (string line in linesInFiles)
@@ -125,13 +129,21 @@ namespace Obi.ImportExport
                             }
 
                         }
-                        if (i == 3)
+                        if (i == 3 || i == 4 || i == 5 || i == 6 || i == 7 )
                         {
                             if (cellsInLineArray[i] == string.Empty || string.IsNullOrWhiteSpace(cellsInLineArray[i]))
                             {
                                 cellsInLineArray[i] = "Untitled";
-                                audioFilePath.Add(string.Empty);
-
+                                if (i == 3)
+                                    m_AudioFilePath1.Add(string.Empty);
+                                else if (i == 4)
+                                    m_AudioFilePath2.Add(string.Empty);
+                                else if (i == 5)
+                                    m_AudioFilePath3.Add(string.Empty);
+                                else if (i == 6)
+                                    m_AudioFilePath4.Add(string.Empty);
+                                else if (i == 7)
+                                    m_AudioFilePath5.Add(string.Empty);
                             }
                             else
                             {
@@ -143,7 +155,16 @@ namespace Obi.ImportExport
                                         cellsInLineArray[i] = Path.GetDirectoryName(CSVFullPath) + "\\" + cellsInLineArray[i];
                                     }
                                     string filePath = cellsInLineArray[i];
-                                    audioFilePath.Add(filePath);
+                                    if (i == 3)
+                                        m_AudioFilePath1.Add(filePath);
+                                    else if (i == 4)
+                                        m_AudioFilePath2.Add(filePath);
+                                    else if (i == 5)
+                                        m_AudioFilePath3.Add(filePath);
+                                    else if (i == 6)
+                                        m_AudioFilePath4.Add(filePath);
+                                    else if (i == 7)
+                                        m_AudioFilePath5.Add(filePath);
                                 }
                                 catch (ArgumentException ex)
                                 {
@@ -170,7 +191,7 @@ namespace Obi.ImportExport
 
             }
             Console.WriteLine("lists loaded");
-            m_audioFilePath = audioFilePath;
+            m_audioFilePath = m_AudioFilePath1;
         }
 
 
@@ -206,9 +227,24 @@ namespace Obi.ImportExport
                 currentSection = section;
                 listOfSectionNodes.Add(section);
 
-                if (audioFilePath.Count > i && audioFilePath[i] != null)
+                if (m_AudioFilePath1.Count > i && m_AudioFilePath1[i] != null)
                 {
-                    ImportAudio(audioFilePath[i], section);
+                    ImportAudio(m_AudioFilePath1[i], section);
+                }
+                if (m_AudioFilePath2.Count > i && m_AudioFilePath2[i] != null)
+                {
+                    ImportAudio(m_AudioFilePath2[i], section);
+                }
+                if (m_AudioFilePath3.Count > i && m_AudioFilePath3[i] != null)
+                {
+                    ImportAudio(m_AudioFilePath3[i], section);
+                } if (m_AudioFilePath4.Count > i && m_AudioFilePath4[i] != null)
+                {
+                    ImportAudio(m_AudioFilePath4[i], section);
+                }
+                if (m_AudioFilePath5.Count > i && m_AudioFilePath5[i] != null)
+                {
+                    ImportAudio(m_AudioFilePath5[i], section);
                 }
                 if (pagesPerSection[i] > 0)
                 {
