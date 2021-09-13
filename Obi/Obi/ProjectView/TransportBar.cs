@@ -45,7 +45,8 @@ namespace Obi.ProjectView
         private ToolStripMenuItem m_CurrentCheckedProfile;
         private Dictionary<string, ToolStripMenuItem> m_ListOfSwitchProfiles = new Dictionary<string, ToolStripMenuItem>();
         private bool m_PreviewBeforeRecordingActive = false;
-        private bool m_IsElapsedInProjectSelectedBeforeStop = false; 
+        private bool m_IsElapsedInProjectSelectedBeforeStop = false;
+        private double m_TimeElapsedInRecording = 0;
         //public variables
         //private bool IsPreviewBeforeRec = false;
 
@@ -1837,6 +1838,7 @@ namespace Obi.ProjectView
                     //StartMonitorContinuouslyWithDelay();
                     StartMonitorContinuously();
                 }
+                m_TimeElapsedInRecording = 0;
             }
         }
 
@@ -3845,6 +3847,7 @@ SelectionChangedPlaybackEnabled = false;
                 // if monitoring is not enabled and auto play after recording is checked.
                 PlayOrResume_Safe();
             }
+            m_TimeElapsedInRecording = 0;
         }
 
         private void UpdateRecordedPhrasesAlongWithPostRecordingOperations(List<PhraseNode> listOfRecordedPhrases,ref EmptyNode firstRecordedPage)
@@ -4079,7 +4082,12 @@ SelectionChangedPlaybackEnabled = false;
                 node = (EmptyNode)mRecordingPhrase;
 
                 mView.Presentation.Changed -= new EventHandler<urakawa.events.DataModelChangedEventArgs>(Presentation_Changed);
-                mView.Presentation.UndoRedoManager.Execute(new Commands.Node.ToggleNodeTODO(mView, node));
+                double previousTimeElaped = m_TimeElapsedInRecording;
+                m_TimeElapsedInRecording =
+                            (double)mRecordingSession.AudioRecorder.RecordingPCMFormat.ConvertBytesToTime(Convert.ToInt64(mRecordingSession.AudioRecorder.CurrentDurationBytePosition)) /
+                            Time.TIME_UNIT;
+                double currentTimeElapsed = m_TimeElapsedInRecording - previousTimeElaped - 100;
+                mView.Presentation.UndoRedoManager.Execute(new Commands.Node.ToggleNodeTODO(mView, node, currentTimeElapsed));
                 mView.Presentation.Changed += new EventHandler<urakawa.events.DataModelChangedEventArgs>(Presentation_Changed);
                 if (!IsCommentAdded)
                 NextPhrase();
