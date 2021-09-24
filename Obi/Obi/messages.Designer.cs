@@ -1450,7 +1450,7 @@ namespace Obi {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to File Name,TODO Timing(in seconds).
+        ///   Looks up a localized string similar to File Name,TODO Timing(in seconds),TODO Timing(h:m:s:ms).
         /// </summary>
         internal static string CueCsvColumnHeading {
             get {
