@@ -542,9 +542,13 @@ if (urakawa.data.DataProviderFactory.CSS_EXTENSION.Equals(ext, StringComparison.
                         }
                         timeToToDoPhrase += ((EmptyNode)n).TODOCursorPosition;
                         timeToToDoPhrase = timeToToDoPhrase / 1000;
+
+                        TimeSpan t = TimeSpan.FromSeconds(timeToToDoPhrase);
+
+                        string timeToToDoPhraseInHMSFormat = string.Format("{0:D2}h:{1:D2}m:{2:D2}s:{3:D3}ms",t.Hours,t.Minutes,t.Seconds,t.Milliseconds);
                         if (m_CreateCSVForCues)
                         {
-                            string strToDoInfo = audioFileName + " , " + timeToToDoPhrase.ToString();
+                            string strToDoInfo = audioFileName + " , " + timeToToDoPhrase.ToString() + " , " + timeToToDoPhraseInHMSFormat;
                             if (!m_ToDoPhraseTimeings.Contains(strToDoInfo))
                             {
                                 m_ToDoPhraseTimeings.Add(strToDoInfo);
