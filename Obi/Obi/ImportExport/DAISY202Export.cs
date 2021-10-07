@@ -492,8 +492,15 @@ namespace Obi.ImportExport
                            }
                            timeToToDoPhrase += ((EmptyNode)phrase).TODOCursorPosition;
                            timeToToDoPhrase = timeToToDoPhrase / 1000;
-
-                           TimeSpan t = TimeSpan.FromSeconds(timeToToDoPhrase);
+                           TimeSpan t;
+                           try
+                           {
+                               t = TimeSpan.FromSeconds(timeToToDoPhrase);
+                           }
+                           catch
+                           {
+                               t = new TimeSpan(0, 0, 0);
+                           }
                            string timeToToDoPhraseInHMSFormat = string.Format("{0:D2}h:{1:D2}m:{2:D2}s:{3:D3}ms", t.Hours, t.Minutes, t.Seconds, t.Milliseconds);
                            if (m_CreateCSVForCues)
                            {
