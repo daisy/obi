@@ -51,6 +51,7 @@ namespace Obi.ProjectView
         private double m_timeElapsed = 0.0;
         private Color m_ColorBackgroundBeforeFlicker;
         private Color m_ColorBackgroundAfterFlicker;
+        private bool m_IsShowSectionContainingPhrase = true; 
 
         /// <summary>
         /// A new strips view.
@@ -4826,7 +4827,9 @@ if (thresholdAboveLastNode >= stripControl.Node.PhraseChildCount) thresholdAbove
                                 //mProjectView.Selection = new NodeSelection ( n, this );
                                 SelectPhraseBlockOrStrip((EmptyNode)n); // @phraseLimit
 
-                                SelectAtTODOCursorPosition((EmptyNode)n);
+                                if (m_IsShowSectionContainingPhrase)
+                                    SelectAtTODOCursorPosition((EmptyNode)n);
+                                m_IsShowSectionContainingPhrase = true;
                                 return;
                             }
                         }
@@ -4838,7 +4841,9 @@ if (thresholdAboveLastNode >= stripControl.Node.PhraseChildCount) thresholdAbove
                         //mProjectView.Selection = new NodeSelection ( n, this );
                         SelectPhraseBlockOrStrip ( (EmptyNode)n ); // @phraseLimit
 
-                        SelectAtTODOCursorPosition((EmptyNode)n);
+                        if (m_IsShowSectionContainingPhrase)
+                            SelectAtTODOCursorPosition((EmptyNode)n);
+                        m_IsShowSectionContainingPhrase = true;
                         return;
                         }
                     }
@@ -4861,7 +4866,9 @@ if (thresholdAboveLastNode >= stripControl.Node.PhraseChildCount) thresholdAbove
                             //mProjectView.Selection = new NodeSelection(n, this);
                             SelectPhraseBlockOrStrip ( (EmptyNode)n ); // @phraseLimit
 
-                            SelectAtTODOCursorPosition((EmptyNode)n);
+                            if (m_IsShowSectionContainingPhrase)
+                                SelectAtTODOCursorPosition((EmptyNode)n);
+                            m_IsShowSectionContainingPhrase = true;
                             return;
                             }
                         }
@@ -4873,7 +4880,9 @@ if (thresholdAboveLastNode >= stripControl.Node.PhraseChildCount) thresholdAbove
                         //mProjectView.Selection = new NodeSelection(n, this);
                         SelectPhraseBlockOrStrip ( (EmptyNode)n ); // @phraseLimit
 
-                        SelectAtTODOCursorPosition((EmptyNode)n);
+                        if (m_IsShowSectionContainingPhrase)
+                            SelectAtTODOCursorPosition((EmptyNode)n);
+                        m_IsShowSectionContainingPhrase = true;
                         return;
                         }
                     }
@@ -4966,13 +4975,15 @@ if (thresholdAboveLastNode >= stripControl.Node.PhraseChildCount) thresholdAbove
 
                 if (!isParentSectionVisible)
                     {
-                    if (this.Settings.Project_DoNotDisplayMessageBoxForShowingSection ||  MessageBox.Show ( Localizer.Message ("SelectPhraseOrSection_ShowSection"), "?", MessageBoxButtons.YesNo, MessageBoxIcon.Question ) == DialogResult.Yes)
+                        if (this.Settings.Project_DoNotDisplayMessageBoxForShowingSection || MessageBox.Show(Localizer.Message("SelectPhraseOrSection_ShowSection"), "?", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                         {
-                        CreateStripForSelectedSection ( parentSection, true );
+                            CreateStripForSelectedSection(parentSection, true);
+                            m_IsShowSectionContainingPhrase = true;
                         }
-                    else
+                        else
                         {
-                        return;
+                            m_IsShowSectionContainingPhrase = false;
+                            return;
                         }
                     }
 
