@@ -6896,6 +6896,18 @@ ref string exportDirectoryEPUB3)
                 }
             }
 
+            private void importMetadataToolStripMenuItem_Click(object sender, EventArgs e)
+            {
+                OpenFileDialog dialog = new OpenFileDialog();
+                dialog.Title = Localizer.Message("ChooseMetadataImportFile");
+                dialog.Filter = Localizer.Message("FilterMetadataCSV");
+                if (dialog.ShowDialog() == DialogResult.OK)
+                {
+                    ImportExport.ImportMetadata metadataImport = new ImportMetadata();
+                    metadataImport.ImportFromCSVFile(dialog.FileName, mSession.Presentation, mProjectView);
+                }
+            }
+
 
 
  

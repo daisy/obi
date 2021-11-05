@@ -101,6 +101,7 @@ namespace Obi
             this.mInsertSectionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mRenameSectionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mImportTOCMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.importMetadataToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator11 = new System.Windows.Forms.ToolStripSeparator();
             this.mDecreaseSectionLevelToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mIncreaseSectionLevelToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -729,6 +730,7 @@ namespace Obi
             this.mInsertSectionToolStripMenuItem,
             this.mRenameSectionToolStripMenuItem,
             this.mImportTOCMenuItem,
+            this.importMetadataToolStripMenuItem,
             this.toolStripSeparator11,
             this.mDecreaseSectionLevelToolStripMenuItem,
             this.mIncreaseSectionLevelToolStripMenuItem,
@@ -770,6 +772,12 @@ namespace Obi
             this.mImportTOCMenuItem.Name = "mImportTOCMenuItem";
             resources.ApplyResources(this.mImportTOCMenuItem, "mImportTOCMenuItem");
             this.mImportTOCMenuItem.Click += new System.EventHandler(this.mImportTOCMenuItem_Click);
+            // 
+            // importMetadataToolStripMenuItem
+            // 
+            this.importMetadataToolStripMenuItem.Name = "importMetadataToolStripMenuItem";
+            resources.ApplyResources(this.importMetadataToolStripMenuItem, "importMetadataToolStripMenuItem");
+            this.importMetadataToolStripMenuItem.Click += new System.EventHandler(this.importMetadataToolStripMenuItem_Click);
             // 
             // toolStripSeparator11
             // 
@@ -1458,14 +1466,14 @@ namespace Obi
             // 
             // selectedPageAudioFileToolStripMenuItem
             // 
-            this.selectedPageAudioFileToolStripMenuItem.Name = "selectedPageAudioFileToolStripMenuItem";
             resources.ApplyResources(this.selectedPageAudioFileToolStripMenuItem, "selectedPageAudioFileToolStripMenuItem");
+            this.selectedPageAudioFileToolStripMenuItem.Name = "selectedPageAudioFileToolStripMenuItem";
             this.selectedPageAudioFileToolStripMenuItem.Click += new System.EventHandler(this.selectedPageAudioFileToolStripMenuItem_Click);
             // 
             // allEmptyPagesAudioFileToolStripMenuItem
             // 
-            this.allEmptyPagesAudioFileToolStripMenuItem.Name = "allEmptyPagesAudioFileToolStripMenuItem";
             resources.ApplyResources(this.allEmptyPagesAudioFileToolStripMenuItem, "allEmptyPagesAudioFileToolStripMenuItem");
+            this.allEmptyPagesAudioFileToolStripMenuItem.Name = "allEmptyPagesAudioFileToolStripMenuItem";
             this.allEmptyPagesAudioFileToolStripMenuItem.Click += new System.EventHandler(this.allEmptyPagesAudioFileToolStripMenuItem_Click);
             // 
             // toolStripSeparator5
@@ -2034,6 +2042,7 @@ namespace Obi
         private System.Windows.Forms.ToolStripMenuItem m_AudioMixerToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem selectedPageAudioFileToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem allEmptyPagesAudioFileToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem importMetadataToolStripMenuItem;
     }
 }
 

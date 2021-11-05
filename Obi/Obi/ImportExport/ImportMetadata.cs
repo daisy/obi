@@ -6,21 +6,23 @@ using System.Text;
 using System.Windows.Forms;
 using System.Xml;
 using urakawa.daisy;
+using urakawa.command;
 
 namespace Obi.ImportExport
 {
     public class ImportMetadata
     {
+        private Obi.ProjectView.ProjectView m_ProjectView;
         
-        public bool ImportFromCSVFile(string CSVFullPath, ObiPresentation presentation)
+        public bool ImportFromCSVFile(string CSVFullPath, ObiPresentation presentation, Obi.ProjectView.ProjectView projectView = null)
         {
             List<string> nameList = new List<string>();
             List<string> content = new List<string>();
-            bool result = ReadListsFromCSVFile(nameList, content, CSVFullPath, presentation);
+            bool result = ReadListsFromCSVFile(nameList, content, CSVFullPath, presentation, projectView);
             return result;
         }
 
-        private bool ReadListsFromCSVFile(List<string> nameList, List<string> content, string CSVFullPath,ObiPresentation presentation)
+        private bool ReadListsFromCSVFile(List<string> nameList, List<string> content, string CSVFullPath, ObiPresentation presentation, Obi.ProjectView.ProjectView projectView)
         {
             string[] linesInFiles;
             try
@@ -37,6 +39,8 @@ namespace Obi.ImportExport
             {
                 return false;
             }
+            CompositeCommand command =
+                        presentation.CreateCompositeCommand(Localizer.Message("modify_metadata_entry"));
 
             foreach (string line in linesInFiles)
             {
@@ -50,10 +54,33 @@ namespace Obi.ImportExport
                     cellsInLineArray = line.Split('\t');
                 }
 
-                if(cellsInLineArray.Length >= 2)
-                presentation.SetSingleMetadataItem(cellsInLineArray[0], cellsInLineArray[1]);
+                if (cellsInLineArray.Length >= 2)
+                {
+                    if (projectView == null)
+                        presentation.SetSingleMetadataItem(cellsInLineArray[0], cellsInLineArray[1]);
+                    else if (projectView != null)
+                    {
+                        if (projectView.CanAddMetadataEntry())
+                        {
+                            bool entryModified = false;
+                            foreach (urakawa.metadata.Metadata entry in presentation.GetMetadata(cellsInLineArray[0]))
+                            {
+                                command.ChildCommands.Insert(command.ChildCommands.Count, new Commands.Metadata.ModifyContent(projectView, entry, cellsInLineArray[1]));
+                                entryModified = true;
+                            }
+                            if (!entryModified)
+                            {
+                                Commands.Metadata.AddEntry cmd = new Commands.Metadata.AddEntry(projectView, cellsInLineArray[0]);
+                                command.ChildCommands.Insert(command.ChildCommands.Count, cmd);
+                                command.ChildCommands.Insert(command.ChildCommands.Count, new Commands.Metadata.ModifyContent(projectView, cmd.Entry, cellsInLineArray[1]));
+                            }
+                        }
+                    }
+                }
 
             }
+            if (command.ChildCommands.Count > 0) presentation.UndoRedoManager.Execute(command);
+
 
             return true;
         }

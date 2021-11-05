@@ -1033,6 +1033,15 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Choose metadata import csv.
+        /// </summary>
+        internal static string ChooseMetadataImportFile {
+            get {
+                return ResourceManager.GetString("ChooseMetadataImportFile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Kindly select file with recorded audio.
         /// </summary>
         internal static string ChoosePageAudioFileNotSelected {
@@ -2652,6 +2661,15 @@ namespace Obi {
         internal static string FilterImportTOC {
             get {
                 return ResourceManager.GetString("FilterImportTOC", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Csv(*.csv)|*.csv.
+        /// </summary>
+        internal static string FilterMetadataCSV {
+            get {
+                return ResourceManager.GetString("FilterMetadataCSV", resourceCulture);
             }
         }
         

@@ -813,6 +813,12 @@
   <data name="mImportTOCMenuItem.Text" xml:space="preserve">
     <value>I&amp;mport and replace TOC</value>
   </data>
+    <data name="importMetadataToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>335, 24</value>
+  </data>
+  <data name="importMetadataToolStripMenuItem.Text" xml:space="preserve">
+    <value>Import Metadata</value>
+  </data>
   <data name="toolStripSeparator11.Size" type="System.Drawing.Size, System.Drawing">
     <value>276, 6</value>
   </data>
@@ -2115,6 +2121,9 @@
   <data name="mMenuStrip.Location" type="System.Drawing.Point, System.Drawing">
     <value>0, 0</value>
   </data>
+  <data name="mMenuStrip.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>8, 2, 0, 2</value>
+  </data>
   <data name="mMenuStrip.Size" type="System.Drawing.Size, System.Drawing">
     <value>876, 24</value>
   </data>
@@ -2157,6 +2166,9 @@
   <data name="mStatusStrip.Location" type="System.Drawing.Point, System.Drawing">
     <value>0, 520</value>
   </data>
+  <data name="mStatusStrip.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>1, 0, 19, 0</value>
+  </data>
   <data name="mStatusStrip.Size" type="System.Drawing.Size, System.Drawing">
     <value>876, 22</value>
   </data>
@@ -2183,6 +2195,9 @@
   </data>
   <data name="mProjectView.Location" type="System.Drawing.Point, System.Drawing">
     <value>0, 24</value>
+  </data>
+  <data name="mProjectView.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>5, 5, 5, 5</value>
   </data>
   <data name="mProjectView.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>3, 3, 3, 3</value>
@@ -2469,6 +2484,9 @@
         AAAAAAAAAAAAAAAAAAAAAAAAAAAAAP//43uAHwAAgA/WAIAPIjGAByIggANjb4ABbmeAA1VUgA84IoAP
         CjyAD09DwA9QRcAfbGngHyBQ8H9MSf//Ii0=
 </value>
+  </data>
+  <data name="$this.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 4, 4, 4</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
     <value>Obi</value>
@@ -2897,6 +2915,12 @@
     <value>mImportTOCMenuItem</value>
   </data>
   <data name="&gt;&gt;mImportTOCMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;importMetadataToolStripMenuItem.Name" xml:space="preserve">
+    <value>importMetadataToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;importMetadataToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;toolStripSeparator11.Name" xml:space="preserve">

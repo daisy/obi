@@ -3266,4 +3266,10 @@ You can do it later also from the project tab of preferences dialog.</value>
   <data name="CommentText" xml:space="preserve">
     <value>Comment Text: </value>
   </data>
+  <data name="ChooseMetadataImportFile" xml:space="preserve">
+    <value>Choose metadata import csv</value>
+  </data>
+  <data name="FilterMetadataCSV" xml:space="preserve">
+    <value>Csv(*.csv)|*.csv</value>
+  </data>
 </root>
