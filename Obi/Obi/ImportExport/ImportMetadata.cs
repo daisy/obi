@@ -54,7 +54,7 @@ namespace Obi.ImportExport
                     cellsInLineArray = line.Split('\t');
                 }
 
-                if (cellsInLineArray.Length >= 2)
+                if (cellsInLineArray.Length >= 2 && !string.IsNullOrWhiteSpace(cellsInLineArray[0]) && !string.IsNullOrWhiteSpace(cellsInLineArray[1]))
                 {
                     if (projectView == null)
                         presentation.SetSingleMetadataItem(cellsInLineArray[0], cellsInLineArray[1]);

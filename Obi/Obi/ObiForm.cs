@@ -2228,6 +2228,7 @@ namespace Obi
                 mMultiSectionOperations.Enabled = mProjectView.EnableMultiSectionOperation && !this.Settings.Project_ReadOnlyMode;
                 mSectionIsUsedToolStripMenuItem.Enabled = mProjectView.CanSetSectionUsedStatus && !this.Settings.Project_ReadOnlyMode;
                 mImportTOCMenuItem.Enabled = !mProjectView.TransportBar.IsRecorderActive && !this.Settings.Project_ReadOnlyMode;
+                importMetadataToolStripMenuItem.Enabled = mProjectView.CanAddMetadataEntry() && !this.Settings.Project_ReadOnlyMode; 
                 mSectionIsUsedToolStripMenuItem.CheckedChanged -=
                     new System.EventHandler(mSectionIsUsedToolStripMenuItem_CheckedChanged);
                 mSectionIsUsedToolStripMenuItem.Checked = (mProjectView.CanMarkSectionUnused ||
