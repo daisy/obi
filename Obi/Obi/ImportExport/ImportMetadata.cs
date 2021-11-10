@@ -70,6 +70,18 @@ namespace Obi.ImportExport
                             }
                             if (!entryModified)
                             {
+                                if(Metadata.DAISY3MetadataNames.Contains(cellsInLineArray[0],StringComparer.OrdinalIgnoreCase))
+                                {
+                                    foreach (string metadataName in Metadata.DAISY3MetadataNames)
+                                    {
+                                        if (metadataName.IndexOf(cellsInLineArray[0], StringComparison.OrdinalIgnoreCase) >= 0)
+                                        {
+                                            cellsInLineArray[0] = metadataName;
+                                        }
+                                    }
+                                    string temp = Metadata.DAISY3MetadataNames.ElementAt(Metadata.DAISY3MetadataNames.IndexOf(cellsInLineArray[0]));
+                                    cellsInLineArray[0] = temp;
+                                }
                                 Commands.Metadata.AddEntry cmd = new Commands.Metadata.AddEntry(projectView, cellsInLineArray[0]);
                                 command.ChildCommands.Insert(command.ChildCommands.Count, cmd);
                                 command.ChildCommands.Insert(command.ChildCommands.Count, new Commands.Metadata.ModifyContent(projectView, cmd.Entry, cellsInLineArray[1]));
