@@ -4587,6 +4587,15 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Following metadata entries are not imported:- {0} .
+        /// </summary>
+        internal static string Metadata_NotImported {
+            get {
+                return ResourceManager.GetString("Metadata_NotImported", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Version of the xuk file.
         /// </summary>
         internal static string METADATA_OBI_XUK_VERSION_HELP {

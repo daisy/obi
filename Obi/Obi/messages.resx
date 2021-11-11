@@ -3272,4 +3272,7 @@ You can do it later also from the project tab of preferences dialog.</value>
   <data name="FilterMetadataCSV" xml:space="preserve">
     <value>Csv(*.csv)|*.csv</value>
   </data>
+  <data name="Metadata_NotImported" xml:space="preserve">
+    <value>Following metadata entries are not imported:- {0} </value>
+  </data>
 </root>
