@@ -4560,6 +4560,24 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Metadata Imported.
+        /// </summary>
+        internal static string Metadata_Imported {
+            get {
+                return ResourceManager.GetString("Metadata_Imported", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Metadata imported successfully.
+        /// </summary>
+        internal static string Metadata_ImportedSuccessfully {
+            get {
+                return ResourceManager.GetString("Metadata_ImportedSuccessfully", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Invalid date format! Recommended format is YYYY-MM-DD or YYYY..
         /// </summary>
         internal static string Metadata_InvalidDateFormat {
@@ -4587,7 +4605,16 @@ namespace Obi {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Following metadata entries are not imported:- {0} .
+        ///   Looks up a localized string similar to Invalid metadata entry! Name of metadata cannot be &quot;Custom&quot; .
+        /// </summary>
+        internal static string Metadata_NameCannotBeCustom {
+            get {
+                return ResourceManager.GetString("Metadata_NameCannotBeCustom", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Metadata except following entries imported successfully:- {0} .
         /// </summary>
         internal static string Metadata_NotImported {
             get {

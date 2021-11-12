@@ -71,7 +71,14 @@ namespace Obi.ImportExport
                                     string dateFormat = GetDate(cellsInLineArray[0], cellsInLineArray[1]);
                                     cellsInLineArray[1] = dateFormat;
                                 }
-                                command.ChildCommands.Insert(command.ChildCommands.Count, new Commands.Metadata.ModifyContent(projectView, entry, cellsInLineArray[1]));
+                                if (cellsInLineArray[0].ToLower() == "custom")
+                                {
+                                    m_metadataFieldsNotImported += "\n\n" + "-> " + cellsInLineArray[0] + " " + Localizer.Message("Metadata_NameCannotBeCustom");
+                                }
+                                else
+                                {
+                                    command.ChildCommands.Insert(command.ChildCommands.Count, new Commands.Metadata.ModifyContent(projectView, entry, cellsInLineArray[1]));
+                                }
                                 entryModified = true;
                             }
                             if (!entryModified)
@@ -87,13 +94,20 @@ namespace Obi.ImportExport
                                     }
                                     cellsInLineArray[0]  = Metadata.DAISY3MetadataNames.ElementAt(Metadata.DAISY3MetadataNames.IndexOf(cellsInLineArray[0]));
                                 }
-                                Commands.Metadata.AddEntry cmd = new Commands.Metadata.AddEntry(projectView, cellsInLineArray[0]);
-                                command.ChildCommands.Insert(command.ChildCommands.Count, cmd);
-                                if (cellsInLineArray[0] == "dtb:producedDate" || cellsInLineArray[0] == "dtb:revisionDate" || cellsInLineArray[0] == "dc:Date" || cellsInLineArray[0] == "dtb:sourceDate")
+                                if (cellsInLineArray[0].ToLower() == "custom")
                                 {
-                                    cellsInLineArray[1]  = GetDate(cellsInLineArray[0], cellsInLineArray[1]);
+                                    m_metadataFieldsNotImported += "\n\n" + "-> " + cellsInLineArray[0] + " " + Localizer.Message("Metadata_NameCannotBeCustom");
                                 }
-                                command.ChildCommands.Insert(command.ChildCommands.Count, new Commands.Metadata.ModifyContent(projectView, cmd.Entry, cellsInLineArray[1]));
+                                else
+                                {
+                                    Commands.Metadata.AddEntry cmd = new Commands.Metadata.AddEntry(projectView, cellsInLineArray[0]);
+                                    command.ChildCommands.Insert(command.ChildCommands.Count, cmd);
+                                    if (cellsInLineArray[0] == "dtb:producedDate" || cellsInLineArray[0] == "dtb:revisionDate" || cellsInLineArray[0] == "dc:Date" || cellsInLineArray[0] == "dtb:sourceDate")
+                                    {
+                                        cellsInLineArray[1] = GetDate(cellsInLineArray[0], cellsInLineArray[1]);
+                                    }
+                                    command.ChildCommands.Insert(command.ChildCommands.Count, new Commands.Metadata.ModifyContent(projectView, cmd.Entry, cellsInLineArray[1]));
+                                }
                             }
                         }
                     }
@@ -103,7 +117,13 @@ namespace Obi.ImportExport
             if (command.ChildCommands.Count > 0) presentation.UndoRedoManager.Execute(command);
             if (m_metadataFieldsNotImported != string.Empty)
             {
-                MessageBox.Show(String.Format(Localizer.Message("Metadata_NotImported"), m_metadataFieldsNotImported));
+                MessageBox.Show(String.Format(Localizer.Message("Metadata_NotImported"), m_metadataFieldsNotImported), Localizer.Message("Metadata_Imported"),
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            else
+            {
+                MessageBox.Show(String.Format(Localizer.Message("Metadata_ImportedSuccessfully"), m_metadataFieldsNotImported), Localizer.Message("Metadata_Imported"),
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
 
 

@@ -3273,6 +3273,15 @@ You can do it later also from the project tab of preferences dialog.</value>
     <value>Csv(*.csv)|*.csv</value>
   </data>
   <data name="Metadata_NotImported" xml:space="preserve">
-    <value>Following metadata entries are not imported:- {0} </value>
+    <value>Metadata except following entries imported successfully:- {0} </value>
+  </data>
+  <data name="Metadata_ImportedSuccessfully" xml:space="preserve">
+    <value>Metadata imported successfully</value>
+  </data>
+  <data name="Metadata_Imported" xml:space="preserve">
+    <value>Metadata Imported</value>
+  </data>
+  <data name="Metadata_NameCannotBeCustom" xml:space="preserve">
+    <value>Invalid metadata entry! Name of metadata cannot be "Custom" </value>
   </data>
 </root>
