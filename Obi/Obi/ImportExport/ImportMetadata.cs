@@ -43,6 +43,7 @@ namespace Obi.ImportExport
             CompositeCommand command =
                         presentation.CreateCompositeCommand(Localizer.Message("modify_metadata_entry"));
 
+            List<string> entryHavingWrongDateFormat = new List<string>();
             foreach (string line in linesInFiles)
             {
                 string[] cellsInLineArray = null;
@@ -68,12 +69,16 @@ namespace Obi.ImportExport
                             {
                                 if (cellsInLineArray[0].ToLower() == "dtb:produceddate" || cellsInLineArray[0].ToLower() == "dtb:revisiondate" || cellsInLineArray[0].ToLower() == "dc:date" || cellsInLineArray[0].ToLower() == "dtb:sourcedate")
                                 {
-                                    string dateFormat = GetDate(cellsInLineArray[0], cellsInLineArray[1]);
+                                    string dateFormat = GetDate(cellsInLineArray[0], cellsInLineArray[1], entryHavingWrongDateFormat);
                                     cellsInLineArray[1] = dateFormat;
                                 }
                                 if (cellsInLineArray[0].ToLower() == "custom")
                                 {
-                                    m_metadataFieldsNotImported += "\n\n" + "-> " + cellsInLineArray[0] + " " + Localizer.Message("Metadata_NameCannotBeCustom");
+                                    if (!entryHavingWrongDateFormat.Contains(cellsInLineArray[0], StringComparer.OrdinalIgnoreCase))
+                                    {
+                                        m_metadataFieldsNotImported += "\n\n" + "-> " + cellsInLineArray[0] + " " + Localizer.Message("Metadata_NameCannotBeCustom");
+                                        entryHavingWrongDateFormat.Add(cellsInLineArray[0]);
+                                    }
                                 }
                                 else
                                 {
@@ -96,7 +101,11 @@ namespace Obi.ImportExport
                                 }
                                 if (cellsInLineArray[0].ToLower() == "custom")
                                 {
-                                    m_metadataFieldsNotImported += "\n\n" + "-> " + cellsInLineArray[0] + " " + Localizer.Message("Metadata_NameCannotBeCustom");
+                                    if (!entryHavingWrongDateFormat.Contains(cellsInLineArray[0], StringComparer.OrdinalIgnoreCase))
+                                    {
+                                        m_metadataFieldsNotImported += "\n\n" + "-> " + cellsInLineArray[0] + " " + Localizer.Message("Metadata_NameCannotBeCustom");
+                                        entryHavingWrongDateFormat.Add(cellsInLineArray[0]);
+                                    }
                                 }
                                 else
                                 {
@@ -104,7 +113,7 @@ namespace Obi.ImportExport
                                     command.ChildCommands.Insert(command.ChildCommands.Count, cmd);
                                     if (cellsInLineArray[0] == "dtb:producedDate" || cellsInLineArray[0] == "dtb:revisionDate" || cellsInLineArray[0] == "dc:Date" || cellsInLineArray[0] == "dtb:sourceDate")
                                     {
-                                        cellsInLineArray[1] = GetDate(cellsInLineArray[0], cellsInLineArray[1]);
+                                        cellsInLineArray[1] = GetDate(cellsInLineArray[0], cellsInLineArray[1],entryHavingWrongDateFormat);
                                     }
                                     command.ChildCommands.Insert(command.ChildCommands.Count, new Commands.Metadata.ModifyContent(projectView, cmd.Entry, cellsInLineArray[1]));
                                 }
@@ -129,7 +138,7 @@ namespace Obi.ImportExport
 
             return true;
         }
-        private string GetDate(string entryName, string entryValue)
+        private string GetDate(string entryName, string entryValue, List<string> entryHavingWrongDateFormat)
         {
             string strYearVal = entryValue;
             int yearOnlyDate = 0;
@@ -146,13 +155,20 @@ namespace Obi.ImportExport
             }
             catch (System.FormatException ex)
             {
-
-                m_metadataFieldsNotImported += "\n\n" + "-> " + entryName + " " + Localizer.Message("Metadata_InvalidDateFormat");
+                if (!entryHavingWrongDateFormat.Contains(entryName, StringComparer.OrdinalIgnoreCase))
+                {
+                    m_metadataFieldsNotImported += "\n\n" + "-> " + entryName + " " + Localizer.Message("Metadata_InvalidDateFormat");
+                    entryHavingWrongDateFormat.Add(entryName);
+                }
                 return "";
             }
             catch (System.Exception ex)
             {
-                m_metadataFieldsNotImported += "\n\n" + "-> " + entryName + " " + Localizer.Message("MetadataView_InvalidMetadata")  +"\n\n" + ex.ToString();
+                if (!entryHavingWrongDateFormat.Contains(entryName, StringComparer.OrdinalIgnoreCase))
+                {
+                    m_metadataFieldsNotImported += "\n\n" + "-> " + entryName + " " + Localizer.Message("MetadataView_InvalidMetadata") + "\n\n" + ex.ToString();
+                    entryHavingWrongDateFormat.Add(entryName);
+                }
                 return "";
             }
 
