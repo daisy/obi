@@ -12,6 +12,7 @@ using PipelineInterface;
 using Jaime.Olivares;
 using System.Security;
 using Obi.ImportExport;
+using System.Globalization;
 
 
 namespace Obi
@@ -1588,13 +1589,18 @@ namespace Obi
             }
 
             // View the help file in our own browser window.
-            private void ShowHelpFile()
+            private void ShowHelpFile(bool IsEnglishVersionSelected = false)
             {
                 try
                 {
-                    System.Diagnostics.Process.Start(
+                    if (!IsEnglishVersionSelected)
+                        System.Diagnostics.Process.Start(
+                            (new Uri(Path.Combine(Path.GetDirectoryName(GetType().Assembly.Location),
+                                                  Localizer.Message("CHMhelp_file_name")))).ToString());
+                    else
+                        System.Diagnostics.Process.Start(
                         (new Uri(Path.Combine(Path.GetDirectoryName(GetType().Assembly.Location),
-                                              Localizer.Message("CHMhelp_file_name")))).ToString());
+                                              "Obi Help.chm"))).ToString());
                 }
                 catch (System.Exception ex)
                 {
@@ -3865,6 +3871,10 @@ ref string exportDirectoryEPUB3)
                     }
                     
                     Ready();
+                    if (CultureInfo.CurrentCulture.Name.Contains("fr") || CultureInfo.CurrentCulture.Name.Contains("de"))
+                    {
+                        mHelp_ContentsEnglishMenuItem.Visible = true;
+                    }
                    if (mSettings.ObiFont != this.Font.Name)
                     {
                         mProjectView.SetFont(); //@fontconfig
@@ -6907,6 +6917,11 @@ ref string exportDirectoryEPUB3)
                     ImportExport.ImportMetadata metadataImport = new ImportMetadata();
                     metadataImport.ImportFromCSVFile(dialog.FileName, mSession.Presentation, mProjectView);
                 }
+            }
+
+            private void mHelp_ContentsEnglishMenuItem_Click(object sender, EventArgs e)
+            {
+                ShowHelpFile(true);
             }
 
 

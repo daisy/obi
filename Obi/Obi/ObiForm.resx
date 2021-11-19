@@ -2088,6 +2088,15 @@
   <data name="mHelp_ContentsMenuItem.Text" xml:space="preserve">
     <value>&amp;Contents</value>
   </data>
+  <data name="mHelp_ContentsEnglishMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>238, 22</value>
+  </data>
+  <data name="mHelp_ContentsEnglishMenuItem.Text" xml:space="preserve">
+    <value>Contents &amp;Latest (English)</value>
+  </data>
+  <data name="mHelp_ContentsEnglishMenuItem.Visible" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
   <data name="mHelp_ReportBugMenuItem.AccessibleName" xml:space="preserve">
     <value>Online resources / Issue tracker Ctrl+Alt+R</value>
   </data>
@@ -3743,6 +3752,12 @@
     <value>mHelp_ContentsMenuItem</value>
   </data>
   <data name="&gt;&gt;mHelp_ContentsMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;mHelp_ContentsEnglishMenuItem.Name" xml:space="preserve">
+    <value>mHelp_ContentsEnglishMenuItem</value>
+  </data>
+  <data name="&gt;&gt;mHelp_ContentsEnglishMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;mHelp_ReportBugMenuItem.Name" xml:space="preserve">

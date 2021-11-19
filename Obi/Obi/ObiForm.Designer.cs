@@ -246,6 +246,7 @@ namespace Obi
             this.mStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.mStatusProgressBar = new System.Windows.Forms.ToolStripProgressBar();
             this.mProjectView = new Obi.ProjectView.ProjectView();
+            this.mHelp_ContentsEnglishMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mMenuStrip.SuspendLayout();
             this.mStatusStrip.SuspendLayout();
             this.SuspendLayout();
@@ -1723,6 +1724,7 @@ namespace Obi
             this.mHelpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.mHelp_WhatsNewMenuItem,
             this.mHelp_ContentsMenuItem,
+            this.mHelp_ContentsEnglishMenuItem,
             this.mHelp_ReportBugMenuItem,
             this.aboutObiToolStripMenuItem,
             this.checkForUpdatesToolStripMenuItem});
@@ -1798,6 +1800,12 @@ namespace Obi
             this.mProjectView.TOCViewWidth = 402;
             this.mProjectView.TransportBarVisible = false;
             this.mProjectView.ZoomWaveformIncrementFactor = 0D;
+            // 
+            // mHelp_ContentsEnglishMenuItem
+            // 
+            this.mHelp_ContentsEnglishMenuItem.Name = "mHelp_ContentsEnglishMenuItem";
+            resources.ApplyResources(this.mHelp_ContentsEnglishMenuItem, "mHelp_ContentsEnglishMenuItem");
+            this.mHelp_ContentsEnglishMenuItem.Click += new System.EventHandler(this.mHelp_ContentsEnglishMenuItem_Click);
             // 
             // ObiForm
             // 
@@ -2043,6 +2051,7 @@ namespace Obi
         private System.Windows.Forms.ToolStripMenuItem selectedPageAudioFileToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem allEmptyPagesAudioFileToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem importMetadataToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem mHelp_ContentsEnglishMenuItem;
     }
 }
 
