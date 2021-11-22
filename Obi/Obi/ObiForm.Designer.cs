@@ -101,7 +101,6 @@ namespace Obi
             this.mInsertSectionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mRenameSectionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mImportTOCMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.importMetadataToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator11 = new System.Windows.Forms.ToolStripSeparator();
             this.mDecreaseSectionLevelToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mIncreaseSectionLevelToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -239,6 +238,7 @@ namespace Obi
             this.mHelpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mHelp_WhatsNewMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mHelp_ContentsMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mHelp_ContentsEnglishMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mHelp_ReportBugMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutObiToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.checkForUpdatesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -246,7 +246,8 @@ namespace Obi
             this.mStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.mStatusProgressBar = new System.Windows.Forms.ToolStripProgressBar();
             this.mProjectView = new Obi.ProjectView.ProjectView();
-            this.mHelp_ContentsEnglishMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.m_ImportMetadataToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator20 = new System.Windows.Forms.ToolStripSeparator();
             this.mMenuStrip.SuspendLayout();
             this.mStatusStrip.SuspendLayout();
             this.SuspendLayout();
@@ -402,6 +403,8 @@ namespace Obi
             this.toolStripSeparator7,
             this.mEdit_DeleteUnusedDataMenuItem,
             this.toolStripSeparator4,
+            this.m_ImportMetadataToolStripMenuItem,
+            this.toolStripSeparator20,
             this.mFindInTextToolStripMenuItem,
             this.mFindNextToolStripMenuItem,
             this.mFindPreviousToolStripMenuItem,
@@ -731,7 +734,6 @@ namespace Obi
             this.mInsertSectionToolStripMenuItem,
             this.mRenameSectionToolStripMenuItem,
             this.mImportTOCMenuItem,
-            this.importMetadataToolStripMenuItem,
             this.toolStripSeparator11,
             this.mDecreaseSectionLevelToolStripMenuItem,
             this.mIncreaseSectionLevelToolStripMenuItem,
@@ -773,12 +775,6 @@ namespace Obi
             this.mImportTOCMenuItem.Name = "mImportTOCMenuItem";
             resources.ApplyResources(this.mImportTOCMenuItem, "mImportTOCMenuItem");
             this.mImportTOCMenuItem.Click += new System.EventHandler(this.mImportTOCMenuItem_Click);
-            // 
-            // importMetadataToolStripMenuItem
-            // 
-            this.importMetadataToolStripMenuItem.Name = "importMetadataToolStripMenuItem";
-            resources.ApplyResources(this.importMetadataToolStripMenuItem, "importMetadataToolStripMenuItem");
-            this.importMetadataToolStripMenuItem.Click += new System.EventHandler(this.importMetadataToolStripMenuItem_Click);
             // 
             // toolStripSeparator11
             // 
@@ -1743,6 +1739,12 @@ namespace Obi
             this.mHelp_ContentsMenuItem.Name = "mHelp_ContentsMenuItem";
             this.mHelp_ContentsMenuItem.Click += new System.EventHandler(this.mHelp_ContentsMenuItem_Click);
             // 
+            // mHelp_ContentsEnglishMenuItem
+            // 
+            this.mHelp_ContentsEnglishMenuItem.Name = "mHelp_ContentsEnglishMenuItem";
+            resources.ApplyResources(this.mHelp_ContentsEnglishMenuItem, "mHelp_ContentsEnglishMenuItem");
+            this.mHelp_ContentsEnglishMenuItem.Click += new System.EventHandler(this.mHelp_ContentsEnglishMenuItem_Click);
+            // 
             // mHelp_ReportBugMenuItem
             // 
             resources.ApplyResources(this.mHelp_ReportBugMenuItem, "mHelp_ReportBugMenuItem");
@@ -1801,11 +1803,16 @@ namespace Obi
             this.mProjectView.TransportBarVisible = false;
             this.mProjectView.ZoomWaveformIncrementFactor = 0D;
             // 
-            // mHelp_ContentsEnglishMenuItem
+            // m_ImportMetadataToolStripMenuItem
             // 
-            this.mHelp_ContentsEnglishMenuItem.Name = "mHelp_ContentsEnglishMenuItem";
-            resources.ApplyResources(this.mHelp_ContentsEnglishMenuItem, "mHelp_ContentsEnglishMenuItem");
-            this.mHelp_ContentsEnglishMenuItem.Click += new System.EventHandler(this.mHelp_ContentsEnglishMenuItem_Click);
+            this.m_ImportMetadataToolStripMenuItem.Name = "m_ImportMetadataToolStripMenuItem";
+            resources.ApplyResources(this.m_ImportMetadataToolStripMenuItem, "m_ImportMetadataToolStripMenuItem");
+            this.m_ImportMetadataToolStripMenuItem.Click += new System.EventHandler(this.m_ImportMetadataToolStripMenuItem_Click);
+            // 
+            // toolStripSeparator20
+            // 
+            this.toolStripSeparator20.Name = "toolStripSeparator20";
+            resources.ApplyResources(this.toolStripSeparator20, "toolStripSeparator20");
             // 
             // ObiForm
             // 
@@ -2050,8 +2057,9 @@ namespace Obi
         private System.Windows.Forms.ToolStripMenuItem m_AudioMixerToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem selectedPageAudioFileToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem allEmptyPagesAudioFileToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem importMetadataToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mHelp_ContentsEnglishMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem m_ImportMetadataToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator20;
     }
 }
 

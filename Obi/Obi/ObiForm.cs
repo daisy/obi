@@ -2234,7 +2234,7 @@ namespace Obi
                 mMultiSectionOperations.Enabled = mProjectView.EnableMultiSectionOperation && !this.Settings.Project_ReadOnlyMode;
                 mSectionIsUsedToolStripMenuItem.Enabled = mProjectView.CanSetSectionUsedStatus && !this.Settings.Project_ReadOnlyMode;
                 mImportTOCMenuItem.Enabled = !mProjectView.TransportBar.IsRecorderActive && !this.Settings.Project_ReadOnlyMode;
-                importMetadataToolStripMenuItem.Enabled = mProjectView.CanAddMetadataEntry() && !this.Settings.Project_ReadOnlyMode; 
+                m_ImportMetadataToolStripMenuItem.Enabled = mProjectView.CanAddMetadataEntry() && !this.Settings.Project_ReadOnlyMode; 
                 mSectionIsUsedToolStripMenuItem.CheckedChanged -=
                     new System.EventHandler(mSectionIsUsedToolStripMenuItem_CheckedChanged);
                 mSectionIsUsedToolStripMenuItem.Checked = (mProjectView.CanMarkSectionUnused ||
@@ -6906,8 +6906,14 @@ ref string exportDirectoryEPUB3)
                     mProjectView.GenerateSpeechForPage(true, pageAudioDialog.RecordedAudioPath);
                 }
             }
+           
 
-            private void importMetadataToolStripMenuItem_Click(object sender, EventArgs e)
+            private void mHelp_ContentsEnglishMenuItem_Click(object sender, EventArgs e)
+            {
+                ShowHelpFile(true);
+            }
+
+            private void m_ImportMetadataToolStripMenuItem_Click(object sender, EventArgs e)
             {
                 OpenFileDialog dialog = new OpenFileDialog();
                 dialog.Title = Localizer.Message("ChooseMetadataImportFile");
@@ -6917,11 +6923,6 @@ ref string exportDirectoryEPUB3)
                     ImportExport.ImportMetadata metadataImport = new ImportMetadata();
                     metadataImport.ImportFromCSVFile(dialog.FileName, mSession.Presentation, mProjectView);
                 }
-            }
-
-            private void mHelp_ContentsEnglishMenuItem_Click(object sender, EventArgs e)
-            {
-                ShowHelpFile(true);
             }
 
 
