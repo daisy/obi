@@ -128,9 +128,6 @@
     <value />
   </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="m_lblDirectoryPath.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 19</value>
-  </data>
   <data name="m_lblDirectoryPath.Size" type="System.Drawing.Size, System.Drawing">
     <value>189, 20</value>
   </data>
@@ -150,10 +147,10 @@
     <value />
   </data>
   <data name="mPathTextBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>188, 17</value>
+    <value>212, 21</value>
   </data>
   <data name="mPathTextBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>272, 26</value>
+    <value>298, 26</value>
   </data>
   <data name="mSelectButton.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
@@ -163,9 +160,6 @@
   </data>
   <data name="mSelectButton.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
-  </data>
-  <data name="mSelectButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>480, 14</value>
   </data>
   <data name="mSelectButton.Text" xml:space="preserve">
     <value>&amp;Selecionar</value>
@@ -179,9 +173,6 @@
   <data name="mOKButton.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
   </data>
-  <data name="mOKButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>166, 577</value>
-  </data>
   <data name="mCancelButton.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
   </data>
@@ -190,9 +181,6 @@
   </data>
   <data name="mCancelButton.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
-  </data>
-  <data name="mCancelButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>317, 577</value>
   </data>
   <data name="mCancelButton.Text" xml:space="preserve">
     <value>&amp;Cancelar</value>
@@ -205,9 +193,6 @@
   </data>
   <data name="m_lblSelectLevelForAudioFiles.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
-  </data>
-  <data name="m_lblSelectLevelForAudioFiles.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 54</value>
   </data>
   <data name="m_lblSelectLevelForAudioFiles.Size" type="System.Drawing.Size, System.Drawing">
     <value>300, 20</value>
@@ -228,7 +213,7 @@
     <value />
   </data>
   <data name="m_ComboSelectLevelForAudioFiles.Location" type="System.Drawing.Point, System.Drawing">
-    <value>317, 52</value>
+    <value>312, 65</value>
   </data>
   <data name="m_checkBoxEncoder.AccessibleDescription" xml:space="preserve">
     <value>Caixa de verificação converter ficheiros de áudio</value>
@@ -260,9 +245,6 @@
   <data name="m_Bitrate.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
   </data>
-  <data name="m_Bitrate.Location" type="System.Drawing.Point, System.Drawing">
-    <value>145, 67</value>
-  </data>
   <data name="m_Bitrate.Size" type="System.Drawing.Size, System.Drawing">
     <value>100, 20</value>
   </data>
@@ -277,6 +259,9 @@
   </data>
   <data name="m_ComboBoxBitrate.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
+  </data>
+  <data name="m_ComboBoxBitrate.Location" type="System.Drawing.Point, System.Drawing">
+    <value>301, 64</value>
   </data>
   <data name="m_checkBoxAddSectionNameToAudioFileName.AccessibleName" xml:space="preserve">
     <value>Anexar nome de secção ao nome do ficheiro áudio</value>
@@ -309,7 +294,7 @@
     <value />
   </data>
   <data name="m_btnEncodingOptions.Location" type="System.Drawing.Point, System.Drawing">
-    <value>414, 23</value>
+    <value>414, 20</value>
   </data>
   <data name="m_btnEncodingOptions.Text" xml:space="preserve">
     <value>Mais &amp;opções de conversão</value>
@@ -326,6 +311,9 @@
   <data name="m_comboBoxEncodingType.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
   </data>
+  <data name="m_btnAdvance.AccessibleName" xml:space="preserve">
+    <value>Avançar</value>
+  </data>
   <data name="m_btnAdvance.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
   </data>
@@ -334,6 +322,12 @@
   </data>
   <data name="m_btnAdvance.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
+  </data>
+  <data name="m_btnAdvance.Location" type="System.Drawing.Point, System.Drawing">
+    <value>464, 64</value>
+  </data>
+  <data name="m_btnAdvance.Text" xml:space="preserve">
+    <value>A&amp;vançar</value>
   </data>
   <data name="m_grpBoxMP3Encoding.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
@@ -345,7 +339,7 @@
     <value />
   </data>
   <data name="m_grpBoxMP3Encoding.Size" type="System.Drawing.Size, System.Drawing">
-    <value>618, 127</value>
+    <value>614, 101</value>
   </data>
   <data name="m_chkBoxFilenameLengthLimit.AccessibleName" xml:space="preserve">
     <value>Limite do tamanho do nome do ficheiro</value>
@@ -365,6 +359,9 @@
   <data name="m_chkBoxFilenameLengthLimit.Text" xml:space="preserve">
     <value>Limite do &amp;tamanho do nome do ficheiro</value>
   </data>
+  <data name="m_numericUpDownFilenameLengthLimit.AccessibleName" xml:space="preserve">
+    <value>Numérico Acima Abaixo Limite de comprimento de nome de ficheiro</value>
+  </data>
   <data name="m_numericUpDownFilenameLengthLimit.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
   </data>
@@ -375,7 +372,7 @@
     <value />
   </data>
   <data name="m_numericUpDownFilenameLengthLimit.Location" type="System.Drawing.Point, System.Drawing">
-    <value>343, 60</value>
+    <value>339, 59</value>
   </data>
   <data name="m_grpBoxSectionNameOperation.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
@@ -385,12 +382,6 @@
   </data>
   <data name="m_grpBoxSectionNameOperation.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
-  </data>
-  <data name="m_grpBoxSectionNameOperation.Location" type="System.Drawing.Point, System.Drawing">
-    <value>19, 230</value>
-  </data>
-  <data name="m_grpBoxSectionNameOperation.Size" type="System.Drawing.Size, System.Drawing">
-    <value>616, 92</value>
   </data>
   <data name="m_grpBoxSectionNameOperation.Text" xml:space="preserve">
     <value>Operação nome de secção</value>
@@ -404,14 +395,14 @@
   <data name="m_chkBoxDummyTextHTMLfiles.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
   </data>
-  <data name="m_chkBoxDummyTextHTMLfiles.Location" type="System.Drawing.Point, System.Drawing">
-    <value>22, 420</value>
-  </data>
   <data name="m_chkBoxDummyTextHTMLfiles.Size" type="System.Drawing.Size, System.Drawing">
     <value>313, 24</value>
   </data>
   <data name="m_chkBoxDummyTextHTMLfiles.Text" xml:space="preserve">
     <value>Criar dummy text em ficheiros HTML </value>
+  </data>
+  <data name="m_numericUpDownEpubFilenameLengthLimit.AccessibleName" xml:space="preserve">
+    <value>Numérico Acima Abaixo Limite de comprimento do nome do ficheiro EPUB</value>
   </data>
   <data name="m_numericUpDownEpubFilenameLengthLimit.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
@@ -421,13 +412,6 @@
   </data>
   <data name="m_numericUpDownEpubFilenameLengthLimit.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
-  </data>
-  <data name="m_numericUpDownEpubFilenameLengthLimit.Location" type="System.Drawing.Point, System.Drawing">
-    <value>299, 37</value>
-  </data>
-  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="m_numericUpDownEpubFilenameLengthLimit.ShowHelp" type="System.Boolean, mscorlib">
-    <value>True</value>
   </data>
   <data name="m_chkBoxEpubFilenameLengthLimit.AccessibleName" xml:space="preserve">
     <value>Limite do nome do ficheiro Epub</value>
@@ -440,9 +424,6 @@
   </data>
   <data name="m_chkBoxEpubFilenameLengthLimit.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
-  </data>
-  <data name="m_chkBoxEpubFilenameLengthLimit.ShowHelp" type="System.Boolean, mscorlib">
-    <value>True</value>
   </data>
   <data name="m_chkBoxEpubFilenameLengthLimit.Size" type="System.Drawing.Size, System.Drawing">
     <value>272, 24</value>
@@ -459,12 +440,6 @@
   <data name="m_EpubFileNamegroupBox.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
   </data>
-  <data name="m_EpubFileNamegroupBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>18, 330</value>
-  </data>
-  <data name="m_EpubFileNamegroupBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>617, 71</value>
-  </data>
   <data name="m_EpubFileNamegroupBox.Text" xml:space="preserve">
     <value>Tamanho do ficheiro Epub</value>
   </data>
@@ -476,12 +451,6 @@
   </data>
   <data name="m_chkBoxCreateMediaOverlays.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
-  </data>
-  <data name="m_chkBoxCreateMediaOverlays.Location" type="System.Drawing.Point, System.Drawing">
-    <value>22, 452</value>
-  </data>
-  <data name="m_chkBoxCreateMediaOverlays.ShowHelp" type="System.Boolean, mscorlib">
-    <value>True</value>
   </data>
   <data name="m_chkBoxCreateMediaOverlays.Size" type="System.Drawing.Size, System.Drawing">
     <value>355, 24</value>
@@ -498,11 +467,11 @@
   <data name="m_chkBoxCreateCsvForCues.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
   </data>
-  <data name="m_chkBoxCreateCsvForCues.Location" type="System.Drawing.Point, System.Drawing">
-    <value>22, 483</value>
+  <data name="m_chkBoxCreateCsvForCues.Size" type="System.Drawing.Size, System.Drawing">
+    <value>289, 24</value>
   </data>
-  <data name="m_chkBoxCreateCsvForCues.ShowHelp" type="System.Boolean, mscorlib">
-    <value>True</value>
+  <data name="m_chkBoxCreateCsvForCues.Text" xml:space="preserve">
+    <value>Criar CSV contendo TODO Timing</value>
   </data>
   <data name="m_chkBoxAddCuePointsInAudio.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
@@ -513,11 +482,11 @@
   <data name="m_chkBoxAddCuePointsInAudio.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
   </data>
-  <data name="m_chkBoxAddCuePointsInAudio.Location" type="System.Drawing.Point, System.Drawing">
-    <value>21, 517</value>
+  <data name="m_chkBoxAddCuePointsInAudio.Size" type="System.Drawing.Size, System.Drawing">
+    <value>427, 24</value>
   </data>
-  <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>650, 626</value>
+  <data name="m_chkBoxAddCuePointsInAudio.Text" xml:space="preserve">
+    <value>Escrever o tempo TODO como marca de sinalização</value>
   </data>
   <data name="$this.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />

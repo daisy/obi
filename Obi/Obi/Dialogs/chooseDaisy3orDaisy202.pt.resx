@@ -112,28 +112,294 @@
     <value>2.0</value>
   </resheader>
   <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <metadata name="helpProvider1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 17</value>
+  </metadata>
+  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="m_OKBtn.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>Flat</value>
+  </data>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="m_OKBtn.Location" type="System.Drawing.Point, System.Drawing">
+    <value>35, 313</value>
+  </data>
+  <data name="m_OKBtn.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 4, 4, 4</value>
+  </data>
+  <data name="m_OKBtn.Size" type="System.Drawing.Size, System.Drawing">
+    <value>100, 28</value>
+  </data>
+  <assembly alias="mscorlib" name="mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="m_OKBtn.TabIndex" type="System.Int32, mscorlib">
+    <value>6</value>
+  </data>
+  <data name="m_OKBtn.Text" xml:space="preserve">
+    <value>&amp;OK</value>
+  </data>
+  <data name="&gt;&gt;m_OKBtn.Name" xml:space="preserve">
+    <value>m_OKBtn</value>
+  </data>
+  <data name="&gt;&gt;m_OKBtn.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_OKBtn.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;m_OKBtn.ZOrder" xml:space="preserve">
+    <value>7</value>
+  </data>
+  <data name="m_BtnCancel.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>Flat</value>
+  </data>
+  <data name="m_BtnCancel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>197, 313</value>
+  </data>
+  <data name="m_BtnCancel.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 4, 4, 4</value>
+  </data>
+  <data name="m_BtnCancel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>100, 28</value>
+  </data>
+  <data name="m_BtnCancel.TabIndex" type="System.Int32, mscorlib">
+    <value>7</value>
+  </data>
   <data name="m_BtnCancel.Text" xml:space="preserve">
     <value>Cancelar</value>
+  </data>
+  <data name="&gt;&gt;m_BtnCancel.Name" xml:space="preserve">
+    <value>m_BtnCancel</value>
+  </data>
+  <data name="&gt;&gt;m_BtnCancel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_BtnCancel.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;m_BtnCancel.ZOrder" xml:space="preserve">
+    <value>6</value>
+  </data>
+  <data name="helpProvider1.HelpNamespace" xml:space="preserve">
+    <value>Obi Help.chm</value>
+  </data>
+  <data name="m_cbWPAudioBook.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="m_cbWPAudioBook.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="m_cbWPAudioBook.Location" type="System.Drawing.Point, System.Drawing">
+    <value>64, 258</value>
+  </data>
+  <data name="m_cbWPAudioBook.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 4, 4, 4</value>
+  </data>
+  <data name="m_cbWPAudioBook.ShowHelp" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="m_cbWPAudioBook.Size" type="System.Drawing.Size, System.Drawing">
+    <value>131, 21</value>
+  </data>
+  <data name="m_cbWPAudioBook.TabIndex" type="System.Int32, mscorlib">
+    <value>5</value>
+  </data>
+  <data name="m_cbWPAudioBook.Text" xml:space="preserve">
+    <value>&amp;WP AudioBooks</value>
+  </data>
+  <data name="&gt;&gt;m_cbWPAudioBook.Name" xml:space="preserve">
+    <value>m_cbWPAudioBook</value>
+  </data>
+  <data name="&gt;&gt;m_cbWPAudioBook.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_cbWPAudioBook.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;m_cbWPAudioBook.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="m_cbDaisy3.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="m_cbDaisy3.Location" type="System.Drawing.Point, System.Drawing">
+    <value>64, 16</value>
+  </data>
+  <data name="m_cbDaisy3.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 4, 4, 4</value>
+  </data>
+  <data name="m_cbDaisy3.Size" type="System.Drawing.Size, System.Drawing">
+    <value>77, 21</value>
+  </data>
+  <data name="m_cbDaisy3.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
   </data>
   <data name="m_cbDaisy3.Text" xml:space="preserve">
     <value>Daisy 3</value>
   </data>
-  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="&gt;&gt;m_cbDaisy3.Name" xml:space="preserve">
+    <value>m_cbDaisy3</value>
+  </data>
+  <data name="&gt;&gt;m_cbDaisy3.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_cbDaisy3.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;m_cbDaisy3.ZOrder" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <data name="m_cbDaisy202.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="m_cbDaisy202.Location" type="System.Drawing.Point, System.Drawing">
+    <value>64, 64</value>
+  </data>
+  <data name="m_cbDaisy202.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 4, 4, 4</value>
+  </data>
+  <data name="m_cbDaisy202.Size" type="System.Drawing.Size, System.Drawing">
+    <value>97, 21</value>
+  </data>
+  <data name="m_cbDaisy202.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="m_cbDaisy202.Text" xml:space="preserve">
+    <value>D&amp;aisy 2.02</value>
+  </data>
+  <data name="&gt;&gt;m_cbDaisy202.Name" xml:space="preserve">
+    <value>m_cbDaisy202</value>
+  </data>
+  <data name="&gt;&gt;m_cbDaisy202.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_cbDaisy202.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;m_cbDaisy202.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="m_cbEpub3.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="m_cbEpub3.Location" type="System.Drawing.Point, System.Drawing">
+    <value>64, 114</value>
+  </data>
+  <data name="m_cbEpub3.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 4, 4, 4</value>
+  </data>
+  <data name="m_cbEpub3.Size" type="System.Drawing.Size, System.Drawing">
+    <value>151, 21</value>
+  </data>
+  <data name="m_cbEpub3.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="m_cbEpub3.Text" xml:space="preserve">
+    <value>&amp; Epub 3 Audio Book</value>
+  </data>
+  <data name="&gt;&gt;m_cbEpub3.Name" xml:space="preserve">
+    <value>m_cbEpub3</value>
+  </data>
+  <data name="&gt;&gt;m_cbEpub3.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_cbEpub3.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;m_cbEpub3.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="m_cbXhtml.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="m_cbXhtml.Location" type="System.Drawing.Point, System.Drawing">
+    <value>64, 165</value>
+  </data>
+  <data name="m_cbXhtml.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 4, 4, 4</value>
+  </data>
   <data name="m_cbXhtml.Size" type="System.Drawing.Size, System.Drawing">
-    <value>139, 21</value>
+    <value>127, 21</value>
+  </data>
+  <data name="m_cbXhtml.TabIndex" type="System.Int32, mscorlib">
+    <value>3</value>
   </data>
   <data name="m_cbXhtml.Text" xml:space="preserve">
     <value>Estrutura XHTML</value>
   </data>
+  <data name="&gt;&gt;m_cbXhtml.Name" xml:space="preserve">
+    <value>m_cbXhtml</value>
+  </data>
+  <data name="&gt;&gt;m_cbXhtml.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_cbXhtml.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;m_cbXhtml.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="m_chMegaVoice.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="m_chMegaVoice.Location" type="System.Drawing.Point, System.Drawing">
+    <value>64, 208</value>
+  </data>
+  <data name="m_chMegaVoice.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 4, 4, 4</value>
+  </data>
+  <data name="m_chMegaVoice.Size" type="System.Drawing.Size, System.Drawing">
+    <value>209, 21</value>
+  </data>
+  <data name="m_chMegaVoice.TabIndex" type="System.Int32, mscorlib">
+    <value>4</value>
+  </data>
+  <data name="m_chMegaVoice.Text" xml:space="preserve">
+    <value>&amp;MegaVoice (Envoy Connect)</value>
+  </data>
+  <data name="&gt;&gt;m_chMegaVoice.Name" xml:space="preserve">
+    <value>m_chMegaVoice</value>
+  </data>
+  <data name="&gt;&gt;m_chMegaVoice.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_chMegaVoice.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;m_chMegaVoice.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
+    <value>8, 16</value>
+  </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>330, 360</value>
+    <value>325, 362</value>
+  </data>
+  <data name="$this.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 4, 4, 4</value>
+  </data>
+  <data name="$this.ShowHelp" type="System.Boolean, mscorlib">
+    <value>True</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
     <value>Selecione a norma para o livro acessível</value>
+  </data>
+  <data name="&gt;&gt;helpProvider1.Name" xml:space="preserve">
+    <value>helpProvider1</value>
+  </data>
+  <data name="&gt;&gt;helpProvider1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.HelpProvider, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;$this.Name" xml:space="preserve">
+    <value>chooseDaisy3orDaisy202</value>
+  </data>
+  <data name="&gt;&gt;$this.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Form, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
 </root>

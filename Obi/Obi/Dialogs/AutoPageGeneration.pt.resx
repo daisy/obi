@@ -119,28 +119,25 @@
   </resheader>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="m_lbGapsInPages.Size" type="System.Drawing.Size, System.Drawing">
-    <value>138, 13</value>
+    <value>186, 17</value>
   </data>
   <data name="m_lbGapsInPages.Text" xml:space="preserve">
     <value>&amp;Espaços nas páginas (mins)</value>
   </data>
   <data name="m_lbStartingSectionIndex.Size" type="System.Drawing.Size, System.Drawing">
-    <value>129, 13</value>
+    <value>168, 17</value>
   </data>
   <data name="m_lbStartingSectionIndex.Text" xml:space="preserve">
     <value>A iniciar &amp;Index da secção:</value>
   </data>
-  <data name="m_cbStartingSectionIndex.Location" type="System.Drawing.Point, System.Drawing">
-    <value>156, 104</value>
-  </data>
   <data name="m_rbGenerateTTS.Size" type="System.Drawing.Size, System.Drawing">
-    <value>159, 17</value>
+    <value>208, 21</value>
   </data>
   <data name="m_rbGenerateTTS.Text" xml:space="preserve">
     <value>Páginas com voz sintetizada</value>
   </data>
   <data name="m_rbKeepEmptyPages.Size" type="System.Drawing.Size, System.Drawing">
-    <value>124, 17</value>
+    <value>161, 21</value>
   </data>
   <data name="m_rbKeepEmptyPages.Text" xml:space="preserve">
     <value>Páginas com silêncio</value>
@@ -148,11 +145,41 @@
   <data name="m_btnCancel.Text" xml:space="preserve">
     <value>&amp;Cancelar</value>
   </data>
+  <data name="m_btnBrowse.Location" type="System.Drawing.Point, System.Drawing">
+    <value>450, 144</value>
+  </data>
+  <data name="m_btnBrowse.Text" xml:space="preserve">
+    <value>Pesquisar</value>
+  </data>
+  <data name="m_txtSelectCustomizedAudio.AccessibleName" xml:space="preserve">
+    <value>Selecionar o ficheiro com áudio gravado</value>
+  </data>
+  <data name="m_txtSelectCustomizedAudio.Location" type="System.Drawing.Point, System.Drawing">
+    <value>279, 151</value>
+  </data>
+  <data name="m_txtSelectCustomizedAudio.Size" type="System.Drawing.Size, System.Drawing">
+    <value>161, 22</value>
+  </data>
+  <data name="label1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>262, 17</value>
+  </data>
+  <data name="label1.Text" xml:space="preserve">
+    <value>Selecionar o ficheiro com áudio gravado</value>
+  </data>
+  <data name="m_rbPagesWithCustomizedAudio.Size" type="System.Drawing.Size, System.Drawing">
+    <value>205, 21</value>
+  </data>
+  <data name="m_rbPagesWithCustomizedAudio.Text" xml:space="preserve">
+    <value>Páginas com áudio gravado</value>
+  </data>
+  <data name="m_gpPages.Size" type="System.Drawing.Size, System.Drawing">
+    <value>560, 194</value>
+  </data>
   <data name="m_nudGapsInPages.Location" type="System.Drawing.Point, System.Drawing">
-    <value>156, 36</value>
+    <value>202, 44</value>
   </data>
   <data name="m_cbCreatePagesAtEnd.Size" type="System.Drawing.Size, System.Drawing">
-    <value>209, 17</value>
+    <value>276, 21</value>
   </data>
   <data name="m_cbCreatePagesAtEnd.Text" xml:space="preserve">
     <value>Criar páginas apenas no fim da secção</value>

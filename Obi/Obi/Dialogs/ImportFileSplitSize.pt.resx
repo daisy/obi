@@ -128,9 +128,6 @@
     <value />
   </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="label1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 51</value>
-  </data>
   <data name="label1.Size" type="System.Drawing.Size, System.Drawing">
     <value>236, 20</value>
   </data>
@@ -150,10 +147,7 @@
     <value />
   </data>
   <data name="mPhraseSizeTextBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>249, 51</value>
-  </data>
-  <data name="mPhraseSizeTextBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>110, 26</value>
+    <value>303, 64</value>
   </data>
   <data name="mOKButton.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
@@ -164,9 +158,6 @@
   <data name="mOKButton.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
   </data>
-  <data name="mOKButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>95, 724</value>
-  </data>
   <data name="mCancelButton.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
   </data>
@@ -175,9 +166,6 @@
   </data>
   <data name="mCancelButton.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
-  </data>
-  <data name="mCancelButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>213, 724</value>
   </data>
   <data name="mCancelButton.Text" xml:space="preserve">
     <value>&amp;Cancelar</value>
@@ -194,9 +182,6 @@
   <data name="lstManualArrange.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
   </data>
-  <data name="lstManualArrange.Size" type="System.Drawing.Size, System.Drawing">
-    <value>235, 144</value>
-  </data>
   <data name="m_btnMoveUp.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
   </data>
@@ -205,12 +190,6 @@
   </data>
   <data name="m_btnMoveUp.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
-  </data>
-  <data name="m_btnMoveUp.Location" type="System.Drawing.Point, System.Drawing">
-    <value>252, 14</value>
-  </data>
-  <data name="m_btnMoveUp.Size" type="System.Drawing.Size, System.Drawing">
-    <value>184, 31</value>
   </data>
   <data name="m_btnMoveUp.Text" xml:space="preserve">
     <value>Deslocar para &amp;cima</value>
@@ -224,12 +203,6 @@
   <data name="m_btnMoveDown.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
   </data>
-  <data name="m_btnMoveDown.Location" type="System.Drawing.Point, System.Drawing">
-    <value>252, 59</value>
-  </data>
-  <data name="m_btnMoveDown.Size" type="System.Drawing.Size, System.Drawing">
-    <value>185, 29</value>
-  </data>
   <data name="m_btnMoveDown.Text" xml:space="preserve">
     <value>Deslocar para &amp;baixo</value>
   </data>
@@ -241,12 +214,6 @@
   </data>
   <data name="m_btnAdd.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
-  </data>
-  <data name="m_btnAdd.Location" type="System.Drawing.Point, System.Drawing">
-    <value>252, 103</value>
-  </data>
-  <data name="m_btnAdd.Size" type="System.Drawing.Size, System.Drawing">
-    <value>185, 29</value>
   </data>
   <data name="m_btnAdd.Text" xml:space="preserve">
     <value>&amp;Adicionar</value>
@@ -263,12 +230,6 @@
   <data name="m_btnRemove.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
   </data>
-  <data name="m_btnRemove.Location" type="System.Drawing.Point, System.Drawing">
-    <value>251, 148</value>
-  </data>
-  <data name="m_btnRemove.Size" type="System.Drawing.Size, System.Drawing">
-    <value>185, 29</value>
-  </data>
   <data name="m_btnRemove.Text" xml:space="preserve">
     <value>&amp;Remover</value>
   </data>
@@ -284,12 +245,6 @@
   <data name="mbtnDesendingOrder.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
   </data>
-  <data name="mbtnDesendingOrder.Location" type="System.Drawing.Point, System.Drawing">
-    <value>205, 25</value>
-  </data>
-  <data name="mbtnDesendingOrder.Size" type="System.Drawing.Size, System.Drawing">
-    <value>189, 32</value>
-  </data>
   <data name="mbtnDesendingOrder.Text" xml:space="preserve">
     <value>Ordem d&amp;escendente</value>
   </data>
@@ -302,12 +257,6 @@
   <data name="mbtnAscendingOrder.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
   </data>
-  <data name="mbtnAscendingOrder.Location" type="System.Drawing.Point, System.Drawing">
-    <value>10, 25</value>
-  </data>
-  <data name="mbtnAscendingOrder.Size" type="System.Drawing.Size, System.Drawing">
-    <value>176, 32</value>
-  </data>
   <data name="mbtnAscendingOrder.Text" xml:space="preserve">
     <value>Ordem &amp;ascendente</value>
   </data>
@@ -319,9 +268,6 @@
   </data>
   <data name="m_grpArrangeAudioFiles.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
-  </data>
-  <data name="m_grpArrangeAudioFiles.Size" type="System.Drawing.Size, System.Drawing">
-    <value>402, 65</value>
   </data>
   <data name="m_grpArrangeAudioFiles.Text" xml:space="preserve">
     <value>Ordenar ficheiros áudio</value>
@@ -336,7 +282,7 @@
     <value />
   </data>
   <data name="m_grpAddFiles.Size" type="System.Drawing.Size, System.Drawing">
-    <value>446, 252</value>
+    <value>527, 261</value>
   </data>
   <data name="m_txtCharToReplaceWithSpace.AccessibleName" xml:space="preserve">
     <value>Para substituir com espaço</value>
@@ -350,12 +296,6 @@
   <data name="m_txtCharToReplaceWithSpace.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
   </data>
-  <data name="m_txtCharToReplaceWithSpace.Location" type="System.Drawing.Point, System.Drawing">
-    <value>275, 159</value>
-  </data>
-  <data name="m_txtCharToReplaceWithSpace.Size" type="System.Drawing.Size, System.Drawing">
-    <value>100, 26</value>
-  </data>
   <data name="m_txtPageIdentificationString.AccessibleName" xml:space="preserve">
     <value>Identificação de página</value>
   </data>
@@ -367,9 +307,6 @@
   </data>
   <data name="m_txtPageIdentificationString.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
-  </data>
-  <data name="m_txtPageIdentificationString.Location" type="System.Drawing.Point, System.Drawing">
-    <value>223, 215</value>
   </data>
   <data name="m_numCharCountToTruncateFromStart.AccessibleName" xml:space="preserve">
     <value>Número de carateres iniciais a decorar</value>
@@ -384,10 +321,7 @@
     <value />
   </data>
   <data name="m_numCharCountToTruncateFromStart.Location" type="System.Drawing.Point, System.Drawing">
-    <value>297, 188</value>
-  </data>
-  <data name="m_numCharCountToTruncateFromStart.Size" type="System.Drawing.Size, System.Drawing">
-    <value>78, 26</value>
+    <value>314, 156</value>
   </data>
   <data name="m_grpCreateSectionForEachAudioFile.AccessibleName" xml:space="preserve">
     <value>Caixa de grupo para criar uma secção para cada ficheiro áudio.</value>
@@ -401,8 +335,11 @@
   <data name="m_rdbSplitAtCuePoints.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
   </data>
-  <data name="m_rdbSplitAtCuePoints.Location" type="System.Drawing.Point, System.Drawing">
-    <value>13, 249</value>
+  <data name="m_rdbSplitAtCuePoints.Size" type="System.Drawing.Size, System.Drawing">
+    <value>487, 24</value>
+  </data>
+  <data name="m_rdbSplitAtCuePoints.Text" xml:space="preserve">
+    <value>Dividir em marcas de sinalização em ficheiros de áudio wave</value>
   </data>
   <data name="m_rdbCreateAudioFilePerSection.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
@@ -413,6 +350,12 @@
   <data name="m_rdbCreateAudioFilePerSection.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
   </data>
+  <data name="m_rdbCreateAudioFilePerSection.Size" type="System.Drawing.Size, System.Drawing">
+    <value>415, 24</value>
+  </data>
+  <data name="m_rdbCreateAudioFilePerSection.Text" xml:space="preserve">
+    <value>&amp; Criar uma nova secção para cada ficheiro de áudio</value>
+  </data>
   <data name="m_rdbImportAudioFileInEachSection.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
   </data>
@@ -421,6 +364,12 @@
   </data>
   <data name="m_rdbImportAudioFileInEachSection.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
+  </data>
+  <data name="m_rdbImportAudioFileInEachSection.Size" type="System.Drawing.Size, System.Drawing">
+    <value>456, 24</value>
+  </data>
+  <data name="m_rdbImportAudioFileInEachSection.Text" xml:space="preserve">
+    <value>I &amp; mportar ficheiro de áudio em cada secção (da seleção)</value>
   </data>
   <data name="m_rdbImportAudioInSelectedSection.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
@@ -443,9 +392,6 @@
   <data name="mchktPageIdentificationString.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
   </data>
-  <data name="mchktPageIdentificationString.Location" type="System.Drawing.Point, System.Drawing">
-    <value>18, 215</value>
-  </data>
   <data name="mchktPageIdentificationString.Size" type="System.Drawing.Size, System.Drawing">
     <value>202, 24</value>
   </data>
@@ -463,9 +409,6 @@
   </data>
   <data name="mchkCountToTruncateFromStart.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
-  </data>
-  <data name="mchkCountToTruncateFromStart.Location" type="System.Drawing.Point, System.Drawing">
-    <value>19, 189</value>
   </data>
   <data name="mchkCountToTruncateFromStart.Size" type="System.Drawing.Size, System.Drawing">
     <value>272, 24</value>
@@ -485,9 +428,6 @@
   <data name="mchkToReplaceWithSpace.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
   </data>
-  <data name="mchkToReplaceWithSpace.Location" type="System.Drawing.Point, System.Drawing">
-    <value>18, 161</value>
-  </data>
   <data name="mchkToReplaceWithSpace.Size" type="System.Drawing.Size, System.Drawing">
     <value>236, 24</value>
   </data>
@@ -503,11 +443,8 @@
   <data name="m_grpCreateSectionForEachAudioFile.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
   </data>
-  <data name="m_grpCreateSectionForEachAudioFile.Location" type="System.Drawing.Point, System.Drawing">
-    <value>12, 268</value>
-  </data>
   <data name="m_grpCreateSectionForEachAudioFile.Size" type="System.Drawing.Size, System.Drawing">
-    <value>448, 279</value>
+    <value>527, 280</value>
   </data>
   <data name="m_rdbPhraseDetectionOnImportedFiles.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
@@ -548,14 +485,11 @@
   <data name="m_grpSplitPhraseOrPhraseDetection.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
   </data>
-  <data name="m_grpSplitPhraseOrPhraseDetection.Location" type="System.Drawing.Point, System.Drawing">
-    <value>12, 550</value>
-  </data>
   <data name="m_grpSplitPhraseOrPhraseDetection.Size" type="System.Drawing.Size, System.Drawing">
-    <value>448, 162</value>
+    <value>527, 129</value>
   </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>472, 782</value>
+    <value>567, 745</value>
   </data>
   <data name="$this.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
