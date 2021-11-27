@@ -480,7 +480,7 @@
     <value>Ctrl+Alt+T</value>
   </data>
   <data name="mShowTOCViewToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>273, 22</value>
+    <value>272, 22</value>
   </data>
   <data name="mShowTOCViewToolStripMenuItem.Text" xml:space="preserve">
     <value>Mostrar vista T&amp;OC</value>
@@ -492,7 +492,7 @@
     <value>Ctrl+Alt+M</value>
   </data>
   <data name="mShowMetadataViewToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>273, 22</value>
+    <value>272, 22</value>
   </data>
   <data name="mShowMetadataViewToolStripMenuItem.Text" xml:space="preserve">
     <value>Mostrar vista de meta&amp;dados</value>
@@ -504,7 +504,7 @@
     <value>Ctrl+Alt+B</value>
   </data>
   <data name="mShowTransportBarToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>273, 22</value>
+    <value>272, 22</value>
   </data>
   <data name="mShowTransportBarToolStripMenuItem.Text" xml:space="preserve">
     <value>Mostrar &amp;barra de controlos</value>
@@ -516,13 +516,13 @@
     <value>Ctrl+Alt+U</value>
   </data>
   <data name="mShowStatusBarToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>273, 22</value>
+    <value>272, 22</value>
   </data>
   <data name="mShowStatusBarToolStripMenuItem.Text" xml:space="preserve">
     <value>Mostrar barra de e&amp;stado</value>
   </data>
   <data name="toolStripSeparator12.Size" type="System.Drawing.Size, System.Drawing">
-    <value>270, 6</value>
+    <value>269, 6</value>
   </data>
   <data name="mFocusOnTOCViewToolStripMenuItem.AccessibleName" xml:space="preserve">
     <value>Alternar vista de conteúdo / vista TOC F6</value>
@@ -531,7 +531,7 @@
     <value>F6</value>
   </data>
   <data name="mFocusOnTOCViewToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>273, 22</value>
+    <value>272, 22</value>
   </data>
   <data name="mFocusOnTOCViewToolStripMenuItem.Text" xml:space="preserve">
     <value>Alternar vista de conteúdo / vista TO&amp;C</value>
@@ -543,7 +543,7 @@
     <value>F6</value>
   </data>
   <data name="mFocusOnStripsViewToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>273, 22</value>
+    <value>272, 22</value>
   </data>
   <data name="mFocusOnStripsViewToolStripMenuItem.Text" xml:space="preserve">
     <value>Foco na vista de co&amp;nteúdo</value>
@@ -559,7 +559,7 @@
     <value>Ctrl+F6</value>
   </data>
   <data name="mFocusOnTransportBarToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>273, 22</value>
+    <value>272, 22</value>
   </data>
   <data name="mFocusOnTransportBarToolStripMenuItem.Text" xml:space="preserve">
     <value>Foco na barra de contr&amp;olos</value>
@@ -571,7 +571,7 @@
     <value>Ctrl+Alt+Y</value>
   </data>
   <data name="mSynchronizeViewsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>273, 22</value>
+    <value>272, 22</value>
   </data>
   <data name="mSynchronizeViewsToolStripMenuItem.Text" xml:space="preserve">
     <value>S&amp;incronizar vistas</value>
@@ -580,7 +580,7 @@
     <value>False</value>
   </data>
   <data name="toolStripSeparator10.Size" type="System.Drawing.Size, System.Drawing">
-    <value>270, 6</value>
+    <value>269, 6</value>
   </data>
   <data name="mShowPeakMeterMenuItem.AccessibleName" xml:space="preserve">
     <value>Mostrar medidor de pico Ctrl+Alt+P</value>
@@ -589,10 +589,16 @@
     <value>Ctrl+Alt+P</value>
   </data>
   <data name="mShowPeakMeterMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>273, 22</value>
+    <value>272, 22</value>
   </data>
   <data name="mShowPeakMeterMenuItem.Text" xml:space="preserve">
     <value>Mostrar medidor de &amp;pico</value>
+  </data>
+  <data name="mShowPeakMeterInsideObiMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>272, 22</value>
+  </data>
+  <data name="mShowPeakMeterInsideObiMenuItem.Text" xml:space="preserve">
+    <value>Mostrar &amp; medidor de pico dentro do Obi</value>
   </data>
   <data name="mShowSourceToolStripMenuItem.AccessibleName" xml:space="preserve">
     <value>Mostrar vista de fonte Ctrl+Alt+O</value>
@@ -601,7 +607,7 @@
     <value>Ctrl+Alt+O</value>
   </data>
   <data name="mShowSourceToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>273, 22</value>
+    <value>272, 22</value>
   </data>
   <data name="mShowSourceToolStripMenuItem.Text" xml:space="preserve">
     <value>Mostrar vista de &amp;fonte</value>
@@ -610,13 +616,13 @@
     <value>Ctrl+Alt+R</value>
   </data>
   <data name="mView_RecordingToolBarMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>273, 22</value>
+    <value>272, 22</value>
   </data>
   <data name="mView_RecordingToolBarMenuItem.Text" xml:space="preserve">
     <value>Mostrar barra de ferramentas da gravação</value>
   </data>
   <data name="toolStripSeparator15.Size" type="System.Drawing.Size, System.Drawing">
-    <value>270, 6</value>
+    <value>269, 6</value>
   </data>
   <data name="mView_ZoomInMenuItem.AccessibleName" xml:space="preserve">
     <value>Zoom in Ctrl+Alt+plus</value>
@@ -628,7 +634,7 @@
     <value>Ctrl+Alt+Oemplus</value>
   </data>
   <data name="mView_ZoomInMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>273, 22</value>
+    <value>272, 22</value>
   </data>
   <data name="mView_ZoomInMenuItem.Text" xml:space="preserve">
     <value>Zoom &amp;in</value>
@@ -643,7 +649,7 @@
     <value>Ctrl+Alt+OemMinus</value>
   </data>
   <data name="mView_ZoomOutMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>273, 22</value>
+    <value>272, 22</value>
   </data>
   <data name="mView_ZoomOutMenuItem.Text" xml:space="preserve">
     <value>Zoom &amp;out</value>
@@ -655,7 +661,7 @@
     <value>Ctrl+Alt+0</value>
   </data>
   <data name="mView_NormalSizeMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>273, 22</value>
+    <value>272, 22</value>
   </data>
   <data name="mView_NormalSizeMenuItem.Text" xml:space="preserve">
     <value>Taman&amp;ho normal</value>
@@ -670,7 +676,7 @@
     <value>Ctrl+Alt+Shift+Oemplus</value>
   </data>
   <data name="mView_AudioZoomInMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>273, 22</value>
+    <value>272, 22</value>
   </data>
   <data name="mView_AudioZoomInMenuItem.Text" xml:space="preserve">
     <value>Au&amp;dio zoom in</value>
@@ -685,7 +691,7 @@
     <value>Ctrl+Alt+Shift+OemMinus</value>
   </data>
   <data name="mView_AudioZoomOutMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>273, 22</value>
+    <value>272, 22</value>
   </data>
   <data name="mView_AudioZoomOutMenuItem.Text" xml:space="preserve">
     <value>Audio zoom out (&amp;q)</value>
@@ -697,7 +703,7 @@
     <value>Ctrl+Alt+Shift+0</value>
   </data>
   <data name="mView_ResetAudioSizeMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>273, 22</value>
+    <value>272, 22</value>
   </data>
   <data name="mView_ResetAudioSizeMenuItem.Text" xml:space="preserve">
     <value>Restaurar tamanho do áudio (&amp;h)</value>
@@ -709,7 +715,7 @@
     <value>F5</value>
   </data>
   <data name="mView_RefreshContentViewMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>273, 22</value>
+    <value>272, 22</value>
   </data>
   <data name="mView_RefreshContentViewMenuItem.Text" xml:space="preserve">
     <value>Renovar vista de conteúdo(Debug)</value>
@@ -718,7 +724,7 @@
     <value>False</value>
   </data>
   <data name="toolStripSeparator17.Size" type="System.Drawing.Size, System.Drawing">
-    <value>270, 6</value>
+    <value>269, 6</value>
   </data>
   <data name="mView_PhrasePropertiesMenuItem.AccessibleName" xml:space="preserve">
     <value>Propriedades da frase Alt+Enter</value>
@@ -727,7 +733,7 @@
     <value>Alt+Enter</value>
   </data>
   <data name="mView_PhrasePropertiesMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>273, 22</value>
+    <value>272, 22</value>
   </data>
   <data name="mView_PhrasePropertiesMenuItem.Text" xml:space="preserve">
     <value>Propriedades da f&amp;rase</value>
@@ -739,7 +745,7 @@
     <value>Alt+Enter</value>
   </data>
   <data name="mView_SectionPropertiesMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>273, 22</value>
+    <value>272, 22</value>
   </data>
   <data name="mView_SectionPropertiesMenuItem.Text" xml:space="preserve">
     <value>Propriedades da s&amp;ecção</value>
@@ -748,7 +754,7 @@
     <value>Propriedades do projeto</value>
   </data>
   <data name="mView_ProjectPropertiesMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>273, 22</value>
+    <value>272, 22</value>
   </data>
   <data name="mView_ProjectPropertiesMenuItem.Text" xml:space="preserve">
     <value>Propriedades do pro&amp;jeto</value>
@@ -806,6 +812,12 @@
   </data>
   <data name="mRenameSectionToolStripMenuItem.Text" xml:space="preserve">
     <value>Re&amp;nomear secção</value>
+  </data>
+  <data name="mImportTOCMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>279, 22</value>
+  </data>
+  <data name="mImportTOCMenuItem.Text" xml:space="preserve">
+    <value>I &amp; mportar e substituir TOC</value>
   </data>
   <data name="toolStripSeparator11.Size" type="System.Drawing.Size, System.Drawing">
     <value>276, 6</value>
@@ -943,19 +955,19 @@
     <value>Ctrl+M</value>
   </data>
   <data name="mMergePhraseWithNextToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>242, 22</value>
+    <value>243, 22</value>
   </data>
   <data name="mMergePhraseWithNextToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Juntar com a próxima frase</value>
   </data>
   <data name="splitAndMergeWithNextToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>242, 22</value>
+    <value>243, 22</value>
   </data>
   <data name="splitAndMergeWithNextToolStripMenuItem.Text" xml:space="preserve">
     <value>Dividir e juntar com a próxim&amp;a</value>
   </data>
   <data name="splitAndMergeWithPreviousToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>242, 22</value>
+    <value>243, 22</value>
   </data>
   <data name="splitAndMergeWithPreviousToolStripMenuItem.Text" xml:space="preserve">
     <value>Dividir e juntar com a anteri&amp;or</value>
@@ -964,7 +976,7 @@
     <value>Juntar com as frases seguintes</value>
   </data>
   <data name="mMergePhraseWithFollowingPhrasesToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>242, 22</value>
+    <value>243, 22</value>
   </data>
   <data name="mMergePhraseWithFollowingPhrasesToolStripMenuItem.Text" xml:space="preserve">
     <value>Juntar com as frases segu&amp;intes</value>
@@ -973,7 +985,7 @@
     <value>Juntar com as frases anteriores</value>
   </data>
   <data name="mMergePhraseWithPrecedingPhrasesToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>242, 22</value>
+    <value>243, 22</value>
   </data>
   <data name="mMergePhraseWithPrecedingPhrasesToolStripMenuItem.Text" xml:space="preserve">
     <value>Juntar com as frases &amp;anteriores</value>
@@ -1018,19 +1030,19 @@
     <value>Frase pa&amp;ra usar</value>
   </data>
   <data name="beginMarkToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>216, 22</value>
+    <value>256, 22</value>
   </data>
   <data name="beginMarkToolStripMenuItem.Text" xml:space="preserve">
     <value>Iniciar &amp;marcador</value>
   </data>
   <data name="endMarkToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>216, 22</value>
+    <value>256, 22</value>
   </data>
   <data name="endMarkToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Finalizar marcador</value>
   </data>
   <data name="mPhrases_RenumberPagesMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>216, 22</value>
+    <value>256, 22</value>
   </data>
   <data name="mPhrases_RenumberPagesMenuItem.Text" xml:space="preserve">
     <value>&amp;Renumerar páginas seguintes</value>
@@ -1039,10 +1051,19 @@
     <value>Preencher páginas vazias automaticamente</value>
   </data>
   <data name="m_AutoFillMissingPagesMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>216, 22</value>
+    <value>256, 22</value>
   </data>
   <data name="m_AutoFillMissingPagesMenuItem.Text" xml:space="preserve">
     <value>Preencher páginas em falta automaticamente</value>
+  </data>
+  <data name="m_pasteMultiplePhrasesToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
+    <value>Ctrl+Alt+Z</value>
+  </data>
+  <data name="m_pasteMultiplePhrasesToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>256, 22</value>
+  </data>
+  <data name="m_pasteMultiplePhrasesToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp; Colar frases múltiplas</value>
   </data>
   <data name="MultiPhraseOperationMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>240, 22</value>
@@ -1160,6 +1181,24 @@
   </data>
   <data name="mSkippableNoteToolStripMenuItem.Text" xml:space="preserve">
     <value>Nota a &amp;avançar</value>
+  </data>
+  <data name="m_AddViewCommentToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>183, 22</value>
+  </data>
+  <data name="m_AddViewCommentToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp; Adicionar / Ver Comentário</value>
+  </data>
+  <data name="m_ClearCommentToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>183, 22</value>
+  </data>
+  <data name="m_ClearCommentToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp; Limpar comentário</value>
+  </data>
+  <data name="m_CommentToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>240, 22</value>
+  </data>
+  <data name="m_CommentToolStripMenuItem.Text" xml:space="preserve">
+    <value>Comentário &amp; TODO</value>
   </data>
   <data name="mAutoPageGenerationMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>240, 22</value>
@@ -1290,6 +1329,9 @@
   <data name="detectSilencePhraseToolStripMenuItem.Text" xml:space="preserve">
     <value>Detect Silence Errors</value>
   </data>
+  <data name="detectSilencePhraseToolStripMenuItem.Visible" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
   <data name="mPhraseDetectionToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>240, 22</value>
   </data>
@@ -1339,7 +1381,7 @@
     <value>Ctrl+F9</value>
   </data>
   <data name="mNextTODOPhraseToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>270, 22</value>
+    <value>269, 22</value>
   </data>
   <data name="mNextTODOPhraseToolStripMenuItem.Text" xml:space="preserve">
     <value>Frase para trabalhar se&amp;guinte</value>
@@ -1351,7 +1393,7 @@
     <value>Ctrl+Shift+F9</value>
   </data>
   <data name="mPreviousTODOPhraseToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>270, 22</value>
+    <value>269, 22</value>
   </data>
   <data name="mPreviousTODOPhraseToolStripMenuItem.Text" xml:space="preserve">
     <value>Frase para trabal&amp;har anterior</value>
@@ -1363,7 +1405,7 @@
     <value>Ctrl+G</value>
   </data>
   <data name="m_GoToPageToolStrip.Size" type="System.Drawing.Size, System.Drawing">
-    <value>270, 22</value>
+    <value>269, 22</value>
   </data>
   <data name="m_GoToPageToolStrip.Text" xml:space="preserve">
     <value>Página / &amp;ou frase</value>
@@ -1378,7 +1420,7 @@
     <value>Ctrl+F3</value>
   </data>
   <data name="m_GoToCollectSpecialPhrasesToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>270, 22</value>
+    <value>269, 22</value>
   </data>
   <data name="m_GoToCollectSpecialPhrasesToolStripMenuItem.Text" xml:space="preserve">
     <value>Reunir frases &amp;especiais</value>
@@ -1668,6 +1710,24 @@
   <data name="allEmptyPagesToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Todas as páginas vazias</value>
   </data>
+  <data name="selectedPageAudioFileToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>267, 24</value>
+  </data>
+  <data name="selectedPageAudioFileToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp; Página selecionada (ficheiro de áudio)</value>
+  </data>
+  <data name="selectedPageAudioFileToolStripMenuItem.AccessibleName" xml:space="preserve">
+    <value>Gerar fala para a página selecionada (ficheiroarquivo de áudio).</value>
+  </data>
+  <data name="allEmptyPagesAudioFileToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>267, 24</value>
+  </data>
+  <data name="allEmptyPagesAudioFileToolStripMenuItem.Text" xml:space="preserve">
+    <value>Todas as páginas &amp; vazias (ficheiro de áudio)</value>
+  </data>
+  <data name="allEmptyPagesAudioFileToolStripMenuItem.AccessibleName" xml:space="preserve">
+    <value>Gerar voz para todas as páginas vazias (ficheiro de áudio).</value>
+  </data>
   <data name="mGenerateSpeechToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>176, 22</value>
   </data>
@@ -1764,6 +1824,9 @@
   <data name="toolStripSeparator14.Size" type="System.Drawing.Size, System.Drawing">
     <value>204, 6</value>
   </data>
+  <data name="mPlayOnNavigateToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
+    <value>Ctrl+U</value>
+  </data>
   <data name="mPlayOnNavigateToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>207, 22</value>
   </data>
@@ -1813,7 +1876,7 @@
     <value>Av&amp;ançar</value>
   </data>
   <data name="transportToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>69, 20</value>
+    <value>68, 20</value>
   </data>
   <data name="transportToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Controlos</value>
@@ -1825,25 +1888,109 @@
     <value>Ctrl+Alt+F</value>
   </data>
   <data name="mTools_PreferencesMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>229, 22</value>
+    <value>230, 22</value>
   </data>
   <data name="mTools_PreferencesMenuItem.Text" xml:space="preserve">
     <value>&amp;Preferências</value>
   </data>
   <data name="m_ToolsLangPack.Size" type="System.Drawing.Size, System.Drawing">
-    <value>229, 22</value>
+    <value>230, 22</value>
   </data>
   <data name="m_ToolsLangPack.Text" xml:space="preserve">
     <value>Atuali&amp;zar pacote de idiomas</value>
   </data>
   <data name="toolStripSeparator16.Size" type="System.Drawing.Size, System.Drawing">
-    <value>226, 6</value>
+    <value>227, 6</value>
   </data>
-  <data name="mTools_AudioProcessing.Size" type="System.Drawing.Size, System.Drawing">
-    <value>229, 22</value>
+  <data name="mTools_AudioProcessingNew.AccessibleName" xml:space="preserve">
+    <value>Processamento de Áudio</value>
   </data>
-  <data name="mTools_AudioProcessing.Text" xml:space="preserve">
-    <value>&amp;Processamento de áudio</value>
+  <data name="m_ChangeVolumeToolStripMenuItem.AccessibleName" xml:space="preserve">
+    <value>Alterar o volume Ctrl + Shift + U</value>
+  </data>
+  <data name="m_ChangeVolumeToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
+    <value>Ctrl+Shift+U</value>
+  </data>
+  <data name="m_ChangeVolumeToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>234, 22</value>
+  </data>
+  <data name="m_ChangeVolumeToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp; Alterar o Volume</value>
+  </data>
+  <data name="m_FadeInToolStripMenuItem.AccessibleName" xml:space="preserve">
+    <value>Fade In Ctrl + Shift + I</value>
+  </data>
+  <data name="m_FadeInToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
+    <value>Ctrl+Shift+I</value>
+  </data>
+  <data name="m_FadeInToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>234, 22</value>
+  </data>
+  <data name="m_FadeInToolStripMenuItem.Text" xml:space="preserve">
+    <value>Fade &amp;In</value>
+  </data>
+  <data name="m_FadeOutToolStripMenuItem.AccessibleName" xml:space="preserve">
+    <value>Fade Out Ctrl+Shift+O</value>
+  </data>
+  <data name="m_FadeOutToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
+    <value>Ctrl+Shift+O</value>
+  </data>
+  <data name="m_FadeOutToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>234, 22</value>
+  </data>
+  <data name="m_FadeOutToolStripMenuItem.Text" xml:space="preserve">
+    <value>Fade &amp;Out</value>
+  </data>
+  <data name="m_NormalizeToolStripMenuItem.AccessibleName" xml:space="preserve">
+    <value>Normalizar Ctrl + Shift + Z</value>
+  </data>
+  <data name="m_NormalizeToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
+    <value>Ctrl+Shift+Z</value>
+  </data>
+  <data name="m_NormalizeToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>234, 22</value>
+  </data>
+  <data name="m_NormalizeToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;Normalizar</value>
+  </data>
+  <data name="m_SpeechRateToolStripMenuItem.AccessibleName" xml:space="preserve">
+    <value>Taxa de fala</value>
+  </data>
+  <data name="m_SpeechRateToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>234, 22</value>
+  </data>
+  <data name="m_SpeechRateToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp; Taxa de fala</value>
+  </data>
+  <data name="m_NoiseReductionToolStripMenuItem.AccessibleName" xml:space="preserve">
+    <value>Redução de ruído Ctrl + Shift + Y</value>
+  </data>
+  <data name="m_NoiseReductionToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
+    <value>Ctrl+Shift+Y</value>
+  </data>
+  <data name="m_NoiseReductionToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>234, 22</value>
+  </data>
+  <data name="m_NoiseReductionToolStripMenuItem.Text" xml:space="preserve">
+    <value>Redução de ruído Ctrl + Shift + Y</value>
+  </data>
+  <data name="m_AudioMixerToolStripMenuItem.AccessibleName" xml:space="preserve">
+    <value>Misturador de áudio Ctrl + Shift + X</value>
+  </data>
+  <data name="m_AudioMixerToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
+    <value>Ctrl+Shift+X</value>
+  </data>
+  <data name="m_AudioMixerToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>234, 22</value>
+  </data>
+  <data name="m_AudioMixerToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp; Misturador de Áudio</value>
+  </data>
+  <data name="mTools_AudioProcessingNew.Size" type="System.Drawing.Size, System.Drawing">
+    <value>230, 22</value>
+  </data>
+  <data name="mTools_AudioProcessingNew.Text" xml:space="preserve">
+    <value>&amp; Processamento de Áudio</value>
   </data>
   <data name="mTools_ExportSelectedAudioMenuItem.AccessibleName" xml:space="preserve">
     <value>Exportar áudio  Ctrl+Alt+E</value>
@@ -1852,7 +1999,7 @@
     <value>Ctrl+Alt+E</value>
   </data>
   <data name="mTools_ExportSelectedAudioMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>229, 22</value>
+    <value>230, 22</value>
   </data>
   <data name="mTools_ExportSelectedAudioMenuItem.Text" xml:space="preserve">
     <value>Exportar áu&amp;dio</value>
@@ -1891,7 +2038,7 @@
     <value>&amp;Descartagem</value>
   </data>
   <data name="mTools_CleanUnreferencedAudioMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>229, 22</value>
+    <value>230, 22</value>
   </data>
   <data name="mTools_CleanUnreferencedAudioMenuItem.Text" xml:space="preserve">
     <value>D&amp;epurar áudio não referenciado</value>
@@ -1903,22 +2050,22 @@
     <value>Ctrl+E</value>
   </data>
   <data name="mTools_ExportAsDAISYMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>229, 22</value>
+    <value>230, 22</value>
   </data>
   <data name="mTools_ExportAsDAISYMenuItem.Text" xml:space="preserve">
     <value>&amp;Exportar para DAISY/EPUB</value>
   </data>
   <data name="toolStripSeparator18.Size" type="System.Drawing.Size, System.Drawing">
-    <value>226, 6</value>
+    <value>227, 6</value>
   </data>
   <data name="m_EPUB3ValidatorToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>229, 22</value>
+    <value>230, 22</value>
   </data>
   <data name="m_EPUB3ValidatorToolStripMenuItem.Text" xml:space="preserve">
     <value>Validador EPUB 3</value>
   </data>
   <data name="mToolsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>47, 20</value>
+    <value>46, 20</value>
   </data>
   <data name="mToolsToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Ferramentas</value>
@@ -1940,6 +2087,15 @@
   </data>
   <data name="mHelp_ContentsMenuItem.Text" xml:space="preserve">
     <value>&amp;Conteúdos</value>
+  </data>
+  <data name="mHelp_ContentsEnglishMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>238, 22</value>
+  </data>
+  <data name="mHelp_ContentsEnglishMenuItem.Text" xml:space="preserve">
+    <value>Contents &amp;Latest (English)</value>
+  </data>
+  <data name="mHelp_ContentsEnglishMenuItem.Visible" type="System.Boolean, mscorlib">
+    <value>False</value>
   </data>
   <data name="mHelp_ReportBugMenuItem.AccessibleName" xml:space="preserve">
     <value>Recursos Online / Identificar problemas Ctrl+Alt+R</value>
@@ -1973,6 +2129,9 @@
   </data>
   <data name="mMenuStrip.Location" type="System.Drawing.Point, System.Drawing">
     <value>0, 0</value>
+  </data>
+  <data name="mMenuStrip.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>8, 2, 0, 2</value>
   </data>
   <data name="mMenuStrip.Size" type="System.Drawing.Size, System.Drawing">
     <value>876, 24</value>
@@ -2013,6 +2172,9 @@
   <data name="mStatusStrip.Location" type="System.Drawing.Point, System.Drawing">
     <value>0, 520</value>
   </data>
+  <data name="mStatusStrip.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>1, 0, 19, 0</value>
+  </data>
   <data name="mStatusStrip.Size" type="System.Drawing.Size, System.Drawing">
     <value>876, 22</value>
   </data>
@@ -2040,6 +2202,9 @@
   <data name="mProjectView.Location" type="System.Drawing.Point, System.Drawing">
     <value>0, 24</value>
   </data>
+  <data name="mProjectView.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>5, 5, 5, 5</value>
+  </data>
   <data name="mProjectView.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>3, 3, 3, 3</value>
   </data>
@@ -2053,13 +2218,22 @@
     <value>mProjectView</value>
   </data>
   <data name="&gt;&gt;mProjectView.Type" xml:space="preserve">
-    <value>Obi.ProjectView.ProjectView, Obi, Version=3.8.7.21480, Culture=neutral, PublicKeyToken=null</value>
+    <value>Obi.ProjectView.ProjectView, Obi, Version=4.5.0.31417, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;mProjectView.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
   <data name="&gt;&gt;mProjectView.ZOrder" xml:space="preserve">
     <value>0</value>
+  </data>
+  <data name="m_ImportMetadataToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>296, 24</value>
+  </data>
+  <data name="m_ImportMetadataToolStripMenuItem.Text" xml:space="preserve">
+    <value>Import &amp;Metadata</value>
+  </data>
+  <data name="toolStripSeparator20.Size" type="System.Drawing.Size, System.Drawing">
+    <value>293, 6</value>
   </data>
   <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
     <value>6, 13</value>
@@ -2322,6 +2496,9 @@
         AAAAAAAAAAAAAAAAAAAAAAAAAAAAAP//43uAHwAAgA/WAIAPIjGAByIggANjb4ABbmeAA1VUgA84IoAP
         CjyAD09DwA9QRcAfbGngHyBQ8H9MSf//Ii0=
 </value>
+  </data>
+  <data name="$this.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 4, 4, 4</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
     <value>Obi</value>
@@ -2626,6 +2803,12 @@
   <data name="&gt;&gt;mShowPeakMeterMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="&gt;&gt;mShowPeakMeterInsideObiMenuItem.Name" xml:space="preserve">
+    <value>mShowPeakMeterInsideObiMenuItem</value>
+  </data>
+  <data name="&gt;&gt;mShowPeakMeterInsideObiMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="&gt;&gt;mShowSourceToolStripMenuItem.Name" xml:space="preserve">
     <value>mShowSourceToolStripMenuItem</value>
   </data>
@@ -2738,6 +2921,12 @@
     <value>mRenameSectionToolStripMenuItem</value>
   </data>
   <data name="&gt;&gt;mRenameSectionToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;mImportTOCMenuItem.Name" xml:space="preserve">
+    <value>mImportTOCMenuItem</value>
+  </data>
+  <data name="&gt;&gt;mImportTOCMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;toolStripSeparator11.Name" xml:space="preserve">
@@ -2902,6 +3091,12 @@
   <data name="&gt;&gt;m_AutoFillMissingPagesMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="&gt;&gt;m_pasteMultiplePhrasesToolStripMenuItem.Name" xml:space="preserve">
+    <value>m_pasteMultiplePhrasesToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;m_pasteMultiplePhrasesToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="&gt;&gt;mSkippableNoteToolStripMenuItem.Name" xml:space="preserve">
     <value>mSkippableNoteToolStripMenuItem</value>
   </data>
@@ -2956,11 +3151,29 @@
   <data name="&gt;&gt;mSkippableClearRoleFromNoteToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="&gt;&gt;m_CommentToolStripMenuItem.Name" xml:space="preserve">
+    <value>m_CommentToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;m_CommentToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_AddViewCommentToolStripMenuItem.Name" xml:space="preserve">
+    <value>m_AddViewCommentToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;m_AddViewCommentToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_ClearCommentToolStripMenuItem.Name" xml:space="preserve">
+    <value>m_ClearCommentToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;m_ClearCommentToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="&gt;&gt;mAutoPageGenerationMenuItem.Name" xml:space="preserve">
     <value>mAutoPageGenerationMenuItem</value>
   </data>
   <data name="&gt;&gt;mAutoPageGenerationMenuItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;toolStripSeparator6.Name" xml:space="preserve">
     <value>toolStripSeparator6</value>
@@ -3298,6 +3511,18 @@
   <data name="&gt;&gt;allEmptyPagesToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="&gt;&gt;selectedPageAudioFileToolStripMenuItem.Name" xml:space="preserve">
+    <value>selectedPageAudioFileToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;selectedPageAudioFileToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;allEmptyPagesAudioFileToolStripMenuItem.Name" xml:space="preserve">
+    <value>allEmptyPagesAudioFileToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;allEmptyPagesAudioFileToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="&gt;&gt;toolStripSeparator5.Name" xml:space="preserve">
     <value>toolStripSeparator5</value>
   </data>
@@ -3412,10 +3637,52 @@
   <data name="&gt;&gt;toolStripSeparator16.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripSeparator, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;mTools_AudioProcessing.Name" xml:space="preserve">
-    <value>mTools_AudioProcessing</value>
+  <data name="&gt;&gt;mTools_AudioProcessingNew.Name" xml:space="preserve">
+    <value>mTools_AudioProcessingNew</value>
   </data>
-  <data name="&gt;&gt;mTools_AudioProcessing.Type" xml:space="preserve">
+  <data name="&gt;&gt;mTools_AudioProcessingNew.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_ChangeVolumeToolStripMenuItem.Name" xml:space="preserve">
+    <value>m_ChangeVolumeToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;m_ChangeVolumeToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_FadeInToolStripMenuItem.Name" xml:space="preserve">
+    <value>m_FadeInToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;m_FadeInToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_FadeOutToolStripMenuItem.Name" xml:space="preserve">
+    <value>m_FadeOutToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;m_FadeOutToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_NormalizeToolStripMenuItem.Name" xml:space="preserve">
+    <value>m_NormalizeToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;m_NormalizeToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_SpeechRateToolStripMenuItem.Name" xml:space="preserve">
+    <value>m_SpeechRateToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;m_SpeechRateToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_NoiseReductionToolStripMenuItem.Name" xml:space="preserve">
+    <value>m_NoiseReductionToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;m_NoiseReductionToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_AudioMixerToolStripMenuItem.Name" xml:space="preserve">
+    <value>m_AudioMixerToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;m_AudioMixerToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;mTools_ExportSelectedAudioMenuItem.Name" xml:space="preserve">
@@ -3484,6 +3751,12 @@
   <data name="&gt;&gt;mHelp_ContentsMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="&gt;&gt;mHelp_ContentsEnglishMenuItem.Name" xml:space="preserve">
+    <value>mHelp_ContentsEnglishMenuItem</value>
+  </data>
+  <data name="&gt;&gt;mHelp_ContentsEnglishMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="&gt;&gt;mHelp_ReportBugMenuItem.Name" xml:space="preserve">
     <value>mHelp_ReportBugMenuItem</value>
   </data>
@@ -3513,6 +3786,18 @@
   </data>
   <data name="&gt;&gt;mStatusProgressBar.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripProgressBar, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_ImportMetadataToolStripMenuItem.Name" xml:space="preserve">
+    <value>m_ImportMetadataToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;m_ImportMetadataToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;toolStripSeparator20.Name" xml:space="preserve">
+    <value>toolStripSeparator20</value>
+  </data>
+  <data name="&gt;&gt;toolStripSeparator20.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripSeparator, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
     <value>ObiForm</value>

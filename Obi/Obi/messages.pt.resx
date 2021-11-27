@@ -2661,15 +2661,12 @@ Error text: {1}</value>
   </data>
   <data name="SplitPhrases_ErrorSilence" xml:space="preserve">
     <value>Deseja dividir a frase nesta posição?</value>
-    <comment>Confirmation dialog</comment>
   </data>
   <data name="Caption_SplitPhrase" xml:space="preserve">
     <value>Dividir Frase?</value>
-    <comment>Confirmation dialog</comment>
   </data>
   <data name="NumberOfErrorPhrase" xml:space="preserve">
     <value>Número de frases com erro encontradas:</value>
-    <comment>Status message</comment>
   </data>
   <data name="Project_DisplayWarningsForEditOperations" xml:space="preserve">
     <value>Avisar antes de manipular secção</value>
@@ -2700,7 +2697,6 @@ Error text: {1}</value>
   </data>
   <data name="Mints_invalid_input" xml:space="preserve">
     <value>Por favor especifique o intervalo de tempo em minutos</value>
-    <comment>Error message</comment>
   </data>
   <data name="PagesInSectionsDetected" xml:space="preserve">
     <value>Algumas páginas foram detetadas no projeto. É necessário apagá-las para continuar. Deseja apagá-las agora?</value>
@@ -2719,12 +2715,302 @@ Error text: {1}</value>
   </data>
   <data name="Delete_pages" xml:space="preserve">
     <value>Apagar páginas</value>
-    <comment>Command</comment>
   </data>
   <data name="Pages" xml:space="preserve">
     <value>Páginas:</value>
   </data>
+  <data name="AutoPageGeneration_Progress" xml:space="preserve">
+    <value>Geração automática de página em curso. Por favor, aguarde..</value>
+  </data>
+  <data name="NoGapsFoundInPages" xml:space="preserve">
+    <value>Nenhuma lacuna encontrada nas páginas</value>
+  </data>
+  <data name="EmptyPagesFilledInGaps" xml:space="preserve">
+    <value>Páginas vazias preencheram as lacunas</value>
+  </data>
+  <data name="Project_DoNotDisplayMessageBoxForShowingSection" xml:space="preserve">
+    <value>Não mostrar a caixa de mensagem ao mover para a frase em outra secção</value>
+  </data>
+  <data name="NoAudioInSection" xml:space="preserve">
+    <value>sem áudio</value>
+  </data>
+  <data name="NotEnoughSectionsToImportFiles" xml:space="preserve">
+    <value>Não tem secções suficientes para importar todos os ficheiros.</value>
+  </data>
+  <data name="TimeElapsedCannotBeCalculated" xml:space="preserve">
+    <value>O tempo decorrido não pode ser calculado porque a marca final está antes da marca inicial</value>
+  </data>
+  <data name="MergeOptions_ShowContents" xml:space="preserve">
+    <value>Mostrar conteúdo na visualização de conteúdos</value>
+  </data>
+  <data name="FilterImportTOC" xml:space="preserve">
+    <value>Xhtml,Csv, Txt file(*.htm;*.html;*.xhtml;*.csv;*.txt)|*.htm;*.html;*.xhtml;*.csv;*.txt</value>
+  </data>
+  <data name="NoSectionsInBook" xml:space="preserve">
+    <value>Não há secções no livro para importar o TOC</value>
+  </data>
+  <data name="LessSectionsInBook" xml:space="preserve">
+    <value>As secções existentes no projeto são menos do que as seções importadas. Portanto, o TOC completo não será importado.</value>
+  </data>
+  <data name="FileInUse" xml:space="preserve">
+    <value>Este ficheiro está a ser utilizado por outro processo. Feche todos os aplicativos que utilizam este ficheiro e tente novamente</value>
+  </data>
+  <data name="WrongFormat" xml:space="preserve">
+    <value>O ficheiro importado está no formato errado. Certifique-se de que o nível adequado seja fornecido para cada secção.</value>
+  </data>
+  <data name="PasteNotAllowed" xml:space="preserve">
+    <value>Não é permitido colar dentro das frases selecionadas</value>
+  </data>
+  <data name="Project_MaximumPhrasesSelectLimit" xml:space="preserve">
+    <value>No máximo 500 frases podem ser selecionadas para operações de várias frases, como cortar e copiar.</value>
+  </data>
+  <data name="CustomMetadataD202_NotIncluded" xml:space="preserve">
+    <value>O projeto possui os seguintes metadados personalizados. Não pode ser incluído na exportação para DAISY 2.02.</value>
+  </data>
+  <data name="Audio_RevertOverwriteBehaviourForRecordOnSelection" xml:space="preserve">
+    <value>Reverter o comportamento de substituição de áudio para registo na seleção</value>
+  </data>
+  <data name="Import_AudioFormat_FilesWillBeRenamed" xml:space="preserve">
+    <value>Existem alguns ficheiros que precisam de ser renomeados, pois os ficheiros com o nome já existem no diretório do projeto</value>
+  </data>
+  <data name="Import_AudioFormat_RenameFilesList" xml:space="preserve">
+    <value>-&gt; O ficheiro chamado {0} foi renomeado para {1}</value>
+  </data>
+  <data name="Import_AudioFormat_FollowingFilesRenamed" xml:space="preserve">
+    <value>Os seguintes ficheiros são renomeados: -</value>
+  </data>
+  <data name="ConfigureObi" xml:space="preserve">
+    <value>Bem-vindo ao OBI. Selecione as configurações apropriadas nas opções fornecidas abaixo. Se quiser configurar o Obi de acordo com as configurações padrão, basta clicar no botão OK ou pressionar a tecla Enter e prosseguir. É sempre possível alterar as configurações posteriormente nas Preferências do Obi.</value>
+  </data>
+  <data name="Preferences_AdditionalAudioSettings" xml:space="preserve">
+    <value>Configurações adicionais de áudio</value>
+  </data>
+  <data name="Preferences_AdditionalProjectSettings" xml:space="preserve">
+    <value>Configurações adicionais do projeto</value>
+  </data>
+  <data name="ZoomWaveform_PreserveZoomChecked" xml:space="preserve">
+    <value>Preservar zoom marcado</value>
+  </data>
+  <data name="ZoomWaveform_PreserveZoomUnchecked" xml:space="preserve">
+    <value>Preservar zoom desmarcado</value>
+  </data>
+  <data name="Audio_RemoveAccentsFromDaisy2ExportFileNames" xml:space="preserve">
+    <value>Remover os acentos dos nomes dos ficheiros durante a exportação para Daisy 2.02</value>
+  </data>
+  <data name="Project_ReadOnlyMode" xml:space="preserve">
+    <value>Mudar para estrutura apenas leitura</value>
+  </data>
+  <data name="SkippableNotExportedInDaisy202" xml:space="preserve">
+    <value>O projeto tem algumas notas possíveis de avançar. Elas não serão exportadas para o livro falante DAISY 2.02.</value>
+  </data>
+  <data name="ReadOnlyString" xml:space="preserve">
+    <value>Apenas leitura</value>
+  </data>
+  <data name="title_bar_ReadOnly" xml:space="preserve">
+    <value>{0}{1} ({2}) - {3} [{4}]({5})</value>
+  </data>
+  <data name="RecordUsingSingleKeyFromTOCMessage" xml:space="preserve">
+    <value>A gravação começará no final da secção. Deseja continuar?</value>
+  </data>
+  <data name="Audio_RecordUsingSingleKeyFromTOC" xml:space="preserve">
+    <value>Iniciar e parar a gravação usando atalhos de tecla única na vista TOC</value>
+  </data>
+  <data name="Project_DisplayWarningsForSectionDelete" xml:space="preserve">
+    <value>Avisar antes de apagar secção</value>
+  </data>
+  <data name="KeyS_AddCommentSingleKey" xml:space="preserve">
+    <value>Adicionar comentário: atalho de tecla única</value>
+  </data>
+  <data name="CommentAttachedFlagForAccessibleName" xml:space="preserve">
+    <value>tem comentário</value>
+  </data>
+  <data name="FadeInProcess" xml:space="preserve">
+    <value>Fade In de áudio da seleção:</value>
+  </data>
+  <data name="FadeOutProcess" xml:space="preserve">
+    <value>Fade Out de áudio da seleção:</value>
+  </data>
+  <data name="NormalizeProcess" xml:space="preserve">
+    <value>Normalizar o áudio da seleção:</value>
+  </data>
+  <data name="FadeInDuration" xml:space="preserve">
+    <value>Duração do Fade In:</value>
+  </data>
+  <data name="FadeOutDuration" xml:space="preserve">
+    <value>Fade Out Duration:</value>
+  </data>
+  <data name="TextInfoForFadeInOutOperation" xml:space="preserve">
+    <value>{0} segundos é a duração total da seleção</value>
+  </data>
+  <data name="FadeInDurationAccessibleName" xml:space="preserve">
+    <value>Definir a duração do Fade In (segundos)</value>
+  </data>
+  <data name="FadeOutDurationAccessibleName" xml:space="preserve">
+    <value>Definir a duração do Fade Out (segundos)</value>
+  </data>
+  <data name="FadeIn" xml:space="preserve">
+    <value>Fade In</value>
+  </data>
+  <data name="FadeOut" xml:space="preserve">
+    <value>Fade Out</value>
+  </data>
+  <data name="Normalize" xml:space="preserve">
+    <value>Normalizar</value>
+  </data>
+  <data name="NormalizeAceesibleName" xml:space="preserve">
+    <value>Definir o parâmetro para aumentar / diminuir o volume durante a operação de normalização</value>
+  </data>
+  <data name="NormalizeAceesibleNameForSlider" xml:space="preserve">
+    <value>Deslize para aumentar / diminuir o volume da seleção. Deslizar para a direita aumentará o volume durante a operação de normalização</value>
+  </data>
+  <data name="CleanUpAfterAudioProcessing" xml:space="preserve">
+    <value>Foi executado o processamento de áudio. É recomendado realizar a limpeza. Pressione Sim se desejar realizar a limpeza agora. A limpeza também salvará o seu projeto. Se desejar fazer isso mais tarde manualmente, pressione Não.</value>
+  </data>
+  <data name="NormalizationCompleted" xml:space="preserve">
+    <value>Normalização concluída com sucesso</value>
+  </data>
+  <data name="ChangeVolumeCompleted" xml:space="preserve">
+    <value>Volume alterado com sucesso</value>
+  </data>
+  <data name="SpeechRateCompleted" xml:space="preserve">
+    <value>Taxa de fala alterada com sucesso</value>
+  </data>
+  <data name="SpeechRateOfSeclection" xml:space="preserve">
+    <value>Alterar a taxa de fala do áudio selecionado:</value>
+  </data>
+  <data name="SpeechRate" xml:space="preserve">
+    <value>Taxa de fala</value>
+  </data>
+  <data name="SpeechRateAceesibleName" xml:space="preserve">
+    <value>Definir o parâmetro para aumentar / diminuir a taxa de fala</value>
+  </data>
+  <data name="SpeechRateAceesibleNameForSlider" xml:space="preserve">
+    <value>Deslize para aumentar / diminuir a taxa de fala. Deslizar para a direita aumentará a velocidade da fala</value>
+  </data>
+  <data name="TextInfoForNormalization" xml:space="preserve">
+    <value>O valor 1,0 significa ganho de 0dB.</value>
+  </data>
+  <data name="TextInfoForSpeechRate" xml:space="preserve">
+    <value>O valor 1.0 significa que não haverá alteração na velocidade da fala.</value>
+  </data>
+  <data name="ObiConfig_IncreasePhraseHightForHigherResolution" xml:space="preserve">
+    <value>A resolução do seu ecrã está bastante alta, o que pode reduzir o desempenho do Obi. É recomendado ativar a opção "Ampliar frases conforme o aumento da resolução do ecrã". Use o botão "Sim" para ativar a opção agora. \ R \ nPode fazer isso mais tarde também na aba projeto da caixa de diálogo das preferências.</value>
+  </data>
+  <data name="default_MegaVoiceExport_dirname" xml:space="preserve">
+    <value>{0} Megavoice Export Temporary</value>
+  </data>
+  <data name="USBDriveCheck" xml:space="preserve">
+    <value>Não está a exportar para uma unidade removível ou não é um diretório raiz numa unidade removível. Deseja continuar mesmo assim?</value>
+  </data>
+  <data name="ExportDirectoryPathEmpty" xml:space="preserve">
+    <value>O caminho do diretório de exportação está vazio. Por favor Forneça um caminho válido.</value>
+  </data>
+  <data name="ExportFolderExistsMegavoice" xml:space="preserve">
+    <value>Existe um livro com o mesmo nome. Deseja substituí-lo?</value>
+  </data>
+  <data name="ExportDialogTitleForMegaVoiceExport" xml:space="preserve">
+    <value>MegaVoice (Envoy Connect)</value>
+  </data>
+  <data name="DidnotDeleteTempMegaVoiceFolder" xml:space="preserve">
+    <value>A exclusão da pasta temporária criada durante a exportação do MegaVoice (Envoy Connect) não será bem-sucedida porque "{0}". Para libertar o seu espaço, pode excluí-lo manualmente. O caminho da pasta temporária é: {1}</value>
+  </data>
+  <data name="default_WPAudioBookExport_dirname" xml:space="preserve">
+    <value>{0}WP AudioBooks Export</value>
+  </data>
+  <data name="ExportDialogTitleForWPAudioBookExport" xml:space="preserve">
+    <value>WP AudioBooks</value>
+  </data>
+  <data name="NoCuePoints" xml:space="preserve">
+    <value>{0} Os ficheiros de áudio acima não possuem marcas de sinalização, portanto, não podem ser importados. Ainda é possível importar os ficheiros de áudio restantes com marcas de sinalização. Pressione sim para continuar ou não para selecionar outro conjunto de ficheiros de áudio.</value>
+  </data>
+  <data name="AudioMixingFileNotSelected" xml:space="preserve">
+    <value>Por favor selecione o ficheiro de áudio para mistura</value>
+  </data>
+  <data name="AudioMixingSecondFileNotSelected" xml:space="preserve">
+    <value>Por favor selecione o segundo ficheiro de áudio para mistura</value>
+  </data>
+  <data name="NoCheckBoxInExportChecked" xml:space="preserve">
+    <value>Nenhuma caixa de seleção está marcada. Para exportar, selecione o formato de exportação desejado para exportar o livro</value>
+  </data>
+  <data name="NoiseReductionCompleted" xml:space="preserve">
+    <value>Redução de ruído concluída com sucesso</value>
+  </data>
+  <data name="NormalizationCancelled" xml:space="preserve">
+    <value>A operação foi cancelada a meio, portanto a normalização será concluída até a secção {0}</value>
+  </data>
+  <data name="NoiseReductionCancelled" xml:space="preserve">
+    <value>A operação foi cancelada a meio, portanto a redução de ruído será concluída até a secção {0}</value>
+  </data>
+  <data name="CueCsvColumnHeading" xml:space="preserve">
+    <value>Nome do ficheiro, Tempo TODO (em segundos), Tempo TODO (h: m: s: ms)</value>
+  </data>
+  <data name="CueCsvName" xml:space="preserve">
+    <value>//ToDoTimingInAudioFiles.csv</value>
+  </data>
+  <data name="ApplyingOperationOnWholeBook" xml:space="preserve">
+    <value>A aplicação da operação a todo o livro provavelmente demorará {0} dependendo da velocidade do seu sistema. Também ocupará espaço adicional equivalente ao tamanho do projeto. Deseja continuar?</value>
+  </data>
+  <data name="Audio_RecordAtStartingOfSectionWithRecordSectionCommand" xml:space="preserve">
+    <value>Grave no início da secção com o comando de secção de registo se a secção tiver apenas páginas vazias</value>
+  </data>
+  <data name="AudioProcessingNew_progress_dialog_title" xml:space="preserve">
+    <value>A processar</value>
+  </data>
+  <data name="AudioProcessingEstimateFewMinutes" xml:space="preserve">
+    <value>poucos minutos</value>
+  </data>
+  <data name="AudioProcessingEstimateSeveralMinutes" xml:space="preserve">
+    <value>bastantes minutos</value>
+  </data>
+  <data name="AudioProcessingEstimateFewHours" xml:space="preserve">
+    <value>algumas horas</value>
+  </data>
+  <data name="AudioProcessingApplyOnWholeBook" xml:space="preserve">
+    <value>Por favor aplique a operação em todo o livro ou selecione a frase / secção na qual deseja aplicar a operação</value>
+  </data>
   <data name="PageForTTSLoclization" xml:space="preserve">
     <value>Página</value>
+  </data>
+  <data name="ExportInsertCuePointOrCopy" xml:space="preserve">
+    <value>Para inserir marcas de sinalização no livro Daisy, pressione Sim. {0} Pressione Não para gravar ficheiros de áudio com marcas de sinalização numa pasta separada.</value>
+  </data>
+  <data name="ChoosePageAudioFileNotSelected" xml:space="preserve">
+    <value>Por favor selecione o ficheiro com áudio gravado</value>
+  </data>
+  <data name="Project_CSVImportHavingSemicolon" xml:space="preserve">
+    <value>Use ponto-e-vírgula como separador em vez de vírgula ao criar um projeto importando um ficheiro CSV</value>
+  </data>
+  <data name="Project_CSVImportPhraseDetection" xml:space="preserve">
+    <value>Aplicar detecção de frase ao criar um projeto importando um ficheiro CSV</value>
+  </data>
+  <data name="ProjectView_GenarteSpeechForAllPagesCancelled" xml:space="preserve">
+    <value>A fala não será gerada para todas as páginas. O processo será cancelado a meio.</value>
+  </data>
+  <data name="FilesNotImportedDuringCSVImport" xml:space="preserve">
+    <value>mas alguns ficheiros, nomeadamente {0}, não serão importados</value>
+  </data>
+  <data name="ImportOfCSVStatus" xml:space="preserve">
+    <value>CSV importado com sucesso {0} em {1} {2}</value>
+  </data>
+  <data name="CommentText" xml:space="preserve">
+    <value>Texto do comentário:</value>
+  </data>
+  <data name="ChooseMetadataImportFile" xml:space="preserve">
+    <value>Choose metadata import csv</value>
+  </data>
+  <data name="FilterMetadataCSV" xml:space="preserve">
+    <value>Csv(*.csv)|*.csv</value>
+  </data>
+  <data name="Metadata_NotImported" xml:space="preserve">
+    <value>Metadata except following entries imported successfully:- {0} </value>
+  </data>
+  <data name="Metadata_ImportedSuccessfully" xml:space="preserve">
+    <value>Metadata imported successfully</value>
+  </data>
+  <data name="Metadata_Imported" xml:space="preserve">
+    <value>Metadata Imported</value>
+  </data>
+  <data name="Metadata_NameCannotBeCustom" xml:space="preserve">
+    <value>Invalid metadata entry! Name of metadata cannot be "Custom" </value>
   </data>
 </root>
