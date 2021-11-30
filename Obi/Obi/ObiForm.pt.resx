@@ -1972,7 +1972,7 @@
     <value>234, 22</value>
   </data>
   <data name="m_NoiseReductionToolStripMenuItem.Text" xml:space="preserve">
-    <value>Redução de ruído Ctrl + Shift + Y</value>
+    <value>Redução de ruído</value>
   </data>
   <data name="m_AudioMixerToolStripMenuItem.AccessibleName" xml:space="preserve">
     <value>Misturador de áudio Ctrl + Shift + X</value>

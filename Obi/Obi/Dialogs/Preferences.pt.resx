@@ -151,9 +151,6 @@
   <data name="m_CheckBoxListView.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
   </data>
-  <data name="m_CheckBoxListView.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>3, 5, 3, 5</value>
-  </data>
   <data name="m_grpBoxChkBoxListView.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
   </data>
@@ -162,12 +159,6 @@
   </data>
   <data name="m_grpBoxChkBoxListView.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
-  </data>
-  <data name="m_grpBoxChkBoxListView.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>3, 5, 3, 5</value>
-  </data>
-  <data name="m_grpBoxChkBoxListView.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>3, 5, 3, 5</value>
   </data>
   <data name="m_grpBoxChkBoxListView.Text" xml:space="preserve">
     <value>Lista de caixas de verificação</value>
@@ -183,9 +174,6 @@
   </data>
   <data name="m_btnSaveProfile.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
-  </data>
-  <data name="m_btnSaveProfile.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>3, 5, 3, 5</value>
   </data>
   <data name="m_btnSaveProfile.Text" xml:space="preserve">
     <value>Guardar como</value>
@@ -204,9 +192,6 @@
   </data>
   <data name="m_btnAddProfile.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
-  </data>
-  <data name="m_btnAddProfile.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>3, 5, 3, 5</value>
   </data>
   <data name="m_btnAddProfile.Text" xml:space="preserve">
     <value>&amp;Importar um perfil existente</value>
@@ -237,9 +222,6 @@
   </data>
   <data name="m_btnAssignProfile.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
-  </data>
-  <data name="m_btnAssignProfile.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>3, 5, 3, 5</value>
   </data>
   <data name="m_btnAssignProfile.Text" xml:space="preserve">
     <value>A&amp;tribuir</value>
@@ -275,9 +257,6 @@
   <data name="m_cb_Profile2.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
   </data>
-  <data name="m_cb_Profile2.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>3, 5, 3, 5</value>
-  </data>
   <data name="m_cb_Profile1.AccessibleName" xml:space="preserve">
     <value> Perfil 1 para a barra de gravação</value>
   </data>
@@ -289,9 +268,6 @@
   </data>
   <data name="m_cb_Profile1.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
-  </data>
-  <data name="m_cb_Profile1.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>3, 5, 3, 5</value>
   </data>
   <data name="m_lblProfile1.AccessibleName" xml:space="preserve">
     <value>Barra de ferramentas de gravação Perfil 1</value>
@@ -320,12 +296,6 @@
   <data name="m_gpBox_SelectProfileRecordingToolbar.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
   </data>
-  <data name="m_gpBox_SelectProfileRecordingToolbar.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>3, 5, 3, 5</value>
-  </data>
-  <data name="m_gpBox_SelectProfileRecordingToolbar.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>3, 5, 3, 5</value>
-  </data>
   <data name="m_gpBox_SelectProfileRecordingToolbar.Text" xml:space="preserve">
     <value>Atribuir perfil áudio à barra de ferramentas da gravação</value>
   </data>
@@ -340,9 +310,6 @@
   </data>
   <data name="m_btnRemoveProfile.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
-  </data>
-  <data name="m_btnRemoveProfile.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>3, 5, 3, 5</value>
   </data>
   <data name="m_btnRemoveProfile.Text" xml:space="preserve">
     <value>&amp;Remover</value>
@@ -359,12 +326,6 @@
   <data name="m_gpBox_Buttons.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
   </data>
-  <data name="m_gpBox_Buttons.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>3, 5, 3, 5</value>
-  </data>
-  <data name="m_gpBox_Buttons.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>3, 5, 3, 5</value>
-  </data>
   <data name="m_lblSelectedShortcuts.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
   </data>
@@ -373,6 +334,9 @@
   </data>
   <data name="m_lblSelectedShortcuts.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
+  </data>
+  <data name="m_lblSelectedShortcuts.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 36</value>
   </data>
   <data name="m_lblSelectedShortcuts.Size" type="System.Drawing.Size, System.Drawing">
     <value>240, 20</value>
@@ -389,15 +353,6 @@
   <data name="m_txtSelectedShortcutsProfile.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
   </data>
-  <data name="m_txtSelectedShortcutsProfile.Location" type="System.Drawing.Point, System.Drawing">
-    <value>233, 45</value>
-  </data>
-  <data name="m_txtSelectedShortcutsProfile.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>3, 5, 3, 5</value>
-  </data>
-  <data name="m_txtSelectedShortcutsProfile.Size" type="System.Drawing.Size, System.Drawing">
-    <value>743, 26</value>
-  </data>
   <data name="m_txtSelectedProfile.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
   </data>
@@ -407,15 +362,6 @@
   <data name="m_txtSelectedProfile.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
   </data>
-  <data name="m_txtSelectedProfile.Location" type="System.Drawing.Point, System.Drawing">
-    <value>233, 10</value>
-  </data>
-  <data name="m_txtSelectedProfile.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>3, 5, 3, 5</value>
-  </data>
-  <data name="m_txtSelectedProfile.Size" type="System.Drawing.Size, System.Drawing">
-    <value>743, 26</value>
-  </data>
   <data name="m_rdb_KeyboardShortcuts.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
   </data>
@@ -424,9 +370,6 @@
   </data>
   <data name="m_rdb_KeyboardShortcuts.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
-  </data>
-  <data name="m_rdb_KeyboardShortcuts.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>3, 5, 3, 5</value>
   </data>
   <data name="m_rdb_KeyboardShortcuts.Size" type="System.Drawing.Size, System.Drawing">
     <value>153, 24</value>
@@ -443,9 +386,6 @@
   <data name="m_rdb_Preferences.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
   </data>
-  <data name="m_rdb_Preferences.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>3, 5, 3, 5</value>
-  </data>
   <data name="m_rdb_Preferences.Size" type="System.Drawing.Size, System.Drawing">
     <value>125, 24</value>
   </data>
@@ -460,12 +400,6 @@
   </data>
   <data name="m_gpBox_SelectProfile.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
-  </data>
-  <data name="m_gpBox_SelectProfile.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>3, 5, 3, 5</value>
-  </data>
-  <data name="m_gpBox_SelectProfile.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>3, 5, 3, 5</value>
   </data>
   <data name="m_gpBox_SelectProfile.Text" xml:space="preserve">
     <value>Escolha as opções do perfil</value>
@@ -512,9 +446,6 @@
   <data name="m_btnProfileDiscription.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
   </data>
-  <data name="m_btnProfileDiscription.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>3, 5, 3, 5</value>
-  </data>
   <data name="m_cb_SelectProfile.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
   </data>
@@ -524,9 +455,6 @@
   <data name="m_cb_SelectProfile.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
   </data>
-  <data name="m_cb_SelectProfile.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>3, 5, 3, 5</value>
-  </data>
   <data name="m_cb_SelectShorcutsProfile.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
   </data>
@@ -535,9 +463,6 @@
   </data>
   <data name="m_cb_SelectShorcutsProfile.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
-  </data>
-  <data name="m_cb_SelectShorcutsProfile.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>3, 5, 3, 5</value>
   </data>
   <data name="m_lblSelectProfile.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
@@ -563,9 +488,6 @@
   <data name="m_chkColor.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
   </data>
-  <data name="m_chkColor.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>3, 5, 3, 5</value>
-  </data>
   <data name="m_chkColor.Size" type="System.Drawing.Size, System.Drawing">
     <value>58, 24</value>
   </data>
@@ -581,9 +503,6 @@
   <data name="m_chkProject.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
   </data>
-  <data name="m_chkProject.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>3, 5, 3, 5</value>
-  </data>
   <data name="m_chkProject.Text" xml:space="preserve">
     <value>Projeto</value>
   </data>
@@ -596,9 +515,6 @@
   <data name="m_chkAudio.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
   </data>
-  <data name="m_chkAudio.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>3, 5, 3, 5</value>
-  </data>
   <data name="m_chkLanguage.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
   </data>
@@ -607,9 +523,6 @@
   </data>
   <data name="m_chkLanguage.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
-  </data>
-  <data name="m_chkLanguage.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>3, 5, 3, 5</value>
   </data>
   <data name="m_chkLanguage.Size" type="System.Drawing.Size, System.Drawing">
     <value>80, 24</value>
@@ -625,9 +538,6 @@
   </data>
   <data name="m_chkAll.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
-  </data>
-  <data name="m_chkAll.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>3, 5, 3, 5</value>
   </data>
   <data name="m_chkAll.Size" type="System.Drawing.Size, System.Drawing">
     <value>147, 24</value>
@@ -647,9 +557,6 @@
   <data name="m_btnLoadProfile.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
   </data>
-  <data name="m_btnLoadProfile.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>3, 5, 3, 5</value>
-  </data>
   <data name="m_btnLoadProfile.Text" xml:space="preserve">
     <value>Carregar</value>
   </data>
@@ -665,12 +572,6 @@
   <data name="m_gpBox_SelectPreferences.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
   </data>
-  <data name="m_gpBox_SelectPreferences.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>3, 5, 3, 5</value>
-  </data>
-  <data name="m_gpBox_SelectPreferences.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>3, 5, 3, 5</value>
-  </data>
   <data name="mAdvanceTab.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
   </data>
@@ -679,9 +580,6 @@
   </data>
   <data name="mAdvanceTab.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
-  </data>
-  <data name="mAdvanceTab.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>3, 5, 3, 5</value>
   </data>
   <data name="mAdvanceTab.Text" xml:space="preserve">
     <value>Avançar</value>
@@ -713,9 +611,6 @@
   <data name="m_txtBox_Font.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
   </data>
-  <data name="m_txtBox_Font.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>3, 5, 3, 5</value>
-  </data>
   <data name="m_cb_ChooseFont.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
   </data>
@@ -725,9 +620,6 @@
   <data name="m_cb_ChooseFont.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
   </data>
-  <data name="m_cb_ChooseFont.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>3, 5, 3, 5</value>
-  </data>
   <data name="m_gpBox_Font.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
   </data>
@@ -736,12 +628,6 @@
   </data>
   <data name="m_gpBox_Font.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
-  </data>
-  <data name="m_gpBox_Font.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>3, 5, 3, 5</value>
-  </data>
-  <data name="m_gpBox_Font.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>3, 5, 3, 5</value>
   </data>
   <data name="m_gpBox_Font.Text" xml:space="preserve">
     <value>Tipo de letra</value>
@@ -755,9 +641,6 @@
   <data name="m_txtBox_HighContrast.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
   </data>
-  <data name="m_txtBox_HighContrast.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>3, 5, 3, 5</value>
-  </data>
   <data name="m_txtBox_Color.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
   </data>
@@ -766,9 +649,6 @@
   </data>
   <data name="m_txtBox_Color.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
-  </data>
-  <data name="m_txtBox_Color.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>3, 5, 3, 5</value>
   </data>
   <data name="m_lv_ColorPref.AccessibleName" xml:space="preserve">
     <value>Lista de cores</value>
@@ -790,9 +670,6 @@
   </data>
   <data name="m_lv_ColorPref.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
-  </data>
-  <data name="m_lv_ColorPref.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>3, 5, 3, 5</value>
   </data>
   <data name="m_lbl_AssignColor.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
@@ -818,9 +695,6 @@
   <data name="mNormalColorCombo.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
   </data>
-  <data name="mNormalColorCombo.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>3, 5, 3, 5</value>
-  </data>
   <data name="m_lbl_AssignHighContrastColor.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
   </data>
@@ -845,9 +719,6 @@
   <data name="mHighContrastCombo.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
   </data>
-  <data name="mHighContrastCombo.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>3, 5, 3, 5</value>
-  </data>
   <data name="m_gpBox_ColorsList.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
   </data>
@@ -856,12 +727,6 @@
   </data>
   <data name="m_gpBox_ColorsList.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
-  </data>
-  <data name="m_gpBox_ColorsList.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>3, 5, 3, 5</value>
-  </data>
-  <data name="m_gpBox_ColorsList.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>3, 5, 3, 5</value>
   </data>
   <data name="m_gpBox_ColorsList.Text" xml:space="preserve">
     <value>Cores</value>
@@ -875,9 +740,6 @@
   <data name="m_btn_Apply.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
   </data>
-  <data name="m_btn_Apply.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>3, 5, 3, 5</value>
-  </data>
   <data name="m_btn_Apply.Text" xml:space="preserve">
     <value>Ap&amp;licar</value>
   </data>
@@ -890,9 +752,6 @@
   <data name="mColorPreferencesTab.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
   </data>
-  <data name="mColorPreferencesTab.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>3, 5, 3, 5</value>
-  </data>
   <data name="mColorPreferencesTab.Text" xml:space="preserve">
     <value>Cor do tipo de letra</value>
   </data>
@@ -904,6 +763,9 @@
   </data>
   <data name="label12.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
+  </data>
+  <data name="label12.Location" type="System.Drawing.Point, System.Drawing">
+    <value>38, 21</value>
   </data>
   <data name="label12.Size" type="System.Drawing.Size, System.Drawing">
     <value>196, 20</value>
@@ -926,9 +788,6 @@
   <data name="m_lvShortcutKeysList.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
   </data>
-  <data name="m_lvShortcutKeysList.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>3, 5, 3, 5</value>
-  </data>
   <data name="m_grpKeyboardShortcutList.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
   </data>
@@ -937,12 +796,6 @@
   </data>
   <data name="m_grpKeyboardShortcutList.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
-  </data>
-  <data name="m_grpKeyboardShortcutList.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>3, 5, 3, 5</value>
-  </data>
-  <data name="m_grpKeyboardShortcutList.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>3, 5, 3, 5</value>
   </data>
   <data name="m_grpKeyboardShortcutList.Text" xml:space="preserve">
     <value>Tecla de atalho</value>
@@ -956,9 +809,6 @@
   <data name="m_RestoreDefaults.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
   </data>
-  <data name="m_RestoreDefaults.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>3, 5, 3, 5</value>
-  </data>
   <data name="m_RestoreDefaults.Text" xml:space="preserve">
     <value>&amp;Restaurar padrões</value>
   </data>
@@ -970,9 +820,6 @@
   </data>
   <data name="m_btnRemove.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
-  </data>
-  <data name="m_btnRemove.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>3, 5, 3, 5</value>
   </data>
   <data name="m_btnRemove.Text" xml:space="preserve">
     <value>&amp;Remover tecla de atalho</value>
@@ -986,9 +833,6 @@
   <data name="m_btnAssign.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
   </data>
-  <data name="m_btnAssign.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>3, 5, 3, 5</value>
-  </data>
   <data name="m_btnAssign.Text" xml:space="preserve">
     <value>&amp;Atribuir</value>
   </data>
@@ -1000,9 +844,6 @@
   </data>
   <data name="m_txtShortcutKeys.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
-  </data>
-  <data name="m_txtShortcutKeys.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>3, 5, 3, 5</value>
   </data>
   <data name="m_lblShortcutKeys.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
@@ -1039,9 +880,6 @@
   <data name="m_cbShortcutKeys.Items1" xml:space="preserve">
     <value>Tecla de atalho para item de menu</value>
   </data>
-  <data name="m_cbShortcutKeys.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>3, 5, 3, 5</value>
-  </data>
   <data name="mKeyboardShortcutTab.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
   </data>
@@ -1050,9 +888,6 @@
   </data>
   <data name="mKeyboardShortcutTab.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
-  </data>
-  <data name="mKeyboardShortcutTab.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>3, 5, 3, 5</value>
   </data>
   <data name="mKeyboardShortcutTab.Text" xml:space="preserve">
     <value>Teclas de atalho</value>
@@ -1078,12 +913,6 @@
   <data name="mCultureBox.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
   </data>
-  <data name="mCultureBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>147, 88</value>
-  </data>
-  <data name="mCultureBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>611, 28</value>
-  </data>
   <data name="label5.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
   </data>
@@ -1108,12 +937,6 @@
   <data name="mOrganizationTextbox.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
   </data>
-  <data name="mOrganizationTextbox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>147, 49</value>
-  </data>
-  <data name="mOrganizationTextbox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>611, 26</value>
-  </data>
   <data name="mFullNameTextbox.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
   </data>
@@ -1122,12 +945,6 @@
   </data>
   <data name="mFullNameTextbox.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
-  </data>
-  <data name="mFullNameTextbox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>147, 9</value>
-  </data>
-  <data name="mFullNameTextbox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>611, 26</value>
   </data>
   <data name="label4.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
@@ -1151,7 +968,7 @@
     <value />
   </data>
   <data name="label1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>8, 12</value>
+    <value>5, 10</value>
   </data>
   <data name="label1.Size" type="System.Drawing.Size, System.Drawing">
     <value>131, 20</value>
@@ -1184,10 +1001,10 @@
     <value />
   </data>
   <data name="m_CleanUpFileSizeNumericUpDown.Location" type="System.Drawing.Point, System.Drawing">
-    <value>400, 145</value>
+    <value>345, 148</value>
   </data>
-  <data name="m_CleanUpFileSizeNumericUpDown.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>3, 5, 3, 5</value>
+  <data name="m_CleanUpFileSizeNumericUpDown.Size" type="System.Drawing.Size, System.Drawing">
+    <value>90, 26</value>
   </data>
   <data name="mlblCleanupFileSize.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
@@ -1197,6 +1014,9 @@
   </data>
   <data name="mlblCleanupFileSize.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
+  </data>
+  <data name="mlblCleanupFileSize.Location" type="System.Drawing.Point, System.Drawing">
+    <value>1, 150</value>
   </data>
   <data name="mlblCleanupFileSize.Size" type="System.Drawing.Size, System.Drawing">
     <value>418, 20</value>
@@ -1216,8 +1036,8 @@
   <data name="m_btn_speak.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
   </data>
-  <data name="m_btn_speak.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>3, 5, 3, 5</value>
+  <data name="m_btn_speak.Location" type="System.Drawing.Point, System.Drawing">
+    <value>421, 206</value>
   </data>
   <data name="m_btn_speak.Text" xml:space="preserve">
     <value>Falar</value>
@@ -1249,8 +1069,11 @@
   <data name="mTTSvoiceCombo.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
   </data>
-  <data name="mTTSvoiceCombo.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>3, 5, 3, 5</value>
+  <data name="mTTSvoiceCombo.Location" type="System.Drawing.Point, System.Drawing">
+    <value>180, 208</value>
+  </data>
+  <data name="mTTSvoiceCombo.Size" type="System.Drawing.Size, System.Drawing">
+    <value>230, 28</value>
   </data>
   <data name="m_OperationDurationUpDown.AccessibleName" xml:space="preserve">
     <value>Duração em mili _segundos</value>
@@ -1263,9 +1086,6 @@
   </data>
   <data name="m_OperationDurationUpDown.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
-  </data>
-  <data name="m_OperationDurationUpDown.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>3, 5, 3, 5</value>
   </data>
   <data name="m_cbOperation.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
@@ -1293,9 +1113,6 @@
   </data>
   <data name="m_cbOperation.Items5" xml:space="preserve">
     <value>Intervalo (Duração de frases)</value>
-  </data>
-  <data name="m_cbOperation.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>3, 5, 3, 5</value>
   </data>
   <data name="mlbOperation.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
@@ -1330,6 +1147,12 @@
   <data name="mNoiseLevelComboBox.Items2" xml:space="preserve">
     <value>Alto</value>
   </data>
+  <data name="mNoiseLevelComboBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>165, 179</value>
+  </data>
+  <data name="mNoiseLevelComboBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>120, 28</value>
+  </data>
   <data name="label8.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
   </data>
@@ -1338,6 +1161,9 @@
   </data>
   <data name="label8.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
+  </data>
+  <data name="label8.Location" type="System.Drawing.Point, System.Drawing">
+    <value>67, 182</value>
   </data>
   <data name="label8.Size" type="System.Drawing.Size, System.Drawing">
     <value>116, 20</value>
@@ -1353,6 +1179,9 @@
   </data>
   <data name="label3.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
+  </data>
+  <data name="label3.Size" type="System.Drawing.Size, System.Drawing">
+    <value>125, 21</value>
   </data>
   <data name="label3.Text" xml:space="preserve">
     <value>mili-segundos(ms)</value>
@@ -1381,9 +1210,6 @@
   <data name="mSampleRateTextbox.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
   </data>
-  <data name="mSampleRateTextbox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>215, 80</value>
-  </data>
   <data name="mChannelsCombo.AccessibleName" xml:space="preserve">
     <value>Canais padrão:</value>
   </data>
@@ -1405,6 +1231,9 @@
   <data name="labelChannels.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
   </data>
+  <data name="labelChannels.Location" type="System.Drawing.Point, System.Drawing">
+    <value>43, 108</value>
+  </data>
   <data name="labelChannels.Size" type="System.Drawing.Size, System.Drawing">
     <value>111, 20</value>
   </data>
@@ -1423,9 +1252,6 @@
   <data name="mSampleRateCombo.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
   </data>
-  <data name="mSampleRateCombo.Location" type="System.Drawing.Point, System.Drawing">
-    <value>218, 80</value>
-  </data>
   <data name="labelSampleRate.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
   </data>
@@ -1436,7 +1262,7 @@
     <value />
   </data>
   <data name="labelSampleRate.Location" type="System.Drawing.Point, System.Drawing">
-    <value>36, 82</value>
+    <value>10, 66</value>
   </data>
   <data name="labelSampleRate.Size" type="System.Drawing.Size, System.Drawing">
     <value>171, 20</value>
@@ -1457,10 +1283,10 @@
     <value />
   </data>
   <data name="mOutputDeviceCombo.Location" type="System.Drawing.Point, System.Drawing">
-    <value>251, 40</value>
+    <value>200, 32</value>
   </data>
   <data name="mOutputDeviceCombo.Size" type="System.Drawing.Size, System.Drawing">
-    <value>351, 28</value>
+    <value>413, 28</value>
   </data>
   <data name="mInputDeviceCombo.AccessibleName" xml:space="preserve">
     <value>Nome do dispositivo de entrada:</value>
@@ -1475,10 +1301,10 @@
     <value />
   </data>
   <data name="mInputDeviceCombo.Location" type="System.Drawing.Point, System.Drawing">
-    <value>251, 9</value>
+    <value>200, 7</value>
   </data>
   <data name="mInputDeviceCombo.Size" type="System.Drawing.Size, System.Drawing">
-    <value>351, 28</value>
+    <value>413, 28</value>
   </data>
   <data name="labelOutputDeviceName.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
@@ -1490,7 +1316,7 @@
     <value />
   </data>
   <data name="labelOutputDeviceName.Location" type="System.Drawing.Point, System.Drawing">
-    <value>15, 44</value>
+    <value>3, 35</value>
   </data>
   <data name="labelOutputDeviceName.Size" type="System.Drawing.Size, System.Drawing">
     <value>233, 20</value>
@@ -1508,7 +1334,7 @@
     <value />
   </data>
   <data name="labelInputDeviceName.Location" type="System.Drawing.Point, System.Drawing">
-    <value>2, 14</value>
+    <value>3, 11</value>
   </data>
   <data name="labelInputDeviceName.Size" type="System.Drawing.Size, System.Drawing">
     <value>249, 20</value>
@@ -1537,8 +1363,8 @@
   <data name="m_btnRecordInLocalDrive.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
   </data>
-  <data name="m_btnRecordInLocalDrive.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>3, 5, 3, 5</value>
+  <data name="m_btnRecordInLocalDrive.Location" type="System.Drawing.Point, System.Drawing">
+    <value>506, 96</value>
   </data>
   <data name="m_btnRecordInLocalDrive.Text" xml:space="preserve">
     <value>&amp;Procurar</value>
@@ -1552,8 +1378,11 @@
   <data name="m_txtRecordInLocalDrive.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
   </data>
-  <data name="m_txtRecordInLocalDrive.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>3, 5, 3, 5</value>
+  <data name="m_txtRecordInLocalDrive.Location" type="System.Drawing.Point, System.Drawing">
+    <value>188, 101</value>
+  </data>
+  <data name="m_txtRecordInLocalDrive.Size" type="System.Drawing.Size, System.Drawing">
+    <value>310, 26</value>
   </data>
   <data name="m_chkRecordInLocalDrive.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
@@ -1563,9 +1392,6 @@
   </data>
   <data name="m_chkRecordInLocalDrive.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
-  </data>
-  <data name="m_chkRecordInLocalDrive.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>3, 5, 3, 5</value>
   </data>
   <data name="m_chkRecordInLocalDrive.Size" type="System.Drawing.Size, System.Drawing">
     <value>213, 24</value>
@@ -1583,7 +1409,7 @@
     <value />
   </data>
   <data name="label10.Location" type="System.Drawing.Point, System.Drawing">
-    <value>388, 235</value>
+    <value>336, 177</value>
   </data>
   <data name="label10.Size" type="System.Drawing.Size, System.Drawing">
     <value>139, 20</value>
@@ -1607,7 +1433,7 @@
     <value />
   </data>
   <data name="m_lblImportTolerance.Location" type="System.Drawing.Point, System.Drawing">
-    <value>21, 235</value>
+    <value>13, 177</value>
   </data>
   <data name="m_lblImportTolerance.Size" type="System.Drawing.Size, System.Drawing">
     <value>203, 20</value>
@@ -1628,10 +1454,7 @@
     <value />
   </data>
   <data name="m_NumImportTolerance.Location" type="System.Drawing.Point, System.Drawing">
-    <value>234, 232</value>
-  </data>
-  <data name="m_NumImportTolerance.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>3, 5, 3, 5</value>
+    <value>200, 175</value>
   </data>
   <data name="m_ChkAutoSaveInterval.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
@@ -1643,10 +1466,7 @@
     <value />
   </data>
   <data name="m_ChkAutoSaveInterval.Location" type="System.Drawing.Point, System.Drawing">
-    <value>41, 145</value>
-  </data>
-  <data name="m_ChkAutoSaveInterval.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>3, 5, 3, 5</value>
+    <value>82, 138</value>
   </data>
   <data name="m_ChkAutoSaveInterval.Size" type="System.Drawing.Size, System.Drawing">
     <value>391, 24</value>
@@ -1666,11 +1486,14 @@
   <data name="MnumAutoSaveInterval.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
   </data>
-  <data name="MnumAutoSaveInterval.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>3, 5, 3, 5</value>
+  <data name="MnumAutoSaveInterval.Location" type="System.Drawing.Point, System.Drawing">
+    <value>400, 138</value>
   </data>
   <data name="mPipelineTextbox.AccessibleName" xml:space="preserve">
     <value>Diretório de Pipeline scripts</value>
+  </data>
+  <data name="mPipelineTextbox.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Left</value>
   </data>
   <data name="mPipelineTextbox.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
@@ -1680,6 +1503,12 @@
   </data>
   <data name="mPipelineTextbox.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
+  </data>
+  <data name="mPipelineTextbox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>187, 59</value>
+  </data>
+  <data name="mPipelineTextbox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>310, 26</value>
   </data>
   <data name="mDirectoryTextbox.AccessibleName" xml:space="preserve">
     <value>Diretório padrão do projeto:</value>
@@ -1693,6 +1522,12 @@
   <data name="mDirectoryTextbox.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
   </data>
+  <data name="mDirectoryTextbox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>186, 17</value>
+  </data>
+  <data name="mDirectoryTextbox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>310, 26</value>
+  </data>
   <data name="mPipelineBrowseButton.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
   </data>
@@ -1701,6 +1536,9 @@
   </data>
   <data name="mPipelineBrowseButton.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
+  </data>
+  <data name="mPipelineBrowseButton.Location" type="System.Drawing.Point, System.Drawing">
+    <value>508, 54</value>
   </data>
   <data name="mPipelineBrowseButton.Text" xml:space="preserve">
     <value>&amp;Procurar</value>
@@ -1744,6 +1582,9 @@
   <data name="mBrowseButton.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
   </data>
+  <data name="mBrowseButton.Location" type="System.Drawing.Point, System.Drawing">
+    <value>508, 12</value>
+  </data>
   <data name="mBrowseButton.Text" xml:space="preserve">
     <value>Proc&amp;urar</value>
   </data>
@@ -1777,9 +1618,6 @@
   <data name="m_ApplyButton.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
   </data>
-  <data name="m_ApplyButton.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>3, 5, 3, 5</value>
-  </data>
   <data name="m_ApplyButton.Text" xml:space="preserve">
     <value>Ap&amp;licar</value>
   </data>
@@ -1791,9 +1629,6 @@
   </data>
   <data name="m_btnAdvanceSettingsPreferences.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
-  </data>
-  <data name="m_btnAdvanceSettingsPreferences.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>3, 5, 3, 5</value>
   </data>
   <data name="m_btnAdvanceSettingsPreferences.Text" xml:space="preserve">
     <value>Configurações adicionais &gt;&gt;</value>

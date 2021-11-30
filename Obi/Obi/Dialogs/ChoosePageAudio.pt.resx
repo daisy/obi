@@ -112,12 +112,34 @@
     <value>2.0</value>
   </resheader>
   <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="m_btnBrowse.Location" type="System.Drawing.Point, System.Drawing">
+    <value>562, 76</value>
+  </data>
+  <data name="m_btnBrowse.Text" xml:space="preserve">
+    <value>&amp;Pesquisar</value>
+  </data>
+  <data name="m_txtSelectRecordedAudio.AccessibleName" xml:space="preserve">
+    <value>Selecione o arquivo com áudio gravado</value>
+  </data>
+  <data name="m_txtSelectRecordedAudio.Location" type="System.Drawing.Point, System.Drawing">
+    <value>273, 80</value>
+  </data>
+  <data name="m_txtSelectRecordedAudio.Size" type="System.Drawing.Size, System.Drawing">
+    <value>276, 24</value>
+  </data>
+  <data name="label1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>269, 18</value>
+  </data>
+  <data name="label1.Text" xml:space="preserve">
+    <value>&amp;Selecione o arquivo com áudio gravado</value>
+  </data>
   <data name="richTextBox1.Text" xml:space="preserve">
-    <value>Nota: - O áudio gravado conterá apenas "Página" no seu idioma de destino. O seu número ainda será gerado pelo TTS. Por exemplo, em "Página 11", "Página" será obtido do áudio gravado, enquanto "11" será gerado por TTS.</value>
+    <value>Nota: - O áudio gravado conterá apenas "Página" no seu idioma de destino. O seu número ainda será gerado pelo TTS. Por exemplo, em "Página 11", "Página" será obtido do áudio gravado, enquanto "11" será gerado por TTS.. </value>
   </data>
 </root>
