@@ -112,12 +112,12 @@
     <value>2.0</value>
   </resheader>
   <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="m_lbl_StartTimeSeconds.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
   </data>
@@ -127,7 +127,7 @@
   <data name="m_lbl_StartTimeSeconds.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
   </data>
-  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="m_lbl_StartTimeSeconds.Location" type="System.Drawing.Point, System.Drawing">
     <value>279, 52</value>
   </data>
@@ -252,7 +252,7 @@
     <value>La valeur 1.0 signifie que l'audio ne sera pas modifié.</value>
   </data>
   <data name="m_numericUpDown1.AccessibleName" xml:space="preserve">
-    <value>Réglage de paramètre pour augmenter/diminuer le volume de la sélection</value>
+    <value>Définir le paramètre pour augmenter/diminuer le volume de la sélection</value>
   </data>
   <data name="m_numericUpDown1.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
@@ -279,7 +279,7 @@
     <value>161, 18</value>
   </data>
   <data name="m_lbl_Parameters.Text" xml:space="preserve">
-    <value>Réglage de paramètre :</value>
+    <value>Définir le paramètre :</value>
   </data>
   <data name="m_lbl_Process.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
@@ -344,7 +344,7 @@
   <data name="m_NAudioForAudioProcessing.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
   </data>
-  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <assembly alias="mscorlib" name="mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="m_NAudioForAudioProcessing.ShowHelp" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
@@ -370,7 +370,7 @@
     <value>226, 22</value>
   </data>
   <data name="m_ApplyOnWholeBook.Text" xml:space="preserve">
-    <value>Appliquer à l'ensemble du livre</value>
+    <value>Appliquer à l'ensemble de l'ouvrage</value>
   </data>
   <data name="$this.AccessibleName" xml:space="preserve">
     <value>Changer le volume</value>
@@ -389,5 +389,8 @@
   </data>
   <data name="$this.Text" xml:space="preserve">
     <value>Changer le volume</value>
+  </data>
+  <data name="m_btn_OK.Text" xml:space="preserve">
+    <value>&amp;OK</value>
   </data>
 </root>

@@ -141,8 +141,8 @@ Après téléchargement procédez comme suit:-
 3) Dans le dossier "The Urakawa Project" ouvrir le dossier "Obi x.x".
 4) Copier le fichier téléchargé "ffmpeg.exe" dans le dossier "Obi x.x"
 
-Vous pouvez aussi ouvrir le dossier "Obi x.x" en cliquant sur le bouton "Ouvrir le répertoire de Obi" et en y copiant le fichier "ffmpeg.exe".
-Attention : Ces fonctions sont pour les utilisateurs avancés, les livres DAISY/EPUB exportés peuvent ne pas être validés avec ces nouveaux formats.</value>
+Vous pouvez aussi ouvrir le dossier "Obi x.x" en cliquant sur le bouton "Ouvrir le répertoire de Obi" puis y copier le fichier "ffmpeg.exe".
+Attention : Ces fonctions sont pour les utilisateurs avancés, les ouvrages DAISY/EPUB exportés pourraient ne pas être validés avec ces nouveaux formats.</value>
   </data>
   <data name="&gt;&gt;richTextBox1.Name" xml:space="preserve">
     <value>richTextBox1</value>

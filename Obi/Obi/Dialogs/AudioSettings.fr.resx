@@ -295,7 +295,7 @@
     <value>0</value>
   </data>
   <data name="helpProvider1.HelpNamespace" xml:space="preserve">
-    <value>Obi Help.fr.chm</value>
+    <value>Obi Help.chm</value>
   </data>
   <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
     <value>6, 13</value>

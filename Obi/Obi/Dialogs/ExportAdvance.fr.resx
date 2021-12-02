@@ -223,7 +223,7 @@
     <value>join stereo</value>
   </data>
   <data name="m_ComboBoxStereoMode.Items3" xml:space="preserve">
-    <value>passer en joint stereo</value>
+    <value>passé en joint stereo</value>
   </data>
   <data name="m_ComboBoxStereoMode.Items4" xml:space="preserve">
     <value>sur les deux canaux</value>

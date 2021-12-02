@@ -135,7 +135,7 @@
     <value>2</value>
   </data>
   <data name="m_RdOpenWebPage.Text" xml:space="preserve">
-    <value>&amp;Aller sur le site web; plus d'information</value>
+    <value>&amp;Aller sur le site web; pour plus d'information</value>
   </data>
   <data name="&gt;&gt;m_RdOpenWebPage.Name" xml:space="preserve">
     <value>m_RdOpenWebPage</value>
@@ -189,7 +189,7 @@
     <value>4</value>
   </data>
   <data name="m_RdRemindForNextVersion.Text" xml:space="preserve">
-    <value>M'informer de la &amp;prochaine version disponible, ignorer celle-ci</value>
+    <value>M'informer de la &amp;prochaine version , ignorer celle-ci</value>
   </data>
   <data name="&gt;&gt;m_RdRemindForNextVersion.Name" xml:space="preserve">
     <value>m_RdRemindForNextVersion</value>

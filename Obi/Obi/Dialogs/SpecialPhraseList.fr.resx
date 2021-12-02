@@ -130,31 +130,31 @@
     <value>Phrases marquées comme ÀFAIRE</value>
   </data>
   <data name="m_cb_SpecialPhrases.Items1" xml:space="preserve">
-    <value>Phrases vides</value>
+    <value>Phrases marquées comme À Faire avec commentaires</value>
   </data>
   <data name="m_cb_SpecialPhrases.Items2" xml:space="preserve">
-    <value>Titre</value>
+    <value>Phrases vides</value>
   </data>
   <data name="m_cb_SpecialPhrases.Items3" xml:space="preserve">
-    <value>Silence</value>
+    <value>Titre</value>
   </data>
   <data name="m_cb_SpecialPhrases.Items4" xml:space="preserve">
-    <value>Toutes les pages</value>
+    <value>Silence</value>
   </data>
   <data name="m_cb_SpecialPhrases.Items5" xml:space="preserve">
-    <value>Couverture</value>
+    <value>Toutes les pages</value>
   </data>
   <data name="m_cb_SpecialPhrases.Items6" xml:space="preserve">
-    <value>Pages standard</value>
+    <value>Couverture</value>
   </data>
   <data name="m_cb_SpecialPhrases.Items7" xml:space="preserve">
-    <value>Pages spéciales</value>
+    <value>Pages standard</value>
   </data>
   <data name="m_cb_SpecialPhrases.Items8" xml:space="preserve">
-    <value>Appel</value>
+    <value>Pages spéciales</value>
   </data>
   <data name="m_cb_SpecialPhrases.Items9" xml:space="preserve">
-    <value>Phrases inutilisées</value>
+    <value>Appel</value>
   </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="m_cb_SpecialPhrases.Location" type="System.Drawing.Point, System.Drawing">

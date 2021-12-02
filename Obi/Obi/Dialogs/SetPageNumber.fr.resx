@@ -436,7 +436,7 @@
     <value>6</value>
   </data>
   <data name="m_chkAutoFillPages.Text" xml:space="preserve">
-    <value>Compléter automatiquement les pages</value>
+    <value>Remplir automatiquement les pages</value>
   </data>
   <data name="&gt;&gt;m_chkAutoFillPages.Name" xml:space="preserve">
     <value>m_chkAutoFillPages</value>

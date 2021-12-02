@@ -138,7 +138,7 @@
     <value>0</value>
   </data>
   <data name="m_lblSelectInputFile.Text" xml:space="preserve">
-    <value>Sélectionnez le fichier EPUB 3</value>
+    <value>Sélectionner le fichier EPUB 3</value>
   </data>
   <data name="&gt;&gt;m_lblSelectInputFile.Name" xml:space="preserve">
     <value>m_lblSelectInputFile</value>

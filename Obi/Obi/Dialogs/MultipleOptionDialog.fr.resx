@@ -138,7 +138,7 @@
     <value>0</value>
   </data>
   <data name="m_lbl_ChooseOption.Text" xml:space="preserve">
-    <value>Choisissez une Option</value>
+    <value>Choisir une Option</value>
   </data>
   <data name="&gt;&gt;m_lbl_ChooseOption.Name" xml:space="preserve">
     <value>m_lbl_ChooseOption</value>
@@ -289,7 +289,7 @@
     <value>0</value>
   </data>
   <data name="helpProvider1.HelpNamespace" xml:space="preserve">
-    <value>Obi Help.fr.chm</value>
+    <value>Obi Help.chm</value>
   </data>
   <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
     <value>6, 13</value>

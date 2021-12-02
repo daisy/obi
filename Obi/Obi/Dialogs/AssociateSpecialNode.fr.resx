@@ -409,7 +409,7 @@
     <value>Obi Help.chm</value>
   </data>
   <data name="$this.AccessibleName" xml:space="preserve">
-    <value>Associé un élément spécifique</value>
+    <value>Associer un élément spécifique</value>
   </data>
   <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
     <value>6, 13</value>

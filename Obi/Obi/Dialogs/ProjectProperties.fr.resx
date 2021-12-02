@@ -496,7 +496,7 @@
     <value>4</value>
   </data>
   <data name="helpProvider1.HelpNamespace" xml:space="preserve">
-    <value>Obi Help.fr.chm</value>
+    <value>Obi Help.chm</value>
   </data>
   <data name="m_lblMaxDepth.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>

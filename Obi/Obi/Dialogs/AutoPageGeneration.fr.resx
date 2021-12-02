@@ -119,40 +119,73 @@
   </resheader>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="m_lbGapsInPages.Size" type="System.Drawing.Size, System.Drawing">
-    <value>128, 13</value>
+    <value>173, 17</value>
   </data>
   <data name="m_lbGapsInPages.Text" xml:space="preserve">
     <value>&amp;Écarts dans pages (mins):</value>
   </data>
   <data name="m_lbStartingSectionIndex.Size" type="System.Drawing.Size, System.Drawing">
-    <value>133, 13</value>
+    <value>174, 17</value>
   </data>
   <data name="m_lbStartingSectionIndex.Text" xml:space="preserve">
     <value>&amp;Index de début de section:</value>
   </data>
   <data name="m_cbStartingSectionIndex.Location" type="System.Drawing.Point, System.Drawing">
-    <value>157, 101</value>
+    <value>191, 127</value>
   </data>
   <data name="m_rbGenerateTTS.Size" type="System.Drawing.Size, System.Drawing">
-    <value>212, 17</value>
+    <value>277, 21</value>
   </data>
   <data name="m_rbGenerateTTS.Text" xml:space="preserve">
     <value>Pages contenant de la synthèse &amp;vocale</value>
   </data>
   <data name="m_rbKeepEmptyPages.Size" type="System.Drawing.Size, System.Drawing">
-    <value>157, 17</value>
+    <value>204, 21</value>
   </data>
   <data name="m_rbKeepEmptyPages.Text" xml:space="preserve">
     <value>Pages contenant du si&amp;lence</value>
   </data>
+  <data name="m_btnOk.Location" type="System.Drawing.Point, System.Drawing">
+    <value>178, 376</value>
+  </data>
+  <data name="m_btnCancel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>306, 376</value>
+  </data>
   <data name="m_btnCancel.Text" xml:space="preserve">
     <value>&amp;Annuler</value>
   </data>
+  <data name="m_btnBrowse.Location" type="System.Drawing.Point, System.Drawing">
+    <value>508, 144</value>
+  </data>
+  <data name="m_btnBrowse.Text" xml:space="preserve">
+    <value>Parcourir</value>
+  </data>
+  <data name="m_txtSelectCustomizedAudio.AccessibleName" xml:space="preserve">
+    <value>Sélectionner un fichier audio déjà enregistré</value>
+  </data>
+  <data name="m_txtSelectCustomizedAudio.Location" type="System.Drawing.Point, System.Drawing">
+    <value>306, 151</value>
+  </data>
+  <data name="label1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>287, 17</value>
+  </data>
+  <data name="label1.Text" xml:space="preserve">
+    <value>Sélectionner un fichier audio déjà enregistré</value>
+  </data>
+  <data name="m_rbPagesWithCustomizedAudio.Size" type="System.Drawing.Size, System.Drawing">
+    <value>293, 21</value>
+  </data>
+  <data name="m_rbPagesWithCustomizedAudio.Text" xml:space="preserve">
+    <value>Page contenant de l'audio déjà enregistré</value>
+  </data>
+  <data name="m_gpPages.Size" type="System.Drawing.Size, System.Drawing">
+    <value>621, 194</value>
+  </data>
   <data name="m_nudGapsInPages.Location" type="System.Drawing.Point, System.Drawing">
-    <value>157, 36</value>
+    <value>191, 46</value>
   </data>
   <data name="m_cbCreatePagesAtEnd.Size" type="System.Drawing.Size, System.Drawing">
-    <value>247, 17</value>
+    <value>329, 21</value>
   </data>
   <data name="m_cbCreatePagesAtEnd.Text" xml:space="preserve">
     <value>Créer les pages seulement à la fin de la section</value>
@@ -161,7 +194,7 @@
     <value>Production Automatique de Page</value>
   </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>261, 310</value>
+    <value>654, 427</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
     <value>Production Automatique de Page</value>

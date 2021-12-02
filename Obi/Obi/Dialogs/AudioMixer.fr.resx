@@ -129,10 +129,10 @@
   </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="m_lblSelectAudioForMixing.Size" type="System.Drawing.Size, System.Drawing">
-    <value>239, 18</value>
+    <value>236, 18</value>
   </data>
   <data name="m_lblSelectAudioForMixing.Text" xml:space="preserve">
-    <value>&amp;Sélectionnez l'audio pour le mixage</value>
+    <value>&amp;Sélectionner l'audio pour le mixage</value>
   </data>
   <data name="m_btnBrowse.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
@@ -144,13 +144,13 @@
     <value />
   </data>
   <data name="m_btnBrowse.Location" type="System.Drawing.Point, System.Drawing">
-    <value>647, 28</value>
-  </data>
-  <data name="m_btnBrowse.Size" type="System.Drawing.Size, System.Drawing">
-    <value>100, 38</value>
+    <value>626, 28</value>
   </data>
   <data name="m_btnBrowse.Text" xml:space="preserve">
     <value>&amp;Parcourir</value>
+  </data>
+  <data name="m_txtSelectAudioForMixing.AccessibleName" xml:space="preserve">
+    <value>Sélectionner l'audio en vue du mixage</value>
   </data>
   <data name="m_txtSelectAudioForMixing.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
@@ -162,7 +162,10 @@
     <value />
   </data>
   <data name="m_txtSelectAudioForMixing.Location" type="System.Drawing.Point, System.Drawing">
-    <value>410, 28</value>
+    <value>392, 28</value>
+  </data>
+  <data name="m_txtSelectAudioForMixing.Size" type="System.Drawing.Size, System.Drawing">
+    <value>228, 24</value>
   </data>
   <data name="m_lblWeightOfSound.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
@@ -174,10 +177,13 @@
     <value />
   </data>
   <data name="m_lblWeightOfSound.Size" type="System.Drawing.Size, System.Drawing">
-    <value>130, 18</value>
+    <value>112, 18</value>
   </data>
   <data name="m_lblWeightOfSound.Text" xml:space="preserve">
-    <value>&amp;Le poids de l'audio</value>
+    <value>&amp;Poids de l'audio</value>
+  </data>
+  <data name="m_WeightOfSoundNumericUpDown.AccessibleName" xml:space="preserve">
+    <value>Poids de l'audio</value>
   </data>
   <data name="m_WeightOfSoundNumericUpDown.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
@@ -188,9 +194,6 @@
   <data name="m_WeightOfSoundNumericUpDown.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
   </data>
-  <data name="m_WeightOfSoundNumericUpDown.Location" type="System.Drawing.Point, System.Drawing">
-    <value>411, 64</value>
-  </data>
   <data name="m_btnOK.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
   </data>
@@ -199,12 +202,6 @@
   </data>
   <data name="m_btnOK.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
-  </data>
-  <data name="m_btnOK.Location" type="System.Drawing.Point, System.Drawing">
-    <value>205, 564</value>
-  </data>
-  <data name="m_btnOK.Size" type="System.Drawing.Size, System.Drawing">
-    <value>87, 38</value>
   </data>
   <data name="m_btnCancel.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
@@ -215,11 +212,8 @@
   <data name="m_btnCancel.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
   </data>
-  <data name="m_btnCancel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>357, 564</value>
-  </data>
-  <data name="m_btnCancel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>87, 38</value>
+  <data name="m_btnCancel.Text" xml:space="preserve">
+    <value>&amp;Annuler</value>
   </data>
   <data name="m_lblDropoutTransition.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
@@ -230,14 +224,11 @@
   <data name="m_lblDropoutTransition.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
   </data>
-  <data name="m_lblDropoutTransition.Location" type="System.Drawing.Point, System.Drawing">
-    <value>35, 181</value>
-  </data>
   <data name="m_lblDropoutTransition.Size" type="System.Drawing.Size, System.Drawing">
-    <value>223, 18</value>
+    <value>249, 18</value>
   </data>
   <data name="m_lblDropoutTransition.Text" xml:space="preserve">
-    <value>&amp;Abandon de transition (Seconds)</value>
+    <value>&amp;Abandon de transition (en secondes)</value>
   </data>
   <data name="m_DropoutTransitionNumericUpDown.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
@@ -249,7 +240,7 @@
     <value />
   </data>
   <data name="m_DropoutTransitionNumericUpDown.Location" type="System.Drawing.Point, System.Drawing">
-    <value>311, 179</value>
+    <value>304, 167</value>
   </data>
   <data name="m_cbStreamDuration.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
@@ -260,14 +251,14 @@
   <data name="m_cbStreamDuration.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
   </data>
-  <data name="m_cbStreamDuration.Location" type="System.Drawing.Point, System.Drawing">
-    <value>40, 214</value>
-  </data>
   <data name="m_cbStreamDuration.Size" type="System.Drawing.Size, System.Drawing">
     <value>427, 22</value>
   </data>
   <data name="m_cbStreamDuration.Text" xml:space="preserve">
     <value>Régler la fin de la durée de &amp;diffusion sur la durée de la phrase</value>
+  </data>
+  <data name="m_DurationOfMixingAudioNumericUpDown.AccessibleName" xml:space="preserve">
+    <value>Définir la durée du &amp;mixage audio après la fin de la phrase (en secondes)</value>
   </data>
   <data name="m_DurationOfMixingAudioNumericUpDown.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
@@ -279,7 +270,7 @@
     <value />
   </data>
   <data name="m_DurationOfMixingAudioNumericUpDown.Location" type="System.Drawing.Point, System.Drawing">
-    <value>559, 256</value>
+    <value>581, 237</value>
   </data>
   <data name="m_cbDuationOfMixingAudio.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
@@ -290,14 +281,11 @@
   <data name="m_cbDuationOfMixingAudio.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
   </data>
-  <data name="m_cbDuationOfMixingAudio.Location" type="System.Drawing.Point, System.Drawing">
-    <value>38, 258</value>
-  </data>
   <data name="m_cbDuationOfMixingAudio.Size" type="System.Drawing.Size, System.Drawing">
-    <value>471, 22</value>
+    <value>497, 22</value>
   </data>
   <data name="m_cbDuationOfMixingAudio.Text" xml:space="preserve">
-    <value>Définir la durée du &amp;mixage audio après la fin de la phrase (Seconds)</value>
+    <value>Définir la durée du &amp;mixage audio après la fin de la phrase (en secondes)</value>
   </data>
   <data name="m_cblSelectSecondAudioForMixing.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
@@ -309,10 +297,10 @@
     <value />
   </data>
   <data name="m_cblSelectSecondAudioForMixing.Size" type="System.Drawing.Size, System.Drawing">
-    <value>337, 22</value>
+    <value>334, 22</value>
   </data>
   <data name="m_cblSelectSecondAudioForMixing.Text" xml:space="preserve">
-    <value>S&amp;électionnez le deuxième audio pour le mixage</value>
+    <value>S&amp;électionner le deuxième audio pour le mixage</value>
   </data>
   <data name="m_txtSelectSecondAudioForMixing.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
@@ -324,7 +312,10 @@
     <value />
   </data>
   <data name="m_txtSelectSecondAudioForMixing.Location" type="System.Drawing.Point, System.Drawing">
-    <value>411, 102</value>
+    <value>392, 102</value>
+  </data>
+  <data name="m_txtSelectSecondAudioForMixing.Size" type="System.Drawing.Size, System.Drawing">
+    <value>228, 24</value>
   </data>
   <data name="m_btnBrowseSecondAudio.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
@@ -336,10 +327,7 @@
     <value />
   </data>
   <data name="m_btnBrowseSecondAudio.Location" type="System.Drawing.Point, System.Drawing">
-    <value>648, 99</value>
-  </data>
-  <data name="m_btnBrowseSecondAudio.Size" type="System.Drawing.Size, System.Drawing">
-    <value>99, 39</value>
+    <value>625, 99</value>
   </data>
   <data name="m_btnBrowseSecondAudio.Text" xml:space="preserve">
     <value>Pa&amp;rcourir</value>
@@ -353,14 +341,14 @@
   <data name="m_lblWeightOfSecondAudioSound.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
   </data>
-  <data name="m_lblWeightOfSecondAudioSound.Location" type="System.Drawing.Point, System.Drawing">
-    <value>36, 145</value>
-  </data>
   <data name="m_lblWeightOfSecondAudioSound.Size" type="System.Drawing.Size, System.Drawing">
-    <value>130, 18</value>
+    <value>159, 18</value>
   </data>
   <data name="m_lblWeightOfSecondAudioSound.Text" xml:space="preserve">
-    <value>&amp;Le poids de l'audio</value>
+    <value>Poids du second audio</value>
+  </data>
+  <data name="m_WeightOfSecondAudioSoundNumericUpDown.AccessibleName" xml:space="preserve">
+    <value>Poids du second audio</value>
   </data>
   <data name="m_WeightOfSecondAudioSoundNumericUpDown.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
@@ -371,9 +359,6 @@
   <data name="m_WeightOfSecondAudioSoundNumericUpDown.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
   </data>
-  <data name="m_WeightOfSecondAudioSoundNumericUpDown.Location" type="System.Drawing.Point, System.Drawing">
-    <value>311, 143</value>
-  </data>
   <data name="m_txtNote.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
   </data>
@@ -383,11 +368,8 @@
   <data name="m_txtNote.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
   </data>
-  <data name="m_txtNote.Location" type="System.Drawing.Point, System.Drawing">
-    <value>19, 306</value>
-  </data>
   <data name="m_txtNote.Size" type="System.Drawing.Size, System.Drawing">
-    <value>728, 245</value>
+    <value>666, 247</value>
   </data>
   <data name="m_txtNote.Text" xml:space="preserve">
     <value>Note:-
@@ -401,7 +383,7 @@ La durée après la fin de phrase, après chaque poids de mixage audio revient �
 Si cette case est cochée la phrase résultant du mixage audio aura alors la même durée que la phrase d''origine.</value>
   </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>768, 609</value>
+    <value>726, 582</value>
   </data>
   <data name="$this.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />

@@ -160,7 +160,7 @@
     <value>2</value>
   </data>
   <data name="m_BtnCancel.Text" xml:space="preserve">
-    <value>&amp;Cancel</value>
+    <value>&amp;Annuler</value>
   </data>
   <data name="&gt;&gt;m_BtnCancel.Name" xml:space="preserve">
     <value>m_BtnCancel</value>

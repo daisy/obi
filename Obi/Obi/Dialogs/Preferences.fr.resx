@@ -112,15 +112,12 @@
     <value>2.0</value>
   </resheader>
   <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="helpProvider1.HelpNamespace" xml:space="preserve">
-    <value>Obi Help.fr.chm</value>
-  </data>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="mOKButton.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
   </data>
@@ -215,7 +212,7 @@
     <value>&amp;Réinitialiser</value>
   </data>
   <data name="m_gpBox_SelectProfileRecordingToolbar.AccessibleName" xml:space="preserve">
-    <value>Assign audio profiles to Recording Toolbar groupboxAttribuer un profil audio à la barre d'enregistrement</value>
+    <value>Boîte de groupe Attribuer un profil audio à la barre d'enregistrement</value>
   </data>
   <data name="m_btnAssignProfile.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
@@ -230,7 +227,7 @@
     <value>At&amp;tribuer</value>
   </data>
   <data name="m_lblProfile2.AccessibleName" xml:space="preserve">
-    <value>Profil 2 pour la barre d'enregistrement</value>
+    <value>Barre d'enregistrement Profil 2</value>
   </data>
   <data name="m_lblProfile2.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
@@ -241,9 +238,9 @@
   <data name="m_lblProfile2.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
   </data>
-  <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="m_lblProfile2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>54, 16</value>
+    <value>72, 20</value>
   </data>
   <data name="m_lblProfile2.Text" xml:space="preserve">
     <value>Profil 2 :</value>
@@ -285,7 +282,7 @@
     <value />
   </data>
   <data name="m_lblProfile1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>54, 16</value>
+    <value>72, 20</value>
   </data>
   <data name="m_lblProfile1.Text" xml:space="preserve">
     <value>Profil 1 :</value>
@@ -342,7 +339,7 @@
     <value>0, 42</value>
   </data>
   <data name="m_lblSelectedShortcuts.Size" type="System.Drawing.Size, System.Drawing">
-    <value>174, 16</value>
+    <value>224, 20</value>
   </data>
   <data name="m_lblSelectedShortcuts.Text" xml:space="preserve">
     <value>Profil actuel des raccourcis :</value>
@@ -360,7 +357,7 @@
     <value>182, 36</value>
   </data>
   <data name="m_txtSelectedShortcutsProfile.Size" type="System.Drawing.Size, System.Drawing">
-    <value>428, 22</value>
+    <value>428, 26</value>
   </data>
   <data name="m_txtSelectedProfile.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
@@ -375,7 +372,7 @@
     <value>182, 8</value>
   </data>
   <data name="m_txtSelectedProfile.Size" type="System.Drawing.Size, System.Drawing">
-    <value>428, 22</value>
+    <value>428, 26</value>
   </data>
   <data name="m_rdb_KeyboardShortcuts.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
@@ -387,7 +384,7 @@
     <value />
   </data>
   <data name="m_rdb_KeyboardShortcuts.Size" type="System.Drawing.Size, System.Drawing">
-    <value>137, 20</value>
+    <value>169, 24</value>
   </data>
   <data name="m_rdb_KeyboardShortcuts.Text" xml:space="preserve">
     <value>Raccourcis c&amp;lavier</value>
@@ -414,7 +411,7 @@
     <value />
   </data>
   <data name="m_gpBox_SelectProfile.Text" xml:space="preserve">
-    <value>Sélectionner les options pour le profil</value>
+    <value>Sélectionner les options de profil</value>
   </data>
   <data name="m_lblSelectedProfile.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
@@ -426,7 +423,7 @@
     <value />
   </data>
   <data name="m_lblSelectedProfile.Size" type="System.Drawing.Size, System.Drawing">
-    <value>83, 16</value>
+    <value>108, 20</value>
   </data>
   <data name="m_lblSelectedProfile.Text" xml:space="preserve">
     <value>Profil actuel :</value>
@@ -441,7 +438,7 @@
     <value />
   </data>
   <data name="m_lblShortcutsProfile.Size" type="System.Drawing.Size, System.Drawing">
-    <value>188, 16</value>
+    <value>242, 20</value>
   </data>
   <data name="m_lblShortcutsProfile.Text" xml:space="preserve">
     <value>Choix du profil des raccourcis :</value>
@@ -486,7 +483,7 @@
     <value />
   </data>
   <data name="m_lblSelectProfile.Size" type="System.Drawing.Size, System.Drawing">
-    <value>138, 16</value>
+    <value>177, 20</value>
   </data>
   <data name="m_lblSelectProfile.Text" xml:space="preserve">
     <value>Sélectionner un profil :</value>
@@ -501,7 +498,7 @@
     <value />
   </data>
   <data name="m_chkColor.Size" type="System.Drawing.Size, System.Drawing">
-    <value>73, 20</value>
+    <value>89, 24</value>
   </data>
   <data name="m_chkColor.Text" xml:space="preserve">
     <value>&amp;Couleur</value>
@@ -516,7 +513,7 @@
     <value />
   </data>
   <data name="m_chkProject.Size" type="System.Drawing.Size, System.Drawing">
-    <value>62, 20</value>
+    <value>75, 24</value>
   </data>
   <data name="m_chkProject.Text" xml:space="preserve">
     <value>&amp;Projet</value>
@@ -540,7 +537,7 @@
     <value />
   </data>
   <data name="m_chkLanguage.Size" type="System.Drawing.Size, System.Drawing">
-    <value>72, 20</value>
+    <value>86, 24</value>
   </data>
   <data name="m_chkLanguage.Text" xml:space="preserve">
     <value>La&amp;ngue</value>
@@ -555,7 +552,7 @@
     <value />
   </data>
   <data name="m_chkAll.Size" type="System.Drawing.Size, System.Drawing">
-    <value>126, 20</value>
+    <value>157, 24</value>
   </data>
   <data name="m_chkAll.Text" xml:space="preserve">
     <value>Sélectionner &amp;tout</value>
@@ -612,7 +609,7 @@
     <value>148, 245</value>
   </data>
   <data name="m_lblChooseFont.Size" type="System.Drawing.Size, System.Drawing">
-    <value>109, 16</value>
+    <value>139, 20</value>
   </data>
   <data name="m_lblChooseFont.Text" xml:space="preserve">
     <value>Choisir la police :</value>
@@ -678,7 +675,7 @@
     <value>Liste des couleurs</value>
   </data>
   <data name="columnHeader3.Text" xml:space="preserve">
-    <value>Nom de contrôle</value>
+    <value>Nom des contrôles</value>
   </data>
   <data name="columnHeader4.Text" xml:space="preserve">
     <value>Couleur standard</value>
@@ -705,7 +702,7 @@
     <value />
   </data>
   <data name="m_lbl_AssignColor.Size" type="System.Drawing.Size, System.Drawing">
-    <value>135, 16</value>
+    <value>175, 20</value>
   </data>
   <data name="m_lbl_AssignColor.Text" xml:space="preserve">
     <value>Attribuer une &amp;couleur :</value>
@@ -732,7 +729,7 @@
     <value />
   </data>
   <data name="m_lbl_AssignHighContrastColor.Size" type="System.Drawing.Size, System.Drawing">
-    <value>235, 16</value>
+    <value>298, 20</value>
   </data>
   <data name="m_lbl_AssignHighContrastColor.Text" xml:space="preserve">
     <value>Attribuer une couleur à contraste &amp;élevé</value>
@@ -795,10 +792,10 @@
     <value />
   </data>
   <data name="label12.Size" type="System.Drawing.Size, System.Drawing">
-    <value>115, 16</value>
+    <value>245, 20</value>
   </data>
   <data name="label12.Text" xml:space="preserve">
-    <value>Liste de sélection:</value>
+    <value>Sélectionner Liste des touches:</value>
   </data>
   <data name="columnHeader1.Text" xml:space="preserve">
     <value>Opération</value>
@@ -872,6 +869,12 @@
   <data name="m_txtShortcutKeys.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
   </data>
+  <data name="m_txtShortcutKeys.Location" type="System.Drawing.Point, System.Drawing">
+    <value>277, 218</value>
+  </data>
+  <data name="m_txtShortcutKeys.Size" type="System.Drawing.Size, System.Drawing">
+    <value>620, 26</value>
+  </data>
   <data name="m_lblShortcutKeys.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
   </data>
@@ -885,11 +888,11 @@
     <value>48, 210</value>
   </data>
   <data name="m_lblShortcutKeys.Size" type="System.Drawing.Size, System.Drawing">
-    <value>127, 32</value>
+    <value>271, 40</value>
   </data>
   <data name="m_lblShortcutKeys.Text" xml:space="preserve">
     <value>Raccourci:
-(Tapez le raccourci)
+(Tapez la combinaison de touches)
 </value>
   </data>
   <data name="m_cbShortcutKeys.AccessibleName" xml:space="preserve">
@@ -909,6 +912,12 @@
   </data>
   <data name="m_cbShortcutKeys.Items1" xml:space="preserve">
     <value>Raccourcis pour les éléments de menu</value>
+  </data>
+  <data name="m_cbShortcutKeys.Location" type="System.Drawing.Point, System.Drawing">
+    <value>277, 21</value>
+  </data>
+  <data name="m_cbShortcutKeys.Size" type="System.Drawing.Size, System.Drawing">
+    <value>620, 28</value>
   </data>
   <data name="mKeyboardShortcutTab.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
@@ -956,7 +965,7 @@
     <value />
   </data>
   <data name="label5.Size" type="System.Drawing.Size, System.Drawing">
-    <value>56, 16</value>
+    <value>69, 20</value>
   </data>
   <data name="label5.Text" xml:space="preserve">
     <value>&amp;Langue:</value>
@@ -995,7 +1004,7 @@
     <value />
   </data>
   <data name="label4.Size" type="System.Drawing.Size, System.Drawing">
-    <value>77, 16</value>
+    <value>96, 20</value>
   </data>
   <data name="label4.Text" xml:space="preserve">
     <value>&amp;Organisme:</value>
@@ -1013,7 +1022,7 @@
     <value>13, 10</value>
   </data>
   <data name="label1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>91, 16</value>
+    <value>113, 20</value>
   </data>
   <data name="label1.Text" xml:space="preserve">
     <value>&amp;Nom complet:</value>
@@ -1046,7 +1055,7 @@
     <value>359, 148</value>
   </data>
   <data name="m_CleanUpFileSizeNumericUpDown.Size" type="System.Drawing.Size, System.Drawing">
-    <value>70, 22</value>
+    <value>70, 26</value>
   </data>
   <data name="mlblCleanupFileSize.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
@@ -1061,7 +1070,7 @@
     <value>0, 150</value>
   </data>
   <data name="mlblCleanupFileSize.Size" type="System.Drawing.Size, System.Drawing">
-    <value>353, 16</value>
+    <value>446, 20</value>
   </data>
   <data name="mlblCleanupFileSize.Text" xml:space="preserve">
     <value>Taille maximum du fichier pour le nettoyage audio (en Mo):</value>
@@ -1103,10 +1112,10 @@
     <value>10, 211</value>
   </data>
   <data name="labelTTSvoice.Size" type="System.Drawing.Size, System.Drawing">
-    <value>193, 16</value>
+    <value>216, 20</value>
   </data>
   <data name="labelTTSvoice.Text" xml:space="preserve">
-    <value>Définissez la voix de synthèse :</value>
+    <value>Définir la voix de synthèse :</value>
   </data>
   <data name="mTTSvoiceCombo.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
@@ -1121,7 +1130,7 @@
     <value>200, 208</value>
   </data>
   <data name="mTTSvoiceCombo.Size" type="System.Drawing.Size, System.Drawing">
-    <value>293, 24</value>
+    <value>293, 28</value>
   </data>
   <data name="m_OperationDurationUpDown.AccessibleName" xml:space="preserve">
     <value>Durée en millisecondes</value>
@@ -1199,7 +1208,7 @@
     <value>177, 179</value>
   </data>
   <data name="mNoiseLevelComboBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>109, 24</value>
+    <value>109, 28</value>
   </data>
   <data name="label8.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
@@ -1211,7 +1220,7 @@
     <value />
   </data>
   <data name="label8.Size" type="System.Drawing.Size, System.Drawing">
-    <value>101, 16</value>
+    <value>126, 20</value>
   </data>
   <data name="label8.Text" xml:space="preserve">
     <value>Niveau de &amp;bruit:</value>
@@ -1283,7 +1292,7 @@
     <value>55, 108</value>
   </data>
   <data name="labelChannels.Size" type="System.Drawing.Size, System.Drawing">
-    <value>93, 16</value>
+    <value>115, 20</value>
   </data>
   <data name="labelChannels.Text" xml:space="preserve">
     <value>&amp;Canaux audio:</value>
@@ -1313,7 +1322,7 @@
     <value>43, 66</value>
   </data>
   <data name="labelSampleRate.Size" type="System.Drawing.Size, System.Drawing">
-    <value>107, 16</value>
+    <value>132, 20</value>
   </data>
   <data name="labelSampleRate.Text" xml:space="preserve">
     <value>&amp;Échantillonnage:</value>
@@ -1358,7 +1367,7 @@
     <value />
   </data>
   <data name="labelOutputDeviceName.Size" type="System.Drawing.Size, System.Drawing">
-    <value>143, 16</value>
+    <value>178, 20</value>
   </data>
   <data name="labelOutputDeviceName.Text" xml:space="preserve">
     <value>Périphérique de s&amp;ortie:</value>
@@ -1373,7 +1382,7 @@
     <value />
   </data>
   <data name="labelInputDeviceName.Size" type="System.Drawing.Size, System.Drawing">
-    <value>140, 16</value>
+    <value>173, 20</value>
   </data>
   <data name="labelInputDeviceName.Text" xml:space="preserve">
     <value>Périphérique d'&amp;entrée:</value>
@@ -1415,7 +1424,7 @@
     <value>201, 97</value>
   </data>
   <data name="m_txtRecordInLocalDrive.Size" type="System.Drawing.Size, System.Drawing">
-    <value>300, 22</value>
+    <value>300, 26</value>
   </data>
   <data name="m_chkRecordInLocalDrive.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
@@ -1430,7 +1439,7 @@
     <value>0, 99</value>
   </data>
   <data name="m_chkRecordInLocalDrive.Size" type="System.Drawing.Size, System.Drawing">
-    <value>209, 20</value>
+    <value>265, 24</value>
   </data>
   <data name="m_chkRecordInLocalDrive.Text" xml:space="preserve">
     <value>Enregistrer sur le disque local: </value>
@@ -1445,7 +1454,7 @@
     <value />
   </data>
   <data name="label10.Size" type="System.Drawing.Size, System.Drawing">
-    <value>110, 16</value>
+    <value>137, 20</value>
   </data>
   <data name="label10.Text" xml:space="preserve">
     <value>milliseconde(ms)</value>
@@ -1469,7 +1478,7 @@
     <value>0, 188</value>
   </data>
   <data name="m_lblImportTolerance.Size" type="System.Drawing.Size, System.Drawing">
-    <value>162, 16</value>
+    <value>203, 20</value>
   </data>
   <data name="m_lblImportTolerance.Text" xml:space="preserve">
     <value>Tolérance à &amp;l'importation :</value>
@@ -1499,7 +1508,7 @@
     <value>16, 139</value>
   </data>
   <data name="m_ChkAutoSaveInterval.Size" type="System.Drawing.Size, System.Drawing">
-    <value>350, 20</value>
+    <value>440, 24</value>
   </data>
   <data name="m_ChkAutoSaveInterval.Text" xml:space="preserve">
     <value>&amp;Sauvegarder automatiquement toutes les (en minutes):</value>
@@ -1538,7 +1547,7 @@
     <value>192, 55</value>
   </data>
   <data name="mPipelineTextbox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>308, 22</value>
+    <value>308, 26</value>
   </data>
   <data name="mDirectoryTextbox.AccessibleName" xml:space="preserve">
     <value>Répertoire par défaut du projet :</value>
@@ -1556,7 +1565,7 @@
     <value>192, 13</value>
   </data>
   <data name="mDirectoryTextbox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>308, 22</value>
+    <value>308, 26</value>
   </data>
   <data name="mPipelineBrowseButton.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
@@ -1586,7 +1595,7 @@
     <value>0, 57</value>
   </data>
   <data name="label9.Size" type="System.Drawing.Size, System.Drawing">
-    <value>195, 16</value>
+    <value>244, 20</value>
   </data>
   <data name="label9.Text" xml:space="preserve">
     <value>Répertoire des scripts &amp;Pipeline:</value>
@@ -1604,7 +1613,7 @@
     <value>0, 15</value>
   </data>
   <data name="label2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>196, 16</value>
+    <value>247, 20</value>
   </data>
   <data name="label2.Text" xml:space="preserve">
     <value>&amp;Répertoire par défaut du projet :</value>
@@ -1948,17 +1957,5 @@
   </data>
   <data name="$this.Text" xml:space="preserve">
     <value>Edition des préférences</value>
-  </data>
-  <data name="mOKButton.Text" xml:space="preserve">
-    <value>&amp;OK</value>
-  </data>
-  <data name="m_btnProfileDiscription.Text" xml:space="preserve">
-    <value>?</value>
-  </data>
-  <data name="m_chkAudio.Text" xml:space="preserve">
-    <value>A&amp;udio</value>
-  </data>
-  <data name="mAudioTab.Text" xml:space="preserve">
-    <value>Audio</value>
   </data>
 </root>

@@ -112,15 +112,12 @@
     <value>2.0</value>
   </resheader>
   <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="helpProvider1.HelpNamespace" xml:space="preserve">
-    <value>Obi Help.fr.chm</value>
-  </data>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="m_lblDirectoryPath.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
   </data>
@@ -130,10 +127,7 @@
   <data name="m_lblDirectoryPath.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
   </data>
-  <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="m_lblDirectoryPath.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 19</value>
-  </data>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="m_lblDirectoryPath.Size" type="System.Drawing.Size, System.Drawing">
     <value>225, 20</value>
   </data>
@@ -153,10 +147,10 @@
     <value />
   </data>
   <data name="mPathTextBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>233, 17</value>
+    <value>227, 21</value>
   </data>
   <data name="mPathTextBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>390, 26</value>
+    <value>343, 26</value>
   </data>
   <data name="mSelectButton.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
@@ -168,10 +162,7 @@
     <value />
   </data>
   <data name="mSelectButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>629, 13</value>
-  </data>
-  <data name="mSelectButton.Size" type="System.Drawing.Size, System.Drawing">
-    <value>95, 35</value>
+    <value>586, 16</value>
   </data>
   <data name="mSelectButton.Text" xml:space="preserve">
     <value>&amp;Sélectionner</value>
@@ -186,7 +177,7 @@
     <value />
   </data>
   <data name="mOKButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>206, 520</value>
+    <value>177, 564</value>
   </data>
   <data name="mCancelButton.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
@@ -198,7 +189,7 @@
     <value />
   </data>
   <data name="mCancelButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>357, 520</value>
+    <value>346, 564</value>
   </data>
   <data name="mCancelButton.Text" xml:space="preserve">
     <value>&amp;Annuler</value>
@@ -231,7 +222,7 @@
     <value />
   </data>
   <data name="m_ComboSelectLevelForAudioFiles.Location" type="System.Drawing.Point, System.Drawing">
-    <value>333, 60</value>
+    <value>307, 65</value>
   </data>
   <data name="m_checkBoxEncoder.AccessibleDescription" xml:space="preserve">
     <value>Case à cocher pour l'encodage des fichiers audio</value>
@@ -324,7 +315,7 @@
     <value />
   </data>
   <data name="m_btnAdvance.AccessibleName" xml:space="preserve">
-    <value>Avancer</value>
+    <value>Avancé</value>
   </data>
   <data name="m_btnAdvance.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
@@ -336,7 +327,7 @@
     <value />
   </data>
   <data name="m_btnAdvance.Text" xml:space="preserve">
-    <value>&amp;Avancer</value>
+    <value>&amp;Avancé</value>
   </data>
   <data name="m_grpBoxMP3Encoding.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
@@ -346,9 +337,6 @@
   </data>
   <data name="m_grpBoxMP3Encoding.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
-  </data>
-  <data name="m_grpBoxMP3Encoding.Size" type="System.Drawing.Size, System.Drawing">
-    <value>580, 101</value>
   </data>
   <data name="m_chkBoxFilenameLengthLimit.AccessibleName" xml:space="preserve">
     <value>Limite de longueur du nom de fichier</value>
@@ -380,9 +368,6 @@
   <data name="m_numericUpDownFilenameLengthLimit.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
   </data>
-  <data name="m_numericUpDownFilenameLengthLimit.Location" type="System.Drawing.Point, System.Drawing">
-    <value>313, 60</value>
-  </data>
   <data name="m_grpBoxSectionNameOperation.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
   </data>
@@ -391,9 +376,6 @@
   </data>
   <data name="m_grpBoxSectionNameOperation.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
-  </data>
-  <data name="m_grpBoxSectionNameOperation.Size" type="System.Drawing.Size, System.Drawing">
-    <value>578, 92</value>
   </data>
   <data name="m_grpBoxSectionNameOperation.Text" xml:space="preserve">
     <value>Opération sur nom de section :</value>
@@ -426,9 +408,9 @@
     <value />
   </data>
   <data name="m_numericUpDownEpubFilenameLengthLimit.Location" type="System.Drawing.Point, System.Drawing">
-    <value>372, 37</value>
+    <value>330, 36</value>
   </data>
-  <assembly alias="mscorlib" name="mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="m_numericUpDownEpubFilenameLengthLimit.ShowHelp" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
@@ -461,9 +443,6 @@
   </data>
   <data name="m_EpubFileNamegroupBox.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
-  </data>
-  <data name="m_EpubFileNamegroupBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>579, 71</value>
   </data>
   <data name="m_EpubFileNamegroupBox.Text" xml:space="preserve">
     <value>Longueur du nom de fichier EPUB:</value>
@@ -498,8 +477,32 @@
   <data name="m_chkBoxCreateCsvForCues.ShowHelp" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
+  <data name="m_chkBoxCreateCsvForCues.Size" type="System.Drawing.Size, System.Drawing">
+    <value>340, 24</value>
+  </data>
+  <data name="m_chkBoxCreateCsvForCues.Text" xml:space="preserve">
+    <value>Créer un CSV contenant le TODO Timing</value>
+  </data>
+  <data name="m_chkBoxAddCuePointsInAudio.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="m_chkBoxAddCuePointsInAudio.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
+    <value>AssociateIndex</value>
+  </data>
+  <data name="m_chkBoxAddCuePointsInAudio.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="m_chkBoxAddCuePointsInAudio.ShowHelp" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="m_chkBoxAddCuePointsInAudio.Size" type="System.Drawing.Size, System.Drawing">
+    <value>602, 24</value>
+  </data>
+  <data name="m_chkBoxAddCuePointsInAudio.Text" xml:space="preserve">
+    <value>Inscrire les points À Faire dans les fichiers audio comme marques de repère</value>
+  </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>737, 574</value>
+    <value>718, 604</value>
   </data>
   <data name="$this.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
@@ -512,11 +515,5 @@
   </data>
   <data name="$this.Text" xml:space="preserve">
     <value>Sélectionner un répertoire pour l'exportation</value>
-  </data>
-  <data name="mOKButton.Text" xml:space="preserve">
-    <value>&amp;OK</value>
-  </data>
-  <data name="m_chkBoxCreateCsvForCues.Text" xml:space="preserve">
-    <value>Créer un CSV contenant le TODO Timing</value>
   </data>
 </root>
