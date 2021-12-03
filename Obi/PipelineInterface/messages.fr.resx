@@ -127,10 +127,10 @@
     <value>Attention!</value>
   </data>
   <data name="Choose_OtherDirectory" xml:space="preserve">
-    <value>Choisissez un autre répertoire</value>
+    <value>Choisir un autre répertoire</value>
   </data>
   <data name="IndexNotInRange" xml:space="preserve">
-    <value>Index en dehors de l'intervalle</value>
+    <value>Index en dehors de la plage</value>
   </data>
   <data name="No_Path" xml:space="preserve">
     <value>Le chemin d'accès n'existe pas</value>
@@ -169,7 +169,7 @@
     <value>La valeur ne se trouve pas dans l'intervalle prévu</value>
   </data>
   <data name="really_use_directory_caption" xml:space="preserve">
-    <value>Voulez-vous vider le répertoire avant de l'utiliser?</value>
+    <value>Vider le répertoire avant de l'utiliser?</value>
   </data>
   <data name="really_use_directory_text" xml:space="preserve">
     <value>Le répertoire "{0}"n'est pas vide. Si vous désirez vider ce répertoire avant de l'utiliser, choisissez "Oui." Si vous voulez utiliser ce répertoire tel quel, choisissez "Non."</value>
@@ -241,13 +241,13 @@
     <value>Types de fichiers à exclure</value>
   </data>
   <data name="comma_separated_list_of_file_types_to_exclude_from_renaming" xml:space="preserve">
-    <value>Liste des types de fichiers à exclure du renommage, à séparer par des virgules</value>
+    <value>Liste des types de fichiers à ne pas renommer, à séparer par des virgules</value>
   </data>
   <data name="Use_only_the_characters_A-Z,a-z,0-9,_hyphen_and_underscore_in_output_filenames" xml:space="preserve">
-    <value>Utiliser uniquement les caractères, A-Z, a-z, 0-9, traits d’union ou de soulignement</value>
+    <value>Utiliser uniquement les caractères, A-Z, a-z, 0-9, traits d’union ou de soulignement pour les fichiers en sortie</value>
   </data>
   <data name="Use_filesystem_safe_names" xml:space="preserve">
-    <value>Utiliser des noms compatibles avec votre système de fichiers</value>
+    <value>Utiliser des noms en cohérence avec votre système de fichiers</value>
   </data>
   <data name="Max_filename_length" xml:space="preserve">
     <value>Longueur maximum des noms de fichiers</value>

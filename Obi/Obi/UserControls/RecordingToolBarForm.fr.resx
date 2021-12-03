@@ -291,7 +291,7 @@
     <value>bouton</value>
   </data>
   <data name="m_recordingToolBarRecordingBtn.AccessibleName" xml:space="preserve">
-    <value>Monitoring/ Enregistrement</value>
+    <value>Contrôle/ Enregistrement</value>
   </data>
   <data name="m_recordingToolBarRecordingBtn.AutoSize" type="System.Boolean, mscorlib">
     <value>False</value>
@@ -645,7 +645,7 @@
     <value>40, 40</value>
   </data>
   <data name="m_TODOBtn.Text" xml:space="preserve">
-    <value>ÀFAIRE</value>
+    <value>À Faire</value>
   </data>
   <data name="m_ToggleProfile.AutoSize" type="System.Boolean, mscorlib">
     <value>False</value>
@@ -707,7 +707,7 @@
     <value>0</value>
   </data>
   <data name="recordingToolBarToolStrip.Text" xml:space="preserve">
-    <value>toolStrip1</value>
+    <value>barre d'outils</value>
   </data>
   <data name="&gt;&gt;recordingToolBarToolStrip.Name" xml:space="preserve">
     <value>recordingToolBarToolStrip</value>
@@ -737,7 +737,7 @@
     <value>1</value>
   </data>
   <data name="m_statusStrip.Text" xml:space="preserve">
-    <value>statusStrip1</value>
+    <value>barre d'état</value>
   </data>
   <data name="&gt;&gt;m_statusStrip.Name" xml:space="preserve">
     <value>m_statusStrip</value>
@@ -812,7 +812,7 @@
     <value>1</value>
   </data>
   <data name="m_chkMonitorContinuously.AccessibleName" xml:space="preserve">
-    <value>Monitoring en continu</value>
+    <value>Contrôle en continu</value>
   </data>
   <data name="m_chkMonitorContinuously.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Left</value>
@@ -827,7 +827,7 @@
     <value>4</value>
   </data>
   <data name="m_chkMonitorContinuously.Text" xml:space="preserve">
-    <value>&amp;M</value>
+    <value>&amp;C</value>
   </data>
   <data name="&gt;&gt;m_chkMonitorContinuously.Name" xml:space="preserve">
     <value>m_chkMonitorContinuously</value>

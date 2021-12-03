@@ -112,44 +112,44 @@
     <value>2.0</value>
   </resheader>
   <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <metadata name="mContextMenuStrip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <metadata name="mContextMenuStrip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>100, 17</value>
   </metadata>
-  <metadata name="timer1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <metadata name="timer1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
   </metadata>
-  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
-  <metadata name="$this.TrayHeight" type="System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+  <metadata name="$this.TrayHeight" type="System.Int32, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>48</value>
   </metadata>
-  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="Context_ZoomPhrase.Size" type="System.Drawing.Size, System.Drawing">
-    <value>208, 22</value>
+    <value>244, 24</value>
   </data>
   <data name="Context_ZoomPhrase.Text" xml:space="preserve">
     <value>Zoom sur la phrase</value>
   </data>
   <data name="Context_AddSectionMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>208, 22</value>
+    <value>244, 24</value>
   </data>
   <data name="Context_AddSectionMenuItem.Text" xml:space="preserve">
     <value>&amp;Ajouter une section</value>
   </data>
   <data name="Context_InsertSectionMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>208, 22</value>
+    <value>244, 24</value>
   </data>
   <data name="Context_InsertSectionMenuItem.Text" xml:space="preserve">
     <value>&amp;Insérer une section</value>
   </data>
   <data name="Context_SplitSectionMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>208, 22</value>
+    <value>244, 24</value>
   </data>
   <data name="Context_SplitSectionMenuItem.Text" xml:space="preserve">
     <value>Fra&amp;ctionner la section</value>
@@ -158,7 +158,7 @@
     <value>Fusionner les sections avec les suivantes</value>
   </data>
   <data name="Context_MergeWithNextSectionMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>208, 22</value>
+    <value>244, 24</value>
   </data>
   <data name="Context_MergeWithNextSectionMenuItem.Text" xml:space="preserve">
     <value>&amp;Fusionner  les sections avec les suivantes</value>
@@ -167,103 +167,115 @@
     <value>Opérations sur plusieurs sections</value>
   </data>
   <data name="Context_MultiSectionOperations.Size" type="System.Drawing.Size, System.Drawing">
-    <value>208, 22</value>
+    <value>244, 24</value>
   </data>
   <data name="Context_MultiSectionOperations.Text" xml:space="preserve">
     <value>Opérations sur plusieurs se&amp;ctions</value>
   </data>
   <data name="toolStripSeparator1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>205, 6</value>
+    <value>241, 6</value>
   </data>
   <data name="Context_AddBlankPhraseMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>208, 22</value>
+    <value>244, 24</value>
   </data>
   <data name="Context_AddBlankPhraseMenuItem.Text" xml:space="preserve">
     <value>Ajouter une phrase &amp;vide</value>
   </data>
   <data name="Context_AddEmptyPagesMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>208, 22</value>
+    <value>244, 24</value>
   </data>
   <data name="Context_AddEmptyPagesMenuItem.Text" xml:space="preserve">
     <value>Ajouter une &amp;pages vides</value>
   </data>
+  <data name="Context_SelectedPageTTSToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>254, 24</value>
+  </data>
+  <data name="Context_SelectedPageTTSToolStripMenuItem.Text" xml:space="preserve">
+    <value>Page sélectionnée (voix de synthèse)</value>
+  </data>
+  <data name="Context_SelectedPageAudioFileToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>254, 24</value>
+  </data>
+  <data name="Context_SelectedPageAudioFileToolStripMenuItem.Text" xml:space="preserve">
+    <value>Page sélectionnée (fichier audio)</value>
+  </data>
   <data name="Context_GenerateSpeechForPageMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>208, 22</value>
+    <value>244, 24</value>
   </data>
   <data name="Context_GenerateSpeechForPageMenuItem.Text" xml:space="preserve">
     <value>&amp;Produire la narration pour la page</value>
   </data>
   <data name="Context_ImportAudioFilesMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>208, 22</value>
+    <value>244, 24</value>
   </data>
   <data name="Context_ImportAudioFilesMenuItem.Text" xml:space="preserve">
     <value>&amp;Importer un fichiers audio</value>
   </data>
   <data name="Context_FineNavigationMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>208, 22</value>
+    <value>244, 24</value>
   </data>
   <data name="Context_FineNavigationMenuItem.Text" xml:space="preserve">
     <value>&amp;Navigation fine</value>
   </data>
   <data name="Context_SplitPhraseMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>208, 22</value>
+    <value>244, 24</value>
   </data>
   <data name="Context_SplitPhraseMenuItem.Text" xml:space="preserve">
     <value>&amp;Fractionner la phrase</value>
   </data>
   <data name="Context_MergeMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>208, 22</value>
+    <value>244, 24</value>
   </data>
   <data name="Context_MergeMenuItem.Text" xml:space="preserve">
     <value>Fusionner les p&amp;hrases</value>
   </data>
   <data name="Context_CropAudioMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>208, 22</value>
+    <value>244, 24</value>
   </data>
   <data name="Context_CropAudioMenuItem.Text" xml:space="preserve">
     <value>Prélever &amp;l'audio</value>
   </data>
   <data name="Context_PhraseIsTODOMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>208, 22</value>
+    <value>244, 24</value>
   </data>
   <data name="Context_PhraseIsTODOMenuItem.Text" xml:space="preserve">
-    <value>Phrase &amp;ÀFAIRE</value>
+    <value>Phrase &amp;À Faire</value>
   </data>
   <data name="Context_PhraseIsUsedMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>208, 22</value>
+    <value>244, 24</value>
   </data>
   <data name="Context_PhraseIsUsedMenuItem.Text" xml:space="preserve">
     <value>Phrase &amp;utilisée</value>
   </data>
   <data name="toolStripSeparator2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>205, 6</value>
+    <value>241, 6</value>
   </data>
   <data name="Context_AssignRoleMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>208, 22</value>
+    <value>244, 24</value>
   </data>
   <data name="Context_AssignRoleMenuItem.Text" xml:space="preserve">
     <value>Attribuer un &amp;rôle</value>
   </data>
   <data name="Context_ClearRoleMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>208, 22</value>
+    <value>244, 24</value>
   </data>
   <data name="Context_ClearRoleMenuItem.Text" xml:space="preserve">
     <value>Effa&amp;cer le rôle</value>
   </data>
   <data name="Context_CommentMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>208, 22</value>
+    <value>244, 24</value>
   </data>
   <data name="Context_CommentMenuItem.Text" xml:space="preserve">
-    <value>Commentaire Àfaire</value>
+    <value>Commentaire associé À Faire</value>
   </data>
   <data name="Context_PhraseDetectionMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>208, 22</value>
+    <value>244, 24</value>
   </data>
   <data name="Context_PhraseDetectionMenuItem.Text" xml:space="preserve">
     <value>Dé&amp;tection de phrases</value>
   </data>
   <data name="toolStripMenuItem1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>208, 22</value>
+    <value>244, 24</value>
   </data>
   <data name="toolStripMenuItem1.Text" xml:space="preserve">
     <value>Opérations sur &amp;plusieurs phrases</value>
@@ -272,50 +284,50 @@
     <value>Notes sur demande</value>
   </data>
   <data name="Context_SkippablesMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>208, 22</value>
+    <value>244, 24</value>
   </data>
   <data name="Context_SkippablesMenuItem.Text" xml:space="preserve">
     <value>&amp;Notes sur demande</value>
   </data>
   <data name="Context_AudioSelectionMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>208, 22</value>
+    <value>244, 24</value>
   </data>
   <data name="Context_AudioSelectionMenuItem.Text" xml:space="preserve">
     <value>Sélection audi&amp;o</value>
   </data>
   <data name="toolStripSeparator4.Size" type="System.Drawing.Size, System.Drawing">
-    <value>205, 6</value>
+    <value>241, 6</value>
   </data>
   <data name="Context_CutMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>208, 22</value>
+    <value>244, 24</value>
   </data>
   <data name="Context_CutMenuItem.Text" xml:space="preserve">
     <value>Co&amp;uper</value>
   </data>
   <data name="Context_CopyMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>208, 22</value>
+    <value>244, 24</value>
   </data>
   <data name="Context_CopyMenuItem.Text" xml:space="preserve">
     <value>&amp;Copier</value>
   </data>
   <data name="Context_PasteMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>208, 22</value>
+    <value>244, 24</value>
   </data>
   <data name="Context_PasteMenuItem.Text" xml:space="preserve">
     <value>C&amp;oller</value>
   </data>
   <data name="Context_PasteBeforeMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>208, 22</value>
+    <value>244, 24</value>
   </data>
   <data name="Context_PasteBeforeMenuItem.Text" xml:space="preserve">
     <value>Coller ava&amp;nt</value>
   </data>
-  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <assembly alias="mscorlib" name="mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="Context_PasteBeforeMenuItem.Visible" type="System.Boolean, mscorlib">
     <value>False</value>
   </data>
   <data name="Context_PasteInsideMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>208, 22</value>
+    <value>244, 24</value>
   </data>
   <data name="Context_PasteInsideMenuItem.Text" xml:space="preserve">
     <value>Coller &amp;dans</value>
@@ -324,58 +336,16 @@
     <value>False</value>
   </data>
   <data name="Context_DeleteMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>208, 22</value>
+    <value>244, 24</value>
   </data>
   <data name="Context_DeleteMenuItem.Text" xml:space="preserve">
     <value>&amp;Supprimer</value>
   </data>
   <data name="toolStripSeparator5.Size" type="System.Drawing.Size, System.Drawing">
-    <value>205, 6</value>
-  </data>
-  <data name="m_ChangeVolumeToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>161, 22</value>
-  </data>
-  <data name="m_ChangeVolumeToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;Changer le volume</value>
-  </data>
-  <data name="m_FadeInToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>161, 22</value>
-  </data>
-  <data name="m_FadeInToolStripMenuItem.Text" xml:space="preserve">
-    <value>Fondu en &amp;entrée</value>
-  </data>
-  <data name="m_FadeOutToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>161, 22</value>
-  </data>
-  <data name="m_FadeOutToolStripMenuItem.Text" xml:space="preserve">
-    <value>Fondu en &amp;sortie</value>
-  </data>
-  <data name="m_NormalizeToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>161, 22</value>
-  </data>
-  <data name="m_NormalizeToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;Normaliser</value>
-  </data>
-  <data name="m_SpeechRateToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>161, 22</value>
-  </data>
-  <data name="m_SpeechRateToolStripMenuItem.Text" xml:space="preserve">
-    <value>Débit de la &amp;Parole</value>
-  </data>
-  <data name="m_NoiseReductionToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>161, 22</value>
-  </data>
-  <data name="m_NoiseReductionToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;Réduction de Bruit</value>
-  </data>
-  <data name="m_AudioMixerToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>161, 22</value>
-  </data>
-  <data name="m_AudioMixerToolStripMenuItem.Text" xml:space="preserve">
-    <value>Mixage Audio</value>
+    <value>241, 6</value>
   </data>
   <data name="Context_AudioProcessingNew.Size" type="System.Drawing.Size, System.Drawing">
-    <value>208, 22</value>
+    <value>244, 24</value>
   </data>
   <data name="Context_AudioProcessingNew.Text" xml:space="preserve">
     <value>Traitement audio (&amp;nouveau)</value>
@@ -384,139 +354,139 @@
     <value>Exporter ou remplacer l'audio </value>
   </data>
   <data name="Context_ExportReplaceAudioMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>208, 22</value>
+    <value>244, 24</value>
   </data>
   <data name="Context_ExportReplaceAudioMenuItem.Text" xml:space="preserve">
     <value>&amp;Exporter ou remplacer l'audio</value>
   </data>
   <data name="Context_PropertiesMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>208, 22</value>
+    <value>244, 24</value>
   </data>
   <data name="Context_PropertiesMenuItem.Text" xml:space="preserve">
     <value>Pr&amp;opriétés</value>
   </data>
   <data name="mContextMenuStrip.Size" type="System.Drawing.Size, System.Drawing">
-    <value>209, 726</value>
+    <value>245, 818</value>
   </data>
   <data name="&gt;&gt;mContextMenuStrip.Name" xml:space="preserve">
     <value>mContextMenuStrip</value>
   </data>
   <data name="&gt;&gt;mContextMenuStrip.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ContextMenuStrip, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Windows.Forms.ContextMenuStrip, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="Context_MergePhraseWithNextMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>233, 22</value>
+    <value>278, 24</value>
   </data>
   <data name="Context_MergePhraseWithNextMenuItem.Text" xml:space="preserve">
     <value>Fusionner avec la phrase &amp;suivante</value>
   </data>
   <data name="Context_SplitMergeWithNextMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>233, 22</value>
+    <value>278, 24</value>
   </data>
   <data name="Context_SplitMergeWithNextMenuItem.Text" xml:space="preserve">
     <value>Fractionner et fusionner avec la suivan&amp;te</value>
   </data>
   <data name="Context_SplitMergeWithPreviousMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>233, 22</value>
+    <value>278, 24</value>
   </data>
   <data name="Context_SplitMergeWithPreviousMenuItem.Text" xml:space="preserve">
     <value>Fractionner et fusionner avec la pré&amp;cédente</value>
   </data>
   <data name="Context_Merge_MergeWithFollowingPhrasesMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>233, 22</value>
+    <value>278, 24</value>
   </data>
   <data name="Context_Merge_MergeWithFollowingPhrasesMenuItem.Text" xml:space="preserve">
     <value>Fusionnner avec les phrases s&amp;uivantes</value>
   </data>
   <data name="Context_Merge_MergeWithPrecedingPhrasesMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>233, 22</value>
+    <value>278, 24</value>
   </data>
   <data name="Context_Merge_MergeWithPrecedingPhrasesMenuItem.Text" xml:space="preserve">
     <value>Fusionner avec les phrases &amp;précédentes</value>
   </data>
   <data name="Context_AssignRole_PlainMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>181, 22</value>
+    <value>209, 24</value>
   </data>
   <data name="Context_AssignRole_PlainMenuItem.Text" xml:space="preserve">
     <value>Stan&amp;dard</value>
   </data>
   <data name="Context_AssignRole_HeadingMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>181, 22</value>
+    <value>209, 24</value>
   </data>
   <data name="Context_AssignRole_HeadingMenuItem.Text" xml:space="preserve">
     <value>&amp;Titre</value>
   </data>
   <data name="Context_AssignRole_PageMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>181, 22</value>
+    <value>209, 24</value>
   </data>
   <data name="Context_AssignRole_PageMenuItem.Text" xml:space="preserve">
     <value>&amp;Page</value>
   </data>
   <data name="Context_AssignRole_SilenceMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>181, 22</value>
+    <value>209, 24</value>
   </data>
   <data name="Context_AssignRole_SilenceMenuItem.Text" xml:space="preserve">
     <value>&amp;Silence</value>
   </data>
   <data name="Context_AssignRole_AnchorMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>181, 22</value>
+    <value>209, 24</value>
   </data>
   <data name="Context_AssignRole_AnchorMenuItem.Text" xml:space="preserve">
     <value>&amp;Appel</value>
   </data>
   <data name="toolStripSeparator3.Size" type="System.Drawing.Size, System.Drawing">
-    <value>178, 6</value>
+    <value>206, 6</value>
   </data>
   <data name="Context_AssignRole_NewCustomRoleMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>181, 22</value>
+    <value>209, 24</value>
   </data>
   <data name="Context_AssignRole_NewCustomRoleMenuItem.Text" xml:space="preserve">
     <value>(Nouveau rôle personnalisé...)</value>
   </data>
   <data name="Context_AddViewCommentMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>183, 22</value>
+    <value>213, 24</value>
   </data>
   <data name="Context_AddViewCommentMenuItem.Text" xml:space="preserve">
     <value>Ajouter/Afficher commentaire</value>
   </data>
   <data name="Context_ClearCommentMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>183, 22</value>
+    <value>213, 24</value>
   </data>
   <data name="Context_ClearCommentMenuItem.Text" xml:space="preserve">
     <value>Effacer commentaire</value>
   </data>
   <data name="Context_ApplyPhraseDetectionMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>285, 22</value>
+    <value>343, 24</value>
   </data>
   <data name="Context_ApplyPhraseDetectionMenuItem.Text" xml:space="preserve">
     <value>élément sélec&amp;tionné</value>
   </data>
   <data name="Context_PhraseDetection_ApplyPhraseDetectionInProjectMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>285, 22</value>
+    <value>343, 24</value>
   </data>
   <data name="Context_PhraseDetection_ApplyPhraseDetectionInProjectMenuItem.Text" xml:space="preserve">
     <value>&amp;Plusieurs sections</value>
   </data>
   <data name="Context_SettingsFromsilencePhraseToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>285, 22</value>
+    <value>343, 24</value>
   </data>
   <data name="Context_SettingsFromsilencePhraseToolStripMenuItem.Text" xml:space="preserve">
     <value>Paramètres de la phrase &amp;silence sélectionnée</value>
   </data>
   <data name="ContextBeginMarkToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>192, 22</value>
+    <value>224, 24</value>
   </data>
   <data name="ContextBeginMarkToolStripMenuItem.Text" xml:space="preserve">
     <value>Marque de &amp;début</value>
   </data>
   <data name="ContextEndMarkToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>192, 22</value>
+    <value>224, 24</value>
   </data>
   <data name="ContextEndMarkToolStripMenuItem.Text" xml:space="preserve">
     <value>Marque de &amp;fin</value>
   </data>
   <data name="ContextPasteMultiplePhrasesToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>192, 22</value>
+    <value>224, 24</value>
   </data>
   <data name="ContextPasteMultiplePhrasesToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Coller Phrases Multiples</value>
@@ -525,7 +495,7 @@
     <value>Début de note</value>
   </data>
   <data name="Context_Skippable_BeginSpecialNodeMarkToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>180, 22</value>
+    <value>212, 24</value>
   </data>
   <data name="Context_Skippable_BeginSpecialNodeMarkToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Début de note</value>
@@ -534,7 +504,7 @@
     <value>Fin de note</value>
   </data>
   <data name="Context_Skippable_EndSpecialNodeMarkToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>180, 22</value>
+    <value>212, 24</value>
   </data>
   <data name="Context_Skippable_EndSpecialNodeMarkToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Fin de note</value>
@@ -543,7 +513,7 @@
     <value>Ajouter une référence</value>
   </data>
   <data name="Context_Skippable_AssociateSpecialNodeMarkToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>180, 22</value>
+    <value>212, 24</value>
   </data>
   <data name="Context_Skippable_AssociateSpecialNodeMarkToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Ajouter une référence</value>
@@ -552,7 +522,7 @@
     <value>Aller à la note en référence</value>
   </data>
   <data name="Context_Skippable_GotoAssociatedNodeToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>180, 22</value>
+    <value>212, 24</value>
   </data>
   <data name="Context_Skippable_GotoAssociatedNodeToolStripMenuItem.Text" xml:space="preserve">
     <value>Aller à la note en &amp;référence</value>
@@ -561,7 +531,7 @@
     <value>Supprimer la référence</value>
   </data>
   <data name="Context_Skippable_RemoveAssociatedNodeToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>180, 22</value>
+    <value>212, 24</value>
   </data>
   <data name="Context_Skippable_RemoveAssociatedNodeToolStripMenuItem.Text" xml:space="preserve">
     <value>Supprimer la ré&amp;férence</value>
@@ -570,7 +540,7 @@
     <value>Aller au début de la note</value>
   </data>
   <data name="Context_Skippable_MoveToStartNoteToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>180, 22</value>
+    <value>212, 24</value>
   </data>
   <data name="Context_Skippable_MoveToStartNoteToolStripMenuItem.Text" xml:space="preserve">
     <value>Aller au &amp;début de la note</value>
@@ -579,56 +549,98 @@
     <value>Aller à la fin de la note</value>
   </data>
   <data name="Context_Skippable_MoveToEndNoteToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>180, 22</value>
+    <value>212, 24</value>
   </data>
   <data name="Context_Skippable_MoveToEndNoteToolStripMenuItem.Text" xml:space="preserve">
     <value>Aller à la &amp;fin de la note</value>
   </data>
   <data name="Context_Skippable_ClearRoleFromNoteToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>180, 22</value>
+    <value>212, 24</value>
   </data>
   <data name="Context_Skippable_ClearRoleFromNoteToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Effacer le rôle de la note</value>
   </data>
   <data name="Context_AudioSelection_BeginMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>187, 22</value>
+    <value>221, 24</value>
   </data>
   <data name="Context_AudioSelection_BeginMenuItem.Text" xml:space="preserve">
     <value>&amp;Démarrer la sélection audio</value>
   </data>
   <data name="Context_AudioSelection_EndMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>187, 22</value>
+    <value>221, 24</value>
   </data>
   <data name="Context_AudioSelection_EndMenuItem.Text" xml:space="preserve">
     <value>&amp;Terminer la sélection audio</value>
   </data>
   <data name="Context_Delete_deleteSelectionMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>203, 22</value>
+    <value>243, 24</value>
   </data>
   <data name="Context_Delete_deleteSelectionMenuItem.Text" xml:space="preserve">
     <value>Supprimer la &amp;sélection</value>
   </data>
   <data name="Context_Delete_deleteFollowingPhrasesMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>203, 22</value>
+    <value>243, 24</value>
   </data>
   <data name="Context_Delete_deleteFollowingPhrasesMenuItem.Text" xml:space="preserve">
     <value>Supprimer les &amp;phrases suivantes</value>
   </data>
+  <data name="m_ChangeVolumeToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>187, 24</value>
+  </data>
+  <data name="m_ChangeVolumeToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;Changer le volume</value>
+  </data>
+  <data name="m_FadeInToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>187, 24</value>
+  </data>
+  <data name="m_FadeInToolStripMenuItem.Text" xml:space="preserve">
+    <value>Fondu en &amp;entrée</value>
+  </data>
+  <data name="m_FadeOutToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>187, 24</value>
+  </data>
+  <data name="m_FadeOutToolStripMenuItem.Text" xml:space="preserve">
+    <value>Fondu en &amp;sortie</value>
+  </data>
+  <data name="m_NormalizeToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>187, 24</value>
+  </data>
+  <data name="m_NormalizeToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;Normaliser</value>
+  </data>
+  <data name="m_SpeechRateToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>187, 24</value>
+  </data>
+  <data name="m_SpeechRateToolStripMenuItem.Text" xml:space="preserve">
+    <value>Débit de la &amp;Parole</value>
+  </data>
+  <data name="m_NoiseReductionToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>187, 24</value>
+  </data>
+  <data name="m_NoiseReductionToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;Réduction de Bruit</value>
+  </data>
+  <data name="m_AudioMixerToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>187, 24</value>
+  </data>
+  <data name="m_AudioMixerToolStripMenuItem.Text" xml:space="preserve">
+    <value>Mixage Audio</value>
+  </data>
   <data name="Context_ExportAudioMenuItem.AccessibleName" xml:space="preserve">
     <value>Exporter l'audio ctrl+Alt+E</value>
   </data>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="Context_ExportAudioMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>Ctrl+Alt+E</value>
   </data>
   <data name="Context_ExportAudioMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>206, 22</value>
+    <value>244, 24</value>
   </data>
   <data name="Context_ExportAudioMenuItem.Text" xml:space="preserve">
     <value>Exporter l'&amp;audio</value>
   </data>
   <data name="Context_ReplaceAudioMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>206, 22</value>
+    <value>244, 24</value>
   </data>
   <data name="Context_ReplaceAudioMenuItem.Text" xml:space="preserve">
     <value>&amp;Remplacer l'audio</value>
@@ -652,7 +664,7 @@
     <value>mStripsPanel</value>
   </data>
   <data name="&gt;&gt;mStripsPanel.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;mStripsPanel.Parent" xml:space="preserve">
     <value>$this</value>
@@ -679,7 +691,7 @@
     <value>mHScrollBar</value>
   </data>
   <data name="&gt;&gt;mHScrollBar.Type" xml:space="preserve">
-    <value>System.Windows.Forms.HScrollBar, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Windows.Forms.HScrollBar, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;mHScrollBar.Parent" xml:space="preserve">
     <value>$this</value>
@@ -709,7 +721,7 @@
     <value>mVScrollBar</value>
   </data>
   <data name="&gt;&gt;mVScrollBar.Type" xml:space="preserve">
-    <value>System.Windows.Forms.VScrollBar, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Windows.Forms.VScrollBar, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;mVScrollBar.Parent" xml:space="preserve">
     <value>$this</value>
@@ -733,7 +745,7 @@
     <value>mCornerPanel</value>
   </data>
   <data name="&gt;&gt;mCornerPanel.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;mCornerPanel.Parent" xml:space="preserve">
     <value>$this</value>
@@ -747,8 +759,11 @@
   <data name="verticalScrollToolStripContainer1.Location" type="System.Drawing.Point, System.Drawing">
     <value>512, 0</value>
   </data>
+  <data name="verticalScrollToolStripContainer1.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 4, 4, 4</value>
+  </data>
   <data name="verticalScrollToolStripContainer1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>33, 533</value>
+    <value>33, 656</value>
   </data>
   <data name="verticalScrollToolStripContainer1.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
@@ -757,7 +772,7 @@
     <value>verticalScrollToolStripContainer1</value>
   </data>
   <data name="&gt;&gt;verticalScrollToolStripContainer1.Type" xml:space="preserve">
-    <value>Obi.ProjectView.VerticalScrollToolStripContainer, Obi, Version=4.5.0.31291, Culture=neutral, PublicKeyToken=null</value>
+    <value>Obi.ProjectView.VerticalScrollToolStripContainer, Obi, Version=4.6.0.20207, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;verticalScrollToolStripContainer1.Parent" xml:space="preserve">
     <value>$this</value>
@@ -775,13 +790,13 @@
     <value>Microsoft Sans Serif, 9.75pt</value>
   </data>
   <data name="contentViewLabel1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>-10, 549</value>
+    <value>-10, 543</value>
   </data>
   <data name="contentViewLabel1.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 4, 4, 4</value>
   </data>
   <data name="contentViewLabel1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>548, 22</value>
+    <value>548, 28</value>
   </data>
   <data name="contentViewLabel1.TabIndex" type="System.Int32, mscorlib">
     <value>5</value>
@@ -790,7 +805,7 @@
     <value>contentViewLabel1</value>
   </data>
   <data name="&gt;&gt;contentViewLabel1.Type" xml:space="preserve">
-    <value>Obi.ProjectView.ContentViewLabel, Obi, Version=4.5.0.31291, Culture=neutral, PublicKeyToken=null</value>
+    <value>Obi.ProjectView.ContentViewLabel, Obi, Version=4.6.0.20207, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;contentViewLabel1.Parent" xml:space="preserve">
     <value>$this</value>
@@ -805,474 +820,486 @@
     <value>Context_ZoomPhrase</value>
   </data>
   <data name="&gt;&gt;Context_ZoomPhrase.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;Context_AddSectionMenuItem.Name" xml:space="preserve">
     <value>Context_AddSectionMenuItem</value>
   </data>
   <data name="&gt;&gt;Context_AddSectionMenuItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;Context_InsertSectionMenuItem.Name" xml:space="preserve">
     <value>Context_InsertSectionMenuItem</value>
   </data>
   <data name="&gt;&gt;Context_InsertSectionMenuItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;Context_SplitSectionMenuItem.Name" xml:space="preserve">
     <value>Context_SplitSectionMenuItem</value>
   </data>
   <data name="&gt;&gt;Context_SplitSectionMenuItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;Context_MergeWithNextSectionMenuItem.Name" xml:space="preserve">
     <value>Context_MergeWithNextSectionMenuItem</value>
   </data>
   <data name="&gt;&gt;Context_MergeWithNextSectionMenuItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;Context_MultiSectionOperations.Name" xml:space="preserve">
     <value>Context_MultiSectionOperations</value>
   </data>
   <data name="&gt;&gt;Context_MultiSectionOperations.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;toolStripSeparator1.Name" xml:space="preserve">
     <value>toolStripSeparator1</value>
   </data>
   <data name="&gt;&gt;toolStripSeparator1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripSeparator, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Windows.Forms.ToolStripSeparator, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;Context_AddBlankPhraseMenuItem.Name" xml:space="preserve">
     <value>Context_AddBlankPhraseMenuItem</value>
   </data>
   <data name="&gt;&gt;Context_AddBlankPhraseMenuItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;Context_AddEmptyPagesMenuItem.Name" xml:space="preserve">
     <value>Context_AddEmptyPagesMenuItem</value>
   </data>
   <data name="&gt;&gt;Context_AddEmptyPagesMenuItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;Context_GenerateSpeechForPageMenuItem.Name" xml:space="preserve">
     <value>Context_GenerateSpeechForPageMenuItem</value>
   </data>
   <data name="&gt;&gt;Context_GenerateSpeechForPageMenuItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;Context_SelectedPageTTSToolStripMenuItem.Name" xml:space="preserve">
+    <value>Context_SelectedPageTTSToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;Context_SelectedPageTTSToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;Context_SelectedPageAudioFileToolStripMenuItem.Name" xml:space="preserve">
+    <value>Context_SelectedPageAudioFileToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;Context_SelectedPageAudioFileToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;Context_ImportAudioFilesMenuItem.Name" xml:space="preserve">
     <value>Context_ImportAudioFilesMenuItem</value>
   </data>
   <data name="&gt;&gt;Context_ImportAudioFilesMenuItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;Context_FineNavigationMenuItem.Name" xml:space="preserve">
     <value>Context_FineNavigationMenuItem</value>
   </data>
   <data name="&gt;&gt;Context_FineNavigationMenuItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;Context_SplitPhraseMenuItem.Name" xml:space="preserve">
     <value>Context_SplitPhraseMenuItem</value>
   </data>
   <data name="&gt;&gt;Context_SplitPhraseMenuItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;Context_MergeMenuItem.Name" xml:space="preserve">
     <value>Context_MergeMenuItem</value>
   </data>
   <data name="&gt;&gt;Context_MergeMenuItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;Context_MergePhraseWithNextMenuItem.Name" xml:space="preserve">
     <value>Context_MergePhraseWithNextMenuItem</value>
   </data>
   <data name="&gt;&gt;Context_MergePhraseWithNextMenuItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;Context_SplitMergeWithNextMenuItem.Name" xml:space="preserve">
     <value>Context_SplitMergeWithNextMenuItem</value>
   </data>
   <data name="&gt;&gt;Context_SplitMergeWithNextMenuItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;Context_SplitMergeWithPreviousMenuItem.Name" xml:space="preserve">
     <value>Context_SplitMergeWithPreviousMenuItem</value>
   </data>
   <data name="&gt;&gt;Context_SplitMergeWithPreviousMenuItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;Context_Merge_MergeWithFollowingPhrasesMenuItem.Name" xml:space="preserve">
     <value>Context_Merge_MergeWithFollowingPhrasesMenuItem</value>
   </data>
   <data name="&gt;&gt;Context_Merge_MergeWithFollowingPhrasesMenuItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;Context_Merge_MergeWithPrecedingPhrasesMenuItem.Name" xml:space="preserve">
     <value>Context_Merge_MergeWithPrecedingPhrasesMenuItem</value>
   </data>
   <data name="&gt;&gt;Context_Merge_MergeWithPrecedingPhrasesMenuItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;Context_CropAudioMenuItem.Name" xml:space="preserve">
     <value>Context_CropAudioMenuItem</value>
   </data>
   <data name="&gt;&gt;Context_CropAudioMenuItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;Context_PhraseIsTODOMenuItem.Name" xml:space="preserve">
     <value>Context_PhraseIsTODOMenuItem</value>
   </data>
   <data name="&gt;&gt;Context_PhraseIsTODOMenuItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;Context_PhraseIsUsedMenuItem.Name" xml:space="preserve">
     <value>Context_PhraseIsUsedMenuItem</value>
   </data>
   <data name="&gt;&gt;Context_PhraseIsUsedMenuItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;toolStripSeparator2.Name" xml:space="preserve">
     <value>toolStripSeparator2</value>
   </data>
   <data name="&gt;&gt;toolStripSeparator2.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripSeparator, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Windows.Forms.ToolStripSeparator, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;Context_AssignRoleMenuItem.Name" xml:space="preserve">
     <value>Context_AssignRoleMenuItem</value>
   </data>
   <data name="&gt;&gt;Context_AssignRoleMenuItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;Context_AssignRole_PlainMenuItem.Name" xml:space="preserve">
     <value>Context_AssignRole_PlainMenuItem</value>
   </data>
   <data name="&gt;&gt;Context_AssignRole_PlainMenuItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;Context_AssignRole_HeadingMenuItem.Name" xml:space="preserve">
     <value>Context_AssignRole_HeadingMenuItem</value>
   </data>
   <data name="&gt;&gt;Context_AssignRole_HeadingMenuItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;Context_AssignRole_PageMenuItem.Name" xml:space="preserve">
     <value>Context_AssignRole_PageMenuItem</value>
   </data>
   <data name="&gt;&gt;Context_AssignRole_PageMenuItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;Context_AssignRole_SilenceMenuItem.Name" xml:space="preserve">
     <value>Context_AssignRole_SilenceMenuItem</value>
   </data>
   <data name="&gt;&gt;Context_AssignRole_SilenceMenuItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;Context_AssignRole_AnchorMenuItem.Name" xml:space="preserve">
     <value>Context_AssignRole_AnchorMenuItem</value>
   </data>
   <data name="&gt;&gt;Context_AssignRole_AnchorMenuItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;toolStripSeparator3.Name" xml:space="preserve">
     <value>toolStripSeparator3</value>
   </data>
   <data name="&gt;&gt;toolStripSeparator3.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripSeparator, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Windows.Forms.ToolStripSeparator, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;Context_AssignRole_NewCustomRoleMenuItem.Name" xml:space="preserve">
     <value>Context_AssignRole_NewCustomRoleMenuItem</value>
   </data>
   <data name="&gt;&gt;Context_AssignRole_NewCustomRoleMenuItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;Context_ClearRoleMenuItem.Name" xml:space="preserve">
     <value>Context_ClearRoleMenuItem</value>
   </data>
   <data name="&gt;&gt;Context_ClearRoleMenuItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;Context_CommentMenuItem.Name" xml:space="preserve">
     <value>Context_CommentMenuItem</value>
   </data>
   <data name="&gt;&gt;Context_CommentMenuItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;Context_AddViewCommentMenuItem.Name" xml:space="preserve">
     <value>Context_AddViewCommentMenuItem</value>
   </data>
   <data name="&gt;&gt;Context_AddViewCommentMenuItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;Context_ClearCommentMenuItem.Name" xml:space="preserve">
     <value>Context_ClearCommentMenuItem</value>
   </data>
   <data name="&gt;&gt;Context_ClearCommentMenuItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;Context_PhraseDetectionMenuItem.Name" xml:space="preserve">
     <value>Context_PhraseDetectionMenuItem</value>
   </data>
   <data name="&gt;&gt;Context_PhraseDetectionMenuItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;Context_ApplyPhraseDetectionMenuItem.Name" xml:space="preserve">
     <value>Context_ApplyPhraseDetectionMenuItem</value>
   </data>
   <data name="&gt;&gt;Context_ApplyPhraseDetectionMenuItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;Context_PhraseDetection_ApplyPhraseDetectionInProjectMenuItem.Name" xml:space="preserve">
     <value>Context_PhraseDetection_ApplyPhraseDetectionInProjectMenuItem</value>
   </data>
   <data name="&gt;&gt;Context_PhraseDetection_ApplyPhraseDetectionInProjectMenuItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;Context_SettingsFromsilencePhraseToolStripMenuItem.Name" xml:space="preserve">
     <value>Context_SettingsFromsilencePhraseToolStripMenuItem</value>
   </data>
   <data name="&gt;&gt;Context_SettingsFromsilencePhraseToolStripMenuItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;toolStripMenuItem1.Name" xml:space="preserve">
     <value>toolStripMenuItem1</value>
   </data>
   <data name="&gt;&gt;toolStripMenuItem1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;ContextBeginMarkToolStripMenuItem.Name" xml:space="preserve">
     <value>ContextBeginMarkToolStripMenuItem</value>
   </data>
   <data name="&gt;&gt;ContextBeginMarkToolStripMenuItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;ContextEndMarkToolStripMenuItem.Name" xml:space="preserve">
     <value>ContextEndMarkToolStripMenuItem</value>
   </data>
   <data name="&gt;&gt;ContextEndMarkToolStripMenuItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;ContextPasteMultiplePhrasesToolStripMenuItem.Name" xml:space="preserve">
     <value>ContextPasteMultiplePhrasesToolStripMenuItem</value>
   </data>
   <data name="&gt;&gt;ContextPasteMultiplePhrasesToolStripMenuItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;Context_SkippablesMenuItem.Name" xml:space="preserve">
     <value>Context_SkippablesMenuItem</value>
   </data>
   <data name="&gt;&gt;Context_SkippablesMenuItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;Context_Skippable_BeginSpecialNodeMarkToolStripMenuItem.Name" xml:space="preserve">
     <value>Context_Skippable_BeginSpecialNodeMarkToolStripMenuItem</value>
   </data>
   <data name="&gt;&gt;Context_Skippable_BeginSpecialNodeMarkToolStripMenuItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;Context_Skippable_EndSpecialNodeMarkToolStripMenuItem.Name" xml:space="preserve">
     <value>Context_Skippable_EndSpecialNodeMarkToolStripMenuItem</value>
   </data>
   <data name="&gt;&gt;Context_Skippable_EndSpecialNodeMarkToolStripMenuItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;Context_Skippable_AssociateSpecialNodeMarkToolStripMenuItem.Name" xml:space="preserve">
     <value>Context_Skippable_AssociateSpecialNodeMarkToolStripMenuItem</value>
   </data>
   <data name="&gt;&gt;Context_Skippable_AssociateSpecialNodeMarkToolStripMenuItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;Context_Skippable_GotoAssociatedNodeToolStripMenuItem.Name" xml:space="preserve">
     <value>Context_Skippable_GotoAssociatedNodeToolStripMenuItem</value>
   </data>
   <data name="&gt;&gt;Context_Skippable_GotoAssociatedNodeToolStripMenuItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;Context_Skippable_RemoveAssociatedNodeToolStripMenuItem.Name" xml:space="preserve">
     <value>Context_Skippable_RemoveAssociatedNodeToolStripMenuItem</value>
   </data>
   <data name="&gt;&gt;Context_Skippable_RemoveAssociatedNodeToolStripMenuItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;Context_Skippable_MoveToStartNoteToolStripMenuItem.Name" xml:space="preserve">
     <value>Context_Skippable_MoveToStartNoteToolStripMenuItem</value>
   </data>
   <data name="&gt;&gt;Context_Skippable_MoveToStartNoteToolStripMenuItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;Context_Skippable_MoveToEndNoteToolStripMenuItem.Name" xml:space="preserve">
     <value>Context_Skippable_MoveToEndNoteToolStripMenuItem</value>
   </data>
   <data name="&gt;&gt;Context_Skippable_MoveToEndNoteToolStripMenuItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;Context_Skippable_ClearRoleFromNoteToolStripMenuItem.Name" xml:space="preserve">
     <value>Context_Skippable_ClearRoleFromNoteToolStripMenuItem</value>
   </data>
   <data name="&gt;&gt;Context_Skippable_ClearRoleFromNoteToolStripMenuItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;Context_AudioSelectionMenuItem.Name" xml:space="preserve">
     <value>Context_AudioSelectionMenuItem</value>
   </data>
   <data name="&gt;&gt;Context_AudioSelectionMenuItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;Context_AudioSelection_BeginMenuItem.Name" xml:space="preserve">
     <value>Context_AudioSelection_BeginMenuItem</value>
   </data>
   <data name="&gt;&gt;Context_AudioSelection_BeginMenuItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;Context_AudioSelection_EndMenuItem.Name" xml:space="preserve">
     <value>Context_AudioSelection_EndMenuItem</value>
   </data>
   <data name="&gt;&gt;Context_AudioSelection_EndMenuItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;toolStripSeparator4.Name" xml:space="preserve">
     <value>toolStripSeparator4</value>
   </data>
   <data name="&gt;&gt;toolStripSeparator4.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripSeparator, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Windows.Forms.ToolStripSeparator, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;Context_CutMenuItem.Name" xml:space="preserve">
     <value>Context_CutMenuItem</value>
   </data>
   <data name="&gt;&gt;Context_CutMenuItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;Context_CopyMenuItem.Name" xml:space="preserve">
     <value>Context_CopyMenuItem</value>
   </data>
   <data name="&gt;&gt;Context_CopyMenuItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;Context_PasteMenuItem.Name" xml:space="preserve">
     <value>Context_PasteMenuItem</value>
   </data>
   <data name="&gt;&gt;Context_PasteMenuItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;Context_PasteBeforeMenuItem.Name" xml:space="preserve">
     <value>Context_PasteBeforeMenuItem</value>
   </data>
   <data name="&gt;&gt;Context_PasteBeforeMenuItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;Context_PasteInsideMenuItem.Name" xml:space="preserve">
     <value>Context_PasteInsideMenuItem</value>
   </data>
   <data name="&gt;&gt;Context_PasteInsideMenuItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;Context_DeleteMenuItem.Name" xml:space="preserve">
     <value>Context_DeleteMenuItem</value>
   </data>
   <data name="&gt;&gt;Context_DeleteMenuItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;Context_Delete_deleteSelectionMenuItem.Name" xml:space="preserve">
     <value>Context_Delete_deleteSelectionMenuItem</value>
   </data>
   <data name="&gt;&gt;Context_Delete_deleteSelectionMenuItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;Context_Delete_deleteFollowingPhrasesMenuItem.Name" xml:space="preserve">
     <value>Context_Delete_deleteFollowingPhrasesMenuItem</value>
   </data>
   <data name="&gt;&gt;Context_Delete_deleteFollowingPhrasesMenuItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;toolStripSeparator5.Name" xml:space="preserve">
     <value>toolStripSeparator5</value>
   </data>
   <data name="&gt;&gt;toolStripSeparator5.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripSeparator, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Windows.Forms.ToolStripSeparator, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;Context_AudioProcessingNew.Name" xml:space="preserve">
     <value>Context_AudioProcessingNew</value>
   </data>
   <data name="&gt;&gt;Context_AudioProcessingNew.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;m_ChangeVolumeToolStripMenuItem.Name" xml:space="preserve">
     <value>m_ChangeVolumeToolStripMenuItem</value>
   </data>
   <data name="&gt;&gt;m_ChangeVolumeToolStripMenuItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;m_FadeInToolStripMenuItem.Name" xml:space="preserve">
     <value>m_FadeInToolStripMenuItem</value>
   </data>
   <data name="&gt;&gt;m_FadeInToolStripMenuItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;m_FadeOutToolStripMenuItem.Name" xml:space="preserve">
     <value>m_FadeOutToolStripMenuItem</value>
   </data>
   <data name="&gt;&gt;m_FadeOutToolStripMenuItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;m_NormalizeToolStripMenuItem.Name" xml:space="preserve">
     <value>m_NormalizeToolStripMenuItem</value>
   </data>
   <data name="&gt;&gt;m_NormalizeToolStripMenuItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;m_SpeechRateToolStripMenuItem.Name" xml:space="preserve">
     <value>m_SpeechRateToolStripMenuItem</value>
   </data>
   <data name="&gt;&gt;m_SpeechRateToolStripMenuItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;m_NoiseReductionToolStripMenuItem.Name" xml:space="preserve">
     <value>m_NoiseReductionToolStripMenuItem</value>
   </data>
   <data name="&gt;&gt;m_NoiseReductionToolStripMenuItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;m_AudioMixerToolStripMenuItem.Name" xml:space="preserve">
     <value>m_AudioMixerToolStripMenuItem</value>
   </data>
   <data name="&gt;&gt;m_AudioMixerToolStripMenuItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;Context_ExportReplaceAudioMenuItem.Name" xml:space="preserve">
     <value>Context_ExportReplaceAudioMenuItem</value>
   </data>
   <data name="&gt;&gt;Context_ExportReplaceAudioMenuItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;Context_ExportAudioMenuItem.Name" xml:space="preserve">
     <value>Context_ExportAudioMenuItem</value>
   </data>
   <data name="&gt;&gt;Context_ExportAudioMenuItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;Context_ReplaceAudioMenuItem.Name" xml:space="preserve">
     <value>Context_ReplaceAudioMenuItem</value>
   </data>
   <data name="&gt;&gt;Context_ReplaceAudioMenuItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;Context_PropertiesMenuItem.Name" xml:space="preserve">
     <value>Context_PropertiesMenuItem</value>
   </data>
   <data name="&gt;&gt;Context_PropertiesMenuItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;timer1.Name" xml:space="preserve">
     <value>timer1</value>
   </data>
   <data name="&gt;&gt;timer1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Timer, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Windows.Forms.Timer, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
     <value>ContentView</value>
   </data>
   <data name="&gt;&gt;$this.Type" xml:space="preserve">
-    <value>System.Windows.Forms.UserControl, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Windows.Forms.UserControl, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
 </root>

@@ -884,4 +884,7 @@
   <data name="mbtnAudioProcessingToolStripDropDown.Text" xml:space="preserve">
     <value>Traitement audio</value>
   </data>
+  <data name="toolStrip1.Text" xml:space="preserve">
+    <value>Barre d'outils</value>
+  </data>
 </root>
