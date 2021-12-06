@@ -628,6 +628,9 @@
     <EmbeddedResource Include="Dialogs\AdvancePreferencesSettings.fr.resx">
       <DependentUpon>AdvancePreferencesSettings.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\AdvancePreferencesSettings.pt.resx">
+      <DependentUpon>AdvancePreferencesSettings.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\AdvancePreferencesSettings.resx">
       <DependentUpon>AdvancePreferencesSettings.cs</DependentUpon>
     </EmbeddedResource>
@@ -652,6 +655,9 @@
     <EmbeddedResource Include="Dialogs\AudioMixer.fr.resx">
       <DependentUpon>AudioMixer.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\AudioMixer.pt.resx">
+      <DependentUpon>AudioMixer.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\AudioMixer.resx">
       <DependentUpon>AudioMixer.cs</DependentUpon>
     </EmbeddedResource>
@@ -667,10 +673,16 @@
     <EmbeddedResource Include="Dialogs\AudioProcessingNewDialog.fr.resx">
       <DependentUpon>AudioProcessingNewDialog.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\AudioProcessingNewDialog.pt.resx">
+      <DependentUpon>AudioProcessingNewDialog.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\AudioProcessingNewDialog.resx">
       <DependentUpon>AudioProcessingNewDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\AudioProcessingNoiseReduction.fr.resx">
+      <DependentUpon>AudioProcessingNoiseReduction.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\AudioProcessingNoiseReduction.pt.resx">
       <DependentUpon>AudioProcessingNoiseReduction.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\AudioProcessingNoiseReduction.resx">
@@ -723,6 +735,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\ChooseMergeOrChangeLevel.zh-Hant.resx">
       <DependentUpon>ChooseMergeOrChangeLevel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\ChoosePageAudio.fr.resx">
+      <DependentUpon>ChoosePageAudio.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\ChoosePageAudio.pt.resx">
+      <DependentUpon>ChoosePageAudio.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\ChoosePageAudio.resx">
       <DependentUpon>ChoosePageAudio.cs</DependentUpon>
@@ -849,6 +867,9 @@
       <DependentUpon>NewProject.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\ObiConfiguration.fr.resx">
+      <DependentUpon>ObiConfiguration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\ObiConfiguration.pt.resx">
       <DependentUpon>ObiConfiguration.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\ObiConfiguration.resx">
@@ -991,6 +1012,9 @@
       <DependentUpon>TimeElapsed.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\TimeElapsed.fr.resx">
+      <DependentUpon>TimeElapsed.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\TimeElapsed.pt.resx">
       <DependentUpon>TimeElapsed.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\TimeElapsed.resx">
