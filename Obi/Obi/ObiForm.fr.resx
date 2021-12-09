@@ -583,7 +583,7 @@
     <value>269, 6</value>
   </data>
   <data name="mShowPeakMeterMenuItem.AccessibleName" xml:space="preserve">
-    <value>Afficher le vu-mètres Ctrl+Alt+P</value>
+    <value>Afficher le vu-mètre Ctrl+Alt+P</value>
   </data>
   <data name="mShowPeakMeterMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>Ctrl+Alt+P</value>
@@ -592,7 +592,7 @@
     <value>272, 22</value>
   </data>
   <data name="mShowPeakMeterMenuItem.Text" xml:space="preserve">
-    <value>Afficher le v&amp;u-mètres</value>
+    <value>Afficher le v&amp;u-mètre</value>
   </data>
   <data name="mShowPeakMeterInsideObiMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>272, 22</value>
@@ -694,7 +694,7 @@
     <value>272, 22</value>
   </data>
   <data name="mView_AudioZoomOutMenuItem.Text" xml:space="preserve">
-    <value>&amp;Dézommer l'audio</value>
+    <value>&amp;Dézoomer l'audio</value>
   </data>
   <data name="mView_ResetAudioSizeMenuItem.AccessibleName" xml:space="preserve">
     <value>Taille audio normale Ctrl+Alt+Shift+0</value>
@@ -2230,7 +2230,7 @@
     <value>296, 24</value>
   </data>
   <data name="m_ImportMetadataToolStripMenuItem.Text" xml:space="preserve">
-    <value>Import &amp;Metadata</value>
+    <value>Importer des &amp;métadonnées</value>
   </data>
   <data name="toolStripSeparator20.Size" type="System.Drawing.Size, System.Drawing">
     <value>293, 6</value>
