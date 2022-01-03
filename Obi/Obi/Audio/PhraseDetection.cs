@@ -55,7 +55,7 @@ namespace Obi.Audio
         /// <param name="GapLength"></param>
         /// <param name="before"></param>
         /// <returns></returns>
-        public static List<ManagedAudioMedia> Apply(ManagedAudioMedia audio, long threshold, double GapLength, double before)
+        public static List<ManagedAudioMedia> Apply(ManagedAudioMedia audio, long threshold, double GapLength, double before, bool DeleteSilenceFromEndOfSection = false)
         {
             
             AudioLibPCMFormat audioPCMFormat = new AudioLibPCMFormat(audio.AudioMediaData.PCMFormat.Data.NumberOfChannels, audio.AudioMediaData.PCMFormat.Data.SampleRate, audio.AudioMediaData.PCMFormat.Data.BitDepth);
@@ -63,7 +63,7 @@ namespace Obi.Audio
                 audioPCMFormat, 
                 threshold, 
                 (long) GapLength * AudioLibPCMFormat.TIME_UNIT, 
-                (long) before * AudioLibPCMFormat.TIME_UNIT);
+                (long) before * AudioLibPCMFormat.TIME_UNIT, DeleteSilenceFromEndOfSection);
 
             List<ManagedAudioMedia> detectedAudioMediaList = new List<ManagedAudioMedia>();
             //Console.WriteLine("returned list count " + timingList.Count);

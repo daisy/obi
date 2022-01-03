@@ -178,18 +178,6 @@
   <data name="Context_AddEmptyPagesMenuItem.Text" xml:space="preserve">
     <value>Add &amp;empty pages</value>
   </data>
-  <data name="Context_SelectedPageTTSToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>254, 24</value>
-  </data>
-  <data name="Context_SelectedPageTTSToolStripMenuItem.Text" xml:space="preserve">
-    <value>Selected page (TTS)</value>
-  </data>
-  <data name="Context_SelectedPageAudioFileToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>254, 24</value>
-  </data>
-  <data name="Context_SelectedPageAudioFileToolStripMenuItem.Text" xml:space="preserve">
-    <value>Selected page (Audio File)</value>
-  </data>
   <data name="Context_GenerateSpeechForPageMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>244, 24</value>
   </data>
@@ -258,6 +246,30 @@
   </data>
   <data name="Context_CommentMenuItem.Text" xml:space="preserve">
     <value>TODO Comment</value>
+  </data>
+  <data name="Context_ApplyPhraseDetectionMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>343, 24</value>
+  </data>
+  <data name="Context_ApplyPhraseDetectionMenuItem.Text" xml:space="preserve">
+    <value>Selected i&amp;tem</value>
+  </data>
+  <data name="Context_PhraseDetection_ApplyPhraseDetectionInProjectMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>343, 24</value>
+  </data>
+  <data name="Context_PhraseDetection_ApplyPhraseDetectionInProjectMenuItem.Text" xml:space="preserve">
+    <value>Multip&amp;le sections</value>
+  </data>
+  <data name="Context_SettingsFromsilencePhraseToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>343, 24</value>
+  </data>
+  <data name="Context_SettingsFromsilencePhraseToolStripMenuItem.Text" xml:space="preserve">
+    <value>Parameters from selected &amp;silence phrase</value>
+  </data>
+  <data name="Context_RemoveSilenceFromEndOfSectionToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>343, 24</value>
+  </data>
+  <data name="Context_RemoveSilenceFromEndOfSectionToolStripMenuItem.Text" xml:space="preserve">
+    <value>Remove Silence from end of section</value>
   </data>
   <data name="Context_PhraseDetectionMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>244, 24</value>
@@ -365,6 +377,18 @@
   <data name="&gt;&gt;mContextMenuStrip.Type" xml:space="preserve">
     <value>System.Windows.Forms.ContextMenuStrip, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="Context_SelectedPageTTSToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>254, 24</value>
+  </data>
+  <data name="Context_SelectedPageTTSToolStripMenuItem.Text" xml:space="preserve">
+    <value>Selected page (TTS)</value>
+  </data>
+  <data name="Context_SelectedPageAudioFileToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>254, 24</value>
+  </data>
+  <data name="Context_SelectedPageAudioFileToolStripMenuItem.Text" xml:space="preserve">
+    <value>Selected page (Audio File)</value>
+  </data>
   <data name="Context_MergePhraseWithNextMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>278, 24</value>
   </data>
@@ -445,24 +469,6 @@
   </data>
   <data name="Context_ClearCommentMenuItem.Text" xml:space="preserve">
     <value>Clear Comment</value>
-  </data>
-  <data name="Context_ApplyPhraseDetectionMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>343, 24</value>
-  </data>
-  <data name="Context_ApplyPhraseDetectionMenuItem.Text" xml:space="preserve">
-    <value>Selected i&amp;tem</value>
-  </data>
-  <data name="Context_PhraseDetection_ApplyPhraseDetectionInProjectMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>343, 24</value>
-  </data>
-  <data name="Context_PhraseDetection_ApplyPhraseDetectionInProjectMenuItem.Text" xml:space="preserve">
-    <value>Multip&amp;le sections</value>
-  </data>
-  <data name="Context_SettingsFromsilencePhraseToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>343, 24</value>
-  </data>
-  <data name="Context_SettingsFromsilencePhraseToolStripMenuItem.Text" xml:space="preserve">
-    <value>Parameters from selected &amp;silence phrase</value>
   </data>
   <data name="ContextBeginMarkToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>224, 24</value>
@@ -766,7 +772,7 @@
     <value>verticalScrollToolStripContainer1</value>
   </data>
   <data name="&gt;&gt;verticalScrollToolStripContainer1.Type" xml:space="preserve">
-    <value>Obi.ProjectView.VerticalScrollToolStripContainer, Obi, Version=4.6.0.20207, Culture=neutral, PublicKeyToken=null</value>
+    <value>Obi.ProjectView.VerticalScrollToolStripContainer, Obi, Version=4.7.0.37281, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;verticalScrollToolStripContainer1.Parent" xml:space="preserve">
     <value>$this</value>
@@ -799,7 +805,7 @@
     <value>contentViewLabel1</value>
   </data>
   <data name="&gt;&gt;contentViewLabel1.Type" xml:space="preserve">
-    <value>Obi.ProjectView.ContentViewLabel, Obi, Version=4.6.0.20207, Culture=neutral, PublicKeyToken=null</value>
+    <value>Obi.ProjectView.ContentViewLabel, Obi, Version=4.7.0.37281, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;contentViewLabel1.Parent" xml:space="preserve">
     <value>$this</value>
@@ -1295,6 +1301,12 @@
   </data>
   <data name="&gt;&gt;timer1.Type" xml:space="preserve">
     <value>System.Windows.Forms.Timer, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;Context_RemoveSilenceFromEndOfSectionToolStripMenuItem.Name" xml:space="preserve">
+    <value>Context_RemoveSilenceFromEndOfSectionToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;Context_RemoveSilenceFromEndOfSectionToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
     <value>ContentView</value>

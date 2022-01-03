@@ -332,7 +332,7 @@ namespace Obi.ImportExport
         private void ApplyPhraseDetectionOnPhrase(PhraseNode phraseNode, long threshold, double gap, double before)
         {
             urakawa.command.CompositeCommand phraseDetectionCommand = null;
-            phraseDetectionCommand = Commands.Node.SplitAudio.GetPhraseDetectionCommand(m_ProjectView, phraseNode, threshold, gap, before, m_ProjectView.ObiForm.Settings.Audio_MergeFirstTwoPhrasesAfterPhraseDetection,m_Presentation);
+            phraseDetectionCommand = Commands.Node.SplitAudio.GetPhraseDetectionCommand(m_ProjectView, phraseNode, threshold, gap, before, m_ProjectView.ObiForm.Settings.Audio_MergeFirstTwoPhrasesAfterPhraseDetection,false,m_Presentation);
             m_Presentation.Do(phraseDetectionCommand);
         }
     }

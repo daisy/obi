@@ -5296,6 +5296,7 @@ if (thresholdAboveLastNode >= stripControl.Node.PhraseChildCount) thresholdAbove
             Context_Skippable_ClearRoleFromNoteToolStripMenuItem.Enabled = mProjectView.CanClearSkippableRole;
             Context_GenerateSpeechForPageMenuItem.Enabled = Context_SelectedPageTTSToolStripMenuItem.Enabled = Context_SelectedPageAudioFileToolStripMenuItem.Enabled = mProjectView.CanGenerateSpeechForPage;
             Context_SettingsFromsilencePhraseToolStripMenuItem.Enabled = mProjectView.CanUpdatePhraseDetectionSettingsFromSilencePhrase;
+            Context_RemoveSilenceFromEndOfSectionToolStripMenuItem.Enabled = mProjectView.CanDeleteSilenceFromEndOfSection;
             Context_ReplaceAudioMenuItem.Enabled = mProjectView.CanExportSelectedNodeAudio;
             Context_AudioProcessingNew.Enabled = m_ChangeVolumeToolStripMenuItem.Enabled = 
                                        m_NormalizeToolStripMenuItem.Enabled = m_SpeechRateToolStripMenuItem.Enabled = mProjectView.CanExportSelectedNodeAudio;
@@ -6357,6 +6358,11 @@ Block lastBlock = ActiveStrip.LastBlock ;
                 mProjectView.Selection = tempSelection;
                 mProjectView.GenerateSpeechForPage(false, pageAudioDialog.RecordedAudioPath);
             }
+        }
+
+        private void Context_RemoveSilenceFromEndOfSectionToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            mProjectView.ApplyPhraseDetection(true);
         }
 
      

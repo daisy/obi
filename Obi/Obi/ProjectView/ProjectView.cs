@@ -522,6 +522,7 @@ namespace Obi.ProjectView
         public bool CanAddSubsection { get { return mTOCView.CanAddSubsection; } }
 
         public bool CanUpdatePhraseDetectionSettingsFromSilencePhrase { get { return mPresentation != null && Selection != null && Selection.Node is PhraseNode && Selection.EmptyNodeForSelection.Role_ == EmptyNode.Role.Silence; } }
+        public bool CanDeleteSilenceFromEndOfSection { get { return mPresentation != null && Selection != null && (Selection.Node is SectionNode || (Selection.Node is PhraseNode && Selection.Node.ParentAs<SectionNode>().LastUsedPhrase == Selection.Node)); } }
         public bool CanApplyPhraseDetectionInWholeProject { get { return mPresentation != null && mPresentation.RootNode.Children.Count > 0 && !TransportBar.IsRecorderActive && !IsZoomWaveformActive; } }
         public bool CanApplyPhraseDetection
             {
@@ -4141,7 +4142,7 @@ for (int j = 0;
         /// Apply phrase detection on selected audio block by computing silence threshold from a silence block
         ///  nearest  preceding silence block is  used
         /// </summary>
-        public void ApplyPhraseDetection ()
+        public void ApplyPhraseDetection (bool DeleteSilenceFromEndOfSection = false)
             {
             if (CanApplyPhraseDetection)
                 {
@@ -4172,7 +4173,7 @@ for (int j = 0;
                         delegate(Dialogs.ProgressDialog progress1)
                             {
                             command = Commands.Node.SplitAudio.GetPhraseDetectionCommand ( this, phraseDetectionNode,
-                                dialog.Threshold, dialog.Gap, dialog.LeadingSilence,ObiForm.Settings.Audio_MergeFirstTwoPhrasesAfterPhraseDetection);
+                                dialog.Threshold, dialog.Gap, dialog.LeadingSilence,ObiForm.Settings.Audio_MergeFirstTwoPhrasesAfterPhraseDetection, DeleteSilenceFromEndOfSection);
                             } );
                     progress.OperationCancelled += new Obi.Dialogs.OperationCancelledHandler(delegate(object sender, EventArgs e) { Audio.PhraseDetection.CancelOperation = true; });
                     this.ProgressChanged += new ProgressChangedEventHandler(progress.UpdateProgressBar);
