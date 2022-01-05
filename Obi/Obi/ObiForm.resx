@@ -872,6 +872,23 @@
   </data>
   <data name="mMultiSectionOperations.Text" xml:space="preserve">
     <value>Multi-Se&amp;ction Operations</value>
+  </data>  <data name="mDeleteSilenceFromEndOfSectionToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>279, 22</value>
+  </data>
+  <data name="mDeleteSilenceFromEndOfSectionToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;Delete silence from end of section</value>
+  </data>
+  <data name="mRetainSilenceInLastPhraseOfSectionToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>279, 22</value>
+  </data>
+  <data name="mRetainSilenceInLastPhraseOfSectionToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;Retain silence in last phrase of section</value>
+  </data>
+  <data name="mTrimSilenceFromSectionEnd.Size" type="System.Drawing.Size, System.Drawing">
+    <value>279, 22</value>
+  </data>
+  <data name="mTrimSilenceFromSectionEnd.Text" xml:space="preserve">
+    <value>&amp;Trim silence from section end</value>
   </data>
   <data name="toolStripSeparator13.Size" type="System.Drawing.Size, System.Drawing">
     <value>276, 6</value>
@@ -3798,6 +3815,23 @@
   </data>
   <data name="&gt;&gt;toolStripSeparator20.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripSeparator, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>  <data name="&gt;&gt;mTrimSilenceFromSectionEnd.Name" xml:space="preserve">
+    <value>mTrimSilenceFromSectionEnd</value>
+  </data>
+  <data name="&gt;&gt;mTrimSilenceFromSectionEnd.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;mDeleteSilenceFromEndOfSectionToolStripMenuItem.Name" xml:space="preserve">
+    <value>mDeleteSilenceFromEndOfSectionToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;mDeleteSilenceFromEndOfSectionToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;mRetainSilenceInLastPhraseOfSectionToolStripMenuItem.Name" xml:space="preserve">
+    <value>mRetainSilenceInLastPhraseOfSectionToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;mRetainSilenceInLastPhraseOfSectionToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
     <value>ObiForm</value>

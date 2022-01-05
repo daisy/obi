@@ -62,6 +62,8 @@ namespace Obi
             this.toolStripSeparator7 = new System.Windows.Forms.ToolStripSeparator();
             this.mEdit_DeleteUnusedDataMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
+            this.m_ImportMetadataToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator20 = new System.Windows.Forms.ToolStripSeparator();
             this.mFindInTextToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mFindNextToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mFindPreviousToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -246,8 +248,9 @@ namespace Obi
             this.mStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.mStatusProgressBar = new System.Windows.Forms.ToolStripProgressBar();
             this.mProjectView = new Obi.ProjectView.ProjectView();
-            this.m_ImportMetadataToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator20 = new System.Windows.Forms.ToolStripSeparator();
+            this.mTrimSilenceFromSectionEnd = new System.Windows.Forms.ToolStripMenuItem();
+            this.mDeleteSilenceFromEndOfSectionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mRetainSilenceInLastPhraseOfSectionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mMenuStrip.SuspendLayout();
             this.mStatusStrip.SuspendLayout();
             this.SuspendLayout();
@@ -486,6 +489,17 @@ namespace Obi
             // 
             this.toolStripSeparator4.Name = "toolStripSeparator4";
             resources.ApplyResources(this.toolStripSeparator4, "toolStripSeparator4");
+            // 
+            // m_ImportMetadataToolStripMenuItem
+            // 
+            this.m_ImportMetadataToolStripMenuItem.Name = "m_ImportMetadataToolStripMenuItem";
+            resources.ApplyResources(this.m_ImportMetadataToolStripMenuItem, "m_ImportMetadataToolStripMenuItem");
+            this.m_ImportMetadataToolStripMenuItem.Click += new System.EventHandler(this.m_ImportMetadataToolStripMenuItem_Click);
+            // 
+            // toolStripSeparator20
+            // 
+            this.toolStripSeparator20.Name = "toolStripSeparator20";
+            resources.ApplyResources(this.toolStripSeparator20, "toolStripSeparator20");
             // 
             // mFindInTextToolStripMenuItem
             // 
@@ -740,6 +754,7 @@ namespace Obi
             this.mSplitSectionToolStripMenuItem,
             this.mMergeWithNextSectionToolStripMenuItem,
             this.mMultiSectionOperations,
+            this.mTrimSilenceFromSectionEnd,
             this.toolStripSeparator13,
             this.mSectionIsUsedToolStripMenuItem});
             this.mSectionsToolStripMenuItem.Name = "mSectionsToolStripMenuItem";
@@ -1803,16 +1818,25 @@ namespace Obi
             this.mProjectView.TransportBarVisible = false;
             this.mProjectView.ZoomWaveformIncrementFactor = 0D;
             // 
-            // m_ImportMetadataToolStripMenuItem
+            // mTrimSilenceFromSectionEnd
             // 
-            this.m_ImportMetadataToolStripMenuItem.Name = "m_ImportMetadataToolStripMenuItem";
-            resources.ApplyResources(this.m_ImportMetadataToolStripMenuItem, "m_ImportMetadataToolStripMenuItem");
-            this.m_ImportMetadataToolStripMenuItem.Click += new System.EventHandler(this.m_ImportMetadataToolStripMenuItem_Click);
+            this.mTrimSilenceFromSectionEnd.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.mDeleteSilenceFromEndOfSectionToolStripMenuItem,
+            this.mRetainSilenceInLastPhraseOfSectionToolStripMenuItem});
+            this.mTrimSilenceFromSectionEnd.Name = "mTrimSilenceFromSectionEnd";
+            resources.ApplyResources(this.mTrimSilenceFromSectionEnd, "mTrimSilenceFromSectionEnd");
             // 
-            // toolStripSeparator20
+            // mDeleteSilenceFromEndOfSectionToolStripMenuItem
             // 
-            this.toolStripSeparator20.Name = "toolStripSeparator20";
-            resources.ApplyResources(this.toolStripSeparator20, "toolStripSeparator20");
+            this.mDeleteSilenceFromEndOfSectionToolStripMenuItem.Name = "mDeleteSilenceFromEndOfSectionToolStripMenuItem";
+            resources.ApplyResources(this.mDeleteSilenceFromEndOfSectionToolStripMenuItem, "mDeleteSilenceFromEndOfSectionToolStripMenuItem");
+            this.mDeleteSilenceFromEndOfSectionToolStripMenuItem.Click += new System.EventHandler(this.mDeleteSilenceFromEndOfSectionToolStripMenuItem_Click);
+            // 
+            // mRetainSilenceInLastPhraseOfSectionToolStripMenuItem
+            // 
+            this.mRetainSilenceInLastPhraseOfSectionToolStripMenuItem.Name = "mRetainSilenceInLastPhraseOfSectionToolStripMenuItem";
+            resources.ApplyResources(this.mRetainSilenceInLastPhraseOfSectionToolStripMenuItem, "mRetainSilenceInLastPhraseOfSectionToolStripMenuItem");
+            this.mRetainSilenceInLastPhraseOfSectionToolStripMenuItem.Click += new System.EventHandler(this.mRetainSilenceInLastPhraseOfSectionToolStripMenuItem_Click);
             // 
             // ObiForm
             // 
@@ -2060,6 +2084,9 @@ namespace Obi
         private System.Windows.Forms.ToolStripMenuItem mHelp_ContentsEnglishMenuItem;
         private System.Windows.Forms.ToolStripMenuItem m_ImportMetadataToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator20;
+        private System.Windows.Forms.ToolStripMenuItem mTrimSilenceFromSectionEnd;
+        private System.Windows.Forms.ToolStripMenuItem mDeleteSilenceFromEndOfSectionToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem mRetainSilenceInLastPhraseOfSectionToolStripMenuItem;
     }
 }
 

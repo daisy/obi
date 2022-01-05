@@ -156,7 +156,7 @@ namespace Obi.Commands.Node
         /// Create the phrase detection command.
         /// </summary>
         public static CompositeCommand GetPhraseDetectionCommand(ProjectView.ProjectView view, ObiNode node,
-            long threshold, double gap, double before, bool mergeFirstTwoPhrases,bool DeleteSilenceFromEndOfSection = false, ObiPresentation presentation = null)
+            long threshold, double gap, double before, bool mergeFirstTwoPhrases,bool DeleteSilenceFromEndOfSection = false, bool RetainSilenceFromEndOfSection = false, ObiPresentation presentation = null)
         {
         List<PhraseNode> phraseNodesList = new List<PhraseNode> ();
         if (node is PhraseNode)
@@ -168,7 +168,7 @@ namespace Obi.Commands.Node
             SectionNode section = (SectionNode)node;
 
             // If Delete silence from end of section is invoked then add only last phrase of the section in phrase node list 
-            if (DeleteSilenceFromEndOfSection)
+            if (DeleteSilenceFromEndOfSection || RetainSilenceFromEndOfSection)
             {
                 if (((PhraseNode)section.PhraseChild(section.PhraseChildCount - 1)).Role_ != EmptyNode.Role.Silence)
                 {
@@ -212,7 +212,7 @@ namespace Obi.Commands.Node
                     Obi.Audio.PhraseDetection.Apply(phrase.Audio.Copy(), threshold, gap, before));
                 else
                     phrases = view.Presentation.CreatePhraseNodesFromAudioAssetList(
-                        Obi.Audio.PhraseDetection.Apply(phrase.Audio.Copy(), threshold, gap, before, DeleteSilenceFromEndOfSection));
+                        Obi.Audio.PhraseDetection.Apply(phrase.Audio.Copy(), threshold, gap, before, (DeleteSilenceFromEndOfSection || RetainSilenceFromEndOfSection)));
                 for (int i = 0; i < phrases.Count; ++i)
                     {
                         if (DeleteSilenceFromEndOfSection && i >= phrases.Count - 1)
@@ -236,7 +236,7 @@ namespace Obi.Commands.Node
                     }
                     // add first 2 phrases to the list if the merge flag is true. Do not merge if Delete silence from end of section is invoked.
                     if (phrases.Count >= 2 && mergeFirstTwoPhrases
-                        && phrases[0] is PhraseNode && phrases [1] is PhraseNode && !DeleteSilenceFromEndOfSection)
+                        && phrases[0] is PhraseNode && phrases [1] is PhraseNode && !DeleteSilenceFromEndOfSection && !RetainSilenceFromEndOfSection)
                     {
                         List<PhraseNode> mergeList = new List<PhraseNode>();
                         mergeList.Add(phrases[0]);
