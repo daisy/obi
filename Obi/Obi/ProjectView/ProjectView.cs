@@ -522,7 +522,10 @@ namespace Obi.ProjectView
         public bool CanAddSubsection { get { return mTOCView.CanAddSubsection; } }
 
         public bool CanUpdatePhraseDetectionSettingsFromSilencePhrase { get { return mPresentation != null && Selection != null && Selection.Node is PhraseNode && Selection.EmptyNodeForSelection.Role_ == EmptyNode.Role.Silence; } }
-        public bool CanDeleteSilenceFromEndOfSection { get { return mPresentation != null && Selection != null && Selection.Node != null && (Selection.Node is SectionNode || (Selection.Node is PhraseNode && Selection.Node.ParentAs<SectionNode>().LastUsedPhrase == Selection.Node)); } }
+        public bool CanDeleteSilenceFromEndOfSection { get { return mPresentation != null && Selection != null && Selection.Node != null && (Selection.Node is SectionNode || (Selection.Node is PhraseNode
+            && Selection.Node.ParentAs<SectionNode>()!= null && Selection.Node.ParentAs<SectionNode>().LastUsedPhrase == Selection.Node));
+        }
+        }
         public bool CanApplyPhraseDetectionInWholeProject { get { return mPresentation != null && mPresentation.RootNode.Children.Count > 0 && !TransportBar.IsRecorderActive && !IsZoomWaveformActive; } }
         public bool CanApplyPhraseDetection
             {
