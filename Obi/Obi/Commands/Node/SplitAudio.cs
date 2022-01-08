@@ -215,7 +215,7 @@ namespace Obi.Commands.Node
                         Obi.Audio.PhraseDetection.Apply(phrase.Audio.Copy(), threshold, gap, before, (DeleteSilenceFromEndOfSection || RetainSilenceFromEndOfSection)));
                 for (int i = 0; i < phrases.Count; ++i)
                     {
-                        if (DeleteSilenceFromEndOfSection && i >= phrases.Count - 1)
+                        if (DeleteSilenceFromEndOfSection && phrases.Count == 2 && i == phrases.Count - 1)
                             break;
                     // Copy page/heading role for the first phrase only
                     if (i == 0 || (phrase.Role_ != EmptyNode.Role.Page && phrase.Role_ != EmptyNode.Role.Heading))
