@@ -59,11 +59,23 @@ namespace Obi.Audio
         {
             
             AudioLibPCMFormat audioPCMFormat = new AudioLibPCMFormat(audio.AudioMediaData.PCMFormat.Data.NumberOfChannels, audio.AudioMediaData.PCMFormat.Data.SampleRate, audio.AudioMediaData.PCMFormat.Data.BitDepth);
-            List<long> timingList = AudioLib.PhraseDetection.Apply(audio.AudioMediaData.OpenPcmInputStream(), 
-                audioPCMFormat, 
-                threshold, 
-                (long) GapLength * AudioLibPCMFormat.TIME_UNIT, 
-                (long) before * AudioLibPCMFormat.TIME_UNIT, DeleteSilenceFromEndOfSection);
+            List<long> timingList;
+            if (DeleteSilenceFromEndOfSection)
+            {
+                timingList = AudioLib.PhraseDetection.RemoveSilenceFromEndOfSection(audio.AudioMediaData.OpenPcmInputStream(),
+                    audioPCMFormat,
+                    threshold,
+                    (long)GapLength * AudioLibPCMFormat.TIME_UNIT,
+                    (long)before * AudioLibPCMFormat.TIME_UNIT, DeleteSilenceFromEndOfSection);
+            }
+            else
+            {
+                timingList = AudioLib.PhraseDetection.Apply(audio.AudioMediaData.OpenPcmInputStream(),
+                    audioPCMFormat,
+                    threshold,
+                    (long)GapLength * AudioLibPCMFormat.TIME_UNIT,
+                    (long)before * AudioLibPCMFormat.TIME_UNIT);
+            }
 
             List<ManagedAudioMedia> detectedAudioMediaList = new List<ManagedAudioMedia>();
             //Console.WriteLine("returned list count " + timingList.Count);
