@@ -3284,4 +3284,14 @@ You can do it later also from the project tab of preferences dialog.</value>
   <data name="Metadata_NameCannotBeCustom" xml:space="preserve">
     <value>Invalid metadata entry! Name of metadata cannot be "Custom" </value>
   </data>
+  <data name="SilenceDetection_TrailingSilence" xml:space="preserve">
+    <value>Trailing silence</value>
+  </data>
+  <data name="SilenceDetection_DialogText" xml:space="preserve">
+    <value>Silence detection settings</value>
+  </data>
+  <data name="SilenceDetection_progress_dialog_title" xml:space="preserve">
+    <value>Applying silence detection...</value>
+    <comment>Progress dialog title</comment>
+  </data>
 </root>

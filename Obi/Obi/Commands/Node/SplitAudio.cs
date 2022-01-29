@@ -156,7 +156,7 @@ namespace Obi.Commands.Node
         /// Create the phrase detection command.
         /// </summary>
         public static CompositeCommand GetPhraseDetectionCommand(ProjectView.ProjectView view, ObiNode node,
-            long threshold, double gap, double before, bool mergeFirstTwoPhrases,bool DeleteSilenceFromEndOfSection = false, bool RetainSilenceFromEndOfSection = false, ObiPresentation presentation = null)
+            long threshold, double gap, double before, bool mergeFirstTwoPhrases, ObiPresentation presentation = null)
         {
         List<PhraseNode> phraseNodesList = new List<PhraseNode> ();
         if (node is PhraseNode)
@@ -164,26 +164,14 @@ namespace Obi.Commands.Node
             phraseNodesList.Add ( (PhraseNode)node );
             }
         else if (node is SectionNode)
-        {
+            {
             SectionNode section = (SectionNode)node;
-
-            // If Delete silence from end of section is invoked then add only last phrase of the section in phrase node list 
-            if (DeleteSilenceFromEndOfSection || RetainSilenceFromEndOfSection)
-            {
-                if (((PhraseNode)section.PhraseChild(section.PhraseChildCount - 1)).Role_ != EmptyNode.Role.Silence)
+            for (int i = 0; i < section.PhraseChildCount; i++)
                 {
-                    phraseNodesList.Add((PhraseNode)section.PhraseChild(section.PhraseChildCount - 1));
+                if (section.PhraseChild ( i ) is PhraseNode && ((PhraseNode)section.PhraseChild(i)).Role_ != EmptyNode.Role.Silence) 
+                    phraseNodesList.Add ((PhraseNode)  section.PhraseChild (i) );
                 }
             }
-            else
-            {
-                for (int i = 0; i < section.PhraseChildCount; i++)
-                {
-                    if (section.PhraseChild(i) is PhraseNode && ((PhraseNode)section.PhraseChild(i)).Role_ != EmptyNode.Role.Silence)
-                        phraseNodesList.Add((PhraseNode)section.PhraseChild(i));
-                }
-            }
-        }
             List<List<PhraseNode>> phrasesToMerge = new List<List<PhraseNode>>();
             CompositeCommand command = null;
             if (view.Presentation == null && presentation != null)
@@ -210,13 +198,11 @@ namespace Obi.Commands.Node
                 if (view.Presentation == null && presentation != null)
                     phrases = presentation.CreatePhraseNodesFromAudioAssetList(
                     Obi.Audio.PhraseDetection.Apply(phrase.Audio.Copy(), threshold, gap, before));
-                else
+                else 
                     phrases = view.Presentation.CreatePhraseNodesFromAudioAssetList(
-                        Obi.Audio.PhraseDetection.Apply(phrase.Audio.Copy(), threshold, gap, before, (DeleteSilenceFromEndOfSection || RetainSilenceFromEndOfSection)));
+                        Obi.Audio.PhraseDetection.Apply(phrase.Audio.Copy(), threshold, gap, before));
                 for (int i = 0; i < phrases.Count; ++i)
                     {
-                        if (DeleteSilenceFromEndOfSection && phrases.Count == 2 && i == phrases.Count - 1)
-                            break;
                     // Copy page/heading role for the first phrase only
                     if (i == 0 || (phrase.Role_ != EmptyNode.Role.Page && phrase.Role_ != EmptyNode.Role.Heading))
                         {
@@ -234,9 +220,9 @@ namespace Obi.Commands.Node
                     command.ChildCommands.Insert(command.ChildCommands.Count , new Commands.Node.AddNode(view, phrases[i], parent, index, false));
                     index++;
                     }
-                    // add first 2 phrases to the list if the merge flag is true. Do not merge if Delete silence from end of section is invoked.
+                    // add first 2 phrases to the list if the merge flag is true
                     if (phrases.Count >= 2 && mergeFirstTwoPhrases
-                        && phrases[0] is PhraseNode && phrases [1] is PhraseNode && !DeleteSilenceFromEndOfSection && !RetainSilenceFromEndOfSection)
+                        && phrases[0] is PhraseNode && phrases [1] is PhraseNode)
                     {
                         List<PhraseNode> mergeList = new List<PhraseNode>();
                         mergeList.Add(phrases[0]);

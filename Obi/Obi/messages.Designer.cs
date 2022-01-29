@@ -7688,6 +7688,33 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Silence detection settings.
+        /// </summary>
+        internal static string SilenceDetection_DialogText {
+            get {
+                return ResourceManager.GetString("SilenceDetection_DialogText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Applying silence detection....
+        /// </summary>
+        internal static string SilenceDetection_progress_dialog_title {
+            get {
+                return ResourceManager.GetString("SilenceDetection_progress_dialog_title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Trailing silence.
+        /// </summary>
+        internal static string SilenceDetection_TrailingSilence {
+            get {
+                return ResourceManager.GetString("SilenceDetection_TrailingSilence", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The project has some skippable notes. These will not be exported to DAISY 2.02 talking book..
         /// </summary>
         internal static string SkippableNotExportedInDaisy202 {

@@ -6929,12 +6929,12 @@ ref string exportDirectoryEPUB3)
 
             private void mDeleteSilenceFromEndOfSectionToolStripMenuItem_Click(object sender, EventArgs e)
             {
-                mProjectView.ApplyPhraseDetection(true);
+                mProjectView.RemoveSilenceFromEndOfSection(true);
             }
 
             private void mRetainSilenceInLastPhraseOfSectionToolStripMenuItem_Click(object sender, EventArgs e)
             {
-                mProjectView.ApplyPhraseDetection(false, true);
+                mProjectView.RemoveSilenceFromEndOfSection(false, true);
             }
 
 

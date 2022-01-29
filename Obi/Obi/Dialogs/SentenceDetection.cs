@@ -45,7 +45,7 @@ namespace Obi.Dialogs
         {         
         }
 
-        public SentenceDetection(PhraseNode silence, long threshold, double gap, double leadingSilence, Settings settings): this()
+        public SentenceDetection(PhraseNode silence, long threshold, double gap, double leadingSilence, Settings settings, bool DeleteSilenceFromEndOfSection = false): this()
         {   
             if (silence != null)
             {
@@ -67,6 +67,12 @@ namespace Obi.Dialogs
             mLeadingNumericBox.Value = Convert.ToDecimal(leadingSilence);
             //mGapNumericBox.Value = Convert.ToDecimal(Audio.PhraseDetection.DEFAULT_GAP);
             //mLeadingNumericBox.Value = Convert.ToDecimal(Audio.PhraseDetection.DEFAULT_LEADING_SILENCE);
+            if (DeleteSilenceFromEndOfSection)
+            {
+                label3.Text = Localizer.Message("SilenceDetection_TrailingSilence");
+                mLeadingNumericBox.AccessibleName = Localizer.Message("SilenceDetection_TrailingSilence");
+                this.Text = Localizer.Message("SilenceDetection_DialogText");
+            }
             if (settings.ObiFont != this.Font.Name)
             {
                 this.Font = new System.Drawing.Font(settings.ObiFont, this.Font.Size, System.Drawing.FontStyle.Regular);//@fontconfig

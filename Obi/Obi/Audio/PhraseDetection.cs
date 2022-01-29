@@ -57,25 +57,15 @@ namespace Obi.Audio
         /// <returns></returns>
         public static List<ManagedAudioMedia> Apply(ManagedAudioMedia audio, long threshold, double GapLength, double before, bool DeleteSilenceFromEndOfSection = false)
         {
-            
+
             AudioLibPCMFormat audioPCMFormat = new AudioLibPCMFormat(audio.AudioMediaData.PCMFormat.Data.NumberOfChannels, audio.AudioMediaData.PCMFormat.Data.SampleRate, audio.AudioMediaData.PCMFormat.Data.BitDepth);
             List<long> timingList;
-            if (DeleteSilenceFromEndOfSection)
-            {
-                timingList = AudioLib.PhraseDetection.RemoveSilenceFromEndOfSection(audio.AudioMediaData.OpenPcmInputStream(),
-                    audioPCMFormat,
-                    threshold,
-                    (long)GapLength * AudioLibPCMFormat.TIME_UNIT,
-                    (long)before * AudioLibPCMFormat.TIME_UNIT, DeleteSilenceFromEndOfSection);
-            }
-            else
-            {
-                timingList = AudioLib.PhraseDetection.Apply(audio.AudioMediaData.OpenPcmInputStream(),
-                    audioPCMFormat,
-                    threshold,
-                    (long)GapLength * AudioLibPCMFormat.TIME_UNIT,
-                    (long)before * AudioLibPCMFormat.TIME_UNIT);
-            }
+
+            timingList = AudioLib.PhraseDetection.Apply(audio.AudioMediaData.OpenPcmInputStream(),
+                audioPCMFormat,
+                threshold,
+                (long)GapLength * AudioLibPCMFormat.TIME_UNIT,
+                (long)before * AudioLibPCMFormat.TIME_UNIT);
 
             List<ManagedAudioMedia> detectedAudioMediaList = new List<ManagedAudioMedia>();
             //Console.WriteLine("returned list count " + timingList.Count);
@@ -88,18 +78,35 @@ namespace Obi.Audio
                 for (int i = timingList.Count - 1; i >= 0; i--)
                 {
                     //Console.WriteLine("splitting " + timingList[i] + " asset time " + audio.Duration.AsLocalUnits);
-                    ManagedAudioMedia splitAsset = audio.Split(new Time(Convert.ToInt64(timingList[i] ) ));
+                    ManagedAudioMedia splitAsset = audio.Split(new Time(Convert.ToInt64(timingList[i])));
                     //ManagedAsset.MediaData.getMediaDataManager().addMediaData(splitAsset.MediaData);
                     detectedAudioMediaList.Insert(0, splitAsset);
                     //MessageBox.Show(Convert.ToDouble(alPhrases[i]).ToString());
                 }
-                if (RetainSilenceInBeginningOfPhrase && audio.Duration.AsMilliseconds > 200 ) detectedAudioMediaList.Insert(0, audio);
+                if (RetainSilenceInBeginningOfPhrase && audio.Duration.AsMilliseconds > 200) detectedAudioMediaList.Insert(0, audio);
             }
 
             return detectedAudioMediaList;
         }
 
+        public static double RemoveSilenceFromEndOfSection(ManagedAudioMedia audio, long threshold, double GapLength, double before)
+        {
+            AudioLibPCMFormat audioPCMFormat = new AudioLibPCMFormat(audio.AudioMediaData.PCMFormat.Data.NumberOfChannels, audio.AudioMediaData.PCMFormat.Data.SampleRate, audio.AudioMediaData.PCMFormat.Data.BitDepth);
+            long Silencetiming = AudioLib.PhraseDetection.RemoveSilenceFromEndOfSection(audio.AudioMediaData.OpenPcmInputStream(),
+                  audioPCMFormat,
+                  threshold,
+                  (long)GapLength * AudioLibPCMFormat.TIME_UNIT,
+                  (long)before * AudioLibPCMFormat.TIME_UNIT);
+            if (Silencetiming != 0)
+            {
+                double timingListInMS = 0;
 
+                Time temptime = new Time(Convert.ToInt64(Silencetiming));
+                timingListInMS = temptime.AsMilliseconds;
+                return timingListInMS;
+            }
+            return 0;
+        }
         /*
          
          public static readonly double DEFAULT_GAP = 300.0;              // default gap for phrase detection

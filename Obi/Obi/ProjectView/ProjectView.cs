@@ -4145,7 +4145,7 @@ for (int j = 0;
         /// Apply phrase detection on selected audio block by computing silence threshold from a silence block
         ///  nearest  preceding silence block is  used
         /// </summary>
-        public void ApplyPhraseDetection (bool DeleteSilenceFromEndOfSection = false, bool RetainSilenceFromEndOfSection = false)
+        public void ApplyPhraseDetection ()
             {
             if (CanApplyPhraseDetection)
                 {
@@ -4176,7 +4176,7 @@ for (int j = 0;
                         delegate(Dialogs.ProgressDialog progress1)
                             {
                             command = Commands.Node.SplitAudio.GetPhraseDetectionCommand ( this, phraseDetectionNode,
-                                dialog.Threshold, dialog.Gap, dialog.LeadingSilence,ObiForm.Settings.Audio_MergeFirstTwoPhrasesAfterPhraseDetection, DeleteSilenceFromEndOfSection, RetainSilenceFromEndOfSection);
+                                dialog.Threshold, dialog.Gap, dialog.LeadingSilence,ObiForm.Settings.Audio_MergeFirstTwoPhrasesAfterPhraseDetection);
                             } );
                     progress.OperationCancelled += new Obi.Dialogs.OperationCancelledHandler(delegate(object sender, EventArgs e) { Audio.PhraseDetection.CancelOperation = true; });
                     this.ProgressChanged += new ProgressChangedEventHandler(progress.UpdateProgressBar);
@@ -4201,7 +4201,71 @@ for (int j = 0;
                     }
                 }
             }
-    
+
+        public void RemoveSilenceFromEndOfSection(bool DeleteSilenceFromEndOfSection = false, bool RetainSilenceFromEndOfSection = false)
+        {
+            if (CanApplyPhraseDetection)
+            {
+                if (mTransportBar.IsPlayerActive) mTransportBar.Stop();
+                ObiNode node = null;
+                PhraseNode phraseNodesList = null; 
+                if (Selection.Node is SectionNode && ((SectionNode)Selection.Node).PhraseChildCount > 0)
+                {
+                    if (DurationOfNodeSelected(Selection.Node) == 0) return;
+                    node = ((SectionNode)Selection.Node).PhraseChild(0);
+                    SectionNode section = (SectionNode)Selection.Node;
+                    phraseNodesList= (PhraseNode)section.PhraseChild(section.PhraseChildCount - 1);
+                }
+                else if (Selection.Node is PhraseNode)
+                {
+                    phraseNodesList = (PhraseNode)Selection.Node;
+                }
+                    
+                for (node = node != null ? node : SelectedNodeAs<EmptyNode>();
+                    node != null && !(node is PhraseNode && ((PhraseNode)node).Role_ == EmptyNode.Role.Silence);
+                    node = node.PrecedingNode) { }
+                Dialogs.SentenceDetection dialog = new Obi.Dialogs.SentenceDetection(node as PhraseNode,
+                    Convert.ToInt64(ObiForm.Settings.Audio_DefaultThreshold),
+                    Convert.ToDouble(ObiForm.Settings.Audio_DefaultGap),
+                    Convert.ToDouble(10), this.ObiForm.Settings, true); //@fontconfig
+                if (dialog.ShowDialog() == DialogResult.OK)
+                {
+                    //Audio.PhraseDetection.RetainSilenceInBeginningOfPhrase = ObiForm.Settings.Audio_RetainInitialSilenceInPhraseDetection;
+                    bool playbackOnSelectionChangedStatus = TransportBar.SelectionChangedPlaybackEnabled;
+                    TransportBar.SelectionChangedPlaybackEnabled = false;
+                    bool IsSilenceDetected = false;
+                    ObiNode phraseDetectionNode = Selection.Node;
+                    CompositeCommand command = null;
+                    ObiForm.CanAutoSave = false;//explicitly do this as getting of command takes a lot of time
+                    Dialogs.ProgressDialog progress = new Dialogs.ProgressDialog(Localizer.Message("SilenceDetection_progress_dialog_title"),
+                        delegate(Dialogs.ProgressDialog progress1)
+                        {
+                            PhraseNode phrase = phraseNodesList;
+                            double SplitTiming = Obi.Audio.PhraseDetection.RemoveSilenceFromEndOfSection(phrase.Audio.Copy(), dialog.Threshold, dialog.Gap, dialog.LeadingSilence);
+                            if (SplitTiming != 0 && SplitTiming < phrase.Duration) 
+                            {
+                                command = Commands.Node.SplitAudio.GetSplitCommand(this, phrase, SplitTiming);
+                                IsSilenceDetected = true;
+                            }
+                        });
+                    progress.OperationCancelled += new Obi.Dialogs.OperationCancelledHandler(delegate(object sender, EventArgs e) { Audio.PhraseDetection.CancelOperation = true; });
+                    this.ProgressChanged += new ProgressChangedEventHandler(progress.UpdateProgressBar);
+
+                    progress.ShowDialog();
+                    if (progress.Exception != null) throw (progress.Exception);
+                    ObiForm.CanAutoSave = true;//explicitly do this as getting of command takes a lot of time
+                    mPresentation.Do(command);
+
+                    if (DeleteSilenceFromEndOfSection && IsSilenceDetected)
+                    {
+                        Commands.Node.Delete deleteCmd = new Commands.Node.Delete(this, this.Selection.Node, false);
+                        mPresentation.Do(deleteCmd);
+                    }
+                    TransportBar.SelectionChangedPlaybackEnabled = playbackOnSelectionChangedStatus;
+
+                }
+            }
+        }
 
         public void ApplyPhraseDetectionInWholeProject ()
             {
