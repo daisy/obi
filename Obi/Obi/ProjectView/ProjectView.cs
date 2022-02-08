@@ -4241,7 +4241,7 @@ for (int j = 0;
                         delegate(Dialogs.ProgressDialog progress1)
                         {
                             PhraseNode phrase = phraseNodesList;
-                            double SplitTiming = Obi.Audio.PhraseDetection.RemoveSilenceFromEndOfSection(phrase.Audio.Copy(), dialog.Threshold, dialog.Gap, dialog.LeadingSilence);
+                            double SplitTiming = Obi.Audio.PhraseDetection.RemoveSilenceFromEnd(phrase.Audio.Copy(), dialog.Threshold, dialog.Gap, dialog.LeadingSilence);
                             if (SplitTiming != 0 && SplitTiming < phrase.Duration) 
                             {
                                 command = Commands.Node.SplitAudio.GetSplitCommand(this, phrase, SplitTiming);

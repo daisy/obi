@@ -71,6 +71,7 @@ namespace Obi.Dialogs
             {
                 label3.Text = Localizer.Message("SilenceDetection_TrailingSilence");
                 mLeadingNumericBox.AccessibleName = Localizer.Message("SilenceDetection_TrailingSilence");
+                mLeadingNumericBox.Increment = 10;
                 this.Text = Localizer.Message("SilenceDetection_DialogText");
             }
             if (settings.ObiFont != this.Font.Name)

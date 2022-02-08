@@ -89,10 +89,10 @@ namespace Obi.Audio
             return detectedAudioMediaList;
         }
 
-        public static double RemoveSilenceFromEndOfSection(ManagedAudioMedia audio, long threshold, double GapLength, double before)
+        public static double RemoveSilenceFromEnd(ManagedAudioMedia audio, long threshold, double GapLength, double before)
         {
             AudioLibPCMFormat audioPCMFormat = new AudioLibPCMFormat(audio.AudioMediaData.PCMFormat.Data.NumberOfChannels, audio.AudioMediaData.PCMFormat.Data.SampleRate, audio.AudioMediaData.PCMFormat.Data.BitDepth);
-            long Silencetiming = AudioLib.PhraseDetection.RemoveSilenceFromEndOfSection(audio.AudioMediaData.OpenPcmInputStream(),
+            long Silencetiming = AudioLib.PhraseDetection.RemoveSilenceFromEnd(audio.AudioMediaData.OpenPcmInputStream(),
                   audioPCMFormat,
                   threshold,
                   (long)GapLength * AudioLibPCMFormat.TIME_UNIT,
