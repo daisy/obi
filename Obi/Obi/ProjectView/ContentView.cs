@@ -6372,6 +6372,16 @@ Block lastBlock = ActiveStrip.LastBlock ;
             mProjectView.RemoveSilenceFromEndOfSection(false, true);
         }
 
+        private void Context_DeleteSilenceFromEndOfAllSectionsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            mProjectView.RemoveSilenceFromEndOfSection(true, false, true);
+        }
+
+        private void Context__RetainSilenceInLastPhraseOfAllSectionsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            mProjectView.RemoveSilenceFromEndOfSection(false, true, true);
+        }
+
      
 
         }

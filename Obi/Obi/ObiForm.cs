@@ -6937,6 +6937,16 @@ ref string exportDirectoryEPUB3)
                 mProjectView.RemoveSilenceFromEndOfSection(false, true);
             }
 
+            private void mDeleteSilenceFromEndOfAllSectionsToolStripMenuItem_Click(object sender, EventArgs e)
+            {
+                mProjectView.RemoveSilenceFromEndOfSection(true, false, true);
+            }
+
+            private void mRetainSilenceInLastPhraseOfAllSectionsToolStripMenuItem_Click(object sender, EventArgs e)
+            {
+                mProjectView.RemoveSilenceFromEndOfSection(false, true, true);
+            }
+
 
 
  

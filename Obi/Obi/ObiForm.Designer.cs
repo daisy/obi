@@ -109,6 +109,9 @@ namespace Obi
             this.mSplitSectionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mMergeWithNextSectionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mMultiSectionOperations = new System.Windows.Forms.ToolStripMenuItem();
+            this.mTrimSilenceFromSectionEnd = new System.Windows.Forms.ToolStripMenuItem();
+            this.mDeleteSilenceFromEndOfSectionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mRetainSilenceInLastPhraseOfSectionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator13 = new System.Windows.Forms.ToolStripSeparator();
             this.mSectionIsUsedToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mPhrasesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -248,9 +251,8 @@ namespace Obi
             this.mStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.mStatusProgressBar = new System.Windows.Forms.ToolStripProgressBar();
             this.mProjectView = new Obi.ProjectView.ProjectView();
-            this.mTrimSilenceFromSectionEnd = new System.Windows.Forms.ToolStripMenuItem();
-            this.mDeleteSilenceFromEndOfSectionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.mRetainSilenceInLastPhraseOfSectionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mDeleteSilenceFromEndOfAllSectionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mRetainSilenceInLastPhraseOfAllSectionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mMenuStrip.SuspendLayout();
             this.mStatusStrip.SuspendLayout();
             this.SuspendLayout();
@@ -825,6 +827,28 @@ namespace Obi
             resources.ApplyResources(this.mMultiSectionOperations, "mMultiSectionOperations");
             this.mMultiSectionOperations.Name = "mMultiSectionOperations";
             this.mMultiSectionOperations.Click += new System.EventHandler(this.mMultiSectionOperations_Click);
+            // 
+            // mTrimSilenceFromSectionEnd
+            // 
+            this.mTrimSilenceFromSectionEnd.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.mDeleteSilenceFromEndOfSectionToolStripMenuItem,
+            this.mRetainSilenceInLastPhraseOfSectionToolStripMenuItem,
+            this.mDeleteSilenceFromEndOfAllSectionsToolStripMenuItem,
+            this.mRetainSilenceInLastPhraseOfAllSectionsToolStripMenuItem});
+            this.mTrimSilenceFromSectionEnd.Name = "mTrimSilenceFromSectionEnd";
+            resources.ApplyResources(this.mTrimSilenceFromSectionEnd, "mTrimSilenceFromSectionEnd");
+            // 
+            // mDeleteSilenceFromEndOfSectionToolStripMenuItem
+            // 
+            this.mDeleteSilenceFromEndOfSectionToolStripMenuItem.Name = "mDeleteSilenceFromEndOfSectionToolStripMenuItem";
+            resources.ApplyResources(this.mDeleteSilenceFromEndOfSectionToolStripMenuItem, "mDeleteSilenceFromEndOfSectionToolStripMenuItem");
+            this.mDeleteSilenceFromEndOfSectionToolStripMenuItem.Click += new System.EventHandler(this.mDeleteSilenceFromEndOfSectionToolStripMenuItem_Click);
+            // 
+            // mRetainSilenceInLastPhraseOfSectionToolStripMenuItem
+            // 
+            this.mRetainSilenceInLastPhraseOfSectionToolStripMenuItem.Name = "mRetainSilenceInLastPhraseOfSectionToolStripMenuItem";
+            resources.ApplyResources(this.mRetainSilenceInLastPhraseOfSectionToolStripMenuItem, "mRetainSilenceInLastPhraseOfSectionToolStripMenuItem");
+            this.mRetainSilenceInLastPhraseOfSectionToolStripMenuItem.Click += new System.EventHandler(this.mRetainSilenceInLastPhraseOfSectionToolStripMenuItem_Click);
             // 
             // toolStripSeparator13
             // 
@@ -1818,25 +1842,17 @@ namespace Obi
             this.mProjectView.TransportBarVisible = false;
             this.mProjectView.ZoomWaveformIncrementFactor = 0D;
             // 
-            // mTrimSilenceFromSectionEnd
+            // mDeleteSilenceFromEndOfAllSectionsToolStripMenuItem
             // 
-            this.mTrimSilenceFromSectionEnd.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.mDeleteSilenceFromEndOfSectionToolStripMenuItem,
-            this.mRetainSilenceInLastPhraseOfSectionToolStripMenuItem});
-            this.mTrimSilenceFromSectionEnd.Name = "mTrimSilenceFromSectionEnd";
-            resources.ApplyResources(this.mTrimSilenceFromSectionEnd, "mTrimSilenceFromSectionEnd");
+            this.mDeleteSilenceFromEndOfAllSectionsToolStripMenuItem.Name = "mDeleteSilenceFromEndOfAllSectionsToolStripMenuItem";
+            resources.ApplyResources(this.mDeleteSilenceFromEndOfAllSectionsToolStripMenuItem, "mDeleteSilenceFromEndOfAllSectionsToolStripMenuItem");
+            this.mDeleteSilenceFromEndOfAllSectionsToolStripMenuItem.Click += new System.EventHandler(this.mDeleteSilenceFromEndOfAllSectionsToolStripMenuItem_Click);
             // 
-            // mDeleteSilenceFromEndOfSectionToolStripMenuItem
+            // mRetainSilenceInLastPhraseOfAllSectionsToolStripMenuItem
             // 
-            this.mDeleteSilenceFromEndOfSectionToolStripMenuItem.Name = "mDeleteSilenceFromEndOfSectionToolStripMenuItem";
-            resources.ApplyResources(this.mDeleteSilenceFromEndOfSectionToolStripMenuItem, "mDeleteSilenceFromEndOfSectionToolStripMenuItem");
-            this.mDeleteSilenceFromEndOfSectionToolStripMenuItem.Click += new System.EventHandler(this.mDeleteSilenceFromEndOfSectionToolStripMenuItem_Click);
-            // 
-            // mRetainSilenceInLastPhraseOfSectionToolStripMenuItem
-            // 
-            this.mRetainSilenceInLastPhraseOfSectionToolStripMenuItem.Name = "mRetainSilenceInLastPhraseOfSectionToolStripMenuItem";
-            resources.ApplyResources(this.mRetainSilenceInLastPhraseOfSectionToolStripMenuItem, "mRetainSilenceInLastPhraseOfSectionToolStripMenuItem");
-            this.mRetainSilenceInLastPhraseOfSectionToolStripMenuItem.Click += new System.EventHandler(this.mRetainSilenceInLastPhraseOfSectionToolStripMenuItem_Click);
+            this.mRetainSilenceInLastPhraseOfAllSectionsToolStripMenuItem.Name = "mRetainSilenceInLastPhraseOfAllSectionsToolStripMenuItem";
+            resources.ApplyResources(this.mRetainSilenceInLastPhraseOfAllSectionsToolStripMenuItem, "mRetainSilenceInLastPhraseOfAllSectionsToolStripMenuItem");
+            this.mRetainSilenceInLastPhraseOfAllSectionsToolStripMenuItem.Click += new System.EventHandler(this.mRetainSilenceInLastPhraseOfAllSectionsToolStripMenuItem_Click);
             // 
             // ObiForm
             // 
@@ -2087,6 +2103,8 @@ namespace Obi
         private System.Windows.Forms.ToolStripMenuItem mTrimSilenceFromSectionEnd;
         private System.Windows.Forms.ToolStripMenuItem mDeleteSilenceFromEndOfSectionToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mRetainSilenceInLastPhraseOfSectionToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem mDeleteSilenceFromEndOfAllSectionsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem mRetainSilenceInLastPhraseOfAllSectionsToolStripMenuItem;
     }
 }
 

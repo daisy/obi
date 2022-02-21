@@ -884,6 +884,18 @@
   <data name="mRetainSilenceInLastPhraseOfSectionToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Retain silence in last phrase of section</value>
   </data>
+  <data name="mDeleteSilenceFromEndOfAllSectionsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>279, 22</value>
+  </data>
+  <data name="mDeleteSilenceFromEndOfAllSectionsToolStripMenuItem.Text" xml:space="preserve">
+    <value>Delete silence from &amp;end of all sections</value>
+  </data>
+  <data name="mRetainSilenceInLastPhraseOfAllSectionsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>279, 22</value>
+  </data>
+  <data name="mRetainSilenceInLastPhraseOfAllSectionsToolStripMenuItem.Text" xml:space="preserve">
+    <value>Retain silence in &amp;last phrase of all sections</value>
+  </data>
   <data name="mTrimSilenceFromSectionEnd.Size" type="System.Drawing.Size, System.Drawing">
     <value>279, 22</value>
   </data>
@@ -3831,6 +3843,18 @@
     <value>mRetainSilenceInLastPhraseOfSectionToolStripMenuItem</value>
   </data>
   <data name="&gt;&gt;mRetainSilenceInLastPhraseOfSectionToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;mDeleteSilenceFromEndOfAllSectionsToolStripMenuItem.Name" xml:space="preserve">
+    <value>mDeleteSilenceFromEndOfAllSectionsToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;mDeleteSilenceFromEndOfAllSectionsToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;mRetainSilenceInLastPhraseOfAllSectionsToolStripMenuItem.Name" xml:space="preserve">
+    <value>mRetainSilenceInLastPhraseOfAllSectionsToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;mRetainSilenceInLastPhraseOfAllSectionsToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">

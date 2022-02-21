@@ -4202,23 +4202,68 @@ for (int j = 0;
                 }
             }
 
-        public void RemoveSilenceFromEndOfSection(bool DeleteSilenceFromEndOfSection = false, bool RetainSilenceFromEndOfSection = false)
+        public void RemoveSilenceFromEndOfSection(bool DeleteSilenceFromEndOfSection = false, bool RetainSilenceFromEndOfSection = false, bool ApplyOnWholeProject = false)
         {
             if (CanApplyPhraseDetection)
             {
                 if (mTransportBar.IsPlayerActive) mTransportBar.Stop();
                 ObiNode node = null;
-                PhraseNode phraseNodesList = null; 
+                List<PhraseNode> phraseNodesList = new List<PhraseNode>();
+                SectionNode FirstSectionToRemoveSilence = null;
                 if (Selection.Node is SectionNode && ((SectionNode)Selection.Node).PhraseChildCount > 0)
                 {
-                    if (DurationOfNodeSelected(Selection.Node) == 0) return;
-                    node = ((SectionNode)Selection.Node).PhraseChild(0);
-                    SectionNode section = (SectionNode)Selection.Node;
-                    phraseNodesList= (PhraseNode)section.PhraseChild(section.PhraseChildCount - 1);
+                    if (!ApplyOnWholeProject)
+                    {
+                        if (DurationOfNodeSelected(Selection.Node) == 0) return;
+                        node = ((SectionNode)Selection.Node).PhraseChild(0);
+                        SectionNode section = (SectionNode)Selection.Node;
+                        phraseNodesList.Add((PhraseNode)section.PhraseChild(section.PhraseChildCount - 1));
+                    }
+                    else
+                    {
+                        FirstSectionToRemoveSilence = (SectionNode)this.Presentation.FirstSection;                        
+                    }
                 }
                 else if (Selection.Node is PhraseNode)
                 {
-                    phraseNodesList = (PhraseNode)Selection.Node;
+                    if (!ApplyOnWholeProject)
+                    {
+                        phraseNodesList.Add((PhraseNode)Selection.Node);
+                    }
+                    else
+                    {
+                        FirstSectionToRemoveSilence = (SectionNode)this.Presentation.FirstSection;                  
+
+                    }
+                }
+                if (ApplyOnWholeProject && FirstSectionToRemoveSilence != null)
+                {
+                    if (DurationOfNodeSelected(FirstSectionToRemoveSilence) == 0)
+                    {
+                        while (DurationOfNodeSelected(FirstSectionToRemoveSilence) == 0)
+                        {
+                            if (FirstSectionToRemoveSilence.FollowingSection != null)
+                            {
+                                FirstSectionToRemoveSilence = FirstSectionToRemoveSilence.FollowingSection;
+                            }
+                            else
+                                return;
+                        }
+                        if (DurationOfNodeSelected(FirstSectionToRemoveSilence) == 0)
+                            return;
+                    }
+                    if (Selection.Node is SectionNode)
+                    {
+                        node = (FirstSectionToRemoveSilence).PhraseChild(0);
+                    }
+                    do
+                    {
+                        phraseNodesList.Add((PhraseNode)FirstSectionToRemoveSilence.PhraseChild(FirstSectionToRemoveSilence.PhraseChildCount - 1));
+                        if (FirstSectionToRemoveSilence.FollowingSection != null)
+                        {
+                            FirstSectionToRemoveSilence = FirstSectionToRemoveSilence.FollowingSection;
+                        }
+                    } while (FirstSectionToRemoveSilence.FollowingSection != null);
                 }
                     
                 for (node = node != null ? node : SelectedNodeAs<EmptyNode>();
@@ -4230,22 +4275,33 @@ for (int j = 0;
                     Convert.ToDouble(10), this.ObiForm.Settings, true); //@fontconfig
                 if (dialog.ShowDialog() == DialogResult.OK)
                 {
-                    //Audio.PhraseDetection.RetainSilenceInBeginningOfPhrase = ObiForm.Settings.Audio_RetainInitialSilenceInPhraseDetection;
                     bool playbackOnSelectionChangedStatus = TransportBar.SelectionChangedPlaybackEnabled;
                     TransportBar.SelectionChangedPlaybackEnabled = false;
                     bool IsSilenceDetected = false;
                     ObiNode phraseDetectionNode = Selection.Node;
+                    List<SectionNode> sectionsHavingSilence = new List<SectionNode>();
                     CompositeCommand command = null;
                     ObiForm.CanAutoSave = false;//explicitly do this as getting of command takes a lot of time
                     Dialogs.ProgressDialog progress = new Dialogs.ProgressDialog(Localizer.Message("SilenceDetection_progress_dialog_title"),
                         delegate(Dialogs.ProgressDialog progress1)
                         {
-                            PhraseNode phrase = phraseNodesList;
-                            double SplitTiming = Obi.Audio.PhraseDetection.RemoveSilenceFromEnd(phrase.Audio.Copy(), dialog.Threshold, dialog.Gap, dialog.LeadingSilence);
-                            if (SplitTiming != 0 && SplitTiming < phrase.Duration) 
+                            //PhraseNode phrase = phraseNodesList [0];
+
+                            command = this.Presentation.CreateCompositeCommand(Localizer.Message("split_phrase"));
+                            foreach (PhraseNode phrase in phraseNodesList)
                             {
-                                command = Commands.Node.SplitAudio.GetSplitCommand(this, phrase, SplitTiming);
-                                IsSilenceDetected = true;
+                                double SplitTiming = Obi.Audio.PhraseDetection.RemoveSilenceFromEnd(phrase.Audio.Copy(), dialog.Threshold, dialog.Gap, dialog.LeadingSilence);
+                                if (SplitTiming != 0 && SplitTiming < phrase.Duration)
+                                {
+                                    Commands.Node.SplitAudio splitCmd = Commands.Node.SplitAudio.AppendSplitCommandWithProperties(this, command, phrase, SplitTiming, false);
+                                    sectionsHavingSilence.Add(phrase.ParentAs<SectionNode>());
+
+                                    IsSilenceDetected = true;
+                                }
+                            }
+                            if (IsSilenceDetected)
+                            {
+                                command.ChildCommands.Insert(command.ChildCommands.Count, new Obi.Commands.UpdateSelection(this, new NodeSelection(Selection.Node, this.Selection.Control)));
                             }
                         });
                     progress.OperationCancelled += new Obi.Dialogs.OperationCancelledHandler(delegate(object sender, EventArgs e) { Audio.PhraseDetection.CancelOperation = true; });
@@ -4256,10 +4312,17 @@ for (int j = 0;
                     ObiForm.CanAutoSave = true;//explicitly do this as getting of command takes a lot of time
                     mPresentation.Do(command);
 
+                    CompositeCommand deleteSilentPhrases = this.Presentation.CreateCompositeCommand("Delete Phrase"); ;
                     if (DeleteSilenceFromEndOfSection && IsSilenceDetected)
                     {
-                        Commands.Node.Delete deleteCmd = new Commands.Node.Delete(this, this.Selection.Node, false);
-                        mPresentation.Do(deleteCmd);
+                        foreach (SectionNode tempNode in sectionsHavingSilence)
+                        {
+                            Commands.Node.Delete deleteCmd = new Commands.Node.Delete(this, tempNode.LastUsedPhrase, false);
+                            deleteSilentPhrases.ChildCommands.Insert(deleteSilentPhrases.ChildCommands.Count, deleteCmd);
+                        }
+
+                        mPresentation.Do(deleteSilentPhrases);
+                        
                     }
                     TransportBar.SelectionChangedPlaybackEnabled = playbackOnSelectionChangedStatus;
 
