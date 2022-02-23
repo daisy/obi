@@ -810,5 +810,17 @@ namespace Obi.Dialogs
                 m_ProjectView.AudioProcessing(AudioLib.WavAudioProcessing.AudioProcessingKind.Normalize, false, m_SelectedSectionList);
             }
         }
+
+        private void m_btn_DeleteSilenceFromSectionEnd_Click(object sender, EventArgs e)
+        {
+            SectionsSelected(false);
+            m_ProjectView.RemoveSilenceFromEndOfSection(true, false, false, m_SelectedSectionList);
+        }
+
+        private void m_btn__RetainSilenceInLastPhraseOfSection_Click(object sender, EventArgs e)
+        {
+            SectionsSelected(false);
+            m_ProjectView.RemoveSilenceFromEndOfSection(false, true, false, m_SelectedSectionList);
+        }
     }
 }

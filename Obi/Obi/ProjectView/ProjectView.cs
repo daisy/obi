@@ -4202,7 +4202,7 @@ for (int j = 0;
                 }
             }
 
-        public void RemoveSilenceFromEndOfSection(bool DeleteSilenceFromEndOfSection = false, bool RetainSilenceFromEndOfSection = false, bool ApplyOnWholeProject = false)
+        public void RemoveSilenceFromEndOfSection(bool DeleteSilenceFromEndOfSection = false, bool RetainSilenceFromEndOfSection = false, bool ApplyOnWholeProject = false, List<SectionNode> SelectedSectionsList =  null)
         {
             if (CanApplyPhraseDetection)
             {
@@ -4212,7 +4212,7 @@ for (int j = 0;
                 SectionNode FirstSectionToRemoveSilence = null;
                 if (Selection.Node is SectionNode && ((SectionNode)Selection.Node).PhraseChildCount > 0)
                 {
-                    if (!ApplyOnWholeProject)
+                    if (!ApplyOnWholeProject && SelectedSectionsList == null)
                     {
                         if (DurationOfNodeSelected(Selection.Node) == 0) return;
                         node = ((SectionNode)Selection.Node).PhraseChild(0);
@@ -4221,7 +4221,11 @@ for (int j = 0;
                     }
                     else
                     {
-                        FirstSectionToRemoveSilence = (SectionNode)this.Presentation.FirstSection;                        
+                        if (ApplyOnWholeProject)
+                            FirstSectionToRemoveSilence = (SectionNode)this.Presentation.FirstSection;
+                        else if (SelectedSectionsList != null && SelectedSectionsList.Count > 0)
+                            FirstSectionToRemoveSilence = SelectedSectionsList[0];
+
                     }
                 }
                 else if (Selection.Node is PhraseNode)
@@ -4264,6 +4268,24 @@ for (int j = 0;
                             FirstSectionToRemoveSilence = FirstSectionToRemoveSilence.FollowingSection;
                         }
                     } while (FirstSectionToRemoveSilence.FollowingSection != null);
+                }
+                else if (SelectedSectionsList != null && SelectedSectionsList.Count > 0)
+                {
+                    bool nodeSet = false;
+                    foreach (SectionNode section in SelectedSectionsList)
+                    {
+                        if (DurationOfNodeSelected(section) != 0)
+                        {
+                            if (!nodeSet)
+                            {
+                                node = (section).PhraseChild(0);
+                                nodeSet = true;
+                            }
+                            phraseNodesList.Add((PhraseNode)section.PhraseChild(section.PhraseChildCount - 1));
+                        }
+                    }
+                    if (!nodeSet)
+                        return;
                 }
                     
                 for (node = node != null ? node : SelectedNodeAs<EmptyNode>();

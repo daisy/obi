@@ -52,11 +52,15 @@ namespace Obi.Dialogs
             this.m_btn_NoiseReduction = new System.Windows.Forms.Button();
             this.m_btn_Normalize = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.m_btn_RetainSilenceInLastPhraseOfSection = new System.Windows.Forms.Button();
+            this.m_btn_DeleteSilenceFromSectionEnd = new System.Windows.Forms.Button();
             this.m_statusStripForMergeSection.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.m_grp_SectionLevelOperation.SuspendLayout();
             this.m_grp_SectionAudioOperation.SuspendLayout();
             this.groupBox1.SuspendLayout();
+            this.groupBox3.SuspendLayout();
             this.SuspendLayout();
             // 
             // m_statusStripForMergeSection
@@ -217,10 +221,33 @@ namespace Obi.Dialogs
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.TabStop = false;
             // 
+            // groupBox3
+            // 
+            this.groupBox3.Controls.Add(this.m_btn_RetainSilenceInLastPhraseOfSection);
+            this.groupBox3.Controls.Add(this.m_btn_DeleteSilenceFromSectionEnd);
+            resources.ApplyResources(this.groupBox3, "groupBox3");
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.TabStop = false;
+            // 
+            // m_btn_RetainSilenceInLastPhraseOfSection
+            // 
+            resources.ApplyResources(this.m_btn_RetainSilenceInLastPhraseOfSection, "m_btn_RetainSilenceInLastPhraseOfSection");
+            this.m_btn_RetainSilenceInLastPhraseOfSection.Name = "m_btn_RetainSilenceInLastPhraseOfSection";
+            this.m_btn_RetainSilenceInLastPhraseOfSection.UseVisualStyleBackColor = true;
+            this.m_btn_RetainSilenceInLastPhraseOfSection.Click += new System.EventHandler(this.m_btn__RetainSilenceInLastPhraseOfSection_Click);
+            // 
+            // m_btn_DeleteSilenceFromSectionEnd
+            // 
+            resources.ApplyResources(this.m_btn_DeleteSilenceFromSectionEnd, "m_btn_DeleteSilenceFromSectionEnd");
+            this.m_btn_DeleteSilenceFromSectionEnd.Name = "m_btn_DeleteSilenceFromSectionEnd";
+            this.m_btn_DeleteSilenceFromSectionEnd.UseVisualStyleBackColor = true;
+            this.m_btn_DeleteSilenceFromSectionEnd.Click += new System.EventHandler(this.m_btn_DeleteSilenceFromSectionEnd_Click);
+            // 
             // SelectMergeSectionRange
             // 
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.m_tb_SectionsSelected);
             this.Controls.Add(this.m_lb_listofSectionsToMerge);
@@ -240,6 +267,7 @@ namespace Obi.Dialogs
             this.m_grp_SectionLevelOperation.ResumeLayout(false);
             this.m_grp_SectionAudioOperation.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
+            this.groupBox3.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -269,5 +297,8 @@ namespace Obi.Dialogs
         private System.Windows.Forms.Button m_btn_NoiseReduction;
         private System.Windows.Forms.Button m_btn_Normalize;
         private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.GroupBox groupBox3;
+        private System.Windows.Forms.Button m_btn_RetainSilenceInLastPhraseOfSection;
+        private System.Windows.Forms.Button m_btn_DeleteSilenceFromSectionEnd;
     }
 }
