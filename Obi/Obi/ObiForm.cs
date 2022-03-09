@@ -2230,7 +2230,7 @@ namespace Obi
                 mIncreaseSectionLevelToolStripMenuItem.Enabled = mProjectView.CanIncreaseLevel && !this.Settings.Project_ReadOnlyMode;
                 mSplitSectionToolStripMenuItem.Enabled = mProjectView.CanSplitStrip && !this.Settings.Project_ReadOnlyMode;
                // mMergeSectionWithNextToolStripMenuItem.Enabled = mProjectView.CanMergeStripWithNext;
-                mMergeWithNextSectionToolStripMenuItem.Enabled = mProjectView.CanMergeStripWithNext && !this.Settings.Project_ReadOnlyMode;
+                mMergeWithNextSectionToolStripMenuItem.Enabled = mProjectView.EnableMultiSectionOperation && !this.Settings.Project_ReadOnlyMode;
                 mMultiSectionOperations.Enabled = mProjectView.EnableMultiSectionOperation && !this.Settings.Project_ReadOnlyMode;
                 mSectionIsUsedToolStripMenuItem.Enabled = mProjectView.CanSetSectionUsedStatus && !this.Settings.Project_ReadOnlyMode;
                 mImportTOCMenuItem.Enabled = !mProjectView.TransportBar.IsRecorderActive && !this.Settings.Project_ReadOnlyMode;

@@ -1373,6 +1373,14 @@ namespace Obi.ProjectView
             {
                 if (this.ObiForm.Settings.Project_ReadOnlyMode)
                     return;
+
+                NodeSelection selectionBefore = this.Selection;
+                bool selectionChanged = false;
+                if (Selection.Node is PhraseNode)
+                {
+                    this.Selection = new NodeSelection(Selection.Node.ParentAs<SectionNode>(), Selection.Control);
+                    selectionChanged = true;
+                }
             if (CanMergeStripWithNext)
                 {
                 // if total phrase count after merge is more than max phrases per section, return
@@ -1400,6 +1408,10 @@ namespace Obi.ProjectView
                 //HideNewPhrasesInInvisibleSection ( section );//@singleSection: original
                 //mContentView.CreateBlocksInStrip (); //@singleSection: new statement
                 }
+            if (selectionChanged)
+            {
+                this.Selection = selectionBefore;
+            }
             }
 
         //@singleSection: moved from contentview to enable merge enable in TOC view
