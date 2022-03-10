@@ -4221,7 +4221,7 @@ for (int j = 0;
                 if (mTransportBar.IsPlayerActive) mTransportBar.Stop();
                 ObiNode node = null;
                 List<PhraseNode> phraseNodesList = new List<PhraseNode>();
-                SectionNode FirstSectionToRemoveSilence = null;
+                SectionNode SectionToRemoveSilence = null;
                 if (Selection.Node is SectionNode && ((SectionNode)Selection.Node).PhraseChildCount > 0)
                 {
                     if (!ApplyOnWholeProject && SelectedSectionsList == null)
@@ -4234,9 +4234,9 @@ for (int j = 0;
                     else
                     {
                         if (ApplyOnWholeProject)
-                            FirstSectionToRemoveSilence = (SectionNode)this.Presentation.FirstSection;
+                            SectionToRemoveSilence = (SectionNode)this.Presentation.FirstSection;
                         else if (SelectedSectionsList != null && SelectedSectionsList.Count > 0)
-                            FirstSectionToRemoveSilence = SelectedSectionsList[0];
+                            SectionToRemoveSilence = SelectedSectionsList[0];
 
                     }
                 }
@@ -4248,38 +4248,41 @@ for (int j = 0;
                     }
                     else
                     {
-                        FirstSectionToRemoveSilence = (SectionNode)this.Presentation.FirstSection;                  
+                        SectionToRemoveSilence = (SectionNode)this.Presentation.FirstSection;                  
 
                     }
                 }
-                if (ApplyOnWholeProject && FirstSectionToRemoveSilence != null)
+                if (ApplyOnWholeProject && SectionToRemoveSilence != null)
                 {
-                    if (DurationOfNodeSelected(FirstSectionToRemoveSilence) == 0)
+                    if (DurationOfNodeSelected(SectionToRemoveSilence) == 0)
                     {
-                        while (DurationOfNodeSelected(FirstSectionToRemoveSilence) == 0)
+                        while (DurationOfNodeSelected(SectionToRemoveSilence) == 0)
                         {
-                            if (FirstSectionToRemoveSilence.FollowingSection != null)
+                            if (SectionToRemoveSilence.FollowingSection != null)
                             {
-                                FirstSectionToRemoveSilence = FirstSectionToRemoveSilence.FollowingSection;
+                                SectionToRemoveSilence = SectionToRemoveSilence.FollowingSection;
                             }
                             else
                                 return;
                         }
-                        if (DurationOfNodeSelected(FirstSectionToRemoveSilence) == 0)
+                        if (DurationOfNodeSelected(SectionToRemoveSilence) == 0)
                             return;
                     }
                     if (Selection.Node is SectionNode)
                     {
-                        node = (FirstSectionToRemoveSilence).PhraseChild(0);
+                        node = (SectionToRemoveSilence).PhraseChild(0);
                     }
                     do
                     {
-                        phraseNodesList.Add((PhraseNode)FirstSectionToRemoveSilence.PhraseChild(FirstSectionToRemoveSilence.PhraseChildCount - 1));
-                        if (FirstSectionToRemoveSilence.FollowingSection != null)
+                        if (SectionToRemoveSilence.PhraseChild(SectionToRemoveSilence.PhraseChildCount - 1) is PhraseNode)
                         {
-                            FirstSectionToRemoveSilence = FirstSectionToRemoveSilence.FollowingSection;
+                            phraseNodesList.Add((PhraseNode)SectionToRemoveSilence.PhraseChild(SectionToRemoveSilence.PhraseChildCount - 1));
                         }
-                    } while (FirstSectionToRemoveSilence.FollowingSection != null);
+                        if (SectionToRemoveSilence.FollowingSection != null)
+                        {
+                            SectionToRemoveSilence = SectionToRemoveSilence.FollowingSection;
+                        }
+                    } while (SectionToRemoveSilence.FollowingSection != null);
                 }
                 else if (SelectedSectionsList != null && SelectedSectionsList.Count > 0)
                 {
