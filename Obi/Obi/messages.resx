@@ -3294,4 +3294,7 @@ You can do it later also from the project tab of preferences dialog.</value>
     <value>Applying silence detection...</value>
     <comment>Progress dialog title</comment>
   </data>
+  <data name="ImportFilesInsideProjectFolder" xml:space="preserve">
+    <value>Files selected to import are inside project folder. If you continue then files will be moved to data folder. To avoid this kindly copy these files outside project folder before importing. Press Yes if you still want to continue.</value>
+  </data>
 </root>

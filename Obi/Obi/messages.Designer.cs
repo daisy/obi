@@ -3043,6 +3043,15 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Files selected to import are inside project folder. If you continue then files will be moved to data folder. To avoid this kindly copy these files outside project folder before importing. Press Yes if you still want to continue..
+        /// </summary>
+        internal static string ImportFilesInsideProjectFolder {
+            get {
+                return ResourceManager.GetString("ImportFilesInsideProjectFolder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Importing file &quot;{0}&quot;.
         /// </summary>
         internal static string importing_file {

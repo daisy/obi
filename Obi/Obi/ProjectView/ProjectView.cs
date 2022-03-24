@@ -2824,6 +2824,16 @@ namespace Obi.ProjectView
 
                 if (filesPathArray != null)
                     {
+                        string dataProviderDirectory = mPresentation.DataProviderManager.DataFileDirectoryFullPath;
+                        if (filesPathArray.Length >0 && System.IO.Path.GetFullPath(filesPathArray[0]).StartsWith(System.IO.Path.GetFullPath(dataProviderDirectory)))
+                        {
+                            DialogResult result = MessageBox.Show(Localizer.Message("ImportFilesInsideProjectFolder"), Localizer.Message("Caption_Warning"), MessageBoxButtons.YesNo);
+                          if (result == DialogResult.No)
+                          {
+                              return;
+                          }
+
+                        }
                         long threshold = (long) ObiForm.Settings.Audio_DefaultThreshold;
                       double gap = (double) ObiForm.Settings.Audio_DefaultGap;
                         double leadingSilence = (double) ObiForm.Settings.Audio_DefaultLeadingSilence;
