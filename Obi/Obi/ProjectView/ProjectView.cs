@@ -2827,7 +2827,7 @@ namespace Obi.ProjectView
                         string dataProviderDirectory = mPresentation.DataProviderManager.DataFileDirectoryFullPath;
                         if (filesPathArray.Length >0 && System.IO.Path.GetFullPath(filesPathArray[0]).StartsWith(System.IO.Path.GetFullPath(dataProviderDirectory)))
                         {
-                            DialogResult result = MessageBox.Show(Localizer.Message("ImportFilesInsideProjectFolder"), Localizer.Message("Caption_Warning"), MessageBoxButtons.YesNo);
+                            DialogResult result = MessageBox.Show(Localizer.Message("ImportFilesInsideProjectFolder"), Localizer.Message("Caption_Warning"), MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
                           if (result == DialogResult.No)
                           {
                               return;
