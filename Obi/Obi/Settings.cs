@@ -351,6 +351,9 @@ public bool Project_ImportNCCFileWithWindows1252Encoding ; // useful for importi
         [OptionalField]
         public bool Project_CSVImportPhraseDetection;
 
+        [OptionalField]
+        public bool Audio_DeleteFollowingPhrasesWhilePreviewBeforeRecording;
+
         protected static void InitializeDefaultSettings(Settings settings)
         {
             settings.Audio_Channels = 1;
@@ -363,7 +366,7 @@ public bool Project_ImportNCCFileWithWindows1252Encoding ; // useful for importi
             settings.Audio_Recording_PreviewBeforeStarting = false;
             settings.Audio_Recording_ReplaceAfterCursor = false;
             settings.Audio_RecordDirectlyWithRecordButton = false;
-            settings.Audio_BitDepth = 16;
+            settings.Audio_BitDepth = 24;
             settings.ColorSettings = ColorSettings.DefaultColorSettings();
             settings.ColorSettingsHC = ColorSettings.DefaultColorSettingsHC();
             settings.Project_DefaultPath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
@@ -509,6 +512,7 @@ public bool Project_ImportNCCFileWithWindows1252Encoding ; // useful for importi
             settings.ShowGraphicalPeakMeterInsideObiAtStartup = false;
             settings.Project_CSVImportHavingSemicolon = false;
             settings.Project_CSVImportPhraseDetection = false;
+            settings.Audio_DeleteFollowingPhrasesWhilePreviewBeforeRecording = true;
         }
 
         /// <summary>

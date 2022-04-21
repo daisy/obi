@@ -320,6 +320,7 @@ namespace Obi.Dialogs
                 m_CheckBoxListView.Items[14].Checked = mSettings.Audio_EnableFileDataProviderPreservation;
                 m_CheckBoxListView.Items[15].Checked = mSettings.Audio_SaveAudioZoom;
                 m_CheckBoxListView.Items[16].Checked = mSettings.Audio_ShowSelectionTimeInTransportBar;
+                m_CheckBoxListView.Items[17].Checked = mSettings.Audio_DeleteFollowingPhrasesWhilePreviewBeforeRecording;
 
                 m_IsComplete = true;
 
@@ -1178,6 +1179,7 @@ m_cb_ChooseFont.Visible = false;
                 mSettings.Audio_EnableFileDataProviderPreservation = m_CheckBoxListView.Items[14].Checked;
                 mSettings.Audio_SaveAudioZoom = m_CheckBoxListView.Items[15].Checked;
                 mSettings.Audio_ShowSelectionTimeInTransportBar = m_CheckBoxListView.Items[16].Checked;
+                mSettings.Audio_DeleteFollowingPhrasesWhilePreviewBeforeRecording = m_CheckBoxListView.Items[17].Checked;
 
             }
             //if (mTab.SelectedTab == mAdvanceTab)
@@ -1233,6 +1235,7 @@ m_cb_ChooseFont.Visible = false;
                 m_CheckBoxListView.Items.Add(Localizer.Message("Audio_EnableFileDataProviderPreservation"));
                 m_CheckBoxListView.Items.Add(Localizer.Message("Audio_SaveAudioZoom"));
                 m_CheckBoxListView.Items.Add(Localizer.Message("Audio_ShowSelectionTimeInTransportBar"));
+                m_CheckBoxListView.Items.Add(Localizer.Message("Audio_DeleteFollowingPhrasesWhilePreviewBeforeRecording"));
                
                 m_CheckBoxListView.Items[0].Checked = mSettings.Audio_AudioClues;
                 m_CheckBoxListView.Items[0].ToolTipText = Localizer.Message("AudioTab_AudioClues");
@@ -1268,6 +1271,8 @@ m_cb_ChooseFont.Visible = false;
                 m_CheckBoxListView.Items[15].ToolTipText = Localizer.Message("Audio_SaveAudioZoom");
                 m_CheckBoxListView.Items[16].Checked = mSettings.Audio_ShowSelectionTimeInTransportBar;
                 m_CheckBoxListView.Items[16].ToolTipText = Localizer.Message("Audio_ShowSelectionTimeInTransportBar");
+                m_CheckBoxListView.Items[17].Checked = mSettings.Audio_DeleteFollowingPhrasesWhilePreviewBeforeRecording;
+                m_CheckBoxListView.Items[17].ToolTipText = Localizer.Message("Audio_DeleteFollowingPhrasesWhilePreviewBeforeRecording");
               
             }
             if (this.mTab.SelectedTab == this.mProjectTab)
@@ -1487,6 +1492,7 @@ m_cb_ChooseFont.Visible = false;
                 mSettings.Audio_RevertOverwriteBehaviourForRecordOnSelection = m_DefaultSettings.Audio_RevertOverwriteBehaviourForRecordOnSelection;
                 mSettings.Audio_RemoveAccentsFromDaisy2ExportFileNames = m_DefaultSettings.Audio_RemoveAccentsFromDaisy2ExportFileNames;
                 mSettings.Audio_RecordUsingSingleKeyFromTOC = m_DefaultSettings.Audio_RecordUsingSingleKeyFromTOC;
+                mSettings.Audio_DeleteFollowingPhrasesWhilePreviewBeforeRecording = m_DefaultSettings.Audio_DeleteFollowingPhrasesWhilePreviewBeforeRecording;
 
 
                 //If operation is empty then nothing will b selected.
@@ -2082,6 +2088,7 @@ m_cb_ChooseFont.Visible = false;
                     mSettings.Audio_RevertOverwriteBehaviourForRecordOnSelection = false;
                     mSettings.Audio_RemoveAccentsFromDaisy2ExportFileNames = false;
                     mSettings.Audio_RecordUsingSingleKeyFromTOC = false;
+                    mSettings.Audio_DeleteFollowingPhrasesWhilePreviewBeforeRecording = false;
 
                     mSettings.Audio_DefaultGap = 300;
                     mSettings.Audio_PreviewDuration = 1500;
@@ -2161,6 +2168,7 @@ m_cb_ChooseFont.Visible = false;
                     mSettings.Audio_RevertOverwriteBehaviourForRecordOnSelection = false;
                     mSettings.Audio_RemoveAccentsFromDaisy2ExportFileNames = false;
                     mSettings.Audio_RecordUsingSingleKeyFromTOC = false;
+                    mSettings.Audio_DeleteFollowingPhrasesWhilePreviewBeforeRecording = true;
 
                     mSettings.Audio_DefaultGap = 300;
                     mSettings.Audio_PreviewDuration = 1500;
@@ -2239,6 +2247,7 @@ m_cb_ChooseFont.Visible = false;
                     mSettings.Audio_RevertOverwriteBehaviourForRecordOnSelection = false;
                     mSettings.Audio_RemoveAccentsFromDaisy2ExportFileNames = false;
                     mSettings.Audio_RecordUsingSingleKeyFromTOC = false;
+                    mSettings.Audio_DeleteFollowingPhrasesWhilePreviewBeforeRecording = true;
 
                     mSettings.Audio_DefaultGap = 300;
                     mSettings.Audio_PreviewDuration = 1500;
@@ -2317,6 +2326,7 @@ m_cb_ChooseFont.Visible = false;
                     mSettings.Audio_RevertOverwriteBehaviourForRecordOnSelection = false;
                     mSettings.Audio_RemoveAccentsFromDaisy2ExportFileNames = false;
                     mSettings.Audio_RecordUsingSingleKeyFromTOC = false;
+                    mSettings.Audio_DeleteFollowingPhrasesWhilePreviewBeforeRecording = true;
 
                     mSettings.Audio_DefaultGap = 300;
                     mSettings.Audio_PreviewDuration = 1500;
@@ -2398,6 +2408,7 @@ m_cb_ChooseFont.Visible = false;
                     mSettings.Audio_RevertOverwriteBehaviourForRecordOnSelection = false;
                     mSettings.Audio_RemoveAccentsFromDaisy2ExportFileNames = false;
                     mSettings.Audio_RecordUsingSingleKeyFromTOC = true;
+                    mSettings.Audio_DeleteFollowingPhrasesWhilePreviewBeforeRecording = true;
 
                     mSettings.Audio_DefaultGap = 600;
                     mSettings.Audio_PreviewDuration = 7000;
@@ -2477,6 +2488,7 @@ m_cb_ChooseFont.Visible = false;
                     mSettings.Audio_RevertOverwriteBehaviourForRecordOnSelection = false;
                     mSettings.Audio_RemoveAccentsFromDaisy2ExportFileNames = false;
                     mSettings.Audio_RecordUsingSingleKeyFromTOC = true;
+                    mSettings.Audio_DeleteFollowingPhrasesWhilePreviewBeforeRecording = false;
 
                     mSettings.Audio_DefaultGap = 600;
                     mSettings.Audio_PreviewDuration = 7000;
@@ -2557,6 +2569,7 @@ m_cb_ChooseFont.Visible = false;
                     mSettings.Audio_RevertOverwriteBehaviourForRecordOnSelection = false;
                     mSettings.Audio_RemoveAccentsFromDaisy2ExportFileNames = false;
                     mSettings.Audio_RecordUsingSingleKeyFromTOC = true;
+                    mSettings.Audio_DeleteFollowingPhrasesWhilePreviewBeforeRecording = true;
 
                     mSettings.Audio_DefaultGap = 600;
                     mSettings.Audio_PreviewDuration = 7000;

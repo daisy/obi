@@ -3651,7 +3651,8 @@ namespace Obi.ProjectView
                         }
                     }
 
-                    if (selectedNode != null && selectedNode is PhraseNode && selectedNode.Index < selectedNode.ParentAs<SectionNode>().PhraseChildCount - 1)
+                    if (selectedNode != null && selectedNode is PhraseNode && selectedNode.Index < selectedNode.ParentAs<SectionNode>().PhraseChildCount - 1
+                        && mView.ObiForm.Settings.Audio_DeleteFollowingPhrasesWhilePreviewBeforeRecording)
                     {
                         SectionNode section = selectedNode.ParentAs<SectionNode>();
                         Command deleteFollowingCmd = mView.GetDeleteRangeOfPhrasesInSectionCommand(
@@ -3717,7 +3718,10 @@ namespace Obi.ProjectView
                             if (mResumeRecordingPhrase != null) mResumeRecordingPhrase = null;
                             if (mView.ObiForm.Settings.Audio_ColorFlickerPreviewBeforeRecording) mView.ResetColorAfterColorFlickering();
 
-                            StartRecordingDirectly_Internal(true);
+                            if (mView.ObiForm.Settings.Audio_DeleteFollowingPhrasesWhilePreviewBeforeRecording)
+                                StartRecordingDirectly_Internal(true);
+                            else
+                                StartRecordingDirectly_Internal(false);
                         }
                         else
                         {

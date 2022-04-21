@@ -90,6 +90,7 @@ namespace Obi
                newSettings.Audio_RevertOverwriteBehaviourForRecordOnSelection = this.Audio_RevertOverwriteBehaviourForRecordOnSelection;
                newSettings.Audio_RemoveAccentsFromDaisy2ExportFileNames = this.Audio_RemoveAccentsFromDaisy2ExportFileNames;
                newSettings.Audio_RecordUsingSingleKeyFromTOC = this.Audio_RecordUsingSingleKeyFromTOC;
+               newSettings.Audio_DeleteFollowingPhrasesWhilePreviewBeforeRecording = this.Audio_DeleteFollowingPhrasesWhilePreviewBeforeRecording;
                newSettings.ShowGraphicalPeakMeterInsideObiAtStartup = this.ShowGraphicalPeakMeterInsideObiAtStartup;
                newSettings.ShowGraphicalPeakMeterAtStartup = this.ShowGraphicalPeakMeterAtStartup;
 
@@ -483,6 +484,7 @@ namespace Obi
                && this.Audio_RevertOverwriteBehaviourForRecordOnSelection == settings.Audio_RevertOverwriteBehaviourForRecordOnSelection
                && this.Audio_RemoveAccentsFromDaisy2ExportFileNames == settings.Audio_RemoveAccentsFromDaisy2ExportFileNames
                && this.Audio_RecordUsingSingleKeyFromTOC == settings.Audio_RecordUsingSingleKeyFromTOC
+               && this.Audio_DeleteFollowingPhrasesWhilePreviewBeforeRecording == settings.Audio_DeleteFollowingPhrasesWhilePreviewBeforeRecording
                && this.ShowGraphicalPeakMeterInsideObiAtStartup == settings.ShowGraphicalPeakMeterInsideObiAtStartup
                && this.ShowGraphicalPeakMeterAtStartup == settings.ShowGraphicalPeakMeterAtStartup)
            {

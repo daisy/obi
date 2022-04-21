@@ -295,6 +295,15 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Delete following phrases while doing preview before recording.
+        /// </summary>
+        internal static string Audio_DeleteFollowingPhrasesWhilePreviewBeforeRecording {
+            get {
+                return ResourceManager.GetString("Audio_DeleteFollowingPhrasesWhilePreviewBeforeRecording", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Perform phrase detection while recording.
         /// </summary>
         internal static string Audio_DetectPhrasesWhileRecording {
