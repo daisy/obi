@@ -401,6 +401,9 @@
   <data name="m_rdb_Preferences.Text" xml:space="preserve">
     <value>Pré&amp;férences</value>
   </data>
+  <data name="m_rdb_Preferences.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 40</value>
+  </data>
   <data name="m_gpBox_SelectProfile.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
   </data>

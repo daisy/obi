@@ -162,7 +162,7 @@
     <value>False</value>
   </data>
   <data name="m_cb_EndRangeForNumberOfSections.Location" type="System.Drawing.Point, System.Drawing">
-    <value>140, 136</value>
+    <value>160, 136</value>
   </data>
   <data name="m_cb_EndRangeForNumberOfSections.Size" type="System.Drawing.Size, System.Drawing">
     <value>57, 21</value>
@@ -244,7 +244,7 @@
     <value>Microsoft Sans Serif, 9pt</value>
   </data>
   <data name="m_btn_Display.Location" type="System.Drawing.Point, System.Drawing">
-    <value>210, 129</value>
+    <value>230, 129</value>
   </data>
   <data name="m_btn_Display.Size" type="System.Drawing.Size, System.Drawing">
     <value>100, 28</value>
@@ -447,7 +447,7 @@
     <value>258, 6</value>
   </data>
   <data name="m_grpSelectRange.Size" type="System.Drawing.Size, System.Drawing">
-    <value>315, 167</value>
+    <value>335, 167</value>
   </data>
   <data name="m_grpSelectRange.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
@@ -552,7 +552,7 @@
     <value>258, 174</value>
   </data>
   <data name="m_grpSilencePhrase.Size" type="System.Drawing.Size, System.Drawing">
-    <value>315, 55</value>
+    <value>335, 55</value>
   </data>
   <data name="m_grpSilencePhrase.TabIndex" type="System.Int32, mscorlib">
     <value>9</value>
@@ -576,7 +576,7 @@
     <value>6, 13</value>
   </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>581, 294</value>
+    <value>600, 294</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
     <value>Sélectionner les sections en vue de la détection de phrases</value>

@@ -165,7 +165,7 @@
     <value />
   </data>
   <data name="mOKButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>110, 640</value>
+    <value>110, 610</value>
   </data>
   <data name="mCancelButton.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
@@ -177,7 +177,7 @@
     <value />
   </data>
   <data name="mCancelButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>218, 640</value>
+    <value>255, 610</value>
   </data>
   <data name="mCancelButton.Text" xml:space="preserve">
     <value>&amp;Annuler</value>
@@ -195,7 +195,7 @@
     <value />
   </data>
   <data name="lstManualArrange.Size" type="System.Drawing.Size, System.Drawing">
-    <value>378, 144</value>
+    <value>378, 170 </value>
   </data>
   <data name="m_btnMoveUp.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
@@ -207,7 +207,7 @@
     <value />
   </data>
   <data name="m_btnMoveUp.Location" type="System.Drawing.Point, System.Drawing">
-    <value>410, 11</value>
+    <value>395, 11</value>
   </data>
   <data name="m_btnMoveUp.Size" type="System.Drawing.Size, System.Drawing">
     <value>104, 32</value>
@@ -225,7 +225,7 @@
     <value />
   </data>
   <data name="m_btnMoveDown.Location" type="System.Drawing.Point, System.Drawing">
-    <value>410, 54</value>
+    <value>395, 54</value>
   </data>
   <data name="m_btnMoveDown.Size" type="System.Drawing.Size, System.Drawing">
     <value>104, 29</value>
@@ -243,7 +243,7 @@
     <value />
   </data>
   <data name="m_btnAdd.Location" type="System.Drawing.Point, System.Drawing">
-    <value>410, 97</value>
+    <value>395, 97</value>
   </data>
   <data name="m_btnAdd.Size" type="System.Drawing.Size, System.Drawing">
     <value>104, 29</value>
@@ -264,7 +264,7 @@
     <value />
   </data>
   <data name="m_btnRemove.Location" type="System.Drawing.Point, System.Drawing">
-    <value>411, 143</value>
+    <value>395, 143</value>
   </data>
   <data name="m_btnRemove.Size" type="System.Drawing.Size, System.Drawing">
     <value>103, 29</value>
@@ -274,6 +274,9 @@
   </data>
   <data name="m_grpArrangeAudioFiles.AccessibleName" xml:space="preserve">
     <value>Organiser les fichiers audio</value>
+  </data>
+  <data name="m_grpArrangeAudioFiles.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 185</value>
   </data>
   <data name="mbtnDesendingOrder.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
@@ -285,7 +288,7 @@
     <value />
   </data>
   <data name="mbtnDesendingOrder.Location" type="System.Drawing.Point, System.Drawing">
-    <value>230, 25</value>
+    <value>220, 25</value>
   </data>
   <data name="mbtnDesendingOrder.Size" type="System.Drawing.Size, System.Drawing">
     <value>169, 38</value>
@@ -321,7 +324,7 @@
     <value />
   </data>
   <data name="m_grpArrangeAudioFiles.Size" type="System.Drawing.Size, System.Drawing">
-    <value>447, 71</value>
+    <value>490,68</value>
   </data>
   <data name="m_grpArrangeAudioFiles.Text" xml:space="preserve">
     <value>Organiser les fichiers audio:</value>
@@ -336,7 +339,10 @@
     <value />
   </data>
   <data name="m_grpAddFiles.Size" type="System.Drawing.Size, System.Drawing">
-    <value>561, 252</value>
+    <value>510,258</value>
+  </data>
+  <data name="m_grpAddFiles.Location" type="System.Drawing.Point, System.Drawing">
+    <value>14,2</value>
   </data>
   <data name="m_txtCharToReplaceWithSpace.AccessibleName" xml:space="preserve">
     <value>À remplacer par du vide</value>
@@ -543,7 +549,7 @@
     <value>12, 259</value>
   </data>
   <data name="m_grpCreateSectionForEachAudioFile.Size" type="System.Drawing.Size, System.Drawing">
-    <value>563, 230</value>
+    <value>510, 220</value>
   </data>
   <data name="m_rdbPhraseDetectionOnImportedFiles.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
@@ -591,13 +597,13 @@
     <value />
   </data>
   <data name="m_grpSplitPhraseOrPhraseDetection.Location" type="System.Drawing.Point, System.Drawing">
-    <value>12, 497</value>
+    <value>12, 479</value>
   </data>
   <data name="m_grpSplitPhraseOrPhraseDetection.Size" type="System.Drawing.Size, System.Drawing">
-    <value>562, 131</value>
+    <value>510, 116</value>
   </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>587, 695</value>
+    <value>550, 655</value>
   </data>
   <data name="$this.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />

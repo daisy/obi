@@ -736,7 +736,7 @@
     <value>1</value>
   </data>
   <data name="groupBox1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>311, 405</value>
+    <value>110 , 405</value>
   </data>
   <data name="groupBox1.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 4, 4, 4</value>
@@ -762,6 +762,24 @@
   <data name="&gt;&gt;groupBox1.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
+ <data name="groupBox3.Location" type="System.Drawing.Point, System.Drawing">
+    <value>480, 405</value>
+  </data>
+  <data name="groupBox3.Size" type="System.Drawing.Size, System.Drawing">
+    <value>330, 90 </value>
+  </data>
+  <data name="m_btn_DeleteSilenceFromSectionEnd.Location" type="System.Drawing.Point, System.Drawing">
+    <value> 8 , 15</value>
+  </data>
+  <data name="m_btn_DeleteSilenceFromSectionEnd.Size" type="System.Drawing.Size, System.Drawing">
+    <value>140, 65</value>
+  </data>
+  <data name="m_btn_RetainSilenceInLastPhraseOfSection.Size" type="System.Drawing.Size, System.Drawing">
+    <value>140, 65</value>
+  </data>
+  <data name="m_btn_RetainSilenceInLastPhraseOfSection.Location" type="System.Drawing.Point, System.Drawing">
+    <value>180, 15</value>
+  </data>  
   <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
     <value>8, 16</value>
   </data>

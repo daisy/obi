@@ -259,7 +259,7 @@
     <value>Flat</value>
   </data>
   <data name="mRenumber.Location" type="System.Drawing.Point, System.Drawing">
-    <value>109, 130</value>
+    <value>69, 135</value>
   </data>
   <data name="mRenumber.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 4, 4, 4</value>
@@ -424,7 +424,7 @@
     <value>Flat</value>
   </data>
   <data name="m_chkAutoFillPages.Location" type="System.Drawing.Point, System.Drawing">
-    <value>109, 102</value>
+    <value>69, 107</value>
   </data>
   <data name="m_chkAutoFillPages.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 4, 4, 4</value>
