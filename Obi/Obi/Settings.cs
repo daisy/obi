@@ -366,7 +366,7 @@ public bool Project_ImportNCCFileWithWindows1252Encoding ; // useful for importi
             settings.Audio_Recording_PreviewBeforeStarting = false;
             settings.Audio_Recording_ReplaceAfterCursor = false;
             settings.Audio_RecordDirectlyWithRecordButton = false;
-            settings.Audio_BitDepth = 24;
+            settings.Audio_BitDepth = 16;
             settings.ColorSettings = ColorSettings.DefaultColorSettings();
             settings.ColorSettingsHC = ColorSettings.DefaultColorSettingsHC();
             settings.Project_DefaultPath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
