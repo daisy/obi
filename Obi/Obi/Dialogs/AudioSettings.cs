@@ -50,7 +50,9 @@ namespace Obi.Dialogs
             {
                 return mcbSampleRate.SelectedIndex == 0 ? 11025 :
                     mcbSampleRate.SelectedIndex == 1 ? 22050 :
-                    44100;
+                    mcbSampleRate.SelectedIndex == 2 ? 44100 :
+                    mcbSampleRate.SelectedIndex == 3 ? 48000 :
+                    96000;
             }
         }
 

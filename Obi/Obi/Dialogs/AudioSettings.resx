@@ -112,25 +112,25 @@
     <value>2.0</value>
   </resheader>
   <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <assembly alias="mscorlib" name="mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="mlbSampleRate.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
-  <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="mlbSampleRate.Location" type="System.Drawing.Point, System.Drawing">
-    <value>16, 25</value>
+    <value>18, 31</value>
   </data>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="mlbSampleRate.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 0, 4, 0</value>
   </data>
   <data name="mlbSampleRate.Size" type="System.Drawing.Size, System.Drawing">
-    <value>93, 16</value>
+    <value>115, 20</value>
   </data>
   <data name="mlbSampleRate.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
@@ -142,7 +142,7 @@
     <value>mlbSampleRate</value>
   </data>
   <data name="&gt;&gt;mlbSampleRate.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;mlbSampleRate.Parent" xml:space="preserve">
     <value>$this</value>
@@ -154,13 +154,13 @@
     <value>True</value>
   </data>
   <data name="mlbAudioChannels.Location" type="System.Drawing.Point, System.Drawing">
-    <value>16, 57</value>
+    <value>18, 71</value>
   </data>
   <data name="mlbAudioChannels.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 0, 4, 0</value>
   </data>
   <data name="mlbAudioChannels.Size" type="System.Drawing.Size, System.Drawing">
-    <value>108, 16</value>
+    <value>136, 20</value>
   </data>
   <data name="mlbAudioChannels.TabIndex" type="System.Int32, mscorlib">
     <value>2</value>
@@ -172,7 +172,7 @@
     <value>mlbAudioChannels</value>
   </data>
   <data name="&gt;&gt;mlbAudioChannels.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;mlbAudioChannels.Parent" xml:space="preserve">
     <value>$this</value>
@@ -190,13 +190,13 @@
     <value>Microsoft Sans Serif, 9.75pt</value>
   </data>
   <data name="mbtnOK.Location" type="System.Drawing.Point, System.Drawing">
-    <value>227, 95</value>
+    <value>255, 119</value>
   </data>
   <data name="mbtnOK.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 4, 4, 4</value>
+    <value>4, 5, 4, 5</value>
   </data>
   <data name="mbtnOK.Size" type="System.Drawing.Size, System.Drawing">
-    <value>133, 37</value>
+    <value>150, 46</value>
   </data>
   <data name="mbtnOK.TabIndex" type="System.Int32, mscorlib">
     <value>4</value>
@@ -208,7 +208,7 @@
     <value>mbtnOK</value>
   </data>
   <data name="&gt;&gt;mbtnOK.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;mbtnOK.Parent" xml:space="preserve">
     <value>$this</value>
@@ -234,14 +234,20 @@
   <data name="mcbSampleRate.Items2" xml:space="preserve">
     <value>44100</value>
   </data>
+  <data name="mcbSampleRate.Items3" xml:space="preserve">
+    <value>48000</value>
+  </data>
+  <data name="mcbSampleRate.Items4" xml:space="preserve">
+    <value>96000</value>
+  </data>
   <data name="mcbSampleRate.Location" type="System.Drawing.Point, System.Drawing">
-    <value>168, 23</value>
+    <value>189, 29</value>
   </data>
   <data name="mcbSampleRate.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 4, 4, 4</value>
+    <value>4, 5, 4, 5</value>
   </data>
   <data name="mcbSampleRate.Size" type="System.Drawing.Size, System.Drawing">
-    <value>194, 24</value>
+    <value>218, 28</value>
   </data>
   <data name="mcbSampleRate.TabIndex" type="System.Int32, mscorlib">
     <value>2</value>
@@ -250,7 +256,7 @@
     <value>mcbSampleRate</value>
   </data>
   <data name="&gt;&gt;mcbSampleRate.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;mcbSampleRate.Parent" xml:space="preserve">
     <value>$this</value>
@@ -274,13 +280,13 @@
     <value>stereo</value>
   </data>
   <data name="mcbAudioChannel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>168, 57</value>
+    <value>189, 71</value>
   </data>
   <data name="mcbAudioChannel.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 4, 4, 4</value>
+    <value>4, 5, 4, 5</value>
   </data>
   <data name="mcbAudioChannel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>194, 24</value>
+    <value>218, 28</value>
   </data>
   <data name="mcbAudioChannel.TabIndex" type="System.Int32, mscorlib">
     <value>4</value>
@@ -289,7 +295,7 @@
     <value>mcbAudioChannel</value>
   </data>
   <data name="&gt;&gt;mcbAudioChannel.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;mcbAudioChannel.Parent" xml:space="preserve">
     <value>$this</value>
@@ -297,26 +303,26 @@
   <data name="&gt;&gt;mcbAudioChannel.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
-  <metadata name="helpProvider1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <metadata name="helpProvider1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
   </metadata>
   <data name="helpProvider1.HelpNamespace" xml:space="preserve">
     <value>Obi Help.chm</value>
   </data>
-  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
   <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
-    <value>8, 16</value>
+    <value>9, 20</value>
   </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>386, 147</value>
+    <value>434, 184</value>
   </data>
   <data name="$this.Font" type="System.Drawing.Font, System.Drawing">
     <value>Microsoft Sans Serif, 9.75pt</value>
   </data>
   <data name="$this.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 4, 4, 4</value>
+    <value>4, 5, 4, 5</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
     <value>Audio settings for the project</value>
@@ -325,12 +331,12 @@
     <value>helpProvider1</value>
   </data>
   <data name="&gt;&gt;helpProvider1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.HelpProvider, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Windows.Forms.HelpProvider, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
     <value>AudioSettings</value>
   </data>
   <data name="&gt;&gt;$this.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Form, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Windows.Forms.Form, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
 </root>

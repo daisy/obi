@@ -63,7 +63,9 @@
             this.mcbSampleRate.Items.AddRange(new object[] {
             resources.GetString("mcbSampleRate.Items"),
             resources.GetString("mcbSampleRate.Items1"),
-            resources.GetString("mcbSampleRate.Items2")});
+            resources.GetString("mcbSampleRate.Items2"),
+            resources.GetString("mcbSampleRate.Items3"),
+            resources.GetString("mcbSampleRate.Items4")});
             this.mcbSampleRate.Name = "mcbSampleRate";
             // 
             // mcbAudioChannel
