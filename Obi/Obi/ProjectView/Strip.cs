@@ -772,7 +772,15 @@ namespace Obi.ProjectView
         /// <summary>
         /// Set the current selected from the block itself. This gets passed to the content view.
         /// </summary>
-        public void SetSelectedBlockFromBlock(Block block) { mContentView.SelectedNode = block.Node; }
+        public void SetSelectedBlockFromBlock(Block block)
+        {
+            if (mContentView.Selection != null && mContentView.Selection.Node != null && mContentView.Selection.Node is SectionNode)
+            {
+                mContentView.SelectedNode = mContentView.Selection.Node.FirstUsedPhrase;
+            }
+            else
+                mContentView.SelectedNode = block.Node;
+        }
 
         /// <summary>
         /// Set the selection from a strip cursor to its index. This gets passed to the content view.
