@@ -6246,8 +6246,10 @@ for (int j = 0;
 
                 visitor.EncodePublishedAudioFiles = false;
                 visitor.EncodePublishedAudioFilesStereo = mPresentation.MediaDataManager.DefaultPCMFormat.Data.NumberOfChannels == 2;
-                uint sampleRate = mPresentation.MediaDataManager.DefaultPCMFormat.Data.SampleRate;
-                if (sampleRate == 44100) visitor.EncodePublishedAudioFilesSampleRate = SampleRate.Hz44100;
+                uint sampleRate = mPresentation.MediaDataManager.DefaultPCMFormat.Data.SampleRate; 
+                if (sampleRate == 96000) visitor.EncodePublishedAudioFilesSampleRate = SampleRate.Hz96000;
+                else if (sampleRate == 48000) visitor.EncodePublishedAudioFilesSampleRate = SampleRate.Hz48000;
+                else if (sampleRate == 44100) visitor.EncodePublishedAudioFilesSampleRate = SampleRate.Hz44100;
                 else if (sampleRate == 22050) visitor.EncodePublishedAudioFilesSampleRate = SampleRate.Hz22050;
                 else if (sampleRate == 11025) visitor.EncodePublishedAudioFilesSampleRate = SampleRate.Hz11025;
                 visitor.DisableAcmCodecs = true;
