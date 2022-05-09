@@ -110,7 +110,9 @@ namespace Obi.ImportExport
                 {
                     string strSampleRate = innerText.Trim();
                     m_ImportSampleRate = int.Parse(strSampleRate);
-                    m_ImportSampleRateEnum = strSampleRate == "44100" ? AudioLib.SampleRate.Hz44100 :
+                    m_ImportSampleRateEnum = strSampleRate == "96000" ? AudioLib.SampleRate.Hz96000 :
+                        strSampleRate == "48000" ? AudioLib.SampleRate.Hz48000 :
+                        strSampleRate == "44100" ? AudioLib.SampleRate.Hz44100 :
                         strSampleRate == "22050" ? AudioLib.SampleRate.Hz22050
                         : AudioLib.SampleRate.Hz11025;
                 }
@@ -162,7 +164,9 @@ namespace Obi.ImportExport
                     else if (n.LocalName == "audiosamplerate")
                     {
                         string strSampleRate = n.InnerText;
-                        exportSampleRate = strSampleRate == "44100" ? AudioLib.SampleRate.Hz44100 :
+                        exportSampleRate = strSampleRate == "96000" ? AudioLib.SampleRate.Hz96000 :
+                            strSampleRate == "48000" ? AudioLib.SampleRate.Hz48000 :
+                            strSampleRate == "44100" ? AudioLib.SampleRate.Hz44100 :
                             strSampleRate == "22050" ? AudioLib.SampleRate.Hz22050
                             : AudioLib.SampleRate.Hz11025;
                     }

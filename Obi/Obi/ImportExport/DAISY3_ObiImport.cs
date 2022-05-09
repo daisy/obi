@@ -73,7 +73,7 @@ namespace Obi.ImportExport
             m_Presentation = m_Session.Presentation;
 
             PCMFormatInfo pcmFormat = m_Presentation.MediaDataManager.DefaultPCMFormat.Copy();
-            pcmFormat.Data.SampleRate = (ushort)m_audioProjectSampleRate;
+            pcmFormat.Data.SampleRate = (uint)m_audioProjectSampleRate;
             m_Presentation.MediaDataManager.DefaultPCMFormat = pcmFormat;
 
             m_Presentation.MediaDataManager.EnforceSinglePCMFormat = true;

@@ -565,8 +565,8 @@ System.IO.Path.GetFileName(m_BackupProjectFilePath_temp));
         {
             importDTBPath = System.IO.Path.GetFullPath(importDTBPath);
             CreateNewPresentationInBackend(outputPath, title, createTitleSection, id, settings, true, audioChannels,audioSampleRate);
-            import = new Obi.ImportExport.DAISY3_ObiImport(this, settings, importDTBPath, System.IO.Path.GetDirectoryName(outputPath), false, 
-                audioSampleRate ==44100? AudioLib.SampleRate.Hz44100: audioSampleRate == 22050?  AudioLib.SampleRate.Hz22050: AudioLib.SampleRate.Hz11025, 
+            import = new Obi.ImportExport.DAISY3_ObiImport(this, settings, importDTBPath, System.IO.Path.GetDirectoryName(outputPath), false,
+              audioSampleRate == 96000 ? AudioLib.SampleRate.Hz96000 : audioSampleRate == 48000? AudioLib.SampleRate.Hz48000 : audioSampleRate == 44100 ? AudioLib.SampleRate.Hz44100 : audioSampleRate == 22050 ? AudioLib.SampleRate.Hz22050 : AudioLib.SampleRate.Hz11025, 
                 audioChannels  == 2);
             import.DoWork();
             if (import.RequestCancellation)

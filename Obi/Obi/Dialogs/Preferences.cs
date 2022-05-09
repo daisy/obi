@@ -229,6 +229,7 @@ namespace Obi.Dialogs
                     sampleRates.Add("22050");
                     sampleRates.Add("44100");
                     sampleRates.Add("48000");
+                    sampleRates.Add("96000");
                     mSampleRateCombo.DataSource = sampleRates;
                     mSampleRateCombo.SelectedIndex = sampleRates.IndexOf(sampleRate.ToString());
                     mSampleRateCombo.Visible = mCanChangeAudioSettings;

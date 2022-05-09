@@ -565,7 +565,7 @@ namespace Obi
                                                                              System.IO.Path.
                                                                                  GetDirectoryName(
                                                                                      outputPath), false,
-                                                                                     audioSampleRate == 44100 ? AudioLib.SampleRate.Hz44100 : audioSampleRate == 22050 ? AudioLib.SampleRate.Hz22050 : AudioLib.SampleRate.Hz11025,
+                                                                   audioSampleRate == 96000 ? AudioLib.SampleRate.Hz96000 : audioSampleRate == 48000? AudioLib.SampleRate.Hz48000 :  audioSampleRate == 44100 ? AudioLib.SampleRate.Hz44100 : audioSampleRate == 22050 ? AudioLib.SampleRate.Hz22050 : AudioLib.SampleRate.Hz11025,
                                                                              audioChannels ==
                                                                              2);
                 }
@@ -576,7 +576,7 @@ namespace Obi
                                                                                                  System.IO.Path.
                                                                                                      GetDirectoryName(
                                                                                                          outputPath), false,
-                                                                                                         audioSampleRate == 44100 ? AudioLib.SampleRate.Hz44100 : audioSampleRate == 22050 ? AudioLib.SampleRate.Hz22050 : AudioLib.SampleRate.Hz11025,
+                                                                    audioSampleRate == 96000 ? AudioLib.SampleRate.Hz96000 : audioSampleRate == 48000 ? AudioLib.SampleRate.Hz48000 : audioSampleRate == 44100 ? AudioLib.SampleRate.Hz44100 : audioSampleRate == 22050 ? AudioLib.SampleRate.Hz22050 : AudioLib.SampleRate.Hz11025,
                                                                                                  audioChannels ==
                                                                                                  2);
                 }
