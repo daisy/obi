@@ -643,7 +643,7 @@ namespace Obi
                                                                          if(File.Exists(metaDataFilePath))
                                                                          {
                                                                              ImportExport.ImportMetadata metadataImport = new ImportMetadata();
-                                                                             metadataImport.ImportFromCSVFile(metaDataFilePath, mSession.Presentation);
+                                                                             metadataImport.ImportFromCSVFile(metaDataFilePath, mSession.Presentation, mProjectView, true);
                                                                          }
                                                                      }
                                                                      else
@@ -6923,7 +6923,7 @@ ref string exportDirectoryEPUB3)
                 if (dialog.ShowDialog() == DialogResult.OK)
                 {
                     ImportExport.ImportMetadata metadataImport = new ImportMetadata();
-                    metadataImport.ImportFromCSVFile(dialog.FileName, mSession.Presentation, mProjectView);
+                    metadataImport.ImportFromCSVFile(dialog.FileName, mSession.Presentation, mProjectView, false);
                 }
             }
 

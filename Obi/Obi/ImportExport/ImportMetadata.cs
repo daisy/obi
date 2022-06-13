@@ -15,15 +15,15 @@ namespace Obi.ImportExport
         private Obi.ProjectView.ProjectView m_ProjectView;
         private string m_metadataFieldsNotImported = string.Empty;
         
-        public bool ImportFromCSVFile(string CSVFullPath, ObiPresentation presentation, Obi.ProjectView.ProjectView projectView = null)
+        public bool ImportFromCSVFile(string CSVFullPath, ObiPresentation presentation, Obi.ProjectView.ProjectView projectView, bool InitializeMetadata = false)
         {
             List<string> nameList = new List<string>();
             List<string> content = new List<string>();
-            bool result = ReadListsFromCSVFile(nameList, content, CSVFullPath, presentation, projectView);
+            bool result = ReadListsFromCSVFile(nameList, content, CSVFullPath, presentation, projectView, InitializeMetadata);
             return result;
         }
 
-        private bool ReadListsFromCSVFile(List<string> nameList, List<string> content, string CSVFullPath, ObiPresentation presentation, Obi.ProjectView.ProjectView projectView)
+        private bool ReadListsFromCSVFile(List<string> nameList, List<string> content, string CSVFullPath, ObiPresentation presentation, Obi.ProjectView.ProjectView projectView, bool InitializeMetadata)
         {
             string[] linesInFiles;
             try
@@ -49,7 +49,16 @@ namespace Obi.ImportExport
                 string[] cellsInLineArray = null;
                 if (Path.GetExtension(CSVFullPath).ToLower() == ".csv")
                 {
-                    cellsInLineArray = line.Split(',');
+                    //cellsInLineArray = line.Split(',');
+                    if (projectView != null)
+                    {
+                        if (projectView.ObiForm.Settings.Project_CSVImportHavingSemicolon)
+                            cellsInLineArray = line.Split(';');
+                        else
+                            cellsInLineArray = line.Split(',');
+                    }
+                    else cellsInLineArray = line.Split(',');
+
                 }
                 else
                 {
@@ -58,7 +67,7 @@ namespace Obi.ImportExport
 
                 if (cellsInLineArray.Length >= 2 && !string.IsNullOrWhiteSpace(cellsInLineArray[0]) && !string.IsNullOrWhiteSpace(cellsInLineArray[1]))
                 {
-                    if (projectView == null)
+                    if (projectView == null  || InitializeMetadata)
                     {
                         if (Metadata.DAISY3MetadataNames.Contains(cellsInLineArray[0], StringComparer.OrdinalIgnoreCase))
                         {
