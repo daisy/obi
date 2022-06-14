@@ -282,7 +282,7 @@ namespace Obi.ImportExport
             bodyNode.AppendChild ( headingNode );
 
             // create smil document
-            string smilNumericFrag = (sectionIndex + 1).ToString ().PadLeft ( 3, '0' );
+            string smilNumericFrag = (sectionIndex + 1).ToString ().PadLeft ( 4, '0' );
             string smilFileName =smilNumericFrag + ".smil";
             XmlDocument smilDocument = CreateSmilStubDocument ();
             XmlNode smilBodyNode = smilDocument.GetElementsByTagName ( "body" )[0];
