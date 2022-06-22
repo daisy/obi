@@ -2685,6 +2685,7 @@ namespace Obi.ProjectView
         public bool IsStripUsed { get { return mContentView.IsStripUsed; } }
 
         public bool CanShowFadeInFadeOutDialog { get { return Selection != null && (Selection.Node is PhraseNode) && !(Selection is AudioSelection) && !TransportBar.IsRecorderActive; } }
+        public bool CanShowNormalizeNoiseReductionDialog { get { return mPresentation != null && !mTransportBar.IsRecorderActive && mTOCView.Nodes != null && mTOCView.Nodes.Count != 0; } }
 
         public bool CanMergeWithPhrasesBeforeInSection 
             { 
