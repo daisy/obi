@@ -6278,7 +6278,7 @@ for (int j = 0;
                 mPresentation.ChannelsManager.RemoveManagedObject(publishChannel);
 
                 //rename the audio file to relevant name
-                string audioFilePath = System.IO.Path.Combine(audioFileExportDirectory, "aud001.wav");
+                string audioFilePath = System.IO.Path.Combine(audioFileExportDirectory, "aud0001.wav");
                 if (System.IO.File.Exists(audioFilePath))
                 {
                     if (string.IsNullOrEmpty(audioFileName))
