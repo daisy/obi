@@ -72,7 +72,7 @@ namespace Obi.Commands.Node
             EmptyNode from, EmptyNode to)
         {
                                 if (from.TODO && !to.TODO) command.ChildCommands.Insert(command.ChildCommands.Count, new Commands.Node.ToggleNodeTODO(view, to));
-                                if ((!from.Used && to.Used) && (to.Role_ != EmptyNode.Role.Page && to.Role_ != EmptyNode.Role.Heading )) 
+                                if ((!from.Used && to.Used) && (to.Role_ != EmptyNode.Role.Page && to.Role_ != EmptyNode.Role.Heading && from.Role_ != EmptyNode.Role.Silence )) 
                 command.ChildCommands.Insert(command.ChildCommands.Count, new Commands.Node.ToggleNodeUsed(view, to));
 
             // role of next phrase is copied to selected phrase only when next phrase is page, heading or silence.
@@ -81,17 +81,17 @@ namespace Obi.Commands.Node
             {
                 command.ChildCommands.Insert (command.ChildCommands.Count, new Commands.Node.SetPageNumber(view, to, from.PageNumber.Clone()));
                             }
-            else if ( ( to.Role_ != EmptyNode.Role.Heading && to.Role_ != EmptyNode.Role.Page )
-                &&  (from.Role_ != EmptyNode.Role.Plain &&
-                (from.Role_ != EmptyNode.Role.Silence || to is PhraseNode)) )
+            else if ((to.Role_ != EmptyNode.Role.Heading && to.Role_ != EmptyNode.Role.Page)
+                && (from.Role_ != EmptyNode.Role.Plain &&
+                (from.Role_ != EmptyNode.Role.Silence || to is PhraseNode)))
             {
-                        if (from.Role_ == EmptyNode.Role.Heading && to.Role_ != EmptyNode.Role.Page)
+                if (from.Role_ == EmptyNode.Role.Heading && to.Role_ != EmptyNode.Role.Page)
                 {
-                                command.ChildCommands.Insert (command.ChildCommands.Count, new Commands.Node.AssignRole ( view, from, EmptyNode.Role.Plain, null) );
-                command.ChildCommands.Insert (command.ChildCommands.Count, new Commands.Node.AssignRole ( view, to, EmptyNode.Role.Heading, null) );
+                    command.ChildCommands.Insert(command.ChildCommands.Count, new Commands.Node.AssignRole(view, from, EmptyNode.Role.Plain, null));
+                    command.ChildCommands.Insert(command.ChildCommands.Count, new Commands.Node.AssignRole(view, to, EmptyNode.Role.Heading, null));
                 }
-            else
-                command.ChildCommands.Insert (command.ChildCommands.Count, new Commands.Node.AssignRole(view, to, from.Role_, from.CustomRole));
+                else if (from.Role_ != EmptyNode.Role.Silence || (from.Role_ == EmptyNode.Role.Silence && to.Role_ == EmptyNode.Role.Plain))
+                    command.ChildCommands.Insert(command.ChildCommands.Count, new Commands.Node.AssignRole(view, to, from.Role_, from.CustomRole));
             }
         }
 
