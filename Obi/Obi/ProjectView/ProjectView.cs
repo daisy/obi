@@ -4283,9 +4283,9 @@ for (int j = 0;
                     {
                         node = (SectionToRemoveSilence).PhraseChild(0);
                     }
-                    do
+                    while(SectionToRemoveSilence != null)
                     {
-                        if (SectionToRemoveSilence.PhraseChild(SectionToRemoveSilence.PhraseChildCount - 1) is PhraseNode)
+                        if (SectionToRemoveSilence.PhraseChildCount != 0 && SectionToRemoveSilence.PhraseChild(SectionToRemoveSilence.PhraseChildCount - 1) is PhraseNode)
                         {
                             phraseNodesList.Add((PhraseNode)SectionToRemoveSilence.PhraseChild(SectionToRemoveSilence.PhraseChildCount - 1));
                         }
@@ -4293,7 +4293,8 @@ for (int j = 0;
                         {
                             SectionToRemoveSilence = SectionToRemoveSilence.FollowingSection;
                         }
-                    } while (SectionToRemoveSilence.FollowingSection != null);
+                        else SectionToRemoveSilence = null;
+                    } 
                 }
                 else if (SelectedSectionsList != null && SelectedSectionsList.Count > 0)
                 {
