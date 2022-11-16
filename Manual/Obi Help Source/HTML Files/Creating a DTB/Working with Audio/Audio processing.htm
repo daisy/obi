@@ -1,0 +1,112 @@
+<head>
+<title>Audio Processing</title>
+<style>
+h1 {font-size:16pt;}
+h2 {font-size:14pt;}
+h3 {font-size:13pt;}
+h4 {font-size:12pt;}
+p {font-size:12pt;}
+</style>
+</head>
+
+<body>
+<a name="top"></a><h1>Audio Processing</h1>
+ 
+<p>The audio processing functionality of Obi lets you perform the following operations on audio:
+<ul><li><a href="#change_volume">Change volume</a></li>
+<li><a href="#fade_in">Fade in</a></li>
+<li><a href="#fade_out">Fade out</a></li>
+<li><a href="#normalize">Normalize</a></li>
+<li><a href="#speech_rate">Increase/decrease speech rate</a></li>
+<li><a href="#noise_reduction">Noise reduction</a></li>
+<li><a href="#audio_mixer">Audio mixing</a></li>
+</ul></p>
+
+<a name="change_volume"></a><p><h2>Change Volume</h2>
+Increases or decreases the volume of the audio contained in the selected item(s) by a specified rate. Follow the steps listed below to change the volume of audio:
+<ol><li>Select a section or a phrase. You can also select a <a href="../Working with Phrases/Executing commands on multiple phrases.htm">range of phrases</a>.</li>
+<li>Click <b>Tools->Audio Processing->Change Volume</b> on the menu or press <b>Ctrl+Shift+U</b>. You will be presented by a dialog box as shown below.</li>
+<p><img src="../../images/audio_processing_change_volume_dialog.png" alt="Change Volume Dialog"/></p>
+<li>Choose the amplification rate from the combo box. Rates lower than 1.0 will decrease the volume by the specified rate and values above 1.0 will increase the volume. You can also use the slider to increase or decrease the rate.</li>
+<li>Click <b>OK</b> to start processing audio, or <b>Cancel</b> to cancel the operation.</li>
+</ol></p>
+
+<a name="fade_in"></a><p><h2>Fade In</h2>
+Increases the volume of the audio contained in the selected phrase gradually. Follow the steps listed below to fade in audio:
+<ol><li>Select a phrase.</li>
+<li>Click <b>Tools->Audio Processing->Fade In</b> on the menu or press <b>Ctrl+Shift+I</b>. You will be presented by a dialog box as shown below.</li>
+<p><img src="../../images/audio_processing_fade_in_dialog.png" alt="Fade In Dialog"/></p>
+<li>Enter the position (in terms of seconds) from where the fade in effect should start in the edit box <b>Start time of fade effect</b>. Please note that the volume of audio before this position will be set to 0, i.e., the audio of silence.</li>
+<li>In the edit box <b>Set fade in duration</b>, specify the duration for which fade in effect should continue.</li>
+<li>Click <b>OK</b> to start processing audio, or <b>Cancel</b> to cancel the operation.</li>
+</ol></p>
+
+<a name="fade_out"></a><p><h2>Fade Out</h2>
+Decreases the volume of the audio contained in the selected phrase gradually. Follow the steps listed below to fade out audio:
+<ol><li>Select a phrase.</li>
+<li>Click <b>Tools->Audio Processing->Fade Out</b> on the menu or press <b>Ctrl+Shift+O</b>. You will be presented by a dialog box as shown below.</li>
+<p><img src="../../images/audio_processing_fade_out_dialog.png" alt="Fade Out Dialog"/></p>
+<li>Enter the position (in terms of seconds) from where the fade out effect should start in the edit box <b>Start time of fade effect</b>.</li>
+<li>In the edit box <b>Set fade out duration</b>, specify the duration for which fade out effect should continue. Please note the residual audio in the phrase will be set to the audio of silence.</li>
+<li>Click <b>OK</b> to start processing audio, or <b>Cancel</b> to cancel the operation.</li>
+</ol></p>
+
+<a name="normalize"></a><p><h2>Normalize</h2>
+Applies the constant amount of gain to the audio of the selected item(s) so that the average and peak amplitudes are within the threshold of the audio. Follow the steps listed below to normalize audio.
+<ol><li>Select a section or a phrase. You can also select a <a href="../Working with Phrases/Executing commands on multiple phrases.htm">range of phrases</a>.</li>
+<li>Click <b>Tools->Audio Processing->Normalize</b> on the menu or press <b>Ctrl+Shift+Z</b>. You will be presented by a dialog box as shown below.</li>
+<p><img src="../../images/audio_processing_normalize_dialog.png" alt="Normalize Dialog"/></p>
+<li>Choose the rate at which volume has to be increased or decreased for the normalize operation from the combo box. Rates lower than 1.0 will decrease the volume by the specified rate and values above 1.0 will increase the volume. You may also use the slider to increase or decrease the rate.</li>
+<li>Check the checkbox <b>Use Naudio for Normalization</b> if you want to use the Naudio tool for performing normalization.</li>
+<li>If you wish to apply the normalize operation on the whole book, check the checkbox <b>Apply on whole book</b>.</li>
+<li>Click <b>OK</b> to start processing audio, or <b>Cancel</b> to cancel the operation.</li>
+</ol></p>
+
+<a name="speech_rate"></a> <p><h2>Speech Rate</h2>
+Increases/Decreases the rate at which audio is played. Follow the steps listed below to increase/decrease the speech rate of audio contained in a phrase: 
+<ol><li>Select a section or a phrase. You can also select a <a href="../Working with Phrases/Executing commands on multiple phrases.htm">range of phrases</a>.</li>
+<li>Click <b>Tools->Audio Processing->Speech Rate</b> on the menu. You will be presented with a dialog box as shown below.</li>
+ <p><img src="../../images/audio_processing_speech_rate_dialog.png" alt="Speech Rate Dialog"/></p>
+<li>Choose the speech rate from the combo box. Values lower than 1.0 will decrease the speech rate and values above 1.0 will increase the speech rate. You can also use the slider to increase or decrease the rate.</li>
+<li>Click OK to start processing audio, or Cancel to cancel the operation.</li>
+</ol></p>
+
+<a name="noise_reduction"></a> <p><h2>Noise Reduction</h2>
+Reduces noise from the audio content of the phrase. Noise is any unwanted sound that is recorded into the phrase while recording, like the humming sound from the laptop, sound from the air-conditioner, etc. This functionality lets you set the noise floor and the frequency to which the noise should be reduced. The process is explained in the following steps:
+<ol><li>Select a section or a phrase. You can also select a <a href="../Working with Phrases/Executing commands on multiple phrases.htm">range of phrases</a>.</li>
+<li>Click <b>Tools->Audio Processing->Noise Reduction</b> on the menu or press <b>Ctrl+Shift+Y</b>. You will be presented by a dialog box as shown below.</li>
+ <p><img src="../../images/audio_processing_noise_reduction_dialog.png" alt="Noise Reduction Dialog"/></p>
+<li>The combo box Background noise level gives you three options to remove noise: strong, medium, and weak. For example, you should choose to remove weak noise if the recording has a very weak noise like the hum of the laptop in the background. The rest of the parameters in the dialog will be adjusted automatically depending on your selection. This is done especially to facilitate new users. Experienced users can further customize the parameters as follows:
+<ol type="a"><li>You can set the noise floor using the Noise Level trackbar or edit box. Noise floor is given in percentages.</li>
+<li>The Noise reduction trackbar and edit box help you specify by how many decibels should the noise be reduced. If you want to apply high suppression, then you should be careful that it does not suppress the voice of speaker along with the noise.</li></li></ol>
+<li>If you wish to apply the noise reduction feature on the entire audio of the book, check the checkbox <b>Apply on whole book</b>.</li>
+<li>Click OK to invoke the noise reduction functionality or Cancel to cancel the operation.</li>
+</ol></p>
+
+<a name="audio_mixer"></a> <p><h2>Audio Mixer</h2>
+Mixes audio from external file(s) with audio of selected phrase. It is very useful for the scenarios where you wish to add a background music to the audio content of the phrase. You can mix audio from 2 external files with audio of the phrase at a time using this functionality. The process is described as follows:
+<ol><li>Select a phrase.</li>
+<li>Click <b>Tools->Audio Processing->Audio Mixer</b> on the menu or press <b>Ctrl+Shift+X</b>. You will be presented with a dialog box as shown below.</li>
+ <p><img src="../../images/audio_processing_audio_mixer_dialog.png" alt="Audio Mixer Dialog"/></p>
+<li>Click the <b>browse</b> button next to the edit box <b>Select audio for mixing</b>, and select the external file containing the audio content to be mixed.</li>
+<li>Specify the volume for audio from the external file in the edit box <b>Weight of Audio</b>. The value 1.0 denotes the original volume. You can choose to decrease the volume of the audio content from external file by specifying values less than 1.</li>
+<li>If you wish to mix audio from any other file simultaneously, check the check box <b>Select second audio for mixing</b>. This will enable the edit boxes to enter the file path and the weight of the audio to be imported.</li>
+<li>If you want that the volume of audio being mixed returns to initial weight (1.0) a few seconds after the duration of original phrase, you can do so by entering the time in the edit box Drop out transition. For example, if the duration of original phrase was 5 seconds, the audio being mixed was 15 seconds, and you specified the drop out transition to be 2 seconds, the initial volume of the audio being mixed will be resumed after 7 seconds from the beginning of the phrase.</li>
+<li>By default, the resulting phrase after mixing will be of the maximum duration of the audio contents being mixed. You can limit it to the original phrase size by checking the check box Set end of stream duration to the phrase duration.</li>
+<li>You may also specify the duration of the audio content from the external files to be retained after the duration of the original phrase. Check the check box Set duration of mixing audio after phrase ends and enter the duration in seconds for which the audio content from the external files should be retained. For example, if the original phrase is of 5 seconds and you want to retain audio from external file for 2 more seconds, specify 2 in the edit box. The resulting phrase will now be of 7 seconds.</li>
+<li>Click OK to start audio mixing or press Cancel to cancel the operation.</li>
+</ol></p>
+
+<p>Obi also enables you to export audio and process it externally. See the topic <a href="Exporting audio to external file.htm">Exporting audio to an external file</a> for more information.</p>
+
+<h2>Related Topics</h2>
+<a href="Exporting audio to external file.htm">Exporting audio to an External File</a><br>
+<a href="Replacing selection with external audio.htm">Replacing Selection with External Audio</a><br>
+<a href="Working with Audio.htm">Working with Audio</a><br>
+
+<p><a href="Nudge command and Fine navigation.htm">Prev</a> |
+<a href="#top">Top</a> |
+<a href="Exporting audio to external file.htm">Next</a></p>
+
+</body>
+

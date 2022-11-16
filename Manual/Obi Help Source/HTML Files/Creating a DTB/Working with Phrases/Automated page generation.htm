@@ -1,0 +1,38 @@
+<head>
+<title>Automated Page Generation</title>
+<style>
+h1 {font-size:16pt;}
+h2 {font-size:14pt;}
+h3 {font-size:13pt;}
+h4 {font-size:12pt;}
+p {font-size:12pt;}
+</style>
+</head>
+
+<body>
+<a name="top"></a><h1>Automated Page Generation</h1>
+<p>Sometimes the physical books (like novels) do not have page numbers in them, but page number navigation is an important feature of DAISY standards.</p>
+
+<p>The process of creating page phrases for the entire book may become quite cumbersome, but Obi enables you to do it by a single command using the Auto Page Generation dialog.</p>
+
+<p>Follow the steps below to generate pages in the recorded DAISY book by an automated process:
+<ol><li>Click <b>Phrases->Auto Page Generation</b> on the menu. The Auto Page Generation dialog opens as shown below.</li>
+<p><img src="../../images/auto_page_generation_dialog.png" alt="Auto Page Generation dialog"/></p>
+<li>In the <b>Gaps in pages</b> edit box, enter the minimum time interval (in minutes) after which a page should be created.</li>
+<li>Alternatively, you can choose to create a page at the end of each section by checking the checkbox <b>Create Pages at the end of the section only</b>.</li>
+<li>Specify the section index from where Obi should start generating pages in the <b>Starting section index</b> combo box. It is important to specify starting section as initial pages may contain title, copyright information, etc. for which page numbers are not required.</li>
+<li>Select <i>Pages with synthetic speech</i> radio button if you wish to generate audio announcing the page number, or <i>Pages with silence</i> radio button if you do not want to listen the announcement of page phrases while playing the book.</li>
+<li>Click OK.</li>
+</ol></p>
+
+<p>Obi will create first page phrase in the section specified in the <b>Starting section index</b> combo box. It will create subsequent pages each after the time interval mentioned in the <b>Gaps in pages</b> edit box. For example, if you had entered “4” in the edit box, each page will be created after the audio content of at least 4 minutes till the end of the project.</p>
+
+<h2>Related Topics</h2>
+<a href="Pages.htm">Pages</a>
+<br><a href="Working with Phrases.htm">Working with Phrases</a></p>
+
+<p><a href="Filling missing pages.htm">Prev</a> |
+<a href="#top">Top</a> |
+<a href="Silence.htm">Next</a></p>
+
+</body>

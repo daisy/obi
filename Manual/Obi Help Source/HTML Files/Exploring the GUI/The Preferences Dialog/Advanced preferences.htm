@@ -1,0 +1,145 @@
+<head>
+<title>Advance Preferences</title>
+<style>
+h1 {font-size:16pt;}
+h2 {font-size:14pt;}
+h3 {font-size:13pt;}
+h4 {font-size:12pt;}
+p {font-size:12pt;}
+</style>
+</head>
+
+<body>
+<a name="top"></a><h1>Advance Preferences</h1>
+<p>The Advance tab of the Preferences dialog enables you to configure profiles for Obi. There are two types of profiles: the preferences profile and the shortcuts profile. The shortcuts profile contains the list of shortcuts to be used for various operations (keyboard shortcut preferences), while the preferences profile contains configurations of all other preferences; namely, project, audio, user profile, and color.</p>
+
+<p><img src="../../images/advance_preferences.png" alt="Advance tab of the Preferences dialog"/></p>
+
+<p>The fields of the Advance tab and their descriptions are as follows:</p>
+<table border="1">
+<tr>
+<th>Field</th>
+ <th>Field Type</th>
+<th> Description</th>
+ </tr>
+
+<tr>
+<Td>Current Profile</td>
+<td> Read only text box</td>
+ <Td>The preferences profile currently loaded in Obi.</td>
+</tr>
+ 
+<tr>
+<Td>Current Shortcuts Profile</td>
+ <td>Read only text box</td>
+<td> The shortcuts profile currently loaded in Obi.</td>
+ </tr>
+
+<Tr>
+<td>Select Profile Options</td>
+ <td>Group of radio buttons</td>
+ <td>Select Preferences if you wish to select a preferences profile, and select Keyboard shortcuts if you wish to select a shortcuts profile.</td>
+</tr>
+ 
+<tr>
+<td>Select Profile</td>
+ <td>Combo box</td>
+ <Td>Select the desired preferences profile from the list of available profiles. Please note that this field gets activated only if you select the "Preferences" radio button.</td>
+</tr>
+
+<tr>
+<td>Select Shortcuts Profile</td>
+ <td>Combo box</td>
+ <Td>Select the desired shortcuts profile from the list of available profiles. Please note that this field gets activated only if you select the "Keyboard shortcuts" radio button.</td>
+</tr>
+
+<tr>
+<td> Profile Description</td>
+<td> Button</td>
+ <td>Opens the document giving the description of the profile chosen in the above combo box.</td>
+</tr>
+ 
+<tr>
+<td>Project / Audio / Language / Color / Select All</td>
+ <td>List of check boxes</td>
+<td> Check the check boxes for the preferences that you wish to load.</td>
+</tr>
+ 
+<tr>
+<td>Load</td>
+<td> Button</td>
+<Td> Loads the selected profile in Obi. Please note that if the check box pertinent to the set of preferences is not checked, they will not be loaded; for example, if the Project check box is not checked, the project preferences will not be loaded.</td>
+ </tr>
+
+<tr>
+<td>Import</td>
+ <td>Button</td>
+<td> Imports the existing profile in Obi. You will be presented with the Open dialog to browse for the .xml file. Select the appropriate profile file and click Open. Henceforth, the profile will show in the list of available profiles.</td>
+</tr>
+ 
+<tr>
+<td>Save As…</td>
+ <td>Button</td>
+ <Td>Saves the current preference settings as a profile. You will be presented with the Save As dialog to provide the path and the name for the profile file.</td>
+</tr>
+ 
+<tr>
+<td>Remove</td>
+ <Td>Button</td>
+ <td>Removes the profile selected in the combo box from Obi’s list of available profiles.</td>
+ </tr>
+
+<Tr>
+<td>Profile 1</td>
+<Td>Combo box</td>
+<Td>First profile to be assigned to the Switch Profile button of the Recording Toolbar.</td>
+</tr>
+
+<tr>
+<td>Profile 2</td>
+<td>Combo box</td>
+<Td>Second profile to be assigned to the Switch Profile button of the Recording Toolbar.</td>
+</tr>
+
+<Tr>
+<td>Assign</td>
+<Td>Button</td>
+<td>Assigns both the above profiles to the Switch Profile button of the <a href="../Obi Views and Transport Bar/Recording Toolbar.htm">Recording Toolbar</a>, which toggles with each click.</td>
+</tr>
+</table>
+
+<p>Let’s understand the process of loading the profile with an example. The following steps show how to load the Advanced preferences profile.
+<ol><li>In the group of radio buttons, select Preferences.</li>
+<li>From the Select profile combo box, select Advanced.</li>
+<li>Check the checkboxes pertinent to the preferences you wish to load. For example, if you want to load only the project preferences, check the checkbox Project.</li>
+<li>Click on the Load button to start loading the preferences.</li>
+</ol>
+Once Obi loads the selected preferences profile, its name will be shown in the Current profile text box.
+</p>
+ 
+<p>Now if you wish to save the current preference settings as a custom profile, do the following:
+<ol><li>Click on the Save button. The Save As dialog will be displayed.</li>
+<li>Browse for a location where you want to save your custom profile.</li>
+<li>Enter a suitable name for the profile file.</li>
+<li>Click save.</li>
+</ol>
+ Obi will save the current preference settings in the XML file specified by you.
+</p>
+
+<p>Next, we will look at the process of assigning the profiles to the <b>Switch Profile</b> button of Recording Toolbar. Let’s suppose you wish to assign the “Basic” and “Advanced” profiles to the button.
+<ol><li>In the Assign audio profiles to Recording Toolbar group box, select “Basic” from the first combo box.</li>
+<li>Now, select “Advanced” from the second combo box.</li>
+<li>Click on the <b>Assign</b> button.</li>
+</ol>
+The Basic and Advanced profiles will be assigned to the Switch Profile button of the Recording Toolbar, which will toggle with each click and show <b>Switch from Basic to Advanced</b> and <b>Switch from Advanced to Basic</b> alternatively.
+</p>
+
+<h2>Related Topics</h2>
+<br><a href="The preferences Dialog.htm">The Preferences Dialog</a>
+<br><a href="../Exploring the GUI.htm">Exploring the GUI</a>
+
+<p><a href="Color preferences.htm">Prev</a> |
+<a href="#top">Top</a> |
+<a href="../../Creating a DTB/Creating a DTB.htm">Next</a></p>
+
+</body>

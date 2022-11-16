@@ -1,0 +1,48 @@
+<head>
+<title>Importing and Replacing TOC</title>
+<style>
+h1 {font-size:16pt;}
+h2 {font-size:14pt;}
+h3 {font-size:13pt;}
+h4 {font-size:12pt;}
+p {font-size:12pt;}
+</style>
+</head>
+
+<body>
+<a name="top"></a><h1>Importing and Replacing TOC</h1>
+
+<p>Obi enables you to import the structure from an XHTML, CSV or dlimited text file and replace the existing TOC of your project. This allows narrator to record the contents without bothering about the structure of the book. The contents can be recorded linearly without giving the proper name or level to the corresponding sections. Everything can be brought into order by importing TOC and replacing the existing one by a single command.</p>
+
+<p>The process is exemplified in the following steps.
+<ol><li>Record the contents of the book in your Obi project by creating a new section for each chapter, topic and sub topic.</li>
+<li>Create the structure of the book in an XHTML, CSV or delimited text  file.</li>
+<li>Open your project in Obi and click <b>Sections->Import and replace TOC</b> on the menu. Obi will open a file browser asking you to select the file.</li>
+<li>Select the file containing the structure of the book and click on the Open button.</li>
+</ol></p>
+
+<p>Obi will not only replace the section names but also adjust the levels of the sections according to the corresponding tags. But for this functionality to work properly, it is very important to record the sections in the correct order.</p>
+
+<p>Let's look at the following example from an XHTML file.
+<br>&lt;h1&gt;Micro Economics&lt;/h1&gt;
+<br>&lt;h2&gt;Inflation&lt;/h2&gt;
+<br>&lt;h2&gt;Demand and Supply&lt;/h2&gt;
+</p>
+
+<p>While importing the TOC, Obi will do the following:
+<br>“Micro Economics” will become the first section in the project at level 1.
+<br>“Inflation” will become the second section of the project and will be at level 2.
+<br>“Demand and Supply” will be the third section of the project and will be at level 2.
+</p>
+
+<p><h2>Related Topics</h2>
+<a href="../Creating and Working with Projects/Creating a project by importing an xhtml file.htm">Creating a project by importing an xhtml file</a>
+<br><a href="../Creating and Working with Projects/Creating a project by importing CSV file.htm">Creating a project by importing CSV file</a>
+<br><a href="../Creating and Working with Projects/Creating and Working with Projects.htm">Creating and Working with Projects</a>
+</p>
+
+<p><a href="Trimming silence from the end.htm">Prev</a> |
+<a href="#top">Top</a> |
+<a href="Section Properties.htm">Next</a></p>
+
+</body>
