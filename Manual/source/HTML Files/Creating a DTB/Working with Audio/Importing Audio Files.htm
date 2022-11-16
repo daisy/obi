@@ -1,0 +1,81 @@
+<head>
+<title>Importing Audio Files</title>
+<style>
+h1 {font-size:16pt;}
+h2 {font-size:14pt;}
+h3 {font-size:13pt;}
+h4 {font-size:12pt;}
+p {font-size:12pt;}
+</style>
+</head>
+
+<body>
+<a name="top"></a><h1>Importing Audio Files</h1>
+ 
+<p>You can import pre-recorded audio files into your project if they are in the following formats:
+<ul><li>WAV/RIF format (having .wav extension)</li>
+<li>MP3 format (having .mp3 extension)</li>
+<li>MP4/M4A format (having .mp4 extension)</li>
+</ul></p> 
+
+<p>Follow the steps given below to import audio files:
+<ol><li>Select the section where the audio files should be placed.</li>
+<li>To import audio files, click <b>Phrases->Import Audio Files</b> on the menu, or press <b>Ctrl+I</b>. An open dialog gets displayed that lets you browse for the files to be imported.</li>
+<li>Select your files and click on the <b>Open</b> button. Obi will display the Import audio file settings dialog displaying the list of files selected by you, and some other controls enabling their manipulation as described below.</li>
+
+<p><img src="../../images/import_audio_files_settings_dialog.png" alt="Import audio files settings dialog"/></p>
+ 
+<li>To move a file up or down in the list, select the file and execute any of the following commands:
+<ul><li>Click on the <b>Move file up</b> button to move the selected file up by one position in the list.</li>
+<li>Click on the <b>Move file down</b> button to move the selected file by one position down in the list.</li>
+</ul></li>
+<li>You can also add more files to the list by clicking on the <b>Add</b> button, which opens a dialog box that lets you browse and select the required audio files.</li>
+<li>If you wish to remove some files from the list, select them and press the <b>Remove</b> button.</li>
+<li>Furthermore, you can sort the files in the ascending or descending order of their names by using the <b>Ascending order</b> or <b>Descending order</b> buttons.</li>
+<li>If you are importing a WAV file, you can choose to split the imported audio at the cue markers from the file being imported. To choose this option, select the radio button <b>Split at cue marks in wave audio files</b>. If this option is selected, the other options iterated below will be disabled.</li>
+
+<li>The Import Audio Files Settings dialog gives you choice of placing the selected files in a single section or multiple sections. . The options are presented by the following radio buttons:
+<ul><li>Import audio files in selected section: All the files will be imported in the current section.</li>
+<li>Import audio files in each section: The files will be imported one by one in the subsequent sections starting from the current section.</li>
+<li>Create a new section for each audio file: Obi will create a new section for each audio file in the list after the current section at the same level. This will also enable three more controls as described later in this topic.</li>
+</ul></li>
+<li>Finally, you have an option to either apply phrase detection on the imported audio or restrict the length of each phrase via the following radio buttons:
+<ul><li>Split phrases on import: Splits phrases if their length exceeds the size mentioned in the edit box Phrase size in minutes.</li>
+<li>Apply phrase detection: Applies phrase detection on the imported audio and splits the phrases at the detected points.</li>
+</ul></li>
+<li>Click on the <b>OK</b> button.</li>
+ </ol></p>
+
+<p>The files will be imported in the same order as they appear in the list of selected files in the Import audio file settings dialog. So, it is important to check and correct their order before starting the import process.</p>
+ 
+<p>Obi will import the audio content from the selected files and store them as phrases according to the following set of rules.</p>
+ 
+<p>If the option Import audio files in the selected section was selected, Obi will create a phrase for each file in the beginning of the selected section or after the selected phrase. The phrase will contain entire audio from the audio file. If the format or audio settings (channel and sampling rate) of the audio files are different from that of the project, the audio files will be converted before importing.</p>
+
+<p>If the option Import audio files in each section was selected, Obi will import audio files one in each section starting from the selected section.</p>
+
+<p>If you opted to create a section for each audio file, new sections will be created after the selected section. The section will bear the same name as that of the audio file and contain the audio content from the respective file. If the selected section is empty, it will be replaced with the section corresponding to the first file.</p>
+ 
+<p>Activation of this option also enables you to give the inputs for parsing and refining the section names as follows:
+<ol><li>To replace with space: A character that should be replaced with the space character in resulting section name, such as “_”. For example, if the files are named as “Chapter_1 and you type the character “_” in the edit box, the resulting section name will be “Chapter 1”.</li>
+<li>Number of initial chars to trim: Number of characters that should be trimmed from the beginning of the audio file name. For instance, if the file name is “001 Chapter 1” and you type in the number 4 in the edit box, the resulting section name will be “Chapter 1”.</li>
+<li>Page identification: A string that signifies that the audio file name contains audio for page number. In this case, Obi will not create a separate section for it but create a page phrase and append it to the previous section. But if the audio file name contains some alphabets other than this string, a new section will be created and the audio of page number will be stored therein. Please note that if this field is left blank, pages will not be appended to the previous section, but a new section will be created for each of them.</li>
+ </ol></p>
+
+<p>Each of these options is preceded by a checkbox in the Import Audio Files Settings dialog to activate or deactivate the respective option.</p>
+ 
+<p>This functionality is very useful when you have pre-recorded audio content which should be converted to a navigable DAISY/EPUB book. The operation is designed in such a way that users will be able to produce DAISY/EPUB book by just creating a new project, importing audio files, and exporting the project – the process known as Automated Book Production.</p>
+ 
+<h2>Related Topics</h2>
+<a href="../Working with Phrases/Auto-splitting using Phrase Detection.htm">Auto-splitting using Phrase Detection</a>
+<br><a href="Editing the Audio.htm">Editing Audio</a>
+<br><a href="Live Recording.htm">Live Recording</a>
+<br><a href="Working with Audio.htm">Working with Audio</a>
+</p> 
+
+<p><a href="On-the-fly Phrase Detection.htm">Prev</a> |
+<a href="#top">Top</a> |
+<a href="Generating audio with TTS.htm">Next</a></p>
+
+</body>
+ 

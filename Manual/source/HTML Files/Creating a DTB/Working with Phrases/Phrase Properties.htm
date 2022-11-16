@@ -1,0 +1,123 @@
+<head>
+<title>Phrase Properties</title>
+<style>
+h1 {font-size:16pt;}
+h2 {font-size:14pt;}
+h3 {font-size:13pt;}
+h4 {font-size:12pt;}
+p {font-size:12pt;}
+</style>
+</head>
+
+
+<body>
+<a name="top"></a><h1>Phrase Properties</h1>
+
+<p>You can see or modify the properties of the selected phrase by clicking <b>View->Phrase properties</b> on the menu or by pressing <b>Alt+Enter</b>. The Phrase Properties dialog is shown in the figure below.</p>
+
+<p><img src="../../images/phrase_properties.png" alt="Phrase Properties Dialog"/></p>
+
+<p>It has the following fields.</p>
+<table border="1">
+<tr>
+<th>Field</th>
+ <th>Field type</th>
+ <th>Editable?</th>
+ <th>Description</th>
+</tr>
+ 
+<tr>
+<td>Parent section title</td>
+ <td>Text box</td>
+<td> Read only</td>
+<td>the name of the enclosing section.</td>
+ </tr>
+
+<tr>
+<td>Position</td>
+ <Td>Text box</td>
+<Td>Read only</td>
+<td>The position of the phrase in the section.</td>
+ </tr>
+
+<tr>
+<Td>Current cursor position</td>
+ <td>Text box</td>
+<td> Read only</td>
+<td>The current position of the audio cursor in the project. In other words, time elapsed since the beginning of the project.</td>
+</tr>
+ 
+<tr>
+<Td>Ancestor section (s)</td>
+ <td>List box</td>
+ <td>Read only</td>
+<td> Lists the name of parents of the enclosing section, starting from the top-level.</td>
+</tr>
+
+<tr>
+<td>Duration</td>
+ <Td>Text box</td>
+ <Td>Read only</td>
+<td>The total duration of audio content in the phrase.</td>
+ </tr>
+
+<tr>
+<td>Phrase role</td>
+<td> Combo box</td>
+<td> Read / Write</td>
+<td>The role assigned to the phrase: “Heading” indicates that the phrase contains audio of the heading of the section; “page” informs that it is a page phrase; “Plain” signifies that the phrase contains no special role; “Silence” indicates that the phrase contains the audio of silence of the recording environment; "Custom" signifies that the phrase holds a user-specified role.</td>
+</tr>
+
+<tr>
+<td>Custom class name</td>
+ <td>Text box</td>
+ <td>Read / Write</td>
+<td> Sets the class name for the custom role. Please note that this field is enabled only if you select "Custom" in the previous combo box.</td>
+</tr>
+ 
+<tr>
+<Td>Page number details</td>
+<td>Text box</td>
+<td> Read only</td>
+ <Td>Displays the page kind and the page number of the selected page phrase. Please note that this field is visible only if the selected phrase has a page role.</td>
+ </tr>
+
+<tr>
+<td>Change page number</td>
+<Td> Check box</td>
+<td> Read / Write</td>
+<td> If checked, Obi opens the Set page number dialog after you press OK. Please note that this field is visible only if the selected phrase has a page role.</td>
+ </tr>
+
+<tr>
+<td>File name</td>
+<Td>Text box</td>
+<td> Read only</td>
+<td>Displays the name of the file containing the audio content of the phrase. This advanced property is displayed only when the <a href="../../Exploring the GUI/The Preferences Dialog/Project Preferences.htm">project preference</a> <b>Show advanced properties in properties dialog</b> is enabled.</td>
+ </tr>
+
+<tr>
+<td>Used</td>
+ <td>Check box</td>
+ <Td>Read / Write
+<td>If checked, the phrase is a Used phrase, or else it is an Unused phrase.</td>
+ </tr>
+
+<tr>
+<td>Todo</td>
+<Td> Check box</td>
+<td> Read / Write</td>
+<td> If checked, the phrase is marked as Todo phrase.</td>
+ </tr>
+</table>
+
+<h2>Related Topics</h2>
+<a href="Pages and Special Roles.htm">Pages and Special Roles</a>
+<br><a href="Changing the Todo or Used Status.htm">Changing the Todo or Used Status</a>
+<br><a href="Working with Phrases.htm">Working with Phrases</a></p>
+
+<p><a href="Deleting a phrase.htm">Prev</a> | 
+<a href="#top">Top</a> | 
+<a href="../Working with Audio/Working with Audio.htm">Next</a></p>
+
+</body> 
