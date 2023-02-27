@@ -471,8 +471,10 @@ namespace Obi
 
         public void CheckAndCreateDefaultMetadataItems(UserProfile userProfile)
         {
+            string tempCulture = "en-US";
             if (GetFirstMetadataItem(Metadata.DC_PUBLISHER) == null) SetSingleMetadataItem(Obi.Metadata.DC_PUBLISHER, userProfile.Organization);
-            if (GetFirstMetadataItem(Metadata.DC_LANGUAGE) == null) SetSingleMetadataItem(Obi.Metadata.DC_LANGUAGE, userProfile.Culture.ToString());
+            //if (GetFirstMetadataItem(Metadata.DC_LANGUAGE) == null) SetSingleMetadataItem(Obi.Metadata.DC_LANGUAGE, userProfile.Culture.ToString());
+            if (GetFirstMetadataItem(Metadata.DC_LANGUAGE) == null) SetSingleMetadataItem(Obi.Metadata.DC_LANGUAGE, tempCulture.ToString());
             if (GetFirstMetadataItem(Metadata.DC_CREATOR) == null) SetSingleMetadataItem(Obi.Metadata.DC_CREATOR, Localizer.Message("Metadata_CreatorNameForInitializing"));//it is important for DAISY 2.02
             if (GetFirstMetadataItem(Metadata.DTB_NARRATOR) == null) SetSingleMetadataItem(Obi.Metadata.DTB_NARRATOR, userProfile.Name);
 

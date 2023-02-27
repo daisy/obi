@@ -782,7 +782,6 @@
 <a1:UserProfile id="ref-15" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D4.7.0.33291%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
 <Name href="#ref-7"/>
 <Organization href="#ref-7"/>
-<Culture href="#ref-34"/>
 </a1:UserProfile>
 <SOAP-ENC:Array id="ref-20" SOAP-ENC:arrayType="xsd:int[2]">
 <item>0</item>
@@ -815,28 +814,15 @@
 <SOAP-ENC:Array id="ref-33" SOAP-ENC:arrayType="xsd:anyType[4]">
 <item href="#ref-9"/>
 </SOAP-ENC:Array>
-<a6:CultureInfo id="ref-34" xmlns:a6="http://schemas.microsoft.com/clr/ns/System.Globalization">
-<m_isReadOnly>false</m_isReadOnly>
-<compareInfo href="#ref-35"/>
-<textInfo xsi:null="1"/>
-<numInfo xsi:null="1"/>
-<dateTimeInfo xsi:null="1"/>
-<calendar xsi:null="1"/>
-<m_dataItem>0</m_dataItem>
-<cultureID>9</cultureID>
-<m_name id="ref-36">en</m_name>
-<m_useUserOverride>true</m_useUserOverride>
-</a6:CultureInfo>
 <a6:CompareInfo id="ref-35" xmlns:a6="http://schemas.microsoft.com/clr/ns/System.Globalization">
 <m_name id="ref-37">en</m_name>
-<win32LCID>0</win32LCID>
 <culture>9</culture>
 <m_SortVersion xsi:null="1"/>
 </a6:CompareInfo>
 </SOAP-ENV:Body>
 </SOAP-ENV:Envelope>
 
-</SOAP-ENV:Envelope>
+<!-- </SOAP-ENV:Envelope> -->
 /clr/ns/System.Globalization">
 <m_name id="ref-42">en</m_name>
 <win32LCID>0</win32LCID>

@@ -21,7 +21,9 @@ namespace Obi
             Settings settingsInstance = new Settings();
             Settings.InitializeDefaultSettings(settingsInstance);
             FileStream fs = File.OpenRead(profileFilePath);
-                //, FileMode.Open);
+            //, FileMode.Open);
+
+            //FileStream fs = new FileStream(profileFilePath, FileMode.Open, FileAccess.ReadWrite);
             SoapFormatter soap = new SoapFormatter();
             settingsInstance  = (Settings)soap.Deserialize(fs);
             fs.Close();
@@ -151,7 +153,9 @@ namespace Obi
                {
                    //newSettings.UserProfile.Name = this.UserProfile.Name;
                    //newSettings.UserProfile.Organization = this.UserProfile.Organization;
-                   newSettings.UserProfile.Culture = this.UserProfile.Culture;
+
+
+                   //newSettings.UserProfile.Culture = this.UserProfile.Culture;
                }
            }
            //newSettings.RecentProjects = this.RecentProjects;
@@ -633,8 +637,8 @@ namespace Obi
                    colorPreferenceMatch = true ;
                }
 
-               if ((selectedProfile == PreferenceProfiles.UserProfile || selectedProfile == PreferenceProfiles.All)
-                   && this.UserProfile.Culture == settings.UserProfile.Culture)
+               if ((selectedProfile == PreferenceProfiles.UserProfile || selectedProfile == PreferenceProfiles.All))
+                   //&& this.UserProfile.Culture == settings.UserProfile.Culture)
            {
                usersProfilePreferencesMatch= true;
            }

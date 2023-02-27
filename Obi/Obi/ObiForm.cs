@@ -4100,8 +4100,11 @@ ref string exportDirectoryEPUB3)
 
                     if (e.Message.StartsWith(Localizer.Message("project_locked").Substring(0, 120)))
                     {
-                        System.Diagnostics.Process.Start(System.IO.Path.GetDirectoryName(path));
-                    }
+                    System.Diagnostics.Process.Start("explorer.exe", System.IO.Path.GetDirectoryName(path));
+
+                    //string directoryName = Path.GetDirectoryName(path);
+                    //Process.Start(directoryName);
+                }
                     else
                     {
                         RemoveRecentProject(path);
