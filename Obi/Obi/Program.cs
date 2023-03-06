@@ -18,8 +18,8 @@ namespace Obi
             // strCulture is "hi-IN" for hindi, "en-US" for english
                 Settings settings = Settings.GetSettings();
             //settings.UserProfile = new UserProfile();
-            //string strCulture = settings.UserProfile.Culture.Name;
-            string strCulture = "en-US";
+            string strCulture = settings.UserProfile.Culture;
+            //string strCulture = "en-US";
 
             //if ( !string.IsNullOrEmpty (strCulture )
             //&& (strCulture == "en-US" || strCulture == "hi-IN" || strCulture == "fr-FR"))
@@ -40,7 +40,7 @@ namespace Obi
                 string defaultCulture = "en-US";
                 System.Threading.Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo(defaultCulture);
                 System.Threading.Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo(defaultCulture);
-                //settings.UserProfile.Culture = System.Globalization.CultureInfo.GetCultureInfo(defaultCulture);
+                settings.UserProfile.Culture = System.Globalization.CultureInfo.GetCultureInfo(defaultCulture).ToString();
                 try
                 {
                     settings.SaveSettings();

@@ -151,13 +151,13 @@ namespace Obi
            {
                if (this.UserProfile != null)
                {
-                   //newSettings.UserProfile.Name = this.UserProfile.Name;
-                   //newSettings.UserProfile.Organization = this.UserProfile.Organization;
+                    //newSettings.UserProfile.Name = this.UserProfile.Name;
+                    //newSettings.UserProfile.Organization = this.UserProfile.Organization;
 
 
-                   //newSettings.UserProfile.Culture = this.UserProfile.Culture;
+                    newSettings.UserProfile.Culture = this.UserProfile.Culture;                   
                }
-           }
+            }
            //newSettings.RecentProjects = this.RecentProjects;
            //newSettings.BookMarkNodeHierarchy = this.BookMarkNodeHierarchy;
            if (prefProfiles == PreferenceProfiles.Colors || prefProfiles == PreferenceProfiles.All)
@@ -637,8 +637,8 @@ namespace Obi
                    colorPreferenceMatch = true ;
                }
 
-               if ((selectedProfile == PreferenceProfiles.UserProfile || selectedProfile == PreferenceProfiles.All))
-                   //&& this.UserProfile.Culture == settings.UserProfile.Culture)
+               if ((selectedProfile == PreferenceProfiles.UserProfile || selectedProfile == PreferenceProfiles.All)
+                   && (this.UserProfile.Culture == settings.UserProfile.Culture))
            {
                usersProfilePreferencesMatch= true;
            }

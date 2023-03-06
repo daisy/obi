@@ -52,8 +52,10 @@ namespace Obi.Dialogs
         public Preferences ( ObiForm form, Settings settings, ObiPresentation presentation, ProjectView.TransportBar transportbar, Settings defaultSettings)
             {
             InitializeComponent ();
-            //settings.UserProfile = new UserProfile();
+            if(settings.UserProfile.Culture == null)
+              settings.UserProfile = new UserProfile();
             //if (settings.UserProfile.Culture.Name.StartsWith("en-"))
+            if (settings.UserProfile.Culture != null && settings.UserProfile.Culture.StartsWith("en-"))
             {
                 Size size = settings.PreferencesDialogSize;
                 if (size.Width >= MinimumSize.Width && size.Height >= MinimumSize.Height) Size = size;
@@ -348,9 +350,9 @@ namespace Obi.Dialogs
             //  mCultureBox.SelectedItem = mSettings.UserProfile.Culture; 
             //mCultureBox.SelectedItem =  m_Culture_Dictionary.[mSettings.UserProfile.Culture.ToString()]; 
 
-            //string mySelectedItemKey = m_Culture_Dictionary.FirstOrDefault(x => x.Value.ToString().Trim() == mSettings.UserProfile.Culture.ToString().Trim()).Key;
-            string tempCulture = "en-US"; 
-           string mySelectedItemKey = m_Culture_Dictionary.FirstOrDefault(x => x.Value.ToString().Trim() == tempCulture.Trim()).Key;
+            string mySelectedItemKey = m_Culture_Dictionary.FirstOrDefault(x => x.Value.ToString().Trim() == mSettings.UserProfile.Culture.ToString().Trim()).Key;
+           // string tempCulture = "en-US"; 
+           //string mySelectedItemKey = m_Culture_Dictionary.FirstOrDefault(x => x.Value.ToString().Trim() == tempCulture.Trim()).Key;
             mCultureBox.SelectedItem = mySelectedItemKey; 
 
             if (CultureInfo.CurrentCulture.Name.Contains("en"))
@@ -722,14 +724,13 @@ m_cb_ChooseFont.Visible = false;
             mSettings.UserProfile.Name = mFullNameTextbox.Text;
             mSettings.UserProfile.Organization = mOrganizationTextbox.Text;
             bool supportedLanguage = false;
-            string tempCulture = "en-US";
             CultureInfo tempSelectedItem = m_Culture_Dictionary[mCultureBox.SelectedItem.ToString()];
             if (tempSelectedItem.ToString() == "en-US" || tempSelectedItem.ToString() == "en" 
                 || IsResourceForLanguageExist(tempSelectedItem.ToString()))
             //|| mCultureBox.SelectedItem.ToString () == "hi-IN"
             //|| mCultureBox.SelectedItem.ToString () == "fr-FR")
             {
-                if (tempCulture.ToString() != tempSelectedItem.ToString()
+                if (mSettings.UserProfile.Culture != tempSelectedItem.ToString()
                     || tempSelectedItem.ToString() != System.Globalization.CultureInfo.CurrentCulture.ToString())
                 {
                     MessageBox.Show(Localizer.Message("Preferences_RestartForCultureChange"));
@@ -742,8 +743,8 @@ m_cb_ChooseFont.Visible = false;
                     mSettings.ObiFontIndex = -1; //@fontconfig
                 }
             }
-            //else if (mSettings.UserProfile.Culture.Name != (tempSelectedItem.Name))
-            else if (mSettings.UserProfile.Name != (tempSelectedItem.Name))
+            else if (mSettings.UserProfile.Culture != (tempSelectedItem.Name))
+            //else if (mSettings.UserProfile.Name != (tempSelectedItem.Name))
                     {
                 // show this message only if selected culture is different from application's existing culture.
                 MessageBox.Show(string.Format(Localizer.Message("Peferences_GUIDonotSupportCulture"),
@@ -753,19 +754,19 @@ m_cb_ChooseFont.Visible = false;
             if (tempSelectedItem.ToString() != "zh-CHT" && tempSelectedItem.ToString() != "zh-TW" && tempSelectedItem.ToString() != "zh-MO"
                     && tempSelectedItem.ToString() != "zh-CHS" && tempSelectedItem.ToString() != "zh-SG" && supportedLanguage)
                 {
-                    //mSettings.UserProfile.Culture = tempSelectedItem;
-                }
+                mSettings.UserProfile.Culture = tempSelectedItem.ToString();
+            }
             else
             {
                 if (tempSelectedItem.ToString() == "zh-CHT" || tempSelectedItem.ToString() == "zh-TW" || tempSelectedItem.ToString() == "zh-HK" || tempSelectedItem.ToString() == "zh-MO")
                 {
                     CultureInfo temp = new CultureInfo("zh-Hant");
-                    //mSettings.UserProfile.Culture = temp;
+                    mSettings.UserProfile.Culture = temp.ToString();
                 }
                 else if (tempSelectedItem.ToString() == "zh-CHS" || tempSelectedItem.ToString() == "zh-CN" || tempSelectedItem.ToString() == "zh-SG")
                 {
                     CultureInfo temp = new CultureInfo("zh-Hans");
-                    //mSettings.UserProfile.Culture = temp;
+                    mSettings.UserProfile.Culture = temp.ToString();
                 }
             }
                 VerifyChangeInLoadedSettings();
