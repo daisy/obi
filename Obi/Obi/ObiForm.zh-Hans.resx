@@ -565,7 +565,7 @@
     <value>删除 Del</value>
   </data>
   <data name="mDeleteToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
-    <value>Del</value>
+    <value>Delete</value>
   </data>
   <data name="mDeleteToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>247, 22</value>
@@ -1702,7 +1702,7 @@
     <value>上一页 Alt+PageUp</value>
   </data>
   <data name="mPreviousPageToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
-    <value>Alt+PgUp</value>
+    <value>Alt+PageUp</value>
   </data>
   <data name="mPreviousPageToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>207, 22</value>
@@ -1750,7 +1750,7 @@
     <value>下一页 Alt+PageDown</value>
   </data>
   <data name="mNextPageToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
-    <value>Alt+PgDn</value>
+    <value>Alt+PageDown</value>
   </data>
   <data name="mNextPageToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>207, 22</value>

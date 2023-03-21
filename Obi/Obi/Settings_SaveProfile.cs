@@ -149,7 +149,7 @@ namespace Obi
            }
            if (prefProfiles == PreferenceProfiles.UserProfile || prefProfiles == PreferenceProfiles.All)
            {
-               if (this.UserProfile != null)
+               if (this.UserProfile.Culture != null)
                {
                     //newSettings.UserProfile.Name = this.UserProfile.Name;
                     //newSettings.UserProfile.Organization = this.UserProfile.Organization;

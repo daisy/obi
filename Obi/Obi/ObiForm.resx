@@ -132,7 +132,7 @@
   </data>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="mFile_NewProjectMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
-    <value>Ctrl+N</value>
+    <value>Control+N</value>
   </data>
   <data name="mFile_NewProjectMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>281, 22</value>
@@ -144,7 +144,7 @@
     <value>New project from import Ctrl+Shift+N</value>
   </data>
   <data name="mFile_NewProjectFromImportMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
-    <value>Ctrl+Shift+N</value>
+    <value>Control+Shift+N</value>
   </data>
   <data name="mFile_NewProjectFromImportMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>281, 22</value>
@@ -159,7 +159,7 @@
     <value>Magenta</value>
   </data>
   <data name="mFile_OpenProjectMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
-    <value>Ctrl+O</value>
+    <value>Control+O</value>
   </data>
   <data name="mFile_OpenProjectMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>281, 22</value>
@@ -177,7 +177,7 @@
     <value>Magenta</value>
   </data>
   <data name="mFile_SaveProjectMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
-    <value>Ctrl+S</value>
+    <value>Control+S</value>
   </data>
   <data name="mFile_SaveProjectMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>281, 22</value>
@@ -189,7 +189,7 @@
     <value>Save project as... Ctrl+Shift+S</value>
   </data>
   <data name="mFile_SaveProjectAsMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
-    <value>Ctrl+Shift+S</value>
+    <value>Control+Shift+S</value>
   </data>
   <data name="mFile_SaveProjectAsMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>281, 22</value>
@@ -231,7 +231,7 @@
     <value>Close project Ctrl+W</value>
   </data>
   <data name="mFile_CloseProjectMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
-    <value>Ctrl+W</value>
+    <value>Control+W</value>
   </data>
   <data name="mFile_CloseProjectMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>281, 22</value>
@@ -282,7 +282,7 @@
     <value>Undo Ctrl+Z</value>
   </data>
   <data name="mUndoToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
-    <value>Ctrl+Z</value>
+    <value>Control+Z</value>
   </data>
   <data name="mUndoToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>247, 22</value>
@@ -294,7 +294,7 @@
     <value>Redo Ctrl+Y</value>
   </data>
   <data name="mRedoToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
-    <value>Ctrl+Y</value>
+    <value>Control+Y</value>
   </data>
   <data name="mRedoToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>247, 22</value>
@@ -309,7 +309,7 @@
     <value>Cut Ctrl+X</value>
   </data>
   <data name="mCutToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
-    <value>Ctrl+X</value>
+    <value>Control+X</value>
   </data>
   <data name="mCutToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>247, 22</value>
@@ -321,7 +321,7 @@
     <value>Copy Ctrl+C</value>
   </data>
   <data name="mCopyToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
-    <value>Ctrl+C</value>
+    <value>Control+C</value>
   </data>
   <data name="mCopyToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>247, 22</value>
@@ -333,7 +333,7 @@
     <value>Paste Ctrl+V</value>
   </data>
   <data name="mPasteToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
-    <value>Ctrl+V</value>
+    <value>Control+V</value>
   </data>
   <data name="mPasteToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>247, 22</value>
@@ -345,7 +345,7 @@
     <value>Paste before Ctrl+Alt+V</value>
   </data>
   <data name="mPasteBeforeToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
-    <value>Ctrl+Alt+V</value>
+    <value>Control+Alt+V</value>
   </data>
   <data name="mPasteBeforeToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>247, 22</value>
@@ -357,7 +357,7 @@
     <value>Paste inside Ctrl+Shift+V</value>
   </data>
   <data name="mPasteInsideToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
-    <value>Ctrl+Shift+V</value>
+    <value>Control+Shift+V</value>
   </data>
   <data name="mPasteInsideToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>247, 22</value>
@@ -369,7 +369,7 @@
     <value>Delete Del</value>
   </data>
   <data name="mDeleteToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
-    <value>Del</value>
+    <value>Delete</value>
   </data>
   <data name="mDeleteToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>247, 22</value>
@@ -387,7 +387,7 @@
     <value>244, 6</value>
   </data>
   <data name="mEdit_DeleteUnusedDataMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
-    <value>Ctrl+Shift+L</value>
+    <value>Control+Shift+L</value>
   </data>
   <data name="mEdit_DeleteUnusedDataMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>247, 22</value>
@@ -402,7 +402,7 @@
     <value>Find Ctrl+F</value>
   </data>
   <data name="mFindInTextToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
-    <value>Ctrl+F</value>
+    <value>Control+F</value>
   </data>
   <data name="mFindInTextToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>247, 22</value>
@@ -471,7 +471,7 @@
     <value>Show TOC view Ctrl+Alt+T</value>
   </data>
   <data name="mShowTOCViewToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
-    <value>Ctrl+Alt+T</value>
+    <value>Control+Alt+T</value>
   </data>
   <data name="mShowTOCViewToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>272, 22</value>
@@ -483,7 +483,7 @@
     <value>Show meta data view Ctrl+Alt+M</value>
   </data>
   <data name="mShowMetadataViewToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
-    <value>Ctrl+Alt+M</value>
+    <value>Control+Alt+M</value>
   </data>
   <data name="mShowMetadataViewToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>272, 22</value>
@@ -495,7 +495,7 @@
     <value>Show transport bar Ctrl+Alt+B</value>
   </data>
   <data name="mShowTransportBarToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
-    <value>Ctrl+Alt+B</value>
+    <value>Control+Alt+B</value>
   </data>
   <data name="mShowTransportBarToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>272, 22</value>
@@ -507,7 +507,7 @@
     <value>Show status bar Ctrl+Alt+U</value>
   </data>
   <data name="mShowStatusBarToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
-    <value>Ctrl+Alt+U</value>
+    <value>Control+Alt+U</value>
   </data>
   <data name="mShowStatusBarToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>272, 22</value>
@@ -550,7 +550,7 @@
     <value>Focus on transport bar Ctrl+F6</value>
   </data>
   <data name="mFocusOnTransportBarToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
-    <value>Ctrl+F6</value>
+    <value>Control+F6</value>
   </data>
   <data name="mFocusOnTransportBarToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>272, 22</value>
@@ -562,7 +562,7 @@
     <value>Synchronize views Ctrl+Alt+Y</value>
   </data>
   <data name="mSynchronizeViewsToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
-    <value>Ctrl+Alt+Y</value>
+    <value>Control+Alt+Y</value>
   </data>
   <data name="mSynchronizeViewsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>272, 22</value>
@@ -580,7 +580,7 @@
     <value>Show peak meter Ctrl+Alt+P</value>
   </data>
   <data name="mShowPeakMeterMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
-    <value>Ctrl+Alt+P</value>
+    <value>Control+Alt+P</value>
   </data>
   <data name="mShowPeakMeterMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>272, 22</value>
@@ -598,7 +598,7 @@
     <value>Show source view Ctrl+Alt+O</value>
   </data>
   <data name="mShowSourceToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
-    <value>Ctrl+Alt+O</value>
+    <value>Control+Alt+O</value>
   </data>
   <data name="mShowSourceToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>272, 22</value>
@@ -607,7 +607,7 @@
     <value>Show sou&amp;rce view</value>
   </data>
   <data name="mView_RecordingToolBarMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
-    <value>Ctrl+Alt+R</value>
+    <value>Control+Alt+R</value>
   </data>
   <data name="mView_RecordingToolBarMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>272, 22</value>
@@ -625,7 +625,7 @@
     <value>Ctrl+Alt++</value>
   </data>
   <data name="mView_ZoomInMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
-    <value>Ctrl+Alt+Oemplus</value>
+    <value>Control+Alt+Oemplus</value>
   </data>
   <data name="mView_ZoomInMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>272, 22</value>
@@ -640,7 +640,7 @@
     <value>Ctrl+Alt+-</value>
   </data>
   <data name="mView_ZoomOutMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
-    <value>Ctrl+Alt+OemMinus</value>
+    <value>Control+Alt+OemMinus</value>
   </data>
   <data name="mView_ZoomOutMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>272, 22</value>
@@ -652,7 +652,7 @@
     <value>Normal size ctrl+Alt+0</value>
   </data>
   <data name="mView_NormalSizeMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
-    <value>Ctrl+Alt+0</value>
+    <value>Control+Alt+0</value>
   </data>
   <data name="mView_NormalSizeMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>272, 22</value>
@@ -667,7 +667,7 @@
     <value>Ctrl+Alt+Shift++</value>
   </data>
   <data name="mView_AudioZoomInMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
-    <value>Ctrl+Alt+Shift+Oemplus</value>
+    <value>Control+Alt+Shift+Oemplus</value>
   </data>
   <data name="mView_AudioZoomInMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>272, 22</value>
@@ -682,7 +682,7 @@
     <value>Ctrl+Alt+Shift+-</value>
   </data>
   <data name="mView_AudioZoomOutMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
-    <value>Ctrl+Alt+Shift+OemMinus</value>
+    <value>Control+Alt+Shift+OemMinus</value>
   </data>
   <data name="mView_AudioZoomOutMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>272, 22</value>
@@ -694,7 +694,7 @@
     <value>Reset audio size Ctrl+Alt+Shift+0</value>
   </data>
   <data name="mView_ResetAudioSizeMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
-    <value>Ctrl+Alt+Shift+0</value>
+    <value>Control+Alt+Shift+0</value>
   </data>
   <data name="mView_ResetAudioSizeMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>272, 22</value>
@@ -763,7 +763,7 @@
     <value>Add section Ctrl+H</value>
   </data>
   <data name="mAddSectionToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
-    <value>Ctrl+H</value>
+    <value>Control+H</value>
   </data>
   <data name="mAddSectionToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>279, 22</value>
@@ -775,7 +775,7 @@
     <value>Add subsection Ctrl+Shift+H</value>
   </data>
   <data name="mAddSubsectionToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
-    <value>Ctrl+Shift+H</value>
+    <value>Control+Shift+H</value>
   </data>
   <data name="mAddSubsectionToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>279, 22</value>
@@ -787,7 +787,7 @@
     <value>Insert section Ctrl+Alt+H</value>
   </data>
   <data name="mInsertSectionToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
-    <value>Ctrl+Alt+H</value>
+    <value>Control+Alt+H</value>
   </data>
   <data name="mInsertSectionToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>279, 22</value>
@@ -820,7 +820,7 @@
     <value>Decrease section level Ctrl+Shift+Left</value>
   </data>
   <data name="mDecreaseSectionLevelToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
-    <value>Ctrl+Shift+Left</value>
+    <value>Control+Shift+Left</value>
   </data>
   <data name="mDecreaseSectionLevelToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>279, 22</value>
@@ -832,7 +832,7 @@
     <value>Increase section level Ctrl+Shift+Right</value>
   </data>
   <data name="mIncreaseSectionLevelToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
-    <value>Ctrl+Shift+Right</value>
+    <value>Control+Shift+Right</value>
   </data>
   <data name="mIncreaseSectionLevelToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>279, 22</value>
@@ -844,7 +844,7 @@
     <value>Split section Ctrl+Shift+Q</value>
   </data>
   <data name="mSplitSectionToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
-    <value>Ctrl+Shift+Q</value>
+    <value>Control+Shift+Q</value>
   </data>
   <data name="mSplitSectionToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>279, 22</value>
@@ -856,7 +856,7 @@
     <value>Merge with next</value>
   </data>
   <data name="mMergeWithNextSectionToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
-    <value>Ctrl+Shift+M</value>
+    <value>Control+Shift+M</value>
   </data>
   <data name="mMergeWithNextSectionToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>279, 22</value>
@@ -909,7 +909,7 @@
     <value>Section is used Ctrl+K</value>
   </data>
   <data name="mSectionIsUsedToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
-    <value>Ctrl+K</value>
+    <value>Control+K</value>
   </data>
   <data name="mSectionIsUsedToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>279, 22</value>
@@ -927,7 +927,7 @@
     <value>Add blank phrase Ctrl+B</value>
   </data>
   <data name="mAddBlankPhraseToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
-    <value>Ctrl+B</value>
+    <value>Control+B</value>
   </data>
   <data name="mAddBlankPhraseToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>240, 22</value>
@@ -939,7 +939,7 @@
     <value>Add empty pages Ctrl+Shift+B</value>
   </data>
   <data name="mAddEmptyPagesToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
-    <value>Ctrl+Shift+B</value>
+    <value>Control+Shift+B</value>
   </data>
   <data name="mAddEmptyPagesToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>240, 22</value>
@@ -951,7 +951,7 @@
     <value>Import audio files Ctrl+I</value>
   </data>
   <data name="mImportAudioFileToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
-    <value>Ctrl+I</value>
+    <value>Control+I</value>
   </data>
   <data name="mImportAudioFileToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>240, 22</value>
@@ -963,7 +963,7 @@
     <value>Split phrase Ctrl+Q</value>
   </data>
   <data name="mSplitPhraseToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
-    <value>Ctrl+Q</value>
+    <value>Control+Q</value>
   </data>
   <data name="mSplitPhraseToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>240, 22</value>
@@ -975,7 +975,7 @@
     <value>Merge with next phrase Ctrl+M</value>
   </data>
   <data name="mMergePhraseWithNextToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
-    <value>Ctrl+M</value>
+    <value>Control+M</value>
   </data>
   <data name="mMergePhraseWithNextToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>243, 22</value>
@@ -1023,7 +1023,7 @@
     <value>Crop audio Ctrl+Alt+Q</value>
   </data>
   <data name="mCropAudiotoolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
-    <value>Ctrl+Alt+Q</value>
+    <value>Control+Alt+Q</value>
   </data>
   <data name="mCropAudiotoolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>240, 22</value>
@@ -1044,7 +1044,7 @@
     <value>Phrase is used Ctrl+K</value>
   </data>
   <data name="mPhraseIsUsedToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
-    <value>Ctrl+K</value>
+    <value>Control+K</value>
   </data>
   <data name="mPhraseIsUsedToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>240, 22</value>
@@ -1080,7 +1080,7 @@
     <value>&amp;Auto fill missing pages</value>
   </data>
   <data name="m_pasteMultiplePhrasesToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
-    <value>Ctrl+Alt+Z</value>
+    <value>Control+Alt+Z</value>
   </data>
   <data name="m_pasteMultiplePhrasesToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>256, 22</value>
@@ -1104,7 +1104,7 @@
     <value>Ctrl+Alt+[</value>
   </data>
   <data name="mSkippableBeginNoteToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
-    <value>Ctrl+Alt+OemOpenBrackets</value>
+    <value>Control+Alt+OemOpenBrackets</value>
   </data>
   <data name="mSkippableBeginNoteToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>245, 22</value>
@@ -1119,7 +1119,7 @@
     <value>Ctrl+Alt+]</value>
   </data>
   <data name="mSkippableEndNoteToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
-    <value>Ctrl+Alt+Oem6</value>
+    <value>Control+Alt+Oem6</value>
   </data>
   <data name="mSkippableEndNoteToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>245, 22</value>
@@ -1134,7 +1134,7 @@
     <value>Ctrl+Alt+A</value>
   </data>
   <data name="mSkippableAddReferenceToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
-    <value>Ctrl+Alt+A</value>
+    <value>Control+Alt+A</value>
   </data>
   <data name="mSkippableAddReferenceToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>245, 22</value>
@@ -1158,7 +1158,7 @@
     <value>Ctrl+Alt+D</value>
   </data>
   <data name="mSkippableRemoveReferenceToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
-    <value>Ctrl+Alt+D</value>
+    <value>Control+Alt+D</value>
   </data>
   <data name="mSkippableRemoveReferenceToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>245, 22</value>
@@ -1191,7 +1191,7 @@
     <value>Ctrl+Alt+C</value>
   </data>
   <data name="mSkippableClearRoleFromNoteToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
-    <value>Ctrl+Alt+C</value>
+    <value>Control+Alt+C</value>
   </data>
   <data name="mSkippableClearRoleFromNoteToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>245, 22</value>
@@ -1242,7 +1242,7 @@
     <value>Heading Ctrl+Shift+D</value>
   </data>
   <data name="mPhrases_AssignRole_HeadingMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
-    <value>Ctrl+Shift+D</value>
+    <value>Control+Shift+D</value>
   </data>
   <data name="mPhrases_AssignRole_HeadingMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>193, 22</value>
@@ -1254,7 +1254,7 @@
     <value>Page Ctrl+Shift+G</value>
   </data>
   <data name="mPhrases_AssignRole_PageMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
-    <value>Ctrl+Shift+G</value>
+    <value>Control+Shift+G</value>
   </data>
   <data name="mPhrases_AssignRole_PageMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>193, 22</value>
@@ -1266,7 +1266,7 @@
     <value>Silence Ctrl+Shift+E</value>
   </data>
   <data name="mPhrases_AssignRole_SilenceMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
-    <value>Ctrl+Shift+E</value>
+    <value>Control+Shift+E</value>
   </data>
   <data name="mPhrases_AssignRole_SilenceMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>193, 22</value>
@@ -1299,7 +1299,7 @@
     <value>Clear role Ctrl+Shift+C</value>
   </data>
   <data name="mPhrases_ClearRoleMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
-    <value>Ctrl+Shift+C</value>
+    <value>Control+Shift+C</value>
   </data>
   <data name="mPhrases_ClearRoleMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>240, 22</value>
@@ -1323,7 +1323,7 @@
     <value>Selected item Ctrl+Shift+P</value>
   </data>
   <data name="mPhrases_ApplyPhraseDetectionMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
-    <value>Ctrl+Shift+P</value>
+    <value>Control+Shift+P</value>
   </data>
   <data name="mPhrases_ApplyPhraseDetectionMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>285, 22</value>
@@ -1368,7 +1368,7 @@
     <value>Ctrl+[</value>
   </data>
   <data name="mPhrases_AudioSelection_BeginAudioSelectionMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
-    <value>Ctrl+OemOpenBrackets</value>
+    <value>Control+OemOpenBrackets</value>
   </data>
   <data name="mPhrases_AudioSelection_BeginAudioSelectionMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>225, 22</value>
@@ -1383,7 +1383,7 @@
     <value>Ctrl+]</value>
   </data>
   <data name="mPhrases_AudioSelection_EndAudioSelectionMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
-    <value>Ctrl+Oem6</value>
+    <value>Control+Oem6</value>
   </data>
   <data name="mPhrases_AudioSelection_EndAudioSelectionMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>225, 22</value>
@@ -1401,7 +1401,7 @@
     <value>Next TODO phrase Ctrl+F9</value>
   </data>
   <data name="mNextTODOPhraseToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
-    <value>Ctrl+F9</value>
+    <value>Control+F9</value>
   </data>
   <data name="mNextTODOPhraseToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>269, 22</value>
@@ -1413,7 +1413,7 @@
     <value>Previous TODO phrase Ctrl+Shift+F9</value>
   </data>
   <data name="mPreviousTODOPhraseToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
-    <value>Ctrl+Shift+F9</value>
+    <value>Control+Shift+F9</value>
   </data>
   <data name="mPreviousTODOPhraseToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>269, 22</value>
@@ -1425,7 +1425,7 @@
     <value>Page / Phrase Ctrl+G</value>
   </data>
   <data name="m_GoToPageToolStrip.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
-    <value>Ctrl+G</value>
+    <value>Control+G</value>
   </data>
   <data name="m_GoToPageToolStrip.Size" type="System.Drawing.Size, System.Drawing">
     <value>269, 22</value>
@@ -1440,7 +1440,7 @@
     <value>Ctrl+F3</value>
   </data>
   <data name="m_GoToCollectSpecialPhrasesToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
-    <value>Ctrl+F3</value>
+    <value>Control+F3</value>
   </data>
   <data name="m_GoToCollectSpecialPhrasesToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>269, 22</value>
@@ -1479,7 +1479,7 @@
     <value>Play all Ctrl+Shift+Space</value>
   </data>
   <data name="mPlayAllToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
-    <value>Ctrl+Shift+Space</value>
+    <value>Control+Shift+Space</value>
   </data>
   <data name="mPlayAllToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>208, 22</value>
@@ -1551,7 +1551,7 @@
     <value>Stop Ctrl+Space</value>
   </data>
   <data name="mStopToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
-    <value>Ctrl+Space</value>
+    <value>Control+Space</value>
   </data>
   <data name="mStopToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>176, 22</value>
@@ -1563,7 +1563,7 @@
     <value>Normal speed Ctrl+0</value>
   </data>
   <data name="NormalSpeedtoolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
-    <value>Ctrl+0</value>
+    <value>Control+0</value>
   </data>
   <data name="NormalSpeedtoolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>238, 22</value>
@@ -1584,7 +1584,7 @@
     <value>Ctrl++</value>
   </data>
   <data name="SpeedUptoolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
-    <value>Ctrl+Oemplus</value>
+    <value>Control+Oemplus</value>
   </data>
   <data name="SpeedUptoolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>238, 22</value>
@@ -1599,7 +1599,7 @@
     <value>Ctrl+-</value>
   </data>
   <data name="mSpeedDowntoolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
-    <value>Ctrl+OemMinus</value>
+    <value>Control+OemMinus</value>
   </data>
   <data name="mSpeedDowntoolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>238, 22</value>
@@ -1617,7 +1617,7 @@
     <value>Preview from... Ctrl+P</value>
   </data>
   <data name="mPreviewFromToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
-    <value>Ctrl+P</value>
+    <value>Control+P</value>
   </data>
   <data name="mPreviewFromToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>194, 22</value>
@@ -1647,7 +1647,7 @@
     <value>Start Monitoring Ctrl+R</value>
   </data>
   <data name="mStartMonitoringToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
-    <value>Ctrl+R</value>
+    <value>Control+R</value>
   </data>
   <data name="mStartMonitoringToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>267, 22</value>
@@ -1659,7 +1659,7 @@
     <value>Start recording Ctrl+R</value>
   </data>
   <data name="mStartRecordingToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
-    <value>Ctrl+R</value>
+    <value>Control+R</value>
   </data>
   <data name="mStartRecordingToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>267, 22</value>
@@ -1671,7 +1671,7 @@
     <value>Start Recording directly ctrl+shift+r</value>
   </data>
   <data name="mStartRecordingDirectlyToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
-    <value>Ctrl+Shift+R</value>
+    <value>Control+Shift+R</value>
   </data>
   <data name="mStartRecordingDirectlyToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>267, 22</value>
@@ -1776,7 +1776,7 @@
     <value>Previous page Alt+PageUp</value>
   </data>
   <data name="mPreviousPageToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
-    <value>Alt+PgUp</value>
+    <value>Alt+PageUp</value>
   </data>
   <data name="mPreviousPageToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>207, 22</value>
@@ -1824,7 +1824,7 @@
     <value>Next page Alt+PageDown</value>
   </data>
   <data name="mNextPageToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
-    <value>Alt+PgDn</value>
+    <value>Alt+PageDown</value>
   </data>
   <data name="mNextPageToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>207, 22</value>
@@ -1848,7 +1848,7 @@
     <value>204, 6</value>
   </data>
   <data name="mPlayOnNavigateToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
-    <value>Ctrl+U</value>
+    <value>Control+U</value>
   </data>
   <data name="mPlayOnNavigateToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>207, 22</value>
@@ -1875,7 +1875,7 @@
     <value>Ctrl+,</value>
   </data>
   <data name="mRewindToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
-    <value>Ctrl+Oemcomma</value>
+    <value>Control+Oemcomma</value>
   </data>
   <data name="mRewindToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>176, 22</value>
@@ -1890,7 +1890,7 @@
     <value>Ctrl+.</value>
   </data>
   <data name="mFastForwardToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
-    <value>Ctrl+OemPeriod</value>
+    <value>Control+OemPeriod</value>
   </data>
   <data name="mFastForwardToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>176, 22</value>
@@ -1908,7 +1908,7 @@
     <value>Preferences Ctrl+Alt+F</value>
   </data>
   <data name="mTools_PreferencesMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
-    <value>Ctrl+Alt+F</value>
+    <value>Control+Alt+F</value>
   </data>
   <data name="mTools_PreferencesMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>230, 22</value>
@@ -1932,7 +1932,7 @@
     <value>Change Volume Ctrl+Shift+U</value>
   </data>
   <data name="m_ChangeVolumeToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
-    <value>Ctrl+Shift+U</value>
+    <value>Control+Shift+U</value>
   </data>
   <data name="m_ChangeVolumeToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>234, 22</value>
@@ -1944,7 +1944,7 @@
     <value>Fade In Ctrl+Shift+I</value>
   </data>
   <data name="m_FadeInToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
-    <value>Ctrl+Shift+I</value>
+    <value>Control+Shift+I</value>
   </data>
   <data name="m_FadeInToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>234, 22</value>
@@ -1956,7 +1956,7 @@
     <value>Fade Out Ctrl+Shift+O</value>
   </data>
   <data name="m_FadeOutToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
-    <value>Ctrl+Shift+O</value>
+    <value>Control+Shift+O</value>
   </data>
   <data name="m_FadeOutToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>234, 22</value>
@@ -1968,7 +1968,7 @@
     <value>Normalize Ctrl+Shift+Z</value>
   </data>
   <data name="m_NormalizeToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
-    <value>Ctrl+Shift+Z</value>
+    <value>Control+Shift+Z</value>
   </data>
   <data name="m_NormalizeToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>234, 22</value>
@@ -1989,7 +1989,7 @@
     <value>Noise Reduction Ctrl+Shift+Y</value>
   </data>
   <data name="m_NoiseReductionToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
-    <value>Ctrl+Shift+Y</value>
+    <value>Control+Shift+Y</value>
   </data>
   <data name="m_NoiseReductionToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>234, 22</value>
@@ -2001,7 +2001,7 @@
     <value>Audio Mixer Ctrl+Shift+X</value>
   </data>
   <data name="m_AudioMixerToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
-    <value>Ctrl+Shift+X</value>
+    <value>Control+Shift+X</value>
   </data>
   <data name="m_AudioMixerToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>234, 22</value>
@@ -2019,7 +2019,7 @@
     <value>Export Audio  Ctrl+Alt+E</value>
   </data>
   <data name="mTools_ExportSelectedAudioMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
-    <value>Ctrl+Alt+E</value>
+    <value>Control+Alt+E</value>
   </data>
   <data name="mTools_ExportSelectedAudioMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>230, 22</value>
@@ -2034,7 +2034,7 @@
     <value>Complete Cleanup</value>
   </data>
   <data name="m_Tools_CompleteCleanupToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
-    <value>Ctrl+L</value>
+    <value>Control+L</value>
   </data>
   <data name="m_Tools_CompleteCleanupToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>215, 22</value>
@@ -2046,7 +2046,7 @@
     <value>Quick Cleanup</value>
   </data>
   <data name="m_Tools_QuickCleanupToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
-    <value>Ctrl+Alt+L</value>
+    <value>Control+Alt+L</value>
   </data>
   <data name="m_Tools_QuickCleanupToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>215, 22</value>
@@ -2070,7 +2070,7 @@
     <value>Export as DAISY Ctrl+E</value>
   </data>
   <data name="mTools_ExportAsDAISYMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
-    <value>Ctrl+E</value>
+    <value>Control+E</value>
   </data>
   <data name="mTools_ExportAsDAISYMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>230, 22</value>
