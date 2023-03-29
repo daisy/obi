@@ -1594,11 +1594,11 @@ namespace Obi
                 try
                 {
                     if (!IsEnglishVersionSelected)
-                        System.Diagnostics.Process.Start(
+                        System.Diagnostics.Process.Start("explorer.exe",
                             (new Uri(Path.Combine(Path.GetDirectoryName(GetType().Assembly.Location),
                                                   Localizer.Message("CHMhelp_file_name")))).ToString());
                     else
-                        System.Diagnostics.Process.Start(
+                        System.Diagnostics.Process.Start("explorer.exe",
                         (new Uri(Path.Combine(Path.GetDirectoryName(GetType().Assembly.Location),
                                               "Obi Help.chm"))).ToString());
                 }
