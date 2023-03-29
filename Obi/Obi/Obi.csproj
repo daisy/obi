@@ -41,7 +41,7 @@
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <LangVersion>default</LangVersion>
     <NoWarn>1607</NoWarn>
-    <Deterministic>False</Deterministic>
+    <Deterministic>True</Deterministic>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
     <OutputPath>bin\x86\Debug\</OutputPath>
@@ -52,7 +52,7 @@
     <OutputPath>bin\x86\Release\</OutputPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-    <Deterministic>False</Deterministic>
+    <Deterministic>True</Deterministic>
     <Optimize>False</Optimize>
   </PropertyGroup>
   <ItemGroup>
