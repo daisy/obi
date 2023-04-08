@@ -107,7 +107,7 @@ namespace Obi.UserControls
             {
                 mPPMeter.SetValue(i, Double.NegativeInfinity);
             }
-              //  mPPMeter.ForceFullFallback();
+                mPPMeter.ForceFullFallback();
                 mPeakOverloadObject = null;
             }
             

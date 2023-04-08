@@ -1,0 +1,221 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <PublishUrlHistory>C:\Documents and Settings\Julien Quint\My Documents\Urakawa\trunk\urakawa\application\dist\weekly\20061211\</PublishUrlHistory>
+    <InstallUrlHistory />
+    <SupportUrlHistory />
+    <UpdateUrlHistory />
+    <BootstrapperUrlHistory />
+    <ErrorReportUrlHistory />
+    <FallbackCulture>en-US</FallbackCulture>
+    <VerifyUploadedFiles>false</VerifyUploadedFiles>
+  </PropertyGroup>
+  <PropertyGroup>
+    <EnableSecurityDebugging>false</EnableSecurityDebugging>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Update="Audio\PeakMeterForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Dialogs\About.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Dialogs\AdvancePreferencesSettings.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Dialogs\AssignSpecialNodeMark.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Dialogs\AssociateSpecialNode.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Dialogs\AudioMixer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Dialogs\AudioProcessingDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Dialogs\AudioProcessingNewDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Dialogs\AudioProcessingNoiseReduction.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Dialogs\AudioSettings.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Dialogs\AutoPageGeneration.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Dialogs\CheckUpdates.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Dialogs\chooseDaisy3orDaisy202.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Dialogs\ChooseMergeOrChangeLevel.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Dialogs\ChoosePageAudio.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Dialogs\DownloadFile.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Dialogs\EditRoles.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Dialogs\EmptySection.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Dialogs\Epub3Validator.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Dialogs\ExportAdvance.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Dialogs\ExportDirectory.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Dialogs\ExtendedMessageToAssociate.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Dialogs\GoToPageOrPhrase.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Dialogs\Help.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Dialogs\ImportFileSplitSize.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Dialogs\MergeProject.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Dialogs\MultipleOptionDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Dialogs\NewProject.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Dialogs\ObiConfiguration.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Dialogs\PhraseProperties.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Dialogs\Preferences.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Dialogs\ProfileDescription.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Dialogs\ProgressDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Dialogs\ProjectProperties.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Dialogs\ReportDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Dialogs\SaveProjectAsDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Dialogs\SectionProperties.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Dialogs\SelectMergeSectionRange.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Dialogs\SelectPhraseDetectionSections.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Dialogs\SentenceDetection.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Dialogs\SetPageNumber.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Dialogs\ShowCuePoints.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Dialogs\ShowSource.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Dialogs\SpecialPhraseList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Dialogs\TimeElapsed.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Dialogs\UserRegistration.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Dialogs\WelcomeDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="ObiForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="PPMBar.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Update="PPMeter.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="UserControls\RecordingToolBarForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Update="Dialogs\ExtendedMessageToAssociate.resx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Update="ObiForm.ar.resx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Update="ObiForm.de.resx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Update="ObiForm.es.resx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Update="ObiForm.fi.resx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Update="ObiForm.fr.resx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Update="ObiForm.hi.resx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Update="ObiForm.ja.resx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Update="ObiForm.pt.resx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Update="ObiForm.resx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Update="ObiForm.ta.resx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Update="ObiForm.zh-Hans.resx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Update="ObiForm.zh-Hant.resx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Update="PPMeter.resx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Update="ProjectView\ContentView.de.resx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Update="ProjectView\ContentView.resx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+</Project>

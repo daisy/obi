@@ -131,7 +131,6 @@
       <SubType>UserControl</SubType>
     </Compile>
     <BaseApplicationManifest Include="Properties\app.manifest" />
-    <None Include="ClassDiagram1.cd" />
     <None Update="EmptyProject.obi">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
