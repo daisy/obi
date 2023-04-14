@@ -17,6 +17,7 @@ using urakawa.daisy.import;
 using AudioLib;
 //using ICSharpCode.SharpZipLib.Zip;
 using Jaime.Olivares;
+using System.Text;
 
 namespace Obi.ImportExport
 {
@@ -771,6 +772,10 @@ namespace Obi.ImportExport
             );
 
             FileDataProvider.TryDeleteDirectory(unzipDirectory, true);
+
+            // Encoding is included manually as .NET 6 does not support many encoding types by default which .Net Framework does. 
+            CodePagesEncodingProvider.Instance.GetEncoding(437);
+            Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
 
             ZipStorer zip = ZipStorer.Open(File.OpenRead(EPUBFullPath), FileAccess.Read);
 
