@@ -1622,7 +1622,7 @@ namespace Obi
             private void mHelp_ReportBugMenuItem_Click(object sender, EventArgs e)
             {
                 Uri url = new Uri(Localizer.Message("Obi_Wiki_Url"));
-                System.Diagnostics.Process.Start(url.ToString());
+                System.Diagnostics.Process.Start("explorer.exe",url.ToString());
             }
 
             // Help > About
