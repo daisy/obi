@@ -172,6 +172,12 @@
     <EmbeddedResource Update="Dialogs\ExtendedMessageToAssociate.resx">
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Update="messages.hi.resx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Update="messages.resx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Update="ObiForm.ar.resx">
       <SubType>Designer</SubType>
     </EmbeddedResource>
