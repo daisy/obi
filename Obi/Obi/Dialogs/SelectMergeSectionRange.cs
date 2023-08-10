@@ -354,7 +354,7 @@ namespace Obi.Dialogs
             {               
                 List<SectionNode> tempList = new List<SectionNode>();
                 tempList = listBoxSelectionIsContinuous();
-                if (tempList.Count != 0)
+                if (tempList != null && tempList.Count != 0)
                 {
                     int LevelOfFirstSelectedSection = tempList[0].Level;
 
