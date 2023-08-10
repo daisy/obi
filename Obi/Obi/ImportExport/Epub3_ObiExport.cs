@@ -24,6 +24,7 @@ using urakawa.property.channel;
 using urakawa.property.xml;
 using urakawa.xuk;
 using XmlAttribute = urakawa.property.xml.XmlAttribute;
+using System.Text;
 
 namespace Obi.ImportExport
 {
@@ -1783,7 +1784,11 @@ string meta_InfPath = Path.Combine(m_EpubParentDirectoryPath, m_Meta_infFileName
             }
             
             string EPUBFilePath = m_EpubParentDirectoryPath+ ".epub";
-            
+
+            // Encoding is included manually as .NET 6 does not support many encoding types by default which .Net Framework does. 
+            CodePagesEncodingProvider.Instance.GetEncoding(437);
+            Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
+
             urakawa.daisy.export.Epub3_Export.ZipEpub(EPUBFilePath, m_EpubParentDirectoryPath);            
             
         }
