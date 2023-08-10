@@ -375,7 +375,7 @@
     <value>அழி Del</value>
   </data>
   <data name="mDeleteToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
-    <value>Del</value>
+    <value>Delete</value>
   </data>
   <data name="mDeleteToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>247, 22</value>
@@ -1657,7 +1657,7 @@
     <value>முந்தைய பக்கம்  Alt+PageUp</value>
   </data>
   <data name="mPreviousPageToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
-    <value>Alt+PgUp</value>
+    <value>Alt+PageUp</value>
   </data>
   <data name="mPreviousPageToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>207, 22</value>
@@ -1693,7 +1693,7 @@
     <value>அடுத்த பக்கம் Alt+PageDown</value>
   </data>
   <data name="mNextPageToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
-    <value>Alt+PgDn</value>
+    <value>Alt+PageDown</value>
   </data>
   <data name="mNextPageToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>207, 22</value>
