@@ -1594,11 +1594,11 @@ namespace Obi
                 try
                 {
                     if (!IsEnglishVersionSelected)
-                        System.Diagnostics.Process.Start(
+                        System.Diagnostics.Process.Start("explorer.exe",
                             (new Uri(Path.Combine(Path.GetDirectoryName(GetType().Assembly.Location),
                                                   Localizer.Message("CHMhelp_file_name")))).ToString());
                     else
-                        System.Diagnostics.Process.Start(
+                        System.Diagnostics.Process.Start("explorer.exe",
                         (new Uri(Path.Combine(Path.GetDirectoryName(GetType().Assembly.Location),
                                               "Obi Help.chm"))).ToString());
                 }
@@ -1622,7 +1622,7 @@ namespace Obi
             private void mHelp_ReportBugMenuItem_Click(object sender, EventArgs e)
             {
                 Uri url = new Uri(Localizer.Message("Obi_Wiki_Url"));
-                System.Diagnostics.Process.Start(url.ToString());
+                System.Diagnostics.Process.Start("explorer.exe",url.ToString());
             }
 
             // Help > About
@@ -4100,8 +4100,8 @@ ref string exportDirectoryEPUB3)
 
                     if (e.Message.StartsWith(Localizer.Message("project_locked").Substring(0, 120)))
                     {
-                        System.Diagnostics.Process.Start(System.IO.Path.GetDirectoryName(path));
-                    }
+                    System.Diagnostics.Process.Start("explorer.exe", System.IO.Path.GetDirectoryName(path));
+                }
                     else
                     {
                         RemoveRecentProject(path);

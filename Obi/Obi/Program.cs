@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.IO;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
@@ -17,11 +17,13 @@ namespace Obi
             //language switch, loads culture from settings 
             // strCulture is "hi-IN" for hindi, "en-US" for english
                 Settings settings = Settings.GetSettings();
-            string strCulture = settings.UserProfile.Culture.Name;
+            //settings.UserProfile = new UserProfile();
+            string strCulture = settings.UserProfile.Culture;
+            //string strCulture = "en-US";
 
             //if ( !string.IsNullOrEmpty (strCulture )
-                //&& (strCulture == "en-US" || strCulture == "hi-IN" || strCulture == "fr-FR"))
-                                //{
+            //&& (strCulture == "en-US" || strCulture == "hi-IN" || strCulture == "fr-FR"))
+            //{
             bool errorInSettingCulture = false;
             try
             {
@@ -38,7 +40,7 @@ namespace Obi
                 string defaultCulture = "en-US";
                 System.Threading.Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo(defaultCulture);
                 System.Threading.Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo(defaultCulture);
-                settings.UserProfile.Culture = System.Globalization.CultureInfo.GetCultureInfo(defaultCulture);
+                settings.UserProfile.Culture = System.Globalization.CultureInfo.GetCultureInfo(defaultCulture).ToString();
                 try
                 {
                     settings.SaveSettings();

@@ -13,7 +13,7 @@ namespace Obi
     {
         public string Name;          // user name
         public string Organization;  // user organization
-        public CultureInfo Culture;  // user language
+        public string Culture;  // user language
 
         /// <summary>
         /// Create a new user profile from the OS settings.
@@ -22,7 +22,7 @@ namespace Obi
         {
             Name = Environment.UserName;
             Organization = Localizer.Message("default_organization");
-            Culture = Thread.CurrentThread.CurrentCulture;
+            Culture = Thread.CurrentThread.CurrentCulture.ToString();
         }
     }
 }

@@ -21,7 +21,9 @@ namespace Obi
             Settings settingsInstance = new Settings();
             Settings.InitializeDefaultSettings(settingsInstance);
             FileStream fs = File.OpenRead(profileFilePath);
-                //, FileMode.Open);
+            //, FileMode.Open);
+
+            //FileStream fs = new FileStream(profileFilePath, FileMode.Open, FileAccess.ReadWrite);
             SoapFormatter soap = new SoapFormatter();
             settingsInstance  = (Settings)soap.Deserialize(fs);
             fs.Close();
@@ -147,13 +149,15 @@ namespace Obi
            }
            if (prefProfiles == PreferenceProfiles.UserProfile || prefProfiles == PreferenceProfiles.All)
            {
-               if (this.UserProfile != null)
+               if (this.UserProfile.Culture != null)
                {
-                   //newSettings.UserProfile.Name = this.UserProfile.Name;
-                   //newSettings.UserProfile.Organization = this.UserProfile.Organization;
-                   newSettings.UserProfile.Culture = this.UserProfile.Culture;
+                    //newSettings.UserProfile.Name = this.UserProfile.Name;
+                    //newSettings.UserProfile.Organization = this.UserProfile.Organization;
+
+
+                    newSettings.UserProfile.Culture = this.UserProfile.Culture;                   
                }
-           }
+            }
            //newSettings.RecentProjects = this.RecentProjects;
            //newSettings.BookMarkNodeHierarchy = this.BookMarkNodeHierarchy;
            if (prefProfiles == PreferenceProfiles.Colors || prefProfiles == PreferenceProfiles.All)
@@ -634,7 +638,7 @@ namespace Obi
                }
 
                if ((selectedProfile == PreferenceProfiles.UserProfile || selectedProfile == PreferenceProfiles.All)
-                   && this.UserProfile.Culture == settings.UserProfile.Culture)
+                   && (this.UserProfile.Culture == settings.UserProfile.Culture))
            {
                usersProfilePreferencesMatch= true;
            }
