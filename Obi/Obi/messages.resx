@@ -3213,7 +3213,7 @@ You can do it later also from the project tab of preferences dialog.</value>
     <value>Operation is cancelled in between so Noise Reduction is completed till section {0}</value>
   </data>
   <data name="CueCsvColumnHeading" xml:space="preserve">
-    <value>File Name,TODO Timing(in seconds),TODO Timing(h:m:s:ms)</value>
+    <value>File Name,TODO Timing(in seconds),TODO Timing(h:m:s:ms),Comment</value>
   </data>
   <data name="CueCsvName" xml:space="preserve">
     <value>//ToDoTimingInAudioFiles.csv</value>

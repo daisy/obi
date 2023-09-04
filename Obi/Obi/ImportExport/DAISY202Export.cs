@@ -504,8 +504,12 @@ namespace Obi.ImportExport
                            string timeToToDoPhraseInHMSFormat = string.Format("{0:D2}h:{1:D2}m:{2:D2}s:{3:D3}ms", t.Hours, t.Minutes, t.Seconds, t.Milliseconds);
                            if (m_CreateCSVForCues)
                            {
-                               string strToDoInfo = audioFileName + " , " + timeToToDoPhrase.ToString() + " , " + timeToToDoPhraseInHMSFormat; 
-                               if (!m_ToDoPhraseTimeings.Contains(strToDoInfo))
+                               string strToDoInfo = audioFileName + " , " + timeToToDoPhrase.ToString() + " , " + timeToToDoPhraseInHMSFormat;
+                                if (((EmptyNode)phrase).CommentText != String.Empty)
+                                {
+                                    strToDoInfo += " , " + ((EmptyNode)phrase).CommentText;
+                                }
+                                if (!m_ToDoPhraseTimeings.Contains(strToDoInfo))
                                {
                                    m_ToDoPhraseTimeings.Add(strToDoInfo);
                                    Console.WriteLine(strToDoInfo);

@@ -556,10 +556,15 @@ if (urakawa.data.DataProviderFactory.CSS_EXTENSION.Equals(ext, StringComparison.
                         if (m_CreateCSVForCues)
                         {
                             string strToDoInfo = audioFileName + " , " + timeToToDoPhrase.ToString() + " , " + timeToToDoPhraseInHMSFormat;
+                            if (((EmptyNode)n).CommentText != String.Empty)
+                            {
+                                strToDoInfo +=  " , " + ((EmptyNode)n).CommentText;
+                            }
                             if (!m_ToDoPhraseTimeings.Contains(strToDoInfo))
                             {
                                 m_ToDoPhraseTimeings.Add(strToDoInfo);
                             }
+                            
                         }
 
                         if (m_AddCuePoints)
