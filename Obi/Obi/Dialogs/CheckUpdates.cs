@@ -219,7 +219,7 @@ namespace Obi.Dialogs
                 {
                     if (!string.IsNullOrEmpty(m_ReleaseUrl))
                     {
-                        System.Diagnostics.Process.Start(m_ReleaseUrl);
+                        System.Diagnostics.Process.Start("explorer.exe", m_ReleaseUrl);
                         m_Settings.Project_LatestVersionCheckedByUpdate = m_AvailableVersion;
                         m_Settings.SaveSettings();
                     }
