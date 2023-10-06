@@ -3300,4 +3300,18 @@ You can do it later also from the project tab of preferences dialog.</value>
   <data name="Audio_DeleteFollowingPhrasesWhilePreviewBeforeRecording" xml:space="preserve">
     <value>Delete following phrases while doing preview before recording</value>
   </data>
+  <data name="ProfileNotCompatible" xml:space="preserve">
+    <value>Profile loading failed. If profile is made in older versions of Obi then you need to make them compatible with this version of Obi.If you want to convert press yes.</value>
+  </data>
+  <data name="ProfileSaveDialogTitle" xml:space="preserve">
+    <value>Select location of profile</value>
+  </data> 
+  <data name="ProfileCreated" xml:space="preserve">
+    <value>Compatible profile is created. You can import this profile in Obi.</value>
+  </data>
+  
+  <data name="PofileNotCreated" xml:space="preserve">
+    <value>Compatable profile cannot be created as profile loaded is not in correct format</value>
+  </data>
+  
 </root>

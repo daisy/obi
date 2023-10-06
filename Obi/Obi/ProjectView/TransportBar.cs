@@ -4623,6 +4623,7 @@ SelectionChangedPlaybackEnabled = false;
             if (this.MonitorContinuously) this.MonitorContinuously = false;
             if (this.IsRecorderActive || this.IsPlayerActive) this.Stop();
             Settings saveProfile = Settings.GetSettingsFromSavedProfile(profilePath);
+            if (saveProfile == null) return;
             saveProfile.CopyPropertiesToExistingSettings(mView.ObiForm.Settings, PreferenceProfiles.Audio,ProfileName);
             saveProfile.CopyPropertiesToExistingSettings(mView.ObiForm.Settings, PreferenceProfiles.Colors,ProfileName);
             saveProfile.SettingsName = ProfileName;
