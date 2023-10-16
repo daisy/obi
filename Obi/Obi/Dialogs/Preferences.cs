@@ -11,6 +11,7 @@ using AudioLib;
 using Obi.Audio;
 using System.Linq;
 using Microsoft.AspNetCore.Mvc;
+using System.IO;
 
 namespace Obi.Dialogs
     {
@@ -2802,12 +2803,12 @@ m_cb_ChooseFont.Visible = false;
         }
 
         private Settings m_ProfileLoaded = null;
-        private void LoadPreferenceProfile (string profilePath )
+        private void LoadPreferenceProfile (string profilePath,bool IsImport = false)
         {
             
             if (profilePath != null && System.IO.File.Exists(profilePath))
             {
-                Settings saveProfile = Settings.GetSettingsFromSavedProfile(profilePath);
+                Settings saveProfile = Settings.GetSettingsFromSavedProfile(profilePath,IsImport);
                 if (saveProfile == null) return;
                 string profileName = "";
                 if (m_cb_SelectProfile.SelectedIndex >= 0 && m_cb_SelectProfile.SelectedIndex < m_cb_SelectProfile.Items.Count)
@@ -3115,15 +3116,18 @@ m_cb_ChooseFont.Visible = false;
                             return;
                         }
                     }
-                   
-                    LoadPreferenceProfile(fileDialog.FileName);
+
+                    LoadPreferenceProfile(fileDialog.FileName, true);
                     mTransportBar.ShowSwitchProfileContextMenu();
                     // copy the profile file to custom profile directory
                     string customProfilesDirectory = GetCustomProfilesDirectory(true);
                     if (!System.IO.Directory.Exists(customProfilesDirectory)) System.IO.Directory.CreateDirectory(customProfilesDirectory);
                     string newCustomFilePath = System.IO.Path.Combine(customProfilesDirectory,
                         System.IO.Path.GetFileName(fileDialog.FileName));
-                    System.IO.File.Copy(fileDialog.FileName, newCustomFilePath, true);
+                    if (!File.Exists(newCustomFilePath))
+                    {
+                        System.IO.File.Copy(fileDialog.FileName, newCustomFilePath, true);
+                    }
                     if (!m_cb_SelectProfile.Items.Contains(System.IO.Path.GetFileNameWithoutExtension(newCustomFilePath)))
                     {
                         m_cb_SelectProfile.Items.Add(System.IO.Path.GetFileNameWithoutExtension(newCustomFilePath));

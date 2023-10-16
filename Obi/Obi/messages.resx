@@ -3307,7 +3307,7 @@ You can do it later also from the project tab of preferences dialog.</value>
     <value>Select location of profile</value>
   </data> 
   <data name="ProfileCreated" xml:space="preserve">
-    <value>Compatible profile is created. You can import this profile in Obi.</value>
+    <value>Compatible profile is created. Your old profile is saved at location {0}.</value>
   </data>
   
   <data name="PofileNotCreated" xml:space="preserve">

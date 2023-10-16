@@ -20,7 +20,7 @@ namespace Obi
    public partial class Settings
     {
 
-        public static Settings GetSettingsFromSavedProfile (string profileFilePath)
+        public static Settings GetSettingsFromSavedProfile (string profileFilePath, bool IsImport = false)
         {
             Settings settingsInstance = new Settings();
             Settings.InitializeDefaultSettings(settingsInstance);
@@ -39,7 +39,6 @@ namespace Obi
 
                 if (dialogResult == DialogResult.Yes)
                 {
-
                     string[] fileContent = File.ReadAllLines(profileFilePath);
                     bool IsCulture = false;
                     bool IsCompare = false;
@@ -157,15 +156,41 @@ namespace Obi
 
                     if (IsXmlModified)
                     {
-                        SaveFileDialog fileDialog = new SaveFileDialog();
-                        fileDialog.Filter = "*.xml|*.XML";
-                        fileDialog.Title = Localizer.Message("ProfileSaveDialogTitle");
-                        if (fileDialog.ShowDialog() == DialogResult.OK)
+                        if (!IsImport)
                         {
-                            string profileFilePathNew = fileDialog.FileName;
-                            File.WriteAllLines(profileFilePathNew, fileContent);
-                            MessageBox.Show(Localizer.Message("ProfileCreated"),Localizer.Message("Caption_Information"));
+                            var pathOfMyDoc = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+
+                            string pathOfOldProfile = Path.Combine(pathOfMyDoc, "Old Obi Profiles");
+                            if (!System.IO.Directory.Exists(pathOfOldProfile))
+                            {
+                                System.IO.Directory.CreateDirectory(pathOfOldProfile);
+                            }
+                            if (System.IO.Directory.Exists(pathOfOldProfile))
+                            {
+                                string destinationFilePath = Path.Combine(pathOfOldProfile, Path.GetFileName(profileFilePath));
+                                if (!File.Exists(destinationFilePath))
+                                    File.Copy(profileFilePath, destinationFilePath);
+                            }
+
+                            File.WriteAllLines(profileFilePath, fileContent);
+
+                            MessageBox.Show(string.Format(Localizer.Message("ProfileCreated"), pathOfOldProfile), Localizer.Message("Caption_Information"));
                         }
+                        else
+                        {
+                            string permanentSettingsDirectory = Directory.GetParent(Settings_Permanent.GetSettingFilePath()).ToString();
+                            string filesDirectory = "profiles";
+                            string customProfilesDirectory = Path.Combine(permanentSettingsDirectory, filesDirectory);
+                            if (!Directory.Exists(customProfilesDirectory)) Directory.CreateDirectory(customProfilesDirectory);
+                            string newCustomFilePath = Path.Combine(customProfilesDirectory, Path.GetFileName(profileFilePath));
+
+                            File.WriteAllLines(newCustomFilePath, fileContent);
+                            profileFilePath = newCustomFilePath;
+
+                        }
+                        Settings saveSettings =  GetSettingsFromSavedProfile(profileFilePath);
+                        return saveSettings;
+
                     }
                     else
                     {
