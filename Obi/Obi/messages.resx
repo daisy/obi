@@ -3314,4 +3314,8 @@ You can do it later also from the project tab of preferences dialog.</value>
     <value>Compatable profile cannot be created as profile loaded is not in correct format</value>
   </data>
   
+  <data name="TodoTimeFromStartOfSection" xml:space="preserve">
+    <value> at {0} from start of the section</value>
+  </data>
+  
 </root>

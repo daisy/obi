@@ -90,8 +90,30 @@ namespace Obi.Dialogs
                             case 0:
                                 if (n is EmptyNode && ((EmptyNode) n).TODO)
                                 {
-                                    sectionName = ((EmptyNode) n).ParentAs<SectionNode>().Label + " : " +
-                                                  ((EmptyNode) n);
+                                    SectionNode s = ((EmptyNode)n).ParentAs<SectionNode>();
+                                    double timeToToDoPhrase = 0;
+                                    for (int i = 0; i < s.PhraseChildCount; i++)
+                                    {
+                                        if (s.PhraseChild(i) == n) break;
+                                        timeToToDoPhrase += s.PhraseChild(i).Duration;
+                                    }
+                                    //timeToToDoPhrase += ((EmptyNode)n).TODOCursorPosition;
+                                    timeToToDoPhrase = timeToToDoPhrase / 1000;
+                                    TimeSpan t;
+                                    try
+                                    {
+                                        t = TimeSpan.FromSeconds(timeToToDoPhrase);
+                                    }
+                                    catch (Exception e)
+                                    {
+                                        t = new TimeSpan(0, 0, 0);
+                                    }
+
+                                    string timeToToDoPhraseInHMSFormat = string.Format("{0:D2}h:{1:D2}m:{2:D2}s:{3:D3}ms", t.Hours, t.Minutes, t.Seconds, t.Milliseconds);
+
+
+                                    sectionName = ((EmptyNode)n).ParentAs<SectionNode>().Label + " : " +
+                                                  ((EmptyNode)n) + String.Format(Localizer.Message("TodoTimeFromStartOfSection"), timeToToDoPhraseInHMSFormat);
                                     m_lbSpecialPhrasesList.Items.Add(sectionName);
                                     backendList.Add(((EmptyNode) n));
                                 }
