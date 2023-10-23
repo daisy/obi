@@ -35,7 +35,7 @@ namespace Obi
             }
             catch(Exception ex)
             {
-              DialogResult dialogResult =  MessageBox.Show(Localizer.Message("ProfileNotCompatible"),Localizer.Message("Caption_Information"),MessageBoxButtons.YesNo);
+              DialogResult dialogResult =  MessageBox.Show(Localizer.Message("ProfileNotCompatible"),Localizer.Message("Caption_Information"),MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
                 if (dialogResult == DialogResult.Yes)
                 {
@@ -174,7 +174,7 @@ namespace Obi
 
                             File.WriteAllLines(profileFilePath, fileContent);
 
-                            MessageBox.Show(string.Format(Localizer.Message("ProfileCreated"), pathOfOldProfile), Localizer.Message("Caption_Information"));
+                            MessageBox.Show(string.Format(Localizer.Message("ProfileCreated"), pathOfOldProfile), Localizer.Message("Caption_Information"), MessageBoxButtons.OK, MessageBoxIcon.Information);
                         }
                         else
                         {
@@ -194,12 +194,12 @@ namespace Obi
                     }
                     else
                     {
-                        MessageBox.Show(Localizer.Message("PofileNotCreated"), Localizer.Message("Caption_Information"));
+                        MessageBox.Show(Localizer.Message("PofileNotCreated"), Localizer.Message("Caption_Information"),MessageBoxButtons.OK,MessageBoxIcon.Information);
                     }
 
 
                 }
-                //MessageBox.Show(ex.ToString());
+                MessageBox.Show(ex.ToString());
                 return null;
             }
             fs.Close();
