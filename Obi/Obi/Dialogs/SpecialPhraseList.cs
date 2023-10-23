@@ -108,8 +108,19 @@ namespace Obi.Dialogs
                                     {
                                         t = new TimeSpan(0, 0, 0);
                                     }
-
-                                    string timeToToDoPhraseInHMSFormat = string.Format("{0:D2}h:{1:D2}m:{2:D2}s:{3:D3}ms", t.Hours, t.Minutes, t.Seconds, t.Milliseconds);
+                                    string timeToToDoPhraseInHMSFormat;
+                                    if (t.Hours == 0 && t.Minutes != 0)
+                                    {
+                                        timeToToDoPhraseInHMSFormat = string.Format("{0:D2}m:{1:D2}s:{2:D3}ms", t.Minutes, t.Seconds, t.Milliseconds);
+                                    }
+                                    else if(t.Hours == 0 && t.Minutes == 0)
+                                    {
+                                        timeToToDoPhraseInHMSFormat = string.Format("{0:D2}s:{1:D3}ms", t.Seconds, t.Milliseconds);
+                                    }
+                                    else
+                                    {
+                                        timeToToDoPhraseInHMSFormat = string.Format("{0:D2}h:{1:D2}m:{2:D2}s:{3:D3}ms", t.Hours, t.Minutes, t.Seconds, t.Milliseconds);
+                                    }
 
 
                                     sectionName = ((EmptyNode)n).ParentAs<SectionNode>().Label + " : " +

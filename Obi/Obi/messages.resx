@@ -3315,7 +3315,7 @@ You can do it later also from the project tab of preferences dialog.</value>
   </data>
   
   <data name="TodoTimeFromStartOfSection" xml:space="preserve">
-    <value> at {0} from start of the section</value>
+    <value> at {0}</value>
   </data>
   
 </root>
