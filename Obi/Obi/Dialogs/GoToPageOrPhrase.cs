@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -115,7 +116,7 @@ namespace Obi.Dialogs
                 if (m_radTime.Checked)
                    double.TryParse(m_txtBox_TimeInSeconds.Text, out time);
                 return time * 1000;                
-            }            
+            }
         }
 
         public int SelectedIndex
@@ -135,48 +136,84 @@ namespace Obi.Dialogs
             }
         }
 
-        private void m_btnOk_Click ( object sender, EventArgs e )
-            {
+        private void m_btnOk_Click(object sender, EventArgs e)
+        {
             int phraseIndex = 0;
             int.TryParse(base.mNumberBox.Text, out phraseIndex);
-            
+
             if (m_radPage.Checked && phraseIndex < 1 && this.mPageKindComboBox.SelectedIndex < 2)
-                {
-                MessageBox.Show ( Localizer.Message ("InvalidInput"),Localizer.Message("Caption_Error"),MessageBoxButtons.OK,MessageBoxIcon.Error);
+            {
+                MessageBox.Show(Localizer.Message("InvalidInput"), Localizer.Message("Caption_Error"), MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
-                }
+            }
             else if (m_radPhrase.Checked)
-                {
-                phraseIndex = ExtractPhraseIndexFromCombobox ();
+            {
+                phraseIndex = ExtractPhraseIndexFromCombobox();
                 if (phraseIndex < 1)
-                    {
-                        MessageBox.Show(Localizer.Message("InvalidInput"),Localizer.Message("Caption_Error"), MessageBoxButtons.OK, MessageBoxIcon.Error);
+                {
+                    MessageBox.Show(Localizer.Message("InvalidInput"), Localizer.Message("Caption_Error"), MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
-                    }
-                else
-                    {
-                    DialogResult = DialogResult.OK;
-                    Close ();
-                    }
-                }
-                else if (m_radTime.Checked)
-                {
-                    if (TimeInSeconds < 1)
-                    {
-                        MessageBox.Show(Localizer.Message("InvalidInput"),Localizer.Message("Caption_Error"), MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        return;
-                    }
-                    else                   
-                    {
-                    DialogResult = DialogResult.OK;
-                    Close ();
-                    }
                 }
                 else
                 {
-                    base.mOKButton_Click(sender, e);
+                    DialogResult = DialogResult.OK;
+                    Close();
                 }
             }
+            else if (m_radTime.Checked)
+            {
+                if (TimeInSeconds < 1)
+                {
+                    char[] TimeArray = m_txtBox_TimeInSeconds.Text.ToCharArray();
+                    if (TimeArray.Length == 4 && TimeArray[1] == ':')
+                    {
+                        try
+                        {
+                            double TemptimeInSeconds = (double)(char.GetNumericValue(TimeArray[0]) * 60) + Int32.Parse(TimeArray[2].ToString() + TimeArray[3].ToString());
+                            MessageBox.Show(TemptimeInSeconds.ToString());
+                            m_txtBox_TimeInSeconds.Text = TemptimeInSeconds.ToString();
+                            DialogResult = DialogResult.OK;
+                            Close();
+                        }
+                        catch
+                        {
+                            MessageBox.Show(Localizer.Message("InvalidInput"), Localizer.Message("Caption_Error"), MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            return;
+                        }
+                    }
+                    else if (TimeArray.Length == 5 && TimeArray[2] == ':')
+                    {
+                        try
+                        {
+                            double TemptimeInSeconds = (double)(Int32.Parse(TimeArray[0].ToString() + TimeArray[1].ToString()) * 60) + Int32.Parse(TimeArray[3].ToString() + TimeArray[4].ToString());
+                            MessageBox.Show(TemptimeInSeconds.ToString());
+                            m_txtBox_TimeInSeconds.Text = TemptimeInSeconds.ToString();
+                            DialogResult = DialogResult.OK;
+                            Close();
+                        }
+                        catch
+                        {
+                            MessageBox.Show(Localizer.Message("InvalidInput"), Localizer.Message("Caption_Error"), MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            return;
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show(Localizer.Message("InvalidInput"), Localizer.Message("Caption_Error"), MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
+                }
+                else
+                {
+                    DialogResult = DialogResult.OK;
+                    Close();
+                }
+            }
+            else
+            {
+                base.mOKButton_Click(sender, e);
+            }
+        }
 
         private void m_radPage_CheckedChanged ( object sender, EventArgs e )
             {
