@@ -6080,6 +6080,7 @@ Block lastBlock = ActiveStrip.LastBlock ;
                         mProjectView.ToggleTODOForPhrase(true);
                     }
                     AddCommentOnTodoPhrase(CommentText);
+                    SelectAtTODOCursorPosition(mProjectView.Selection.Node as EmptyNode);
                     if (this.RecordingNode != null)
                     {
                         mProjectView.TransportBar.NextPhrase();
