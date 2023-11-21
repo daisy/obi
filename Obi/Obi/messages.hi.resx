@@ -148,7 +148,7 @@
     <value>एक्स यू के फाइल को पढ़ा नहीं जा सका {0} </value>
   </data>
   <data name="opened_project" xml:space="preserve">
-    <value>खुली हुयी फाइल "{0"}</value>
+    <value>खुली हुयी फाइल "{0}"</value>
   </data>
   <data name="ready" xml:space="preserve">
     <value>तैयार</value>

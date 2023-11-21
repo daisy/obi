@@ -1,10 +1,14 @@
 ﻿using System;
 using System.Collections;
+using System.Globalization;
 using System.IO;
 using System.IO.IsolatedStorage;
 using System.Runtime.Serialization;
 using System.Runtime.Serialization.Formatters.Soap;
 using System.Text;
+using System.Windows.Forms;
+using System.Xml;
+using System.Xml.Linq;
 
 namespace Obi
 {
@@ -16,7 +20,7 @@ namespace Obi
    public partial class Settings
     {
 
-        public static Settings GetSettingsFromSavedProfile (string profileFilePath)
+        public static Settings GetSettingsFromSavedProfile (string profileFilePath, bool IsImport = false)
         {
             Settings settingsInstance = new Settings();
             Settings.InitializeDefaultSettings(settingsInstance);
@@ -25,7 +29,179 @@ namespace Obi
 
             //FileStream fs = new FileStream(profileFilePath, FileMode.Open, FileAccess.ReadWrite);
             SoapFormatter soap = new SoapFormatter();
-            settingsInstance  = (Settings)soap.Deserialize(fs);
+            try
+            {
+                settingsInstance = (Settings)soap.Deserialize(fs);
+            }
+            catch(Exception ex)
+            {
+              DialogResult dialogResult =  MessageBox.Show(Localizer.Message("ProfileNotCompatible"),Localizer.Message("Caption_Information"),MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+                if (dialogResult == DialogResult.Yes)
+                {
+                    string[] fileContent = File.ReadAllLines(profileFilePath);
+                    bool IsCulture = false;
+                    bool IsCompare = false;
+                    bool IsNumberFormat = false;
+                    bool IsXmlModified = false;
+                    bool IsDateTimeFormat = false;
+                    bool IsGregorianCalendar = false;
+
+                    for (int i = 0; i < fileContent.Length; i++)
+                    {
+                        if (fileContent[i].Contains("Culture href="))
+                        {
+                            fileContent[i] = fileContent[i].Remove(0);
+                            IsXmlModified= true;
+                        }
+                        else if (fileContent[i].Contains("a6:CultureInfo") && !IsCulture)
+                        {
+                            fileContent[i] = fileContent[i].Remove(0);
+                            IsCulture = true;
+                            IsXmlModified = true;
+                        }
+                        else if (IsCulture == true)
+                        {
+                            if (fileContent[i].Contains("a6:CultureInfo"))
+                            {
+                                fileContent[i] = fileContent[i].Remove(0);
+                                IsCulture = false;
+                            }
+                            else
+
+                                fileContent[i] = fileContent[i].Remove(0);
+
+                        }
+
+                        else if (fileContent[i].Contains("a6:CompareInfo") && !IsCompare)
+                        {
+                            fileContent[i] = fileContent[i].Remove(0);
+                            IsCompare = true;
+                            IsXmlModified = true;
+                        }
+                        else if (IsCompare == true)
+                        {
+                            if (fileContent[i].Contains("a6:CompareInfo"))
+                            {
+                                fileContent[i] = fileContent[i].Remove(0);
+                                IsCompare = false;
+                            }
+                            else
+
+                                fileContent[i] = fileContent[i].Remove(0);
+
+                        }
+                        else if (fileContent[i].Contains("a6:NumberFormatInfo") && !IsNumberFormat)
+                        {
+                            fileContent[i] = fileContent[i].Remove(0);
+                            IsNumberFormat = true;
+                            IsXmlModified = true;
+                        }
+                        else if (IsNumberFormat == true)
+                        {
+                            if (fileContent[i].Contains("a6:NumberFormatInfo"))
+                            {
+                                fileContent[i] = fileContent[i].Remove(0);
+                                IsNumberFormat = false;
+                            }
+                            else
+
+                                fileContent[i] = fileContent[i].Remove(0);
+
+                        }
+                        else if (fileContent[i].Contains("a6:DateTimeFormatInfo") && !IsDateTimeFormat)
+                        {
+                            fileContent[i] = fileContent[i].Remove(0);
+                            IsDateTimeFormat = true;
+                            IsXmlModified = true;
+                        }
+                        else if (IsDateTimeFormat == true)
+                        {
+                            if (fileContent[i].Contains("a6:DateTimeFormatInfo"))
+                            {
+                                fileContent[i] = fileContent[i].Remove(0);
+                                IsDateTimeFormat = false;
+                            }
+                            else
+
+                                fileContent[i] = fileContent[i].Remove(0);
+
+                        }
+                        else if (fileContent[i].Contains("a6:GregorianCalendar") && !IsGregorianCalendar)
+                        {
+                            fileContent[i] = fileContent[i].Remove(0);
+                            IsGregorianCalendar = true;
+                            IsXmlModified = true;
+                        }
+                        else if (IsGregorianCalendar == true)
+                        {
+                            if (fileContent[i].Contains("a6:GregorianCalendar"))
+                            {
+                                fileContent[i] = fileContent[i].Remove(0);
+                                IsGregorianCalendar = false;
+                            }
+                            else
+
+                                fileContent[i] = fileContent[i].Remove(0);
+
+                        }
+                       else if (fileContent[i].Equals("<item href=\"#ref-64\"/>") || fileContent[i].Equals("<item href=\"#ref-63\"/>") || fileContent[i].Equals("<item href=\"#ref-62\"/>")
+                                     || fileContent[i].Equals("<item href=\"#ref-65\"/>") || fileContent[i].Equals("<item href=\"#ref-66\"/>"))
+                        { 
+                            fileContent[i] = fileContent[i].Remove(0);
+                            IsXmlModified = true;
+                        }
+
+                    }
+
+                    if (IsXmlModified)
+                    {
+                        if (!IsImport)
+                        {
+                            var pathOfMyDoc = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+
+                            string pathOfOldProfile = Path.Combine(pathOfMyDoc, "Old Obi Profiles");
+                            if (!System.IO.Directory.Exists(pathOfOldProfile))
+                            {
+                                System.IO.Directory.CreateDirectory(pathOfOldProfile);
+                            }
+                            if (System.IO.Directory.Exists(pathOfOldProfile))
+                            {
+                                string destinationFilePath = Path.Combine(pathOfOldProfile, Path.GetFileName(profileFilePath));
+                                if (!File.Exists(destinationFilePath))
+                                    File.Copy(profileFilePath, destinationFilePath);
+                            }
+
+                            File.WriteAllLines(profileFilePath, fileContent);
+
+                            MessageBox.Show(string.Format(Localizer.Message("ProfileCreated"), pathOfOldProfile), Localizer.Message("Caption_Information"), MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        }
+                        else
+                        {
+                            string permanentSettingsDirectory = Directory.GetParent(Settings_Permanent.GetSettingFilePath()).ToString();
+                            string filesDirectory = "profiles";
+                            string customProfilesDirectory = Path.Combine(permanentSettingsDirectory, filesDirectory);
+                            if (!Directory.Exists(customProfilesDirectory)) Directory.CreateDirectory(customProfilesDirectory);
+                            string newCustomFilePath = Path.Combine(customProfilesDirectory, Path.GetFileName(profileFilePath));
+
+                            File.WriteAllLines(newCustomFilePath, fileContent);
+                            profileFilePath = newCustomFilePath;
+
+                        }
+                        Settings saveSettings =  GetSettingsFromSavedProfile(profileFilePath);
+                        return saveSettings;
+
+                    }
+                    else
+                    {
+                        MessageBox.Show(Localizer.Message("PofileNotCreated"), Localizer.Message("Caption_Information"),MessageBoxButtons.OK,MessageBoxIcon.Information);
+                    }
+
+
+                }
+                MessageBox.Show(ex.ToString());
+                return null;
+            }
             fs.Close();
 
             return settingsInstance;

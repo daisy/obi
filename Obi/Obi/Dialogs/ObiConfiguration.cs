@@ -297,6 +297,7 @@ namespace Obi.Dialogs
             if (profilePath != null && System.IO.File.Exists(profilePath))
             {
                 Settings saveProfile = Settings.GetSettingsFromSavedProfile(profilePath);
+                if (saveProfile == null) return;
                 string profileName = "";
                 if (m_cb_SelectProfile.SelectedIndex >= 0 && m_cb_SelectProfile.SelectedIndex < m_cb_SelectProfile.Items.Count)
                 {
