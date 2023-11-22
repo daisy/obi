@@ -4889,7 +4889,7 @@ if (thresholdAboveLastNode >= stripControl.Node.PhraseChildCount) thresholdAbove
                 } // check for null presentation ends
             }
 
-            private void SelectAtTODOCursorPosition(EmptyNode n)
+            public void SelectAtTODOCursorPosition(EmptyNode n)
             {
                 if (mProjectView.Selection != null && n is PhraseNode && n.Duration != null &&
                     n.Duration > 0 && n.TODOCursorPosition > 0 && n.Duration > n.TODOCursorPosition)
