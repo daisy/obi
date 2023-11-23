@@ -181,7 +181,7 @@
     <value>0</value>
   </data>
   <data name="mPageKindComboBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>150, 123</value>
+    <value>150, 125</value>
   </data>
   <data name="mPageKindComboBox.Size" type="System.Drawing.Size, System.Drawing">
     <value>184, 28</value>
@@ -202,7 +202,7 @@
     <value>13</value>
   </data>
   <data name="label3.Location" type="System.Drawing.Point, System.Drawing">
-    <value>50, 125</value>
+    <value>50, 127</value>
   </data>
   <data name="label3.TabIndex" type="System.Int32, mscorlib">
     <value>5</value>
@@ -422,7 +422,7 @@
     <value>Time in seconds</value>
   </data>
   <data name="m_txtBox_TimeInSeconds.Location" type="System.Drawing.Point, System.Drawing">
-    <value>160, 126</value>
+    <value>150, 126</value>
   </data>
   <data name="m_txtBox_TimeInSeconds.Size" type="System.Drawing.Size, System.Drawing">
     <value>100, 26</value>
@@ -446,7 +446,7 @@
     <value>True</value>
   </data>
   <data name="m_lbl_Seconds.Location" type="System.Drawing.Point, System.Drawing">
-    <value>261, 129</value>
+    <value>254, 129</value>
   </data>
   <data name="m_lbl_Seconds.Size" type="System.Drawing.Size, System.Drawing">
     <value>72, 20</value>
@@ -473,7 +473,7 @@
     <value>True</value>
   </data>
   <data name="m_lbl_Time.Location" type="System.Drawing.Point, System.Drawing">
-    <value>102, 127</value>
+    <value>93, 127</value>
   </data>
   <data name="m_lbl_Time.Size" type="System.Drawing.Size, System.Drawing">
     <value>51, 20</value>

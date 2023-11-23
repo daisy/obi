@@ -112,7 +112,7 @@
     <value />
   </data>
   <data name="mCancelButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>200, 278</value>
+    <value>200, 283</value>
   </data>
   <data name="mCancelButton.ShowHelp" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -159,6 +159,9 @@
   <data name="mPageKindComboBox.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
   </data>
+  <data name="mPageKindComboBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>150, 126</value>
+  </data>
   <data name="mPageKindComboBox.ShowHelp" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
@@ -172,7 +175,7 @@
     <value />
   </data>
   <data name="label3.Location" type="System.Drawing.Point, System.Drawing">
-    <value>30, 125</value>
+    <value>30, 128</value>
   </data>
   <data name="label3.ShowHelp" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -196,7 +199,7 @@
     <value />
   </data>
   <data name="m_btnOk.Location" type="System.Drawing.Point, System.Drawing">
-    <value>70, 159</value>
+    <value>70, 166</value>
   </data>
   <data name="m_radPage.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
@@ -304,7 +307,7 @@
     <value />
   </data>
   <data name="m_txtBox_TimeInSeconds.Location" type="System.Drawing.Point, System.Drawing">
-    <value>150, 120</value>
+    <value>150, 125</value>
   </data>
   <data name="m_lbl_Seconds.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
@@ -316,7 +319,7 @@
     <value />
   </data>
   <data name="m_lbl_Seconds.Location" type="System.Drawing.Point, System.Drawing">
-    <value>255, 123</value>
+    <value>255, 128</value>
   </data>
   <data name="m_lbl_Seconds.Size" type="System.Drawing.Size, System.Drawing">
     <value>26, 20</value>
@@ -334,7 +337,7 @@
     <value />
   </data>
   <data name="m_lbl_Time.Location" type="System.Drawing.Point, System.Drawing">
-    <value>109, 124</value>
+    <value>109, 129</value>
   </data>
   <data name="m_lbl_Time.Size" type="System.Drawing.Size, System.Drawing">
     <value>48, 20</value>

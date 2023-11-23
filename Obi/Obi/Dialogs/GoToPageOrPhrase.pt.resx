@@ -67,6 +67,10 @@
   <data name="label1.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
   </data>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="label1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>15, 94</value>
+  </data>
   <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="label1.ShowHelp" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -92,7 +96,6 @@
   <data name="mOKButton.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
   </data>
-  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="mOKButton.Location" type="System.Drawing.Point, System.Drawing">
     <value>90, 243</value>
   </data>
@@ -157,7 +160,7 @@
     <value />
   </data>
   <data name="mPageKindComboBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>161, 120</value>
+    <value>161, 125</value>
   </data>
   <data name="mPageKindComboBox.ShowHelp" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -170,6 +173,9 @@
   </data>
   <data name="label3.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
+  </data>
+  <data name="label3.Location" type="System.Drawing.Point, System.Drawing">
+    <value>44, 127</value>
   </data>
   <data name="label3.ShowHelp" type="System.Boolean, mscorlib">
     <value>True</value>
