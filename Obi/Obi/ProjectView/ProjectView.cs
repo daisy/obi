@@ -4870,13 +4870,21 @@ for (int j = 0;
         public void ToggleTODOForPhrase (bool IsCommentAdded = false)
             {
             if (TransportBar.IsPlayerActive)
+            {
+                TransportBar.MarkTodo(IsCommentAdded);
+                if (TransportBar.CurrentPlaylist != null && TransportBar.CurrentPlaylist.CurrentPhrase != null)
                 {
-                    TransportBar.MarkTodo(IsCommentAdded);
+                    EmptyNode currentPhraseNode = (EmptyNode)TransportBar.CurrentPlaylist.CurrentPhrase;
+                    if (currentPhraseNode.TODO)
+                    {
+                        mContentView.SelectAtTODOCursorPosition(currentPhraseNode);
+                    }
                 }
+            }
             else
-                {
-                    ToggleEmptyNodeTo_DoMark(IsCommentAdded);
-                }
+            {
+                ToggleEmptyNodeTo_DoMark(IsCommentAdded);
+            }
             }
 
         // Initialize timer for tabbing

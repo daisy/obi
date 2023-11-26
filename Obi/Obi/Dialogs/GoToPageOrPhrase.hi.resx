@@ -162,6 +162,9 @@
   <data name="mPageKindComboBox.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
   </data>
+  <data name="mPageKindComboBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>150, 125</value>
+  </data>
   <data name="mPageKindComboBox.ShowHelp" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
@@ -173,6 +176,9 @@
   </data>
   <data name="label3.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
+  </data>
+  <data name="label3.Location" type="System.Drawing.Point, System.Drawing">
+    <value>50, 127</value>
   </data>
   <data name="label3.ShowHelp" type="System.Boolean, mscorlib">
     <value>True</value>
