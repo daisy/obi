@@ -146,7 +146,7 @@ namespace Obi
 
                         }
                        else if (fileContent[i].Equals("<item href=\"#ref-64\"/>") || fileContent[i].Equals("<item href=\"#ref-63\"/>") || fileContent[i].Equals("<item href=\"#ref-62\"/>")
-                                     || fileContent[i].Equals("<item href=\"#ref-65\"/>") || fileContent[i].Equals("<item href=\"#ref-66\"/>"))
+                                     || fileContent[i].Equals("<item href=\"#ref-65\"/>") || fileContent[i].Equals("<item href=\"#ref-66\"/>") || fileContent[i].Equals("erride>"))
                         { 
                             fileContent[i] = fileContent[i].Remove(0);
                             IsXmlModified = true;
