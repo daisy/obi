@@ -46,6 +46,7 @@ namespace Obi
                     bool IsXmlModified = false;
                     bool IsDateTimeFormat = false;
                     bool IsGregorianCalendar = false;
+                    bool IsTextInfo = false;
 
                     for (int i = 0; i < fileContent.Length; i++)
                     {
@@ -145,7 +146,25 @@ namespace Obi
                                 fileContent[i] = fileContent[i].Remove(0);
 
                         }
-                       else if (fileContent[i].Equals("<item href=\"#ref-64\"/>") || fileContent[i].Equals("<item href=\"#ref-63\"/>") || fileContent[i].Equals("<item href=\"#ref-62\"/>")
+                        else if (fileContent[i].Contains("a6:TextInfo") && !IsTextInfo)
+                        {
+                            fileContent[i] = fileContent[i].Remove(0);
+                            IsTextInfo = true;
+                            IsXmlModified = true;
+                        }
+                        else if (IsTextInfo == true)
+                        {
+                            if (fileContent[i].Contains("a6:TextInfo"))
+                            {
+                                fileContent[i] = fileContent[i].Remove(0);
+                                IsTextInfo = false;
+                            }
+                            else
+
+                                fileContent[i] = fileContent[i].Remove(0);
+
+                        }
+                        else if (fileContent[i].Equals("<item href=\"#ref-64\"/>") || fileContent[i].Equals("<item href=\"#ref-63\"/>") || fileContent[i].Equals("<item href=\"#ref-62\"/>")
                                      || fileContent[i].Equals("<item href=\"#ref-65\"/>") || fileContent[i].Equals("<item href=\"#ref-66\"/>") || fileContent[i].Equals("erride>"))
                         { 
                             fileContent[i] = fileContent[i].Remove(0);
