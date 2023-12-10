@@ -170,7 +170,6 @@ namespace Obi.Dialogs
                         try
                         {
                             double TemptimeInSeconds = (double)(char.GetNumericValue(TimeArray[0]) * 60) + Int32.Parse(TimeArray[2].ToString() + TimeArray[3].ToString());
-                            MessageBox.Show(TemptimeInSeconds.ToString());
                             m_txtBox_TimeInSeconds.Text = TemptimeInSeconds.ToString();
                             DialogResult = DialogResult.OK;
                             Close();
@@ -186,7 +185,36 @@ namespace Obi.Dialogs
                         try
                         {
                             double TemptimeInSeconds = (double)(Int32.Parse(TimeArray[0].ToString() + TimeArray[1].ToString()) * 60) + Int32.Parse(TimeArray[3].ToString() + TimeArray[4].ToString());
-                            MessageBox.Show(TemptimeInSeconds.ToString());
+                            m_txtBox_TimeInSeconds.Text = TemptimeInSeconds.ToString();
+                            DialogResult = DialogResult.OK;
+                            Close();
+                        }
+                        catch
+                        {
+                            MessageBox.Show(Localizer.Message("InvalidInput"), Localizer.Message("Caption_Error"), MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            return;
+                        }
+                    }
+                    else if (TimeArray.Length == 7 && TimeArray[4] == ':' && TimeArray[1] == ':')
+                    {
+                        try
+                        {
+                            double TemptimeInSeconds = (double)(char.GetNumericValue(TimeArray[0]) * 3600) + (double)(Int32.Parse(TimeArray[2].ToString() + TimeArray[3].ToString()) * 60) + Int32.Parse(TimeArray[5].ToString() + TimeArray[6].ToString());
+                            m_txtBox_TimeInSeconds.Text = TemptimeInSeconds.ToString();
+                            DialogResult = DialogResult.OK;
+                            Close();
+                        }
+                        catch
+                        {
+                            MessageBox.Show(Localizer.Message("InvalidInput"), Localizer.Message("Caption_Error"), MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            return;
+                        }
+                    }
+                    else if (TimeArray.Length == 8 && TimeArray[5] == ':' && TimeArray[2] == ':')
+                    {
+                        try
+                        {
+                            double TemptimeInSeconds = (double)(Int32.Parse(TimeArray[0].ToString() + TimeArray[1].ToString()) * 3600) + (double)(Int32.Parse(TimeArray[3].ToString() + TimeArray[4].ToString()) * 60) + Int32.Parse(TimeArray[6].ToString() + TimeArray[7].ToString());
                             m_txtBox_TimeInSeconds.Text = TemptimeInSeconds.ToString();
                             DialogResult = DialogResult.OK;
                             Close();
