@@ -87,7 +87,7 @@
     <value />
   </data>
   <data name="labelInputDeviceName.Location" type="System.Drawing.Point, System.Drawing">
-    <value>26, 123</value>
+    <value>26, 120</value>
   </data>
   <data name="labelInputDeviceName.Size" type="System.Drawing.Size, System.Drawing">
     <value>225, 18</value>
@@ -105,7 +105,7 @@
     <value />
   </data>
   <data name="m_lblShortcutsProfile.Location" type="System.Drawing.Point, System.Drawing">
-    <value>66, 257</value>
+    <value>66, 254</value>
   </data>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="m_lblShortcutsProfile.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
@@ -127,7 +127,7 @@
     <value />
   </data>
   <data name="m_lblSelectProfile.Location" type="System.Drawing.Point, System.Drawing">
-    <value>113, 208</value>
+    <value>113, 205</value>
   </data>
   <data name="m_lblSelectProfile.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>5, 0, 5, 0</value>
@@ -163,7 +163,7 @@
     <value />
   </data>
   <data name="m_cb_InputDevice.Location" type="System.Drawing.Point, System.Drawing">
-    <value>280, 118</value>
+    <value>280, 115</value>
   </data>
   <data name="m_cb_InputDevice.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>5, 5, 5, 5</value>
@@ -178,7 +178,7 @@
     <value />
   </data>
   <data name="m_cb_OutPutDevice.Location" type="System.Drawing.Point, System.Drawing">
-    <value>280, 161</value>
+    <value>280, 158</value>
   </data>
   <data name="m_cb_OutPutDevice.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>5, 5, 5, 5</value>
@@ -193,7 +193,7 @@
     <value />
   </data>
   <data name="m_cb_SelectProfile.Location" type="System.Drawing.Point, System.Drawing">
-    <value>280, 208</value>
+    <value>280, 205</value>
   </data>
   <data name="m_cb_SelectProfile.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>5, 5, 5, 5</value>
@@ -208,7 +208,7 @@
     <value />
   </data>
   <data name="m_cb_SelectShortcutsProfile.Location" type="System.Drawing.Point, System.Drawing">
-    <value>280, 251</value>
+    <value>280, 248</value>
   </data>
   <data name="m_cb_SelectShortcutsProfile.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>5, 5, 5, 5</value>
@@ -241,7 +241,7 @@
     <value />
   </data>
   <data name="m_DirectoryTextbox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>278, 299</value>
+    <value>278, 296</value>
   </data>
   <data name="m_BrowseButton.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
@@ -253,7 +253,7 @@
     <value />
   </data>
   <data name="m_BrowseButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>759, 293</value>
+    <value>759, 290</value>
   </data>
   <data name="m_BrowseButton.Text" xml:space="preserve">
     <value>&amp;Pesquisar</value>
@@ -267,10 +267,6 @@
   <data name="m_lblDefaultProjectDirectoryTemp.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
   </data>
-  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="m_lblDefaultProjectDirectoryTemp.ShowHelp" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
   <data name="m_lblDefaultProjectDirectory.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
   </data>
@@ -281,8 +277,9 @@
     <value />
   </data>
   <data name="m_lblDefaultProjectDirectory.Location" type="System.Drawing.Point, System.Drawing">
-    <value>67, 299</value>
+    <value>67, 296</value>
   </data>
+  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="m_lblDefaultProjectDirectory.ShowHelp" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
