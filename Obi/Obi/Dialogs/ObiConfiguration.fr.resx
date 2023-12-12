@@ -69,7 +69,7 @@
   </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="labelOutputDeviceName.Location" type="System.Drawing.Point, System.Drawing">
-    <value>76, 144</value>
+    <value>76, 145</value>
   </data>
   <data name="labelOutputDeviceName.Size" type="System.Drawing.Size, System.Drawing">
     <value>159, 18</value>
@@ -87,7 +87,7 @@
     <value />
   </data>
   <data name="labelInputDeviceName.Location" type="System.Drawing.Point, System.Drawing">
-    <value>79, 114</value>
+    <value>79, 115</value>
   </data>
   <data name="labelInputDeviceName.Size" type="System.Drawing.Size, System.Drawing">
     <value>156, 18</value>
@@ -105,7 +105,7 @@
     <value />
   </data>
   <data name="m_lblShortcutsProfile.Location" type="System.Drawing.Point, System.Drawing">
-    <value>-2, 218</value>
+    <value>-2, 219</value>
   </data>
   <data name="m_lblShortcutsProfile.Size" type="System.Drawing.Size, System.Drawing">
     <value>245, 18</value>
@@ -123,7 +123,7 @@
     <value />
   </data>
   <data name="m_lblSelectProfile.Location" type="System.Drawing.Point, System.Drawing">
-    <value>92, 187</value>
+    <value>92, 188</value>
   </data>
   <data name="m_lblSelectProfile.Size" type="System.Drawing.Size, System.Drawing">
     <value>151, 18</value>
@@ -141,7 +141,7 @@
     <value />
   </data>
   <data name="m_Ok.Location" type="System.Drawing.Point, System.Drawing">
-    <value>349, 314</value>
+    <value>349, 315</value>
   </data>
   <data name="m_cb_InputDevice.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
@@ -153,7 +153,7 @@
     <value />
   </data>
   <data name="m_cb_InputDevice.Location" type="System.Drawing.Point, System.Drawing">
-    <value>259, 108</value>
+    <value>259, 109</value>
   </data>
   <data name="m_cb_InputDevice.Size" type="System.Drawing.Size, System.Drawing">
     <value>415, 28</value>
@@ -168,7 +168,7 @@
     <value />
   </data>
   <data name="m_cb_OutPutDevice.Location" type="System.Drawing.Point, System.Drawing">
-    <value>259, 143</value>
+    <value>259, 144</value>
   </data>
   <data name="m_cb_OutPutDevice.Size" type="System.Drawing.Size, System.Drawing">
     <value>415, 28</value>
@@ -183,7 +183,7 @@
     <value />
   </data>
   <data name="m_cb_SelectProfile.Location" type="System.Drawing.Point, System.Drawing">
-    <value>259, 181</value>
+    <value>259, 182</value>
   </data>
   <data name="m_cb_SelectProfile.Size" type="System.Drawing.Size, System.Drawing">
     <value>415, 28</value>
@@ -198,7 +198,7 @@
     <value />
   </data>
   <data name="m_cb_SelectShortcutsProfile.Location" type="System.Drawing.Point, System.Drawing">
-    <value>259, 216</value>
+    <value>259, 217</value>
   </data>
   <data name="m_cb_SelectShortcutsProfile.Size" type="System.Drawing.Size, System.Drawing">
     <value>415, 28</value>
@@ -225,7 +225,7 @@
     <value />
   </data>
   <data name="m_DirectoryTextbox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>256, 266</value>
+    <value>256, 267</value>
   </data>
   <data name="m_BrowseButton.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
@@ -237,7 +237,7 @@
     <value />
   </data>
   <data name="m_BrowseButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>717, 260</value>
+    <value>717, 261</value>
   </data>
   <data name="m_BrowseButton.Text" xml:space="preserve">
     <value>&amp;Parcourir</value>
@@ -251,6 +251,10 @@
   <data name="m_lblDefaultProjectDirectoryTemp.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
   </data>
+  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="m_lblDefaultProjectDirectoryTemp.ShowHelp" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
   <data name="m_lblDefaultProjectDirectory.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
   </data>
@@ -261,7 +265,10 @@
     <value />
   </data>
   <data name="m_lblDefaultProjectDirectory.Location" type="System.Drawing.Point, System.Drawing">
-    <value>18, 266</value>
+    <value>18, 267</value>
+  </data>
+  <data name="m_lblDefaultProjectDirectory.ShowHelp" type="System.Boolean, mscorlib">
+    <value>True</value>
   </data>
   <data name="m_lblDefaultProjectDirectory.Size" type="System.Drawing.Size, System.Drawing">
     <value>215, 18</value>
