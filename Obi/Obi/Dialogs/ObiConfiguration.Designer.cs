@@ -42,6 +42,7 @@
             this.helpProvider1 = new System.Windows.Forms.HelpProvider();
             this.m_DirectoryTextbox = new System.Windows.Forms.TextBox();
             this.m_BrowseButton = new System.Windows.Forms.Button();
+            this.m_lblDefaultProjectDirectoryTemp = new System.Windows.Forms.Label();
             this.m_lblDefaultProjectDirectory = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
@@ -123,6 +124,11 @@
             this.m_BrowseButton.UseVisualStyleBackColor = true;
             this.m_BrowseButton.Click += new System.EventHandler(this.m_BrowseButton_Click);
             // 
+            // m_lblDefaultProjectDirectoryTemp
+            // 
+            resources.ApplyResources(this.m_lblDefaultProjectDirectoryTemp, "m_lblDefaultProjectDirectoryTemp");
+            this.m_lblDefaultProjectDirectoryTemp.Name = "m_lblDefaultProjectDirectoryTemp";
+            // 
             // m_lblDefaultProjectDirectory
             // 
             resources.ApplyResources(this.m_lblDefaultProjectDirectory, "m_lblDefaultProjectDirectory");
@@ -134,9 +140,10 @@
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ControlBox = false;
+            this.Controls.Add(this.m_lblDefaultProjectDirectory);
             this.Controls.Add(this.m_BrowseButton);
             this.Controls.Add(this.m_DirectoryTextbox);
-            this.Controls.Add(this.m_lblDefaultProjectDirectory);
+            this.Controls.Add(this.m_lblDefaultProjectDirectoryTemp);
             this.Controls.Add(this.m_tb_ObiConfigInstructions);
             this.Controls.Add(this.m_cb_SelectShortcutsProfile);
             this.Controls.Add(this.m_cb_SelectProfile);
@@ -167,8 +174,9 @@
         private System.Windows.Forms.ComboBox m_cb_SelectShortcutsProfile;
         private System.Windows.Forms.TextBox m_tb_ObiConfigInstructions;
         private System.Windows.Forms.HelpProvider helpProvider1;
-        private System.Windows.Forms.Label m_lblDefaultProjectDirectory;
+        private System.Windows.Forms.Label m_lblDefaultProjectDirectoryTemp;
         private System.Windows.Forms.TextBox m_DirectoryTextbox;
         private System.Windows.Forms.Button m_BrowseButton;
+        private System.Windows.Forms.Label m_lblDefaultProjectDirectory;
     }
 }

@@ -1,64 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<root>
-  <!-- 
-    Microsoft ResX Schema 
-    
-    Version 2.0
-    
-    The primary goals of this format is to allow a simple XML format 
-    that is mostly human readable. The generation and parsing of the 
-    various data types are done through the TypeConverter classes 
-    associated with the data types.
-    
-    Example:
-    
-    ... ado.net/XML headers & schema ...
-    <resheader name="resmimetype">text/microsoft-resx</resheader>
-    <resheader name="version">2.0</resheader>
-    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
-    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
-    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
-    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
-    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
-        <value>[base64 mime encoded serialized .NET Framework object]</value>
-    </data>
-    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
-        <comment>This is a comment</comment>
-    </data>
-                
-    There are any number of "resheader" rows that contain simple 
-    name/value pairs.
-    
-    Each data row contains a name, and value. The row also contains a 
-    type or mimetype. Type corresponds to a .NET class that support 
-    text/value conversion through the TypeConverter architecture. 
-    Classes that don't support this are serialized and stored with the 
-    mimetype set.
-    
-    The mimetype is used for serialized objects, and tells the 
-    ResXResourceReader how to depersist the object. This is currently not 
-    extensible. For a given mimetype the value must be set accordingly:
-    
-    Note - application/x-microsoft.net.object.binary.base64 is the format 
-    that the ResXResourceWriter will generate, however the reader can 
-    read any of the formats listed below.
-    
-    mimetype: application/x-microsoft.net.object.binary.base64
-    value   : The object must be serialized with 
-            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
-            : and then encoded with base64 encoding.
-    
-    mimetype: application/x-microsoft.net.object.soap.base64
-    value   : The object must be serialized with 
-            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
-            : and then encoded with base64 encoding.
-
-    mimetype: application/x-microsoft.net.object.bytearray.base64
-    value   : The object must be serialized into a byte array 
-            : using a System.ComponentModel.TypeConverter
-            : and then encoded with base64 encoding.
-    -->
+﻿<root>
   <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
     <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
     <xsd:element name="root" msdata:IsDataSet="true">
@@ -125,18 +65,19 @@
   <data name="labelOutputDeviceName.Font" type="System.Drawing.Font, System.Drawing">
     <value>Microsoft Sans Serif, 9pt</value>
   </data>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="labelOutputDeviceName.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
   <data name="labelOutputDeviceName.Location" type="System.Drawing.Point, System.Drawing">
-    <value>34, 128</value>
+    <value>45, 197</value>
   </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="labelOutputDeviceName.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 0, 4, 0</value>
+    <value>5, 0, 5, 0</value>
   </data>
   <data name="labelOutputDeviceName.Size" type="System.Drawing.Size, System.Drawing">
-    <value>122, 15</value>
+    <value>147, 18</value>
   </data>
   <data name="labelOutputDeviceName.TabIndex" type="System.Int32, mscorlib">
     <value>4</value>
@@ -148,13 +89,13 @@
     <value>labelOutputDeviceName</value>
   </data>
   <data name="&gt;&gt;labelOutputDeviceName.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;labelOutputDeviceName.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
   <data name="&gt;&gt;labelOutputDeviceName.ZOrder" xml:space="preserve">
-    <value>11</value>
+    <value>12</value>
   </data>
   <data name="labelInputDeviceName.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -166,13 +107,13 @@
     <value>NoControl</value>
   </data>
   <data name="labelInputDeviceName.Location" type="System.Drawing.Point, System.Drawing">
-    <value>43, 95</value>
+    <value>57, 146</value>
   </data>
   <data name="labelInputDeviceName.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 0, 4, 0</value>
+    <value>5, 0, 5, 0</value>
   </data>
   <data name="labelInputDeviceName.Size" type="System.Drawing.Size, System.Drawing">
-    <value>113, 15</value>
+    <value>134, 18</value>
   </data>
   <data name="labelInputDeviceName.TabIndex" type="System.Int32, mscorlib">
     <value>2</value>
@@ -184,13 +125,13 @@
     <value>labelInputDeviceName</value>
   </data>
   <data name="&gt;&gt;labelInputDeviceName.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;labelInputDeviceName.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
   <data name="&gt;&gt;labelInputDeviceName.ZOrder" xml:space="preserve">
-    <value>12</value>
+    <value>13</value>
   </data>
   <data name="m_lblShortcutsProfile.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -202,10 +143,13 @@
     <value>NoControl</value>
   </data>
   <data name="m_lblShortcutsProfile.Location" type="System.Drawing.Point, System.Drawing">
-    <value>19, 201</value>
+    <value>25, 309</value>
+  </data>
+  <data name="m_lblShortcutsProfile.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 0, 4, 0</value>
   </data>
   <data name="m_lblShortcutsProfile.Size" type="System.Drawing.Size, System.Drawing">
-    <value>136, 15</value>
+    <value>167, 18</value>
   </data>
   <data name="m_lblShortcutsProfile.TabIndex" type="System.Int32, mscorlib">
     <value>8</value>
@@ -217,13 +161,13 @@
     <value>m_lblShortcutsProfile</value>
   </data>
   <data name="&gt;&gt;m_lblShortcutsProfile.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;m_lblShortcutsProfile.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
   <data name="&gt;&gt;m_lblShortcutsProfile.ZOrder" xml:space="preserve">
-    <value>9</value>
+    <value>10</value>
   </data>
   <data name="m_lblSelectProfile.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -235,10 +179,13 @@
     <value>NoControl</value>
   </data>
   <data name="m_lblSelectProfile.Location" type="System.Drawing.Point, System.Drawing">
-    <value>71, 168</value>
+    <value>95, 258</value>
+  </data>
+  <data name="m_lblSelectProfile.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 0, 4, 0</value>
   </data>
   <data name="m_lblSelectProfile.Size" type="System.Drawing.Size, System.Drawing">
-    <value>84, 15</value>
+    <value>101, 18</value>
   </data>
   <data name="m_lblSelectProfile.TabIndex" type="System.Int32, mscorlib">
     <value>6</value>
@@ -250,13 +197,13 @@
     <value>m_lblSelectProfile</value>
   </data>
   <data name="&gt;&gt;m_lblSelectProfile.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;m_lblSelectProfile.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
   <data name="&gt;&gt;m_lblSelectProfile.ZOrder" xml:space="preserve">
-    <value>10</value>
+    <value>11</value>
   </data>
   <data name="m_Ok.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Flat</value>
@@ -265,10 +212,13 @@
     <value>Microsoft Sans Serif, 9pt</value>
   </data>
   <data name="m_Ok.Location" type="System.Drawing.Point, System.Drawing">
-    <value>262, 288</value>
+    <value>349, 443</value>
+  </data>
+  <data name="m_Ok.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 5, 4, 5</value>
   </data>
   <data name="m_Ok.Size" type="System.Drawing.Size, System.Drawing">
-    <value>93, 25</value>
+    <value>124, 38</value>
   </data>
   <data name="m_Ok.TabIndex" type="System.Int32, mscorlib">
     <value>13</value>
@@ -280,22 +230,25 @@
     <value>m_Ok</value>
   </data>
   <data name="&gt;&gt;m_Ok.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;m_Ok.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
   <data name="&gt;&gt;m_Ok.ZOrder" xml:space="preserve">
-    <value>8</value>
+    <value>9</value>
   </data>
   <data name="m_cb_InputDevice.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Flat</value>
   </data>
   <data name="m_cb_InputDevice.Location" type="System.Drawing.Point, System.Drawing">
-    <value>192, 91</value>
+    <value>256, 140</value>
+  </data>
+  <data name="m_cb_InputDevice.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 5, 4, 5</value>
   </data>
   <data name="m_cb_InputDevice.Size" type="System.Drawing.Size, System.Drawing">
-    <value>418, 21</value>
+    <value>556, 28</value>
   </data>
   <data name="m_cb_InputDevice.TabIndex" type="System.Int32, mscorlib">
     <value>3</value>
@@ -304,22 +257,25 @@
     <value>m_cb_InputDevice</value>
   </data>
   <data name="&gt;&gt;m_cb_InputDevice.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;m_cb_InputDevice.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
   <data name="&gt;&gt;m_cb_InputDevice.ZOrder" xml:space="preserve">
-    <value>7</value>
+    <value>8</value>
   </data>
   <data name="m_cb_OutPutDevice.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Flat</value>
   </data>
   <data name="m_cb_OutPutDevice.Location" type="System.Drawing.Point, System.Drawing">
-    <value>192, 126</value>
+    <value>256, 194</value>
+  </data>
+  <data name="m_cb_OutPutDevice.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 5, 4, 5</value>
   </data>
   <data name="m_cb_OutPutDevice.Size" type="System.Drawing.Size, System.Drawing">
-    <value>418, 21</value>
+    <value>556, 28</value>
   </data>
   <data name="m_cb_OutPutDevice.TabIndex" type="System.Int32, mscorlib">
     <value>5</value>
@@ -328,22 +284,25 @@
     <value>m_cb_OutPutDevice</value>
   </data>
   <data name="&gt;&gt;m_cb_OutPutDevice.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;m_cb_OutPutDevice.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
   <data name="&gt;&gt;m_cb_OutPutDevice.ZOrder" xml:space="preserve">
-    <value>6</value>
+    <value>7</value>
   </data>
   <data name="m_cb_SelectProfile.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Flat</value>
   </data>
   <data name="m_cb_SelectProfile.Location" type="System.Drawing.Point, System.Drawing">
-    <value>192, 164</value>
+    <value>256, 252</value>
+  </data>
+  <data name="m_cb_SelectProfile.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 5, 4, 5</value>
   </data>
   <data name="m_cb_SelectProfile.Size" type="System.Drawing.Size, System.Drawing">
-    <value>418, 21</value>
+    <value>556, 28</value>
   </data>
   <data name="m_cb_SelectProfile.TabIndex" type="System.Int32, mscorlib">
     <value>7</value>
@@ -352,22 +311,25 @@
     <value>m_cb_SelectProfile</value>
   </data>
   <data name="&gt;&gt;m_cb_SelectProfile.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;m_cb_SelectProfile.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
   <data name="&gt;&gt;m_cb_SelectProfile.ZOrder" xml:space="preserve">
-    <value>5</value>
+    <value>6</value>
   </data>
   <data name="m_cb_SelectShortcutsProfile.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Flat</value>
   </data>
   <data name="m_cb_SelectShortcutsProfile.Location" type="System.Drawing.Point, System.Drawing">
-    <value>192, 199</value>
+    <value>256, 306</value>
+  </data>
+  <data name="m_cb_SelectShortcutsProfile.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 5, 4, 5</value>
   </data>
   <data name="m_cb_SelectShortcutsProfile.Size" type="System.Drawing.Size, System.Drawing">
-    <value>418, 21</value>
+    <value>556, 28</value>
   </data>
   <data name="m_cb_SelectShortcutsProfile.TabIndex" type="System.Int32, mscorlib">
     <value>9</value>
@@ -376,22 +338,25 @@
     <value>m_cb_SelectShortcutsProfile</value>
   </data>
   <data name="&gt;&gt;m_cb_SelectShortcutsProfile.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;m_cb_SelectShortcutsProfile.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
   <data name="&gt;&gt;m_cb_SelectShortcutsProfile.ZOrder" xml:space="preserve">
-    <value>4</value>
+    <value>5</value>
   </data>
   <data name="m_tb_ObiConfigInstructions.Location" type="System.Drawing.Point, System.Drawing">
-    <value>22, 12</value>
+    <value>29, 18</value>
+  </data>
+  <data name="m_tb_ObiConfigInstructions.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 5, 4, 5</value>
   </data>
   <data name="m_tb_ObiConfigInstructions.Multiline" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
   <data name="m_tb_ObiConfigInstructions.Size" type="System.Drawing.Size, System.Drawing">
-    <value>588, 53</value>
+    <value>783, 79</value>
   </data>
   <data name="m_tb_ObiConfigInstructions.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
@@ -400,13 +365,13 @@
     <value>m_tb_ObiConfigInstructions</value>
   </data>
   <data name="&gt;&gt;m_tb_ObiConfigInstructions.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;m_tb_ObiConfigInstructions.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
   <data name="&gt;&gt;m_tb_ObiConfigInstructions.ZOrder" xml:space="preserve">
-    <value>3</value>
+    <value>4</value>
   </data>
   <metadata name="helpProvider1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
@@ -415,16 +380,16 @@
     <value>Default project directory:</value>
   </data>
   <data name="m_DirectoryTextbox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>192, 238</value>
+    <value>256, 366</value>
   </data>
   <data name="m_DirectoryTextbox.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>3, 4, 3, 4</value>
+    <value>4, 6, 4, 6</value>
   </data>
   <data name="m_DirectoryTextbox.ShowHelp" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
   <data name="m_DirectoryTextbox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>329, 20</value>
+    <value>438, 27</value>
   </data>
   <data name="m_DirectoryTextbox.TabIndex" type="System.Int32, mscorlib">
     <value>11</value>
@@ -433,13 +398,13 @@
     <value>m_DirectoryTextbox</value>
   </data>
   <data name="&gt;&gt;m_DirectoryTextbox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;m_DirectoryTextbox.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
   <data name="&gt;&gt;m_DirectoryTextbox.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>2</value>
   </data>
   <data name="m_BrowseButton.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Right</value>
@@ -454,16 +419,16 @@
     <value>NoControl</value>
   </data>
   <data name="m_BrowseButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>538, 233</value>
+    <value>717, 358</value>
   </data>
   <data name="m_BrowseButton.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>3, 4, 3, 4</value>
+    <value>4, 6, 4, 6</value>
   </data>
   <data name="m_BrowseButton.ShowHelp" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
   <data name="m_BrowseButton.Size" type="System.Drawing.Size, System.Drawing">
-    <value>72, 25</value>
+    <value>96, 38</value>
   </data>
   <data name="m_BrowseButton.TabIndex" type="System.Int32, mscorlib">
     <value>12</value>
@@ -475,13 +440,46 @@
     <value>m_BrowseButton</value>
   </data>
   <data name="&gt;&gt;m_BrowseButton.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;m_BrowseButton.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
   <data name="&gt;&gt;m_BrowseButton.ZOrder" xml:space="preserve">
-    <value>0</value>
+    <value>1</value>
+  </data>
+  <data name="m_lblDefaultProjectDirectoryTemp.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="m_lblDefaultProjectDirectoryTemp.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 9pt</value>
+  </data>
+  <data name="m_lblDefaultProjectDirectoryTemp.Location" type="System.Drawing.Point, System.Drawing">
+    <value>45, 434</value>
+  </data>
+  <data name="m_lblDefaultProjectDirectoryTemp.Size" type="System.Drawing.Size, System.Drawing">
+    <value>168, 18</value>
+  </data>
+  <data name="m_lblDefaultProjectDirectoryTemp.TabIndex" type="System.Int32, mscorlib">
+    <value>10</value>
+  </data>
+  <data name="m_lblDefaultProjectDirectoryTemp.Text" xml:space="preserve">
+    <value>Default project &amp;directory:</value>
+  </data>
+  <data name="m_lblDefaultProjectDirectoryTemp.Visible" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="&gt;&gt;m_lblDefaultProjectDirectoryTemp.Name" xml:space="preserve">
+    <value>m_lblDefaultProjectDirectoryTemp</value>
+  </data>
+  <data name="&gt;&gt;m_lblDefaultProjectDirectoryTemp.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_lblDefaultProjectDirectoryTemp.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;m_lblDefaultProjectDirectoryTemp.ZOrder" xml:space="preserve">
+    <value>3</value>
   </data>
   <data name="m_lblDefaultProjectDirectory.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -490,13 +488,10 @@
     <value>Microsoft Sans Serif, 9pt</value>
   </data>
   <data name="m_lblDefaultProjectDirectory.Location" type="System.Drawing.Point, System.Drawing">
-    <value>22, 242</value>
-  </data>
-  <data name="m_lblDefaultProjectDirectory.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>2, 0, 2, 0</value>
+    <value>29, 369</value>
   </data>
   <data name="m_lblDefaultProjectDirectory.Size" type="System.Drawing.Size, System.Drawing">
-    <value>138, 15</value>
+    <value>168, 18</value>
   </data>
   <data name="m_lblDefaultProjectDirectory.TabIndex" type="System.Int32, mscorlib">
     <value>10</value>
@@ -508,22 +503,25 @@
     <value>m_lblDefaultProjectDirectory</value>
   </data>
   <data name="&gt;&gt;m_lblDefaultProjectDirectory.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;m_lblDefaultProjectDirectory.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
   <data name="&gt;&gt;m_lblDefaultProjectDirectory.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>0</value>
   </data>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
   <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
-    <value>6, 13</value>
+    <value>8, 20</value>
   </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>636, 323</value>
+    <value>848, 497</value>
+  </data>
+  <data name="$this.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 5, 4, 5</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
     <value>Configure OBI</value>
@@ -532,12 +530,12 @@
     <value>helpProvider1</value>
   </data>
   <data name="&gt;&gt;helpProvider1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.HelpProvider, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Windows.Forms.HelpProvider, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
     <value>ObiConfiguration</value>
   </data>
   <data name="&gt;&gt;$this.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Form, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Windows.Forms.Form, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
 </root>
