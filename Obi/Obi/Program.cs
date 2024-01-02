@@ -69,6 +69,11 @@ namespace Obi
             {
                 int minutes = (int)Math.Floor(seconds / 60.0);
                 int seconds_ = (int)Math.Round(seconds - minutes * 60.0);
+                if(seconds_ == 60)
+                {
+                    minutes++;
+                    seconds_ = 0;
+                }
                 if (minutes < 60)
                 {
                     return string.Format(Localizer.Message("long_mm_ss"),
