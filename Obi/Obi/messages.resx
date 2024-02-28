@@ -3317,5 +3317,8 @@ You can do it later also from the project tab of preferences dialog.</value>
   <data name="TodoTimeFromStartOfSection" xml:space="preserve">
     <value> at {0}</value>
   </data>
+  <data name="KeyboardShortcuts_LoadingDefaults" xml:space="preserve">
+    <value>Obi is being configured with default keyboard shortcuts.</value>
+  </data>
   
 </root>

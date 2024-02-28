@@ -4866,10 +4866,11 @@ ref string exportDirectoryEPUB3)
                 catch (System.Exception ex)
                 {
                     mProjectView.WriteToLogFile(ex.ToString());
-                    MessageBox.Show(
-                        Localizer.Message("KeyboardShortcuts_ErrorInLoadingConfiguredKeys") + "\n" + ex.ToString(),
-                        Localizer.Message("Caption_Error"));
-                    m_KeyboardShortcuts = KeyboardShortcuts_Settings.GetDefaultKeyboardShortcuts_Settings();
+                //MessageBox.Show(
+                //    Localizer.Message("KeyboardShortcuts_ErrorInLoadingConfiguredKeys") + "\n" + ex.ToString(),
+                //    Localizer.Message("Caption_Error"));
+                MessageBox.Show(Localizer.Message("KeyboardShortcuts_LoadingDefaults"),Localizer.Message("Caption_Information"));
+                m_KeyboardShortcuts = KeyboardShortcuts_Settings.GetDefaultKeyboardShortcuts_Settings();
                 }
                 mProjectView.InitializeShortcutKeys();
 
