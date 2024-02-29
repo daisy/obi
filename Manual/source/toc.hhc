@@ -314,7 +314,7 @@
 					<param name="Name" value="Trim silence from section end">
 					<param name="Local" value="HTML Files\Exploring the GUI\The Menu Bar\Trim silence from section end.htm">
 					</OBJECT>
-			</ul>
+			</UL>
 			<LI> <OBJECT type="text/sitemap">
 				<param name="Name" value="Phrases Menu">
 				<param name="Local" value="HTML Files\Exploring the GUI\The Menu Bar\Phrases Menu.htm">
