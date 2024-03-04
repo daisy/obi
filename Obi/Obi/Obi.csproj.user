@@ -101,6 +101,9 @@
     <Compile Update="Dialogs\ObiConfiguration.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Content Update="Dialogs\ObiConfiguration.cs">
+      <SubType>Form</SubType>
+    </Content>
     <Compile Update="Dialogs\PhraseProperties.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -251,9 +254,6 @@
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Update="ObiForm.zh-Hant.resx">
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Update="PPMeter.resx">
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Update="ProjectView\ContentView.de.resx">
