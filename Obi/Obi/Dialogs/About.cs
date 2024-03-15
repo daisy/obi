@@ -1,3 +1,4 @@
+using System.Diagnostics;
 using System.Windows.Forms;
 
 namespace Obi.Dialogs
@@ -31,7 +32,21 @@ namespace Obi.Dialogs
         {
             if (e.Url.Scheme != "file")
             {
-                System.Diagnostics.Process.Start(e.Url.ToString());
+                try
+                {
+                    var urlToOpen = new ProcessStartInfo(e.Url.ToString())
+                    {
+                        UseShellExecute = true
+                    };
+
+                    Process.Start(urlToOpen);
+
+                    //System.Diagnostics.Process.Start(e.Url.ToString());
+                }
+                catch
+                {
+                    MessageBox.Show(e.ToString());
+                }
                 e.Cancel = true;
             }
         }
