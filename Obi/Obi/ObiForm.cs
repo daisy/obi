@@ -1349,9 +1349,9 @@ namespace Obi
                                                                                              Localizer.Message("Caption_Information"),
                                                                                              MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) == DialogResult.Yes)
                                                                                          {
-                                                                                         System.Diagnostics.Process.
-                                                                                             Start(deletedDataFolderPath);
-                                                                                         
+                                                                                             System.Diagnostics.Process.
+                                                                                             Start("explorer.exe",deletedDataFolderPath);
+
                                                                                          }
                                                                                          isDeleteFolderOpenned = true;
                                                                                      }

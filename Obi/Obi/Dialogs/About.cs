@@ -34,14 +34,7 @@ namespace Obi.Dialogs
             {
                 try
                 {
-                    var urlToOpen = new ProcessStartInfo(e.Url.ToString())
-                    {
-                        UseShellExecute = true
-                    };
-
-                    Process.Start(urlToOpen);
-
-                    //System.Diagnostics.Process.Start(e.Url.ToString());
+                   System.Diagnostics.Process.Start("explorer.exe",e.Url.ToString());
                 }
                 catch
                 {
