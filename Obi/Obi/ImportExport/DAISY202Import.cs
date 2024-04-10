@@ -124,6 +124,7 @@ namespace Obi.ImportExport
                 if (m_Settings.Project_ImportNCCFileWithWindows1252Encoding)
                 {
                     // some old files may have 7 bit encoding.
+                    Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
                     StreamReader sr = new StreamReader(m_NccPath, Encoding.GetEncoding(1252), false);
                     string xmlData = sr.ReadToEnd();
                     nccDocument = XmlReaderWriterHelper.ParseXmlDocumentFromString(xmlData, false, false);
