@@ -90,7 +90,7 @@ namespace Obi.Dialogs
                     }
                     else if (!m_IsAutomaticUpdate)
                     {
-                        MessageBox.Show(string.Format(Localizer.Message("CheckUpdates_NewVersionNotAvailable"), m_Settings.Project_LatestVersionCheckedByUpdate), Localizer.Message("CheckUpdates_NewVersionNotAvailable_Caption"), MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        MessageBox.Show(string.Format(Localizer.Message("CheckUpdates_NewVersionNotAvailable")), Localizer.Message("CheckUpdates_NewVersionNotAvailable_Caption"), MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
                 }
                 catch (System.Exception ex)

@@ -2328,7 +2328,7 @@ Error text: {1}</value>
     <value>Do not remind</value>
   </data>
   <data name="CheckUpdates_NewVersionNotAvailable" xml:space="preserve">
-    <value>The last update check was for version {0}. There is no new version released thereafter.</value>
+    <value>You are using latest version of Obi</value>
   </data>
   <data name="CheckUpdates_GoToDownloadPage" xml:space="preserve">
     <value>&amp;Go to download page</value>
