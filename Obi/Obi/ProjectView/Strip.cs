@@ -57,8 +57,13 @@ namespace Obi.ProjectView
             mContentView = parent;
             if (mContentView.Settings.Project_IncreasePhraseHightForHigherResolution && m_ScreenResolution.Height > m_BaseScreenResolution) //@ScreenResolution
             {
-                float heightRatio = (float)Screen.PrimaryScreen.Bounds.Height / m_BaseScreenResolution; 
+                float heightRatio = (float)Screen.PrimaryScreen.Bounds.Height / m_BaseScreenResolution;
                 mBlockLayoutBaseHeight = (int)(mBlockLayout.Height * heightRatio);
+                float temp = (float)Screen.PrimaryScreen.Bounds.Height / mBlockLayoutBaseHeight;
+                if(temp > 6)
+                {
+                    mBlockLayoutBaseHeight = (int)((float)Screen.PrimaryScreen.Bounds.Height /  5);
+                }
             }
             mContentView.SizeChanged += new EventHandler(Resize_View);
             ZoomFactor = mContentView.ZoomFactor;

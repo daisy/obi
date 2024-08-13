@@ -2494,7 +2494,7 @@ if (thresholdAboveLastNode >= stripControl.Node.PhraseChildCount) thresholdAbove
 
 
         //@singleSection
-        public int ContentViewDepthForCreatingBlocks { get { return this.Height + Convert.ToInt32 ( ZoomFactor * 100 ); } }
+        public int ContentViewDepthForCreatingBlocks { get { return this.Height + Convert.ToInt32(ZoomFactor * 100); } }
 
         //@singleSection : base function for strips panel scroll
         public void ScrollMStripsPanel ( int interval, bool updateBlockSelection )
@@ -2785,7 +2785,7 @@ if (thresholdAboveLastNode >= stripControl.Node.PhraseChildCount) thresholdAbove
                 }
             else if (ZoomFactor >= 1.0f && ZoomFactor <= 1.5)
                 {
-                phraseLotSize = 250;
+                phraseLotSize = 350;
                 }
             else if (ZoomFactor > 1.5)
                 {
