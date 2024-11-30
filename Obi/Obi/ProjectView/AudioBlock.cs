@@ -198,18 +198,18 @@ public void SetWaveformForZoom(PhraseNode node)
                 SetWaveform(mNode as PhraseNode); 
             }
         }
-        public override void SetZoomFactorForHigherResolution(float zoom, int height, float widthRatio) //@ScreenResolution
+        public override void SetZoomFactorForHigherResolution(float zoom, int height, float widthRatio ,bool setFont = true) //@ScreenResolution
         {
-            SetZoomFactorAndHeight(zoom, height);
+            SetZoomFactorAndHeight(zoom, height,setFont);
             this.Width = (int)(this.Width * widthRatio);
             this.Waveform.Width = (int)(this.Waveform.Width * widthRatio);
         }
 
-        public override void SetZoomFactorAndHeight(float zoom, int height)
+        public override void SetZoomFactorAndHeight(float zoom, int height, bool setFont = true)
         {
             float tempFontSize = mBaseFontSize + 3;
-            base.SetZoomFactorAndHeight(zoom, height);
-            if(zoom != 0)
+            base.SetZoomFactorAndHeight(zoom, height,setFont);
+            if(zoom != 0 && setFont)
             mRecordingLabel.Font = new Font(Font.FontFamily, zoom * tempFontSize, FontStyle.Bold);
 
             if (zoom < 0.9)

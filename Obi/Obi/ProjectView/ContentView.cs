@@ -2031,7 +2031,8 @@ return CreateBlocksInStrip ( s != null ? s : null ); // uncomment this for resto
         //@singleSection
         public void CreateBlocksTillNodeInStrip ( Strip stripControl, EmptyNode nodeOfLastBlockToCreate, bool considerStripHaltFlag )
             {
-            CreateBlocksTillNodeInStrip ( stripControl, nodeOfLastBlockToCreate, considerStripHaltFlag, 0 );
+              while (!this.IsWaveformRendering)
+                CreateBlocksTillNodeInStrip ( stripControl, nodeOfLastBlockToCreate, considerStripHaltFlag, 0 );
             }
 
         //@singleSection
@@ -2113,7 +2114,7 @@ return CreateBlocksInStrip ( s != null ? s : null ); // uncomment this for resto
                     EmptyNode node = stripControl.Node.PhraseChild ( i );
                     if (shouldStartCreating)
                         {
-                        stripControl.AddBlockForNode ( node );
+                        stripControl.AddBlockForNode ( node,false );
                         }
 
                     if (node != null && node == nodeOfLastBlockToCreate)

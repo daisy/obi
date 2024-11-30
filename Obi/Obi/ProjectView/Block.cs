@@ -120,9 +120,9 @@ namespace Obi.ProjectView
                 m_IsFineNavigationMode = value;
             }
         }
-        public virtual void SetZoomFactorForHigherResolution(float zoom, int height, float widthRatio) //@ScreenResolution
+        public virtual void SetZoomFactorForHigherResolution(float zoom, int height, float widthRatio, bool setFont = true) //@ScreenResolution
         {
-            SetZoomFactorAndHeight(zoom, height);
+            SetZoomFactorAndHeight(zoom, height,setFont);
             this.Width = (int)(this.Width * widthRatio);
         }
 
@@ -130,10 +130,11 @@ namespace Obi.ProjectView
         /// Set the zoom factor and the height.
         /// We cheat for the height so that it fits exactly in the parent container.
         /// </summary>
-        public virtual void SetZoomFactorAndHeight(float zoom, int height)
+        public virtual void SetZoomFactorAndHeight(float zoom, int height, bool setFont = true)
         {
             if (zoom > 0.0f)
             {
+                if(setFont)
                 mLabel.Font = new Font(Font.FontFamily, zoom * mBaseFontSize);
                 Size = new Size(LabelFullWidth, height - Margin.Vertical);
                 if (Node.CommentText != null)   // @Comment-todo

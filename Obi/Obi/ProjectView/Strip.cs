@@ -415,14 +415,14 @@ namespace Obi.ProjectView
         }
 
 
-        private delegate Block BlockInvokation(EmptyNode node);
+        private delegate Block BlockInvokation(EmptyNode node, bool setFont = true);
 
         /// <summary>
         /// Add a new block for an empty node. Return the block once added.
         /// Cursors are added if necessary: one after the block, and one before
         /// if it is the first block of the strip.
         /// </summary>
-        public Block AddBlockForNode(EmptyNode node)
+        public Block AddBlockForNode(EmptyNode node, bool setFont = true)
         {
             if (InvokeRequired)
             {
@@ -430,7 +430,7 @@ namespace Obi.ProjectView
             }
             else
             {
-            return CreateBlockForNode ( node, true );
+            return CreateBlockForNode ( node, true, setFont);
             }
         }
 
@@ -456,7 +456,7 @@ namespace Obi.ProjectView
             }
 
         //@singleSection
-        private Block CreateBlockForNode ( EmptyNode node , bool updateSize)
+        private Block CreateBlockForNode ( EmptyNode node , bool updateSize, bool setFont = true)
             {
             // first check if blocks count has exceeded handle limit : ( nodes limit * 2 ) +1
             if ((mBlockLayout.Controls.Count + (m_BackgroundBlockLayout != null ? m_BackgroundBlockLayout.Controls.Count : 0)) > 2001
@@ -499,12 +499,12 @@ namespace Obi.ProjectView
             AddCursorAtBlockLayoutIndex(blockIndexToSet+1);
             if (mContentView.Settings.Project_IncreasePhraseHightForHigherResolution && m_ScreenResolution.Height > m_BaseScreenResolution) //@ScreenResolution
             {
-                float BlockWidthRatio = (float)Screen.PrimaryScreen.Bounds.Height / m_BaseScreenResolution; 
-                block.SetZoomFactorForHigherResolution(mContentView.ZoomFactor, mBlockHeight, BlockWidthRatio);
+                float BlockWidthRatio = (float)Screen.PrimaryScreen.Bounds.Height / m_BaseScreenResolution;
+                block.SetZoomFactorForHigherResolution(mContentView.ZoomFactor, mBlockHeight, BlockWidthRatio, setFont);
             }
-            else
+            else //if(setZoomFactor)
             {
-                block.SetZoomFactorAndHeight(mContentView.ZoomFactor, mBlockHeight);
+                block.SetZoomFactorAndHeight(mContentView.ZoomFactor, mBlockHeight,setFont);
             }
             block.Cursor = Cursor;
             block.SizeChanged += new EventHandler ( Block_SizeChanged );
