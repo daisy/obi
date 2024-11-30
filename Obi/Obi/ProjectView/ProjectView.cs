@@ -3041,6 +3041,145 @@ namespace Obi.ProjectView
                 }
             }
 
+        public void ImportPhrasesTTS(string ttsFileToImport)
+        {
+            if (CanImportPhrases)
+            {
+                if (TransportBar.CurrentState == TransportBar.State.Playing) TransportBar.Stop();
+
+                if (this.ObiForm.CheckDiskSpace() <= 100)
+                {
+                    DialogResult result = MessageBox.Show(string.Format(Localizer.Message("LimitedDiskSpaceWarning"), 100), Localizer.Message("Memory_Warning"), MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+
+                    if (result == DialogResult.No)
+                    {
+                        return;
+                    }
+                }
+                NodeSelection initialSelection = this.Selection;
+                string[] filesPathArray = new string[1]; // SelectFilesToImport();
+                filesPathArray[0] = ttsFileToImport;
+                if (this.Selection != initialSelection) this.Selection = initialSelection;//workaround to prevent ocasional case of shifting selection from strip cursor to section
+
+
+                if (filesPathArray != null)
+                {
+                    string dataProviderDirectory = mPresentation.DataProviderManager.DataFileDirectoryFullPath;
+                  
+                    long threshold = (long)ObiForm.Settings.Audio_DefaultThreshold;
+                    double gap = (double)ObiForm.Settings.Audio_DefaultGap;
+                    double leadingSilence = (double)ObiForm.Settings.Audio_DefaultLeadingSilence;
+
+
+                    // if focus is in toc view, shift it to content view
+                    if (Selection.Control == null || Selection.Control is TOCView) Selection = new NodeSelection(Selection.Node, mContentView);
+
+                    Dialogs.ProgressDialog progress_AudioConverter = new Obi.Dialogs.ProgressDialog(Localizer.Message("AudioFileImport_ProcessingFiles"),
+                delegate (Dialogs.ProgressDialog progress1)
+                {
+                    filesPathArray = Audio.AudioFormatConverter.ConvertFiles(filesPathArray, mPresentation);
+                });
+                    progress_AudioConverter.OperationCancelled += new Obi.Dialogs.OperationCancelledHandler(delegate (object sender, EventArgs e) { Audio.AudioFormatConverter.IsRequestCancellation = true; });
+                    progress_AudioConverter.ShowDialog();
+                    if (progress_AudioConverter.Exception != null) throw progress_AudioConverter.Exception;
+
+                    List<string> paths = new List<string>();
+                    if (filesPathArray != null)
+                    {
+                        for (int i = 0; i < filesPathArray.Length; i++)
+                        {
+                            if (!string.IsNullOrEmpty(filesPathArray[i]) && System.IO.File.Exists(filesPathArray[i])) paths.Add(filesPathArray[i]);
+                        }
+                    }
+                    List<PhraseNode> phraseNodes = new List<PhraseNode>(paths.Count);
+                    Dictionary<PhraseNode, string> phrase_SectionNameMap = new Dictionary<PhraseNode, string>(); // used for importing sections
+                    Dialogs.ProgressDialog progress =
+                        new Dialogs.ProgressDialog(Localizer.Message("import_audio_progress_dialog_title"),
+                            delegate ()
+                            {
+                                foreach (string path in paths)
+                                {
+                                    List<PhraseNode> phrases = null;
+                                    try
+                                    {
+                                        phrases = mPresentation.CreatePhraseNodeList(path, ObiForm.Settings.MaxAllowedPhraseDurationInMinutes * 60000.0);
+                                        //if (!dialog.SplitPhrases && phrases.Count > 1)
+                                        //    MessageBox.Show(String.Format(Localizer.Message("Import_Phrase_SizeLimit"), ObiForm.Settings.MaxAllowedPhraseDurationInMinutes));
+                                    }
+                                    catch (System.Exception ex)
+                                    {
+                                        this.WriteToLogFile(ex.ToString());
+                                        MessageBox.Show(String.Format(Localizer.Message("import_phrase_error_text"), path) + "\n\n" + ex.ToString());
+                                        continue;
+                                    }
+                                    foreach (PhraseNode p in phrases)
+                                    {
+                                        try
+                                        {
+                                            phraseNodes.Add(p);
+
+                                        }
+                                        catch (Exception ex)
+                                        {
+                                            this.WriteToLogFile(ex.ToString());
+                                            MessageBox.Show(
+                                                String.Format(Localizer.Message("import_phrase_error_text"), path),
+                                                Localizer.Message("import_phrase_error_caption"),
+                                                MessageBoxButtons.OK,
+                                                MessageBoxIcon.Error);
+                                        }
+                                    }
+                                }
+                            }, this.ObiForm.Settings); //@fontconfig
+                    progress.ShowDialog();
+                    if (phraseNodes.Count > 0)
+                    {
+                        if (GetSelectedPhraseSection != null && (GetSelectedPhraseSection.PhraseChildCount + phraseNodes.Count <= MaxVisibleBlocksCount)) // @phraseLimit
+                        {
+                            this.ObiForm.Cursor = Cursors.WaitCursor;
+                            bool selectionChangePlaybackEnabled = TransportBar.SelectionChangedPlaybackEnabled;
+                            TransportBar.SelectionChangedPlaybackEnabled = false;
+                            bool tempDisplayWarnings = this.ObiForm.Settings.Project_DisplayWarningsForEditOperations;
+                            try
+                            {
+                                if (this.ObiForm.Settings.Project_DisplayWarningsForEditOperations)
+                                {
+                                    this.ObiForm.Settings.Project_DisplayWarningsForEditOperations = false;
+                                }
+
+                                {
+                                    mPresentation.Do(GetImportPhraseCommands(phraseNodes));
+                                }
+                            }
+                            catch (System.Exception ex)
+                            {
+                                MessageBox.Show(ex.ToString());
+                            }
+                            finally
+                            {
+                                this.ObiForm.Settings.Project_DisplayWarningsForEditOperations = tempDisplayWarnings;
+                            }
+                            //phrase detection
+
+                            {
+                                ApplyPhraseDetectionOnPhraseList(phraseNodes, threshold, gap, leadingSilence);
+                            }
+                            TransportBar.SelectionChangedPlaybackEnabled = selectionChangePlaybackEnabled;
+                            // hide new phrases if section's contents are hidden
+                            //HideNewPhrasesInInvisibleSection ( GetSelectedPhraseSection );//@singleSection: original
+                            mContentView.CreateBlocksInStrip(); //@singleSection: new
+                        }
+                        else
+                            MessageBox.Show(Localizer.Message("Operation_Cancelled") + "\n" + string.Format(Localizer.Message("ContentsHidden_PhrasesExceedMaxLimitPerSection"), MaxVisibleBlocksCount));
+                    }
+
+
+                }
+                this.ObiForm.Cursor = Cursors.Default;
+
+            }
+        }
+
         private Dictionary<string, List<double>> ReadCuePoints(string[] filePaths)
         {
             List<double> cuePoints;
@@ -3549,6 +3688,14 @@ for (int j = 0;
                         }
                     }
             }
+
+        }
+
+        public void TextToSpeech()
+        {
+            Dialogs.GenerateSpeech dialog = new Dialogs.GenerateSpeech(this,mPresentation, ObiForm.Settings);
+            dialog.ShowDialog();
+            
 
         }
 

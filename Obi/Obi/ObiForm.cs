@@ -2562,6 +2562,7 @@ namespace Obi
                 mRewindToolStripMenuItem.Enabled = mSession.HasProject && mProjectView.CanRewind;
                 navigationToolStripMenuItem.Enabled = mSession.HasProject;
                 allEmptyPagesToolStripMenuItem.Enabled = allEmptyPagesAudioFileToolStripMenuItem.Enabled = mProjectView.CanGenerateSpeechForAllEmptyPages;
+                m_TextToSpeechToolStripMenuItem.Enabled = mProjectView.CanImportPhrases;
                 selectedPageToolStripMenuItem.Enabled = selectedPageAudioFileToolStripMenuItem.Enabled = mProjectView.CanGenerateSpeechForPage;
                 mGenerateSpeechToolStripMenuItem.Enabled = mSession.HasProject && !mProjectView.TransportBar.IsRecorderActive;
                 mFastPlaytoolStripMenuItem.Enabled = mSession.HasProject && !mProjectView.TransportBar.IsRecorderActive;
@@ -6909,7 +6910,13 @@ ref string exportDirectoryEPUB3)
                     mProjectView.GenerateSpeechForPage(true, pageAudioDialog.RecordedAudioPath);
                 }
             }
-           
+
+        private void m_TextToSpeechToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            mProjectView.TextToSpeech();
+            //GenerateSpeech generateSpeech = new GenerateSpeech();
+            //generateSpeech.ShowDialog();
+        }
 
             private void mHelp_ContentsEnglishMenuItem_Click(object sender, EventArgs e)
             {

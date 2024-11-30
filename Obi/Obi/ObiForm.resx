@@ -1751,6 +1751,15 @@
   <data name="allEmptyPagesAudioFileToolStripMenuItem.AccessibleName" xml:space="preserve">
     <value>Generate speech for all empty pages (Audio File).</value>
   </data>
+  <data name="m_TextToSpeechToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>267, 24</value>
+  </data>
+  <data name="m_TextToSpeechToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;Text To Audio</value>
+  </data>
+  <data name="m_TextToSpeechToolStripMenuItem.AccessibleName" xml:space="preserve">
+    <value>Text To Audio</value>
+  </data>
   <data name="mGenerateSpeechToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>176, 22</value>
   </data>

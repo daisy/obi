@@ -388,6 +388,10 @@
     <EmbeddedResource Remove="ProjectView\ProjectView.de.resx" />
   </ItemGroup>
   <ItemGroup>
+    <None Remove="Dialogs\GoToPageOrPhrase.Designer.cs~RF231bd6b.TMP" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.CognitiveServices.Speech" Version="1.41.1" />
     <PackageReference Include="Microsoft.DotNet.UpgradeAssistant.Extensions.Default.Analyzers" Version="0.4.355802">
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>

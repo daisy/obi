@@ -7,6 +7,7 @@ using System.Runtime.Serialization.Formatters.Soap;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Drawing;
+using System.Collections.Generic;
 
 namespace Obi
 {
@@ -354,6 +355,9 @@ public bool Project_ImportNCCFileWithWindows1252Encoding ; // useful for importi
         [OptionalField]
         public bool Audio_DeleteFollowingPhrasesWhilePreviewBeforeRecording;
 
+        [OptionalField]
+        public List<string> AzureVoices;
+
         protected static void InitializeDefaultSettings(Settings settings)
         {
             settings.Audio_Channels = 1;
@@ -513,6 +517,8 @@ public bool Project_ImportNCCFileWithWindows1252Encoding ; // useful for importi
             settings.Project_CSVImportHavingSemicolon = false;
             settings.Project_CSVImportPhraseDetection = false;
             settings.Audio_DeleteFollowingPhrasesWhilePreviewBeforeRecording = true;
+            //post Obi 5.0
+            settings.AzureVoices = new List<string>();
         }
 
         /// <summary>

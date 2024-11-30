@@ -20,6 +20,12 @@
     <Compile Update="Dialogs\About.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="Dialogs\AddAzureKey.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Dialogs\AddAzureVoice.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="Dialogs\AdvancePreferencesSettings.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -78,6 +84,9 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="Dialogs\ExtendedMessageToAssociate.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Dialogs\GenerateSpeech.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="Dialogs\GoToPageOrPhrase.cs">

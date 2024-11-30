@@ -205,6 +205,7 @@ namespace Obi
             this.allEmptyPagesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.selectedPageAudioFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.allEmptyPagesAudioFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.m_TextToSpeechToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
             this.navigationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mPreviousSectionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -1485,7 +1486,8 @@ namespace Obi
             this.selectedPageToolStripMenuItem,
             this.allEmptyPagesToolStripMenuItem,
             this.selectedPageAudioFileToolStripMenuItem,
-            this.allEmptyPagesAudioFileToolStripMenuItem});
+            this.allEmptyPagesAudioFileToolStripMenuItem,
+            this.m_TextToSpeechToolStripMenuItem});
             this.mGenerateSpeechToolStripMenuItem.Name = "mGenerateSpeechToolStripMenuItem";
             // 
             // selectedPageToolStripMenuItem
@@ -1511,6 +1513,12 @@ namespace Obi
             resources.ApplyResources(this.allEmptyPagesAudioFileToolStripMenuItem, "allEmptyPagesAudioFileToolStripMenuItem");
             this.allEmptyPagesAudioFileToolStripMenuItem.Name = "allEmptyPagesAudioFileToolStripMenuItem";
             this.allEmptyPagesAudioFileToolStripMenuItem.Click += new System.EventHandler(this.allEmptyPagesAudioFileToolStripMenuItem_Click);
+            // 
+            // m_TextToSpeechToolStripMenuItem
+            // 
+            resources.ApplyResources(this.m_TextToSpeechToolStripMenuItem, "m_TextToSpeechToolStripMenuItem");
+            this.m_TextToSpeechToolStripMenuItem.Name = "m_TextToSpeechToolStripMenuItem";
+            this.m_TextToSpeechToolStripMenuItem.Click += new System.EventHandler(this.m_TextToSpeechToolStripMenuItem_Click);
             // 
             // toolStripSeparator5
             // 
@@ -2097,6 +2105,7 @@ namespace Obi
         private System.Windows.Forms.ToolStripMenuItem m_AudioMixerToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem selectedPageAudioFileToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem allEmptyPagesAudioFileToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem m_TextToSpeechToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mHelp_ContentsEnglishMenuItem;
         private System.Windows.Forms.ToolStripMenuItem m_ImportMetadataToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator20;
