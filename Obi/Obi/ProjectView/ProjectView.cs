@@ -9,6 +9,7 @@ using AudioLib;
 using urakawa.command;
 using urakawa.daisy.export.visitor;
 using urakawa.property.channel;
+using Obi.Dialogs;
 
 //using urakawa.publish;
 
@@ -45,6 +46,7 @@ namespace Obi.ProjectView
         private bool m_IsCopyForMultiplePhrasesChecked = false;
         private bool m_IsAudioprocessingPerformed = false;
         private Obi.UserControls.GraphicalPeakMeter m_PeakMeterInsideObi;
+        private GenerateSpeech m_GenerateSpeechDialog;
                   
     
         /// <summary>
@@ -3693,8 +3695,8 @@ for (int j = 0;
 
         public void TextToSpeech()
         {
-            Dialogs.GenerateSpeech dialog = new Dialogs.GenerateSpeech(this,mPresentation, ObiForm.Settings);
-            dialog.ShowDialog();
+            m_GenerateSpeechDialog = new Dialogs.GenerateSpeech(this,mPresentation, ObiForm.Settings);
+            m_GenerateSpeechDialog.ShowDialog();
             
 
         }

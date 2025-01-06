@@ -16,12 +16,23 @@ namespace Obi.Dialogs
         private ProjectView.ProjectView m_ProjectView;
         private bool m_IsSelectionNull = false;
 
-        public AudioProcessingNoiseReduction(ProjectView.ProjectView projectView, bool isSelectionNull)
+        public AudioProcessingNoiseReduction(ProjectView.ProjectView projectView, bool isSelectionNull, bool isRnnNoiseReduction = false)
         {
             InitializeComponent();
             m_SelectPresetComboBox.SelectedIndex = 1;
             m_ProjectView = projectView;
             m_IsSelectionNull = isSelectionNull;
+            if (isRnnNoiseReduction)
+            {
+                m_lblNoiseLevel.Visible = false;
+                m_SetNoiseLevelTrackBar.Visible = false;
+                m_SetNoiseLevelInPercent.Visible = false;
+                m_lblPercent.Visible = false;
+                m_lblNoiseReduction.Visible = false;
+                m_SetNoiseReductionTrackBar.Visible = false;
+                m_SetNoiseReduction.Visible = false;
+                m_lbdB.Visible = false;
+            }
             helpProvider1.HelpNamespace = Localizer.Message("CHMhelp_file_name");
             helpProvider1.SetHelpNavigator(this, HelpNavigator.Topic);
             helpProvider1.SetHelpKeyword(this, "HTML Files/Creating a DTB/Working with Audio/Audio processing.htm");

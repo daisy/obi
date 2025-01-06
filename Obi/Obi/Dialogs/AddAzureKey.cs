@@ -22,7 +22,7 @@ namespace Obi.Dialogs
         {
             if(m_KeyTB.Text.Length == 0 || m_ResgionTB.Text.Length == 0) 
             {
-                MessageBox.Show("Please add key and region of your Azure subcription plan");
+                MessageBox.Show("Please add key and region of your Azure subcription plan", Localizer.Message("Caption_Information"), MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
             }            
             StringBuilder csvContent = new StringBuilder();

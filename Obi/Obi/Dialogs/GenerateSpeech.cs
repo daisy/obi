@@ -32,6 +32,7 @@ namespace Obi.Dialogs
         private readonly SpeechConfig m_AzureSpeechConfig;
 
       
+        
         public GenerateSpeech(ProjectView.ProjectView view, ObiPresentation presentation, Settings settings)
         {
             InitializeComponent();
@@ -56,6 +57,8 @@ namespace Obi.Dialogs
                 m_DeleteAzureVoiceBtn.Enabled = false;
                 m_AzureRbtn.Enabled = false;
             }
+            float fontSize = m_TextToSpeechTb.Font.SizeInPoints;
+            m_TextToSpeechTb.Font = new Font(m_TextToSpeechTb.Font.FontFamily, fontSize * m_Settings.ZoomFactor);
             bool rv = LoadInstalledVoices();
             InitializeEnabledState(rv);
         }
@@ -63,6 +66,9 @@ namespace Obi.Dialogs
 
         private bool LoadInstalledVoices()
         {
+            m_SpeedTb.Minimum = -10;
+            m_SpeedTb.Maximum = 10;
+            m_SpeedTb.Value = 0;
 
             using (System.Speech.Synthesis.SpeechSynthesizer synth = new System.Speech.Synthesis.SpeechSynthesizer())
             {
@@ -88,10 +94,11 @@ namespace Obi.Dialogs
             {
                 m_VoiceSelectionCb.Items.Add(voice);
                 m_Settings.AzureVoices.Add(voice);
+                m_VoiceSelectionCb.SelectedIndex = m_VoiceSelectionCb.Items.Count - 1;
             }
             else
             {
-                MessageBox.Show("Voice is already there in the list");
+                MessageBox.Show("Voice is already there in the list", Localizer.Message("Caption_Information"),MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
 
@@ -99,13 +106,14 @@ namespace Obi.Dialogs
         {
             m_SpeedTb.Minimum = -50;
             m_SpeedTb.Maximum = 50;
+            m_SpeedTb.Value = 0;
 
             if (m_Settings.AzureVoices != null)
             {
                 if (m_Settings.AzureVoices.Count == 0)
                 {
-                    m_Settings.AzureVoices.Add("en-GB-SoniaNeural");
-                    m_Settings.AzureVoices.Add("en-US-JennyNeural");
+                    m_Settings.AzureVoices.Add("en-GB-SoniaNeural Sonia");
+                    m_Settings.AzureVoices.Add("en-US-JennyNeural Jenny");
                 }
                 if (m_Settings.AzureVoices.Count > 0)
                 {
@@ -130,11 +138,10 @@ namespace Obi.Dialogs
         {
             if (state == false)
             {
-                MessageBox.Show("Missing:  Installed Voices");
+                MessageBox.Show("Missing:  Installed Voices", Localizer.Message("Caption_Information"), MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
 
             this.m_PreviewBtn.Enabled = state;
-            this.m_StopBtn.Enabled = state;
             this.m_ClearBtn.Enabled = state;
         }
 
@@ -142,7 +149,7 @@ namespace Obi.Dialogs
         {
             if (this.m_VoiceSelectionCb.Items.Count == 0 || this.m_VoiceSelectionCb.SelectedIndex < 0)
             {
-                MessageBox.Show("You must first install some voices");
+                MessageBox.Show("You must first install some voices", Localizer.Message("Caption_Information"), MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return null;
             }
             else
@@ -240,9 +247,14 @@ namespace Obi.Dialogs
 
             if (m_TextToSpeechTb.Text.ToString().Trim().Length == 0)
             {
-                MessageBox.Show("Please provide some text to continue");
+                MessageBox.Show("Please provide some text to continue", Localizer.Message("Caption_Information"), MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
             }
+
+
+            string[] words = m_TextToSpeechTb.Text.Split();
+            var previewWords = words.Take(6);
+            string previewText = string.Join(" ", previewWords);
             if (m_BuildInRbtn.Checked)
             {
                 if (synthsizer != null)
@@ -255,7 +267,7 @@ namespace Obi.Dialogs
 
                 if (synthsizer != null)
                 {
-                    synthsizer.SpeakAsync(this.m_TextToSpeechTb.Text);
+                    synthsizer.SpeakAsync(previewText);
                 }
 
                 this.m_VoiceSelectionCb.Enabled = false;
@@ -273,10 +285,11 @@ namespace Obi.Dialogs
                 {
                     m_AzureSpeechSynthesizer = new(m_AzureSpeechConfig);
                     //SetPlayingState();
-                    string voiceName = m_VoiceSelectionCb.SelectedItem.ToString();
+                    string voiceName = m_VoiceSelectionCb.SelectedItem.ToString().Split()[0];
+
                     InitializeSynthsizer();
                     //string ssml = GenerateSSML(m_TextToSpeechTb.Text, m_VoiceSelectionCb.SelectedItem.ToString(), (int)m_SpeedTb.Value, 0); 
-                    string ssml = GenerateSSML(m_TextToSpeechTb.Text, voiceName, (int)m_SpeedTb.Value, 0);
+                    string ssml = GenerateSSML(previewText, voiceName, (int)m_SpeedTb.Value, 0);
                     AzureSpeechSynthesizer_SynthesisStarted();
                     m_GenerateBtn.Enabled = false;
                     await m_AzureSpeechSynthesizer.SpeakSsmlAsync(ssml);
@@ -285,7 +298,7 @@ namespace Obi.Dialogs
                 }
                 else
                 {
-                    MessageBox.Show("Kindly add Azure Subcription details using Add Azure Key");
+                    MessageBox.Show("Kindly add Azure Subcription details using Add Azure Key", Localizer.Message("Caption_Information"), MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
         }
@@ -313,32 +326,13 @@ namespace Obi.Dialogs
 
       
 
-        private async void m_StopBtn_Click(object sender, EventArgs e)
-        {
-            if (m_BuildInRbtn.Checked)
-            {
-             
-                if (this.synthsizer != null)
-                {
-                    this.synthsizer.Dispose();
-                    this.synthsizer = null;
-                }
-            }
-            else if(m_AzureRbtn.Checked)
-            {
-                m_AzureSpeechSynthesizer?.StopSpeakingAsync();
-              
-            }
-            AzureSpeechSynthesizer_SynthesisCompleted();
-
-        }
      
 
         private async void m_GenerateBtn_ClickAsync(object sender, EventArgs e)
         {
             if (m_TextToSpeechTb.Text.ToString().Trim().Length == 0)
             {
-                MessageBox.Show("Please provide some text to continue");
+                MessageBox.Show("Please provide some text to continue", Localizer.Message("Caption_Information"), MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
             }
 
@@ -374,7 +368,6 @@ namespace Obi.Dialogs
                     //  synthsizer.Rate = (int)mSpeedTrackBar.Value;
                     AudioLibPCMFormat pcmformat = m_Presentation.MediaDataManager.DefaultPCMFormat.Data;
                     SpeechAudioFormatInfo formatInfo = new SpeechAudioFormatInfo((int)pcmformat.SampleRate, AudioBitsPerSample.Sixteen, pcmformat.NumberOfChannels == 2 ? AudioChannel.Stereo : AudioChannel.Mono);
-                    m_StopBtn.Enabled = false;
                     synthsizer.SetOutputToWaveFile(fileName, formatInfo);
 
                     synthsizer.Speak(m_TextToSpeechTb.Text);
@@ -403,11 +396,10 @@ namespace Obi.Dialogs
                     }
                     m_AzureSpeechSynthesizer = new(m_AzureSpeechConfig, AudioConfig.FromWavFileOutput(fileName));
 
-                    string voiceName = m_VoiceSelectionCb.SelectedItem.ToString();
+                    string voiceName = m_VoiceSelectionCb.SelectedItem.ToString().Split()[0];
                     InitializeSynthsizer();
                     string ssml = GenerateSSML(m_TextToSpeechTb.Text, voiceName, (int)m_SpeedTb.Value, 0);
                     AzureSpeechSynthesizer_SynthesisStarted();
-                    m_StopBtn.Enabled = false;
                     await m_AzureSpeechSynthesizer.SpeakSsmlAsync(ssml);;
                     m_AzureSpeechSynthesizer.Dispose();
                     if (File.Exists(fileName)) 
@@ -423,7 +415,7 @@ namespace Obi.Dialogs
                 }
                 else
                 {
-                    MessageBox.Show("Kindly add Azure Subcription details using Add Azure Key");
+                    MessageBox.Show("Kindly add Azure Subcription details using Add Azure Key", Localizer.Message("Caption_Information"), MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
         }
@@ -455,6 +447,9 @@ namespace Obi.Dialogs
                 {
                     m_VoiceSelectionCb.SelectedIndex = 0;
                 }
+                m_AddAzureVoiceBtn.Enabled = false;
+                m_DeleteAzureVoiceBtn.Enabled = false;
+                m_AddAzureKeyBtn.Enabled = false;
             }
         }
 
@@ -464,6 +459,9 @@ namespace Obi.Dialogs
             {
                 m_VoiceSelectionCb.Items.Clear();
                 LoadAzureVoicesAsync();
+                m_AddAzureVoiceBtn.Enabled = true;
+                m_DeleteAzureVoiceBtn.Enabled = true;
+                m_AddAzureKeyBtn.Enabled = true;
             }
         }
 
@@ -491,17 +489,14 @@ namespace Obi.Dialogs
 
         private void m_DeleteAzureVoiceBtn_Click(object sender, EventArgs e)
         {
-            if (m_VoiceSelectionCb.Items.Count > 0 && m_Settings.AzureVoices.Contains(m_VoiceSelectionCb.SelectedItem.ToString()))
+            if (m_VoiceSelectionCb.Items.Count > 1 && m_Settings.AzureVoices.Contains(m_VoiceSelectionCb.SelectedItem.ToString()))
             {
 
                 m_Settings.AzureVoices.Remove(m_VoiceSelectionCb.SelectedItem.ToString());
                 m_VoiceSelectionCb.Items.Remove(m_VoiceSelectionCb.SelectedItem);
+                m_VoiceSelectionCb.SelectedIndex = 0;
             }
         }
 
-        private void m_CloseBtn_Click(object sender, EventArgs e)
-        {
-            this.Close();
-        }
     }
 }
