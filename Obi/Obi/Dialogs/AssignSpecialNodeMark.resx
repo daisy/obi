@@ -1,64 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
 <root>
-  <!-- 
-    Microsoft ResX Schema 
-    
-    Version 2.0
-    
-    The primary goals of this format is to allow a simple XML format 
-    that is mostly human readable. The generation and parsing of the 
-    various data types are done through the TypeConverter classes 
-    associated with the data types.
-    
-    Example:
-    
-    ... ado.net/XML headers & schema ...
-    <resheader name="resmimetype">text/microsoft-resx</resheader>
-    <resheader name="version">2.0</resheader>
-    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
-    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
-    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
-    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
-    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
-        <value>[base64 mime encoded serialized .NET Framework object]</value>
-    </data>
-    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
-        <comment>This is a comment</comment>
-    </data>
-                
-    There are any number of "resheader" rows that contain simple 
-    name/value pairs.
-    
-    Each data row contains a name, and value. The row also contains a 
-    type or mimetype. Type corresponds to a .NET class that support 
-    text/value conversion through the TypeConverter architecture. 
-    Classes that don't support this are serialized and stored with the 
-    mimetype set.
-    
-    The mimetype is used for serialized objects, and tells the 
-    ResXResourceReader how to depersist the object. This is currently not 
-    extensible. For a given mimetype the value must be set accordingly:
-    
-    Note - application/x-microsoft.net.object.binary.base64 is the format 
-    that the ResXResourceWriter will generate, however the reader can 
-    read any of the formats listed below.
-    
-    mimetype: application/x-microsoft.net.object.binary.base64
-    value   : The object must be serialized with 
-            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
-            : and then encoded with base64 encoding.
-    
-    mimetype: application/x-microsoft.net.object.soap.base64
-    value   : The object must be serialized with 
-            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
-            : and then encoded with base64 encoding.
-
-    mimetype: application/x-microsoft.net.object.bytearray.base64
-    value   : The object must be serialized into a byte array 
-            : using a System.ComponentModel.TypeConverter
-            : and then encoded with base64 encoding.
-    -->
   <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
     <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
     <xsd:element name="root" msdata:IsDataSet="true">
@@ -137,10 +77,14 @@
   </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="m_cmbBoxSpecialNode.Location" type="System.Drawing.Point, System.Drawing">
-    <value>116, 187</value>
+    <value>155, 288</value>
+  </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="m_cmbBoxSpecialNode.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 5, 4, 5</value>
   </data>
   <data name="m_cmbBoxSpecialNode.Size" type="System.Drawing.Size, System.Drawing">
-    <value>181, 21</value>
+    <value>240, 28</value>
   </data>
   <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="m_cmbBoxSpecialNode.TabIndex" type="System.Int32, mscorlib">
@@ -150,7 +94,7 @@
     <value>m_cmbBoxSpecialNode</value>
   </data>
   <data name="&gt;&gt;m_cmbBoxSpecialNode.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;m_cmbBoxSpecialNode.Parent" xml:space="preserve">
     <value>$this</value>
@@ -158,18 +102,21 @@
   <data name="&gt;&gt;m_cmbBoxSpecialNode.ZOrder" xml:space="preserve">
     <value>3</value>
   </data>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="m_btn_OK.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Flat</value>
   </data>
   <data name="m_btn_OK.Location" type="System.Drawing.Point, System.Drawing">
-    <value>111, 237</value>
+    <value>148, 365</value>
+  </data>
+  <data name="m_btn_OK.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 5, 4, 5</value>
   </data>
   <data name="m_btn_OK.Size" type="System.Drawing.Size, System.Drawing">
-    <value>90, 31</value>
+    <value>120, 48</value>
   </data>
   <data name="m_btn_OK.TabIndex" type="System.Int32, mscorlib">
-    <value>13</value>
+    <value>14</value>
   </data>
   <data name="m_btn_OK.Text" xml:space="preserve">
     <value>O&amp;K</value>
@@ -178,7 +125,7 @@
     <value>m_btn_OK</value>
   </data>
   <data name="&gt;&gt;m_btn_OK.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;m_btn_OK.Parent" xml:space="preserve">
     <value>$this</value>
@@ -190,13 +137,16 @@
     <value>Flat</value>
   </data>
   <data name="m_btn_Cancel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>217, 237</value>
+    <value>289, 365</value>
+  </data>
+  <data name="m_btn_Cancel.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 5, 4, 5</value>
   </data>
   <data name="m_btn_Cancel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>90, 31</value>
+    <value>120, 48</value>
   </data>
   <data name="m_btn_Cancel.TabIndex" type="System.Int32, mscorlib">
-    <value>14</value>
+    <value>15</value>
   </data>
   <data name="m_btn_Cancel.Text" xml:space="preserve">
     <value>Ca&amp;ncel</value>
@@ -205,7 +155,7 @@
     <value>m_btn_Cancel</value>
   </data>
   <data name="&gt;&gt;m_btn_Cancel.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;m_btn_Cancel.Parent" xml:space="preserve">
     <value>$this</value>
@@ -217,10 +167,13 @@
     <value>True</value>
   </data>
   <data name="m_rdb_btn_SpecialPhrase.Location" type="System.Drawing.Point, System.Drawing">
-    <value>7, 20</value>
+    <value>9, 31</value>
+  </data>
+  <data name="m_rdb_btn_SpecialPhrase.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 5, 4, 5</value>
   </data>
   <data name="m_rdb_btn_SpecialPhrase.Size" type="System.Drawing.Size, System.Drawing">
-    <value>101, 17</value>
+    <value>136, 24</value>
   </data>
   <data name="m_rdb_btn_SpecialPhrase.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
@@ -232,22 +185,25 @@
     <value>m_rdb_btn_SpecialPhrase</value>
   </data>
   <data name="&gt;&gt;m_rdb_btn_SpecialPhrase.Type" xml:space="preserve">
-    <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;m_rdb_btn_SpecialPhrase.Parent" xml:space="preserve">
     <value>m_gp_box_operation</value>
   </data>
   <data name="&gt;&gt;m_rdb_btn_SpecialPhrase.ZOrder" xml:space="preserve">
-    <value>9</value>
+    <value>10</value>
   </data>
   <data name="m_rdb_btn_RenumberPages.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
   <data name="m_rdb_btn_RenumberPages.Location" type="System.Drawing.Point, System.Drawing">
-    <value>7, 55</value>
+    <value>9, 85</value>
+  </data>
+  <data name="m_rdb_btn_RenumberPages.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 5, 4, 5</value>
   </data>
   <data name="m_rdb_btn_RenumberPages.Size" type="System.Drawing.Size, System.Drawing">
-    <value>106, 17</value>
+    <value>142, 24</value>
   </data>
   <data name="m_rdb_btn_RenumberPages.TabIndex" type="System.Int32, mscorlib">
     <value>3</value>
@@ -259,13 +215,13 @@
     <value>m_rdb_btn_RenumberPages</value>
   </data>
   <data name="&gt;&gt;m_rdb_btn_RenumberPages.Type" xml:space="preserve">
-    <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;m_rdb_btn_RenumberPages.Parent" xml:space="preserve">
     <value>m_gp_box_operation</value>
   </data>
   <data name="&gt;&gt;m_rdb_btn_RenumberPages.ZOrder" xml:space="preserve">
-    <value>10</value>
+    <value>11</value>
   </data>
   <metadata name="helpProvider1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
@@ -273,17 +229,47 @@
   <data name="helpProvider1.HelpNamespace" xml:space="preserve">
     <value>Obi Help.chm</value>
   </data>
+  <data name="m_rdb_btn_NoiseReductionRnn.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="m_rdb_btn_NoiseReductionRnn.Location" type="System.Drawing.Point, System.Drawing">
+    <value>209, 142</value>
+  </data>
+  <data name="m_rdb_btn_NoiseReductionRnn.Size" type="System.Drawing.Size, System.Drawing">
+    <value>163, 24</value>
+  </data>
+  <data name="m_rdb_btn_NoiseReductionRnn.TabIndex" type="System.Int32, mscorlib">
+    <value>8</value>
+  </data>
+  <data name="m_rdb_btn_NoiseReductionRnn.Text" xml:space="preserve">
+    <value>Noise R&amp;eduction(AI)</value>
+  </data>
+  <data name="&gt;&gt;m_rdb_btn_NoiseReductionRnn.Name" xml:space="preserve">
+    <value>m_rdb_btn_NoiseReductionRnn</value>
+  </data>
+  <data name="&gt;&gt;m_rdb_btn_NoiseReductionRnn.Type" xml:space="preserve">
+    <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_rdb_btn_NoiseReductionRnn.Parent" xml:space="preserve">
+    <value>m_gp_box_operation</value>
+  </data>
+  <data name="&gt;&gt;m_rdb_btn_NoiseReductionRnn.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
   <data name="m_rdb_btn_NoiseReduction.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
   <data name="m_rdb_btn_NoiseReduction.Location" type="System.Drawing.Point, System.Drawing">
-    <value>157, 134</value>
+    <value>209, 206</value>
+  </data>
+  <data name="m_rdb_btn_NoiseReduction.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 5, 4, 5</value>
   </data>
   <data name="m_rdb_btn_NoiseReduction.Size" type="System.Drawing.Size, System.Drawing">
-    <value>104, 17</value>
+    <value>139, 24</value>
   </data>
   <data name="m_rdb_btn_NoiseReduction.TabIndex" type="System.Int32, mscorlib">
-    <value>8</value>
+    <value>9</value>
   </data>
   <data name="m_rdb_btn_NoiseReduction.Text" xml:space="preserve">
     <value>Noise R&amp;eduction</value>
@@ -292,22 +278,25 @@
     <value>m_rdb_btn_NoiseReduction</value>
   </data>
   <data name="&gt;&gt;m_rdb_btn_NoiseReduction.Type" xml:space="preserve">
-    <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;m_rdb_btn_NoiseReduction.Parent" xml:space="preserve">
     <value>m_gp_box_operation</value>
   </data>
   <data name="&gt;&gt;m_rdb_btn_NoiseReduction.ZOrder" xml:space="preserve">
-    <value>0</value>
+    <value>1</value>
   </data>
   <data name="m_rdb_btn_SpeechRate.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
   <data name="m_rdb_btn_SpeechRate.Location" type="System.Drawing.Point, System.Drawing">
-    <value>157, 92</value>
+    <value>209, 92</value>
+  </data>
+  <data name="m_rdb_btn_SpeechRate.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 5, 4, 5</value>
   </data>
   <data name="m_rdb_btn_SpeechRate.Size" type="System.Drawing.Size, System.Drawing">
-    <value>88, 17</value>
+    <value>112, 24</value>
   </data>
   <data name="m_rdb_btn_SpeechRate.TabIndex" type="System.Int32, mscorlib">
     <value>7</value>
@@ -319,22 +308,25 @@
     <value>m_rdb_btn_SpeechRate</value>
   </data>
   <data name="&gt;&gt;m_rdb_btn_SpeechRate.Type" xml:space="preserve">
-    <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;m_rdb_btn_SpeechRate.Parent" xml:space="preserve">
     <value>m_gp_box_operation</value>
   </data>
   <data name="&gt;&gt;m_rdb_btn_SpeechRate.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>2</value>
   </data>
   <data name="m_rdb_btn_Normalize.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
   <data name="m_rdb_btn_Normalize.Location" type="System.Drawing.Point, System.Drawing">
-    <value>157, 55</value>
+    <value>209, 35</value>
+  </data>
+  <data name="m_rdb_btn_Normalize.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 5, 4, 5</value>
   </data>
   <data name="m_rdb_btn_Normalize.Size" type="System.Drawing.Size, System.Drawing">
-    <value>71, 17</value>
+    <value>99, 24</value>
   </data>
   <data name="m_rdb_btn_Normalize.TabIndex" type="System.Int32, mscorlib">
     <value>6</value>
@@ -346,22 +338,25 @@
     <value>m_rdb_btn_Normalize</value>
   </data>
   <data name="&gt;&gt;m_rdb_btn_Normalize.Type" xml:space="preserve">
-    <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;m_rdb_btn_Normalize.Parent" xml:space="preserve">
     <value>m_gp_box_operation</value>
   </data>
   <data name="&gt;&gt;m_rdb_btn_Normalize.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>3</value>
   </data>
   <data name="m_rdb_btn_ChangeVolume.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
   <data name="m_rdb_btn_ChangeVolume.Location" type="System.Drawing.Point, System.Drawing">
-    <value>157, 19</value>
+    <value>9, 206</value>
+  </data>
+  <data name="m_rdb_btn_ChangeVolume.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 5, 4, 5</value>
   </data>
   <data name="m_rdb_btn_ChangeVolume.Size" type="System.Drawing.Size, System.Drawing">
-    <value>100, 17</value>
+    <value>134, 24</value>
   </data>
   <data name="m_rdb_btn_ChangeVolume.TabIndex" type="System.Int32, mscorlib">
     <value>5</value>
@@ -373,25 +368,28 @@
     <value>m_rdb_btn_ChangeVolume</value>
   </data>
   <data name="&gt;&gt;m_rdb_btn_ChangeVolume.Type" xml:space="preserve">
-    <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;m_rdb_btn_ChangeVolume.Parent" xml:space="preserve">
     <value>m_gp_box_operation</value>
   </data>
   <data name="&gt;&gt;m_rdb_btn_ChangeVolume.ZOrder" xml:space="preserve">
-    <value>3</value>
+    <value>4</value>
   </data>
   <data name="m_rdb_Delete.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
   <data name="m_rdb_Delete.Location" type="System.Drawing.Point, System.Drawing">
-    <value>354, 92</value>
+    <value>472, 142</value>
+  </data>
+  <data name="m_rdb_Delete.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 5, 4, 5</value>
   </data>
   <data name="m_rdb_Delete.Size" type="System.Drawing.Size, System.Drawing">
-    <value>56, 17</value>
+    <value>74, 24</value>
   </data>
   <data name="m_rdb_Delete.TabIndex" type="System.Int32, mscorlib">
-    <value>11</value>
+    <value>12</value>
   </data>
   <data name="m_rdb_Delete.Text" xml:space="preserve">
     <value>&amp;Delete</value>
@@ -400,25 +398,28 @@
     <value>m_rdb_Delete</value>
   </data>
   <data name="&gt;&gt;m_rdb_Delete.Type" xml:space="preserve">
-    <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;m_rdb_Delete.Parent" xml:space="preserve">
     <value>m_gp_box_operation</value>
   </data>
   <data name="&gt;&gt;m_rdb_Delete.ZOrder" xml:space="preserve">
-    <value>4</value>
+    <value>5</value>
   </data>
   <data name="m_rdb_Merge.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
   <data name="m_rdb_Merge.Location" type="System.Drawing.Point, System.Drawing">
-    <value>354, 134</value>
+    <value>472, 206</value>
+  </data>
+  <data name="m_rdb_Merge.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 5, 4, 5</value>
   </data>
   <data name="m_rdb_Merge.Size" type="System.Drawing.Size, System.Drawing">
-    <value>55, 17</value>
+    <value>73, 24</value>
   </data>
   <data name="m_rdb_Merge.TabIndex" type="System.Int32, mscorlib">
-    <value>12</value>
+    <value>13</value>
   </data>
   <data name="m_rdb_Merge.Text" xml:space="preserve">
     <value>&amp;Merge</value>
@@ -427,25 +428,28 @@
     <value>m_rdb_Merge</value>
   </data>
   <data name="&gt;&gt;m_rdb_Merge.Type" xml:space="preserve">
-    <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;m_rdb_Merge.Parent" xml:space="preserve">
     <value>m_gp_box_operation</value>
   </data>
   <data name="&gt;&gt;m_rdb_Merge.ZOrder" xml:space="preserve">
-    <value>5</value>
+    <value>6</value>
   </data>
   <data name="m_rdb_Copy.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
   <data name="m_rdb_Copy.Location" type="System.Drawing.Point, System.Drawing">
-    <value>354, 55</value>
+    <value>472, 85</value>
+  </data>
+  <data name="m_rdb_Copy.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 5, 4, 5</value>
   </data>
   <data name="m_rdb_Copy.Size" type="System.Drawing.Size, System.Drawing">
-    <value>49, 17</value>
+    <value>64, 24</value>
   </data>
   <data name="m_rdb_Copy.TabIndex" type="System.Int32, mscorlib">
-    <value>10</value>
+    <value>11</value>
   </data>
   <data name="m_rdb_Copy.Text" xml:space="preserve">
     <value>C&amp;opy</value>
@@ -454,25 +458,28 @@
     <value>m_rdb_Copy</value>
   </data>
   <data name="&gt;&gt;m_rdb_Copy.Type" xml:space="preserve">
-    <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;m_rdb_Copy.Parent" xml:space="preserve">
     <value>m_gp_box_operation</value>
   </data>
   <data name="&gt;&gt;m_rdb_Copy.ZOrder" xml:space="preserve">
-    <value>6</value>
+    <value>7</value>
   </data>
   <data name="m_rdb_Cut.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
   <data name="m_rdb_Cut.Location" type="System.Drawing.Point, System.Drawing">
-    <value>354, 19</value>
+    <value>472, 29</value>
+  </data>
+  <data name="m_rdb_Cut.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 5, 4, 5</value>
   </data>
   <data name="m_rdb_Cut.Size" type="System.Drawing.Size, System.Drawing">
-    <value>41, 17</value>
+    <value>52, 24</value>
   </data>
   <data name="m_rdb_Cut.TabIndex" type="System.Int32, mscorlib">
-    <value>9</value>
+    <value>10</value>
   </data>
   <data name="m_rdb_Cut.Text" xml:space="preserve">
     <value>&amp;Cut</value>
@@ -481,22 +488,25 @@
     <value>m_rdb_Cut</value>
   </data>
   <data name="&gt;&gt;m_rdb_Cut.Type" xml:space="preserve">
-    <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;m_rdb_Cut.Parent" xml:space="preserve">
     <value>m_gp_box_operation</value>
   </data>
   <data name="&gt;&gt;m_rdb_Cut.ZOrder" xml:space="preserve">
-    <value>7</value>
+    <value>8</value>
   </data>
   <data name="m_rtb_btn_TimeElapsed.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
   <data name="m_rtb_btn_TimeElapsed.Location" type="System.Drawing.Point, System.Drawing">
-    <value>7, 92</value>
+    <value>9, 142</value>
+  </data>
+  <data name="m_rtb_btn_TimeElapsed.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 5, 4, 5</value>
   </data>
   <data name="m_rtb_btn_TimeElapsed.Size" type="System.Drawing.Size, System.Drawing">
-    <value>89, 17</value>
+    <value>119, 24</value>
   </data>
   <data name="m_rtb_btn_TimeElapsed.TabIndex" type="System.Int32, mscorlib">
     <value>4</value>
@@ -508,22 +518,28 @@
     <value>m_rtb_btn_TimeElapsed</value>
   </data>
   <data name="&gt;&gt;m_rtb_btn_TimeElapsed.Type" xml:space="preserve">
-    <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;m_rtb_btn_TimeElapsed.Parent" xml:space="preserve">
     <value>m_gp_box_operation</value>
   </data>
   <data name="&gt;&gt;m_rtb_btn_TimeElapsed.ZOrder" xml:space="preserve">
-    <value>8</value>
+    <value>9</value>
   </data>
   <data name="m_gp_box_operation.Location" type="System.Drawing.Point, System.Drawing">
-    <value>12, 12</value>
+    <value>16, 18</value>
+  </data>
+  <data name="m_gp_box_operation.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 5, 4, 5</value>
+  </data>
+  <data name="m_gp_box_operation.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 5, 4, 5</value>
   </data>
   <data name="m_gp_box_operation.ShowHelp" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
   <data name="m_gp_box_operation.Size" type="System.Drawing.Size, System.Drawing">
-    <value>452, 157</value>
+    <value>603, 242</value>
   </data>
   <data name="m_gp_box_operation.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
@@ -532,7 +548,7 @@
     <value>m_gp_box_operation</value>
   </data>
   <data name="&gt;&gt;m_gp_box_operation.Type" xml:space="preserve">
-    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;m_gp_box_operation.Parent" xml:space="preserve">
     <value>$this</value>
@@ -544,10 +560,13 @@
     <value>True</value>
   </metadata>
   <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
-    <value>6, 13</value>
+    <value>8, 20</value>
   </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>478, 299</value>
+    <value>637, 460</value>
+  </data>
+  <data name="$this.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 5, 4, 5</value>
   </data>
   <data name="$this.ShowHelp" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -559,12 +578,12 @@
     <value>helpProvider1</value>
   </data>
   <data name="&gt;&gt;helpProvider1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.HelpProvider, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Windows.Forms.HelpProvider, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
     <value>AssignSpecialNodeMark</value>
   </data>
   <data name="&gt;&gt;$this.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Form, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Windows.Forms.Form, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
 </root>

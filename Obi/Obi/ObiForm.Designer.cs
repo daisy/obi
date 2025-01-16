@@ -232,6 +232,7 @@ namespace Obi
             this.m_NormalizeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.m_SpeechRateToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.m_NoiseReductionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.m_NoiseReductionRnnToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.m_AudioMixerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mTools_ExportSelectedAudioMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mTools_CleanUnreferencedAudioMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -1666,6 +1667,7 @@ namespace Obi
             this.m_NormalizeToolStripMenuItem,
             this.m_SpeechRateToolStripMenuItem,
             this.m_NoiseReductionToolStripMenuItem,
+            this.m_NoiseReductionRnnToolStripMenuItem,
             this.m_AudioMixerToolStripMenuItem});
             this.mTools_AudioProcessingNew.Name = "mTools_AudioProcessingNew";
             // 
@@ -1704,6 +1706,12 @@ namespace Obi
             resources.ApplyResources(this.m_NoiseReductionToolStripMenuItem, "m_NoiseReductionToolStripMenuItem");
             this.m_NoiseReductionToolStripMenuItem.Name = "m_NoiseReductionToolStripMenuItem";
             this.m_NoiseReductionToolStripMenuItem.Click += new System.EventHandler(this.m_NoiseReductionToolStripMenuItem_Click);
+            // 
+            // m_NoiseReductionRnnToolStripMenuItem
+            // 
+            resources.ApplyResources(this.m_NoiseReductionRnnToolStripMenuItem, "m_NoiseReductionRnnToolStripMenuItem");
+            this.m_NoiseReductionRnnToolStripMenuItem.Name = "m_NoiseReductionRnnToolStripMenuItem";
+            this.m_NoiseReductionRnnToolStripMenuItem.Click += new System.EventHandler(this.m_NoiseReductionRnnToolStripMenuItem_Click);
             // 
             // m_AudioMixerToolStripMenuItem
             // 
@@ -2102,6 +2110,7 @@ namespace Obi
         private System.Windows.Forms.ToolStripMenuItem m_NormalizeToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem m_SpeechRateToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem m_NoiseReductionToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem m_NoiseReductionRnnToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem m_AudioMixerToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem selectedPageAudioFileToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem allEmptyPagesAudioFileToolStripMenuItem;

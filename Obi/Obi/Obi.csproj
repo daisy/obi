@@ -207,6 +207,24 @@
     <Content Include="about_zh-Hant.html">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="ArnndnModels\bd.rnnn">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="ArnndnModels\cb.rnnn">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="ArnndnModels\lq.rnnn">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="ArnndnModels\mp.rnnn">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="ArnndnModels\sh.rnnn">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="ArnndnModels\std.rnnn">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="FineNavigationOn.wav">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -388,6 +406,12 @@
     <EmbeddedResource Remove="ProjectView\ProjectView.de.resx" />
   </ItemGroup>
   <ItemGroup>
+    <None Remove="ArnndnModels\bd.rnnn" />
+    <None Remove="ArnndnModels\cb.rnnn" />
+    <None Remove="ArnndnModels\lq.rnnn" />
+    <None Remove="ArnndnModels\mp.rnnn" />
+    <None Remove="ArnndnModels\sh.rnnn" />
+    <None Remove="ArnndnModels\std.rnnn" />
     <None Remove="Dialogs\GoToPageOrPhrase.Designer.cs~RF231bd6b.TMP" />
   </ItemGroup>
   <ItemGroup>

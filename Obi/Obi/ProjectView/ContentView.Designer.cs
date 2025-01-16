@@ -75,6 +75,8 @@ namespace Obi.ProjectView
             this.Context_TrimSilenceFromSectionEnd = new System.Windows.Forms.ToolStripMenuItem();
             this.Context_DeleteSilenceFromEndOfSectionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.Context__RetainSilenceInLastPhraseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.Context_DeleteSilenceFromEndOfAllSectionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.Context__RetainSilenceInLastPhraseOfAllSectionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.ContextBeginMarkToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ContextEndMarkToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -120,13 +122,13 @@ namespace Obi.ProjectView
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.verticalScrollToolStripContainer1 = new Obi.ProjectView.VerticalScrollToolStripContainer();
             this.contentViewLabel1 = new Obi.ProjectView.ContentViewLabel();
-            this.Context_DeleteSilenceFromEndOfAllSectionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.Context__RetainSilenceInLastPhraseOfAllSectionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.m_NoiseReductionRnnToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mContextMenuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
             // mContextMenuStrip
             // 
+            this.mContextMenuStrip.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.mContextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.Context_ZoomPhrase,
             this.Context_AddSectionMenuItem,
@@ -458,6 +460,18 @@ namespace Obi.ProjectView
             resources.ApplyResources(this.Context__RetainSilenceInLastPhraseToolStripMenuItem, "Context__RetainSilenceInLastPhraseToolStripMenuItem");
             this.Context__RetainSilenceInLastPhraseToolStripMenuItem.Click += new System.EventHandler(this.Context__RetainSilenceInLastPhraseToolStripMenuItem_Click);
             // 
+            // Context_DeleteSilenceFromEndOfAllSectionsToolStripMenuItem
+            // 
+            this.Context_DeleteSilenceFromEndOfAllSectionsToolStripMenuItem.Name = "Context_DeleteSilenceFromEndOfAllSectionsToolStripMenuItem";
+            resources.ApplyResources(this.Context_DeleteSilenceFromEndOfAllSectionsToolStripMenuItem, "Context_DeleteSilenceFromEndOfAllSectionsToolStripMenuItem");
+            this.Context_DeleteSilenceFromEndOfAllSectionsToolStripMenuItem.Click += new System.EventHandler(this.Context_DeleteSilenceFromEndOfAllSectionsToolStripMenuItem_Click);
+            // 
+            // Context__RetainSilenceInLastPhraseOfAllSectionsToolStripMenuItem
+            // 
+            this.Context__RetainSilenceInLastPhraseOfAllSectionsToolStripMenuItem.Name = "Context__RetainSilenceInLastPhraseOfAllSectionsToolStripMenuItem";
+            resources.ApplyResources(this.Context__RetainSilenceInLastPhraseOfAllSectionsToolStripMenuItem, "Context__RetainSilenceInLastPhraseOfAllSectionsToolStripMenuItem");
+            this.Context__RetainSilenceInLastPhraseOfAllSectionsToolStripMenuItem.Click += new System.EventHandler(this.Context__RetainSilenceInLastPhraseOfAllSectionsToolStripMenuItem_Click);
+            // 
             // toolStripMenuItem1
             // 
             this.toolStripMenuItem1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -637,6 +651,7 @@ namespace Obi.ProjectView
             this.m_NormalizeToolStripMenuItem,
             this.m_SpeechRateToolStripMenuItem,
             this.m_NoiseReductionToolStripMenuItem,
+            this.m_NoiseReductionRnnToolStripMenuItem,
             this.m_AudioMixerToolStripMenuItem});
             this.Context_AudioProcessingNew.Name = "Context_AudioProcessingNew";
             resources.ApplyResources(this.Context_AudioProcessingNew, "Context_AudioProcessingNew");
@@ -759,17 +774,11 @@ namespace Obi.ProjectView
             this.contentViewLabel1.sectionSelected = false;
             this.contentViewLabel1.zoomFactor = 1F;
             // 
-            // Context_DeleteSilenceFromEndOfAllSectionsToolStripMenuItem
+            // m_NoiseReductionRnnToolStripMenuItem
             // 
-            this.Context_DeleteSilenceFromEndOfAllSectionsToolStripMenuItem.Name = "Context_DeleteSilenceFromEndOfAllSectionsToolStripMenuItem";
-            resources.ApplyResources(this.Context_DeleteSilenceFromEndOfAllSectionsToolStripMenuItem, "Context_DeleteSilenceFromEndOfAllSectionsToolStripMenuItem");
-            this.Context_DeleteSilenceFromEndOfAllSectionsToolStripMenuItem.Click += new System.EventHandler(this.Context_DeleteSilenceFromEndOfAllSectionsToolStripMenuItem_Click);
-            // 
-            // Context__RetainSilenceInLastPhraseOfAllSectionsToolStripMenuItem
-            // 
-            this.Context__RetainSilenceInLastPhraseOfAllSectionsToolStripMenuItem.Name = "Context__RetainSilenceInLastPhraseOfAllSectionsToolStripMenuItem";
-            resources.ApplyResources(this.Context__RetainSilenceInLastPhraseOfAllSectionsToolStripMenuItem, "Context__RetainSilenceInLastPhraseOfAllSectionsToolStripMenuItem");
-            this.Context__RetainSilenceInLastPhraseOfAllSectionsToolStripMenuItem.Click += new System.EventHandler(this.Context__RetainSilenceInLastPhraseOfAllSectionsToolStripMenuItem_Click);
+            this.m_NoiseReductionRnnToolStripMenuItem.Name = "m_NoiseReductionRnnToolStripMenuItem";
+            resources.ApplyResources(this.m_NoiseReductionRnnToolStripMenuItem, "m_NoiseReductionRnnToolStripMenuItem");
+            this.m_NoiseReductionRnnToolStripMenuItem.Click += new System.EventHandler(this.m_NoiseReductionRnnToolStripMenuItem_Click);
             // 
             // ContentView
             // 
@@ -885,5 +894,6 @@ namespace Obi.ProjectView
         private System.Windows.Forms.ToolStripMenuItem Context__RetainSilenceInLastPhraseToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem Context_DeleteSilenceFromEndOfAllSectionsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem Context__RetainSilenceInLastPhraseOfAllSectionsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem m_NoiseReductionRnnToolStripMenuItem;
     }
 }

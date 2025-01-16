@@ -32,6 +32,19 @@ namespace Obi.Dialogs
                 m_SetNoiseReductionTrackBar.Visible = false;
                 m_SetNoiseReduction.Visible = false;
                 m_lbdB.Visible = false;
+                m_SelectPresetComboBox.Items.Clear();
+                m_SelectPresetComboBox.Items.Add("Voice noise reduction model 1");
+                m_SelectPresetComboBox.Items.Add("Voice noise reduction model 2");
+                m_SelectPresetComboBox.Items.Add("Speech noise reduction model 1");
+                m_SelectPresetComboBox.Items.Add("Speech noise reduction model 2");
+                m_SelectPresetComboBox.Items.Add("General noise reduction model 1");
+                m_SelectPresetComboBox.Items.Add("General noise reduction model 2");
+                m_SelectPresetComboBox.SelectedIndex = 0;
+                m_ApplyOnWholeBook.Location = m_SetNoiseLevelTrackBar.Location;
+                m_btn_Ok.Location =  new Point(m_btn_Ok.Location.X, m_SetNoiseReductionTrackBar.Location.Y);
+                m_btn_Cancel.Location = new Point(m_btn_Cancel.Location.X, m_SetNoiseReductionTrackBar.Location.Y);
+                this.Size = new System.Drawing.Size(this.Width, this.Height - 100);
+
             }
             helpProvider1.HelpNamespace = Localizer.Message("CHMhelp_file_name");
             helpProvider1.SetHelpNavigator(this, HelpNavigator.Topic);
@@ -69,6 +82,26 @@ namespace Obi.Dialogs
             set
             {
                 m_ApplyOnWholeBook.Visible = value;
+            }
+        }
+
+        public string ModelSelected
+        {
+            get
+            {
+                if (m_SelectPresetComboBox.SelectedIndex == 0)
+                    return "lq.rnnn";
+                else if (m_SelectPresetComboBox.SelectedIndex == 1)
+                    return "bd.rnnn";
+                else if (m_SelectPresetComboBox.SelectedIndex == 2)
+                    return "std.rnnn";
+                else if (m_SelectPresetComboBox.SelectedIndex == 3)
+                    return "sh.rnnn";
+                else if (m_SelectPresetComboBox.SelectedIndex == 4)
+                    return "mp.rnnn";
+                else
+                    return "cb.rnnn";
+
             }
         }
 

@@ -48,6 +48,9 @@ namespace Obi.Dialogs
         public bool IsNoiseReductionChecked
         { get { return m_rdb_btn_NoiseReduction.Checked; } }
 
+        public bool IsNoiseReductionRnnChecked
+        { get { return m_rdb_btn_NoiseReductionRnn.Checked; } }
+
         public bool IsCopyChecked
         {
             get { return m_rdb_Copy.Checked; }
@@ -164,5 +167,9 @@ namespace Obi.Dialogs
 
         }
 
+        private void m_rdb_btn_NoiseReductionRnn_CheckedChanged(object sender, EventArgs e)
+        {
+            m_cmbBoxSpecialNode.Visible = false;
+        }
     }
 }

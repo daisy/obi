@@ -4138,6 +4138,9 @@ if (thresholdAboveLastNode >= stripControl.Node.PhraseChildCount) thresholdAbove
             m_NoiseReductionToolStripMenuItem.ShortcutKeyDisplayString = ObiForm.RefineKeyboardShortcutStringForAccessibleName(keyboardShortcuts.FormatKeyboardShorcut(keyboardShortcuts.MenuNameDictionary["m_NoiseReductionToolStripMenuItem"].Value.ToString()));
             m_NoiseReductionToolStripMenuItem.AccessibleName = m_NoiseReductionToolStripMenuItem.Text.Replace("&", "") + " " + m_NoiseReductionToolStripMenuItem.ShortcutKeyDisplayString;
 
+            m_NoiseReductionRnnToolStripMenuItem.ShortcutKeyDisplayString = ObiForm.RefineKeyboardShortcutStringForAccessibleName(keyboardShortcuts.FormatKeyboardShorcut(keyboardShortcuts.MenuNameDictionary["m_NoiseReductionRnnToolStripMenuItem"].Value.ToString()));
+            m_NoiseReductionRnnToolStripMenuItem.AccessibleName = m_NoiseReductionRnnToolStripMenuItem.Text.Replace("&", "") + " " + m_NoiseReductionRnnToolStripMenuItem.ShortcutKeyDisplayString;
+
             m_AudioMixerToolStripMenuItem.ShortcutKeyDisplayString = ObiForm.RefineKeyboardShortcutStringForAccessibleName(keyboardShortcuts.FormatKeyboardShorcut(keyboardShortcuts.MenuNameDictionary["m_AudioMixerToolStripMenuItem"].Value.ToString()));
             m_AudioMixerToolStripMenuItem.AccessibleName = m_AudioMixerToolStripMenuItem.Text.Replace("&", "") + " " + m_AudioMixerToolStripMenuItem.ShortcutKeyDisplayString;
 
@@ -6384,10 +6387,18 @@ Block lastBlock = ActiveStrip.LastBlock ;
             mProjectView.RemoveSilenceFromEndOfSection(false, true, true);
         }
 
-     
-
+        private void m_NoiseReductionRnnToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (mProjectView.TransportBar.IsPlayerActive)
+            {
+                if (mProjectView.TransportBar.CurrentState == Obi.ProjectView.TransportBar.State.Playing) mProjectView.TransportBar.Pause();
+                mProjectView.TransportBar.Stop();
+            }
+            if (mProjectView.CanExportSelectedNodeAudio)
+                mProjectView.AudioProcessing(AudioLib.WavAudioProcessing.AudioProcessingKind.NoiseReductionRnn);
         }
-   /// <summary>
+    }
+    /// <summary>
     /// Common interface for selection of strips and blocks.
     /// </summary>
     public interface ISelectableInContentView

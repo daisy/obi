@@ -10,6 +10,7 @@ using urakawa.command;
 using urakawa.daisy.export.visitor;
 using urakawa.property.channel;
 using Obi.Dialogs;
+using System.Globalization;
 
 //using urakawa.publish;
 
@@ -6008,7 +6009,7 @@ for (int j = 0;
             if (AssignSpecialNodeDialog.DialogResult == DialogResult.OK)
             {
                 customClass = AssignSpecialNodeDialog.SelectedSpecialNode;
-                m_IsAudioProcessingChecked = AssignSpecialNodeDialog.IsChangeVolumeChecked || AssignSpecialNodeDialog.IsNormalizeChecked || AssignSpecialNodeDialog.IsSpeechRateChecked || AssignSpecialNodeDialog.IsNoiseReductionChecked;
+                m_IsAudioProcessingChecked = AssignSpecialNodeDialog.IsChangeVolumeChecked || AssignSpecialNodeDialog.IsNormalizeChecked || AssignSpecialNodeDialog.IsSpeechRateChecked || AssignSpecialNodeDialog.IsNoiseReductionChecked || AssignSpecialNodeDialog.IsNoiseReductionRnnChecked;
 
                 if (AssignSpecialNodeDialog.IsRenumberChecked)
                     RenumberPage();
@@ -6048,6 +6049,10 @@ for (int j = 0;
                 else if (AssignSpecialNodeDialog.IsNoiseReductionChecked)
                 {
                     this.AudioProcessing(WavAudioProcessing.AudioProcessingKind.NoiseReduction, true);
+                }
+                else if (AssignSpecialNodeDialog.IsNoiseReductionRnnChecked)
+                {
+                    this.AudioProcessing(WavAudioProcessing.AudioProcessingKind.NoiseReductionRnn, true);
                 }
 
                 else if (AssignSpecialNodeDialog.IsCopyChecked || AssignSpecialNodeDialog.IsCutChecked)
@@ -6596,7 +6601,7 @@ for (int j = 0;
 
         private Dictionary<ObiNode, string> AudioProcessingDictionary(Dictionary<ObiNode, string> dictionaryOfFilePaths, ObiNode nodeToSelect, 
             AudioLib.WavAudioProcessing.AudioProcessingKind audioProcessingKind, float AudioProcessingParameter,string directoryFullPath,
-            decimal noiseReductionInDB = 0, decimal noiseFloorInDB = 0)
+            decimal noiseReductionInDB = 0, decimal noiseFloorInDB = 0, string noiseReductionModel = null)
         {
 
             Obi.Dialogs.ProgressDialog progress = new Obi.Dialogs.ProgressDialog(Localizer.Message("AudioFileExport_progress_dialog_title"),
@@ -6620,6 +6625,14 @@ for (int j = 0;
                                               else if (audioProcessingKind == AudioLib.WavAudioProcessing.AudioProcessingKind.NoiseReduction)
                                               {
                                                   audioProcessedFile = audioPorcess.NoiseReductionFfmpegAfftdn(audioFileFullPath, noiseReductionInDB, noiseFloorInDB);
+                                              }
+                                              else if (audioProcessingKind == AudioLib.WavAudioProcessing.AudioProcessingKind.NoiseReductionRnn)
+                                              {
+                                                  audioProcessedFile = audioPorcess.NoiseReductionFfmpegRnn(audioFileFullPath, noiseReductionModel);
+                                                  string[] tempaudioProcessedFile = new string[1];
+                                                  tempaudioProcessedFile[0] = audioProcessedFile;
+                                                  tempaudioProcessedFile = Audio.AudioFormatConverter.ConvertFiles(tempaudioProcessedFile, mPresentation, false);
+                                                  audioProcessedFile = tempaudioProcessedFile[0];
                                               }
                                               dictionaryOfFilePaths.Add(nodeToSelect, audioProcessedFile);
                                           }
@@ -6685,6 +6698,12 @@ for (int j = 0;
             else if (audioProcessingKind == WavAudioProcessing.AudioProcessingKind.NoiseReduction)
             {
                 dialogNoiseReduction = new Dialogs.AudioProcessingNoiseReduction(this, IsSelectionNull);
+                if (sectionsSelectedList != null || IsAudioProcessingOnMultiPhrases)
+                dialogNoiseReduction.ShowApplyWholeBookCheckbox = false;
+            }
+            else if (audioProcessingKind == WavAudioProcessing.AudioProcessingKind.NoiseReductionRnn)
+            {
+                dialogNoiseReduction = new Dialogs.AudioProcessingNoiseReduction(this, IsSelectionNull, true);
                 if (sectionsSelectedList != null || IsAudioProcessingOnMultiPhrases)
                 dialogNoiseReduction.ShowApplyWholeBookCheckbox = false;
             }
@@ -6770,6 +6789,14 @@ for (int j = 0;
                                           else if (audioProcessingKind == AudioLib.WavAudioProcessing.AudioProcessingKind.NoiseReduction)
                                           {
                                               audioProcessedFile = audioProcess.NoiseReductionFfmpegAfftdn(audioFileFullPath, dialogNoiseReduction.NoiseReductionInDb, dialogNoiseReduction.NoiseFloorInDb);
+                                          }
+                                          else if (audioProcessingKind == AudioLib.WavAudioProcessing.AudioProcessingKind.NoiseReductionRnn)
+                                          {
+                                              audioProcessedFile = audioProcess.NoiseReductionFfmpegRnn(audioFileFullPath, dialogNoiseReduction.ModelSelected);
+                                              string[] tempaudioProcessedFile = new string[1];
+                                              tempaudioProcessedFile[0] = audioProcessedFile;
+                                              tempaudioProcessedFile = Audio.AudioFormatConverter.ConvertFiles(tempaudioProcessedFile, mPresentation, false);
+                                              audioProcessedFile = tempaudioProcessedFile[0];
                                           }
                                           else if (audioProcessingKind == WavAudioProcessing.AudioProcessingKind.AudioMixing)
                                           {
@@ -6867,6 +6894,11 @@ for (int j = 0;
                                 dictionaryOfFilePaths = AudioProcessingDictionary(dictionaryOfFilePaths, nodeToSelect, audioProcessingKind, val, directoryFullPath,
                                     dialogNoiseReduction.NoiseReductionInDb, dialogNoiseReduction.NoiseFloorInDb);
                             }
+                            else if(audioProcessingKind == WavAudioProcessing.AudioProcessingKind.NoiseReductionRnn)
+                            {
+                                dictionaryOfFilePaths = AudioProcessingDictionary(dictionaryOfFilePaths, nodeToSelect, audioProcessingKind, val, directoryFullPath,
+                                   0, 0, dialogNoiseReduction.ModelSelected);
+                            }
                             else
                             {
                                 dictionaryOfFilePaths = AudioProcessingDictionary(dictionaryOfFilePaths, nodeToSelect, audioProcessingKind, val, directoryFullPath);
@@ -6883,7 +6915,7 @@ for (int j = 0;
                                 MessageBox.Show(Localizer.Message("NormalizationCompleted"), Localizer.Message("information_caption"), MessageBoxButtons.OK, MessageBoxIcon.Information);
                             else if (audioProcessingKind == AudioLib.WavAudioProcessing.AudioProcessingKind.Amplify)
                                 MessageBox.Show(Localizer.Message("ChangeVolumeCompleted"), Localizer.Message("information_caption"), MessageBoxButtons.OK, MessageBoxIcon.Information);
-                            else if (audioProcessingKind == AudioLib.WavAudioProcessing.AudioProcessingKind.NoiseReduction)
+                            else if (audioProcessingKind == AudioLib.WavAudioProcessing.AudioProcessingKind.NoiseReduction || audioProcessingKind == AudioLib.WavAudioProcessing.AudioProcessingKind.NoiseReductionRnn)
                                 MessageBox.Show(Localizer.Message("NoiseReductionCompleted"), Localizer.Message("information_caption"), MessageBoxButtons.OK, MessageBoxIcon.Information); 
 
                         }
@@ -6984,6 +7016,14 @@ for (int j = 0;
                                       {
                                           audioProcessedFile = audioProcess.NoiseReductionFfmpegAfftdn(audioFileFullPath, dialogNoiseReduction.NoiseReductionInDb, dialogNoiseReduction.NoiseFloorInDb);
                                       }
+                                      else if (audioProcessingKind == AudioLib.WavAudioProcessing.AudioProcessingKind.NoiseReductionRnn)
+                                      {
+                                          audioProcessedFile = audioProcess.NoiseReductionFfmpegRnn(audioFileFullPath, dialogNoiseReduction.ModelSelected);
+                                          string[] tempaudioProcessedFile = new string[1];
+                                          tempaudioProcessedFile[0] = audioProcessedFile;
+                                          tempaudioProcessedFile = Audio.AudioFormatConverter.ConvertFiles(tempaudioProcessedFile, mPresentation, false);
+                                          audioProcessedFile = tempaudioProcessedFile[0];
+                                      }
                                   }
                               });
                         progress.OperationCancelled += new Obi.Dialogs.OperationCancelledHandler(delegate(object sender, EventArgs e) { skip = true; sectionSelected = section.Label; });
@@ -7017,7 +7057,7 @@ for (int j = 0;
                         MessageBox.Show(Localizer.Message("NormalizationCompleted"), Localizer.Message("information_caption"), MessageBoxButtons.OK, MessageBoxIcon.Information);
                     else if (audioProcessingKind == AudioLib.WavAudioProcessing.AudioProcessingKind.Amplify)
                         MessageBox.Show(Localizer.Message("ChangeVolumeCompleted"), Localizer.Message("information_caption"), MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    else if (audioProcessingKind == AudioLib.WavAudioProcessing.AudioProcessingKind.NoiseReduction)
+                    else if (audioProcessingKind == AudioLib.WavAudioProcessing.AudioProcessingKind.NoiseReduction || audioProcessingKind == AudioLib.WavAudioProcessing.AudioProcessingKind.NoiseReductionRnn)
                         MessageBox.Show(Localizer.Message("NoiseReductionCompleted"), Localizer.Message("information_caption"), MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 else if(nodeToSelect != null && nodeToSelect is SectionNode && skip)

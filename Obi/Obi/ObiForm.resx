@@ -2006,6 +2006,18 @@
   <data name="m_NoiseReductionToolStripMenuItem.Text" xml:space="preserve">
     <value>Noise &amp;Reduction</value>
   </data>
+  <data name="m_NoiseReductionRnnToolStripMenuItem.AccessibleName" xml:space="preserve">
+    <value>Noise Reduction(AI)</value>
+  </data>
+  <!--<data name="m_NoiseReductionRnnToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
+    <value>Control+Shift+Y</value>
+  </data>-->
+  <data name="m_NoiseReductionRnnToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>234, 22</value>
+  </data>
+  <data name="m_NoiseReductionRnnToolStripMenuItem.Text" xml:space="preserve">
+    <value>Noise &amp;Reduction(AI)</value>
+  </data>
   <data name="m_AudioMixerToolStripMenuItem.AccessibleName" xml:space="preserve">
     <value>Audio Mixer Ctrl+Shift+X</value>
   </data>
@@ -3715,6 +3727,12 @@
     <value>m_NoiseReductionToolStripMenuItem</value>
   </data>
   <data name="&gt;&gt;m_NoiseReductionToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_NoiseReductionRnnToolStripMenuItem.Name" xml:space="preserve">
+    <value>m_NoiseReductionRnnToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;m_NoiseReductionRnnToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;m_AudioMixerToolStripMenuItem.Name" xml:space="preserve">

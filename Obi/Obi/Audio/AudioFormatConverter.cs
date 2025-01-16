@@ -23,7 +23,7 @@ namespace Obi.Audio
             set { m_IsRequestCancellation = value; }
         }
 
-        public static string[] ConvertFiles(string[] fileName, Presentation presentation)
+        public static string[] ConvertFiles(string[] fileName, Presentation presentation, bool showFileRenameMessage = true)
         {
             m_IsRequestCancellation = false;
             int numberOfFiles = fileName.Length;
@@ -36,7 +36,7 @@ namespace Obi.Audio
             for (int i = 0; i < numberOfFiles; i++)
             {
                 if (IsRequestCancellation) return null;
-                convertedFile = ConvertedFile(fileName[i], presentation);
+                convertedFile = ConvertedFile(fileName[i], presentation, showFileRenameMessage);
                 if (convertedFile != null) listOfConvertedFiles.Add(convertedFile);
                 else
                 {
@@ -49,7 +49,7 @@ namespace Obi.Audio
                 MessageBox.Show(string.Format(Localizer.Message("AudioFormatConverter_Error_FileExtentionNodSupported"), fileExtentionNotSupported), Localizer.Message("Caption_Error"));
             }
 
-            if (m_FilesThatAreRenamed.Count != 0)
+            if (m_FilesThatAreRenamed.Count != 0 && showFileRenameMessage)
             {
                 string tempStr = Localizer.Message("Import_AudioFormat_FollowingFilesRenamed") + "\n";
                 foreach (var str in m_FilesThatAreRenamed)
@@ -65,7 +65,7 @@ namespace Obi.Audio
 
             return returnArray;
         }
-        public static string ConvertedFile(string filePath, Presentation pres)
+        public static string ConvertedFile(string filePath, Presentation pres, bool showFileRenameMessage = true)
         {
             AudioLib.WavFormatConverter audioConverter = new WavFormatConverter(true, true);
             int samplingRate = (int)pres.MediaDataManager.DefaultPCMFormat.Data.SampleRate;
@@ -128,8 +128,9 @@ namespace Obi.Audio
                             if (!m_IsFileExists)
                             {
                                 m_IsFileExists = true;
-                                MessageBox.Show(Localizer.Message("Import_AudioFormat_FilesWillBeRenamed"),
-                                    Localizer.Message("Caption_Information"), MessageBoxButtons.OK);
+                                if (showFileRenameMessage)
+                                    MessageBox.Show(Localizer.Message("Import_AudioFormat_FilesWillBeRenamed"),
+                                        Localizer.Message("Caption_Information"), MessageBoxButtons.OK);
                             }
                             break;
                         }
