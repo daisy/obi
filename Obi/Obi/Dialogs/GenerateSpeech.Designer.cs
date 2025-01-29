@@ -56,18 +56,18 @@
             // m_TextToSpeechTb
             // 
             this.m_TextToSpeechTb.AccessibleName = "Write text for speech generation";
-            this.m_TextToSpeechTb.Location = new System.Drawing.Point(12, 27);
+            this.m_TextToSpeechTb.Location = new System.Drawing.Point(14, 27);
             this.m_TextToSpeechTb.Name = "m_TextToSpeechTb";
-            this.m_TextToSpeechTb.Size = new System.Drawing.Size(925, 387);
+            this.m_TextToSpeechTb.Size = new System.Drawing.Size(815, 203);
             this.m_TextToSpeechTb.TabIndex = 0;
             this.m_TextToSpeechTb.Text = "";
             // 
             // m_PreviewBtn
             // 
             this.m_PreviewBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.m_PreviewBtn.Location = new System.Drawing.Point(15, 35);
+            this.m_PreviewBtn.Location = new System.Drawing.Point(17, 23);
             this.m_PreviewBtn.Name = "m_PreviewBtn";
-            this.m_PreviewBtn.Size = new System.Drawing.Size(94, 29);
+            this.m_PreviewBtn.Size = new System.Drawing.Size(106, 35);
             this.m_PreviewBtn.TabIndex = 11;
             this.m_PreviewBtn.Text = "&Preview";
             this.m_PreviewBtn.UseVisualStyleBackColor = true;
@@ -76,9 +76,9 @@
             // m_GenerateBtn
             // 
             this.m_GenerateBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.m_GenerateBtn.Location = new System.Drawing.Point(261, 35);
+            this.m_GenerateBtn.Location = new System.Drawing.Point(255, 23);
             this.m_GenerateBtn.Name = "m_GenerateBtn";
-            this.m_GenerateBtn.Size = new System.Drawing.Size(148, 29);
+            this.m_GenerateBtn.Size = new System.Drawing.Size(166, 35);
             this.m_GenerateBtn.TabIndex = 13;
             this.m_GenerateBtn.Text = "&Generate Speech";
             this.m_GenerateBtn.UseVisualStyleBackColor = true;
@@ -89,9 +89,9 @@
             this.m_BuildInRbtn.AccessibleName = "Build in voices";
             this.m_BuildInRbtn.AutoSize = true;
             this.m_BuildInRbtn.Checked = true;
-            this.m_BuildInRbtn.Location = new System.Drawing.Point(18, 32);
+            this.m_BuildInRbtn.Location = new System.Drawing.Point(20, 26);
             this.m_BuildInRbtn.Name = "m_BuildInRbtn";
-            this.m_BuildInRbtn.Size = new System.Drawing.Size(123, 24);
+            this.m_BuildInRbtn.Size = new System.Drawing.Size(142, 24);
             this.m_BuildInRbtn.TabIndex = 4;
             this.m_BuildInRbtn.TabStop = true;
             this.m_BuildInRbtn.Text = "&System Voices";
@@ -102,9 +102,9 @@
             // 
             this.m_AzureRbtn.AccessibleName = "Azure voices";
             this.m_AzureRbtn.AutoSize = true;
-            this.m_AzureRbtn.Location = new System.Drawing.Point(186, 32);
+            this.m_AzureRbtn.Location = new System.Drawing.Point(169, 26);
             this.m_AzureRbtn.Name = "m_AzureRbtn";
-            this.m_AzureRbtn.Size = new System.Drawing.Size(161, 24);
+            this.m_AzureRbtn.Size = new System.Drawing.Size(183, 24);
             this.m_AzureRbtn.TabIndex = 5;
             this.m_AzureRbtn.Text = "Online &Azure Voices";
             this.m_AzureRbtn.UseVisualStyleBackColor = true;
@@ -115,17 +115,17 @@
             this.m_VoiceSelectionCb.AccessibleName = "TTS voice selection";
             this.m_VoiceSelectionCb.FormattingEnabled = true;
             this.m_VoiceSelectionCb.ItemHeight = 20;
-            this.m_VoiceSelectionCb.Location = new System.Drawing.Point(154, 457);
+            this.m_VoiceSelectionCb.Location = new System.Drawing.Point(173, 256);
             this.m_VoiceSelectionCb.Name = "m_VoiceSelectionCb";
-            this.m_VoiceSelectionCb.Size = new System.Drawing.Size(783, 28);
+            this.m_VoiceSelectionCb.Size = new System.Drawing.Size(636, 28);
             this.m_VoiceSelectionCb.TabIndex = 7;
             // 
             // m_ClearBtn
             // 
             this.m_ClearBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.m_ClearBtn.Location = new System.Drawing.Point(143, 35);
+            this.m_ClearBtn.Location = new System.Drawing.Point(136, 23);
             this.m_ClearBtn.Name = "m_ClearBtn";
-            this.m_ClearBtn.Size = new System.Drawing.Size(94, 29);
+            this.m_ClearBtn.Size = new System.Drawing.Size(106, 35);
             this.m_ClearBtn.TabIndex = 12;
             this.m_ClearBtn.Text = "&Clear";
             this.m_ClearBtn.UseVisualStyleBackColor = true;
@@ -134,27 +134,27 @@
             // m_SpeedTb
             // 
             this.m_SpeedTb.AccessibleName = "Speech Rate";
-            this.m_SpeedTb.Location = new System.Drawing.Point(154, 521);
+            this.m_SpeedTb.Location = new System.Drawing.Point(173, 320);
             this.m_SpeedTb.Minimum = -10;
             this.m_SpeedTb.Name = "m_SpeedTb";
-            this.m_SpeedTb.Size = new System.Drawing.Size(783, 56);
+            this.m_SpeedTb.Size = new System.Drawing.Size(636, 56);
             this.m_SpeedTb.TabIndex = 9;
             // 
             // m_TTSVoiceLbl
             // 
             this.m_TTSVoiceLbl.AutoSize = true;
-            this.m_TTSVoiceLbl.Location = new System.Drawing.Point(44, 460);
+            this.m_TTSVoiceLbl.Location = new System.Drawing.Point(50, 259);
             this.m_TTSVoiceLbl.Name = "m_TTSVoiceLbl";
-            this.m_TTSVoiceLbl.Size = new System.Drawing.Size(76, 20);
+            this.m_TTSVoiceLbl.Size = new System.Drawing.Size(92, 20);
             this.m_TTSVoiceLbl.TabIndex = 6;
             this.m_TTSVoiceLbl.Text = "TTS Voice:";
             // 
             // m_SpeechRateLbl
             // 
             this.m_SpeechRateLbl.AutoSize = true;
-            this.m_SpeechRateLbl.Location = new System.Drawing.Point(41, 521);
+            this.m_SpeechRateLbl.Location = new System.Drawing.Point(46, 320);
             this.m_SpeechRateLbl.Name = "m_SpeechRateLbl";
-            this.m_SpeechRateLbl.Size = new System.Drawing.Size(94, 20);
+            this.m_SpeechRateLbl.Size = new System.Drawing.Size(110, 20);
             this.m_SpeechRateLbl.TabIndex = 8;
             this.m_SpeechRateLbl.Text = "Speech Rate:";
             // 
@@ -164,9 +164,9 @@
             this.m_FontSmallerBtn.Enabled = false;
             this.m_FontSmallerBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.m_FontSmallerBtn.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.m_FontSmallerBtn.Location = new System.Drawing.Point(959, 245);
+            this.m_FontSmallerBtn.Location = new System.Drawing.Point(777, 216);
             this.m_FontSmallerBtn.Name = "m_FontSmallerBtn";
-            this.m_FontSmallerBtn.Size = new System.Drawing.Size(54, 37);
+            this.m_FontSmallerBtn.Size = new System.Drawing.Size(61, 37);
             this.m_FontSmallerBtn.TabIndex = 99;
             this.m_FontSmallerBtn.Text = "-";
             this.m_FontSmallerBtn.UseVisualStyleBackColor = true;
@@ -179,9 +179,9 @@
             this.m_FontBiggerBtn.Enabled = false;
             this.m_FontBiggerBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.m_FontBiggerBtn.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.m_FontBiggerBtn.Location = new System.Drawing.Point(959, 160);
+            this.m_FontBiggerBtn.Location = new System.Drawing.Point(777, 131);
             this.m_FontBiggerBtn.Name = "m_FontBiggerBtn";
-            this.m_FontBiggerBtn.Size = new System.Drawing.Size(54, 38);
+            this.m_FontBiggerBtn.Size = new System.Drawing.Size(61, 38);
             this.m_FontBiggerBtn.TabIndex = 100;
             this.m_FontBiggerBtn.Text = "+";
             this.m_FontBiggerBtn.UseVisualStyleBackColor = true;
@@ -192,9 +192,9 @@
             // 
             this.m_AddAzureKeyBtn.Enabled = false;
             this.m_AddAzureKeyBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.m_AddAzureKeyBtn.Location = new System.Drawing.Point(324, 30);
+            this.m_AddAzureKeyBtn.Location = new System.Drawing.Point(312, 30);
             this.m_AddAzureKeyBtn.Name = "m_AddAzureKeyBtn";
-            this.m_AddAzureKeyBtn.Size = new System.Drawing.Size(120, 35);
+            this.m_AddAzureKeyBtn.Size = new System.Drawing.Size(135, 35);
             this.m_AddAzureKeyBtn.TabIndex = 17;
             this.m_AddAzureKeyBtn.Text = "Add &Key";
             this.m_AddAzureKeyBtn.UseVisualStyleBackColor = true;
@@ -204,9 +204,9 @@
             // 
             this.m_AddAzureVoiceBtn.Enabled = false;
             this.m_AddAzureVoiceBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.m_AddAzureVoiceBtn.Location = new System.Drawing.Point(37, 30);
+            this.m_AddAzureVoiceBtn.Location = new System.Drawing.Point(19, 30);
             this.m_AddAzureVoiceBtn.Name = "m_AddAzureVoiceBtn";
-            this.m_AddAzureVoiceBtn.Size = new System.Drawing.Size(118, 35);
+            this.m_AddAzureVoiceBtn.Size = new System.Drawing.Size(133, 35);
             this.m_AddAzureVoiceBtn.TabIndex = 15;
             this.m_AddAzureVoiceBtn.Text = "&Add Voice";
             this.m_AddAzureVoiceBtn.UseVisualStyleBackColor = true;
@@ -216,9 +216,9 @@
             // 
             this.m_DeleteAzureVoiceBtn.Enabled = false;
             this.m_DeleteAzureVoiceBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.m_DeleteAzureVoiceBtn.Location = new System.Drawing.Point(191, 30);
+            this.m_DeleteAzureVoiceBtn.Location = new System.Drawing.Point(168, 30);
             this.m_DeleteAzureVoiceBtn.Name = "m_DeleteAzureVoiceBtn";
-            this.m_DeleteAzureVoiceBtn.Size = new System.Drawing.Size(112, 35);
+            this.m_DeleteAzureVoiceBtn.Size = new System.Drawing.Size(126, 35);
             this.m_DeleteAzureVoiceBtn.TabIndex = 16;
             this.m_DeleteAzureVoiceBtn.Text = "&Delete Voice";
             this.m_DeleteAzureVoiceBtn.UseVisualStyleBackColor = true;
@@ -228,9 +228,9 @@
             // 
             this.m_CloseBtn.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.m_CloseBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.m_CloseBtn.Location = new System.Drawing.Point(808, 745);
+            this.m_CloseBtn.Location = new System.Drawing.Point(703, 513);
             this.m_CloseBtn.Name = "m_CloseBtn";
-            this.m_CloseBtn.Size = new System.Drawing.Size(112, 35);
+            this.m_CloseBtn.Size = new System.Drawing.Size(126, 35);
             this.m_CloseBtn.TabIndex = 18;
             this.m_CloseBtn.Text = "&Cancel";
             this.m_CloseBtn.UseVisualStyleBackColor = true;
@@ -240,9 +240,9 @@
             this.m_VoiceTypeGroupBox.AccessibleName = "Group box to select system or azure voices";
             this.m_VoiceTypeGroupBox.Controls.Add(this.m_BuildInRbtn);
             this.m_VoiceTypeGroupBox.Controls.Add(this.m_AzureRbtn);
-            this.m_VoiceTypeGroupBox.Location = new System.Drawing.Point(59, 599);
+            this.m_VoiceTypeGroupBox.Location = new System.Drawing.Point(24, 398);
             this.m_VoiceTypeGroupBox.Name = "m_VoiceTypeGroupBox";
-            this.m_VoiceTypeGroupBox.Size = new System.Drawing.Size(358, 86);
+            this.m_VoiceTypeGroupBox.Size = new System.Drawing.Size(357, 70);
             this.m_VoiceTypeGroupBox.TabIndex = 3;
             this.m_VoiceTypeGroupBox.TabStop = false;
             // 
@@ -251,9 +251,9 @@
             this.groupBox1.Controls.Add(this.m_AddAzureVoiceBtn);
             this.groupBox1.Controls.Add(this.m_DeleteAzureVoiceBtn);
             this.groupBox1.Controls.Add(this.m_AddAzureKeyBtn);
-            this.groupBox1.Location = new System.Drawing.Point(54, 715);
+            this.groupBox1.Location = new System.Drawing.Point(25, 483);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(467, 77);
+            this.groupBox1.Size = new System.Drawing.Size(460, 77);
             this.groupBox1.TabIndex = 14;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Azure";
@@ -264,19 +264,18 @@
             this.groupBox2.Controls.Add(this.m_PreviewBtn);
             this.groupBox2.Controls.Add(this.m_ClearBtn);
             this.groupBox2.Controls.Add(this.m_GenerateBtn);
-            this.groupBox2.Location = new System.Drawing.Point(474, 599);
+            this.groupBox2.Location = new System.Drawing.Point(400, 398);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(431, 86);
+            this.groupBox2.Size = new System.Drawing.Size(429, 70);
             this.groupBox2.TabIndex = 10;
             this.groupBox2.TabStop = false;
             // 
             // GenerateSpeech
             // 
             this.AccessibleName = "Generate Audio";
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.AutoSize = true;
-            this.ClientSize = new System.Drawing.Size(993, 829);
+            this.ClientSize = new System.Drawing.Size(844, 576);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.m_VoiceTypeGroupBox);
@@ -288,6 +287,7 @@
             this.Controls.Add(this.m_SpeedTb);
             this.Controls.Add(this.m_VoiceSelectionCb);
             this.Controls.Add(this.m_TextToSpeechTb);
+            this.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.Name = "GenerateSpeech";
             this.Text = "Generate Audio";
             ((System.ComponentModel.ISupportInitialize)(this.m_SpeedTb)).EndInit();
