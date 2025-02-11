@@ -3696,8 +3696,10 @@ for (int j = 0;
 
         public void TextToSpeech()
         {
+            NodeSelection selection = this.Selection;
             m_GenerateSpeechDialog = new Dialogs.GenerateSpeech(this,mPresentation, ObiForm.Settings);
             m_GenerateSpeechDialog.ShowDialog();
+            this.Selection = selection;
             
 
         }
