@@ -44,6 +44,10 @@ namespace Obi.Dialogs
                 m_btn_Ok.Location =  new Point(m_btn_Ok.Location.X, m_SetNoiseReductionTrackBar.Location.Y);
                 m_btn_Cancel.Location = new Point(m_btn_Cancel.Location.X, m_SetNoiseReductionTrackBar.Location.Y);
                 this.Size = new System.Drawing.Size(this.Width, this.Height - 100);
+                this.Text = "Noise Reduction(AI)";
+                m_lblPreset.Text = "Select Noise Reduction Model:";
+                m_SelectPresetComboBox.Location = new System.Drawing.Point(m_SelectPresetComboBox.Location.X + 30, m_SelectPresetComboBox.Location.Y);
+                m_SelectPresetComboBox.Size = new Size(m_SelectPresetComboBox.Width - 50, m_SelectPresetComboBox.Height);  
 
             }
             helpProvider1.HelpNamespace = Localizer.Message("CHMhelp_file_name");
