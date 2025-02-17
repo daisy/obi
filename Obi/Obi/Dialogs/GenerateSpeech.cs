@@ -29,7 +29,7 @@ namespace Obi.Dialogs
         private Settings m_Settings;
 
         private Microsoft.CognitiveServices.Speech.SpeechSynthesizer? m_AzureSpeechSynthesizer;
-        private readonly SpeechConfig m_AzureSpeechConfig;
+        private SpeechConfig m_AzureSpeechConfig;
 
       
         
@@ -42,6 +42,17 @@ namespace Obi.Dialogs
             this.synthsizer = null;
             this.voiceList = null;
 
+            InitializeAzureSubcription();
+
+            float fontSize = m_TextToSpeechTb.Font.SizeInPoints;
+            m_TextToSpeechTb.Font = new Font(m_TextToSpeechTb.Font.FontFamily, fontSize * m_Settings.ZoomFactor);
+            bool rv = LoadInstalledVoices();
+            InitializeEnabledState(rv);
+        }
+
+
+        private void InitializeAzureSubcription()
+        {
             string directory = AppDomain.CurrentDomain.BaseDirectory;
             string keyFile = directory + "\\key.csv ";
             if (File.Exists(keyFile))
@@ -55,15 +66,8 @@ namespace Obi.Dialogs
             {
                 m_AddAzureVoiceBtn.Enabled = false;
                 m_DeleteAzureVoiceBtn.Enabled = false;
-                m_AzureRbtn.Enabled = false;
             }
-            float fontSize = m_TextToSpeechTb.Font.SizeInPoints;
-            m_TextToSpeechTb.Font = new Font(m_TextToSpeechTb.Font.FontFamily, fontSize * m_Settings.ZoomFactor);
-            bool rv = LoadInstalledVoices();
-            InitializeEnabledState(rv);
         }
-
-
         private bool LoadInstalledVoices()
         {
             m_SpeedTb.Minimum = -10;
@@ -138,7 +142,7 @@ namespace Obi.Dialogs
         {
             if (state == false)
             {
-                MessageBox.Show("Missing:  Installed Voices", Localizer.Message("Caption_Information"), MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show(Localizer.Message("Azure_VoicesNotInstalled"), Localizer.Message("Caption_Information"), MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
 
             this.m_PreviewBtn.Enabled = state;
@@ -149,7 +153,7 @@ namespace Obi.Dialogs
         {
             if (this.m_VoiceSelectionCb.Items.Count == 0 || this.m_VoiceSelectionCb.SelectedIndex < 0)
             {
-                MessageBox.Show("You must first install some voices", Localizer.Message("Caption_Information"), MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show(Localizer.Message("Azure_VoicesNotInstalled"), Localizer.Message("Caption_Information"), MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return null;
             }
             else
@@ -247,7 +251,7 @@ namespace Obi.Dialogs
 
             if (m_TextToSpeechTb.Text.ToString().Trim().Length == 0)
             {
-                MessageBox.Show("Please provide some text to continue", Localizer.Message("Caption_Information"), MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show(Localizer.Message("Azure_ProvideText"), Localizer.Message("Caption_Information"), MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
             }
 
@@ -298,7 +302,7 @@ namespace Obi.Dialogs
                 }
                 else
                 {
-                    MessageBox.Show("Kindly add Azure Subcription details using Add Azure Key", Localizer.Message("Caption_Information"), MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show(Localizer.Message("Azure_AddSubcriptionKey"), Localizer.Message("Caption_Information"), MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
         }
@@ -332,7 +336,7 @@ namespace Obi.Dialogs
         {
             if (m_TextToSpeechTb.Text.ToString().Trim().Length == 0)
             {
-                MessageBox.Show("Please provide some text to continue", Localizer.Message("Caption_Information"), MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show(Localizer.Message("Azure_ProvideText"), Localizer.Message("Caption_Information"), MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
             }
 
@@ -415,7 +419,7 @@ namespace Obi.Dialogs
                 }
                 else
                 {
-                    MessageBox.Show("Kindly add Azure Subcription details using Add Azure Key", Localizer.Message("Caption_Information"), MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show(Localizer.Message("Azure_EnterSubcriptionKey"), Localizer.Message("Caption_Information"), MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
         }
@@ -435,6 +439,13 @@ namespace Obi.Dialogs
         {
             AddAzureKey dialog = new AddAzureKey();
             dialog.ShowDialog();
+            if (dialog.KeyAdded)
+            {
+                AzureVoicesSelected();
+                InitializeAzureSubcription();
+                if (m_AzureSpeechConfig != null)
+                    m_AzureSpeechSynthesizer = new(m_AzureSpeechConfig);
+            }
         }
 
         private void m_BuildInRbtn_CheckedChanged(object sender, EventArgs e)
@@ -450,19 +461,38 @@ namespace Obi.Dialogs
                 m_AddAzureVoiceBtn.Enabled = false;
                 m_DeleteAzureVoiceBtn.Enabled = false;
                 m_AddAzureKeyBtn.Enabled = false;
+                m_PreviewBtn.Enabled = true;
+                m_GenerateBtn.Enabled = true;
             }
         }
 
-        private void m_AzurRbtn_CheckedChanged(object sender, EventArgs e)
+        private void AzureVoicesSelected()
         {
             if (m_AzureRbtn.Checked)
             {
                 m_VoiceSelectionCb.Items.Clear();
-                LoadAzureVoicesAsync();
-                m_AddAzureVoiceBtn.Enabled = true;
-                m_DeleteAzureVoiceBtn.Enabled = true;
-                m_AddAzureKeyBtn.Enabled = true;
+                string directory = AppDomain.CurrentDomain.BaseDirectory;
+                string keyFile = directory + "\\key.csv ";
+                if (File.Exists(keyFile))
+                {
+                    LoadAzureVoicesAsync();
+                    m_AddAzureVoiceBtn.Enabled = true;
+                    m_DeleteAzureVoiceBtn.Enabled = true;
+                    m_AddAzureKeyBtn.Enabled = true;
+                    m_PreviewBtn.Enabled = true;
+                    m_GenerateBtn.Enabled = true;
+                }
+                else
+                {
+                    m_AddAzureKeyBtn.Enabled = true;
+                    m_PreviewBtn.Enabled = false;
+                    m_GenerateBtn.Enabled = false;
+                }
             }
+        }
+        private void m_AzurRbtn_CheckedChanged(object sender, EventArgs e)
+        {
+          AzureVoicesSelected();
         }
 
         private void m_FontBiggerBtn_Click(object sender, EventArgs e)
@@ -482,9 +512,16 @@ namespace Obi.Dialogs
         }
 
         private void m_AddAzureVoiceBtn_Click(object sender, EventArgs e)
-        {
-            AddAzureVoice addAzureVoice = new AddAzureVoice(m_AzureSpeechSynthesizer, m_AzureSpeechConfig, this);
-            addAzureVoice.ShowDialog();
+        {   
+            if(m_AzureSpeechConfig != null && m_AzureSpeechSynthesizer== null)
+            {
+                m_AzureSpeechSynthesizer = new(m_AzureSpeechConfig);
+            }
+            if (m_AzureSpeechConfig != null && m_AzureSpeechSynthesizer != null)
+            {
+                AddAzureVoice addAzureVoice = new AddAzureVoice(m_AzureSpeechSynthesizer, m_AzureSpeechConfig, this);
+                addAzureVoice.ShowDialog();
+            }
         }
 
         private void m_DeleteAzureVoiceBtn_Click(object sender, EventArgs e)

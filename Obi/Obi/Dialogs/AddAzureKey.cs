@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.DataProtection.KeyManagement;
+using Microsoft.CognitiveServices.Speech;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -13,24 +15,44 @@ namespace Obi.Dialogs
 {
     public partial class AddAzureKey : Form
     {
+        private bool m_KeyAdded = false;
         public AddAzureKey()
         {
             InitializeComponent();
         }
 
-        private void m_AddBtn_Click(object sender, EventArgs e)
+        public bool KeyAdded
+        {
+            get
+            { return m_KeyAdded; }  
+        }
+        private async void m_AddBtn_Click(object sender, EventArgs e)
         {
             if(m_KeyTB.Text.Length == 0 || m_ResgionTB.Text.Length == 0) 
             {
-                MessageBox.Show("Please add key and region of your Azure subcription plan", Localizer.Message("Caption_Information"), MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show(Localizer.Message("Azure_EnterSubcriptionKey"), Localizer.Message("Caption_Information"), MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
-            }            
+            }
+            SpeechConfig AzureSpeechConfig = SpeechConfig.FromSubscription(m_KeyTB.Text, m_ResgionTB.Text);
+            SpeechSynthesizer? AzureSpeechSynthesizer = new SpeechSynthesizer(AzureSpeechConfig);
+            SynthesisVoicesResult voicesResult = await AzureSpeechSynthesizer.GetVoicesAsync(); 
+            if (voicesResult.Voices.Count ==  0)
+            {
+                MessageBox.Show(Localizer.Message("Azure_EnterCorrectSubcriptionKey"), Localizer.Message("Caption_Information"), MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
             StringBuilder csvContent = new StringBuilder();
             csvContent.AppendLine(m_KeyTB.Text);
             csvContent.AppendLine(m_ResgionTB.Text);
             string directory = AppDomain.CurrentDomain.BaseDirectory;
             string csvPath = directory + "\\key.csv ";
+            if(File.Exists(csvPath))
+            {
+                File.Delete(csvPath);
+            }
             File.AppendAllText(csvPath, csvContent.ToString());
+            m_KeyAdded = true;
+            MessageBox.Show(Localizer.Message("Azure_SubcriptionAdded"), Localizer.Message("Caption_Information"), MessageBoxButtons.OK, MessageBoxIcon.Information);
             this.Close();
         }
     }

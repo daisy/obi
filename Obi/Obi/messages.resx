@@ -3320,5 +3320,31 @@ You can do it later also from the project tab of preferences dialog.</value>
   <data name="KeyboardShortcuts_LoadingDefaults" xml:space="preserve">
     <value>Obi is being configured with default keyboard shortcuts.</value>
   </data>
-  
+   <data name="Azure_AddSubcriptionKey" xml:space="preserve">
+    <value>Kindly add Azure Subcription details using Add Azure Key.</value>
+  </data>
+   <data name="Azure_ProvideText" xml:space="preserve">
+    <value>Please provide some text to continue.</value>
+  </data>
+   <data name="Azure_VoicesNotInstalled" xml:space="preserve">
+    <value>No Voice is installed in your system.</value>
+  </data>
+   <data name="Azure_VoicesAvailable" xml:space="preserve">
+    <value>Voice already available in drop down menu.</value>
+  </data>
+   <data name="Azure_SelectVoiceToAdd" xml:space="preserve">
+    <value>Kindly select voice to add.</value>
+  </data>
+   <data name="Azure_VoiceAdded" xml:space="preserve">
+    <value>Voice added successfully to the drop down menu.</value>
+  </data>
+   <data name="Azure_EnterSubcriptionKey" xml:space="preserve">
+    <value>Please add key and region of your Azure subcription plan.</value>
+  </data>
+   <data name="Azure_EnterCorrectSubcriptionKey" xml:space="preserve">
+    <value>Entered Azure Subcription Key/region is not correct. Kindly enter correct details.</value>
+  </data>
+   <data name="Azure_SubcriptionAdded" xml:space="preserve">
+    <value>Azure subcription added successfully</value>
+  </data>
 </root>

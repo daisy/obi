@@ -40,7 +40,7 @@
             // 
             this.m_AddBtn.AccessibleName = "Add Key";
             this.m_AddBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.m_AddBtn.Location = new System.Drawing.Point(171, 270);
+            this.m_AddBtn.Location = new System.Drawing.Point(282, 270);
             this.m_AddBtn.Name = "m_AddBtn";
             this.m_AddBtn.Size = new System.Drawing.Size(135, 40);
             this.m_AddBtn.TabIndex = 9;
@@ -79,14 +79,14 @@
             this.m_KeyTB.AccessibleName = "Azure Key";
             this.m_KeyTB.Location = new System.Drawing.Point(149, 91);
             this.m_KeyTB.Name = "m_KeyTB";
-            this.m_KeyTB.Size = new System.Drawing.Size(527, 26);
+            this.m_KeyTB.Size = new System.Drawing.Size(720, 26);
             this.m_KeyTB.TabIndex = 5;
             // 
             // m_CancelBtn
             // 
             this.m_CancelBtn.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.m_CancelBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.m_CancelBtn.Location = new System.Drawing.Point(355, 270);
+            this.m_CancelBtn.Location = new System.Drawing.Point(466, 270);
             this.m_CancelBtn.Name = "m_CancelBtn";
             this.m_CancelBtn.Size = new System.Drawing.Size(125, 40);
             this.m_CancelBtn.TabIndex = 10;
@@ -97,7 +97,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(692, 361);
+            this.ClientSize = new System.Drawing.Size(881, 361);
             this.Controls.Add(this.m_CancelBtn);
             this.Controls.Add(this.m_AddBtn);
             this.Controls.Add(this.m_RegionLbl);
