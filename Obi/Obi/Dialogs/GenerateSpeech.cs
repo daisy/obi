@@ -53,8 +53,8 @@ namespace Obi.Dialogs
 
         private void InitializeAzureSubcription()
         {
-            string directory = AppDomain.CurrentDomain.BaseDirectory;
-            string keyFile = directory + "\\key.csv ";
+            string permanentSettingsDirectory = System.IO.Directory.GetParent(Settings_Permanent.GetSettingFilePath()).ToString();
+            string keyFile = permanentSettingsDirectory + "\\Azurekey.csv ";
             if (File.Exists(keyFile))
             {
                 string[] lines = File.ReadAllLines(keyFile);
@@ -471,8 +471,9 @@ namespace Obi.Dialogs
             if (m_AzureRbtn.Checked)
             {
                 m_VoiceSelectionCb.Items.Clear();
-                string directory = AppDomain.CurrentDomain.BaseDirectory;
-                string keyFile = directory + "\\key.csv ";
+                string permanentSettingsDirectory = System.IO.Directory.GetParent(Settings_Permanent.GetSettingFilePath()).ToString();
+                
+                string keyFile = permanentSettingsDirectory + "\\Azurekey.csv ";
                 if (File.Exists(keyFile))
                 {
                     LoadAzureVoicesAsync();

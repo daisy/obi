@@ -44,8 +44,11 @@ namespace Obi.Dialogs
             StringBuilder csvContent = new StringBuilder();
             csvContent.AppendLine(m_KeyTB.Text);
             csvContent.AppendLine(m_ResgionTB.Text);
-            string directory = AppDomain.CurrentDomain.BaseDirectory;
-            string csvPath = directory + "\\key.csv ";
+            //string directory = AppDomain.CurrentDomain.BaseDirectory;
+
+            string permanentSettingsDirectory = System.IO.Directory.GetParent(Settings_Permanent.GetSettingFilePath()).ToString();
+           
+            string csvPath = permanentSettingsDirectory + "\\Azurekey.csv ";
             if(File.Exists(csvPath))
             {
                 File.Delete(csvPath);
