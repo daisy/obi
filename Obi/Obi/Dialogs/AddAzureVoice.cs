@@ -37,11 +37,12 @@ namespace Obi.Dialogs
         {
             if (m_AddAzureVoiceListBox.SelectedItem == null)
             {
-                MessageBox.Show("Kindly select voice to add", Localizer.Message("Caption_Information"), MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show(Localizer.Message("Azure_SelectVoiceToAdd"), Localizer.Message("Caption_Information"), MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
             }
             string voice = m_AddAzureVoiceListBox.SelectedItem.ToString();
             m_GenerateSpeech.AddAzureVoices(voice);
+            MessageBox.Show(Localizer.Message("Azure_VoiceAdded"), Localizer.Message("Caption_Information"), MessageBoxButtons.OK, MessageBoxIcon.Information);
             this.Close();
 
         }
