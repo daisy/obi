@@ -800,6 +800,10 @@
 				<param name="Local" value="HTML Files\Creating a DTB\Working with Audio\Generating audio with TTS.htm">
 				</OBJECT>
 			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="Generate Audio from the Text">
+				<param name="Local" value="HTML Files\Creating a DTB\Working with Audio\Generate Audio from the Text.htm">
+				</OBJECT>
+			<LI> <OBJECT type="text/sitemap">
 				<param name="Name" value="Playback">
 				<param name="Local" value="HTML Files/Creating a DTB/Working with Audio/Playback.htm">
 				</OBJECT>
