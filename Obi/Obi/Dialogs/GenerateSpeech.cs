@@ -145,8 +145,9 @@ namespace Obi.Dialogs
                 MessageBox.Show(Localizer.Message("Azure_VoicesNotInstalled"), Localizer.Message("Caption_Information"), MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
 
-            this.m_PreviewBtn.Enabled = state;
-            this.m_ClearBtn.Enabled = state;
+            m_PreviewBtn.Enabled = state;
+            m_ClearBtn.Enabled = state;
+            m_GenerateBtn.Enabled = state;
         }
 
         private string? GetVoiceName()
@@ -222,13 +223,23 @@ namespace Obi.Dialogs
             m_ClearBtn.Enabled = true;
             m_SpeedTb.Enabled = true;
             m_VoiceSelectionCb.Enabled = true;
-            m_AddAzureVoiceBtn.Enabled = true;
-            m_DeleteAzureVoiceBtn.Enabled = true;
             m_AzureRbtn.Enabled = true;
             m_BuildInRbtn.Enabled = true;
             m_GenerateBtn.Enabled = true;
-            m_AddAzureKeyBtn.Enabled = true;
             m_CloseBtn.Enabled = true;
+            if(m_BuildInRbtn.Checked)
+            {
+                m_AddAzureVoiceBtn.Enabled = false;
+                m_DeleteAzureVoiceBtn.Enabled = false;
+                m_AddAzureKeyBtn.Enabled = false;
+            }
+            else
+            {
+                m_AddAzureVoiceBtn.Enabled = true;
+                m_DeleteAzureVoiceBtn.Enabled = true;
+                m_AddAzureKeyBtn.Enabled = true;
+
+            }
         }
 
 
@@ -291,8 +302,6 @@ namespace Obi.Dialogs
                     //SetPlayingState();
                     string voiceName = m_VoiceSelectionCb.SelectedItem.ToString().Split()[0];
 
-                    InitializeSynthsizer();
-                    //string ssml = GenerateSSML(m_TextToSpeechTb.Text, m_VoiceSelectionCb.SelectedItem.ToString(), (int)m_SpeedTb.Value, 0); 
                     string ssml = GenerateSSML(previewText, voiceName, (int)m_SpeedTb.Value, 0);
                     AzureSpeechSynthesizer_SynthesisStarted();
                     m_GenerateBtn.Enabled = false;
@@ -463,6 +472,12 @@ namespace Obi.Dialogs
                 m_AddAzureKeyBtn.Enabled = false;
                 m_PreviewBtn.Enabled = true;
                 m_GenerateBtn.Enabled = true;
+
+                m_ClearBtn.Enabled = true;
+                m_TextToSpeechTb.Enabled = true;
+                m_VoiceSelectionCb.Enabled = true;
+                m_SpeedTb.Enabled = true;
+                m_TextToSpeechTb.Enabled = true;
             }
         }
 
@@ -482,12 +497,24 @@ namespace Obi.Dialogs
                     m_AddAzureKeyBtn.Enabled = true;
                     m_PreviewBtn.Enabled = true;
                     m_GenerateBtn.Enabled = true;
+                    m_ClearBtn.Enabled = true;
+                    m_TextToSpeechTb.Enabled = true;
+                    m_VoiceSelectionCb.Enabled = true;
+                    m_SpeedTb.Enabled = true;
+                    m_TextToSpeechTb.Enabled = true;
                 }
                 else
                 {
+                    m_AddAzureVoiceBtn.Enabled = false;
+                    m_DeleteAzureVoiceBtn.Enabled = false;
                     m_AddAzureKeyBtn.Enabled = true;
                     m_PreviewBtn.Enabled = false;
                     m_GenerateBtn.Enabled = false;
+                    m_ClearBtn.Enabled = false;
+                    m_TextToSpeechTb.Enabled = false;
+                    m_VoiceSelectionCb.Enabled = false;
+                    m_SpeedTb.Enabled = false;
+                    m_TextToSpeechTb.Enabled = false;
                 }
             }
         }
