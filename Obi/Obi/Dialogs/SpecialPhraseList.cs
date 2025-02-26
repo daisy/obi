@@ -74,6 +74,13 @@ namespace Obi.Dialogs
         private void m_btnFind_Click(object sender, EventArgs e)
         {
             CollectPhrases();
+            if(m_lbSpecialPhrasesList != null && m_lbSpecialPhrasesList.Items != null && m_lbSpecialPhrasesList.Items.Count == 0)
+            {
+                m_BtnPlay.Enabled = false;
+                m_BtnPause.Enabled = false;
+                m_BtnStop.Enabled = false;
+                m_btnOK.Enabled = false;
+            }
         }
 
         private void CollectPhrases ()
@@ -322,7 +329,7 @@ namespace Obi.Dialogs
 
         private void m_BtnPlay_Click(object sender, EventArgs e)
         {
-            
+
             if (mBar.CurrentState == Obi.ProjectView.TransportBar.State.Paused)
             {
                 mBar.PlayOrResume();
@@ -330,7 +337,8 @@ namespace Obi.Dialogs
             else
             {
                 //mView.SelectFromTransportBar(backendList[m_lbSpecialPhrasesList.SelectedIndex], null);
-                mBar.PlayOrResume(backendList[m_lbSpecialPhrasesList.SelectedIndex]);
+                if (backendList != null && backendList.Count > 0 && m_lbSpecialPhrasesList.Items.Count > 0)
+                    mBar.PlayOrResume(backendList[m_lbSpecialPhrasesList.SelectedIndex]);
             }
             //UpdateButtons();    
         }
