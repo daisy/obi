@@ -105,6 +105,8 @@
             this.Controls.Add(this.m_ResgionTB);
             this.Controls.Add(this.m_KeyTB);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "AddAzureKey";
             this.Text = "Add Azure Key";
             this.ResumeLayout(false);

@@ -54,7 +54,7 @@
             // m_AddVoiceBtn
             // 
             this.m_AddVoiceBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.m_AddVoiceBtn.Location = new System.Drawing.Point(228, 599);
+            this.m_AddVoiceBtn.Location = new System.Drawing.Point(174, 599);
             this.m_AddVoiceBtn.Name = "m_AddVoiceBtn";
             this.m_AddVoiceBtn.Size = new System.Drawing.Size(106, 29);
             this.m_AddVoiceBtn.TabIndex = 1;
@@ -146,7 +146,7 @@
             // 
             this.m_CancelBtn.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.m_CancelBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.m_CancelBtn.Location = new System.Drawing.Point(649, 599);
+            this.m_CancelBtn.Location = new System.Drawing.Point(340, 599);
             this.m_CancelBtn.Name = "m_CancelBtn";
             this.m_CancelBtn.Size = new System.Drawing.Size(106, 29);
             this.m_CancelBtn.TabIndex = 10;
@@ -171,6 +171,8 @@
             this.Controls.Add(this.m_AddVoiceBtn);
             this.Controls.Add(this.m_AddAzureVoiceListBox);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "AddAzureVoice";
             this.Text = "Add Azure Voice";
             this.ResumeLayout(false);

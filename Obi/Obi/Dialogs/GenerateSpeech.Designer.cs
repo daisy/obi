@@ -228,7 +228,7 @@
             // 
             this.m_CloseBtn.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.m_CloseBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.m_CloseBtn.Location = new System.Drawing.Point(703, 513);
+            this.m_CloseBtn.Location = new System.Drawing.Point(676, 513);
             this.m_CloseBtn.Name = "m_CloseBtn";
             this.m_CloseBtn.Size = new System.Drawing.Size(126, 35);
             this.m_CloseBtn.TabIndex = 18;
@@ -288,6 +288,8 @@
             this.Controls.Add(this.m_VoiceSelectionCb);
             this.Controls.Add(this.m_TextToSpeechTb);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "GenerateSpeech";
             this.Text = "Generate Audio";
             ((System.ComponentModel.ISupportInitialize)(this.m_SpeedTb)).EndInit();
