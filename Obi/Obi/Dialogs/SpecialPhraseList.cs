@@ -337,7 +337,7 @@ namespace Obi.Dialogs
             else
             {
                 //mView.SelectFromTransportBar(backendList[m_lbSpecialPhrasesList.SelectedIndex], null);
-                if (backendList != null && backendList.Count > 0 && m_lbSpecialPhrasesList.Items.Count > 0)
+                if (backendList != null && backendList.Count > 0 && m_lbSpecialPhrasesList.Items.Count > 0 && m_lbSpecialPhrasesList.SelectedIndex >=0)
                     mBar.PlayOrResume(backendList[m_lbSpecialPhrasesList.SelectedIndex]);
             }
             //UpdateButtons();    
