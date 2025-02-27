@@ -289,6 +289,8 @@ namespace Obi.Dialogs
 
       private void m_lbSpecialPhrasesList_SelectedIndexChanged(object sender, EventArgs e)
         {
+            if (m_lbSpecialPhrasesList.SelectedIndex < 0)
+                return;
            int selectedeNode = m_lbSpecialPhrasesList.SelectedIndex;
            selectedItem = backendList[selectedeNode];
           if (mBar.IsPlayerActive)
