@@ -85,6 +85,7 @@ namespace Obi.Dialogs
 
         private void CollectPhrases ()
         {
+           backendList.Clear();
            m_btnOK.Enabled = false;
            this.m_lbSpecialPhrasesList.Items.Clear();
            string sectionName = null;
