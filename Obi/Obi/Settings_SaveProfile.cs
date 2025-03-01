@@ -218,7 +218,8 @@ namespace Obi
 
 
                 }
-                MessageBox.Show(ex.ToString());
+                //MessageBox.Show(ex.ToString());
+                MessageBox.Show(Localizer.Message("PofileNotImported"), Localizer.Message("Caption_Information"), MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return null;
             }
             fs.Close();

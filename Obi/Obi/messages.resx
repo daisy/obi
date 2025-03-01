@@ -3347,4 +3347,7 @@ You can do it later also from the project tab of preferences dialog.</value>
    <data name="Azure_SubcriptionAdded" xml:space="preserve">
     <value>Azure subcription added successfully</value>
   </data>
+   <data name="PofileNotImported" xml:space="preserve">
+    <value>Profile cannot be imported</value>
+  </data>
 </root>
