@@ -3350,4 +3350,7 @@ You can do it later also from the project tab of preferences dialog.</value>
    <data name="PofileNotImported" xml:space="preserve">
     <value>Profile cannot be imported</value>
   </data>
+  <data name="GenerateAudioPlaceHolderText" xml:space="preserve">
+    <value>Write text for speech generation</value>
+  </data>
 </root>
