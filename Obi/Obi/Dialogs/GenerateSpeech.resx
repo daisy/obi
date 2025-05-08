@@ -57,4 +57,571 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="m_TextToSpeechTb.AccessibleName" xml:space="preserve">
+    <value>Write text for speech generation</value>
+  </data>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="m_TextToSpeechTb.Location" type="System.Drawing.Point, System.Drawing">
+    <value>14, 27</value>
+  </data>
+  <data name="m_TextToSpeechTb.Size" type="System.Drawing.Size, System.Drawing">
+    <value>815, 203</value>
+  </data>
+  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="m_TextToSpeechTb.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="m_TextToSpeechTb.Text" xml:space="preserve">
+    <value>Enter Text</value>
+  </data>
+  <data name="&gt;&gt;m_TextToSpeechTb.Name" xml:space="preserve">
+    <value>m_TextToSpeechTb</value>
+  </data>
+  <data name="&gt;&gt;m_TextToSpeechTb.Type" xml:space="preserve">
+    <value>System.Windows.Forms.RichTextBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_TextToSpeechTb.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;m_TextToSpeechTb.ZOrder" xml:space="preserve">
+    <value>10</value>
+  </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="m_PreviewBtn.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>Flat</value>
+  </data>
+  <data name="m_PreviewBtn.Location" type="System.Drawing.Point, System.Drawing">
+    <value>17, 23</value>
+  </data>
+  <data name="m_PreviewBtn.Size" type="System.Drawing.Size, System.Drawing">
+    <value>106, 35</value>
+  </data>
+  <data name="m_PreviewBtn.TabIndex" type="System.Int32, mscorlib">
+    <value>11</value>
+  </data>
+  <data name="m_PreviewBtn.Text" xml:space="preserve">
+    <value>&amp;Preview</value>
+  </data>
+  <data name="&gt;&gt;m_PreviewBtn.Name" xml:space="preserve">
+    <value>m_PreviewBtn</value>
+  </data>
+  <data name="&gt;&gt;m_PreviewBtn.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_PreviewBtn.Parent" xml:space="preserve">
+    <value>groupBox2</value>
+  </data>
+  <data name="&gt;&gt;m_PreviewBtn.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="m_GenerateBtn.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>Flat</value>
+  </data>
+  <data name="m_GenerateBtn.Location" type="System.Drawing.Point, System.Drawing">
+    <value>255, 23</value>
+  </data>
+  <data name="m_GenerateBtn.Size" type="System.Drawing.Size, System.Drawing">
+    <value>166, 35</value>
+  </data>
+  <data name="m_GenerateBtn.TabIndex" type="System.Int32, mscorlib">
+    <value>13</value>
+  </data>
+  <data name="m_GenerateBtn.Text" xml:space="preserve">
+    <value>&amp;Generate Speech</value>
+  </data>
+  <data name="&gt;&gt;m_GenerateBtn.Name" xml:space="preserve">
+    <value>m_GenerateBtn</value>
+  </data>
+  <data name="&gt;&gt;m_GenerateBtn.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_GenerateBtn.Parent" xml:space="preserve">
+    <value>groupBox2</value>
+  </data>
+  <data name="&gt;&gt;m_GenerateBtn.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="m_BuildInRbtn.AccessibleName" xml:space="preserve">
+    <value>Build in voices</value>
+  </data>
+  <data name="m_BuildInRbtn.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="m_BuildInRbtn.Location" type="System.Drawing.Point, System.Drawing">
+    <value>20, 26</value>
+  </data>
+  <data name="m_BuildInRbtn.Size" type="System.Drawing.Size, System.Drawing">
+    <value>142, 24</value>
+  </data>
+  <data name="m_BuildInRbtn.TabIndex" type="System.Int32, mscorlib">
+    <value>4</value>
+  </data>
+  <data name="m_BuildInRbtn.Text" xml:space="preserve">
+    <value>&amp;System Voices</value>
+  </data>
+  <data name="&gt;&gt;m_BuildInRbtn.Name" xml:space="preserve">
+    <value>m_BuildInRbtn</value>
+  </data>
+  <data name="&gt;&gt;m_BuildInRbtn.Type" xml:space="preserve">
+    <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_BuildInRbtn.Parent" xml:space="preserve">
+    <value>m_VoiceTypeGroupBox</value>
+  </data>
+  <data name="&gt;&gt;m_BuildInRbtn.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="m_AzureRbtn.AccessibleName" xml:space="preserve">
+    <value>Azure voices</value>
+  </data>
+  <data name="m_AzureRbtn.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="m_AzureRbtn.Location" type="System.Drawing.Point, System.Drawing">
+    <value>169, 26</value>
+  </data>
+  <data name="m_AzureRbtn.Size" type="System.Drawing.Size, System.Drawing">
+    <value>183, 24</value>
+  </data>
+  <data name="m_AzureRbtn.TabIndex" type="System.Int32, mscorlib">
+    <value>5</value>
+  </data>
+  <data name="m_AzureRbtn.Text" xml:space="preserve">
+    <value>Online &amp;Azure Voices</value>
+  </data>
+  <data name="&gt;&gt;m_AzureRbtn.Name" xml:space="preserve">
+    <value>m_AzureRbtn</value>
+  </data>
+  <data name="&gt;&gt;m_AzureRbtn.Type" xml:space="preserve">
+    <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_AzureRbtn.Parent" xml:space="preserve">
+    <value>m_VoiceTypeGroupBox</value>
+  </data>
+  <data name="&gt;&gt;m_AzureRbtn.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="m_VoiceSelectionCb.AccessibleName" xml:space="preserve">
+    <value>TTS voice selection</value>
+  </data>
+  <data name="m_VoiceSelectionCb.ItemHeight" type="System.Int32, mscorlib">
+    <value>20</value>
+  </data>
+  <data name="m_VoiceSelectionCb.Location" type="System.Drawing.Point, System.Drawing">
+    <value>173, 256</value>
+  </data>
+  <data name="m_VoiceSelectionCb.Size" type="System.Drawing.Size, System.Drawing">
+    <value>636, 28</value>
+  </data>
+  <data name="m_VoiceSelectionCb.TabIndex" type="System.Int32, mscorlib">
+    <value>7</value>
+  </data>
+  <data name="&gt;&gt;m_VoiceSelectionCb.Name" xml:space="preserve">
+    <value>m_VoiceSelectionCb</value>
+  </data>
+  <data name="&gt;&gt;m_VoiceSelectionCb.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_VoiceSelectionCb.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;m_VoiceSelectionCb.ZOrder" xml:space="preserve">
+    <value>9</value>
+  </data>
+  <data name="m_ClearBtn.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>Flat</value>
+  </data>
+  <data name="m_ClearBtn.Location" type="System.Drawing.Point, System.Drawing">
+    <value>136, 23</value>
+  </data>
+  <data name="m_ClearBtn.Size" type="System.Drawing.Size, System.Drawing">
+    <value>106, 35</value>
+  </data>
+  <data name="m_ClearBtn.TabIndex" type="System.Int32, mscorlib">
+    <value>12</value>
+  </data>
+  <data name="m_ClearBtn.Text" xml:space="preserve">
+    <value>&amp;Clear</value>
+  </data>
+  <data name="&gt;&gt;m_ClearBtn.Name" xml:space="preserve">
+    <value>m_ClearBtn</value>
+  </data>
+  <data name="&gt;&gt;m_ClearBtn.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_ClearBtn.Parent" xml:space="preserve">
+    <value>groupBox2</value>
+  </data>
+  <data name="&gt;&gt;m_ClearBtn.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="m_SpeedTb.AccessibleName" xml:space="preserve">
+    <value>Speech Rate</value>
+  </data>
+  <data name="m_SpeedTb.Location" type="System.Drawing.Point, System.Drawing">
+    <value>173, 320</value>
+  </data>
+  <data name="m_SpeedTb.Size" type="System.Drawing.Size, System.Drawing">
+    <value>636, 56</value>
+  </data>
+  <data name="m_SpeedTb.TabIndex" type="System.Int32, mscorlib">
+    <value>9</value>
+  </data>
+  <data name="&gt;&gt;m_SpeedTb.Name" xml:space="preserve">
+    <value>m_SpeedTb</value>
+  </data>
+  <data name="&gt;&gt;m_SpeedTb.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TrackBar, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_SpeedTb.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;m_SpeedTb.ZOrder" xml:space="preserve">
+    <value>8</value>
+  </data>
+  <data name="m_TTSVoiceLbl.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="m_TTSVoiceLbl.Location" type="System.Drawing.Point, System.Drawing">
+    <value>50, 259</value>
+  </data>
+  <data name="m_TTSVoiceLbl.Size" type="System.Drawing.Size, System.Drawing">
+    <value>92, 20</value>
+  </data>
+  <data name="m_TTSVoiceLbl.TabIndex" type="System.Int32, mscorlib">
+    <value>6</value>
+  </data>
+  <data name="m_TTSVoiceLbl.Text" xml:space="preserve">
+    <value>TTS Voice:</value>
+  </data>
+  <data name="&gt;&gt;m_TTSVoiceLbl.Name" xml:space="preserve">
+    <value>m_TTSVoiceLbl</value>
+  </data>
+  <data name="&gt;&gt;m_TTSVoiceLbl.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_TTSVoiceLbl.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;m_TTSVoiceLbl.ZOrder" xml:space="preserve">
+    <value>7</value>
+  </data>
+  <data name="m_SpeechRateLbl.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="m_SpeechRateLbl.Location" type="System.Drawing.Point, System.Drawing">
+    <value>46, 320</value>
+  </data>
+  <data name="m_SpeechRateLbl.Size" type="System.Drawing.Size, System.Drawing">
+    <value>110, 20</value>
+  </data>
+  <data name="m_SpeechRateLbl.TabIndex" type="System.Int32, mscorlib">
+    <value>8</value>
+  </data>
+  <data name="m_SpeechRateLbl.Text" xml:space="preserve">
+    <value>Speech Rate:</value>
+  </data>
+  <data name="&gt;&gt;m_SpeechRateLbl.Name" xml:space="preserve">
+    <value>m_SpeechRateLbl</value>
+  </data>
+  <data name="&gt;&gt;m_SpeechRateLbl.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_SpeechRateLbl.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;m_SpeechRateLbl.ZOrder" xml:space="preserve">
+    <value>6</value>
+  </data>
+  <data name="m_FontSmallerBtn.AccessibleName" xml:space="preserve">
+    <value>Decrease text size</value>
+  </data>
+  <data name="m_FontSmallerBtn.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="m_FontSmallerBtn.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>Flat</value>
+  </data>
+  <data name="m_FontSmallerBtn.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Segoe UI, 12pt, style=Bold</value>
+  </data>
+  <data name="m_FontSmallerBtn.Location" type="System.Drawing.Point, System.Drawing">
+    <value>777, 216</value>
+  </data>
+  <data name="m_FontSmallerBtn.Size" type="System.Drawing.Size, System.Drawing">
+    <value>61, 37</value>
+  </data>
+  <data name="m_FontSmallerBtn.TabIndex" type="System.Int32, mscorlib">
+    <value>99</value>
+  </data>
+  <data name="m_FontSmallerBtn.Text" xml:space="preserve">
+    <value>-</value>
+  </data>
+  <data name="m_FontSmallerBtn.Visible" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="&gt;&gt;m_FontSmallerBtn.Name" xml:space="preserve">
+    <value>m_FontSmallerBtn</value>
+  </data>
+  <data name="&gt;&gt;m_FontSmallerBtn.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_FontSmallerBtn.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;m_FontSmallerBtn.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="m_FontBiggerBtn.AccessibleName" xml:space="preserve">
+    <value>Increase text size</value>
+  </data>
+  <data name="m_FontBiggerBtn.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="m_FontBiggerBtn.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>Flat</value>
+  </data>
+  <data name="m_FontBiggerBtn.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Segoe UI, 12pt, style=Bold</value>
+  </data>
+  <data name="m_FontBiggerBtn.Location" type="System.Drawing.Point, System.Drawing">
+    <value>777, 131</value>
+  </data>
+  <data name="m_FontBiggerBtn.Size" type="System.Drawing.Size, System.Drawing">
+    <value>61, 38</value>
+  </data>
+  <data name="m_FontBiggerBtn.TabIndex" type="System.Int32, mscorlib">
+    <value>100</value>
+  </data>
+  <data name="m_FontBiggerBtn.Text" xml:space="preserve">
+    <value>+</value>
+  </data>
+  <data name="m_FontBiggerBtn.Visible" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="&gt;&gt;m_FontBiggerBtn.Name" xml:space="preserve">
+    <value>m_FontBiggerBtn</value>
+  </data>
+  <data name="&gt;&gt;m_FontBiggerBtn.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_FontBiggerBtn.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;m_FontBiggerBtn.ZOrder" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <data name="m_AddAzureKeyBtn.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="m_AddAzureKeyBtn.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>Flat</value>
+  </data>
+  <data name="m_AddAzureKeyBtn.Location" type="System.Drawing.Point, System.Drawing">
+    <value>312, 30</value>
+  </data>
+  <data name="m_AddAzureKeyBtn.Size" type="System.Drawing.Size, System.Drawing">
+    <value>135, 35</value>
+  </data>
+  <data name="m_AddAzureKeyBtn.TabIndex" type="System.Int32, mscorlib">
+    <value>17</value>
+  </data>
+  <data name="m_AddAzureKeyBtn.Text" xml:space="preserve">
+    <value>Add &amp;Key</value>
+  </data>
+  <data name="&gt;&gt;m_AddAzureKeyBtn.Name" xml:space="preserve">
+    <value>m_AddAzureKeyBtn</value>
+  </data>
+  <data name="&gt;&gt;m_AddAzureKeyBtn.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_AddAzureKeyBtn.Parent" xml:space="preserve">
+    <value>groupBox1</value>
+  </data>
+  <data name="&gt;&gt;m_AddAzureKeyBtn.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="m_AddAzureVoiceBtn.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="m_AddAzureVoiceBtn.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>Flat</value>
+  </data>
+  <data name="m_AddAzureVoiceBtn.Location" type="System.Drawing.Point, System.Drawing">
+    <value>19, 30</value>
+  </data>
+  <data name="m_AddAzureVoiceBtn.Size" type="System.Drawing.Size, System.Drawing">
+    <value>133, 35</value>
+  </data>
+  <data name="m_AddAzureVoiceBtn.TabIndex" type="System.Int32, mscorlib">
+    <value>15</value>
+  </data>
+  <data name="m_AddAzureVoiceBtn.Text" xml:space="preserve">
+    <value>&amp;Add Voice</value>
+  </data>
+  <data name="&gt;&gt;m_AddAzureVoiceBtn.Name" xml:space="preserve">
+    <value>m_AddAzureVoiceBtn</value>
+  </data>
+  <data name="&gt;&gt;m_AddAzureVoiceBtn.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_AddAzureVoiceBtn.Parent" xml:space="preserve">
+    <value>groupBox1</value>
+  </data>
+  <data name="&gt;&gt;m_AddAzureVoiceBtn.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="m_DeleteAzureVoiceBtn.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="m_DeleteAzureVoiceBtn.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>Flat</value>
+  </data>
+  <data name="m_DeleteAzureVoiceBtn.Location" type="System.Drawing.Point, System.Drawing">
+    <value>168, 30</value>
+  </data>
+  <data name="m_DeleteAzureVoiceBtn.Size" type="System.Drawing.Size, System.Drawing">
+    <value>126, 35</value>
+  </data>
+  <data name="m_DeleteAzureVoiceBtn.TabIndex" type="System.Int32, mscorlib">
+    <value>16</value>
+  </data>
+  <data name="m_DeleteAzureVoiceBtn.Text" xml:space="preserve">
+    <value>&amp;Delete Voice</value>
+  </data>
+  <data name="&gt;&gt;m_DeleteAzureVoiceBtn.Name" xml:space="preserve">
+    <value>m_DeleteAzureVoiceBtn</value>
+  </data>
+  <data name="&gt;&gt;m_DeleteAzureVoiceBtn.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_DeleteAzureVoiceBtn.Parent" xml:space="preserve">
+    <value>groupBox1</value>
+  </data>
+  <data name="&gt;&gt;m_DeleteAzureVoiceBtn.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="m_CloseBtn.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>Flat</value>
+  </data>
+  <data name="m_CloseBtn.Location" type="System.Drawing.Point, System.Drawing">
+    <value>676, 513</value>
+  </data>
+  <data name="m_CloseBtn.Size" type="System.Drawing.Size, System.Drawing">
+    <value>126, 35</value>
+  </data>
+  <data name="m_CloseBtn.TabIndex" type="System.Int32, mscorlib">
+    <value>18</value>
+  </data>
+  <data name="m_CloseBtn.Text" xml:space="preserve">
+    <value>&amp;Cancel</value>
+  </data>
+  <data name="&gt;&gt;m_CloseBtn.Name" xml:space="preserve">
+    <value>m_CloseBtn</value>
+  </data>
+  <data name="&gt;&gt;m_CloseBtn.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_CloseBtn.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;m_CloseBtn.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="m_VoiceTypeGroupBox.AccessibleName" xml:space="preserve">
+    <value>Group box to select system or azure voices</value>
+  </data>
+  <data name="m_VoiceTypeGroupBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>24, 398</value>
+  </data>
+  <data name="m_VoiceTypeGroupBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>357, 70</value>
+  </data>
+  <data name="m_VoiceTypeGroupBox.TabIndex" type="System.Int32, mscorlib">
+    <value>3</value>
+  </data>
+  <data name="&gt;&gt;m_VoiceTypeGroupBox.Name" xml:space="preserve">
+    <value>m_VoiceTypeGroupBox</value>
+  </data>
+  <data name="&gt;&gt;m_VoiceTypeGroupBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_VoiceTypeGroupBox.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;m_VoiceTypeGroupBox.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="groupBox1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>25, 483</value>
+  </data>
+  <data name="groupBox1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>460, 77</value>
+  </data>
+  <data name="groupBox1.TabIndex" type="System.Int32, mscorlib">
+    <value>14</value>
+  </data>
+  <data name="groupBox1.Text" xml:space="preserve">
+    <value>Azure</value>
+  </data>
+  <data name="&gt;&gt;groupBox1.Name" xml:space="preserve">
+    <value>groupBox1</value>
+  </data>
+  <data name="&gt;&gt;groupBox1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;groupBox1.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;groupBox1.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="groupBox2.AccessibleName" xml:space="preserve">
+    <value>Group Box to preview and generate speech</value>
+  </data>
+  <data name="groupBox2.Location" type="System.Drawing.Point, System.Drawing">
+    <value>400, 398</value>
+  </data>
+  <data name="groupBox2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>429, 70</value>
+  </data>
+  <data name="groupBox2.TabIndex" type="System.Int32, mscorlib">
+    <value>10</value>
+  </data>
+  <data name="&gt;&gt;groupBox2.Name" xml:space="preserve">
+    <value>groupBox2</value>
+  </data>
+  <data name="&gt;&gt;groupBox2.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;groupBox2.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;groupBox2.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <data name="$this.AccessibleName" xml:space="preserve">
+    <value>Generate Audio</value>
+  </data>
+  <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
+    <value>9, 20</value>
+  </data>
+  <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
+    <value>844, 576</value>
+  </data>
+  <data name="$this.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 9.75pt</value>
+  </data>
+  <data name="$this.Text" xml:space="preserve">
+    <value>Generate Audio</value>
+  </data>
+  <data name="&gt;&gt;$this.Name" xml:space="preserve">
+    <value>GenerateSpeech</value>
+  </data>
+  <data name="&gt;&gt;$this.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Form, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
 </root>

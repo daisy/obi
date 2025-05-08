@@ -41,6 +41,7 @@ namespace Obi.Dialogs
             m_Settings = settings;
             this.synthsizer = null;
             this.voiceList = null;
+            m_TextToSpeechTb.Text = Localizer.Message(Localizer.Message("GenerateAudioPlaceHolderText"));
 
             InitializeAzureSubcription();
 
@@ -260,7 +261,7 @@ namespace Obi.Dialogs
         private async void m_PreviewBtn_ClickAsync(object sender, EventArgs e)
         {
 
-            if (m_TextToSpeechTb.Text.ToString().Trim().Length == 0)
+            if (m_TextToSpeechTb.Text.ToString().Trim().Length == 0 || m_TextToSpeechTb.Text == Localizer.Message("GenerateAudioPlaceHolderText"))
             {
                 MessageBox.Show(Localizer.Message("Azure_ProvideText"), Localizer.Message("Caption_Information"), MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
@@ -317,10 +318,10 @@ namespace Obi.Dialogs
         }
 
         private void m_ClearBtn_Click(object sender, EventArgs e)
-        {
-            this.m_TextToSpeechTb.Text = String.Empty;
+        {            
             this.m_PreviewBtn.Enabled = true;
-            this.m_TextToSpeechTb.SelectedText = String.Empty;
+            this.m_TextToSpeechTb.Text = String.Empty;
+            SetPlaceholder();
             this.m_VoiceSelectionCb.Enabled = true;
             this.m_SpeedTb.Enabled = true;
 
@@ -343,7 +344,7 @@ namespace Obi.Dialogs
 
         private async void m_GenerateBtn_ClickAsync(object sender, EventArgs e)
         {
-            if (m_TextToSpeechTb.Text.ToString().Trim().Length == 0)
+            if (m_TextToSpeechTb.Text.ToString().Trim().Length == 0 || m_TextToSpeechTb.Text == Localizer.Message("GenerateAudioPlaceHolderText"))
             {
                 MessageBox.Show(Localizer.Message("Azure_ProvideText"), Localizer.Message("Caption_Information"), MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
@@ -563,5 +564,30 @@ namespace Obi.Dialogs
             }
         }
 
+        private void m_TextToSpeechTb_Enter(object sender, EventArgs e)
+        {
+            if(m_TextToSpeechTb.Text == Localizer.Message("GenerateAudioPlaceHolderText"))
+            {
+                m_TextToSpeechTb.Text = string.Empty;
+                m_TextToSpeechTb.ForeColor = Color.Black;
+            }
+
+        }
+
+
+        private void m_TextToSpeechTb_Leave(object sender, EventArgs e)
+        {
+            SetPlaceholder();
+        }
+
+        private void SetPlaceholder()
+        {
+            if (m_TextToSpeechTb.Text == string.Empty)
+            {
+                m_TextToSpeechTb.Text = Localizer.Message("GenerateAudioPlaceHolderText");
+                m_TextToSpeechTb.ForeColor = Color.Silver;
+            }
+
+        }
     }
 }
