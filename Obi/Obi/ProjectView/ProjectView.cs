@@ -3060,6 +3060,20 @@ namespace Obi.ProjectView
                     }
                 }
                 NodeSelection initialSelection = this.Selection;
+                ObiNode precedingNode = null;
+                //ObiNode followingNode = null;
+                if (initialSelection.Node is EmptyNode && initialSelection.Node.PrecedingNode != null)
+                {
+                    if (!(initialSelection.Node.PrecedingNode is SectionNode))
+                    {
+                        precedingNode = initialSelection.Node.PrecedingNode;
+                    }
+                }
+                else if (initialSelection.Node is SectionNode && initialSelection.Node.Duration != 0)
+                {
+                    precedingNode = initialSelection.Node.LastUsedPhrase;                    
+                }
+
                 string[] filesPathArray = new string[1]; // SelectFilesToImport();
                 filesPathArray[0] = ttsFileToImport;
                 if (this.Selection != initialSelection) this.Selection = initialSelection;//workaround to prevent ocasional case of shifting selection from strip cursor to section
@@ -3151,6 +3165,7 @@ namespace Obi.ProjectView
                                 }
 
                                 {
+                                   
                                     mPresentation.Do(GetImportPhraseCommands(phraseNodes));
                                 }
                             }
@@ -3171,6 +3186,24 @@ namespace Obi.ProjectView
                             // hide new phrases if section's contents are hidden
                             //HideNewPhrasesInInvisibleSection ( GetSelectedPhraseSection );//@singleSection: original
                             mContentView.CreateBlocksInStrip(); //@singleSection: new
+                            if (initialSelection.Node is PhraseNode && initialSelection.Phrase.FollowingNode != null)
+                            {
+                                Selection = new NodeSelection(initialSelection.Phrase.FollowingNode, mContentView);
+                            }
+                            else if (initialSelection.Node is EmptyNode)
+                            {
+                                if (precedingNode != null && precedingNode.FollowingNode != null)
+                                    Selection = new NodeSelection(precedingNode.FollowingNode, mContentView);
+                                else if (precedingNode == null)
+                                    Selection = new NodeSelection(Selection.Node.FirstUsedPhrase, mContentView);
+                            }
+                            else if (initialSelection.Node is SectionNode)
+                            {
+                                if (precedingNode == null)
+                                    Selection = new NodeSelection(initialSelection.Section.FirstUsedPhrase, mContentView);
+                                else
+                                    Selection = new NodeSelection(precedingNode.FollowingNode, mContentView);
+                            }
                         }
                         else
                             MessageBox.Show(Localizer.Message("Operation_Cancelled") + "\n" + string.Format(Localizer.Message("ContentsHidden_PhrasesExceedMaxLimitPerSection"), MaxVisibleBlocksCount));
@@ -3697,9 +3730,9 @@ for (int j = 0;
         public void TextToSpeech()
         {
             NodeSelection selection = this.Selection;
-            m_GenerateSpeechDialog = new Dialogs.GenerateSpeech(this,mPresentation, ObiForm.Settings);
+            m_GenerateSpeechDialog = new Dialogs.GenerateSpeech(this,mContentView, mPresentation, ObiForm.Settings);
             m_GenerateSpeechDialog.ShowDialog();
-            this.Selection = selection;
+           // this.Selection = selection;
             
 
         }

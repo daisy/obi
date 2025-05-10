@@ -2562,7 +2562,7 @@ namespace Obi
                 mRewindToolStripMenuItem.Enabled = mSession.HasProject && mProjectView.CanRewind;
                 navigationToolStripMenuItem.Enabled = mSession.HasProject;
                 allEmptyPagesToolStripMenuItem.Enabled = allEmptyPagesAudioFileToolStripMenuItem.Enabled = mProjectView.CanGenerateSpeechForAllEmptyPages;
-                m_TextToSpeechToolStripMenuItem.Enabled = mProjectView.CanImportPhrases;
+                m_TextToSpeechToolStripMenuItem.Enabled = mProjectView.CanImportPhrases && !(mProjectView.Selection is StripIndexSelection);
                 selectedPageToolStripMenuItem.Enabled = selectedPageAudioFileToolStripMenuItem.Enabled = mProjectView.CanGenerateSpeechForPage;
                 mGenerateSpeechToolStripMenuItem.Enabled = mSession.HasProject && !mProjectView.TransportBar.IsRecorderActive;
                 mFastPlaytoolStripMenuItem.Enabled = mSession.HasProject && !mProjectView.TransportBar.IsRecorderActive;

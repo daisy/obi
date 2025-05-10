@@ -24,6 +24,7 @@ namespace Obi.Dialogs
         private System.Speech.Synthesis.SpeechSynthesizer? synthsizer;
         private List<InstalledVoice>? voiceList;
         private ProjectView.ProjectView m_ProjectView;
+        private ProjectView.ContentView m_ContentView;
         private ObiPresentation m_Presentation;
         private List<string> m_voices;
         private Settings m_Settings;
@@ -33,15 +34,17 @@ namespace Obi.Dialogs
 
       
         
-        public GenerateSpeech(ProjectView.ProjectView view, ObiPresentation presentation, Settings settings)
+        public GenerateSpeech(ProjectView.ProjectView view, ProjectView.ContentView contentView,  ObiPresentation presentation, Settings settings)
         {
             InitializeComponent();
             m_ProjectView = view;
             m_Presentation = presentation;
+            m_ContentView = contentView;
             m_Settings = settings;
             this.synthsizer = null;
             this.voiceList = null;
             m_TextToSpeechTb.Text = Localizer.Message(Localizer.Message("GenerateAudioPlaceHolderText"));
+            m_TextToSpeechTb.ForeColor = Color.Black;
 
             InitializeAzureSubcription();
 
@@ -397,7 +400,6 @@ namespace Obi.Dialogs
                     Directory.Delete(directoryFullPath, true);
                 }
                 this.Close();
-
             }
             else
             {
