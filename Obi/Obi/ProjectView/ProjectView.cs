@@ -3069,11 +3069,6 @@ namespace Obi.ProjectView
                         precedingNode = initialSelection.Node.PrecedingNode;
                     }
                 }
-                else if (initialSelection.Node is SectionNode && initialSelection.Node.Duration != 0)
-                {
-                    precedingNode = initialSelection.Node.LastUsedPhrase;                    
-                }
-
                 string[] filesPathArray = new string[1]; // SelectFilesToImport();
                 filesPathArray[0] = ttsFileToImport;
                 if (this.Selection != initialSelection) this.Selection = initialSelection;//workaround to prevent ocasional case of shifting selection from strip cursor to section
@@ -3178,7 +3173,7 @@ namespace Obi.ProjectView
                                 this.ObiForm.Settings.Project_DisplayWarningsForEditOperations = tempDisplayWarnings;
                             }
                             //phrase detection
-
+                            if (initialSelection.Node is PhraseNode || initialSelection.Node is SectionNode)
                             {
                                 ApplyPhraseDetectionOnPhraseList(phraseNodes, threshold, gap, leadingSilence);
                             }
@@ -3186,9 +3181,11 @@ namespace Obi.ProjectView
                             // hide new phrases if section's contents are hidden
                             //HideNewPhrasesInInvisibleSection ( GetSelectedPhraseSection );//@singleSection: original
                             mContentView.CreateBlocksInStrip(); //@singleSection: new
-                            if (initialSelection.Node is PhraseNode && initialSelection.Phrase.FollowingNode != null)
+
+                            
+                            if (initialSelection.Node is PhraseNode || initialSelection.Node is SectionNode)
                             {
-                                Selection = new NodeSelection(initialSelection.Phrase.FollowingNode, mContentView);
+                                Selection = initialSelection;
                             }
                             else if (initialSelection.Node is EmptyNode)
                             {
@@ -3197,13 +3194,7 @@ namespace Obi.ProjectView
                                 else if (precedingNode == null)
                                     Selection = new NodeSelection(Selection.Node.FirstUsedPhrase, mContentView);
                             }
-                            else if (initialSelection.Node is SectionNode)
-                            {
-                                if (precedingNode == null)
-                                    Selection = new NodeSelection(initialSelection.Section.FirstUsedPhrase, mContentView);
-                                else
-                                    Selection = new NodeSelection(precedingNode.FollowingNode, mContentView);
-                            }
+
                         }
                         else
                             MessageBox.Show(Localizer.Message("Operation_Cancelled") + "\n" + string.Format(Localizer.Message("ContentsHidden_PhrasesExceedMaxLimitPerSection"), MaxVisibleBlocksCount));
