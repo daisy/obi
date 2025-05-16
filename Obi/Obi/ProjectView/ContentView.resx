@@ -130,6 +130,12 @@
   <data name="Context_SelectedPageAudioFileToolStripMenuItem.Text" xml:space="preserve">
     <value>Selected page (Audio File)</value>
   </data>
+  <data name="Context_TextToAudioToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>268, 26</value>
+  </data>
+  <data name="Context_TextToAudioToolStripMenuItem.Text" xml:space="preserve">
+    <value>Text To Audio</value>
+  </data>
   <data name="Context_GenerateSpeechForPageMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>272, 26</value>
   </data>
@@ -577,7 +583,7 @@
   </data>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="Context_ExportAudioMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
-    <value>Control+Alt+E</value>
+    <value>Ctrl+Alt+E</value>
   </data>
   <data name="Context_ExportAudioMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>258, 26</value>
@@ -1267,6 +1273,12 @@
   <data name="&gt;&gt;m_NoiseReductionToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="&gt;&gt;m_NoiseReductionRnnToolStripMenuItem.Name" xml:space="preserve">
+    <value>m_NoiseReductionRnnToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;m_NoiseReductionRnnToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="&gt;&gt;m_AudioMixerToolStripMenuItem.Name" xml:space="preserve">
     <value>m_AudioMixerToolStripMenuItem</value>
   </data>
@@ -1303,10 +1315,10 @@
   <data name="&gt;&gt;timer1.Type" xml:space="preserve">
     <value>System.Windows.Forms.Timer, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;m_NoiseReductionRnnToolStripMenuItem.Name" xml:space="preserve">
-    <value>m_NoiseReductionRnnToolStripMenuItem</value>
+  <data name="&gt;&gt;Context_TextToAudioToolStripMenuItem.Name" xml:space="preserve">
+    <value>Context_TextToAudioToolStripMenuItem</value>
   </data>
-  <data name="&gt;&gt;m_NoiseReductionRnnToolStripMenuItem.Type" xml:space="preserve">
+  <data name="&gt;&gt;Context_TextToAudioToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">

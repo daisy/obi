@@ -5298,7 +5298,9 @@ if (thresholdAboveLastNode >= stripControl.Node.PhraseChildCount) thresholdAbove
             //Context_Skippable_AssociateSpecialNodeMarkToolStripMenuItem.Enabled = mProjectView != null && !mProjectView.TransportBar.IsRecorderActive && (mProjectView.Selection == null || (mProjectView.Selection != null && mProjectView.Selection.Node is EmptyNode && ((EmptyNode)mProjectView.Selection.Node).Role_ != EmptyNode.Role.Custom && ((EmptyNode)mProjectView.Selection.Node).Role_ != EmptyNode.Role.Plain));
             Context_Skippable_AssociateSpecialNodeMarkToolStripMenuItem.Enabled = mProjectView.CanAssociateNode;   //@AssociateNode
             Context_Skippable_ClearRoleFromNoteToolStripMenuItem.Enabled = mProjectView.CanClearSkippableRole;
-            Context_GenerateSpeechForPageMenuItem.Enabled = Context_SelectedPageTTSToolStripMenuItem.Enabled = Context_SelectedPageAudioFileToolStripMenuItem.Enabled = mProjectView.CanGenerateSpeechForPage;
+            Context_SelectedPageTTSToolStripMenuItem.Enabled = Context_SelectedPageAudioFileToolStripMenuItem.Enabled = mProjectView.CanGenerateSpeechForPage;
+            Context_GenerateSpeechForPageMenuItem.Enabled = mProjectView.CanGenerateSpeechForPage || (mProjectView.CanImportPhrases && !(mProjectView.Selection is StripIndexSelection));
+            Context_TextToAudioToolStripMenuItem.Enabled = mProjectView.CanImportPhrases && !(mProjectView.Selection is StripIndexSelection);
             Context_SettingsFromsilencePhraseToolStripMenuItem.Enabled = mProjectView.CanUpdatePhraseDetectionSettingsFromSilencePhrase;
            Context_TrimSilenceFromSectionEnd.Enabled = Context_DeleteSilenceFromEndOfSectionToolStripMenuItem.Enabled =
                Context__RetainSilenceInLastPhraseToolStripMenuItem.Enabled = mProjectView.CanDeleteSilenceFromEndOfSection && !Settings.Project_ReadOnlyMode;
@@ -6396,6 +6398,11 @@ Block lastBlock = ActiveStrip.LastBlock ;
             }
             if (mProjectView.CanExportSelectedNodeAudio)
                 mProjectView.AudioProcessing(AudioLib.WavAudioProcessing.AudioProcessingKind.NoiseReductionRnn);
+        }
+
+        private void Context_TextToAudioToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            mProjectView.TextToSpeech();
         }
     }
     /// <summary>
