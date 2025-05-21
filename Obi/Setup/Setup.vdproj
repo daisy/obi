@@ -213,12 +213,6 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_33A396A07ED641519D3C44ADB89B8C1A"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
         "MsmKey" = "8:_3576542B958346C1B58553DECD35440D"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -269,6 +263,12 @@
         {
         "MsmKey" = "8:_49234B4E52A8BEBCA131946473BE0EC9"
         "OwnerKey" = "8:_7BD5E72105A8AE6FBA05F8933D8D3F1C"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_51191FD33CC04167B3941759820722DA"
+        "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -880,7 +880,7 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_33A396A07ED641519D3C44ADB89B8C1A"
+        "OwnerKey" = "8:_51191FD33CC04167B3941759820722DA"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -1296,10 +1296,15 @@
             "ComponentsUrl" = "8:"
                 "Items"
                 {
-                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:.NETFramework,Version=v4.0"
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:Microsoft.NetCore.DesktopRuntime.6.0.x64"
                     {
-                    "Name" = "8:Microsoft .NET Framework 4 (x86 and x64)"
-                    "ProductCode" = "8:.NETFramework,Version=v4.0"
+                    "Name" = "8:.NET Desktop Runtime 6.0.36 (x64)"
+                    "ProductCode" = "8:Microsoft.NetCore.DesktopRuntime.6.0.x64"
+                    }
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:Microsoft.NetCore.DesktopRuntime.6.0.x86"
+                    {
+                    "Name" = "8:.NET Desktop Runtime 6.0.36 (x86)"
+                    "ProductCode" = "8:Microsoft.NetCore.DesktopRuntime.6.0.x86"
                     }
                     "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:Microsoft.Windows.Installer.4.5"
                     {
@@ -1314,45 +1319,45 @@
     {
         "CustomAction"
         {
-            "{4AA51A2D-7D85-4A59-BA75-B0809FC8B380}:_7574AEBB8F884C23BA4F421729F81FDC"
+            "{4AA51A2D-7D85-4A59-BA75-B0809FC8B380}:_1D29233E4E23459DB1EED8096A335E41"
             {
-            "Name" = "8:InstallerFileOperations58.dll"
+            "Name" = "8:InstallerFileOperations59.dll"
             "Condition" = "8:"
-            "Object" = "8:_33A396A07ED641519D3C44ADB89B8C1A"
-            "FileType" = "3:1"
-            "InstallAction" = "3:4"
-            "Arguments" = "8:"
-            "EntryPoint" = "8:"
-            "Sequence" = "3:1"
-            "Identifier" = "8:_50A988BB_82D9_4DCF_8B1D_25BA18F80212"
-            "InstallerClass" = "11:TRUE"
-            "CustomActionData" = "8:"
-            }
-            "{4AA51A2D-7D85-4A59-BA75-B0809FC8B380}:_A6AF59ECCAA64D039035AED6F767CC03"
-            {
-            "Name" = "8:InstallerFileOperations58.dll"
-            "Condition" = "8:"
-            "Object" = "8:_33A396A07ED641519D3C44ADB89B8C1A"
-            "FileType" = "3:1"
-            "InstallAction" = "3:1"
-            "Arguments" = "8:"
-            "EntryPoint" = "8:"
-            "Sequence" = "3:1"
-            "Identifier" = "8:_E29DEAA7_00BD_416C_9BCA_82142B1954DF"
-            "InstallerClass" = "11:TRUE"
-            "CustomActionData" = "8:"
-            }
-            "{4AA51A2D-7D85-4A59-BA75-B0809FC8B380}:_E8019647FAB843BF997E90E8D626E2E7"
-            {
-            "Name" = "8:InstallerFileOperations58.dll"
-            "Condition" = "8:"
-            "Object" = "8:_33A396A07ED641519D3C44ADB89B8C1A"
+            "Object" = "8:_51191FD33CC04167B3941759820722DA"
             "FileType" = "3:1"
             "InstallAction" = "3:3"
             "Arguments" = "8:"
             "EntryPoint" = "8:"
             "Sequence" = "3:1"
-            "Identifier" = "8:_A120E7B0_4B5C_41DA_9679_AB3E39A5D634"
+            "Identifier" = "8:_E5777106_EDFD_47B7_B20F_F2ED7962BD76"
+            "InstallerClass" = "11:TRUE"
+            "CustomActionData" = "8:"
+            }
+            "{4AA51A2D-7D85-4A59-BA75-B0809FC8B380}:_6C3F6898AB284403B1A8CD6F2CB5DAF7"
+            {
+            "Name" = "8:InstallerFileOperations59.dll"
+            "Condition" = "8:"
+            "Object" = "8:_51191FD33CC04167B3941759820722DA"
+            "FileType" = "3:1"
+            "InstallAction" = "3:1"
+            "Arguments" = "8:"
+            "EntryPoint" = "8:"
+            "Sequence" = "3:1"
+            "Identifier" = "8:_74D8BC82_DC46_4C97_9334_7E5BD27E6BB0"
+            "InstallerClass" = "11:TRUE"
+            "CustomActionData" = "8:"
+            }
+            "{4AA51A2D-7D85-4A59-BA75-B0809FC8B380}:_7A9E03AE31EB4D2FA4BC5D8962CF09CA"
+            {
+            "Name" = "8:InstallerFileOperations59.dll"
+            "Condition" = "8:"
+            "Object" = "8:_51191FD33CC04167B3941759820722DA"
+            "FileType" = "3:1"
+            "InstallAction" = "3:4"
+            "Arguments" = "8:"
+            "EntryPoint" = "8:"
+            "Sequence" = "3:1"
+            "Identifier" = "8:_AEEC1906_57B1_41B0_8E55_CCB3935A5EC6"
             "InstallerClass" = "11:TRUE"
             "CustomActionData" = "8:"
             }
@@ -1464,7 +1469,7 @@
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:Obi.resources, Version=5.0.7.0, Culture=zh-Hant, processorArchitecture=MSIL"
+            "AssemblyAsmDisplayName" = "8:Obi.resources, Version=5.1.0.0, Culture=zh-Hant, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
                     "_09101921CBF146B8938D2EB60A7D8612"
@@ -1812,7 +1817,7 @@
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:Obi.resources, Version=5.0.7.0, Culture=de, processorArchitecture=MSIL"
+            "AssemblyAsmDisplayName" = "8:Obi.resources, Version=5.1.0.0, Culture=de, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
                     "_198B3F09C0224744AD10571BD11A9DAC"
@@ -1874,7 +1879,7 @@
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:Obi.resources, Version=5.0.7.0, Culture=ja, processorArchitecture=MSIL"
+            "AssemblyAsmDisplayName" = "8:Obi.resources, Version=5.1.0.0, Culture=ja, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
                     "_1D8802F1B4234A29AE5609DBF7663DF0"
@@ -1925,7 +1930,7 @@
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:Obi.resources, Version=5.0.7.0, Culture=es, processorArchitecture=MSIL"
+            "AssemblyAsmDisplayName" = "8:Obi.resources, Version=5.1.0.0, Culture=es, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
                     "_1EFB63046FB14BDAB8A77660FA818251"
@@ -2078,7 +2083,7 @@
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:Obi.resources, Version=5.0.7.0, Culture=hi, processorArchitecture=MSIL"
+            "AssemblyAsmDisplayName" = "8:Obi.resources, Version=5.1.0.0, Culture=hi, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
                     "_339EA4A21F6B4F6B82D4301C8A2C6198"
@@ -2091,37 +2096,6 @@
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_C8760030D802432CB54734FC2FD0E73A"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_33A396A07ED641519D3C44ADB89B8C1A"
-            {
-            "AssemblyRegister" = "3:1"
-            "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:InstallerFileOperations, Version=4.8.0.0, Culture=neutral, processorArchitecture=MSIL"
-                "ScatterAssemblies"
-                {
-                    "_33A396A07ED641519D3C44ADB89B8C1A"
-                    {
-                    "Name" = "8:InstallerFileOperations58.dll"
-                    "Attributes" = "3:512"
-                    }
-                }
-            "SourcePath" = "8:CustomActions\\InstallerFileOperations\\bin\\Release\\InstallerFileOperations58.dll"
-            "TargetName" = "8:"
-            "Tag" = "8:"
-            "Folder" = "8:_4D3BED1A25304BAD92EA81B4D13F5EF1"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -2276,6 +2250,37 @@
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
             "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_51191FD33CC04167B3941759820722DA"
+            {
+            "AssemblyRegister" = "3:1"
+            "AssemblyIsInGAC" = "11:FALSE"
+            "AssemblyAsmDisplayName" = "8:InstallerFileOperations, Version=4.8.0.0, Culture=neutral, processorArchitecture=MSIL"
+                "ScatterAssemblies"
+                {
+                    "_51191FD33CC04167B3941759820722DA"
+                    {
+                    "Name" = "8:InstallerFileOperations59.dll"
+                    "Attributes" = "3:512"
+                    }
+                }
+            "SourcePath" = "8:CustomActions\\InstallerFileOperations\\bin\\Release\\InstallerFileOperations59.dll"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_4D3BED1A25304BAD92EA81B4D13F5EF1"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_51B3D7ABC51C4A2193BD16D3A7447817"
@@ -2672,7 +2677,7 @@
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:Obi.resources, Version=5.0.7.0, Culture=ta, processorArchitecture=MSIL"
+            "AssemblyAsmDisplayName" = "8:Obi.resources, Version=5.1.0.0, Culture=ta, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
                     "_6C94FF0BD4754AE8BCE742D63EBD0FBC"
@@ -3244,7 +3249,7 @@
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:Obi.resources, Version=5.0.7.0, Culture=fr, processorArchitecture=MSIL"
+            "AssemblyAsmDisplayName" = "8:Obi.resources, Version=5.1.0.0, Culture=fr, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
                     "_9565146ECFE04B31B32883FC2250DE57"
@@ -3408,7 +3413,7 @@
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:Obi.resources, Version=5.0.7.0, Culture=ar, processorArchitecture=MSIL"
+            "AssemblyAsmDisplayName" = "8:Obi.resources, Version=5.1.0.0, Culture=ar, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
                     "_9ACB014B62734ADB876EC2DCC52931DC"
@@ -4082,7 +4087,7 @@
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:Obi.resources, Version=5.0.7.0, Culture=zh-Hans, processorArchitecture=MSIL"
+            "AssemblyAsmDisplayName" = "8:Obi.resources, Version=5.1.0.0, Culture=zh-Hans, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
                     "_CA8F31C9A8224B918870471E89B5E313"
@@ -4215,7 +4220,7 @@
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:Obi.resources, Version=5.0.7.0, Culture=pt, processorArchitecture=MSIL"
+            "AssemblyAsmDisplayName" = "8:Obi.resources, Version=5.1.0.0, Culture=pt, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
                     "_CF9AB48274B04E13A2C58EDD1FD12315"
@@ -4561,7 +4566,7 @@
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:Obi.resources, Version=5.0.7.0, Culture=fi, processorArchitecture=MSIL"
+            "AssemblyAsmDisplayName" = "8:Obi.resources, Version=5.1.0.0, Culture=fi, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
                     "_EA3CAF27A75A40328299B4C68731FC0F"
@@ -5039,20 +5044,20 @@
         "Product"
         {
         "Name" = "8:Microsoft Visual Studio"
-        "ProductName" = "8:Obi 5.1 beta"
-        "ProductCode" = "8:{3A776E84-E611-45A1-B155-7E4AE0A7BDAC}"
-        "PackageCode" = "8:{76A59540-A9F2-478C-9FB2-11EDBCCE719A}"
+        "ProductName" = "8:Obi 5.1"
+        "ProductCode" = "8:{FDCF32FC-0E29-424F-8B7F-2BC13E5040D8}"
+        "PackageCode" = "8:{3577F377-D105-457E-B2E6-9FA3399F83C8}"
         "UpgradeCode" = "8:{358C2C3A-3686-4461-A8BA-9D766218CC5E}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
         "RemovePreviousVersions" = "11:FALSE"
         "DetectNewerInstalledVersion" = "11:FALSE"
         "InstallAllUsers" = "11:FALSE"
-        "ProductVersion" = "8:5.0.7"
+        "ProductVersion" = "8:5.1.0"
         "Manufacturer" = "8:The Urakawa Project"
         "ARPHELPTELEPHONE" = "8:"
         "ARPHELPLINK" = "8:http://www.daisy.org/forums/obi"
-        "Title" = "8:Obi 5.1 beta"
+        "Title" = "8:Obi 5.1"
         "Subject" = "8:"
         "ARPCONTACT" = "8:Obi development Team"
         "Keywords" = "8:"
@@ -5163,7 +5168,7 @@
         {
             "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_0F34FEE7392245ED8C33C78EB0D2823B"
             {
-            "Name" = "8:Obi 5.1 beta"
+            "Name" = "8:Obi 5.1"
             "Arguments" = "8:"
             "Description" = "8:"
             "ShowCmd" = "3:1"
@@ -5177,7 +5182,7 @@
             }
             "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_C26CA4074EF24904B9E49A74044A43B0"
             {
-            "Name" = "8:Obi 5.1 beta"
+            "Name" = "8:Obi 5.1"
             "Arguments" = "8:"
             "Description" = "8:"
             "ShowCmd" = "3:1"
