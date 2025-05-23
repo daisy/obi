@@ -125,50 +125,58 @@ namespace Obi.ImportExport
                 if (Path.GetExtension(CSVFullPath).ToLower() == ".csv")
                 {
                     cellsInLineArray = line.Split(',');
+                    if (cellsInLineArray.Length > 2)
+                    {
+                        if (cellsInLineArray[1].Contains("\"\"\""))
+                        {
+                            int indexOfEndOfDoubleQuotes = 0;
+                            for (int index = 2; index < cellsInLineArray.Length; index++)
+                            {
+                                if (cellsInLineArray[index].Contains("\"\"\""))
+                                {
+                                    indexOfEndOfDoubleQuotes = index;
+                                    break;
+                                }
+                            }
+                            string sectionName = string.Empty;
+                            if (indexOfEndOfDoubleQuotes > 0)
+                            {
+                                for (int i = 1; i <= indexOfEndOfDoubleQuotes; i++)
+                                {
+                                    if (i == indexOfEndOfDoubleQuotes)
+                                    {
+                                        sectionName += cellsInLineArray[i].Replace("\"\"\"", string.Empty);
+                                        cellsInLineArray[i] = string.Empty;
+                                        break;
+                                    }
+                                    else
+                                    {
+                                        sectionName += cellsInLineArray[i].Replace("\"\"\"", string.Empty) + ",";
+                                    }
+                                    cellsInLineArray[i] = string.Empty;
+                                }
+                            }
+
+
+                            cellsInLineArray[1] = sectionName;
+
+
+                        }
+                    }
+                    if (cellsInLineArray.Length > 1)
+                    {
+                        if (cellsInLineArray[1].Contains("\""))
+                        {
+                            cellsInLineArray[1] = cellsInLineArray[1].Replace("\"", string.Empty);
+                        }
+                    }
                 }
                 else
                 {
                     cellsInLineArray = line.Split('\t');
                 }
 
-                if (cellsInLineArray.Length > 2)
-                {
-                    if (cellsInLineArray[1].Contains("\"\"\""))
-                    {
-                        int indexOfEndOfDoubleQuotes = 0;
-                        for (int index = 2; index < cellsInLineArray.Length; index++)
-                        {
-                            if (cellsInLineArray[index].Contains("\"\"\""))
-                            {
-                                indexOfEndOfDoubleQuotes = index;
-                                break;
-                            }
-                        }
-                        string sectionName = string.Empty;
-                        if (indexOfEndOfDoubleQuotes > 0)
-                        {
-                            for (int i = 1; i <= indexOfEndOfDoubleQuotes; i++)
-                            {
-                                if (i == indexOfEndOfDoubleQuotes)
-                                {
-                                    sectionName += cellsInLineArray[i].Replace("\"\"\"", string.Empty);
-                                    cellsInLineArray[i] = string.Empty;
-                                    break;
-                                }
-                                else
-                                {
-                                    sectionName += cellsInLineArray[i].Replace("\"\"\"", string.Empty) + ",";
-                                }
-                                cellsInLineArray[i] = string.Empty;
-                            }
-                        }
-
-
-                        cellsInLineArray[1] = sectionName;
-
-
-                    }
-                }
+                
 
 
                 for (int i = 0; i < cellsInLineArray.Length; i++)

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using urakawa.command;
 using System.Windows.Forms;
+using System.Reflection;
 
 namespace Obi.ImportExport
 {
@@ -136,6 +137,14 @@ namespace Obi.ImportExport
                         }
 
                     }
+                    if(cellsInLineArray.Length > 1) 
+                    {
+                        if (cellsInLineArray[1].Contains("\""))
+                        {
+                            cellsInLineArray[1] = cellsInLineArray[1].Replace("\"", string.Empty);
+                        }
+                    }
+
                 }
                 else
                 {
