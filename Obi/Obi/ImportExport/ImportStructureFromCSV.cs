@@ -311,7 +311,7 @@ namespace Obi.ImportExport
                 {
                     ImportAudio(m_AudioFilePath5[i], section);
                 }
-                if (pagesPerSection[i] > 0)
+                if (pagesPerSection.Count > i && pagesPerSection[i] > 0)
                 {
                     for(int j = 0; j < pagesPerSection[i]; j++)
                     {
