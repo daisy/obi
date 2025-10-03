@@ -2031,9 +2031,11 @@ return CreateBlocksInStrip ( s != null ? s : null ); // uncomment this for resto
         //@singleSection
         public void CreateBlocksTillNodeInStrip ( Strip stripControl, EmptyNode nodeOfLastBlockToCreate, bool considerStripHaltFlag )
             {
-              while (!this.IsWaveformRendering)
+               if (!this.IsWaveformRendering)
                 CreateBlocksTillNodeInStrip ( stripControl, nodeOfLastBlockToCreate, considerStripHaltFlag, 0 );
-            }
+            else
+                Console.WriteLine("CreateBlocks will not happen while waveform rendering going");
+        }
 
         //@singleSection
         public void CreateBlocksTillNodeInStrip ( Strip stripControl, EmptyNode nodeOfLastBlockToCreate, bool considerStripHaltFlag, int pixelDepth )
@@ -2580,13 +2582,17 @@ if (thresholdAboveLastNode >= stripControl.Node.PhraseChildCount) thresholdAbove
                         // create blocks for additional interval
                         System.Diagnostics.Stopwatch stopWatch = new System.Diagnostics.Stopwatch ();
                         stopWatch.Start ();
-
                         if (!setStripsPanelToInitialPosition)
                             {
-                            CreateBlocksTillNodeInStrip ( currentlyActiveStrip,
-                            currentlyActiveStrip.Node.PhraseChild ( nextThresholdIndex ),
+                            if (!this.IsWaveformRendering)
+                                CreateBlocksTillNodeInStrip(currentlyActiveStrip,
+                            currentlyActiveStrip.Node.PhraseChild(nextThresholdIndex),
                             false,
-                           ContentViewDepthForCreatingBlocks + interval );
+                           ContentViewDepthForCreatingBlocks + interval);
+                            else
+                            {
+                                Console.WriteLine("CreateBlocks will not happen while waveform rendering going");
+                            }
 
                             // check if strips panel can be located up by full interval
                             int pixelsUp = interval;
@@ -2624,11 +2630,16 @@ if (thresholdAboveLastNode >= stripControl.Node.PhraseChildCount) thresholdAbove
                             }
                         else
                             {
-                            CreateBlocksTillNodeInStrip ( currentlyActiveStrip,
-                        currentlyActiveStrip.Node.PhraseChild ( nextThresholdIndex ),
+                            if (!this.IsWaveformRendering)
+                                CreateBlocksTillNodeInStrip(currentlyActiveStrip,
+                        currentlyActiveStrip.Node.PhraseChild(nextThresholdIndex),
                         true,
                        0 );
+                            else
+                            {
+                                Console.WriteLine("CreateBlocks will not happen while waveform rendering going");
                             }
+                        }
                         stopWatch.Stop ();
                         //Console.WriteLine ( "time while croll down " + stopWatch.ElapsedMilliseconds );
                         //Console.WriteLine ( "Strips panel location after scroll " + mStripsPanel.Location );

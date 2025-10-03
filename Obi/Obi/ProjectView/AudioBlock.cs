@@ -209,28 +209,31 @@ public void SetWaveformForZoom(PhraseNode node)
         {
             float tempFontSize = mBaseFontSize + 3;
             base.SetZoomFactorAndHeight(zoom, height,setFont);
-            if(zoom != 0 && setFont)
-            mRecordingLabel.Font = new Font(Font.FontFamily, zoom * tempFontSize, FontStyle.Bold);
+            if (this.Node != null && this.Node.Duration == 0)
+            {
+                if ((zoom >= 1 && mRecordingLabel.Font.Size < (zoom * tempFontSize)) || zoom < 1 )
+                    mRecordingLabel.Font = new Font(Font.FontFamily, zoom * tempFontSize, FontStyle.Bold);
 
-            if (zoom < 0.9)
-            {
-                mRecordingLabel.Location = new Point(0, mLabel.Height + mLabel.Location.Y + (mWaveform.Height / 6));
-            }
-            else if (zoom < 1.5)
-            {
-                mRecordingLabel.Location = new Point(0, mLabel.Height + mLabel.Location.Y + (mWaveform.Height / 4));
-            }
-            else if (zoom < 2.0)
-            {
-                mRecordingLabel.Location = new Point(0, mLabel.Height + mLabel.Location.Y + (mWaveform.Height / 3));
-            }
-            else if (zoom < 3.0)
-            {
-                mRecordingLabel.Location = new Point(0, mLabel.Height + mLabel.Location.Y + (mWaveform.Height / 2));
-            }
-            else
-            {
-                mRecordingLabel.Location = new Point(0, mLabel.Height + mLabel.Location.Y + (mWaveform.Height));
+                if (zoom < 0.9)
+                {
+                    mRecordingLabel.Location = new Point(0, mLabel.Height + mLabel.Location.Y + (mWaveform.Height / 6));
+                }
+                else if (zoom < 1.5)
+                {
+                    mRecordingLabel.Location = new Point(0, mLabel.Height + mLabel.Location.Y + (mWaveform.Height / 4));
+                }
+                else if (zoom < 2.0)
+                {
+                    mRecordingLabel.Location = new Point(0, mLabel.Height + mLabel.Location.Y + (mWaveform.Height / 3));
+                }
+                else if (zoom < 3.0)
+                {
+                    mRecordingLabel.Location = new Point(0, mLabel.Height + mLabel.Location.Y + (mWaveform.Height / 2));
+                }
+                else
+                {
+                    mRecordingLabel.Location = new Point(0, mLabel.Height + mLabel.Location.Y + (mWaveform.Height));
+                }
             }
             SetWaveform(mNode as PhraseNode);
         }
@@ -444,7 +447,7 @@ public void SetWaveformForZoom(PhraseNode node)
             if (ContentView != null && ContentView.Settings != null)
             {
                 //   this.Font = new Font(ContentView.Settings.ObiFont, this.Font.Size, FontStyle.Regular);
-
+                 
                 mRecordingLabel.Font = new Font(ContentView.Settings.ObiFont, mRecordingLabel.Font.Size, FontStyle.Regular);
                 mLabel.Font = new Font(ContentView.Settings.ObiFont, mLabel.Font.Size, FontStyle.Regular);
                 base.SetFont();

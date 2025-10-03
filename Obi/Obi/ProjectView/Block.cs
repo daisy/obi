@@ -134,8 +134,8 @@ namespace Obi.ProjectView
         {
             if (zoom > 0.0f)
             {
-                if(setFont)
-                mLabel.Font = new Font(Font.FontFamily, zoom * mBaseFontSize);
+                if (setFont && zoom != 1)
+                    mLabel.Font = new Font(Font.FontFamily, zoom * mBaseFontSize);
                 Size = new Size(LabelFullWidth, height - Margin.Vertical);
                 if (Node.CommentText != null)   // @Comment-todo
                 {
