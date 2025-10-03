@@ -358,6 +358,9 @@ public bool Project_ImportNCCFileWithWindows1252Encoding ; // useful for importi
         [OptionalField]
         public List<string> AzureVoices;
 
+        [OptionalField]
+        public bool Audio_TODOPSecialCase;
+
         protected static void InitializeDefaultSettings(Settings settings)
         {
             settings.Audio_Channels = 1;
@@ -519,6 +522,7 @@ public bool Project_ImportNCCFileWithWindows1252Encoding ; // useful for importi
             settings.Audio_DeleteFollowingPhrasesWhilePreviewBeforeRecording = true;
             //post Obi 5.0
             settings.AzureVoices = new List<string>();
+            settings.Audio_TODOPSecialCase = false; 
         }
 
         /// <summary>

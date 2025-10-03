@@ -2688,14 +2688,15 @@ namespace Obi.ProjectView
         /// If recording, create a new phrase to record in.
         /// If playing or paused,
         /// </summary>
-        public bool NextPhrase()
+        public bool NextPhrase(double timeOfAssetMilliseconds =  0)
         {
             if (CanNavigateNextPhrase)
             {
                 if (mState == State.Recording)
                 {
                     //mRecordingSession.AudioRecorder.TimeOfAsset
-                    double timeOfAssetMilliseconds =
+                    if(timeOfAssetMilliseconds == 0)
+                    timeOfAssetMilliseconds =
                    (double)mRecordingSession.AudioRecorder.RecordingPCMFormat.ConvertBytesToTime(Convert.ToInt64 (mRecordingSession.AudioRecorder.CurrentDurationBytePosition)) /
                    Time.TIME_UNIT;
 
@@ -2704,7 +2705,7 @@ namespace Obi.ProjectView
                     // record into to next phrase.
                     // check if phrase count of section is less than max limit
                     if ( mRecordingSection != null && mRecordingSection.PhraseChildCount < mView.MaxVisibleBlocksCount ) // @phraseLimit
-                    mRecordingSession.NextPhrase();
+                    mRecordingSession.NextPhrase(timeOfAssetMilliseconds);
                 }
                 else if (mState == State.Monitoring)
                 {
@@ -4090,11 +4091,39 @@ SelectionChangedPlaybackEnabled = false;
                 m_TimeElapsedInRecording =
                             (double)mRecordingSession.AudioRecorder.RecordingPCMFormat.ConvertBytesToTime(Convert.ToInt64(mRecordingSession.AudioRecorder.CurrentDurationBytePosition)) /
                             Time.TIME_UNIT;
-                double currentTimeElapsed = m_TimeElapsedInRecording - previousTimeElaped - 100;
-                mView.Presentation.UndoRedoManager.Execute(new Commands.Node.ToggleNodeTODO(mView, node, currentTimeElapsed));
-                mView.Presentation.Changed += new EventHandler<urakawa.events.DataModelChangedEventArgs>(Presentation_Changed);
-                if (!IsCommentAdded)
-                NextPhrase();
+
+                List<double> tempTime = new List<double>();
+                double tempTodoPhraseTime = 0;
+                if (mView.ObiForm.Settings.Audio_TODOPSecialCase)
+                {
+                    tempTodoPhraseTime = m_TimeElapsedInRecording - 1000;
+                    tempTime.Add(tempTodoPhraseTime);
+                    tempTime.Add(tempTodoPhraseTime + 1000);
+                }
+                else
+                {
+                    tempTime.Add(m_TimeElapsedInRecording);
+                }
+                //tempTime.Add(tempTodoPhraseTime);
+                
+                //tempTime.Add(tempTodoPhraseTime + 1000);
+
+               
+                    double currentTimeElapsed = tempTime[0] - previousTimeElaped - 100;
+                    mView.Presentation.UndoRedoManager.Execute(new Commands.Node.ToggleNodeTODO(mView, node, currentTimeElapsed));
+                    mView.Presentation.Changed += new EventHandler<urakawa.events.DataModelChangedEventArgs>(Presentation_Changed);
+                foreach (double time in tempTime)
+                {
+                    if (!IsCommentAdded)
+                        NextPhrase(time);
+
+                    //previousTimeElaped = time;
+                }
+                //double currentTimeElapsed = m_TimeElapsedInRecording - previousTimeElaped - 100;
+                //mView.Presentation.UndoRedoManager.Execute(new Commands.Node.ToggleNodeTODO(mView, node, currentTimeElapsed));
+                //mView.Presentation.Changed += new EventHandler<urakawa.events.DataModelChangedEventArgs>(Presentation_Changed);
+                //if (!IsCommentAdded)
+                //NextPhrase();
             }
             else if (IsPlayerActive)
             {

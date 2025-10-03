@@ -109,7 +109,8 @@ namespace Obi.Dialogs
                 m_CheckBoxListView.Items.Add(Localizer.Message("Audio_AutoPlayAfterRecordingStops")); 
                 m_CheckBoxListView.Items.Add(Localizer.Message("Audio_RevertOverwriteBehaviourForRecordOnSelection"));
                 m_CheckBoxListView.Items.Add(Localizer.Message("Audio_RemoveAccentsFromDaisy2ExportFileNames"));
-                m_CheckBoxListView.Items.Add(Localizer.Message("Audio_RecordUsingSingleKeyFromTOC"));                
+                m_CheckBoxListView.Items.Add(Localizer.Message("Audio_RecordUsingSingleKeyFromTOC"));      
+                m_CheckBoxListView.Items.Add(Localizer.Message("Audio_TODOPSecialCase"));                
                
                 m_CheckBoxListView.Items[0].Checked = m_Settings.Audio_RetainInitialSilenceInPhraseDetection; 
                 m_CheckBoxListView.Items[0].ToolTipText = Localizer.Message("AudioTab_RetainInitialSilence"); 
@@ -145,6 +146,8 @@ namespace Obi.Dialogs
                 m_CheckBoxListView.Items[15].ToolTipText = Localizer.Message("Audio_RemoveAccentsFromDaisy2ExportFileNames");
                 m_CheckBoxListView.Items[16].Checked = m_Settings.Audio_RecordUsingSingleKeyFromTOC;
                 m_CheckBoxListView.Items[16].ToolTipText = Localizer.Message("Audio_RecordUsingSingleKeyFromTOC");
+                m_CheckBoxListView.Items[17].Checked = m_Settings.Audio_TODOPSecialCase;
+                m_CheckBoxListView.Items[17].ToolTipText = Localizer.Message("Audio_TODOPSecialCase");
 
             }
 
@@ -190,6 +193,7 @@ namespace Obi.Dialogs
                 m_Settings.Audio_RevertOverwriteBehaviourForRecordOnSelection = m_CheckBoxListView.Items[14].Checked;
                 m_Settings.Audio_RemoveAccentsFromDaisy2ExportFileNames = m_CheckBoxListView.Items[15].Checked;
                 m_Settings.Audio_RecordUsingSingleKeyFromTOC = m_CheckBoxListView.Items[16].Checked;
+                m_Settings.Audio_TODOPSecialCase = m_CheckBoxListView.Items[17].Checked;
 
             }
         }

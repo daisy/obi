@@ -3352,5 +3352,8 @@ You can do it later also from the project tab of preferences dialog.</value>
   </data>
   <data name="GenerateAudioPlaceHolderText" xml:space="preserve">
     <value>Write text for speech generation</value>
+  </data>	
+  <data name="Audio_TODOPSecialCase" xml:space="preserve">
+    <value>Create a small phrase when TODO is marked while recording.</value>
   </data>
 </root>

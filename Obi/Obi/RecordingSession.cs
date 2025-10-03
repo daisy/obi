@@ -142,12 +142,13 @@ namespace Obi
         /// <summary>
         /// Finish the currently recording phrase and continue recording into a new phrase.
         /// </summary>
-        public void NextPhrase()
+        public void NextPhrase(double timeOfAssetMilliseconds = 0)
         {
             if (mRecorder.CurrentState == AudioLib.AudioRecorder.State.Recording)
             {
                 //mRecorder.TimeOfAsset
-                double timeOfAssetMilliseconds =
+                if(timeOfAssetMilliseconds == 0)
+                timeOfAssetMilliseconds =
                     (double)mRecorder.RecordingPCMFormat.ConvertBytesToTime(Convert.ToInt64 (mRecorder.CurrentDurationBytePosition)) /
                     Time.TIME_UNIT;
 
@@ -157,7 +158,7 @@ namespace Obi
                 )
                 return;
 
-                FinishedPhrase();
+                FinishedPhrase(timeOfAssetMilliseconds);
                 if (StartingPhrase != null)
                     StartingPhrase(this, new PhraseEventArgs(mSessionMedia, mSessionOffset + mPhraseMarks.Count, 0.0));
             }
@@ -263,10 +264,11 @@ namespace Obi
 
 
         // Finish recording of the current phrase.
-        private PhraseEventArgs FinishedPhrase()
+        private PhraseEventArgs FinishedPhrase(double timeOfAssetMilliseconds = 0)
         {
             //mRecorder.TimeOfAsset
-            double timeOfAssetMilliseconds =
+            if(timeOfAssetMilliseconds == 0)
+            timeOfAssetMilliseconds =
                 (double)mRecorder.RecordingPCMFormat.ConvertBytesToTime(Convert.ToInt64 (mRecorder.CurrentDurationBytePosition)) /
                 Time.TIME_UNIT;
 
