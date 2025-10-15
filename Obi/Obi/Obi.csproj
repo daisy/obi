@@ -1,6 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFramework>net6.0-windows</TargetFramework>
+    <TargetFramework>net9.0-windows7.0</TargetFramework>
+	<NoWarn>$(NoWarn);WFO1000</NoWarn>
     <OutputType>WinExe</OutputType>
     <ManifestCertificateThumbprint>03ED7178F8829969A9A733DAABF858F68795A179</ManifestCertificateThumbprint>
     <ManifestKeyFile>Obi_TemporaryKey.pfx</ManifestKeyFile>
@@ -386,9 +387,9 @@
     <EmbeddedResource Include="UserControls\media-playback-pause.png" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\urakawa-sdk\csharp\audio\AudioLib\AudioLib_NET6.csproj" />
-    <ProjectReference Include="..\..\..\urakawa-sdk\csharp\core\UrakawaSDK.core_NET6.csproj" />
-    <ProjectReference Include="..\..\..\urakawa-sdk\csharp\daisy\UrakawaSDK.daisy_NET6.csproj" />
+    <ProjectReference Include="..\..\..\urakawa-sdk\csharp\audio\AudioLib\AudioLib_NET9.csproj" />
+    <ProjectReference Include="..\..\..\urakawa-sdk\csharp\core\UrakawaSDK.core_NET9.csproj" />
+    <ProjectReference Include="..\..\..\urakawa-sdk\csharp\daisy\UrakawaSDK.daisy_NET9.csproj" />
     <ProjectReference Include="..\PipelineInterface\PipelineInterface.csproj" />
   </ItemGroup>
   <ItemGroup>

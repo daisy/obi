@@ -19,21 +19,21 @@ Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "Setup", "Setup\Setup.vdproj
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CheckDX", "Setup\CustomActions\CheckDX\CheckDX\CheckDX.csproj", "{27BFE0B9-BCF1-4B68-8FE9-828037A48F4D}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InstallerFileOperations", "Setup\CustomActions\InstallerFileOperations\InstallerFileOperations.csproj", "{03285426-68AD-4273-A6B7-5C6AEA454EFC}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PipelineInterface", "PipelineInterface\PipelineInterface.csproj", "{DDEB9FA1-8435-456F-91E8-3C23125BE427}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AudioLib_NET6", "..\..\urakawa-sdk\csharp\audio\AudioLib\AudioLib_NET6.csproj", "{7762BD58-3F14-4257-B7FD-B5DAF65AB63C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AudioLib_NET9", "..\..\urakawa-sdk\csharp\audio\AudioLib\AudioLib_NET9.csproj", "{7762BD58-3F14-4257-B7FD-B5DAF65AB63C}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DTDs_NET6", "..\..\urakawa-sdk\csharp\dtds\DTDs_NET6.csproj", "{5A0821C6-D0BD-4FB1-8146-7C685559EFE8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DTDs_NET9", "..\..\urakawa-sdk\csharp\dtds\DTDs_NET9.csproj", "{5A0821C6-D0BD-4FB1-8146-7C685559EFE8}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UrakawaSDK.core_NET6", "..\..\urakawa-sdk\csharp\core\UrakawaSDK.core_NET6.csproj", "{A0BDEEDF-E8D1-4E20-A1EC-7842E795DE51}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UrakawaSDK.core_NET9", "..\..\urakawa-sdk\csharp\core\UrakawaSDK.core_NET9.csproj", "{A0BDEEDF-E8D1-4E20-A1EC-7842E795DE51}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UrakawaSDK.daisy_NET6", "..\..\urakawa-sdk\csharp\daisy\UrakawaSDK.daisy_NET6.csproj", "{2F71BF55-5EE2-4AAF-9728-D0C086819A9E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UrakawaSDK.daisy_NET9", "..\..\urakawa-sdk\csharp\daisy\UrakawaSDK.daisy_NET9.csproj", "{2F71BF55-5EE2-4AAF-9728-D0C086819A9E}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mp3Sharp_NET6", "..\..\urakawa-sdk\csharp\audio\mp3-sharp\Mp3Sharp_NET6.csproj", "{DFB7F2B5-7690-45DB-B319-82A5C31B5607}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mp3Sharp_NET9", "..\..\urakawa-sdk\csharp\audio\mp3-sharp\Mp3Sharp_NET9.csproj", "{DFB7F2B5-7690-45DB-B319-82A5C31B5607}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NAudio_NET6", "..\..\urakawa-sdk\csharp\audio\NAudio\NAudio_NET6.csproj", "{DA4F02E3-0B5E-42CD-B8D9-5583FA51D66E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NAudio_NET9", "..\..\urakawa-sdk\csharp\audio\NAudio\NAudio_NET9.csproj", "{DA4F02E3-0B5E-42CD-B8D9-5583FA51D66E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InstallerFileOperations", "Setup\CustomActions\InstallerFileOperations\InstallerFileOperations.csproj", "{69E49EF9-FB19-4774-8234-C75105CD42D6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -64,14 +64,6 @@ Global
 		{27BFE0B9-BCF1-4B68-8FE9-828037A48F4D}.Release|Any CPU.Build.0 = Release|Any CPU
 		{27BFE0B9-BCF1-4B68-8FE9-828037A48F4D}.test|Any CPU.ActiveCfg = Release|Any CPU
 		{27BFE0B9-BCF1-4B68-8FE9-828037A48F4D}.test|Any CPU.Build.0 = Release|Any CPU
-		{03285426-68AD-4273-A6B7-5C6AEA454EFC}.Debug|Any CPU.ActiveCfg = Release|Any CPU
-		{03285426-68AD-4273-A6B7-5C6AEA454EFC}.Debug|Any CPU.Build.0 = Release|Any CPU
-		{03285426-68AD-4273-A6B7-5C6AEA454EFC}.Minimal Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{03285426-68AD-4273-A6B7-5C6AEA454EFC}.Minimal Debug|Any CPU.Build.0 = Debug|Any CPU
-		{03285426-68AD-4273-A6B7-5C6AEA454EFC}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{03285426-68AD-4273-A6B7-5C6AEA454EFC}.Release|Any CPU.Build.0 = Release|Any CPU
-		{03285426-68AD-4273-A6B7-5C6AEA454EFC}.test|Any CPU.ActiveCfg = Release|Any CPU
-		{03285426-68AD-4273-A6B7-5C6AEA454EFC}.test|Any CPU.Build.0 = Release|Any CPU
 		{DDEB9FA1-8435-456F-91E8-3C23125BE427}.Debug|Any CPU.ActiveCfg = Release|Any CPU
 		{DDEB9FA1-8435-456F-91E8-3C23125BE427}.Debug|Any CPU.Build.0 = Release|Any CPU
 		{DDEB9FA1-8435-456F-91E8-3C23125BE427}.Minimal Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -128,6 +120,14 @@ Global
 		{DA4F02E3-0B5E-42CD-B8D9-5583FA51D66E}.Release|Any CPU.Build.0 = Release|Any CPU
 		{DA4F02E3-0B5E-42CD-B8D9-5583FA51D66E}.test|Any CPU.ActiveCfg = Debug|Any CPU
 		{DA4F02E3-0B5E-42CD-B8D9-5583FA51D66E}.test|Any CPU.Build.0 = Debug|Any CPU
+		{69E49EF9-FB19-4774-8234-C75105CD42D6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{69E49EF9-FB19-4774-8234-C75105CD42D6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{69E49EF9-FB19-4774-8234-C75105CD42D6}.Minimal Debug|Any CPU.ActiveCfg = Release|Any CPU
+		{69E49EF9-FB19-4774-8234-C75105CD42D6}.Minimal Debug|Any CPU.Build.0 = Release|Any CPU
+		{69E49EF9-FB19-4774-8234-C75105CD42D6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{69E49EF9-FB19-4774-8234-C75105CD42D6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{69E49EF9-FB19-4774-8234-C75105CD42D6}.test|Any CPU.ActiveCfg = Debug|Any CPU
+		{69E49EF9-FB19-4774-8234-C75105CD42D6}.test|Any CPU.Build.0 = Debug|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

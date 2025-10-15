@@ -431,10 +431,13 @@ m_cb_ChooseFont.Visible = false;
              }
 
              foreach (System.Reflection.PropertyInfo p in systemColorProperties)
-             {   
-                 System.Drawing.ColorConverter c = new ColorConverter ();
-                 object col = c.ConvertFromString (p.Name) ;
-                                                   mNormalColorCombo.Items.Add(col);
+             {
+                if (p.Name != "UseAlternativeColorSet")
+                {
+                    System.Drawing.ColorConverter c = new ColorConverter();
+                    object col = c.ConvertFromString(p.Name);
+                    mNormalColorCombo.Items.Add(col);
+                }
              }
              mNormalColorCombo.SelectedIndex = 0;
 
