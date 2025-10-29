@@ -172,7 +172,7 @@
     <value>3</value>
   </data>
   <data name="mOpenProjectButton.Text" xml:space="preserve">
-    <value>فت&amp;ح مشروع قائم</value>
+    <value>فت&amp;ح مشروع موجود</value>
   </data>
   <data name="&gt;&gt;mOpenProjectButton.Name" xml:space="preserve">
     <value>mOpenProjectButton</value>
@@ -202,7 +202,7 @@
     <value>4</value>
   </data>
   <data name="mOpenLastProjectButton.Text" xml:space="preserve">
-    <value>&amp;فتح آخر مشروع</value>
+    <value>ف&amp;تح آخر مشروع</value>
   </data>
   <data name="&gt;&gt;mOpenLastProjectButton.Name" xml:space="preserve">
     <value>mOpenLastProjectButton</value>
@@ -232,7 +232,7 @@
     <value>5</value>
   </data>
   <data name="mOpenEmptyButton.Text" xml:space="preserve">
-    <value>ف&amp;تح Obi دون مشروع</value>
+    <value>فتح Obi &amp;بدون مشروع</value>
   </data>
   <data name="&gt;&gt;mOpenEmptyButton.Name" xml:space="preserve">
     <value>mOpenEmptyButton</value>
@@ -262,7 +262,7 @@
     <value>2</value>
   </data>
   <data name="mImportButton.Text" xml:space="preserve">
-    <value>إ&amp;نشاء مشروع جديد من المستورد</value>
+    <value>إنشاء مشروع جديد عبر الا&amp;ستيراد</value>
   </data>
   <data name="&gt;&gt;mImportButton.Name" xml:space="preserve">
     <value>mImportButton</value>
@@ -584,7 +584,7 @@
     <value>264, 261</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
-    <value>مرحبا بك في Obi</value>
+    <value>مرحبًا بك في Obi</value>
   </data>
   <data name="&gt;&gt;helpProvider1.Name" xml:space="preserve">
     <value>helpProvider1</value>

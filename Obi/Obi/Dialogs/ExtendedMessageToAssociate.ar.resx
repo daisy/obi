@@ -193,7 +193,7 @@
     <value>2</value>
   </data>
   <data name="m_btn_No.Text" xml:space="preserve">
-    <value>إلغاء</value>
+    <value>إنهاء</value>
   </data>
   <data name="&gt;&gt;m_btn_No.Name" xml:space="preserve">
     <value>m_btn_No</value>
@@ -220,7 +220,7 @@
     <value>5</value>
   </data>
   <data name="textBox1.Text" xml:space="preserve">
-    <value>تحتوي مجموعة العقد  بالفعل على عبارة مخصصة. هل تريد تحويلها جميعا إلى الدور المخصص الحالي؟</value>
+    <value>تحتوي كتلة العقدة الخاصة بالفعل على عبارة مخصصة. هل تريد تحويلها جميعًا إلى الدور المخصص الحالي؟</value>
   </data>
   <data name="&gt;&gt;textBox1.Name" xml:space="preserve">
     <value>textBox1</value>
@@ -244,7 +244,7 @@
     <value>321, 117</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
-    <value>مربع الرسائل الممتدة</value>
+    <value>مربع رسالة موسعة</value>
   </data>
   <data name="&gt;&gt;helpProvider1.Name" xml:space="preserve">
     <value>helpProvider1</value>

@@ -162,7 +162,7 @@
     <value>3</value>
   </data>
   <data name="m_RdRemindLater.Text" xml:space="preserve">
-    <value>يرجى الت&amp;ذكرة مرة أخرى  لاحقا</value>
+    <value>ذكّرني م&amp;رة أخرى لاحقًا</value>
   </data>
   <data name="&gt;&gt;m_RdRemindLater.Name" xml:space="preserve">
     <value>m_RdRemindLater</value>
@@ -189,7 +189,7 @@
     <value>4</value>
   </data>
   <data name="m_RdRemindForNextVersion.Text" xml:space="preserve">
-    <value>يرجى ال&amp;حصول على معلومات حول النسخة القادمة، تجاهل هذه النسخة</value>
+    <value>أعلمني بالإ&amp;صدار القادم؛ تجاهل هذا الإصدار</value>
   </data>
   <data name="&gt;&gt;m_RdRemindForNextVersion.Name" xml:space="preserve">
     <value>m_RdRemindForNextVersion</value>
@@ -216,7 +216,7 @@
     <value>5</value>
   </data>
   <data name="m_RdDisableCheckUpdates.Text" xml:space="preserve">
-    <value>&amp;تعطيل إشعارات النسخة الجديدة</value>
+    <value>ت&amp;عطيل إشعارات الإصدار الجديد</value>
   </data>
   <data name="&gt;&gt;m_RdDisableCheckUpdates.Name" xml:space="preserve">
     <value>m_RdDisableCheckUpdates</value>
@@ -328,7 +328,7 @@
     <value>1</value>
   </data>
   <data name="mInfoTxtBox.Text" xml:space="preserve">
-    <value>يرجى الاختيار من الخيارات المتاحة</value>
+    <value>يرجى الاختيار من الخيارات التالية</value>
   </data>
   <data name="&gt;&gt;mInfoTxtBox.Name" xml:space="preserve">
     <value>mInfoTxtBox</value>

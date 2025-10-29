@@ -180,13 +180,13 @@
     <value>32, 32</value>
   </data>
   <data name="m_recordingToolBarPlayBtn.Text" xml:space="preserve">
-    <value>&amp;تشغيل /توقف</value>
+    <value>&amp;تشغيل / إيقاف مؤقت</value>
   </data>
   <data name="m_recordingToolBarStopBtn.AccessibleDescription" xml:space="preserve">
     <value>button</value>
   </data>
   <data name="m_recordingToolBarStopBtn.AccessibleName" xml:space="preserve">
-    <value>توقف</value>
+    <value>إيقاف</value>
   </data>
   <data name="m_recordingToolBarStopBtn.AutoSize" type="System.Boolean, mscorlib">
     <value>False</value>
@@ -217,7 +217,7 @@
     <value>32, 32</value>
   </data>
   <data name="m_recordingToolBarStopBtn.Text" xml:space="preserve">
-    <value>ت&amp;وقف</value>
+    <value>إ&amp;يقاف</value>
   </data>
   <data name="m_recordingToolBarRecordingBtn.AccessibleDescription" xml:space="preserve">
     <value>button</value>
@@ -314,7 +314,7 @@
     <value>34, 32</value>
   </data>
   <data name="m_recordingToolBarPrePhraseBtn.Text" xml:space="preserve">
-    <value>اذ&amp;هب للعبارة السابقة</value>
+    <value>الا&amp;نتقال إلى المقطع السابق</value>
   </data>
   <data name="m_recordingGoToNextPhraseBtn.AccessibleDescription" xml:space="preserve">
     <value>button</value>
@@ -363,7 +363,7 @@
     <value>34, 32</value>
   </data>
   <data name="m_recordingGoToNextPhraseBtn.Text" xml:space="preserve">
-    <value>اذه&amp;ب للعبارة التالية</value>
+    <value>الا&amp;نتقال إلى العبارة التالي</value>
   </data>
   <data name="m_recordingToolBarNextPageBtn.AccessibleDescription" xml:space="preserve">
     <value>button</value>
@@ -413,7 +413,7 @@
     <value>34, 36</value>
   </data>
   <data name="m_recordingToolBarNextPageBtn.Text" xml:space="preserve">
-    <value>اذهب لل&amp;صفحة التالية</value>
+    <value>الانتقال إلى ال&amp;صفحة التالية</value>
   </data>
   <data name="m_recordingToolBarNextSectionBtn.AccessibleDescription" xml:space="preserve">
     <value>button</value>
@@ -461,16 +461,16 @@
     <value>32, 32</value>
   </data>
   <data name="m_recordingToolBarNextSectionBtn.Text" xml:space="preserve">
-    <value>اذهب للقس&amp;م التالي</value>
+    <value>الانتقال إلى ال&amp;قسم التالي</value>
   </data>
   <data name="m_recordingToolBarNextSectionBtn.ToolTipText" xml:space="preserve">
-    <value>اذهب للقسم التالي</value>
+    <value>الانتقال إلى القسم التالي</value>
   </data>
   <data name="m_TODOBtn.AccessibleDescription" xml:space="preserve">
     <value>button</value>
   </data>
   <data name="m_TODOBtn.AccessibleName" xml:space="preserve">
-    <value>العبارة التالية</value>
+    <value>وضع علامة على مقطع</value>
   </data>
   <data name="m_TODOBtn.AutoSize" type="System.Boolean, mscorlib">
     <value>False</value>
@@ -703,5 +703,32 @@
   </data>
   <data name="&gt;&gt;$this.Type" xml:space="preserve">
     <value>System.Windows.Forms.Form, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="m_recordingToolBarElapseBackBtn.AccessibleName" xml:space="preserve">
+    <value>الرجوع للخلف</value>
+  </data>
+  <data name="m_recordingToolBarElapseBackBtn.Text" xml:space="preserve">
+    <value>الرجوع للخلف</value>
+  </data>
+  <data name="m_recordingToolBarElapseBackBtn.ToolTipText" xml:space="preserve">
+    <value>الرجوع للخلف</value>
+  </data>
+  <data name="m_recordingToolBarSectionEndBtn.AccessibleName" xml:space="preserve">
+    <value>نهاية القسم</value>
+  </data>
+  <data name="m_recordingToolBarSectionEndBtn.Text" xml:space="preserve">
+    <value>نهاية القسم</value>
+  </data>
+  <data name="m_recordingToolBarSectionEndBtn.ToolTipText" xml:space="preserve">
+    <value>نهاية القسم</value>
+  </data>
+  <data name="m_ToggleProfile.Text" xml:space="preserve">
+    <value>تبديل ملف التعريف</value>
+  </data>
+  <data name="m_chkMonitorContinuously.AccessibleName" xml:space="preserve">
+    <value>مراقبة بشكل مستمر</value>
+  </data>
+  <data name="m_chkMonitorContinuously.Text" xml:space="preserve">
+    <value>&amp;م</value>
   </data>
 </root>

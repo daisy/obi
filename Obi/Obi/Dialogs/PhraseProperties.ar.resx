@@ -301,13 +301,13 @@
     <value>16</value>
   </data>
   <data name="m_comboPhraseRole.Location" type="System.Drawing.Point, System.Drawing">
-    <value>181, 313</value>
+    <value>161, 313</value>
   </data>
   <data name="m_comboPhraseRole.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 4, 4, 4</value>
   </data>
   <data name="m_comboPhraseRole.Size" type="System.Drawing.Size, System.Drawing">
-    <value>335, 24</value>
+    <value>355, 24</value>
   </data>
   <data name="m_comboPhraseRole.TabIndex" type="System.Int32, mscorlib">
     <value>13</value>
@@ -331,7 +331,7 @@
     <value>True</value>
   </data>
   <data name="m_lblCustomClassName.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 316</value>
+    <value>15, 316</value>
   </data>
   <data name="m_lblCustomClassName.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 0, 4, 0</value>
@@ -343,7 +343,7 @@
     <value>12</value>
   </data>
   <data name="m_lblCustomClassName.Text" xml:space="preserve">
-    <value>مس&amp;ميات أنواع العبارات المخصصة</value>
+    <value>اسم ال&amp;صنف المخصص:</value>
   </data>
   <data name="&gt;&gt;m_lblCustomClassName.Name" xml:space="preserve">
     <value>m_lblCustomClassName</value>
@@ -379,7 +379,7 @@
     <value>18</value>
   </data>
   <data name="m_chkUsed.Text" xml:space="preserve">
-    <value>المست&amp;خدم</value>
+    <value>مست&amp;خدم</value>
   </data>
   <data name="&gt;&gt;m_chkUsed.Name" xml:space="preserve">
     <value>m_chkUsed</value>
@@ -415,7 +415,7 @@
     <value>19</value>
   </data>
   <data name="m_chkToDo.Text" xml:space="preserve">
-    <value>T&amp;o do</value>
+    <value>&amp;To do</value>
   </data>
   <data name="&gt;&gt;m_chkToDo.Name" xml:space="preserve">
     <value>m_chkToDo</value>
@@ -448,7 +448,7 @@
     <value>20</value>
   </data>
   <data name="m_btnOk.Text" xml:space="preserve">
-    <value>مواف&amp;ق</value>
+    <value>&amp;موافق</value>
   </data>
   <data name="&gt;&gt;m_btnOk.Name" xml:space="preserve">
     <value>m_btnOk</value>
@@ -481,7 +481,7 @@
     <value>21</value>
   </data>
   <data name="m_btnCancel.Text" xml:space="preserve">
-    <value>إلغا&amp;ء</value>
+    <value>إل&amp;غاء</value>
   </data>
   <data name="&gt;&gt;m_btnCancel.Name" xml:space="preserve">
     <value>m_btnCancel</value>
@@ -559,7 +559,7 @@
     <value>10</value>
   </data>
   <data name="m_comboCustomClassName.AccessibleName" xml:space="preserve">
-    <value>مسميات أنواع العبارات المخصصة</value>
+    <value>اسم ال&amp;صنف المخصص:</value>
   </data>
   <data name="m_comboCustomClassName.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Flat</value>
@@ -584,33 +584,6 @@
   </data>
   <data name="&gt;&gt;m_comboCustomClassName.ZOrder" xml:space="preserve">
     <value>9</value>
-  </data>
-  <data name="m_lbParentsList.AccessibleName" xml:space="preserve">
-    <value>الأقسام الأصلية:</value>
-  </data>
-  <data name="m_lbParentsList.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Top, Bottom, Left, Right</value>
-  </data>
-  <data name="m_lbParentsList.ItemHeight" type="System.Int32, mscorlib">
-    <value>16</value>
-  </data>
-  <data name="m_lbParentsList.Location" type="System.Drawing.Point, System.Drawing">
-    <value>113, 25</value>
-  </data>
-  <data name="m_lbParentsList.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 4, 4, 4</value>
-  </data>
-  <data name="helpProvider1.HelpNamespace" xml:space="preserve">
-    <value>Obi Help.chm</value>
-  </data>
-  <data name="m_lbParentsList.ShowHelp" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="m_lbParentsList.Size" type="System.Drawing.Size, System.Drawing">
-    <value>384, 82</value>
-  </data>
-  <data name="m_lbParentsList.TabIndex" type="System.Int32, mscorlib">
-    <value>7</value>
   </data>
   <data name="&gt;&gt;m_lbParentsList.Name" xml:space="preserve">
     <value>m_lbParentsList</value>
@@ -637,7 +610,7 @@
     <value>6</value>
   </data>
   <data name="groupBox1.Text" xml:space="preserve">
-    <value>الأقسا&amp;م الأصلية:</value>
+    <value>الأقسام الأ&amp;صلية:</value>
   </data>
   <data name="&gt;&gt;groupBox1.Name" xml:space="preserve">
     <value>groupBox1</value>
@@ -650,6 +623,30 @@
   </data>
   <data name="&gt;&gt;groupBox1.ZOrder" xml:space="preserve">
     <value>8</value>
+  </data>
+  <data name="m_lbParentsList.AccessibleName" xml:space="preserve">
+    <value>الأقسام الأصلية:</value>
+  </data>
+  <data name="m_lbParentsList.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Bottom, Left, Right</value>
+  </data>
+  <data name="m_lbParentsList.ItemHeight" type="System.Int32, mscorlib">
+    <value>16</value>
+  </data>
+  <data name="m_lbParentsList.Location" type="System.Drawing.Point, System.Drawing">
+    <value>113, 25</value>
+  </data>
+  <data name="m_lbParentsList.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 4, 4, 4</value>
+  </data>
+  <data name="m_lbParentsList.ShowHelp" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="m_lbParentsList.Size" type="System.Drawing.Size, System.Drawing">
+    <value>384, 82</value>
+  </data>
+  <data name="m_lbParentsList.TabIndex" type="System.Int32, mscorlib">
+    <value>7</value>
   </data>
   <data name="m_lblPageNumberDetails.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -682,7 +679,7 @@
     <value>7</value>
   </data>
   <data name="m_txtPageNumberDetails.AccessibleName" xml:space="preserve">
-    <value>تفاصيل أرقام الصفحات:</value>
+    <value>تفاصيل رقم الصفحة:</value>
   </data>
   <data name="m_txtPageNumberDetails.Location" type="System.Drawing.Point, System.Drawing">
     <value>160, 346</value>
@@ -709,7 +706,7 @@
     <value>6</value>
   </data>
   <data name="m_chkChangePageNumber.AccessibleName" xml:space="preserve">
-    <value>تغيير أرقام الصفحات</value>
+    <value>تفاصيل رقم الصفحة:</value>
   </data>
   <data name="m_chkChangePageNumber.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -724,7 +721,7 @@
     <value>15</value>
   </data>
   <data name="m_chkChangePageNumber.Text" xml:space="preserve">
-    <value>تغيير أرقام الصفحا&amp;ت</value>
+    <value>تغيير ر&amp;قم الصفحة</value>
   </data>
   <data name="m_chkChangePageNumber.Visible" type="System.Boolean, mscorlib">
     <value>False</value>
@@ -745,7 +742,7 @@
     <value>True</value>
   </data>
   <data name="m_lbl_ReferredNote.Location" type="System.Drawing.Point, System.Drawing">
-    <value>50, 346</value>
+    <value>47, 346</value>
   </data>
   <data name="m_lbl_ReferredNote.Size" type="System.Drawing.Size, System.Drawing">
     <value>93, 16</value>
@@ -754,7 +751,7 @@
     <value>16</value>
   </data>
   <data name="m_lbl_ReferredNote.Text" xml:space="preserve">
-    <value>ملاحظة مرجعية</value>
+    <value>الملاحظة المشار إليها:</value>
   </data>
   <data name="m_lbl_ReferredNote.Visible" type="System.Boolean, mscorlib">
     <value>False</value>
@@ -771,6 +768,12 @@
   <data name="&gt;&gt;m_lbl_ReferredNote.ZOrder" xml:space="preserve">
     <value>4</value>
   </data>
+  <data name="helpProvider1.HelpNamespace" xml:space="preserve">
+    <value>Obi Help.chm</value>
+  </data>
+  <data name="m_lblCurrentCursorPosition.AccessibleName" xml:space="preserve">
+    <value>Cursor position in book</value>
+  </data>
   <data name="m_lblCurrentCursorPosition.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
@@ -778,13 +781,13 @@
     <value>2, 88</value>
   </data>
   <data name="m_lblCurrentCursorPosition.Size" type="System.Drawing.Size, System.Drawing">
-    <value>143, 16</value>
+    <value>147, 16</value>
   </data>
   <data name="m_lblCurrentCursorPosition.TabIndex" type="System.Int32, mscorlib">
     <value>4</value>
   </data>
   <data name="m_lblCurrentCursorPosition.Text" xml:space="preserve">
-    <value>Current cursor position:</value>
+    <value>موضع المؤشر في الكتاب:</value>
   </data>
   <data name="&gt;&gt;m_lblCurrentCursorPosition.Name" xml:space="preserve">
     <value>m_lblCurrentCursorPosition</value>
@@ -799,7 +802,7 @@
     <value>3</value>
   </data>
   <data name="m_txtCurrentCursorPosition.AccessibleName" xml:space="preserve">
-    <value>Current cursor position</value>
+    <value>موضع المؤشر في الكتاب</value>
   </data>
   <data name="m_txtCurrentCursorPosition.Location" type="System.Drawing.Point, System.Drawing">
     <value>160, 88</value>
@@ -835,7 +838,7 @@
     <value>16</value>
   </data>
   <data name="m_lbl_FileName.Text" xml:space="preserve">
-    <value>&amp;File name:</value>
+    <value>اسم ال&amp;ملف:</value>
   </data>
   <data name="&gt;&gt;m_lbl_FileName.Name" xml:space="preserve">
     <value>m_lbl_FileName</value>
@@ -850,7 +853,7 @@
     <value>1</value>
   </data>
   <data name="m_txtFileName.AccessibleName" xml:space="preserve">
-    <value>file name</value>
+    <value>اسم الملف</value>
   </data>
   <data name="m_txtFileName.Location" type="System.Drawing.Point, System.Drawing">
     <value>160, 382</value>
@@ -889,7 +892,7 @@
     <value>True</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
-    <value>خواص العبارات</value>
+    <value>خواص العبارة</value>
   </data>
   <data name="&gt;&gt;backgroundWorker1.Name" xml:space="preserve">
     <value>backgroundWorker1</value>

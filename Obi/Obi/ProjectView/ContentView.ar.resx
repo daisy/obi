@@ -134,7 +134,7 @@
     <value>208, 22</value>
   </data>
   <data name="Context_ZoomPhrase.Text" xml:space="preserve">
-    <value>تكبير أو تصغير العبارة</value>
+    <value>تكبير العبار&amp;ة</value>
   </data>
   <data name="Context_AddSectionMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>208, 22</value>
@@ -185,7 +185,7 @@
     <value>208, 22</value>
   </data>
   <data name="Context_ImportAudioFilesMenuItem.Text" xml:space="preserve">
-    <value>ا&amp;ستدعاء ملفات سمعية</value>
+    <value>استي&amp;راد ملفات صوتية</value>
   </data>
   <data name="Context_FineNavigationMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>208, 22</value>
@@ -209,13 +209,13 @@
     <value>208, 22</value>
   </data>
   <data name="Context_CropAudioMenuItem.Text" xml:space="preserve">
-    <value>&amp;اقتصاص الملف السمعي</value>
+    <value>اقتصاص الصو&amp;ت</value>
   </data>
   <data name="Context_PhraseIsTODOMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>208, 22</value>
   </data>
   <data name="Context_PhraseIsTODOMenuItem.Text" xml:space="preserve">
-    <value>ال&amp;عبارة في شكل (TODO)</value>
+    <value>العبارة محددة للمرا&amp;جعة </value>
   </data>
   <data name="Context_PhraseIsUsedMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>208, 22</value>
@@ -245,19 +245,19 @@
     <value>تطبيق "ا&amp;كتشاف" العبارة</value>
   </data>
   <data name="Context_SkippablesMenuItem.AccessibleName" xml:space="preserve">
-    <value>ملاحظات يمكن تجاوزها</value>
+    <value>ملاحظات قابلة للتخطي</value>
   </data>
   <data name="Context_SkippablesMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>208, 22</value>
   </data>
   <data name="Context_SkippablesMenuItem.Text" xml:space="preserve">
-    <value>ملا&amp;حظات يمكن تجاوزها</value>
+    <value>ملاحظات قابلة للت&amp;خطي</value>
   </data>
   <data name="Context_AudioSelectionMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>208, 22</value>
   </data>
   <data name="Context_AudioSelectionMenuItem.Text" xml:space="preserve">
-    <value>ال&amp;تحديد السمعي</value>
+    <value>تحدي&amp;د الصوت</value>
   </data>
   <data name="toolStripSeparator4.Size" type="System.Drawing.Size, System.Drawing">
     <value>205, 6</value>
@@ -309,10 +309,10 @@
     <value>205, 6</value>
   </data>
   <data name="Context_ExportReplaceAudioMenuItem.AccessibleName" xml:space="preserve">
-    <value>تصدير الملف السمعي أو استبداله</value>
+    <value>تصدير أو استبدال الصوت</value>
   </data>
   <data name="Context_ExportAudioMenuItem.AccessibleName" xml:space="preserve">
-    <value>تصدير الملف السمعي  Ctrl+Alt+E</value>
+    <value>تصدير الصوت Control+Alt+E</value>
   </data>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="Context_ExportAudioMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
@@ -322,28 +322,28 @@
     <value>205, 22</value>
   </data>
   <data name="Context_ExportAudioMenuItem.Text" xml:space="preserve">
-    <value>&amp;تصدير الملف السمعي</value>
+    <value>ت&amp;صدير الصوت</value>
   </data>
   <data name="Context_ReplaceAudioMenuItem.AccessibleName" xml:space="preserve">
-    <value>استبدال الملف السمعي</value>
+    <value>استبدال الصوت</value>
   </data>
   <data name="Context_ReplaceAudioMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>205, 22</value>
   </data>
   <data name="Context_ReplaceAudioMenuItem.Text" xml:space="preserve">
-    <value>ا&amp;ستبدال الملف السمعي</value>
+    <value>است&amp;بدال الصوت</value>
   </data>
   <data name="Context_ExportReplaceAudioMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>208, 22</value>
   </data>
   <data name="Context_ExportReplaceAudioMenuItem.Text" xml:space="preserve">
-    <value>&amp;تصدير الملف السمعي أو استبداله</value>
+    <value>تصدير أو است&amp;بدال الصوت</value>
   </data>
   <data name="Context_PropertiesMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>208, 22</value>
   </data>
   <data name="Context_PropertiesMenuItem.Text" xml:space="preserve">
-    <value>الخ&amp;واص</value>
+    <value>خص&amp;ائص</value>
   </data>
   <data name="mContextMenuStrip.Size" type="System.Drawing.Size, System.Drawing">
     <value>209, 666</value>
@@ -406,7 +406,7 @@
     <value>181, 22</value>
   </data>
   <data name="Context_AssignRole_PlainMenuItem.Text" xml:space="preserve">
-    <value>م&amp;جرد</value>
+    <value>&amp;عادي</value>
   </data>
   <data name="Context_AssignRole_HeadingMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>181, 22</value>
@@ -424,13 +424,13 @@
     <value>181, 22</value>
   </data>
   <data name="Context_AssignRole_SilenceMenuItem.Text" xml:space="preserve">
-    <value>&amp;صامت</value>
+    <value>&amp;صمت</value>
   </data>
   <data name="Context_AssignRole_AnchorMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>181, 22</value>
   </data>
   <data name="Context_AssignRole_AnchorMenuItem.Text" xml:space="preserve">
-    <value>إ&amp;رساء</value>
+    <value>&amp;مرساة</value>
   </data>
   <data name="toolStripSeparator3.Size" type="System.Drawing.Size, System.Drawing">
     <value>178, 6</value>
@@ -457,25 +457,25 @@
     <value>285, 22</value>
   </data>
   <data name="Context_SettingsFromsilencePhraseToolStripMenuItem.Text" xml:space="preserve">
-    <value>متغيرات من العبارة المختارة &amp;الصامتة</value>
+    <value>معلمات من عبارة ال&amp;صمت المحددة</value>
   </data>
   <data name="Context_Skippable_BeginSpecialNodeMarkToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>ملاحظات مبدئية</value>
+    <value>بداية ملاحظة</value>
   </data>
   <data name="Context_Skippable_BeginSpecialNodeMarkToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>180, 22</value>
   </data>
   <data name="Context_Skippable_BeginSpecialNodeMarkToolStripMenuItem.Text" xml:space="preserve">
-    <value>ملاحظات م&amp;بدئية</value>
+    <value>&amp;بداية ملاحظة</value>
   </data>
   <data name="Context_Skippable_EndSpecialNodeMarkToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>ملاحظات ختامية</value>
+    <value>نهاية ملاحظة</value>
   </data>
   <data name="Context_Skippable_EndSpecialNodeMarkToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>180, 22</value>
   </data>
   <data name="Context_Skippable_EndSpecialNodeMarkToolStripMenuItem.Text" xml:space="preserve">
-    <value>ملاحظات &amp;ختامية</value>
+    <value>&amp;نهاية ملاحظة</value>
   </data>
   <data name="Context_Skippable_AssociateSpecialNodeMarkToolStripMenuItem.AccessibleName" xml:space="preserve">
     <value>إضافة مرجع</value>
@@ -487,13 +487,13 @@
     <value>إ&amp;ضافة مرجع</value>
   </data>
   <data name="Context_Skippable_GotoAssociatedNodeToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>الذهاب إلى التعليق المشار إليه</value>
+    <value>انتقال إلى الملاحظة المشار إليها</value>
   </data>
   <data name="Context_Skippable_GotoAssociatedNodeToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>180, 22</value>
   </data>
   <data name="Context_Skippable_GotoAssociatedNodeToolStripMenuItem.Text" xml:space="preserve">
-    <value>الذهاب إلى التعليق الم&amp;شار إليه</value>
+    <value>الا&amp;نتقال إلى الملاحظة المشار إليها</value>
   </data>
   <data name="Context_Skippable_RemoveAssociatedNodeToolStripMenuItem.AccessibleName" xml:space="preserve">
     <value>إزالة المرجع</value>
@@ -505,22 +505,22 @@
     <value>إ&amp;زالة المرجع</value>
   </data>
   <data name="Context_Skippable_MoveToStartNoteToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>الانتقال إلى التعليق المبدئي</value>
+    <value>الانتقال إلى بداية الملاحظة</value>
   </data>
   <data name="Context_Skippable_MoveToStartNoteToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>180, 22</value>
   </data>
   <data name="Context_Skippable_MoveToStartNoteToolStripMenuItem.Text" xml:space="preserve">
-    <value>الانتقال إلى ال&amp;تعليق المبدئي</value>
+    <value>الا&amp;نتقال إلى بداية الملاحظة</value>
   </data>
   <data name="Context_Skippable_MoveToEndNoteToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>الانتقال إلى التعليق الختامي </value>
+    <value>الانتقال إلى نهاية الملاحظة</value>
   </data>
   <data name="Context_Skippable_MoveToEndNoteToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>180, 22</value>
   </data>
   <data name="Context_Skippable_MoveToEndNoteToolStripMenuItem.Text" xml:space="preserve">
-    <value>الان&amp;تقال إلى التعليق الختامي</value>
+    <value>الان&amp;تقال إلى نهاية الملاحظة</value>
   </data>
   <data name="Context_Skippable_ClearRoleFromNoteToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>180, 22</value>
@@ -532,25 +532,25 @@
     <value>187, 22</value>
   </data>
   <data name="Context_AudioSelection_BeginMenuItem.Text" xml:space="preserve">
-    <value>ب&amp;دأ  التحديد السمعي </value>
+    <value>&amp;بدء تحديد الصوت</value>
   </data>
   <data name="Context_AudioSelection_EndMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>187, 22</value>
   </data>
   <data name="Context_AudioSelection_EndMenuItem.Text" xml:space="preserve">
-    <value>ا&amp;نهاء التحديد سمعي</value>
+    <value>إن&amp;هاء تحديد الصوت</value>
   </data>
   <data name="Context_Delete_deleteSelectionMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>203, 22</value>
   </data>
   <data name="Context_Delete_deleteSelectionMenuItem.Text" xml:space="preserve">
-    <value>م&amp;سح الاختيار</value>
+    <value>&amp;حذف التحديد</value>
   </data>
   <data name="Context_Delete_deleteFollowingPhrasesMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>203, 22</value>
   </data>
   <data name="Context_Delete_deleteFollowingPhrasesMenuItem.Text" xml:space="preserve">
-    <value>م&amp;سح العبارات التالية</value>
+    <value>&amp;حذف العبارات التالية</value>
   </data>
   <data name="mStripsPanel.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Bottom, Left, Right</value>
@@ -1109,5 +1109,89 @@
   </data>
   <data name="&gt;&gt;$this.Type" xml:space="preserve">
     <value>System.Windows.Forms.UserControl, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Context_MergeWithNextSectionMenuItem.AccessibleName" xml:space="preserve">
+    <value>دمج الأقسام مع التالي</value>
+  </data>
+  <data name="Context_MergeWithNextSectionMenuItem.Text" xml:space="preserve">
+    <value>&amp;دمج الأقسام مع التالي</value>
+  </data>
+  <data name="Context_MultiSectionOperations.AccessibleName" xml:space="preserve">
+    <value>عمليات الأقسام المتعددة</value>
+  </data>
+  <data name="Context_MultiSectionOperations.Text" xml:space="preserve">
+    <value>&amp;عمليات الأقسام المتعددة</value>
+  </data>
+  <data name="Context_SelectedPageTTSToolStripMenuItem.Text" xml:space="preserve">
+    <value>الصفحة المحددة (تحويل النص إلى كلام)</value>
+  </data>
+  <data name="Context_SelectedPageAudioFileToolStripMenuItem.Text" xml:space="preserve">
+    <value>الصفحة المحددة (ملف صوتي)</value>
+  </data>
+  <data name="Context_TextToAudioToolStripMenuItem.Text" xml:space="preserve">
+    <value>النص إلى صوت</value>
+  </data>
+  <data name="Context_AddViewCommentMenuItem.Text" xml:space="preserve">
+    <value>إضافة/عرض تعليق</value>
+  </data>
+  <data name="Context_ClearCommentMenuItem.Text" xml:space="preserve">
+    <value>مسح التعليق</value>
+  </data>
+  <data name="Context_CommentMenuItem.Text" xml:space="preserve">
+    <value>تعليق المراجعة</value>
+  </data>
+  <data name="Context_DeleteSilenceFromEndOfSectionToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;حذف الصمت من نهاية القسم</value>
+  </data>
+  <data name="Context__RetainSilenceInLastPhraseToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;الاحتفاظ بالصمت في العبارة الأخيرة من القسم</value>
+  </data>
+  <data name="Context_DeleteSilenceFromEndOfAllSectionsToolStripMenuItem.Text" xml:space="preserve">
+    <value>حذف الصمت من ن&amp;هاية جميع الأقسام</value>
+  </data>
+  <data name="Context__RetainSilenceInLastPhraseOfAllSectionsToolStripMenuItem.Text" xml:space="preserve">
+    <value>الاحتفاظ بالصمت في الع&amp;بارة الأخيرة من جميع الأقسام</value>
+  </data>
+  <data name="Context_TrimSilenceFromSectionEnd.Text" xml:space="preserve">
+    <value>ا&amp;قتطاع  الصمت من نهاية القسم</value>
+  </data>
+  <data name="ContextBeginMarkToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;بدء تحديد</value>
+  </data>
+  <data name="ContextEndMarkToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;إنهاء تحديد</value>
+  </data>
+  <data name="ContextPasteMultiplePhrasesToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;لصق عبارات متعددة</value>
+  </data>
+  <data name="toolStripMenuItem1.Text" xml:space="preserve">
+    <value>&amp;عملية عبارات متعددة</value>
+  </data>
+  <data name="m_ChangeVolumeToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;تغيير مستوى الصوت</value>
+  </data>
+  <data name="m_FadeInToolStripMenuItem.Text" xml:space="preserve">
+    <value>تلاشي ال&amp;دخول</value>
+  </data>
+  <data name="m_FadeOutToolStripMenuItem.Text" xml:space="preserve">
+    <value> تلاشي ال&amp;خروج</value>
+  </data>
+  <data name="m_NormalizeToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;تطبيع الصوت</value>
+  </data>
+  <data name="m_SpeechRateToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;معدل الكلام</value>
+  </data>
+  <data name="m_NoiseReductionToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;تقليل الضوضاء</value>
+  </data>
+  <data name="m_NoiseReductionRnnToolStripMenuItem.Text" xml:space="preserve">
+    <value>تقليل الضوضاء (الذكاء الاصطناعي)</value>
+  </data>
+  <data name="m_AudioMixerToolStripMenuItem.Text" xml:space="preserve">
+    <value>مزج الصوت</value>
+  </data>
+  <data name="Context_AudioProcessingNew.Text" xml:space="preserve">
+    <value>&amp;معالجة الصوت</value>
   </data>
 </root>

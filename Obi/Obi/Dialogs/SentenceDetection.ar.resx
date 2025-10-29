@@ -178,7 +178,7 @@
     <value>1</value>
   </data>
   <data name="mCancelButton.Text" xml:space="preserve">
-    <value>إلغا&amp;ء</value>
+    <value>إل&amp;غاء</value>
   </data>
   <data name="&gt;&gt;mCancelButton.Name" xml:space="preserve">
     <value>mCancelButton</value>
@@ -238,7 +238,7 @@
     <value>4</value>
   </data>
   <data name="label2.Text" xml:space="preserve">
-    <value>الفجوة بين ال&amp;جمل</value>
+    <value>ال&amp;فجوة بين الجمل:</value>
   </data>
   <data name="&gt;&gt;label2.Name" xml:space="preserve">
     <value>label2</value>
@@ -626,7 +626,7 @@
     <value>4, 4, 4, 4</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
-    <value>خيارات التقسيم التلقائي للعبارات</value>
+    <value>إعدادات التقسيم التلقائي للعبارات</value>
   </data>
   <data name="&gt;&gt;helpProvider1.Name" xml:space="preserve">
     <value>helpProvider1</value>

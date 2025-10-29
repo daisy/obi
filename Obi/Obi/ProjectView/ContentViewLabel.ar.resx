@@ -142,7 +142,7 @@
     <value>0</value>
   </data>
   <data name="m_lblStaticLabel.Text" xml:space="preserve">
-    <value>استعراض محتويات القسم:</value>
+    <value>عرض محتويات القسم:</value>
   </data>
   <data name="&gt;&gt;m_lblStaticLabel.Name" xml:space="preserve">
     <value>m_lblStaticLabel</value>
@@ -175,7 +175,7 @@
     <value>1</value>
   </data>
   <data name="m_lblSectionName.Text" xml:space="preserve">
-    <value>لم يتم اختيار اى قسم</value>
+    <value>لم يتم تحديد أي قسم.</value>
   </data>
   <data name="&gt;&gt;m_lblSectionName.Name" xml:space="preserve">
     <value>m_lblSectionName</value>

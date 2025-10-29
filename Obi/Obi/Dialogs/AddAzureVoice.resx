@@ -1,4 +1,64 @@
-﻿<root>
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!--
+    Microsoft ResX Schema
+
+    Version 2.0
+
+    The primary goals of this format is to allow a simple XML format
+    that is mostly human readable. The generation and parsing of the
+    various data types are done through the TypeConverter classes
+    associated with the data types.
+
+    Example:
+
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+
+    There are any number of "resheader" rows that contain simple
+    name/value pairs.
+
+    Each data row contains a name, and value. The row also contains a
+    type or mimetype. Type corresponds to a .NET class that support
+    text/value conversion through the TypeConverter architecture.
+    Classes that don't support this are serialized and stored with the
+    mimetype set.
+
+    The mimetype is used for serialized objects, and tells the
+    ResXResourceReader how to depersist the object. This is currently not
+    extensible. For a given mimetype the value must be set accordingly:
+
+    Note - application/x-microsoft.net.object.binary.base64 is the format
+    that the ResXResourceWriter will generate, however the reader can
+    read any of the formats listed below.
+
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
   <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
     <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
     <xsd:element name="root" msdata:IsDataSet="true">
@@ -57,4 +117,322 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="m_AddAzureVoiceListBox.AccessibleName" xml:space="preserve">
+    <value>Voices available in Azure</value>
+  </data>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="m_AddAzureVoiceListBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>49, 49</value>
+  </data>
+  <data name="m_AddAzureVoiceListBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>483, 504</value>
+  </data>
+  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="m_AddAzureVoiceListBox.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;m_AddAzureVoiceListBox.Name" xml:space="preserve">
+    <value>m_AddAzureVoiceListBox</value>
+  </data>
+  <data name="&gt;&gt;m_AddAzureVoiceListBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ListBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_AddAzureVoiceListBox.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;m_AddAzureVoiceListBox.ZOrder" xml:space="preserve">
+    <value>10</value>
+  </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="m_AddVoiceBtn.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>Flat</value>
+  </data>
+  <data name="m_AddVoiceBtn.Location" type="System.Drawing.Point, System.Drawing">
+    <value>174, 599</value>
+  </data>
+  <data name="m_AddVoiceBtn.Size" type="System.Drawing.Size, System.Drawing">
+    <value>106, 29</value>
+  </data>
+  <data name="m_AddVoiceBtn.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="m_AddVoiceBtn.Text" xml:space="preserve">
+    <value>&amp;Add Voice</value>
+  </data>
+  <data name="&gt;&gt;m_AddVoiceBtn.Name" xml:space="preserve">
+    <value>m_AddVoiceBtn</value>
+  </data>
+  <data name="&gt;&gt;m_AddVoiceBtn.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_AddVoiceBtn.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;m_AddVoiceBtn.ZOrder" xml:space="preserve">
+    <value>9</value>
+  </data>
+  <data name="m_GenderCb.AccessibleName" xml:space="preserve">
+    <value>Select Gender</value>
+  </data>
+  <data name="m_GenderCb.Items" xml:space="preserve">
+    <value>All</value>
+  </data>
+  <data name="m_GenderCb.Items1" xml:space="preserve">
+    <value>Male</value>
+  </data>
+  <data name="m_GenderCb.Items2" xml:space="preserve">
+    <value>Female</value>
+  </data>
+  <data name="m_GenderCb.Location" type="System.Drawing.Point, System.Drawing">
+    <value>558, 102</value>
+  </data>
+  <data name="m_GenderCb.Size" type="System.Drawing.Size, System.Drawing">
+    <value>196, 28</value>
+  </data>
+  <data name="m_GenderCb.TabIndex" type="System.Int32, mscorlib">
+    <value>3</value>
+  </data>
+  <data name="&gt;&gt;m_GenderCb.Name" xml:space="preserve">
+    <value>m_GenderCb</value>
+  </data>
+  <data name="&gt;&gt;m_GenderCb.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_GenderCb.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;m_GenderCb.ZOrder" xml:space="preserve">
+    <value>8</value>
+  </data>
+  <data name="m_GenderLbl.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="m_GenderLbl.Location" type="System.Drawing.Point, System.Drawing">
+    <value>558, 55</value>
+  </data>
+  <data name="m_GenderLbl.Size" type="System.Drawing.Size, System.Drawing">
+    <value>64, 20</value>
+  </data>
+  <data name="m_GenderLbl.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="m_GenderLbl.Text" xml:space="preserve">
+    <value>Gender</value>
+  </data>
+  <data name="&gt;&gt;m_GenderLbl.Name" xml:space="preserve">
+    <value>m_GenderLbl</value>
+  </data>
+  <data name="&gt;&gt;m_GenderLbl.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_GenderLbl.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;m_GenderLbl.ZOrder" xml:space="preserve">
+    <value>7</value>
+  </data>
+  <data name="m_LanguageLbl.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="m_LanguageLbl.Location" type="System.Drawing.Point, System.Drawing">
+    <value>558, 184</value>
+  </data>
+  <data name="m_LanguageLbl.Size" type="System.Drawing.Size, System.Drawing">
+    <value>82, 20</value>
+  </data>
+  <data name="m_LanguageLbl.TabIndex" type="System.Int32, mscorlib">
+    <value>4</value>
+  </data>
+  <data name="m_LanguageLbl.Text" xml:space="preserve">
+    <value>Language</value>
+  </data>
+  <data name="&gt;&gt;m_LanguageLbl.Name" xml:space="preserve">
+    <value>m_LanguageLbl</value>
+  </data>
+  <data name="&gt;&gt;m_LanguageLbl.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_LanguageLbl.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;m_LanguageLbl.ZOrder" xml:space="preserve">
+    <value>6</value>
+  </data>
+  <data name="m_LanguageCb.AccessibleName" xml:space="preserve">
+    <value>Language</value>
+  </data>
+  <data name="m_LanguageCb.Location" type="System.Drawing.Point, System.Drawing">
+    <value>558, 239</value>
+  </data>
+  <data name="m_LanguageCb.Size" type="System.Drawing.Size, System.Drawing">
+    <value>196, 28</value>
+  </data>
+  <data name="m_LanguageCb.TabIndex" type="System.Int32, mscorlib">
+    <value>5</value>
+  </data>
+  <data name="&gt;&gt;m_LanguageCb.Name" xml:space="preserve">
+    <value>m_LanguageCb</value>
+  </data>
+  <data name="&gt;&gt;m_LanguageCb.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_LanguageCb.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;m_LanguageCb.ZOrder" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <data name="m_DialectLbl.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="m_DialectLbl.Location" type="System.Drawing.Point, System.Drawing">
+    <value>558, 339</value>
+  </data>
+  <data name="m_DialectLbl.Size" type="System.Drawing.Size, System.Drawing">
+    <value>62, 20</value>
+  </data>
+  <data name="m_DialectLbl.TabIndex" type="System.Int32, mscorlib">
+    <value>6</value>
+  </data>
+  <data name="m_DialectLbl.Text" xml:space="preserve">
+    <value>Dialect</value>
+  </data>
+  <data name="&gt;&gt;m_DialectLbl.Name" xml:space="preserve">
+    <value>m_DialectLbl</value>
+  </data>
+  <data name="&gt;&gt;m_DialectLbl.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_DialectLbl.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;m_DialectLbl.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="m_DialectCb.AccessibleName" xml:space="preserve">
+    <value>Dialect</value>
+  </data>
+  <data name="m_DialectCb.Location" type="System.Drawing.Point, System.Drawing">
+    <value>558, 394</value>
+  </data>
+  <data name="m_DialectCb.Size" type="System.Drawing.Size, System.Drawing">
+    <value>196, 28</value>
+  </data>
+  <data name="m_DialectCb.TabIndex" type="System.Int32, mscorlib">
+    <value>7</value>
+  </data>
+  <data name="&gt;&gt;m_DialectCb.Name" xml:space="preserve">
+    <value>m_DialectCb</value>
+  </data>
+  <data name="&gt;&gt;m_DialectCb.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_DialectCb.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;m_DialectCb.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="m_VoiceLbl.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="m_VoiceLbl.Location" type="System.Drawing.Point, System.Drawing">
+    <value>558, 473</value>
+  </data>
+  <data name="m_VoiceLbl.Size" type="System.Drawing.Size, System.Drawing">
+    <value>51, 20</value>
+  </data>
+  <data name="m_VoiceLbl.TabIndex" type="System.Int32, mscorlib">
+    <value>8</value>
+  </data>
+  <data name="m_VoiceLbl.Text" xml:space="preserve">
+    <value>Voice</value>
+  </data>
+  <data name="&gt;&gt;m_VoiceLbl.Name" xml:space="preserve">
+    <value>m_VoiceLbl</value>
+  </data>
+  <data name="&gt;&gt;m_VoiceLbl.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_VoiceLbl.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;m_VoiceLbl.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="m_VoiceCb.AccessibleName" xml:space="preserve">
+    <value>Voice</value>
+  </data>
+  <data name="m_VoiceCb.Location" type="System.Drawing.Point, System.Drawing">
+    <value>558, 525</value>
+  </data>
+  <data name="m_VoiceCb.Size" type="System.Drawing.Size, System.Drawing">
+    <value>196, 28</value>
+  </data>
+  <data name="m_VoiceCb.TabIndex" type="System.Int32, mscorlib">
+    <value>9</value>
+  </data>
+  <data name="&gt;&gt;m_VoiceCb.Name" xml:space="preserve">
+    <value>m_VoiceCb</value>
+  </data>
+  <data name="&gt;&gt;m_VoiceCb.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_VoiceCb.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;m_VoiceCb.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="m_CancelBtn.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>Flat</value>
+  </data>
+  <data name="m_CancelBtn.Location" type="System.Drawing.Point, System.Drawing">
+    <value>340, 599</value>
+  </data>
+  <data name="m_CancelBtn.Size" type="System.Drawing.Size, System.Drawing">
+    <value>106, 29</value>
+  </data>
+  <data name="m_CancelBtn.TabIndex" type="System.Int32, mscorlib">
+    <value>10</value>
+  </data>
+  <data name="m_CancelBtn.Text" xml:space="preserve">
+    <value>&amp;Cancel</value>
+  </data>
+  <data name="&gt;&gt;m_CancelBtn.Name" xml:space="preserve">
+    <value>m_CancelBtn</value>
+  </data>
+  <data name="&gt;&gt;m_CancelBtn.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_CancelBtn.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;m_CancelBtn.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <data name="$this.AccessibleName" xml:space="preserve">
+    <value>Add Azure voice</value>
+  </data>
+  <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
+    <value>9, 20</value>
+  </data>
+  <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
+    <value>776, 659</value>
+  </data>
+  <data name="$this.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 9.75pt</value>
+  </data>
+  <data name="$this.Text" xml:space="preserve">
+    <value>Add Azure Voice</value>
+  </data>
+  <data name="&gt;&gt;$this.Name" xml:space="preserve">
+    <value>AddAzureVoice</value>
+  </data>
+  <data name="&gt;&gt;$this.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Form, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
 </root>

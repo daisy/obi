@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="clear_recent_caption" xml:space="preserve">
-    <value>احذف قائمة أحدث المشروعات</value>
+    <value>هل تريد مسح قائمة المشاريع الأخيرة؟</value>
   </data>
   <data name="clear_recent_text" xml:space="preserve">
     <value>هل أنت متأكد من حذف قائمة أحدث المشروعات؟ 
@@ -131,8 +131,8 @@
     <value>إغلاق مشروع معدل</value>
   </data>
   <data name="closed_project_text" xml:space="preserve">
-    <value>توشك على غلق مشروع دون حفظ التعديلات. 
- هل تريد حفظ هذه التعديلات قبل غلق المشروع؟</value>
+    <value>أنت على وشك إغلاق مشروع يحتوي على تعديلات غير محفوظة.
+هل تريد حفظ هذه التعديلات قبل إغلاق المشروع؟</value>
   </data>
   <data name="default_organization" xml:space="preserve">
     <value>لا ينطبق</value>
@@ -159,55 +159,56 @@
     <value>{0} {1}</value>
   </data>
   <data name="save_settings_error_caption" xml:space="preserve">
-    <value>لا يمكن حفظ خيارات الضبط</value>
+    <value>تعذّر حفظ الإعدادات</value>
   </data>
   <data name="save_settings_error_text" xml:space="preserve">
-    <value>لقد وقع هذا الخطأ أثناء محاولة حفظ خيارات الضبط: 
- "{0}" 
- ، ونتيجة لذلك لم يتم حفظ خيارات الضبط خلال هذه العملية.</value>
+    <value>حدث الخطأ التالي أثناء محاولة حفظ الإعدادات:
+"{0}"
+وبالتالي لم يتم حفظ التغييرات على الإعدادات التي أُجريت خلال هذه الجلسة.
+لا بأس.</value>
   </data>
   <data name="saved_project" xml:space="preserve">
-    <value>حفظ المشروع في الملف "{0}"</value>
+    <value>تم حفظ المشروع في الملف "{0}".</value>
   </data>
   <data name="undo_label" xml:space="preserve">
     <value>{0} {1}</value>
   </data>
   <data name="create_directory_text" xml:space="preserve">
-    <value>الدليل{0} غير موجود. هل تريد إنشاءه؟</value>
+    <value>المجلد{0} غير موجود. هل تريد إنشاءه؟</value>
   </data>
   <data name="redo" xml:space="preserve">
-    <value>أ&amp;عد العملية</value>
+    <value>إ&amp;عادة</value>
   </data>
   <data name="undo" xml:space="preserve">
-    <value>ال&amp;تراجع</value>
+    <value>&amp;تراجع</value>
   </data>
   <data name="no_device_found_caption" xml:space="preserve">
-    <value>لم يتم العثور على أية أجهزة سمعية</value>
+    <value>لم يتم العثور على أية أجهزة صوتية</value>
   </data>
   <data name="no_device_found_text" xml:space="preserve">
-    <value>لم يتم اختيار أى جهاز إدخال أو إخراج سمعي. 
+    <value>لم يتم اختيار أى جهاز إدخال أو إخراج صوتي. 
  يرجى التأكد من أن DirectX9c قد تم تثبيته بشكل سليم</value>
   </data>
   <data name="no_output_device_caption" xml:space="preserve">
-    <value>لم يتم العثور على أية أجهزة إخراج سمعية </value>
+    <value>لم يتم العثور على أية أجهزة إخراج صوتية </value>
   </data>
   <data name="no_output_device_text" xml:space="preserve">
-    <value>لم يتم اختيار جهازإخراج سمعية: لا شئ موجود  </value>
+    <value>لم يتم اختيار جهازإخراج صوتية: لا شئ موجود  </value>
   </data>
   <data name="create_directory_caption" xml:space="preserve">
-    <value>هل تريد إنشاء دليل؟</value>
+    <value>إنشاء مجلد؟</value>
   </data>
   <data name="mono" xml:space="preserve">
-    <value>أحادي</value>
+    <value>أحادي (Mono)</value>
   </data>
   <data name="stereo" xml:space="preserve">
-    <value> مجسم</value>
+    <value>مجسم (Stereo)</value>
   </data>
   <data name="no_input_device_caption" xml:space="preserve">
-    <value>لم يتم العثور على جهاز إدخال سمعي</value>
+    <value>لم يتم العثور على جهاز إدخال صوتي</value>
   </data>
   <data name="no_input_device_text" xml:space="preserve">
-    <value>لم يتم العثور على جهاز إدخال سمعي: غير موجود</value>
+    <value>لم يتم العثور على جهاز إدخال صوتي: غير موجود</value>
   </data>
   <data name="record" xml:space="preserve">
     <value>تس&amp;جيل</value>
@@ -222,34 +223,34 @@
     <value>Audio files (*.wav;*.mp3;*.mp4;*.m4a)|*.wav;*.mp3;*.mp4;*.m4a|Any file|*.*</value>
   </data>
   <data name="Monitoring" xml:space="preserve">
-    <value>مراقبة المدخل السمعي </value>
+    <value>جارٍ مراقبة مدخل الصوت...</value>
   </data>
   <data name="page_number" xml:space="preserve">
-    <value>الصفحة  {0}</value>
+    <value>صفحة {0}</value>
   </data>
   <data name="normal_phrase" xml:space="preserve">
-    <value>العبارة</value>
+    <value>عبارة</value>
   </data>
   <data name="saved_as_daisy_text" xml:space="preserve">
-    <value>المشروع المصدر إلى DAISY في الدليل {0}</value>
+    <value>تم تصدير المشروع في المجلد {0}</value>
   </data>
   <data name="title_bar" xml:space="preserve">
-    <value>{0}{1} ({2}) - {3} ({4})</value>
+    <value>يرجى تحديد المجلد الذي تريد حفظ كتاب DAISY فيه.</value>
   </data>
   <data name="export_choose_folder" xml:space="preserve">
     <value>يرجى اختيار الملف الذي سيتم حفظ كتابك الرقمي DAISY فيه</value>
   </data>
   <data name="default_directory_browser" xml:space="preserve">
-    <value>يرجى اختيار الدليل الافتراضي للمشروع كما يلي</value>
+    <value>يرجى اختيار المجلد الافتراضي للمشروع كما يلي</value>
   </data>
   <data name="export_directory_browser" xml:space="preserve">
-    <value>يردى اختيار الدليل الافتراضي للمشروع كما يلي</value>
+    <value>يرجى اختيار المجلد الافتراضي للمشروع كما يلي</value>
   </data>
   <data name="playback_rate" xml:space="preserve">
     <value>معدل إعادة الاستماع x {0} في {1}</value>
   </data>
   <data name="Recording" xml:space="preserve">
-    <value>جاري التسجيل</value>
+    <value>جارٍ التسجيل</value>
   </data>
   <data name="cannot_create_file_caption" xml:space="preserve">
     <value>لا يمكن إنشاء ملف المشروع</value>
@@ -258,7 +259,7 @@
     <value>لا يمكن إنشاء ملف المشروع "{0}": {1}.</value>
   </data>
   <data name="cannot_create_directory_caption" xml:space="preserve">
-    <value>لا يمكن إنشاء الدليل</value>
+    <value>لا يمكن إنشاء المجلد</value>
   </data>
   <data name="cannot_create_directory_text" xml:space="preserve">
     <value>لا يمكن إنشاء ملف المشروع "{0}": {1}.</value>
@@ -270,28 +271,28 @@
     <value>الملف {0} لا يمكن حذفه . اضغط موافق للاستمرار أو إلغاء للتوقف. (السبب: {1})</value>
   </data>
   <data name="empty_directory_caption" xml:space="preserve">
-    <value>التصدير إلى دليل غير فارغ</value>
+    <value>جارٍ التصدير إلى مجلد غير فارغ</value>
   </data>
   <data name="empty_directory_text" xml:space="preserve">
-    <value>توشك على تصدير مشروع كتابك الرقمي DAISY إلى {0}. هذا الدليل ليس فارغا (ربما تكون قد قمت بتصدير نسخة سابقة من مشروعك إلى هذا الدليل). هل تريد تفريغ هذا الدليل قبل التصدير؟</value>
+    <value>أنت على وشك تصدير مشروع DAISY  الخاص بك إلى {0}. هذا المجلد غير فارغ (ربما قمت بتصدير نسخة سابقة من مشروعك إلى ذلك المجلد). هل تريد إفراغ هذا المجلد قبل التصدير؟</value>
   </data>
   <data name="didnt_save_as_daisy_caption" xml:space="preserve">
-    <value>خطأ في تصدير المشروع إلى DAISY</value>
+    <value>خطأ أثناء التصدير إلى DAISY/EPUB</value>
   </data>
   <data name="didnt_save_as_daisy_text" xml:space="preserve">
-    <value>لم يتم تصدير المشروع إلى  DAISY في الدليل {0}. السبب: {1}</value>
+    <value>تعذّر تصدير المشروع إلى DAISY/EPUB في المجلد {0}. السبب: {1}</value>
   </data>
   <data name="saved_as_daisy_caption" xml:space="preserve">
-    <value>تم تصدير المشروع إلى DAISY </value>
+    <value>تم تصدير المشروع</value>
   </data>
   <data name="import_phrase_error_caption" xml:space="preserve">
-    <value>خطأ في الحصول على الملف السمعي</value>
+    <value>خطأ في استيراد الصوت</value>
   </data>
   <data name="import_phrase_error_text" xml:space="preserve">
-    <value>لم يتم استيراد الملف السمعي {0} نظرا لأن خيارات الضبط الخاصة به (القنوات، عمق البت، ومعدل العينة) لا يتوافق مع خيارات ضبط المشروع</value>
+    <value>تعذّر استيراد ملف الصوت "{0}" لأن إعداداته الصوتية (عدد القنوات، عمق البت، معدل العيّنة) لا تتطابق مع إعدادات المشروع.</value>
   </data>
   <data name="dc_publisher_description" xml:space="preserve">
-    <value>الجهة المسؤولة عن عمل كتاب ديزي الرقمي الحديث</value>
+    <value>الوكالة المسؤولة عن إتاحة الكتاب الرقمي الناطق DTB.</value>
   </data>
   <data name="dc_title_description" xml:space="preserve">
     <value>عنوان الكتاب الرقمي الناطق DTB، متضمنا أى عناوين فرعية</value>
@@ -303,7 +304,7 @@
     <value>help_en.html</value>
   </data>
   <data name="error_metadata_name_caption" xml:space="preserve">
-    <value>لا يمكن إنشاء عنصر البيانات الوصفية</value>
+    <value>تعذّر إنشاء عنصر بيانات وصفية</value>
   </data>
   <data name="error_metadata_name_message" xml:space="preserve">
     <value>لا يمكن إنشاء عنصر البيانات الوصفية"{0}". لا يجب أن يبدأ الاسم بـ "dtb"</value>
@@ -312,13 +313,13 @@
     <value>مشروع Obi بدون عنوان</value>
   </data>
   <data name="default_project_filename" xml:space="preserve">
-    <value>مشروع . Obi</value>
+    <value>project.obi</value>
   </data>
   <data name="really_use_directory_caption" xml:space="preserve">
-    <value>هل قمت بتفريغ الدليل قبل استخدامه؟</value>
+    <value>إفراغ المجلد قبل استخدامه؟</value>
   </data>
   <data name="really_use_directory_text" xml:space="preserve">
-    <value>الدليل "{0}" غير فارغ. إذا كنت تريد تفريغ هذا الدليل قبل استخدامه، اختر "نعم". أما إذا كنت تريد استخدامه كما هو، اختر "لا"</value>
+    <value>المجلد "{0}" غير فارغ. إذا كنت تريد إفراغ هذا المجلد قبل استخدامه، اختر "نعم". إذا كنت تريد استخدام المجلد كما هو، اختر "لا".</value>
   </data>
   <data name="cannot_redo" xml:space="preserve">
     <value>لا يمكن إعادة هذه الخطوة</value>
@@ -327,7 +328,7 @@
     <value>لا يمكن التراجع في هذه الخطوة</value>
   </data>
   <data name="rename_section" xml:space="preserve">
-    <value>حفظ القسم باسم آخر</value>
+    <value>إعادة تسمية القسم</value>
   </data>
   <data name="move_section_out" xml:space="preserve">
     <value>تخفيض مستوى القسم</value>
@@ -336,22 +337,22 @@
     <value>زيادة مستوى القسم</value>
   </data>
   <data name="delete_section" xml:space="preserve">
-    <value>مسح القسم (عميق)</value>
+    <value>حذف القسم (بالكامل)</value>
   </data>
   <data name="copy_section" xml:space="preserve">
-    <value>نسخ القسم (عميق)</value>
+    <value>نسخ القسم (بالكامل)</value>
   </data>
   <data name="cut_section" xml:space="preserve">
-    <value>قص القسم (عميق)</value>
+    <value>قص القسم (بالكامل)</value>
   </data>
   <data name="paste_section" xml:space="preserve">
-    <value>لصق القسم (عميق)</value>
+    <value>لصق القسم</value>
   </data>
   <data name="import_phrases" xml:space="preserve">
-    <value>استيراد ملفات سمعية</value>
+    <value>استيراد ملفات صوتية</value>
   </data>
   <data name="importing_file" xml:space="preserve">
-    <value>استيراد الملف "{0}"</value>
+    <value>جارٍ استيراد الملف "{0}"</value>
   </data>
   <data name="init_error_text" xml:space="preserve">
     <value>حدث خطأ عند بداية تشغيل Obi. 
@@ -359,7 +360,7 @@
  نص الخطأ: {1}</value>
   </data>
   <data name="init_error_caption" xml:space="preserve">
-    <value>خطأ في تهيئة Obi</value>
+    <value>حدث خطأ أثناء تهيئة Obi.</value>
   </data>
   <data name="created_new_project" xml:space="preserve">
     <value>إنشاء مشروع جديد "{0}"</value>
@@ -389,16 +390,16 @@
     <value>اكتب النص للبحث عنه في القسم المختار</value>
   </data>
   <data name="find_next_in_text" xml:space="preserve">
-    <value>البحث في التالي</value>
+    <value>جارٍ البحث للأمام...</value>
   </data>
   <data name="find_prev_in_text" xml:space="preserve">
-    <value>البحث بالعكس</value>
+    <value>جارٍ البحث بالعكس...</value>
   </data>
   <data name="finished_searching_all" xml:space="preserve">
     <value>تم البحث في النص بالكامل</value>
   </data>
   <data name="found_in_text" xml:space="preserve">
-    <value>العثور على الملف "{0}"</value>
+    <value>تم العثور على تطابق "{0}".</value>
   </data>
   <data name="not_found_in_text" xml:space="preserve">
     <value>لم يتم العثور على ملفات مماثلة</value>
@@ -407,13 +408,13 @@
     <value>لا يوجد ما يمكن البحث عنه</value>
   </data>
   <data name="searching" xml:space="preserve">
-    <value>جاري البحث</value>
+    <value>جارٍ البحث...</value>
   </data>
   <data name="please_enter_some_text" xml:space="preserve">
-    <value>يرجى إدخال بعض من النص</value>
+    <value>الرجاء إدخال نص.</value>
   </data>
   <data name="recording_command" xml:space="preserve">
-    <value>جاري تسجيل</value>
+    <value>جارٍ تسجيل</value>
   </data>
   <data name="start_recording" xml:space="preserve">
     <value>إبدأ التسجيل</value>
@@ -422,7 +423,7 @@
     <value>قم بتقسيم العبارة</value>
   </data>
   <data name="merge_phrase_with_next" xml:space="preserve">
-    <value>ادمج العبارة مع التي تليها</value>
+    <value>دمج العبارة مع التالية</value>
   </data>
   <data name="paste_phrase" xml:space="preserve">
     <value>لصق العبارة</value>
@@ -437,7 +438,7 @@
     <value>ضع علامة للعبارة في شكل {0}</value>
   </data>
   <data name="set_page_number_" xml:space="preserve">
-    <value>ضع رقم للصفحة</value>
+    <value>تعيين رقم الصفحة</value>
   </data>
   <data name="add_section" xml:space="preserve">
     <value>أضف قسم</value>
@@ -449,22 +450,22 @@
     <value>ضع علامة للقسم في شكل {0}</value>
   </data>
   <data name="cut_audio" xml:space="preserve">
-    <value>قص الملف السمعي</value>
+    <value>قص الصوت</value>
   </data>
   <data name="delete_audio" xml:space="preserve">
-    <value>مسح الملف السمعي</value>
+    <value>حذف الصوت</value>
   </data>
   <data name="default_custom_class_name" xml:space="preserve">
     <value>تم وضع علامة</value>
   </data>
   <data name="no_preceding_silence_phrase" xml:space="preserve">
-    <value>لم يكن هناك عبارة صمت تسبق الاختيار، لذا سيتم استخدام القيم الافتراضية. ما زال يمكنك تعديل خيارات الضبط بحرية، أو الإلغاء واختيار عبارة الصمت</value>
+    <value>لم تكن هناك عبارة صامتة تسبق التحديد، لذلك ستُستخدم القيم الافتراضية. لا يزال بإمكانك تعديل هذه القيم بحرية، أو الإلغاء وتحديد عبارة صامتة.</value>
   </data>
   <data name="paste_audio" xml:space="preserve">
-    <value>لصق الملف السمعي</value>
+    <value>لصق الصوت</value>
   </data>
   <data name="copy_audio" xml:space="preserve">
-    <value>نسخ الملف السمعي</value>
+    <value>نسخ الصوت</value>
   </data>
   <data name="phrase_detection" xml:space="preserve">
     <value>التقسيم التلقائي للعبارات</value>
@@ -491,10 +492,10 @@
     <value>تعذر تنظيف المشروع</value>
   </data>
   <data name="clean_failed_text" xml:space="preserve">
-    <value>لم يتمكن Obi من تنظيف المشروع الحالي ربما للأسباب التالية: {0}</value>
+    <value>فشل Obi في تنظيف المشروع الحالي، والسبب الظاهر هو: {0}</value>
   </data>
   <data name="clean_up_ask_for_delete_project" xml:space="preserve">
-    <value>تم نقل الملفات غير المستخدمة إلى ملف المحذوفات. هل تود مسح هذه الملفات غير المستخدمة؟</value>
+    <value>تم نقل الملفات غير المستخدمة إلى مجلد الحذف من أجل عملية التراجع عن التنظيف. هل ترغب في حذف هذه الملفات غير المستخدمة على أي حال؟ يرجى ملاحظة أنه لن تتمكن من تنفيذ التراجع إذا تم حذف هذه الملفات.</value>
   </data>
   <data name="clean_save_caption" xml:space="preserve">
     <value>حفظ بعد التنظيف</value>
@@ -506,10 +507,10 @@
     <value>حذف العبارات غير المستخدمة</value>
   </data>
   <data name="clean_save_text" xml:space="preserve">
-    <value>سيتم حفظ مشروعك بعد التنظيف. هل تود الاستمرار؟</value>
+    <value>ستؤدي هذه العملية إلى حفظ مشروعك، ولن تتمكن من التراجع عن الأوامر التي تم تنفيذها حتى الآن. هل تريد المتابعة؟</value>
   </data>
   <data name="delete_unused" xml:space="preserve">
-    <value>حذف البيانات الوصفية غير المستخدمة؟</value>
+    <value>حذف البيانات غير المستخدمة</value>
   </data>
   <data name="delete_metadata_entry" xml:space="preserve">
     <value>حذف إدخال بيانات وصفية</value>
@@ -542,13 +543,13 @@
     <value>المراقبة</value>
   </data>
   <data name="propose_directory_caption" xml:space="preserve">
-    <value>دليل غير فارغ للمشروع الجديد</value>
+    <value>مجلد غير فارغ لمشروع جديد</value>
   </data>
   <data name="propose_directory_text" xml:space="preserve">
-    <value>الدليل الذي اخترته لحفظ مشروعك الجديد غير فارغ. هل تفضل اختيار الموقع التالي لمشروعك الجديد: {0}؟ </value>
+    <value>المجلد الذي حددته لحفظ مشروعك الجديد غير فارغ. هل تفضل اختيار الموقع التالي لمشروعك الجديد: "{0}"؟</value>
   </data>
   <data name="start_monitoring" xml:space="preserve">
-    <value>إبدأ المراقبة</value>
+    <value>ابدأ المراقبة</value>
   </data>
   <data name="content_view" xml:space="preserve">
     <value>عرض المحتوى</value>
@@ -563,10 +564,10 @@
     <value>متوقف</value>
   </data>
   <data name="Playing" xml:space="preserve">
-    <value>تشغيل الملف السمعي</value>
+    <value>تشغيل الصوت</value>
   </data>
   <data name="Stopped" xml:space="preserve">
-    <value>توقف</value>
+    <value>تم الإيقاف</value>
   </data>
   <data name="transport_bar" xml:space="preserve">
     <value>شريط النقل</value>
@@ -584,16 +585,16 @@
     <value>تاريخ إصدار الكتاب الرقمي الناطق DTB. (قارن: dtb:sourceDate، وdtb:producedDate). التنسيق من (ISO8601)؛ شكل كتابة التاريخ: YYYY[-MM[-DD]] مع كتابة السنة بأربعة أرقام، إمكانية كتابة الشهر برقمين، وإذا كان الشهر هو نفس الشهر الحالي، يمكن كتابة اليوم برقمين.</value>
   </data>
   <data name="dc_description_description" xml:space="preserve">
-    <value>نص عادي يقدم وصفا لمحتوى الإصدار</value>
+    <value>نص عادي يصف محتوى المنشور.</value>
   </data>
   <data name="dc_format_description" xml:space="preserve">
     <value>المعايير أو المواصفات التي تم إنتاج الكتاب الرقمي الناطق  DTBعلى أساسها</value>
   </data>
   <data name="dc_identifier_description" xml:space="preserve">
-    <value>السلسلة أو الرقم الذي يميز الكتاب</value>
+    <value>سلسلة أو رقم يحدد الكتاب الرقمي الناطق (DTB).</value>
   </data>
   <data name="dc_language_description" xml:space="preserve">
-    <value>لغة محتوى الإصدار. كود اللغة (RFC) ، للسويد: "sv" أو "sv-SE"؛ للملكة المتحدة: "en" أو "en-GB"؛ للولايات المتحدة: "en" أو "en-US" إلخ.</value>
+    <value>لغة محتوى النشر. رمز لغة وفق [RFC 3066]. على سبيل المثال: للسويد "sv" أو "sv-SE"؛ للمملكة المتحدة "en" أو "en-GB"؛ للولايات المتحدة "en" أو "en-US"؛ إلخ.</value>
   </data>
   <data name="dc_relation_description" xml:space="preserve">
     <value>الإشارة إلى المصادر ذات الصله</value>
@@ -605,7 +606,7 @@
     <value>الإشارة إلى أحد المصادر (مثل: نسخة أصلية مطبوعة، كتاب إلكتروني ، إلخ) يستمد منها الكتاب الرقمي الناطق DTB. أفضل الممارسات في هذا الشأن تشير إلى استخدام الرقم الدولي المعياري للكتاب (ISBN)</value>
   </data>
   <data name="dc_subject_description" xml:space="preserve">
-    <value>موضوع محتوى الإصدار</value>
+    <value>موضوع محتوى المنشور.</value>
   </data>
   <data name="dc_type_description" xml:space="preserve">
     <value>طبيعة محتوى الكتاب الرقمي الناطق DTB (الصوت، النص، الصورة). أفضل الممارسات تشير إلى الاستناد إلى قائمة مفردات دبلن كور (DC-Type)</value>
@@ -614,7 +615,7 @@
     <value>الزمن الإجمالي لتشغيل كافة الملفات من نوع SMIL (لغة تكامل الوسائط المتعددة المتزامنة) التي تحتوي على محتوى الكتاب الرقمي. القيمة تتمثل في الزمن طبقا لـ SMIL 2.0 </value>
   </data>
   <data name="dtb_multimedia_content_description" xml:space="preserve">
-    <value>ملخص أنواع الوسائل العامة المستخدمة في محتوى هذا الكتاب الرقمي الناطق DTB. القيمة عبارة عن قائمة مقسومة بالفاصلة لأنواع الوسائل عالية المستوى والوارد تعريفها في (RFC2046). في هذه النسخة من الإصدار، الملفات السمعية والنصوص والصور هي الأنواع القابلة للتطبيق فقط. أما أنواع الوسائل المشار إليها في شكل NCX، ملف المصدر، أو معلومات التوزيع فلا يجب سردها هنا.</value>
+    <value>ملخص أنواع الوسائل العامة المستخدمة في محتوى هذا الكتاب الرقمي الناطق DTB. القيمة عبارة عن قائمة مقسومة بالفاصلة لأنواع الوسائل عالية المستوى والوارد تعريفها في (RFC2046). في هذه النسخة من الإصدار، الملفات الصوتية والنصوص والصور هي الأنواع القابلة للتطبيق فقط. أما أنواع الوسائل المشار إليها في شكل NCX، ملف المصدر، أو معلومات التوزيع فلا يجب سردها هنا.</value>
   </data>
   <data name="dtb_multimedia_type_description" xml:space="preserve">
     <value>ورد تعريف أحد الأنواع الستة للكتاب الرقمي الناطق DTB "إرشادات هيكل الكتاب" DTB. القيم:  audioOnly, audioNCX, audioPartText, audioFullText, textPartAudio, textNCX.</value>
@@ -632,7 +633,7 @@
     <value>التاريخ المقترن بأحد الكتب الرقمية الناطقة DTB: المراجعة. dtb:revision). التنسيق من (ISO8601)؛ شكل كتابة التاريخ: YYYY[-MM[-DD]]مع كتابة السنة بأربعة أرقام، إمكانية كتابة الشهر برقمين، وإذا كان الشهر هو نفس الشهر الحالي، يمكن كتابة اليوم برقمين.</value>
   </data>
   <data name="dtb_revision_description" xml:space="preserve">
-    <value>القيمة الصحيحة غير السلبية لنسخة من نسخ الكتاب الرقمي الناطق. وتزداد هذه القيمة  في كل مرة يتم مراجعة الكتاب فيها</value>
+    <value>قيمة عدد صحيح غير سالبة تمثل النسخة المحددة من الكتاب الرقمي الناطق. تُزاد كل مرة يتم فيها مراجعته.</value>
   </data>
   <data name="dtb_revision_description_description" xml:space="preserve">
     <value>سلسلة تصف التغيرات التي تطرأ على أى نسخة من الكتاب الرقمي الناطق dtb:revision.</value>
@@ -692,7 +693,7 @@
     <value />
   </data>
   <data name="phrase_extra_Silence" xml:space="preserve">
-    <value>الصمت</value>
+    <value>صمت</value>
   </data>
   <data name="phrase_extra_TODO" xml:space="preserve">
     <value>TODO</value>
@@ -713,7 +714,7 @@
     <value>عبارة</value>
   </data>
   <data name="phrase_short_Silence" xml:space="preserve">
-    <value>الصمت</value>
+    <value>صمت</value>
   </data>
   <data name="phrase_short_to_string" xml:space="preserve">
     <value>{0}{1} ({2})</value>
@@ -746,7 +747,7 @@
     <value>غير مستخدم</value>
   </data>
   <data name="audio_selection_to_string" xml:space="preserve">
-    <value>الملف السمعي المختار في {0} في {1} في {2}</value>
+    <value>الملف الصوتي المختار في {0} في {1} في {2}</value>
   </data>
   <data name="strip_cursor_selection_to_string" xml:space="preserve">
     <value>مؤشر الاختيار {0} في {1} في {2}</value>
@@ -761,7 +762,7 @@
     <value>مدخل غير صحيح للمدة القصوى للعبارة. يرجى تحديد عدد صحيح من الدقائق أعلى من 0</value>
   </data>
   <data name="rendering_waveform" xml:space="preserve">
-    <value>تحديد شكل الموجة</value>
+    <value>جارٍ إنشاء الموجة الصوتية...</value>
   </data>
   <data name="duration_h_mm_ss" xml:space="preserve">
     <value>{0}:{1:00}:{2:00}</value>
@@ -803,19 +804,19 @@
     <value>ثانية</value>
   </data>
   <data name="seconds" xml:space="preserve">
-    <value>ثواني</value>
+    <value>ثوانٍ</value>
   </data>
   <data name="section_level" xml:space="preserve">
-    <value>"{0}" ( {1}مستوى )</value>
+    <value>"{0}" (المستوى {1})</value>
   </data>
   <data name="top_level_section" xml:space="preserve">
-    <value>قسم عال المستوى</value>
+    <value>هذا قسم رئيسي</value>
   </data>
   <data name="update_section" xml:space="preserve">
     <value>تحديث القسم</value>
   </data>
   <data name="update_phrase" xml:space="preserve">
-    <value>قم بتحديث العبارة</value>
+    <value>تحديث العبارة</value>
   </data>
   <data name="error_adding_page_number" xml:space="preserve">
     <value>خطأ في إضافة رقم الصفحة: لم يتم العثور على القسم الأساسي</value>
@@ -845,7 +846,7 @@
     <value>خطا في التحقق من الكتاب الرقمي الناطق DTB</value>
   </data>
   <data name="no_script" xml:space="preserve">
-    <value>لم يتم العثور على ملف الاسكريبت في "{0}"</value>
+    <value>لم يتم العثور على ملف البرنامج النصي في "{0}".</value>
   </data>
   <data name="pipeline_path_browser" xml:space="preserve">
     <value>يرجى اختيار موقع سكريبتات برنامج Pipeline التالية</value>
@@ -854,19 +855,19 @@
     <value>XMLملف|*.xml</value>
   </data>
   <data name="CannotCreate_InputPath" xml:space="preserve">
-    <value>تعذر إنشاء مسار من هذا النوع: إدخال</value>
+    <value>تعذّر إنشاء مسار من النوع: إدخال</value>
   </data>
   <data name="Caption_Error" xml:space="preserve">
     <value>خطأ</value>
   </data>
   <data name="save_before_save_as_caption" xml:space="preserve">
-    <value>حفظ قبل "حفظ باسم"؟</value>
+    <value>هل تريد الحفظ قبل "حفظ باسم"؟</value>
   </data>
   <data name="Choose_OtherDirectory" xml:space="preserve">
     <value>اختر دليل آخر</value>
   </data>
   <data name="IndexNotInRange" xml:space="preserve">
-    <value>المؤشر ليس في النطاق</value>
+    <value>الفهرس خارج النطاق</value>
   </data>
   <data name="Invalid_ScriptParameters" xml:space="preserve">
     <value>واحد أو أكثر من الوسائط ليس سليما</value>
@@ -875,7 +876,7 @@
     <value>المسار غير موجود</value>
   </data>
   <data name="NotAbleToCreateDirectory" xml:space="preserve">
-    <value>تعذر إنشاء الدليل {0}</value>
+    <value>تعذر إنشاء المجلد {0}</value>
   </data>
   <data name="NotAbleToSelectItem" xml:space="preserve">
     <value>تعذر اختيار العنصر</value>
@@ -887,10 +888,10 @@
     <value>دليل (إخراج الصوت) غير فارغ! هل تريد تفريغه؟</value>
   </data>
   <data name="Front_pages" xml:space="preserve">
-    <value>الصفحات الأولى</value>
+    <value>صفحات تمهيدية</value>
   </data>
   <data name="Normal_pages" xml:space="preserve">
-    <value>الصفحات العادية</value>
+    <value>صفحات عادية</value>
   </data>
   <data name="renumber_before_export" xml:space="preserve">
     <value>لا يمكن تصدير هذا المشروع نظرا لوجود صفحتين على الاقل تحملان الرقم {0}. هل تريد إعادة ترقيم الصفحات تلقائيا والاستمرار في التصدير؟ خلاف ذلك سيتم إلغاء التصدير.</value>
@@ -902,10 +903,10 @@
     <value>إعادة الترقيم {0}</value>
   </data>
   <data name="crop_audio" xml:space="preserve">
-    <value> إقتصاص ملف سمعي</value>
+    <value>قص الصوت</value>
   </data>
   <data name="save_as_error_same_directory" xml:space="preserve">
-    <value>لا يمكن الحفظ في نفس الدليل كمشروع أصلي. يرجى اختيار موقع آخر</value>
+    <value>لا يمكن الحفظ في نفس المجلد كمشروع أصلي. يرجى اختيار موقع آخر</value>
   </data>
   <data name="save_before_save_as" xml:space="preserve">
     <value>هل تريد حفظ التغييرات قبل حفظ المشروع في موقع جديد؟</value>
@@ -914,16 +915,16 @@
     <value>لم يتم العثور على دليل تصدير الكتاب الرقمي DAISY. يرجى اختيار مسار تصدير، أو اختيار تصدير المشروع إلى DAISY</value>
   </data>
   <data name="section_unexported" xml:space="preserve">
-    <value>القسم "{0}" ليس به محتوى سمعي ولن يتم تصديره أو أى من أقسامه الفرعية. هل تريد الاستمرار؟</value>
+    <value>القسم "{0}" ليس به محتوى صوتي ولن يتم تصديره أو أى من أقسامه الفرعية. هل تريد الاستمرار؟</value>
   </data>
   <data name="section_unexported_caption" xml:space="preserve">
-    <value>القسم لن يتم تصديره</value>
+    <value>لن يتم تصدير القسم</value>
   </data>
   <data name="default_export_dirname" xml:space="preserve">
-    <value>{0}DAISY3 Export</value>
+    <value>{0} تصدير DAISY3</value>
   </data>
   <data name="ObiForm_PipelineNotFound" xml:space="preserve">
-    <value>تعذر العثور على سكريبت برنامج Pipeline  في {0}. الخواص التي تعتمد عليه قد لا تعمل بشكل جيد</value>
+    <value>تعذّر العثور على سكربتات الـ pipeline في {0}. بعض الخصائص المعتمدة عليها قد لا تعمل.</value>
   </data>
   <data name="Pipeline_InvalidScriptsParameters" xml:space="preserve">
     <value>واحد أو أكثر من الوسائط ليس سليما. يرجى إدخال قيم صحيحة</value>
@@ -935,7 +936,7 @@
     <value>{0:00}:{1:00}:{2:00}</value>
   </data>
   <data name="export_progress_dialog_title" xml:space="preserve">
-    <value>تصدير المشروع... يرجى الانتظار نظرا لأن العملية قد تستغرق بضع دقائق</value>
+    <value>جارٍ تصدير المشروع... يرجى الانتظار فقد يستغرق ذلك عدة دقائق</value>
   </data>
   <data name="role_Custom" xml:space="preserve">
     <value>مخصص</value>
@@ -957,40 +958,40 @@
 </value>
   </data>
   <data name="could_not_clean_up_caption" xml:space="preserve">
-    <value>تعذر مسح المشروع غير السليم </value>
+    <value>تعذر حذف المشروع غير السليم </value>
   </data>
   <data name="import_progress_dialog_title" xml:space="preserve">
-    <value>جاري الاستيراد....</value>
+    <value>جارٍ الاستيراد....</value>
   </data>
   <data name="import_audio_progress_dialog_title" xml:space="preserve">
-    <value>جاري استيراد ملف سمعي</value>
+    <value>جارٍ استيراد الصوت...</value>
   </data>
   <data name="cleaning_up" xml:space="preserve">
-    <value>جاري التنظيف...</value>
+    <value>جارٍ التنظيف...</value>
   </data>
   <data name="remove_custom_class" xml:space="preserve">
-    <value>مسح أنواع العبارات المخصصة</value>
+    <value>إزالة الفئة المخصصة</value>
   </data>
   <data name="strip_cursor_accessible_name" xml:space="preserve">
     <value>الوقوف بالمؤشر على {0}-{1}</value>
   </data>
   <data name="Pipeline_Error_NotExpectedRange" xml:space="preserve">
-    <value>يجب أن تقع القيمة بين {0} و{1}</value>
+    <value>يجب أن تكون القيمة بين {0} و {1}</value>
   </data>
   <data name="Pipeline_OutOfRange" xml:space="preserve">
     <value>القيمة لا تقع في النطاق المتوقع</value>
   </data>
   <data name="Pipeline_InvalidString" xml:space="preserve">
-    <value>داخل غير سليم</value>
+    <value>إدخال غير صالح</value>
   </data>
   <data name="save_as_new_directory_name" xml:space="preserve">
     <value>{0}نسخ </value>
   </data>
   <data name="cannot_use_project_path" xml:space="preserve">
-    <value>لا يمكن استخدام الموقع المختار {0} لحفظ: {1}</value>
+    <value>لا يمكن استخدام الموقع المحدد "{0}" لحفظ: {1}</value>
   </data>
   <data name="cannot_use_project_path_caption" xml:space="preserve">
-    <value>لا يمكن استخدام المختار </value>
+    <value>لا يمكن استخدام الموقع المحدد</value>
   </data>
   <data name="extension_warning" xml:space="preserve">
     <value>توشك على حفظ ملف مشروع في {0}. يوصى باستخدام امتداد ملف Obi. هل أنت متأكد من أنك تريد الاحتفاظ بالامتداد المختار؟</value>
@@ -1005,25 +1006,25 @@
     <value>تعذر الحفظ  </value>
   </data>
   <data name="cannot_empty_directory" xml:space="preserve">
-    <value>لا يمكن تفريغ الدليل "{0}": {1}</value>
+    <value>لا يمكن تفريغ المجلد "{0}": {1}</value>
   </data>
   <data name="cannot_empty_directory_caption" xml:space="preserve">
-    <value>لا يمكن تفريغ الدليل  </value>
+    <value>لا يمكن تفريغ المجلد  </value>
   </data>
   <data name="toggle_TODO" xml:space="preserve">
-    <value>تبديل خيار "TODO"</value>
+    <value>تبديل علامة المراجعة</value>
   </data>
   <data name="recording_resume_check_caption" xml:space="preserve">
-    <value>مواصلة التسجيل من موضع التوقف المؤقت؟</value>
+    <value>هل تريد استئناف التسجيل من موضع الإيقاف المؤقت؟</value>
   </data>
   <data name="save_as_progress_dialog_title" xml:space="preserve">
-    <value>حفظ المشروع تحت موقع جديد ...</value>
+    <value>جارٍ حفظ المشروع في موقع جديد...</value>
   </data>
   <data name="InvalidPaths" xml:space="preserve">
-    <value>واحد أو أكثر من المسارات غير سليم!</value>
+    <value>مسار أو أكثر غير صالح!</value>
   </data>
   <data name="project_lock_error" xml:space="preserve">
-    <value>تعذر إنشاء ملف غلق للمشروع على "{0}": {1}</value>
+    <value>تعذّر إنشاء ملف قفل للمشروع في "{0}": {1}</value>
   </data>
   <data name="project_locked" xml:space="preserve">
     <value>المشروع مُؤمن. ربما نظرا إما لانتهاء احدى الجلسات السابقة لهذا المشروع، أو أن هناك جلسة أخرى من Obi مع نفس المشروع مفتوحة. إذا كنت متأكد من عدم وجود أى جلسات أخرى من Obi، يمكنك محاولة إزالة خاصية تأمين الملف "{0}" ، ولكن الاستمرار سيكون على مسئوليتك.</value>
@@ -1032,10 +1033,10 @@
     <value>لا توجد عبارة صامتة سابقة</value>
   </data>
   <data name="phrase_detection_progress_dialog_title" xml:space="preserve">
-    <value>تطبيق خاصية التقسيم تلقائي للعبارات</value>
+    <value>جارٍ تطبيق خاصية التقسيم تلقائي للعبارات...</value>
   </data>
   <data name="MetadataView_CannotCommitEmptyContent" xml:space="preserve">
-    <value>البيانات الوصفية لا يجب أن تحتوي على قيم فارغة</value>
+    <value>لا يمكن أن تحتوي البيانات الوصفية على قيم فارغة.</value>
   </data>
   <data name="location_error" xml:space="preserve">
     <value>خطأ في موقع الملف</value>
@@ -1050,10 +1051,10 @@
     <value>Obi Help.chm</value>
   </data>
   <data name="phrase_detection_progress" xml:space="preserve">
-    <value>جاري التقسيم تلقائي للعبارات</value>
+    <value>جارٍ التقسيم التلقائي للعبارات...</value>
   </data>
   <data name="delete_silence_phrases" xml:space="preserve">
-    <value>مشروعك به عبارات صامتة. اضغط "نعم" لمسحها بالإضافة إلى الأقسام والعبارات الأخرى غير المستخدمة. إضغط "لا" لمسح الاقسام والعبارات غير المستخدمة فقط مع الاحتفاظ بالعبارات الصامتة</value>
+    <value>مشروعك يحتوي على عبارات صامتة. اضغط نعم لحذفها مع العبارات والأقسام غير المستخدمة الأخرى. اضغط لا لحذف العبارات والأقسام غير المستخدمة فقط مع الاحتفاظ بالعبارات الصامتة.</value>
   </data>
   <data name="delete_silence_phrases_caption" xml:space="preserve">
     <value>هل تريد مسح العبارات الصامتة؟</value>
@@ -1062,19 +1063,19 @@
     <value>لا يمكن اتمام مسح العملية على قسم محرك القرص</value>
   </data>
   <data name="PageDialog_InvalidInput" xml:space="preserve">
-    <value>مجال أو اكثر يحتوي على بيانات غير صحيحة. يرجى إعادة إدخال القيم.</value>
+    <value>حقل واحد أو أكثر يحتوي على مدخلات غير صالحة. يرجى إعادة إدخال القيم.</value>
   </data>
   <data name="Status_ProjectSaved" xml:space="preserve">
-    <value>تم حفظ المشروع ، يرجى الاستمرار</value>
+    <value>تم حفظ المشروع ، يرجى الاستمرار...</value>
   </data>
   <data name="TransportBar_PlayerExceptionMsg" xml:space="preserve">
-    <value>تعذر بدأ التشغيل. اضغط "موافق" للاستمرار....{0} {1}</value>
+    <value>تعذّر بدء التشغيل. اضغط موافق للمتابعة.... {0} {1}</value>
   </data>
   <data name="Preference_InvalidKeyExceptionMsg" xml:space="preserve">
-    <value>تعيين مفتاح غير صحيح. يرجى إعادة اختيار مجموعة أخرى من المفاتيح....{0} {1}</value>
+    <value>مفتاح غير صالح مُعيّن. يرجى اختيار تركيبة مفاتيح أخرى.... {0} {1}</value>
   </data>
   <data name="Player_TryAgain" xml:space="preserve">
-    <value>يرجى إعادة المحاولة</value>
+    <value>يرجى المحاولة مرة أخرى... {0} {1}</value>
   </data>
   <data name="Metadata_InvalidDateFormat" xml:space="preserve">
     <value>طريقة كتابة التاريخ غير صحيحة! الطريقة الموصى بها هي:  YYYY-MM-DD or YYYY </value>
@@ -1101,40 +1102,40 @@
     <value>خطأ أثناء الحفظ</value>
   </data>
   <data name="OpenError_UseCleanUp" xml:space="preserve">
-    <value>يرجى استخدام ملف سمعي نظيف غير مخصص عند فتح المشروع</value>
+    <value>يرجى استخدام ملف صوتي نظيف غير مخصص عند فتح المشروع</value>
   </data>
   <data name="ContentHidden_SectionHasOverlimitPhrases" xml:space="preserve">
-    <value>القسم {0} به عدد كبير من العبارات، إلا أن العبارات المرقمة {1} هي التي تظهر فقط. يرجى تقسيم القسم لتتمكن من رؤية كافة العبارات مع بعضها على الشاشة</value>
+    <value>القسم {0} يحتوي على عدد كبير من العبارات، فقط أول {1} عبارات مرئية. يرجى تقسيم القسم لرؤية جميع العبارات معًا على الشاشة.</value>
   </data>
   <data name="ContentsHidden_PhrasesExceedMaxLimitPerSection" xml:space="preserve">
-    <value>العبارات في القسم تتجاوز عدد العبارات المسموح به لكل قسم من {0}</value>
+    <value>عدد العبارات في القسم يتجاوز الحد الأقصى المسموح به وهو {0}.</value>
   </data>
   <data name="ContentsHidden_StatusMessage" xml:space="preserve">
-    <value>_إذا كانت المحتويات مختفية، استخدم F5 لإظهارها)</value>
+    <value>(المحتويات مخفية، استخدم F5 لإظهارها)</value>
   </data>
   <data name="Operation_Cancelled" xml:space="preserve">
     <value>تعذر استكمال العملية</value>
   </data>
   <data name="footnote" xml:space="preserve">
-    <value>هامش سفلي</value>
+    <value>حاشية سفلية </value>
   </data>
   <data name="sidebar" xml:space="preserve">
-    <value>شريط جانبي</value>
+    <value>شريط جانبي </value>
   </data>
   <data name="prodnote" xml:space="preserve">
-    <value>ملاحظة انتاج</value>
+    <value>ملاحظة إنتاج </value>
   </data>
   <data name="note" xml:space="preserve">
-    <value>ملاحظة</value>
+    <value>ملاحظة </value>
   </data>
   <data name="endnote" xml:space="preserve">
-    <value>تعليق ختامي</value>
+    <value>حاشية ختامية </value>
   </data>
   <data name="annotation" xml:space="preserve">
-    <value>حاشية </value>
+    <value>تعليق توضيحي </value>
   </data>
   <data name="ContentsHidden_CannotExecuteCommand" xml:space="preserve">
-    <value>لا يمكن تنفيذ هذا الأمر على قسم به محتويات مخفية. يرجى إظهار محتويات القسم وإعادة المحاولة</value>
+    <value>لا يمكن تنفيذ هذا الأمر على قسم بمحتويات مخفية. يرجى جعل محتويات القسم مرئية ثم المحاولة مرة أخرى.</value>
   </data>
   <data name="ContentsHidden_HideNewPhrases" xml:space="preserve">
     <value>تم استكمال العملية. محتويات القسم مخفية وبالتالي ستكون العبارات الجديدة المضافة مخفية. اضغظ F5 للإظهار</value>
@@ -1146,7 +1147,7 @@
     <value>تم تصدير المشروع إلى....</value>
   </data>
   <data name="ObiFormStatusMsg_ExportingProject" xml:space="preserve">
-    <value>تصدير المشروع إلى {0}</value>
+    <value>جارٍ تصدير المشروع إلى {0}</value>
   </data>
   <data name="EachLevel" xml:space="preserve">
     <value>كل مستوى</value>
@@ -1179,7 +1180,7 @@
     <value>لا يستطيع Obi دعم اللغة {0}. تعذر تحديث خيارات المستخدم بما يناسب هذه اللغة</value>
   </data>
   <data name="Preferences_RestartForCultureChange" xml:space="preserve">
-    <value>يتعين إعادة تشغيل Obi لإجراء تغييرات اللغة وتفعيلها. يرجى حفظ أعمالك وأعد تشغيله.</value>
+    <value>يجب إعادة تشغيل Obi لتفعيل تغييرات اللغة. يرجى حفظ عملك ثم إعادة تشغيل Obi.</value>
   </data>
   <data name="Caption_Warning" xml:space="preserve">
     <value>تحذير!</value>
@@ -1191,13 +1192,13 @@
     <value>مسار العبارة {0} أكبر من إجمالي عدد العبارات في القسم. إذا كنت تريد الانتقال إلى مسار العبارة الأخيرة: {1} في القسم، اضغط "نعم"</value>
   </data>
   <data name="InvalidInput" xml:space="preserve">
-    <value>إدخال غير سليم. برجاء إدخال قيمة صحيحة</value>
+    <value>إدخال غير صالح. يرجى إدخال قيمة صحيحة.</value>
   </data>
   <data name="GoToPageOrPhrase_PageNumberLabel" xml:space="preserve">
     <value>ر&amp;قم الصفحة:</value>
   </data>
   <data name="GoToPageOrPhrase_PhraseIndexLabel" xml:space="preserve">
-    <value>مؤ&amp;شر العبارة :</value>
+    <value>&amp;فهرس العبارة:</value>
   </data>
   <data name="obi_DAISY2ExportPath_Description" xml:space="preserve">
     <value>مسار تصدير DAISY2.02</value>
@@ -1206,7 +1207,7 @@
     <value>مسار تصديرDAISY 3.0 </value>
   </data>
   <data name="AutoSave_Error" xml:space="preserve">
-    <value>خطأ في الحفظ على الملف الاحتياطي! إذا ظهرت هذه الرسالة مرة أخرى، يمكنك تعطيل الحفظ التلقائي من قائمة التفضيلات وكتابة تقرير عنها</value>
+    <value>خطأ في الحفظ إلى ملف النسخة الاحتياطية! إذا تكرر ظهور هذه الرسالة يمكنك تعطيل الحفظ التلقائي من التفضيلات والإبلاغ عن هذا الخلل.</value>
   </data>
   <data name="Default_DAISY2_02export_dirname" xml:space="preserve">
     <value>{0}DAISY 2.02 export</value>
@@ -1233,7 +1234,7 @@
     <value>معلومات</value>
   </data>
   <data name="RecordingResumePhrasesDeleted" xml:space="preserve">
-    <value>لم يتم العثور على العبارة المتوقفة مؤقتا! بدء التسجيل من الاختيار الحالي</value>
+    <value>غير قادر على العثور على عبارة متوقفة مؤقتًا! بدء التسجيل من التحديد الحالي.</value>
   </data>
   <data name="Find_ReachedInitialPoint" xml:space="preserve">
     <value>العثور على  نقطة بداية البحث</value>
@@ -1248,19 +1249,19 @@
     <value>دمج مجموعة العبارات</value>
   </data>
   <data name="GotoPageOrPhrase_EnterNumeric" xml:space="preserve">
-    <value>داخل غير سليم. برجاء إدخال قيمة عددية</value>
+    <value>إدخال غير صالح. يرجى إدخال قيمة رقمية.</value>
   </data>
   <data name="GotoPage_MissingVal" xml:space="preserve">
     <value>القيمة غير موجودة</value>
   </data>
   <data name="SelectPhraseDetection_EndOrStartValMoreThanSectionCount" xml:space="preserve">
-    <value>القيمة المبدئية أو النهائية أكبر من إجمالي عدد الأقسام</value>
+    <value>قيمة البداية أو النهاية أكبر من إجمالي عدد الأقسام</value>
   </data>
   <data name="SelectPhraseDetection_EndValIsSmallerThanStart" xml:space="preserve">
-    <value>القيمة النهائية أقل من القيمة المبدئية</value>
+    <value>قيمة النهاية أصغر من قيمة البداية.</value>
   </data>
   <data name="SelectPhraseDetection_MissingStartOrEndVal" xml:space="preserve">
-    <value>القيمة المبدئية أو النهائية غير موجودة</value>
+    <value>قيمة البداية أو النهاية مفقودة</value>
   </data>
   <data name="Preferences_PipelineScriptNotFound" xml:space="preserve">
     <value>تعذر العثور على أي سكريبت لبرنامج Pipeline  في هذا الموقع</value>
@@ -1275,22 +1276,22 @@
     <value>تنفيذ {0}</value>
   </data>
   <data name="StatusBar_RecordingInPhrase" xml:space="preserve">
-    <value> جاري تسجيل {0}</value>
+    <value> جارٍ تسجيل {0}</value>
   </data>
   <data name="MergePhrases_SizeLimitMessage" xml:space="preserve">
-    <value>لا يجب أن يكون زمن العبارة المدمجة أطول من {0} ] دقيقة. برجاء اختيار عدد أقل من العبارات لدمجها</value>
+    <value>مدة العبارة المدمجة لا يمكن أن تتجاوز {0} دقيقة. يرجى اختيار عدد أقل من العبارات للدمج.</value>
   </data>
   <data name="Metadata_CreatorNameForInitializing" xml:space="preserve">
-    <value>اسم المنشأ</value>
+    <value>اسم المنشئ</value>
   </data>
   <data name="Scroll_LoadingScreen" xml:space="preserve">
-    <value>جاري تحميل الشاشة</value>
+    <value>جارٍ تحميل الشاشة...</value>
   </data>
   <data name="DeleteFollowing_SectionSelection" xml:space="preserve">
-    <value>هذا سيعمل على مسح كافة العبارات بالقسم المختار. هل تود الاستمرار؟</value>
+    <value>سيؤدي هذا إلى حذف جميع العبارات في القسم المحدد. هل ترغب بالمتابعة؟</value>
   </data>
   <data name="NewProject_EmptyTitle" xml:space="preserve">
-    <value>لا يجب أن يكون المشروع بدون عنوان</value>
+    <value>لا يمكن أن يحتوي المشروع على عنوان فارغ.</value>
   </data>
   <data name="METADATA_DC_CONTRIBUTOR_HELP" xml:space="preserve">
     <value>الطرف الذي تعد مساهمته في هذا الإصدار ثانوية بالنسبة للوارد أسمائهم في الوثيقة:  dc:Creator</value>
@@ -1321,7 +1322,7 @@
     <value>الإشارة إلى المصادر ذات الصله</value>
   </data>
   <data name="METADATA_DC_RIGHTS_HELP" xml:space="preserve">
-    <value>معلومات حول الحقوق المتعلقة بالكتاب الرقمي الناطق dtb </value>
+    <value>معلومات حول الحقوق المتعلقة بالكتاب الرقمي الناطق DTB</value>
   </data>
   <data name="METADATA_DC_SOURCE_HELP" xml:space="preserve">
     <value>الإشارة إلى المصادر التي استمد منها الكتاب الرقمي الناطق</value>
@@ -1345,7 +1346,7 @@
     <value>اسم المنظمة أو المكتبة التي نشرت الكتاب الرقمي الناطق DTB</value>
   </data>
   <data name="METADATA_DTB_REVISION_DATE_HELP" xml:space="preserve">
-    <value>تاريخ مراجعة الكتاب: سنة-شهر-يوم</value>
+    <value>تاريخ مراجعة الكتاب. الصيغة YYYY[-MM[-DD]]</value>
   </data>
   <data name="METADATA_DTB_REVISION_DESC_HELP" xml:space="preserve">
     <value>إضافة وصف مختصر حول التعديلات. 
@@ -1395,16 +1396,16 @@
     <value>مدة الملف تتجاوز {0} دقائق. سيتم تقسيمه</value>
   </data>
   <data name="Import_AudioFormat_RenameFile" xml:space="preserve">
-    <value>تمت إعادة تسمية الملف {0} ليصبح {1} نظرا لوجود ملف بنفس الاسم في دليل المشروع</value>
+    <value>تمت إعادة تسمية الملف {0} إلى {1} لأن ملفًا بنفس الاسم موجود بالفعل في مجلد المشروع.</value>
   </data>
   <data name="ImportAudio_ConvertingFormat" xml:space="preserve">
-    <value>تشغيل الملفات قبل استيرادها</value>
+    <value>معالجة الملفات قبل الاستيراد</value>
   </data>
   <data name="StatusBar_LimitedPhrasesShown" xml:space="preserve">
-    <value>{0} (عدد محدود من العبارات المعروضة للتشغيل. انقر على العبارات الأخيرة لعرض المزيد)</value>
+    <value>{0} (يتم عرض عدد محدود من العبارات لتحسين الأداء. اضغط على آخر العبارات لإظهار المزيد)</value>
   </data>
   <data name="UnusedPhrasesDeletedFromProject" xml:space="preserve">
-    <value>مسح العبارات غير المستخدمة من المشروع</value>
+    <value>تم حذف العبارات غير المستخدمة من المشروع.</value>
   </data>
   <data name="GoToPageorPhrase_PageDonotExist" xml:space="preserve">
     <value>الصفحة غير موجودة</value>
@@ -1413,7 +1414,7 @@
     <value>النظام يعمل بحمل مرتفع، ننصح بمحاولة إجراء هذه العملية بعد مرور بعض الوقت. اضغط "لا" لإلغاء العملية</value>
   </data>
   <data name="SelectPhraseOrSection_ShowSection" xml:space="preserve">
-    <value>العبارة المطلوبة ليست موجودة في القسم الحالي. هل تريد عرض القسم الذي يحتوي على هذه العبارة</value>
+    <value>العبارة المطلوبة ليست موجودة في القسم الحالي. هل تريد عرض القسم الذي يحتوي على هذه العبارة؟</value>
   </data>
   <data name="KeyS_FastPlayNormalizeWithElapseBack" xml:space="preserve">
     <value>ضبط التشغيل السريع مع الزمن المنقضي</value>
@@ -1428,7 +1429,7 @@
     <value>زيادة معدل التشغيل السريع</value>
   </data>
   <data name="KeyS_FocusOnTransportBarTimeDisplay" xml:space="preserve">
-    <value>الوقوف على عرض الوقت</value>
+    <value>التركيز على عرض الوقت</value>
   </data>
   <data name="KeyS_MarkSelectionBeginTime" xml:space="preserve">
     <value>ضع علامة  اختيار زمن البداية</value>
@@ -1443,19 +1444,19 @@
     <value>ضع علامة الاختيار من المؤشر حتى النهاية</value>
   </data>
   <data name="KeyS_MoveToNextViewClockwise" xml:space="preserve">
-    <value>الانتقال إلى الرؤية التالية في اتجاه عقارب الساعة</value>
+    <value>الانتقال إلى العرض التالي باتجاه عقارب الساعة</value>
   </data>
   <data name="KeyS_MoveToPreviousViewAnticlockwise" xml:space="preserve">
-    <value>الانتقال إلى الرؤية التالية في عكس اتجاه عقارب الساعة</value>
+    <value>الانتقال إلى العرض السابق عكس اتجاه عقارب الساعة</value>
   </data>
   <data name="KeyS_PlayPauseUsingAudioCursor_Default" xml:space="preserve">
-    <value>تشغيل /توقف مؤقت باستخدام مؤشر الملف السمعي</value>
+    <value>تشغيل/إيقاف باستخدام مؤشر الصوت</value>
   </data>
   <data name="KeyS_PlayPauseUsingSelection" xml:space="preserve">
-    <value>تشغيل /توقف مؤقت باستخدام الاختيار</value>
+    <value>تشغيل/إيقاف باستخدام التحديد</value>
   </data>
   <data name="KeyS_PlaySelectedWaveform" xml:space="preserve">
-    <value>تشغيل الموجة المختارة</value>
+    <value>تشغيل الموجة الصوتية المحددة</value>
   </data>
   <data name="KeyS_ScrollDown_LargeIncrementWithSelection" xml:space="preserve">
     <value>التحرك لأسفل شاشة واحدة</value>
@@ -1470,7 +1471,7 @@
     <value>التحرك سطر لأعلى</value>
   </data>
   <data name="KeyS_SelectCompleteWaveform" xml:space="preserve">
-    <value>اختر موجة كاملة للعبارة</value>
+    <value>تحديد الموجة الصوتية الكاملة لعبارة</value>
   </data>
   <data name="KeyS_SelectFirstPhraseInStrip" xml:space="preserve">
     <value>اختر العبارة الأولي في القسم</value>
@@ -1509,7 +1510,7 @@
     <value>اختر العبارة السابقة</value>
   </data>
   <data name="KeyS_SelectPrecedingSpecialRolePhrase" xml:space="preserve">
-    <value>اختر عبارة الدور التالية الخاصة </value>
+    <value>تحديد العبارة ذات الدور الخاص السابقة</value>
   </data>
   <data name="KeyS_SelectPrecedingStrip" xml:space="preserve">
     <value>اختر القسم السابق في عرض المحتوى</value>
@@ -1524,7 +1525,7 @@
     <value>عرض خواص العقدة المختارة</value>
   </data>
   <data name="KeyS_ToggleBetweenContentViewAndTOCView" xml:space="preserve">
-    <value>التحرك ما بين عرض المحتوى ، وعرض جدول المحتويات</value>
+    <value>التبديل بين عرض المحتوى وعرض جدول المحتويات</value>
   </data>
   <data name="KeyS_TransportBarNextPage" xml:space="preserve">
     <value>الصفحة التالية في قائمة التشغيل</value>
@@ -1536,22 +1537,22 @@
     <value>القسم التالي في قائمة التشغيل</value>
   </data>
   <data name="KeyS_TransportBarNudgeBackward" xml:space="preserve">
-    <value>الدفع للخلف</value>
+    <value>إزاحة للخلف</value>
   </data>
   <data name="KeyS_TransportBarNudgeForward" xml:space="preserve">
-    <value>الدفع للأمام</value>
+    <value>إزاحة للأمام</value>
   </data>
   <data name="KeyS_TransportBarPreviewFromAudioCursor" xml:space="preserve">
-    <value>معاينة من مؤشر الملف السمعي</value>
+    <value>معاينة من مؤشر الصوت</value>
   </data>
   <data name="KeyS_TransportBarPreviewFromSelection" xml:space="preserve">
-    <value>معاينة من الاختيار</value>
+    <value>معاينة من التحديد</value>
   </data>
   <data name="KeyS_TransportBarPreviewUptoAudioCursor" xml:space="preserve">
-    <value>معاينة حتى مؤشر الملف السمعي</value>
+    <value>معاينة حتى مؤشر الصوت</value>
   </data>
   <data name="KeyS_TransportBarPreviewUptoSelection" xml:space="preserve">
-    <value>معاينة حتى الاختيار</value>
+    <value>معاينة حتى التحديد</value>
   </data>
   <data name="KeyS_TransportBarPreviousPage" xml:space="preserve">
     <value>الصفحة السابقة في قائمة التشغيل</value>
@@ -1563,16 +1564,16 @@
     <value>القسم السابق في قائمة التشغيل</value>
   </data>
   <data name="KeyboardShortcut_DuplicateMessage" xml:space="preserve">
-    <value>المفاتيح المختصرة بلوحة المفاتيح موجودة بالفعل. يرجى تعيين مفتاح آخر أو مجموعة مفاتيح</value>
+    <value>اختصار لوحة المفاتيح مستخدم بالفعل. يرجى تعيين مفتاح آخر أو مجموعة مفاتيح أخرى</value>
   </data>
   <data name="KeyboardShortcuts_ErrorInLoadingConfiguredKeys" xml:space="preserve">
-    <value>خطأ في تحاميل المفاتيح المختصرة المعرفة. افتراضات التحميل</value>
+    <value>خطأ في تحميل اختصارات لوحة المفاتيح المهيأة. سيتم تحميل الإعدادات الافتراضية.</value>
   </data>
   <data name="AudioFileExport_progress_dialog_title" xml:space="preserve">
-    <value>تصدير ملف سمعي</value>
+    <value>جارٍ المعالجة......</value>
   </data>
   <data name="OpenProject_progress_dialog_title" xml:space="preserve">
-    <value>فتح مشروع</value>
+    <value>جارٍ فتح المشروع... يرجى الانتظار</value>
   </data>
   <data name="RecordingToolBar_StatusPlaying" xml:space="preserve">
     <value>تشغيل {0} {1}</value>
@@ -1593,10 +1594,10 @@
     <value>قسم جديد</value>
   </data>
   <data name="RecToolbar_Recording" xml:space="preserve">
-    <value>تسجيل {0} {1}</value>
+    <value>جارٍ التسجيل {0} {1}</value>
   </data>
   <data name="RecToolbar_Title" xml:space="preserve">
-    <value>شريط تسجيل Obi</value>
+    <value>شريط مسجل Obi: ‏{0}</value>
   </data>
   <data name="bookmark_closed_project_caption" xml:space="preserve">
     <value>غلق مشروع</value>
@@ -1608,10 +1609,10 @@
     <value>استخدم قيم افتراضية</value>
   </data>
   <data name="SelectDeselectAllSections" xml:space="preserve">
-    <value>اختيار/عدم اختيار كل الأقسام</value>
+    <value>تحديد / إلغاء تحديد كل الأقسام</value>
   </data>
   <data name="upgrade_obi_to_new_version" xml:space="preserve">
-    <value>تم إنشاء المشروع باستخدام النسخة السابقة من Obi، سيتم تحديثه طبقا لأحدث نسخة. يرجى الضغط على "موافق" للاستمرار</value>
+    <value>تم إنشاء المشروع في إصدار سابق من Obi. سيتم ترقيته إلى أحدث إصدار. يرجى الضغط على موافق للمتابعة</value>
   </data>
   <data name="upgrading_obi" xml:space="preserve">
     <value>تحديث مشروع</value>
@@ -1620,85 +1621,85 @@
     <value>http://daisy.trac.cvsdude.com/obi/wiki/documentation/Obi2.0_FeaturesExplanation</value>
   </data>
   <data name="Cleanup_WaveformLoadingWarning" xml:space="preserve">
-    <value>تحميل موجة... إمكانية فتح بعض الملفات السمعية وينصح المحاولة بعد مرور بعض الوقت. يرجى الضغط على زر "لا" للانتظار</value>
+    <value>جارٍ تحميل الموجة الصوتية... قد تكون بعض تدفقات الملفات الصوتية مفتوحة. يُوصى بشدة بالمحاولة بعد بعض الوقت. يرجى الضغط على "لا" للانتظار.</value>
   </data>
   <data name="ImportProject_OverwriteProjectMsg" xml:space="preserve">
-    <value>ملف المشروع موجود بالفعل في الموقع المحدد. هل تريد الكتابة على المشروع القائم؟</value>
+    <value>ملف المشروع موجود بالفعل في الموقع المحدد. هل ترغب في الكتابة فوق المشروع الموجود؟</value>
   </data>
   <data name="no_audio" xml:space="preserve">
-    <value>البند المختار لا يحتوى على ملفات سمعية</value>
+    <value>العنصر المحدد لا يحتوي على صوت</value>
   </data>
   <data name="DAISY3_ObiImport_ErrorsList_error_no_audio" xml:space="preserve">
     <value>لا يوجد صوت في العبارة</value>
   </data>
   <data name="DAISY3_ObiImport_ErrorsList_expected_clip_end" xml:space="preserve">
-    <value>نهاية مقطع متوقعة</value>
+    <value>نهاية المقطع المتوقعة:</value>
   </data>
   <data name="DAISY3_ObiImport_ErrorsList_imported_clip_end" xml:space="preserve">
-    <value>نهاية مقطع مستدعاة</value>
+    <value>نهاية المقطع المستورد:</value>
   </data>
   <data name="DAISY3_ObiImport_ErrorsList_in_section" xml:space="preserve">
     <value>في القسم:</value>
   </data>
   <data name="DAISY3_ObiImport_ErrorsList_truncated_audio" xml:space="preserve">
-    <value>ملف سمعي مقتطع</value>
+    <value>معاينة من مؤشر الصوت</value>
   </data>
   <data name="DAISY3_ObiImport_ErrorsList_truncated_audio_in_phrase" xml:space="preserve">
-    <value>مقطع سمعي مقتطع في العبارة</value>
+    <value>معاينة من التحديد</value>
   </data>
   <data name="import_cancelled" xml:space="preserve">
-    <value>إلغاء الاستيراد</value>
+    <value>معاينة حتى مؤشر الصوت</value>
   </data>
   <data name="Report_for_import" xml:space="preserve">
-    <value>طلب الاستيراد</value>
+    <value>معاينة حتى التحديد</value>
   </data>
   <data name="AudioFileImport_ProcessingFiles" xml:space="preserve">
-    <value>تحميل الملفات السمعية للاستيراد</value>
+    <value>الصفحة السابقة في قائمة التشغيل</value>
   </data>
   <data name="SaveAs_cannot_save_in_root" xml:space="preserve">
-    <value>لا يمكن حفظ الملف في الموقع: {0}. من فضلك اختر موقع آخر</value>
+    <value>العبارة السابقة في قائمة التشغيل</value>
   </data>
   <data name="backup_file_missing" xml:space="preserve">
-    <value>تعذر الاسترداد. لم يتم العثور على ملف احتياطي</value>
+    <value>القسم السابق في قائمة التشغيل</value>
   </data>
   <data name="information_caption" xml:space="preserve">
-    <value>معلومات</value>
+    <value>اختصار لوحة المفاتيح مستخدم بالفعل. يرجى تعيين مفتاح آخر أو مجموعة مفاتيح أخرى</value>
   </data>
   <data name="Save_current_state_caption" xml:space="preserve">
-    <value>حفظ الحالة الحالية؟</value>
+    <value>خطأ في تحميل اختصارات لوحة المفاتيح المهيأة. سيتم تحميل الإعدادات الافتراضية.</value>
   </data>
   <data name="restored_project_name" xml:space="preserve">
-    <value>مشروع مسترد. Obi</value>
+    <value>جارٍ المعالجة......</value>
   </data>
   <data name="save_current_state" xml:space="preserve">
-    <value>هذه العملية ستقوم بحفظ الحالة الحالية للمشروع. لن تتمكن من إعادة المشروع الأصلي بعد ذلك. هل تريد الاستمرار؟</value>
+    <value>جارٍ فتح المشروع... يرجى الانتظار</value>
   </data>
   <data name="open_from_backup_file" xml:space="preserve">
     <value>سيتم فتح المشروع من الملف الاحتياطي. هل تريد الاستمرار؟</value>
   </data>
   <data name="AudioFormatConverter_Error_FileExtentionNodSupported" xml:space="preserve">
-    <value>لم يتم التعرف على الملف السمعي. يتم فقط دعم الملفات بامتداد: .wave ، وmp3. تجاوز استدعاء {0}  </value>
+    <value>تنسيق الصوت غير معرّف. الملفات المدعومة فقط هي ‎.wav و ‎.mp3 و ‎.mp4. سيتم تجاوز استيراد الملفات التالية: {0}</value>
   </data>
   <data name="Load_Original_Project" xml:space="preserve">
-    <value>تحميل المشروع الأصلي</value>
+    <value>جارٍ تحميل المشروع الأصلي</value>
   </data>
   <data name="Open_Backup_file" xml:space="preserve">
-    <value>الفتح من الملف الاحتياطي</value>
+    <value>جارٍ الفتح من ملف النسخة الاحتياطية</value>
   </data>
   <data name="Save_Restore_Project" xml:space="preserve">
-    <value>حفظ المشروع المسترد</value>
+    <value>جارٍ حفظ المشروع المستعاد</value>
   </data>
   <data name="error_in_opening" xml:space="preserve">
     <value>خطأ في الفتح</value>
   </data>
   <data name="opening_project" xml:space="preserve">
-    <value>فتح المشروع</value>
+    <value>جارٍ فتح المشروع {0}</value>
   </data>
   <data name="waveform_is_truncated" xml:space="preserve">
-    <value>تم اقتطاع الموجة عند S{0}</value>
+    <value>تم اقتطاع الموجة الصوتية عند {0} ثانية</value>
   </data>
   <data name="GoToPageOrPhrase_Time" xml:space="preserve">
-    <value>الزمن في:</value>
+    <value>الوقت عند:</value>
   </data>
   <data name="no_phrases_in_section" xml:space="preserve">
     <value>لا توجد عبارات في هذا القسم</value>
@@ -1707,7 +1708,7 @@
     <value>يرجى اختيار عبارة</value>
   </data>
   <data name="select_phrase_or_section" xml:space="preserve">
-    <value>يرجى اختيار بعض العبارات أو الاقسام</value>
+    <value>يرجى اختيار عبارة أو قسم</value>
   </data>
   <data name="time_exceeds_duration_phrase" xml:space="preserve">
     <value>الوقت يتجاوز مدة العبارة</value>
@@ -1716,13 +1717,13 @@
     <value>الوقت يتجاوز مدة القسم</value>
   </data>
   <data name="AudioTab_AllowOverwrite" xml:space="preserve">
-    <value>إتاحة إعادة التسجيل ى الملف الموجود أثناء التسجيل</value>
+    <value>السماح بالكتابة فوق أثناء التسجيل</value>
   </data>
   <data name="AudioTab_AudioClues" xml:space="preserve">
-    <value>مفاتيح الملف السمعي</value>
+    <value>تلميحات صوتية</value>
   </data>
   <data name="AudioTab_PreviewBeforeRecording" xml:space="preserve">
-    <value>المعاينة قبل التسجيل</value>
+    <value>استخدم زر التسجيل للمعاينة قبل التسجيل</value>
   </data>
   <data name="AudioTab_RecordDirectlyFromTransportBar" xml:space="preserve">
     <value>قم بالتسجيل دائما مباشرة من شريط النقل</value>
@@ -1731,13 +1732,13 @@
     <value>الاحتفاظ بالصمت المبدئي أثناء التقسيم التلقائي</value>
   </data>
   <data name="AudioTab_StartRecordingFromCursor" xml:space="preserve">
-    <value>إبدأ التسجيل من المؤشر الذي يمحو الملف السمعي التالي</value>
+    <value>ابدأ التسجيل من المؤشر مع مسح الصوت التالي</value>
   </data>
   <data name="ProjectTab_AutoSaveWhenRecordingEnds" xml:space="preserve">
     <value>الحفظ التلقائي لإنشاء ملف احتياطي عند الانتهاء من التسجيل</value>
   </data>
   <data name="ProjectTab_FixContentViewWidth" xml:space="preserve">
-    <value>ضبط عرض المحتوى</value>
+    <value>تثبيت عرض نافذة المحتوى</value>
   </data>
   <data name="ProjectTab_OpenLastProject" xml:space="preserve">
     <value>فتح آخر مشروع</value>
@@ -1746,19 +1747,19 @@
     <value>اختر مرجعية عند إعادة فتح المشروع</value>
   </data>
   <data name="ProjectTab_OptimizeMemory" xml:space="preserve">
-    <value>الاستفادة من الذاكرة بالكامل</value>
+    <value>تحسين استخدام الذاكرة</value>
   </data>
   <data name="ProjectTab_DeleteUnusedFilesAfterCleanUp" xml:space="preserve">
     <value>مسح الملفات غير المستخدمة بعد التنظيف</value>
   </data>
   <data name="Preferences_UnableToUpdateProjectAudioFormat" xml:space="preserve">
-    <value>تعذر تحديث الملفات السمعية للمشروع الحالي</value>
+    <value>تعذر تحديث الملفات الصوتية للمشروع الحالي</value>
   </data>
   <data name="AudioTab_Limit max phrase duration to 50 minutes" xml:space="preserve">
-    <value>يجب تحديد الحد الاقصى لزمن العبارة بحيث لا يزيد عن 50 دقيقة</value>
+    <value>تحديد الحد الأقصى لمدة العبارة بـ 50 دقيقة</value>
   </data>
   <data name="Audio_ShowLiveWaveformWhileRecording" xml:space="preserve">
-    <value>عرض الموجة الحية أثناء التسجيل</value>
+    <value>إظهار الموجة الصوتية المباشرة أثناء التسجيل</value>
   </data>
   <data name="KeyboardShortcuts_TextboxAccessibleName" xml:space="preserve">
     <value>المفاتيح المختصرة  {0}: (اضغط مجموعة المفاتيح)</value>
@@ -1773,7 +1774,7 @@
     <value>ارساء</value>
   </data>
   <data name="Associate_next_phrase" xml:space="preserve">
-    <value>لن يتم مسح العبارة التي يمكن الاستغناء عنها. العبارة التالية سوف تصبح عبارة مرجعية. هل تريد الاستمرار؟</value>
+    <value>سيتم حذف العبارة القابلة للتجاوز المشار إليها. ستصبح العبارة التالية هي العبارة المشار إليها. هل تريد المتابعة؟</value>
   </data>
   <data name="Associate_node_with_anchor_node" xml:space="preserve">
     <value>لا توجد عبارة خاصة ترتبط بعقدة الارساء. يرجى ربط عقدة بعقدة الارساء هذه.</value>
@@ -1857,7 +1858,7 @@
     <value>تعذر مسح العملية</value>
   </data>
   <data name="ProjectViewFormMsg_ExportingAudioFail" xml:space="preserve">
-    <value>تعذر تصدير الملف السمعي</value>
+    <value>تعذر تصدير الملف الصوتي</value>
   </data>
   <data name="ProjectViewFormMsg_MergeOperationFail" xml:space="preserve">
     <value>تعذر الدمج</value>
@@ -1887,7 +1888,7 @@
     <value>التنقل الدقيق</value>
   </data>
   <data name="Error_Message" xml:space="preserve">
-    <value>الملفات السمعية المتوافقة مع بيانات الهوية التالية غير موجودة</value>
+    <value>الملفات الصوتية المتوافقة مع بيانات الهوية التالية غير موجودة</value>
   </data>
   <data name="Warning" xml:space="preserve">
     <value>تحذير!</value>
@@ -1899,7 +1900,7 @@
     <value>إجمالي عدد العبارات لكل الأقسام يتجاوز 7000. سيتم فقط دمج الأقسام وصولا إلى القسم {0}</value>
   </data>
   <data name="merged_sections" xml:space="preserve">
-    <value>الأقسام المدمجة ستكون من {0} إلى {1}</value>
+    <value>الأقسام المحددة من {0} إلى {1}</value>
   </data>
   <data name="not_enough_sections_to_merge" xml:space="preserve">
     <value>لا يوجد قسم كاف للدمج. اختر قسمين متصلين على الأقل</value>
@@ -1917,25 +1918,25 @@
     <value>اختيار {0}  . اختر قسم واحد آخر على الأقل للدمج</value>
   </data>
   <data name="ProjectViewMsg_LogFileCreatedOnDesktop" xml:space="preserve">
-    <value>انتهاء العملية السابقة لـ Obi فجأة. تم إنشاء ملف الدخول ObiSession على سطح المكتب</value>
+    <value>تم إنهاء الجلسة السابقة من Obi بشكل مفاجئ. تم إنشاء ملف السجل ObiSession.log على سطح المكتب</value>
   </data>
   <data name="AssociateNode_Section" xml:space="preserve">
     <value>قسم</value>
   </data>
   <data name="AssociateNode_SelectedSection" xml:space="preserve">
-    <value>قسم</value>
+    <value>=&gt;&gt; قسم</value>
   </data>
   <data name="LimitedDiskSpaceWarning" xml:space="preserve">
-    <value>نظام التشغيل الخاص بك يحتوي على عدد أقل من {0} ميجا بايت وهي المساحة المتبقية على القرص. هل تود الاستمرار؟</value>
+    <value>مساحة القرص المتبقية على نظامك أقل من {0} ميغابايت. هل تريد المتابعة؟</value>
   </data>
   <data name="Memory_Warning" xml:space="preserve">
     <value>معلومات حول مساحة القرص</value>
   </data>
   <data name="KeyS_ContractAudioSelectionAtLeft" xml:space="preserve">
-    <value>قصر التحديد السمعي  على الجانب الأيسر</value>
+    <value>قصر التحديد الصوتي  على الجانب الأيسر</value>
   </data>
   <data name="KeyS_ExpandAudioSelectionAtLeft" xml:space="preserve">
-    <value>توسيع نطاق التحديد السمعي على الجانب الأيسر</value>
+    <value>توسيع نطاق التحديد الصوتي على الجانب الأيسر</value>
   </data>
   <data name="Recording_RecordInNextExistingEmptyPage" xml:space="preserve">
     <value>التسجيل في الصفحة الفارغة الموجودة التالية</value>
@@ -1944,16 +1945,16 @@
     <value>هل تريد حذف عقدة الارساء التي تشير إلى الملاحظات التي يمكن تجاوزها؟</value>
   </data>
   <data name="Elapsed" xml:space="preserve">
-    <value>المنقضي</value>
+    <value>الوقت المنقضي</value>
   </data>
   <data name="ElapsedInSection" xml:space="preserve">
-    <value>المنقضي في القسم</value>
+    <value>الوقت المنقضي في القسم</value>
   </data>
   <data name="ElapsedInProject" xml:space="preserve">
-    <value>المنقضي في المشروع</value>
+    <value>الوقت المنقضي في المشروع</value>
   </data>
   <data name="ElapsedInPhrase" xml:space="preserve">
-    <value>المنقضي في العبارة</value>
+    <value>الوقت المنقضي في العبارة</value>
   </data>
   <data name="RemainingInPhrase" xml:space="preserve">
     <value>المتبقي في العبارة</value>
@@ -1971,16 +1972,16 @@
     <value>تعذر العثور على صفحات فارغة لإنتاج الحديث</value>
   </data>
   <data name="SpeechGenerationProgress" xml:space="preserve">
-    <value>جاري إنتاج النص المسموع...</value>
+    <value>جارٍ إنتاج النص المسموع...</value>
   </data>
   <data name="Audio_DetectPhrasesWhileRecording" xml:space="preserve">
     <value>تفعيل التقسيم التلقائي للعبارة أثناء التسجيل</value>
   </data>
   <data name="ProjectView_ErrorReplacingAudioDueToTimingMissmatch" xml:space="preserve">
-    <value>تعذر استبدال المقطع الصوتي بسبب عدم التوافق مع طوله: الزمن الأصلي هو {0}: .زمن الملف الجديد {1}</value>
+    <value>تعذّر استبدال الصوت بسبب اختلاف طول الملف: المدة الأصلية {0} : مدة الملف الجديد {1}</value>
   </data>
   <data name="AudioPref_LivePhraseDetectionEnable" xml:space="preserve">
-    <value>سيتم استخدام القيم التالية لتفعيل خاصية التقسيم التلقائي للعبارات بشكل مباشر؛ الحد: {0}، الفجوة بين العبارات: {1}، الصمت الأولي: {2}. يمكنك تعديل خيارات الضبط هذه من مبرع تفضيلات الملفات السمعية، أو استخلاصها من عبارة الصمت.</value>
+    <value>سيتم استخدام القيم التالية لتفعيل خاصية التقسيم التلقائي للعبارات بشكل مباشر؛ الحد: {0}، الفجوة بين العبارات: {1}، الصمت الأولي: {2}. يمكنك تعديل خيارات الضبط هذه من مبرع تفضيلات الملفات الصوتية، أو استخلاصها من عبارة الصمت.</value>
   </data>
   <data name="ProjectTab_EnableFreeDiskSpaceCheck" xml:space="preserve">
     <value>تفعيل خاصية التحقق من مساحة القرص المتاحة</value>
@@ -1995,7 +1996,7 @@
     <value>المراقبة المستمرة</value>
   </data>
   <data name="Audio_MergeFirstTwoPhrasesInPhraseDetection" xml:space="preserve">
-    <value>دمج العبارتين الأوليين اللتين تم اكتشافهما من خلال خاصية القسيم التلقائي للعبارة</value>
+    <value>دمج أول عبارتين يتم اكتشافهما عبر اكتشاف العبارات</value>
   </data>
   <data name="KeyS_TransportBarStopSingleKey" xml:space="preserve">
     <value>التوقف: مفتاح واحد مختصر</value>
@@ -2013,7 +2014,7 @@
     <value>التحقق من وجود التحديثات</value>
   </data>
   <data name="DeleteUnused_NoUnusedPhraseFoundToDelete" xml:space="preserve">
-    <value>لم يتم العثور على عبارات غير مستخدمة لمسحها</value>
+    <value>لم يتم العثور على أي عبارة غير مستخدمة للحذف.</value>
   </data>
   <data name="ImportErrorCorrectionText" xml:space="preserve">
     <value>مع بعض تصحيحات الخطأ</value>
@@ -2025,31 +2026,31 @@
     <value>يرجى الاختيار من الخيارات التالية. {0}</value>
   </data>
   <data name="CheckUpdate_UpdateProcessActive" xml:space="preserve">
-    <value>خاصية تحديث التحقق من العملية مفعل</value>
+    <value>عملية التحقق من التحديث قيد التنفيذ بالفعل.</value>
   </data>
   <data name="HardReset_Caption" xml:space="preserve">
-    <value>تفضيلات إعادة ضبط الجزء الصلب</value>
+    <value>إعادة ضبط كاملة للتفضيلات</value>
   </data>
   <data name="HardResetSettings_ConfirmAgain" xml:space="preserve">
-    <value>يرجى التأكيد مرة أخرى</value>
+    <value>يرجى التأكيد مرة أخرى.</value>
   </data>
   <data name="HardResetSettings_Question" xml:space="preserve">
-    <value>تؤدي هذه العملية إلى إعادة ضبط كافة التفضيلات بما فيها المفاتيح المختصرة. هل تريد الاستمرار؟</value>
+    <value>ستؤدي هذه العملية إلى إعادة ضبط جميع التفضيلات بما في ذلك اختصارات لوحة المفاتيح. هل تريد المتابعة؟</value>
   </data>
   <data name="String2" xml:space="preserve">
-    <value>إعادة ضبط كافة التفضيلات</value>
+    <value>إعادة ضبط جميع التفضيلات</value>
   </data>
   <data name="KeyS_HardResetAllSettings" xml:space="preserve">
-    <value>إعادة الضبط</value>
+    <value>إعادة ضبط جميع الإعدادات</value>
   </data>
   <data name="ReplaceCorruptPhrasesWithEmptyNode_Question" xml:space="preserve">
-    <value>إجمالي عدد العبارات هو {0}، منها العبارات التي تحتوي على مقاطع سمعية مهملة أو غير موجودة {1}. ينصح باستبدال هذه العبارات بعيارات فارغة بعلامة (ما يجب عمله). هل تريد الاستمرار؟</value>
+    <value>إجمالي عدد العبارات هو {0}، من بينها العبارات التي تحتوي على صوت ضئيل أو مراجع صوت مفقودة هو {1}. يُوصى باستبدال هذه العبارات بعبارات فارغة مع علامات "قيد التنفيذ". هل ترغب في المتابعة؟</value>
   </data>
   <data name="ReplacePhrasesWithEmptyNode" xml:space="preserve">
-    <value>استبدال العبارات التي تحتوي على مقاطع صوتية فاسدة وعبارات فارغة</value>
+    <value>استبدال العبارات ذات الصوت التالف بعبارات فارغة</value>
   </data>
   <data name="ReplaceCorruptPhrasesWithEmptyNode_NothingFound" xml:space="preserve">
-    <value>لم يتم العثور على عبارات بها مقاطع فاسدة</value>
+    <value>لم يتم العثور على أي عبارة بصوت تالف.</value>
   </data>
   <data name="Obi_UserInformationText" xml:space="preserve">
     <value>برجاء ملأ النموذج التالي لتسجيل نفسك كمستخدم لبرنامج Obi (مجانا/أداة انتاج ديزيDAISY  كمصدر مفتوح). سيمكنك من خلال عملية التسجيل هذه من تلقي أحدث الأخبار وتحديثات المنتج في صندوق الوارد بشكل مباشر. هذا بالإضافة إلى إنك سوف تستطيع أن تؤدي دورا محوريا في تقديم التوجهات المستقبلية المتعلقة بالمنتج حيث ستمكننا من فهم متطلباتك على نحو أفضل. يرجى التأكد من أن جهاز الحاسب الآلي متصل بالانترنت أثناء التسجيل. بالنسبة للمستخدمين الحاليين، يرجى التسجيل مرة أخرى نظرا لأنه سيتم حفظ عملية التسجيل هذه بشكل دائم للنسخ القادمة من Obi. </value>
@@ -2061,58 +2062,55 @@
     <value>تعذر تحميل معلومات تسجيل المستخدمين في محاولات {0}. يرجى إرسال بريد إلكتروني إلى obi.feedback.com للتسجيل</value>
   </data>
   <data name="UserRegistrationBtn_DoNotRemind" xml:space="preserve">
-    <value>لا أحتاج للتذكرة</value>
+    <value>لا تذكرني</value>
   </data>
   <data name="CheckUpdates_NewVersionNotAvailable" xml:space="preserve">
-    <value>آخر تحقق من التحديث كان يتعلق بالنسخة {0}. لم يتم إصدار نسخة جديدة بعد.</value>
+    <value>أنت تستخدم أحدث إصدار من Obi</value>
   </data>
   <data name="CheckUpdates_GoToDownloadPage" xml:space="preserve">
-    <value>ال&amp;ذهاب إلى صفحة التحميل</value>
+    <value>انتقال إلى صفحة التحميل (&amp;Go)</value>
   </data>
   <data name="Confirm_Setting" xml:space="preserve">
-    <value>العملية تمت بنجاح. يرجى إعادة تشغيل Obi لتحميل خيارات الضبط الافتراضية</value>
+    <value>تمت العملية بنجاح. يرجى إعادة تشغيل Obi لتحميل الإعدادات الافتراضية.</value>
   </data>
-  <!--<data name="StatusForMergeSection" xml:space="preserve">
-    <value>عرض القسم {1} إلى {0). يرجى اختيار أقسام لدمجها.</value>
-  </data>-->
   <data name="StatusForMergeSection" xml:space="preserve">
-    <value>Showing section {0} to {1}. Please select sections to merge.</value>
+    <value>عرض القسم {0} إلى {1}. يرجى تحديد أقسام للدمج أو تغيير المستوى.</value>
   </data>
   <data name="KeyS_ZoomWaveformPanel" xml:space="preserve">
-    <value>عرض لوحة تكبير الموجة</value>
+    <value>إظهار لوحة تكبير الموجة الصوتية</value>
   </data>
   <data name="KeyS_CloseZoomPanel" xml:space="preserve">
-    <value>غلق لوحة التكبير </value>
+    <value>إغلاق لوحة التكبير</value>
   </data>
   <data name="KeyS_ResetZoomPanel" xml:space="preserve">
     <value>إعادة ضبط لوحة التكبير </value>
   </data>
   <data name="KeyS_ZoomInWaveform" xml:space="preserve">
-    <value>تكبير الموجة</value>
+    <value>تكبير الموجة الصوتية</value>
   </data>
   <data name="KeyS_ZoomOutWaveform" xml:space="preserve">
-    <value>تصغير الموجة</value>
+    <value>تصغير الموجة الصوتية</value>
   </data>
   <data name="KeyS_ZoomSelectedWaveform" xml:space="preserve">
-    <value>التحكم في حجم الموجة &amp; اختيار الموجه</value>
+    <value>تكبير الموجة المحددة</value>
   </data>
   <data name="KeyS_NextPhrase" xml:space="preserve">
-    <value>البدء في تسجيل الصفحة التالية</value>
+    <value>إظهار العبارة التالية</value>
   </data>
   <data name="KeyS_PreviousPhrase" xml:space="preserve">
-    <value>البدء في تسجيل الصفحة السابقة</value>
+    <value>إظهار العبارة السابقة</value>
   </data>
   <data name="Project_ShowWaveformsInContentView" xml:space="preserve">
-    <value>عرض الموجات في خاصية رؤية المحتوى</value>
+    <value>إظهار الموجات الصوتية في عرض المحتوى</value>
   </data>
   <data name="Project_AlwaysIgnoreIndentationForExportFiles" xml:space="preserve">
-    <value>تجاهل دائما الفجوات بالنسبة لملفات تصدير ديزي</value>
+    <value>تجاهل المسافات البادئة دائمًا لملفات التصدير DAISY</value>
   </data>
   <data name="ZoomAudioTT_ShowNextPhrase" xml:space="preserve">
-    <value>عرض العبارة التالية</value>
+    <value>إظهار العبارة التالية</value>
   </data>
   <data name="ZoomAudioTT_ShowPreviousPhrase" xml:space="preserve">
-    <value>عرض العبارة السابقة</value>
+    <value>إظهار العبارة السابقة</value>
   </data>
   <data name="ZoomAudioTT_ZoomIn" xml:space="preserve">
     <value>تكبير </value>
@@ -2124,13 +2122,13 @@
     <value>اختيار خاصية التحكم في التكبير </value>
   </data>
   <data name="ZoomAudioTT_Close" xml:space="preserve">
-    <value>غلق  </value>
+    <value>إغلاق</value>
   </data>
   <data name="ZoomAudioTT_Reset" xml:space="preserve">
     <value>إعادة الضبط</value>
   </data>
   <data name="ProjectView_GenarteSpeechForAllPages" xml:space="preserve">
-    <value>تم إنتاج الحديث لجميع الصفحات</value>
+    <value>تم توليد الكلام للصفحات</value>
   </data>
   <data name="EditAudioTT_Cut" xml:space="preserve">
     <value>قص </value>
@@ -2142,7 +2140,7 @@
     <value>لصق</value>
   </data>
   <data name="EditAudioTT_Delete" xml:space="preserve">
-    <value>مسح </value>
+    <value>حذف</value>
   </data>
   <data name="EditAudioTT_Merge" xml:space="preserve">
     <value>الدمج مع العبارة التالية</value>
@@ -2166,16 +2164,16 @@
     <value>لم يتم العثور على أى قسم في المشروع الأساسي</value>
   </data>
   <data name="MergeProject_progress_dialog_title" xml:space="preserve">
-    <value>دمج المشروع {0} من {1}</value>
+    <value>جارٍ دمج المشروع {0} من {1}...</value>
   </data>
   <data name="MergeProject_SectionProgress" xml:space="preserve">
     <value>دمج القسم: {0}</value>
   </data>
   <data name="Project_BackgroundColorForEmptySection" xml:space="preserve">
-    <value>لون الخلفية للأقسام الفارغة في عرض جدول المحتويات</value>
+    <value>تسليط الضوء على الأقسام الفارغة في عرض جدول المحتويات</value>
   </data>
   <data name="Obi_ProjectMerge" xml:space="preserve">
-    <value>يرجى اختيار المشروع للدمج</value>
+    <value>يرجى تحديد مشروع للدمج</value>
   </data>
   <data name="Obi_ProjectMergeFilter" xml:space="preserve">
     <value>ملف مشروع Obi(*.obi)|*.obi</value>
@@ -2202,7 +2200,7 @@
     <value>عنوان بريد الكتروني غير صحيح</value>
   </data>
   <data name="UserRegistration_NoMatchEmail" xml:space="preserve">
-    <value>عناوين البريد الألكتروني التي تم إدخالها غير متوافقة. يرجى إعادة كتابة عناوين البريد الالكتروني</value>
+    <value>البريد الإلكتروني المدخل غير متطابق. يرجى إعادة كتابته.</value>
   </data>
   <data name="UserRegistration_IndiacateUsage" xml:space="preserve">
     <value>يرجى إفادتنا بشأن استخدامك لبرنامج Obi من خلال اختيار أى من أزرار الراديو</value>
@@ -2214,201 +2212,874 @@
     <value>إعادة ترقيم الصفحات  </value>
   </data>
   <data name="Transport_PreviousPhrase" xml:space="preserve">
-    <value>Preceding phrase</value>
+    <value>العبارة السابقة</value>
   </data>
   <data name="Transport_PreviousSection" xml:space="preserve">
-    <value>Preceding section</value>
+    <value>القسم السابق</value>
   </data>
   <data name="Transport_PreviousPage" xml:space="preserve">
-    <value>Preceding page</value>
+    <value>الصفحة السابقة</value>
   </data>
   <data name="Transport_FastPlayBackward" xml:space="preserve">
-    <value>Play backward at faster speed.</value>
+    <value>تشغيل للخلف بسرعة أكبر</value>
   </data>
   <data name="Transport_StartPlayback" xml:space="preserve">
-    <value>Start or resume audio playback</value>
+    <value>بدء أو استئناف تشغيل الصوت</value>
   </data>
   <data name="Transport_StopPlayback" xml:space="preserve">
-    <value>Stop audio playback or recording</value>
+    <value>إيقاف تشغيل الصوت أو التسجيل</value>
   </data>
   <data name="Transport_StartRecording" xml:space="preserve">
-    <value>Start monitoring or recording</value>
+    <value>بدء المراقبة أو التسجيل</value>
   </data>
   <data name="Transport_FastPlayForward" xml:space="preserve">
-    <value>Play forward at faster speed</value>
+    <value>تشغيل للأمام بسرعة أكبر</value>
   </data>
   <data name="Transport_NextPhrase" xml:space="preserve">
-    <value>Next phrase</value>
+    <value>العبارة التالية</value>
   </data>
   <data name="Transport_NextPage" xml:space="preserve">
-    <value>Next page</value>
+    <value>الصفحة التالية</value>
   </data>
   <data name="Transport_NextSection" xml:space="preserve">
-    <value>Next section</value>
+    <value>القسم التالي</value>
   </data>
   <data name="Transport_AddTodo" xml:space="preserve">
-    <value>Add a TODO mark while recording</value>
+    <value>إضافة علامة TODO أثناء التسجيل</value>
   </data>
   <data name="Transport_PreviousPhraseAcc" xml:space="preserve">
-    <value>Previous phrase</value>
+    <value>العبارة السابقة</value>
   </data>
   <data name="Transport_PreviousSectionAcc" xml:space="preserve">
-    <value>Previous section</value>
+    <value>القسم السابق</value>
   </data>
   <data name="Transport_PreviousPageAcc" xml:space="preserve">
-    <value>Previous page</value>
+    <value>الصفحة السابقة</value>
   </data>
   <data name="Transport_FastPlayBackwardAcc" xml:space="preserve">
-    <value>Rewind</value>
+    <value>إرجاع</value>
   </data>
   <data name="Transport_StartPlaybackAcc" xml:space="preserve">
-    <value>Play</value>
+    <value>تشغيل</value>
   </data>
   <data name="Transport_StartPausebackAcc" xml:space="preserve">
-    <value>Pause</value>
+    <value>إيقاف مؤقت</value>
   </data>
   <data name="Transport_StopPlaybackAcc" xml:space="preserve">
-    <value>Stop</value>
+    <value>إيقاف</value>
   </data>
   <data name="Transport_FastPlayForwardAcc" xml:space="preserve">
-    <value>Fast forward</value>
+    <value>تقديم سريع</value>
   </data>
   <data name="Transport_AddTodoAcc" xml:space="preserve">
-    <value>Mark phrase</value>
+    <value>تحديد عبارة</value>
   </data>
   <data name="Language_Pack_WrongFile" xml:space="preserve">
-    <value>You have selected the wrong file</value>
+    <value>لقد اخترت الملف الخطأ</value>
   </data>
   <data name="Language_Pack_Select" xml:space="preserve">
-    <value>Please select Language Pack zip file</value>
+    <value>يرجى اختيار ملف حزمة اللغة (Zip)</value>
   </data>
   <data name="Language_Pack_Complete" xml:space="preserve">
-    <value>Language Pack update is successfully. Please restart Obi for the changes to take effect</value>
+    <value>تم تحديث حزمة اللغة بنجاح. يرجى إعادة تشغيل Obi لتطبيق التغييرات</value>
   </data>
   <data name="Language_Pack_Caption" xml:space="preserve">
-    <value>Wrong File</value>
+    <value>ملف خاطئ</value>
   </data>
   <data name="Language_Pack_Select_Caption" xml:space="preserve">
-    <value>Select Zip File</value>
+    <value>اختر ملف Zip</value>
   </data>
   <data name="Language_Pack_Complete_Caption" xml:space="preserve">
-    <value>Update Successfull</value>
+    <value>تم التحديث بنجاح</value>
   </data>
   <data name="Preferences_Advance_Mode" xml:space="preserve">
-    <value>Following checkboxes will be checked. Do you want to proceed?</value>
+    <value>سيتم تحديد خانات الاختيار التالية. هل تريد المتابعة؟</value>
   </data>
   <data name="Preferences_Intermediate_recording_mode" xml:space="preserve">
-    <value>Intermediate recording mode</value>
+    <value>وضع التسجيل المتوسط</value>
   </data>
   <data name="Preferences_Level_ComboBox_Basic" xml:space="preserve">
-    <value>Basic</value>
+    <value>أساسي</value>
   </data>
   <data name="Preferences_Level_ComboBox_Intermediate" xml:space="preserve">
-    <value>Intermediate</value>
+    <value>متوسط</value>
   </data>
   <data name="Preferences_Level_ComboBox_Advance" xml:space="preserve">
-    <value>Advance</value>
+    <value>متقدم</value>
   </data>
   <data name="Preferences_Level_ComboBox_Custom" xml:space="preserve">
-    <value>Custom</value>
+    <value>تخصص</value>
   </data>
   <data name="Audio_RecordSubsequentPhrases" xml:space="preserve">
-    <value>Use Record Button to record over subsequent audio</value>
+    <value>استخدم زر التسجيل للتسجيل فوق الصوت اللاحق</value>
   </data>
   <data name="Audio_EnforceSingleCursor" xml:space="preserve">
-    <value>Enforce single audio cursor</value>
+    <value>فرض مؤشر صوت واحد</value>
   </data>
   <data name="VUMeter_Reset" xml:space="preserve">
-    <value>Reset</value>
+    <value>إعادة ضبط</value>
   </data>
   <data name="VUMeter_Right" xml:space="preserve">
-    <value>Right</value>
+    <value>يمين</value>
   </data>
   <data name="VUMeter_Left" xml:space="preserve">
-    <value>Left</value>
+    <value>يسار</value>
   </data>
   <data name="KeysS_TransportBarExpandPlayOptions" xml:space="preserve">
-    <value>Expand Play Options Button</value>
+    <value>توسيع زر خيارات التشغيل</value>
   </data>
   <data name="KeysS_TransportBarExpandRecordOptions" xml:space="preserve">
-    <value>Expand Record Options Button</value>
+    <value>توسيع زر خيارات التسجيل</value>
   </data>
   <data name="Transport_PlayingOptions" xml:space="preserve">
-    <value>Playing Options</value>
+    <value>خيارات التشغيل</value>
   </data>
   <data name="Transport_RecordingOptions" xml:space="preserve">
-    <value>Recording Options</value>
+    <value>خيارات التسجيل</value>
   </data>
   <data name="Audio_DeleteFollowingPhrasesOfSectionAfterRecording" xml:space="preserve">
-    <value>After recording delete subsequent phrases</value>
+    <value>بعد التسجيل احذف العبارات اللاحقة</value>
   </data>
   <data name="ProfileDesc_file_name" xml:space="preserve">
-    <value>ProfileDesc_en.html</value>
+    <value>ProfileDesc_ar.html</value>
   </data>
   <data name="Preferences_Level_ComboBox_Profile_1" xml:space="preserve">
-    <value>Profile 1 (VA)</value>
+    <value>الملف الشخصي 1 (VA)</value>
   </data>
   <data name="Preferences_Level_ComboBox_Profile_2" xml:space="preserve">
-    <value>Profile 2 (SBS)</value>
+    <value>الملف الشخصي 2 (SBS)</value>
   </data>
   <data name="Preferences_AudioProfileDesc" xml:space="preserve">
-    <value>Audio Profile Description</value>
+    <value>وصف الملف الشخصي</value>
   </data>
   <data name="Audio_DisableDeselectionOnStop" xml:space="preserve">
-    <value>Do not deselect on pressing Stop twice</value>
+    <value>لا تلغِ التحديد عند الضغط مرتين على زر الإيقاف</value>
   </data>
   <data name="KeyS_FastPlayWithElapseForward" xml:space="preserve">
-    <value>Forward Elapse</value>
+    <value>الوقت المنقضي للأمام</value>
   </data>
   <data name="NoAdministrativePrivilege" xml:space="preserve">
-    <value>You donot have administrative rights to copy. Please either copy manually the contents of folder "Obi_Language_Pack" located in the Temp folder(which will open once you close this message box. If you want to open it manually then start "Run" and type "%temp%" in it) or run Obi with administrative privilege by selecting "Run as administrator" from the context menu which apprears on right click over the Obi icon</value>
+    <value>ليس لديك صلاحيات إدارية للنسخ. يرجى إما نسخ محتويات مجلد "Obi_Language_Pack" يدويًا من مجلد Temp (والذي سيفتح بمجرد إغلاق مربع الرسالة هذا، وإذا أردت فتحه يدويًا ابدأ "تشغيل" واكتب "%temp%") أو قم بتشغيل Obi بصلاحيات المسؤول من خلال اختيار "تشغيل كمسؤول" من القائمة التي تظهر عند النقر بزر الفأرة الأيمن على أيقونة Obi</value>
   </data>
   <data name="Project_MessageBoxToCheckFixContentView" xml:space="preserve">
-    <value>Do you want to check "Fix content view width" also ?(Recommended)</value>
+    <value>هل تريد تحديد "تثبيت عرض المحتوى" أيضًا؟ (موصى به)</value>
   </data>
   <data name="default_EpubExport_dirname" xml:space="preserve">
-    <value>{0}Epub3 Export</value>
+    <value>تصدير {0}Epub3</value>
   </data>
   <data name="progress_EpubValidating" xml:space="preserve">
-    <value>Epub Check Validator is running. Please wait....</value>
+    <value>مدقق Epub Check قيد التشغيل. يرجى الانتظار....</value>
   </data>
   <data name="METADATA_EPUB3_EXPORT_PATH_HELP" xml:space="preserve">
-    <value>Obi specific data for saving EPUB 3 export path</value>
+    <value>بيانات خاصة بObi لحفظ مسار تصدير EPUB 3</value>
   </data>
   <data name="obi_EPUB3ExportPath_Description" xml:space="preserve">
-    <value>EPUB 3 export path</value>
+    <value>مسار تصدير EPUB 3</value>
   </data>
   <data name="obi_EPUB3ValidationSuccessfull" xml:space="preserve">
-    <value>Validation Successfull</value>
+    <value>تم التحقق بنجاح</value>
   </data>
   <data name="obi_EPUB3ValidationFailed" xml:space="preserve">
-    <value>Validation Failed</value>
+    <value>فشل التحقق</value>
   </data>
   <data name="obi_EPUB3ValidatorNotInstalled" xml:space="preserve">
-    <value>EPUB check validator not installed</value>
+    <value>لم يتم تثبيت مدقق EPUB check</value>
   </data>
   <data name="obi_EPUB3CheckNotFound" xml:space="preserve">
-    <value>ERROR: EPUB check not found</value>
+    <value>خطأ: لم يتم العثور على EPUB check</value>
   </data>
   <data name="obi_EPUB3ValidationSuccessfullWithWarnings" xml:space="preserve">
-    <value>Validation Successfull with Warnings</value>
+    <value>تم التحقق بنجاح مع تحذيرات</value>
   </data>
   <data name="OperationFailed" xml:space="preserve">
-    <value>Operation failed</value>
+    <value>فشلت العملية</value>
   </data>
   <data name="AssociateNode_SelectedNodeGroupBox" xml:space="preserve">
-    <value>Selected node</value>
+    <value>العقدة المحددة</value>
   </data>
   <data name="Project_SaveObiLocationAndSize" xml:space="preserve">
-    <value>Save location and size of Obi</value>
+    <value>حفظ موقع وحجم Obi</value>
   </data>
   <data name="Project_PeakMeterChangeLocation" xml:space="preserve">
-    <value>Change peakmeter location w.r.t Obi Form</value>
+    <value>الحفاظ على محاذاة مقياس الذروة مع الحافة اليمنى لObi</value>
   </data>
   <data name="AudioProcessing_progress_dialog_title" xml:space="preserve">
-    <value>Processing audio...</value>
+    <value>جارٍ معالجة الصوت...</value>
   </data>
   <data name="PageForTTSLoclization" xml:space="preserve">
     <value>صفحة</value>
+  </data>
+  <data name="Delete_unused_data_caption" xml:space="preserve">
+    <value>حذف البيانات غير المستخدمة؟</value>
+  </data>
+  <data name="Project_DisableRollBackForCleanUp" xml:space="preserve">
+    <value>تعطيل التراجع لعملية التنظيف</value>
+  </data>
+  <data name="AudioProcessing_InfoText" xml:space="preserve">
+    <value>القيمة 1.0 تعني أن مستوى الصوت سيبقى دون تغيير.</value>
+  </data>
+  <data name="ValidatorTimeOutMsg" xml:space="preserve">
+    <value>انتهاء وقت المدقق</value>
+  </data>
+  <data name="Project_EPUBCheckTimeOutEnabled" xml:space="preserve">
+    <value>إيقاف عملية EPUB Check بعد 3 دقائق</value>
+  </data>
+  <data name="UserRegistration_EnterFollowing" xml:space="preserve">
+    <value>يرجى إدخال ما يلي بشكل صحيح:</value>
+  </data>
+  <data name="Audio_PreservePage" xml:space="preserve">
+    <value>الحفاظ على الصفحات أثناء التسجيل فوق الصوت اللاحق</value>
+  </data>
+  <data name="MergeOptions_IncreaseLevel" xml:space="preserve">
+    <value>زيادة مستوى القسم</value>
+  </data>
+  <data name="MergeOptions_DecreaseLevel" xml:space="preserve">
+    <value>إنقاص مستوى القسم</value>
+  </data>
+  <data name="MergeOptions_Merge" xml:space="preserve">
+    <value>دمج الأقسام</value>
+  </data>
+  <data name="ProjectViewFormMsg_SectionLevelChangeOperationFail" xml:space="preserve">
+    <value>فشلت عملية تغيير مستوى القسم.</value>
+  </data>
+  <data name="MergeOptions_NoSelectionForLevelChange" xml:space="preserve">
+    <value>لم يتم تحديد أي قسم لتنفيذ العملية</value>
+  </data>
+  <data name="Metadata_Empty" xml:space="preserve">
+    <value>فارغ</value>
+  </data>
+  <data name="MergeOptions_LevelString" xml:space="preserve">
+    <value>المستوى</value>
+  </data>
+  <data name="Profile_Saved" xml:space="preserve">
+    <value>تم حفظ الملف الشخصي</value>
+  </data>
+  <data name="MergeProject_CannotMerge" xml:space="preserve">
+    <value>لا يمكن تحديد مشروع مفتوح</value>
+  </data>
+  <data name="Project_MinimizeObi" xml:space="preserve">
+    <value>لا تُصغّر نافذة Obi عند تفعيل شريط أدوات التسجيل</value>
+  </data>
+  <data name="Phrase_IndexString" xml:space="preserve">
+    <value>{1} من {0}</value>
+  </data>
+  <data name="Preferences_ProfileLoaded" xml:space="preserve">
+    <value>تم تحميل ملف التفضيلات الشخصي المحدد</value>
+  </data>
+  <data name="Preference_ProfileCaption" xml:space="preserve">
+    <value>تم تحميل ملف التفضيلات</value>
+  </data>
+  <data name="Preferences_ProfilesShortcutsLoaded" xml:space="preserve">
+    <value>تم تحميل اختصارات لوحة المفاتيح من العنصر المحدد. يُوصى بإعادة تشغيل Obi.</value>
+  </data>
+  <data name="Preferences_ProfilesStatus" xml:space="preserve">
+    <value>الملف الشخصي {0} التفضيلات {1}</value>
+  </data>
+  <data name="Preferences_ConfirmForDeletingProfile" xml:space="preserve">
+    <value>سيتم حذف الملف الشخصي المحدد. هل تريد المتابعة؟</value>
+  </data>
+  <data name="Audio_AlwaysMonitoringRecordingToolBar" xml:space="preserve">
+    <value>المراقبة الدائمة في شريط أدوات التسجيل</value>
+  </data>
+  <data name="KeysS_TransportBarExpandSwitchProfile" xml:space="preserve">
+    <value>توسيع زر تبديل الملف الشخصي</value>
+  </data>
+  <data name="Transport_SwitchProfile" xml:space="preserve">
+    <value>تبديل ملف الصوت الشخصي من</value>
+  </data>
+  <data name="RecordingToolbar_SwitchProfile" xml:space="preserve">
+    <value>التبديل من {0} إلى {1}</value>
+  </data>
+  <data name="RecordingToolbar_SwitchProfileStatusBar" xml:space="preserve">
+    <value>تم التبديل إلى الملف الشخصي {0}</value>
+  </data>
+  <data name="Audio_ColorFlickerPreviewBeforeRecording" xml:space="preserve">
+    <value>تسليط الضوء على التسمية للمعاينة قبل التسجيل</value>
+  </data>
+  <data name="Audio_PlaySectionUsingPlayBtn" xml:space="preserve">
+    <value>استخدم زر التشغيل ومفتاح المسافة لتشغيل القسم</value>
+  </data>
+  <data name="TransportBar_PlaySelection" xml:space="preserve">
+    <value>تشغيل التحديد</value>
+  </data>
+  <data name="TransportBar_PlayAll" xml:space="preserve">
+    <value>تشغيل الكل</value>
+  </data>
+  <data name="SetPageNumber_PrecedingPageNotFound" xml:space="preserve">
+    <value>لم يتم العثور على صفحة سابقة. يرجى إدخال القيم.</value>
+  </data>
+  <data name="SetPageNumber_NextPageNotFound" xml:space="preserve">
+    <value>غير قادر على العثور على الصفحة التالية. يرجى إدخال القيم.</value>
+  </data>
+  <data name="SetPageNumber_PageOutOfOrder" xml:space="preserve">
+    <value>لا يمكن المتابعة. رقم الصفحة السابقة ورقم الصفحة التالية غير مرتبين بشكل صحيح.</value>
+  </data>
+  <data name="SetPageNumber_PageInConsecutiveOrder" xml:space="preserve">
+    <value>لا يمكن المتابعة. الصفحات متتالية بالفعل.</value>
+  </data>
+  <data name="LocalDirectoryToSaveRecording" xml:space="preserve">
+    <value>يرجى اختيار مجلد محلي لحفظ التسجيل.</value>
+  </data>
+  <data name="Project_EnableMouseScrolling" xml:space="preserve">
+    <value>تمكين التمرير بعجلة الفأرة.</value>
+  </data>
+  <data name="CleanUp_Complete" xml:space="preserve">
+    <value>اكتملت عملية التنظيف.</value>
+  </data>
+  <data name="MergeOptions_CannotSelect" xml:space="preserve">
+    <value>لا يمكن إتمام التحديد. لا يجب أن تكون مستويات الأقسام المحددة أصغر من القسم الأول المحدد.</value>
+  </data>
+  <data name="SectionLevel_IncrementError" xml:space="preserve">
+    <value>لا يمكن تنفيذ زيادة المستوى على الأقسام في هذا الموضع.</value>
+  </data>
+  <data name="SectionLevel_DecrementError" xml:space="preserve">
+    <value>لا يمكن تنفيذ إنقاص المستوى على الأقسام في هذا الموضع.</value>
+  </data>
+  <data name="KeyS_SelectStartOfThePhrase" xml:space="preserve">
+    <value>حدد بداية العبارة.</value>
+  </data>
+  <data name="KeyS_SelectEndOfPhrase" xml:space="preserve">
+    <value>حدد نهاية العبارة.</value>
+  </data>
+  <data name="default_XHTMLExport_dirname" xml:space="preserve">
+    <value>{0}Xhtml تصدير</value>
+  </data>
+  <data name="Preferences_ProfileExists" xml:space="preserve">
+    <value>يوجد ملف شخصي بالاسم نفسه. هل تريد استبداله؟</value>
+  </data>
+  <data name="Audio_EnableFileDataProviderPreservation" xml:space="preserve">
+    <value>تمكين التنظيف السريع (للنشر عبر الشبكة).</value>
+  </data>
+  <data name="Project_DisableTOCViewCollapse" xml:space="preserve">
+    <value>تعطيل طي القسم المحدد في عرض جدول المحتوى.</value>
+  </data>
+  <data name="Preferences_DefaultProfileExists" xml:space="preserve">
+    <value>يوجد ملف شخصي افتراضي بالاسم نفسه. يرجى إعادة تسمية ملفك الشخصي.</value>
+  </data>
+  <data name="Project_MaximizeObi" xml:space="preserve">
+    <value>فتح Obi في وضع ملء الشاشة.</value>
+  </data>
+  <data name="Audio_EnsureCursorVisibilityInUndoOfSplitRecording" xml:space="preserve">
+    <value>ضمان ظهور المؤشر عند التراجع عن المعاينة قبل التسجيل.</value>
+  </data>
+  <data name="Audio_DisableCreationOfNewHeadingsAndPagesWhileRecording" xml:space="preserve">
+    <value>تعطيل إنشاء العناوين والصفحات الجديدة أثناء التسجيل.</value>
+  </data>
+  <data name="Project_VAXhtmlExport" xml:space="preserve">
+    <value>استخدام قواعد Vision Australia لتصدير XHTML.</value>
+  </data>
+  <data name="PreviewBeforeRecording_SelectionChanged" xml:space="preserve">
+    <value>تم تغيير التحديد. لا يمكن بدء التسجيل.</value>
+  </data>
+  <data name="Audio_PreventSplittingPages" xml:space="preserve">
+    <value>منع اكتشاف العبارات أثناء التسجيل على الصفحات.</value>
+  </data>
+  <data name="Audio_SaveAudioZoom" xml:space="preserve">
+    <value>الحفاظ على تكبير الصوت لعرض المحتوى.</value>
+  </data>
+  <data name="Preferences_RestartForFontChange" xml:space="preserve">
+    <value>يجب إعادة تشغيل Obi لتطبيق تغييرات الخط. يرجى حفظ عملك وإعادة تشغيل Obi.</value>
+  </data>
+  <data name="CleanUp_Rollback_Progress" xml:space="preserve">
+    <value>تراجع عن التنظيف قيد التنفيذ...</value>
+  </data>
+  <data name="Rollback_DataDirectory_Missing" xml:space="preserve">
+    <value>لا يمكن متابعة التراجع. لم يتم العثور على مجلد بيانات المشروع.</value>
+  </data>
+  <data name="Rollback_No_DataFound" xml:space="preserve">
+    <value>لا يمكن متابعة التراجع. لا توجد بيانات للتراجع.</value>
+  </data>
+  <data name="Rollback_MappingFile_Missing" xml:space="preserve">
+    <value>لا يمكن متابعة التراجع. لا توجد بيانات للتراجع (ملف التعيين غير موجود).</value>
+  </data>
+  <data name="Rollback_ProjectFile_Missing" xml:space="preserve">
+    <value>لا يمكن متابعة التراجع. لا توجد بيانات للتراجع (ملف المشروع غير موجود).</value>
+  </data>
+  <data name="Rollback_Complete" xml:space="preserve">
+    <value>اكتمل التراجع عن التنظيف.</value>
+  </data>
+  <data name="Rollback_Failed" xml:space="preserve">
+    <value>فشل التراجع.</value>
+  </data>
+  <data name="Caption_Rollback_Failed" xml:space="preserve">
+    <value>فشل التراجع.</value>
+  </data>
+  <data name="CleanUp_AreYouSure" xml:space="preserve">
+    <value>يرجى التأكيد. إذا تم حذف هذه الملفات، فلن تعمل وظيفة التراجع عن التنظيف.</value>
+  </data>
+  <data name="Cleanup_Complete_ShowDeleteDirectory" xml:space="preserve">
+    <value>اكتملت عملية التنظيف. هل تريد عرض الملفات المحذوفة؟</value>
+  </data>
+  <data name="CleanupRollBack_AskToProceed" xml:space="preserve">
+    <value>ستعيد عملية التراجع مشروع Obi وملفات الصوت إلى الحالة التي كانت عليها قبل آخر عملية تنظيف. يرجى ملاحظة أنه يمكنك تنفيذ التراجع فقط لآخر عملية تنظيف. هل تريد المتابعة؟</value>
+  </data>
+  <data name="Preferences_ConfirmDeleteLoadedProfile" xml:space="preserve">
+    <value>أنت تحاول حذف ملف شخصي محمّل. يرجى اختيار ملف شخصي آخر.</value>
+  </data>
+  <data name="Preferences_ConfirmDeleteLoadedKeyboardProfile" xml:space="preserve">
+    <value>أنت تحاول حذف ملف اختصارات لوحة مفاتيح محمّل. إذا تابعت، سيتم تحميل اختصارات لوحة المفاتيح الافتراضية. هل ترغب في الاستمرار؟</value>
+  </data>
+  <data name="Project_IncreasePhraseHightForHigherResolution" xml:space="preserve">
+    <value>تكبير العبارات بما يتناسب مع زيادة دقة الشاشة.</value>
+  </data>
+  <data name="EmptyProjectTitle_error_Caption" xml:space="preserve">
+    <value>لا يوجد عنوان مشروع.</value>
+  </data>
+  <data name="no_audio_Caption" xml:space="preserve">
+    <value>لا يوجد صوت.</value>
+  </data>
+  <data name="CheckUpdates_NewVersionNotAvailable_Caption" xml:space="preserve">
+    <value>يتوفر إصدار جديد.</value>
+  </data>
+  <data name="no_primary_export_directory_Caption" xml:space="preserve">
+    <value>لا يوجد مجلد للتصدير.</value>
+  </data>
+  <data name="Project_MessageBoxToCheckMaximizeObi" xml:space="preserve">
+    <value>لتمكين هذا الإعداد، تحتاج إلى إلغاء تحديد خيار "فتح Obi في وضع ملء الشاشة". هل تريد المتابعة؟ (موصى به)</value>
+  </data>
+  <data name="Project_SaveTOCViewWidth" xml:space="preserve">
+    <value>تجميد عرض جدول المحتويات على العرض الحالي.</value>
+  </data>
+  <data name="RecordingToolbar_SwitchLoadedProfile" xml:space="preserve">
+    <value>التبديل إلى {0}.</value>
+  </data>
+  <data name="SaveAsEmptyProjectFileName" xml:space="preserve">
+    <value>اسم ملف المشروع لا يمكن أن يكون فارغًا.</value>
+  </data>
+  <data name="KeyS_PlayOnNavigate" xml:space="preserve">
+    <value>سيتم تفعيل التشغيل عند التنقل.</value>
+  </data>
+  <data name="Profile_Audio" xml:space="preserve">
+    <value>الصوت:</value>
+  </data>
+  <data name="Audio_SelectLastPhrasePlayed" xml:space="preserve">
+    <value>بعد التشغيل، حدد آخر عبارة تم تشغيلها.</value>
+  </data>
+  <data name="Audio_ShowSelectionTimeInTransportBar" xml:space="preserve">
+    <value>عرض وقت المؤشر في شريط النقل أثناء وضع التوقف.</value>
+  </data>
+  <data name="ZoomWaveform_PreserveZoom" xml:space="preserve">
+    <value>الحفاظ على التكبير.</value>
+  </data>
+  <data name="Project_ShowAdvancePropertiesInPropertiesDialogs" xml:space="preserve">
+    <value>إظهار الخصائص المتقدمة في مربع حوار الخصائص.</value>
+  </data>
+  <data name="SplitPhrases_ErrorSilence" xml:space="preserve">
+    <value>هل تريد تقسيم العبارات عند موضع الصمت الناتج عن الخطأ؟</value>
+  </data>
+  <data name="Caption_SplitPhrase" xml:space="preserve">
+    <value>تقسيم العبارة؟</value>
+  </data>
+  <data name="NumberOfErrorPhrase" xml:space="preserve">
+    <value>عدد العبارات التي تحتوي على أخطاء:</value>
+  </data>
+  <data name="Project_DisplayWarningsForEditOperations" xml:space="preserve">
+    <value>التحذير قبل التلاعب بالقسم.</value>
+  </data>
+  <data name="ConfirmSectionDelete" xml:space="preserve">
+    <value>أنت على وشك حذف قسم. هل تريد المتابعة؟</value>
+  </data>
+  <data name="ConfirmSectionRename" xml:space="preserve">
+    <value>أنت على وشك إعادة تسمية قسم. هل تريد المتابعة؟ (ملاحظة: إذا كنت لا ترغب في ظهور هذه الرسالة، يرجى إلغاء تحديد خيار "التحذير قبل التلاعب بالقسم" من تبويب المشروع في التفضيلات).</value>
+  </data>
+  <data name="ConfirmSectionCut" xml:space="preserve">
+    <value>أنت على وشك قص قسم. هل تريد المتابعة؟</value>
+  </data>
+  <data name="Audio_RecordInFirstEmptyPhraseWithRecordSectionCommand" xml:space="preserve">
+    <value>التسجيل في أول عبارة فارغة باستخدام أمر تسجيل القسم.</value>
+  </data>
+  <data name="ZoomWaveform_PreserveZoomToolTip" xml:space="preserve">
+    <value>الحفاظ على التكبير في لوحة التكبير.</value>
+  </data>
+  <data name="Rollback_Disabled" xml:space="preserve">
+    <value>تم تعطيل التراجع عن التنظيف. لاستخدام هذه الوظيفة، يرجى إلغاء تحديد خانة الاختيار "تعطيل التراجع عن التنظيف" في تفضيلات المشروع، ثم استخدام أمر التنظيف مرة أخرى.</value>
+  </data>
+  <data name="ProjectView_FillEmptyPagesInGaps" xml:space="preserve">
+    <value>تم ملء الصفحات الفارغة في الفجوات.</value>
+  </data>
+  <data name="ProjectView_NoGapInPages" xml:space="preserve">
+    <value>لم يتم العثور على فجوات في الصفحات.</value>
+  </data>
+  <data name="Mints_invalid_input" xml:space="preserve">
+    <value>يرجى تحديد الفاصل الزمني بالدقائق.</value>
+  </data>
+  <data name="PagesInSectionsDetected" xml:space="preserve">
+    <value>تم الكشف عن بعض الصفحات في المشروع. تحتاج إلى حذفها إذا كنت تريد المتابعة. هل تريد حذفها الآن؟</value>
+  </data>
+  <data name="PageDeletionSucessfull" xml:space="preserve">
+    <value>تم حذف الصفحات بنجاح. يمكنك الآن المتابعة لوضع علامات على صفحات جديدة.</value>
+  </data>
+  <data name="Audio_MergeFirstTwoPhrasesAfterPhraseDetectionWhileRecording" xml:space="preserve">
+    <value>دمج أول عبارتين بعد التسجيل باستخدام اكتشاف العبارات.</value>
+  </data>
+  <data name="Audio_AutoPlayAfterRecordingStops" xml:space="preserve">
+    <value>تشغيل العبارة المسجلة عند توقف التسجيل.</value>
+  </data>
+  <data name="Project_ImportNCCFileWithWindows1252Encoding" xml:space="preserve">
+    <value>استيراد ملفات NCC القديمة باستخدام ترميز Windows 1252.</value>
+  </data>
+  <data name="Delete_pages" xml:space="preserve">
+    <value>حذف الصفحات.</value>
+  </data>
+  <data name="Pages" xml:space="preserve">
+    <value>الصفحات:</value>
+  </data>
+  <data name="AutoPageGeneration_Progress" xml:space="preserve">
+    <value>يتم الآن إنشاء الصفحات تلقائيًا. يرجى الانتظار...</value>
+  </data>
+  <data name="NoGapsFoundInPages" xml:space="preserve">
+    <value>لم يتم العثور على فجوات في الصفحات.</value>
+  </data>
+  <data name="EmptyPagesFilledInGaps" xml:space="preserve">
+    <value>تم ملء الصفحات الفارغة في الفجوات.</value>
+  </data>
+  <data name="Project_DoNotDisplayMessageBoxForShowingSection" xml:space="preserve">
+    <value>عدم عرض مربع الرسالة أثناء الانتقال إلى عبارة في قسم آخر.</value>
+  </data>
+  <data name="NoAudioInSection" xml:space="preserve">
+    <value>لا يوجد صوت.</value>
+  </data>
+  <data name="NotEnoughSectionsToImportFiles" xml:space="preserve">
+    <value>ليس لديك عدد كافٍ من الأقسام لاستيراد جميع الملفات.</value>
+  </data>
+  <data name="TimeElapsedCannotBeCalculated" xml:space="preserve">
+    <value>لا يمكن حساب الوقت المنقضي لأن علامة النهاية قبل علامة البداية.</value>
+  </data>
+  <data name="MergeOptions_ShowContents" xml:space="preserve">
+    <value>إظهار المحتويات في عرض المحتوى.</value>
+  </data>
+  <data name="FilterImportTOC" xml:space="preserve">
+    <value>Xhtml,Csv, Txt file(*.htm;*.html;*.xhtml;*.csv;*.txt)|*.htm;*.html;*.xhtml;*.csv;*.txt</value>
+  </data>
+  <data name="NoSectionsInBook" xml:space="preserve">
+    <value>لا توجد أقسام في الكتاب لاستيراد جدول المحتويات.</value>
+  </data>
+  <data name="LessSectionsInBook" xml:space="preserve">
+    <value>الأقسام الموجودة في المشروع أقل من الأقسام المستوردة. لذلك لن يتم استيراد جدول المحتويات بالكامل.</value>
+  </data>
+  <data name="FileInUse" xml:space="preserve">
+    <value>هذا الملف مستخدم من قبل عملية أخرى. يرجى إغلاق جميع التطبيقات التي تستخدم هذا الملف والمحاولة مرة أخرى.</value>
+  </data>
+  <data name="WrongFormat" xml:space="preserve">
+    <value>الملف المستورد بتنسيق خاطئ. تأكد من إعطاء المستوى الصحيح لكل قسم.</value>
+  </data>
+  <data name="PasteNotAllowed" xml:space="preserve">
+    <value>اللصق داخل العبارات المحددة غير مسموح.</value>
+  </data>
+  <data name="Project_MaximumPhrasesSelectLimit" xml:space="preserve">
+    <value>يمكن تحديد 500 عبارة كحد أقصى لتنفيذ العمليات المتعددة مثل القص والنسخ.</value>
+  </data>
+  <data name="CustomMetadataD202_NotIncluded" xml:space="preserve">
+    <value>يحتوي المشروع على بيانات وصفية مخصصة. لا يمكن تضمينها في تصدير DAISY 2.02.</value>
+  </data>
+  <data name="Audio_RevertOverwriteBehaviourForRecordOnSelection" xml:space="preserve">
+    <value>إرجاع سلوك الكتابة فوق الصوت للتسجيل عند التحديد.</value>
+  </data>
+  <data name="Import_AudioFormat_FilesWillBeRenamed" xml:space="preserve">
+    <value>هناك بعض الملفات التي تحتاج إلى إعادة تسمية لأن الملفات بنفس الاسم موجودة بالفعل في مجلد المشروع.</value>
+  </data>
+  <data name="Import_AudioFormat_RenameFilesList" xml:space="preserve">
+    <value>→ تم تغيير اسم الملف {0} إلى {1}.</value>
+  </data>
+  <data name="Import_AudioFormat_FollowingFilesRenamed" xml:space="preserve">
+    <value>تمت إعادة تسمية الملفات التالية:–</value>
+  </data>
+  <data name="ConfigureObi" xml:space="preserve">
+    <value>مرحبًا بك في Obi. يرجى تحديد الإعدادات المناسبة من الخيارات المتوفرة أدناه. إذا كنت ترغب في تهيئة Obi وفق الإعدادات الافتراضية، يمكنك ببساطة النقر فوق زر موافق أو الضغط على مفتاح الإدخال للمتابعة. يمكنك دائمًا تغيير الإعدادات لاحقًا من تفضيلات Obi.</value>
+  </data>
+  <data name="Preferences_AdditionalAudioSettings" xml:space="preserve">
+    <value>إعدادات صوت إضافية</value>
+  </data>
+  <data name="Preferences_AdditionalProjectSettings" xml:space="preserve">
+    <value>إعدادات مشروع إضافية</value>
+  </data>
+  <data name="ZoomWaveform_PreserveZoomChecked" xml:space="preserve">
+    <value>تكبير محفوظ (محدد)</value>
+  </data>
+  <data name="ZoomWaveform_PreserveZoomUnchecked" xml:space="preserve">
+    <value>تكبير محفوظ (غير محدد)</value>
+  </data>
+  <data name="Audio_RemoveAccentsFromDaisy2ExportFileNames" xml:space="preserve">
+    <value>إزالة العلامات من أسماء الملفات أثناء التصدير إلى Daisy 2.02</value>
+  </data>
+  <data name="Project_ReadOnlyMode" xml:space="preserve">
+    <value>التحويل إلى بنية للقراءة فقط</value>
+  </data>
+  <data name="SkippableNotExportedInDaisy202" xml:space="preserve">
+    <value>المشروع يحتوي على بعض الملاحظات القابلة للتخطي. لن يتم تصدير هذه الملاحظات إلى كتاب Daisy 2.02 الناطق.</value>
+  </data>
+  <data name="ReadOnlyString" xml:space="preserve">
+    <value>للقراءة فقط</value>
+  </data>
+  <data name="title_bar_ReadOnly" xml:space="preserve">
+    <value>{0}{1} ({2}) - {3} [{4}]({5})</value>
+  </data>
+  <data name="RecordUsingSingleKeyFromTOCMessage" xml:space="preserve">
+    <value>سيبدأ التسجيل من نهاية القسم. هل تريد المتابعة؟</value>
+  </data>
+  <data name="Audio_RecordUsingSingleKeyFromTOC" xml:space="preserve">
+    <value>بدء وإيقاف التسجيل باستخدام اختصارات مفاتيح مفردة من عرض TOC</value>
+  </data>
+  <data name="Project_DisplayWarningsForSectionDelete" xml:space="preserve">
+    <value>تحذير قبل حذف القسم</value>
+  </data>
+  <data name="KeyS_AddCommentSingleKey" xml:space="preserve">
+    <value>إضافة تعليق: اختصار مفتاح واحد</value>
+  </data>
+  <data name="CommentAttachedFlagForAccessibleName" xml:space="preserve">
+    <value>يحتوي على تعليق</value>
+  </data>
+  <data name="FadeInProcess" xml:space="preserve">
+    <value>تدرج الصوت (Fade In) للمحدد:</value>
+  </data>
+  <data name="FadeOutProcess" xml:space="preserve">
+    <value>تلاشي الصوت (Fade Out) للمحدد:</value>
+  </data>
+  <data name="NormalizeProcess" xml:space="preserve">
+    <value>تطبيع الصوت (Normalize) للمحدد:</value>
+  </data>
+  <data name="FadeInDuration" xml:space="preserve">
+    <value>مدة التدرج (Fade In):</value>
+  </data>
+  <data name="FadeOutDuration" xml:space="preserve">
+    <value>مدة التلاشي (Fade Out):</value>
+  </data>
+  <data name="TextInfoForFadeInOutOperation" xml:space="preserve">
+    <value>إجمالي مدة التحديد {0} ثوانٍ</value>
+  </data>
+  <data name="FadeInDurationAccessibleName" xml:space="preserve">
+    <value>تعيين مدة التدرج (ثوانٍ)</value>
+  </data>
+  <data name="FadeOutDurationAccessibleName" xml:space="preserve">
+    <value>تعيين مدة التلاشي (ثوانٍ)</value>
+  </data>
+  <data name="FadeIn" xml:space="preserve">
+    <value>تدرج (Fade In)</value>
+  </data>
+  <data name="FadeOut" xml:space="preserve">
+    <value>تلاشي (Fade Out)</value>
+  </data>
+  <data name="Normalize" xml:space="preserve">
+    <value>تطبيع (Normalize)</value>
+  </data>
+  <data name="NormalizeAceesibleName" xml:space="preserve">
+    <value>تعيين المعامل لزيادة/خفض مستوى الصوت أثناء عملية التطبيع</value>
+  </data>
+  <data name="NormalizeAceesibleNameForSlider" xml:space="preserve">
+    <value>حرّك الشريط لزيادة/خفض مستوى الصوت للتحديد. التحريك إلى اليمين يزيد الصوت أثناء عملية التطبيع</value>
+  </data>
+  <data name="CleanUpAfterAudioProcessing" xml:space="preserve">
+    <value>لقد قمت بمعالجة الصوت. يُوصى بتنفيذ عملية التنظيف الآن. اضغط نعم إذا كنت تريد إجراء التنظيف الآن. التنظيف سيؤدي أيضًا إلى حفظ مشروعك. إذا كنت ترغب في القيام به لاحقًا يدويًا، اضغط لا.</value>
+  </data>
+  <data name="NormalizationCompleted" xml:space="preserve">
+    <value>تم إكمال التطبيع بنجاح</value>
+  </data>
+  <data name="ChangeVolumeCompleted" xml:space="preserve">
+    <value>تم تغيير مستوى الصوت بنجاح</value>
+  </data>
+  <data name="SpeechRateCompleted" xml:space="preserve">
+    <value>تم تغيير معدل الكلام بنجاح</value>
+  </data>
+  <data name="SpeechRateOfSeclection" xml:space="preserve">
+    <value>تغيير معدل الكلام للصوت المحدد:</value>
+  </data>
+  <data name="SpeechRate" xml:space="preserve">
+    <value>معدل الكلام</value>
+  </data>
+  <data name="SpeechRateAceesibleName" xml:space="preserve">
+    <value>تعيين معامل لزيادة/خفض معدل الكلام</value>
+  </data>
+  <data name="SpeechRateAceesibleNameForSlider" xml:space="preserve">
+    <value>حرّك الشريط لزيادة/خفض معدل الكلام. التحريك إلى اليمين يزيد معدل الكلام</value>
+  </data>
+  <data name="TextInfoForNormalization" xml:space="preserve">
+    <value>القيمة 1.0 تعني كسب 0 ديسبل.</value>
+  </data>
+  <data name="TextInfoForSpeechRate" xml:space="preserve">
+    <value>القيمة 1.0 تعني عدم وجود تغيير في معدل الكلام.</value>
+  </data>
+  <data name="ObiConfig_IncreasePhraseHightForHigherResolution" xml:space="preserve">
+    <value>دقة شاشتك عالية جدًا، مما قد يقلل من أداء Obi. يُوصى بتفعيل خيار "تكبير العبارات حسب زيادة دقة الشاشة". يرجى استخدام زر "نعم" لتفعيل الخيار الآن.
+يمكنك أيضًا القيام بذلك لاحقًا من تبويب المشروع في مربع حوار التفضيلات.</value>
+  </data>
+  <data name="default_MegaVoiceExport_dirname" xml:space="preserve">
+    <value>{0} تصدير Megavoice مؤقت</value>
+  </data>
+  <data name="USBDriveCheck" xml:space="preserve">
+    <value>إما أنك لا تُصدّر إلى قرص قابل للإزالة أو أنه ليس دليلًا رئيسيًا في قرص قابل للإزالة. هل ما زلت ترغب في المتابعة؟</value>
+  </data>
+  <data name="ExportDirectoryPathEmpty" xml:space="preserve">
+    <value>مسار دليل التصدير فارغ. يرجى إدخال مسار صالح.</value>
+  </data>
+  <data name="ExportFolderExistsMegavoice" xml:space="preserve">
+    <value>يوجد كتاب بنفس الاسم. هل تريد الكتابة فوقه؟</value>
+  </data>
+  <data name="ExportDialogTitleForMegaVoiceExport" xml:space="preserve">
+    <value>MegaVoice (Envoy Connect)</value>
+  </data>
+  <data name="DidnotDeleteTempMegaVoiceFolder" xml:space="preserve">
+    <value>فشل حذف المجلد المؤقت الذي تم إنشاؤه أثناء تصدير MegaVoice (Envoy Connect) بسبب "{0}". لتحرير مساحتك يمكنك حذفه يدويًا. مسار المجلد المؤقت هو: {1}</value>
+  </data>
+  <data name="default_WPAudioBookExport_dirname" xml:space="preserve">
+    <value>{0} تصدير WP AudioBooks</value>
+  </data>
+  <data name="ExportDialogTitleForWPAudioBookExport" xml:space="preserve">
+    <value>WP AudioBooks</value>
+  </data>
+  <data name="NoCuePoints" xml:space="preserve">
+    <value>{0} ملفات الصوت أعلاه لا تحتوي على علامات cue وبالتالي لا يمكن استيرادها. يمكنك مع ذلك استيراد ملفات الصوت المتبقية التي تحتوي على علامات cue. اضغط نعم للمتابعة أو لا لاختيار مجموعة أخرى من ملفات الصوت.</value>
+  </data>
+  <data name="AudioMixingFileNotSelected" xml:space="preserve">
+    <value>يرجى اختيار ملف صوتي للمزج</value>
+  </data>
+  <data name="AudioMixingSecondFileNotSelected" xml:space="preserve">
+    <value>يرجى اختيار ملف صوتي ثانٍ للمزج</value>
+  </data>
+  <data name="NoCheckBoxInExportChecked" xml:space="preserve">
+    <value>لم يتم تحديد أي مربع اختيار. للتصدير، يرجى تحديد صيغة التصدير المطلوبة لتصدير الكتاب</value>
+  </data>
+  <data name="NoiseReductionCompleted" xml:space="preserve">
+    <value>تم إكمال تقليل الضوضاء بنجاح</value>
+  </data>
+  <data name="NormalizationCancelled" xml:space="preserve">
+    <value>تم إلغاء العملية في المنتصف، لذا اكتمل التطبيع حتى القسم {0}</value>
+  </data>
+  <data name="NoiseReductionCancelled" xml:space="preserve">
+    <value>تم إلغاء العملية في المنتصف، لذا اكتمل تقليل الضوضاء حتى القسم {0}</value>
+  </data>
+  <data name="CueCsvColumnHeading" xml:space="preserve">
+    <value>اسم الملف، توقيت TODO (بالثواني)، توقيت TODO (س:د:ث:ملث)، تعليق</value>
+  </data>
+  <data name="CueCsvName" xml:space="preserve">
+    <value>//ToDoTimingInAudioFiles.csv</value>
+  </data>
+  <data name="ApplyingOperationOnWholeBook" xml:space="preserve">
+    <value>تطبيق العملية على الكتاب بالكامل قد يستغرق {0} حسب سرعة جهازك. كما سيستهلك مساحة إضافية تعادل حجم المشروع. هل تريد المتابعة؟</value>
+  </data>
+  <data name="Audio_RecordAtStartingOfSectionWithRecordSectionCommand" xml:space="preserve">
+    <value>سجّل من بداية القسم باستخدام أمر تسجيل القسم إذا كان القسم يحتوي فقط على صفحات فارغة</value>
+  </data>
+  <data name="AudioProcessingNew_progress_dialog_title" xml:space="preserve">
+    <value>جارٍ المعالجة {0} .......</value>
+  </data>
+  <data name="AudioProcessingEstimateFewMinutes" xml:space="preserve">
+    <value>بضع دقائق</value>
+  </data>
+  <data name="AudioProcessingEstimateSeveralMinutes" xml:space="preserve">
+    <value>عدة دقائق</value>
+  </data>
+  <data name="AudioProcessingEstimateFewHours" xml:space="preserve">
+    <value>بضع ساعات</value>
+  </data>
+  <data name="AudioProcessingApplyOnWholeBook" xml:space="preserve">
+    <value>يرجى تطبيق العملية على الكتاب بالكامل أو تحديد عبارة/قسم لتطبيق العملية عليه</value>
+  </data>
+  <data name="ExportInsertCuePointOrCopy" xml:space="preserve">
+    <value>لإدراج علامات cue في كتاب Daisy، اضغط نعم. {0} اضغط لا لكتابة ملفات الصوت مع علامات cue في مجلد منفصل.</value>
+  </data>
+  <data name="ChoosePageAudioFileNotSelected" xml:space="preserve">
+    <value>يرجى اختيار ملف يحتوي على تسجيل صوتي</value>
+  </data>
+  <data name="Project_CSVImportHavingSemicolon" xml:space="preserve">
+    <value>استخدم الفاصلة المنقوطة كفاصل بدلاً من الفاصلة عند إنشاء مشروع عن طريق استيراد ملف CSV</value>
+  </data>
+  <data name="Project_CSVImportPhraseDetection" xml:space="preserve">
+    <value>تطبيق اكتشاف العبارات عند إنشاء مشروع عن طريق استيراد ملف CSV</value>
+  </data>
+  <data name="ProjectView_GenarteSpeechForAllPagesCancelled" xml:space="preserve">
+    <value>لم يتم توليد الكلام لجميع الصفحات. تم إلغاء العملية في المنتصف.</value>
+  </data>
+  <data name="FilesNotImportedDuringCSVImport" xml:space="preserve">
+    <value>لكن بعض الملفات مثل {0} لم يتم استيرادها</value>
+  </data>
+  <data name="ImportOfCSVStatus" xml:space="preserve">
+    <value>تم استيراد ملف CSV بنجاح {0} في {1} {2}</value>
+  </data>
+  <data name="CommentText" xml:space="preserve">
+    <value>نص التعليق:</value>
+  </data>
+  <data name="ChooseMetadataImportFile" xml:space="preserve">
+    <value>اختر ملف CSV لاستيراد البيانات الوصفية</value>
+  </data>
+  <data name="FilterMetadataCSV" xml:space="preserve">
+    <value>Csv(.csv)|.csv</value>
+  </data>
+  <data name="Metadata_NotImported" xml:space="preserve">
+    <value>تم استيراد البيانات الوصفية بنجاح باستثناء الإدخالات التالية: {0}</value>
+  </data>
+  <data name="Metadata_ImportedSuccessfully" xml:space="preserve">
+    <value>تم استيراد البيانات الوصفية بنجاح</value>
+  </data>
+  <data name="Metadata_Imported" xml:space="preserve">
+    <value>تم استيراد البيانات الوصفية</value>
+  </data>
+  <data name="Metadata_NameCannotBeCustom" xml:space="preserve">
+    <value>إدخال بيانات وصفية غير صالح! لا يمكن أن يكون اسم البيانات الوصفية "Custom"</value>
+  </data>
+  <data name="SilenceDetection_TrailingSilence" xml:space="preserve">
+    <value>الصمت المتأخر</value>
+  </data>
+  <data name="SilenceDetection_DialogText" xml:space="preserve">
+    <value>إعدادات اكتشاف الصمت</value>
+  </data>
+  <data name="SilenceDetection_progress_dialog_title" xml:space="preserve">
+    <value>جارٍ تطبيق اكتشاف الصمت...</value>
+  </data>
+  <data name="ImportFilesInsideProjectFolder" xml:space="preserve">
+    <value>الملفات المحددة للاستيراد موجودة داخل مجلد المشروع. إذا تابعت فسيتم نقل الملفات إلى مجلد البيانات. لتجنب ذلك يرجى نسخ هذه الملفات خارج مجلد المشروع قبل الاستيراد. اضغط نعم إذا كنت ما تزال ترغب في المتابعة.</value>
+  </data>
+  <data name="Audio_DeleteFollowingPhrasesWhilePreviewBeforeRecording" xml:space="preserve">
+    <value>احذف العبارات التالية أثناء المعاينة قبل التسجيل</value>
+  </data>
+  <data name="ProfileNotCompatible" xml:space="preserve">
+    <value>فشل تحميل الملف الشخصي. إذا كان الملف الشخصي قد أُنشئ في إصدارات أقدم من Obi فيجب جعله متوافقًا مع هذا الإصدار من Obi. إذا كنت ترغب في التحويل اضغط نعم.</value>
+  </data>
+  <data name="ProfileSaveDialogTitle" xml:space="preserve">
+    <value>اختر موقع الملف الشخصي</value>
+  </data>
+  <data name="ProfileCreated" xml:space="preserve">
+    <value>تم إنشاء ملف شخصي متوافق. تم حفظ ملفك الشخصي القديم في الموقع {0}.</value>
+  </data>
+  <data name="PofileNotCreated" xml:space="preserve">
+    <value>لا يمكن إنشاء ملف شخصي متوافق لأن الملف المحمّل ليس بالتنسيق الصحيح</value>
+  </data>
+  <data name="TodoTimeFromStartOfSection" xml:space="preserve">
+    <value>في {0}</value>
+  </data>
+  <data name="KeyboardShortcuts_LoadingDefaults" xml:space="preserve">
+    <value>جارٍ تهيئة Obi باختصارات لوحة المفاتيح الافتراضية.</value>
+  </data>
+  <data name="Azure_AddSubcriptionKey" xml:space="preserve">
+    <value>يرجى إضافة تفاصيل اشتراك Azure باستخدام "إضافة مفتاح Azure".</value>
+  </data>
+  <data name="Azure_ProvideText" xml:space="preserve">
+    <value>يرجى إدخال بعض النص للمتابعة.</value>
+  </data>
+  <data name="Azure_VoicesNotInstalled" xml:space="preserve">
+    <value>لا يوجد صوت مثبت في نظامك.</value>
+  </data>
+  <data name="Azure_VoicesAvailable" xml:space="preserve">
+    <value>الصوت متاح بالفعل في قائمة الاختيار المنسدلة.</value>
+  </data>
+  <data name="Azure_SelectVoiceToAdd" xml:space="preserve">
+    <value>يرجى اختيار صوت للإضافة.</value>
+  </data>
+  <data name="Azure_VoiceAdded" xml:space="preserve">
+    <value>تمت إضافة الصوت بنجاح إلى قائمة الاختيار المنسدلة.</value>
+  </data>
+  <data name="Azure_EnterSubcriptionKey" xml:space="preserve">
+    <value>يرجى إضافة المفتاح والمنطقة الخاصة بخطة اشتراك Azure الخاصة بك.</value>
+  </data>
+  <data name="Azure_EnterCorrectSubcriptionKey" xml:space="preserve">
+    <value>مفتاح/منطقة اشتراك Azure المدخلة غير صحيحة. يرجى إدخال التفاصيل الصحيحة.</value>
+  </data>
+  <data name="Azure_SubcriptionAdded" xml:space="preserve">
+    <value>تمت إضافة اشتراك Azure بنجاح</value>
+  </data>
+  <data name="PofileNotImported" xml:space="preserve">
+    <value>لا يمكن استيراد الملف الشخصي</value>
+  </data>
+  <data name="GenerateAudioPlaceHolderText" xml:space="preserve">
+    <value>اكتب نصًا لتوليد الكلام</value>
   </data>
 </root>

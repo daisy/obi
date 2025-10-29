@@ -1,17 +1,17 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
-  <!-- 
-    Microsoft ResX Schema 
-    
+  <!--
+    Microsoft ResX Schema
+
     Version 2.0
-    
-    The primary goals of this format is to allow a simple XML format 
-    that is mostly human readable. The generation and parsing of the 
-    various data types are done through the TypeConverter classes 
+
+    The primary goals of this format is to allow a simple XML format
+    that is mostly human readable. The generation and parsing of the
+    various data types are done through the TypeConverter classes
     associated with the data types.
-    
+
     Example:
-    
+
     ... ado.net/XML headers & schema ...
     <resheader name="resmimetype">text/microsoft-resx</resheader>
     <resheader name="version">2.0</resheader>
@@ -26,36 +26,36 @@
         <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
         <comment>This is a comment</comment>
     </data>
-                
-    There are any number of "resheader" rows that contain simple 
+
+    There are any number of "resheader" rows that contain simple
     name/value pairs.
-    
-    Each data row contains a name, and value. The row also contains a 
-    type or mimetype. Type corresponds to a .NET class that support 
-    text/value conversion through the TypeConverter architecture. 
-    Classes that don't support this are serialized and stored with the 
+
+    Each data row contains a name, and value. The row also contains a
+    type or mimetype. Type corresponds to a .NET class that support
+    text/value conversion through the TypeConverter architecture.
+    Classes that don't support this are serialized and stored with the
     mimetype set.
-    
-    The mimetype is used for serialized objects, and tells the 
-    ResXResourceReader how to depersist the object. This is currently not 
+
+    The mimetype is used for serialized objects, and tells the
+    ResXResourceReader how to depersist the object. This is currently not
     extensible. For a given mimetype the value must be set accordingly:
-    
-    Note - application/x-microsoft.net.object.binary.base64 is the format 
-    that the ResXResourceWriter will generate, however the reader can 
+
+    Note - application/x-microsoft.net.object.binary.base64 is the format
+    that the ResXResourceWriter will generate, however the reader can
     read any of the formats listed below.
-    
+
     mimetype: application/x-microsoft.net.object.binary.base64
-    value   : The object must be serialized with 
+    value   : The object must be serialized with
             : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
             : and then encoded with base64 encoding.
-    
+
     mimetype: application/x-microsoft.net.object.soap.base64
-    value   : The object must be serialized with 
+    value   : The object must be serialized with
             : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
             : and then encoded with base64 encoding.
 
     mimetype: application/x-microsoft.net.object.bytearray.base64
-    value   : The object must be serialized into a byte array 
+    value   : The object must be serialized into a byte array
             : using a System.ComponentModel.TypeConverter
             : and then encoded with base64 encoding.
     -->
@@ -112,12 +112,12 @@
     <value>2.0</value>
   </resheader>
   <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="label1.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
   </data>
@@ -129,7 +129,7 @@
   </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="label1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>108, 16</value>
+    <value>120, 20</value>
   </data>
   <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="label1.TabIndex" type="System.Int32, mscorlib">
@@ -151,10 +151,10 @@
     <value />
   </data>
   <data name="mPhraseSizeTextBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>162, 51</value>
+    <value>178, 58</value>
   </data>
   <data name="mPhraseSizeTextBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>132, 22</value>
+    <value>132, 26</value>
   </data>
   <data name="mPhraseSizeTextBox.TabIndex" type="System.Int32, mscorlib">
     <value>21</value>
@@ -169,13 +169,13 @@
     <value />
   </data>
   <data name="mOKButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>67, 561</value>
+    <value>67, 688</value>
   </data>
   <data name="mOKButton.TabIndex" type="System.Int32, mscorlib">
     <value>22</value>
   </data>
   <data name="mOKButton.Text" xml:space="preserve">
-    <value>م&amp;وافق</value>
+    <value>&amp;موافق</value>
   </data>
   <data name="mCancelButton.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
@@ -187,16 +187,16 @@
     <value />
   </data>
   <data name="mCancelButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>185, 561</value>
+    <value>185, 688</value>
   </data>
   <data name="mCancelButton.TabIndex" type="System.Int32, mscorlib">
     <value>23</value>
   </data>
   <data name="mCancelButton.Text" xml:space="preserve">
-    <value>إلغا&amp;ء</value>
+    <value>إل&amp;غاء</value>
   </data>
   <data name="lstManualArrange.AccessibleName" xml:space="preserve">
-    <value>مربع قائمة الملفات السمعية</value>
+    <value>مربع قائمة الملفات الصوتية</value>
   </data>
   <data name="lstManualArrange.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
@@ -217,7 +217,7 @@
     <value />
   </data>
   <data name="m_btnMoveUp.Text" xml:space="preserve">
-    <value>التحرك لأ&amp;على</value>
+    <value>نقل لأ&amp;على</value>
   </data>
   <data name="m_btnMoveDown.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
@@ -229,7 +229,7 @@
     <value />
   </data>
   <data name="m_btnMoveDown.Text" xml:space="preserve">
-    <value>التحرك لأس&amp;فل</value>
+    <value>نقل لأ&amp;سفل</value>
   </data>
   <data name="m_btnAdd.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
@@ -256,10 +256,10 @@
     <value />
   </data>
   <data name="m_btnRemove.Text" xml:space="preserve">
-    <value>حذ&amp;ف</value>
+    <value>إ&amp;زالة</value>
   </data>
   <data name="m_grpArrangeAudioFiles.AccessibleName" xml:space="preserve">
-    <value>ترتيب مربع مجموعة الملفات السمعية</value>
+    <value>مربع مجموعة ترتيب الملفات الصوتية</value>
   </data>
   <data name="mbtnDesendingOrder.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
@@ -271,7 +271,7 @@
     <value />
   </data>
   <data name="mbtnDesendingOrder.Location" type="System.Drawing.Point, System.Drawing">
-    <value>168, 26</value>
+    <value>168, 35</value>
   </data>
   <data name="mbtnDesendingOrder.Size" type="System.Drawing.Size, System.Drawing">
     <value>132, 26</value>
@@ -289,13 +289,13 @@
     <value />
   </data>
   <data name="mbtnAscendingOrder.Location" type="System.Drawing.Point, System.Drawing">
-    <value>20, 26</value>
+    <value>20, 35</value>
   </data>
   <data name="mbtnAscendingOrder.Size" type="System.Drawing.Size, System.Drawing">
     <value>118, 26</value>
   </data>
   <data name="mbtnAscendingOrder.Text" xml:space="preserve">
-    <value>ترت&amp;ي&amp;ب تصاعدي</value>
+    <value>ترتيب ت&amp;صاعدي</value>
   </data>
   <data name="m_grpArrangeAudioFiles.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
@@ -307,7 +307,7 @@
     <value />
   </data>
   <data name="m_grpArrangeAudioFiles.Text" xml:space="preserve">
-    <value>ترتيب الملفات السمعية</value>
+    <value>ترتيب الملفات الصوتية:</value>
   </data>
   <data name="m_grpAddFiles.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
@@ -319,7 +319,7 @@
     <value />
   </data>
   <data name="m_txtCharToReplaceWithSpace.AccessibleName" xml:space="preserve">
-    <value>الاستبدال بمسافة</value>
+    <value>استبدال بمسافة</value>
   </data>
   <data name="m_txtCharToReplaceWithSpace.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
@@ -331,10 +331,10 @@
     <value />
   </data>
   <data name="m_txtCharToReplaceWithSpace.Location" type="System.Drawing.Point, System.Drawing">
-    <value>221, 103</value>
+    <value>264, 103</value>
   </data>
   <data name="m_txtPageIdentificationString.AccessibleName" xml:space="preserve">
-    <value>تحديد الصفحة</value>
+    <value>التعرف على الصفحات</value>
   </data>
   <data name="m_txtPageIdentificationString.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
@@ -346,10 +346,10 @@
     <value />
   </data>
   <data name="m_txtPageIdentificationString.Location" type="System.Drawing.Point, System.Drawing">
-    <value>223, 159</value>
+    <value>264, 175</value>
   </data>
   <data name="m_numCharCountToTruncateFromStart.AccessibleName" xml:space="preserve">
-    <value>عدد الحروف الأولى المطلوب قصها</value>
+    <value>عدد الأحرف الأولى المطلوب حذفها</value>
   </data>
   <data name="m_numCharCountToTruncateFromStart.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
@@ -361,10 +361,10 @@
     <value />
   </data>
   <data name="m_numCharCountToTruncateFromStart.Location" type="System.Drawing.Point, System.Drawing">
-    <value>223, 131</value>
+    <value>264, 140</value>
   </data>
   <data name="m_grpCreateSectionForEachAudioFile.AccessibleName" xml:space="preserve">
-    <value>مربع مجموعة لإنشاء قسم لكل ملف سمعي</value>
+    <value>مربع مجموعة لإنشاء قسم لكل ملف صوتي</value>
   </data>
   <data name="m_rdbSplitAtCuePoints.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
@@ -374,6 +374,12 @@
   </data>
   <data name="m_rdbSplitAtCuePoints.HelpString" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
+  </data>
+  <data name="m_rdbSplitAtCuePoints.Size" type="System.Drawing.Size, System.Drawing">
+    <value>328, 24</value>
+  </data>
+  <data name="m_rdbSplitAtCuePoints.Text" xml:space="preserve">
+    <value>التقسيم عند علامات الإرشاد في ملفات WAV الصوتية</value>
   </data>
   <data name="m_rdbCreateAudioFilePerSection.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
@@ -387,6 +393,12 @@
   <data name="m_rdbCreateAudioFilePerSection.Location" type="System.Drawing.Point, System.Drawing">
     <value>9, 72</value>
   </data>
+  <data name="m_rdbCreateAudioFilePerSection.Size" type="System.Drawing.Size, System.Drawing">
+    <value>207, 24</value>
+  </data>
+  <data name="m_rdbCreateAudioFilePerSection.Text" xml:space="preserve">
+    <value>&amp;إنشاء قسم جديد لكل ملف صوتي</value>
+  </data>
   <data name="m_rdbImportAudioFileInEachSection.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
   </data>
@@ -398,6 +410,12 @@
   </data>
   <data name="m_rdbImportAudioFileInEachSection.Location" type="System.Drawing.Point, System.Drawing">
     <value>9, 46</value>
+  </data>
+  <data name="m_rdbImportAudioFileInEachSection.Size" type="System.Drawing.Size, System.Drawing">
+    <value>295, 24</value>
+  </data>
+  <data name="m_rdbImportAudioFileInEachSection.Text" xml:space="preserve">
+    <value>ا&amp;ستيراد الملف الصوتي في كل قسم (من التحديد)</value>
   </data>
   <data name="m_rdbImportAudioInSelectedSection.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
@@ -411,8 +429,14 @@
   <data name="m_rdbImportAudioInSelectedSection.Location" type="System.Drawing.Point, System.Drawing">
     <value>9, 20</value>
   </data>
+  <data name="m_rdbImportAudioInSelectedSection.Size" type="System.Drawing.Size, System.Drawing">
+    <value>254, 24</value>
+  </data>
+  <data name="m_rdbImportAudioInSelectedSection.Text" xml:space="preserve">
+    <value>استيرا&amp;د الملفات الصوتية في القسم المحدد</value>
+  </data>
   <data name="mchktPageIdentificationString.AccessibleName" xml:space="preserve">
-    <value>تحديد الصفحة</value>
+    <value>التعرف على الصفحات</value>
   </data>
   <data name="mchktPageIdentificationString.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
@@ -424,16 +448,16 @@
     <value />
   </data>
   <data name="mchktPageIdentificationString.Location" type="System.Drawing.Point, System.Drawing">
-    <value>26, 159</value>
+    <value>26, 175</value>
   </data>
   <data name="mchktPageIdentificationString.Size" type="System.Drawing.Size, System.Drawing">
-    <value>90, 20</value>
+    <value>155, 24</value>
   </data>
   <data name="mchktPageIdentificationString.Text" xml:space="preserve">
-    <value>ت&amp;حديد الصفحة</value>
+    <value>ال&amp;تعرف على الصفحات</value>
   </data>
   <data name="mchkCountToTruncateFromStart.AccessibleName" xml:space="preserve">
-    <value>عدد الحروف الأولى المطلوب ترتيبها</value>
+    <value>عدد الأحرف الأولى المطلوب حذفها</value>
   </data>
   <data name="mchkCountToTruncateFromStart.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
@@ -445,16 +469,16 @@
     <value />
   </data>
   <data name="mchkCountToTruncateFromStart.Location" type="System.Drawing.Point, System.Drawing">
-    <value>26, 133</value>
+    <value>26, 142</value>
   </data>
   <data name="mchkCountToTruncateFromStart.Size" type="System.Drawing.Size, System.Drawing">
-    <value>191, 20</value>
+    <value>228, 24</value>
   </data>
   <data name="mchkCountToTruncateFromStart.Text" xml:space="preserve">
-    <value>عدد الحر&amp;وف الأولى المطلوب ترتيبها</value>
+    <value>عدد ال&amp;أحرف الأولى المطلوب حذفها</value>
   </data>
   <data name="mchkToReplaceWithSpace.AccessibleName" xml:space="preserve">
-    <value>الاستبدال بمسافة</value>
+    <value>استبدال بمسافة</value>
   </data>
   <data name="mchkToReplaceWithSpace.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
@@ -469,10 +493,10 @@
     <value>26, 105</value>
   </data>
   <data name="mchkToReplaceWithSpace.Size" type="System.Drawing.Size, System.Drawing">
-    <value>107, 20</value>
+    <value>111, 24</value>
   </data>
   <data name="mchkToReplaceWithSpace.Text" xml:space="preserve">
-    <value>الا&amp;ستبدال بمسافة</value>
+    <value>استب&amp;دال بمسافة</value>
   </data>
   <data name="m_grpCreateSectionForEachAudioFile.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
@@ -484,10 +508,10 @@
     <value />
   </data>
   <data name="m_grpCreateSectionForEachAudioFile.Location" type="System.Drawing.Point, System.Drawing">
-    <value>12, 215</value>
+    <value>12, 286</value>
   </data>
   <data name="m_grpCreateSectionForEachAudioFile.Size" type="System.Drawing.Size, System.Drawing">
-    <value>354, 218</value>
+    <value>391, 218</value>
   </data>
   <data name="m_rdbPhraseDetectionOnImportedFiles.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
@@ -499,13 +523,13 @@
     <value />
   </data>
   <data name="m_rdbPhraseDetectionOnImportedFiles.Size" type="System.Drawing.Size, System.Drawing">
-    <value>187, 20</value>
+    <value>246, 24</value>
   </data>
   <data name="m_rdbPhraseDetectionOnImportedFiles.TabIndex" type="System.Int32, mscorlib">
     <value>22</value>
   </data>
   <data name="m_rdbPhraseDetectionOnImportedFiles.Text" xml:space="preserve">
-    <value>الت&amp;قسيم التلقائي للملفات المستوردة</value>
+    <value>اكتشاف العبا&amp;رات في الملفات المستوردة</value>
   </data>
   <data name="m_rdbSplitPhrasesOnImport.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
@@ -517,10 +541,10 @@
     <value />
   </data>
   <data name="m_rdbSplitPhrasesOnImport.Size" type="System.Drawing.Size, System.Drawing">
-    <value>206, 20</value>
+    <value>186, 24</value>
   </data>
   <data name="m_rdbSplitPhrasesOnImport.Text" xml:space="preserve">
-    <value>تقسيم العبارا&amp;ت على الملفات المستوردة</value>
+    <value>تقسيم العبارات &amp;عند الاستيراد</value>
   </data>
   <data name="m_grpSplitPhraseOrPhraseDetection.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
@@ -532,13 +556,13 @@
     <value />
   </data>
   <data name="m_grpSplitPhraseOrPhraseDetection.Location" type="System.Drawing.Point, System.Drawing">
-    <value>12, 439</value>
+    <value>12, 514</value>
   </data>
   <data name="m_grpSplitPhraseOrPhraseDetection.Size" type="System.Drawing.Size, System.Drawing">
-    <value>354, 103</value>
+    <value>354, 143</value>
   </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>388, 605</value>
+    <value>431, 739</value>
   </data>
   <data name="$this.HelpKeyword" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
@@ -550,6 +574,6 @@
     <value />
   </data>
   <data name="$this.Text" xml:space="preserve">
-    <value>خيارات ضبط الملفات السمعية المستوردة</value>
+    <value>إعدادات استيراد الملفات الصوتية</value>
   </data>
 </root>

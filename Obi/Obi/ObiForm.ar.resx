@@ -144,7 +144,7 @@
     <value>281, 22</value>
   </data>
   <data name="mFile_NewProjectMenuItem.Text" xml:space="preserve">
-    <value>&amp;مشروع جديد </value>
+    <value>مشروع &amp;جديد</value>
   </data>
   <data name="mFile_NewProjectFromImportMenuItem.AccessibleName" xml:space="preserve">
     <value>مشروع جديد من الاستيراد  Ctrl+Shift+N</value>
@@ -192,7 +192,7 @@
     <value>&amp;حفظ المشروع </value>
   </data>
   <data name="mFile_SaveProjectAsMenuItem.AccessibleName" xml:space="preserve">
-    <value>حفظ المشروع باسم …Ctrl+Shift+S</value>
+    <value>حفظ المشروع باسم... Ctrl+Shift+S</value>
   </data>
   <data name="mFile_SaveProjectAsMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>Ctrl+Shift+S</value>
@@ -201,7 +201,7 @@
     <value>281, 22</value>
   </data>
   <data name="mFile_SaveProjectAsMenuItem.Text" xml:space="preserve">
-    <value>&amp;حفظ المشروع باسم....</value>
+    <value>حفظ المشروع &amp;باسم...</value>
   </data>
   <data name="toolStripSeparator2.Size" type="System.Drawing.Size, System.Drawing">
     <value>278, 6</value>
@@ -213,7 +213,7 @@
     <value>281, 22</value>
   </data>
   <data name="mFile_MergeProjectMenuItem.Text" xml:space="preserve">
-    <value>د&amp;مج المشروع</value>
+    <value>&amp;دمج مشروع</value>
   </data>
   <data name="m_RestoreFromBackupToolStripMenuItem.AccessibleName" xml:space="preserve">
     <value>استعادة من النسخة الاحتياطية</value>
@@ -222,7 +222,7 @@
     <value>281, 22</value>
   </data>
   <data name="m_RestoreFromBackupToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;استعادة من النسخة الاحتياطية</value>
+    <value>استعادة من نسخة ا&amp;حتياطية</value>
   </data>
   <data name="m_RestoreFromOriginalProjectToolStripMenuItem.AccessibleName" xml:space="preserve">
     <value>استعادة من المشروع الأصلي</value>
@@ -231,10 +231,10 @@
     <value>281, 22</value>
   </data>
   <data name="m_RestoreFromOriginalProjectToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;استعادة من المشروع الأصلي</value>
+    <value>استعادة من المشروع الأ&amp;صلي</value>
   </data>
   <data name="mFile_CloseProjectMenuItem.AccessibleName" xml:space="preserve">
-    <value>غلق المشروع Ctrl+W</value>
+    <value>إغلاق المشروع Ctrl+W</value>
   </data>
   <data name="mFile_CloseProjectMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>Ctrl+W</value>
@@ -243,7 +243,7 @@
     <value>281, 22</value>
   </data>
   <data name="mFile_CloseProjectMenuItem.Text" xml:space="preserve">
-    <value>&amp;غلق المشروع  </value>
+    <value>إ&amp;غلاق المشروع</value>
   </data>
   <data name="toolStripSeparator8.Size" type="System.Drawing.Size, System.Drawing">
     <value>278, 6</value>
@@ -285,7 +285,7 @@
     <value>44, 20</value>
   </data>
   <data name="mViewToolStripMenuItem.Text" xml:space="preserve">
-    <value>ع&amp;رض</value>
+    <value>&amp;عرض</value>
   </data>
   <data name="mSectionsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>63, 20</value>
@@ -303,7 +303,7 @@
     <value>70, 20</value>
   </data>
   <data name="transportToolStripMenuItem.Text" xml:space="preserve">
-    <value>ال&amp;نقل</value>
+    <value>&amp;نقل</value>
   </data>
   <data name="mTools_PreferencesMenuItem.AccessibleName" xml:space="preserve">
     <value>التفضيلات Ctrl+Alt+F</value>
@@ -321,7 +321,7 @@
     <value>250, 22</value>
   </data>
   <data name="m_ToolsLangPack.Text" xml:space="preserve">
-    <value>&amp;Update Language Pack</value>
+    <value>تحديث حزمة ال&amp;لغة</value>
   </data>
   <data name="toolStripSeparator16.Size" type="System.Drawing.Size, System.Drawing">
     <value>247, 6</value>
@@ -333,7 +333,7 @@
     <value>&amp;Audio Processing</value>
   </data>
   <data name="mTools_ExportSelectedAudioMenuItem.AccessibleName" xml:space="preserve">
-    <value>تصدير الملف السمعي Ctrl+Alt+E</value>
+    <value>تصدير صوت Ctrl+Alt+E</value>
   </data>
   <data name="mTools_ExportSelectedAudioMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>Ctrl+Alt+E</value>
@@ -342,10 +342,10 @@
     <value>250, 22</value>
   </data>
   <data name="mTools_ExportSelectedAudioMenuItem.Text" xml:space="preserve">
-    <value>ت&amp;صدير الملف السمعي  </value>
+    <value>&amp;تصدير صوت</value>
   </data>
   <data name="mTools_CleanUnreferencedAudioMenuItem.AccessibleName" xml:space="preserve">
-    <value>تنظيف الملفات السمعية بدون مرجعية Ctrl+I</value>
+    <value>تنظ&amp;يف الصوت غير المستخدم Ctrl+I</value>
   </data>
   <data name="mTools_CleanUnreferencedAudioMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>Ctrl+L</value>
@@ -354,10 +354,10 @@
     <value>250, 22</value>
   </data>
   <data name="mTools_CleanUnreferencedAudioMenuItem.Text" xml:space="preserve">
-    <value>ت&amp;نظيف الملفات السمعية بدون مرجعية </value>
+    <value>&amp;تنظ&amp;يف الصوت غير المستخدم</value>
   </data>
   <data name="mTools_ExportAsDAISYMenuItem.AccessibleName" xml:space="preserve">
-    <value>التصدير في شكل الكتاب الرقمي الناطق DAISY  Ctrl+E</value>
+    <value>التصدير في شكل كتاب ديزي      Ctrl+E</value>
   </data>
   <data name="mTools_ExportAsDAISYMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>Ctrl+E</value>
@@ -366,7 +366,7 @@
     <value>250, 22</value>
   </data>
   <data name="mTools_ExportAsDAISYMenuItem.Text" xml:space="preserve">
-    <value>التص&amp;دير في شكل الكتاب الرقمي الناطق DAISY</value>
+    <value>التص&amp;دير في شكل كتاب ديزي أو EPUB  </value>
   </data>
   <data name="toolStripSeparator18.Size" type="System.Drawing.Size, System.Drawing">
     <value>247, 6</value>
@@ -375,7 +375,7 @@
     <value>250, 22</value>
   </data>
   <data name="m_EPUB3ValidatorToolStripMenuItem.Text" xml:space="preserve">
-    <value>EPUB 3 Validator</value>
+    <value>مدقق EPUB 3</value>
   </data>
   <data name="mToolsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>48, 20</value>
@@ -421,10 +421,10 @@
     <value>119, 22</value>
   </data>
   <data name="mFile_ClearListMenuItem.Text" xml:space="preserve">
-    <value>تن&amp;ظيف القائمة</value>
+    <value>مس&amp;ح القائمة</value>
   </data>
   <data name="mUndoToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>رجوع Ctrl+Z</value>
+    <value>تراجع Ctrl+Z</value>
   </data>
   <data name="mUndoToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>Ctrl+Z</value>
@@ -433,10 +433,10 @@
     <value>247, 22</value>
   </data>
   <data name="mUndoToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;رجوع  </value>
+    <value>&amp;تراجع</value>
   </data>
   <data name="mRedoToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>أعد الخطوة Ctrl+Y</value>
+    <value>إعادة Ctrl+Y</value>
   </data>
   <data name="mRedoToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>Ctrl+Y</value>
@@ -445,7 +445,7 @@
     <value>247, 22</value>
   </data>
   <data name="mRedoToolStripMenuItem.Text" xml:space="preserve">
-    <value>أ&amp;عد الخطوة  </value>
+    <value>&amp;إعادة</value>
   </data>
   <data name="toolStripSeparator1.Size" type="System.Drawing.Size, System.Drawing">
     <value>244, 6</value>
@@ -496,7 +496,7 @@
     <value>247, 22</value>
   </data>
   <data name="mPasteBeforeToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;لصق قبل  </value>
+    <value>لصق &amp;قبل</value>
   </data>
   <data name="mPasteInsideToolStripMenuItem.AccessibleName" xml:space="preserve">
     <value>لصق بالداخل Ctrl+Shift+V</value>
@@ -508,10 +508,10 @@
     <value>247, 22</value>
   </data>
   <data name="mPasteInsideToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;لصق بداخل  </value>
+    <value>لصق &amp;بالداخل</value>
   </data>
   <data name="mDeleteToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>مسح</value>
+    <value>حذف Del</value>
   </data>
   <data name="mDeleteToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>Delete</value>
@@ -520,13 +520,13 @@
     <value>247, 22</value>
   </data>
   <data name="mDeleteToolStripMenuItem.Text" xml:space="preserve">
-    <value>م&amp;سح</value>
+    <value>&amp;حذف</value>
   </data>
   <data name="mSelectNothingToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>247, 22</value>
   </data>
   <data name="mSelectNothingToolStripMenuItem.Text" xml:space="preserve">
-    <value>لم &amp;يتم اختيار شيء</value>
+    <value>&amp;إلغاء تحديد الكل</value>
   </data>
   <data name="toolStripSeparator7.Size" type="System.Drawing.Size, System.Drawing">
     <value>244, 6</value>
@@ -538,13 +538,13 @@
     <value>247, 22</value>
   </data>
   <data name="mEdit_DeleteUnusedDataMenuItem.Text" xml:space="preserve">
-    <value>م&amp;سح البيانات غير المستخدمة</value>
+    <value>ح&amp;ذف البيانات غير المستخدمة</value>
   </data>
   <data name="toolStripSeparator4.Size" type="System.Drawing.Size, System.Drawing">
     <value>244, 6</value>
   </data>
   <data name="mFindInTextToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>العثور على: Ctrl+F</value>
+    <value>بحث Ctrl+F</value>
   </data>
   <data name="mFindInTextToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>Ctrl+F</value>
@@ -556,7 +556,7 @@
     <value>&amp;بحث</value>
   </data>
   <data name="mFindNextToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>العثور على التالي F3</value>
+    <value>بحث عن التالي F3</value>
   </data>
   <data name="mFindNextToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>F3</value>
@@ -565,10 +565,10 @@
     <value>247, 22</value>
   </data>
   <data name="mFindNextToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;بحث على التالي   </value>
+    <value>بحث عن ال&amp;تالي</value>
   </data>
   <data name="mFindPreviousToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>بحث على السابق Shift+F3</value>
+    <value>بحث عن السابق Shift+F3</value>
   </data>
   <data name="mFindPreviousToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>Shift+F3</value>
@@ -577,7 +577,7 @@
     <value>247, 22</value>
   </data>
   <data name="mFindPreviousToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;بحث على السابق  </value>
+    <value>بحث عن ال&amp;سابق</value>
   </data>
   <data name="mEdit_BookmarkToolStripMenuItem.AccessibleName" xml:space="preserve">
     <value>إشارة مرجعية</value>
@@ -586,28 +586,28 @@
     <value>247, 22</value>
   </data>
   <data name="mEdit_BookmarkToolStripMenuItem.Text" xml:space="preserve">
-    <value>إ&amp;شارة مرجعية</value>
+    <value>إشارة &amp;مرجعية</value>
   </data>
   <data name="mEdit_AssignBookmarkToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>إنشاء إشارة مرجعية</value>
+    <value>تعيين كإشارة مرجعية</value>
   </data>
   <data name="mEdit_AssignBookmarkToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>161, 22</value>
   </data>
   <data name="mEdit_AssignBookmarkToolStripMenuItem.Text" xml:space="preserve">
-    <value>إ&amp;نشاء إشارة مرجعية</value>
+    <value>تعيين ك&amp;إشارة مرجعية</value>
   </data>
   <data name="mEdit_GotoBookmarkToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>الذهاب إلى الإشارة المرجعية</value>
+    <value>الانتقال إلى إشارة مرجعية</value>
   </data>
   <data name="mEdit_GotoBookmarkToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>161, 22</value>
   </data>
   <data name="mEdit_GotoBookmarkToolStripMenuItem.Text" xml:space="preserve">
-    <value>ال&amp;ذهاب إلى الإشارة المرجعية</value>
+    <value>الانتقال إلى إشارة مرج&amp;عية</value>
   </data>
   <data name="mShowTOCViewToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>عرض نص المحتوى Ctrl+Alt+T</value>
+    <value>إظهار عرض جدول المحتويات Ctrl+Alt+T</value>
   </data>
   <data name="mShowTOCViewToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>Ctrl+Alt+T</value>
@@ -616,10 +616,10 @@
     <value>274, 22</value>
   </data>
   <data name="mShowTOCViewToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;عرض نص المحتوى </value>
+    <value>إ&amp;ظهار عرض جدول المحتويات</value>
   </data>
   <data name="mShowMetadataViewToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>عرض البيانات الوصفية Ctrl+Alt+M</value>
+    <value>إظهار عرض البيانات الوصفية Ctrl+Alt+M</value>
   </data>
   <data name="mShowMetadataViewToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>Ctrl+Alt+M</value>
@@ -628,10 +628,10 @@
     <value>274, 22</value>
   </data>
   <data name="mShowMetadataViewToolStripMenuItem.Text" xml:space="preserve">
-    <value>ع&amp;رض البيانات الوصفية </value>
+    <value>إظهار عرض ال&amp;بيانات الوصفية</value>
   </data>
   <data name="mShowTransportBarToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>عرض شريط النقل Ctrl+Alt+B</value>
+    <value>إظهار شريط التنقل Ctrl+Alt+B</value>
   </data>
   <data name="mShowTransportBarToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>Ctrl+Alt+B</value>
@@ -640,10 +640,10 @@
     <value>274, 22</value>
   </data>
   <data name="mShowTransportBarToolStripMenuItem.Text" xml:space="preserve">
-    <value>عر&amp;ض شريط النقل  </value>
+    <value>إظهار شريط ال&amp;تنقل</value>
   </data>
   <data name="mShowStatusBarToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>عرض شريط الحالة Ctrl+Alt+U</value>
+    <value>إظهار شريط الحالة Ctrl+Alt+U</value>
   </data>
   <data name="mShowStatusBarToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>Ctrl+Alt+U</value>
@@ -652,13 +652,13 @@
     <value>274, 22</value>
   </data>
   <data name="mShowStatusBarToolStripMenuItem.Text" xml:space="preserve">
-    <value>عرض &amp;شريط الحالة  </value>
+    <value>إظهار &amp;شريط الحالة</value>
   </data>
   <data name="toolStripSeparator12.Size" type="System.Drawing.Size, System.Drawing">
     <value>271, 6</value>
   </data>
   <data name="mFocusOnTOCViewToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>الوقوف على عرض جدول المحتويات / عرض المحتوى F6</value>
+    <value>التركيز على عرض جدول المحتويات / عرض المحتوى F6</value>
   </data>
   <data name="mFocusOnTOCViewToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>F6</value>
@@ -667,10 +667,10 @@
     <value>274, 22</value>
   </data>
   <data name="mFocusOnTOCViewToolStripMenuItem.Text" xml:space="preserve">
-    <value>الوقوف على عرض ج&amp;دول المحتويات / عرض المحتوى</value>
+    <value>التركيز على عرض ج&amp;دول المحتويات / عرض المحتوى</value>
   </data>
   <data name="mFocusOnStripsViewToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>الوقوف على عرض جدول المحتويات / عرض المحتوى</value>
+    <value>التركيز على عرض المحتوى F6</value>
   </data>
   <data name="mFocusOnStripsViewToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>F6</value>
@@ -679,13 +679,13 @@
     <value>274, 22</value>
   </data>
   <data name="mFocusOnStripsViewToolStripMenuItem.Text" xml:space="preserve">
-    <value>الوقوف على عرض ال&amp;محتوى</value>
+    <value>التركيز على عرض ال&amp;محتوى</value>
   </data>
   <data name="mFocusOnStripsViewToolStripMenuItem.Visible" type="System.Boolean, mscorlib">
     <value>False</value>
   </data>
   <data name="mFocusOnTransportBarToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>الوقوف على شريط النقل Ctrl+F6</value>
+    <value>التركيز على شريط التنقل Ctrl+F6</value>
   </data>
   <data name="mFocusOnTransportBarToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>Ctrl+F6</value>
@@ -694,10 +694,10 @@
     <value>274, 22</value>
   </data>
   <data name="mFocusOnTransportBarToolStripMenuItem.Text" xml:space="preserve">
-    <value>الوقوف على شريط ال&amp;نقل  </value>
+    <value>التركيز على شريط ال&amp;تنقل</value>
   </data>
   <data name="mSynchronizeViewsToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>تزامن شاشات الرؤية Ctrl+Alt+Y</value>
+    <value>مزامنة طرق العرض Ctrl+Alt+Y</value>
   </data>
   <data name="mSynchronizeViewsToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>Ctrl+Alt+Y</value>
@@ -706,7 +706,7 @@
     <value>274, 22</value>
   </data>
   <data name="mSynchronizeViewsToolStripMenuItem.Text" xml:space="preserve">
-    <value>ت&amp;زامن شاشات الرؤى </value>
+    <value>م&amp;زامنة طرق العرض</value>
   </data>
   <data name="mSynchronizeViewsToolStripMenuItem.Visible" type="System.Boolean, mscorlib">
     <value>False</value>
@@ -715,7 +715,7 @@
     <value>271, 6</value>
   </data>
   <data name="mShowPeakMeterMenuItem.AccessibleName" xml:space="preserve">
-    <value>عرض متر الذروة Ctrl+Alt+P</value>
+    <value>إظهار مقياس الذروة Ctrl+Alt+P</value>
   </data>
   <data name="mShowPeakMeterMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>Ctrl+Alt+P</value>
@@ -724,10 +724,10 @@
     <value>274, 22</value>
   </data>
   <data name="mShowPeakMeterMenuItem.Text" xml:space="preserve">
-    <value>عرض متر ال&amp;ذروة  </value>
+    <value>إظهار &amp;مقياس الذروة</value>
   </data>
   <data name="mShowSourceToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>عرض نافذة المصدر    Ctrl+Alt+O</value>
+    <value>إظهار عرض المصدر Ctrl+Alt+O</value>
   </data>
   <data name="mShowSourceToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>Ctrl+Alt+O</value>
@@ -736,7 +736,7 @@
     <value>274, 22</value>
   </data>
   <data name="mShowSourceToolStripMenuItem.Text" xml:space="preserve">
-    <value>عرض &amp;نافذة المصدر</value>
+    <value>إظهار عرض الم&amp;صدر</value>
   </data>
   <data name="mView_RecordingToolBarMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>Ctrl+Alt+R</value>
@@ -745,13 +745,13 @@
     <value>274, 22</value>
   </data>
   <data name="mView_RecordingToolBarMenuItem.Text" xml:space="preserve">
-    <value>ع&amp;رض شريط أداة التسجيل</value>
+    <value>إ&amp;ظهار شريط أدوات التسجيل</value>
   </data>
   <data name="toolStripSeparator15.Size" type="System.Drawing.Size, System.Drawing">
     <value>271, 6</value>
   </data>
   <data name="mView_ZoomInMenuItem.AccessibleName" xml:space="preserve">
-    <value>التكبير Ctrl+Alt+plus</value>
+    <value>تكبير Ctrl+Alt+plus</value>
   </data>
   <data name="mView_ZoomInMenuItem.ShortcutKeyDisplayString" xml:space="preserve">
     <value>Ctrl+Alt++</value>
@@ -763,10 +763,10 @@
     <value>274, 22</value>
   </data>
   <data name="mView_ZoomInMenuItem.Text" xml:space="preserve">
-    <value>ال&amp;تكبير  </value>
+    <value>&amp;تكبير</value>
   </data>
   <data name="mView_ZoomOutMenuItem.AccessibleName" xml:space="preserve">
-    <value>التصغير Ctrl+Alt+-</value>
+    <value>تصغير Ctrl+Alt+-</value>
   </data>
   <data name="mView_ZoomOutMenuItem.ShortcutKeyDisplayString" xml:space="preserve">
     <value>Ctrl+Alt+-</value>
@@ -778,7 +778,7 @@
     <value>274, 22</value>
   </data>
   <data name="mView_ZoomOutMenuItem.Text" xml:space="preserve">
-    <value>التص&amp;غير  </value>
+    <value>&amp;تصغير</value>
   </data>
   <data name="mView_NormalSizeMenuItem.AccessibleName" xml:space="preserve">
     <value>الحجم العادي ctrl+Alt+0</value>
@@ -820,7 +820,7 @@
     <value>274, 22</value>
   </data>
   <data name="mView_AudioZoomOutMenuItem.Text" xml:space="preserve">
-    <value>ت&amp;صغير الصوت  </value>
+    <value>ت&amp;صغير الصوت</value>
   </data>
   <data name="mView_ResetAudioSizeMenuItem.AccessibleName" xml:space="preserve">
     <value>إعادة ضبط حجم الصوت Ctrl+Alt+Shift+0</value>
@@ -835,7 +835,7 @@
     <value>إعادة &amp;ضبط حجم الصوت  </value>
   </data>
   <data name="mView_RefreshContentViewMenuItem.AccessibleName" xml:space="preserve">
-    <value>تحديث عرض المحتوى (التصحيح)</value>
+    <value>تحديث عرض المحتوى (تصحيح الأخطاء)</value>
   </data>
   <data name="mView_RefreshContentViewMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>F5</value>
@@ -844,7 +844,7 @@
     <value>274, 22</value>
   </data>
   <data name="mView_RefreshContentViewMenuItem.Text" xml:space="preserve">
-    <value>تحديث عرض المحتوى (التصحيح)</value>
+    <value>تحديث عرض المحتوى (تصحيح الأخطاء)</value>
   </data>
   <data name="mView_RefreshContentViewMenuItem.Visible" type="System.Boolean, mscorlib">
     <value>False</value>
@@ -853,7 +853,7 @@
     <value>271, 6</value>
   </data>
   <data name="mView_PhrasePropertiesMenuItem.AccessibleName" xml:space="preserve">
-    <value>خواص العبارة Alt+Enter</value>
+    <value>خصائص العبارة Alt+Enter</value>
   </data>
   <data name="mView_PhrasePropertiesMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>Alt+Enter</value>
@@ -862,10 +862,10 @@
     <value>274, 22</value>
   </data>
   <data name="mView_PhrasePropertiesMenuItem.Text" xml:space="preserve">
-    <value>&amp;خواص العبارة  </value>
+    <value>&amp;خصائص العبارة</value>
   </data>
   <data name="mView_SectionPropertiesMenuItem.AccessibleName" xml:space="preserve">
-    <value>خواص القسم Alt+Enter</value>
+    <value>خصائص المقطع Alt+Enter</value>
   </data>
   <data name="mView_SectionPropertiesMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>Alt+Enter</value>
@@ -874,16 +874,16 @@
     <value>274, 22</value>
   </data>
   <data name="mView_SectionPropertiesMenuItem.Text" xml:space="preserve">
-    <value>خ&amp;واص القسم  </value>
+    <value>&amp;خصائص القسم</value>
   </data>
   <data name="mView_ProjectPropertiesMenuItem.AccessibleName" xml:space="preserve">
-    <value>خواص المشروع</value>
+    <value>خصائص المشروع</value>
   </data>
   <data name="mView_ProjectPropertiesMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>274, 22</value>
   </data>
   <data name="mView_ProjectPropertiesMenuItem.Text" xml:space="preserve">
-    <value>خواص الم&amp;شروع </value>
+    <value>خصائص الم&amp;شروع</value>
   </data>
   <data name="mAddSectionToolStripMenuItem.AccessibleName" xml:space="preserve">
     <value>إضافة قسم Ctrl+H</value>
@@ -919,7 +919,7 @@
     <value>279, 22</value>
   </data>
   <data name="mInsertSectionToolStripMenuItem.Text" xml:space="preserve">
-    <value>إ&amp;دخال قسم </value>
+    <value>إ&amp;دراج مقطع</value>
   </data>
   <data name="mRenameSectionToolStripMenuItem.AccessibleName" xml:space="preserve">
     <value>إعادة تسمية القسم F2</value>
@@ -931,7 +931,7 @@
     <value>279, 22</value>
   </data>
   <data name="mRenameSectionToolStripMenuItem.Text" xml:space="preserve">
-    <value>إع&amp;ادة تسمية القسم  </value>
+    <value>إعادة &amp;تسمية القسم</value>
   </data>
   <data name="toolStripSeparator11.Size" type="System.Drawing.Size, System.Drawing">
     <value>276, 6</value>
@@ -949,7 +949,7 @@
     <value>خ&amp;فض مستوى القسم  </value>
   </data>
   <data name="mIncreaseSectionLevelToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>زيادة مستوى القسم Ctrl+Shift+Right</value>
+    <value>رفع مستوى القسم Ctrl+Shift+Right</value>
   </data>
   <data name="mIncreaseSectionLevelToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>Ctrl+Shift+Right</value>
@@ -958,7 +958,7 @@
     <value>279, 22</value>
   </data>
   <data name="mIncreaseSectionLevelToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;زيادة مستوى القسم  </value>
+    <value>رف&amp;ع مستوى القسم</value>
   </data>
   <data name="mSplitSectionToolStripMenuItem.AccessibleName" xml:space="preserve">
     <value>تقسيم القسم Ctrl+Shift+Q</value>
@@ -973,7 +973,7 @@
     <value>ت&amp;قسيم القسم  </value>
   </data>
   <data name="mMergeSectionWithNextToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>دمج الاقسام</value>
+    <value>دمج الأقسام</value>
   </data>
   <data name="mMergeSectionWithNextToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>Ctrl+Shift+M</value>
@@ -1027,7 +1027,7 @@
     <value>240, 22</value>
   </data>
   <data name="mAddBlankPhraseToolStripMenuItem.Text" xml:space="preserve">
-    <value>إضاف&amp;ة عبارة فارغة</value>
+    <value>إضافة &amp;عبارة فارغة</value>
   </data>
   <data name="mAddEmptyPagesToolStripMenuItem.AccessibleName" xml:space="preserve">
     <value>إضافة صفحات فارغة Ctrl+Shift+B</value>
@@ -1042,7 +1042,7 @@
     <value>إضافة &amp;صفحات فارغة  </value>
   </data>
   <data name="mImportAudioFileToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>استدعاء ملفات سمعية Ctrl+I</value>
+    <value>استيراد ملفات صوتية Ctrl+I</value>
   </data>
   <data name="mImportAudioFileToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>Ctrl+I</value>
@@ -1051,7 +1051,7 @@
     <value>240, 22</value>
   </data>
   <data name="mImportAudioFileToolStripMenuItem.Text" xml:space="preserve">
-    <value>اس&amp;تدعاء ملفات سمعية  </value>
+    <value>ا&amp;ستيراد ملفات صوتية</value>
   </data>
   <data name="mSplitPhraseToolStripMenuItem.AccessibleName" xml:space="preserve">
     <value>تقسيم العبارة Ctrl+Q</value>
@@ -1069,10 +1069,10 @@
     <value>240, 22</value>
   </data>
   <data name="mMergeToolStripMenuItem.Text" xml:space="preserve">
-    <value>د&amp;مج</value>
+    <value>&amp;دمج</value>
   </data>
   <data name="mMergePhraseWithNextToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>الدمج مع العبارة التالية Ctrl+M</value>
+    <value>دمج مع العبارة التالية Ctrl+M</value>
   </data>
   <data name="mMergePhraseWithNextToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>Ctrl+M</value>
@@ -1081,13 +1081,13 @@
     <value>242, 22</value>
   </data>
   <data name="mMergePhraseWithNextToolStripMenuItem.Text" xml:space="preserve">
-    <value>الد&amp;مج مع العبارة التالية  </value>
+    <value>&amp;دمج مع العبارة التالية</value>
   </data>
   <data name="splitAndMergeWithNextToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>242, 22</value>
   </data>
   <data name="splitAndMergeWithNextToolStripMenuItem.Text" xml:space="preserve">
-    <value>ت&amp;قسيم ودمج مع التالي</value>
+    <value>تقسيم ودمج مع ال&amp;تالي</value>
   </data>
   <data name="splitAndMergeWithPreviousToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>242, 22</value>
@@ -1102,7 +1102,7 @@
     <value>242, 22</value>
   </data>
   <data name="mMergePhraseWithFollowingPhrasesToolStripMenuItem.Text" xml:space="preserve">
-    <value>دمج مع الع&amp;بارات التالية</value>
+    <value>دمج مع العبارات ال&amp;تالية</value>
   </data>
   <data name="mMergePhraseWithPrecedingPhrasesToolStripMenuItem.AccessibleName" xml:space="preserve">
     <value>دمج مع العبارات السابقة </value>
@@ -1111,10 +1111,10 @@
     <value>242, 22</value>
   </data>
   <data name="mMergePhraseWithPrecedingPhrasesToolStripMenuItem.Text" xml:space="preserve">
-    <value>دمج مع الع&amp;بارات السابقة </value>
+    <value>دمج مع العبارات ال&amp;سابقة</value>
   </data>
   <data name="mCropAudiotoolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>إقتصاص الملف السمعي Ctrl+Alt+Q</value>
+    <value>إقتصاص الصوت  Ctrl+Alt+Q</value>
   </data>
   <data name="mCropAudiotoolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>Ctrl+Alt+Q</value>
@@ -1123,7 +1123,7 @@
     <value>240, 22</value>
   </data>
   <data name="mCropAudiotoolStripMenuItem.Text" xml:space="preserve">
-    <value>إقتصاص الملف الس&amp;معي  </value>
+    <value>إقتصاص الصوت الس&amp;معي  </value>
   </data>
   <data name="mPhrases_PhraseIsTODOMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>F9</value>
@@ -1132,10 +1132,10 @@
     <value>240, 22</value>
   </data>
   <data name="mPhrases_PhraseIsTODOMenuItem.Text" xml:space="preserve">
-    <value>العبارة في شكل &amp;TODO</value>
+    <value>العبارة محددة للمرا&amp;جعة </value>
   </data>
   <data name="mPhraseIsUsedToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>العبارة مستخدمه Ctrl+K</value>
+    <value>العبارة مستخدمة Ctrl+K</value>
   </data>
   <data name="mPhraseIsUsedToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>Ctrl+K</value>
@@ -1147,16 +1147,16 @@
     <value>الع&amp;بارة مستخدمة </value>
   </data>
   <data name="mSkippableNoteToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>ملاحظة يمكن تجاوزها</value>
+    <value>ملاحظة قابلة للتجاوز</value>
   </data>
   <data name="mSkippableNoteToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>240, 22</value>
   </data>
   <data name="mSkippableNoteToolStripMenuItem.Text" xml:space="preserve">
-    <value>تعليق يم&amp;كن تجاوزه</value>
+    <value>ملاحظة قابلة لل&amp;تجاوز...</value>
   </data>
   <data name="mSkippableBeginNoteToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>ملاحظة مبدئية</value>
+    <value>بدء الملاحظة</value>
   </data>
   <data name="mSkippableBeginNoteToolStripMenuItem.ShortcutKeyDisplayString" xml:space="preserve">
     <value>Ctrl+Alt+[</value>
@@ -1168,10 +1168,10 @@
     <value>245, 22</value>
   </data>
   <data name="mSkippableBeginNoteToolStripMenuItem.Text" xml:space="preserve">
-    <value>ملاح&amp;ظة مبدئية</value>
+    <value>&amp;بدء الملاحظة</value>
   </data>
   <data name="mSkippableEndNoteToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>ملاحظة ختامية</value>
+    <value>إنهاء الملاحظة</value>
   </data>
   <data name="mSkippableEndNoteToolStripMenuItem.ShortcutKeyDisplayString" xml:space="preserve">
     <value>Ctrl+Alt+]</value>
@@ -1183,7 +1183,7 @@
     <value>245, 22</value>
   </data>
   <data name="mSkippableEndNoteToolStripMenuItem.Text" xml:space="preserve">
-    <value>ملاحظ&amp;ة ختامية</value>
+    <value>إن&amp;هاء الملاحظة</value>
   </data>
   <data name="mSkippableAddReferenceToolStripMenuItem.AccessibleName" xml:space="preserve">
     <value>إضافة مرجع</value>
@@ -1198,19 +1198,19 @@
     <value>245, 22</value>
   </data>
   <data name="mSkippableAddReferenceToolStripMenuItem.Text" xml:space="preserve">
-    <value>إضافة مر&amp;جع</value>
+    <value>إ&amp;ضافة مرجع</value>
   </data>
   <data name="mSkippableGotoToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>الذهاب إلى الملاحظة المرجعية</value>
+    <value>الانتقال إلى الملاحظة المشار إليها</value>
   </data>
   <data name="mSkippableGotoToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>245, 22</value>
   </data>
   <data name="mSkippableGotoToolStripMenuItem.Text" xml:space="preserve">
-    <value>ال&amp;ذهاب إلى الملاحظة المرجعية</value>
+    <value>الان&amp;تقال إلى الملاحظة المشار إليها</value>
   </data>
   <data name="mSkippableRemoveReferenceToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>حذف المرجع</value>
+    <value>إزالة المرجع</value>
   </data>
   <data name="mSkippableRemoveReferenceToolStripMenuItem.ShortcutKeyDisplayString" xml:space="preserve">
     <value>Ctrl+Alt+D</value>
@@ -1222,28 +1222,28 @@
     <value>245, 22</value>
   </data>
   <data name="mSkippableRemoveReferenceToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;حذف المرجع</value>
+    <value>إ&amp;زالة المرجع</value>
   </data>
   <data name="mSkippableMoveToStartNoteToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>الانتقال إلى ملاحظة البداية</value>
+    <value>الانتقال إلى بداية الملاحظة</value>
   </data>
   <data name="mSkippableMoveToStartNoteToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>245, 22</value>
   </data>
   <data name="mSkippableMoveToStartNoteToolStripMenuItem.Text" xml:space="preserve">
-    <value>الانت&amp;قال إلى ملاحظة البداية</value>
+    <value>الانتقال إلى &amp;بداية الملاحظة</value>
   </data>
   <data name="mSkippableMoveToEndNoteToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>الانتقال إلى الملاحظة الختامية</value>
+    <value>الانتقال إلى نهاية الملاحظة</value>
   </data>
   <data name="mSkippableMoveToEndNoteToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>245, 22</value>
   </data>
   <data name="mSkippableMoveToEndNoteToolStripMenuItem.Text" xml:space="preserve">
-    <value>الان&amp;تقال إلى الملاحظة الختامية</value>
+    <value>الانتقال إلى &amp;نهاية الملاحظة</value>
   </data>
   <data name="mSkippableClearRoleFromNoteToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>حذف دور العبارة</value>
+    <value>مسح الدور من الملاحظة</value>
   </data>
   <data name="mSkippableClearRoleFromNoteToolStripMenuItem.ShortcutKeyDisplayString" xml:space="preserve">
     <value>Ctrl+Alt+C</value>
@@ -1255,7 +1255,7 @@
     <value>245, 22</value>
   </data>
   <data name="mSkippableClearRoleFromNoteToolStripMenuItem.Text" xml:space="preserve">
-    <value>ح&amp;ذف دور العبارة</value>
+    <value>مس&amp;ح الدور من الملاحظة</value>
   </data>
   <data name="toolStripSeparator6.Size" type="System.Drawing.Size, System.Drawing">
     <value>237, 6</value>
@@ -1264,13 +1264,13 @@
     <value>240, 22</value>
   </data>
   <data name="mPhrases_AssignRoleMenuItem.Text" xml:space="preserve">
-    <value>تعي&amp;ين دور</value>
+    <value>تعيين &amp;دور</value>
   </data>
   <data name="mPhrases_AssignRole_PlainMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>193, 22</value>
   </data>
   <data name="mPhrases_AssignRole_PlainMenuItem.Text" xml:space="preserve">
-    <value>م&amp;جرد</value>
+    <value>&amp;عادي</value>
   </data>
   <data name="mPhrases_AssignRole_HeadingMenuItem.AccessibleName" xml:space="preserve">
     <value>عنوان Ctrl+Shift+D</value>
@@ -1297,7 +1297,7 @@
     <value>&amp;صفحة  </value>
   </data>
   <data name="mPhrases_AssignRole_SilenceMenuItem.AccessibleName" xml:space="preserve">
-    <value>صامت Ctrl+Shift+E</value>
+    <value>صمت Ctrl+Shift+E</value>
   </data>
   <data name="mPhrases_AssignRole_SilenceMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>Ctrl+Shift+E</value>
@@ -1306,13 +1306,13 @@
     <value>193, 22</value>
   </data>
   <data name="mPhrases_AssignRole_SilenceMenuItem.Text" xml:space="preserve">
-    <value>ص&amp;امت  </value>
+    <value>&amp;صمت</value>
   </data>
   <data name="mPhrases_AssignRole_AnchorMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>193, 22</value>
   </data>
   <data name="mPhrases_AssignRole_AnchorMenuItem.Text" xml:space="preserve">
-    <value>&amp;ارساء</value>
+    <value>م&amp;رساة</value>
   </data>
   <data name="mCustomRoleToolStripSeparator.Size" type="System.Drawing.Size, System.Drawing">
     <value>190, 6</value>
@@ -1324,7 +1324,7 @@
     <value>(د&amp;ور مخصص جديد)</value>
   </data>
   <data name="mPhrases_ClearRoleMenuItem.AccessibleName" xml:space="preserve">
-    <value>حذف الدور Ctrl+Shift+C</value>
+    <value>مسح الدور Ctrl+Shift+C</value>
   </data>
   <data name="mPhrases_ClearRoleMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>Ctrl+Shift+C</value>
@@ -1333,13 +1333,13 @@
     <value>240, 22</value>
   </data>
   <data name="mPhrases_ClearRoleMenuItem.Text" xml:space="preserve">
-    <value>&amp;حذف الدور  </value>
+    <value>مس&amp;ح الدور</value>
   </data>
   <data name="mPhrases_EditRolesMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>240, 22</value>
   </data>
   <data name="mPhrases_EditRolesMenuItem.Text" xml:space="preserve">
-    <value>تعدي&amp;ل الأدوار المخصصة</value>
+    <value>تح&amp;رير الأدوار المخصصة...</value>
   </data>
   <data name="mPhrases_EditRolesMenuItem.Visible" type="System.Boolean, mscorlib">
     <value>False</value>
@@ -1348,7 +1348,7 @@
     <value>240, 22</value>
   </data>
   <data name="mPhrases_RenumberPagesMenuItem.Text" xml:space="preserve">
-    <value>أعد ترقيم الصف&amp;حات التالية</value>
+    <value>إعادة ترقيم الصف&amp;حات التالية</value>
   </data>
   <data name="toolStripSeparator19.Size" type="System.Drawing.Size, System.Drawing">
     <value>237, 6</value>
@@ -1357,10 +1357,10 @@
     <value>240, 22</value>
   </data>
   <data name="mPhraseDetectionToolStripMenuItem.Text" xml:space="preserve">
-    <value>تطبيق التع&amp;رف على العبارات</value>
+    <value>تطبيق اكتشاف الع&amp;بارات...</value>
   </data>
   <data name="mPhrases_ApplyPhraseDetectionMenuItem.AccessibleName" xml:space="preserve">
-    <value>بند مختار Ctrl+Shift+P</value>
+    <value>العنصر المحدد Ctrl+Shift+P</value>
   </data>
   <data name="mPhrases_ApplyPhraseDetectionMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>Ctrl+Shift+P</value>
@@ -1369,7 +1369,7 @@
     <value>285, 22</value>
   </data>
   <data name="mPhrases_ApplyPhraseDetectionMenuItem.Text" xml:space="preserve">
-    <value>بند م&amp;ختار  </value>
+    <value>العنصر الم&amp;حدد</value>
   </data>
   <data name="mApplyPhraseDetectionInProjectToolStripMenuItem.AccessibleName" xml:space="preserve">
     <value>أقسام متعددة</value>
@@ -1378,22 +1378,22 @@
     <value>285, 22</value>
   </data>
   <data name="mApplyPhraseDetectionInProjectToolStripMenuItem.Text" xml:space="preserve">
-    <value>أقسام &amp;متعددة</value>
+    <value>أقسام م&amp;تعددة</value>
   </data>
   <data name="settingsFromSilencePhraseToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>285, 22</value>
   </data>
   <data name="settingsFromSilencePhraseToolStripMenuItem.Text" xml:space="preserve">
-    <value>مت&amp;غيرات من العبارة الصامتة المختارة</value>
+    <value>معلمات من  العبارة ال&amp;صامتة المحددة</value>
   </data>
   <data name="mPhrases_AudioSelectionMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>240, 22</value>
   </data>
   <data name="mPhrases_AudioSelectionMenuItem.Text" xml:space="preserve">
-    <value> الت&amp;حديد السمعي</value>
+    <value>التحديد الص&amp;وتي</value>
   </data>
   <data name="mPhrases_AudioSelection_BeginAudioSelectionMenuItem.AccessibleName" xml:space="preserve">
-    <value>بدأ التحديد السمعي Ctrl+[</value>
+    <value>بدء التحديد الصوتي Ctrl+[</value>
   </data>
   <data name="mPhrases_AudioSelection_BeginAudioSelectionMenuItem.ShortcutKeyDisplayString" xml:space="preserve">
     <value>Ctrl+[</value>
@@ -1405,10 +1405,10 @@
     <value>225, 22</value>
   </data>
   <data name="mPhrases_AudioSelection_BeginAudioSelectionMenuItem.Text" xml:space="preserve">
-    <value>&amp;بدأ اختيار التحديد سمعي  </value>
+    <value>&amp;بدء التحديد الصوتي</value>
   </data>
   <data name="mPhrases_AudioSelection_EndAudioSelectionMenuItem.AccessibleName" xml:space="preserve">
-    <value>إنهاء التحديد  السمعي Ctrl9+]</value>
+    <value>إنهاء التحديد الصوتي Ctrl+]</value>
   </data>
   <data name="mPhrases_AudioSelection_EndAudioSelectionMenuItem.ShortcutKeyDisplayString" xml:space="preserve">
     <value>Ctrl+]</value>
@@ -1420,7 +1420,7 @@
     <value>225, 22</value>
   </data>
   <data name="mPhrases_AudioSelection_EndAudioSelectionMenuItem.Text" xml:space="preserve">
-    <value>إنهاء اختيار التحديد ال&amp;سمعي  </value>
+    <value>إنهاء التحديد ال&amp;صوتي</value>
   </data>
   <data name="mGoToToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>240, 22</value>
@@ -1429,7 +1429,7 @@
     <value>الذ&amp;هاب إلى ...</value>
   </data>
   <data name="mNextTODOPhraseToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>عبارة ToDo التالية Ctrl+F9</value>
+    <value>الانتقال إلى عبارة المراجعة التالية Ctrl+F9</value>
   </data>
   <data name="mNextTODOPhraseToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>Ctrl+F9</value>
@@ -1438,10 +1438,10 @@
     <value>271, 22</value>
   </data>
   <data name="mNextTODOPhraseToolStripMenuItem.Text" xml:space="preserve">
-    <value>العب&amp;ارة ال (TODO) التالية  </value>
+    <value>الانتقال إلى عبارة المراجعة ال&amp;تالية </value>
   </data>
   <data name="mPreviousTODOPhraseToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>العبارة ال (TODO)السابقة  Ctrl+Shift+F9</value>
+    <value>الانتقال إلى عبارة المراجعة السابقة   Ctrl+Shift+F9</value>
   </data>
   <data name="mPreviousTODOPhraseToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>Ctrl+Shift+F9</value>
@@ -1450,10 +1450,10 @@
     <value>271, 22</value>
   </data>
   <data name="mPreviousTODOPhraseToolStripMenuItem.Text" xml:space="preserve">
-    <value>العبا&amp;رة ال (TODO) السابقة </value>
+    <value>الانتقال إلى عبارة المراجعة ال&amp;سابقة  </value>
   </data>
   <data name="m_GoToPageToolStrip.AccessibleName" xml:space="preserve">
-    <value>الصفحة/العبارة Ctrl+G</value>
+    <value>صفحة / عبارة Ctrl+G</value>
   </data>
   <data name="m_GoToPageToolStrip.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>Ctrl+G</value>
@@ -1462,10 +1462,10 @@
     <value>271, 22</value>
   </data>
   <data name="m_GoToPageToolStrip.Text" xml:space="preserve">
-    <value>الصف&amp;حة / العبارة / الزمن</value>
+    <value>ص&amp;فحة / عبارة / وقت</value>
   </data>
   <data name="m_GoToCollectSpecialPhrasesToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>جمع العبارات الخاصة</value>
+    <value>تجميع العبارات الخاصة</value>
   </data>
   <data name="m_GoToCollectSpecialPhrasesToolStripMenuItem.ShortcutKeyDisplayString" xml:space="preserve">
     <value>Ctrl+F3</value>
@@ -1477,28 +1477,28 @@
     <value>271, 22</value>
   </data>
   <data name="m_GoToCollectSpecialPhrasesToolStripMenuItem.Text" xml:space="preserve">
-    <value>جمع الع&amp;بارات الخاصة</value>
+    <value>تجميع العبارات ال&amp;خاصة</value>
   </data>
   <data name="mCheckForPhrasesWithImproperAudioMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>240, 22</value>
   </data>
   <data name="mCheckForPhrasesWithImproperAudioMenuItem.Text" xml:space="preserve">
-    <value>البحث عن المل&amp;فات السمعية الفاسدة</value>
+    <value>التح&amp;قق من وجود ملفات صوتية تالفة</value>
   </data>
   <data name="mDeleteFollowingPhrasesToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>مسح العبارات التالية</value>
+    <value>حذف العبارات التالية</value>
   </data>
   <data name="mDeleteFollowingPhrasesToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>240, 22</value>
   </data>
   <data name="mDeleteFollowingPhrasesToolStripMenuItem.Text" xml:space="preserve">
-    <value>م&amp;سح العبارات التالية</value>
+    <value>&amp;حذف العبارات التالية</value>
   </data>
   <data name="mPlayToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>176, 22</value>
   </data>
   <data name="mPlayToolStripMenuItem.Text" xml:space="preserve">
-    <value>تشغ&amp;يل</value>
+    <value>&amp;تشغيل</value>
   </data>
   <data name="mPlayAllToolStripMenuItem.AccessibleName" xml:space="preserve">
     <value>تشغيل الكل Ctrl+Shift+Space</value>
@@ -1513,7 +1513,7 @@
     <value>ت&amp;شغيل الكل  </value>
   </data>
   <data name="mPlaySelectionToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>تشغيل التحديد (مسافة)</value>
+    <value>تشغيل التحديد Space</value>
   </data>
   <data name="mPlaySelectionToolStripMenuItem.ShortcutKeyDisplayString" xml:space="preserve">
     <value>Space</value>
@@ -1522,28 +1522,28 @@
     <value>208, 22</value>
   </data>
   <data name="mPlaySelectionToolStripMenuItem.Text" xml:space="preserve">
-    <value>تش&amp;غيل التحديد   </value>
+    <value>تش&amp;غيل التحديد</value>
   </data>
   <data name="m_PlaySectionToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>Play Section</value>
+    <value>تشغيل القسم</value>
   </data>
   <data name="m_PlaySectionToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>208, 22</value>
   </data>
   <data name="m_PlaySectionToolStripMenuItem.Text" xml:space="preserve">
-    <value>Play Section</value>
+    <value>تشغيل القسم</value>
   </data>
   <data name="m_PlayHeadingToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>Play Section Heading</value>
+    <value>تشغيل عنوان القسم</value>
   </data>
   <data name="m_PlayHeadingToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>208, 22</value>
   </data>
   <data name="m_PlayHeadingToolStripMenuItem.Text" xml:space="preserve">
-    <value>Play Section Heading</value>
+    <value>تشغيل عنوان القسم</value>
   </data>
   <data name="mPauseToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>توقف (مسافة)</value>
+    <value>إيقاف مؤقت Space</value>
   </data>
   <data name="mPauseToolStripMenuItem.ShortcutKeyDisplayString" xml:space="preserve">
     <value>Space</value>
@@ -1552,10 +1552,10 @@
     <value>176, 22</value>
   </data>
   <data name="mPauseToolStripMenuItem.Text" xml:space="preserve">
-    <value>توق&amp;ف  </value>
+    <value>إيقاف م&amp;ؤقت</value>
   </data>
   <data name="mResumeToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>استمرار (مسافة)</value>
+    <value>استئناف Space</value>
   </data>
   <data name="mResumeToolStripMenuItem.ShortcutKeyDisplayString" xml:space="preserve">
     <value>Space</value>
@@ -1564,10 +1564,10 @@
     <value>176, 22</value>
   </data>
   <data name="mResumeToolStripMenuItem.Text" xml:space="preserve">
-    <value>اس&amp;تمرار  </value>
+    <value>است&amp;ئناف</value>
   </data>
   <data name="mStopToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>توقف Ctrl+space</value>
+    <value>إيقاف Ctrl+Space</value>
   </data>
   <data name="mStopToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>Ctrl+Space</value>
@@ -1576,7 +1576,7 @@
     <value>176, 22</value>
   </data>
   <data name="mStopToolStripMenuItem.Text" xml:space="preserve">
-    <value>توق&amp;ف</value>
+    <value>إيق&amp;اف</value>
   </data>
   <data name="mFastPlaytoolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>176, 22</value>
@@ -1585,7 +1585,7 @@
     <value>تشغيل س&amp;ريع</value>
   </data>
   <data name="NormalSpeedtoolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>سرعة عادية Ctrl+0</value>
+    <value>سرعة طبيعية Ctrl+0</value>
   </data>
   <data name="NormalSpeedtoolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>Ctrl+0</value>
@@ -1594,16 +1594,16 @@
     <value>238, 22</value>
   </data>
   <data name="NormalSpeedtoolStripMenuItem.Text" xml:space="preserve">
-    <value>سرع&amp;ة عادية  </value>
+    <value>سرعة &amp;طبيعية</value>
   </data>
   <data name="mElapseBacktoolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>238, 22</value>
   </data>
   <data name="mElapseBacktoolStripMenuItem.Text" xml:space="preserve">
-    <value>سرعة عادية مع ال&amp;زمن المنقضي </value>
+    <value>سرعة طبيعية مع ال&amp;رجوع بالزمن</value>
   </data>
   <data name="SpeedUptoolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>الإسراع Ctrl++</value>
+    <value>تسريع Ctrl++</value>
   </data>
   <data name="SpeedUptoolStripMenuItem.ShortcutKeyDisplayString" xml:space="preserve">
     <value>Ctrl++</value>
@@ -1615,10 +1615,10 @@
     <value>238, 22</value>
   </data>
   <data name="SpeedUptoolStripMenuItem.Text" xml:space="preserve">
-    <value>الإس&amp;راع  </value>
+    <value>ت&amp;سريع</value>
   </data>
   <data name="mSpeedDowntoolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>الإبطاء Ctrl+-</value>
+    <value>إبطاء Ctrl+-</value>
   </data>
   <data name="mSpeedDowntoolStripMenuItem.ShortcutKeyDisplayString" xml:space="preserve">
     <value>Ctrl+-</value>
@@ -1630,7 +1630,7 @@
     <value>238, 22</value>
   </data>
   <data name="mSpeedDowntoolStripMenuItem.Text" xml:space="preserve">
-    <value>الإبطا&amp;ء  </value>
+    <value>إب&amp;طاء</value>
   </data>
   <data name="mPreviewToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>176, 22</value>
@@ -1654,7 +1654,7 @@
     <value>194, 22</value>
   </data>
   <data name="mPreviewUpToToolStripMenuItem.Text" xml:space="preserve">
-    <value>معاينة ح&amp;تى ...</value>
+    <value>معاينة &amp;حتى...</value>
   </data>
   <data name="mPreviewSelectedToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>194, 22</value>
@@ -1669,7 +1669,7 @@
     <value>تسج&amp;يل</value>
   </data>
   <data name="mStartMonitoringToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>بدأ المراقبة Ctrl+R</value>
+    <value>بدء المراقبة Ctrl+R</value>
   </data>
   <data name="mStartMonitoringToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>Ctrl+R</value>
@@ -1678,10 +1678,10 @@
     <value>267, 22</value>
   </data>
   <data name="mStartMonitoringToolStripMenuItem.Text" xml:space="preserve">
-    <value>ب&amp;دأ المراقبة  </value>
+    <value>ب&amp;دء المراقبة</value>
   </data>
   <data name="mStartRecordingToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>بدأ التسجيل Ctrl+R</value>
+    <value>بدء التسجيل Ctrl+R</value>
   </data>
   <data name="mStartRecordingToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>Ctrl+R</value>
@@ -1690,10 +1690,10 @@
     <value>267, 22</value>
   </data>
   <data name="mStartRecordingToolStripMenuItem.Text" xml:space="preserve">
-    <value>بدأ ال&amp;تسجيل  </value>
+    <value>بد&amp;ء التسجيل</value>
   </data>
   <data name="mStartRecordingDirectlyToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>بدأ التسجيل مباشرة Ctrl+Shift+r</value>
+    <value>بدء التسجيل مباشرة Ctrl+Shift+r</value>
   </data>
   <data name="mStartRecordingDirectlyToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>Ctrl+Shift+R</value>
@@ -1702,61 +1702,61 @@
     <value>267, 22</value>
   </data>
   <data name="mStartRecordingDirectlyToolStripMenuItem.Text" xml:space="preserve">
-    <value>بدأ الت&amp;سجيل مباشرة  </value>
+    <value>بدء الت&amp;سجيل مباشرة  </value>
   </data>
   <data name="m_DeletePhrasesWhileRecordingtoolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>267, 22</value>
   </data>
   <data name="m_DeletePhrasesWhileRecordingtoolStripMenuItem.Text" xml:space="preserve">
-    <value>التسجيل على العبارات التالية</value>
+    <value>التسجيل فوق العبارات التالية</value>
   </data>
   <data name="m_PreviewBeforeRecordingToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>Preview Before Recording</value>
+    <value>معاينة قبل التسجيل</value>
   </data>
   <data name="m_PreviewBeforeRecordingToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>267, 22</value>
   </data>
   <data name="m_PreviewBeforeRecordingToolStripMenuItem.Text" xml:space="preserve">
-    <value>Preview Before Recording</value>
+    <value>معاينة قبل التسجيل</value>
   </data>
   <data name="m_MonitorContinuouslyToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>267, 22</value>
   </data>
   <data name="m_MonitorContinuouslyToolStripMenuItem.Text" xml:space="preserve">
-    <value>Monitor Continuously</value>
+    <value>المراقبة المستمرة</value>
   </data>
   <data name="mAllowOverwriteToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>267, 22</value>
   </data>
   <data name="mAllowOverwriteToolStripMenuItem.Text" xml:space="preserve">
-    <value>إتاحة إعادة التس&amp;جيل على ملف سمعي </value>
+    <value>السماح بال&amp;تسجيل فوق الملف الصوتي</value>
   </data>
   <data name="mGenerateSpeechToolStripMenuItem.AccessibleDescription" xml:space="preserve">
-    <value>إنتاج نص مسموع</value>
+    <value>توليد الكلام</value>
   </data>
   <data name="mGenerateSpeechToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>176, 22</value>
   </data>
   <data name="mGenerateSpeechToolStripMenuItem.Text" xml:space="preserve">
-    <value>إ&amp;نتاج نص مسموع</value>
+    <value>تو&amp;ليد الكلام</value>
   </data>
   <data name="selectedPageToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>إنتاج نص مسموع للصفحة المختارة</value>
+    <value>توليد الكلام للصفحة المحددة (TTS).</value>
   </data>
   <data name="selectedPageToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>159, 22</value>
   </data>
   <data name="selectedPageToolStripMenuItem.Text" xml:space="preserve">
-    <value>الصفحة ال&amp;مختارة</value>
+    <value>الصفحة الم&amp;حددة (TTS)</value>
   </data>
   <data name="allEmptyPagesToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>إنتاج نص مسموع لجميع الصفحات الفارغة</value>
+    <value>توليد الكلام لجميع الصفحات الفارغة (TTS).</value>
   </data>
   <data name="allEmptyPagesToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>159, 22</value>
   </data>
   <data name="allEmptyPagesToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;جميع الصفحات الفارغة</value>
+    <value>ج&amp;ميع الصفحات الفارغة (TTS)</value>
   </data>
   <data name="toolStripSeparator5.Size" type="System.Drawing.Size, System.Drawing">
     <value>173, 6</value>
@@ -1807,13 +1807,13 @@
     <value>207, 22</value>
   </data>
   <data name="mBackwardElapseToolStripMenuItem.Text" xml:space="preserve">
-    <value>Step &amp;Back</value>
+    <value>خطوة لل&amp;خلف</value>
   </data>
   <data name="mForwardElapseToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>207, 22</value>
   </data>
   <data name="mForwardElapseToolStripMenuItem.Text" xml:space="preserve">
-    <value>Step &amp;Forward</value>
+    <value>خطوة لل&amp;أمام</value>
   </data>
   <data name="mNextPhraseToolStripMenuItem.AccessibleName" xml:space="preserve">
     <value>العبارة التالية Alt+Right</value>
@@ -1825,7 +1825,7 @@
     <value>207, 22</value>
   </data>
   <data name="mNextPhraseToolStripMenuItem.Text" xml:space="preserve">
-    <value>العبا&amp;رة التالية</value>
+    <value>ال&amp;عبارة التالية</value>
   </data>
   <data name="mNextPageToolStripMenuItem.AccessibleName" xml:space="preserve">
     <value>الصفحة التالية Alt+PageDown</value>
@@ -1858,16 +1858,16 @@
     <value>207, 22</value>
   </data>
   <data name="mPlayOnNavigateToolStripMenuItem.Text" xml:space="preserve">
-    <value>تشغيل مع الت&amp;نقل </value>
+    <value>تشغيل عند الت&amp;نقل</value>
   </data>
   <data name="mFineNavigationToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>207, 22</value>
   </data>
   <data name="mFineNavigationToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;تنقل دقيق</value>
+    <value>تن&amp;قل دقيق</value>
   </data>
   <data name="mRewindToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>لف سريع للوراء Ctrl+comma</value>
+    <value>إرجاع Ctrl+comma</value>
   </data>
   <data name="mRewindToolStripMenuItem.ShortcutKeyDisplayString" xml:space="preserve">
     <value>Ctrl+,</value>
@@ -1879,10 +1879,10 @@
     <value>176, 22</value>
   </data>
   <data name="mRewindToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;لف سريع للوراء</value>
+    <value>إ&amp;رجاع</value>
   </data>
   <data name="mFastForwardToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>تقديم سريع للأمام Ctrl+period</value>
+    <value>تقديم سريع Ctrl+period</value>
   </data>
   <data name="mFastForwardToolStripMenuItem.ShortcutKeyDisplayString" xml:space="preserve">
     <value>Ctrl+.</value>
@@ -1894,13 +1894,13 @@
     <value>176, 22</value>
   </data>
   <data name="mFastForwardToolStripMenuItem.Text" xml:space="preserve">
-    <value>تقديم سريع &amp;للأمام  </value>
+    <value>تقديم &amp;سريع</value>
   </data>
   <data name="mHelp_WhatsNewMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>238, 22</value>
   </data>
   <data name="mHelp_WhatsNewMenuItem.Text" xml:space="preserve">
-    <value>ما ال&amp;جديد؟ (عبر الانترنت)</value>
+    <value>ما ال&amp;جديد؟ (عبر الإنترنت)</value>
   </data>
   <data name="mHelp_WhatsNewMenuItem.Visible" type="System.Boolean, mscorlib">
     <value>False</value>
@@ -1915,13 +1915,13 @@
     <value>ال&amp;محتويات</value>
   </data>
   <data name="mHelp_ReportBugMenuItem.AccessibleName" xml:space="preserve">
-    <value>المصادر المتاحة عبر الانترنت/ صفحة  المشكلات Ctrl+Alt+R</value>
+    <value>الموارد عبر الإنترنت / متتبع المشكلات Ctrl+Alt+R</value>
   </data>
   <data name="mHelp_ReportBugMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>238, 22</value>
   </data>
   <data name="mHelp_ReportBugMenuItem.Text" xml:space="preserve">
-    <value>الم&amp;صادر المتاحة عبر الانترنت/ صفحة  المشكلات</value>
+    <value>م&amp;وارد عبر الإنترنت / متتبع المشكلات</value>
   </data>
   <data name="aboutObiToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>238, 22</value>
@@ -1930,13 +1930,13 @@
     <value>حو&amp;ل Obi</value>
   </data>
   <data name="checkForUpdatesToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>البحث عن التحديثات</value>
+    <value>التحقق من وجود تحديثات</value>
   </data>
   <data name="checkForUpdatesToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>238, 22</value>
   </data>
   <data name="checkForUpdatesToolStripMenuItem.Text" xml:space="preserve">
-    <value>ال&amp;بحث عن التحديثات</value>
+    <value>التحقق من وجود &amp;تحديثات</value>
   </data>
   <data name="mStatusStrip.Location" type="System.Drawing.Point, System.Drawing">
     <value>0, 520</value>
@@ -3414,5 +3414,164 @@
   </data>
   <data name="&gt;&gt;$this.Type" xml:space="preserve">
     <value>System.Windows.Forms.Form, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="mShowPeakMeterInsideObiMenuItem.Text" xml:space="preserve">
+    <value>عرض مقياس ال&amp;ذروة داخل Obi</value>
+  </data>
+  <data name="mImportTOCMenuItem.Text" xml:space="preserve">
+    <value>ا&amp;ستيراد واستبدال جدول المحتويات</value>
+  </data>
+  <data name="mMergeWithNextSectionToolStripMenuItem.AccessibleName" xml:space="preserve">
+    <value>دمج مع التالي</value>
+  </data>
+  <data name="mMergeWithNextSectionToolStripMenuItem.Text" xml:space="preserve">
+    <value>د&amp;مج مع التالي</value>
+  </data>
+  <data name="mMultiSectionOperations.AccessibleName" xml:space="preserve">
+    <value>عمليات على أقسام متعددة</value>
+  </data>
+  <data name="mMultiSectionOperations.Text" xml:space="preserve">
+    <value>عمليات على &amp;أقسام متعددة</value>
+  </data>
+  <data name="mDeleteSilenceFromEndOfSectionToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;حذف الصمت من نهاية القسم</value>
+  </data>
+  <data name="mRetainSilenceInLastPhraseOfSectionToolStripMenuItem.Text" xml:space="preserve">
+    <value>الا&amp;حتفاظ بالصمت في العبارة الأخيرة من القسم</value>
+  </data>
+  <data name="mDeleteSilenceFromEndOfAllSectionsToolStripMenuItem.Text" xml:space="preserve">
+    <value>حذف الصمت من &amp;نهاية جميع الأقسام</value>
+  </data>
+  <data name="mRetainSilenceInLastPhraseOfAllSectionsToolStripMenuItem.Text" xml:space="preserve">
+    <value>الاحتفاظ بالصمت في الع&amp;بارة الأخيرة من جميع الأقسام</value>
+  </data>
+  <data name="mTrimSilenceFromSectionEnd.Text" xml:space="preserve">
+    <value>ق&amp;ص الصمت من نهاية القسم</value>
+  </data>
+  <data name="beginMarkToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;بداية العلامة</value>
+  </data>
+  <data name="endMarkToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;نهاية العلامة</value>
+  </data>
+  <data name="m_AutoFillMissingPagesMenuItem.AccessibleName" xml:space="preserve">
+    <value>تعبئة تلقائية للصفحات الفارغة</value>
+  </data>
+  <data name="m_AutoFillMissingPagesMenuItem.Text" xml:space="preserve">
+    <value>تعبئة &amp;تلقائية للصفحات المفقودة</value>
+  </data>
+  <data name="m_pasteMultiplePhrasesToolStripMenuItem.Text" xml:space="preserve">
+    <value>لصق عبارات متع&amp;ددة</value>
+  </data>
+  <data name="MultiPhraseOperationMenuItem.Text" xml:space="preserve">
+    <value>عملية على عبارات/صفحات &amp;متعددة</value>
+  </data>
+  <data name="m_AddViewCommentToolStripMenuItem.Text" xml:space="preserve">
+    <value>إ&amp;ضافة/عرض تعليق</value>
+  </data>
+  <data name="m_ClearCommentToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;مسح التعليق</value>
+  </data>
+  <data name="m_CommentToolStripMenuItem.Text" xml:space="preserve">
+    <value>ت&amp;عليق المراجعة</value>
+  </data>
+  <data name="mAutoPageGenerationMenuItem.Text" xml:space="preserve">
+    <value>إنشاء تلقائي للصفحات</value>
+  </data>
+  <data name="detectSilencePhraseToolStripMenuItem.Text" xml:space="preserve">
+    <value>اكتشاف أخطاء الصمت</value>
+  </data>
+  <data name="selectedPageAudioFileToolStripMenuItem.Text" xml:space="preserve">
+    <value>ال&amp;صفحة المحددة (ملف صوتي)</value>
+  </data>
+  <data name="selectedPageAudioFileToolStripMenuItem.AccessibleName" xml:space="preserve">
+    <value>توليد كلام للصفحة المحددة (ملف صوتي).</value>
+  </data>
+  <data name="allEmptyPagesAudioFileToolStripMenuItem.Text" xml:space="preserve">
+    <value>جميع الصفحات ال&amp;فارغة (ملف صوتي)</value>
+  </data>
+  <data name="allEmptyPagesAudioFileToolStripMenuItem.AccessibleName" xml:space="preserve">
+    <value>توليد كلام لجميع الصفحات الفارغة (ملف صوتي)</value>
+  </data>
+  <data name="m_TextToSpeechToolStripMenuItem.Text" xml:space="preserve">
+    <value>تحويل ال&amp;نص إلى صوت</value>
+  </data>
+  <data name="m_TextToSpeechToolStripMenuItem.AccessibleName" xml:space="preserve">
+    <value>تحويل النص إلى صوت</value>
+  </data>
+  <data name="mTools_AudioProcessingNew.AccessibleName" xml:space="preserve">
+    <value>معالجة الصوت</value>
+  </data>
+  <data name="m_ChangeVolumeToolStripMenuItem.AccessibleName" xml:space="preserve">
+    <value>تغيير مستوى الصوت Ctrl+Shift+U</value>
+  </data>
+  <data name="m_ChangeVolumeToolStripMenuItem.Text" xml:space="preserve">
+    <value>ت&amp;غيير مستوى الصوت</value>
+  </data>
+  <data name="m_FadeInToolStripMenuItem.AccessibleName" xml:space="preserve">
+    <value>ظهور تدريجي Ctrl+Shift+I</value>
+  </data>
+  <data name="m_FadeInToolStripMenuItem.Text" xml:space="preserve">
+    <value>ظ&amp;هور تدريجي</value>
+  </data>
+  <data name="m_FadeOutToolStripMenuItem.AccessibleName" xml:space="preserve">
+    <value>اختفاء تدريجي Ctrl+Shift+O</value>
+  </data>
+  <data name="m_FadeOutToolStripMenuItem.Text" xml:space="preserve">
+    <value>ا&amp;ختفاء تدريجي</value>
+  </data>
+  <data name="m_NormalizeToolStripMenuItem.AccessibleName" xml:space="preserve">
+    <value>تطبيع الصوت Ctrl+Shift+Z</value>
+  </data>
+  <data name="m_NormalizeToolStripMenuItem.Text" xml:space="preserve">
+    <value>ت&amp;طبيع الصوت</value>
+  </data>
+  <data name="m_SpeechRateToolStripMenuItem.AccessibleName" xml:space="preserve">
+    <value>معدل سرعة الكلام</value>
+  </data>
+  <data name="m_SpeechRateToolStripMenuItem.Text" xml:space="preserve">
+    <value>معدل &amp;سرعة الكلام</value>
+  </data>
+  <data name="m_NoiseReductionToolStripMenuItem.AccessibleName" xml:space="preserve">
+    <value>تقليل الضوضاء Ctrl+Shift+Y</value>
+  </data>
+  <data name="m_NoiseReductionToolStripMenuItem.Text" xml:space="preserve">
+    <value>تقليل ال&amp;ضوضاء</value>
+  </data>
+  <data name="m_NoiseReductionRnnToolStripMenuItem.AccessibleName" xml:space="preserve">
+    <value>تقليل الضوضاء (بالذكاء الاصطناعي)</value>
+  </data>
+  <data name="m_NoiseReductionRnnToolStripMenuItem.Text" xml:space="preserve">
+    <value>تقليل ال&amp;ضوضاء (بالذكاء الاصطناعي)</value>
+  </data>
+  <data name="m_AudioMixerToolStripMenuItem.AccessibleName" xml:space="preserve">
+    <value>خلاط الصوت Ctrl+Shift+X</value>
+  </data>
+  <data name="m_AudioMixerToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;خلاط الصوت</value>
+  </data>
+  <data name="mTools_AudioProcessingNew.Text" xml:space="preserve">
+    <value>معالجة ال&amp;صوت</value>
+  </data>
+  <data name="m_Tools_CompleteCleanupToolStripMenuItem.AccessibleName" xml:space="preserve">
+    <value>تنظيف كامل</value>
+  </data>
+  <data name="m_Tools_CompleteCleanupToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;تنظيف كامل</value>
+  </data>
+  <data name="m_Tools_QuickCleanupToolStripMenuItem.AccessibleName" xml:space="preserve">
+    <value>تنظيف سريع</value>
+  </data>
+  <data name="m_Tools_QuickCleanupToolStripMenuItem.Text" xml:space="preserve">
+    <value>ت&amp;نظيف سريع</value>
+  </data>
+  <data name="rollbackToolStripMenuItem.Text" xml:space="preserve">
+    <value>الت&amp;راجع عن التغييرات</value>
+  </data>
+  <data name="mHelp_ContentsEnglishMenuItem.Text" xml:space="preserve">
+    <value>أحدث الم&amp;حتويات (الإنجليزية)</value>
+  </data>
+  <data name="m_ImportMetadataToolStripMenuItem.Text" xml:space="preserve">
+    <value>استيراد ال&amp;بيانات الوصفية</value>
   </data>
 </root>

@@ -142,7 +142,7 @@
     <value>4</value>
   </data>
   <data name="m_lblDuration.Text" xml:space="preserve">
-    <value>المدة الكل&amp;ية</value>
+    <value>إ&amp;جمالي المدة</value>
   </data>
   <data name="&gt;&gt;m_lblDuration.Name" xml:space="preserve">
     <value>m_lblDuration</value>
@@ -157,7 +157,7 @@
     <value>15</value>
   </data>
   <data name="m_txtDuration.AccessibleName" xml:space="preserve">
-    <value>المدة الكلية</value>
+    <value>إجمالي المدة</value>
   </data>
   <data name="m_txtDuration.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Left, Right</value>
@@ -322,7 +322,7 @@
     <value>12</value>
   </data>
   <data name="m_lblPageCount.Text" xml:space="preserve">
-    <value>إجمالي الصفحا&amp;ت</value>
+    <value>إجمالي ال&amp;صفحات</value>
   </data>
   <data name="&gt;&gt;m_lblPageCount.Name" xml:space="preserve">
     <value>m_lblPageCount</value>
@@ -418,7 +418,7 @@
     <value>2</value>
   </data>
   <data name="m_lblTitle.Text" xml:space="preserve">
-    <value>عنوا&amp;ن المشروع</value>
+    <value>ع&amp;نوان المشروع:</value>
   </data>
   <data name="&gt;&gt;m_lblTitle.Name" xml:space="preserve">
     <value>m_lblTitle</value>
@@ -511,7 +511,7 @@
     <value>8</value>
   </data>
   <data name="m_lblMaxDepth.Text" xml:space="preserve">
-    <value>&amp;Max Depth:</value>
+    <value>العمق الأ&amp;قصى:</value>
   </data>
   <data name="&gt;&gt;m_lblMaxDepth.Name" xml:space="preserve">
     <value>m_lblMaxDepth</value>
@@ -526,7 +526,7 @@
     <value>3</value>
   </data>
   <data name="m_txtMaxDepth.AccessibleName" xml:space="preserve">
-    <value>Max Depth:</value>
+    <value>العمق الأقصى:</value>
   </data>
   <data name="m_txtMaxDepth.Location" type="System.Drawing.Point, System.Drawing">
     <value>130, 114</value>
@@ -562,7 +562,7 @@
     <value>14</value>
   </data>
   <data name="m_lblProjectFileCount.Text" xml:space="preserve">
-    <value>Project &amp;file Count:</value>
+    <value>عدد مل&amp;فات المشروع:</value>
   </data>
   <data name="&gt;&gt;m_lblProjectFileCount.Name" xml:space="preserve">
     <value>m_lblProjectFileCount</value>

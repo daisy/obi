@@ -145,7 +145,7 @@
     <value>2</value>
   </data>
   <data name="mSelectButton.Text" xml:space="preserve">
-    <value>اخت&amp;ر</value>
+    <value>ت&amp;حديد</value>
   </data>
   <data name="&gt;&gt;mSelectButton.Name" xml:space="preserve">
     <value>mSelectButton</value>
@@ -178,7 +178,7 @@
     <value>0</value>
   </data>
   <data name="m_lblParentDirectoryPath.Text" xml:space="preserve">
-    <value>الم&amp;وقع:</value>
+    <value>ال&amp;موقع:</value>
   </data>
   <data name="&gt;&gt;m_lblParentDirectoryPath.Name" xml:space="preserve">
     <value>m_lblParentDirectoryPath</value>
@@ -238,7 +238,7 @@
     <value>6</value>
   </data>
   <data name="mOKButton.Text" xml:space="preserve">
-    <value>مواف&amp;ق</value>
+    <value>&amp;موافق</value>
   </data>
   <data name="&gt;&gt;mOKButton.Name" xml:space="preserve">
     <value>mOKButton</value>
@@ -271,7 +271,7 @@
     <value>7</value>
   </data>
   <data name="mCancelButton.Text" xml:space="preserve">
-    <value>إلغا&amp;ء</value>
+    <value>إل&amp;غاء</value>
   </data>
   <data name="&gt;&gt;mCancelButton.Name" xml:space="preserve">
     <value>mCancelButton</value>
@@ -304,7 +304,7 @@
     <value>5</value>
   </data>
   <data name="mSwitchToNewCheckBox.Text" xml:space="preserve">
-    <value>الانتقال إلى نسخ&amp;ة جديدة</value>
+    <value>الا&amp;نتقال إلى نسخة جديدة</value>
   </data>
   <data name="&gt;&gt;mSwitchToNewCheckBox.Name" xml:space="preserve">
     <value>mSwitchToNewCheckBox</value>
@@ -328,7 +328,7 @@
     <value>4</value>
   </data>
   <data name="m_ProjectNameTextBox.Text" xml:space="preserve">
-    <value>المشروع. Obi</value>
+    <value>مشروع Obi</value>
   </data>
   <data name="&gt;&gt;m_ProjectNameTextBox.Name" xml:space="preserve">
     <value>m_ProjectNameTextBox</value>
@@ -355,7 +355,7 @@
     <value>3</value>
   </data>
   <data name="m_lbl_ProjectName.Text" xml:space="preserve">
-    <value>اسم ملف الم&amp;شروع</value>
+    <value>اسم ملف الم&amp;شروع:</value>
   </data>
   <data name="&gt;&gt;m_lbl_ProjectName.Name" xml:space="preserve">
     <value>m_lbl_ProjectName</value>
@@ -385,7 +385,7 @@
     <value>4, 4, 4, 4</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
-    <value>حفظ المشروع باسم ....</value>
+    <value>حفظ المشروع باسم</value>
   </data>
   <data name="&gt;&gt;helpProvider1.Name" xml:space="preserve">
     <value>helpProvider1</value>

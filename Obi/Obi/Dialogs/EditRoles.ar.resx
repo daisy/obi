@@ -157,7 +157,7 @@
     <value>6</value>
   </data>
   <data name="mNewCustomRole.AccessibleName" xml:space="preserve">
-    <value>أضف دور جديد أو اختر من القائمة التالية</value>
+    <value>أضف دورًا جديدًا أو اختر من القائمة التالية</value>
   </data>
   <data name="mNewCustomRole.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Left, Right</value>
@@ -202,7 +202,7 @@
     <value>3</value>
   </data>
   <data name="mInstructions.Text" xml:space="preserve">
-    <value>أضف دور جديد أو اختر من القائمة التالية</value>
+    <value>أضف دورًا جديدًا أو اختر من القائمة</value>
   </data>
   <data name="&gt;&gt;mInstructions.Name" xml:space="preserve">
     <value>mInstructions</value>
@@ -235,7 +235,7 @@
     <value>4</value>
   </data>
   <data name="mOk.Text" xml:space="preserve">
-    <value>م&amp;وافق</value>
+    <value>&amp;موافق</value>
   </data>
   <data name="&gt;&gt;mOk.Name" xml:space="preserve">
     <value>mOk</value>
@@ -268,7 +268,7 @@
     <value>5</value>
   </data>
   <data name="mCancel.Text" xml:space="preserve">
-    <value>إلغا&amp;ء</value>
+    <value>إل&amp;غاء</value>
   </data>
   <data name="&gt;&gt;mCancel.Name" xml:space="preserve">
     <value>mCancel</value>
@@ -301,7 +301,7 @@
     <value>1</value>
   </data>
   <data name="mAdd.Text" xml:space="preserve">
-    <value>إضاف&amp;ة</value>
+    <value>إ&amp;ضافة</value>
   </data>
   <data name="&gt;&gt;mAdd.Name" xml:space="preserve">
     <value>mAdd</value>
@@ -334,7 +334,7 @@
     <value>3</value>
   </data>
   <data name="mRemove.Text" xml:space="preserve">
-    <value>&amp;حذف</value>
+    <value>&amp;إزالة</value>
   </data>
   <data name="&gt;&gt;mRemove.Name" xml:space="preserve">
     <value>mRemove</value>

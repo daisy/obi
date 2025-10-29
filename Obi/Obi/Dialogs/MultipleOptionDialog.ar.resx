@@ -165,7 +165,7 @@
     <value>1</value>
   </data>
   <data name="m_rdb_SaveBookmarkAndProject.Text" xml:space="preserve">
-    <value>ح&amp;فظ المشروع والعناصر المختارة في شكل إشارة مرجعية </value>
+    <value>حفظ المشروع والعنصر المحدد كإ&amp;شارة مرجعية</value>
   </data>
   <data name="&gt;&gt;m_rdb_SaveBookmarkAndProject.Name" xml:space="preserve">
     <value>m_rdb_SaveBookmarkAndProject</value>
@@ -192,7 +192,7 @@
     <value>3</value>
   </data>
   <data name="m_rdb_SaveProjectOnly.Text" xml:space="preserve">
-    <value>احف&amp;ظ المشروع فقط</value>
+    <value>حفظ المشرو&amp;ع فقط</value>
   </data>
   <data name="&gt;&gt;m_rdb_SaveProjectOnly.Name" xml:space="preserve">
     <value>m_rdb_SaveProjectOnly</value>
@@ -219,7 +219,7 @@
     <value>4</value>
   </data>
   <data name="m_rdb_DiscardBoth.Text" xml:space="preserve">
-    <value>تجاهل ك&amp;ليهما</value>
+    <value>ت&amp;جاهل كليهم</value>
   </data>
   <data name="&gt;&gt;m_rdb_DiscardBoth.Name" xml:space="preserve">
     <value>m_rdb_DiscardBoth</value>
@@ -304,7 +304,7 @@
     <value>339, 211</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
-    <value>اختر الخيار المناسب</value>
+    <value>حدد الخيار</value>
   </data>
   <data name="&gt;&gt;helpProvider1.Name" xml:space="preserve">
     <value>helpProvider1</value>

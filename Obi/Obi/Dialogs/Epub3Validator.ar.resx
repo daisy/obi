@@ -1,17 +1,17 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
-  <!-- 
-    Microsoft ResX Schema 
-    
+  <!--
+    Microsoft ResX Schema
+
     Version 2.0
-    
-    The primary goals of this format is to allow a simple XML format 
-    that is mostly human readable. The generation and parsing of the 
-    various data types are done through the TypeConverter classes 
+
+    The primary goals of this format is to allow a simple XML format
+    that is mostly human readable. The generation and parsing of the
+    various data types are done through the TypeConverter classes
     associated with the data types.
-    
+
     Example:
-    
+
     ... ado.net/XML headers & schema ...
     <resheader name="resmimetype">text/microsoft-resx</resheader>
     <resheader name="version">2.0</resheader>
@@ -26,36 +26,36 @@
         <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
         <comment>This is a comment</comment>
     </data>
-                
-    There are any number of "resheader" rows that contain simple 
+
+    There are any number of "resheader" rows that contain simple
     name/value pairs.
-    
-    Each data row contains a name, and value. The row also contains a 
-    type or mimetype. Type corresponds to a .NET class that support 
-    text/value conversion through the TypeConverter architecture. 
-    Classes that don't support this are serialized and stored with the 
+
+    Each data row contains a name, and value. The row also contains a
+    type or mimetype. Type corresponds to a .NET class that support
+    text/value conversion through the TypeConverter architecture.
+    Classes that don't support this are serialized and stored with the
     mimetype set.
-    
-    The mimetype is used for serialized objects, and tells the 
-    ResXResourceReader how to depersist the object. This is currently not 
+
+    The mimetype is used for serialized objects, and tells the
+    ResXResourceReader how to depersist the object. This is currently not
     extensible. For a given mimetype the value must be set accordingly:
-    
-    Note - application/x-microsoft.net.object.binary.base64 is the format 
-    that the ResXResourceWriter will generate, however the reader can 
+
+    Note - application/x-microsoft.net.object.binary.base64 is the format
+    that the ResXResourceWriter will generate, however the reader can
     read any of the formats listed below.
-    
+
     mimetype: application/x-microsoft.net.object.binary.base64
-    value   : The object must be serialized with 
+    value   : The object must be serialized with
             : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
             : and then encoded with base64 encoding.
-    
+
     mimetype: application/x-microsoft.net.object.soap.base64
-    value   : The object must be serialized with 
+    value   : The object must be serialized with
             : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
             : and then encoded with base64 encoding.
 
     mimetype: application/x-microsoft.net.object.bytearray.base64
-    value   : The object must be serialized into a byte array 
+    value   : The object must be serialized into a byte array
             : using a System.ComponentModel.TypeConverter
             : and then encoded with base64 encoding.
     -->
@@ -117,253 +117,69 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <assembly alias="mscorlib" name="mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="m_lblSelectInputFile.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="m_lblSelectInputFile.Location" type="System.Drawing.Point, System.Drawing">
-    <value>1, 28</value>
-  </data>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="m_lblSelectInputFile.Size" type="System.Drawing.Size, System.Drawing">
-    <value>145, 16</value>
-  </data>
-  <data name="m_lblSelectInputFile.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
+    <value>132, 20</value>
   </data>
   <data name="m_lblSelectInputFile.Text" xml:space="preserve">
-    <value>Select the  EPUB 3 File</value>
-  </data>
-  <data name="&gt;&gt;m_lblSelectInputFile.Name" xml:space="preserve">
-    <value>m_lblSelectInputFile</value>
-  </data>
-  <data name="&gt;&gt;m_lblSelectInputFile.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;m_lblSelectInputFile.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;m_lblSelectInputFile.ZOrder" xml:space="preserve">
-    <value>7</value>
-  </data>
-  <data name="m_lblInputEPUB.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="m_lblInputEPUB.Location" type="System.Drawing.Point, System.Drawing">
-    <value>27, 57</value>
+    <value>تحديد ملف EPUB 3</value>
   </data>
   <data name="m_lblInputEPUB.Size" type="System.Drawing.Size, System.Drawing">
-    <value>76, 16</value>
-  </data>
-  <data name="m_lblInputEPUB.TabIndex" type="System.Int32, mscorlib">
-    <value>1</value>
+    <value>142, 20</value>
   </data>
   <data name="m_lblInputEPUB.Text" xml:space="preserve">
-    <value>Input EPUB</value>
-  </data>
-  <data name="&gt;&gt;m_lblInputEPUB.Name" xml:space="preserve">
-    <value>m_lblInputEPUB</value>
-  </data>
-  <data name="&gt;&gt;m_lblInputEPUB.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;m_lblInputEPUB.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;m_lblInputEPUB.ZOrder" xml:space="preserve">
-    <value>6</value>
+    <value>ملف الإدخال (EPUB)</value>
   </data>
   <data name="m_txtInputEPUB.AccessibleName" xml:space="preserve">
-    <value>Input Epub</value>
+    <value>ملف الإدخال (EPUB)</value>
   </data>
   <data name="m_txtInputEPUB.Location" type="System.Drawing.Point, System.Drawing">
-    <value>114, 57</value>
+    <value>148, 56</value>
+  </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="m_txtInputEPUB.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>3, 5, 3, 5</value>
   </data>
   <data name="m_txtInputEPUB.Size" type="System.Drawing.Size, System.Drawing">
-    <value>294, 22</value>
+    <value>268, 26</value>
   </data>
-  <data name="m_txtInputEPUB.TabIndex" type="System.Int32, mscorlib">
-    <value>2</value>
-  </data>
-  <data name="&gt;&gt;m_txtInputEPUB.Name" xml:space="preserve">
-    <value>m_txtInputEPUB</value>
-  </data>
-  <data name="&gt;&gt;m_txtInputEPUB.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;m_txtInputEPUB.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;m_txtInputEPUB.ZOrder" xml:space="preserve">
-    <value>5</value>
-  </data>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="m_btnBrowseInputOPF.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
-    <value>Flat</value>
-  </data>
-  <data name="m_btnBrowseInputOPF.Location" type="System.Drawing.Point, System.Drawing">
-    <value>423, 51</value>
-  </data>
-  <data name="m_btnBrowseInputOPF.Size" type="System.Drawing.Size, System.Drawing">
-    <value>90, 28</value>
-  </data>
-  <data name="m_btnBrowseInputOPF.TabIndex" type="System.Int32, mscorlib">
-    <value>3</value>
+  <data name="m_btnBrowseInputOPF.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>3, 5, 3, 5</value>
   </data>
   <data name="m_btnBrowseInputOPF.Text" xml:space="preserve">
-    <value>&amp;Browse</value>
+    <value>ت&amp;صفح</value>
   </data>
-  <data name="&gt;&gt;m_btnBrowseInputOPF.Name" xml:space="preserve">
-    <value>m_btnBrowseInputOPF</value>
-  </data>
-  <data name="&gt;&gt;m_btnBrowseInputOPF.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;m_btnBrowseInputOPF.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;m_btnBrowseInputOPF.ZOrder" xml:space="preserve">
-    <value>4</value>
-  </data>
-  <data name="m_btnOk.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
-    <value>Flat</value>
-  </data>
-  <data name="m_btnOk.Location" type="System.Drawing.Point, System.Drawing">
-    <value>114, 180</value>
-  </data>
-  <data name="m_btnOk.Size" type="System.Drawing.Size, System.Drawing">
-    <value>110, 32</value>
-  </data>
-  <data name="m_btnOk.TabIndex" type="System.Int32, mscorlib">
-    <value>8</value>
+  <data name="m_btnOk.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>3, 5, 3, 5</value>
   </data>
   <data name="m_btnOk.Text" xml:space="preserve">
-    <value>&amp;OK</value>
+    <value>&amp;موافق</value>
   </data>
-  <data name="&gt;&gt;m_btnOk.Name" xml:space="preserve">
-    <value>m_btnOk</value>
-  </data>
-  <data name="&gt;&gt;m_btnOk.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;m_btnOk.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;m_btnOk.ZOrder" xml:space="preserve">
-    <value>3</value>
-  </data>
-  <data name="m_btnCancel.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
-    <value>Flat</value>
-  </data>
-  <data name="m_btnCancel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>260, 180</value>
-  </data>
-  <data name="m_btnCancel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>110, 32</value>
-  </data>
-  <data name="m_btnCancel.TabIndex" type="System.Int32, mscorlib">
-    <value>9</value>
+  <data name="m_btnCancel.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>3, 5, 3, 5</value>
   </data>
   <data name="m_btnCancel.Text" xml:space="preserve">
-    <value>&amp;Cancel</value>
+    <value>إل&amp;غاء</value>
   </data>
-  <data name="&gt;&gt;m_btnCancel.Name" xml:space="preserve">
-    <value>m_btnCancel</value>
-  </data>
-  <data name="&gt;&gt;m_btnCancel.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;m_btnCancel.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;m_btnCancel.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <metadata name="m_openFileDialogBrowse.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 17</value>
-  </metadata>
   <data name="m_epubCheckRichTextBox.AccessibleName" xml:space="preserve">
-    <value>Validation error log</value>
+    <value>سجل أخطاء التحقق من الصحة</value>
   </data>
-  <data name="m_epubCheckRichTextBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>27, 31</value>
-  </data>
-  <data name="m_epubCheckRichTextBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>462, 145</value>
-  </data>
-  <data name="m_epubCheckRichTextBox.TabIndex" type="System.Int32, mscorlib">
-    <value>5</value>
+  <data name="m_epubCheckRichTextBox.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>3, 5, 3, 5</value>
   </data>
   <data name="m_epubCheckRichTextBox.Text" xml:space="preserve">
-    <value>Validation Error log</value>
-  </data>
-  <data name="&gt;&gt;m_epubCheckRichTextBox.Name" xml:space="preserve">
-    <value>m_epubCheckRichTextBox</value>
-  </data>
-  <data name="&gt;&gt;m_epubCheckRichTextBox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.RichTextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;m_epubCheckRichTextBox.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;m_epubCheckRichTextBox.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>سجل أخطاء التحقق من الصحة</value>
   </data>
   <data name="m_lblEpubCompletionStatus.AccessibleName" xml:space="preserve">
-    <value>Epub Completion Status</value>
+    <value>حالة اكتمال ملف EPUB</value>
   </data>
-  <data name="m_lblEpubCompletionStatus.Location" type="System.Drawing.Point, System.Drawing">
-    <value>27, 3</value>
+  <data name="m_lblEpubCompletionStatus.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>3, 5, 3, 5</value>
   </data>
-  <data name="m_lblEpubCompletionStatus.Size" type="System.Drawing.Size, System.Drawing">
-    <value>163, 22</value>
-  </data>
-  <data name="m_lblEpubCompletionStatus.TabIndex" type="System.Int32, mscorlib">
-    <value>4</value>
-  </data>
-  <data name="&gt;&gt;m_lblEpubCompletionStatus.Name" xml:space="preserve">
-    <value>m_lblEpubCompletionStatus</value>
-  </data>
-  <data name="&gt;&gt;m_lblEpubCompletionStatus.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;m_lblEpubCompletionStatus.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;m_lblEpubCompletionStatus.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
-    <value>8, 16</value>
-  </data>
-  <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>526, 226</value>
-  </data>
-  <data name="$this.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Microsoft Sans Serif, 9.75pt</value>
-  </data>
-  <data name="$this.MaximumSize" type="System.Drawing.Size, System.Drawing">
-    <value>534, 255</value>
-  </data>
-  <data name="$this.MinimumSize" type="System.Drawing.Size, System.Drawing">
-    <value>534, 255</value>
+  <data name="$this.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>3, 5, 3, 5</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
-    <value>Epub 3 Validator</value>
-  </data>
-  <data name="&gt;&gt;m_openFileDialogBrowse.Name" xml:space="preserve">
-    <value>m_openFileDialogBrowse</value>
-  </data>
-  <data name="&gt;&gt;m_openFileDialogBrowse.Type" xml:space="preserve">
-    <value>System.Windows.Forms.OpenFileDialog, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;$this.Name" xml:space="preserve">
-    <value>Epub3Validator</value>
-  </data>
-  <data name="&gt;&gt;$this.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Form, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>أداة التحقق من صحة EPUB 3</value>
   </data>
 </root>

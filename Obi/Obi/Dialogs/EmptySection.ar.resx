@@ -169,7 +169,7 @@
     <value>0</value>
   </data>
   <data name="mMessageLabel.Text" xml:space="preserve">
-    <value>القسم "{0}" لا يشتمل على محتوى سمعي ولن يتم تصديره، ولا أى من أقسامه الفرعية. هل تريد الاستمرار؟</value>
+    <value>المقطع "{0}" لا يحتوي على محتوى صوتي ولن يتم تصديره، هو وأيٌ من أقسامه الفرعية. هل تريد الاستمرار؟</value>
   </data>
   <data name="&gt;&gt;mMessageLabel.Name" xml:space="preserve">
     <value>mMessageLabel</value>
@@ -199,7 +199,7 @@
     <value>3</value>
   </data>
   <data name="mCancelButton.Text" xml:space="preserve">
-    <value>إلغا&amp;ء</value>
+    <value>إل&amp;غاء</value>
   </data>
   <data name="&gt;&gt;mCancelButton.Name" xml:space="preserve">
     <value>mCancelButton</value>
@@ -229,7 +229,7 @@
     <value>1</value>
   </data>
   <data name="mKeepWarningCheckbox.Text" xml:space="preserve">
-    <value>يرجى الاستمرار في إعطاء التحذيرات المتعلقة بالأقسام الفارغة في هذا المشروع</value>
+    <value>الاستمرار في التحذير بشأن الأقسام الفارغة في هذا المشروع</value>
   </data>
   <data name="&gt;&gt;mKeepWarningCheckbox.Name" xml:space="preserve">
     <value>mKeepWarningCheckbox</value>

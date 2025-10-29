@@ -112,23 +112,23 @@
     <value>2.0</value>
   </resheader>
   <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="m_btnOk.Location" type="System.Drawing.Point, System.Drawing">
     <value>68, 522</value>
   </data>
   <data name="m_btnOk.Text" xml:space="preserve">
-    <value>التسج&amp;يل</value>
+    <value>ت&amp;سجيل</value>
   </data>
   <data name="m_btnRemindMeLater.Location" type="System.Drawing.Point, System.Drawing">
     <value>225, 522</value>
   </data>
   <data name="m_btnRemindMeLater.Text" xml:space="preserve">
-    <value>ذ&amp;كرني لاحقا</value>
+    <value>&amp;ذكرني لاحقًا</value>
   </data>
   <data name="m_txtRetypeEmail.Location" type="System.Drawing.Point, System.Drawing">
     <value>164, 95</value>
@@ -140,13 +140,13 @@
     <value>113, 15</value>
   </data>
   <data name="m_lblRetypeEmail.Text" xml:space="preserve">
-    <value>أعد كتابة ال&amp;بريد الإلكتروني</value>
+    <value>أعد كتابة ال&amp;بريد الإلكتروني:</value>
   </data>
   <data name="m_lblWinVer.Size" type="System.Drawing.Size, System.Drawing">
     <value>67, 15</value>
   </data>
   <data name="m_lblWinVer.Text" xml:space="preserve">
-    <value>نسخة الويندوز:</value>
+    <value>إصدار Windows:</value>
   </data>
   <data name="m_txtCity.Location" type="System.Drawing.Point, System.Drawing">
     <value>143, 181</value>
@@ -158,7 +158,7 @@
     <value>26, 15</value>
   </data>
   <data name="m_lblCountry.Text" xml:space="preserve">
-    <value>الب&amp;لد:</value>
+    <value>ال&amp;بلد:</value>
   </data>
   <data name="m_lblCity.Size" type="System.Drawing.Size, System.Drawing">
     <value>100, 15</value>
@@ -171,13 +171,13 @@
   </data>
   <data name="m_lblOrgName.Text" xml:space="preserve">
     <value>اسم الم&amp;نظمة: 
- استخدم زر "Home" للمستخدم الخاص</value>
+ اكتب "Home" للمستخدم الخاص</value>
   </data>
   <data name="m_lblEmail.Size" type="System.Drawing.Size, System.Drawing">
     <value>74, 15</value>
   </data>
   <data name="m_lblEmail.Text" xml:space="preserve">
-    <value>البريد الإلكتر&amp;وني</value>
+    <value>ال&amp;بريد الإلكتروني:</value>
   </data>
   <data name="m_lblName.Location" type="System.Drawing.Point, System.Drawing">
     <value>7, 18</value>
@@ -192,13 +192,13 @@
     <value>98, 19</value>
   </data>
   <data name="m_rdbTryingObi.Text" xml:space="preserve">
-    <value>أحاول &amp;تجربة Obi</value>
+    <value>أقوم بتجربة وا&amp;ختبار Obi.</value>
   </data>
   <data name="m_rdbDaisyProduction.Size" type="System.Drawing.Size, System.Drawing">
     <value>264, 19</value>
   </data>
   <data name="m_rdbDaisyProduction.Text" xml:space="preserve">
-    <value>إنني أستخدم Obi بالفعل لإنتاج الكتب الر&amp;قمية بنظام DAISY</value>
+    <value>أستخدم Obi بالفعل لإنتاج كتب &amp;DAISY</value>
   </data>
   <data name="m_lblSelectRadioButton.Size" type="System.Drawing.Size, System.Drawing">
     <value>115, 15</value>
@@ -210,7 +210,7 @@
     <value>369, 20</value>
   </data>
   <data name="m_chkAuthorization.Text" xml:space="preserve">
-    <value>أفوض استخدام هذه البيانات لأوبي.</value>
+    <value>أ&amp;فوض اتحاد DAISY باستخدام هذه البيانات الشخصية للتواصل ولإحصاءات استخدام Obi.</value>
   </data>
   <data name="m_txtBoxObiInformation.AccessibleName" xml:space="preserve">
     <value>استخدم مفاتيح الأسهم للقراءة</value>

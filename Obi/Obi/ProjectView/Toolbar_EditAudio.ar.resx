@@ -124,7 +124,7 @@
     <value>True</value>
   </metadata>
   <data name="toolStrip1.AccessibleName" xml:space="preserve">
-    <value>تحرير التحديد السمعي</value>
+    <value>تحرير الصوت</value>
   </data>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="toolStrip1.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
@@ -199,7 +199,7 @@
     <value>143, 22</value>
   </data>
   <data name="mbtnMergetoolStrip.Text" xml:space="preserve">
-    <value>الدمج مع العبارة التالية</value>
+    <value>دمج مع العبارة التالية</value>
   </data>
   <data name="mbtnCuttoolStrip.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -856,5 +856,20 @@
   </data>
   <data name="&gt;&gt;$this.Type" xml:space="preserve">
     <value>System.Windows.Forms.UserControl, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="m_ChangeVolumeToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;تغيير مستوى الصوت</value>
+  </data>
+  <data name="m_FadeInToolStripMenuItem.Text" xml:space="preserve">
+    <value>تلاشي ال&amp;دخول</value>
+  </data>
+  <data name="m_FadeOutToolStripMenuItem.Text" xml:space="preserve">
+    <value> تلاشي ال&amp;خروج</value>
+  </data>
+  <data name="m_NormalizeToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;تطبيع الصوت</value>
+  </data>
+  <data name="mbtnAudioProcessingToolStripDropDown.Text" xml:space="preserve">
+    <value>معالجة الصوت</value>
   </data>
 </root>

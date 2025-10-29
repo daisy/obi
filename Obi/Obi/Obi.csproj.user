@@ -220,6 +220,9 @@
     <EmbeddedResource Update="Dialogs\ExtendedMessageToAssociate.resx">
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Update="messages.ar.resx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Update="messages.fr.resx">
       <SubType>Designer</SubType>
     </EmbeddedResource>

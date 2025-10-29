@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
   <!-- 
     Microsoft ResX Schema 
@@ -117,4 +117,16 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="m_btnClose.AccessibleName" xml:space="preserve">
+    <value>إغلاق</value>
+  </data>
+  <data name="m_btnClose.Text" xml:space="preserve">
+    <value>إ&amp;غلاق</value>
+  </data>
+  <data name="$this.AccessibleName" xml:space="preserve">
+    <value>وصف الملف التعريفي</value>
+  </data>
+  <data name="$this.Text" xml:space="preserve">
+    <value>وصف الملف التعريفي</value>
+  </data>
 </root>
