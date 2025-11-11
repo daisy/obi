@@ -35,6 +35,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NAudio_NET9", "..\..\urakaw
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InstallerFileOperations", "Setup\CustomActions\InstallerFileOperations\InstallerFileOperations.csproj", "{69E49EF9-FB19-4774-8234-C75105CD42D6}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InstallerOperationsExe", "Setup\CustomActions\InstallerOperationsExe\InstallerOperationsExe.csproj", "{89A15224-863B-43A4-3292-B56B9C8A2C32}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -128,6 +130,14 @@ Global
 		{69E49EF9-FB19-4774-8234-C75105CD42D6}.Release|Any CPU.Build.0 = Release|Any CPU
 		{69E49EF9-FB19-4774-8234-C75105CD42D6}.test|Any CPU.ActiveCfg = Debug|Any CPU
 		{69E49EF9-FB19-4774-8234-C75105CD42D6}.test|Any CPU.Build.0 = Debug|Any CPU
+		{89A15224-863B-43A4-3292-B56B9C8A2C32}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{89A15224-863B-43A4-3292-B56B9C8A2C32}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{89A15224-863B-43A4-3292-B56B9C8A2C32}.Minimal Debug|Any CPU.ActiveCfg = Release|Any CPU
+		{89A15224-863B-43A4-3292-B56B9C8A2C32}.Minimal Debug|Any CPU.Build.0 = Release|Any CPU
+		{89A15224-863B-43A4-3292-B56B9C8A2C32}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{89A15224-863B-43A4-3292-B56B9C8A2C32}.Release|Any CPU.Build.0 = Release|Any CPU
+		{89A15224-863B-43A4-3292-B56B9C8A2C32}.test|Any CPU.ActiveCfg = Debug|Any CPU
+		{89A15224-863B-43A4-3292-B56B9C8A2C32}.test|Any CPU.Build.0 = Debug|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
