@@ -1790,23 +1790,28 @@ namespace Obi
                         Dialogs.UserRegistration registrationDialog = new UserRegistration(m_Settings_Permanent, mSettings); //@fontconfig
                         registrationDialog.ShowDialog();
                     }
-                    //Console.WriteLine("bypassed dialog");
-                    if (!string.IsNullOrEmpty(m_Settings_Permanent.UsersInfoToUpload) && m_Settings_Permanent.UsersInfoToUpload != Dialogs.UserRegistration.NoInfo && !m_Settings_Permanent.RegistrationComplete)
+                //Console.WriteLine("bypassed dialog");
+                if (!string.IsNullOrEmpty(m_Settings_Permanent.UsersInfoToUpload) && m_Settings_Permanent.UsersInfoToUpload != Dialogs.UserRegistration.NoInfo && !m_Settings_Permanent.RegistrationComplete)
+                {
+                    Console.WriteLine("Upload attempts: " + m_Settings_Permanent.UploadAttemptsCount);
+                    // if attempts are less than max allowed attempts then try uploading 
+                    // but if attempts count are equal to maximum attempts allowed then send email
+                    if (m_Settings_Permanent.UploadAttemptsCount < Dialogs.UserRegistration.MaxUploadAttemptsAllowed)
                     {
-                        Console.WriteLine("Upload attempts: " + m_Settings_Permanent.UploadAttemptsCount);
-                        // if attempts are less than max allowed attempts then try uploading 
-                        // but if attempts count are equal to maximum attempts allowed then send email
-                        if (m_Settings_Permanent.UploadAttemptsCount < Dialogs.UserRegistration.MaxUploadAttemptsAllowed)
-                        {
-                            Console.WriteLine("uploading");
-                            Dialogs.UserRegistration.UploadUserInformation(m_Settings_Permanent);
-                        }
-                        else if (MessageBox.Show(string.Format(Localizer.Message("UserRegistration_SendEmailMsg"), m_Settings_Permanent.UploadAttemptsCount),
-                             Localizer.Message("Caption_Information"), MessageBoxButtons.OKCancel) == DialogResult.OK)
+                        Console.WriteLine("uploading");
+                        Dialogs.UserRegistration.UploadUserInformation(m_Settings_Permanent);
+                    }
+                    else
+                    {
+                        if (MessageBox.Show(string.Format(Localizer.Message("UserRegistration_SendEmailMsg"), m_Settings_Permanent.UploadAttemptsCount),
+                                 Localizer.Message("Caption_Information"), MessageBoxButtons.OKCancel) == DialogResult.OK)
                         {
                             Dialogs.UserRegistration.OpenEmailToSend(m_Settings_Permanent);
                         }
+                        m_Settings_Permanent.UploadAttemptsCount++;
+                        m_Settings_Permanent.SaveSettings();    
                     }
+                }
                 }
             }
 
