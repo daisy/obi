@@ -29,192 +29,193 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(GenerateSpeech));
-            this.m_TextToSpeechTb = new System.Windows.Forms.RichTextBox();
-            this.m_PreviewBtn = new System.Windows.Forms.Button();
-            this.m_GenerateBtn = new System.Windows.Forms.Button();
-            this.m_BuildInRbtn = new System.Windows.Forms.RadioButton();
-            this.m_AzureRbtn = new System.Windows.Forms.RadioButton();
-            this.m_VoiceSelectionCb = new System.Windows.Forms.ComboBox();
-            this.m_ClearBtn = new System.Windows.Forms.Button();
-            this.m_SpeedTb = new System.Windows.Forms.TrackBar();
-            this.m_TTSVoiceLbl = new System.Windows.Forms.Label();
-            this.m_SpeechRateLbl = new System.Windows.Forms.Label();
-            this.m_FontSmallerBtn = new System.Windows.Forms.Button();
-            this.m_FontBiggerBtn = new System.Windows.Forms.Button();
-            this.m_AddAzureKeyBtn = new System.Windows.Forms.Button();
-            this.m_AddAzureVoiceBtn = new System.Windows.Forms.Button();
-            this.m_DeleteAzureVoiceBtn = new System.Windows.Forms.Button();
-            this.m_CloseBtn = new System.Windows.Forms.Button();
-            this.m_VoiceTypeGroupBox = new System.Windows.Forms.GroupBox();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
-            ((System.ComponentModel.ISupportInitialize)(this.m_SpeedTb)).BeginInit();
-            this.m_VoiceTypeGroupBox.SuspendLayout();
-            this.groupBox1.SuspendLayout();
-            this.groupBox2.SuspendLayout();
-            this.SuspendLayout();
+            m_TextToSpeechTb = new System.Windows.Forms.RichTextBox();
+            m_PreviewBtn = new System.Windows.Forms.Button();
+            m_GenerateBtn = new System.Windows.Forms.Button();
+            m_BuildInRbtn = new System.Windows.Forms.RadioButton();
+            m_AzureRbtn = new System.Windows.Forms.RadioButton();
+            m_VoiceSelectionCb = new System.Windows.Forms.ComboBox();
+            m_ClearBtn = new System.Windows.Forms.Button();
+            m_SpeedTb = new System.Windows.Forms.TrackBar();
+            m_TTSVoiceLbl = new System.Windows.Forms.Label();
+            m_SpeechRateLbl = new System.Windows.Forms.Label();
+            m_FontSmallerBtn = new System.Windows.Forms.Button();
+            m_FontBiggerBtn = new System.Windows.Forms.Button();
+            m_AddAzureKeyBtn = new System.Windows.Forms.Button();
+            m_AddAzureVoiceBtn = new System.Windows.Forms.Button();
+            m_DeleteAzureVoiceBtn = new System.Windows.Forms.Button();
+            m_CloseBtn = new System.Windows.Forms.Button();
+            m_VoiceTypeGroupBox = new System.Windows.Forms.GroupBox();
+            groupBox1 = new System.Windows.Forms.GroupBox();
+            groupBox2 = new System.Windows.Forms.GroupBox();
+            ((System.ComponentModel.ISupportInitialize)m_SpeedTb).BeginInit();
+            m_VoiceTypeGroupBox.SuspendLayout();
+            groupBox1.SuspendLayout();
+            groupBox2.SuspendLayout();
+            SuspendLayout();
             // 
             // m_TextToSpeechTb
             // 
-            resources.ApplyResources(this.m_TextToSpeechTb, "m_TextToSpeechTb");
-            this.m_TextToSpeechTb.BackColor = System.Drawing.SystemColors.Window;
-            this.m_TextToSpeechTb.ForeColor = System.Drawing.SystemColors.InactiveCaption;
-            this.m_TextToSpeechTb.Name = "m_TextToSpeechTb";
-            this.m_TextToSpeechTb.Enter += new System.EventHandler(this.m_TextToSpeechTb_Enter);
-            this.m_TextToSpeechTb.Leave += new System.EventHandler(this.m_TextToSpeechTb_Leave);
+            resources.ApplyResources(m_TextToSpeechTb, "m_TextToSpeechTb");
+            m_TextToSpeechTb.BackColor = System.Drawing.SystemColors.Window;
+            m_TextToSpeechTb.ForeColor = System.Drawing.SystemColors.InactiveCaption;
+            m_TextToSpeechTb.Name = "m_TextToSpeechTb";
+            m_TextToSpeechTb.Enter += m_TextToSpeechTb_Enter;
+            m_TextToSpeechTb.Leave += m_TextToSpeechTb_Leave;
             // 
             // m_PreviewBtn
             // 
-            resources.ApplyResources(this.m_PreviewBtn, "m_PreviewBtn");
-            this.m_PreviewBtn.Name = "m_PreviewBtn";
-            this.m_PreviewBtn.UseVisualStyleBackColor = true;
-            this.m_PreviewBtn.Click += new System.EventHandler(this.m_PreviewBtn_ClickAsync);
+            resources.ApplyResources(m_PreviewBtn, "m_PreviewBtn");
+            m_PreviewBtn.Name = "m_PreviewBtn";
+            m_PreviewBtn.UseVisualStyleBackColor = true;
+            m_PreviewBtn.Click += m_PreviewBtn_ClickAsync;
             // 
             // m_GenerateBtn
             // 
-            resources.ApplyResources(this.m_GenerateBtn, "m_GenerateBtn");
-            this.m_GenerateBtn.Name = "m_GenerateBtn";
-            this.m_GenerateBtn.UseVisualStyleBackColor = true;
-            this.m_GenerateBtn.Click += new System.EventHandler(this.m_GenerateBtn_ClickAsync);
+            resources.ApplyResources(m_GenerateBtn, "m_GenerateBtn");
+            m_GenerateBtn.Name = "m_GenerateBtn";
+            m_GenerateBtn.UseVisualStyleBackColor = true;
+            m_GenerateBtn.Click += m_GenerateBtn_ClickAsync;
             // 
             // m_BuildInRbtn
             // 
-            resources.ApplyResources(this.m_BuildInRbtn, "m_BuildInRbtn");
-            this.m_BuildInRbtn.Checked = true;
-            this.m_BuildInRbtn.Name = "m_BuildInRbtn";
-            this.m_BuildInRbtn.TabStop = true;
-            this.m_BuildInRbtn.UseVisualStyleBackColor = true;
-            this.m_BuildInRbtn.CheckedChanged += new System.EventHandler(this.m_BuildInRbtn_CheckedChanged);
+            resources.ApplyResources(m_BuildInRbtn, "m_BuildInRbtn");
+            m_BuildInRbtn.Checked = true;
+            m_BuildInRbtn.Name = "m_BuildInRbtn";
+            m_BuildInRbtn.TabStop = true;
+            m_BuildInRbtn.UseVisualStyleBackColor = true;
+            m_BuildInRbtn.CheckedChanged += m_BuildInRbtn_CheckedChanged;
             // 
             // m_AzureRbtn
             // 
-            resources.ApplyResources(this.m_AzureRbtn, "m_AzureRbtn");
-            this.m_AzureRbtn.Name = "m_AzureRbtn";
-            this.m_AzureRbtn.UseVisualStyleBackColor = true;
-            this.m_AzureRbtn.CheckedChanged += new System.EventHandler(this.m_AzurRbtn_CheckedChanged);
+            resources.ApplyResources(m_AzureRbtn, "m_AzureRbtn");
+            m_AzureRbtn.Name = "m_AzureRbtn";
+            m_AzureRbtn.UseVisualStyleBackColor = true;
+            m_AzureRbtn.CheckedChanged += m_AzurRbtn_CheckedChanged;
             // 
             // m_VoiceSelectionCb
             // 
-            resources.ApplyResources(this.m_VoiceSelectionCb, "m_VoiceSelectionCb");
-            this.m_VoiceSelectionCb.FormattingEnabled = true;
-            this.m_VoiceSelectionCb.Name = "m_VoiceSelectionCb";
+            resources.ApplyResources(m_VoiceSelectionCb, "m_VoiceSelectionCb");
+            m_VoiceSelectionCb.FormattingEnabled = true;
+            m_VoiceSelectionCb.Name = "m_VoiceSelectionCb";
             // 
             // m_ClearBtn
             // 
-            resources.ApplyResources(this.m_ClearBtn, "m_ClearBtn");
-            this.m_ClearBtn.Name = "m_ClearBtn";
-            this.m_ClearBtn.UseVisualStyleBackColor = true;
-            this.m_ClearBtn.Click += new System.EventHandler(this.m_ClearBtn_Click);
+            resources.ApplyResources(m_ClearBtn, "m_ClearBtn");
+            m_ClearBtn.Name = "m_ClearBtn";
+            m_ClearBtn.UseVisualStyleBackColor = true;
+            m_ClearBtn.Click += m_ClearBtn_Click;
             // 
             // m_SpeedTb
             // 
-            resources.ApplyResources(this.m_SpeedTb, "m_SpeedTb");
-            this.m_SpeedTb.Minimum = -10;
-            this.m_SpeedTb.Name = "m_SpeedTb";
+            resources.ApplyResources(m_SpeedTb, "m_SpeedTb");
+            m_SpeedTb.Minimum = -10;
+            m_SpeedTb.Name = "m_SpeedTb";
             // 
             // m_TTSVoiceLbl
             // 
-            resources.ApplyResources(this.m_TTSVoiceLbl, "m_TTSVoiceLbl");
-            this.m_TTSVoiceLbl.Name = "m_TTSVoiceLbl";
+            resources.ApplyResources(m_TTSVoiceLbl, "m_TTSVoiceLbl");
+            m_TTSVoiceLbl.Name = "m_TTSVoiceLbl";
             // 
             // m_SpeechRateLbl
             // 
-            resources.ApplyResources(this.m_SpeechRateLbl, "m_SpeechRateLbl");
-            this.m_SpeechRateLbl.Name = "m_SpeechRateLbl";
+            resources.ApplyResources(m_SpeechRateLbl, "m_SpeechRateLbl");
+            m_SpeechRateLbl.Name = "m_SpeechRateLbl";
             // 
             // m_FontSmallerBtn
             // 
-            resources.ApplyResources(this.m_FontSmallerBtn, "m_FontSmallerBtn");
-            this.m_FontSmallerBtn.Name = "m_FontSmallerBtn";
-            this.m_FontSmallerBtn.UseVisualStyleBackColor = true;
-            this.m_FontSmallerBtn.Click += new System.EventHandler(this.m_FontSmallerBtn_Click);
+            resources.ApplyResources(m_FontSmallerBtn, "m_FontSmallerBtn");
+            m_FontSmallerBtn.Name = "m_FontSmallerBtn";
+            m_FontSmallerBtn.UseVisualStyleBackColor = true;
+            m_FontSmallerBtn.Click += m_FontSmallerBtn_Click;
             // 
             // m_FontBiggerBtn
             // 
-            resources.ApplyResources(this.m_FontBiggerBtn, "m_FontBiggerBtn");
-            this.m_FontBiggerBtn.Name = "m_FontBiggerBtn";
-            this.m_FontBiggerBtn.UseVisualStyleBackColor = true;
-            this.m_FontBiggerBtn.Click += new System.EventHandler(this.m_FontBiggerBtn_Click);
+            resources.ApplyResources(m_FontBiggerBtn, "m_FontBiggerBtn");
+            m_FontBiggerBtn.Name = "m_FontBiggerBtn";
+            m_FontBiggerBtn.UseVisualStyleBackColor = true;
+            m_FontBiggerBtn.Click += m_FontBiggerBtn_Click;
             // 
             // m_AddAzureKeyBtn
             // 
-            resources.ApplyResources(this.m_AddAzureKeyBtn, "m_AddAzureKeyBtn");
-            this.m_AddAzureKeyBtn.Name = "m_AddAzureKeyBtn";
-            this.m_AddAzureKeyBtn.UseVisualStyleBackColor = true;
-            this.m_AddAzureKeyBtn.Click += new System.EventHandler(this.m_AddAzureKeyBtn_Click);
+            resources.ApplyResources(m_AddAzureKeyBtn, "m_AddAzureKeyBtn");
+            m_AddAzureKeyBtn.Name = "m_AddAzureKeyBtn";
+            m_AddAzureKeyBtn.UseVisualStyleBackColor = true;
+            m_AddAzureKeyBtn.Click += m_AddAzureKeyBtn_Click;
             // 
             // m_AddAzureVoiceBtn
             // 
-            resources.ApplyResources(this.m_AddAzureVoiceBtn, "m_AddAzureVoiceBtn");
-            this.m_AddAzureVoiceBtn.Name = "m_AddAzureVoiceBtn";
-            this.m_AddAzureVoiceBtn.UseVisualStyleBackColor = true;
-            this.m_AddAzureVoiceBtn.Click += new System.EventHandler(this.m_AddAzureVoiceBtn_Click);
+            resources.ApplyResources(m_AddAzureVoiceBtn, "m_AddAzureVoiceBtn");
+            m_AddAzureVoiceBtn.Name = "m_AddAzureVoiceBtn";
+            m_AddAzureVoiceBtn.UseVisualStyleBackColor = true;
+            m_AddAzureVoiceBtn.Click += m_AddAzureVoiceBtn_Click;
             // 
             // m_DeleteAzureVoiceBtn
             // 
-            resources.ApplyResources(this.m_DeleteAzureVoiceBtn, "m_DeleteAzureVoiceBtn");
-            this.m_DeleteAzureVoiceBtn.Name = "m_DeleteAzureVoiceBtn";
-            this.m_DeleteAzureVoiceBtn.UseVisualStyleBackColor = true;
-            this.m_DeleteAzureVoiceBtn.Click += new System.EventHandler(this.m_DeleteAzureVoiceBtn_Click);
+            resources.ApplyResources(m_DeleteAzureVoiceBtn, "m_DeleteAzureVoiceBtn");
+            m_DeleteAzureVoiceBtn.Name = "m_DeleteAzureVoiceBtn";
+            m_DeleteAzureVoiceBtn.UseVisualStyleBackColor = true;
+            m_DeleteAzureVoiceBtn.Click += m_DeleteAzureVoiceBtn_Click;
             // 
             // m_CloseBtn
             // 
-            this.m_CloseBtn.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            resources.ApplyResources(this.m_CloseBtn, "m_CloseBtn");
-            this.m_CloseBtn.Name = "m_CloseBtn";
-            this.m_CloseBtn.UseVisualStyleBackColor = true;
+            m_CloseBtn.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            resources.ApplyResources(m_CloseBtn, "m_CloseBtn");
+            m_CloseBtn.Name = "m_CloseBtn";
+            m_CloseBtn.UseVisualStyleBackColor = true;
             // 
             // m_VoiceTypeGroupBox
             // 
-            resources.ApplyResources(this.m_VoiceTypeGroupBox, "m_VoiceTypeGroupBox");
-            this.m_VoiceTypeGroupBox.Controls.Add(this.m_BuildInRbtn);
-            this.m_VoiceTypeGroupBox.Controls.Add(this.m_AzureRbtn);
-            this.m_VoiceTypeGroupBox.Name = "m_VoiceTypeGroupBox";
-            this.m_VoiceTypeGroupBox.TabStop = false;
+            resources.ApplyResources(m_VoiceTypeGroupBox, "m_VoiceTypeGroupBox");
+            m_VoiceTypeGroupBox.Controls.Add(m_BuildInRbtn);
+            m_VoiceTypeGroupBox.Controls.Add(m_AzureRbtn);
+            m_VoiceTypeGroupBox.Name = "m_VoiceTypeGroupBox";
+            m_VoiceTypeGroupBox.TabStop = false;
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.m_AddAzureVoiceBtn);
-            this.groupBox1.Controls.Add(this.m_DeleteAzureVoiceBtn);
-            this.groupBox1.Controls.Add(this.m_AddAzureKeyBtn);
-            resources.ApplyResources(this.groupBox1, "groupBox1");
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.TabStop = false;
+            groupBox1.Controls.Add(m_AddAzureVoiceBtn);
+            groupBox1.Controls.Add(m_DeleteAzureVoiceBtn);
+            groupBox1.Controls.Add(m_AddAzureKeyBtn);
+            resources.ApplyResources(groupBox1, "groupBox1");
+            groupBox1.Name = "groupBox1";
+            groupBox1.TabStop = false;
             // 
             // groupBox2
             // 
-            resources.ApplyResources(this.groupBox2, "groupBox2");
-            this.groupBox2.Controls.Add(this.m_PreviewBtn);
-            this.groupBox2.Controls.Add(this.m_ClearBtn);
-            this.groupBox2.Controls.Add(this.m_GenerateBtn);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.TabStop = false;
+            resources.ApplyResources(groupBox2, "groupBox2");
+            groupBox2.Controls.Add(m_PreviewBtn);
+            groupBox2.Controls.Add(m_ClearBtn);
+            groupBox2.Controls.Add(m_GenerateBtn);
+            groupBox2.Name = "groupBox2";
+            groupBox2.TabStop = false;
             // 
             // GenerateSpeech
             // 
             resources.ApplyResources(this, "$this");
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.groupBox2);
-            this.Controls.Add(this.groupBox1);
-            this.Controls.Add(this.m_VoiceTypeGroupBox);
-            this.Controls.Add(this.m_CloseBtn);
-            this.Controls.Add(this.m_FontSmallerBtn);
-            this.Controls.Add(this.m_FontBiggerBtn);
-            this.Controls.Add(this.m_SpeechRateLbl);
-            this.Controls.Add(this.m_TTSVoiceLbl);
-            this.Controls.Add(this.m_SpeedTb);
-            this.Controls.Add(this.m_VoiceSelectionCb);
-            this.Controls.Add(this.m_TextToSpeechTb);
-            this.MaximizeBox = false;
-            this.MinimizeBox = false;
-            this.Name = "GenerateSpeech";
-            ((System.ComponentModel.ISupportInitialize)(this.m_SpeedTb)).EndInit();
-            this.m_VoiceTypeGroupBox.ResumeLayout(false);
-            this.m_VoiceTypeGroupBox.PerformLayout();
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox2.ResumeLayout(false);
-            this.ResumeLayout(false);
-            this.PerformLayout();
+            AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            CancelButton = m_CloseBtn;
+            Controls.Add(groupBox2);
+            Controls.Add(groupBox1);
+            Controls.Add(m_VoiceTypeGroupBox);
+            Controls.Add(m_CloseBtn);
+            Controls.Add(m_FontSmallerBtn);
+            Controls.Add(m_FontBiggerBtn);
+            Controls.Add(m_SpeechRateLbl);
+            Controls.Add(m_TTSVoiceLbl);
+            Controls.Add(m_SpeedTb);
+            Controls.Add(m_VoiceSelectionCb);
+            Controls.Add(m_TextToSpeechTb);
+            MaximizeBox = false;
+            MinimizeBox = false;
+            Name = "GenerateSpeech";
+            ((System.ComponentModel.ISupportInitialize)m_SpeedTb).EndInit();
+            m_VoiceTypeGroupBox.ResumeLayout(false);
+            m_VoiceTypeGroupBox.PerformLayout();
+            groupBox1.ResumeLayout(false);
+            groupBox2.ResumeLayout(false);
+            ResumeLayout(false);
+            PerformLayout();
 
         }
 
