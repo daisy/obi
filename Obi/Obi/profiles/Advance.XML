@@ -1,6 +1,6 @@
 <SOAP-ENV:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/" xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:clr="http://schemas.microsoft.com/clr/" SOAP-ENV:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">
   <SOAP-ENV:Body>
-    <a1:Settings id="ref-1" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D4.8.0.0%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
+    <a1:Settings id="ref-1" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D5.1.0.0%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
       <Audio_AllowOverwrite>true</Audio_AllowOverwrite>
       <Audio_Recording_PreviewBeforeStarting>false</Audio_Recording_PreviewBeforeStarting>
       <Audio_Recording_ReplaceAfterCursor>false</Audio_Recording_ReplaceAfterCursor>
@@ -18,7 +18,7 @@
       <Project_DefaultPath id="ref-5" />
       <FontSize>10</FontSize>
       <Audio_LastInputDevice id="ref-6">Primary Sound Capture Driver</Audio_LastInputDevice>
-      <LastOpenProject id="ref-7">D:\Obi Books\The Countries_ New Zealand Epub\project.obi</LastOpenProject>
+      <LastOpenProject id="ref-7">D:\Obi Books\The Countries_ New Zealand\project.obi</LastOpenProject>
       <Audio_LastOutputDevice id="ref-8">Primary Sound Driver</Audio_LastOutputDevice>
       <MaxPhraseDurationMinutes>10</MaxPhraseDurationMinutes>
       <ImportCharCountToTruncateFromStart>4</ImportCharCountToTruncateFromStart>
@@ -112,7 +112,7 @@
       <Audio_EnsureCursorVisibilityInUndoOfSplitRecording>false</Audio_EnsureCursorVisibilityInUndoOfSplitRecording>
       <Project_VAXhtmlExport>false</Project_VAXhtmlExport>
       <Project_DisableRollBackForCleanUp>true</Project_DisableRollBackForCleanUp>
-      <SettingsName id="ref-26">Basic</SettingsName>
+      <SettingsName id="ref-26">Basic profile for all preferences</SettingsName>
       <Audio_PreventSplittingPages>true</Audio_PreventSplittingPages>
       <Audio_SaveAudioZoom>false</Audio_SaveAudioZoom>
       <ObiFont id="ref-27">Microsoft Sans Serif</ObiFont>
@@ -120,7 +120,7 @@
       <Project_IncreasePhraseHightForHigherResolution>false</Project_IncreasePhraseHightForHigherResolution>
       <TOCViewWidth>0</TOCViewWidth>
       <Project_SaveTOCViewWidth>false</Project_SaveTOCViewWidth>
-      <SettingsNameForManipulation id="ref-28">Basic</SettingsNameForManipulation>
+      <SettingsNameForManipulation id="ref-28">Basic   Audio:</SettingsNameForManipulation>
       <Audio_SelectLastPhrasePlayed>false</Audio_SelectLastPhrasePlayed>
       <Audio_ShowSelectionTimeInTransportBar>false</Audio_ShowSelectionTimeInTransportBar>
       <m_PreferencesDialogSize href="#ref-29" />
@@ -145,8 +145,10 @@
       <Project_CSVImportHavingSemicolon>false</Project_CSVImportHavingSemicolon>
       <Project_CSVImportPhraseDetection>false</Project_CSVImportPhraseDetection>
       <Audio_DeleteFollowingPhrasesWhilePreviewBeforeRecording>true</Audio_DeleteFollowingPhrasesWhilePreviewBeforeRecording>
+      <AzureVoices href="#ref-30" />
+      <Audio_TODOPSecialCase>false</Audio_TODOPSecialCase>
     </a1:Settings>
-    <a1:ColorSettings id="ref-3" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D4.8.0.0%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
+    <a1:ColorSettings id="ref-3" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D5.1.0.0%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
       <BlockBackColor_Custom>
         <name xsi:null="1" />
         <value>0</value>
@@ -460,7 +462,7 @@
         <state>1</state>
       </HighlightedSectionNodeWithoutSelectionColor>
     </a1:ColorSettings>
-    <a1:ColorSettings id="ref-4" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D4.8.0.0%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
+    <a1:ColorSettings id="ref-4" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D5.1.0.0%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
       <BlockBackColor_Custom>
         <name xsi:null="1" />
         <value>0</value>
@@ -774,19 +776,19 @@
         <state>1</state>
       </HighlightedSectionNodeWithoutSelectionColor>
     </a1:ColorSettings>
-    <a2:ArrayList id="ref-12" xmlns:a2="http://schemas.microsoft.com/clr/nsassem/System.Collections/System.Private.CoreLib%2C%20Version%3D6.0.0.0%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3D7cec85d7bea7798e">
-      <_items href="#ref-30" />
-      <_size>3</_size>
-      <_version>9</_version>
+    <a2:ArrayList id="ref-12" xmlns:a2="http://schemas.microsoft.com/clr/nsassem/System.Collections/System.Private.CoreLib%2C%20Version%3D9.0.0.0%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3D7cec85d7bea7798e">
+      <_items href="#ref-31" />
+      <_size>2</_size>
+      <_version>22</_version>
     </a2:ArrayList>
-    <a1:UserProfile id="ref-13" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D4.8.0.0%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
+    <a1:UserProfile id="ref-13" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D5.1.0.0%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
       <Name href="#ref-5" />
       <Organization href="#ref-5" />
-      <Culture id="ref-31">en-US</Culture>
+      <Culture id="ref-32">en-US</Culture>
     </a1:UserProfile>
     <SOAP-ENC:Array id="ref-18" SOAP-ENC:arrayType="xsd:int[2]">
-      <item>0</item>
-      <item>0</item>
+      <item>-4</item>
+      <item>-4</item>
     </SOAP-ENC:Array>
     <SOAP-ENC:Array id="ref-19" SOAP-ENC:arrayType="xsd:int[2]">
       <item>0</item>
@@ -812,10 +814,16 @@
       <item>0</item>
       <item>0</item>
     </SOAP-ENC:Array>
-    <SOAP-ENC:Array id="ref-30" SOAP-ENC:arrayType="xsd:anyType[4]">
+    <a3:_x0030__x002C__x0020_Culture_x003D_neutral_x002C__x0020_PublicKeyToken_x003D_7cec85d7bea7798e_x005D__x005D_ id="ref-30" xmlns:a3="http://schemas.microsoft.com/clr/nsassem/System.Collections.Generic.List`1[[System.String%2C%20System.Private.CoreLib%2C%20Version%3D9.0.0/System.Private.CoreLib%2C%20Version%3D9.0.0.0%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3D7cec85d7bea7798e">
+      <_items href="#ref-33" />
+      <_size>0</_size>
+      <_version>0</_version>
+    </a3:_x0030__x002C__x0020_Culture_x003D_neutral_x002C__x0020_PublicKeyToken_x003D_7cec85d7bea7798e_x005D__x005D_>
+    <SOAP-ENC:Array id="ref-31" SOAP-ENC:arrayType="xsd:anyType[4]">
       <item href="#ref-7" />
-      <item id="ref-32" xsi:type="SOAP-ENC:string">D:\Obi Books\The Countries_ New Zealand\project.obi</item>
-      <item id="ref-33" xsi:type="SOAP-ENC:string">D:\Obi Books\Chimpanzees\project.obi</item>
+      <item id="ref-34" xsi:type="SOAP-ENC:string">D:\Obi Books\Chimpanzees Big Sections for performance\project.obi</item>
+    </SOAP-ENC:Array>
+    <SOAP-ENC:Array id="ref-33" SOAP-ENC:arrayType="SOAP-ENC:string[0]">
     </SOAP-ENC:Array>
   </SOAP-ENV:Body>
 </SOAP-ENV:Envelope>

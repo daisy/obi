@@ -1806,7 +1806,7 @@ namespace Obi
                         if (MessageBox.Show(string.Format(Localizer.Message("UserRegistration_SendEmailMsg"), m_Settings_Permanent.UploadAttemptsCount),
                                  Localizer.Message("Caption_Information"), MessageBoxButtons.OKCancel) == DialogResult.OK)
                         {
-                            Dialogs.UserRegistration.OpenEmailToSend(m_Settings_Permanent);
+                             Dialogs.UserRegistration.OpenEmailToSend(m_Settings_Permanent);
                         }
                         m_Settings_Permanent.UploadAttemptsCount++;
                         m_Settings_Permanent.SaveSettings();    

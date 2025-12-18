@@ -1506,6 +1506,7 @@ m_cb_ChooseFont.Visible = false;
                 mSettings.Audio_RemoveAccentsFromDaisy2ExportFileNames = m_DefaultSettings.Audio_RemoveAccentsFromDaisy2ExportFileNames;
                 mSettings.Audio_RecordUsingSingleKeyFromTOC = m_DefaultSettings.Audio_RecordUsingSingleKeyFromTOC;
                 mSettings.Audio_DeleteFollowingPhrasesWhilePreviewBeforeRecording = m_DefaultSettings.Audio_DeleteFollowingPhrasesWhilePreviewBeforeRecording;
+                mSettings.Audio_TODOPSecialCase = m_DefaultSettings.Audio_TODOPSecialCase;
 
 
                 //If operation is empty then nothing will b selected.
@@ -2102,6 +2103,7 @@ m_cb_ChooseFont.Visible = false;
                     mSettings.Audio_RemoveAccentsFromDaisy2ExportFileNames = false;
                     mSettings.Audio_RecordUsingSingleKeyFromTOC = false;
                     mSettings.Audio_DeleteFollowingPhrasesWhilePreviewBeforeRecording = false;
+                    mSettings.Audio_TODOPSecialCase = false;
 
                     mSettings.Audio_DefaultGap = 300;
                     mSettings.Audio_PreviewDuration = 1500;
@@ -2222,6 +2224,7 @@ m_cb_ChooseFont.Visible = false;
                     mSettings.Project_MaximumPhrasesSelectLimit = true;
                     mSettings.Project_ReadOnlyMode = false;
                     mSettings.Project_DisplayWarningsForSectionDelete = false;
+                    mSettings.Audio_TODOPSecialCase = false;
                     // UpdateBoolSettings();
                 }
                 else if (Profile == "Advance.xml" || Profile == "Advance.XML")
@@ -2301,6 +2304,7 @@ m_cb_ChooseFont.Visible = false;
                     mSettings.Project_MaximumPhrasesSelectLimit = true;
                     mSettings.Project_ReadOnlyMode = false;
                     mSettings.Project_DisplayWarningsForSectionDelete = false;
+                    mSettings.Audio_TODOPSecialCase = false;
                     // UpdateBoolSettings();
                 }
                 else if (Profile == "Profile-SBS.xml" || Profile == "Profile-SBS.XML")
@@ -2380,6 +2384,7 @@ m_cb_ChooseFont.Visible = false;
                     mSettings.Project_MaximumPhrasesSelectLimit = true;
                     mSettings.Project_ReadOnlyMode = false;
                     mSettings.Project_DisplayWarningsForSectionDelete = false;
+                    mSettings.Audio_TODOPSecialCase = false;
                     // UpdateBoolSettings();
 
 
@@ -2461,6 +2466,7 @@ m_cb_ChooseFont.Visible = false;
                     mSettings.Project_MaximumPhrasesSelectLimit = true;
                     mSettings.Project_ReadOnlyMode = false;
                     mSettings.Project_DisplayWarningsForSectionDelete = false;
+                    mSettings.Audio_TODOPSecialCase = true;
                     // UpdateBoolSettings();
 
                 }
@@ -2542,6 +2548,7 @@ m_cb_ChooseFont.Visible = false;
                     mSettings.Project_MaximumPhrasesSelectLimit = true;
                     mSettings.Project_ReadOnlyMode = false;
                     mSettings.Project_DisplayWarningsForSectionDelete = false;
+                    mSettings.Audio_TODOPSecialCase = true;
                     // UpdateBoolSettings();
 
                 }
@@ -2622,6 +2629,7 @@ m_cb_ChooseFont.Visible = false;
                     mSettings.Project_MaximumPhrasesSelectLimit = true;
                     mSettings.Project_ReadOnlyMode = false;
                     mSettings.Project_DisplayWarningsForSectionDelete = false;
+                    mSettings.Audio_TODOPSecialCase = true;
                     // UpdateBoolSettings();
 
                 }

@@ -291,6 +291,7 @@ namespace Obi
                newSettings.Audio_DeleteFollowingPhrasesWhilePreviewBeforeRecording = this.Audio_DeleteFollowingPhrasesWhilePreviewBeforeRecording;
                newSettings.ShowGraphicalPeakMeterInsideObiAtStartup = this.ShowGraphicalPeakMeterInsideObiAtStartup;
                newSettings.ShowGraphicalPeakMeterAtStartup = this.ShowGraphicalPeakMeterAtStartup;
+               newSettings.Audio_TODOPSecialCase = this.Audio_TODOPSecialCase;
 
                if (!string.IsNullOrEmpty(this.Audio_LocalRecordingDirectory) && System.IO.Directory.Exists(this.Audio_LocalRecordingDirectory))
                {
@@ -686,7 +687,8 @@ namespace Obi
                && this.Audio_RecordUsingSingleKeyFromTOC == settings.Audio_RecordUsingSingleKeyFromTOC
                && this.Audio_DeleteFollowingPhrasesWhilePreviewBeforeRecording == settings.Audio_DeleteFollowingPhrasesWhilePreviewBeforeRecording
                && this.ShowGraphicalPeakMeterInsideObiAtStartup == settings.ShowGraphicalPeakMeterInsideObiAtStartup
-               && this.ShowGraphicalPeakMeterAtStartup == settings.ShowGraphicalPeakMeterAtStartup)
+               && this.ShowGraphicalPeakMeterAtStartup == settings.ShowGraphicalPeakMeterAtStartup
+               && this.Audio_TODOPSecialCase == settings.Audio_TODOPSecialCase)
            {
                audioPreferencesMatch = true ;
            }
