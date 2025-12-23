@@ -144,6 +144,9 @@
     <None Update="Obi Help.fr.chm">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Update="ProfileDesc_ar.html">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <Compile Update="UserControls\GraphicalPeakMeter.cs">
       <SubType>UserControl</SubType>
     </Compile>
