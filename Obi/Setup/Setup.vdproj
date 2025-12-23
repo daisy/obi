@@ -33,6 +33,18 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_063079DC6F6851E29110CBA5C4B74E7E"
+        "OwnerKey" = "8:_269967A3793B4B0D8112E4A113BD1BAB"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_07A0F8F2637DAE3CCC182D7009233F71"
+        "OwnerKey" = "8:_063079DC6F6851E29110CBA5C4B74E7E"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_0AF4544C6FE0804A7843ABC24B31B72B"
         "OwnerKey" = "8:_10C19370734A3ED24A8CF04788189162"
         "MsmSig" = "8:_UNDEFINED"
@@ -58,13 +70,13 @@
         "Entry"
         {
         "MsmKey" = "8:_10C19370734A3ED24A8CF04788189162"
-        "OwnerKey" = "8:_31436338938216394346F061112FC22A"
+        "OwnerKey" = "8:_3BB30E58AE29CF6CB4EE525D467C3342"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_10C19370734A3ED24A8CF04788189162"
-        "OwnerKey" = "8:_A5731B68BED21B13279F1DC0863EA519"
+        "OwnerKey" = "8:_07A0F8F2637DAE3CCC182D7009233F71"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -111,12 +123,6 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_22084BACFD7626F14E60B62B3AB3F573"
-        "OwnerKey" = "8:_4710FDF7D10299B5151624B68ECB683E"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
         "MsmKey" = "8:_23C14DBDEE194063A3CDFAFF2448617E"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -153,12 +159,6 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_31436338938216394346F061112FC22A"
-        "OwnerKey" = "8:_5CD60ADEB1158BB9AE8B0457C64B4D8E"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
         "MsmKey" = "8:_31D31C655E9A9247BC51CF2A1AC7AC1C"
         "OwnerKey" = "8:_12AACC0DB430DC78942840C1A7A2D0DD"
         "MsmSig" = "8:_UNDEFINED"
@@ -179,6 +179,12 @@
         {
         "MsmKey" = "8:_3576542B958346C1B58553DECD35440D"
         "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_3BB30E58AE29CF6CB4EE525D467C3342"
+        "OwnerKey" = "8:_4C6F7F58613E61DD0535D12EC543973B"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -207,18 +213,6 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_4710FDF7D10299B5151624B68ECB683E"
-        "OwnerKey" = "8:_269967A3793B4B0D8112E4A113BD1BAB"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_4710FDF7D10299B5151624B68ECB683E"
-        "OwnerKey" = "8:_5CD60ADEB1158BB9AE8B0457C64B4D8E"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
         "MsmKey" = "8:_478DFB874BE84E468E4FAFF8EE180B53"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -227,6 +221,18 @@
         {
         "MsmKey" = "8:_488EE3E0F2614C82BD5F5054AD025475"
         "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_4C6F7F58613E61DD0535D12EC543973B"
+        "OwnerKey" = "8:_269967A3793B4B0D8112E4A113BD1BAB"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_4C6F7F58613E61DD0535D12EC543973B"
+        "OwnerKey" = "8:_063079DC6F6851E29110CBA5C4B74E7E"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -263,12 +269,6 @@
         {
         "MsmKey" = "8:_5CAF9B5B4B4215652F137D5E39094E28"
         "OwnerKey" = "8:_10C19370734A3ED24A8CF04788189162"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_5CD60ADEB1158BB9AE8B0457C64B4D8E"
-        "OwnerKey" = "8:_269967A3793B4B0D8112E4A113BD1BAB"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -335,6 +335,12 @@
         {
         "MsmKey" = "8:_7E093803FF9A4BA18010D54DEF9F8E2B"
         "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_819878E2BED74102AE74F750395ACE87"
+        "OwnerKey" = "8:_269967A3793B4B0D8112E4A113BD1BAB"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -453,12 +459,6 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_A5731B68BED21B13279F1DC0863EA519"
-        "OwnerKey" = "8:_4710FDF7D10299B5151624B68ECB683E"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
         "MsmKey" = "8:_A5E522538D414A8091A263DF38111872"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -495,8 +495,8 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_BA7661CD7AA5FD13FDCF5F1481134374"
-        "OwnerKey" = "8:_269967A3793B4B0D8112E4A113BD1BAB"
+        "MsmKey" = "8:_B591AEE9AFA5EE59553B9D1147EEC9EE"
+        "OwnerKey" = "8:_4C6F7F58613E61DD0535D12EC543973B"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -718,13 +718,7 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_FF60BD61441A67DC2DD1A24809FFB6F6"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_F9017D2DB702D8DB6CE89EB74E134D1F"
+        "OwnerKey" = "8:_04168CADF51C4315907DAA9595AFDCA5"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -742,37 +736,13 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_D87022DD9F6FF289AE9CEAE08190D3E5"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_D46B666B605043E9B0A64996546D63D9"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_D2933D5CE2E995CDC36B33C88FDDC19A"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_CD69C3BD638B434B99757D0DEC04A707"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_CCB32995EA9BE1F6489027514938D82D"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_C8786FA6BD9878EA0CD24A2C2AE1132A"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -791,12 +761,6 @@
         {
         "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_B3220A04D62E4C949E85B07752A3D758"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_B09D51E45BAD5594087F2C54022FC297"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -826,19 +790,7 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_9AEC7AC865997565B4E10C69AEABD0A6"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_8F866B4FD5AF428D99DE8ABD04222C99"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_8D498E5ED974DA2904FDCB1EEE4C7150"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -856,37 +808,13 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_745D781CC9261C991D74ED6D1B05B5BB"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_6E623DB789EA4E35A6FAA4B98DA1A271"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_6B5A6502E1AAE1368F5D1EEAC820C337"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_5D905D9C98884E85A6444EB850C79353"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_5CAF9B5B4B4215652F137D5E39094E28"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_59CCEB77337B2F342653F98AD1FB3125"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -916,12 +844,6 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_31D31C655E9A9247BC51CF2A1AC7AC1C"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_2E55EF7C5AB54902BA5F7D514F5015F6"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -934,37 +856,19 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_BA7661CD7AA5FD13FDCF5F1481134374"
+        "OwnerKey" = "8:_819878E2BED74102AE74F750395ACE87"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_4710FDF7D10299B5151624B68ECB683E"
+        "OwnerKey" = "8:_4C6F7F58613E61DD0535D12EC543973B"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_22084BACFD7626F14E60B62B3AB3F573"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_19229AAA882A46B5801AA8B6097DCBFC"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_12AACC0DB430DC78942840C1A7A2D0DD"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_113E6B1BDF3A42239854F4B937310CAF"
+        "OwnerKey" = "8:_B591AEE9AFA5EE59553B9D1147EEC9EE"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -976,7 +880,85 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_109C8806A2A54CB7997509B5894481EA"
+        "OwnerKey" = "8:_745D781CC9261C991D74ED6D1B05B5BB"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_6B5A6502E1AAE1368F5D1EEAC820C337"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_B09D51E45BAD5594087F2C54022FC297"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_C8786FA6BD9878EA0CD24A2C2AE1132A"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_CCB32995EA9BE1F6489027514938D82D"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_8D498E5ED974DA2904FDCB1EEE4C7150"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_D87022DD9F6FF289AE9CEAE08190D3E5"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_5CAF9B5B4B4215652F137D5E39094E28"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_F9017D2DB702D8DB6CE89EB74E134D1F"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_D2933D5CE2E995CDC36B33C88FDDC19A"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_12AACC0DB430DC78942840C1A7A2D0DD"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_31D31C655E9A9247BC51CF2A1AC7AC1C"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_9AEC7AC865997565B4E10C69AEABD0A6"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_59CCEB77337B2F342653F98AD1FB3125"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -988,7 +970,25 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_04168CADF51C4315907DAA9595AFDCA5"
+        "OwnerKey" = "8:_FF60BD61441A67DC2DD1A24809FFB6F6"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_19229AAA882A46B5801AA8B6097DCBFC"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_113E6B1BDF3A42239854F4B937310CAF"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_109C8806A2A54CB7997509B5894481EA"
         "MsmSig" = "8:_UNDEFINED"
         }
     }
@@ -1050,15 +1050,15 @@
             "ComponentsUrl" = "8:"
                 "Items"
                 {
-                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:Microsoft.NetCore.DesktopRuntime.6.0.x64"
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:Microsoft.NetCore.DesktopRuntime.9.0.x64"
                     {
-                    "Name" = "8:.NET Desktop Runtime 6.0.36 (x64)"
-                    "ProductCode" = "8:Microsoft.NetCore.DesktopRuntime.6.0.x64"
+                    "Name" = "8:.NET Desktop Runtime 9.0.0 (x64)"
+                    "ProductCode" = "8:Microsoft.NetCore.DesktopRuntime.9.0.x64"
                     }
-                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:Microsoft.NetCore.DesktopRuntime.6.0.x86"
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:Microsoft.NetCore.DesktopRuntime.9.0.x86"
                     {
-                    "Name" = "8:.NET Desktop Runtime 6.0.36 (x86)"
-                    "ProductCode" = "8:Microsoft.NetCore.DesktopRuntime.6.0.x86"
+                    "Name" = "8:.NET Desktop Runtime 9.0.0 (x86)"
+                    "ProductCode" = "8:Microsoft.NetCore.DesktopRuntime.9.0.x86"
                     }
                     "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:Microsoft.Windows.Installer.4.5"
                     {
@@ -1140,7 +1140,7 @@
                 {
                 "Name" = "8:.NET Framework"
                 "Message" = "8:[VSDNETMSG]"
-                "FrameworkVersion" = "8:v4.0     "
+                "FrameworkVersion" = "8:v4.0      "
                 "AllowLaterVersions" = "11:FALSE"
                 "InstallUrl" = "8:https://download.microsoft.com/download/9/5/A/95A9616B-7A37-4AF6-BC36-D6EA96C8DAAE/dotNetFx40_Full_x86_x64.exe"
                 }
@@ -1175,6 +1175,11 @@
             "AssemblyAsmDisplayName" = "8:PipelineInterface.resources, Version=1.0.0.0, Culture=ta, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
+                    "_04168CADF51C4315907DAA9595AFDCA5"
+                    {
+                    "Name" = "8:PipelineInterface.resources.dll"
+                    "Attributes" = "3:512"
+                    }
                 }
             "SourcePath" = "8:..\\Obi\\bin\\Release\\net9.0-windows7.0\\ta\\PipelineInterface.resources.dll"
             "TargetName" = "8:"
@@ -1212,6 +1217,68 @@
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
             "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_063079DC6F6851E29110CBA5C4B74E7E"
+            {
+            "AssemblyRegister" = "3:1"
+            "AssemblyIsInGAC" = "11:FALSE"
+            "AssemblyAsmDisplayName" = "8:UrakawaSDK.core, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL"
+                "ScatterAssemblies"
+                {
+                    "_063079DC6F6851E29110CBA5C4B74E7E"
+                    {
+                    "Name" = "8:UrakawaSDK.core.dll"
+                    "Attributes" = "3:512"
+                    }
+                }
+            "SourcePath" = "8:UrakawaSDK.core.dll"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_4D3BED1A25304BAD92EA81B4D13F5EF1"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_07A0F8F2637DAE3CCC182D7009233F71"
+            {
+            "AssemblyRegister" = "3:1"
+            "AssemblyIsInGAC" = "11:FALSE"
+            "AssemblyAsmDisplayName" = "8:DTDs, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL"
+                "ScatterAssemblies"
+                {
+                    "_07A0F8F2637DAE3CCC182D7009233F71"
+                    {
+                    "Name" = "8:DTDs.dll"
+                    "Attributes" = "3:512"
+                    }
+                }
+            "SourcePath" = "8:DTDs.dll"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_4D3BED1A25304BAD92EA81B4D13F5EF1"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_0AF4544C6FE0804A7843ABC24B31B72B"
@@ -1272,6 +1339,11 @@
             "AssemblyAsmDisplayName" = "8:PipelineInterface.resources, Version=1.0.0.0, Culture=pt, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
+                    "_109C8806A2A54CB7997509B5894481EA"
+                    {
+                    "Name" = "8:PipelineInterface.resources.dll"
+                    "Attributes" = "3:512"
+                    }
                 }
             "SourcePath" = "8:..\\Obi\\bin\\Release\\net9.0-windows7.0\\pt\\PipelineInterface.resources.dll"
             "TargetName" = "8:"
@@ -1349,6 +1421,11 @@
             "AssemblyAsmDisplayName" = "8:PipelineInterface.resources, Version=1.0.0.0, Culture=fr, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
+                    "_113E6B1BDF3A42239854F4B937310CAF"
+                    {
+                    "Name" = "8:PipelineInterface.resources.dll"
+                    "Attributes" = "3:512"
+                    }
                 }
             "SourcePath" = "8:..\\Obi\\bin\\Release\\net9.0-windows7.0\\fr\\PipelineInterface.resources.dll"
             "TargetName" = "8:"
@@ -1466,6 +1543,11 @@
             "AssemblyAsmDisplayName" = "8:PipelineInterface.resources, Version=1.0.0.0, Culture=fi, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
+                    "_19229AAA882A46B5801AA8B6097DCBFC"
+                    {
+                    "Name" = "8:PipelineInterface.resources.dll"
+                    "Attributes" = "3:512"
+                    }
                 }
             "SourcePath" = "8:..\\Obi\\bin\\Release\\net9.0-windows7.0\\fi\\PipelineInterface.resources.dll"
             "TargetName" = "8:"
@@ -1505,32 +1587,6 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_22084BACFD7626F14E60B62B3AB3F573"
-            {
-            "AssemblyRegister" = "3:1"
-            "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:SoundTouch.Net, Version=1.6.0.0, Culture=neutral, processorArchitecture=MSIL"
-                "ScatterAssemblies"
-                {
-                }
-            "SourcePath" = "8:SoundTouch.Net.dll"
-            "TargetName" = "8:"
-            "Tag" = "8:"
-            "Folder" = "8:_4D3BED1A25304BAD92EA81B4D13F5EF1"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:TRUE"
-            "IsolateTo" = "8:"
-            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_23C14DBDEE194063A3CDFAFF2448617E"
             {
             "SourcePath" = "8:..\\Obi\\ProfileDesc_fr.html"
@@ -1558,6 +1614,11 @@
             "AssemblyAsmDisplayName" = "8:UrakawaSDK.daisy, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
+                    "_269967A3793B4B0D8112E4A113BD1BAB"
+                    {
+                    "Name" = "8:UrakawaSDK.daisy.dll"
+                    "Attributes" = "3:512"
+                    }
                 }
             "SourcePath" = "8:..\\..\\..\\urakawa-sdk\\csharp\\daisy\\bin\\ReleaseNET4\\net9.0-windows7.0\\UrakawaSDK.daisy.dll"
             "TargetName" = "8:"
@@ -1601,9 +1662,14 @@
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:Obi.resources, Version=5.1.0.0, Culture=ja, processorArchitecture=MSIL"
+            "AssemblyAsmDisplayName" = "8:Obi.resources, Version=5.9.6.0, Culture=ja, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
+                    "_2CCB7ED7FBE14919B576EE97AEF2DFEF"
+                    {
+                    "Name" = "8:Obi.resources.dll"
+                    "Attributes" = "3:512"
+                    }
                 }
             "SourcePath" = "8:..\\Obi\\bin\\Release\\net9.0-windows7.0\\ja\\Obi.resources.dll"
             "TargetName" = "8:"
@@ -1630,6 +1696,11 @@
             "AssemblyAsmDisplayName" = "8:InstallerOperationsExe, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
+                    "_2E55EF7C5AB54902BA5F7D514F5015F6"
+                    {
+                    "Name" = "8:InstallerOperationsExe.dll"
+                    "Attributes" = "3:512"
+                    }
                 }
             "SourcePath" = "8:CustomActions\\InstallerOperationsExe\\bin\\Release\\net9.0-windows\\InstallerOperationsExe.dll"
             "TargetName" = "8:"
@@ -1667,32 +1738,6 @@
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
             "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_31436338938216394346F061112FC22A"
-            {
-            "AssemblyRegister" = "3:1"
-            "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:DTDs, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL"
-                "ScatterAssemblies"
-                {
-                }
-            "SourcePath" = "8:DTDs.dll"
-            "TargetName" = "8:"
-            "Tag" = "8:"
-            "Folder" = "8:_4D3BED1A25304BAD92EA81B4D13F5EF1"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_31D31C655E9A9247BC51CF2A1AC7AC1C"
@@ -1766,6 +1811,37 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_3BB30E58AE29CF6CB4EE525D467C3342"
+            {
+            "AssemblyRegister" = "3:1"
+            "AssemblyIsInGAC" = "11:FALSE"
+            "AssemblyAsmDisplayName" = "8:Mp3Sharp, Version=1.4.0.0, Culture=neutral, processorArchitecture=MSIL"
+                "ScatterAssemblies"
+                {
+                    "_3BB30E58AE29CF6CB4EE525D467C3342"
+                    {
+                    "Name" = "8:Mp3Sharp.dll"
+                    "Attributes" = "3:512"
+                    }
+                }
+            "SourcePath" = "8:Mp3Sharp.dll"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_4D3BED1A25304BAD92EA81B4D13F5EF1"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_3DE40C7E27CF42B8B227EF343A74DE67"
             {
             "SourcePath" = "8:..\\Obi\\profiles\\Basic.xml"
@@ -1793,6 +1869,11 @@
             "AssemblyAsmDisplayName" = "8:PipelineInterface.resources, Version=1.0.0.0, Culture=zh-Hans, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
+                    "_3E81CA2A3B8740F48E86691B7AE76102"
+                    {
+                    "Name" = "8:PipelineInterface.resources.dll"
+                    "Attributes" = "3:512"
+                    }
                 }
             "SourcePath" = "8:..\\Obi\\bin\\Release\\net9.0-windows7.0\\zh-Hans\\PipelineInterface.resources.dll"
             "TargetName" = "8:"
@@ -1816,9 +1897,14 @@
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:Obi.resources, Version=5.1.0.0, Culture=pt, processorArchitecture=MSIL"
+            "AssemblyAsmDisplayName" = "8:Obi.resources, Version=5.9.6.0, Culture=pt, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
+                    "_3F8DE0722BBF4BEEB24711DE121E3F8F"
+                    {
+                    "Name" = "8:Obi.resources.dll"
+                    "Attributes" = "3:512"
+                    }
                 }
             "SourcePath" = "8:..\\Obi\\bin\\Release\\net9.0-windows7.0\\pt\\Obi.resources.dll"
             "TargetName" = "8:"
@@ -1858,32 +1944,6 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_4710FDF7D10299B5151624B68ECB683E"
-            {
-            "AssemblyRegister" = "3:1"
-            "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:AudioLib, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL"
-                "ScatterAssemblies"
-                {
-                }
-            "SourcePath" = "8:AudioLib.dll"
-            "TargetName" = "8:"
-            "Tag" = "8:"
-            "Folder" = "8:_4D3BED1A25304BAD92EA81B4D13F5EF1"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:TRUE"
-            "IsolateTo" = "8:"
-            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_478DFB874BE84E468E4FAFF8EE180B53"
             {
             "SourcePath" = "8:..\\..\\dist\\Audio clues\\FindBarCollapse.wav"
@@ -1908,9 +1968,14 @@
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:Obi.resources, Version=5.1.0.0, Culture=fi, processorArchitecture=MSIL"
+            "AssemblyAsmDisplayName" = "8:Obi.resources, Version=5.9.6.0, Culture=fi, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
+                    "_488EE3E0F2614C82BD5F5054AD025475"
+                    {
+                    "Name" = "8:Obi.resources.dll"
+                    "Attributes" = "3:512"
+                    }
                 }
             "SourcePath" = "8:..\\Obi\\bin\\Release\\net9.0-windows7.0\\fi\\Obi.resources.dll"
             "TargetName" = "8:"
@@ -1928,6 +1993,37 @@
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
             "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_4C6F7F58613E61DD0535D12EC543973B"
+            {
+            "AssemblyRegister" = "3:1"
+            "AssemblyIsInGAC" = "11:FALSE"
+            "AssemblyAsmDisplayName" = "8:AudioLib, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL"
+                "ScatterAssemblies"
+                {
+                    "_4C6F7F58613E61DD0535D12EC543973B"
+                    {
+                    "Name" = "8:AudioLib.dll"
+                    "Attributes" = "3:512"
+                    }
+                }
+            "SourcePath" = "8:AudioLib.dll"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_4D3BED1A25304BAD92EA81B4D13F5EF1"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_51B3D7ABC51C4A2193BD16D3A7447817"
@@ -1977,6 +2073,11 @@
             "AssemblyAsmDisplayName" = "8:PipelineInterface.resources, Version=1.0.0.0, Culture=zh-Hant, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
+                    "_597EFCD779AE48D499D58D3080325AD0"
+                    {
+                    "Name" = "8:PipelineInterface.resources.dll"
+                    "Attributes" = "3:512"
+                    }
                 }
             "SourcePath" = "8:..\\Obi\\bin\\Release\\net9.0-windows7.0\\zh-Hant\\PipelineInterface.resources.dll"
             "TargetName" = "8:"
@@ -2078,39 +2179,18 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_5CD60ADEB1158BB9AE8B0457C64B4D8E"
-            {
-            "AssemblyRegister" = "3:1"
-            "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:UrakawaSDK.core, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL"
-                "ScatterAssemblies"
-                {
-                }
-            "SourcePath" = "8:UrakawaSDK.core.dll"
-            "TargetName" = "8:"
-            "Tag" = "8:"
-            "Folder" = "8:_4D3BED1A25304BAD92EA81B4D13F5EF1"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:TRUE"
-            "IsolateTo" = "8:"
-            }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_5D905D9C98884E85A6444EB850C79353"
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:Obi.resources, Version=5.1.0.0, Culture=fr, processorArchitecture=MSIL"
+            "AssemblyAsmDisplayName" = "8:Obi.resources, Version=5.9.6.0, Culture=fr, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
+                    "_5D905D9C98884E85A6444EB850C79353"
+                    {
+                    "Name" = "8:Obi.resources.dll"
+                    "Attributes" = "3:512"
+                    }
                 }
             "SourcePath" = "8:..\\Obi\\bin\\Release\\net9.0-windows7.0\\fr\\Obi.resources.dll"
             "TargetName" = "8:"
@@ -2165,9 +2245,14 @@
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:Obi.resources, Version=5.1.0.0, Culture=ar, processorArchitecture=MSIL"
+            "AssemblyAsmDisplayName" = "8:Obi.resources, Version=5.9.6.0, Culture=ar, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
+                    "_6E623DB789EA4E35A6FAA4B98DA1A271"
+                    {
+                    "Name" = "8:Obi.resources.dll"
+                    "Attributes" = "3:512"
+                    }
                 }
             "SourcePath" = "8:..\\Obi\\bin\\Release\\net9.0-windows7.0\\ar\\Obi.resources.dll"
             "TargetName" = "8:"
@@ -2358,6 +2443,37 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_819878E2BED74102AE74F750395ACE87"
+            {
+            "AssemblyRegister" = "3:1"
+            "AssemblyIsInGAC" = "11:FALSE"
+            "AssemblyAsmDisplayName" = "8:SaxNET, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL"
+                "ScatterAssemblies"
+                {
+                    "_819878E2BED74102AE74F750395ACE87"
+                    {
+                    "Name" = "8:SaxNET.dll"
+                    "Attributes" = "3:512"
+                    }
+                }
+            "SourcePath" = "8:SaxNET.dll"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_4D3BED1A25304BAD92EA81B4D13F5EF1"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_827508A28B554BABB8F40933CA886CC8"
             {
             "SourcePath" = "8:..\\Obi\\about_en.html"
@@ -2385,6 +2501,11 @@
             "AssemblyAsmDisplayName" = "8:PipelineInterface.resources, Version=1.0.0.0, Culture=hi, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
+                    "_82B0CC1EF2F04FF0A4D7BF619A15BCD7"
+                    {
+                    "Name" = "8:PipelineInterface.resources.dll"
+                    "Attributes" = "3:512"
+                    }
                 }
             "SourcePath" = "8:..\\Obi\\bin\\Release\\net9.0-windows7.0\\hi\\PipelineInterface.resources.dll"
             "TargetName" = "8:"
@@ -2431,6 +2552,11 @@
             "AssemblyAsmDisplayName" = "8:PipelineInterface.resources, Version=1.0.0.0, Culture=ar, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
+                    "_892D469AAF0749B690BCBC062FE389A5"
+                    {
+                    "Name" = "8:PipelineInterface.resources.dll"
+                    "Attributes" = "3:512"
+                    }
                 }
             "SourcePath" = "8:..\\Obi\\bin\\Release\\net9.0-windows7.0\\ar\\PipelineInterface.resources.dll"
             "TargetName" = "8:"
@@ -2508,6 +2634,11 @@
             "AssemblyAsmDisplayName" = "8:PipelineInterface, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
+                    "_8F866B4FD5AF428D99DE8ABD04222C99"
+                    {
+                    "Name" = "8:PipelineInterface.dll"
+                    "Attributes" = "3:512"
+                    }
                 }
             "SourcePath" = "8:..\\PipelineInterface\\bin\\Release\\net9.0-windows7.0\\PipelineInterface.dll"
             "TargetName" = "8:"
@@ -2676,6 +2807,11 @@
             "AssemblyAsmDisplayName" = "8:Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
+                    "_9C2943391CA448CD9C7BA3E0336D6455"
+                    {
+                    "Name" = "8:Newtonsoft.Json.dll"
+                    "Attributes" = "3:512"
+                    }
                 }
             "SourcePath" = "8:..\\Obi\\bin\\Release\\net9.0-windows7.0\\Newtonsoft.Json.dll"
             "TargetName" = "8:"
@@ -2722,6 +2858,11 @@
             "AssemblyAsmDisplayName" = "8:PipelineInterface.resources, Version=1.0.0.0, Culture=de, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
+                    "_A05C59C3E5F142AB8D146A09CC1658BB"
+                    {
+                    "Name" = "8:PipelineInterface.resources.dll"
+                    "Attributes" = "3:512"
+                    }
                 }
             "SourcePath" = "8:..\\Obi\\bin\\Release\\net9.0-windows7.0\\de\\PipelineInterface.resources.dll"
             "TargetName" = "8:"
@@ -2765,9 +2906,14 @@
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:Obi.resources, Version=5.1.0.0, Culture=de, processorArchitecture=MSIL"
+            "AssemblyAsmDisplayName" = "8:Obi.resources, Version=5.9.6.0, Culture=de, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
+                    "_A23C6A561940404D94A9926D942E3C86"
+                    {
+                    "Name" = "8:Obi.resources.dll"
+                    "Attributes" = "3:512"
+                    }
                 }
             "SourcePath" = "8:..\\Obi\\bin\\Release\\net9.0-windows7.0\\de\\Obi.resources.dll"
             "TargetName" = "8:"
@@ -2785,32 +2931,6 @@
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
             "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_A5731B68BED21B13279F1DC0863EA519"
-            {
-            "AssemblyRegister" = "3:1"
-            "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:Mp3Sharp, Version=1.4.0.0, Culture=neutral, processorArchitecture=MSIL"
-                "ScatterAssemblies"
-                {
-                }
-            "SourcePath" = "8:Mp3Sharp.dll"
-            "TargetName" = "8:"
-            "Tag" = "8:"
-            "Folder" = "8:_4D3BED1A25304BAD92EA81B4D13F5EF1"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_A5E522538D414A8091A263DF38111872"
@@ -2860,6 +2980,11 @@
             "AssemblyAsmDisplayName" = "8:PipelineInterface.resources, Version=1.0.0.0, Culture=ja, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
+                    "_AC8A82D489A444548DA434DCF079CA97"
+                    {
+                    "Name" = "8:PipelineInterface.resources.dll"
+                    "Attributes" = "3:512"
+                    }
                 }
             "SourcePath" = "8:..\\Obi\\bin\\Release\\net9.0-windows7.0\\ja\\PipelineInterface.resources.dll"
             "TargetName" = "8:"
@@ -2937,6 +3062,11 @@
             "AssemblyAsmDisplayName" = "8:AudioEngine.PPMeter, Version=1.0.3644.25175, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
+                    "_B3220A04D62E4C949E85B07752A3D758"
+                    {
+                    "Name" = "8:AudioEngine.PPMeter.dll"
+                    "Attributes" = "3:512"
+                    }
                 }
             "SourcePath" = "8:..\\Obi\\bin\\Release\\net9.0-windows7.0\\AudioEngine.PPMeter.dll"
             "TargetName" = "8:"
@@ -2956,15 +3086,20 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_BA7661CD7AA5FD13FDCF5F1481134374"
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_B591AEE9AFA5EE59553B9D1147EEC9EE"
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:SaxNET, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL"
+            "AssemblyAsmDisplayName" = "8:SoundTouch.Net, Version=1.6.0.0, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
+                    "_B591AEE9AFA5EE59553B9D1147EEC9EE"
+                    {
+                    "Name" = "8:SoundTouch.Net.dll"
+                    "Attributes" = "3:512"
+                    }
                 }
-            "SourcePath" = "8:SaxNET.dll"
+            "SourcePath" = "8:SoundTouch.Net.dll"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_4D3BED1A25304BAD92EA81B4D13F5EF1"
@@ -2986,9 +3121,14 @@
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:Obi.resources, Version=5.1.0.0, Culture=hi, processorArchitecture=MSIL"
+            "AssemblyAsmDisplayName" = "8:Obi.resources, Version=5.9.6.0, Culture=hi, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
+                    "_BC8E53F5017F487CB8686230B9F0A660"
+                    {
+                    "Name" = "8:Obi.resources.dll"
+                    "Attributes" = "3:512"
+                    }
                 }
             "SourcePath" = "8:..\\Obi\\bin\\Release\\net9.0-windows7.0\\hi\\Obi.resources.dll"
             "TargetName" = "8:"
@@ -3092,9 +3232,14 @@
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:Obi.resources, Version=5.1.0.0, Culture=zh-Hant, processorArchitecture=MSIL"
+            "AssemblyAsmDisplayName" = "8:Obi.resources, Version=5.9.6.0, Culture=zh-Hant, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
+                    "_C486EF5BA9F74D9785B887F2A2FC4DC5"
+                    {
+                    "Name" = "8:Obi.resources.dll"
+                    "Attributes" = "3:512"
+                    }
                 }
             "SourcePath" = "8:..\\Obi\\bin\\Release\\net9.0-windows7.0\\zh-Hant\\Obi.resources.dll"
             "TargetName" = "8:"
@@ -3280,9 +3425,14 @@
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:Obi.resources, Version=5.1.0.0, Culture=ta, processorArchitecture=MSIL"
+            "AssemblyAsmDisplayName" = "8:Obi.resources, Version=5.9.6.0, Culture=ta, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
+                    "_CD69C3BD638B434B99757D0DEC04A707"
+                    {
+                    "Name" = "8:Obi.resources.dll"
+                    "Attributes" = "3:512"
+                    }
                 }
             "SourcePath" = "8:..\\Obi\\bin\\Release\\net9.0-windows7.0\\ta\\Obi.resources.dll"
             "TargetName" = "8:"
@@ -3377,9 +3527,14 @@
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:Obi.resources, Version=5.1.0.0, Culture=es, processorArchitecture=MSIL"
+            "AssemblyAsmDisplayName" = "8:Obi.resources, Version=5.9.6.0, Culture=es, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
+                    "_D46B666B605043E9B0A64996546D63D9"
+                    {
+                    "Name" = "8:Obi.resources.dll"
+                    "Attributes" = "3:512"
+                    }
                 }
             "SourcePath" = "8:..\\Obi\\bin\\Release\\net9.0-windows7.0\\es\\Obi.resources.dll"
             "TargetName" = "8:"
@@ -3577,6 +3732,11 @@
             "AssemblyAsmDisplayName" = "8:PipelineInterface.resources, Version=1.0.0.0, Culture=es, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
+                    "_E503E11E76E74F06B3999B392A5A33B5"
+                    {
+                    "Name" = "8:PipelineInterface.resources.dll"
+                    "Attributes" = "3:512"
+                    }
                 }
             "SourcePath" = "8:..\\Obi\\bin\\Release\\net9.0-windows7.0\\es\\PipelineInterface.resources.dll"
             "TargetName" = "8:"
@@ -3600,9 +3760,14 @@
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:Obi.resources, Version=5.1.0.0, Culture=zh-Hans, processorArchitecture=MSIL"
+            "AssemblyAsmDisplayName" = "8:Obi.resources, Version=5.9.6.0, Culture=zh-Hans, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
+                    "_E5C1AD3D59BD4DC3AA29560956078C16"
+                    {
+                    "Name" = "8:Obi.resources.dll"
+                    "Attributes" = "3:512"
+                    }
                 }
             "SourcePath" = "8:..\\Obi\\bin\\Release\\net9.0-windows7.0\\zh-Hans\\Obi.resources.dll"
             "TargetName" = "8:"
@@ -4062,20 +4227,20 @@
         "Product"
         {
         "Name" = "8:Microsoft Visual Studio"
-        "ProductName" = "8:Obi 5.1"
-        "ProductCode" = "8:{FDCF32FC-0E29-424F-8B7F-2BC13E5040D8}"
-        "PackageCode" = "8:{3577F377-D105-457E-B2E6-9FA3399F83C8}"
+        "ProductName" = "8:Obi 6.0 beta"
+        "ProductCode" = "8:{63BD3049-F7EF-477D-BD85-DE7A28D1C7F0}"
+        "PackageCode" = "8:{6401E0F6-775C-4406-BF6D-CDD491DD04BA}"
         "UpgradeCode" = "8:{358C2C3A-3686-4461-A8BA-9D766218CC5E}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
         "RemovePreviousVersions" = "11:FALSE"
         "DetectNewerInstalledVersion" = "11:FALSE"
         "InstallAllUsers" = "11:FALSE"
-        "ProductVersion" = "8:5.1.0"
+        "ProductVersion" = "8:5.9.6"
         "Manufacturer" = "8:The Urakawa Project"
         "ARPHELPTELEPHONE" = "8:"
         "ARPHELPLINK" = "8:http://www.daisy.org/forums/obi"
-        "Title" = "8:Obi 5.1"
+        "Title" = "8:Obi 6.0 beta"
         "Subject" = "8:"
         "ARPCONTACT" = "8:Obi development Team"
         "Keywords" = "8:"
@@ -4186,7 +4351,7 @@
         {
             "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_0F34FEE7392245ED8C33C78EB0D2823B"
             {
-            "Name" = "8:Obi 5.1"
+            "Name" = "8:Obi 6.0 beta"
             "Arguments" = "8:"
             "Description" = "8:"
             "ShowCmd" = "3:1"
@@ -4200,7 +4365,7 @@
             }
             "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_C26CA4074EF24904B9E49A74044A43B0"
             {
-            "Name" = "8:Obi 5.1"
+            "Name" = "8:Obi 6.0 beta"
             "Arguments" = "8:"
             "Description" = "8:"
             "ShowCmd" = "3:1"
