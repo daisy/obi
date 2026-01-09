@@ -17,42 +17,39 @@ internal class Program
 
 
 
-        string logPath = @"C:\Temp\custom_action_log.txt";
+       // string logPath = @"C:\Temp\custom_action_log.txt";
         m_UninstallDeleteDirList = new List<DirectoryInfo>();
 
-        Directory.CreateDirectory(Path.GetDirectoryName(logPath));
+        //Directory.CreateDirectory(Path.GetDirectoryName(logPath));
         try
         {
-            File.AppendAllText(logPath, $"[{DateTime.Now}] Args: {string.Join(", ", args)}\n");
+          //  File.AppendAllText(logPath, $"[{DateTime.Now}] Args: {string.Join(", ", args)}\n");
 
             if (args.Length == 0)
             {
-                File.AppendAllText(logPath, "No arguments provided.\n");
+             //   File.AppendAllText(logPath, "No arguments provided.\n");
                 return 1;
 
-
-                //Console.WriteLine("Usage: MyCustomActionExe install| revoke| uninstall");
-                //return 1;
             }
 
             switch (args[0].ToLower())
             {
                 case "install":
-                    RunInstall(logPath);
+                    RunInstall();
                     break;
                 case "rollback":
-                    RollbackInstall(logPath);
+                    RollbackInstall();
                     break;
                 case "uninstall":
-                    RunUninstall(logPath);
+                    RunUninstall();
                     break;
                 default:
-                    File.AppendAllText(logPath, "Unknown command.\n");
+                    //File.AppendAllText(logPath,"Unknown command.\n");
                     return 1;
 
 
             }
-            File.AppendAllText(logPath, "Completed successfully.\n");
+         //   File.AppendAllText(logPath, "Completed successfully.\n");
             return 0;
 
 
@@ -60,49 +57,11 @@ internal class Program
 
 
 
-            //    string logPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "custom_action_log.txt");
-
-            //try
-            //{
-            //    File.AppendAllText(logPath, $"[{DateTime.Now}] Args: {string.Join(", ", args)}\n");
-            //    Console.WriteLine("This is just for testing");
-            //    Console.ReadLine(); 
-            //    if (args.Length == 0)
-            //    {
-            //        File.AppendAllText(logPath, "No arguments provided.\n");
-            //        return 1;
-            //    }
-
-            //    switch (args[0].ToLower())
-            //    {
-            //        case "install":
-            //            File.AppendAllText(logPath, "Running install logic...\n");
-            //            break;
-            //        case "uninstall":
-            //            File.AppendAllText(logPath, "Running uninstall logic...\n");
-            //            break;
-            //        case "rollback":
-            //            File.AppendAllText(logPath, "Running rollback logic...\n");
-            //            break;
-            //        default:
-            //            File.AppendAllText(logPath, "Unknown command.\n");
-            //            return 1;
-            //    }
-
-            //    File.AppendAllText(logPath, "Completed successfully.\n");
-            //    return 0;
-            //}
-            //catch (Exception ex)
-            //{
-            //    File.AppendAllText(logPath, $"Exception: {ex}\n");
-            //    return 1;
-            //}
-
         }
         catch (Exception ex)
         {
             // Log the error to a file or event log
-            File.AppendAllText(logPath, $"Exception: {ex}\n");
+          //  File.AppendAllText(logPath, $"Exception: {ex}\n");
             return 1; // failure
 
 
@@ -166,7 +125,6 @@ internal class Program
         }
         else
 
-            //Console.WriteLine("Pipeline-lite could not be installed. Please install by yourself after installation is complete.");
             System.Windows.Forms.MessageBox.Show("Pipeline-lite could not be installed. Please install by yourself after installation is complete.", "Warning");
     }
 
@@ -185,41 +143,32 @@ internal class Program
     }
 
 
-    public static void StartJREInstallOptionally(string logPath)
+    public static void StartJREInstallOptionally()
     {
-        File.AppendAllText(logPath, "Check for Java Runtime. \n");
+        //File.AppendAllText(logPath, "Check for Java Runtime. \n");
         if (!IsJREAlreadyInstalled())
         {
-            File.AppendAllText(logPath, "Java Runtime is now installed. \n");
+            //File.AppendAllText(logPath, "Java Runtime is now installed. \n");
             try
             {
-                File.AppendAllText(logPath, "Java Runtime try block. \n");
+
+             
+                //File.AppendAllText(logPath, "Java Runtime try block. \n");
                 System.Media.SystemSounds.Exclamation.Play(); // audio clue to alert.
-                if (MessageBox.Show("Obi will need Java runtime environment (JRE version 7 for 32 bit) installed on this computer  for some operations. If it is not already installed on this computer, press yes to install it from Obi Downlaod and Installtion page." + "\n" + "Please note that JRE installation will take some time so it may continue even after installation of Obi is finished", "JRE installation?", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
+                if (MessageBox.Show("Obi will need Java runtime environment (JRE version 6 ) installed on this computer for some operations. Press yes to install it from Obi Downlaod and Installation page.", "JRE installation?", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
                     == DialogResult.Yes)
                 {
-                    //Process JREInstallationProcess = new Process();
-                    //JREInstallationProcess.StartInfo.FileName = "http://java.com/en/download/windows_ie.jsp";
-
-                    //JREInstallationProcess.Start();
-                    //JREInstallationProcess.StartInfo.FileName = "https://daisy.org/activities/software/obi/download-and-installation/";
-
-                    //Process.Start(new ProcessStartInfo("cmd", $"/c start {JREInstallationProcess.StartInfo.FileName}") { CreateNoWindow = true });
 
                     string JREDownloadLink = "https://daisy.org/activities/software/obi/download-and-installation";
 
-                    File.AppendAllText(logPath, "Java Runtime can be downloaded from Obi website which should be opened now. \n");
-
-                    //Process.Start(new ProcessStartInfo("cmd", $"/c start {JREDownloadLink}"));
+                    //File.AppendAllText(logPath, "Java Runtime can be downloaded from Obi website which should be opened now. \n");
 
                     Process.Start("explorer.exe", JREDownloadLink);
-                    //Process.Start(new ProcessStartInfo("cmd", $"/c start {JREDownloadLink}"));
                 }
             }
             catch (System.Exception ex)
             {
-                File.AppendAllText(logPath, "Error in downloading Java runtime environment. Please install it yourself after installation of Obi \n");
-                //Console.WriteLine("Error in downloading Java runtime environment. Please install it yourself after installation of Obi is complete {0}", ex.ToString());
+                //File.AppendAllText(logPath, "Error in downloading Java runtime environment. Please install it yourself after installation of Obi \n");
                 MessageBox.Show("Error in downloading Java runtime environment. Please install it yourself after installation of Obi is complete" + "\n\n" + ex.ToString());
             }
 
@@ -231,12 +180,26 @@ internal class Program
     {
         try
         {
-            RegistryKey JREKey = Registry.CurrentUser.OpenSubKey("Software\\JavaSoft\\Java Runtime Environment");
-
-            if (JREKey == null
-                || (JREKey != null && JREKey.GetValueNames().Length == 0))
+            RegistryKey JREKey = null;
+            if (Environment.Is64BitOperatingSystem)
             {
-                JREKey = Registry.LocalMachine.OpenSubKey("Software\\JavaSoft\\Java Runtime Environment");
+                JREKey = Registry.CurrentUser.OpenSubKey("Software\\WOW6432Node\\JavaSoft\\Java Runtime Environment");
+
+                if (JREKey == null
+                    || (JREKey != null && JREKey.GetValueNames().Length == 0))
+                {
+                    JREKey = Registry.LocalMachine.OpenSubKey("Software\\WOW6432Node\\JavaSoft\\Java Runtime Environment");
+                }
+            }
+            else
+            {
+                JREKey = Registry.CurrentUser.OpenSubKey("Software\\JavaSoft\\Java Runtime Environment");
+
+                if (JREKey == null
+                    || (JREKey != null && JREKey.GetValueNames().Length == 0))
+                {
+                    JREKey = Registry.LocalMachine.OpenSubKey("Software\\JavaSoft\\Java Runtime Environment");
+                }
             }
 
             if (JREKey != null)
@@ -280,8 +243,8 @@ internal class Program
         }
         catch (System.Exception ex)
         {
-            Console.WriteLine("Some files could not be removed. Please remove them manually {0}", ex);
-            // MessageBox.Show("Some files could not be removed. Please remove them manually", "Warning");
+            //Console.WriteLine("Some files could not be removed. Please remove them manually {0}", ex);
+            MessageBox.Show("Some files could not be removed. Please remove them manually", "Warning");
         }
     }
 
@@ -292,37 +255,31 @@ internal class Program
 
 
 
-    static void RunInstall(string logPath)
+    static void RunInstall()
     {
-        // Paste your install logic here
-        //  Console.WriteLine("Running install logic...");
-        File.AppendAllText(logPath, "Running install logic...\n");
+        //File.AppendAllText(logPath, "Running install logic...\n");
 
         ExecuteExtraction();
-        StartJREInstallOptionally(logPath);
+        StartJREInstallOptionally();
 
 
 
     }
 
-    static void RunUninstall(string logPath)
+    static void RunUninstall()
     {
-        // Paste your uninstall logic here
-        // Console.WriteLine("Running uninstall logic...");
 
-        File.AppendAllText(logPath, "Running uninstall logic...\n");
+        //File.AppendAllText(logPath, "Running uninstall logic...\n");
 
         RemoveCustomInstalledFiles();
 
 
     }
 
-    static void RollbackInstall(string logPath)
+    static void RollbackInstall()
     {
-        // Paste your uninstall logic here
-        // Console.WriteLine("Roll Back logic...");
 
-        File.AppendAllText(logPath, "Running rollback logic...\n");
+        //File.AppendAllText(logPath, "Running rollback logic...\n");
 
         RemoveCustomInstalledFiles();
 
