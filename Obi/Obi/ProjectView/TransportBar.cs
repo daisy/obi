@@ -4105,17 +4105,26 @@ SelectionChangedPlaybackEnabled = false;
                     tempTime.Add(m_TimeElapsedInRecording);
                 }
                 //tempTime.Add(tempTodoPhraseTime);
-                
+
                 //tempTime.Add(tempTodoPhraseTime + 1000);
 
-               
-                    double currentTimeElapsed = tempTime[0] - previousTimeElaped - 100;
+                double currentTimeElapsed = tempTime[0] - previousTimeElaped - 100;
+                if (!mView.ObiForm.Settings.Audio_TODOPSecialCase)
+                {
                     mView.Presentation.UndoRedoManager.Execute(new Commands.Node.ToggleNodeTODO(mView, node, currentTimeElapsed));
                     mView.Presentation.Changed += new EventHandler<urakawa.events.DataModelChangedEventArgs>(Presentation_Changed);
+                }
+                bool isTodoMarked = false;
                 foreach (double time in tempTime)
                 {
                     if (!IsCommentAdded)
                         NextPhrase(time);
+                    if (mView.ObiForm.Settings.Audio_TODOPSecialCase && !isTodoMarked)
+                    {
+                        node = (EmptyNode)mRecordingPhrase;
+                        mView.Presentation.UndoRedoManager.Execute(new Commands.Node.ToggleNodeTODO(mView, node, currentTimeElapsed));
+                        isTodoMarked = true;
+                    }
 
                     //previousTimeElaped = time;
                 }
