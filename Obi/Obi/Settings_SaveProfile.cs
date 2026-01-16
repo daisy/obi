@@ -337,12 +337,15 @@ namespace Obi
                newSettings.Project_MaximumPhrasesSelectLimit = this.Project_MaximumPhrasesSelectLimit;
                newSettings.Project_ReadOnlyMode = this.Project_ReadOnlyMode;
                newSettings.Project_DisplayWarningsForSectionDelete = this.Project_DisplayWarningsForSectionDelete;
+               newSettings.Project_CSVImportHavingSemicolon = this.Project_CSVImportHavingSemicolon;
+               newSettings.Project_CSVImportPhraseDetection = this.Project_CSVImportPhraseDetection;
+               newSettings.Project_LimitRecentProjects = this.Project_LimitRecentProjects;
                // checks for paths
                //if ( !string.IsNullOrEmpty(this.Project_DefaultPath) && Directory.Exists (this.Project_DefaultPath ))
                //newSettings.Project_DefaultPath = this.Project_DefaultPath;
 
-               //if (!string.IsNullOrEmpty(this.Project_PipelineScriptsPath) && Directory.Exists(this.Project_PipelineScriptsPath))
-               //newSettings.Project_PipelineScriptsPath = this.Project_PipelineScriptsPath;
+                //if (!string.IsNullOrEmpty(this.Project_PipelineScriptsPath) && Directory.Exists(this.Project_PipelineScriptsPath))
+                //newSettings.Project_PipelineScriptsPath = this.Project_PipelineScriptsPath;
            }
            if (prefProfiles == PreferenceProfiles.UserProfile || prefProfiles == PreferenceProfiles.All)
            {
@@ -726,7 +729,10 @@ namespace Obi
                && this.Project_DoNotDisplayMessageBoxForShowingSection == settings.Project_DoNotDisplayMessageBoxForShowingSection
                && this.Project_MaximumPhrasesSelectLimit == settings.Project_MaximumPhrasesSelectLimit
                && this.Project_ReadOnlyMode == settings.Project_ReadOnlyMode
-               && this.Project_DisplayWarningsForSectionDelete == settings.Project_DisplayWarningsForSectionDelete)
+               && this.Project_DisplayWarningsForSectionDelete == settings.Project_DisplayWarningsForSectionDelete
+               && this.Project_CSVImportHavingSemicolon == settings.Project_CSVImportHavingSemicolon
+               && this.Project_CSVImportPhraseDetection == settings.Project_CSVImportPhraseDetection
+               && this.Project_LimitRecentProjects == settings.Project_LimitRecentProjects)
                {
                    projectPreferencesMatch = true ;
                }

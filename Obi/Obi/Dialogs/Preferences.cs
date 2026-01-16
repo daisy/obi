@@ -616,6 +616,11 @@ m_cb_ChooseFont.Visible = false;
                 {
                     mForm.FixTOCViewWidth = false;
                 }
+
+                if(mSettings.Project_LimitRecentProjects)
+                {
+                    mForm.LimitRecentProjectsShown(false);
+                }
                 
           //  mSettings.OpenLastProject = mLastOpenCheckBox.Checked;
           //  mSettings.AutoSave_RecordingEnd = mChkAutoSaveOnRecordingEnd.Checked;

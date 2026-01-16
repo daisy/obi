@@ -1977,6 +1977,7 @@ namespace Obi
                     mSettings.RecentProjects.RemoveAt(i);
                     mFile_RecentProjectMenuItem.DropDownItems.RemoveAt(i);
                 }
+                LimitRecentProjectsShown(true);
                 AddRecentProjectsItem(path);
                 mSettings.RecentProjects.Insert(0, path);
                 mSettings.LastOpenProject = path;
@@ -1993,7 +1994,22 @@ namespace Obi
                 return true;
             }
 
+        public void LimitRecentProjectsShown(bool isNewProjectToAdd)
+        {
+            int count = 10;
+            if (!isNewProjectToAdd){ count++;}
+            if (mSettings.Project_LimitRecentProjects && mSettings.RecentProjects.Count >= count)
+            {                
+                for (int i = mSettings.RecentProjects.Count; i >= count; i--)
+                {
+                    mFile_RecentProjectMenuItem.DropDownItems.RemoveAt(i - 1);
+                    mSettings.RecentProjects.RemoveAt(i - 1);
+                }
+            }
+        }
+
             #endregion
+
 
 
 

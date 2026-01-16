@@ -361,6 +361,9 @@ public bool Project_ImportNCCFileWithWindows1252Encoding ; // useful for importi
         [OptionalField]
         public bool Audio_TODOPSecialCase;
 
+        [OptionalField]
+        public bool Project_LimitRecentProjects;
+
         protected static void InitializeDefaultSettings(Settings settings)
         {
             settings.Audio_Channels = 1;
