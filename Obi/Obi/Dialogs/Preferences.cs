@@ -1176,6 +1176,7 @@ m_cb_ChooseFont.Visible = false;
                 mSettings.Project_DoNotDisplayMessageBoxForShowingSection = m_CheckBoxListView.Items[17].Checked;
                 mSettings.Project_ReadOnlyMode = m_CheckBoxListView.Items[18].Checked;
                 mSettings.Project_DisplayWarningsForSectionDelete = m_CheckBoxListView.Items[19].Checked;
+                mSettings.Project_LimitRecentProjects = m_CheckBoxListView.Items[20].Checked;
             }
             if (mTab.SelectedTab == mAudioTab)
             {
@@ -1329,6 +1330,7 @@ m_cb_ChooseFont.Visible = false;
                 m_CheckBoxListView.Items.Add(Localizer.Message("Project_DoNotDisplayMessageBoxForShowingSection"));
                 m_CheckBoxListView.Items.Add(Localizer.Message("Project_ReadOnlyMode"));
                 m_CheckBoxListView.Items.Add(Localizer.Message("Project_DisplayWarningsForSectionDelete"));
+                m_CheckBoxListView.Items.Add(Localizer.Message("Project_LimitRecentProjects"));
                
                 m_CheckBoxListView.Items[0].Checked = mSettings.Project_OpenLastProject;
                 m_CheckBoxListView.Items[0].ToolTipText = Localizer.Message("ProjectTab_OpenLastProject");
@@ -1370,6 +1372,8 @@ m_cb_ChooseFont.Visible = false;
                 m_CheckBoxListView.Items[18].ToolTipText = Localizer.Message("Project_ReadOnlyMode");
                 m_CheckBoxListView.Items[19].Checked = mSettings.Project_DisplayWarningsForSectionDelete;
                 m_CheckBoxListView.Items[19].ToolTipText = Localizer.Message("Project_DisplayWarningsForSectionDelete"); 
+                m_CheckBoxListView.Items[20].Checked = mSettings.Project_LimitRecentProjects;
+                m_CheckBoxListView.Items[20].ToolTipText = Localizer.Message("Project_LimitRecentProjects"); 
 
             }
             m_CheckBoxListView.View = View.Details;
@@ -1467,6 +1471,7 @@ m_cb_ChooseFont.Visible = false;
                 mSettings.Project_MaximumPhrasesSelectLimit = m_DefaultSettings.Project_MaximumPhrasesSelectLimit;
                 mSettings.Project_ReadOnlyMode = m_DefaultSettings.Project_ReadOnlyMode;
                 mSettings.Project_DisplayWarningsForSectionDelete = m_DefaultSettings.Project_DisplayWarningsForSectionDelete;
+                mSettings.Project_LimitRecentProjects = m_DefaultSettings.Project_LimitRecentProjects;
                 InitializeProjectTab();
             }
             else if (mTab.SelectedTab == mAudioTab) // Default settings for Audio tab
@@ -2149,6 +2154,7 @@ m_cb_ChooseFont.Visible = false;
                     mSettings.Project_MaximumPhrasesSelectLimit = true;
                     mSettings.Project_ReadOnlyMode = false;
                     mSettings.Project_DisplayWarningsForSectionDelete = false;
+                    mSettings.Project_LimitRecentProjects = false;          
                     // UpdateBoolSettings();
                 }
                 else if (Profile == "Intermediate.xml" || Profile == "Intermediate.XML")
@@ -2189,6 +2195,7 @@ m_cb_ChooseFont.Visible = false;
                     mSettings.Audio_RemoveAccentsFromDaisy2ExportFileNames = false;
                     mSettings.Audio_RecordUsingSingleKeyFromTOC = false;
                     mSettings.Audio_DeleteFollowingPhrasesWhilePreviewBeforeRecording = true;
+                    mSettings.Audio_TODOPSecialCase = false;
 
                     mSettings.Audio_DefaultGap = 300;
                     mSettings.Audio_PreviewDuration = 1500;
@@ -2229,7 +2236,7 @@ m_cb_ChooseFont.Visible = false;
                     mSettings.Project_MaximumPhrasesSelectLimit = true;
                     mSettings.Project_ReadOnlyMode = false;
                     mSettings.Project_DisplayWarningsForSectionDelete = false;
-                    mSettings.Audio_TODOPSecialCase = false;
+                    mSettings.Project_LimitRecentProjects = false;
                     // UpdateBoolSettings();
                 }
                 else if (Profile == "Advance.xml" || Profile == "Advance.XML")
@@ -2269,6 +2276,7 @@ m_cb_ChooseFont.Visible = false;
                     mSettings.Audio_RemoveAccentsFromDaisy2ExportFileNames = false;
                     mSettings.Audio_RecordUsingSingleKeyFromTOC = false;
                     mSettings.Audio_DeleteFollowingPhrasesWhilePreviewBeforeRecording = true;
+                    mSettings.Audio_TODOPSecialCase = false;
 
                     mSettings.Audio_DefaultGap = 300;
                     mSettings.Audio_PreviewDuration = 1500;
@@ -2309,7 +2317,7 @@ m_cb_ChooseFont.Visible = false;
                     mSettings.Project_MaximumPhrasesSelectLimit = true;
                     mSettings.Project_ReadOnlyMode = false;
                     mSettings.Project_DisplayWarningsForSectionDelete = false;
-                    mSettings.Audio_TODOPSecialCase = false;
+                    mSettings.Project_LimitRecentProjects = false;
                     // UpdateBoolSettings();
                 }
                 else if (Profile == "Profile-SBS.xml" || Profile == "Profile-SBS.XML")
@@ -2349,6 +2357,7 @@ m_cb_ChooseFont.Visible = false;
                     mSettings.Audio_RemoveAccentsFromDaisy2ExportFileNames = false;
                     mSettings.Audio_RecordUsingSingleKeyFromTOC = false;
                     mSettings.Audio_DeleteFollowingPhrasesWhilePreviewBeforeRecording = true;
+                    mSettings.Audio_TODOPSecialCase = false;
 
                     mSettings.Audio_DefaultGap = 300;
                     mSettings.Audio_PreviewDuration = 1500;
@@ -2389,7 +2398,7 @@ m_cb_ChooseFont.Visible = false;
                     mSettings.Project_MaximumPhrasesSelectLimit = true;
                     mSettings.Project_ReadOnlyMode = false;
                     mSettings.Project_DisplayWarningsForSectionDelete = false;
-                    mSettings.Audio_TODOPSecialCase = false;
+                    mSettings.Project_LimitRecentProjects = false;
                     // UpdateBoolSettings();
 
 
@@ -2432,6 +2441,7 @@ m_cb_ChooseFont.Visible = false;
                     mSettings.Audio_RemoveAccentsFromDaisy2ExportFileNames = false;
                     mSettings.Audio_RecordUsingSingleKeyFromTOC = true;
                     mSettings.Audio_DeleteFollowingPhrasesWhilePreviewBeforeRecording = true;
+                    mSettings.Audio_TODOPSecialCase = true;
 
                     mSettings.Audio_DefaultGap = 600;
                     mSettings.Audio_PreviewDuration = 7000;
@@ -2471,7 +2481,7 @@ m_cb_ChooseFont.Visible = false;
                     mSettings.Project_MaximumPhrasesSelectLimit = true;
                     mSettings.Project_ReadOnlyMode = false;
                     mSettings.Project_DisplayWarningsForSectionDelete = false;
-                    mSettings.Audio_TODOPSecialCase = true;
+                    mSettings.Project_LimitRecentProjects = true;
                     // UpdateBoolSettings();
 
                 }
@@ -2513,6 +2523,7 @@ m_cb_ChooseFont.Visible = false;
                     mSettings.Audio_RemoveAccentsFromDaisy2ExportFileNames = false;
                     mSettings.Audio_RecordUsingSingleKeyFromTOC = true;
                     mSettings.Audio_DeleteFollowingPhrasesWhilePreviewBeforeRecording = false;
+                    mSettings.Audio_TODOPSecialCase = true;
 
                     mSettings.Audio_DefaultGap = 600;
                     mSettings.Audio_PreviewDuration = 7000;
@@ -2553,7 +2564,7 @@ m_cb_ChooseFont.Visible = false;
                     mSettings.Project_MaximumPhrasesSelectLimit = true;
                     mSettings.Project_ReadOnlyMode = false;
                     mSettings.Project_DisplayWarningsForSectionDelete = false;
-                    mSettings.Audio_TODOPSecialCase = true;
+                    mSettings.Project_LimitRecentProjects = true;
                     // UpdateBoolSettings();
 
                 }
@@ -2595,6 +2606,7 @@ m_cb_ChooseFont.Visible = false;
                     mSettings.Audio_RemoveAccentsFromDaisy2ExportFileNames = false;
                     mSettings.Audio_RecordUsingSingleKeyFromTOC = true;
                     mSettings.Audio_DeleteFollowingPhrasesWhilePreviewBeforeRecording = true;
+                    mSettings.Audio_TODOPSecialCase = true;
 
                     mSettings.Audio_DefaultGap = 600;
                     mSettings.Audio_PreviewDuration = 7000;
@@ -2634,7 +2646,7 @@ m_cb_ChooseFont.Visible = false;
                     mSettings.Project_MaximumPhrasesSelectLimit = true;
                     mSettings.Project_ReadOnlyMode = false;
                     mSettings.Project_DisplayWarningsForSectionDelete = false;
-                    mSettings.Audio_TODOPSecialCase = true;
+                    mSettings.Project_LimitRecentProjects = true;
                     // UpdateBoolSettings();
 
                 }
