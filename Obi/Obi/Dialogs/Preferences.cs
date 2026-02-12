@@ -1176,7 +1176,6 @@ m_cb_ChooseFont.Visible = false;
                 mSettings.Project_DoNotDisplayMessageBoxForShowingSection = m_CheckBoxListView.Items[17].Checked;
                 mSettings.Project_ReadOnlyMode = m_CheckBoxListView.Items[18].Checked;
                 mSettings.Project_DisplayWarningsForSectionDelete = m_CheckBoxListView.Items[19].Checked;
-                mSettings.Project_LimitRecentProjects = m_CheckBoxListView.Items[20].Checked;
             }
             if (mTab.SelectedTab == mAudioTab)
             {
@@ -1330,7 +1329,6 @@ m_cb_ChooseFont.Visible = false;
                 m_CheckBoxListView.Items.Add(Localizer.Message("Project_DoNotDisplayMessageBoxForShowingSection"));
                 m_CheckBoxListView.Items.Add(Localizer.Message("Project_ReadOnlyMode"));
                 m_CheckBoxListView.Items.Add(Localizer.Message("Project_DisplayWarningsForSectionDelete"));
-                m_CheckBoxListView.Items.Add(Localizer.Message("Project_LimitRecentProjects"));
                
                 m_CheckBoxListView.Items[0].Checked = mSettings.Project_OpenLastProject;
                 m_CheckBoxListView.Items[0].ToolTipText = Localizer.Message("ProjectTab_OpenLastProject");
@@ -1372,8 +1370,6 @@ m_cb_ChooseFont.Visible = false;
                 m_CheckBoxListView.Items[18].ToolTipText = Localizer.Message("Project_ReadOnlyMode");
                 m_CheckBoxListView.Items[19].Checked = mSettings.Project_DisplayWarningsForSectionDelete;
                 m_CheckBoxListView.Items[19].ToolTipText = Localizer.Message("Project_DisplayWarningsForSectionDelete"); 
-                m_CheckBoxListView.Items[20].Checked = mSettings.Project_LimitRecentProjects;
-                m_CheckBoxListView.Items[20].ToolTipText = Localizer.Message("Project_LimitRecentProjects"); 
 
             }
             m_CheckBoxListView.View = View.Details;
@@ -1471,7 +1467,6 @@ m_cb_ChooseFont.Visible = false;
                 mSettings.Project_MaximumPhrasesSelectLimit = m_DefaultSettings.Project_MaximumPhrasesSelectLimit;
                 mSettings.Project_ReadOnlyMode = m_DefaultSettings.Project_ReadOnlyMode;
                 mSettings.Project_DisplayWarningsForSectionDelete = m_DefaultSettings.Project_DisplayWarningsForSectionDelete;
-                mSettings.Project_LimitRecentProjects = m_DefaultSettings.Project_LimitRecentProjects;
                 InitializeProjectTab();
             }
             else if (mTab.SelectedTab == mAudioTab) // Default settings for Audio tab
