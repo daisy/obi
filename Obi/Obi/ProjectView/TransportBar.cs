@@ -4108,7 +4108,7 @@ SelectionChangedPlaybackEnabled = false;
 
                 //tempTime.Add(tempTodoPhraseTime + 1000);
 
-                double currentTimeElapsed = tempTime[0] - previousTimeElaped - 100;
+                double currentTimeElapsed = 0;  // tempTime[0] - previousTimeElaped - 100;
                 if (!mView.ObiForm.Settings.Audio_TODOPSecialCase)
                 {
                     mView.Presentation.UndoRedoManager.Execute(new Commands.Node.ToggleNodeTODO(mView, node, currentTimeElapsed));
