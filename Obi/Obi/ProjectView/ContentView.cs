@@ -2029,12 +2029,9 @@ return CreateBlocksInStrip ( s != null ? s : null ); // uncomment this for resto
             }
 
         //@singleSection
-        public void CreateBlocksTillNodeInStrip ( Strip stripControl, EmptyNode nodeOfLastBlockToCreate, bool considerStripHaltFlag )
-            {
-               if (!this.IsWaveformRendering)
-                CreateBlocksTillNodeInStrip ( stripControl, nodeOfLastBlockToCreate, considerStripHaltFlag, 0 );
-            else
-                Console.WriteLine("CreateBlocks will not happen while waveform rendering going");
+        public void CreateBlocksTillNodeInStrip(Strip stripControl, EmptyNode nodeOfLastBlockToCreate, bool considerStripHaltFlag)
+        {
+            CreateBlocksTillNodeInStrip(stripControl, nodeOfLastBlockToCreate, considerStripHaltFlag, 0);
         }
 
         //@singleSection
