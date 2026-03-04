@@ -770,7 +770,7 @@ namespace Obi.ProjectView
                 return;
             } 
 
-            if (e.Node.Tag != null && e.Label != null && e.Label.Trim() != "")
+            if (e.Node.Tag != null && e.Label != null && e.Label.Trim() != "" && !mProjectView.IsImportSectionsFromAudioFiles)
             {
                 mProjectView.RenameSectionNode((SectionNode)e.Node.Tag, e.Label);
             }

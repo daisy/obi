@@ -48,6 +48,7 @@ namespace Obi.ProjectView
         private bool m_IsAudioprocessingPerformed = false;
         private Obi.UserControls.GraphicalPeakMeter m_PeakMeterInsideObi;
         private GenerateSpeech m_GenerateSpeechDialog;
+        private bool m_IsImportSectionsFromAudioFiles = false;
                   
     
         /// <summary>
@@ -865,6 +866,14 @@ namespace Obi.ProjectView
                 {
                     mTOCSplitter.SplitterDistance = value;
                 }
+            }
+        }
+
+        public bool IsImportSectionsFromAudioFiles
+        {
+            get
+            {
+                return m_IsImportSectionsFromAudioFiles;
             }
         }
 
@@ -2967,9 +2976,11 @@ namespace Obi.ProjectView
                                     }
                                     if (createSectionForEachPhrase)
                                     {
+                                       m_IsImportSectionsFromAudioFiles = true;
                                        CompositeCommand createSectionsCommand = GetImportSectionsFromAudioCommands(phraseNodes, phrase_SectionNameMap, dialog.CharacterCountToTruncateFromStart, dialog.CharactersToBeReplacedWithSpaces, dialog.PageIdentificationString);
 
                                         mPresentation.Do(createSectionsCommand);
+                                        m_IsImportSectionsFromAudioFiles = false;
                                     }
                                     else if (ImportAudioFilesInEachSection)
                                     {
