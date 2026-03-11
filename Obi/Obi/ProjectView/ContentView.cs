@@ -2581,15 +2581,10 @@ if (thresholdAboveLastNode >= stripControl.Node.PhraseChildCount) thresholdAbove
                         stopWatch.Start ();
                         if (!setStripsPanelToInitialPosition)
                             {
-                            if (!this.IsWaveformRendering)
                                 CreateBlocksTillNodeInStrip(currentlyActiveStrip,
                             currentlyActiveStrip.Node.PhraseChild(nextThresholdIndex),
                             false,
                            ContentViewDepthForCreatingBlocks + interval);
-                            else
-                            {
-                                Console.WriteLine("CreateBlocks will not happen while waveform rendering going");
-                            }
 
                             // check if strips panel can be located up by full interval
                             int pixelsUp = interval;
