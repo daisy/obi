@@ -3354,7 +3354,7 @@ You can do it later also from the project tab of preferences dialog.</value>
     <value>Write text for speech generation</value>
   </data>	
   <data name="Audio_TODOPSecialCase" xml:space="preserve">
-    <value>Create a small phrase when TODO is marked while recording.</value>
+    <value>Create a small TODO phrase when TODO is marked while recording.</value>
   </data>
   <data name="Project_LimitRecentProjects" xml:space="preserve">
     <value>Limit number of Recent Projects shown</value>
