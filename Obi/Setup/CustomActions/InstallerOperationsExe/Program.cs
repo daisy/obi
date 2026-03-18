@@ -143,16 +143,67 @@ internal class Program
     }
 
 
-    public static void StartJREInstallOptionally()
+    //public static void StartJREInstallOptionally()
+    //{
+    //    //File.AppendAllText(logPath, "Check for Java Runtime. \n");
+    //    if (!IsJREAlreadyInstalled())
+    //    {
+    //        //File.AppendAllText(logPath, "Java Runtime is now installed. \n");
+    //        try
+    //        {
+
+             
+    //            //File.AppendAllText(logPath, "Java Runtime try block. \n");
+    //            System.Media.SystemSounds.Exclamation.Play(); // audio clue to alert.
+    //            if (MessageBox.Show("Obi will need Java runtime environment (JRE version 6 ) installed on this computer for some operations. Press yes to install it from Obi Downlaod and Installation page.", "ASP.NET Core Installation?", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
+    //                == DialogResult.Yes)
+    //            {
+
+    //                string JREDownloadLink = "https://daisy.org/activities/software/obi/download-and-installation";
+
+    //                //File.AppendAllText(logPath, "Java Runtime can be downloaded from Obi website which should be opened now. \n");
+
+    //                Process.Start("explorer.exe", JREDownloadLink);
+    //            }
+    //        }
+    //        catch (System.Exception ex)
+    //        { 
+    //            //File.AppendAllText(logPath, "Error in downloading Java runtime environment. Please install it yourself after installation of Obi \n");
+    //            MessageBox.Show("Error in downloading Java runtime environment. Please install it yourself after installation of Obi is complete" + "\n\n" + ex.ToString());
+    //        }
+
+    //    }
+    //}
+
+    public static void StartASPCoreJREInstallOptionally()
     {
-        //File.AppendAllText(logPath, "Check for Java Runtime. \n");
-        if (!IsJREAlreadyInstalled())
+        if (!IsASPCoreAlreadyInstalled() && IsJREAlreadyInstalled())
+        {
+            try
+            {
+                System.Media.SystemSounds.Exclamation.Play(); // audio clue to alert.
+                if (MessageBox.Show("Obi will need to install ASP.NET Core 9.0 Runtime. Press yes to install it from Obi Download And Installation page.", "ASP.NET Core 9.0 Installation?", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
+                    == DialogResult.Yes)
+                {
+
+                    string JREDownloadLink = "https://daisy.org/activities/software/obi/download-and-installation";
+
+                    Process.Start("explorer.exe", JREDownloadLink);
+                }
+            }
+            catch (System.Exception ex)
+            {
+                MessageBox.Show("Error in opening Download And Installation page of Obi . Please downlaod and install ASP.NET Core 9.0 Runtime from Obi Download And Installation page after installation of Obi is complete" + "\n\n" + ex.ToString());
+            }
+
+        }
+        else if (!IsJREAlreadyInstalled() && IsASPCoreAlreadyInstalled())
         {
             //File.AppendAllText(logPath, "Java Runtime is now installed. \n");
             try
             {
 
-             
+
                 //File.AppendAllText(logPath, "Java Runtime try block. \n");
                 System.Media.SystemSounds.Exclamation.Play(); // audio clue to alert.
                 if (MessageBox.Show("Obi will need Java runtime environment (JRE version 6 ) installed on this computer for some operations. Press yes to install it from Obi Downlaod and Installation page.", "JRE installation?", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
@@ -168,11 +219,67 @@ internal class Program
             }
             catch (System.Exception ex)
             {
-                //File.AppendAllText(logPath, "Error in downloading Java runtime environment. Please install it yourself after installation of Obi \n");
-                MessageBox.Show("Error in downloading Java runtime environment. Please install it yourself after installation of Obi is complete" + "\n\n" + ex.ToString());
+                MessageBox.Show("Error in opening Download And Installation page of Obi . Please downlaod and install Java runtime environment (JRE Version 6) from Obi Download And Installation page after installation of Obi is complete" + "\n\n" + ex.ToString());
             }
-
         }
+        else if (!IsJREAlreadyInstalled() && !IsASPCoreAlreadyInstalled())
+        {
+            try
+            {
+
+                System.Media.SystemSounds.Exclamation.Play(); // audio clue to alert.
+                if (MessageBox.Show("Obi will need ASP.NET Core 9.0 Runtime & Java runtime environment (JRE Version 6) installed on this computer. Press yes to install it from Obi Downlaod and Installation page.", "ASP.NET Core And JRE installation?", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
+                    == DialogResult.Yes)
+                {
+
+                    string JREDownloadLink = "https://daisy.org/activities/software/obi/download-and-installation";
+
+
+                    Process.Start("explorer.exe", JREDownloadLink);
+                }
+            }
+            catch (System.Exception ex)
+            {
+                MessageBox.Show("Error in opening Download And Installation page of Obi . Please downlaod and install ASP.NET Core 9.0 Runtime & Java runtime environment (JRE Version 6) from Obi Download And Installation page after installation of Obi is complete" + "\n\n" + ex.ToString());
+            }
+        }
+    }
+
+    private static bool IsASPCoreAlreadyInstalled()
+    { 
+        try
+        {
+            RegistryKey AspKey = null;
+                 AspKey = Registry.CurrentUser.OpenSubKey("Software\\Microsoft\\ASP.NET Core\\Shared Framework\\v9.0");
+
+                if (AspKey == null
+                    || (AspKey != null && AspKey.GetValueNames().Length == 0))
+                {
+                    AspKey = Registry.LocalMachine.OpenSubKey("Software\\Microsoft\\ASP.NET Core\\Shared Framework\\v9.0");
+                }
+            
+
+            if (AspKey != null)
+            {//1
+                foreach (string subKeyString in AspKey.GetSubKeyNames())
+                {//2
+                    if (subKeyString.Length > 3) 
+                    {//3
+                        string keyName = subKeyString.Substring(0, 3);
+
+                        double numericSubKey = Convert.ToDouble(keyName);
+                        if (numericSubKey >= 9.0)
+                        {//4
+                            return true;
+                        }//-4
+                    }//-3
+                }//-2
+            }//-1
+        } // try ends
+        catch (System.Exception)
+        { return false; }
+
+        return false;
     }
 
 
@@ -260,8 +367,8 @@ internal class Program
         //File.AppendAllText(logPath, "Running install logic...\n");
 
         ExecuteExtraction();
-        StartJREInstallOptionally();
-
+        //StartJREInstallOptionally();
+        StartASPCoreJREInstallOptionally();
 
 
     }
