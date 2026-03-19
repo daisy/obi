@@ -571,10 +571,10 @@ if (urakawa.data.DataProviderFactory.CSS_EXTENSION.Equals(ext, StringComparison.
                         {
                             if (!m_TodoCueMarkersDictionary.ContainsKey(audioFilePath))
                             {
-                                m_TodoCueMarkersDictionary.Add(audioFilePath, new List<double> { timeToToDoPhrase });
+                                m_TodoCueMarkersDictionary.Add(audioFilePath, new List<double> { timeToToDoPhrase + 0.1 });
                             }
                             else
-                                m_TodoCueMarkersDictionary[audioFilePath].Add(timeToToDoPhrase);
+                                m_TodoCueMarkersDictionary[audioFilePath].Add(timeToToDoPhrase + 0.1);
                         }
 
 
