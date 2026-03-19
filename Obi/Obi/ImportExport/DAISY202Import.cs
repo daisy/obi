@@ -187,23 +187,25 @@ namespace Obi.ImportExport
             {
                                     if (n.NodeType == XmlNodeType.Element)
                     {
-                        if (n.LocalName == "h1" || n.LocalName == "h2" || n.LocalName == "h3" ||
-                            n.LocalName == "h4" || n.LocalName == "h5" || n.LocalName == "h6")
-                        {
-                            //foundHeadings = true;
-                            Obi.SectionNode section = CreateSectionNode(n);
-                            if (section  != null && section.Level < 6) m_OpenSectionNodes.Push(section );
-                            m_CurrentSection = section ;
-                            m_SectionNodesToSmilReferenceMap.Add(section, GetSmilReferenceString(n));
-                            
-                        }
-                        else if (n.LocalName == "p" || n.LocalName == "span")
+                    if (n.LocalName == "h1" || n.LocalName == "h2" || n.LocalName == "h3" ||
+                        n.LocalName == "h4" || n.LocalName == "h5" || n.LocalName == "h6")
+                    {
+                        //foundHeadings = true;
+                        Obi.SectionNode section = CreateSectionNode(n);
+                        if (section != null && section.Level < 6) m_OpenSectionNodes.Push(section);
+                        m_CurrentSection = section;
+                        m_SectionNodesToSmilReferenceMap.Add(section, GetSmilReferenceString(n));
+
+                    }
+                    else if (n.LocalName == "p" || n.LocalName == "span")
+                    {
+                        if (n.Attributes.GetNamedItem("class") != null)
                         {
                             string classAttr = n.Attributes.GetNamedItem("class").Value;
                             if (classAttr == "phrase")
                             {
-EmptyNode empty = m_Presentation.TreeNodeFactory.Create<EmptyNode>();
-m_CurrentSection.AppendChild(empty);
+                                EmptyNode empty = m_Presentation.TreeNodeFactory.Create<EmptyNode>();
+                                m_CurrentSection.AppendChild(empty);
                             }
                             else if (classAttr == "page" || classAttr == "page-normal")
                             {
@@ -218,6 +220,7 @@ m_CurrentSection.AppendChild(empty);
                                 addPage(n, PageKind.Special);
                             }
                         }
+                    }
                                     }          
                 ParseNccDocument(n);
             }
