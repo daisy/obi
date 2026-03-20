@@ -169,9 +169,17 @@ namespace Obi
             }
 
             settings.MenuNameDictionary = new Dictionary<string, KeyboardShortcut>();
-            for (int i = 0; i < settings.MenuKeyboardShortCutsList.Length; i++)
+            if(settings.MenuKeyboardShortCutsList != null)
             {
-                settings.MenuNameDictionary.Add(settings.MenuKeyboardShortCutsList[i].Description, settings.MenuKeyboardShortCutsList[i]);
+                for (int i = 0; i < settings.MenuKeyboardShortCutsList.Length; i++)
+                {
+                    settings.MenuNameDictionary.Add(settings.MenuKeyboardShortCutsList[i].Description, settings.MenuKeyboardShortCutsList[i]);
+                }
+            }
+            else
+            {
+                MessageBox.Show(Localizer.Message("KeyboardShortcuts_LoadingDefaults"), Localizer.Message("Caption_Information"));
+                return KeyboardShortcuts_Settings.GetDefaultKeyboardShortcuts_Settings();
             }
             settings.KeyboardShortcutsDescription = new Dictionary<string, KeyboardShortcut>();
             
