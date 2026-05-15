@@ -19,7 +19,7 @@ The latest stable release is v4.5 (2020-03-31)
 
 * Requirements:
 
-Obi will run on Windows Vista, Windows 7, Windows 8 & Windows 10. It needs .NET framework 4.0, DirectX 9 c and 32 bit Java runtime environment 6.0 & above.
+Obi will run on Windows Vista, Windows 7, Windows 8 & Windows 10. It needs .NET 6.0, DirectX 9 c and 32 bit Java runtime environment 6.0 & above.
 
 All of these dependencies will be installed by installer during installation process. To install Obi, please go through installation guide.
 
