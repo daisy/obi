@@ -1,0 +1,2 @@
+Version: 1.12.0
+Arguments: ['C:\\hostedtoolcache\\windows\\Python\\3.14.4\\x64\\Scripts\\delvewheel', 'repair', '--add-path', 'C:\\cibw\\vendor\\bin', '-w', 'C:\\Users\\runneradmin\\AppData\\Local\\Temp\\cibw-run-_yvg0ppn\\cp311-win_amd64\\repaired_wheel', 'C:\\Users\\runneradmin\\AppData\\Local\\Temp\\cibw-run-_yvg0ppn\\cp311-win_amd64\\built_wheel\\av-17.0.1-cp311-abi3-win_amd64.whl']

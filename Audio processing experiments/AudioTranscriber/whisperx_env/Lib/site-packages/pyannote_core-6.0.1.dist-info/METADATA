@@ -1,0 +1,60 @@
+Metadata-Version: 2.4
+Name: pyannote-core
+Version: 6.0.1
+Summary: Advanced data structures for handling temporal segments with attached labels
+Author-email: Hervé BREDIN <herve@pyannote.ai>
+License-File: LICENSE
+Requires-Python: >=3.10
+Requires-Dist: numpy>=2.0
+Requires-Dist: pandas>=2.2.3
+Requires-Dist: sortedcontainers>=2.4.0
+Provides-Extra: doc
+Requires-Dist: ipython>=8.32.0; extra == 'doc'
+Requires-Dist: matplotlib>=3.10.0; extra == 'doc'
+Requires-Dist: sphinx-rtd-theme>=3.0.2; extra == 'doc'
+Requires-Dist: sphinx>=8.1.3; extra == 'doc'
+Provides-Extra: notebook
+Requires-Dist: ipython>=8.31.0; extra == 'notebook'
+Requires-Dist: matplotlib>=3.10.0; extra == 'notebook'
+Provides-Extra: test
+Requires-Dist: matplotlib>=3.10.0; extra == 'test'
+Requires-Dist: pytest>=8.3.4; extra == 'test'
+Description-Content-Type: text/markdown
+
+# pyannote.core
+
+> advanced data structures for handling and visualizing temporal segments with attached labels.
+
+## Installation
+
+```bash
+$ pip install pyannote.core
+```
+
+Support for graphical visualization in Jupyter notebooks can be added with:
+
+```bash
+$ pip install pyannote.core[notebook]
+```
+
+## Documentation
+
+The documentation is available at [http://pyannote.github.io/pyannote-core](http://pyannote.github.io/pyannote-core).
+
+Sample notebooks are available [here](https://nbviewer.jupyter.org/github/pyannote/pyannote-core/blob/develop/notebook/index.ipynb).
+
+## Citation
+
+If you use `pyannote.core` in your research, please use the following citation:
+
+```bibtex
+@inproceedings{pyannote.metrics,
+ author = {Herv\'e Bredin},
+ title = {{pyannote.metrics: a toolkit for reproducible evaluation, diagnostic, and error analysis of speaker diarization systems}},
+ booktitle = {{Interspeech 2017, 18th Annual Conference of the International Speech Communication Association}},
+ year = {2017},
+ month = {August},
+ address = {Stockholm, Sweden},
+ url = {http://pyannote.github.io/pyannote-metrics},
+}
+```

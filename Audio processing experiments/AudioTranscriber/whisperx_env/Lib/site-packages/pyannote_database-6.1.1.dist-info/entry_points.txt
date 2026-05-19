@@ -1,0 +1,9 @@
+[console_scripts]
+pyannote-database = pyannote.database.cli:main
+
+[pyannote.database.loader]
+.lab = pyannote.database.loader:LABLoader
+.map = pyannote.database.loader:MAPLoader
+.rttm = pyannote.database.loader:RTTMLoader
+.stm = pyannote.database.loader:STMLoader
+.uem = pyannote.database.loader:UEMLoader
