@@ -1,0 +1,26 @@
+{
+  "version": 2,
+  "dgSpecHash": "HpoFVSNq7wY=",
+  "success": true,
+  "projectFilePath": "D:\\AI\\AudioTranscriber\\AudioTranscriber\\AudioTranscriber.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\rssbr\\.nuget\\packages\\ffmpegcore\\5.4.0\\ffmpegcore.5.4.0.nupkg.sha512",
+    "C:\\Users\\rssbr\\.nuget\\packages\\ffmpegcore.extensions.downloader\\5.0.0\\ffmpegcore.extensions.downloader.5.0.0.nupkg.sha512",
+    "C:\\Users\\rssbr\\.nuget\\packages\\instances\\3.0.2\\instances.3.0.2.nupkg.sha512",
+    "C:\\Users\\rssbr\\.nuget\\packages\\microsoft.extensions.ai.abstractions\\10.0.0\\microsoft.extensions.ai.abstractions.10.0.0.nupkg.sha512",
+    "C:\\Users\\rssbr\\.nuget\\packages\\microsoft.extensions.dependencyinjection\\10.0.7\\microsoft.extensions.dependencyinjection.10.0.7.nupkg.sha512",
+    "C:\\Users\\rssbr\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\10.0.7\\microsoft.extensions.dependencyinjection.abstractions.10.0.7.nupkg.sha512",
+    "C:\\Users\\rssbr\\.nuget\\packages\\microsoft.extensions.logging\\10.0.7\\microsoft.extensions.logging.10.0.7.nupkg.sha512",
+    "C:\\Users\\rssbr\\.nuget\\packages\\microsoft.extensions.logging.abstractions\\10.0.7\\microsoft.extensions.logging.abstractions.10.0.7.nupkg.sha512",
+    "C:\\Users\\rssbr\\.nuget\\packages\\microsoft.extensions.options\\10.0.7\\microsoft.extensions.options.10.0.7.nupkg.sha512",
+    "C:\\Users\\rssbr\\.nuget\\packages\\microsoft.extensions.primitives\\10.0.7\\microsoft.extensions.primitives.10.0.7.nupkg.sha512",
+    "C:\\Users\\rssbr\\.nuget\\packages\\system.diagnostics.diagnosticsource\\10.0.7\\system.diagnostics.diagnosticsource.10.0.7.nupkg.sha512",
+    "C:\\Users\\rssbr\\.nuget\\packages\\system.io.pipelines\\10.0.0\\system.io.pipelines.10.0.0.nupkg.sha512",
+    "C:\\Users\\rssbr\\.nuget\\packages\\system.text.encodings.web\\10.0.0\\system.text.encodings.web.10.0.0.nupkg.sha512",
+    "C:\\Users\\rssbr\\.nuget\\packages\\system.text.json\\10.0.0\\system.text.json.10.0.0.nupkg.sha512",
+    "C:\\Users\\rssbr\\.nuget\\packages\\whisper.net\\1.9.0\\whisper.net.1.9.0.nupkg.sha512",
+    "C:\\Users\\rssbr\\.nuget\\packages\\whisper.net.runtime\\1.9.0\\whisper.net.runtime.1.9.0.nupkg.sha512",
+    "C:\\Users\\rssbr\\.nuget\\packages\\whisper.net.runtime.metal\\1.9.0\\whisper.net.runtime.metal.1.9.0.nupkg.sha512"
+  ],
+  "logs": []
+}

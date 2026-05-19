@@ -1,0 +1,104 @@
+[11-05-2026 5.15.31 PM] System.ArgumentOutOfRangeException: capacity ('-1199933813') must be a non-negative value. (Parameter 'capacity')
+Actual value was -1199933813.
+   at System.ArgumentOutOfRangeException.ThrowNegative[T](T value, String paramName)
+   at System.IO.MemoryStream..ctor(Int32 capacity)
+   at System.Net.Http.HttpClient.GetByteArrayAsyncCore(HttpRequestMessage request, CancellationToken cancellationToken)
+   at AudioTranscriber.Services.ModelDownloader.DownloadModelAsync() in D:\AI\AudioTranscriber\AudioTranscriber\Services\ModelDownloader.cs:line 41
+   at AudioTranscriber.MainForm.BtnStart_Click(Object sender, EventArgs e) in D:\AI\AudioTranscriber\AudioTranscriber\MainForm.cs:line 117
+[11-05-2026 5.15.42 PM] System.ArgumentOutOfRangeException: capacity ('-1199933813') must be a non-negative value. (Parameter 'capacity')
+Actual value was -1199933813.
+   at System.ArgumentOutOfRangeException.ThrowNegative[T](T value, String paramName)
+   at System.IO.MemoryStream..ctor(Int32 capacity)
+   at System.Net.Http.HttpClient.GetByteArrayAsyncCore(HttpRequestMessage request, CancellationToken cancellationToken)
+   at AudioTranscriber.Services.ModelDownloader.DownloadModelAsync() in D:\AI\AudioTranscriber\AudioTranscriber\Services\ModelDownloader.cs:line 41
+   at AudioTranscriber.MainForm.BtnStart_Click(Object sender, EventArgs e) in D:\AI\AudioTranscriber\AudioTranscriber\MainForm.cs:line 117
+[11-05-2026 5.18.01 PM] System.ArgumentOutOfRangeException: capacity ('-1199933813') must be a non-negative value. (Parameter 'capacity')
+Actual value was -1199933813.
+   at System.ArgumentOutOfRangeException.ThrowNegative[T](T value, String paramName)
+   at System.IO.MemoryStream..ctor(Int32 capacity)
+   at System.Net.Http.HttpClient.GetByteArrayAsyncCore(HttpRequestMessage request, CancellationToken cancellationToken)
+   at AudioTranscriber.Services.ModelDownloader.DownloadModelAsync() in D:\AI\AudioTranscriber\AudioTranscriber\Services\ModelDownloader.cs:line 41
+   at AudioTranscriber.MainForm.BtnStart_Click(Object sender, EventArgs e) in D:\AI\AudioTranscriber\AudioTranscriber\MainForm.cs:line 117
+[11-05-2026 8.11.28 PM] Whisper.net.Wave.NotSupportedWaveException: Only 16KHz sample rate is supported.
+   at Whisper.net.Wave.WaveParser.InternalInitialize(Boolean useAsync, CancellationToken cancellationToken)
+   at Whisper.net.Wave.WaveParser.GetAvgSamplesAsync(CancellationToken cancellationToken)
+   at Whisper.net.WhisperProcessor.ProcessAsync(Stream waveStream, CancellationToken cancellationToken)+MoveNext()
+   at Whisper.net.WhisperProcessor.ProcessAsync(Stream waveStream, CancellationToken cancellationToken)+System.Threading.Tasks.Sources.IValueTaskSource<System.Boolean>.GetResult()
+   at AudioTranscriber.Services.WhisperService.TranscribeAsync(String audioPath, CancellationToken cancellationToken, IProgress`1 progress) in D:\AI\AudioTranscriber\AudioTranscriber\Services\WhisperService.cs:line 44
+   at AudioTranscriber.Services.WhisperService.TranscribeAsync(String audioPath, CancellationToken cancellationToken, IProgress`1 progress) in D:\AI\AudioTranscriber\AudioTranscriber\Services\WhisperService.cs:line 44
+   at AudioTranscriber.Services.WhisperService.TranscribeAsync(String audioPath, CancellationToken cancellationToken, IProgress`1 progress) in D:\AI\AudioTranscriber\AudioTranscriber\Services\WhisperService.cs:line 97
+   at AudioTranscriber.MainForm.BtnStart_Click(Object sender, EventArgs e) in D:\AI\AudioTranscriber\AudioTranscriber\MainForm.cs:line 132
+[11-05-2026 8.12.09 PM] Whisper.net.Wave.NotSupportedWaveException: Only 16KHz sample rate is supported.
+   at Whisper.net.Wave.WaveParser.InternalInitialize(Boolean useAsync, CancellationToken cancellationToken)
+   at Whisper.net.Wave.WaveParser.GetAvgSamplesAsync(CancellationToken cancellationToken)
+   at Whisper.net.WhisperProcessor.ProcessAsync(Stream waveStream, CancellationToken cancellationToken)+MoveNext()
+   at Whisper.net.WhisperProcessor.ProcessAsync(Stream waveStream, CancellationToken cancellationToken)+System.Threading.Tasks.Sources.IValueTaskSource<System.Boolean>.GetResult()
+   at AudioTranscriber.Services.WhisperService.TranscribeAsync(String audioPath, CancellationToken cancellationToken, IProgress`1 progress) in D:\AI\AudioTranscriber\AudioTranscriber\Services\WhisperService.cs:line 44
+   at AudioTranscriber.Services.WhisperService.TranscribeAsync(String audioPath, CancellationToken cancellationToken, IProgress`1 progress) in D:\AI\AudioTranscriber\AudioTranscriber\Services\WhisperService.cs:line 44
+   at AudioTranscriber.Services.WhisperService.TranscribeAsync(String audioPath, CancellationToken cancellationToken, IProgress`1 progress) in D:\AI\AudioTranscriber\AudioTranscriber\Services\WhisperService.cs:line 97
+   at AudioTranscriber.MainForm.BtnStart_Click(Object sender, EventArgs e) in D:\AI\AudioTranscriber\AudioTranscriber\MainForm.cs:line 132
+[11-05-2026 8.12.43 PM] Whisper.net.Wave.NotSupportedWaveException: Only 16KHz sample rate is supported.
+   at Whisper.net.Wave.WaveParser.InternalInitialize(Boolean useAsync, CancellationToken cancellationToken)
+   at Whisper.net.Wave.WaveParser.GetAvgSamplesAsync(CancellationToken cancellationToken)
+   at Whisper.net.WhisperProcessor.ProcessAsync(Stream waveStream, CancellationToken cancellationToken)+MoveNext()
+   at Whisper.net.WhisperProcessor.ProcessAsync(Stream waveStream, CancellationToken cancellationToken)+System.Threading.Tasks.Sources.IValueTaskSource<System.Boolean>.GetResult()
+   at AudioTranscriber.Services.WhisperService.TranscribeAsync(String audioPath, CancellationToken cancellationToken, IProgress`1 progress) in D:\AI\AudioTranscriber\AudioTranscriber\Services\WhisperService.cs:line 44
+   at AudioTranscriber.Services.WhisperService.TranscribeAsync(String audioPath, CancellationToken cancellationToken, IProgress`1 progress) in D:\AI\AudioTranscriber\AudioTranscriber\Services\WhisperService.cs:line 44
+   at AudioTranscriber.Services.WhisperService.TranscribeAsync(String audioPath, CancellationToken cancellationToken, IProgress`1 progress) in D:\AI\AudioTranscriber\AudioTranscriber\Services\WhisperService.cs:line 97
+   at AudioTranscriber.MainForm.BtnStart_Click(Object sender, EventArgs e) in D:\AI\AudioTranscriber\AudioTranscriber\MainForm.cs:line 132
+[12-05-2026 8.16.21 PM] System.Exception: WhisperX Error:
+C:\Users\rssbr\AppData\Local\Programs\Python\Python311\python.exe: can't open file 'D:\\AI\\AudioTranscriber\\AudioTranscriber\\bin\\Debug\\net9.0-windows\\PythonBackend\\run_whisperx.py': [Errno 2] No such file or directory
+
+   at AudioTranscriber.Services.WhisperXService.TranscribeAsync(String audioFile, CancellationToken cancellationToken) in D:\AI\AudioTranscriber\AudioTranscriber\Services\WhisperXService.cs:line 71
+   at AudioTranscriber.MainForm.BtnStart_Click(Object sender, EventArgs e) in D:\AI\AudioTranscriber\AudioTranscriber\MainForm.cs:line 131
+[12-05-2026 8.17.18 PM] System.Exception: WhisperX Error:
+C:\Users\rssbr\AppData\Local\Programs\Python\Python311\python.exe: can't open file 'D:\\AI\\AudioTranscriber\\AudioTranscriber\\bin\\Debug\\net9.0-windows\\PythonBackend\\run_whisperx.py': [Errno 2] No such file or directory
+
+   at AudioTranscriber.Services.WhisperXService.TranscribeAsync(String audioFile, CancellationToken cancellationToken) in D:\AI\AudioTranscriber\AudioTranscriber\Services\WhisperXService.cs:line 71
+   at AudioTranscriber.MainForm.BtnStart_Click(Object sender, EventArgs e) in D:\AI\AudioTranscriber\AudioTranscriber\MainForm.cs:line 131
+[12-05-2026 8.26.17 PM] System.Exception: WhisperX Error:
+D:\AI\AudioTranscriber\whisperx_env\Lib\site-packages\pyannote\audio\core\io.py:47: UserWarning: 
+torchcodec is not installed correctly so built-in audio decoding will fail. Solutions are:
+* use audio preloaded in-memory as a {'waveform': (channel, time) torch.Tensor, 'sample_rate': int} dictionary;
+* fix torchcodec installation. Error message was:
+
+Could not load libtorchcodec. Likely causes:
+          1. FFmpeg is not properly installed in your environment. We support
+             versions 4, 5, 6 and 7.
+          2. The PyTorch version (2.8.0+cpu) is not compatible with
+             this version of TorchCodec. Refer to the version compatibility
+             table:
+             https://github.com/pytorch/torchcodec?tab=readme-ov-file#installing-torchcodec.
+          3. Another runtime dependency; see exceptions below.
+        The following exceptions were raised as we tried to load libtorchcodec:
+        
+[start of libtorchcodec loading traceback]
+FFmpeg version 7: Could not find module 'D:\AI\AudioTranscriber\whisperx_env\Lib\site-packages\torchcodec\libtorchcodec_core7.dll' (or one of its dependencies). Try using the full path with constructor syntax.
+FFmpeg version 6: Could not find module 'D:\AI\AudioTranscriber\whisperx_env\Lib\site-packages\torchcodec\libtorchcodec_core6.dll' (or one of its dependencies). Try using the full path with constructor syntax.
+FFmpeg version 5: Could not find module 'D:\AI\AudioTranscriber\whisperx_env\Lib\site-packages\torchcodec\libtorchcodec_core5.dll' (or one of its dependencies). Try using the full path with constructor syntax.
+FFmpeg version 4: Could not find module 'D:\AI\AudioTranscriber\whisperx_env\Lib\site-packages\torchcodec\libtorchcodec_core4.dll' (or one of its dependencies). Try using the full path with constructor syntax.
+[end of libtorchcodec loading traceback].
+  warnings.warn(
+Lightning automatically upgraded your loaded checkpoint from v1.5.4 to v2.6.1. To apply the upgrade to your files permanently, run `python -m lightning.pytorch.utilities.upgrade_checkpoint D:\AI\AudioTranscriber\whisperx_env\Lib\site-packages\whisperx\assets\pytorch_model.bin`
+Traceback (most recent call last):
+  File "D:\AI\AudioTranscriber\PythonBackend\run_whisperx.py", line 25, in <module>
+    audio = whisperx.load_audio(input_audio)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\AI\AudioTranscriber\whisperx_env\Lib\site-packages\whisperx\__init__.py", line 26, in load_audio
+    return audio.load_audio(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\AI\AudioTranscriber\whisperx_env\Lib\site-packages\whisperx\audio.py", line 61, in load_audio
+    out = subprocess.run(cmd, capture_output=True, check=True).stdout
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rssbr\AppData\Local\Programs\Python\Python311\Lib\subprocess.py", line 548, in run
+    with Popen(*popenargs, **kwargs) as process:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rssbr\AppData\Local\Programs\Python\Python311\Lib\subprocess.py", line 1026, in __init__
+    self._execute_child(args, executable, preexec_fn, close_fds,
+  File "C:\Users\rssbr\AppData\Local\Programs\Python\Python311\Lib\subprocess.py", line 1538, in _execute_child
+    hp, ht, pid, tid = _winapi.CreateProcess(executable, args,
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [WinError 2] The system cannot find the file specified
+
+   at AudioTranscriber.Services.WhisperXService.TranscribeAsync(String audioFile, CancellationToken cancellationToken) in D:\AI\AudioTranscriber\AudioTranscriber\Services\WhisperXService.cs:line 75
+   at AudioTranscriber.MainForm.BtnStart_Click(Object sender, EventArgs e) in D:\AI\AudioTranscriber\AudioTranscriber\MainForm.cs:line 131

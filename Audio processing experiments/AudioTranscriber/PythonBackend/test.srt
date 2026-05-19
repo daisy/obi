@@ -1,0 +1,16 @@
+1
+00:00:01,047 --> 00:00:02,047
+Page 17.
+
+2
+00:00:03,068 --> 00:00:04,929
+Three maps of New Zealand are shown.
+
+3
+00:00:06,049 --> 00:00:10,151
+The first shows average yearly rainfall in different parts of New Zealand.
+
+4
+00:00:11,072 --> 00:00:17,435
+The second and third maps show differences in temperature in different parts of New Zealand during the summer and winter.
+

@@ -1,0 +1,305 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v9.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v9.0": {
+      "FFMpegCore/5.4.0": {
+        "dependencies": {
+          "Instances": "3.0.2",
+          "System.Text.Json": "10.0.0"
+        },
+        "runtime": {
+          "lib/netstandard2.0/FFMpegCore.dll": {
+            "assemblyVersion": "5.0.0.0",
+            "fileVersion": "5.0.0.0"
+          }
+        }
+      },
+      "FFMpegCore.Extensions.Downloader/5.0.0": {
+        "dependencies": {
+          "FFMpegCore": "5.4.0"
+        },
+        "runtime": {
+          "lib/netstandard2.0/FFMpegCore.Extensions.Downloader.dll": {
+            "assemblyVersion": "5.0.0.0",
+            "fileVersion": "5.0.0.0"
+          }
+        }
+      },
+      "Instances/3.0.2": {
+        "runtime": {
+          "lib/netstandard2.0/Instances.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      },
+      "Microsoft.Extensions.AI.Abstractions/10.0.0": {
+        "dependencies": {
+          "System.Text.Json": "10.0.0"
+        },
+        "runtime": {
+          "lib/net9.0/Microsoft.Extensions.AI.Abstractions.dll": {
+            "assemblyVersion": "10.0.0.0",
+            "fileVersion": "10.0.25.55903"
+          }
+        }
+      },
+      "Microsoft.Extensions.DependencyInjection/10.0.7": {
+        "dependencies": {
+          "Microsoft.Extensions.DependencyInjection.Abstractions": "10.0.7"
+        },
+        "runtime": {
+          "lib/net9.0/Microsoft.Extensions.DependencyInjection.dll": {
+            "assemblyVersion": "10.0.0.0",
+            "fileVersion": "10.0.726.21808"
+          }
+        }
+      },
+      "Microsoft.Extensions.DependencyInjection.Abstractions/10.0.7": {
+        "runtime": {
+          "lib/net9.0/Microsoft.Extensions.DependencyInjection.Abstractions.dll": {
+            "assemblyVersion": "10.0.0.0",
+            "fileVersion": "10.0.726.21808"
+          }
+        }
+      },
+      "Microsoft.Extensions.Logging/10.0.7": {
+        "dependencies": {
+          "Microsoft.Extensions.DependencyInjection": "10.0.7",
+          "Microsoft.Extensions.Logging.Abstractions": "10.0.7",
+          "Microsoft.Extensions.Options": "10.0.7"
+        },
+        "runtime": {
+          "lib/net9.0/Microsoft.Extensions.Logging.dll": {
+            "assemblyVersion": "10.0.0.0",
+            "fileVersion": "10.0.726.21808"
+          }
+        }
+      },
+      "Microsoft.Extensions.Logging.Abstractions/10.0.7": {
+        "dependencies": {
+          "Microsoft.Extensions.DependencyInjection.Abstractions": "10.0.7",
+          "System.Diagnostics.DiagnosticSource": "10.0.7"
+        },
+        "runtime": {
+          "lib/net9.0/Microsoft.Extensions.Logging.Abstractions.dll": {
+            "assemblyVersion": "10.0.0.0",
+            "fileVersion": "10.0.726.21808"
+          }
+        }
+      },
+      "Microsoft.Extensions.Options/10.0.7": {
+        "dependencies": {
+          "Microsoft.Extensions.DependencyInjection.Abstractions": "10.0.7",
+          "Microsoft.Extensions.Primitives": "10.0.7"
+        },
+        "runtime": {
+          "lib/net9.0/Microsoft.Extensions.Options.dll": {
+            "assemblyVersion": "10.0.0.0",
+            "fileVersion": "10.0.726.21808"
+          }
+        }
+      },
+      "Microsoft.Extensions.Primitives/10.0.7": {
+        "runtime": {
+          "lib/net9.0/Microsoft.Extensions.Primitives.dll": {
+            "assemblyVersion": "10.0.0.0",
+            "fileVersion": "10.0.726.21808"
+          }
+        }
+      },
+      "System.Diagnostics.DiagnosticSource/10.0.7": {
+        "runtime": {
+          "lib/net9.0/System.Diagnostics.DiagnosticSource.dll": {
+            "assemblyVersion": "10.0.0.0",
+            "fileVersion": "10.0.726.21808"
+          }
+        }
+      },
+      "System.IO.Pipelines/10.0.0": {
+        "runtime": {
+          "lib/net9.0/System.IO.Pipelines.dll": {
+            "assemblyVersion": "10.0.0.0",
+            "fileVersion": "10.0.25.52411"
+          }
+        }
+      },
+      "System.Text.Encodings.Web/10.0.0": {
+        "runtime": {
+          "lib/net9.0/System.Text.Encodings.Web.dll": {
+            "assemblyVersion": "10.0.0.0",
+            "fileVersion": "10.0.25.52411"
+          }
+        },
+        "runtimeTargets": {
+          "runtimes/browser/lib/net8.0/System.Text.Encodings.Web.dll": {
+            "rid": "browser",
+            "assetType": "runtime",
+            "assemblyVersion": "10.0.0.0",
+            "fileVersion": "10.0.25.52411"
+          },
+          "runtimes/win/lib/net9.0/System.Text.Encodings.Web.dll": {
+            "rid": "win",
+            "assetType": "runtime",
+            "assemblyVersion": "10.0.0.0",
+            "fileVersion": "10.0.25.52411"
+          }
+        }
+      },
+      "System.Text.Json/10.0.0": {
+        "dependencies": {
+          "System.IO.Pipelines": "10.0.0",
+          "System.Text.Encodings.Web": "10.0.0"
+        },
+        "runtime": {
+          "lib/net9.0/System.Text.Json.dll": {
+            "assemblyVersion": "10.0.0.0",
+            "fileVersion": "10.0.25.52411"
+          }
+        }
+      },
+      "Whisper.net/1.9.0": {
+        "dependencies": {
+          "Microsoft.Extensions.AI.Abstractions": "10.0.0"
+        },
+        "runtime": {
+          "lib/net9.0/Whisper.net.dll": {
+            "assemblyVersion": "1.9.0.0",
+            "fileVersion": "1.9.0.0"
+          }
+        }
+      },
+      "Whisper.net.Runtime/1.9.0": {
+        "dependencies": {
+          "Whisper.net.Runtime.Metal": "1.9.0"
+        }
+      },
+      "Whisper.net.Runtime.Metal/1.9.0": {}
+    }
+  },
+  "libraries": {
+    "FFMpegCore/5.4.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-nymhPWpwvBaB4fOqf0thxg7Inm8SrruFQLdCMFEDKD8S3hy0/iV2vuKaJvaL9ZnbJx/2rJCHnJXOymo2apXovg==",
+      "path": "ffmpegcore/5.4.0",
+      "hashPath": "ffmpegcore.5.4.0.nupkg.sha512"
+    },
+    "FFMpegCore.Extensions.Downloader/5.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-9CRRTcj26pytf+Uxmx+n5/BEgd+7ThKmIpVcy0CwLdNc8zPEZLENr1IlCW6SwslBxEJtV1Wl961nJ87N2aWNLw==",
+      "path": "ffmpegcore.extensions.downloader/5.0.0",
+      "hashPath": "ffmpegcore.extensions.downloader.5.0.0.nupkg.sha512"
+    },
+    "Instances/3.0.2": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-LfhegDpmA8PuHW58RmgVvCDG/mfVCTU+Vhy4ppmXLJfAer33Xl0NocDy92OwSL6CnkVdx41O/I0+BjNhU1JtMQ==",
+      "path": "instances/3.0.2",
+      "hashPath": "instances.3.0.2.nupkg.sha512"
+    },
+    "Microsoft.Extensions.AI.Abstractions/10.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-PHeuDm2tC6wJPEQvleUr2kNQaIMNqSf3aEbzkIPlZyQ0+0SYI9SwXVLdGD1NPBI+xB+Vb2lxZKhrFlIf9kP9WA==",
+      "path": "microsoft.extensions.ai.abstractions/10.0.0",
+      "hashPath": "microsoft.extensions.ai.abstractions.10.0.0.nupkg.sha512"
+    },
+    "Microsoft.Extensions.DependencyInjection/10.0.7": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-91F/o3emPV/+xY/ip3s2LqDNF14kjttlVtq0BXgg6p4MnCzeSZxnUJm+t6WRrtD3JdGo88/oX+z7OwK4y8PZuw==",
+      "path": "microsoft.extensions.dependencyinjection/10.0.7",
+      "hashPath": "microsoft.extensions.dependencyinjection.10.0.7.nupkg.sha512"
+    },
+    "Microsoft.Extensions.DependencyInjection.Abstractions/10.0.7": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-Z6mfFEaFcwCfSboxJwOLfu7/31npCY9q70WUamHW/vRQhDvBKOT4Vf9YkZj5J6hLvJpb0oDEYfHunQZj0xxvKw==",
+      "path": "microsoft.extensions.dependencyinjection.abstractions/10.0.7",
+      "hashPath": "microsoft.extensions.dependencyinjection.abstractions.10.0.7.nupkg.sha512"
+    },
+    "Microsoft.Extensions.Logging/10.0.7": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-hOeRIQ63GkgiYCB/MIFp+LQs8aXpJXpB55t6Aj37ab7t2/6WeFcPXxYM9hdy/o5tffzwf8mhqzLJP6mjGYCxjw==",
+      "path": "microsoft.extensions.logging/10.0.7",
+      "hashPath": "microsoft.extensions.logging.10.0.7.nupkg.sha512"
+    },
+    "Microsoft.Extensions.Logging.Abstractions/10.0.7": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-tIEcQ2gvERrH2KiCjdsVcHGhXt9lIsuDStfOIeZWr7/fP8IXhGiYfx0/80PNI7WPO2IYuFtlZLSlnTS8+/Mchw==",
+      "path": "microsoft.extensions.logging.abstractions/10.0.7",
+      "hashPath": "microsoft.extensions.logging.abstractions.10.0.7.nupkg.sha512"
+    },
+    "Microsoft.Extensions.Options/10.0.7": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-00SHUGTh2jSMvIr6x9Xwd2nE+B5/qFCO/9hDwUDhJsjYRDlADmaBZ7tqehXzBDsfjHSXJzuRHJzPYPPjphBQ7Q==",
+      "path": "microsoft.extensions.options/10.0.7",
+      "hashPath": "microsoft.extensions.options.10.0.7.nupkg.sha512"
+    },
+    "Microsoft.Extensions.Primitives/10.0.7": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-D5M0Jr551iTgwkZMN9rm0pSkgNLj5quUWQUmQPMZh7k/bnvZTnXRGfE2KuvXf1EEjt/ofD9yw9IumpgdP9QCnw==",
+      "path": "microsoft.extensions.primitives/10.0.7",
+      "hashPath": "microsoft.extensions.primitives.10.0.7.nupkg.sha512"
+    },
+    "System.Diagnostics.DiagnosticSource/10.0.7": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-Fu6AxFf9bHz/Q7DQmxKC0o+UgFes8bs2Xh+PH/x31yExRAOASTwlzjZsISTtqVU5gQshKHLZopxEBTaIyfv0wg==",
+      "path": "system.diagnostics.diagnosticsource/10.0.7",
+      "hashPath": "system.diagnostics.diagnosticsource.10.0.7.nupkg.sha512"
+    },
+    "System.IO.Pipelines/10.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-M1eb3nfXntaRJPrrMVM9EFS8I1bDTnt0uvUS6QP/SicZf/ZZjydMD5NiXxfmwW/uQwaMDP/yX2P+zQN1NBHChg==",
+      "path": "system.io.pipelines/10.0.0",
+      "hashPath": "system.io.pipelines.10.0.0.nupkg.sha512"
+    },
+    "System.Text.Encodings.Web/10.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-257hh1ep1Gqm1Lm0ulxf7vVBVMJuGN6EL4xSWjpi46DffXzm1058IiWsfSC06zSm7SniN+Tb5160UnXsSa8rRg==",
+      "path": "system.text.encodings.web/10.0.0",
+      "hashPath": "system.text.encodings.web.10.0.0.nupkg.sha512"
+    },
+    "System.Text.Json/10.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-1Dpjwq9peG/Wt5BNbrzIhTpclfOSqBWZsUO28vVr59yQlkvL5jLBWfpfzRmJ1OY+6DciaY0DUcltyzs4fuZHjw==",
+      "path": "system.text.json/10.0.0",
+      "hashPath": "system.text.json.10.0.0.nupkg.sha512"
+    },
+    "Whisper.net/1.9.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-oIDi3oa+EYQgPdAsGxEZJmheUuyHI8imN4GUE0rA2xme38uiImE8pqJNYvKsseug3+2Dp9dOud38fl159kROIA==",
+      "path": "whisper.net/1.9.0",
+      "hashPath": "whisper.net.1.9.0.nupkg.sha512"
+    },
+    "Whisper.net.Runtime/1.9.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-Fl+kWm+7/EA+Q0KsYrWZlS42MHOxYVK96VpBZy0yLWMwMFwSSMiXzCxosxSm8vSVhYuqGeBK4IOOLTL9FSTsZg==",
+      "path": "whisper.net.runtime/1.9.0",
+      "hashPath": "whisper.net.runtime.1.9.0.nupkg.sha512"
+    },
+    "Whisper.net.Runtime.Metal/1.9.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-HO66gX4D+vaElvmxnLaRGkyufuc8pGR6OlTwKinZAmUoN9KWG4AHA4AJHkj9ZQge95jNDZKKmQt6RE8RwAGJmA==",
+      "path": "whisper.net.runtime.metal/1.9.0",
+      "hashPath": "whisper.net.runtime.metal.1.9.0.nupkg.sha512"
+    }
+  }
+}

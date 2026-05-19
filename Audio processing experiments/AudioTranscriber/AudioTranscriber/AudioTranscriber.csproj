@@ -1,0 +1,25 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<OutputType>WinExe</OutputType>
+		<TargetFramework>net9.0-windows</TargetFramework>
+		<Nullable>enable</Nullable>
+		<UseWindowsForms>true</UseWindowsForms>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<PlatformTarget>x64</PlatformTarget>
+		<PublishSingleFile>false</PublishSingleFile>
+	</PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="Assets\Models\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="FFMpegCore" Version="5.4.0" />
+    <PackageReference Include="FFMpegCore.Extensions.Downloader" Version="5.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Logging" Version="10.0.7" />
+    <PackageReference Include="Whisper.net" Version="1.9.0" />
+    <PackageReference Include="Whisper.net.Runtime" Version="1.9.0" />
+  </ItemGroup>
+
+</Project>
