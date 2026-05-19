@@ -1,0 +1,71 @@
+{
+  "model": "gpt-4.1-mini",
+  "input": [
+    {
+      "role": "system",
+      "content": [
+        {
+          "type": "input_text",
+          "text": "You are an AI semantic structure detector.\r\n\r\nAnalyze phrase-level transcript data and determine:\r\n\r\n- headings\r\n- heading levels\r\n- paragraph grouping\r\n\r\nRules:\r\n\r\n1. Preserve phrase IDs exactly\r\n2. Never rewrite text\r\n3. Never merge phrases\r\n4. Preserve original ordering\r\n5. Return valid JSON only\r\n\r\nAllowed roles:\r\n- heading\r\n- paragraph\r\n\r\nHeading guidelines:\r\n- headings are usually short\r\n- headings usually do not end with punctuation\r\n- headings represent titles or section labels"
+        }
+      ]
+    },
+    {
+      "role": "user",
+      "content": [
+        {
+          "type": "input_text",
+          "text": "{\"phrases\":[{\"phraseId\":\"p1\",\"text\":\"Page 17.\"},{\"phraseId\":\"p2\",\"text\":\"Three maps of New Zealand are shown.\"},{\"phraseId\":\"p3\",\"text\":\"The first shows average yearly rainfall in different parts of New Zealand.\"},{\"phraseId\":\"p4\",\"text\":\"The second and third maps show differences in temperature in different parts\"},{\"phraseId\":\"p5\",\"text\":\"of New Zealand during the summer and winter.\"}]}"
+        }
+      ]
+    }
+  ],
+  "text": {
+    "format": {
+      "type": "json_schema",
+      "name": "semantic_structure",
+      "schema": {
+        "type": "object",
+        "properties": {
+          "structure": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "phraseId": {
+                  "type": "string"
+                },
+                "role": {
+                  "type": "string"
+                },
+                "level": {
+                  "type": [
+                    "integer",
+                    "null"
+                  ]
+                },
+                "paragraphId": {
+                  "type": [
+                    "string",
+                    "null"
+                  ]
+                }
+              },
+              "required": [
+                "phraseId",
+                "role",
+                "level",
+                "paragraphId"
+              ],
+              "additionalProperties": false
+            }
+          }
+        },
+        "required": [
+          "structure"
+        ],
+        "additionalProperties": false
+      }
+    }
+  }
+}

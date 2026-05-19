@@ -1,0 +1,117 @@
+{
+  "id": "resp_0d1cf93d97c01f62006a0c3f50dc0c8190a124f3178308e236",
+  "object": "response",
+  "created_at": 1779187536,
+  "status": "completed",
+  "background": false,
+  "billing": {
+    "payer": "developer"
+  },
+  "completed_at": 1779187539,
+  "error": null,
+  "frequency_penalty": 0.0,
+  "incomplete_details": null,
+  "instructions": null,
+  "max_output_tokens": null,
+  "max_tool_calls": null,
+  "model": "gpt-4.1-mini-2025-04-14",
+  "moderation": null,
+  "output": [
+    {
+      "id": "msg_0d1cf93d97c01f62006a0c3f5191c48190b3b15df55d79b17d",
+      "type": "message",
+      "status": "completed",
+      "content": [
+        {
+          "type": "output_text",
+          "annotations": [],
+          "logprobs": [],
+          "text": "{\"structure\":[{\"phraseId\":\"p1\",\"role\":\"heading\",\"level\":1,\"paragraphId\":null},{\"phraseId\":\"p2\",\"role\":\"paragraph\",\"level\":null,\"paragraphId\":\"para1\"},{\"phraseId\":\"p3\",\"role\":\"paragraph\",\"level\":null,\"paragraphId\":\"para1\"},{\"phraseId\":\"p4\",\"role\":\"paragraph\",\"level\":null,\"paragraphId\":\"para1\"},{\"phraseId\":\"p5\",\"role\":\"paragraph\",\"level\":null,\"paragraphId\":\"para1\"}]}"
+        }
+      ],
+      "role": "assistant"
+    }
+  ],
+  "parallel_tool_calls": true,
+  "presence_penalty": 0.0,
+  "previous_response_id": null,
+  "prompt_cache_key": null,
+  "prompt_cache_retention": "in_memory",
+  "reasoning": {
+    "effort": null,
+    "summary": null
+  },
+  "safety_identifier": null,
+  "service_tier": "default",
+  "store": true,
+  "temperature": 1.0,
+  "text": {
+    "format": {
+      "type": "json_schema",
+      "description": null,
+      "name": "semantic_structure",
+      "schema": {
+        "type": "object",
+        "properties": {
+          "structure": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "phraseId": {
+                  "type": "string"
+                },
+                "role": {
+                  "type": "string"
+                },
+                "level": {
+                  "type": [
+                    "integer",
+                    "null"
+                  ]
+                },
+                "paragraphId": {
+                  "type": [
+                    "string",
+                    "null"
+                  ]
+                }
+              },
+              "required": [
+                "phraseId",
+                "role",
+                "level",
+                "paragraphId"
+              ],
+              "additionalProperties": false
+            }
+          }
+        },
+        "required": [
+          "structure"
+        ],
+        "additionalProperties": false
+      },
+      "strict": true
+    },
+    "verbosity": "medium"
+  },
+  "tool_choice": "auto",
+  "tools": [],
+  "top_logprobs": 0,
+  "top_p": 1.0,
+  "truncation": "disabled",
+  "usage": {
+    "input_tokens": 269,
+    "input_tokens_details": {
+      "cached_tokens": 0
+    },
+    "output_tokens": 105,
+    "output_tokens_details": {
+      "reasoning_tokens": 0
+    },
+    "total_tokens": 374
+  },
+  "user": null,
+  "metadata": {}
+}

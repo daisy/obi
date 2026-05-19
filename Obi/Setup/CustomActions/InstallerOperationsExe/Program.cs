@@ -69,7 +69,7 @@ internal class Program
     }
 
 
-
+     
     private static void InitializeExtractionVariables()
     {
         m_DirectoryPath = Directory.GetParent(System.Reflection.Assembly.GetExecutingAssembly().Location).FullName;

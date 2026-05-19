@@ -181,7 +181,7 @@ namespace Obi
                 MessageBox.Show(Localizer.Message("KeyboardShortcuts_LoadingDefaults"), Localizer.Message("Caption_Information"));
                 return KeyboardShortcuts_Settings.GetDefaultKeyboardShortcuts_Settings();
             }
-            settings.KeyboardShortcutsDescription = new Dictionary<string, KeyboardShortcut>();
+             settings.KeyboardShortcutsDescription = new Dictionary<string, KeyboardShortcut>();
             
             settings.PopulateKeyboardShortcutsDictionary();
             

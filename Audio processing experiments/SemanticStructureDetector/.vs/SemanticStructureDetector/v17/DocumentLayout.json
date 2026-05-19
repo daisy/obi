@@ -1,0 +1,230 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "D:\\AI\\SemanticStructureDetector\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{A6A8F1FD-D309-448D-8E88-FAB72D0CBB44}|SemanticStructureDetector.WinForms\\SemanticStructureDetector.WinForms.csproj|d:\\ai\\semanticstructuredetector\\semanticstructuredetector.winforms\\services\\openaistructureservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A6A8F1FD-D309-448D-8E88-FAB72D0CBB44}|SemanticStructureDetector.WinForms\\SemanticStructureDetector.WinForms.csproj|solutionrelative:semanticstructuredetector.winforms\\services\\openaistructureservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A6A8F1FD-D309-448D-8E88-FAB72D0CBB44}|SemanticStructureDetector.WinForms\\SemanticStructureDetector.WinForms.csproj|d:\\ai\\semanticstructuredetector\\semanticstructuredetector.winforms\\services\\chunkingservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A6A8F1FD-D309-448D-8E88-FAB72D0CBB44}|SemanticStructureDetector.WinForms\\SemanticStructureDetector.WinForms.csproj|solutionrelative:semanticstructuredetector.winforms\\services\\chunkingservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A6A8F1FD-D309-448D-8E88-FAB72D0CBB44}|SemanticStructureDetector.WinForms\\SemanticStructureDetector.WinForms.csproj|d:\\ai\\semanticstructuredetector\\semanticstructuredetector.winforms\\builders\\semanticxhtmlbuilder.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A6A8F1FD-D309-448D-8E88-FAB72D0CBB44}|SemanticStructureDetector.WinForms\\SemanticStructureDetector.WinForms.csproj|solutionrelative:semanticstructuredetector.winforms\\builders\\semanticxhtmlbuilder.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A6A8F1FD-D309-448D-8E88-FAB72D0CBB44}|SemanticStructureDetector.WinForms\\SemanticStructureDetector.WinForms.csproj|d:\\ai\\semanticstructuredetector\\semanticstructuredetector.winforms\\mainform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A6A8F1FD-D309-448D-8E88-FAB72D0CBB44}|SemanticStructureDetector.WinForms\\SemanticStructureDetector.WinForms.csproj|solutionrelative:semanticstructuredetector.winforms\\mainform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A6A8F1FD-D309-448D-8E88-FAB72D0CBB44}|SemanticStructureDetector.WinForms\\SemanticStructureDetector.WinForms.csproj|d:\\ai\\semanticstructuredetector\\semanticstructuredetector.winforms\\mainform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{A6A8F1FD-D309-448D-8E88-FAB72D0CBB44}|SemanticStructureDetector.WinForms\\SemanticStructureDetector.WinForms.csproj|solutionrelative:semanticstructuredetector.winforms\\mainform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A6A8F1FD-D309-448D-8E88-FAB72D0CBB44}|SemanticStructureDetector.WinForms\\SemanticStructureDetector.WinForms.csproj|d:\\ai\\semanticstructuredetector\\semanticstructuredetector.winforms\\mainform.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A6A8F1FD-D309-448D-8E88-FAB72D0CBB44}|SemanticStructureDetector.WinForms\\SemanticStructureDetector.WinForms.csproj|solutionrelative:semanticstructuredetector.winforms\\mainform.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A6A8F1FD-D309-448D-8E88-FAB72D0CBB44}|SemanticStructureDetector.WinForms\\SemanticStructureDetector.WinForms.csproj|d:\\ai\\semanticstructuredetector\\semanticstructuredetector.winforms\\parsers\\xhtmlphraseparser.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A6A8F1FD-D309-448D-8E88-FAB72D0CBB44}|SemanticStructureDetector.WinForms\\SemanticStructureDetector.WinForms.csproj|solutionrelative:semanticstructuredetector.winforms\\parsers\\xhtmlphraseparser.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A6A8F1FD-D309-448D-8E88-FAB72D0CBB44}|SemanticStructureDetector.WinForms\\SemanticStructureDetector.WinForms.csproj|d:\\ai\\semanticstructuredetector\\semanticstructuredetector.winforms\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A6A8F1FD-D309-448D-8E88-FAB72D0CBB44}|SemanticStructureDetector.WinForms\\SemanticStructureDetector.WinForms.csproj|solutionrelative:semanticstructuredetector.winforms\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A6A8F1FD-D309-448D-8E88-FAB72D0CBB44}|SemanticStructureDetector.WinForms\\SemanticStructureDetector.WinForms.csproj|d:\\ai\\semanticstructuredetector\\semanticstructuredetector.winforms\\models\\structureresponse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A6A8F1FD-D309-448D-8E88-FAB72D0CBB44}|SemanticStructureDetector.WinForms\\SemanticStructureDetector.WinForms.csproj|solutionrelative:semanticstructuredetector.winforms\\models\\structureresponse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A6A8F1FD-D309-448D-8E88-FAB72D0CBB44}|SemanticStructureDetector.WinForms\\SemanticStructureDetector.WinForms.csproj|d:\\ai\\semanticstructuredetector\\semanticstructuredetector.winforms\\models\\structureitem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A6A8F1FD-D309-448D-8E88-FAB72D0CBB44}|SemanticStructureDetector.WinForms\\SemanticStructureDetector.WinForms.csproj|solutionrelative:semanticstructuredetector.winforms\\models\\structureitem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A6A8F1FD-D309-448D-8E88-FAB72D0CBB44}|SemanticStructureDetector.WinForms\\SemanticStructureDetector.WinForms.csproj|d:\\ai\\semanticstructuredetector\\semanticstructuredetector.winforms\\models\\phrasemodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A6A8F1FD-D309-448D-8E88-FAB72D0CBB44}|SemanticStructureDetector.WinForms\\SemanticStructureDetector.WinForms.csproj|solutionrelative:semanticstructuredetector.winforms\\models\\phrasemodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 1,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedHeight": 200,
+          "SelectedChildIndex": 9,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{34e76e81-ee4a-11d0-ae2e-00a0c90fffc3}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{be4d7042-ba3f-11d2-840e-00c04f9902c1}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{605322a2-17ae-43f4-b60f-766556e46c87}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{d78612c7-9962-4b83-95d9-268046dad23a}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{aa2115a1-9712-457b-9047-dbb71ca2cdd2}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{56df62a4-05a3-4e5b-aa1a-99371ccfb997}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "MainForm.cs [Design]",
+              "DocumentMoniker": "D:\\AI\\SemanticStructureDetector\\SemanticStructureDetector.WinForms\\MainForm.cs",
+              "RelativeDocumentMoniker": "SemanticStructureDetector.WinForms\\MainForm.cs",
+              "ToolTip": "D:\\AI\\SemanticStructureDetector\\SemanticStructureDetector.WinForms\\MainForm.cs [Design]",
+              "RelativeToolTip": "SemanticStructureDetector.WinForms\\MainForm.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-19T07:48:27.096Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "MainForm.cs",
+              "DocumentMoniker": "D:\\AI\\SemanticStructureDetector\\SemanticStructureDetector.WinForms\\MainForm.cs",
+              "RelativeDocumentMoniker": "SemanticStructureDetector.WinForms\\MainForm.cs",
+              "ToolTip": "D:\\AI\\SemanticStructureDetector\\SemanticStructureDetector.WinForms\\MainForm.cs",
+              "RelativeToolTip": "SemanticStructureDetector.WinForms\\MainForm.cs",
+              "ViewState": "AgIAAMMAAAAAAAAAAAAwwOoAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-16T10:43:58.866Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "SemanticXhtmlBuilder.cs",
+              "DocumentMoniker": "D:\\AI\\SemanticStructureDetector\\SemanticStructureDetector.WinForms\\Builders\\SemanticXhtmlBuilder.cs",
+              "RelativeDocumentMoniker": "SemanticStructureDetector.WinForms\\Builders\\SemanticXhtmlBuilder.cs",
+              "ToolTip": "D:\\AI\\SemanticStructureDetector\\SemanticStructureDetector.WinForms\\Builders\\SemanticXhtmlBuilder.cs",
+              "RelativeToolTip": "SemanticStructureDetector.WinForms\\Builders\\SemanticXhtmlBuilder.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAASAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-14T14:40:03.233Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "OpenAiStructureService.cs",
+              "DocumentMoniker": "D:\\AI\\SemanticStructureDetector\\SemanticStructureDetector.WinForms\\Services\\OpenAiStructureService.cs",
+              "RelativeDocumentMoniker": "SemanticStructureDetector.WinForms\\Services\\OpenAiStructureService.cs",
+              "ToolTip": "D:\\AI\\SemanticStructureDetector\\SemanticStructureDetector.WinForms\\Services\\OpenAiStructureService.cs",
+              "RelativeToolTip": "SemanticStructureDetector.WinForms\\Services\\OpenAiStructureService.cs",
+              "ViewState": "AgIAABUAAAAAAAAAAAA1wCsAAAAVAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-14T14:38:45.482Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "XhtmlPhraseParser.cs",
+              "DocumentMoniker": "D:\\AI\\SemanticStructureDetector\\SemanticStructureDetector.WinForms\\Parsers\\XhtmlPhraseParser.cs",
+              "RelativeDocumentMoniker": "SemanticStructureDetector.WinForms\\Parsers\\XhtmlPhraseParser.cs",
+              "ToolTip": "D:\\AI\\SemanticStructureDetector\\SemanticStructureDetector.WinForms\\Parsers\\XhtmlPhraseParser.cs",
+              "RelativeToolTip": "SemanticStructureDetector.WinForms\\Parsers\\XhtmlPhraseParser.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAA6AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-14T14:37:22.649Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "Program.cs",
+              "DocumentMoniker": "D:\\AI\\SemanticStructureDetector\\SemanticStructureDetector.WinForms\\Program.cs",
+              "RelativeDocumentMoniker": "SemanticStructureDetector.WinForms\\Program.cs",
+              "ToolTip": "D:\\AI\\SemanticStructureDetector\\SemanticStructureDetector.WinForms\\Program.cs",
+              "RelativeToolTip": "SemanticStructureDetector.WinForms\\Program.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-15T14:12:37.906Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "ChunkingService.cs",
+              "DocumentMoniker": "D:\\AI\\SemanticStructureDetector\\SemanticStructureDetector.WinForms\\Services\\ChunkingService.cs",
+              "RelativeDocumentMoniker": "SemanticStructureDetector.WinForms\\Services\\ChunkingService.cs",
+              "ToolTip": "D:\\AI\\SemanticStructureDetector\\SemanticStructureDetector.WinForms\\Services\\ChunkingService.cs",
+              "RelativeToolTip": "SemanticStructureDetector.WinForms\\Services\\ChunkingService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAAXAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-14T14:38:04.245Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "StructureResponse.cs",
+              "DocumentMoniker": "D:\\AI\\SemanticStructureDetector\\SemanticStructureDetector.WinForms\\Models\\StructureResponse.cs",
+              "RelativeDocumentMoniker": "SemanticStructureDetector.WinForms\\Models\\StructureResponse.cs",
+              "ToolTip": "D:\\AI\\SemanticStructureDetector\\SemanticStructureDetector.WinForms\\Models\\StructureResponse.cs",
+              "RelativeToolTip": "SemanticStructureDetector.WinForms\\Models\\StructureResponse.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-14T14:37:04.462Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "MainForm.Designer.cs",
+              "DocumentMoniker": "D:\\AI\\SemanticStructureDetector\\SemanticStructureDetector.WinForms\\MainForm.Designer.cs",
+              "RelativeDocumentMoniker": "SemanticStructureDetector.WinForms\\MainForm.Designer.cs",
+              "ToolTip": "D:\\AI\\SemanticStructureDetector\\SemanticStructureDetector.WinForms\\MainForm.Designer.cs",
+              "RelativeToolTip": "SemanticStructureDetector.WinForms\\MainForm.Designer.cs",
+              "ViewState": "AgIAABMAAAAAAAAAAIBJwBYAAAAIAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-18T08:25:59.927Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "StructureItem.cs",
+              "DocumentMoniker": "D:\\AI\\SemanticStructureDetector\\SemanticStructureDetector.WinForms\\Models\\StructureItem.cs",
+              "RelativeDocumentMoniker": "SemanticStructureDetector.WinForms\\Models\\StructureItem.cs",
+              "ToolTip": "D:\\AI\\SemanticStructureDetector\\SemanticStructureDetector.WinForms\\Models\\StructureItem.cs",
+              "RelativeToolTip": "SemanticStructureDetector.WinForms\\Models\\StructureItem.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAEAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-14T14:36:50.984Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "PhraseModel.cs",
+              "DocumentMoniker": "D:\\AI\\SemanticStructureDetector\\SemanticStructureDetector.WinForms\\Models\\PhraseModel.cs",
+              "RelativeDocumentMoniker": "SemanticStructureDetector.WinForms\\Models\\PhraseModel.cs",
+              "ToolTip": "D:\\AI\\SemanticStructureDetector\\SemanticStructureDetector.WinForms\\Models\\PhraseModel.cs",
+              "RelativeToolTip": "SemanticStructureDetector.WinForms\\Models\\PhraseModel.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-14T14:34:46.332Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
