@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\AI\\AudioTranscriber\\AudioTranscriber\\AudioTranscriber.csproj": {}
+    "E:\\Daisy .NET 9 Git\\obi\\Audio processing experiments\\AudioTranscriber\\AudioTranscriber\\AudioTranscriber.csproj": {}
   },
   "projects": {
-    "D:\\AI\\AudioTranscriber\\AudioTranscriber\\AudioTranscriber.csproj": {
+    "E:\\Daisy .NET 9 Git\\obi\\Audio processing experiments\\AudioTranscriber\\AudioTranscriber\\AudioTranscriber.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\AI\\AudioTranscriber\\AudioTranscriber\\AudioTranscriber.csproj",
+        "projectUniqueName": "E:\\Daisy .NET 9 Git\\obi\\Audio processing experiments\\AudioTranscriber\\AudioTranscriber\\AudioTranscriber.csproj",
         "projectName": "AudioTranscriber",
-        "projectPath": "D:\\AI\\AudioTranscriber\\AudioTranscriber\\AudioTranscriber.csproj",
+        "projectPath": "E:\\Daisy .NET 9 Git\\obi\\Audio processing experiments\\AudioTranscriber\\AudioTranscriber\\AudioTranscriber.csproj",
         "packagesPath": "C:\\Users\\rssbr\\.nuget\\packages\\",
-        "outputPath": "D:\\AI\\AudioTranscriber\\AudioTranscriber\\obj\\",
+        "outputPath": "E:\\Daisy .NET 9 Git\\obi\\Audio processing experiments\\AudioTranscriber\\AudioTranscriber\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

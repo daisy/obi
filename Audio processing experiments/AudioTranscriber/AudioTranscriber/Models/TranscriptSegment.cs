@@ -8,11 +8,28 @@ namespace AudioTranscriber.Models
 {
     public class TranscriptSegment
     {
-        public string Text { get; set; } =
-            string.Empty;
+        public string PhraseId
+        {
+            get;
+            set;
+        } = string.Empty;
 
-        public TimeSpan Start { get; set; }
+        public string Text
+        {
+            get;
+            set;
+        } = string.Empty;
 
-        public TimeSpan End { get; set; }
+        public TimeSpan Start
+        {
+            get;
+            set;
+        }
+
+        public TimeSpan End
+        {
+            get;
+            set;
+        }
     }
 }

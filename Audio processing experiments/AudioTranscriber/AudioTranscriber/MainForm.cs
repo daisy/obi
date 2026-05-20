@@ -147,6 +147,17 @@ namespace AudioTranscriber
 
                 lblStatus.Text =
                     "Completed";
+                dgvTranscript.Rows.Clear();
+
+                foreach (var segment
+                    in segments)
+                {
+                    dgvTranscript.Rows.Add(
+                        segment.PhraseId,
+                        segment.Start,
+                        segment.End,
+                        segment.Text);
+                }
 
                 MessageBox.Show(
                     $"Transcription completed successfully.\n\n" +

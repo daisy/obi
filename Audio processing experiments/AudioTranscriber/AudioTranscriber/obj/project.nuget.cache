@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "HpoFVSNq7wY=",
+  "dgSpecHash": "CveK/HsfTNY=",
   "success": true,
-  "projectFilePath": "D:\\AI\\AudioTranscriber\\AudioTranscriber\\AudioTranscriber.csproj",
+  "projectFilePath": "E:\\Daisy .NET 9 Git\\obi\\Audio processing experiments\\AudioTranscriber\\AudioTranscriber\\AudioTranscriber.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\rssbr\\.nuget\\packages\\ffmpegcore\\5.4.0\\ffmpegcore.5.4.0.nupkg.sha512",
     "C:\\Users\\rssbr\\.nuget\\packages\\ffmpegcore.extensions.downloader\\5.0.0\\ffmpegcore.extensions.downloader.5.0.0.nupkg.sha512",

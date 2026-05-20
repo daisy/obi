@@ -39,6 +39,7 @@
             btnCancel = new Button();
             progressBar = new ProgressBar();
             dgvTranscript = new DataGridView();
+            PhraseId = new DataGridViewTextBoxColumn();
             StartTime = new DataGridViewTextBoxColumn();
             EndTime = new DataGridViewTextBoxColumn();
             Word = new DataGridViewTextBoxColumn();
@@ -137,7 +138,7 @@
             dgvTranscript.AllowUserToAddRows = false;
             dgvTranscript.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgvTranscript.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvTranscript.Columns.AddRange(new DataGridViewColumn[] { StartTime, EndTime, Word });
+            dgvTranscript.Columns.AddRange(new DataGridViewColumn[] { PhraseId, StartTime, EndTime, Word });
             dgvTranscript.Location = new Point(20, 240);
             dgvTranscript.Name = "dgvTranscript";
             dgvTranscript.ReadOnly = true;
@@ -145,6 +146,13 @@
             dgvTranscript.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dgvTranscript.Size = new Size(1000, 350);
             dgvTranscript.TabIndex = 10;
+            // 
+            // PhraseId
+            // 
+            PhraseId.HeaderText = "PhraseId";
+            PhraseId.MinimumWidth = 6;
+            PhraseId.Name = "PhraseId";
+            PhraseId.ReadOnly = true;
             // 
             // StartTime
             // 
@@ -206,6 +214,7 @@
         private Button btnCancel;
         private ProgressBar progressBar;
         private DataGridView dgvTranscript;
+        private DataGridViewTextBoxColumn PhraseId;
         private DataGridViewTextBoxColumn StartTime;
         private DataGridViewTextBoxColumn EndTime;
         private DataGridViewTextBoxColumn Word;

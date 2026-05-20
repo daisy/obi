@@ -6,71 +6,128 @@ using System.Threading.Tasks;
 
 using AudioTranscriber.Models;
 using System.Diagnostics;
+using System.Text;
 using System.Text.Json;
 
 namespace AudioTranscriber.Services
 {
     public class WhisperXService
     {
-        public async Task<List<TranscriptSegment>> TranscribeAsync(string audioFile, CancellationToken cancellationToken)
+        public async Task<List<TranscriptSegment>>
+            TranscribeAsync(
+                string audioFile,
+                CancellationToken cancellationToken)
         {
             string backendFolder =
-                       Path.GetFullPath(Path.Combine(
-                                              AppDomain.CurrentDomain.BaseDirectory,
-                                                "..",
-                                                "..",
-                                                 "..",
-                                                 "..",
-                                                 "PythonBackend"));
-
-            Directory.CreateDirectory(
-                backendFolder);
-
-            string jsonOutput =
-                Path.Combine(
-                    backendFolder,
-                    "output.json");
+                Path.GetFullPath(
+                    Path.Combine(
+                        AppDomain.CurrentDomain.BaseDirectory,
+                        "..",
+                        "..",
+                        "..",
+                        "..",
+                        "PythonBackend"));
 
             string scriptPath =
                 Path.Combine(
                     backendFolder,
                     "run_whisperx.py");
 
+            string jsonOutput =
+                Path.Combine(
+                    backendFolder,
+                    "output.json");
+
+            string pythonExe =
+                Path.Combine(
+                    AppDomain.CurrentDomain.BaseDirectory,
+                    "..",
+                    "..",
+                    "..",
+                    "..",
+                    "whisperx_env",
+                    "Scripts",
+                    "python.exe");
+
             ProcessStartInfo psi =
-               new()
-               {
-                   FileName =
-                         Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "..", "..", "..", "..", "whisperx_env", "Scripts", "python.exe"), Arguments =
-                       $"\"{scriptPath}\" \"{audioFile}\" \"{jsonOutput}\"",
+                new()
+                {
+                    FileName = pythonExe,
 
-                   RedirectStandardOutput = true,
-                   RedirectStandardError = true,
-                   UseShellExecute = false,
-                   CreateNoWindow = true,
-                   WorkingDirectory = backendFolder
-               };
+                    Arguments =
+                        $"\"{scriptPath}\" " +
+                        $"\"{audioFile}\" " +
+                        $"\"{jsonOutput}\"",
 
-            string ffmpegFolder = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "ffmpeg");
+                    RedirectStandardOutput = true,
+                    RedirectStandardError = true,
 
-            string existingPath = Environment.GetEnvironmentVariable("PATH") ?? "";
+                    UseShellExecute = false,
+
+                    CreateNoWindow = true,
+
+                    WorkingDirectory =
+                        backendFolder
+                };
+
+            string ffmpegFolder =
+                Path.Combine(
+                    AppDomain.CurrentDomain.BaseDirectory,
+                    "ffmpeg");
+
+            string existingPath =
+                Environment.GetEnvironmentVariable(
+                    "PATH") ?? "";
 
             psi.Environment["PATH"] =
-                ffmpegFolder + ";" + existingPath;
+                ffmpegFolder +
+                ";" +
+                existingPath;
 
             using Process process =
                 new();
 
             process.StartInfo = psi;
 
+            StringBuilder outputBuilder =
+                new();
+
+            StringBuilder errorBuilder =
+                new();
+
+            process.OutputDataReceived +=
+                (s, e) =>
+                {
+                    if (!string.IsNullOrWhiteSpace(
+                        e.Data))
+                    {
+                        Console.WriteLine(
+                            e.Data);
+
+                        outputBuilder.AppendLine(
+                            e.Data);
+                    }
+                };
+
+            process.ErrorDataReceived +=
+                (s, e) =>
+                {
+                    if (!string.IsNullOrWhiteSpace(
+                        e.Data))
+                    {
+                        Console.WriteLine(
+                            e.Data);
+
+                        errorBuilder.AppendLine(
+                            e.Data);
+                    }
+                };
+
             process.Start();
 
-            string stdOut =
-                await process.StandardOutput
-                    .ReadToEndAsync();
+            process.BeginOutputReadLine();
 
-            string stdErr =
-                await process.StandardError
-                    .ReadToEndAsync();
+            process.BeginErrorReadLine();
 
             await process.WaitForExitAsync(
                 cancellationToken);
@@ -78,7 +135,15 @@ namespace AudioTranscriber.Services
             if (process.ExitCode != 0)
             {
                 throw new Exception(
-                    $"WhisperX Error:\n{stdErr}");
+                    "WhisperX Error:\n" +
+                    errorBuilder.ToString());
+            }
+
+            if (!File.Exists(
+                jsonOutput))
+            {
+                throw new Exception(
+                    "Output JSON not generated.");
             }
 
             string json =
@@ -87,16 +152,28 @@ namespace AudioTranscriber.Services
                     cancellationToken);
 
             WhisperXResult? result =
-               JsonSerializer.Deserialize<WhisperXResult>(json);
+                JsonSerializer.Deserialize
+                <WhisperXResult>(
+                    json);
+
+            if (result == null)
+            {
+                throw new Exception(
+                    "Failed to parse WhisperX JSON.");
+            }
 
             List<TranscriptSegment>
                 segments = new();
+
             foreach (var phrase
-              in result.Phrases)
+                in result.Phrases)
             {
                 segments.Add(
                     new TranscriptSegment
                     {
+                        PhraseId =
+                            phrase.PhraseId,
+
                         Text =
                             phrase.Text,
 
@@ -110,14 +187,8 @@ namespace AudioTranscriber.Services
                     });
             }
 
-
-
             return segments;
         }
-
-
-
-
     }
 }
 
