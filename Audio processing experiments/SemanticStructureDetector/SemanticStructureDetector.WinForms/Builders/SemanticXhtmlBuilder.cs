@@ -14,14 +14,22 @@ public class SemanticXhtmlBuilder
         List<PhraseModel> phrases,
         List<StructureItem> structure)
     {
+        //--------------------------------------------------
+        // MAP STRUCTURE
+        //--------------------------------------------------
+
         var structureMap =
             structure.ToDictionary(
                 x => x.PhraseId);
 
+        //--------------------------------------------------
+        // XHTML BUILDER
+        //--------------------------------------------------
+
         var sb = new StringBuilder();
 
         //--------------------------------------------------
-        // XHTML HEADER
+        // XML HEADER
         //--------------------------------------------------
 
         sb.AppendLine(
@@ -30,15 +38,37 @@ public class SemanticXhtmlBuilder
         sb.AppendLine(
 @"<html xmlns=""http://www.w3.org/1999/xhtml"">");
 
+        //--------------------------------------------------
+        // HEAD
+        //--------------------------------------------------
+
+        sb.AppendLine("<head>");
+
+        sb.AppendLine(
+@"<link
+    rel=""stylesheet""
+    type=""text/css""
+    href=""structure.css"" />");
+
+        sb.AppendLine("</head>");
+
+        //--------------------------------------------------
+        // BODY
+        //--------------------------------------------------
+
         sb.AppendLine("<body>");
 
         //--------------------------------------------------
-        // STATE
+        // COUNTERS
         //--------------------------------------------------
 
-        string? currentParagraphId = null;
+        int headingCounter = 1;
 
-        bool paragraphOpen = false;
+        int phraseCounter = 1;
+
+        bool firstHeading = true;
+
+        bool firstPhrase = true;
 
         //--------------------------------------------------
         // PROCESS PHRASES
@@ -46,99 +76,122 @@ public class SemanticXhtmlBuilder
 
         foreach (var phrase in phrases)
         {
-            if (!structureMap.ContainsKey(
+            //--------------------------------------------------
+            // GET STRUCTURE
+            //--------------------------------------------------
+
+            StructureItem? item = null;
+
+            if (structureMap.ContainsKey(
                 phrase.PhraseId))
             {
-                continue;
+                item =
+                    structureMap[
+                        phrase.PhraseId];
             }
 
-            var item =
-                structureMap[phrase.PhraseId];
-
             //--------------------------------------------------
-            // CLOSE PARAGRAPH BEFORE HEADING
+            // FORCE FIRST PHRASE AS HEADING
             //--------------------------------------------------
 
-            if (item.Role == "heading")
+            bool isHeading =
+                firstPhrase
+                ||
+                (item != null
+                 && item.Role == "heading");
+
+            //--------------------------------------------------
+            // HEADING
+            //--------------------------------------------------
+
+            if (isHeading)
             {
-                if (paragraphOpen)
-                {
-                    sb.AppendLine("</p>");
-                    paragraphOpen = false;
-                }
+                int level = 1;
 
-                int level =
-                    item.Level ?? 1;
+                if (item != null
+                    && item.Level != null)
+                {
+                    level = item.Level.Value;
+                }
 
                 level =
                     Math.Max(
                         1,
                         Math.Min(6, level));
 
+                //--------------------------------------------------
+                // CSS CLASS
+                //--------------------------------------------------
+
+                string cssClass =
+                    firstHeading
+                    ? "title"
+                    : "section";
+
+                //--------------------------------------------------
+                // ID
+                //--------------------------------------------------
+
+                string headingId =
+                    $"h{headingCounter++}";
+
+                //--------------------------------------------------
+                // WRITE HEADING
+                //--------------------------------------------------
+
                 sb.AppendLine(
 $"""
 <h{level}
-    data-phraseid="{Escape(phrase.PhraseId)}"
+    class="{cssClass}"
+    id="{headingId}"
     data-start="{phrase.Start:0.000}"
     data-end="{phrase.End:0.000}">
+
     {Escape(phrase.Text)}
+
 </h{level}>
 """);
+
+                firstHeading = false;
+
+                firstPhrase = false;
 
                 continue;
             }
 
             //--------------------------------------------------
-            // OPEN PARAGRAPH
+            // PHRASE
             //--------------------------------------------------
 
-            if (!paragraphOpen
-                ||
-                currentParagraphId
-                    != item.ParagraphId)
-            {
-                if (paragraphOpen)
-                {
-                    sb.AppendLine("</p>");
-                }
-
-                sb.AppendLine("<p>");
-
-                paragraphOpen = true;
-
-                currentParagraphId =
-                    item.ParagraphId;
-            }
-
-            //--------------------------------------------------
-            // PHRASE SPAN
-            //--------------------------------------------------
+            string phraseId =
+                $"p{phraseCounter++}";
 
             sb.AppendLine(
 $"""
-<span
-    data-phraseid="{Escape(phrase.PhraseId)}"
+<p
+    class="phrase"
+    id="{phraseId}"
     data-start="{phrase.Start:0.000}"
     data-end="{phrase.End:0.000}">
+
     {Escape(phrase.Text)}
-</span>
+
+</p>
 """);
+
+            firstPhrase = false;
         }
 
         //--------------------------------------------------
-        // CLOSE LAST PARAGRAPH
-        //--------------------------------------------------
-
-        if (paragraphOpen)
-        {
-            sb.AppendLine("</p>");
-        }
-
-        //--------------------------------------------------
-        // CLOSE XHTML
+        // CLOSE BODY
         //--------------------------------------------------
 
         sb.AppendLine("</body>");
+
+        //--------------------------------------------------
+        // CLOSE HTML
+        //--------------------------------------------------
+
         sb.AppendLine("</html>");
 
         return sb.ToString();

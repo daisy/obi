@@ -1,13 +1,13 @@
 {
-  "id": "resp_0d1cf93d97c01f62006a0c3f50dc0c8190a124f3178308e236",
+  "id": "resp_0149a40cc4d2903f006a0eca98e29c819381bf3fbd2ecff8cd",
   "object": "response",
-  "created_at": 1779187536,
+  "created_at": 1779354264,
   "status": "completed",
   "background": false,
   "billing": {
     "payer": "developer"
   },
-  "completed_at": 1779187539,
+  "completed_at": 1779354270,
   "error": null,
   "frequency_penalty": 0.0,
   "incomplete_details": null,
@@ -18,7 +18,7 @@
   "moderation": null,
   "output": [
     {
-      "id": "msg_0d1cf93d97c01f62006a0c3f5191c48190b3b15df55d79b17d",
+      "id": "msg_0149a40cc4d2903f006a0eca992e908193946b0aadbc36a421",
       "type": "message",
       "status": "completed",
       "content": [
@@ -26,7 +26,7 @@
           "type": "output_text",
           "annotations": [],
           "logprobs": [],
-          "text": "{\"structure\":[{\"phraseId\":\"p1\",\"role\":\"heading\",\"level\":1,\"paragraphId\":null},{\"phraseId\":\"p2\",\"role\":\"paragraph\",\"level\":null,\"paragraphId\":\"para1\"},{\"phraseId\":\"p3\",\"role\":\"paragraph\",\"level\":null,\"paragraphId\":\"para1\"},{\"phraseId\":\"p4\",\"role\":\"paragraph\",\"level\":null,\"paragraphId\":\"para1\"},{\"phraseId\":\"p5\",\"role\":\"paragraph\",\"level\":null,\"paragraphId\":\"para1\"}]}"
+          "text": "{\"structure\":[{\"phraseId\":\"p706\",\"role\":\"heading\",\"level\":1,\"paragraphId\":null},{\"phraseId\":\"p707\",\"role\":\"paragraph\",\"level\":null,\"paragraphId\":\"para1\"},{\"phraseId\":\"p708\",\"role\":\"paragraph\",\"level\":null,\"paragraphId\":\"para1\"},{\"phraseId\":\"p709\",\"role\":\"paragraph\",\"level\":null,\"paragraphId\":\"para1\"},{\"phraseId\":\"p710\",\"role\":\"paragraph\",\"level\":null,\"paragraphId\":\"para1\"},{\"phraseId\":\"p711\",\"role\":\"paragraph\",\"level\":null,\"paragraphId\":\"para1\"},{\"phraseId\":\"p712\",\"role\":\"paragraph\",\"level\":null,\"paragraphId\":\"para1\"},{\"phraseId\":\"p714\",\"role\":\"heading\",\"level\":1,\"paragraphId\":null},{\"phraseId\":\"p715\",\"role\":\"paragraph\",\"level\":null,\"paragraphId\":\"para2\"},{\"phraseId\":\"p716\",\"role\":\"paragraph\",\"level\":null,\"paragraphId\":\"para2\"},{\"phraseId\":\"p717\",\"role\":\"paragraph\",\"level\":null,\"paragraphId\":\"para2\"},{\"phraseId\":\"p718\",\"role\":\"paragraph\",\"level\":null,\"paragraphId\":\"para2\"},{\"phraseId\":\"p719\",\"role\":\"paragraph\",\"level\":null,\"paragraphId\":\"para2\"},{\"phraseId\":\"p720\",\"role\":\"paragraph\",\"level\":null,\"paragraphId\":\"para2\"},{\"phraseId\":\"p722\",\"role\":\"heading\",\"level\":1,\"paragraphId\":null},{\"phraseId\":\"p723\",\"role\":\"paragraph\",\"level\":null,\"paragraphId\":\"para3\"},{\"phraseId\":\"p724\",\"role\":\"paragraph\",\"level\":null,\"paragraphId\":\"para3\"},{\"phraseId\":\"p725\",\"role\":\"paragraph\",\"level\":null,\"paragraphId\":\"para3\"},{\"phraseId\":\"p726\",\"role\":\"paragraph\",\"level\":null,\"paragraphId\":\"para3\"},{\"phraseId\":\"p727\",\"role\":\"paragraph\",\"level\":null,\"paragraphId\":\"para3\"},{\"phraseId\":\"p728\",\"role\":\"paragraph\",\"level\":null,\"paragraphId\":\"para3\"}]}"
         }
       ],
       "role": "assistant"
@@ -102,15 +102,15 @@
   "top_p": 1.0,
   "truncation": "disabled",
   "usage": {
-    "input_tokens": 269,
+    "input_tokens": 453,
     "input_tokens_details": {
       "cached_tokens": 0
     },
-    "output_tokens": 105,
+    "output_tokens": 423,
     "output_tokens_details": {
       "reasoning_tokens": 0
     },
-    "total_tokens": 374
+    "total_tokens": 876
   },
   "user": null,
   "metadata": {}

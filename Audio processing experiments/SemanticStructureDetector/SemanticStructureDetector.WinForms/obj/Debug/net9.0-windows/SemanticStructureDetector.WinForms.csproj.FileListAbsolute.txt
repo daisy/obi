@@ -34,3 +34,40 @@ D:\AI\SemanticStructureDetector\SemanticStructureDetector.WinForms\obj\Debug\net
 D:\AI\SemanticStructureDetector\SemanticStructureDetector.WinForms\obj\Debug\net9.0-windows\SemanticStructureDetector.WinForms.pdb
 D:\AI\SemanticStructureDetector\SemanticStructureDetector.WinForms\obj\Debug\net9.0-windows\SemanticStructureDetector.WinForms.genruntimeconfig.cache
 D:\AI\SemanticStructureDetector\SemanticStructureDetector.WinForms\obj\Debug\net9.0-windows\ref\SemanticStructureDetector.WinForms.dll
+E:\Daisy .NET 9 Git\obi\Audio processing experiments\SemanticStructureDetector\SemanticStructureDetector.WinForms\bin\Debug\net9.0-windows\SemanticStructureDetector.WinForms.exe
+E:\Daisy .NET 9 Git\obi\Audio processing experiments\SemanticStructureDetector\SemanticStructureDetector.WinForms\bin\Debug\net9.0-windows\SemanticStructureDetector.WinForms.deps.json
+E:\Daisy .NET 9 Git\obi\Audio processing experiments\SemanticStructureDetector\SemanticStructureDetector.WinForms\bin\Debug\net9.0-windows\SemanticStructureDetector.WinForms.runtimeconfig.json
+E:\Daisy .NET 9 Git\obi\Audio processing experiments\SemanticStructureDetector\SemanticStructureDetector.WinForms\bin\Debug\net9.0-windows\SemanticStructureDetector.WinForms.dll
+E:\Daisy .NET 9 Git\obi\Audio processing experiments\SemanticStructureDetector\SemanticStructureDetector.WinForms\bin\Debug\net9.0-windows\SemanticStructureDetector.WinForms.pdb
+E:\Daisy .NET 9 Git\obi\Audio processing experiments\SemanticStructureDetector\SemanticStructureDetector.WinForms\bin\Debug\net9.0-windows\HtmlAgilityPack.dll
+E:\Daisy .NET 9 Git\obi\Audio processing experiments\SemanticStructureDetector\SemanticStructureDetector.WinForms\bin\Debug\net9.0-windows\Microsoft.Extensions.Configuration.dll
+E:\Daisy .NET 9 Git\obi\Audio processing experiments\SemanticStructureDetector\SemanticStructureDetector.WinForms\bin\Debug\net9.0-windows\Microsoft.Extensions.Configuration.Abstractions.dll
+E:\Daisy .NET 9 Git\obi\Audio processing experiments\SemanticStructureDetector\SemanticStructureDetector.WinForms\bin\Debug\net9.0-windows\Microsoft.Extensions.Configuration.Binder.dll
+E:\Daisy .NET 9 Git\obi\Audio processing experiments\SemanticStructureDetector\SemanticStructureDetector.WinForms\bin\Debug\net9.0-windows\Microsoft.Extensions.DependencyInjection.dll
+E:\Daisy .NET 9 Git\obi\Audio processing experiments\SemanticStructureDetector\SemanticStructureDetector.WinForms\bin\Debug\net9.0-windows\Microsoft.Extensions.DependencyInjection.Abstractions.dll
+E:\Daisy .NET 9 Git\obi\Audio processing experiments\SemanticStructureDetector\SemanticStructureDetector.WinForms\bin\Debug\net9.0-windows\Microsoft.Extensions.Diagnostics.dll
+E:\Daisy .NET 9 Git\obi\Audio processing experiments\SemanticStructureDetector\SemanticStructureDetector.WinForms\bin\Debug\net9.0-windows\Microsoft.Extensions.Diagnostics.Abstractions.dll
+E:\Daisy .NET 9 Git\obi\Audio processing experiments\SemanticStructureDetector\SemanticStructureDetector.WinForms\bin\Debug\net9.0-windows\Microsoft.Extensions.Http.dll
+E:\Daisy .NET 9 Git\obi\Audio processing experiments\SemanticStructureDetector\SemanticStructureDetector.WinForms\bin\Debug\net9.0-windows\Microsoft.Extensions.Logging.dll
+E:\Daisy .NET 9 Git\obi\Audio processing experiments\SemanticStructureDetector\SemanticStructureDetector.WinForms\bin\Debug\net9.0-windows\Microsoft.Extensions.Logging.Abstractions.dll
+E:\Daisy .NET 9 Git\obi\Audio processing experiments\SemanticStructureDetector\SemanticStructureDetector.WinForms\bin\Debug\net9.0-windows\Microsoft.Extensions.Options.dll
+E:\Daisy .NET 9 Git\obi\Audio processing experiments\SemanticStructureDetector\SemanticStructureDetector.WinForms\bin\Debug\net9.0-windows\Microsoft.Extensions.Options.ConfigurationExtensions.dll
+E:\Daisy .NET 9 Git\obi\Audio processing experiments\SemanticStructureDetector\SemanticStructureDetector.WinForms\bin\Debug\net9.0-windows\Microsoft.Extensions.Primitives.dll
+E:\Daisy .NET 9 Git\obi\Audio processing experiments\SemanticStructureDetector\SemanticStructureDetector.WinForms\bin\Debug\net9.0-windows\Newtonsoft.Json.dll
+E:\Daisy .NET 9 Git\obi\Audio processing experiments\SemanticStructureDetector\SemanticStructureDetector.WinForms\bin\Debug\net9.0-windows\Polly.dll
+E:\Daisy .NET 9 Git\obi\Audio processing experiments\SemanticStructureDetector\SemanticStructureDetector.WinForms\bin\Debug\net9.0-windows\Polly.Core.dll
+E:\Daisy .NET 9 Git\obi\Audio processing experiments\SemanticStructureDetector\SemanticStructureDetector.WinForms\bin\Debug\net9.0-windows\System.Diagnostics.DiagnosticSource.dll
+E:\Daisy .NET 9 Git\obi\Audio processing experiments\SemanticStructureDetector\SemanticStructureDetector.WinForms\obj\Debug\net9.0-windows\SemanticStructureDetector.WinForms.csproj.AssemblyReference.cache
+E:\Daisy .NET 9 Git\obi\Audio processing experiments\SemanticStructureDetector\SemanticStructureDetector.WinForms\obj\Debug\net9.0-windows\SemanticStructureDetector.WinForms.MainForm.resources
+E:\Daisy .NET 9 Git\obi\Audio processing experiments\SemanticStructureDetector\SemanticStructureDetector.WinForms\obj\Debug\net9.0-windows\SemanticStructureDetector.WinForms.csproj.GenerateResource.cache
+E:\Daisy .NET 9 Git\obi\Audio processing experiments\SemanticStructureDetector\SemanticStructureDetector.WinForms\obj\Debug\net9.0-windows\SemanticStructureDetector.WinForms.GeneratedMSBuildEditorConfig.editorconfig
+E:\Daisy .NET 9 Git\obi\Audio processing experiments\SemanticStructureDetector\SemanticStructureDetector.WinForms\obj\Debug\net9.0-windows\SemanticStructureDetector.WinForms.AssemblyInfoInputs.cache
+E:\Daisy .NET 9 Git\obi\Audio processing experiments\SemanticStructureDetector\SemanticStructureDetector.WinForms\obj\Debug\net9.0-windows\SemanticStructureDetector.WinForms.AssemblyInfo.cs
+E:\Daisy .NET 9 Git\obi\Audio processing experiments\SemanticStructureDetector\SemanticStructureDetector.WinForms\obj\Debug\net9.0-windows\SemanticStructureDetector.WinForms.csproj.CoreCompileInputs.cache
+E:\Daisy .NET 9 Git\obi\Audio processing experiments\SemanticStructureDetector\SemanticStructureDetector.WinForms\obj\Debug\net9.0-windows\SemanticStructureDetector.WinForms.sourcelink.json
+E:\Daisy .NET 9 Git\obi\Audio processing experiments\SemanticStructureDetector\SemanticStructureDetector.WinForms\obj\Debug\net9.0-windows\Semantic.4084B694.Up2Date
+E:\Daisy .NET 9 Git\obi\Audio processing experiments\SemanticStructureDetector\SemanticStructureDetector.WinForms\obj\Debug\net9.0-windows\SemanticStructureDetector.WinForms.dll
+E:\Daisy .NET 9 Git\obi\Audio processing experiments\SemanticStructureDetector\SemanticStructureDetector.WinForms\obj\Debug\net9.0-windows\refint\SemanticStructureDetector.WinForms.dll
+E:\Daisy .NET 9 Git\obi\Audio processing experiments\SemanticStructureDetector\SemanticStructureDetector.WinForms\obj\Debug\net9.0-windows\SemanticStructureDetector.WinForms.pdb
+E:\Daisy .NET 9 Git\obi\Audio processing experiments\SemanticStructureDetector\SemanticStructureDetector.WinForms\obj\Debug\net9.0-windows\SemanticStructureDetector.WinForms.genruntimeconfig.cache
+E:\Daisy .NET 9 Git\obi\Audio processing experiments\SemanticStructureDetector\SemanticStructureDetector.WinForms\obj\Debug\net9.0-windows\ref\SemanticStructureDetector.WinForms.dll

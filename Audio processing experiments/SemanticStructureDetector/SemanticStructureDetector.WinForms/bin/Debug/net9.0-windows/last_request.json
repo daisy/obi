@@ -15,7 +15,7 @@
       "content": [
         {
           "type": "input_text",
-          "text": "{\"phrases\":[{\"phraseId\":\"p1\",\"text\":\"Page 17.\"},{\"phraseId\":\"p2\",\"text\":\"Three maps of New Zealand are shown.\"},{\"phraseId\":\"p3\",\"text\":\"The first shows average yearly rainfall in different parts of New Zealand.\"},{\"phraseId\":\"p4\",\"text\":\"The second and third maps show differences in temperature in different parts\"},{\"phraseId\":\"p5\",\"text\":\"of New Zealand during the summer and winter.\"}]}"
+          "text": "{\"phrases\":[{\"phraseId\":\"p706\",\"text\":\"What is New Zealand's capital?\"},{\"phraseId\":\"p707\",\"text\":\"A.\"},{\"phraseId\":\"p708\",\"text\":\"Auckland\"},{\"phraseId\":\"p709\",\"text\":\"B.\"},{\"phraseId\":\"p710\",\"text\":\"Christchurch\"},{\"phraseId\":\"p711\",\"text\":\"C.\"},{\"phraseId\":\"p712\",\"text\":\"Wellington\"},{\"phraseId\":\"p713\",\"text\":\"9.\"},{\"phraseId\":\"p714\",\"text\":\"What is the head of New Zealand's government called?\"},{\"phraseId\":\"p715\",\"text\":\"A.\"},{\"phraseId\":\"p716\",\"text\":\"Prime Minister\"},{\"phraseId\":\"p717\",\"text\":\"B.\"},{\"phraseId\":\"p718\",\"text\":\"Governor\"},{\"phraseId\":\"p719\",\"text\":\"C.\"},{\"phraseId\":\"p720\",\"text\":\"President\"},{\"phraseId\":\"p721\",\"text\":\"10.\"},{\"phraseId\":\"p722\",\"text\":\"What is the most popular sport in New Zealand?\"},{\"phraseId\":\"p723\",\"text\":\"A.\"},{\"phraseId\":\"p724\",\"text\":\"Soccer\"},{\"phraseId\":\"p725\",\"text\":\"B.\"},{\"phraseId\":\"p726\",\"text\":\"Rugby.\"},{\"phraseId\":\"p727\",\"text\":\"C.\"},{\"phraseId\":\"p728\",\"text\":\"Golf.\"}]}"
         }
       ]
     }

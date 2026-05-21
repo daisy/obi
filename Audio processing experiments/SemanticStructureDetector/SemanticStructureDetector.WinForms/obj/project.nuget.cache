@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "A+W5f1rQbj0=",
+  "dgSpecHash": "y6DohoF7Dag=",
   "success": true,
-  "projectFilePath": "D:\\AI\\SemanticStructureDetector\\SemanticStructureDetector.WinForms\\SemanticStructureDetector.WinForms.csproj",
+  "projectFilePath": "E:\\Daisy .NET 9 Git\\obi\\Audio processing experiments\\SemanticStructureDetector\\SemanticStructureDetector.WinForms\\SemanticStructureDetector.WinForms.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\rssbr\\.nuget\\packages\\htmlagilitypack\\1.12.4\\htmlagilitypack.1.12.4.nupkg.sha512",
     "C:\\Users\\rssbr\\.nuget\\packages\\microsoft.extensions.configuration\\10.0.8\\microsoft.extensions.configuration.10.0.8.nupkg.sha512",
