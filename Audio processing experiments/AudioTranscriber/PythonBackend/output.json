@@ -2,33 +2,2211 @@
   "phrases": [
     {
       "phraseId": "p1",
-      "start": 1.047,
-      "end": 2.047,
-      "text": "Page 17."
-    },
-    {
-      "phraseId": "p2",
-      "start": 3.068,
-      "end": 4.929,
-      "text": "Three maps of New Zealand are shown."
-    },
-    {
-      "phraseId": "p3",
-      "start": 6.049,
-      "end": 10.151,
-      "text": "The first shows average yearly rainfall in different parts of New Zealand."
-    },
-    {
-      "phraseId": "p4",
-      "start": 11.072,
-      "end": 14.994,
-      "text": "The second and third maps show differences in temperature in different parts"
+      "start": 0.847,
+      "end": 7.442,
+      "text": "Page 1, The Countries, New Zealand, Tamara L. Brittain,"
     },
     {
       "phraseId": "p5",
-      "start": 15.054,
-      "end": 17.435,
-      "text": "of New Zealand during the summer and winter."
+      "start": 8.032,
+      "end": 13.186,
+      "text": "ABDO Publishing Company. Page 2,"
+    },
+    {
+      "phraseId": "p7",
+      "start": 13.717,
+      "end": 17.81,
+      "text": "visit us at www.abdopub.com."
+    },
+    {
+      "phraseId": "p9",
+      "start": 22.703,
+      "end": 33.657,
+      "text": "Published by ABDO Publishing Company, 4940 Viking Drive, Edina, Minnesota 55435."
+    },
+    {
+      "phraseId": "p10",
+      "start": 33.827,
+      "end": 38.579,
+      "text": "Copyright, copyright sign, 2004."
+    },
+    {
+      "phraseId": "p11",
+      "start": 38.869,
+      "end": 43.04,
+      "text": "By ABDO Consulting Group, Incorporated."
+    },
+    {
+      "phraseId": "p12",
+      "start": 43.351,
+      "end": 46.842,
+      "text": "International copyrights reserved in all countries."
+    },
+    {
+      "phraseId": "p13",
+      "start": 47.052,
+      "end": 52.846,
+      "text": "No part of this book may be reproduced in any form without written permission from the publisher."
+    },
+    {
+      "phraseId": "p15",
+      "start": 53.236,
+      "end": 57.209,
+      "text": "Printed in the United States. Photo credits."
+    },
+    {
+      "phraseId": "p17",
+      "start": 57.939,
+      "end": 80.803,
+      "text": "Corbus pages 5, 6, 9, 11, 12, 14, 18, 19, 21, 22, 25, 26, 27, 28, 29-31-33-35-36-37"
+    },
+    {
+      "phraseId": "p19",
+      "start": 81.354,
+      "end": 83.504,
+      "text": "Editors Kate A."
+    },
+    {
+      "phraseId": "p20",
+      "start": 83.114,
+      "end": 88.147,
+      "text": "Conley Stephanie Hedlund Christian E. Veriger"
+    },
+    {
+      "phraseId": "p22",
+      "start": 88.797,
+      "end": 96.751,
+      "text": "Art Direction and Maps Neil Linepeer Library of Congress Cataloging in Publication Data"
+    },
+    {
+      "phraseId": "p24",
+      "start": 97.341,
+      "end": 100.532,
+      "text": "Britain Tamara L. 1963"
+    },
+    {
+      "phraseId": "p26",
+      "start": 102.23,
+      "end": 111.858,
+      "text": "New Zealand, Tamora L. Brittain, PCM, The Countries, includes index."
+    },
+    {
+      "phraseId": "p30",
+      "start": 112.24,
+      "end": 119.054,
+      "text": "Summary An introduction to the history, geography, plants and animals, government,"
+    },
+    {
+      "phraseId": "p31",
+      "start": 118.864,
+      "end": 121.635,
+      "text": "people and culture of New Zealand."
+    },
+    {
+      "phraseId": "p32",
+      "start": 121.906,
+      "end": 124.297,
+      "text": "ISBN 1-59197-294-9 1."
+    },
+    {
+      "phraseId": "p33",
+      "start": 123.867,
+      "end": 186.639,
+      "text": "New Zealand Juvenile Literature 1. New Zealand 1. Title 2. Series du408.b752003993-dc212003043740 Page 3. Contents. Hello. Page 4. Fast Facts. Page 6. Timeline. Page 7. History. Page 8. Island Nation. Page 14."
+    },
+    {
+      "phraseId": "p52",
+      "start": 188.061,
+      "end": 211.073,
+      "text": "Plants and Animals, page 18. New Zealanders, page 20. Making Money, page 24. Cities, page 28. Transportation, page 30. Government, page 32. Celebrate"
+    },
+    {
+      "phraseId": "p65",
+      "start": 211.604,
+      "end": 213.234,
+      "text": "Page 34 Leisure Time Page 36"
+    },
+    {
+      "phraseId": "p66",
+      "start": 213.924,
+      "end": 215.415,
+      "text": "Glossary Page 38"
+    },
+    {
+      "phraseId": "p67",
+      "start": 215.985,
+      "end": 232.829,
+      "text": "Websites Page 39 Index Page 40 Page four. Hello."
+    },
+    {
+      "phraseId": "p70",
+      "start": 233.339,
+      "end": 235.07,
+      "text": "Welcome to New Zealand."
+    },
+    {
+      "phraseId": "p71",
+      "start": 235.22,
+      "end": 238.951,
+      "text": "New Zealand is an island nation in the southern hemisphere."
+    },
+    {
+      "phraseId": "p72",
+      "start": 239.481,
+      "end": 245.853,
+      "text": "It is about 1,000 miles, or 1,600 kilometers, from its nearest neighbor."
+    },
+    {
+      "phraseId": "p73",
+      "start": 246.544,
+      "end": 252.476,
+      "text": "Its isolated location and many islands make it home to unique plants and animals."
+    },
+    {
+      "phraseId": "p74",
+      "start": 253.106,
+      "end": 258.358,
+      "text": "New Zealand's people are mainly descendants of European immigrants and the native Mori."
+    },
+    {
+      "phraseId": "p76",
+      "start": 258.987,
+      "end": 263.96,
+      "text": "The immigrants and natives blended their traditions to create a rich cultural mix."
+    },
+    {
+      "phraseId": "p77",
+      "start": 264.53,
+      "end": 268.763,
+      "text": "But this threatens the survival of the native Mori culture."
+    },
+    {
+      "phraseId": "p78",
+      "start": 269.213,
+      "end": 274.806,
+      "text": "Today, New Zealand's government is working to promote growth while preserving history."
+    },
+    {
+      "phraseId": "p79",
+      "start": 275.337,
+      "end": 280.21,
+      "text": "Together, New Zealanders are working to make their country a great place to live"
+    },
+    {
+      "phraseId": "p80",
+      "start": 280.04,
+      "end": 288.195,
+      "text": "for all of its people. Page 5. Page 6. Fast Facts."
+    },
+    {
+      "phraseId": "p84",
+      "start": 288.915,
+      "end": 295.368,
+      "text": "Official Name New Zealand Capital Wellington Land Area 103,738"
+    },
+    {
+      "phraseId": "p85",
+      "start": 295.939,
+      "end": 299.351,
+      "text": "square miles or 268,680 square kilometers Mountain Range Southern Alps"
+    },
+    {
+      "phraseId": "p86",
+      "start": 310.715,
+      "end": 318.411,
+      "text": "highest point mount cook twelve thousand three hundred forty nine feet or three thousand"
+    },
+    {
+      "phraseId": "p87",
+      "start": 318.062,
+      "end": 320.573,
+      "text": "seven hundred sixty four meters"
+    },
+    {
+      "phraseId": "p88",
+      "start": 321.344,
+      "end": 325.678,
+      "text": "major rivers wakato and clutha rivers"
+    },
+    {
+      "phraseId": "p89",
+      "start": 326.269,
+      "end": 332.402,
+      "text": "lakes talpo tiano manpuri People"
+    },
+    {
+      "phraseId": "p91",
+      "start": 332.894,
+      "end": 351.756,
+      "text": "Population 3,908,037 July 2002 Estimate Major Cities Wellington Auckland Christchurch Languages English, Mori."
+    },
+    {
+      "phraseId": "p94",
+      "start": 352.126,
+      "end": 358.199,
+      "text": "Religions, Protestantism, Catholicism. Government,"
+    },
+    {
+      "phraseId": "p96",
+      "start": 358.67,
+      "end": 361.601,
+      "text": "Form, Parliamentary Democracy."
+    },
+    {
+      "phraseId": "p97",
+      "start": 362.192,
+      "end": 366.624,
+      "text": "Head of State, British monarch represented by Governor General."
+    },
+    {
+      "phraseId": "p98",
+      "start": 367.275,
+      "end": 373.588,
+      "text": "Head of Government, Prime Minister. Legislature, Parliament."
+    },
+    {
+      "phraseId": "p100",
+      "start": 374.179,
+      "end": 382.405,
+      "text": "Nationhood, September 26th, 1907. Economy. Agricultural products."
+    },
+    {
+      "phraseId": "p103",
+      "start": 382.875,
+      "end": 392.691,
+      "text": "Meat, fish, dairy products, wood, wheat, fruits, vegetables, timber. Mining products."
+    },
+    {
+      "phraseId": "p105",
+      "start": 393.002,
+      "end": 396.274,
+      "text": "Petroleum, coal, natural gas."
+    },
+    {
+      "phraseId": "p106",
+      "start": 397.172,
+      "end": 404.524,
+      "text": "Manufactured products, processed foods, wood products, textiles, machinery."
+    },
+    {
+      "phraseId": "p107",
+      "start": 405.274,
+      "end": 407.905,
+      "text": "Money, New Zealand dollar,"
+    },
+    {
+      "phraseId": "p108",
+      "start": 408.555,
+      "end": 414.807,
+      "text": "or one New Zealand dollar equals 100 cents. Page seven,"
+    },
+    {
+      "phraseId": "p110",
+      "start": 415.617,
+      "end": 418.448,
+      "text": "timeline 1000 A.D."
+    },
+    {
+      "phraseId": "p111",
+      "start": 418.698,
+      "end": 421.569,
+      "text": "Polynesian peoples migrate to New Zealand."
+    },
+    {
+      "phraseId": "p112",
+      "start": 422.486,
+      "end": 427.339,
+      "text": "1642, Abel Tasman discovers New Zealand."
+    },
+    {
+      "phraseId": "p113",
+      "start": 428.209,
+      "end": 432.381,
+      "text": "1769, James Cook maps New Zealand."
+    },
+    {
+      "phraseId": "p114",
+      "start": 433.692,
+      "end": 438.705,
+      "text": "1840, Mori and British sign the Treaty of Waitangi."
+    },
+    {
+      "phraseId": "p115",
+      "start": 438.275,
+      "end": 442.887,
+      "text": "1845, Honheke leads uprising."
+    },
+    {
+      "phraseId": "p116",
+      "start": 443.618,
+      "end": 445.428,
+      "text": "Mori Wars begin. 1846,"
+    },
+    {
+      "phraseId": "p118",
+      "start": 446.259,
+      "end": 452.571,
+      "text": "British defeat Mori. 1860."
+    },
+    {
+      "phraseId": "p120",
+      "start": 452.962,
+      "end": 458.013,
+      "text": "War resumes between British and Mori. 1872."
+    },
+    {
+      "phraseId": "p122",
+      "start": 458.523,
+      "end": 461.754,
+      "text": "Tikuti Rikurangi retreats from war."
+    },
+    {
+      "phraseId": "p123",
+      "start": 461.924,
+      "end": 465.755,
+      "text": "Mori Wars end. 1907."
+    },
+    {
+      "phraseId": "p125",
+      "start": 465.985,
+      "end": 470.436,
+      "text": "New Zealand wins independence from Britain. 1985. Treaty of Reatonga. 1986."
+    },
+    {
+      "phraseId": "p129",
+      "start": 470.046,
+      "end": 482.421,
+      "text": "The United States ends ANZUS Treaty. Page 8. History."
+    },
+    {
+      "phraseId": "p132",
+      "start": 482.992,
+      "end": 487.545,
+      "text": "Polynesian people first came to New Zealand in about 1000 AD."
+    },
+    {
+      "phraseId": "p133",
+      "start": 488.296,
+      "end": 491.288,
+      "text": "The Mori are descendants of these early people."
+    },
+    {
+      "phraseId": "p134",
+      "start": 491.939,
+      "end": 495.011,
+      "text": "Early Mori peoples were hunters and gatherers."
+    },
+    {
+      "phraseId": "p135",
+      "start": 495.802,
+      "end": 499.495,
+      "text": "Later, they gained skills in agriculture and fishing."
+    },
+    {
+      "phraseId": "p136",
+      "start": 500.066,
+      "end": 505.26,
+      "text": "The Mori led an isolated existence until Dutchman Abel Tasman arrived."
+    },
+    {
+      "phraseId": "p137",
+      "start": 505.691,
+      "end": 508.883,
+      "text": "Tasman worked for the Dutch East India Company."
+    },
+    {
+      "phraseId": "p138",
+      "start": 509.479,
+      "end": 512.571,
+      "text": "He was searching for a continent in the southern hemisphere."
+    },
+    {
+      "phraseId": "p139",
+      "start": 513.862,
+      "end": 517.935,
+      "text": "Tasman discovered New Zealand in December 1642."
+    },
+    {
+      "phraseId": "p140",
+      "start": 518.265,
+      "end": 521.517,
+      "text": "The Maori, however, defended their homeland."
+    },
+    {
+      "phraseId": "p141",
+      "start": 522.168,
+      "end": 524.299,
+      "text": "Tasman could not come ashore."
+    },
+    {
+      "phraseId": "p142",
+      "start": 525.03,
+      "end": 530.023,
+      "text": "In 1769, Captain James Cook sailed around New Zealand."
+    },
+    {
+      "phraseId": "p143",
+      "start": 530.594,
+      "end": 532.705,
+      "text": "He became friends with the Maori."
+    },
+    {
+      "phraseId": "p144",
+      "start": 533.256,
+      "end": 536.628,
+      "text": "Captain Cook's successful exploration and mapping."
+    },
+    {
+      "phraseId": "p145",
+      "start": 537.762,
+      "end": 541.714,
+      "text": "Page 9 of the islands led other explorers there."
+    },
+    {
+      "phraseId": "p146",
+      "start": 541.944,
+      "end": 547.456,
+      "text": "By the late 1700s, explorers from other European countries had come to New Zealand."
+    },
+    {
+      "phraseId": "p147",
+      "start": 548.107,
+      "end": 558.682,
+      "text": "They set up colonies to trade natural resources, such as flax and wood, and to hunt whales and... Page 10. Seals."
+    },
+    {
+      "phraseId": "p151",
+      "start": 559.392,
+      "end": 562.404,
+      "text": "New Zealand became successful and profitable."
+    },
+    {
+      "phraseId": "p152",
+      "start": 562.894,
+      "end": 566.546,
+      "text": "For this reason, the British wanted to annex New Zealand."
+    },
+    {
+      "phraseId": "p153",
+      "start": 566.905,
+      "end": 572.238,
+      "text": "British officials signed the Treaty of Waitangi with the Mori in 1840."
+    },
+    {
+      "phraseId": "p154",
+      "start": 572.708,
+      "end": 575.66,
+      "text": "It made England's monarch the ruler of New Zealand."
+    },
+    {
+      "phraseId": "p155",
+      "start": 576.21,
+      "end": 580.643,
+      "text": "The few Mori who signed the treaty did not represent all of their people."
+    },
+    {
+      "phraseId": "p156",
+      "start": 581.093,
+      "end": 585.125,
+      "text": "The Mori believed the land belonged to all, not to individuals."
+    },
+    {
+      "phraseId": "p157",
+      "start": 585.836,
+      "end": 590.048,
+      "text": "Many were upset that the British settlers were taking land for themselves."
+    },
+    {
+      "phraseId": "p158",
+      "start": 590.857,
+      "end": 597.132,
+      "text": "In 1845, Mori chief Honi Heki led an uprising against the settlers."
+    },
+    {
+      "phraseId": "p159",
+      "start": 597.463,
+      "end": 599.615,
+      "text": "This started the Mori Wars."
+    },
+    {
+      "phraseId": "p160",
+      "start": 600.226,
+      "end": 602.697,
+      "text": "The British won in 1846,"
+    },
+    {
+      "phraseId": "p161",
+      "start": 603.749,
+      "end": 607.081,
+      "text": "but in 1860, war broke out again."
+    },
+    {
+      "phraseId": "p162",
+      "start": 607.732,
+      "end": 615.969,
+      "text": "The fighting continued until 1872, when a new Mori chief, Tekuti Rikirangi, retreated."
+    },
+    {
+      "phraseId": "p163",
+      "start": 616.625,
+      "end": 623.499,
+      "text": "The Maori and their culture were in danger of. Page 11. Extinction."
+    },
+    {
+      "phraseId": "p166",
+      "start": 624.109,
+      "end": 627.681,
+      "text": "The government had given away much of their land during the wars."
+    },
+    {
+      "phraseId": "p167",
+      "start": 628.372,
+      "end": 632.364,
+      "text": "And diseases introduced by the Europeans killed many people."
+    },
+    {
+      "phraseId": "p168",
+      "start": 632.834,
+      "end": 640.44,
+      "text": "Meanwhile, New Zealand continued to grow. Page 12. and prosper."
+    },
+    {
+      "phraseId": "p171",
+      "start": 640.991,
+      "end": 643.902,
+      "text": "Thousands of European settlers had moved there."
+    },
+    {
+      "phraseId": "p172",
+      "start": 644.493,
+      "end": 648.685,
+      "text": "In 1907, New Zealand became a self-governing country."
+    },
+    {
+      "phraseId": "p173",
+      "start": 649.115,
+      "end": 654.047,
+      "text": "New Zealanders aided the British during the South African War and World War I."
+    },
+    {
+      "phraseId": "p174",
+      "start": 654.598,
+      "end": 657.129,
+      "text": "Many soldiers lost their lives in battle."
+    },
+    {
+      "phraseId": "p175",
+      "start": 657.679,
+      "end": 662.892,
+      "text": "During this time, page 13, however,"
+    },
+    {
+      "phraseId": "p178",
+      "start": 663.442,
+      "end": 667.114,
+      "text": "many New Zealanders developed a sense of pride in their country."
+    },
+    {
+      "phraseId": "p179",
+      "start": 667.851,
+      "end": 671.823,
+      "text": "During World War II, New Zealand supplied food to Britain."
+    },
+    {
+      "phraseId": "p180",
+      "start": 672.393,
+      "end": 675.565,
+      "text": "And once again, its soldiers fought bravely."
+    },
+    {
+      "phraseId": "p181",
+      "start": 676.175,
+      "end": 682.148,
+      "text": "After the war, the United States, Australia, and New Zealand signed the ANZUS Treaty."
+    },
+    {
+      "phraseId": "p182",
+      "start": 682.939,
+      "end": 688.651,
+      "text": "It formed an alliance between the countries to protect the South Pacific from future aggression."
+    },
+    {
+      "phraseId": "p184",
+      "start": 689.402,
+      "end": 695.335,
+      "text": "Then, in 1985, New Zealand signed the Treaty of Rear Tonga."
+    },
+    {
+      "phraseId": "p185",
+      "start": 695.943,
+      "end": 699.195,
+      "text": "It created the South Pacific Nuclear Free Zone."
+    },
+    {
+      "phraseId": "p186",
+      "start": 700.066,
+      "end": 705.14,
+      "text": "After this, New Zealand would not let nuclear-powered watercraft into its waters."
+    },
+    {
+      "phraseId": "p187",
+      "start": 705.831,
+      "end": 710.605,
+      "text": "So in 1986, the United States ended the ANZUS Treaty."
+    },
+    {
+      "phraseId": "p188",
+      "start": 711.035,
+      "end": 716.309,
+      "text": "Today, New Zealand's government continues to work to improve conditions for its people."
+    },
+    {
+      "phraseId": "p189",
+      "start": 716.96,
+      "end": 720.293,
+      "text": "It's trying to repay the Maori for past injustices."
+    },
+    {
+      "phraseId": "p190",
+      "start": 721.12,
+      "end": 725.272,
+      "text": "and New Zealand is increasing its participation in the world market."
+    },
+    {
+      "phraseId": "p191",
+      "start": 725.822,
+      "end": 730.374,
+      "text": "The country's people are working together to make New Zealand a great place to work"
+    },
+    {
+      "phraseId": "p192",
+      "start": 730.224,
+      "end": 736.557,
+      "text": "and live for everyone. Page 14. Island Nation."
+    },
+    {
+      "phraseId": "p195",
+      "start": 737.407,
+      "end": 740.859,
+      "text": "New Zealand is an island nation in the southern hemisphere."
+    },
+    {
+      "phraseId": "p196",
+      "start": 741.45,
+      "end": 746.283,
+      "text": "The country's land is made up of three large islands and many smaller islands."
+    },
+    {
+      "phraseId": "p197",
+      "start": 747.073,
+      "end": 755.048,
+      "text": "New Zealand's nearest neighbor is Australia, located about 1,000 miles, or 1,600 kilometers, away."
+    },
+    {
+      "phraseId": "p199",
+      "start": 755.599,
+      "end": 758.29,
+      "text": "North Island has a dramatic landscape."
+    },
+    {
+      "phraseId": "p200",
+      "start": 758.681,
+      "end": 762.313,
+      "text": "In the center of the island is an area of active volcanoes."
+    },
+    {
+      "phraseId": "p201",
+      "start": 762.978,
+      "end": 765.669,
+      "text": "This area also has many lakes."
+    },
+    {
+      "phraseId": "p202",
+      "start": 766.16,
+      "end": 768.531,
+      "text": "The largest is Lake Tapo."
+    },
+    {
+      "phraseId": "p203",
+      "start": 769.242,
+      "end": 772.413,
+      "text": "North of the volcanoes are limestone caves."
+    },
+    {
+      "phraseId": "p204",
+      "start": 772.984,
+      "end": 776.736,
+      "text": "They are called the Waitoma."
+    },
+    {
+      "phraseId": "p205",
+      "start": 777.326,
+      "end": 779.657,
+      "text": "Farther north is a thermal region."
+    },
+    {
+      "phraseId": "p206",
+      "start": 779.747,
+      "end": 787.861,
+      "text": "This area has geysers and hot springs. Page 15. Page 16."
+    },
+    {
+      "phraseId": "p209",
+      "start": 788.232,
+      "end": 792.145,
+      "text": "Cook Strait separates North Island and South Island."
+    },
+    {
+      "phraseId": "p210",
+      "start": 792.636,
+      "end": 795.828,
+      "text": "South Island is New Zealand's largest island."
+    },
+    {
+      "phraseId": "p211",
+      "start": 796.419,
+      "end": 798.951,
+      "text": "New Zealanders call it the mainland."
+    },
+    {
+      "phraseId": "p212",
+      "start": 799.542,
+      "end": 802.855,
+      "text": "The Southern Alps run along this island's west coast."
+    },
+    {
+      "phraseId": "p213",
+      "start": 803.326,
+      "end": 806.998,
+      "text": "They contain Mount Cook, the nation's highest peak."
+    },
+    {
+      "phraseId": "p214",
+      "start": 807.489,
+      "end": 810.241,
+      "text": "East of the Southern Alps is a wide plain."
+    },
+    {
+      "phraseId": "p215",
+      "start": 810.808,
+      "end": 813.121,
+      "text": "It is called Canterbury Plains."
+    },
+    {
+      "phraseId": "p216",
+      "start": 813.873,
+      "end": 818.388,
+      "text": "South of the mountains and plains, fjords lead into Fova Strait."
+    },
+    {
+      "phraseId": "p217",
+      "start": 818.962,
+      "end": 822.094,
+      "text": "Across Fovea Strait is Stewart Island."
+    },
+    {
+      "phraseId": "p218",
+      "start": 822.745,
+      "end": 824.535,
+      "text": "It is hilly and wooded."
+    },
+    {
+      "phraseId": "p219",
+      "start": 824.966,
+      "end": 828.018,
+      "text": "The island has inlets, ports and bays."
+    },
+    {
+      "phraseId": "p220",
+      "start": 828.588,
+      "end": 833.742,
+      "text": "The island's Half Moon Bay is the southernmost place in New Zealand where people live."
+    },
+    {
+      "phraseId": "p222",
+      "start": 834.352,
+      "end": 837.524,
+      "text": "New Zealand's rivers are short and swift."
+    },
+    {
+      "phraseId": "p223",
+      "start": 837.855,
+      "end": 842.687,
+      "text": "They are not good for navigation, but they do generate much of New Zealand's energy."
+    },
+    {
+      "phraseId": "p224",
+      "start": 843.198,
+      "end": 850.452,
+      "text": "The Waikato River is the longest at 264 miles or 425 kilometers long."
+    },
+    {
+      "phraseId": "p225",
+      "start": 850.962,
+      "end": 856.234,
+      "text": "Winds from the sea bring much rain to the country, but most falls west of the mountains."
+    },
+    {
+      "phraseId": "p226",
+      "start": 856.825,
+      "end": 866.039,
+      "text": "Because of New Zealand's location, its climate is mild year-round. Page 17. Page 18."
+    },
+    {
+      "phraseId": "p229",
+      "start": 866.65,
+      "end": 868.301,
+      "text": "Plants and Animals."
+    },
+    {
+      "phraseId": "p230",
+      "start": 869.01,
+      "end": 873.122,
+      "text": "New Zealand's varied landscape makes it home to many plants and animals."
+    },
+    {
+      "phraseId": "p231",
+      "start": 873.713,
+      "end": 878.946,
+      "text": "Because of the country's geographic isolation, some are found nowhere else on earth."
+    },
+    {
+      "phraseId": "p232",
+      "start": 879.677,
+      "end": 882.868,
+      "text": "Forests cover about one-fourth of New Zealand's land."
+    },
+    {
+      "phraseId": "p233",
+      "start": 883.279,
+      "end": 885.47,
+      "text": "Beach is the most common tree."
+    },
+    {
+      "phraseId": "p234",
+      "start": 885.861,
+      "end": 889.453,
+      "text": "Rimu is a hardwood tree that grows very slowly."
+    },
+    {
+      "phraseId": "p235",
+      "start": 890.003,
+      "end": 895.786,
+      "text": "Rimu trees can live to be hundreds of years old. Page 19."
+    },
+    {
+      "phraseId": "p237",
+      "start": 896.597,
+      "end": 901.43,
+      "text": "Below the forest, in the lower elevations, grasses grow."
+    },
+    {
+      "phraseId": "p238",
+      "start": 902.021,
+      "end": 906.655,
+      "text": "Lizards, frogs, and bats are New Zealand's only indigenous animals."
+    },
+    {
+      "phraseId": "p239",
+      "start": 907.325,
+      "end": 911.639,
+      "text": "Other animals, such as cows, were brought to New Zealand from other countries."
+    },
+    {
+      "phraseId": "p240",
+      "start": 912.41,
+      "end": 918.044,
+      "text": "And while New Zealand is home to many kinds of animals, no snakes live there at all."
+    },
+    {
+      "phraseId": "p241",
+      "start": 918.529,
+      "end": 924.665,
+      "text": "More than 250 species of birds live in New Zealand, including the Kiwi and the Weka."
+    },
+    {
+      "phraseId": "p242",
+      "start": 925.296,
+      "end": 928.088,
+      "text": "The Kiwi is a small gray-brown bird."
+    },
+    {
+      "phraseId": "p243",
+      "start": 928.098,
+      "end": 930.53,
+      "text": "Its feathers are soft and hair-like."
+    },
+    {
+      "phraseId": "p244",
+      "start": 930.501,
+      "end": 933.193,
+      "text": "Its sleeps in burrows dug into the ground."
+    },
+    {
+      "phraseId": "p245",
+      "start": 934.324,
+      "end": 940.197,
+      "text": "Page 20 New Zealanders Most New Zealanders are of European descent."
+    },
+    {
+      "phraseId": "p246",
+      "start": 940.267,
+      "end": 942.298,
+      "text": "They are known as Pakaha."
+    },
+    {
+      "phraseId": "p247",
+      "start": 942.409,
+      "end": 945.42,
+      "text": "The second largest ethnic group is the Māori."
+    },
+    {
+      "phraseId": "p248",
+      "start": 945.55,
+      "end": 950.243,
+      "text": "There are also Asians, Pacific Islanders, and Indians in New Zealand."
+    },
+    {
+      "phraseId": "p249",
+      "start": 950.653,
+      "end": 953.624,
+      "text": "English and Maori are New Zealand's official languages."
+    },
+    {
+      "phraseId": "p250",
+      "start": 953.874,
+      "end": 956.584,
+      "text": "The country does not have an official religion."
+    },
+    {
+      "phraseId": "p251",
+      "start": 956.894,
+      "end": 960.785,
+      "text": "Most New Zealanders are Anglican, Presbyterian, or Catholic."
+    },
+    {
+      "phraseId": "p252",
+      "start": 961.055,
+      "end": 963.606,
+      "text": "Almost all New Zealanders live in cities."
+    },
+    {
+      "phraseId": "p253",
+      "start": 963.816,
+      "end": 965.586,
+      "text": "Most own a family home."
+    },
+    {
+      "phraseId": "p254",
+      "start": 965.816,
+      "end": 970.327,
+      "text": "These houses often have attached gardens. Opposite page."
+    },
+    {
+      "phraseId": "p256",
+      "start": 970.498,
+      "end": 979.939,
+      "text": "These Maori women are celebrating their culture through native clothing and dance. Page 21. Page 22."
+    },
+    {
+      "phraseId": "p259",
+      "start": 980.39,
+      "end": 984.062,
+      "text": "New Zealand's many immigrant groups have contributed to its food."
+    },
+    {
+      "phraseId": "p260",
+      "start": 984.392,
+      "end": 986.884,
+      "text": "The traditional dish is roast lamb."
+    },
+    {
+      "phraseId": "p261",
+      "start": 987.155,
+      "end": 992.308,
+      "text": "Many New Zealanders enjoy a traditional breakfast of eggs, meats, and potatoes before"
+    },
+    {
+      "phraseId": "p262",
+      "start": 991.898,
+      "end": 993.589,
+      "text": "heading to work or school."
+    },
+    {
+      "phraseId": "p263",
+      "start": 994.02,
+      "end": 997.952,
+      "text": "Children must attend school from age 6 to age 15."
+    },
+    {
+      "phraseId": "p264",
+      "start": 998.363,
+      "end": 1001.315,
+      "text": "Almost every New Zealander can read and write."
+    },
+    {
+      "phraseId": "p265",
+      "start": 1001.685,
+      "end": 1005.438,
+      "text": "Six years of primary school are followed by secondary school."
+    },
+    {
+      "phraseId": "p266",
+      "start": 1006.379,
+      "end": 1011.799,
+      "text": "After completing secondary school, students can attend one of New Zealand's seven universities."
+    },
+    {
+      "phraseId": "p268",
+      "start": 1017.857,
+      "end": 1022.188,
+      "text": "English, mori, hello, kiora."
+    },
+    {
+      "phraseId": "p269",
+      "start": 1022.778,
+      "end": 1033.33,
+      "text": "English, goodbye, mori. Ahaidada. English, food, mori, kai."
+    },
+    {
+      "phraseId": "p273",
+      "start": 1034.181,
+      "end": 1054.949,
+      "text": "English, gift, mori, koha. English, children, mori, tamariki. English Visitor Mari Manohiri Page 24 Making Money"
+    },
+    {
+      "phraseId": "p280",
+      "start": 1055.64,
+      "end": 1058.511,
+      "text": "Most New Zealanders work in the service industry."
+    },
+    {
+      "phraseId": "p281",
+      "start": 1059.062,
+      "end": 1062.074,
+      "text": "Some work in community and social service jobs."
+    },
+    {
+      "phraseId": "p282",
+      "start": 1062.752,
+      "end": 1067.185,
+      "text": "Others work in banking and finance, insurance and real estate."
+    },
+    {
+      "phraseId": "p283",
+      "start": 1067.676,
+      "end": 1072.01,
+      "text": "Hotel and restaurant workers contribute to the nation's growing tourist industry."
+    },
+    {
+      "phraseId": "p284",
+      "start": 1072.52,
+      "end": 1076.513,
+      "text": "New Zealanders who work in manufacturing make domestic products."
+    },
+    {
+      "phraseId": "p285",
+      "start": 1077.204,
+      "end": 1082.839,
+      "text": "These products include processed foods, cars, furniture and electronics."
+    },
+    {
+      "phraseId": "p286",
+      "start": 1083.73,
+      "end": 1087.803,
+      "text": "New Zealand has to import the raw materials it needs to make products."
+    },
+    {
+      "phraseId": "p287",
+      "start": 1088.531,
+      "end": 1090.983,
+      "text": "so manufacturing is expensive."
+    },
+    {
+      "phraseId": "p288",
+      "start": 1091.713,
+      "end": 1094.525,
+      "text": "New Zealanders mine petroleum and coal."
+    },
+    {
+      "phraseId": "p289",
+      "start": 1095.196,
+      "end": 1099.009,
+      "text": "Most of these resources are used domestically to produce energy."
+    },
+    {
+      "phraseId": "p290",
+      "start": 1099.74,
+      "end": 1101.671,
+      "text": "Some are sent to other countries."
+    },
+    {
+      "phraseId": "p291",
+      "start": 1102.221,
+      "end": 1110.097,
+      "text": "Hydropower and geothermal energy. Page 25. Page 26."
+    },
+    {
+      "phraseId": "p294",
+      "start": 1110.848,
+      "end": 1113.42,
+      "text": "Provide most of New Zealand's electricity."
+    },
+    {
+      "phraseId": "p295",
+      "start": 1114.07,
+      "end": 1117.503,
+      "text": "Gold and iron are also important mining products."
+    },
+    {
+      "phraseId": "p296",
+      "start": 1118.291,
+      "end": 1121.823,
+      "text": "Agriculture employs the least amount of New Zealanders,"
+    },
+    {
+      "phraseId": "p297",
+      "start": 1122.473,
+      "end": 1125.545,
+      "text": "but its products are the country's chief exports."
+    },
+    {
+      "phraseId": "p298",
+      "start": 1126.315,
+      "end": 1130.848,
+      "text": "Farmers raise sheep for butter, meat, wool, and cheese."
+    },
+    {
+      "phraseId": "p299",
+      "start": 1131.398,
+      "end": 1135.13,
+      "text": "They also grow wheat, apples, corn, and potatoes."
+    },
+    {
+      "phraseId": "p300",
+      "start": 1135.868,
+      "end": 1140.139,
+      "text": "New Zealand is the world's largest producer of kiwi fruit and lamb."
+    },
+    {
+      "phraseId": "p301",
+      "start": 1140.79,
+      "end": 1143.841,
+      "text": "It is the world's second largest producer of wool."
+    },
+    {
+      "phraseId": "p302",
+      "start": 1144.671,
+      "end": 1146.742,
+      "text": "Loggers harvest many trees."
+    },
+    {
+      "phraseId": "p303",
+      "start": 1147.332,
+      "end": 1151.044,
+      "text": "This activity has depleted much of New Zealand's native forests."
+    },
+    {
+      "phraseId": "p304",
+      "start": 1151.774,
+      "end": 1155.285,
+      "text": "Now, imported trees make up most of the harvest."
+    },
+    {
+      "phraseId": "p305",
+      "start": 1155.876,
+      "end": 1168.769,
+      "text": "New Zealanders who work in this industry manufacture pulp, paper, timber, and other wood products. Page 27. Page 28. Cities."
+    },
+    {
+      "phraseId": "p310",
+      "start": 1169.601,
+      "end": 1172.154,
+      "text": "Auckland is New Zealand's largest city."
+    },
+    {
+      "phraseId": "p311",
+      "start": 1172.906,
+      "end": 1175.099,
+      "text": "About one million people live there."
+    },
+    {
+      "phraseId": "p312",
+      "start": 1175.851,
+      "end": 1178.465,
+      "text": "The city was built on North Island in 1840."
+    },
+    {
+      "phraseId": "p313",
+      "start": 1179.963,
+      "end": 1183.515,
+      "text": "It was New Zealand's capital until 1865."
+    },
+    {
+      "phraseId": "p314",
+      "start": 1184.246,
+      "end": 1189.298,
+      "text": "Auckland is on an isthmus between the Tasman Sea and the Pacific Ocean."
+    },
+    {
+      "phraseId": "p315",
+      "start": 1189.929,
+      "end": 1193.641,
+      "text": "This makes it a major port and center of trade and shipping."
+    },
+    {
+      "phraseId": "p316",
+      "start": 1194.311,
+      "end": 1198.904,
+      "text": "Its manufactured goods include clothing, cars, and processed foods."
+    },
+    {
+      "phraseId": "p317",
+      "start": 1200.01,
+      "end": 1203.103,
+      "text": "Wellington became the nation's capital in 1865."
+    },
+    {
+      "phraseId": "p318",
+      "start": 1202.794,
+      "end": 1210.252,
+      "text": "It is on North Island too."
+    },
+    {
+      "phraseId": "p319",
+      "start": 1211.024,
+      "end": 1214.157,
+      "text": "The nation's parliament and government offices are there."
+    },
+    {
+      "phraseId": "p320",
+      "start": 1214.789,
+      "end": 1217.141,
+      "text": "Mount Victoria is the city center."
+    },
+    {
+      "phraseId": "p321",
+      "start": 1217.918,
+      "end": 1222.151,
+      "text": "Wellington is New Zealand's transportation and communication hub."
+    },
+    {
+      "phraseId": "p322",
+      "start": 1222.662,
+      "end": 1224.953,
+      "text": "Many goods are shipped through its harbor."
+    },
+    {
+      "phraseId": "p323",
+      "start": 1225.424,
+      "end": 1230.498,
+      "text": "The city's manufactured goods include clothing, transportation parts, chemicals,"
+    },
+    {
+      "phraseId": "p324",
+      "start": 1230.248,
+      "end": 1231.759,
+      "text": "and processed foods."
+    },
+    {
+      "phraseId": "p325",
+      "start": 1232.33,
+      "end": 1235.282,
+      "text": "Christchurch is another large city in New Zealand."
+    },
+    {
+      "phraseId": "p326",
+      "start": 1235.893,
+      "end": 1238.965,
+      "text": "It was built on South Island in 1850. It"
+    },
+    {
+      "phraseId": "p328",
+      "start": 1239.776,
+      "end": 1242.428,
+      "text": "is one of the nation's centers of education."
+    },
+    {
+      "phraseId": "p329",
+      "start": 1243.119,
+      "end": 1252.031,
+      "text": "Products from the city include clothing, carpet, rubber, and wood. Page 30. Transportation."
+    },
+    {
+      "phraseId": "p332",
+      "start": 1252.642,
+      "end": 1259.075,
+      "text": "The country has more than 57,000 miles, or 92,000 kilometers, of roads."
+    },
+    {
+      "phraseId": "p333",
+      "start": 1259.805,
+      "end": 1262.336,
+      "text": "Most of New Zealand's families own a car."
+    },
+    {
+      "phraseId": "p334",
+      "start": 1262.847,
+      "end": 1265.338,
+      "text": "This is the most popular way to get around."
+    },
+    {
+      "phraseId": "p335",
+      "start": 1265.848,
+      "end": 1268.479,
+      "text": "New Zealanders can travel in other ways too."
+    },
+    {
+      "phraseId": "p336",
+      "start": 1269.13,
+      "end": 1272.721,
+      "text": "Bus service links all of the country's major cities and towns."
+    },
+    {
+      "phraseId": "p337",
+      "start": 1273.412,
+      "end": 1275.963,
+      "text": "These cities are also linked by rail."
+    },
+    {
+      "phraseId": "p338",
+      "start": 1276.482,
+      "end": 1280.114,
+      "text": "The nation's leading international airport is in Auckland."
+    },
+    {
+      "phraseId": "p339",
+      "start": 1280.745,
+      "end": 1284.837,
+      "text": "There are also international airports in Wellington and Christchurch."
+    },
+    {
+      "phraseId": "p340",
+      "start": 1285.588,
+      "end": 1288.739,
+      "text": "Air New Zealand is the country's biggest air carrier."
+    },
+    {
+      "phraseId": "p341",
+      "start": 1289.31,
+      "end": 1292.001,
+      "text": "Auckland and Wellington have busy shipping ports."
+    },
+    {
+      "phraseId": "p342",
+      "start": 1292.852,
+      "end": 1297.325,
+      "text": "Most of the nation's imports and exports travel through these two waterways."
+    },
+    {
+      "phraseId": "p343",
+      "start": 1297.835,
+      "end": 1310.99,
+      "text": "Opposite page, cruise ships as well as many other boats can be found docked at Wellington's harbor. Page 31. Page 32. Government."
+    },
+    {
+      "phraseId": "p348",
+      "start": 1311.841,
+      "end": 1314.514,
+      "text": "New Zealand is a parliamentary democracy."
+    },
+    {
+      "phraseId": "p349",
+      "start": 1315.065,
+      "end": 1318.257,
+      "text": "Great Britain's monarch is also New Zealand sovereign."
+    },
+    {
+      "phraseId": "p350",
+      "start": 1318.788,
+      "end": 1322.602,
+      "text": "The monarch appoints a governor general to represent the monarchy."
+    },
+    {
+      "phraseId": "p351",
+      "start": 1323.124,
+      "end": 1326.736,
+      "text": "The governor general then serves as New Zealand's head of state."
+    },
+    {
+      "phraseId": "p352",
+      "start": 1327.407,
+      "end": 1330.679,
+      "text": "New Zealand's legislature is a one-house parliament."
+    },
+    {
+      "phraseId": "p353",
+      "start": 1330.85,
+      "end": 1333.541,
+      "text": "It is called the House of Representatives."
+    },
+    {
+      "phraseId": "p354",
+      "start": 1334.312,
+      "end": 1338.805,
+      "text": "There are 120 representatives elected to serve three-year terms."
+    },
+    {
+      "phraseId": "p355",
+      "start": 1339.456,
+      "end": 1343.068,
+      "text": "Maori representatives must hold at least five of these seats."
+    },
+    {
+      "phraseId": "p356",
+      "start": 1343.699,
+      "end": 1346.631,
+      "text": "The head of New Zealand's government is the prime minister."
+    },
+    {
+      "phraseId": "p357",
+      "start": 1346.901,
+      "end": 1350.774,
+      "text": "He or she is the leader of the majority party in parliament."
+    },
+    {
+      "phraseId": "p358",
+      "start": 1351.407,
+      "end": 1358.723,
+      "text": "The Prime Minister recommends a cabinet which is appointed by the Governor General. Page 33."
+    },
+    {
+      "phraseId": "p360",
+      "start": 1359.334,
+      "end": 1362.446,
+      "text": "The Privy Council is the nation's highest court."
+    },
+    {
+      "phraseId": "p361",
+      "start": 1363.057,
+      "end": 1365.489,
+      "text": "It is located in the United Kingdom."
+    },
+    {
+      "phraseId": "p362",
+      "start": 1366.18,
+      "end": 1368.411,
+      "text": "There is also a High Court."
+    },
+    {
+      "phraseId": "p363",
+      "start": 1368.982,
+      "end": 1373.896,
+      "text": "Citizens in each of the nation's 14 regions elect a representative council."
+    },
+    {
+      "phraseId": "p364",
+      "start": 1374.567,
+      "end": 1376.919,
+      "text": "Each region is divided into cities."
+    },
+    {
+      "phraseId": "p365",
+      "start": 1377.623,
+      "end": 1386.356,
+      "text": "Citizens in each city elect a council, which is headed by a mayor. Page 34 Celebrate"
+    },
+    {
+      "phraseId": "p368",
+      "start": 1386.907,
+      "end": 1389.577,
+      "text": "New Zealanders celebrate many holidays."
+    },
+    {
+      "phraseId": "p369",
+      "start": 1390.228,
+      "end": 1395.239,
+      "text": "Some holidays, such as Christmas Day or Labor Day, are similar to those celebrated"
+    },
+    {
+      "phraseId": "p370",
+      "start": 1394.93,
+      "end": 1396.34,
+      "text": "in other countries."
+    },
+    {
+      "phraseId": "p371",
+      "start": 1396.79,
+      "end": 1401.302,
+      "text": "But, New Zealanders also have holidays that are unique to their culture."
+    },
+    {
+      "phraseId": "p372",
+      "start": 1401.694,
+      "end": 1405.827,
+      "text": "For example, February 6th is Waitangi Day."
+    },
+    {
+      "phraseId": "p373",
+      "start": 1406.058,
+      "end": 1409.711,
+      "text": "This holiday celebrates the signing of the Treaty of Waitangi."
+    },
+    {
+      "phraseId": "p374",
+      "start": 1410.302,
+      "end": 1413.314,
+      "text": "But many Maori do not celebrate this holiday."
+    },
+    {
+      "phraseId": "p375",
+      "start": 1414.025,
+      "end": 1417.738,
+      "text": "They are protesting the damage this treaty has done to their culture."
+    },
+    {
+      "phraseId": "p376",
+      "start": 1418.188,
+      "end": 1421.301,
+      "text": "New Zealanders also honor their brave soldiers."
+    },
+    {
+      "phraseId": "p377",
+      "start": 1422.147,
+      "end": 1427.419,
+      "text": "During World War I, New Zealand and Australia formed the Australian and New Zealand"
+    },
+    {
+      "phraseId": "p378",
+      "start": 1427.089,
+      "end": 1429.1,
+      "text": "Army Corps, ANZAC."
+    },
+    {
+      "phraseId": "p379",
+      "start": 1429.29,
+      "end": 1433.542,
+      "text": "Today, ANZAC Day is celebrated on April 25th."
+    },
+    {
+      "phraseId": "p380",
+      "start": 1433.592,
+      "end": 1436.703,
+      "text": "It commemorates all the soldiers who died in war."
+    },
+    {
+      "phraseId": "p381",
+      "start": 1437.154,
+      "end": 1448.808,
+      "text": "It also honors all of the men and women who have served in war. Page 35. Page 36. Leisure time."
+    },
+    {
+      "phraseId": "p385",
+      "start": 1449.399,
+      "end": 1451.97,
+      "text": "New Zealanders have many ways to relax."
+    },
+    {
+      "phraseId": "p386",
+      "start": 1452.574,
+      "end": 1457.308,
+      "text": "One of the most popular is participating in or watching sporting events."
+    },
+    {
+      "phraseId": "p387",
+      "start": 1457.959,
+      "end": 1460.832,
+      "text": "Rugby is the nation's most popular sport."
+    },
+    {
+      "phraseId": "p388",
+      "start": 1461.222,
+      "end": 1464.315,
+      "text": "The All Blacks is New Zealand's national team."
+    },
+    {
+      "phraseId": "p389",
+      "start": 1464.806,
+      "end": 1468.339,
+      "text": "Many of the team's matches are played in Auckland's Eden Park."
+    },
+    {
+      "phraseId": "p390",
+      "start": 1469.01,
+      "end": 1477.173,
+      "text": "New Zealand also has many national parks and each offers unique recreation options. Page 37."
+    },
+    {
+      "phraseId": "p392",
+      "start": 1477.804,
+      "end": 1481.535,
+      "text": "Tongariro National Park has three active volcanoes."
+    },
+    {
+      "phraseId": "p393",
+      "start": 1482.205,
+      "end": 1487.496,
+      "text": "They are Tongariro, Ngaruho, and Ruapihu."
+    },
+    {
+      "phraseId": "p394",
+      "start": 1488.167,
+      "end": 1491.697,
+      "text": "Other parks offer skiing, hiking, and mountain climbing."
+    },
+    {
+      "phraseId": "p395",
+      "start": 1492.168,
+      "end": 1495.839,
+      "text": "New Zealand is a beautiful country with many natural resources."
+    },
+    {
+      "phraseId": "p396",
+      "start": 1496.609,
+      "end": 1500.52,
+      "text": "Its diverse population has come together to create a rich culture."
+    },
+    {
+      "phraseId": "p397",
+      "start": 1501.182,
+      "end": 1505.715,
+      "text": "New Zealanders are working together to preserve this culture and to keep New Zealand"
+    },
+    {
+      "phraseId": "p398",
+      "start": 1505.325,
+      "end": 1507.596,
+      "text": "a great place to visit and live."
+    },
+    {
+      "phraseId": "p399",
+      "start": 1508.727,
+      "end": 1511.999,
+      "text": "Page 38 Glossary"
+    },
+    {
+      "phraseId": "p400",
+      "start": 1512.63,
+      "end": 1519.025,
+      "text": "Aggression Displaying forceful or hostile actions Alliance"
+    },
+    {
+      "phraseId": "p402",
+      "start": 1519.535,
+      "end": 1523.688,
+      "text": "People, groups, or nations join together for a common cause."
+    },
+    {
+      "phraseId": "p403",
+      "start": 1524.661,
+      "end": 1528.492,
+      "text": "Annex, to take land and add it to a nation."
+    },
+    {
+      "phraseId": "p404",
+      "start": 1529.202,
+      "end": 1532.213,
+      "text": "Commemorate, to honor the memory of."
+    },
+    {
+      "phraseId": "p405",
+      "start": 1533.023,
+      "end": 1538.995,
+      "text": "Culture, the customs, arts, and tools of a nation or people at a certain time."
+    },
+    {
+      "phraseId": "p406",
+      "start": 1539.625,
+      "end": 1543.296,
+      "text": "Deplete, to empty of a main substance."
+    },
+    {
+      "phraseId": "p407",
+      "start": 1544.066,
+      "end": 1549.838,
+      "text": "Descendant, a person who comes from a particular ancestor or group of ancestors."
+    },
+    {
+      "phraseId": "p408",
+      "start": 1550.568,
+      "end": 1555.219,
+      "text": "Diverse, composed of several distinct pieces or qualities."
+    },
+    {
+      "phraseId": "p409",
+      "start": 1556.169,
+      "end": 1558.18,
+      "text": "Dutch East India Company,"
+    },
+    {
+      "phraseId": "p410",
+      "start": 1558.75,
+      "end": 1563.561,
+      "text": "a company formed to expand Dutch trade and maintain close contact between the Dutch"
+    },
+    {
+      "phraseId": "p411",
+      "start": 1563.171,
+      "end": 1565.401,
+      "text": "government and its colonies."
+    },
+    {
+      "phraseId": "p412",
+      "start": 1566.051,
+      "end": 1573.003,
+      "text": "Ethnic, of or having to do with a group of people who have the same race, nationality or culture."
+    },
+    {
+      "phraseId": "p414",
+      "start": 1573.66,
+      "end": 1579.835,
+      "text": "Fjord, a long, narrow, and deep inlet of a sea between two steep slopes."
+    },
+    {
+      "phraseId": "p415",
+      "start": 1580.626,
+      "end": 1584.198,
+      "text": "Flax, a fiber from the stem of a plant."
+    },
+    {
+      "phraseId": "p416",
+      "start": 1584.909,
+      "end": 1589.082,
+      "text": "Geothermal, using the heat of the Earth's interior."
+    },
+    {
+      "phraseId": "p417",
+      "start": 1589.813,
+      "end": 1595.487,
+      "text": "Geyser, a natural hot spring from which steam and hot water shoot into the air."
+    },
+    {
+      "phraseId": "p418",
+      "start": 1596.178,
+      "end": 1603.373,
+      "text": "Hemisphere, one half of earth. Page 39. Hydropower."
+    },
+    {
+      "phraseId": "p421",
+      "start": 1603.683,
+      "end": 1608.654,
+      "text": "Electricity produced by water powered generators. Immigration."
+    },
+    {
+      "phraseId": "p423",
+      "start": 1608.885,
+      "end": 1611.355,
+      "text": "Entry into another country to live."
+    },
+    {
+      "phraseId": "p424",
+      "start": 1611.905,
+      "end": 1616.537,
+      "text": "A person who immigrates is called an immigrant. Indigenous."
+    },
+    {
+      "phraseId": "p426",
+      "start": 1616.787,
+      "end": 1622.426,
+      "text": "Having originated in a particular region or environment. Isolated."
+    },
+    {
+      "phraseId": "p428",
+      "start": 1622.716,
+      "end": 1626.61,
+      "text": "To be separated from something. Isthmus."
+    },
+    {
+      "phraseId": "p430",
+      "start": 1626.981,
+      "end": 1632.656,
+      "text": "A narrow strip of land connecting two larger land areas. Nuclear."
+    },
+    {
+      "phraseId": "p432",
+      "start": 1633.207,
+      "end": 1639.242,
+      "text": "Of or relating to the energy created when atoms are divided or combined. Parliament."
+    },
+    {
+      "phraseId": "p434",
+      "start": 1639.573,
+      "end": 1645.411,
+      "text": "The highest lawmaking body of some governments. Parliamentary democracy. A"
+    },
+    {
+      "phraseId": "p437",
+      "start": 1645.983,
+      "end": 1650.68,
+      "text": "form of government in which the decisions of the nation are made by the people through"
+    },
+    {
+      "phraseId": "p438",
+      "start": 1650.27,
+      "end": 1653.665,
+      "text": "the elected parliament. Petroleum."
+    },
+    {
+      "phraseId": "p440",
+      "start": 1654.116,
+      "end": 1656.489,
+      "text": "A thick yellowish-black oil."
+    },
+    {
+      "phraseId": "p441",
+      "start": 1656.64,
+      "end": 1658.473,
+      "text": "It is used to make gasoline."
+    },
+    {
+      "phraseId": "p442",
+      "start": 1659.322,
+      "end": 1663.393,
+      "text": "Prime Minister, the highest ranked member of some governments."
+    },
+    {
+      "phraseId": "p443",
+      "start": 1664.284,
+      "end": 1669.415,
+      "text": "Pulp, a soft and moist mass of wood fibers used in making paper."
+    },
+    {
+      "phraseId": "p444",
+      "start": 1670.186,
+      "end": 1676.638,
+      "text": "Rugby, a form of football played with an oval ball by two 15 person teams."
+    },
+    {
+      "phraseId": "p445",
+      "start": 1677.468,
+      "end": 1682.822,
+      "text": "Sovereign, the supreme ruler of a monarchy, such as a king or queen."
+    },
+    {
+      "phraseId": "p446",
+      "start": 1683.672,
+      "end": 1686.964,
+      "text": "Unique, being the only one of its kind."
+    },
+    {
+      "phraseId": "p447",
+      "start": 1687.755,
+      "end": 1690.947,
+      "text": "Websites to learn more about New Zealand."
+    },
+    {
+      "phraseId": "p448",
+      "start": 1690.877,
+      "end": 1703.114,
+      "text": "Visit ABDO Publishing Company on the World Wide Web at www.abdopub.com."
+    },
+    {
+      "phraseId": "p449",
+      "start": 1703.704,
+      "end": 1707.796,
+      "text": "Websites about New Zealand are featured on our Book Links page."
+    },
+    {
+      "phraseId": "p450",
+      "start": 1708.267,
+      "end": 1720.343,
+      "text": "These links are routinely monitored and updated to provide the most current information available. Page 40. Index A. Animals."
+    },
+    {
+      "phraseId": "p455",
+      "start": 1720.393,
+      "end": 1727.992,
+      "text": "Pages 4, 9, 18, 19. ANZUS Treaty, page 13."
+    },
+    {
+      "phraseId": "p458",
+      "start": 1728.543,
+      "end": 1732.916,
+      "text": "Australia, pages 12, 14, 34."
+    },
+    {
+      "phraseId": "p459",
+      "start": 1733.827,
+      "end": 1737.92,
+      "text": "Australian and New Zealand Army Corps, page 34."
+    },
+    {
+      "phraseId": "p461",
+      "start": 1737.491,
+      "end": 1742.224,
+      "text": "C, cities, pages 20, 28, 29, 30, 33, 36."
+    },
+    {
+      "phraseId": "p464",
+      "start": 1741.794,
+      "end": 1743.665,
+      "text": "Climate, page 16."
+    },
+    {
+      "phraseId": "p465",
+      "start": 1752.61,
+      "end": 1755.642,
+      "text": "Cook, James, page 8."
+    },
+    {
+      "phraseId": "p466",
+      "start": 1756.493,
+      "end": 1762.527,
+      "text": "D, Dutch East India Company, page 8."
+    },
+    {
+      "phraseId": "p467",
+      "start": 1762.097,
+      "end": 1766.35,
+      "text": "E, Economy, pages 9, 13, 24, 26, 28, 29, 30."
+    },
+    {
+      "phraseId": "p468",
+      "start": 1765.96,
+      "end": 1767.491,
+      "text": "Education, pages 22, 29."
+    },
+    {
+      "phraseId": "p469",
+      "start": 1776.257,
+      "end": 1780.129,
+      "text": "England, page 10. F."
+    },
+    {
+      "phraseId": "p471",
+      "start": 1780.799,
+      "end": 1783.73,
+      "text": "Food, pages 12, 22, 24, 28, 29. G."
+    },
+    {
+      "phraseId": "p473",
+      "start": 1783.38,
+      "end": 1786.651,
+      "text": "Government, pages 4, 10, 11, 13, 28, 32, 33. Great Britain."
+    },
+    {
+      "phraseId": "p475",
+      "start": 1799.452,
+      "end": 1800.682,
+      "text": "pages 12, 32."
+    },
+    {
+      "phraseId": "p476",
+      "start": 1800.292,
+      "end": 1801.803,
+      "text": "H, history, pages 4, 8,"
+    },
+    {
+      "phraseId": "p477",
+      "start": 1802.593,
+      "end": 1804.624,
+      "text": "9, 10, 11, 12, 13."
+    },
+    {
+      "phraseId": "p478",
+      "start": 1804.194,
+      "end": 1806.024,
+      "text": "Holidays, page 34."
+    },
+    {
+      "phraseId": "p479",
+      "start": 1805.654,
+      "end": 1807.105,
+      "text": "Hane-Hecky, page 10."
+    },
+    {
+      "phraseId": "p480",
+      "start": 1807.055,
+      "end": 1824.176,
+      "text": "Housing, page 20. L. Land."
+    },
+    {
+      "phraseId": "p483",
+      "start": 1824.407,
+      "end": 1829.06,
+      "text": "Pages 4, 10, 14, 16, 18, 28, 36, 37. Languages. Page 20. M. Mori."
+    },
+    {
+      "phraseId": "p488",
+      "start": 1828.63,
+      "end": 1830.841,
+      "text": "Pages 4, 8, 10, 13, 20, 32, 34."
+    },
+    {
+      "phraseId": "p489",
+      "start": 1846.272,
+      "end": 1850.503,
+      "text": "Maury Wars, page 10. N,"
+    },
+    {
+      "phraseId": "p491",
+      "start": 1850.973,
+      "end": 1853.723,
+      "text": "National Parks, pages 36, 37."
+    },
+    {
+      "phraseId": "p492",
+      "start": 1853.293,
+      "end": 1855.384,
+      "text": "North Island, pages 14, 16, 28. P,"
+    },
+    {
+      "phraseId": "p494",
+      "start": 1856.214,
+      "end": 1858.904,
+      "text": "Pacific Ocean, pages 13, 28."
+    },
+    {
+      "phraseId": "p495",
+      "start": 1858.534,
+      "end": 1883.968,
+      "text": "Plants, pages 4, 18, 26. R. Rarotanga. Treaty of. Page 13. Religion. Page 20. S."
+    },
+    {
+      "phraseId": "p503",
+      "start": 1884.239,
+      "end": 1889.353,
+      "text": "South African War. Page 12. South Island."
+    },
+    {
+      "phraseId": "p506",
+      "start": 1889.584,
+      "end": 1892.676,
+      "text": "Pages 16, 29."
+    },
+    {
+      "phraseId": "p507",
+      "start": 1893.407,
+      "end": 1897.14,
+      "text": "South Pacific Nuclear Free Zone. Page 13."
+    },
+    {
+      "phraseId": "p509",
+      "start": 1898.692,
+      "end": 1902.765,
+      "text": "Sports, pages 36, 37."
+    },
+    {
+      "phraseId": "p510",
+      "start": 1903.576,
+      "end": 1906.388,
+      "text": "Stuart Island, page 16."
+    },
+    {
+      "phraseId": "p511",
+      "start": 1907.159,
+      "end": 1909.891,
+      "text": "T, Tasman, Able."
+    },
+    {
+      "phraseId": "p512",
+      "start": 1910.342,
+      "end": 1915.156,
+      "text": "Page 8, Tasman Sea, page 28."
+    },
+    {
+      "phraseId": "p514",
+      "start": 1916.287,
+      "end": 1919.74,
+      "text": "Tikuti Rikurangi, page 10."
+    },
+    {
+      "phraseId": "p515",
+      "start": 1920.39,
+      "end": 1927.1,
+      "text": "Transportation, pages 29, 30. U, 1."
+    },
+    {
+      "phraseId": "p518",
+      "start": 1926.67,
+      "end": 1965.463,
+      "text": "Who were the first people to come to New Zealand? Americans Polynesians Europeans"
+    },
+    {
+      "phraseId": "p522",
+      "start": 1966.173,
+      "end": 1980.725,
+      "text": "Who is New Zealand's closest neighbor? Australia United States China"
+    },
+    {
+      "phraseId": "p526",
+      "start": 1981.395,
+      "end": 1996.736,
+      "text": "What is the largest island in New Zealand? North Island B. Stuart Island C. South Island 4."
+    },
+    {
+      "phraseId": "p533",
+      "start": 1997.407,
+      "end": 2008.487,
+      "text": "What is the longest river in New Zealand? A. Waikato River B. Matoura River C."
+    },
+    {
+      "phraseId": "p539",
+      "start": 2009.118,
+      "end": 2010.328,
+      "text": "Clutha River 5."
+    },
+    {
+      "phraseId": "p540",
+      "start": 2013.362,
+      "end": 2028.123,
+      "text": "What is the most common tree found in New Zealand? A. Beach B. Pine C. Maple 6."
+    },
+    {
+      "phraseId": "p548",
+      "start": 2028.874,
+      "end": 2033.127,
+      "text": "What are the official languages of New Zealand? A."
+    },
+    {
+      "phraseId": "p550",
+      "start": 2033.917,
+      "end": 2037.21,
+      "text": "Spanish and English B."
+    },
+    {
+      "phraseId": "p552",
+      "start": 2037.96,
+      "end": 2041.083,
+      "text": "English and Maori c."
+    },
+    {
+      "phraseId": "p554",
+      "start": 2041.814,
+      "end": 2046.026,
+      "text": "Chinese and Japanese 7."
+    },
+    {
+      "phraseId": "p556",
+      "start": 2046.716,
+      "end": 2051.708,
+      "text": "New Zealand is the world's largest producer of what products? a."
+    },
+    {
+      "phraseId": "p558",
+      "start": 2052.439,
+      "end": 2055.39,
+      "text": "Apples and chickens b."
+    },
+    {
+      "phraseId": "p560",
+      "start": 2056.021,
+      "end": 2059.472,
+      "text": "Kiwi fruit and lamb c."
+    },
+    {
+      "phraseId": "p562",
+      "start": 2060.223,
+      "end": 2061.753,
+      "text": "Beans and hay 8."
+    },
+    {
+      "phraseId": "p563",
+      "start": 2064.725,
+      "end": 2078.76,
+      "text": "What is New Zealand's capital? a. Auckland B. Christchurch C. Wellington 9."
+    },
+    {
+      "phraseId": "p571",
+      "start": 2079.43,
+      "end": 2093.967,
+      "text": "What is the head of New Zealand's government called? A. Prime Minister B. Governor C. President 10."
+    },
+    {
+      "phraseId": "p579",
+      "start": 2094.577,
+      "end": 2106.247,
+      "text": "What is the most popular sport in New Zealand? A. Soccer B. Rugby C. Golf"
     }
   ]
 }
