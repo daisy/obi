@@ -49,7 +49,22 @@ namespace AudioTranscriber.Models
             get;
             set;
         } = string.Empty;
+
+        [JsonPropertyName("words")]
+        public List<WhisperXWord>
+            Words
+        {
+            get;
+            set;
+        } = new();
+
+        [JsonPropertyName("confidence")]
+        public double Confidence
+        {
+            get;
+            set;
+        }
     }
 
-   
+
 }

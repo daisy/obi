@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 using AudioTranscriber.Models;
@@ -168,8 +167,8 @@ namespace AudioTranscriber.Services
             foreach (var phrase
                 in result.Phrases)
             {
-                segments.Add(
-                    new TranscriptSegment
+                TranscriptSegment segment =
+                    new()
                     {
                         PhraseId =
                             phrase.PhraseId,
@@ -183,8 +182,33 @@ namespace AudioTranscriber.Services
 
                         End =
                             TimeSpan.FromSeconds(
-                                phrase.End)
-                    });
+                                phrase.End),
+
+                        Confidence =
+                             phrase.Confidence,
+                    };
+
+                foreach (var word
+                    in phrase.Words)
+                {
+                    segment.Words.Add(
+                        new WordTimestamp
+                        {
+                            Word =
+                                word.Word,
+
+                            Start =
+                                word.Start,
+
+                            End =
+                                word.End,
+
+                            Confidence =
+                                word.Confidence
+                        });
+                }
+
+                segments.Add(segment);
             }
 
             return segments;

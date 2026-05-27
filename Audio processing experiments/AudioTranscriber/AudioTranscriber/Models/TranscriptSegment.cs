@@ -31,5 +31,17 @@ namespace AudioTranscriber.Models
             get;
             set;
         }
+
+        public List<WordTimestamp> Words
+        {
+            get;
+            set;
+        } = new();
+
+        public double Confidence
+        {
+            get;
+            set;
+        }
     }
 }

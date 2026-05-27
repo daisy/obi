@@ -144,7 +144,7 @@ def flush_phrase():
     last_word = current_phrase[-1]
 
     # -----------------------------------------
-    # Adaptive timing expansion
+    # DAISY timing safety padding
     # -----------------------------------------
 
     start_padding = 0.20
@@ -165,18 +165,77 @@ def flush_phrase():
         w["word"]
         for w in current_phrase)
 
+    # -----------------------------------------
+    # Calculate phrase confidence
+    # -----------------------------------------
+
+    confidence_values = []
+
+    for w in current_phrase:
+
+        confidence_values.append(
+            w.get("score", 1.0))
+
+    phrase_confidence = (
+        sum(confidence_values) /
+        len(confidence_values))
+
+    # -----------------------------------------
+    # Build word timestamps
+    # -----------------------------------------
+
+    phrase_words = []
+
+    for w in current_phrase:
+
+        phrase_words.append({
+            "word":
+                w["word"],
+
+            "start":
+                round(
+                    w["start"],
+                    3),
+
+            "end":
+                round(
+                    w["end"],
+                    3),
+
+            "confidence":
+                round(
+                    w.get("score", 1.0),
+                    3)
+        })
+
+    # -----------------------------------------
+    # Add phrase
+    # -----------------------------------------
+
     phrases.append({
         "phraseId":
             f"p{len(phrases) + 1}",
 
         "start":
-            round(start_time, 3),
+            round(
+                start_time,
+                3),
 
         "end":
-            round(end_time, 3),
+            round(
+                end_time,
+                3),
 
         "text":
-            phrase_text
+            phrase_text,
+
+        "confidence":
+            round(
+                phrase_confidence,
+                3),
+
+        "words":
+            phrase_words
     })
 
     current_phrase = []
@@ -218,6 +277,9 @@ def merge_short_phrases(phrases):
             previous["end"] = (
                 current["end"])
 
+            previous["words"].extend(
+                current["words"])
+
         else:
             merged.append(current)
 
@@ -236,7 +298,7 @@ for i, word in enumerate(word_segments):
 
     # Break on punctuation
     if word["word"].endswith(
-        (".", "!", "?", "।")):
+        (".", "!", "?", "?")):
 
         should_break = True
 

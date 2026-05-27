@@ -1,90 +1,68 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using AudioTranscriber.Models;
 using System.Text;
-using System.Threading.Tasks;
-
-using AudioTranscriber.Models;
-using System.Security;
-
-namespace AudioTranscriber.Services
+public static class XhtmlExportService
 {
-    public static class XhtmlExportService
+    public static async Task SaveAsync(
+        List<TranscriptSegment> segments,
+        string outputPath)
     {
-        public static async Task SaveAsync(
-            List<TranscriptSegment> segments,
-            string outputPath)
+        StringBuilder sb =
+            new();
+
+        sb.AppendLine(
+            "<?xml version=\"1.0\" encoding=\"utf-8\"?>");
+
+        sb.AppendLine(
+            "<html xmlns=\"http://www.w3.org/1999/xhtml\">");
+
+        sb.AppendLine("<head>");
+
+        sb.AppendLine(
+            "<meta charset=\"utf-8\" />");
+
+        sb.AppendLine(
+            "<title>Transcript</title>");
+
+        sb.AppendLine("</head>");
+
+        sb.AppendLine("<body>");
+
+        foreach (var segment in segments)
         {
-            StringBuilder sb =
-                new();
-
             sb.AppendLine(
-                "<?xml version=\"1.0\" encoding=\"utf-8\"?>");
+                $"<p id=\"{segment.PhraseId}\" " +
+                $"class=\"phrase\" " +
+                $"data-start=\"{segment.Start.TotalSeconds:F3}\" " +
+                $"data-end=\"{segment.End.TotalSeconds:F3}\" " +
+                $"data-confidence=\"{segment.Confidence:F3}\">"
+            );
 
-            sb.AppendLine(
-                "<!DOCTYPE html>");
-
-            sb.AppendLine(
-                "<html xmlns=\"http://www.w3.org/1999/xhtml\">");
-
-            sb.AppendLine("<head>");
-
-            sb.AppendLine(
-                "<meta charset=\"utf-8\" />");
-
-            sb.AppendLine(
-                "<title>Transcript</title>");
-
-            sb.AppendLine("<style>");
-
-            sb.AppendLine(@"
-body
-{
-    font-family: Arial, sans-serif;
-    line-height: 1.6;
-    padding: 20px;
-}
-
-.phrase
-{
-    margin-bottom: 12px;
-}
-");
-
-            sb.AppendLine("</style>");
-
-            sb.AppendLine("</head>");
-
-            sb.AppendLine("<body>");
-
-            int counter = 1;
-
-            foreach (var segment
-                in segments)
+            foreach (var word in segment.Words)
             {
-                string safeText =
-                    SecurityElement.Escape(
-                        segment.Text);
+                sb.Append(
+                    $"<span class=\"word\" " +
+                    $"data-start=\"{word.Start:F3}\" " +
+                    $"data-end=\"{word.End:F3}\" " +
+                    $"data-confidence=\"{word.Confidence:F3}\">"
+                );
 
-                sb.AppendLine(
-                    $@"<p class=""phrase""
-    data-phraseid=""p{counter}""
-    data-start=""{segment.Start.TotalSeconds:F3}""
-    data-end=""{segment.End.TotalSeconds:F3}"">
-    {safeText}
-</p>");
+                sb.Append(
+                    System.Net.WebUtility.HtmlEncode(
+                        word.Word));
 
-                counter++;
+                sb.Append("</span> ");
             }
 
-            sb.AppendLine("</body>");
-
-            sb.AppendLine("</html>");
-
-            await File.WriteAllTextAsync(
-                outputPath,
-                sb.ToString(),
-                Encoding.UTF8);
+            sb.AppendLine("</p>");
         }
+
+        sb.AppendLine("</body>");
+
+        sb.AppendLine("</html>");
+
+        await File.WriteAllTextAsync(
+            outputPath,
+            sb.ToString(),
+            Encoding.UTF8);
     }
 }
