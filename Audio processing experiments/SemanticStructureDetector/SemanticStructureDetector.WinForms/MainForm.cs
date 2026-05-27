@@ -15,6 +15,8 @@ public partial class MainForm : Form
 
     private readonly SemanticXhtmlBuilder _builder;
 
+    private readonly StructurePostProcessor _postProcessor;
+
     public MainForm()
     {
         InitializeComponent();
@@ -35,6 +37,8 @@ public partial class MainForm : Form
 
         _builder =
             new SemanticXhtmlBuilder();
+
+        _postProcessor = new StructurePostProcessor();
     }
 
     //--------------------------------------------------
@@ -100,9 +104,24 @@ public partial class MainForm : Form
                 _parser.Parse(
                     txtInputFile.Text);
 
+
+            var semanticBuilder = new SemanticPhraseBuilder();
+
+            phrases =
+                semanticBuilder.Build(
+                    phrases);
+
+            var refinementService = new PhraseRefinementService();
+
+            phrases = refinementService.Refine(phrases);
+
             txtLog.AppendText(
                 $"Loaded {phrases.Count} phrases"
                 + Environment.NewLine);
+
+
+
+           
 
             //--------------------------------------------------
             // CHUNKING
@@ -169,6 +188,8 @@ public partial class MainForm : Form
 
             var allStructure =
                 structureMap.Values.ToList();
+
+            allStructure = _postProcessor.Process(phrases, allStructure);
 
             txtLog.AppendText(
                 $"Final structure items: " +

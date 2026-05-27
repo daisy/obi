@@ -3,20 +3,48 @@
   "WorkspaceRootPath": "E:\\Daisy .NET 9 Git\\obi\\Audio processing experiments\\SemanticStructureDetector\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{A6A8F1FD-D309-448D-8E88-FAB72D0CBB44}|SemanticStructureDetector.WinForms\\SemanticStructureDetector.WinForms.csproj|e:\\daisy .net 9 git\\obi\\audio processing experiments\\semanticstructuredetector\\semanticstructuredetector.winforms\\builders\\semanticxhtmlbuilder.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A6A8F1FD-D309-448D-8E88-FAB72D0CBB44}|SemanticStructureDetector.WinForms\\SemanticStructureDetector.WinForms.csproj|solutionrelative:semanticstructuredetector.winforms\\builders\\semanticxhtmlbuilder.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A6A8F1FD-D309-448D-8E88-FAB72D0CBB44}|SemanticStructureDetector.WinForms\\SemanticStructureDetector.WinForms.csproj|e:\\daisy .net 9 git\\obi\\audio processing experiments\\semanticstructuredetector\\semanticstructuredetector.winforms\\services\\structurepostprocessor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A6A8F1FD-D309-448D-8E88-FAB72D0CBB44}|SemanticStructureDetector.WinForms\\SemanticStructureDetector.WinForms.csproj|solutionrelative:semanticstructuredetector.winforms\\services\\structurepostprocessor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{A6A8F1FD-D309-448D-8E88-FAB72D0CBB44}|SemanticStructureDetector.WinForms\\SemanticStructureDetector.WinForms.csproj|e:\\daisy .net 9 git\\obi\\audio processing experiments\\semanticstructuredetector\\semanticstructuredetector.winforms\\services\\openaistructureservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{A6A8F1FD-D309-448D-8E88-FAB72D0CBB44}|SemanticStructureDetector.WinForms\\SemanticStructureDetector.WinForms.csproj|solutionrelative:semanticstructuredetector.winforms\\services\\openaistructureservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A6A8F1FD-D309-448D-8E88-FAB72D0CBB44}|SemanticStructureDetector.WinForms\\SemanticStructureDetector.WinForms.csproj|e:\\daisy .net 9 git\\obi\\audio processing experiments\\semanticstructuredetector\\semanticstructuredetector.winforms\\services\\chunkingservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A6A8F1FD-D309-448D-8E88-FAB72D0CBB44}|SemanticStructureDetector.WinForms\\SemanticStructureDetector.WinForms.csproj|solutionrelative:semanticstructuredetector.winforms\\services\\chunkingservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A6A8F1FD-D309-448D-8E88-FAB72D0CBB44}|SemanticStructureDetector.WinForms\\SemanticStructureDetector.WinForms.csproj|e:\\daisy .net 9 git\\obi\\audio processing experiments\\semanticstructuredetector\\semanticstructuredetector.winforms\\builders\\semanticxhtmlbuilder.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A6A8F1FD-D309-448D-8E88-FAB72D0CBB44}|SemanticStructureDetector.WinForms\\SemanticStructureDetector.WinForms.csproj|solutionrelative:semanticstructuredetector.winforms\\builders\\semanticxhtmlbuilder.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A6A8F1FD-D309-448D-8E88-FAB72D0CBB44}|SemanticStructureDetector.WinForms\\SemanticStructureDetector.WinForms.csproj|e:\\daisy .net 9 git\\obi\\audio processing experiments\\semanticstructuredetector\\semanticstructuredetector.winforms\\models\\structureitem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A6A8F1FD-D309-448D-8E88-FAB72D0CBB44}|SemanticStructureDetector.WinForms\\SemanticStructureDetector.WinForms.csproj|solutionrelative:semanticstructuredetector.winforms\\models\\structureitem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A6A8F1FD-D309-448D-8E88-FAB72D0CBB44}|SemanticStructureDetector.WinForms\\SemanticStructureDetector.WinForms.csproj|e:\\daisy .net 9 git\\obi\\audio processing experiments\\semanticstructuredetector\\semanticstructuredetector.winforms\\services\\semanticphrasebuilder.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A6A8F1FD-D309-448D-8E88-FAB72D0CBB44}|SemanticStructureDetector.WinForms\\SemanticStructureDetector.WinForms.csproj|solutionrelative:semanticstructuredetector.winforms\\services\\semanticphrasebuilder.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A6A8F1FD-D309-448D-8E88-FAB72D0CBB44}|SemanticStructureDetector.WinForms\\SemanticStructureDetector.WinForms.csproj|e:\\daisy .net 9 git\\obi\\audio processing experiments\\semanticstructuredetector\\semanticstructuredetector.winforms\\services\\phraserefinementservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A6A8F1FD-D309-448D-8E88-FAB72D0CBB44}|SemanticStructureDetector.WinForms\\SemanticStructureDetector.WinForms.csproj|solutionrelative:semanticstructuredetector.winforms\\services\\phraserefinementservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A6A8F1FD-D309-448D-8E88-FAB72D0CBB44}|SemanticStructureDetector.WinForms\\SemanticStructureDetector.WinForms.csproj|e:\\daisy .net 9 git\\obi\\audio processing experiments\\semanticstructuredetector\\semanticstructuredetector.winforms\\parsers\\xhtmlphraseparser.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A6A8F1FD-D309-448D-8E88-FAB72D0CBB44}|SemanticStructureDetector.WinForms\\SemanticStructureDetector.WinForms.csproj|solutionrelative:semanticstructuredetector.winforms\\parsers\\xhtmlphraseparser.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{A6A8F1FD-D309-448D-8E88-FAB72D0CBB44}|SemanticStructureDetector.WinForms\\SemanticStructureDetector.WinForms.csproj|e:\\daisy .net 9 git\\obi\\audio processing experiments\\semanticstructuredetector\\semanticstructuredetector.winforms\\mainform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{A6A8F1FD-D309-448D-8E88-FAB72D0CBB44}|SemanticStructureDetector.WinForms\\SemanticStructureDetector.WinForms.csproj|solutionrelative:semanticstructuredetector.winforms\\mainform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A6A8F1FD-D309-448D-8E88-FAB72D0CBB44}|SemanticStructureDetector.WinForms\\SemanticStructureDetector.WinForms.csproj|e:\\daisy .net 9 git\\obi\\audio processing experiments\\semanticstructuredetector\\semanticstructuredetector.winforms\\services\\chunkingservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A6A8F1FD-D309-448D-8E88-FAB72D0CBB44}|SemanticStructureDetector.WinForms\\SemanticStructureDetector.WinForms.csproj|solutionrelative:semanticstructuredetector.winforms\\services\\chunkingservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A6A8F1FD-D309-448D-8E88-FAB72D0CBB44}|SemanticStructureDetector.WinForms\\SemanticStructureDetector.WinForms.csproj|e:\\daisy .net 9 git\\obi\\audio processing experiments\\semanticstructuredetector\\semanticstructuredetector.winforms\\models\\phrasemodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A6A8F1FD-D309-448D-8E88-FAB72D0CBB44}|SemanticStructureDetector.WinForms\\SemanticStructureDetector.WinForms.csproj|solutionrelative:semanticstructuredetector.winforms\\models\\phrasemodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A6A8F1FD-D309-448D-8E88-FAB72D0CBB44}|SemanticStructureDetector.WinForms\\SemanticStructureDetector.WinForms.csproj|e:\\daisy .net 9 git\\obi\\audio processing experiments\\semanticstructuredetector\\semanticstructuredetector.winforms\\models\\wordmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A6A8F1FD-D309-448D-8E88-FAB72D0CBB44}|SemanticStructureDetector.WinForms\\SemanticStructureDetector.WinForms.csproj|solutionrelative:semanticstructuredetector.winforms\\models\\wordmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{A6A8F1FD-D309-448D-8E88-FAB72D0CBB44}|SemanticStructureDetector.WinForms\\SemanticStructureDetector.WinForms.csproj|E:\\Daisy .NET 9 Git\\obi\\Audio processing experiments\\SemanticStructureDetector\\semanticstructuredetector.winforms\\mainform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
@@ -27,24 +55,12 @@
       "RelativeMoniker": "D:0:0:{A6A8F1FD-D309-448D-8E88-FAB72D0CBB44}|SemanticStructureDetector.WinForms\\SemanticStructureDetector.WinForms.csproj|solutionrelative:semanticstructuredetector.winforms\\mainform.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A6A8F1FD-D309-448D-8E88-FAB72D0CBB44}|SemanticStructureDetector.WinForms\\SemanticStructureDetector.WinForms.csproj|e:\\daisy .net 9 git\\obi\\audio processing experiments\\semanticstructuredetector\\semanticstructuredetector.winforms\\parsers\\xhtmlphraseparser.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A6A8F1FD-D309-448D-8E88-FAB72D0CBB44}|SemanticStructureDetector.WinForms\\SemanticStructureDetector.WinForms.csproj|solutionrelative:semanticstructuredetector.winforms\\parsers\\xhtmlphraseparser.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{A6A8F1FD-D309-448D-8E88-FAB72D0CBB44}|SemanticStructureDetector.WinForms\\SemanticStructureDetector.WinForms.csproj|e:\\daisy .net 9 git\\obi\\audio processing experiments\\semanticstructuredetector\\semanticstructuredetector.winforms\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{A6A8F1FD-D309-448D-8E88-FAB72D0CBB44}|SemanticStructureDetector.WinForms\\SemanticStructureDetector.WinForms.csproj|solutionrelative:semanticstructuredetector.winforms\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{A6A8F1FD-D309-448D-8E88-FAB72D0CBB44}|SemanticStructureDetector.WinForms\\SemanticStructureDetector.WinForms.csproj|e:\\daisy .net 9 git\\obi\\audio processing experiments\\semanticstructuredetector\\semanticstructuredetector.winforms\\models\\structureresponse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{A6A8F1FD-D309-448D-8E88-FAB72D0CBB44}|SemanticStructureDetector.WinForms\\SemanticStructureDetector.WinForms.csproj|solutionrelative:semanticstructuredetector.winforms\\models\\structureresponse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A6A8F1FD-D309-448D-8E88-FAB72D0CBB44}|SemanticStructureDetector.WinForms\\SemanticStructureDetector.WinForms.csproj|e:\\daisy .net 9 git\\obi\\audio processing experiments\\semanticstructuredetector\\semanticstructuredetector.winforms\\models\\structureitem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A6A8F1FD-D309-448D-8E88-FAB72D0CBB44}|SemanticStructureDetector.WinForms\\SemanticStructureDetector.WinForms.csproj|solutionrelative:semanticstructuredetector.winforms\\models\\structureitem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A6A8F1FD-D309-448D-8E88-FAB72D0CBB44}|SemanticStructureDetector.WinForms\\SemanticStructureDetector.WinForms.csproj|e:\\daisy .net 9 git\\obi\\audio processing experiments\\semanticstructuredetector\\semanticstructuredetector.winforms\\models\\phrasemodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A6A8F1FD-D309-448D-8E88-FAB72D0CBB44}|SemanticStructureDetector.WinForms\\SemanticStructureDetector.WinForms.csproj|solutionrelative:semanticstructuredetector.winforms\\models\\phrasemodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -82,28 +98,53 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 4,
+              "Title": "SemanticPhraseBuilder.cs",
+              "DocumentMoniker": "E:\\Daisy .NET 9 Git\\obi\\Audio processing experiments\\SemanticStructureDetector\\SemanticStructureDetector.WinForms\\Services\\SemanticPhraseBuilder.cs",
+              "RelativeDocumentMoniker": "SemanticStructureDetector.WinForms\\Services\\SemanticPhraseBuilder.cs",
+              "ToolTip": "E:\\Daisy .NET 9 Git\\obi\\Audio processing experiments\\SemanticStructureDetector\\SemanticStructureDetector.WinForms\\Services\\SemanticPhraseBuilder.cs",
+              "RelativeToolTip": "SemanticStructureDetector.WinForms\\Services\\SemanticPhraseBuilder.cs",
+              "ViewState": "AgIAAIMAAAAAAAAAAAAYwLAAAAAmAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-26T11:49:46.215Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "StructurePostProcessor.cs",
+              "DocumentMoniker": "E:\\Daisy .NET 9 Git\\obi\\Audio processing experiments\\SemanticStructureDetector\\SemanticStructureDetector.WinForms\\Services\\StructurePostProcessor.cs",
+              "RelativeDocumentMoniker": "SemanticStructureDetector.WinForms\\Services\\StructurePostProcessor.cs",
+              "ToolTip": "E:\\Daisy .NET 9 Git\\obi\\Audio processing experiments\\SemanticStructureDetector\\SemanticStructureDetector.WinForms\\Services\\StructurePostProcessor.cs",
+              "RelativeToolTip": "SemanticStructureDetector.WinForms\\Services\\StructurePostProcessor.cs",
+              "ViewState": "AgIAAFcAAAAAAAAAAAAYwAIBAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-23T09:34:33.089Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
               "Title": "MainForm.cs",
               "DocumentMoniker": "E:\\Daisy .NET 9 Git\\obi\\Audio processing experiments\\SemanticStructureDetector\\SemanticStructureDetector.WinForms\\MainForm.cs",
               "RelativeDocumentMoniker": "SemanticStructureDetector.WinForms\\MainForm.cs",
               "ToolTip": "E:\\Daisy .NET 9 Git\\obi\\Audio processing experiments\\SemanticStructureDetector\\SemanticStructureDetector.WinForms\\MainForm.cs",
               "RelativeToolTip": "SemanticStructureDetector.WinForms\\MainForm.cs",
-              "ViewState": "AgIAAMMAAAAAAAAAAAAwwOoAAAAJAAAAAAAAAA==",
+              "ViewState": "AgIAADwAAAAAAAAAAAAYwGkAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-16T10:43:58.866Z"
+              "WhenOpened": "2026-05-16T10:43:58.866Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 2,
               "Title": "SemanticXhtmlBuilder.cs",
               "DocumentMoniker": "E:\\Daisy .NET 9 Git\\obi\\Audio processing experiments\\SemanticStructureDetector\\SemanticStructureDetector.WinForms\\Builders\\SemanticXhtmlBuilder.cs",
               "RelativeDocumentMoniker": "SemanticStructureDetector.WinForms\\Builders\\SemanticXhtmlBuilder.cs",
               "ToolTip": "E:\\Daisy .NET 9 Git\\obi\\Audio processing experiments\\SemanticStructureDetector\\SemanticStructureDetector.WinForms\\Builders\\SemanticXhtmlBuilder.cs",
               "RelativeToolTip": "SemanticStructureDetector.WinForms\\Builders\\SemanticXhtmlBuilder.cs",
-              "ViewState": "AgIAAHgAAAAAAAAAAAAQwNEAAAABAAAAAAAAAA==",
+              "ViewState": "AgIAADIAAAAAAAAAAAAYwOwAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-14T14:40:03.233Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-05-14T14:40:03.233Z"
             },
             {
               "$type": "Document",
@@ -113,10 +154,9 @@
               "RelativeDocumentMoniker": "SemanticStructureDetector.WinForms\\Services\\OpenAiStructureService.cs",
               "ToolTip": "E:\\Daisy .NET 9 Git\\obi\\Audio processing experiments\\SemanticStructureDetector\\SemanticStructureDetector.WinForms\\Services\\OpenAiStructureService.cs",
               "RelativeToolTip": "SemanticStructureDetector.WinForms\\Services\\OpenAiStructureService.cs",
-              "ViewState": "AgIAACcAAAAAAAAAAAAIwDwAAAAVAAAAAAAAAA==",
+              "ViewState": "AgIAAFEAAAAAAAAAAAAIwGYAAABiAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-14T14:38:45.482Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-05-14T14:38:45.482Z"
             },
             {
               "$type": "Document",
@@ -126,25 +166,37 @@
               "RelativeDocumentMoniker": "SemanticStructureDetector.WinForms\\Parsers\\XhtmlPhraseParser.cs",
               "ToolTip": "E:\\Daisy .NET 9 Git\\obi\\Audio processing experiments\\SemanticStructureDetector\\SemanticStructureDetector.WinForms\\Parsers\\XhtmlPhraseParser.cs",
               "RelativeToolTip": "SemanticStructureDetector.WinForms\\Parsers\\XhtmlPhraseParser.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAA6AAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAmAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-05-14T14:37:22.649Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "Program.cs",
-              "DocumentMoniker": "E:\\Daisy .NET 9 Git\\obi\\Audio processing experiments\\SemanticStructureDetector\\SemanticStructureDetector.WinForms\\Program.cs",
-              "RelativeDocumentMoniker": "SemanticStructureDetector.WinForms\\Program.cs",
-              "ToolTip": "E:\\Daisy .NET 9 Git\\obi\\Audio processing experiments\\SemanticStructureDetector\\SemanticStructureDetector.WinForms\\Program.cs",
-              "RelativeToolTip": "SemanticStructureDetector.WinForms\\Program.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAABAAAAAAAAAA==",
+              "DocumentIndex": 3,
+              "Title": "StructureItem.cs",
+              "DocumentMoniker": "E:\\Daisy .NET 9 Git\\obi\\Audio processing experiments\\SemanticStructureDetector\\SemanticStructureDetector.WinForms\\Models\\StructureItem.cs",
+              "RelativeDocumentMoniker": "SemanticStructureDetector.WinForms\\Models\\StructureItem.cs",
+              "ToolTip": "E:\\Daisy .NET 9 Git\\obi\\Audio processing experiments\\SemanticStructureDetector\\SemanticStructureDetector.WinForms\\Models\\StructureItem.cs",
+              "RelativeToolTip": "SemanticStructureDetector.WinForms\\Models\\StructureItem.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABUAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-15T14:12:37.906Z"
+              "WhenOpened": "2026-05-14T14:36:50.984Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 5,
+              "Title": "PhraseRefinementService.cs",
+              "DocumentMoniker": "E:\\Daisy .NET 9 Git\\obi\\Audio processing experiments\\SemanticStructureDetector\\SemanticStructureDetector.WinForms\\Services\\PhraseRefinementService.cs",
+              "RelativeDocumentMoniker": "SemanticStructureDetector.WinForms\\Services\\PhraseRefinementService.cs",
+              "ToolTip": "E:\\Daisy .NET 9 Git\\obi\\Audio processing experiments\\SemanticStructureDetector\\SemanticStructureDetector.WinForms\\Services\\PhraseRefinementService.cs",
+              "RelativeToolTip": "SemanticStructureDetector.WinForms\\Services\\PhraseRefinementService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAEYAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-26T05:09:15.46Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
               "Title": "ChunkingService.cs",
               "DocumentMoniker": "E:\\Daisy .NET 9 Git\\obi\\Audio processing experiments\\SemanticStructureDetector\\SemanticStructureDetector.WinForms\\Services\\ChunkingService.cs",
               "RelativeDocumentMoniker": "SemanticStructureDetector.WinForms\\Services\\ChunkingService.cs",
@@ -156,7 +208,43 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 10,
+              "Title": "WordModel.cs",
+              "DocumentMoniker": "E:\\Daisy .NET 9 Git\\obi\\Audio processing experiments\\SemanticStructureDetector\\SemanticStructureDetector.WinForms\\Models\\WordModel.cs",
+              "RelativeDocumentMoniker": "SemanticStructureDetector.WinForms\\Models\\WordModel.cs",
+              "ToolTip": "E:\\Daisy .NET 9 Git\\obi\\Audio processing experiments\\SemanticStructureDetector\\SemanticStructureDetector.WinForms\\Models\\WordModel.cs",
+              "RelativeToolTip": "SemanticStructureDetector.WinForms\\Models\\WordModel.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAjAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-26T11:47:46.318Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "PhraseModel.cs",
+              "DocumentMoniker": "E:\\Daisy .NET 9 Git\\obi\\Audio processing experiments\\SemanticStructureDetector\\SemanticStructureDetector.WinForms\\Models\\PhraseModel.cs",
+              "RelativeDocumentMoniker": "SemanticStructureDetector.WinForms\\Models\\PhraseModel.cs",
+              "ToolTip": "E:\\Daisy .NET 9 Git\\obi\\Audio processing experiments\\SemanticStructureDetector\\SemanticStructureDetector.WinForms\\Models\\PhraseModel.cs",
+              "RelativeToolTip": "SemanticStructureDetector.WinForms\\Models\\PhraseModel.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABsAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-14T14:34:46.332Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "Program.cs",
+              "DocumentMoniker": "E:\\Daisy .NET 9 Git\\obi\\Audio processing experiments\\SemanticStructureDetector\\SemanticStructureDetector.WinForms\\Program.cs",
+              "RelativeDocumentMoniker": "SemanticStructureDetector.WinForms\\Program.cs",
+              "ToolTip": "E:\\Daisy .NET 9 Git\\obi\\Audio processing experiments\\SemanticStructureDetector\\SemanticStructureDetector.WinForms\\Program.cs",
+              "RelativeToolTip": "SemanticStructureDetector.WinForms\\Program.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-15T14:12:37.906Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
               "Title": "StructureResponse.cs",
               "DocumentMoniker": "E:\\Daisy .NET 9 Git\\obi\\Audio processing experiments\\SemanticStructureDetector\\SemanticStructureDetector.WinForms\\Models\\StructureResponse.cs",
               "RelativeDocumentMoniker": "SemanticStructureDetector.WinForms\\Models\\StructureResponse.cs",
@@ -168,7 +256,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 12,
               "Title": "MainForm.Designer.cs",
               "DocumentMoniker": "E:\\Daisy .NET 9 Git\\obi\\Audio processing experiments\\SemanticStructureDetector\\SemanticStructureDetector.WinForms\\MainForm.Designer.cs",
               "RelativeDocumentMoniker": "SemanticStructureDetector.WinForms\\MainForm.Designer.cs",
@@ -180,31 +268,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
-              "Title": "StructureItem.cs",
-              "DocumentMoniker": "E:\\Daisy .NET 9 Git\\obi\\Audio processing experiments\\SemanticStructureDetector\\SemanticStructureDetector.WinForms\\Models\\StructureItem.cs",
-              "RelativeDocumentMoniker": "SemanticStructureDetector.WinForms\\Models\\StructureItem.cs",
-              "ToolTip": "E:\\Daisy .NET 9 Git\\obi\\Audio processing experiments\\SemanticStructureDetector\\SemanticStructureDetector.WinForms\\Models\\StructureItem.cs",
-              "RelativeToolTip": "SemanticStructureDetector.WinForms\\Models\\StructureItem.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAEAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-14T14:36:50.984Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 10,
-              "Title": "PhraseModel.cs",
-              "DocumentMoniker": "E:\\Daisy .NET 9 Git\\obi\\Audio processing experiments\\SemanticStructureDetector\\SemanticStructureDetector.WinForms\\Models\\PhraseModel.cs",
-              "RelativeDocumentMoniker": "SemanticStructureDetector.WinForms\\Models\\PhraseModel.cs",
-              "ToolTip": "E:\\Daisy .NET 9 Git\\obi\\Audio processing experiments\\SemanticStructureDetector\\SemanticStructureDetector.WinForms\\Models\\PhraseModel.cs",
-              "RelativeToolTip": "SemanticStructureDetector.WinForms\\Models\\PhraseModel.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-14T14:34:46.332Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 11,
               "Title": "MainForm.cs [Design]",
               "DocumentMoniker": "E:\\Daisy .NET 9 Git\\obi\\Audio processing experiments\\SemanticStructureDetector\\SemanticStructureDetector.WinForms\\MainForm.cs",
               "RelativeDocumentMoniker": "SemanticStructureDetector.WinForms\\MainForm.cs",

@@ -1,18 +1,28 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace SemanticStructureDetector.WinForms.Models;
 
 public class PhraseModel
 {
-    public string PhraseId { get; set; } = string.Empty;
+    public string PhraseId { get; set; } = "";
 
     public double Start { get; set; }
 
     public double End { get; set; }
 
-    public string Text { get; set; } = string.Empty;
+    public string Text { get; set; } = "";
+
+    //--------------------------------------------------
+    // PHRASE CONFIDENCE
+    //--------------------------------------------------
+
+    public double Confidence { get; set; }
+
+    //--------------------------------------------------
+    // WORDS
+    //--------------------------------------------------
+
+    public List<WordModel> Words
+    { get; set; }
+        = new();
 }

@@ -13,8 +13,8 @@ public class ChunkingService
     public List<List<PhraseModel>> Chunk(
         List<PhraseModel> phrases,
         //int chunkSize = 250,
-        int chunkSize = 50,
-        int overlap = 3)
+        int chunkSize = 40,
+        int overlap = 8)
     {
         var result = new List<List<PhraseModel>>();
 

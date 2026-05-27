@@ -1,13 +1,13 @@
 {
-  "id": "resp_0149a40cc4d2903f006a0eca98e29c819381bf3fbd2ecff8cd",
+  "id": "resp_093480bcc08938bd006a17059e6b0881918fab9bc461770cc5",
   "object": "response",
-  "created_at": 1779354264,
+  "created_at": 1779893662,
   "status": "completed",
   "background": false,
   "billing": {
     "payer": "developer"
   },
-  "completed_at": 1779354270,
+  "completed_at": 1779893699,
   "error": null,
   "frequency_penalty": 0.0,
   "incomplete_details": null,
@@ -18,7 +18,7 @@
   "moderation": null,
   "output": [
     {
-      "id": "msg_0149a40cc4d2903f006a0eca992e908193946b0aadbc36a421",
+      "id": "msg_093480bcc08938bd006a1705ace6648191a1741938bb0ce494",
       "type": "message",
       "status": "completed",
       "content": [
@@ -26,7 +26,7 @@
           "type": "output_text",
           "annotations": [],
           "logprobs": [],
-          "text": "{\"structure\":[{\"phraseId\":\"p706\",\"role\":\"heading\",\"level\":1,\"paragraphId\":null},{\"phraseId\":\"p707\",\"role\":\"paragraph\",\"level\":null,\"paragraphId\":\"para1\"},{\"phraseId\":\"p708\",\"role\":\"paragraph\",\"level\":null,\"paragraphId\":\"para1\"},{\"phraseId\":\"p709\",\"role\":\"paragraph\",\"level\":null,\"paragraphId\":\"para1\"},{\"phraseId\":\"p710\",\"role\":\"paragraph\",\"level\":null,\"paragraphId\":\"para1\"},{\"phraseId\":\"p711\",\"role\":\"paragraph\",\"level\":null,\"paragraphId\":\"para1\"},{\"phraseId\":\"p712\",\"role\":\"paragraph\",\"level\":null,\"paragraphId\":\"para1\"},{\"phraseId\":\"p714\",\"role\":\"heading\",\"level\":1,\"paragraphId\":null},{\"phraseId\":\"p715\",\"role\":\"paragraph\",\"level\":null,\"paragraphId\":\"para2\"},{\"phraseId\":\"p716\",\"role\":\"paragraph\",\"level\":null,\"paragraphId\":\"para2\"},{\"phraseId\":\"p717\",\"role\":\"paragraph\",\"level\":null,\"paragraphId\":\"para2\"},{\"phraseId\":\"p718\",\"role\":\"paragraph\",\"level\":null,\"paragraphId\":\"para2\"},{\"phraseId\":\"p719\",\"role\":\"paragraph\",\"level\":null,\"paragraphId\":\"para2\"},{\"phraseId\":\"p720\",\"role\":\"paragraph\",\"level\":null,\"paragraphId\":\"para2\"},{\"phraseId\":\"p722\",\"role\":\"heading\",\"level\":1,\"paragraphId\":null},{\"phraseId\":\"p723\",\"role\":\"paragraph\",\"level\":null,\"paragraphId\":\"para3\"},{\"phraseId\":\"p724\",\"role\":\"paragraph\",\"level\":null,\"paragraphId\":\"para3\"},{\"phraseId\":\"p725\",\"role\":\"paragraph\",\"level\":null,\"paragraphId\":\"para3\"},{\"phraseId\":\"p726\",\"role\":\"paragraph\",\"level\":null,\"paragraphId\":\"para3\"},{\"phraseId\":\"p727\",\"role\":\"paragraph\",\"level\":null,\"paragraphId\":\"para3\"},{\"phraseId\":\"p728\",\"role\":\"paragraph\",\"level\":null,\"paragraphId\":\"para3\"}]}"
+          "text": "{\"structure\":[{\"phraseId\":\"p385\",\"role\":\"heading\",\"level\":2,\"paragraphId\":null,\"headingText\":\"New Zealand Quiz: People, Geography\",\"confidence\":0.9,\"reason\":\"Phrase contains quiz questions introducing topics about New Zealand's first people, neighbors, and largest island, indicating a major quiz section heading\"},{\"phraseId\":\"p386\",\"role\":\"paragraph\",\"level\":null,\"paragraphId\":null,\"headingText\":\"\",\"confidence\":0.95,\"reason\":\"Quiz question continuing from prior heading\"},{\"phraseId\":\"p387\",\"role\":\"paragraph\",\"level\":null,\"paragraphId\":null,\"headingText\":\"\",\"confidence\":0.95,\"reason\":\"Answer continuation for prior quiz question\"},{\"phraseId\":\"p388\",\"role\":\"paragraph\",\"level\":null,\"paragraphId\":null,\"headingText\":\"\",\"confidence\":0.9,\"reason\":\"Quiz question about common trees in New Zealand, part of quiz section\"},{\"phraseId\":\"p389\",\"role\":\"paragraph\",\"level\":null,\"paragraphId\":null,\"headingText\":\"\",\"confidence\":0.9,\"reason\":\"Start of new quiz question about official languages\"},{\"phraseId\":\"p390\",\"role\":\"paragraph\",\"level\":null,\"paragraphId\":null,\"headingText\":\"\",\"confidence\":0.9,\"reason\":\"Answer continuation for language question\"},{\"phraseId\":\"p391\",\"role\":\"paragraph\",\"level\":null,\"paragraphId\":null,\"headingText\":\"\",\"confidence\":0.9,\"reason\":\"Answer continuation for language question\"},{\"phraseId\":\"p392\",\"role\":\"paragraph\",\"level\":null,\"paragraphId\":null,\"headingText\":\"\",\"confidence\":0.9,\"reason\":\"Answer continuation for language question\"},{\"phraseId\":\"p393\",\"role\":\"paragraph\",\"level\":null,\"paragraphId\":null,\"headingText\":\"\",\"confidence\":0.9,\"reason\":\"New quiz question about New Zealand products\"},{\"phraseId\":\"p394\",\"role\":\"paragraph\",\"level\":null,\"paragraphId\":null,\"headingText\":\"\",\"confidence\":0.9,\"reason\":\"Answer option continuation\"},{\"phraseId\":\"p395\",\"role\":\"paragraph\",\"level\":null,\"paragraphId\":null,\"headingText\":\"\",\"confidence\":0.9,\"reason\":\"Answer option continuation\"},{\"phraseId\":\"p396\",\"role\":\"paragraph\",\"level\":null,\"paragraphId\":null,\"headingText\":\"\",\"confidence\":0.9,\"reason\":\"Answer option continuation\"},{\"phraseId\":\"p397\",\"role\":\"paragraph\",\"level\":null,\"paragraphId\":null,\"headingText\":\"\",\"confidence\":0.9,\"reason\":\"Quiz question about capital city\"},{\"phraseId\":\"p398\",\"role\":\"paragraph\",\"level\":null,\"paragraphId\":null,\"headingText\":\"\",\"confidence\":0.9,\"reason\":\"Quiz question about government head title\"},{\"phraseId\":\"p399\",\"role\":\"paragraph\",\"level\":null,\"paragraphId\":null,\"headingText\":\"\",\"confidence\":0.9,\"reason\":\"Quiz question on popular sport\"}]}"
         }
       ],
       "role": "assistant"
@@ -38,6 +38,7 @@
   "prompt_cache_key": null,
   "prompt_cache_retention": "in_memory",
   "reasoning": {
+    "context": null,
     "effort": null,
     "summary": null
   },
@@ -75,13 +76,25 @@
                     "string",
                     "null"
                   ]
+                },
+                "headingText": {
+                  "type": "string"
+                },
+                "confidence": {
+                  "type": "number"
+                },
+                "reason": {
+                  "type": "string"
                 }
               },
               "required": [
                 "phraseId",
                 "role",
                 "level",
-                "paragraphId"
+                "paragraphId",
+                "headingText",
+                "confidence",
+                "reason"
               ],
               "additionalProperties": false
             }
@@ -102,15 +115,15 @@
   "top_p": 1.0,
   "truncation": "disabled",
   "usage": {
-    "input_tokens": 453,
+    "input_tokens": 1407,
     "input_tokens_details": {
       "cached_tokens": 0
     },
-    "output_tokens": 423,
+    "output_tokens": 584,
     "output_tokens_details": {
       "reasoning_tokens": 0
     },
-    "total_tokens": 876
+    "total_tokens": 1991
   },
   "user": null,
   "metadata": {}

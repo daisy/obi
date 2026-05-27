@@ -15,4 +15,10 @@ public class StructureItem
     public int? Level { get; set; }
 
     public string? ParagraphId { get; set; }
+
+    public double Confidence { get; set; }
+
+    public string Reason { get; set; } = "";
+
+    public string HeadingText { get; set; } = "";
 }

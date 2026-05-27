@@ -1,9 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
-
 using System.Text;
+
 using SemanticStructureDetector.WinForms.Models;
 
 namespace SemanticStructureDetector.WinForms.Builders;
@@ -66,7 +65,9 @@ public class SemanticXhtmlBuilder
 
         int phraseCounter = 1;
 
-        bool firstHeading = true;
+        //--------------------------------------------------
+        // FIRST TITLE FLAG
+        //--------------------------------------------------
 
         bool firstPhrase = true;
 
@@ -91,27 +92,37 @@ public class SemanticXhtmlBuilder
             }
 
             //--------------------------------------------------
-            // FORCE FIRST PHRASE AS HEADING
+            // HEADING?
             //--------------------------------------------------
 
             bool isHeading =
                 firstPhrase
                 ||
-                (item != null
-                 && item.Role == "heading");
+                (
+                    item != null
+                    && item.Role == "heading"
+                );
 
             //--------------------------------------------------
-            // HEADING
+            // WRITE HEADING
             //--------------------------------------------------
 
             if (isHeading)
             {
+                //--------------------------------------------------
+                // LEVEL
+                //--------------------------------------------------
+
                 int level = 1;
 
-                if (item != null
-                    && item.Level != null)
+                if (!firstPhrase
+                    &&
+                    item != null
+                    &&
+                    item.Level != null)
                 {
-                    level = item.Level.Value;
+                    level =
+                        item.Level.Value;
                 }
 
                 level =
@@ -124,7 +135,7 @@ public class SemanticXhtmlBuilder
                 //--------------------------------------------------
 
                 string cssClass =
-                    firstHeading
+                    firstPhrase
                     ? "title"
                     : "section";
 
@@ -134,6 +145,22 @@ public class SemanticXhtmlBuilder
 
                 string headingId =
                     $"h{headingCounter++}";
+
+                //--------------------------------------------------
+                // CLEAN HEADING TEXT
+                //--------------------------------------------------
+
+                string headingText =
+                    phrase.Text;
+
+                if (item != null
+                    &&
+                    !string.IsNullOrWhiteSpace(
+                        item.HeadingText))
+                {
+                    headingText =
+                        item.HeadingText;
+                }
 
                 //--------------------------------------------------
                 // WRITE HEADING
@@ -147,20 +174,14 @@ $"""
     data-start="{phrase.Start:0.000}"
     data-end="{phrase.End:0.000}">
 
-    {Escape(phrase.Text)}
+    {Escape(headingText)}
 
 </h{level}>
 """);
-
-                firstHeading = false;
-
-                firstPhrase = false;
-
-                continue;
             }
 
             //--------------------------------------------------
-            // PHRASE
+            // ALWAYS WRITE PHRASE
             //--------------------------------------------------
 
             string phraseId =
@@ -178,6 +199,10 @@ $"""
 
 </p>
 """);
+
+            //--------------------------------------------------
+            // TITLE COMPLETE
+            //--------------------------------------------------
 
             firstPhrase = false;
         }
@@ -201,9 +226,11 @@ $"""
     // XML ESCAPE
     //--------------------------------------------------
 
-    private string Escape(string text)
+    private string Escape(
+        string text)
     {
-        return System.Security.SecurityElement
+        return System.Security
+            .SecurityElement
             .Escape(text)
             ?? "";
     }

@@ -30,30 +30,171 @@ public class OpenAiStructureService
         });
 
         string systemPrompt = """
-You are an AI semantic structure detector.
+You are an AI semantic structure detector for audiobooks.
 
-Analyze phrase-level transcript data and determine:
+You will receive a sequence of transcript phrases in reading order.
 
-- headings
-- heading levels
-- paragraph grouping
+Your task is to analyze the transcript CONTEXTUALLY and identify:
 
-Rules:
+- book titles
+- section headings
+- subsection headings
+- paragraphs
+
+IMPORTANT:
+
+Headings are contextual.
+Do NOT classify phrases independently.
+Use neighboring phrases to understand document structure.
+
+Extract clean semantic headings from transcript phrases.
+The original spoken transcript and the extracted headingText are separate concepts.
+
+The transcript phrase must remain fully preserved.
+Only headingText should be semantically cleaned.
+headingText should ideally be shorter, cleaner, and more navigation-friendly than the original spoken transcript phrase.
+Do not rewrite transcript phrases themselves.
+
+For heading phrases:
+
+- Preserve original transcript phrases unchanged
+- Extract a separate clean semantic heading
+- headingText should contain a concise, clean, navigation-friendly semantic title
+- headingText should represent the semantic topic only
+
+Headings often appear as:
+
+- topic titles
+- section names
+- short standalone semantic units
+
+Good headings are usually:
+
+- concise
+- meaningful independently
+- title-like
+- topic-oriented
+- not sentence-like
+
+Examples of good headings:
+
+- Fast Facts
+- Timeline
+- History
+- Island Nation
+- Transportation
+- Government
+- Plants and Animals
+
+Good headingText should avoid:
+
+- page numbers
+- narrator artifacts
+- repeated punctuation
+- filler transcript noise
+- unnecessary metadata
+
+Paragraphs are usually:
+
+- complete sentences
+- descriptive narration
+- explanatory content
+
+Avoid creating headings from transcript fragments that lack meaningful semantic topic information.
+
+However, meaningful semantic section titles should still be identified even when spoken alongside page numbers or metadata.
+
+VERY IMPORTANT RULES:
 
 1. Preserve phrase IDs exactly
-2. Never rewrite text
+2. Never rewrite transcript phrases
 3. Never merge phrases
-4. Preserve original ordering
-5. Return valid JSON only
+4. Never split phrases
+5. Preserve original ordering
+6. Analyze phrases CONTEXTUALLY
+7. Use neighboring phrases to infer semantic structure
+8. Meaningful semantic section titles should still be identified clearly
+9. Headings usually appear near related semantic content
+10. Return valid JSON only
+
+If a phrase contains both spoken metadata and a semantic title:
+
+- preserve the full transcript phrase separately
+- extract only the clean semantic title into headingText
+
+Examples:
+
+Transcript phrase:
+"Page 1, The Countries, New Zealand, Tamara L. Brittain"
+
+Correct headingText:
+"The Countries: New Zealand"
+
+Reason:
+"book title extracted from spoken metadata"
+
+Transcript phrase:
+"Page 3. Contents."
+
+Correct headingText:
+"Contents"
+
+Reason:
+"major section heading"
+
+Transcript phrase:
+"Page 6. Timeline."
+
+Correct headingText:
+"Timeline"
+
+Reason:
+"major section heading"
+
+Return this JSON format:
+
+[
+  {
+    "phraseId": "p1",
+    "role": "heading",
+    "level": 1,
+    "headingText": "The Countries: New Zealand",
+    "confidence": 0.95,
+    "reason": "book title"
+  },
+  {
+    "phraseId": "p25",
+    "role": "paragraph",
+    "level": null,
+    "headingText": "",
+    "confidence": 0.98,
+    "reason": "descriptive narration"
+  }
+]
 
 Allowed roles:
 - heading
 - paragraph
 
-Heading guidelines:
-- headings are usually short
-- headings usually do not end with punctuation
-- headings represent titles or section labels
+Heading levels:
+
+- level 1 = book title
+- level 2 = major section heading
+- level 3 = subsection heading
+
+For paragraphs:
+
+- role must be "paragraph"
+- level must be null
+- headingText must be empty string
+
+Return valid JSON only.
+
+The spoken transcript may contain page numbers, narration artifacts, or metadata.
+
+Do NOT remove these from transcript phrases.
+
+Instead extract only the semantic navigation title into headingText.
 """;
 
         var payload = new
@@ -84,10 +225,26 @@ Heading guidelines:
                 new
                 {
                     type = "input_text",
-                    text = JsonConvert.SerializeObject(new
-                    {
-                        phrases = simplified
-                    })
+                   text =
+                    $"""
+                    Analyze the following audiobook transcript phrases in reading order.
+
+                    IMPORTANT:
+                    - Analyze phrases contextually
+                    - Use neighboring phrases to infer semantic structure
+                    - Headings often appear in semantic clusters
+                    - Identify meaningful section titles
+                    - Most phrases are paragraphs
+
+                    Transcript:
+
+                    {JsonConvert.SerializeObject(
+                        new
+                        {
+                            phrases = simplified
+                        },
+                        Formatting.Indented)}
+                    """
                 }
             }
         }
@@ -141,15 +298,33 @@ Heading guidelines:
                                         "string",
                                         "null"
                                     }
+                                        },
+
+                                        headingText = new
+                                        {
+                                            type = "string"
+                                        },
+
+                                        confidence = new
+                                        {
+                                            type = "number"
+                                        },
+
+                                        reason = new
+                                        {
+                                            type = "string"
                                         }
-                                    },
+                                    },                                    
 
                                     required = new[]
                              {
                                 "phraseId",
                                 "role",
                                 "level",
-                                "paragraphId"
+                                "paragraphId",
+                                "headingText",
+                                "confidence",
+                                "reason"
                             },
 
                                     additionalProperties = false
