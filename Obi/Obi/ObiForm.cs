@@ -620,10 +620,31 @@ namespace Obi
                 return !import.RequestCancellation;
             }
 
-            private bool ImportStructureFromXHtml(string path, string title, string id, string xhtmlPath, int audioChannels, int audioSampleRate)
+        private string SelectFilesToImport()
+        {
+            OpenFileDialog dialog = new OpenFileDialog();
+            dialog.Multiselect = false;
+            dialog.Filter = Localizer.Message("audio_file_filter");
+            if (dialog.ShowDialog() == DialogResult.OK)
+            {
+                return dialog.FileName;
+            }
+            else
+            {
+                return null;
+            }
+        }
+        private bool ImportStructureFromXHtml(string path, string title, string id, string xhtmlPath, int audioChannels, int audioSampleRate)
             {
                 mSession.CreateNewPresentationInBackend(path, title, false, id, mSettings, true, audioChannels, audioSampleRate);
-                ImportExport.DAISY202Import import = new Obi.ImportExport.DAISY202Import(xhtmlPath, mSession.Presentation, mSettings);
+            //ImportExport.DAISY202Import import = new Obi.ImportExport.DAISY202Import(xhtmlPath, mSession.Presentation, mSettings);
+                DialogResult dialogResult = MessageBox.Show("Do you want to import Audio with Xhtml ? Press yes to select audio file containg xhtml audio and no to import structure only", Localizer.Message("Caption_Information"), MessageBoxButtons.YesNo,MessageBoxIcon.Question);
+            string xhtmlAudioFilePath = null;
+            if (dialogResult == DialogResult.Yes)
+            {
+                xhtmlAudioFilePath = SelectFilesToImport();
+            }
+                ImportExport.ImportTranscript import = new Obi.ImportExport.ImportTranscript(xhtmlPath, mSession.Presentation, mSettings, xhtmlAudioFilePath);
                 List<string> audioFilePaths = new List<string>();
                 string audioFilesNotImportedDuringCSVImport = string.Empty;
                 
