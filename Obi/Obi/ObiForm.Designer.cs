@@ -33,6 +33,7 @@ namespace Obi
             this.mFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mFile_NewProjectMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mFile_NewProjectFromImportMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mFile_NewProjectFromAudioImportMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mFile_OpenProjectMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator9 = new System.Windows.Forms.ToolStripSeparator();
             this.mFile_SaveProjectMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -280,6 +281,7 @@ namespace Obi
             this.mFileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.mFile_NewProjectMenuItem,
             this.mFile_NewProjectFromImportMenuItem,
+            this.mFile_NewProjectFromAudioImportMenuItem,
             this.mFile_OpenProjectMenuItem,
             this.toolStripSeparator9,
             this.mFile_SaveProjectMenuItem,
@@ -306,6 +308,12 @@ namespace Obi
             resources.ApplyResources(this.mFile_NewProjectFromImportMenuItem, "mFile_NewProjectFromImportMenuItem");
             this.mFile_NewProjectFromImportMenuItem.Name = "mFile_NewProjectFromImportMenuItem";
             this.mFile_NewProjectFromImportMenuItem.Click += new System.EventHandler(this.File_NewProjectFromImportMenuItem_Click);
+            // 
+            // mFile_NewProjectFromAudioImportMenuItem
+            // 
+            resources.ApplyResources(this.mFile_NewProjectFromAudioImportMenuItem, "mFile_NewProjectFromAudioImportMenuItem");
+            this.mFile_NewProjectFromAudioImportMenuItem.Name = "mFile_NewProjectFromAudioImportMenuItem";
+            this.mFile_NewProjectFromAudioImportMenuItem.Click += new System.EventHandler(this.mFile_NewProjectFromAudioImportMenuItem_Click);
             // 
             // mFile_OpenProjectMenuItem
             // 
@@ -1947,6 +1955,7 @@ namespace Obi
         private System.Windows.Forms.ToolStripMenuItem mFileToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mFile_NewProjectMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mFile_NewProjectFromImportMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem mFile_NewProjectFromAudioImportMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mFile_OpenProjectMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mFile_RecentProjectMenuItem;
         private System.Windows.Forms.ToolStripSeparator openrecentSeparator;

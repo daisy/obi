@@ -1,0 +1,2 @@
+[console_scripts]
+whisperx = whisperx.__main__:cli

@@ -298,6 +298,11 @@ namespace Obi
                 NewProjectFromImport();
             }
 
+            private void mFile_NewProjectFromAudioImportMenuItem_Click(object sender, EventArgs e)
+            {
+                 NewProjectFromAudio();
+            }
+
             private void File_OpenProjectMenuItem_Click(object sender, EventArgs e)
             {
                 Open();
@@ -330,6 +335,13 @@ namespace Obi
             }
 
             // Create a new project by asking initial information through a dialog.
+
+            private void NewProjectFromAudio()
+            {
+               CreateProjectFromAudio dialog = new CreateProjectFromAudio();
+               dialog.ShowDialog();
+
+            }
             private void NewProject()
             {
                 m_IsStatusBarEnabled = true;

@@ -66,6 +66,9 @@
     <Compile Update="Dialogs\ChoosePageAudio.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="Dialogs\CreateProjectFromAudio.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="Dialogs\DownloadFile.cs">
       <SubType>Form</SubType>
     </Compile>
