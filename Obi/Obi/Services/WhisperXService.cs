@@ -40,7 +40,9 @@ namespace Obi.Services
                     backendFolder,
                     "output.json");
 
+
             string pythonExe =
+                Path.GetFullPath(
                 Path.Combine(
                     AppDomain.CurrentDomain.BaseDirectory,
                     "..",
@@ -49,7 +51,7 @@ namespace Obi.Services
                     "..",
                     "whisperx_env",
                     "Scripts",
-                    "python.exe");
+                    "python.exe"));
 
             ProcessStartInfo psi =
                 new()
