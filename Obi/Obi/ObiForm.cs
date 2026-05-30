@@ -340,8 +340,15 @@ namespace Obi
             {
                CreateProjectFromAudio dialog = new CreateProjectFromAudio();
                dialog.ShowDialog();
+             string semanticXhtmlPath = dialog.SemanticXhtmlPath;
+             string audioPath = dialog.AudioPath;
 
+            if (!string.IsNullOrEmpty(semanticXhtmlPath) && !string.IsNullOrEmpty(audioPath))
+            {
+                NewProjectFromImport(semanticXhtmlPath, audioPath);
             }
+
+        }
             private void NewProject()
             {
                 m_IsStatusBarEnabled = true;
@@ -408,7 +415,7 @@ namespace Obi
 
             // Create a new project by importing an XHTML file at the given path.
             // Return success status.
-            private bool NewProjectFromImport(string path)
+            private bool NewProjectFromImport(string path, string audioFilePathForXhtmlImport = null)
             {
                 Dialogs.NewProject dialog = null;
                 ImportExport.ConfigurationFileParser configurationInstance = GetObiConfigurationFileInstance(path);
@@ -503,6 +510,11 @@ namespace Obi
                         {
                             //CreateNewProject(dialog.Path, dialog.Title, false, dialog.ID);
                             //(new Obi.ImportExport.ImportStructure()).ImportFromXHTML(path, mSession.Presentation);
+                            if(audioFilePathForXhtmlImport != null)
+                            {
+                                isProjectCreated = ImportStructureFromXHtml(obiProjectPath, title, uniqueIdentifier, path, audioChannels, audioSampleRate, audioFilePathForXhtmlImport);
+                            }
+                        else
                             isProjectCreated = ImportStructureFromXHtml(obiProjectPath, title, uniqueIdentifier, path, audioChannels, audioSampleRate);
                         }
                         if (!isProjectCreated) return false;
@@ -632,31 +644,96 @@ namespace Obi
                 return !import.RequestCancellation;
             }
 
-        private string SelectFilesToImport()
-        {
-            OpenFileDialog dialog = new OpenFileDialog();
-            dialog.Multiselect = false;
-            dialog.Filter = Localizer.Message("audio_file_filter");
-            if (dialog.ShowDialog() == DialogResult.OK)
+  
+           private bool ImportStructureFromXHtml(string path, string title, string id, string xhtmlPath, int audioChannels, int audioSampleRate, string audioFilePathForXhtmlImport)
             {
-                return dialog.FileName;
+                mSession.CreateNewPresentationInBackend(path, title, false, id, mSettings, true, audioChannels, audioSampleRate);          
+           
+                ImportExport.ImportTranscript import = new Obi.ImportExport.ImportTranscript(xhtmlPath, mSession.Presentation, mSettings, audioFilePathForXhtmlImport);
+          
+
+                List<string> audioFilePaths = new List<string>();
+                string audioFilesNotImportedDuringCSVImport = string.Empty;
+                
+                                
+                ProgressDialog progress = new ProgressDialog(Localizer.Message("import_progress_dialog_title"),
+                                                             delegate(ProgressDialog progress1)
+                                                                 {
+                                                                     if (Path.GetExtension(xhtmlPath).ToLower() == ".csv"
+                                                                         || Path.GetExtension(xhtmlPath).ToLower() == ".txt")
+                                                                     {
+                                                                         ImportExport.ImportStructureFromCSV csvImport = new Obi.ImportExport.ImportStructureFromCSV();
+                                                                         csvImport.ImportFromCSVFile(xhtmlPath, mSession.Presentation, mProjectView);
+                                                                         audioFilePaths = csvImport.AudioFilePaths;
+                                                                         audioFilesNotImportedDuringCSVImport = csvImport.AudioFilesNotImported;
+                                                                         string DirectoryName = Path.GetDirectoryName(xhtmlPath);
+                                                                         string metaDataFilePath = DirectoryName + "\\metadata.csv"; 
+                                                                         if(File.Exists(metaDataFilePath))
+                                                                         {
+                                                                             ImportExport.ImportMetadata metadataImport = new ImportMetadata();
+                                                                             metadataImport.ImportFromCSVFile(metaDataFilePath, mSession.Presentation, mProjectView, true);
+                                                                         }
+                                                                     }
+                                                                     else
+                                                                     {
+                                                                         import.DoWork();
+                                                                         mSession.Presentation.CheckAndCreateDefaultMetadataItems(
+                                                                             mSettings.UserProfile);
+                                                                         import.CorrectExternalAudioMedia();
+                                                                         
+                                                                     }
+                                                                     ImportStructureFromXHtml_ThreadSafe(path, title, id,
+                                                                                                             xhtmlPath, audioChannels, audioSampleRate);
+                                                                 });
+                progress.OperationCancelled += new OperationCancelledHandler(delegate(object sender, EventArgs e)
+                                                                                 {
+                                                                                     if (import != null) import.RequestCancellation = true;
+                                                                                         
+                                                                                 });
+                import.ProgressChangedEvent +=
+                    new System.ComponentModel.ProgressChangedEventHandler(progress.UpdateProgressBar);
+                progress.ShowDialog();
+                if (progress.Exception != null) throw progress.Exception;
+
+                Dialogs.ReportDialog reportDialog;
+                if (audioFilesNotImportedDuringCSVImport != string.Empty)
+                {
+                    reportDialog = new ReportDialog(Localizer.Message("Report_for_import"),
+                           import.RequestCancellation ? Localizer.Message("import_cancelled")
+                                                                            : String.Format(
+                                                                                Localizer.Message("ImportOfCSVStatus"),
+                                                                                import != null && import.ErrorsList.Count > 0 ? Localizer.Message("ImportErrorCorrectionText") : "",
+                                                                                path, string.Format(Localizer.Message("FilesNotImportedDuringCSVImport"), audioFilesNotImportedDuringCSVImport)),
+                                                                        import != null ? import.ErrorsList : null);
+                    
+                }
+                else
+                {
+                    reportDialog = new ReportDialog(Localizer.Message("Report_for_import"),
+                           import.RequestCancellation ? Localizer.Message("import_cancelled")
+                                                                            : String.Format(
+                                                                                Localizer.Message("ImportOfCSVStatus"),
+                                                                                import != null && import.ErrorsList.Count > 0 ? Localizer.Message("ImportErrorCorrectionText") : "",
+                                                                                path,string.Empty),
+                                                                        import != null ? import.ErrorsList : null);
+                    
+                }
+
+                reportDialog.ShowDialog();
+                return !import.RequestCancellation; 
             }
-            else
+  
+           private bool ImportStructureFromXHtml(string path, string title, string id, string xhtmlPath, int audioChannels, int audioSampleRate)
             {
-                return null;
-            }
-        }
-        private bool ImportStructureFromXHtml(string path, string title, string id, string xhtmlPath, int audioChannels, int audioSampleRate)
-            {
-                mSession.CreateNewPresentationInBackend(path, title, false, id, mSettings, true, audioChannels, audioSampleRate);
-            //ImportExport.DAISY202Import import = new Obi.ImportExport.DAISY202Import(xhtmlPath, mSession.Presentation, mSettings);
-                DialogResult dialogResult = MessageBox.Show("Do you want to import Audio with Xhtml ? Press yes to select audio file containg xhtml audio and no to import structure only", Localizer.Message("Caption_Information"), MessageBoxButtons.YesNo,MessageBoxIcon.Question);
-            string xhtmlAudioFilePath = null;
-            if (dialogResult == DialogResult.Yes)
-            {
-                xhtmlAudioFilePath = SelectFilesToImport();
-            }
-                ImportExport.ImportTranscript import = new Obi.ImportExport.ImportTranscript(xhtmlPath, mSession.Presentation, mSettings, xhtmlAudioFilePath);
+                mSession.CreateNewPresentationInBackend(path, title, false, id, mSettings, true, audioChannels, audioSampleRate);           
+           
+
+                ImportExport.DAISY202Import import = new Obi.ImportExport.DAISY202Import(xhtmlPath, mSession.Presentation, mSettings);           
+
+           
+           //     ImportExport.ImportTranscript import = new Obi.ImportExport.ImportTranscript(xhtmlPath, mSession.Presentation, mSettings, audioFilePathForXhtmlImport);
+          
+
                 List<string> audioFilePaths = new List<string>();
                 string audioFilesNotImportedDuringCSVImport = string.Empty;
                 
