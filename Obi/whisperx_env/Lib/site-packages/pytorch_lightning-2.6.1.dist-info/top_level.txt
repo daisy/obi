@@ -1,2 +1,0 @@
-lightning_fabric
-pytorch_lightning
