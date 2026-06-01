@@ -93,35 +93,25 @@ namespace Obi.Services
                         backendFolder
                 };
 
-            string ffmpegFolder =
-                Path.Combine(
-                    AppDomain.CurrentDomain.BaseDirectory,
-                    "ffmpeg");
 
-            string ffmpegExe =
+
+            string ffmpegPath =
                         Path.Combine(
-                            ffmpegFolder,
+                            AppDomain.CurrentDomain.BaseDirectory,
                             "ffmpeg.exe");
 
-            if (!File.Exists(ffmpegExe))
+            if (!File.Exists(ffmpegPath))
             {
                 throw new Exception(
                     "FFmpeg is missing.\n\nExpected:\n" +
-                    ffmpegExe);
+                    ffmpegPath);
             }
 
-            string existingPath =
-                Environment.GetEnvironmentVariable(
-                    "PATH") ?? "";
 
-            psi.Environment["PATH"] =
-                ffmpegFolder +
-                ";" +
-                existingPath;
 
             using Process process =
                 new();
-
+            process.StartInfo.FileName = ffmpegPath;
             process.StartInfo = psi;
 
             StringBuilder outputBuilder =
