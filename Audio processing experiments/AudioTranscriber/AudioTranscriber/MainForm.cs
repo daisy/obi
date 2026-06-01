@@ -115,6 +115,28 @@ namespace AudioTranscriber
                 _cts =
                     new CancellationTokenSource();
 
+                IProgress<string> whisperProgress =
+                    new Progress<string>(
+                        message =>
+                        {
+                            lblStatus.Text = (
+                                message +
+                                Environment.NewLine);
+                        });
+
+                if (!await WhisperXInstallerService
+                    .IsPythonEnvironmentInstalledAsync())
+                {
+                    lblStatus.Text =
+                        "Installing WhisperX..." +
+                        Environment.NewLine;
+
+                    await WhisperXInstallerService
+                        .InstallAsync(
+                            whisperProgress);
+                }
+
+
                 WhisperXService whisper =
                     new();
 
@@ -123,7 +145,8 @@ namespace AudioTranscriber
                 var segments =
                     await whisper.TranscribeAsync(
                         txtAudioPath.Text,
-                        _cts.Token);
+                        _cts.Token,
+                        whisperProgress);
 
                 // STEP 2:
                 // Generate XHTML path

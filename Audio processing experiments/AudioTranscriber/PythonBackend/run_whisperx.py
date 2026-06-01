@@ -25,6 +25,7 @@ os.makedirs(
 # ---------------------------------------------------
 
 os.environ["HF_HOME"] = MODELS_DIR
+os.environ["HF_HUB_DISABLE_SYMLINKS_WARNING"] = "1"
 os.environ["TORCH_HOME"] = MODELS_DIR
 os.environ["XDG_CACHE_HOME"] = MODELS_DIR
 
@@ -54,7 +55,7 @@ output_json = sys.argv[2]
 
 device = "cpu"
 
-MODEL_NAME = "medium"
+MODEL_NAME = "large-v3"
 
 # ---------------------------------------------------
 # LOAD MODEL
