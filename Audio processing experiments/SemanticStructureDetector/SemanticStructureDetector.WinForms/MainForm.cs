@@ -2,6 +2,7 @@ using SemanticStructureDetector.WinForms.Builders;
 using SemanticStructureDetector.WinForms.Models;
 using SemanticStructureDetector.WinForms.Parsers;
 using SemanticStructureDetector.WinForms.Services;
+using System.Threading;
 
 namespace SemanticStructureDetector.WinForms;
 
@@ -16,6 +17,7 @@ public partial class MainForm : Form
     private readonly SemanticXhtmlBuilder _builder;
 
     private readonly StructurePostProcessor _postProcessor;
+    private CancellationTokenSource? _cancellationTokenSource;
 
     public MainForm()
     {
@@ -75,6 +77,10 @@ public partial class MainForm : Form
         {
             btnProcess.Enabled = false;
 
+            _cancellationTokenSource = new CancellationTokenSource();
+
+            btnCancel.Enabled = true;
+
             progressBar.Value = 0;
 
             txtLog.Clear();
@@ -121,7 +127,7 @@ public partial class MainForm : Form
 
 
 
-           
+
 
             //--------------------------------------------------
             // CHUNKING
@@ -155,16 +161,21 @@ public partial class MainForm : Form
 
             foreach (var chunk in chunks)
             {
+
+                _cancellationTokenSource
+                        .Token
+                        .ThrowIfCancellationRequested();
+
                 txtLog.AppendText(
                     $"Processing chunk " +
                     $"{chunkIndex}/{chunks.Count}"
                     + Environment.NewLine);
 
                 var result =
-                    await _openAiService
-                        .DetectStructureAsync(
-                            chunk,
-                            CancellationToken.None);
+                        await _openAiService
+                            .DetectStructureAsync(
+                                chunk,
+                                _cancellationTokenSource.Token);
 
                 //--------------------------------------------------
                 // DEDUPLICATE
@@ -245,14 +256,41 @@ public partial class MainForm : Form
             MessageBox.Show(
                 "Semantic XHTML generated successfully.");
         }
+        catch (OperationCanceledException)
+        {
+            txtLog.AppendText(
+                "Operation cancelled."
+                + Environment.NewLine);
+
+            MessageBox.Show(
+                "GPT structuring cancelled.");
+        }
         catch (Exception ex)
         {
             MessageBox.Show(
                 ex.ToString());
         }
+
         finally
         {
             btnProcess.Enabled = true;
+
+            btnCancel.Enabled = false;
+
+            _cancellationTokenSource?.Dispose();
+
+            _cancellationTokenSource = null;
         }
+    }
+
+    private void btnCancel_Click(object sender, EventArgs e)
+    {
+        btnCancel.Enabled = false;
+
+        txtLog.AppendText(
+            "Cancelling..."
+            + Environment.NewLine);
+
+        _cancellationTokenSource?.Cancel();
     }
 }

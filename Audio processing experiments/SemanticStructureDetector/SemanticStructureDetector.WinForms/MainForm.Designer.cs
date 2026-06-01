@@ -34,6 +34,7 @@
             btnProcess = new Button();
             progressBar = new ProgressBar();
             txtLog = new TextBox();
+            btnCancel = new Button();
             SuspendLayout();
             // 
             // lblInput
@@ -88,11 +89,22 @@
             txtLog.Size = new Size(900, 400);
             txtLog.TabIndex = 5;
             // 
+            // btnCancel
+            // 
+            btnCancel.Location = new Point(624, 92);
+            btnCancel.Name = "btnCancel";
+            btnCancel.Size = new Size(94, 29);
+            btnCancel.TabIndex = 6;
+            btnCancel.Text = "Cancel";
+            btnCancel.UseVisualStyleBackColor = true;
+            btnCancel.Click += btnCancel_Click;
+            // 
             // MainForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(982, 653);
+            Controls.Add(btnCancel);
             Controls.Add(txtLog);
             Controls.Add(progressBar);
             Controls.Add(btnProcess);
@@ -113,5 +125,6 @@
         private Button btnProcess;
         private ProgressBar progressBar;
         private TextBox txtLog;
+        private Button btnCancel;
     }
 }

@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("SemanticStructureDetector.WinForms")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+5c422120bba8e7dd1c81bc28d3dc8498e33d1a73")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+7048397ab33a5fefeff866977fa1d8c717b35aba")]
 [assembly: System.Reflection.AssemblyProductAttribute("SemanticStructureDetector.WinForms")]
 [assembly: System.Reflection.AssemblyTitleAttribute("SemanticStructureDetector.WinForms")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
