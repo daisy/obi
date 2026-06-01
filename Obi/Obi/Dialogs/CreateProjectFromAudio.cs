@@ -101,15 +101,43 @@ namespace Obi.Dialogs
                 _cts =
                     new CancellationTokenSource();
 
+
+                IProgress<string> whisperProgress =
+                                    new Progress<string>(
+                                        message =>
+                                        {
+                                            txtLog.AppendText(
+                                                message +
+                                                Environment.NewLine);
+                                        });
+
+                if (!await WhisperXInstallerService
+                    .IsPythonEnvironmentInstalledAsync())
+                {
+                    txtLog.AppendText(
+                        "Installing WhisperX..." +
+                        Environment.NewLine);
+
+                    await WhisperXInstallerService
+                        .InstallAsync(
+                            whisperProgress);
+                }
+
+                await WhisperXInstallerService
+                    .EnsureModelsAsync(
+                        whisperProgress);
+
                 WhisperXService whisper =
                     new();
+
 
                 // STEP 1:
                 // Transcribe audio
                 var segments =
                     await whisper.TranscribeAsync(
                         txtAudioPath.Text,
-                        _cts.Token);
+                        _cts.Token,
+                        whisperProgress);
 
                 // STEP 2:
                 // Generate XHTML path

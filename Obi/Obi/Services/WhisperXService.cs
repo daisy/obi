@@ -10,6 +10,7 @@ using Obi.Models;
 using System.Diagnostics;
 using System.Text;
 using System.Text.Json;
+using Obi.Services;
 
 namespace Obi.Services
 {
@@ -18,7 +19,8 @@ namespace Obi.Services
         public async Task<List<TranscriptSegment>>
             TranscribeAsync(
                 string audioFile,
-                CancellationToken cancellationToken)
+                CancellationToken cancellationToken,
+                IProgress<string>? progress = null)
         {
             string backendFolder =
                 Path.GetFullPath(
@@ -38,7 +40,7 @@ namespace Obi.Services
             string jsonOutput =
                 Path.Combine(
                     backendFolder,
-                    "output.json");
+                    Guid.NewGuid().ToString() + ".json");
 
 
             string pythonExe =
@@ -52,6 +54,23 @@ namespace Obi.Services
                     "whisperx_env",
                     "Scripts",
                     "python.exe"));
+
+
+            if (!await WhisperXInstallerService.IsPythonEnvironmentInstalledAsync())
+            {
+                throw new Exception(
+                    "WhisperX is not installed.");
+            }
+
+            //if (!File.Exists(pythonExe))
+            //{
+            //    throw new Exception(
+            //        "AI Transcription support is not installed.\n\n" +
+            //        "Expected:\n" +
+            //        pythonExe +
+            //        "\n\n" +
+            //        "Please install WhisperX support first.");
+            //}
 
             ProcessStartInfo psi =
                 new()
@@ -79,6 +98,18 @@ namespace Obi.Services
                     AppDomain.CurrentDomain.BaseDirectory,
                     "ffmpeg");
 
+            string ffmpegExe =
+                        Path.Combine(
+                            ffmpegFolder,
+                            "ffmpeg.exe");
+
+            if (!File.Exists(ffmpegExe))
+            {
+                throw new Exception(
+                    "FFmpeg is missing.\n\nExpected:\n" +
+                    ffmpegExe);
+            }
+
             string existingPath =
                 Environment.GetEnvironmentVariable(
                     "PATH") ?? "";
@@ -105,7 +136,7 @@ namespace Obi.Services
                     if (!string.IsNullOrWhiteSpace(
                         e.Data))
                     {
-                        Console.WriteLine(
+                        progress?.Report(
                             e.Data);
 
                         outputBuilder.AppendLine(
@@ -154,6 +185,14 @@ namespace Obi.Services
                 await File.ReadAllTextAsync(
                     jsonOutput,
                     cancellationToken);
+
+            try
+            {
+                File.Delete(jsonOutput);
+            }
+            catch
+            {
+            }
 
             WhisperXResult? result =
                 JsonSerializer.Deserialize
