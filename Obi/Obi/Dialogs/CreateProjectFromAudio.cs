@@ -123,9 +123,6 @@ namespace Obi.Dialogs
                             whisperProgress);
                 }
 
-                await WhisperXInstallerService
-                    .EnsureModelsAsync(
-                        whisperProgress);
 
                 WhisperXService whisper =
                     new();

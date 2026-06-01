@@ -97,6 +97,7 @@
             txtLog.Location = new System.Drawing.Point(79, 305);
             txtLog.Multiline = true;
             txtLog.Name = "txtLog";
+            txtLog.ScrollBars = System.Windows.Forms.ScrollBars.Both;
             txtLog.Size = new System.Drawing.Size(900, 400);
             txtLog.TabIndex = 8;
             // 

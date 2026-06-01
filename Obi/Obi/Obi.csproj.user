@@ -221,6 +221,9 @@
     <EmbeddedResource Update="Dialogs\About.zh-Hant.resx">
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Update="Dialogs\AudioProcessingNoiseReduction.resx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Update="Dialogs\ExtendedMessageToAssociate.resx">
       <SubType>Designer</SubType>
     </EmbeddedResource>
