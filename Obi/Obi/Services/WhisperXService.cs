@@ -94,24 +94,48 @@ namespace Obi.Services
                 };
 
 
+            string ffmpegFolder =  Path.Combine( AppDomain.CurrentDomain.BaseDirectory,"ffmpeg");
 
-            string ffmpegPath =
-                        Path.Combine(
-                            AppDomain.CurrentDomain.BaseDirectory,
-                            "ffmpeg.exe");
+            string ffmpegExe =
+            Path.Combine(
+                ffmpegFolder,
+                "ffmpeg.exe");
 
-            if (!File.Exists(ffmpegPath))
+            if (!File.Exists(ffmpegExe))
             {
                 throw new Exception(
                     "FFmpeg is missing.\n\nExpected:\n" +
-                    ffmpegPath);
+                    ffmpegExe);
             }
+
+            string existingPath =
+                Environment.GetEnvironmentVariable(
+                    "PATH") ?? "";
+
+            psi.Environment["PATH"] =
+                ffmpegFolder +
+                ";" +
+                existingPath;
+
+
+            // following code will use existing ffmpeg of Obi
+            //string ffmpegPath =
+            //            Path.Combine(
+            //                AppDomain.CurrentDomain.BaseDirectory,
+            //                "ffmpeg.exe");
+
+            //if (!File.Exists(ffmpegPath))
+            //{
+            //    throw new Exception(
+            //        "FFmpeg is missing.\n\nExpected:\n" +
+            //        ffmpegPath);
+            //}
 
 
 
             using Process process =
                 new();
-            process.StartInfo.FileName = ffmpegPath;
+            //process.StartInfo.FileName = ffmpegPath;
             process.StartInfo = psi;
 
             StringBuilder outputBuilder =
