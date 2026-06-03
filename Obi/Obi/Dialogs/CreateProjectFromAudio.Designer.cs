@@ -51,15 +51,15 @@
             // progressBar
             // 
             progressBar.AccessibleName = "Progress Bar";
-            progressBar.Location = new System.Drawing.Point(32, 400);
+            progressBar.Location = new System.Drawing.Point(19, 400);
             progressBar.Name = "progressBar";
-            progressBar.Size = new System.Drawing.Size(997, 29);
+            progressBar.Size = new System.Drawing.Size(911, 29);
             progressBar.TabIndex = 10;
             // 
             // m_btnStart
             // 
             m_btnStart.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            m_btnStart.Location = new System.Drawing.Point(119, 20);
+            m_btnStart.Location = new System.Drawing.Point(119, 22);
             m_btnStart.Name = "m_btnStart";
             m_btnStart.Size = new System.Drawing.Size(126, 35);
             m_btnStart.TabIndex = 12;
@@ -70,7 +70,7 @@
             // m_btnCancel
             // 
             m_btnCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            m_btnCancel.Location = new System.Drawing.Point(440, 20);
+            m_btnCancel.Location = new System.Drawing.Point(440, 22);
             m_btnCancel.Name = "m_btnCancel";
             m_btnCancel.Size = new System.Drawing.Size(110, 35);
             m_btnCancel.TabIndex = 13;
@@ -80,17 +80,18 @@
             // 
             // txtLog
             // 
-            txtLog.Location = new System.Drawing.Point(80, 525);
+            txtLog.Location = new System.Drawing.Point(19, 525);
             txtLog.Multiline = true;
             txtLog.Name = "txtLog";
+            txtLog.ReadOnly = true;
             txtLog.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            txtLog.Size = new System.Drawing.Size(900, 359);
+            txtLog.Size = new System.Drawing.Size(911, 308);
             txtLog.TabIndex = 14;
             // 
             // m_btnClose
             // 
             m_btnClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            m_btnClose.Location = new System.Drawing.Point(435, 901);
+            m_btnClose.Location = new System.Drawing.Point(386, 851);
             m_btnClose.Name = "m_btnClose";
             m_btnClose.Size = new System.Drawing.Size(110, 35);
             m_btnClose.TabIndex = 15;
@@ -170,7 +171,7 @@
             m_grpAddFiles.Controls.Add(m_btnMoveUp);
             m_grpAddFiles.Controls.Add(m_btnAdd);
             m_grpAddFiles.Controls.Add(m_btnMoveDown);
-            m_grpAddFiles.Location = new System.Drawing.Point(69, 12);
+            m_grpAddFiles.Location = new System.Drawing.Point(19, 12);
             m_grpAddFiles.Name = "m_grpAddFiles";
             m_grpAddFiles.Size = new System.Drawing.Size(911, 366);
             m_grpAddFiles.TabIndex = 1;
@@ -217,7 +218,7 @@
             // 
             m_grpStartProcess.Controls.Add(m_btnStart);
             m_grpStartProcess.Controls.Add(m_btnCancel);
-            m_grpStartProcess.Location = new System.Drawing.Point(151, 448);
+            m_grpStartProcess.Location = new System.Drawing.Point(101, 448);
             m_grpStartProcess.Name = "m_grpStartProcess";
             m_grpStartProcess.Size = new System.Drawing.Size(667, 71);
             m_grpStartProcess.TabIndex = 11;
@@ -227,7 +228,7 @@
             // 
             AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            ClientSize = new System.Drawing.Size(1082, 947);
+            ClientSize = new System.Drawing.Size(939, 910);
             Controls.Add(m_grpStartProcess);
             Controls.Add(m_grpAddFiles);
             Controls.Add(m_btnClose);

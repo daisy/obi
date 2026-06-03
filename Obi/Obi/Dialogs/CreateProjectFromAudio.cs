@@ -187,17 +187,17 @@ namespace Obi.Dialogs
                             else if (message.Contains(
                                 "Alignment completed"))
                             {
-                                progressBar.Value = 70;
+                                progressBar.Value = 65;
                             }
                             else if (message.Contains(
                                 "Saving JSON"))
                             {
-                                progressBar.Value = 75;
+                                progressBar.Value = 68;
                             }
                             else if (message.Contains(
                                 "Completed"))
                             {
-                                progressBar.Value = 80;
+                                progressBar.Value = 70;
                             }
                         });
 
@@ -255,7 +255,7 @@ namespace Obi.Dialogs
                 txtLog.AppendText("Transcription Completed successfully" + Environment.NewLine);
                 txtLog.AppendText("Now starting semantic analysis..." + Environment.NewLine);
 
-                progressBar.Value = 80;
+                progressBar.Value = 70;
 
                 //MessageBox.Show(
                 //    $"Transcription completed successfully.\n\n" +
