@@ -55,7 +55,14 @@ namespace Obi.Dialogs
             _builder = new SemanticXhtmlBuilder();
 
             _postProcessor = new StructurePostProcessor();
-            m_filePaths = new List<string>(filesPathArray);
+            if (filesPathArray != null)
+            {
+                m_filePaths = new List<string>(filesPathArray);
+            }
+            else
+            {
+                m_filePaths = new List<string>();
+            }
             m_filePaths.Sort();
             m_btnMoveUp.Enabled = false;
             m_btnMoveDown.Enabled = false;
@@ -502,6 +509,7 @@ namespace Obi.Dialogs
         {
             m_btnAdd.Enabled = true;
             m_btnCancel.Enabled = false;
+            progressBar.Value = 0;
 
             txtLog.AppendText("Cancelling..." + Environment.NewLine);
             _cts?.Cancel();
