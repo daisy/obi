@@ -256,9 +256,68 @@ namespace Obi.Services
                     item.HeadingText = "";
                 }
             }
-
+            NormalizeHeadingLevels(structure);
 
             return structure;
+        }
+
+        private static void NormalizeHeadingLevels(
+            List<StructureItem> structure)
+        {
+            int previousHeadingLevel = 0;
+
+            foreach (var item in structure)
+            {
+                if (item.Role != "heading"
+                    || item.Level == null)
+                {
+                    continue;
+                }
+
+                int currentLevel =
+                    item.Level.Value;
+
+                //--------------------------------------------------
+                // Clamp to valid XHTML heading range
+                //--------------------------------------------------
+
+                currentLevel =
+                    Math.Max(
+                        1,
+                        Math.Min(
+                            6,
+                            currentLevel));
+
+                //--------------------------------------------------
+                // First heading must be h1
+                //--------------------------------------------------
+
+                if (previousHeadingLevel == 0)
+                {
+                    item.Level = 1;
+
+                    previousHeadingLevel = 1;
+
+                    continue;
+                }
+
+                //--------------------------------------------------
+                // Prevent skipping levels
+                //--------------------------------------------------
+
+                if (currentLevel >
+                    previousHeadingLevel + 1)
+                {
+                    currentLevel =
+                        previousHeadingLevel + 1;
+                }
+
+                item.Level =
+                    currentLevel;
+
+                previousHeadingLevel =
+                    currentLevel;
+            }
         }
     }
 }
