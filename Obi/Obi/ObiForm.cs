@@ -711,30 +711,18 @@ namespace Obi
                 if (progress.Exception != null) throw progress.Exception;
 
                 Dialogs.ReportDialog reportDialog;
-                if (audioFilesNotImportedDuringCSVImport != string.Empty)
-                {
-                    reportDialog = new ReportDialog(Localizer.Message("Report_for_import"),
-                           import.RequestCancellation ? Localizer.Message("import_cancelled")
-                                                                            : String.Format(
-                                                                                Localizer.Message("ImportOfCSVStatus"),
-                                                                                import != null && import.ErrorsList.Count > 0 ? Localizer.Message("ImportErrorCorrectionText") : "",
-                                                                                path, string.Format(Localizer.Message("FilesNotImportedDuringCSVImport"), audioFilesNotImportedDuringCSVImport)),
-                                                                        import != null ? import.ErrorsList : null);
-                    
-                }
-                else
-                {
-                    reportDialog = new ReportDialog(Localizer.Message("Report_for_import"),
-                           import.RequestCancellation ? Localizer.Message("import_cancelled")
-                                                                            : String.Format(
-                                                                                Localizer.Message("ImportOfCSVStatus"),
-                                                                                import != null && import.ErrorsList.Count > 0 ? Localizer.Message("ImportErrorCorrectionText") : "",
-                                                                                path,string.Empty),
-                                                                        import != null ? import.ErrorsList : null);
-                    
-                }
 
-                reportDialog.ShowDialog();
+                reportDialog = new ReportDialog(Localizer.Message("Report_for_import"),
+                       import.RequestCancellation ? Localizer.Message("import_cancelled")
+                                                                        : String.Format(
+                                                                            Localizer.Message("ImportOfAudioStatus"),
+                                                                            import != null && import.ErrorsList.Count > 0 ? Localizer.Message("ImportErrorCorrectionText") : "",
+                                                                            path, string.Empty),
+                                                                    import != null ? import.ErrorsList : null);
+
+
+
+            reportDialog.ShowDialog();
                 return !import.RequestCancellation; 
             }
   
