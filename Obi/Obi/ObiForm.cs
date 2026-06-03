@@ -338,7 +338,8 @@ namespace Obi
 
             private void NewProjectFromAudio()
             {
-               CreateProjectFromAudio dialog = new CreateProjectFromAudio();
+            string[] filesPathArray = SelectFilesToImport();
+            CreateProjectFromAudio dialog = new CreateProjectFromAudio(filesPathArray);
                dialog.ShowDialog();
              string semanticXhtmlPath = dialog.SemanticXhtmlPath;
              string audioPath = dialog.AudioPath;
@@ -348,8 +349,22 @@ namespace Obi
                 NewProjectFromImport(semanticXhtmlPath, audioPath);
             }
 
-        }
-            private void NewProject()
+            }
+            private string[] SelectFilesToImport()
+            {
+                OpenFileDialog dialog = new OpenFileDialog();
+                dialog.Multiselect = true;
+                dialog.Filter = Localizer.Message("audio_file_filter");
+                if (dialog.ShowDialog() == DialogResult.OK)
+                {
+                    return dialog.FileNames;
+                }
+                else
+                {
+                    return null;
+                }
+            }
+        private void NewProject()
             {
                 m_IsStatusBarEnabled = true;
                 if (mProjectView.Presentation != null && mProjectView.TransportBar.IsActive)

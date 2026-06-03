@@ -21,6 +21,8 @@ namespace Obi.Dialogs
     {
         private string m_SemanticXhtmlPath;
         private CancellationTokenSource? _cts;
+        private string? m_MergedAudioPath;
+        private List<string> m_filePaths;
 
 
         private CancellationTokenSource? _cancellationTokenSource;
@@ -35,7 +37,7 @@ namespace Obi.Dialogs
 
         private readonly StructurePostProcessor _postProcessor;
 
-        public CreateProjectFromAudio()
+        public CreateProjectFromAudio(string[] filesPathArray)
         {
             InitializeComponent();
 
@@ -53,41 +55,72 @@ namespace Obi.Dialogs
             _builder = new SemanticXhtmlBuilder();
 
             _postProcessor = new StructurePostProcessor();
+            m_filePaths = new List<string>(filesPathArray);
+            m_filePaths.Sort();
+            m_btnMoveUp.Enabled = false;
+            m_btnMoveDown.Enabled = false;
+            m_btnRemove.Enabled = false;
+
+            foreach (string str in m_filePaths)
+            {
+                if (str != null)
+                {
+                    lstAudioFiles.Items.Add(System.IO.Path.GetFileName(str));
+                }
+            }
+
         }
 
-        public string AudioPath { get => txtAudioPath.Text; }
+        public string AudioPath { get => m_MergedAudioPath; }
 
         public string SemanticXhtmlPath { get => m_SemanticXhtmlPath; }
-        private void m_btnBrowseAudio_Click(object sender, EventArgs e)
+
+
+        private void m_btnAddAudio_Click(object sender, EventArgs e)
         {
-            using OpenFileDialog dialog = new();
 
-            dialog.Filter =
-                "Audio Files|*.mp3;*.wav;*.m4a;*.aac;*.flac";
-
-            if (dialog.ShowDialog() == DialogResult.OK)
+            OpenFileDialog select_File = new OpenFileDialog();
+            select_File.Filter = Localizer.Message("audio_file_filter");
+            int index = m_filePaths.Count;
+            select_File.RestoreDirectory = true;
+            select_File.Multiselect = true;
+            if (select_File.ShowDialog() == DialogResult.OK)
             {
-                txtAudioPath.Text = dialog.FileName;
+                string[] fileNames = select_File.FileNames;
+                foreach (string fileName in fileNames)
+                {
+                    string nameOfFile = System.IO.Path.GetFileName(fileName);
+                    if (nameOfFile != null) lstAudioFiles.Items.Add(nameOfFile);
+                    m_filePaths.Add(fileName);
+                }
+
+                lstAudioFiles.SelectedIndex = -1;
+
             }
+         
         }
 
         private async void m_btnStart_Click(object sender, EventArgs e)
         {
             try
             {
+
+                m_btnMoveUp.Enabled = false;
+                m_btnMoveDown.Enabled = false;
+                m_btnRemove.Enabled = false;
+                m_btnAdd.Enabled = false;
+
                 m_btnCancel.Enabled = true;
 
                 txtLog.Clear();
 
-                if (string.IsNullOrWhiteSpace(
-                    txtAudioPath.Text))
+                if (lstAudioFiles.Items.Count == 0)
                 {
                     MessageBox.Show(
-                        "Please select an audio file.");
+                        "Please select one or more audio files.");
 
                     return;
                 }
-
                 m_btnStart.Enabled = false;
 
                 progressBar.Style =
@@ -130,9 +163,15 @@ namespace Obi.Dialogs
 
                 // STEP 1:
                 // Transcribe audio
+
+
+                string mergedAudio =
+                    AudioMergeService.Merge(m_filePaths);
+
+                m_MergedAudioPath = mergedAudio;
                 var segments =
                     await whisper.TranscribeAsync(
-                        txtAudioPath.Text,
+                        mergedAudio,
                         _cts.Token,
                         whisperProgress);
 
@@ -141,11 +180,8 @@ namespace Obi.Dialogs
                 string xhtmlPath =
                     Path.Combine(
                         Path.GetDirectoryName(
-                            txtAudioPath.Text)!,
-
-                        Path.GetFileNameWithoutExtension(
-                            txtAudioPath.Text) +
-                        ".xhtml");
+                            m_filePaths[0])!,
+                        "CombinedTranscription.xhtml");
 
                 // STEP 3:
                 // Export XHTML
@@ -348,7 +384,9 @@ namespace Obi.Dialogs
 
 
                 //MessageBox.Show(
-                //    "Semantic XHTML generated successfully.");
+                //    $"Semantic XHTML generated successfully.\n\n" +
+                //$"XHTML saved at:\n{m_SemanticXhtmlPath}");
+
                 txtLog.AppendText("Semantic XHTML generated successfully" + Environment.NewLine);
 
                 txtLog.AppendText("Now Project import will start..." + Environment.NewLine);
@@ -386,6 +424,7 @@ namespace Obi.Dialogs
 
         private void m_btnCancel_Click(object sender, EventArgs e)
         {
+            m_btnAdd.Enabled = true;
             m_btnCancel.Enabled = false;
 
             txtLog.AppendText("Cancelling..." + Environment.NewLine);
@@ -397,6 +436,191 @@ namespace Obi.Dialogs
         private void m_btnClose_Click(object sender, EventArgs e)
         {
             Close();
+        }
+
+        private void m_btnMoveUp_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (lstAudioFiles.Items.Count != 0)
+                {
+
+                    if (lstAudioFiles.SelectedIndex != 0 && lstAudioFiles.SelectedIndex != -1)
+                    {
+                        int tempIndexStore = lstAudioFiles.SelectedIndex;
+                        object item = lstAudioFiles.SelectedItem;
+
+                        int index = lstAudioFiles.SelectedIndex;
+                        // List<string> filePaths = new List<string>(mfilePaths);
+                        //object itemInList = filesPath[index];
+
+                        object itemInList = m_filePaths[index];
+
+                        lstAudioFiles.Items.RemoveAt(index);
+                        m_filePaths.RemoveAt(index);
+
+
+                        lstAudioFiles.Items.Insert(index - 1, item);
+                        m_filePaths.Insert(index - 1, itemInList.ToString());
+                        if ((tempIndexStore - 1) != -1)
+                            lstAudioFiles.SelectedIndex = tempIndexStore - 1;
+
+                    }
+
+                }
+
+            }
+            catch (Exception exp)
+            {
+                MessageBox.Show(exp.Message);
+            }
+
+        }
+
+        private void m_btnMoveDown_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                int index = lstAudioFiles.SelectedIndex;
+
+                if (lstAudioFiles.Items.Count != 0)
+                {
+                    if (lstAudioFiles.SelectedIndex != lstAudioFiles.Items.Count - 1 && lstAudioFiles.SelectedIndex != -1)
+                    {
+                        int tempIndexStore = lstAudioFiles.SelectedIndex;
+                        object item = lstAudioFiles.SelectedItem;
+
+                        object itemInList = m_filePaths[index];
+                        lstAudioFiles.Items.RemoveAt(index);
+
+                        m_filePaths.RemoveAt(index);
+
+                        lstAudioFiles.Items.Insert(index + 1, item);
+
+                        m_filePaths.Insert(index + 1, itemInList.ToString());
+                        //   if ((tempIndexStore+1) != lstManualArrange.Items.Count - 1)
+                        lstAudioFiles.SelectedIndex = tempIndexStore + 1;
+                    }
+                }
+            }
+            catch (Exception exp)
+            {
+                MessageBox.Show(exp.Message);
+            }
+
+
+
+        }
+
+        private void m_btnRemove_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (lstAudioFiles.Items.Count != 0)
+                {
+                    if (lstAudioFiles.SelectedIndex >= 0)
+                    {
+                        object item = lstAudioFiles.SelectedItem;
+                        int tempIndex = lstAudioFiles.SelectedIndex;
+                        lstAudioFiles.Items.Remove(item);
+                        for (int i = 0; i < m_filePaths.Count; i++)
+                        {
+                            if (System.IO.Path.GetFileName(m_filePaths[i]) == (string)item)
+                            {
+                                m_filePaths.RemoveAt(i);
+                                break;
+                            }
+                        }
+                        if (lstAudioFiles.Items.Count != 0)
+                        {
+                            if (tempIndex > lstAudioFiles.Items.Count - 1)
+                            {
+                                lstAudioFiles.SelectedIndex = lstAudioFiles.Items.Count - 1;
+                            }
+                            else
+                            {
+                                lstAudioFiles.SelectedIndex = tempIndex;
+                            }
+                        }
+                    }
+                }
+            }
+
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            if (lstAudioFiles.Items.Count < 1)
+            {
+                m_btnRemove.Enabled = false;
+                m_btnMoveUp.Enabled = false;
+                m_btnMoveDown.Enabled = false;
+            }
+
+
+
+            //if (lstAudioFiles.SelectedIndex >= 0)
+            //{
+            //    lstAudioFiles.Items.RemoveAt(lstAudioFiles.SelectedIndex);
+            //}
+        }
+
+        private void lstAudioFiles_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (lstAudioFiles.SelectedIndex == 0)
+            {
+                m_btnRemove.Enabled = true;
+                if (lstAudioFiles.Items.Count != 1)
+                {
+                    m_btnMoveUp.Enabled = false;
+                    m_btnMoveDown.Enabled = true;
+
+                }
+                else
+                {
+                    m_btnMoveUp.Enabled = false;
+                    m_btnMoveDown.Enabled = false;
+
+                }
+            }
+            else if (lstAudioFiles.SelectedIndex == lstAudioFiles.Items.Count - 1)
+            {
+                m_btnRemove.Enabled = true;
+                if (lstAudioFiles.Items.Count != 1)
+                {
+                    m_btnMoveUp.Enabled = true;
+                    m_btnMoveDown.Enabled = false;
+
+                }
+                else
+                {
+                    m_btnMoveUp.Enabled = false;
+                    m_btnMoveDown.Enabled = false;
+
+                }
+            }
+            else if (lstAudioFiles.SelectedIndex > 0)
+            {
+                m_btnRemove.Enabled = true;
+                if (lstAudioFiles.Items.Count != 1)
+                {
+                    m_btnMoveUp.Enabled = true;
+                    m_btnMoveDown.Enabled = true;
+
+                }
+                else
+                {
+                    m_btnMoveUp.Enabled = false;
+                    m_btnMoveDown.Enabled = false;
+
+                }
+            }
+            else if (lstAudioFiles.SelectedIndex < 0)
+            {
+                m_btnMoveUp.Enabled = false;
+                m_btnMoveDown.Enabled = false;
+                m_btnRemove.Enabled = false;
+            }
         }
     }
 }

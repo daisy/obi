@@ -28,53 +28,28 @@
         /// </summary>
         private void InitializeComponent()
         {
-            label1 = new System.Windows.Forms.Label();
-            txtAudioPath = new System.Windows.Forms.TextBox();
-            m_btnBrowseAudio = new System.Windows.Forms.Button();
             progressBar = new System.Windows.Forms.ProgressBar();
             m_btnStart = new System.Windows.Forms.Button();
             m_btnCancel = new System.Windows.Forms.Button();
             txtLog = new System.Windows.Forms.TextBox();
             m_btnClose = new System.Windows.Forms.Button();
+            lstAudioFiles = new System.Windows.Forms.ListBox();
+            m_btnRemove = new System.Windows.Forms.Button();
+            m_btnAdd = new System.Windows.Forms.Button();
+            m_btnMoveUp = new System.Windows.Forms.Button();
+            m_btnMoveDown = new System.Windows.Forms.Button();
             SuspendLayout();
-            // 
-            // label1
-            // 
-            label1.AutoSize = true;
-            label1.Location = new System.Drawing.Point(12, 93);
-            label1.Name = "label1";
-            label1.Size = new System.Drawing.Size(124, 20);
-            label1.TabIndex = 0;
-            label1.Text = "Select Audio File ";
-            // 
-            // txtAudioPath
-            // 
-            txtAudioPath.Location = new System.Drawing.Point(144, 91);
-            txtAudioPath.Name = "txtAudioPath";
-            txtAudioPath.Size = new System.Drawing.Size(795, 27);
-            txtAudioPath.TabIndex = 1;
-            // 
-            // m_btnBrowseAudio
-            // 
-            m_btnBrowseAudio.AccessibleName = "";
-            m_btnBrowseAudio.Location = new System.Drawing.Point(955, 89);
-            m_btnBrowseAudio.Name = "m_btnBrowseAudio";
-            m_btnBrowseAudio.Size = new System.Drawing.Size(94, 29);
-            m_btnBrowseAudio.TabIndex = 2;
-            m_btnBrowseAudio.Text = "&Browse";
-            m_btnBrowseAudio.UseVisualStyleBackColor = true;
-            m_btnBrowseAudio.Click += m_btnBrowseAudio_Click;
             // 
             // progressBar
             // 
-            progressBar.Location = new System.Drawing.Point(36, 181);
+            progressBar.Location = new System.Drawing.Point(37, 281);
             progressBar.Name = "progressBar";
             progressBar.Size = new System.Drawing.Size(997, 29);
             progressBar.TabIndex = 3;
             // 
             // m_btnStart
             // 
-            m_btnStart.Location = new System.Drawing.Point(260, 241);
+            m_btnStart.Location = new System.Drawing.Point(261, 341);
             m_btnStart.Name = "m_btnStart";
             m_btnStart.Size = new System.Drawing.Size(126, 40);
             m_btnStart.TabIndex = 5;
@@ -84,7 +59,7 @@
             // 
             // m_btnCancel
             // 
-            m_btnCancel.Location = new System.Drawing.Point(471, 241);
+            m_btnCancel.Location = new System.Drawing.Point(472, 341);
             m_btnCancel.Name = "m_btnCancel";
             m_btnCancel.Size = new System.Drawing.Size(110, 40);
             m_btnCancel.TabIndex = 6;
@@ -94,7 +69,7 @@
             // 
             // txtLog
             // 
-            txtLog.Location = new System.Drawing.Point(79, 305);
+            txtLog.Location = new System.Drawing.Point(80, 405);
             txtLog.Multiline = true;
             txtLog.Name = "txtLog";
             txtLog.ScrollBars = System.Windows.Forms.ScrollBars.Both;
@@ -103,7 +78,7 @@
             // 
             // m_btnClose
             // 
-            m_btnClose.Location = new System.Drawing.Point(695, 241);
+            m_btnClose.Location = new System.Drawing.Point(696, 341);
             m_btnClose.Name = "m_btnClose";
             m_btnClose.Size = new System.Drawing.Size(110, 40);
             m_btnClose.TabIndex = 7;
@@ -111,19 +86,85 @@
             m_btnClose.UseVisualStyleBackColor = true;
             m_btnClose.Click += m_btnClose_Click;
             // 
+            // lstAudioFiles
+            // 
+            lstAudioFiles.AccessibleName = "Audio files list box.";
+            lstAudioFiles.FormattingEnabled = true;
+            lstAudioFiles.HorizontalScrollbar = true;
+            lstAudioFiles.Location = new System.Drawing.Point(147, 30);
+            lstAudioFiles.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            lstAudioFiles.Name = "lstAudioFiles";
+            lstAudioFiles.Size = new System.Drawing.Size(718, 224);
+            lstAudioFiles.TabIndex = 9;
+            lstAudioFiles.SelectedIndexChanged += lstAudioFiles_SelectedIndexChanged;
+            // 
+            // m_btnRemove
+            // 
+            m_btnRemove.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            m_btnRemove.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            m_btnRemove.Location = new System.Drawing.Point(901, 199);
+            m_btnRemove.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            m_btnRemove.Name = "m_btnRemove";
+            m_btnRemove.Size = new System.Drawing.Size(99, 29);
+            m_btnRemove.TabIndex = 13;
+            m_btnRemove.Text = "&Remove";
+            m_btnRemove.UseVisualStyleBackColor = true;
+            m_btnRemove.Click += m_btnRemove_Click;
+            // 
+            // m_btnAdd
+            // 
+            m_btnAdd.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            m_btnAdd.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            m_btnAdd.Location = new System.Drawing.Point(899, 143);
+            m_btnAdd.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            m_btnAdd.Name = "m_btnAdd";
+            m_btnAdd.Size = new System.Drawing.Size(102, 29);
+            m_btnAdd.TabIndex = 12;
+            m_btnAdd.Text = "&Add";
+            m_btnAdd.UseVisualStyleBackColor = true;
+            m_btnAdd.Click += m_btnAddAudio_Click;
+            // 
+            // m_btnMoveUp
+            // 
+            m_btnMoveUp.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            m_btnMoveUp.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            m_btnMoveUp.Location = new System.Drawing.Point(899, 33);
+            m_btnMoveUp.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            m_btnMoveUp.Name = "m_btnMoveUp";
+            m_btnMoveUp.Size = new System.Drawing.Size(102, 32);
+            m_btnMoveUp.TabIndex = 10;
+            m_btnMoveUp.Text = "Move &UP";
+            m_btnMoveUp.UseVisualStyleBackColor = true;
+            m_btnMoveUp.Click += m_btnMoveUp_Click;
+            // 
+            // m_btnMoveDown
+            // 
+            m_btnMoveDown.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            m_btnMoveDown.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            m_btnMoveDown.Location = new System.Drawing.Point(899, 87);
+            m_btnMoveDown.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            m_btnMoveDown.Name = "m_btnMoveDown";
+            m_btnMoveDown.Size = new System.Drawing.Size(102, 29);
+            m_btnMoveDown.TabIndex = 11;
+            m_btnMoveDown.Text = "Move &Down";
+            m_btnMoveDown.UseVisualStyleBackColor = true;
+            m_btnMoveDown.Click += m_btnMoveDown_Click;
+            // 
             // CreateProjectFromAudio
             // 
             AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            ClientSize = new System.Drawing.Size(1082, 764);
+            ClientSize = new System.Drawing.Size(1082, 825);
+            Controls.Add(m_btnRemove);
+            Controls.Add(m_btnAdd);
+            Controls.Add(m_btnMoveUp);
+            Controls.Add(m_btnMoveDown);
+            Controls.Add(lstAudioFiles);
             Controls.Add(m_btnClose);
             Controls.Add(txtLog);
             Controls.Add(m_btnCancel);
             Controls.Add(m_btnStart);
             Controls.Add(progressBar);
-            Controls.Add(m_btnBrowseAudio);
-            Controls.Add(txtAudioPath);
-            Controls.Add(label1);
             Name = "CreateProjectFromAudio";
             Text = "Create Project From Audio";
             ResumeLayout(false);
@@ -131,14 +172,15 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox txtAudioPath;
-        private System.Windows.Forms.Button m_btnBrowseAudio;
         private System.Windows.Forms.ProgressBar progressBar;
         private System.Windows.Forms.Button m_btnStart;
         private System.Windows.Forms.Button m_btnCancel;
         private System.Windows.Forms.TextBox txtLog;
         private System.Windows.Forms.Button m_btnClose;
+        private System.Windows.Forms.ListBox lstAudioFiles;
+        private System.Windows.Forms.Button m_btnRemove;
+        private System.Windows.Forms.Button m_btnAdd;
+        private System.Windows.Forms.Button m_btnMoveUp;
+        private System.Windows.Forms.Button m_btnMoveDown;
     }
 }
