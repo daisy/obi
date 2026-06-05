@@ -334,20 +334,29 @@ namespace Obi
                 Close();
             }
 
-            // Create a new project by asking initial information through a dialog.
+        // Create a new project by asking initial information through a dialog.
 
             private void NewProjectFromAudio()
             {
-            string[] filesPathArray = SelectFilesToImport();
-            CreateProjectFromAudio dialog = new CreateProjectFromAudio(filesPathArray);
-               dialog.ShowDialog();
-             string semanticXhtmlPath = dialog.SemanticXhtmlPath;
-             string audioPath = dialog.AudioPath;
 
-            if (!string.IsNullOrEmpty(semanticXhtmlPath) && !string.IsNullOrEmpty(audioPath))
-            {
-                NewProjectFromImport(semanticXhtmlPath, audioPath);
-            }
+                if (mProjectView.Presentation != null && mProjectView.TransportBar.IsActive)
+                {
+                    if (mProjectView.TransportBar.MonitorContinuously) mProjectView.TransportBar.MonitorContinuously = false; //@MonitorContinuously
+                    mProjectView.TransportBar.Stop();
+                }
+                if (DidCloseProject())
+                {
+                    string[] filesPathArray = SelectFilesToImport();
+                    CreateProjectFromAudio dialog = new CreateProjectFromAudio(filesPathArray);
+                    dialog.ShowDialog();
+                    string semanticXhtmlPath = dialog.SemanticXhtmlPath;
+                    string audioPath = dialog.AudioPath;
+
+                    if (!string.IsNullOrEmpty(semanticXhtmlPath) && !string.IsNullOrEmpty(audioPath))
+                    {
+                        NewProjectFromImport(semanticXhtmlPath, audioPath);
+                    }
+                }
 
             }
             private string[] SelectFilesToImport()
