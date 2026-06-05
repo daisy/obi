@@ -116,6 +116,8 @@ namespace Obi.Dialogs
                 m_btnMoveDown.Enabled = false;
                 m_btnRemove.Enabled = false;
                 m_btnAdd.Enabled = false;
+                m_btnAscendingOrder.Enabled = false;
+                m_btnDesendingOrder.Enabled = false;
 
                 m_btnCancel.Enabled = true;
 
@@ -491,6 +493,8 @@ namespace Obi.Dialogs
 
 
                 m_btnCancel.Enabled = false;
+                m_btnAscendingOrder.Enabled = true;
+                m_btnDesendingOrder.Enabled = true;
 
                 _cancellationTokenSource?.Dispose();
 
@@ -509,6 +513,8 @@ namespace Obi.Dialogs
         {
             m_btnAdd.Enabled = true;
             m_btnCancel.Enabled = false;
+            m_btnAscendingOrder.Enabled = true;
+            m_btnDesendingOrder.Enabled = true;
             progressBar.Value = 0;
 
             txtLog.AppendText("Cancelling..." + Environment.NewLine);
