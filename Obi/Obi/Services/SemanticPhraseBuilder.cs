@@ -96,6 +96,36 @@ namespace Obi.Services
                 next.Text.Trim();
 
             //--------------------------------------------------
+            // MAX DURATION
+            //--------------------------------------------------
+
+            double mergedDuration =
+                next.End - current.Start;
+
+            if (mergedDuration > 12.0)
+            {
+                return false;
+            }
+
+
+            //--------------------------------------------------
+            // MAX WORD COUNT
+            //--------------------------------------------------
+
+            int mergedWordCount =
+                (currentText + " " + nextText)
+                    .Split(
+                        ' ',
+                        StringSplitOptions
+                            .RemoveEmptyEntries)
+                    .Length;
+
+            if (mergedWordCount > 80)
+            {
+                return false;
+            }
+
+            //--------------------------------------------------
             // EMPTY
             //--------------------------------------------------
 
@@ -118,15 +148,6 @@ namespace Obi.Services
                 return false;
             }
 
-            //--------------------------------------------------
-            // LOWERCASE CONTINUATION
-            //--------------------------------------------------
-
-            if (char.IsLower(
-                    nextText[0]))
-            {
-                return true;
-            }
 
             //--------------------------------------------------
             // CONTINUATION WORDS
@@ -166,27 +187,12 @@ namespace Obi.Services
                 double smallGap =
                     next.Start - current.End;
 
-                if (smallGap < 0.5)
+                if (smallGap < 0.15)
                 {
                     return true;
                 }
             }
-            //--------------------------------------------------
-            // SHORT CURRENT PHRASE
-            //--------------------------------------------------
 
-            int currentWordCount =
-                currentText
-                    .Split(
-                        ' ',
-                        StringSplitOptions
-                            .RemoveEmptyEntries)
-                    .Length;
-
-            if (currentWordCount <= 4)
-            {
-                return true;
-            }
 
             //--------------------------------------------------
             // VERY SMALL GAP
@@ -195,19 +201,12 @@ namespace Obi.Services
             double gap =
                 next.Start - current.End;
 
-            if (gap < 0.35)
+            if (gap < 0.10)
             {
                 return true;
             }
 
-            //--------------------------------------------------
-            // LOW CONFIDENCE
-            //--------------------------------------------------
 
-            if (current.Confidence < 0.65)
-            {
-                return true;
-            }
 
             return false;
         }

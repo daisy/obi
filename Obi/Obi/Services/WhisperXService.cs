@@ -11,6 +11,8 @@ using System.Diagnostics;
 using System.Text;
 using System.Text.Json;
 using Obi.Services;
+using System.Windows.Forms;
+using NAudio.Wave;
 
 namespace Obi.Services
 {
@@ -219,28 +221,50 @@ namespace Obi.Services
                     "Failed to parse WhisperX JSON.");
             }
 
+            TimeSpan audioDuration;
+
+            using (AudioFileReader reader =
+                new AudioFileReader(audioFile))
+            {
+                audioDuration =
+                    reader.TotalTime;
+            }
+
             List<TranscriptSegment>
                 segments = new();
 
             foreach (var phrase
                 in result.Phrases)
             {
+
+                double phraseStart =
+                        phrase.Words.Count > 0
+                            ? phrase.Words.Min(
+                                w => w.Start)
+                            : phrase.Start;
+
+                double phraseEnd =
+                        phrase.Words.Count > 0
+                            ? phrase.Words.Max(
+                                w => w.End)
+                            : phrase.End;
                 TranscriptSegment segment =
                     new()
-                    {
+                    { 
                         PhraseId =
                             phrase.PhraseId,
 
                         Text =
                             phrase.Text,
 
+
                         Start =
-                            TimeSpan.FromSeconds(
-                                phrase.Start),
+                                TimeSpan.FromSeconds(
+                                        phraseStart),
 
                         End =
-                            TimeSpan.FromSeconds(
-                                phrase.End),
+                                TimeSpan.FromSeconds(
+                                        phraseEnd),
 
                         Confidence =
                              phrase.Confidence,
@@ -268,6 +292,146 @@ namespace Obi.Services
 
                 segments.Add(segment);
             }
+
+            // Remove overlaps between adjacent phrases
+            for (int i = 0; i < segments.Count; i++)
+            {
+                TranscriptSegment current =
+                    segments[i];
+
+                if (i < segments.Count - 1)
+                {
+                    TranscriptSegment next =
+                        segments[i + 1];
+
+                    TimeSpan gap =
+                        next.Start - current.End;
+
+                    if (gap <= TimeSpan.Zero)
+                    {
+                        continue;
+                    }
+
+                    TimeSpan actualPadding =
+                        gap - TimeSpan.FromMilliseconds(20);
+
+                    if (actualPadding < TimeSpan.Zero)
+                    {
+                        actualPadding =
+                            TimeSpan.Zero;
+                    }
+
+                    // Allow up to 2 seconds padding
+                    if (actualPadding >
+                        TimeSpan.FromMilliseconds(500))
+                    {
+                        actualPadding =
+                            TimeSpan.FromMilliseconds(500);
+                    }
+
+                    current.End += actualPadding;
+                }
+                else
+                {
+                    // Last phrase should extend to end of audio
+                    current.End =
+                        audioDuration;
+                    progress?.Report(
+                            $"Last phrase extended to audio end: " +
+                            $"{audioDuration.TotalSeconds:F3}");
+                }
+            }
+
+
+            List<SilenceRegion> silences =
+                await AudioSilenceDetector
+                    .DetectAsync(audioFile);
+
+            progress?.Report(
+                            $"Detected {silences.Count} silence regions");
+
+            foreach (var s in silences)
+            {
+                progress?.Report(
+                    $"Silence: " +
+                    $"{s.Start.TotalSeconds:F3} - " +
+                    $"{s.End.TotalSeconds:F3}");
+            }
+
+            for (int i = 0; i < segments.Count - 1; i++)
+            {
+                TranscriptSegment current =
+                    segments[i];
+
+                TranscriptSegment next =
+                    segments[i + 1];
+
+                SilenceRegion? silence =
+                    silences
+                        .Where(
+                            s =>
+                                s.Start >
+                                    current.End -
+                                    TimeSpan.FromSeconds(1)
+
+                                &&
+
+                                s.End <
+                                    next.Start +
+                                    TimeSpan.FromMilliseconds(500))
+                        .OrderByDescending(
+                            s =>
+                                (s.End - s.Start).TotalSeconds)
+                        .FirstOrDefault();
+
+                if (silence == null)
+                {
+                    progress?.Report(
+                            $"No silence found between:\n" +
+                            $"{current.Text}\n" +
+                            $"AND\n" +
+                            $"{next.Text}");
+                    continue;
+                }
+
+                TimeSpan midpoint =
+                    silence.Start +
+                    ((silence.End - silence.Start) / 2);
+
+                progress?.Report(
+                            $"Boundary correction: " +
+                            $"{current.Text}\n" +
+                            $"Old End={current.End.TotalSeconds:F3}\n" +
+                            $"Old Next Start={next.Start.TotalSeconds:F3}\n" +
+                            $"Silence={silence.Start.TotalSeconds:F3}-{silence.End.TotalSeconds:F3}\n" +
+                            $"Midpoint={midpoint.TotalSeconds:F3}");
+
+                current.End =  midpoint;
+
+            }
+
+            foreach (var s in segments)
+            {
+                if (s.End <=
+                    s.Start + TimeSpan.FromMilliseconds(100))
+                {
+                    progress?.Report(
+                        $"Removing invalid phrase:\n" +
+                        $"{s.Text}\n" +
+                        $"Start={s.Start.TotalSeconds:F3}\n" +
+                        $"End={s.End.TotalSeconds:F3}");
+                }
+            }
+            // Remove invalid / near-zero phrases
+            segments = segments
+                .Where(s =>
+                    s.End >
+                    s.Start +
+                    TimeSpan.FromMilliseconds(100))
+                .ToList();
+
+            progress?.Report(
+                $"Remaining phrases after cleanup: {segments.Count}");
 
             return segments;
         }
