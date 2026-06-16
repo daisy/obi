@@ -243,6 +243,11 @@ namespace Obi.Services
                                 w => w.Start)
                             : phrase.Start;
 
+                phraseStart =
+                        Math.Max(
+                            0,
+                            phraseStart - 0.15);
+
                 double phraseEnd =
                         phrase.Words.Count > 0
                             ? phrase.Words.Max(
