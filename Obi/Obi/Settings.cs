@@ -364,6 +364,8 @@ public bool Project_ImportNCCFileWithWindows1252Encoding ; // useful for importi
         [OptionalField]
         public bool Project_LimitRecentProjects;
 
+        [OptionalField]
+        public bool SplitPhrasesWhisperAI;
         protected static void InitializeDefaultSettings(Settings settings)
         {
             settings.Audio_Channels = 1;
@@ -526,6 +528,7 @@ public bool Project_ImportNCCFileWithWindows1252Encoding ; // useful for importi
             //post Obi 5.0
             settings.AzureVoices = new List<string>();
             settings.Audio_TODOPSecialCase = false; 
+            settings.SplitPhrasesWhisperAI = false;
         }
 
         /// <summary>

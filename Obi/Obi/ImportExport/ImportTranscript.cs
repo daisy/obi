@@ -37,6 +37,7 @@ namespace Obi.ImportExport
         private Settings m_Settings;
         protected List<TreeNode> TreenodesWithoutManagedAudioMediaData = new List<TreeNode>();
         private string m_AudioFilePath;
+        private List<PhraseNode> m_Phrases;
 
         public ImportTranscript(string nccPath, ObiPresentation presentation, Settings settings, string filePath)
         {
@@ -51,7 +52,7 @@ namespace Obi.ImportExport
                 false);
             m_Settings = settings;
             m_Counter_FrontPageCorection = 0;
-            m_AudioFilePath = filePath; 
+            m_AudioFilePath = filePath;
 
         }
 
@@ -62,6 +63,11 @@ namespace Obi.ImportExport
         {
             if (RequestCancellation) return;
             ImportFromXHTML();
+        }
+
+        public List<PhraseNode> Phrases
+        {
+            get { return m_Phrases; }
         }
 
         private void ImportFromXHTML()
@@ -100,6 +106,7 @@ namespace Obi.ImportExport
         private void PopulateMetadataFromNcc(XmlNode headNode)
         {
             Dictionary<string, string> referenceList = new Dictionary<string, string>();
+            m_Phrases = new List<PhraseNode>();
             foreach (string s in Metadata.DAISY3MetadataNames)
             {
                 if (s == Metadata.DC_IDENTIFIER || s == Metadata.DC_TITLE
@@ -162,7 +169,8 @@ namespace Obi.ImportExport
 
                                     double end = Convert.ToDouble(phraseEndTime);
                                     XmlElement audio = AttachAudioToPhraseNode(m_AudioFilePath, start, end);
-                                    CreatePhraseNodeFromAudioElement(m_CurrentSection, audio);
+                                    PhraseNode phraseNode = CreatePhraseNodeFromAudioElement(m_CurrentSection, audio);
+                                    m_Phrases.Add(phraseNode);
                                 }
                                 else
                                 {
@@ -285,7 +293,10 @@ namespace Obi.ImportExport
         {
             PhraseNode phrase = m_Presentation.CreatePhraseNode();
 
-            section.AppendChild(phrase);
+            if (section != null)
+            {
+                section.AppendChild(phrase);
+            }
             addAudio(phrase, audioNode, true);
             return phrase;
         }

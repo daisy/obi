@@ -99,6 +99,9 @@
     <Compile Update="Dialogs\Help.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="Dialogs\ImportAudioUsingWhisper.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="Dialogs\ImportFileSplitSize.cs">
       <SubType>Form</SubType>
     </Compile>

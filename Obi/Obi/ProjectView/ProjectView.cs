@@ -1,16 +1,17 @@
+using AudioLib;
+using Obi.Dialogs;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Drawing;
 using System.Data;
+using System.Drawing;
+using System.Globalization;
+using System.IO;
 using System.Text;
 using System.Windows.Forms;
-using AudioLib;
 using urakawa.command;
 using urakawa.daisy.export.visitor;
 using urakawa.property.channel;
-using Obi.Dialogs;
-using System.Globalization;
 
 //using urakawa.publish;
 
@@ -2915,50 +2916,99 @@ namespace Obi.ProjectView
                         // to do: add chedk box in dialog and use a flag for using the following sort
                         //if ( dialog.SortFileNamesAscending )  paths.Sort();
                         List<PhraseNode> phraseNodes = new List<PhraseNode> ( paths.Count );
+                        Dictionary<string, List<PhraseNode>> phraseNodesDictionary = new Dictionary<string, List<PhraseNode>>();
                         Dictionary<PhraseNode, string> phrase_SectionNameMap = new Dictionary<PhraseNode, string> (); // used for importing sections
                         Dialogs.ProgressDialog progress =
                             new Dialogs.ProgressDialog ( Localizer.Message ( "import_audio_progress_dialog_title" ),
                                 delegate ()
+                                {
+                                    ImportAudioUsingWhisper createPhraseFromWhisper = null;
+                                    if (dialog.ApplyPhraseDetectionUsingWhisperAI)
                                     {
+                                        createPhraseFromWhisper = new ImportAudioUsingWhisper(paths, ImportAudioFilesInEachSection);
+                                        createPhraseFromWhisper.ShowDialog();
+                                    }
                                     foreach (string path in paths)
-                                        {
-                                        List<PhraseNode> phrases = null;
-                                        try
+                                    {
+
+
+                                        if (dialog.ApplyPhraseDetectionUsingWhisperAI)
+                                        { 
+
+                                            List<PhraseNode> phraseNodesCopy = new List<PhraseNode>();
+                                            string xhtmlPath = createPhraseFromWhisper.XhtmlFilePathsDictionary[path];
+                                            //  string xhtmlPath = @"D:\Obi Books\CombinedTranscription.xhtml";
+                                            //string audioPath = @"D:\Obi Books\Information on AIDS\DAISY3 Export\CombinedAudio.wav";
+
+                                            ImportExport.ImportTranscript import = new Obi.ImportExport.ImportTranscript(xhtmlPath, mPresentation, ObiForm.Settings, path);
+                                            import.DoWork();
+                                            List<PhraseNode> phrases = import.Phrases;
+                                            foreach (PhraseNode p in phrases)
                                             {
-                                            phrases = mPresentation.CreatePhraseNodeList ( path, durationMs );
-                                            if (!dialog.SplitPhrases  && phrases.Count > 1)
-                                                MessageBox.Show(String.Format(Localizer.Message("Import_Phrase_SizeLimit"), ObiForm.Settings.MaxAllowedPhraseDurationInMinutes));                                                                                                                 
-                                            }
-                                        catch (System.Exception ex)
-                                            {
-                                            this.WriteToLogFile(ex.ToString());
-                                            MessageBox.Show ( String.Format ( Localizer.Message ( "import_phrase_error_text" ), path ) + "\n\n" + ex.ToString () );
-                                            continue;
-                                            }
-                                        if (createSectionForEachPhrase && phrases != null && phrases.Count > 0
-                                            && !phrase_SectionNameMap.ContainsKey ( phrases[0] ))
-                                            {
-                                            phrase_SectionNameMap.Add ( phrases[0], System.IO.Path.GetFileNameWithoutExtension ( path ) );
-                                            }
-                                        foreach (PhraseNode p in phrases)
-                                            {
-                                            try
+                                                try
                                                 {
-                                                phraseNodes.Add ( p );
-                                                
+                                                    phraseNodes.Add(p);
+                                                    phraseNodesCopy.Add(p);
+
                                                 }
-                                            catch (Exception ex)
+                                                catch (Exception ex)
                                                 {
+                                                    this.WriteToLogFile(ex.ToString());
+                                                    MessageBox.Show(
+                                                        String.Format(Localizer.Message("import_phrase_error_text"), path),
+                                                        Localizer.Message("import_phrase_error_caption"),
+                                                        MessageBoxButtons.OK,
+                                                        MessageBoxIcon.Error);
+                                                }
+                                            }
+                                            if (ImportAudioFilesInEachSection)
+                                            {
+                                                phraseNodesDictionary.Add(path, phraseNodesCopy);
+                                            }
+                                        }
+
+                                        else
+                                        {
+
+
+                                            List<PhraseNode> phrases = null;
+                                            try
+                                            {
+                                                phrases = mPresentation.CreatePhraseNodeList(path, durationMs);
+                                                if (!dialog.SplitPhrases && phrases.Count > 1)
+                                                    MessageBox.Show(String.Format(Localizer.Message("Import_Phrase_SizeLimit"), ObiForm.Settings.MaxAllowedPhraseDurationInMinutes));
+                                            }
+                                            catch (System.Exception ex)
+                                            {
                                                 this.WriteToLogFile(ex.ToString());
-                                                MessageBox.Show (
-                                                    String.Format ( Localizer.Message ( "import_phrase_error_text" ), path ),
-                                                    Localizer.Message ( "import_phrase_error_caption" ),
-                                                    MessageBoxButtons.OK,
-                                                    MessageBoxIcon.Error );
+                                                MessageBox.Show(String.Format(Localizer.Message("import_phrase_error_text"), path) + "\n\n" + ex.ToString());
+                                                continue;
+                                            }
+                                            if (createSectionForEachPhrase && phrases != null && phrases.Count > 0
+                                                && !phrase_SectionNameMap.ContainsKey(phrases[0]))
+                                            {
+                                                phrase_SectionNameMap.Add(phrases[0], System.IO.Path.GetFileNameWithoutExtension(path));
+                                            }
+                                            foreach (PhraseNode p in phrases)
+                                            {
+                                                try
+                                                {
+                                                    phraseNodes.Add(p);
+
+                                                }
+                                                catch (Exception ex)
+                                                {
+                                                    this.WriteToLogFile(ex.ToString());
+                                                    MessageBox.Show(
+                                                        String.Format(Localizer.Message("import_phrase_error_text"), path),
+                                                        Localizer.Message("import_phrase_error_caption"),
+                                                        MessageBoxButtons.OK,
+                                                        MessageBoxIcon.Error);
                                                 }
                                             }
                                         }
-                                    }, this.ObiForm.Settings); //@fontconfig
+                                    }
+                                }, this.ObiForm.Settings); //@fontconfig
                         progress.ShowDialog ();
                         if (phraseNodes.Count > 0)
                             {
@@ -3000,16 +3050,36 @@ namespace Obi.ProjectView
 
                                         }
                                         int tempRequiredPositionOfLastSection = 0;
-                                        if(tempSectionNodeSelected != null)
-                                        tempRequiredPositionOfLastSection = tempSectionNodeSelected.Position + phraseNodes.Count - 1;
+                                        if (tempSectionNodeSelected != null)
+                                        {
+                                            if (dialog.ApplyPhraseDetectionUsingWhisperAI)
+                                            {
+                                                tempRequiredPositionOfLastSection = tempSectionNodeSelected.Position + phraseNodesDictionary.Count - 1;
+                                            }
+                                            else
+                                            {
+                                                tempRequiredPositionOfLastSection = tempSectionNodeSelected.Position + phraseNodes.Count - 1;
+                                            }
+                                        }
 
-                                        if (phraseNodes.Count <= sectionsList.Count && tempSectionNodeSelected != null && tempRequiredPositionOfLastSection <= sectionsList[sectionsList.Count - 1].Position)
+                                        if (dialog.ApplyPhraseDetectionUsingWhisperAI && phraseNodesDictionary.Count <= sectionsList.Count && tempSectionNodeSelected != null && tempRequiredPositionOfLastSection <= sectionsList[sectionsList.Count - 1].Position)
                                         {
                                             if (Selection != null && Selection.Node is EmptyNode)
                                             {
                                                 Selection = new NodeSelection(Selection.Node.ParentAs<SectionNode>(), mContentView);
                                             }
-   
+
+                                            CompositeCommand ImportSectionCommand = GetCommandForImportAudioFileInEachSectionWhisper(phraseNodesDictionary);
+                                            mPresentation.Do(ImportSectionCommand);
+                                        }
+
+                                        else if (phraseNodes.Count <= sectionsList.Count && tempSectionNodeSelected != null && tempRequiredPositionOfLastSection <= sectionsList[sectionsList.Count - 1].Position)
+                                        {
+                                            if (Selection != null && Selection.Node is EmptyNode)
+                                            {
+                                                Selection = new NodeSelection(Selection.Node.ParentAs<SectionNode>(), mContentView);
+                                            }
+
                                             CompositeCommand ImportSectionCommand = GetCommandForImportAudioFileInEachSection(phraseNodes);
                                             mPresentation.Do(ImportSectionCommand);
                                         }
@@ -3558,6 +3628,48 @@ for (int j = 0;
                     command.ChildCommands.Insert(command.ChildCommands.Count, addCmd);
                 }
                 phraseCounter++;
+            }
+//if ( != null) command.ChildCommands.Insert(command.ChildCommands.Count, new Commands.UpdateSelection(this, new NodeSelection(newSectionNode, mContentView)));
+            return command;
+        }
+
+        private CompositeCommand GetCommandForImportAudioFileInEachSectionWhisper(Dictionary<string,List<PhraseNode>> phraseNodesList)
+        {
+           // phraseNodes.AddRange(phraseNodesDictionary);
+            CompositeCommand command = Presentation.CreateCompositeCommand(Localizer.Message("import_phrases"));
+            
+            if (Selection != null) command.ChildCommands.Insert(command.ChildCommands.Count, new Commands.UpdateSelection(this, new NodeSelection(Selection.Node, Selection.Control)));
+            SectionNode firstSection = null;
+            if (Selection != null && Selection.Node is SectionNode)
+            {
+                firstSection = (SectionNode)Selection.Node;
+            }
+            else
+            {
+                firstSection = mPresentation.FirstSection;
+            }
+
+          //  for (SectionNode section = firstSection; section != null; section = section.FollowingSection)
+            {
+                SectionNode section = firstSection;
+                foreach(KeyValuePair<string, List<PhraseNode>> file in phraseNodesList)
+                {
+                    if (section != null)
+                    {
+                        int phraseCounter = 0;
+                        List<PhraseNode> phraseNodes = file.Value;
+                        phraseNodes.Reverse();
+                        foreach (PhraseNode phraseNode in phraseNodes)
+                        {
+                            Commands.Node.AddNode addCmd = new Commands.Node.AddNode(this, phraseNode, section, section.PhraseChildCount, false);
+                            command.ChildCommands.Insert(command.ChildCommands.Count, addCmd);
+                        }
+                        if(section.FollowingSection != null)
+                        {
+                            section = section.FollowingSection;
+                        }
+                    }
+                }
             }
 //if ( != null) command.ChildCommands.Insert(command.ChildCommands.Count, new Commands.UpdateSelection(this, new NodeSelection(newSectionNode, mContentView)));
             return command;
@@ -4521,7 +4633,7 @@ for (int j = 0;
                     Dialogs.ProgressDialog progress = new Dialogs.ProgressDialog(Localizer.Message("SilenceDetection_progress_dialog_title"),
                         delegate(Dialogs.ProgressDialog progress1)
                         {
-                            //PhraseNode phrase = phraseNodesList [0];
+                            //PhraseNode phrase = phraseNodesDictionary [0];
 
                             command = this.Presentation.CreateCompositeCommand(Localizer.Message("split_phrase"));
                             foreach (PhraseNode phrase in phraseNodesList)

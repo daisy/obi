@@ -351,8 +351,9 @@ namespace Obi
                     dialog.ShowDialog();
                     string semanticXhtmlPath = dialog.SemanticXhtmlPath;
                     string audioPath = dialog.AudioPath;
-
-                    if (!string.IsNullOrEmpty(semanticXhtmlPath) && !string.IsNullOrEmpty(audioPath))
+                semanticXhtmlPath = @"D:\Obi Books\Information on AIDS\DAISY3 Export\CombinedTranscription.xhtml";
+                audioPath = @"D:\Obi Books\Information on AIDS\DAISY3 Export\CombinedAudio.wav";
+                if (!string.IsNullOrEmpty(semanticXhtmlPath) && !string.IsNullOrEmpty(audioPath))
                     {
                         NewProjectFromImport(semanticXhtmlPath, audioPath);
                     }
@@ -2540,10 +2541,11 @@ namespace Obi
 
             private void mImportAudioFileToolStripMenuItem_Click(object sender, EventArgs e)
             {
-                mProjectView.ImportPhrases();
-            }
+            mProjectView.ImportPhrases();
+            // mProjectView.ImportWhisperPhrases();
+        }
 
-            private void mSplitPhraseToolStripMenuItem_Click(object sender, EventArgs e)
+        private void mSplitPhraseToolStripMenuItem_Click(object sender, EventArgs e)
             {
                 mProjectView.SplitPhrase();
             }

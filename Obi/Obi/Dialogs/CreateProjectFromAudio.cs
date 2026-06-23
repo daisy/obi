@@ -51,7 +51,7 @@ namespace Obi.Dialogs
                         Timeout =
                             TimeSpan.FromMinutes(10)
                     });
-
+             
             _builder = new SemanticXhtmlBuilder();
 
             _postProcessor = new StructurePostProcessor();
@@ -270,7 +270,7 @@ namespace Obi.Dialogs
                 //    $"Transcription completed successfully.\n\n" +
                 //    $"XHTML saved at:\n{xhtmlPath}");
 
-
+                //xhtmlPath = @"D:\Obi Books\Information on AIDS\DAISY3 Export\CombinedTranscription.xhtml";
                 _cancellationTokenSource = new CancellationTokenSource();
 
                 m_btnCancel.Enabled = true;
@@ -475,7 +475,7 @@ namespace Obi.Dialogs
                 progressBar.Value = 100;
 
                 txtLog.AppendText("Now Project import will start..." + Environment.NewLine);
-                this.Close();
+             //   this.Close();
 
             }
             catch (OperationCanceledException)

@@ -25,6 +25,7 @@ namespace Obi.Dialogs
             m_Settings = settings;
             m_rdbSplitPhrasesOnImport.Checked = settings.SplitPhrasesOnImport;
             m_rdbPhraseDetectionOnImportedFiles.Checked = !settings.SplitPhrasesOnImport;
+            m_rdbPhraseDetectionWhisper.Checked = settings.SplitPhrasesWhisperAI;
             mPhraseSizeTextBox.Enabled= m_rdbSplitPhrasesOnImport.Checked;
             
             //m_radiobtnYes.Checked = true;
@@ -113,6 +114,8 @@ namespace Obi.Dialogs
         public int CharacterCountToTruncateFromStart { get { return m_rdbCreateAudioFilePerSection.Checked && mchkCountToTruncateFromStart.Checked? Convert.ToInt32(m_numCharCountToTruncateFromStart.Value) : 0 ; } }
 
         public bool ApplyPhraseDetection { get { return m_rdbPhraseDetectionOnImportedFiles.Checked; } }
+
+        public bool ApplyPhraseDetectionUsingWhisperAI { get { return m_rdbPhraseDetectionWhisper.Checked; } }
         public bool ShowCuePoints { get { return m_rdbSplitAtCuePoints.Checked; } }
 
         // Check that the duration is a number.
@@ -604,6 +607,7 @@ namespace Obi.Dialogs
                 mPhraseSizeTextBox.Enabled = false;
                 m_rdbPhraseDetectionOnImportedFiles.Enabled = false;
                 m_rdbPhraseDetectionOnImportedFiles.Checked = false;
+                m_rdbPhraseDetectionWhisper.Checked = false;
                 label1.Enabled = false;
             }
             else
