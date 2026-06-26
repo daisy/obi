@@ -2925,7 +2925,7 @@ namespace Obi.ProjectView
                                     ImportAudioUsingWhisper createPhraseFromWhisper = null;
                                     if (dialog.ApplyPhraseDetectionUsingWhisperAI)
                                     {
-                                        createPhraseFromWhisper = new ImportAudioUsingWhisper(paths, ImportAudioFilesInEachSection);
+                                        createPhraseFromWhisper = new ImportAudioUsingWhisper(paths, ImportAudioFilesInEachSection, createSectionForEachPhrase);
                                         createPhraseFromWhisper.ShowDialog();
                                     }
                                     foreach (string path in paths)
@@ -2961,7 +2961,7 @@ namespace Obi.ProjectView
                                                         MessageBoxIcon.Error);
                                                 }
                                             }
-                                            if (ImportAudioFilesInEachSection)
+                                            if (ImportAudioFilesInEachSection || createSectionForEachPhrase)
                                             {
                                                 phraseNodesDictionary.Add(path, phraseNodesCopy);
                                             }
@@ -3012,7 +3012,7 @@ namespace Obi.ProjectView
                         progress.ShowDialog ();
                         if (phraseNodes.Count > 0)
                             {
-                            if (GetSelectedPhraseSection != null && (GetSelectedPhraseSection.PhraseChildCount + phraseNodes.Count <= MaxVisibleBlocksCount)) // @phraseLimit
+                                if (GetSelectedPhraseSection != null && (GetSelectedPhraseSection.PhraseChildCount + phraseNodes.Count <= MaxVisibleBlocksCount)) // @phraseLimit
                                 {
                                 this.ObiForm.Cursor = Cursors.WaitCursor;
                                 bool selectionChangePlaybackEnabled = TransportBar.SelectionChangedPlaybackEnabled;
@@ -3027,9 +3027,19 @@ namespace Obi.ProjectView
                                     if (createSectionForEachPhrase)
                                     {
                                        m_IsImportSectionsFromAudioFiles = true;
-                                       CompositeCommand createSectionsCommand = GetImportSectionsFromAudioCommands(phraseNodes, phrase_SectionNameMap, dialog.CharacterCountToTruncateFromStart, dialog.CharactersToBeReplacedWithSpaces, dialog.PageIdentificationString);
+                                        if (dialog.ApplyPhraseDetectionUsingWhisperAI)
+                                        {
+                                            CompositeCommand createSectionsCommand = GetImportSectionsFromAudioCommandsUsingWhisper(phraseNodesDictionary, dialog.CharacterCountToTruncateFromStart, dialog.CharactersToBeReplacedWithSpaces, dialog.PageIdentificationString);
 
-                                        mPresentation.Do(createSectionsCommand);
+                                            mPresentation.Do(createSectionsCommand);
+                                        }
+                                        else
+                                        {
+                                            CompositeCommand createSectionsCommand = GetImportSectionsFromAudioCommands(phraseNodes, phrase_SectionNameMap, dialog.CharacterCountToTruncateFromStart, dialog.CharactersToBeReplacedWithSpaces, dialog.PageIdentificationString);
+
+                                            mPresentation.Do(createSectionsCommand);
+                                        }
+
                                         m_IsImportSectionsFromAudioFiles = false;
                                     }
                                     else if (ImportAudioFilesInEachSection)
@@ -3599,7 +3609,161 @@ for (int j = 0;
             return command;
             }
 
+        private CompositeCommand GetImportSectionsFromAudioCommandsUsingWhisper(Dictionary<string, List<PhraseNode>> phraseNodesDictionary, int CharacterCountToTruncateFromStart, string CharactersToBeReplacedWithSpaces, string PageIdentificationString)
+        {
+            List<string> sectionNameList = new List<string>();
+            Dictionary<string, List<PhraseNode>> SectionNamephraseNodesDictionary = new Dictionary<string, List<PhraseNode>>();
+            foreach (KeyValuePair<string, List<PhraseNode>> file in phraseNodesDictionary)
+            {
+                SectionNamephraseNodesDictionary.Add(Path.GetFileNameWithoutExtension(file.Key), file.Value);
+                sectionNameList.Add(Path.GetFileNameWithoutExtension(file.Key));
+            }
+            //     phraseNodes.AddRange(phraseNodesDictionary);
+            CompositeCommand command = Presentation.CreateCompositeCommand(Localizer.Message("import_phrases"));
+            CharacterCountToTruncateFromStart++; //fix for loss of one character count
+            if (Selection != null) command.ChildCommands.Insert(command.ChildCommands.Count, new Commands.UpdateSelection(this, new NodeSelection(Selection.Node, Selection.Control)));
+            SectionNode newSectionNode = null;
+            int phraseInsertIndex = 0;
+            int phraseInsertIndexWhenPhaseChildCountIsZero = 0;
+            List<int> pagePhraseIndex = new List<int>();
+            SectionNode firstSection = null;
 
+            m_DisableSectionSelection = false;
+            if (GetSelectedPhraseSection != null && (Selection.Node is EmptyNode || Selection is StripIndexSelection)) Selection = new NodeSelection(GetSelectedPhraseSection, mContentView);
+
+            if (Selection != null && Selection.Node is SectionNode
+                && ((SectionNode)Selection.Node).PhraseChildCount == 0 && SectionNamephraseNodesDictionary.Count > 0)
+            {
+                newSectionNode = (SectionNode)Selection.Node;
+                firstSection = newSectionNode;
+                phraseInsertIndex = 0;
+                //string sectionName = phrase_SectionNameMap[phraseNodes[0]];
+                string sectionName = sectionNameList[0];
+                if (CharacterCountToTruncateFromStart > 0 && CharacterCountToTruncateFromStart < sectionName.Length) sectionName = sectionName.Substring(CharacterCountToTruncateFromStart - 1, sectionName.Length - CharacterCountToTruncateFromStart + 1);
+                if (!string.IsNullOrEmpty(CharactersToBeReplacedWithSpaces))
+                {
+                    sectionName = sectionName.Replace(CharactersToBeReplacedWithSpaces, " ");
+                    sectionName = sectionName.TrimStart();
+                }
+                command.ChildCommands.Insert(command.ChildCommands.Count, new Commands.Node.RenameSection(this, newSectionNode, sectionName));
+
+                foreach (PhraseNode phraseNode in SectionNamephraseNodesDictionary[sectionNameList[0]])
+                {
+                    command.ChildCommands.Insert(command.ChildCommands.Count, new Commands.Node.AddNode(this, phraseNode, newSectionNode, phraseInsertIndexWhenPhaseChildCountIsZero));
+                    phraseInsertIndexWhenPhaseChildCountIsZero++;
+                }
+
+                SectionNamephraseNodesDictionary.Remove(sectionNameList[0]);
+                sectionNameList.RemoveAt(0);
+            }
+
+            List<EmptyNode> pagePhrases = new List<EmptyNode>();
+            for (int i = SectionNamephraseNodesDictionary.Count - 1; i >= 0; i--)
+            {
+                string newSectionName = sectionNameList[i];
+                if (CharacterCountToTruncateFromStart > 0 && CharacterCountToTruncateFromStart < newSectionName.Length) newSectionName = newSectionName.Substring(CharacterCountToTruncateFromStart - 1, newSectionName.Length - CharacterCountToTruncateFromStart + 1);
+                if (!string.IsNullOrEmpty(CharactersToBeReplacedWithSpaces))
+                {
+                    newSectionName = newSectionName.Replace(CharactersToBeReplacedWithSpaces, " ");
+                    newSectionName = newSectionName.TrimStart();
+                }
+
+                if (PageIdentificationString == null || !newSectionName.StartsWith(PageIdentificationString))
+                {
+                    // create a new section and add phrase to it
+                    Commands.Command addSectionCmd = new Commands.Node.AddSectionNode(this, mTOCView, null);
+                    addSectionCmd.UpdateSelection = true;
+                    command.ChildCommands.Insert(command.ChildCommands.Count, addSectionCmd);
+                    newSectionNode = ((Commands.Node.AddSectionNode)addSectionCmd).NewSection;
+
+                    command.ChildCommands.Insert(command.ChildCommands.Count, new Commands.Node.RenameSection(this, newSectionNode, newSectionName));
+                }
+                else
+                {
+                    string pageNumberString = newSectionName.Substring(PageIdentificationString.Length, newSectionName.Length - PageIdentificationString.Length);
+                    pageNumberString = pageNumberString.Replace("_", " ");
+                    pageNumberString = pageNumberString.Replace("-", " ");
+                    System.Text.RegularExpressions.Regex rg = new System.Text.RegularExpressions.Regex(@"[a-zA-Z]");
+                    if (rg.IsMatch(pageNumberString))
+                    {
+                        string[] splitString = rg.Split(pageNumberString);
+                        if (splitString.Length > 0) pageNumberString = splitString[0];
+                        Console.WriteLine("page number string: " + pageNumberString);
+                    }
+                    int pageNum = 0;
+                    int.TryParse(pageNumberString, out pageNum);
+                    if (pageNum > 0)
+                    {
+
+                        PhraseNode node = CreatePagePhraseWithNegligibleAudio(new PageNumber(pageNum, PageKind.Normal), 0.75);
+                        pagePhrases.Insert(0, node);
+                    }
+                    foreach (PhraseNode phraseNode in SectionNamephraseNodesDictionary[sectionNameList[i]])
+                    {
+                        pagePhrases.Insert(0, phraseNode);
+                    }
+                    if (pagePhrases.Count > 0
+                        && i == 0 && firstSection != null && firstSection.PhraseChildCount != null)
+                    {
+                        phraseInsertIndex = firstSection.PhraseChildCount;
+                        pagePhrases.Reverse();
+                        for (int pageCount = 0; pageCount < pagePhrases.Count; pageCount++)
+                        {//2
+                            command.ChildCommands.Insert(command.ChildCommands.Count, new Commands.Node.AddNode(this, pagePhrases[pageCount], firstSection, phraseInsertIndexWhenPhaseChildCountIsZero));
+                        }//-2
+                        pagePhrases.Clear();
+
+                    }
+                    continue;
+                }
+                phraseInsertIndex = 0;
+
+                foreach (PhraseNode phraseNode in SectionNamephraseNodesDictionary[sectionNameList[i]])
+                {
+                    command.ChildCommands.Insert(command.ChildCommands.Count, new Commands.Node.AddNode(this, phraseNode, newSectionNode, phraseInsertIndex));
+                    phraseInsertIndex++;
+                }
+
+                if (PageIdentificationString != null && newSectionName.Contains(PageIdentificationString) && !newSectionName.StartsWith(PageIdentificationString))
+                {
+                    int pageNumIndex = newSectionName.IndexOf(PageIdentificationString);
+                    string pageNumberString = newSectionName.Substring(pageNumIndex + PageIdentificationString.Length, newSectionName.Length - pageNumIndex - PageIdentificationString.Length);
+                    //MessageBox.Show(pageNumberString);
+                    pageNumberString = pageNumberString.Replace("_", " ");
+                    pageNumberString = pageNumberString.Replace("-", " ");
+                    System.Text.RegularExpressions.Regex rg = new System.Text.RegularExpressions.Regex(@"[a-zA-Z]");
+                    if (rg.IsMatch(pageNumberString))
+                    {
+                        string[] splitString = rg.Split(pageNumberString);
+                        if (splitString.Length > 0) pageNumberString = splitString[0];
+                        Console.WriteLine("page number string: " + pageNumberString);
+                    }
+                    int pageNum = 0;
+                    int.TryParse(pageNumberString, out pageNum);
+                    if (pageNum > 0)
+                    {
+                        PhraseNode node = CreatePagePhraseWithNegligibleAudio(new PageNumber(pageNum, PageKind.Normal), 0.75);
+
+                        phraseInsertIndex++;
+                        command.ChildCommands.Insert(command.ChildCommands.Count, new Commands.Node.AddNode(this, node, newSectionNode, phraseInsertIndex));
+                    }
+                }
+
+                if (pagePhrases.Count > 0)
+                {//1
+                    pagePhrases.Reverse();
+                    for (int pageCount = 0; pageCount < pagePhrases.Count; pageCount++)
+                    {//2
+                        command.ChildCommands.Insert(command.ChildCommands.Count, new Commands.Node.AddNode(this, pagePhrases[pageCount], newSectionNode, phraseInsertIndex));
+                    }//-2
+                    pagePhrases.Clear();
+                }//-1
+
+
+            }
+            if (newSectionNode != null) command.ChildCommands.Insert(command.ChildCommands.Count, new Commands.UpdateSelection(this, new NodeSelection(newSectionNode, mContentView)));
+            return command;
+        }
         private CompositeCommand GetCommandForImportAudioFileInEachSection(List<PhraseNode> phraseNodesList)
         {
             List<PhraseNode> phraseNodes = new List<PhraseNode>();
@@ -3635,7 +3799,7 @@ for (int j = 0;
 
         private CompositeCommand GetCommandForImportAudioFileInEachSectionWhisper(Dictionary<string,List<PhraseNode>> phraseNodesList)
         {
-           // phraseNodes.AddRange(phraseNodesDictionary);
+           // phraseNodes.AddRange(SectionNamephraseNodesDictionary);
             CompositeCommand command = Presentation.CreateCompositeCommand(Localizer.Message("import_phrases"));
             
             if (Selection != null) command.ChildCommands.Insert(command.ChildCommands.Count, new Commands.UpdateSelection(this, new NodeSelection(Selection.Node, Selection.Control)));
@@ -4633,7 +4797,7 @@ for (int j = 0;
                     Dialogs.ProgressDialog progress = new Dialogs.ProgressDialog(Localizer.Message("SilenceDetection_progress_dialog_title"),
                         delegate(Dialogs.ProgressDialog progress1)
                         {
-                            //PhraseNode phrase = phraseNodesDictionary [0];
+                            //PhraseNode phrase = SectionNamephraseNodesDictionary [0];
 
                             command = this.Presentation.CreateCompositeCommand(Localizer.Message("split_phrase"));
                             foreach (PhraseNode phrase in phraseNodesList)

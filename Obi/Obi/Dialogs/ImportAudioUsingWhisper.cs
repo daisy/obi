@@ -25,7 +25,8 @@ namespace Obi.Dialogs
         private List<string> m_FilePaths;
         private List<string> m_XhtmlPath;
         private Dictionary <string, string> m_XhtmlFilePathsDictionary;
-        private bool m_IsImportAudioFilesInEachSection;
+        private bool m_ImportAudioFilesInEachSection;
+        private bool m_CreateSectionForEachPhrase;
 
 
         private CancellationTokenSource? _cancellationTokenSource;
@@ -39,10 +40,11 @@ namespace Obi.Dialogs
         private readonly SemanticXhtmlBuilder _builder;
 
         private readonly StructurePostProcessor _postProcessor;
-        public ImportAudioUsingWhisper(List<string> filePaths, bool importAudioFilesInEachSection)
+        public ImportAudioUsingWhisper(List<string> filePaths, bool importAudioFilesInEachSection, bool createSectionForEachPhrase)
         {
             InitializeComponent();
-            m_IsImportAudioFilesInEachSection = importAudioFilesInEachSection;
+            m_ImportAudioFilesInEachSection = importAudioFilesInEachSection;
+            m_CreateSectionForEachPhrase = createSectionForEachPhrase;
             _parser = new XhtmlPhraseParser();
 
             _chunkingService = new ChunkingService();
@@ -177,7 +179,7 @@ namespace Obi.Dialogs
                 // STEP 1:
                 // Transcribe audio
 
-                if (!m_IsImportAudioFilesInEachSection)
+                if (!m_ImportAudioFilesInEachSection && !m_CreateSectionForEachPhrase)
                 {
                     string mergedAudio =
                         AudioMergeService.Merge(m_FilePaths);
@@ -203,7 +205,7 @@ namespace Obi.Dialogs
                         Path.Combine(
                             Path.GetDirectoryName(
                                 filePath)!,
-                              Path.GetFileName(filePath)+".xhtml");
+                              Path.GetFileNameWithoutExtension(filePath)+".xhtml");
 
                     // STEP 3:
                     // Export XHTML
