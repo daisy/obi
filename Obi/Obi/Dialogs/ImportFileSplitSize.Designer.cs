@@ -54,10 +54,10 @@ namespace Obi.Dialogs
             mchkCountToTruncateFromStart = new System.Windows.Forms.CheckBox();
             mchkToReplaceWithSpace = new System.Windows.Forms.CheckBox();
             m_grpSplitPhraseOrPhraseDetection = new System.Windows.Forms.GroupBox();
+            m_rdbPhraseDetectionWhisper = new System.Windows.Forms.RadioButton();
             m_rdbPhraseDetectionOnImportedFiles = new System.Windows.Forms.RadioButton();
             m_rdbSplitPhrasesOnImport = new System.Windows.Forms.RadioButton();
             helpProvider1 = new System.Windows.Forms.HelpProvider();
-            m_rdbPhraseDetectionWhisper = new System.Windows.Forms.RadioButton();
             m_grpAddFiles.SuspendLayout();
             m_grpArrangeAudioFiles.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)m_numCharCountToTruncateFromStart).BeginInit();
@@ -259,6 +259,13 @@ namespace Obi.Dialogs
             helpProvider1.SetShowHelp(m_grpSplitPhraseOrPhraseDetection, (bool)resources.GetObject("m_grpSplitPhraseOrPhraseDetection.ShowHelp"));
             m_grpSplitPhraseOrPhraseDetection.TabStop = false;
             // 
+            // m_rdbPhraseDetectionWhisper
+            // 
+            resources.ApplyResources(m_rdbPhraseDetectionWhisper, "m_rdbPhraseDetectionWhisper");
+            m_rdbPhraseDetectionWhisper.Name = "m_rdbPhraseDetectionWhisper";
+            m_rdbPhraseDetectionWhisper.TabStop = true;
+            m_rdbPhraseDetectionWhisper.UseVisualStyleBackColor = true;
+            // 
             // m_rdbPhraseDetectionOnImportedFiles
             // 
             resources.ApplyResources(m_rdbPhraseDetectionOnImportedFiles, "m_rdbPhraseDetectionOnImportedFiles");
@@ -277,13 +284,6 @@ namespace Obi.Dialogs
             // helpProvider1
             // 
             resources.ApplyResources(helpProvider1, "helpProvider1");
-            // 
-            // m_rdbPhraseDetectionWhisper
-            // 
-            resources.ApplyResources(m_rdbPhraseDetectionWhisper, "m_rdbPhraseDetectionWhisper");
-            m_rdbPhraseDetectionWhisper.Name = "m_rdbPhraseDetectionWhisper";
-            m_rdbPhraseDetectionWhisper.TabStop = true;
-            m_rdbPhraseDetectionWhisper.UseVisualStyleBackColor = true;
             // 
             // ImportFileSplitSize
             // 

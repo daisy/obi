@@ -179,41 +179,79 @@ namespace Obi.Dialogs
                 // STEP 1:
                 // Transcribe audio
 
-                if (!m_ImportAudioFilesInEachSection && !m_CreateSectionForEachPhrase)
+                //if (!m_ImportAudioFilesInEachSection && !m_CreateSectionForEachPhrase)
+                //{
+                //    string mergedAudio =
+                //        AudioMergeService.Merge(m_FilePaths);
+                //    if (mergedAudio != null)
+                //    {
+                //        m_FilePaths.Clear();
+                //        m_FilePaths.Add(mergedAudio);
+                //    }
+                //}
+
+                if (m_ImportAudioFilesInEachSection || m_CreateSectionForEachPhrase)
                 {
-                    string mergedAudio =
-                        AudioMergeService.Merge(m_FilePaths);
+                    var batchResults =
+                        await whisper.TranscribeBatchAsync(
+                            m_FilePaths,
+                            _cts.Token,
+                            whisperProgress);
+
+                    foreach (string filePath in m_FilePaths)
+                    {
+                        var segments =
+                            batchResults[filePath];
+
+                        string xhtmlPath =
+                            Path.Combine(
+                                Path.GetDirectoryName(filePath)!,
+                                Path.GetFileNameWithoutExtension(filePath) +
+                                ".xhtml");
+
+                        await XhtmlExportService.SaveAsync(
+                            segments,
+                            xhtmlPath);
+
+                        m_XhtmlFilePathsDictionary.Add(
+                            filePath,
+                            xhtmlPath);
+                    }
+                }
+
+                else
+                {
+                    string mergedAudio = AudioMergeService.Merge(m_FilePaths);
                     if (mergedAudio != null)
                     {
                         m_FilePaths.Clear();
                         m_FilePaths.Add(mergedAudio);
                     }
-                }
+                    //m_MergedAudioPath = mergedAudio;
 
-                //m_MergedAudioPath = mergedAudio;
-                foreach (string filePath in m_FilePaths)
-                {
-                    var segments =
-                        await whisper.TranscribeAsync(
-                            filePath,
-                            _cts.Token,
-                            whisperProgress);
+                    {
+                        var segments =
+                            await whisper.TranscribeAsync(
+                                mergedAudio,
+                                _cts.Token,
+                                whisperProgress);
 
-                    // STEP 2:
-                    // Generate XHTML path
-                    string xhtmlPath =
-                        Path.Combine(
-                            Path.GetDirectoryName(
-                                filePath)!,
-                              Path.GetFileNameWithoutExtension(filePath)+".xhtml");
+                        // STEP 2:
+                        // Generate XHTML path
+                        string xhtmlPath =
+                            Path.Combine(
+                                Path.GetDirectoryName(
+                                    mergedAudio)!,
+                                  Path.GetFileNameWithoutExtension(mergedAudio) + ".xhtml");
 
-                    // STEP 3:
-                    // Export XHTML
-                    await XhtmlExportService.SaveAsync(
-                        segments,
-                        xhtmlPath);
+                        // STEP 3:
+                        // Export XHTML
+                        await XhtmlExportService.SaveAsync(
+                            segments,
+                            xhtmlPath);
 
-                    m_XhtmlFilePathsDictionary.Add(filePath, xhtmlPath);
+                        m_XhtmlFilePathsDictionary.Add(mergedAudio, xhtmlPath);
+                    }
                 }
 
                 progressBar.Style =
@@ -224,7 +262,8 @@ namespace Obi.Dialogs
                 txtLog.AppendText("Transcription Completed successfully" + Environment.NewLine);
 
                 progressBar.Value = 100;
-                Close();
+              //  Close();
+
 
 
             }

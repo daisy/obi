@@ -18,11 +18,7 @@ namespace Obi.Services
 {
     public class WhisperXService
     {
-        public async Task<List<TranscriptSegment>>
-            TranscribeAsync(
-                string audioFile,
-                CancellationToken cancellationToken,
-                IProgress<string>? progress = null)
+        public async Task<List<TranscriptSegment>> TranscribeAsync(string audioFile, CancellationToken cancellationToken, IProgress<string>? progress = null)
         {
             string backendFolder =
                 Path.GetFullPath(
@@ -45,79 +41,13 @@ namespace Obi.Services
                     Guid.NewGuid().ToString() + ".json");
 
 
-            string pythonExe =
-                Path.GetFullPath(
-                Path.Combine(
-                    AppDomain.CurrentDomain.BaseDirectory,
-                    "..",
-                    "..",
-                    "..",
-                    "..",
-                    "whisperx_env",
-                    "Scripts",
-                    "python.exe"));
-
-
-            if (!await WhisperXInstallerService.IsPythonEnvironmentInstalledAsync())
-            {
-                throw new Exception(
-                    "WhisperX is not installed.");
-            }
-
-            //if (!File.Exists(pythonExe))
-            //{
-            //    throw new Exception(
-            //        "AI Transcription support is not installed.\n\n" +
-            //        "Expected:\n" +
-            //        pythonExe +
-            //        "\n\n" +
-            //        "Please install WhisperX support first.");
-            //}
-
             ProcessStartInfo psi =
-                new()
-                {
-                    FileName = pythonExe,
-
-                    Arguments =
-                        $"\"{scriptPath}\" " +
-                        $"\"{audioFile}\" " +
-                        $"\"{jsonOutput}\"",
-
-                    RedirectStandardOutput = true,
-                    RedirectStandardError = true,
-
-                    UseShellExecute = false,
-
-                    CreateNoWindow = true,
-
-                    WorkingDirectory =
-                        backendFolder
-                };
+             await CreateProcessStartInfoAsync(
+          $"\"{scriptPath}\" " +
+          $"\"{audioFile}\" " +
+          $"\"{jsonOutput}\"");
 
 
-            string ffmpegFolder =  Path.Combine( AppDomain.CurrentDomain.BaseDirectory,"ffmpeg");
-
-            string ffmpegExe =
-            Path.Combine(
-                ffmpegFolder,
-                "ffmpeg.exe");
-
-            if (!File.Exists(ffmpegExe))
-            {
-                throw new Exception(
-                    "FFmpeg is missing.\n\nExpected:\n" +
-                    ffmpegExe);
-            }
-
-            string existingPath =
-                Environment.GetEnvironmentVariable(
-                    "PATH") ?? "";
-
-            psi.Environment["PATH"] =
-                ffmpegFolder +
-                ";" +
-                existingPath;
 
 
             // following code will use existing ffmpeg of Obi
@@ -135,42 +65,222 @@ namespace Obi.Services
 
 
 
-            using Process process =
-                new();
-            //process.StartInfo.FileName = ffmpegPath;
-            process.StartInfo = psi;
+            await ExecuteWhisperProcessAsync(psi, cancellationToken, progress);
+            var segments = await LoadTranscriptAsync(jsonOutput, audioFile, cancellationToken, progress);
 
-            StringBuilder outputBuilder =
-                new();
+            SafeDelete(jsonOutput);
+
+            return segments;
+        }
+
+        public async Task<Dictionary<string, List<TranscriptSegment>>> TranscribeBatchAsync(List<string> audioFiles, CancellationToken cancellationToken, IProgress<string>? progress = null)
+        {
+            string backendFolder =
+            Path.GetFullPath(
+            Path.Combine(
+            AppDomain.CurrentDomain.BaseDirectory,
+            "..",
+            "..",
+            "..",
+            "..",
+            "PythonBackend"));
+
+            string scriptPath =
+                Path.Combine(
+                    backendFolder,
+                    "run_whisperx.py");
+
+
+
+            string jobsFile =
+                Path.Combine(
+                    backendFolder,
+                    Guid.NewGuid().ToString() +
+                    "_jobs.json");
+
+            var jobs = new
+            {
+                files = audioFiles.Select(
+                    file => new
+                    {
+                        input = file,
+
+                        output = Path.ChangeExtension(
+                            file,
+                            ".json")
+                    })
+            };
+
+            await File.WriteAllTextAsync(
+                jobsFile,
+                JsonSerializer.Serialize(
+                    jobs,
+                    new JsonSerializerOptions
+                    {
+                        WriteIndented = true
+                    }),
+                cancellationToken);
+
+            ProcessStartInfo psi =
+                await CreateProcessStartInfoAsync(
+                    $"\"{scriptPath}\" " +
+                    $"--batch " +
+                    $"\"{jobsFile}\"");
+
+
+
+            await ExecuteWhisperProcessAsync(psi, cancellationToken, progress);
+
+
+            Dictionary<string, List<TranscriptSegment>> results = new();
+
+            foreach (string audioFile in audioFiles)
+            {
+                string jsonFile = Path.ChangeExtension(audioFile, ".json");
+
+                List<TranscriptSegment> segments = await LoadTranscriptAsync(jsonFile, audioFile, cancellationToken, progress);
+
+                results.Add(audioFile, segments);
+
+                SafeDelete(jsonFile);
+            }
+
+            SafeDelete(jobsFile);
+
+            return results;
+        }
+
+
+
+
+        private static void SafeDelete(string filePath)
+        {
+            try
+            {
+                if (File.Exists(filePath))
+                {
+                    File.Delete(filePath);
+                }
+            }
+            catch
+            {
+            }
+        }
+
+
+        private async Task<ProcessStartInfo> CreateProcessStartInfoAsync(string arguments)
+        {
+            string backendFolder =
+                Path.GetFullPath(
+                    Path.Combine(
+                        AppDomain.CurrentDomain.BaseDirectory,
+                        "..",
+                        "..",
+                        "..",
+                        "..",
+                        "PythonBackend"));
+
+            string pythonExe =
+                Path.GetFullPath(
+                    Path.Combine(
+                        AppDomain.CurrentDomain.BaseDirectory,
+                        "..",
+                        "..",
+                        "..",
+                        "..",
+                        "whisperx_env",
+                        "Scripts",
+                        "python.exe"));
+
+            if (!await WhisperXInstallerService
+                .IsPythonEnvironmentInstalledAsync())
+            {
+                throw new Exception(
+                    "WhisperX is not installed.");
+            }
+
+            ProcessStartInfo psi =
+                new()
+                {
+                    FileName = pythonExe,
+
+                    Arguments = arguments,
+
+                    RedirectStandardOutput = true,
+                    RedirectStandardError = true,
+
+                    UseShellExecute = false,
+
+                    CreateNoWindow = true,
+
+                    WorkingDirectory =
+                        backendFolder
+                };
+
+            string ffmpegFolder =
+                Path.Combine(
+                    AppDomain.CurrentDomain.BaseDirectory,
+                    "ffmpeg");
+
+            string ffmpegExe =
+                Path.Combine(
+                    ffmpegFolder,
+                    "ffmpeg.exe");
+
+            if (!File.Exists(ffmpegExe))
+            {
+                throw new Exception(
+                    "FFmpeg is missing.\n\nExpected:\n" +
+                    ffmpegExe);
+            }
+
+            string existingPath =
+                Environment.GetEnvironmentVariable(
+                    "PATH") ?? "";
+
+            psi.Environment["PATH"] =
+                ffmpegFolder +
+                ";" +
+                existingPath;
+
+            return psi;
+        }
+
+
+        private async Task ExecuteWhisperProcessAsync(ProcessStartInfo psi, CancellationToken cancellationToken, IProgress<string>? progress, Action<string>? outputHandler = null)
+        {
+            using Process process = new();
+
+            process.StartInfo = psi;
 
             StringBuilder errorBuilder =
                 new();
 
+            Stopwatch stopwatch =
+                Stopwatch.StartNew();
+
+            CancellationTokenSource heartbeatCts =
+                new();
+
+
             process.OutputDataReceived +=
                 (s, e) =>
                 {
-                    if (!string.IsNullOrWhiteSpace(
-                        e.Data))
+                    if (!string.IsNullOrWhiteSpace(e.Data))
                     {
-                        progress?.Report(
-                            e.Data);
+                        progress?.Report(e.Data);
 
-                        outputBuilder.AppendLine(
-                            e.Data);
+                        outputHandler?.Invoke(e.Data);
+
                     }
                 };
 
             process.ErrorDataReceived +=
                 (s, e) =>
                 {
-                    if (!string.IsNullOrWhiteSpace(
-                        e.Data))
+                    if (!string.IsNullOrWhiteSpace(e.Data))
                     {
-                        Console.WriteLine(
-                            e.Data);
-
-                        errorBuilder.AppendLine(
-                            e.Data);
+                        errorBuilder.AppendLine(e.Data);
                     }
                 };
 
@@ -180,8 +290,38 @@ namespace Obi.Services
 
             process.BeginErrorReadLine();
 
+            Task heartbeatTask =
+                Task.Run(async () =>
+                {
+                    try
+                    {
+                        while (!process.HasExited)
+                        {
+                            await Task.Delay(
+                                TimeSpan.FromSeconds(30),
+                                heartbeatCts.Token);
+
+                            if (!process.HasExited)
+                            {
+                                string message = $"Still transcribing... Elapsed: {stopwatch.Elapsed:hh\\:mm\\:ss}";
+
+                                progress?.Report(message);
+                            }
+                        }
+                    }
+                    catch (OperationCanceledException)
+                    {
+                    }
+                });
+
             await process.WaitForExitAsync(
                 cancellationToken);
+
+            heartbeatCts.Cancel();
+
+            stopwatch.Stop();
+
+            await heartbeatTask;
 
             if (process.ExitCode != 0)
             {
@@ -189,26 +329,32 @@ namespace Obi.Services
                     "WhisperX Error:\n" +
                     errorBuilder.ToString());
             }
+        }
 
-            if (!File.Exists(
-                jsonOutput))
+
+
+        private async Task<List<TranscriptSegment>> LoadTranscriptAsync(string jsonFile, string audioFile, CancellationToken cancellationToken, IProgress<string>? progress)
+        {
+            if (!File.Exists(jsonFile))
             {
                 throw new Exception(
-                    "Output JSON not generated.");
+                    "Output JSON not generated.\n\n" +
+                    jsonFile);
             }
 
             string json =
                 await File.ReadAllTextAsync(
-                    jsonOutput,
+                    jsonFile,
                     cancellationToken);
 
-            try
-            {
-                File.Delete(jsonOutput);
-            }
-            catch
-            {
-            }
+            return await ParseWhisperJsonAsync(
+                json,
+                audioFile,
+                progress);
+        }
+
+        private async Task<List<TranscriptSegment>> ParseWhisperJsonAsync(string json, string audioFile, IProgress<string>? progress)
+        {
 
             WhisperXResult? result =
                 JsonSerializer.Deserialize
@@ -255,7 +401,7 @@ namespace Obi.Services
                             : phrase.End;
                 TranscriptSegment segment =
                     new()
-                    { 
+                    {
                         PhraseId =
                             phrase.PhraseId,
 
@@ -411,7 +557,7 @@ namespace Obi.Services
                             $"Silence={silence.Start.TotalSeconds:F3}-{silence.End.TotalSeconds:F3}\n" +
                             $"Midpoint={midpoint.TotalSeconds:F3}");
 
-                current.End =  midpoint;
+                current.End = midpoint;
 
             }
 

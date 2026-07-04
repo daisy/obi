@@ -1,7 +1,6 @@
 import os
 import sys
 import json
-
 # ---------------------------------------------------
 # PROJECT PATHS
 # ---------------------------------------------------
@@ -39,15 +38,33 @@ import whisperx
 # VALIDATE ARGUMENTS
 # ---------------------------------------------------
 
-if len(sys.argv) < 3:
+batch_mode = (
+    len(sys.argv) >= 3
+    and
+    sys.argv[1] == "--batch")
 
-    print(
-        "Usage: python run_whisperx.py input.wav output.json")
+if batch_mode:
 
-    sys.exit(1)
+    batch_file = sys.argv[2]
 
-input_audio = sys.argv[1]
-output_json = sys.argv[2]
+else:
+
+    if len(sys.argv) < 3:
+
+        print(
+            "Usage:")
+
+        print(
+            "Single : python run_whisperx.py input.wav output.json")
+
+        print(
+            "Batch  : python run_whisperx.py --batch jobs.json")
+
+        sys.exit(1)
+
+    input_audio = sys.argv[1]
+
+    output_json = sys.argv[2]
 
 # ---------------------------------------------------
 # SETTINGS
@@ -56,6 +73,7 @@ output_json = sys.argv[2]
 device = "cpu"
 
 MODEL_NAME = "large-v3"
+
 
 # ---------------------------------------------------
 # LOAD MODEL
@@ -71,292 +89,393 @@ model = whisperx.load_model(
 print("Whisper model loaded")
 
 # ---------------------------------------------------
-# LOAD AUDIO
+# ALIGNMENT MODEL CACHE
 # ---------------------------------------------------
 
-print("Loading audio...")
+alignment_cache = {}
 
-audio = whisperx.load_audio(
-    input_audio)
-
-print("Audio loaded")
-
+                    
 # ---------------------------------------------------
-# TRANSCRIBE
+# TRANSCRIBE SINGLE FILE
 # ---------------------------------------------------
 
-print("Transcribing audio...")
+def transcribe_file(
+        model,
+        alignment_cache,
+        input_audio,
+        output_json,
+        language=None):
+            
+            
 
-result = model.transcribe(
-    audio,
-    batch_size=2)
 
-print("Transcription completed")
+                # ---------------------------------------------------
+                # LOAD AUDIO
+                # ---------------------------------------------------
 
-# ---------------------------------------------------
-# LOAD ALIGNMENT MODEL
-# ---------------------------------------------------
+                print("Loading audio...")
 
-print("Loading alignment model...")
+                audio = whisperx.load_audio(
+                    input_audio)
 
-model_a, metadata = whisperx.load_align_model(
-    language_code=result["language"],
-    device=device)
+                print("Audio loaded")
 
-print("Alignment model loaded")
+                # ---------------------------------------------------
+                # TRANSCRIBE
+                # ---------------------------------------------------
+                print("Transcribing audio...")
 
-# ---------------------------------------------------
-# ALIGN WORD TIMESTAMPS
-# ---------------------------------------------------
+                if language is None:
 
-print("Aligning timestamps...")
+                    result = model.transcribe(
+                        audio,
+                        batch_size=2)
 
-result = whisperx.align(
-    result["segments"],
-    model_a,
-    metadata,
-    audio,
-    device)
+                else:
 
-print("Alignment completed")
+                    result = model.transcribe(
+                        audio,
+                        batch_size=2,
+                        language=language)
 
-# ---------------------------------------------------
-# BUILD PHRASES
-# ---------------------------------------------------
+                print("Transcription completed")
+                
+                detected_language = result["language"]
 
-word_segments = result.get(
-    "word_segments",
-    [])
+                # ---------------------------------------------------
+                # LOAD ALIGNMENT MODEL
+                # ---------------------------------------------------
+                language = detected_language
 
-phrases = []
+                if language not in alignment_cache:
 
-current_phrase = []
+                    print(
+                        f"Loading alignment model ({language})...")
 
+                    model_a, metadata = whisperx.load_align_model(
+                        language_code=language,
+                        device=device)
 
-def flush_phrase():
+                    alignment_cache[language] = {
+                        "model": model_a,
+                        "metadata": metadata
+                    }
 
-    global current_phrase
+                    print(
+                        "Alignment model loaded")
+                else:
+                    print(
+                        f"Using cached alignment model ({language})")
 
-    if len(current_phrase) == 0:
-        return
+                cached = alignment_cache[language]
 
-    first_word = current_phrase[0]
+                model_a = cached["model"]
 
-    last_word = current_phrase[-1]
+                metadata = cached["metadata"]
 
-    # -----------------------------------------
-    # DAISY timing safety padding
-    # -----------------------------------------
+                # ---------------------------------------------------
+                # ALIGN WORD TIMESTAMPS
+                # ---------------------------------------------------
 
-    start_padding = 0.20
-    end_padding = 0.25
+                print("Aligning timestamps...")
 
-    start_time = max(
-        0,
-        first_word["start"] - start_padding)
+                result = whisperx.align(
+                    result["segments"],
+                    model_a,
+                    metadata,
+                    audio,
+                    device)
 
-    end_time = (
-        last_word["end"] + end_padding)
+                print("Alignment completed")
 
-    # -----------------------------------------
-    # Build phrase text
-    # -----------------------------------------
+                # ---------------------------------------------------
+                # BUILD PHRASES
+                # ---------------------------------------------------
 
-    phrase_text = " ".join(
-        w["word"]
-        for w in current_phrase)
+                word_segments = result.get(
+                    "word_segments",
+                    [])
 
-    # -----------------------------------------
-    # Calculate phrase confidence
-    # -----------------------------------------
+                phrases = []
 
-    confidence_values = []
+                current_phrase = []
 
-    for w in current_phrase:
 
-        confidence_values.append(
-            w.get("score", 1.0))
+                def flush_phrase():
 
-    phrase_confidence = (
-        sum(confidence_values) /
-        len(confidence_values))
 
-    # -----------------------------------------
-    # Build word timestamps
-    # -----------------------------------------
+                    if len(current_phrase) == 0:
+                        return
 
-    phrase_words = []
+                    first_word = current_phrase[0]
 
-    for w in current_phrase:
+                    last_word = current_phrase[-1]
 
-        phrase_words.append({
-            "word":
-                w["word"],
+                    # -----------------------------------------
+                    # DAISY timing safety padding
+                    # -----------------------------------------
 
-            "start":
-                round(
-                    w["start"],
-                    3),
+                    start_padding = 0.20
+                    end_padding = 0.25
 
-            "end":
-                round(
-                    w["end"],
-                    3),
+                    start_time = max(
+                        0,
+                        first_word["start"] - start_padding)
 
-            "confidence":
-                round(
-                    w.get("score", 1.0),
-                    3)
-        })
+                    end_time = (
+                        last_word["end"] + end_padding)
 
-    # -----------------------------------------
-    # Add phrase
-    # -----------------------------------------
+                    # -----------------------------------------
+                    # Build phrase text
+                    # -----------------------------------------
 
-    phrases.append({
-        "phraseId":
-            f"p{len(phrases) + 1}",
+                    phrase_text = " ".join(
+                        w["word"]
+                        for w in current_phrase)
 
-        "start":
-            round(
-                start_time,
-                3),
+                    # -----------------------------------------
+                    # Calculate phrase confidence
+                    # -----------------------------------------
 
-        "end":
-            round(
-                end_time,
-                3),
+                    confidence_values = []
 
-        "text":
-            phrase_text,
+                    for w in current_phrase:
 
-        "confidence":
-            round(
-                phrase_confidence,
-                3),
+                        confidence_values.append(
+                            w.get("score", 1.0))
 
-        "words":
-            phrase_words
-    })
+                    phrase_confidence = (
+                        sum(confidence_values) /
+                        len(confidence_values))
 
-    current_phrase = []
+                    # -----------------------------------------
+                    # Build word timestamps
+                    # -----------------------------------------
 
+                    phrase_words = []
 
-def merge_short_phrases(phrases):
+                    for w in current_phrase:
 
-    if len(phrases) <= 1:
-        return phrases
+                        phrase_words.append({
+                            "word":
+                                w["word"],
 
-    merged = []
+                            "start":
+                                round(
+                                    w["start"],
+                                    3),
 
-    merged.append(phrases[0])
+                            "end":
+                                round(
+                                    w["end"],
+                                    3),
 
-    for i in range(1, len(phrases)):
+                            "confidence":
+                                round(
+                                    w.get("score", 1.0),
+                                    3)
+                        })
 
-        current = phrases[i]
+                    # -----------------------------------------
+                    # Add phrase
+                    # -----------------------------------------
 
-        word_count = len(
-            current["text"].split())
+                    phrases.append({
+                        "phraseId":
+                            f"p{len(phrases) + 1}",
 
-        duration = (
-            current["end"] -
-            current["start"])
+                        "start":
+                            round(
+                                start_time,
+                                3),
 
-        too_short = (
-            word_count <= 2 or
-            duration <= 1.0)
+                        "end":
+                            round(
+                                end_time,
+                                3),
 
-        if too_short:
+                        "text":
+                            phrase_text,
 
-            previous = merged[-1]
+                        "confidence":
+                            round(
+                                phrase_confidence,
+                                3),
 
-            previous["text"] = (
-                previous["text"] +
-                " " +
-                current["text"])
+                        "words":
+                            phrase_words
+                    })
 
-            previous["end"] = (
-                current["end"])
+                    current_phrase.clear()
 
-            previous["words"].extend(
-                current["words"])
 
-        else:
-            merged.append(current)
+                def merge_short_phrases(phrases):
 
-    return merged
+                    if len(phrases) <= 1:
+                        return phrases
 
+                    merged = []
 
-for i, word in enumerate(word_segments):
+                    merged.append(phrases[0])
 
-    # Skip invalid timestamp entries
-    if "start" not in word or "end" not in word:
-        continue
+                    for i in range(1, len(phrases)):
 
-    current_phrase.append(word)
+                        current = phrases[i]
 
-    should_break = False
+                        word_count = len(
+                            current["text"].split())
 
-    # Break on punctuation
-    if word["word"].endswith(
-        (".", "!", "?", "?")):
+                        duration = (
+                            current["end"] -
+                            current["start"])
 
-        should_break = True
+                        too_short = (
+                            word_count <= 2 or
+                            duration <= 1.0)
 
-    # Break on speech pause
-    if i < len(word_segments) - 1:
+                        if too_short:
 
-        next_word = word_segments[i + 1]
+                            previous = merged[-1]
 
-        if "start" in next_word:
+                            previous["text"] = (
+                                previous["text"] +
+                                " " +
+                                current["text"])
 
-            pause = (
-                next_word["start"] -
-                word["end"])
+                            previous["end"] = (
+                                current["end"])
 
-            if pause > 0.9:
-                should_break = True
+                            previous["words"].extend(
+                                current["words"])
 
-    # Break on phrase text length
-    phrase_text = " ".join(
-        w["word"]
-        for w in current_phrase)
+                        else:
+                            merged.append(current)
 
-    if len(phrase_text) >= 80:
-        should_break = True
+                    return merged
 
-    if should_break:
-        flush_phrase()
 
-flush_phrase()
+                for i, word in enumerate(word_segments):
 
-# Merge tiny phrases
-phrases = merge_short_phrases(
-    phrases)
+                    # Skip invalid timestamp entries
+                    if "start" not in word or "end" not in word:
+                        continue
 
-# ---------------------------------------------------
-# FINAL JSON
-# ---------------------------------------------------
+                    current_phrase.append(word)
 
-output = {
-    "phrases": phrases
-}
+                    should_break = False
 
-# ---------------------------------------------------
-# SAVE JSON
-# ---------------------------------------------------
+                    # Break on punctuation
+                    if word["word"].endswith(
+                        (".", "!", "?", "?")):
 
-print("Saving JSON...")
+                        should_break = True
 
-with open(
-    output_json,
-    "w",
-    encoding="utf-8") as f:
+                    # Break on speech pause
+                    if i < len(word_segments) - 1:
 
-    json.dump(
-        output,
-        f,
-        ensure_ascii=False,
-        indent=2)
+                        next_word = word_segments[i + 1]
 
-print("Completed")
+                        if "start" in next_word:
+
+                            pause = (
+                                next_word["start"] -
+                                word["end"])
+
+                            if pause > 0.9:
+                                should_break = True
+
+                    # Break on phrase text length
+                    phrase_text = " ".join(
+                        w["word"]
+                        for w in current_phrase)
+
+                    if len(phrase_text) >= 80:
+                        should_break = True
+
+                    if should_break:
+                        flush_phrase()
+
+                flush_phrase()
+
+                # Merge tiny phrases
+                phrases = merge_short_phrases(
+                    phrases)
+
+                # ---------------------------------------------------
+                # FINAL JSON
+                # ---------------------------------------------------
+
+                output = {
+                    "phrases": phrases
+                }
+
+                # ---------------------------------------------------
+                # SAVE JSON
+                # ---------------------------------------------------
+
+                print("Saving JSON...")
+
+                with open(
+                    output_json,
+                    "w",
+                    encoding="utf-8") as f:
+
+                    json.dump(
+                        output,
+                        f,
+                        ensure_ascii=False,
+                        indent=2)
+
+                print("Completed")
+                return detected_language
+
+if batch_mode:
+
+    print(
+        "Loading batch job...")
+
+    with open(
+        batch_file,
+        "r",
+        encoding="utf-8") as f:
+
+        jobs = json.load(f)
+
+    files = jobs["files"]
+
+    print(
+        f"{len(files)} files found.")
+        
+        
+    detected_book_language = None
+
+    for index, job in enumerate(files, start=1):
+
+        print(
+            f"Processing file {index} of {len(files)}")
+
+        print(
+            job["input"])
+
+        detected_language = transcribe_file(
+            model,
+            alignment_cache,
+            job["input"],
+            job["output"],
+            detected_book_language)
+
+        if detected_book_language is None:
+
+            detected_book_language = detected_language
+
+            print(
+                f"Book language: {detected_book_language}")
+
+else:
+
+        transcribe_file(
+            model,
+            alignment_cache,
+            input_audio,
+            output_json,
+            None)
