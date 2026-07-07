@@ -262,7 +262,19 @@ namespace Obi.Dialogs
                 txtLog.AppendText("Transcription Completed successfully" + Environment.NewLine);
 
                 progressBar.Value = 100;
-              //  Close();
+                Close();
+                if (m_FilePaths.Count > 0)
+                {
+                    string logFile =
+                        Path.Combine(
+                            Path.GetDirectoryName(
+                                m_FilePaths[0])!,
+                            "WhisperX Log.txt");
+
+                    await File.WriteAllTextAsync(
+                        logFile,
+                        txtLog.Text);
+                }
 
 
 

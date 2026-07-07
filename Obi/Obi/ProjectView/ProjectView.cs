@@ -2918,7 +2918,30 @@ namespace Obi.ProjectView
                         List<PhraseNode> phraseNodes = new List<PhraseNode> ( paths.Count );
                         Dictionary<string, List<PhraseNode>> phraseNodesDictionary = new Dictionary<string, List<PhraseNode>>();
                         Dictionary<PhraseNode, string> phrase_SectionNameMap = new Dictionary<PhraseNode, string> (); // used for importing sections
-                        Dialogs.ProgressDialog progress =
+
+                        List<SectionNode> sectionsList = ((ObiRootNode)this.Presentation.RootNode).GetListOfAllSections();
+
+                        SectionNode tempSectionNodeSelected = null;
+                        if (this.Selection != null && this.Selection.Node != null)
+                        {
+                            if (this.Selection.Node is EmptyNode && this.Selection.Node.Parent is SectionNode)
+                            {
+                                tempSectionNodeSelected = (SectionNode)this.Selection.Node.Parent;
+                            }
+                            else if (this.Selection.Node is SectionNode)
+                            {
+                                tempSectionNodeSelected = (SectionNode)this.Selection.Node;
+                            }
+
+                        }
+                        int tempRequiredPositionOfLastSection = tempSectionNodeSelected.Position + paths.Count - 1;
+                        if (ImportAudioFilesInEachSection && dialog.ApplyPhraseDetectionUsingWhisperAI  && Selection != null && (paths.Count > sectionsList.Count || tempRequiredPositionOfLastSection > sectionsList[sectionsList.Count - 1].Position))
+                        {
+                            MessageBox.Show(Localizer.Message("NotEnoughSectionsToImportFiles"), Localizer.Message("Caption_Error"));
+                            return;
+                        }
+
+                            Dialogs.ProgressDialog progress =
                             new Dialogs.ProgressDialog ( Localizer.Message ( "import_audio_progress_dialog_title" ),
                                 delegate ()
                                 {
@@ -3044,22 +3067,21 @@ namespace Obi.ProjectView
                                     }
                                     else if (ImportAudioFilesInEachSection)
                                     {
-                                        List<SectionNode> sectionsList = ((ObiRootNode)this.Presentation.RootNode).GetListOfAllSections();
-                                        SectionNode tempSectionNodeSelected = null;
+                                        //SectionNode tempSectionNodeSelected = null;
 
-                                        if (this.Selection != null && this.Selection.Node != null)
-                                        {
-                                            if (this.Selection.Node is EmptyNode && this.Selection.Node.Parent is SectionNode)
-                                            {
-                                                tempSectionNodeSelected = (SectionNode)this.Selection.Node.Parent;
-                                            }
-                                            else if (this.Selection.Node is SectionNode)
-                                            {
-                                                tempSectionNodeSelected = (SectionNode)this.Selection.Node;
-                                            }
+                                        //if (this.Selection != null && this.Selection.Node != null)
+                                        //{
+                                        //    if (this.Selection.Node is EmptyNode && this.Selection.Node.Parent is SectionNode)
+                                        //    {
+                                        //        tempSectionNodeSelected = (SectionNode)this.Selection.Node.Parent;
+                                        //    }
+                                        //    else if (this.Selection.Node is SectionNode)
+                                        //    {
+                                        //        tempSectionNodeSelected = (SectionNode)this.Selection.Node;
+                                        //    }
 
-                                        }
-                                        int tempRequiredPositionOfLastSection = 0;
+                                        //}
+                                        tempRequiredPositionOfLastSection = 0;
                                         if (tempSectionNodeSelected != null)
                                         {
                                             if (dialog.ApplyPhraseDetectionUsingWhisperAI)
@@ -3083,7 +3105,7 @@ namespace Obi.ProjectView
                                             mPresentation.Do(ImportSectionCommand);
                                         }
 
-                                        else if (phraseNodes.Count <= sectionsList.Count && tempSectionNodeSelected != null && tempRequiredPositionOfLastSection <= sectionsList[sectionsList.Count - 1].Position)
+                                        else if (!dialog.ApplyPhraseDetectionUsingWhisperAI && phraseNodes.Count <= sectionsList.Count && tempSectionNodeSelected != null && tempRequiredPositionOfLastSection <= sectionsList[sectionsList.Count - 1].Position)
                                         {
                                             if (Selection != null && Selection.Node is EmptyNode)
                                             {
