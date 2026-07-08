@@ -27,6 +27,7 @@ namespace Obi.Dialogs
         private Dictionary <string, string> m_XhtmlFilePathsDictionary;
         private bool m_ImportAudioFilesInEachSection;
         private bool m_CreateSectionForEachPhrase;
+        private string? m_LogFilePath;
 
 
         private CancellationTokenSource? _cancellationTokenSource;
@@ -70,11 +71,31 @@ namespace Obi.Dialogs
         {
             get { return m_XhtmlFilePathsDictionary; }
         }
+        private void Log(string message)
+        {
+            txtLog.AppendText(message + Environment.NewLine);
+
+            if (!string.IsNullOrEmpty(m_LogFilePath))
+            {
+                try
+                {
+                    File.AppendAllText(m_LogFilePath,message + Environment.NewLine);
+                }
+                catch
+                {
+                    // Never let logging break transcription.
+                }
+            }
+        }
         private async void StartImportProcess()
         {
             try
             {
-
+                m_LogFilePath =  Path.Combine(Path.GetDirectoryName(m_FilePaths[0])!,"WhisperX Log.txt");
+                if (!string.IsNullOrEmpty(m_LogFilePath))
+                {
+                    File.WriteAllText(m_LogFilePath, string.Empty);
+                }
 
                 m_btnCancel.Enabled = true;
 
@@ -89,7 +110,7 @@ namespace Obi.Dialogs
                 //lblStatus.Text =
                 //    "Transcribing audio...";
 
-                txtLog.AppendText("Transcribing audio......" + Environment.NewLine);
+                Log("Transcribing audio......");
 
                 _cts =
                     new CancellationTokenSource();
@@ -99,9 +120,7 @@ namespace Obi.Dialogs
                     new Progress<string>(
                         message =>
                         {
-                            txtLog.AppendText(
-                                message +
-                                Environment.NewLine);
+                            Log(message);
 
                             if (message.Contains(
                                 "Loading WhisperX model"))
@@ -161,13 +180,9 @@ namespace Obi.Dialogs
                 if (!await WhisperXInstallerService
                     .IsPythonEnvironmentInstalledAsync())
                 {
-                    txtLog.AppendText(
-                        "Installing WhisperX..." +
-                        Environment.NewLine);
+                    Log("Installing WhisperX...");
 
-                    await WhisperXInstallerService
-                        .InstallAsync(
-                            whisperProgress);
+                    await WhisperXInstallerService.InstallAsync(whisperProgress);
                 }
 
                 progressBar.Value = 0;
@@ -258,35 +273,23 @@ namespace Obi.Dialogs
                     ProgressBarStyle.Continuous;
 
                 //lblStatus.Text =
-                //    "Completed";
-                txtLog.AppendText("Transcription Completed successfully" + Environment.NewLine);
+                //    "Completed";  
+                Log("Transcription Completed successfully");
 
                 progressBar.Value = 100;
                 Close();
-                if (m_FilePaths.Count > 0)
-                {
-                    string logFile =
-                        Path.Combine(
-                            Path.GetDirectoryName(
-                                m_FilePaths[0])!,
-                            "WhisperX Log.txt");
-
-                    await File.WriteAllTextAsync(
-                        logFile,
-                        txtLog.Text);
-                }
 
 
 
             }
             catch (OperationCanceledException)
             {
-                txtLog.AppendText("Operation cancelled." + Environment.NewLine);
+                Log("Operation cancelled.");
             }
             catch (Exception ex)
             {
-                MessageBox.Show(
-                    ex.ToString());
+                Log(ex.ToString());
+                MessageBox.Show(ex.ToString());
             }
             finally
             {
@@ -312,7 +315,7 @@ namespace Obi.Dialogs
             m_btnCancel.Enabled = false;
             progressBar.Value = 0;
 
-            txtLog.AppendText("Cancelling..." + Environment.NewLine);
+            Log("Cancelling...");
             _cts?.Cancel();
             _cancellationTokenSource?.Cancel();
             Close();
