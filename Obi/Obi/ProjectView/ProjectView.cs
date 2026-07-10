@@ -1,5 +1,6 @@
 using AudioLib;
 using Obi.Dialogs;
+using Obi.Models;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -12,6 +13,7 @@ using System.Windows.Forms;
 using urakawa.command;
 using urakawa.daisy.export.visitor;
 using urakawa.property.channel;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.Window;
 
 //using urakawa.publish;
 
@@ -2813,6 +2815,55 @@ namespace Obi.ProjectView
         // Blocks
 
 
+
+        private void ImportPhrasesUsingWhisper(List<PhraseNode> phraseNodes, List<string> paths, bool ImportAudioFilesInEachSection,
+            bool createSectionForEachPhrase, Dictionary<string, List<PhraseNode>> phraseNodesDictionary)
+        {
+            ImportAudioUsingWhisper createPhraseFromWhisper = null;
+
+            createPhraseFromWhisper = new ImportAudioUsingWhisper(paths, ImportAudioFilesInEachSection, createSectionForEachPhrase);
+            createPhraseFromWhisper.ShowDialog();
+            if (createPhraseFromWhisper != null && (createPhraseFromWhisper.XhtmlFilePathsDictionary == null ||  createPhraseFromWhisper.XhtmlFilePathsDictionary.Count == 0))
+            {
+                return;
+            }
+
+            foreach (string path in paths)
+
+            {
+                List<PhraseNode> phraseNodesCopy = new List<PhraseNode>();
+                string xhtmlPath = createPhraseFromWhisper.XhtmlFilePathsDictionary[path];
+
+                ImportExport.ImportTranscript import = new Obi.ImportExport.ImportTranscript(xhtmlPath, mPresentation, ObiForm.Settings, path);
+                import.DoWork();
+                List<PhraseNode> phrases = import.Phrases;
+                foreach (PhraseNode p in phrases)
+                {
+                    try
+                    {
+                        phraseNodes.Add(p);
+                        phraseNodesCopy.Add(p);
+
+                    }
+                    catch (Exception ex)
+                    {
+                        this.WriteToLogFile(ex.ToString());
+                        MessageBox.Show(
+                            String.Format(Localizer.Message("import_phrase_error_text"), path),
+                            Localizer.Message("import_phrase_error_caption"),
+                            MessageBoxButtons.OK,
+                            MessageBoxIcon.Error);
+                    }
+                }
+                if (ImportAudioFilesInEachSection || createSectionForEachPhrase)
+                {
+                    phraseNodesDictionary.Add(path, phraseNodesCopy);
+                }
+
+            }
+        }
+
+
         /// <summary>
         /// Import new phrases in the strip, one block per file.
         /// </summary>
@@ -2945,94 +2996,55 @@ namespace Obi.ProjectView
                             new Dialogs.ProgressDialog ( Localizer.Message ( "import_audio_progress_dialog_title" ),
                                 delegate ()
                                 {
-                                    ImportAudioUsingWhisper createPhraseFromWhisper = null;
-                                    if (dialog.ApplyPhraseDetectionUsingWhisperAI)
-                                    {
-                                        createPhraseFromWhisper = new ImportAudioUsingWhisper(paths, ImportAudioFilesInEachSection, createSectionForEachPhrase);
-                                        createPhraseFromWhisper.ShowDialog();
-                                    }
                                     foreach (string path in paths)
                                     {
-
-
-                                        if (dialog.ApplyPhraseDetectionUsingWhisperAI)
-                                        { 
-
-                                            List<PhraseNode> phraseNodesCopy = new List<PhraseNode>();
-                                            string xhtmlPath = createPhraseFromWhisper.XhtmlFilePathsDictionary[path];
-                                            //  string xhtmlPath = @"D:\Obi Books\CombinedTranscription.xhtml";
-                                            //string audioPath = @"D:\Obi Books\Information on AIDS\DAISY3 Export\CombinedAudio.wav";
-
-                                            ImportExport.ImportTranscript import = new Obi.ImportExport.ImportTranscript(xhtmlPath, mPresentation, ObiForm.Settings, path);
-                                            import.DoWork();
-                                            List<PhraseNode> phrases = import.Phrases;
-                                            foreach (PhraseNode p in phrases)
-                                            {
-                                                try
-                                                {
-                                                    phraseNodes.Add(p);
-                                                    phraseNodesCopy.Add(p);
-
-                                                }
-                                                catch (Exception ex)
-                                                {
-                                                    this.WriteToLogFile(ex.ToString());
-                                                    MessageBox.Show(
-                                                        String.Format(Localizer.Message("import_phrase_error_text"), path),
-                                                        Localizer.Message("import_phrase_error_caption"),
-                                                        MessageBoxButtons.OK,
-                                                        MessageBoxIcon.Error);
-                                                }
-                                            }
-                                            if (ImportAudioFilesInEachSection || createSectionForEachPhrase)
-                                            {
-                                                phraseNodesDictionary.Add(path, phraseNodesCopy);
-                                            }
-                                        }
-
-                                        else
+                                        List<PhraseNode> phrases = null;
+                                        try
                                         {
-
-
-                                            List<PhraseNode> phrases = null;
+                                            phrases = mPresentation.CreatePhraseNodeList(path, durationMs);
+                                            if (!dialog.SplitPhrases && phrases.Count > 1)
+                                                MessageBox.Show(String.Format(Localizer.Message("Import_Phrase_SizeLimit"), ObiForm.Settings.MaxAllowedPhraseDurationInMinutes));
+                                        }
+                                        catch (System.Exception ex)
+                                        {
+                                            this.WriteToLogFile(ex.ToString());
+                                            MessageBox.Show(String.Format(Localizer.Message("import_phrase_error_text"), path) + "\n\n" + ex.ToString());
+                                            continue;
+                                        }
+                                        if (createSectionForEachPhrase && phrases != null && phrases.Count > 0
+                                            && !phrase_SectionNameMap.ContainsKey(phrases[0]))
+                                        {
+                                            phrase_SectionNameMap.Add(phrases[0], System.IO.Path.GetFileNameWithoutExtension(path));
+                                        }
+                                        foreach (PhraseNode p in phrases)
+                                        {
                                             try
                                             {
-                                                phrases = mPresentation.CreatePhraseNodeList(path, durationMs);
-                                                if (!dialog.SplitPhrases && phrases.Count > 1)
-                                                    MessageBox.Show(String.Format(Localizer.Message("Import_Phrase_SizeLimit"), ObiForm.Settings.MaxAllowedPhraseDurationInMinutes));
+                                                phraseNodes.Add(p);
+
                                             }
-                                            catch (System.Exception ex)
+                                            catch (Exception ex)
                                             {
                                                 this.WriteToLogFile(ex.ToString());
-                                                MessageBox.Show(String.Format(Localizer.Message("import_phrase_error_text"), path) + "\n\n" + ex.ToString());
-                                                continue;
-                                            }
-                                            if (createSectionForEachPhrase && phrases != null && phrases.Count > 0
-                                                && !phrase_SectionNameMap.ContainsKey(phrases[0]))
-                                            {
-                                                phrase_SectionNameMap.Add(phrases[0], System.IO.Path.GetFileNameWithoutExtension(path));
-                                            }
-                                            foreach (PhraseNode p in phrases)
-                                            {
-                                                try
-                                                {
-                                                    phraseNodes.Add(p);
-
-                                                }
-                                                catch (Exception ex)
-                                                {
-                                                    this.WriteToLogFile(ex.ToString());
-                                                    MessageBox.Show(
-                                                        String.Format(Localizer.Message("import_phrase_error_text"), path),
-                                                        Localizer.Message("import_phrase_error_caption"),
-                                                        MessageBoxButtons.OK,
-                                                        MessageBoxIcon.Error);
-                                                }
+                                                MessageBox.Show(
+                                                    String.Format(Localizer.Message("import_phrase_error_text"), path),
+                                                    Localizer.Message("import_phrase_error_caption"),
+                                                    MessageBoxButtons.OK,
+                                                    MessageBoxIcon.Error);
                                             }
                                         }
+
                                     }
                                 }, this.ObiForm.Settings); //@fontconfig
-                        progress.ShowDialog ();
+
+                        if (!dialog.ApplyPhraseDetectionUsingWhisperAI)
+                        {
+                            progress.ShowDialog();
+                        }
+                        else
+                        {
+                            ImportPhrasesUsingWhisper(phraseNodes, paths, ImportAudioFilesInEachSection, createSectionForEachPhrase, phraseNodesDictionary);
+                        }
                         if (phraseNodes.Count > 0)
                             {
                                 if (GetSelectedPhraseSection != null && (GetSelectedPhraseSection.PhraseChildCount + phraseNodes.Count <= MaxVisibleBlocksCount)) // @phraseLimit

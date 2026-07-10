@@ -25,6 +25,9 @@ namespace Obi.Dialogs
         private List<string> m_filePaths;
 
 
+        private WhisperModel m_Model = WhisperModel.Large;
+
+
         private CancellationTokenSource? _cancellationTokenSource;
 
         private readonly XhtmlPhraseParser _parser;
@@ -239,6 +242,7 @@ namespace Obi.Dialogs
                 var segments =
                     await whisper.TranscribeAsync(
                         mergedAudio,
+                        m_Model,
                         _cts.Token,
                         whisperProgress);
 

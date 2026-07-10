@@ -45,26 +45,29 @@ batch_mode = (
 
 if batch_mode:
 
+    if len(sys.argv) < 4:
+
+        print("Usage:")
+        print("Batch : python run_whisperx.py --batch jobs.json model")
+        sys.exit(1)
+
     batch_file = sys.argv[2]
+
+    MODEL_NAME = sys.argv[3]
 
 else:
 
-    if len(sys.argv) < 3:
+    if len(sys.argv) < 4:
 
-        print(
-            "Usage:")
-
-        print(
-            "Single : python run_whisperx.py input.wav output.json")
-
-        print(
-            "Batch  : python run_whisperx.py --batch jobs.json")
-
+        print("Usage:")
+        print("Single : python run_whisperx.py input.wav output.json model")
         sys.exit(1)
 
     input_audio = sys.argv[1]
 
     output_json = sys.argv[2]
+
+    MODEL_NAME = sys.argv[3]
 
 # ---------------------------------------------------
 # SETTINGS
@@ -72,14 +75,14 @@ else:
 
 device = "cpu"
 
-MODEL_NAME = "large-v3"
-
 
 # ---------------------------------------------------
 # LOAD MODEL
 # ---------------------------------------------------
 
 print("Loading WhisperX model...")
+
+print(f"Model: {MODEL_NAME}")
 
 model = whisperx.load_model(
     MODEL_NAME,

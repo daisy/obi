@@ -18,7 +18,7 @@ namespace Obi.Services
 {
     public class WhisperXService
     {
-        public async Task<List<TranscriptSegment>> TranscribeAsync(string audioFile, CancellationToken cancellationToken, IProgress<string>? progress = null)
+        public async Task<List<TranscriptSegment>> TranscribeAsync(string audioFile, WhisperModel model, CancellationToken cancellationToken, IProgress<string>? progress = null)
         {
             string backendFolder =
                 Path.GetFullPath(
@@ -45,7 +45,8 @@ namespace Obi.Services
              await CreateProcessStartInfoAsync(
           $"\"{scriptPath}\" " +
           $"\"{audioFile}\" " +
-          $"\"{jsonOutput}\"");
+          $"\"{jsonOutput}\" " +
+          $"\"{GetModelName(model)}\"");
 
 
 
@@ -73,7 +74,7 @@ namespace Obi.Services
             return segments;
         }
 
-        public async Task<Dictionary<string, List<TranscriptSegment>>> TranscribeBatchAsync(List<string> audioFiles, CancellationToken cancellationToken, IProgress<string>? progress = null)
+        public async Task<Dictionary<string, List<TranscriptSegment>>> TranscribeBatchAsync(List<string> audioFiles, WhisperModel model, CancellationToken cancellationToken, IProgress<string>? progress = null)
         {
             string backendFolder =
             Path.GetFullPath(
@@ -125,7 +126,8 @@ namespace Obi.Services
                 await CreateProcessStartInfoAsync(
                     $"\"{scriptPath}\" " +
                     $"--batch " +
-                    $"\"{jobsFile}\"");
+                    $"\"{jobsFile}\" " +
+                    $"\"{GetModelName(model)}\"");
 
 
 
@@ -151,6 +153,15 @@ namespace Obi.Services
         }
 
 
+        private static string GetModelName(WhisperModel model)
+        {
+            return model switch
+            {
+                WhisperModel.Small => "small",
+                WhisperModel.Medium => "medium",
+                _ => "large-v3"
+            };
+        }
 
 
         private static void SafeDelete(string filePath)

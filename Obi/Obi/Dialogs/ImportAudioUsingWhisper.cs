@@ -24,10 +24,11 @@ namespace Obi.Dialogs
         private string? m_MergedAudioPath;
         private List<string> m_FilePaths;
         private List<string> m_XhtmlPath;
-        private Dictionary <string, string> m_XhtmlFilePathsDictionary;
+        private Dictionary<string, string> m_XhtmlFilePathsDictionary;
         private bool m_ImportAudioFilesInEachSection;
         private bool m_CreateSectionForEachPhrase;
         private string? m_LogFilePath;
+        private bool m_IsTranscribing = false;
 
 
         private CancellationTokenSource? _cancellationTokenSource;
@@ -41,9 +42,35 @@ namespace Obi.Dialogs
         private readonly SemanticXhtmlBuilder _builder;
 
         private readonly StructurePostProcessor _postProcessor;
+
+        private WhisperModel m_Model;
         public ImportAudioUsingWhisper(List<string> filePaths, bool importAudioFilesInEachSection, bool createSectionForEachPhrase)
         {
             InitializeComponent();
+
+
+            cmbModel.DataSource = new List<WhisperModelItem>
+                {
+                    new()
+                    {
+                        Model = WhisperModel.Large,
+                        DisplayName = "Large (Best Accuracy)"
+                    },
+                    new()
+                    {
+                        Model = WhisperModel.Medium,
+                        DisplayName = "Medium (Balanced)"
+                    },
+                    new()
+                    {
+                        Model = WhisperModel.Small,
+                        DisplayName = "Small (Fastest)"
+                    }
+                };
+
+            cmbModel.DisplayMember = "DisplayName";
+
+            cmbModel.SelectedIndex = 0;
             m_ImportAudioFilesInEachSection = importAudioFilesInEachSection;
             m_CreateSectionForEachPhrase = createSectionForEachPhrase;
             _parser = new XhtmlPhraseParser();
@@ -64,7 +91,6 @@ namespace Obi.Dialogs
             {
                 m_FilePaths = filePaths;
             }
-            StartImportProcess();
         }
 
         public Dictionary<string, string> XhtmlFilePathsDictionary
@@ -79,7 +105,7 @@ namespace Obi.Dialogs
             {
                 try
                 {
-                    File.AppendAllText(m_LogFilePath,message + Environment.NewLine);
+                    File.AppendAllText(m_LogFilePath, message + Environment.NewLine);
                 }
                 catch
                 {
@@ -87,11 +113,12 @@ namespace Obi.Dialogs
                 }
             }
         }
+
         private async void StartImportProcess()
         {
             try
             {
-                m_LogFilePath =  Path.Combine(Path.GetDirectoryName(m_FilePaths[0])!,"WhisperX Log.txt");
+                m_LogFilePath = Path.Combine(Path.GetDirectoryName(m_FilePaths[0])!, "WhisperX Log.txt");
                 if (!string.IsNullOrEmpty(m_LogFilePath))
                 {
                     File.WriteAllText(m_LogFilePath, string.Empty);
@@ -107,10 +134,14 @@ namespace Obi.Dialogs
                 progressBar.Maximum = 100;
                 progressBar.Value = 0;
 
-                //lblStatus.Text =
-                //    "Transcribing audio...";
+
+
+                m_Model = ((WhisperModelItem)cmbModel.SelectedItem).Model;
+
 
                 Log("Transcribing audio......");
+
+                Log($"Whisper model: {m_Model}");
 
                 _cts =
                     new CancellationTokenSource();
@@ -187,8 +218,7 @@ namespace Obi.Dialogs
 
                 progressBar.Value = 0;
 
-                WhisperXService whisper =
-                    new();
+                WhisperXService whisper = new();
                 m_XhtmlFilePathsDictionary = new Dictionary<string, string>();
 
                 // STEP 1:
@@ -208,10 +238,7 @@ namespace Obi.Dialogs
                 if (m_ImportAudioFilesInEachSection || m_CreateSectionForEachPhrase)
                 {
                     var batchResults =
-                        await whisper.TranscribeBatchAsync(
-                            m_FilePaths,
-                            _cts.Token,
-                            whisperProgress);
+                        await whisper.TranscribeBatchAsync(m_FilePaths, m_Model, _cts.Token, whisperProgress);
 
                     foreach (string filePath in m_FilePaths)
                     {
@@ -246,10 +273,7 @@ namespace Obi.Dialogs
 
                     {
                         var segments =
-                            await whisper.TranscribeAsync(
-                                mergedAudio,
-                                _cts.Token,
-                                whisperProgress);
+                            await whisper.TranscribeAsync(mergedAudio, m_Model, _cts.Token, whisperProgress);
 
                         // STEP 2:
                         // Generate XHTML path
@@ -310,16 +334,36 @@ namespace Obi.Dialogs
             }
         }
 
-        private void m_btnCancel_Click(object sender, EventArgs e)
+        private void CancelTranscribing()
         {
             m_btnCancel.Enabled = false;
+
             progressBar.Value = 0;
 
             Log("Cancelling...");
             _cts?.Cancel();
             _cancellationTokenSource?.Cancel();
-            Close();
+            m_btnCancel.Enabled = true;
+
         }
 
+        private void m_btnCancel_Click(object sender, EventArgs e)
+        {
+            if (m_IsTranscribing)
+            {
+                CancelTranscribing();
+            }
+            Close();
+            m_IsTranscribing = false;
+        }
+
+
+
+        private void m_btnStart_Click(object sender, EventArgs e)
+        {
+            m_btnStart.Enabled = false;
+            m_IsTranscribing = true;
+            StartImportProcess();
+        }
     }
 }
