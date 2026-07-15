@@ -2,12 +2,17 @@
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using System.Net.Http;
 using System.Threading.Tasks;
 
 namespace Obi.Services
 {
     public static class WhisperXInstallerService
     {
+
+        private const string RequiredPythonVersion = "3.11.9";
+
+        private const string PythonInstallerUrl = "https://www.python.org/ftp/python/3.11.9/python-3.11.9-amd64.exe";
         public static string GetVenvPath()
         {
             return Path.GetFullPath(
@@ -28,47 +33,105 @@ namespace Obi.Services
                 "python.exe");
         }
 
-        public static Task<bool>
-            IsPythonEnvironmentInstalledAsync()
+        private static string GetInstalledPythonExe()
         {
-            return Task.FromResult(
-                File.Exists(
-                    GetPythonExe()));
+            string localAppData =
+                Environment.GetFolderPath(
+                    Environment.SpecialFolder.LocalApplicationData);
+
+            return Path.Combine(
+                localAppData,
+                "Programs",
+                "Python",
+                "Python311",
+                "python.exe");
         }
 
-        public static async Task InstallAsync(
-            IProgress<string>? progress = null)
+        private static bool IsPython311Installed()
         {
-            progress?.Report(
-                "Checking Python installation...");
+            return File.Exists(GetInstalledPythonExe());
+        }
+        private static string GetPythonInstallerPath()
+        {
+            return Path.Combine(
+                AppDomain.CurrentDomain.BaseDirectory,
+                "PythonInstaller",
+                $"python-{RequiredPythonVersion}-amd64.exe");
+        }
+        private static async Task DownloadPythonInstallerAsync(IProgress<string>? progress = null)
+        {
+            string installerPath = GetPythonInstallerPath();
 
-            await VerifyPythonInstalled();
-
-            string venvPath =
-                GetVenvPath();
-
-            if (!Directory.Exists(
-                venvPath))
+            if (File.Exists(installerPath))
             {
-                progress?.Report(
-                    "Creating virtual environment...");
+                progress?.Report("Python installer already downloaded.");
+
+                return;
+            }
+
+            Directory.CreateDirectory(Path.GetDirectoryName(installerPath)!);
+
+            progress?.Report("Downloading Python installer...");
+
+            using HttpClient client = new();
+
+            using HttpResponseMessage response =
+                await client.GetAsync(PythonInstallerUrl,HttpCompletionOption.ResponseHeadersRead);
+
+            response.EnsureSuccessStatusCode();
+
+            using Stream input = await response.Content.ReadAsStreamAsync();
+
+            using FileStream output = File.Create(installerPath);
+
+            await input.CopyToAsync(output);
+
+            progress?.Report("Python installer downloaded.");
+        }
+
+        private static async Task InstallPythonAsync(IProgress<string>? progress = null)
+        {
+            progress?.Report("Installing Python 3.11...");
+
+            string installer = GetPythonInstallerPath();
+
+            await RunInstaller(installer,"/quiet InstallAllUsers=0 PrependPath=1 Include_launcher=1",progress);
+
+            progress?.Report("Python installation completed.");
+        }
+
+
+        public static Task<bool> IsPythonEnvironmentInstalledAsync()
+        {
+            return Task.FromResult(File.Exists(GetPythonExe()));
+        }
+
+        public static async Task InstallAsync(IProgress<string>? progress = null)
+        {
+            string pythonExe = await EnsurePythonInstalledAsync(progress);
+
+            string venvPath = GetVenvPath();
+
+            if (!File.Exists(GetPythonExe()))
+            {
+                progress?.Report("Creating virtual environment...");
 
                 await RunProcess(
-                    "python",
+                    pythonExe,
                     $"-m venv \"{venvPath}\"",
                     progress);
             }
 
-            string pythonExe =
-                GetPythonExe();
+            if (!File.Exists(GetPythonExe()))
+            {
+                throw new Exception("Virtual environment was not created successfully.");
+            }
 
-            progress?.Report(
-                "Upgrading pip...");
+            pythonExe = GetPythonExe();
 
-            await RunProcess(
-                pythonExe,
-                "-m pip install --upgrade pip",
-                progress);
+            progress?.Report("Upgrading pip...");
+
+            await RunProcess(pythonExe,"-m pip install --upgrade pip",progress);
 
             string requirements =
                 Path.GetFullPath(
@@ -95,29 +158,51 @@ namespace Obi.Services
 
 
 
-        private static async Task
-            VerifyPythonInstalled()
+        private static async Task<string> EnsurePythonInstalledAsync(IProgress<string>? progress = null)
         {
-            try
+            progress?.Report("Checking Python installation...");
+
+            progress?.Report($"Checking: {GetInstalledPythonExe()}");
+
+            if (IsPython311Installed())
             {
-                await RunProcess(
-                    "python",
-                    "--version");
+                progress?.Report("Python 3.11 found.");
+
+                return GetInstalledPythonExe();
             }
-            catch
+
+            progress?.Report("Python 3.11 not found. Preparing automatic installation...");
+
+            await DownloadPythonInstallerAsync(progress);
+
+            await InstallPythonAsync(progress);
+
+            progress?.Report("Verifying Python installation...");
+
+            for (int i = 0; i < 10; i++)
             {
-                throw new Exception(
-                    "Python 3.11 or newer is not installed.");
+                if (IsPython311Installed())
+                {
+                    break;
+                }
+
+                await Task.Delay(1000);
             }
+
+
+            if (!IsPython311Installed())
+            {
+                throw new Exception("Python installation failed.");
+            }
+
+            progress?.Report("Python 3.11 installed successfully.");
+
+            return GetInstalledPythonExe();
         }
 
-        private static async Task RunProcess(
-            string fileName,
-            string arguments,
-            IProgress<string>? progress = null)
+        private static async Task RunProcess(string fileName,string arguments,IProgress<string>? progress = null)
         {
-            ProcessStartInfo psi =
-                new()
+            ProcessStartInfo psi = new()
                 {
                     FileName = fileName,
                     Arguments = arguments,
@@ -149,6 +234,8 @@ namespace Obi.Services
                     }
                 };
 
+            progress?.Report($"{Path.GetFileName(fileName)} {arguments}");
+
             process.Start();
 
             process.BeginOutputReadLine();
@@ -160,6 +247,28 @@ namespace Obi.Services
             {
                 throw new Exception(
                     $"Command failed:\n{fileName} {arguments}\n\nExitCode={process.ExitCode}");
+            }
+        }
+
+        private static async Task RunInstaller(string installer,string arguments,IProgress<string>? progress = null)
+        {
+            progress?.Report($"{Path.GetFileName(installer)} {arguments}");
+
+            ProcessStartInfo psi = new()
+                {
+                    FileName = installer,
+                    Arguments = arguments,
+                    UseShellExecute = true
+                };
+
+            using Process process =
+                Process.Start(psi)!;
+
+            await process.WaitForExitAsync();
+
+            if (process.ExitCode != 0)
+            {
+                throw new Exception($"Python installer failed. ExitCode={process.ExitCode}");
             }
         }
 
