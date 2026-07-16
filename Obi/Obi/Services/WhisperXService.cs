@@ -228,10 +228,10 @@ namespace Obi.Services
                         backendFolder
                 };
 
+
             string ffmpegFolder =
                 Path.Combine(
-                    AppDomain.CurrentDomain.BaseDirectory,
-                    "ffmpeg");
+                    AppDomain.CurrentDomain.BaseDirectory);
 
             string ffmpegExe =
                 Path.Combine(
