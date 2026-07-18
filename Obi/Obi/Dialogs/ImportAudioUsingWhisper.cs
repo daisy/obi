@@ -118,7 +118,9 @@ namespace Obi.Dialogs
         {
             try
             {
-                m_LogFilePath = Path.Combine(Path.GetDirectoryName(m_FilePaths[0])!, "WhisperX Log.txt");
+                //m_LogFilePath = Path.Combine(Path.GetDirectoryName(m_FilePaths[0])!, "WhisperX Log.txt");
+                Directory.CreateDirectory(ObiPaths.LogsFolder);
+                m_LogFilePath = Path.Combine(ObiPaths.LogsFolder, "WhisperX Log.txt");
                 if (!string.IsNullOrEmpty(m_LogFilePath))
                 {
                     File.WriteAllText(m_LogFilePath, string.Empty);

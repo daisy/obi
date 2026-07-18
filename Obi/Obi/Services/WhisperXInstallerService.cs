@@ -15,22 +15,12 @@ namespace Obi.Services
         private const string PythonInstallerUrl = "https://www.python.org/ftp/python/3.11.9/python-3.11.9-amd64.exe";
         public static string GetVenvPath()
         {
-            return Path.GetFullPath(
-                Path.Combine(
-                    AppDomain.CurrentDomain.BaseDirectory,
-                    "..",
-                    "..",
-                    "..",
-                    "..",
-                    "whisperx_env"));
+            return ObiPaths.WhisperEnvironment;
         }
 
         public static string GetPythonExe()
         {
-            return Path.Combine(
-                GetVenvPath(),
-                "Scripts",
-                "python.exe");
+            return ObiPaths.PythonExe;
         }
 
         private static string GetInstalledPythonExe()
@@ -54,8 +44,7 @@ namespace Obi.Services
         private static string GetPythonInstallerPath()
         {
             return Path.Combine(
-                AppDomain.CurrentDomain.BaseDirectory,
-                "PythonInstaller",
+                ObiPaths.PythonInstallerFolder,
                 $"python-{RequiredPythonVersion}-amd64.exe");
         }
         private static async Task DownloadPythonInstallerAsync(IProgress<string>? progress = null)
@@ -108,6 +97,13 @@ namespace Obi.Services
 
         public static async Task InstallAsync(IProgress<string>? progress = null)
         {
+            Directory.CreateDirectory(ObiPaths.LocalDataFolder);
+            Directory.CreateDirectory(ObiPaths.ModelsFolder);
+
+            Directory.CreateDirectory(ObiPaths.HuggingFaceFolder);
+
+            Directory.CreateDirectory(ObiPaths.NltkDataFolder);
+
             string pythonExe = await EnsurePythonInstalledAsync(progress);
 
             string venvPath = GetVenvPath();
@@ -133,16 +129,7 @@ namespace Obi.Services
 
             await RunProcess(pythonExe,"-m pip install --upgrade pip",progress);
 
-            string requirements =
-                Path.GetFullPath(
-                    Path.Combine(
-                        AppDomain.CurrentDomain.BaseDirectory,
-                        "..",
-                        "..",
-                        "..",
-                        "..",
-                        "PythonBackend",
-                        "requirements.txt"));
+            string requirements = ObiPaths.Requirements;
 
             progress?.Report(
                 "Installing WhisperX packages...");

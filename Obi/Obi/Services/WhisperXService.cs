@@ -21,24 +21,15 @@ namespace Obi.Services
         public async Task<List<TranscriptSegment>> TranscribeAsync(string audioFile, WhisperModel model, CancellationToken cancellationToken, IProgress<string>? progress = null)
         {
             string backendFolder =
-                Path.GetFullPath(
-                    Path.Combine(
-                        AppDomain.CurrentDomain.BaseDirectory,
-                        "..",
-                        "..",
-                        "..",
-                        "..",
-                        "PythonBackend"));
+                ObiPaths.PythonBackend;
 
             string scriptPath =
-                Path.Combine(
-                    backendFolder,
-                    "run_whisperx.py");
+                ObiPaths.WhisperScript;
 
             string jsonOutput =
                 Path.Combine(
-                    backendFolder,
-                    Guid.NewGuid().ToString() + ".json");
+                    Path.GetTempPath(),
+                    Guid.NewGuid() + ".json");
 
 
             ProcessStartInfo psi =
@@ -46,7 +37,10 @@ namespace Obi.Services
           $"\"{scriptPath}\" " +
           $"\"{audioFile}\" " +
           $"\"{jsonOutput}\" " +
-          $"\"{GetModelName(model)}\"");
+          $"\"{GetModelName(model)}\" " +
+          $"\"{ObiPaths.ModelsFolder}\" " +
+          $"\"{ObiPaths.HuggingFaceFolder}\" " +
+          $"\"{ObiPaths.NltkDataFolder}\"");
 
 
 
@@ -77,27 +71,17 @@ namespace Obi.Services
         public async Task<Dictionary<string, List<TranscriptSegment>>> TranscribeBatchAsync(List<string> audioFiles, WhisperModel model, CancellationToken cancellationToken, IProgress<string>? progress = null)
         {
             string backendFolder =
-            Path.GetFullPath(
-            Path.Combine(
-            AppDomain.CurrentDomain.BaseDirectory,
-            "..",
-            "..",
-            "..",
-            "..",
-            "PythonBackend"));
+                ObiPaths.PythonBackend;
 
             string scriptPath =
-                Path.Combine(
-                    backendFolder,
-                    "run_whisperx.py");
+                ObiPaths.WhisperScript;
 
 
 
             string jobsFile =
                 Path.Combine(
-                    backendFolder,
-                    Guid.NewGuid().ToString() +
-                    "_jobs.json");
+                    Path.GetTempPath(),
+                    Guid.NewGuid() + "_jobs.json");
 
             var jobs = new
             {
@@ -127,7 +111,10 @@ namespace Obi.Services
                     $"\"{scriptPath}\" " +
                     $"--batch " +
                     $"\"{jobsFile}\" " +
-                    $"\"{GetModelName(model)}\"");
+                    $"\"{GetModelName(model)}\" " +
+                    $"\"{ObiPaths.ModelsFolder}\" " +
+                    $"\"{ObiPaths.HuggingFaceFolder}\" " +
+                    $"\"{ObiPaths.NltkDataFolder}\"");
 
 
 
@@ -182,26 +169,10 @@ namespace Obi.Services
         private async Task<ProcessStartInfo> CreateProcessStartInfoAsync(string arguments)
         {
             string backendFolder =
-                Path.GetFullPath(
-                    Path.Combine(
-                        AppDomain.CurrentDomain.BaseDirectory,
-                        "..",
-                        "..",
-                        "..",
-                        "..",
-                        "PythonBackend"));
+                ObiPaths.PythonBackend;
 
             string pythonExe =
-                Path.GetFullPath(
-                    Path.Combine(
-                        AppDomain.CurrentDomain.BaseDirectory,
-                        "..",
-                        "..",
-                        "..",
-                        "..",
-                        "whisperx_env",
-                        "Scripts",
-                        "python.exe"));
+                ObiPaths.PythonExe;
 
             if (!await WhisperXInstallerService
                 .IsPythonEnvironmentInstalledAsync())
@@ -234,9 +205,7 @@ namespace Obi.Services
                     AppDomain.CurrentDomain.BaseDirectory);
 
             string ffmpegExe =
-                Path.Combine(
-                    ffmpegFolder,
-                    "ffmpeg.exe");
+                ObiPaths.FFmpegExe;
 
             if (!File.Exists(ffmpegExe))
             {

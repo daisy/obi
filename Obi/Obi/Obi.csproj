@@ -257,6 +257,12 @@
     <Content Include="images\icons\media-seek-backward.png" />
     <Content Include="images\icons\media-seek-forward.png" />
     <Content Include="images\icons\nextpage.png" />
+    <Content Include="PythonBackend\requirements.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="PythonBackend\run_whisperx.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <EmbeddedResource Include="images\icons\Preserve_Zoom_Checked.png" />
     <EmbeddedResource Include="images\icons\Preserve_Zoom_Unchecked.png" />
     <Content Include="images\icons\prevpage.png" />
@@ -417,6 +423,8 @@
     <None Remove="ArnndnModels\sh.rnnn" />
     <None Remove="ArnndnModels\std.rnnn" />
     <None Remove="Dialogs\GoToPageOrPhrase.Designer.cs~RF231bd6b.TMP" />
+    <None Remove="PythonBackend\requirements.txt" />
+    <None Remove="PythonBackend\run_whisperx.py" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="HtmlAgilityPack" Version="1.12.4" />

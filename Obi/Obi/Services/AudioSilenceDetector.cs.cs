@@ -32,15 +32,9 @@ namespace Obi.Services
             List<SilenceRegion> result =
                 new();
 
-            string ffmpegFolder =
-                Path.Combine(
-                    AppDomain.CurrentDomain.BaseDirectory,
-                    "ffmpeg");
+            string ffmpegFolder = Path.Combine(AppDomain.CurrentDomain.BaseDirectory);
 
-            string ffmpegExe =
-                Path.Combine(
-                    ffmpegFolder,
-                    "ffmpeg.exe");
+            string ffmpegExe = ObiPaths.FFmpegExe;
 
             if (!File.Exists(ffmpegExe))
             {

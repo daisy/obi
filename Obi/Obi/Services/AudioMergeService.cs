@@ -36,11 +36,7 @@ namespace Obi.Services
                 audioFiles.Select(
                     f => $"file '{f.Replace("'", "'\\''")}'"));
 
-            string ffmpegExe =
-                Path.Combine(
-                    AppDomain.CurrentDomain.BaseDirectory,
-                    "ffmpeg",
-                    "ffmpeg.exe");
+            string ffmpegExe = ObiPaths.FFmpegExe;
 
             using Process process =
                 Process.Start(
