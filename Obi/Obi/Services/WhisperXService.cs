@@ -239,8 +239,7 @@ namespace Obi.Services
             Stopwatch stopwatch =
                 Stopwatch.StartNew();
 
-            CancellationTokenSource heartbeatCts =
-                new();
+            using CancellationTokenSource heartbeatCts =  new();
 
 
             process.OutputDataReceived +=
@@ -270,6 +269,24 @@ namespace Obi.Services
 
             process.BeginErrorReadLine();
 
+            using CancellationTokenRegistration cancellationRegistration =
+                cancellationToken.Register(() =>
+                {
+                    try
+                    {
+                        progress?.Report("Cancelling transcription...");
+
+                        if (!process.HasExited)
+                        {
+                            process.Kill(entireProcessTree: true);
+                        }
+                    }
+                    catch
+                    {
+                        // Ignore cleanup errors.
+                    }
+                });
+
             Task heartbeatTask =
                 Task.Run(async () =>
                 {
@@ -294,20 +311,57 @@ namespace Obi.Services
                     }
                 });
 
-            await process.WaitForExitAsync(
-                cancellationToken);
-
-            heartbeatCts.Cancel();
-
-            stopwatch.Stop();
-
-            await heartbeatTask;
-
-            if (process.ExitCode != 0)
+            try
             {
-                throw new Exception(
-                    "WhisperX Error:\n" +
-                    errorBuilder.ToString());
+
+                await process.WaitForExitAsync(
+                    cancellationToken);
+
+                if (process.ExitCode != 0)
+                {
+                    string error =
+                        errorBuilder.ToString();
+
+                    throw CreateWhisperException(error);
+                }
+            }
+            catch (OperationCanceledException)
+            {
+                throw;
+            }
+            finally
+            {
+                stopwatch.Stop();
+
+                heartbeatCts.Cancel();
+
+                try
+                {
+                    await heartbeatTask;
+                }
+                catch
+                {
+                    // Ignore heartbeat cancellation during cleanup.
+                }
+
+                try
+                {
+                    if (!process.HasExited)
+                    {
+                        process.Kill(
+                            entireProcessTree: true);
+
+                        process.WaitForExit(5000);
+                    }
+                }
+                catch (InvalidOperationException)
+                {
+                    // Process has already exited.
+                }
+                catch (System.ComponentModel.Win32Exception)
+                {
+                    // Process could not be terminated.
+                }
             }
         }
 
@@ -565,6 +619,50 @@ namespace Obi.Services
                 $"Remaining phrases after cleanup: {segments.Count}");
 
             return segments;
+        }
+
+        private static bool IsOutOfMemoryError(string error)
+        {
+            if (string.IsNullOrWhiteSpace(error))
+            {
+                return false;
+            }
+
+            error = error.ToLowerInvariant();
+
+            return
+                error.Contains("mkl_malloc")
+                || error.Contains("failed to allocate memory")
+                || error.Contains("cannot allocate memory")
+                || error.Contains("out of memory")
+                || error.Contains("memoryerror")
+                || error.Contains("bad_alloc");
+        }
+
+        private static Exception CreateWhisperException(
+    string error)
+        {
+            if (IsOutOfMemoryError(error))
+            {
+                return new Exception(
+                @"Unable to load the selected Whisper model.
+
+                The selected Whisper model requires more memory than is currently available on this computer.
+
+                Suggestions:
+
+                • Close other applications.
+                • Restart Obi.
+                • Select the Medium or Small Whisper model.
+
+                Technical details:
+
+                " + error);
+            }
+
+            return new Exception(
+                "WhisperX Error:\n\n" +
+                error);
         }
     }
 }

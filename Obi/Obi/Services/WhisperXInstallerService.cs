@@ -104,13 +104,37 @@ namespace Obi.Services
 
             Directory.CreateDirectory(ObiPaths.NltkDataFolder);
 
+            bool firstTimeSetup = !IsPython311Installed() ||!File.Exists(GetPythonExe());
+
+            if (firstTimeSetup)
+            {
+                progress?.Report(
+                @"==================================================
+FIRST-TIME WHISPERX SETUP
+
+Obi will now:
+
+• Install Python 3.11
+• Create the WhisperX environment
+• Install WhisperX packages
+• Download AI transcription models
+
+This is a one-time setup and may take
+10-30 minutes depending on your internet
+connection and computer speed.
+
+Please do not close Obi during installation.
+
+==================================================");
+            }
+
             string pythonExe = await EnsurePythonInstalledAsync(progress);
 
             string venvPath = GetVenvPath();
 
             if (!File.Exists(GetPythonExe()))
             {
-                progress?.Report("Creating virtual environment...");
+                progress?.Report("Creating WhisperX environment...");
 
                 await RunProcess(
                     pythonExe,
@@ -132,7 +156,14 @@ namespace Obi.Services
             string requirements = ObiPaths.Requirements;
 
             progress?.Report(
-                "Installing WhisperX packages...");
+            @"Installing WhisperX packages...
+
+If required, AI transcription models will also
+be downloaded during this step.
+
+This process may take several minutes.
+
+Please do not close Obi.");
 
             await RunProcess(
                 pythonExe,
@@ -140,7 +171,10 @@ namespace Obi.Services
                 progress);
 
             progress?.Report(
-                "WhisperX installation completed.");
+            @"WhisperX installation completed successfully.
+
+Future transcriptions will start much faster
+because this setup only happens once.");
         }
 
 
