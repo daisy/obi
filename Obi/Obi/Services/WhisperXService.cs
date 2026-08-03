@@ -13,15 +13,14 @@ using System.Text.Json;
 using Obi.Services;
 using System.Windows.Forms;
 using NAudio.Wave;
+using System.Text.RegularExpressions;
 
 namespace Obi.Services
 {
     public class WhisperXService
     {
-        public async Task<List<TranscriptSegment>> TranscribeAsync(string audioFile, WhisperModel model, CancellationToken cancellationToken, IProgress<string>? progress = null)
+        public async Task<List<TranscriptSegment>> TranscribeAsync(string audioFile, WhisperModel model, string bookLanguage, CancellationToken cancellationToken, IProgress<string>? progress = null)
         {
-            string backendFolder =
-                ObiPaths.PythonBackend;
 
             string scriptPath =
                 ObiPaths.WhisperScript;
@@ -31,6 +30,7 @@ namespace Obi.Services
                     Path.GetTempPath(),
                     Guid.NewGuid() + ".json");
 
+           // progress?.Report($"Book Language: {bookLanguage}");
 
             ProcessStartInfo psi =
              await CreateProcessStartInfoAsync(
@@ -38,6 +38,7 @@ namespace Obi.Services
           $"\"{audioFile}\" " +
           $"\"{jsonOutput}\" " +
           $"\"{GetModelName(model)}\" " +
+          $"\"{bookLanguage}\" " +
           $"\"{ObiPaths.ModelsFolder}\" " +
           $"\"{ObiPaths.HuggingFaceFolder}\" " +
           $"\"{ObiPaths.NltkDataFolder}\"");
@@ -68,10 +69,8 @@ namespace Obi.Services
             return segments;
         }
 
-        public async Task<Dictionary<string, List<TranscriptSegment>>> TranscribeBatchAsync(List<string> audioFiles, WhisperModel model, CancellationToken cancellationToken, IProgress<string>? progress = null)
+        public async Task<Dictionary<string, List<TranscriptSegment>>> TranscribeBatchAsync(List<string> audioFiles, WhisperModel model, string bookLanguage, CancellationToken cancellationToken, IProgress<string>? progress = null)
         {
-            string backendFolder =
-                ObiPaths.PythonBackend;
 
             string scriptPath =
                 ObiPaths.WhisperScript;
@@ -106,12 +105,15 @@ namespace Obi.Services
                     }),
                 cancellationToken);
 
+        //    progress?.Report($"Book Language: {bookLanguage}");
+
             ProcessStartInfo psi =
                 await CreateProcessStartInfoAsync(
                     $"\"{scriptPath}\" " +
                     $"--batch " +
                     $"\"{jobsFile}\" " +
                     $"\"{GetModelName(model)}\" " +
+                    $"\"{bookLanguage}\" " +
                     $"\"{ObiPaths.ModelsFolder}\" " +
                     $"\"{ObiPaths.HuggingFaceFolder}\" " +
                     $"\"{ObiPaths.NltkDataFolder}\"");
@@ -639,6 +641,47 @@ namespace Obi.Services
                 || error.Contains("bad_alloc");
         }
 
+        private static bool TryGetUnsupportedAlignmentLanguage(
+            string error,
+            out string languageCode)
+        {
+            languageCode = string.Empty;
+
+            Match match = Regex.Match(
+                error,
+                @"No default align-model for language:\s*([A-Za-z\-]+)",
+                RegexOptions.IgnoreCase);
+
+            if (!match.Success)
+            {
+                return false;
+            }
+
+            languageCode = match.Groups[1].Value;
+
+            return true;
+        }
+
+        private static string GetLanguageName(string languageCode)
+        {
+            return languageCode.ToLowerInvariant() switch
+            {
+                "cy" => "Welsh",
+                "en" => "English",
+                "hi" => "Hindi",
+                "fr" => "French",
+                "de" => "German",
+                "es" => "Spanish",
+                "it" => "Italian",
+                "pt" => "Portuguese",
+                "ja" => "Japanese",
+                "ko" => "Korean",
+                "zh" => "Chinese",
+
+                _ => languageCode
+            };
+        }
+
         private static Exception CreateWhisperException(
     string error)
         {
@@ -658,6 +701,18 @@ namespace Obi.Services
                 Technical details:
 
                 " + error);
+            }
+
+            if (TryGetUnsupportedAlignmentLanguage(error,out string languageCode))
+            {
+                string language =GetLanguageName(languageCode);
+
+                return new Exception(
+            $@"Unable to import audio
+
+The audio was automatically detected as '{language}'. WhisperX does not support word alignment for this language.
+
+If this language was detected incorrectly, import the audio again and select the correct language instead of using Auto Detect.");
             }
 
             return new Exception(

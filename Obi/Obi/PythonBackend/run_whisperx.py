@@ -10,28 +10,30 @@ batch_mode = len(sys.argv) > 1 and sys.argv[1] == "--batch"
 
 if batch_mode:
 
-    if len(sys.argv) != 7:
+    if len(sys.argv) != 8:
         print("Usage...")
         sys.exit(1)
 
     batch_file = sys.argv[2]
     MODEL_NAME = sys.argv[3]
-    MODELS_DIR = sys.argv[4]
-    HF_CACHE = sys.argv[5]
-    NLTK_DATA_DIR = sys.argv[6]
+    BOOK_LANGUAGE = sys.argv[4]
+    MODELS_DIR = sys.argv[5]
+    HF_CACHE = sys.argv[6]
+    NLTK_DATA_DIR = sys.argv[7]
 
 else:
 
-    if len(sys.argv) != 7:
+    if len(sys.argv) != 8:
         print("Usage...")
         sys.exit(1)
 
     input_audio = sys.argv[1]
     output_json = sys.argv[2]
     MODEL_NAME = sys.argv[3]
-    MODELS_DIR = sys.argv[4]
-    HF_CACHE = sys.argv[5]
-    NLTK_DATA_DIR = sys.argv[6]
+    BOOK_LANGUAGE = sys.argv[4]
+    MODELS_DIR = sys.argv[5]
+    HF_CACHE = sys.argv[6]
+    NLTK_DATA_DIR = sys.argv[7]
 
 # ------------------------------------------
 # Create model folder
@@ -72,10 +74,59 @@ import whisperx
 
 device = "cpu"
 
+LANGUAGE_NAMES = {
+    "en": "English",
+    "fr": "French",
+    "de": "German",
+    "es": "Spanish",
+    "it": "Italian",
+    "ar": "Arabic",
+    "ca": "Catalan",
+    "cs": "Czech",
+    "da": "Danish",
+    "el": "Greek",
+    "eu": "Basque",
+    "fa": "Persian",
+    "fi": "Finnish",
+    "gl": "Galician",
+    "he": "Hebrew",
+    "hi": "Hindi",
+    "hr": "Croatian",
+    "hu": "Hungarian",
+    "id": "Indonesian",
+    "ja": "Japanese",
+    "ka": "Georgian",
+    "ko": "Korean",
+    "lv": "Latvian",
+    "ml": "Malayalam",
+    "nl": "Dutch",
+    "nn": "Norwegian Nynorsk",
+    "no": "Norwegian",
+    "pl": "Polish",
+    "pt": "Portuguese",
+    "ro": "Romanian",
+    "ru": "Russian",
+    "sk": "Slovak",
+    "sl": "Slovenian",
+    "sv": "Swedish",
+    "te": "Telugu",
+    "tl": "Filipino",
+    "tr": "Turkish",
+    "uk": "Ukrainian",
+    "ur": "Urdu",
+    "vi": "Vietnamese",
+    "zh": "Chinese"
+}
 
 # ---------------------------------------------------
 # LOAD MODEL
 # ---------------------------------------------------
+
+if BOOK_LANGUAGE == "auto":
+    print("Book Language: Auto Detect")
+else:
+    display_name = LANGUAGE_NAMES.get(BOOK_LANGUAGE, BOOK_LANGUAGE)
+    print(f"Book Language: {display_name} (User Selected)")
 
 print("Loading WhisperX model...")
 
@@ -84,7 +135,8 @@ print(f"Model: {MODEL_NAME}")
 model = whisperx.load_model(
     MODEL_NAME,
     device,
-    compute_type="float32")
+    compute_type="float32",
+    language=BOOK_LANGUAGE if BOOK_LANGUAGE != "auto" else None)
 
 print("Whisper model loaded")
 
@@ -114,10 +166,38 @@ def transcribe_file(
                 # ---------------------------------------------------
 
                 print("Loading audio...")
+                
 
+                print("Audio file:", os.path.abspath(input_audio))
+
+                exists = os.path.exists(input_audio)
+
+                print("Exists:", exists)
+
+                if exists:
+                    print("Size:", os.path.getsize(input_audio))
+                else:
+                    raise Exception(f"Audio file not found: {input_audio}")
+                
                 audio = whisperx.load_audio(
-                    input_audio)
-
+                    input_audio)                    
+  
+                print("Audio type:", type(audio))
+                print("Audio shape:", audio.shape)
+                print("Audio dtype:", audio.dtype)
+                print("Audio length:", len(audio))
+                
+                if len(audio) == 0:
+                    raise Exception(
+                        f"Failed to decode audio file:\n"
+                        f"{input_audio}\n\n"
+                        "The decoded waveform contains zero audio samples.\n"
+                        "Possible causes:\n"
+                        "- The audio file is empty or corrupted.\n"
+                        "- FFmpeg could not decode the audio.\n"
+                        "- The audio format is unsupported."
+                    )
+                    
                 print("Audio loaded")
 
                 # ---------------------------------------------------
@@ -125,13 +205,22 @@ def transcribe_file(
                 # ---------------------------------------------------
                 print("Transcribing audio...")
 
-                if language is None:
+                # ---------------------------------------
+                # AUTO DETECT vs EXPLICIT LANGUAGE
+                # ---------------------------------------
+
+                if language is None or language == "auto":
+
+                    print("Language: Auto Detect")
 
                     result = model.transcribe(
                         audio,
                         batch_size=2)
 
                 else:
+
+                    display_name = LANGUAGE_NAMES.get(language, language)
+                    print(f"Language: {display_name}")
 
                     result = model.transcribe(
                         audio,
@@ -145,18 +234,18 @@ def transcribe_file(
                 # ---------------------------------------------------
                 # LOAD ALIGNMENT MODEL
                 # ---------------------------------------------------
-                language = detected_language
+                alignment_language = detected_language
 
-                if language not in alignment_cache:
+                if alignment_language  not in alignment_cache:
 
                     print(
-                        f"Loading alignment model ({language})...")
+                        f"Loading alignment model ({alignment_language})...")
 
                     model_a, metadata = whisperx.load_align_model(
-                        language_code=language,
-                        device=device)
+                    language_code=alignment_language,
+                    device=device)
 
-                    alignment_cache[language] = {
+                    alignment_cache[alignment_language] = {
                         "model": model_a,
                         "metadata": metadata
                     }
@@ -165,9 +254,9 @@ def transcribe_file(
                         "Alignment model loaded")
                 else:
                     print(
-                        f"Using cached alignment model ({language})")
+                        f"Using cached alignment model ({alignment_language})")
 
-                cached = alignment_cache[language]
+                cached = alignment_cache[alignment_language]
 
                 model_a = cached["model"]
 
@@ -447,7 +536,11 @@ if batch_mode:
         f"{len(files)} files found.")
         
         
-    detected_book_language = None
+    detected_book_language = (
+    None
+    if BOOK_LANGUAGE == "auto"
+    else BOOK_LANGUAGE
+   )
 
     for index, job in enumerate(files, start=1):
 
@@ -468,8 +561,8 @@ if batch_mode:
 
             detected_book_language = detected_language
 
-            print(
-                f"Book language: {detected_book_language}")
+            display_name = LANGUAGE_NAMES.get(detected_book_language, detected_book_language)
+            print(f"Book Language: {display_name} (Auto Detected)")
 
 else:
 
@@ -478,4 +571,4 @@ else:
             alignment_cache,
             input_audio,
             output_json,
-            None)
+            BOOK_LANGUAGE)

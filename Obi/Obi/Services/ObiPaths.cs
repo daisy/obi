@@ -48,7 +48,7 @@ namespace Obi.Services
                 "Scripts",
                 "python.exe");
 
-        public static string Requirements =>
+        public static string Requirements => 
             Path.Combine(
                 PythonBackend,
                 "requirements.txt");

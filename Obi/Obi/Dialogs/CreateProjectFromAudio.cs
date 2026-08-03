@@ -27,6 +27,7 @@ namespace Obi.Dialogs
 
         private WhisperModel m_Model = WhisperModel.Large;
 
+        private string m_BookLanguage = "auto";
 
         private CancellationTokenSource? _cancellationTokenSource;
 
@@ -243,6 +244,7 @@ namespace Obi.Dialogs
                     await whisper.TranscribeAsync(
                         mergedAudio,
                         m_Model,
+                        m_BookLanguage,
                         _cts.Token,
                         whisperProgress);
 

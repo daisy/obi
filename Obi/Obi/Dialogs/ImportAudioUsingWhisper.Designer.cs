@@ -34,6 +34,8 @@
             label1 = new System.Windows.Forms.Label();
             cmbModel = new System.Windows.Forms.ComboBox();
             m_btnStart = new System.Windows.Forms.Button();
+            lblBookLanguage = new System.Windows.Forms.Label();
+            cmbBookLanguage = new System.Windows.Forms.ComboBox();
             SuspendLayout();
             // 
             // txtLog
@@ -44,15 +46,15 @@
             txtLog.ReadOnly = true;
             txtLog.ScrollBars = System.Windows.Forms.ScrollBars.Both;
             txtLog.Size = new System.Drawing.Size(911, 209);
-            txtLog.TabIndex = 4;
+            txtLog.TabIndex = 6;
             // 
             // progressBar
             // 
             progressBar.AccessibleName = "Progress Bar";
-            progressBar.Location = new System.Drawing.Point(32, 128);
+            progressBar.Location = new System.Drawing.Point(32, 145);
             progressBar.Name = "progressBar";
             progressBar.Size = new System.Drawing.Size(911, 37);
-            progressBar.TabIndex = 3;
+            progressBar.TabIndex = 5;
             // 
             // m_btnCancel
             // 
@@ -60,7 +62,7 @@
             m_btnCancel.Location = new System.Drawing.Point(491, 506);
             m_btnCancel.Name = "m_btnCancel";
             m_btnCancel.Size = new System.Drawing.Size(168, 35);
-            m_btnCancel.TabIndex = 6;
+            m_btnCancel.TabIndex = 8;
             m_btnCancel.Text = "&Cancel";
             m_btnCancel.UseVisualStyleBackColor = true;
             m_btnCancel.Click += m_btnCancel_Click;
@@ -76,6 +78,7 @@
             // 
             // cmbModel
             // 
+            cmbModel.AccessibleName = "Select Whisper Model";
             cmbModel.FormattingEnabled = true;
             cmbModel.Location = new System.Drawing.Point(250, 24);
             cmbModel.Name = "cmbModel";
@@ -88,10 +91,28 @@
             m_btnStart.Location = new System.Drawing.Point(168, 506);
             m_btnStart.Name = "m_btnStart";
             m_btnStart.Size = new System.Drawing.Size(168, 35);
-            m_btnStart.TabIndex = 5;
+            m_btnStart.TabIndex = 7;
             m_btnStart.Text = "&Start";
             m_btnStart.UseVisualStyleBackColor = true;
             m_btnStart.Click += m_btnStart_Click;
+            // 
+            // lblBookLanguage
+            // 
+            lblBookLanguage.AutoSize = true;
+            lblBookLanguage.Location = new System.Drawing.Point(74, 70);
+            lblBookLanguage.Name = "lblBookLanguage";
+            lblBookLanguage.Size = new System.Drawing.Size(115, 20);
+            lblBookLanguage.TabIndex = 3;
+            lblBookLanguage.Text = "Book Language:";
+            // 
+            // cmbBookLanguage
+            // 
+            cmbBookLanguage.AccessibleName = "Select Book Language";
+            cmbBookLanguage.FormattingEnabled = true;
+            cmbBookLanguage.Location = new System.Drawing.Point(250, 70);
+            cmbBookLanguage.Name = "cmbBookLanguage";
+            cmbBookLanguage.Size = new System.Drawing.Size(226, 28);
+            cmbBookLanguage.TabIndex = 4;
             // 
             // ImportAudioUsingWhisper
             // 
@@ -99,6 +120,8 @@
             AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             CancelButton = m_btnCancel;
             ClientSize = new System.Drawing.Size(965, 572);
+            Controls.Add(cmbBookLanguage);
+            Controls.Add(lblBookLanguage);
             Controls.Add(m_btnStart);
             Controls.Add(cmbModel);
             Controls.Add(label1);
@@ -121,5 +144,7 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ComboBox cmbModel;
         private System.Windows.Forms.Button m_btnStart;
+        private System.Windows.Forms.Label lblBookLanguage;
+        private System.Windows.Forms.ComboBox cmbBookLanguage;
     }
 }

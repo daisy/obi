@@ -170,6 +170,8 @@ Please do not close Obi.");
                 $"-m pip install -r \"{requirements}\"",
                 progress);
 
+            await SaveInstalledPackagesAsync(pythonExe);
+
             progress?.Report(
             @"WhisperX installation completed successfully.
 
@@ -269,6 +271,87 @@ because this setup only happens once.");
                 throw new Exception(
                     $"Command failed:\n{fileName} {arguments}\n\nExitCode={process.ExitCode}");
             }
+        }
+
+
+        private static async Task SaveInstalledPackagesAsync(string pythonExe)
+        {
+            Directory.CreateDirectory(ObiPaths.LogsFolder);
+
+            string outputFile =
+                Path.Combine(
+                    ObiPaths.LogsFolder,
+                    "installed_packages.txt");
+
+            ProcessStartInfo psi = new()
+            {
+                FileName = pythonExe,
+                Arguments = "-m pip freeze",
+                RedirectStandardOutput = true,
+                RedirectStandardError = true,
+                UseShellExecute = false,
+                CreateNoWindow = true
+            };
+
+            using Process process = new();
+
+            process.StartInfo = psi;
+
+            process.Start();
+
+            Task<string> packagesTask =
+                process.StandardOutput.ReadToEndAsync();
+
+            Task<string> errorTask =
+                process.StandardError.ReadToEndAsync();
+
+            await process.WaitForExitAsync();
+
+            string packages = await packagesTask;
+            string error = await errorTask;
+
+            ProcessStartInfo versionPsi = new()
+            {
+                FileName = pythonExe,
+                Arguments = "--version",
+                RedirectStandardOutput = true,
+                RedirectStandardError = true,
+                UseShellExecute = false,
+                CreateNoWindow = true
+            };
+
+            using Process versionProcess = Process.Start(versionPsi)!;
+
+            string version =
+                await versionProcess.StandardOutput.ReadToEndAsync();
+
+            if (string.IsNullOrWhiteSpace(version))
+            {
+                version =
+                    await versionProcess.StandardError.ReadToEndAsync();
+            }
+
+            await versionProcess.WaitForExitAsync();
+
+            if (versionProcess.ExitCode != 0)
+            {
+                throw new Exception("Failed to retrieve Python version.");
+            }
+
+            string output =
+                $"Python Version: {version.Trim()}" +
+                Environment.NewLine +
+                Environment.NewLine +
+                packages;
+
+
+            if (process.ExitCode != 0)
+            {
+                throw new Exception(
+                    $"Failed to retrieve installed packages.\n\n{error}");
+            }
+
+            await File.WriteAllTextAsync(outputFile, output);
         }
 
         private static async Task RunInstaller(string installer,string arguments,IProgress<string>? progress = null)

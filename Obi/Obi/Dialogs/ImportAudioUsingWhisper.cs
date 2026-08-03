@@ -44,6 +44,7 @@ namespace Obi.Dialogs
         private readonly StructurePostProcessor _postProcessor;
 
         private WhisperModel m_Model;
+        private string m_BookLanguage = "auto";
         public ImportAudioUsingWhisper(List<string> filePaths, bool importAudioFilesInEachSection, bool createSectionForEachPhrase)
         {
             InitializeComponent();
@@ -70,7 +71,16 @@ namespace Obi.Dialogs
 
             cmbModel.DisplayMember = "DisplayName";
 
-            cmbModel.SelectedIndex = 0;
+            cmbModel.SelectedIndex = 1;
+
+            cmbBookLanguage.DataSource = WhisperLanguages.Languages;
+
+            cmbBookLanguage.DisplayMember = nameof(WhisperLanguageItem.DisplayName);
+
+            cmbBookLanguage.ValueMember = nameof(WhisperLanguageItem.LanguageCode);
+
+            cmbBookLanguage.SelectedIndex = 0;
+
             m_ImportAudioFilesInEachSection = importAudioFilesInEachSection;
             m_CreateSectionForEachPhrase = createSectionForEachPhrase;
             _parser = new XhtmlPhraseParser();
@@ -139,6 +149,8 @@ namespace Obi.Dialogs
 
 
                 m_Model = ((WhisperModelItem)cmbModel.SelectedItem).Model;
+
+                m_BookLanguage = ((WhisperLanguageItem)cmbBookLanguage.SelectedItem).LanguageCode;
 
 
                 Log("Transcribing audio......");
@@ -240,7 +252,7 @@ namespace Obi.Dialogs
                 if (m_ImportAudioFilesInEachSection || m_CreateSectionForEachPhrase)
                 {
                     var batchResults =
-                        await whisper.TranscribeBatchAsync(m_FilePaths, m_Model, _cts.Token, whisperProgress);
+                        await whisper.TranscribeBatchAsync(m_FilePaths, m_Model, m_BookLanguage, _cts.Token, whisperProgress);
 
                     foreach (string filePath in m_FilePaths)
                     {
@@ -265,7 +277,7 @@ namespace Obi.Dialogs
 
                 else
                 {
-                    string mergedAudio = AudioMergeService.Merge(m_FilePaths);
+                    string mergedAudio = AudioMergeService.Merge(m_FilePaths, whisperProgress);
                     if (mergedAudio != null)
                     {
                         m_FilePaths.Clear();
@@ -275,7 +287,7 @@ namespace Obi.Dialogs
 
                     {
                         var segments =
-                            await whisper.TranscribeAsync(mergedAudio, m_Model, _cts.Token, whisperProgress);
+                            await whisper.TranscribeAsync(mergedAudio, m_Model, m_BookLanguage, _cts.Token, whisperProgress);
 
                         // STEP 2:
                         // Generate XHTML path
@@ -315,7 +327,15 @@ namespace Obi.Dialogs
             catch (Exception ex)
             {
                 Log(ex.ToString());
-                MessageBox.Show(ex.ToString());
+                //MessageBox.Show(ex.ToString());
+
+                MessageBox.Show(
+                    ex.Message,
+                    "Error",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+
+                Close();
             }
             finally
             {
