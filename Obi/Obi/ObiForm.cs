@@ -2541,9 +2541,8 @@ namespace Obi
 
             private void mImportAudioFileToolStripMenuItem_Click(object sender, EventArgs e)
             {
-            mProjectView.ImportPhrases();
-            // mProjectView.ImportWhisperPhrases();
-        }
+               mProjectView.ImportPhrases();
+            }
 
         private void mSplitPhraseToolStripMenuItem_Click(object sender, EventArgs e)
             {

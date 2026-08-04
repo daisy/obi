@@ -2827,7 +2827,7 @@ namespace Obi.ProjectView
             {
                 return;
             }
-
+            bool noPhrases = false;
             foreach (string path in paths)
 
             {
@@ -2837,6 +2837,15 @@ namespace Obi.ProjectView
                 ImportExport.ImportTranscript import = new Obi.ImportExport.ImportTranscript(xhtmlPath, mPresentation, ObiForm.Settings, path);
                 import.DoWork();
                 List<PhraseNode> phrases = import.Phrases;
+                if (phrases.Count == 0 && !noPhrases)
+                {
+                    MessageBox.Show(
+                        String.Format(Localizer.Message("import_phrase_no_phrase"), path),
+                        Localizer.Message("import_phrase_error_caption"),
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Error);
+                    noPhrases = true;
+                }
                 foreach (PhraseNode p in phrases)
                 {
                     try

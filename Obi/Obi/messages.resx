@@ -3362,4 +3362,8 @@ You can do it later also from the project tab of preferences dialog.</value>
   <data name="ImportOfAudioStatus" xml:space="preserve">
     <value>Audio is successfully imported {0} at {1} {2}</value>
   </data>
+  <data name="import_phrase_no_phrase" xml:space="preserve">
+    <value>Some audio file(s) could not be imported as its audio has no meaningful voice or speech.</value>
+    <comment>Error dialog</comment>
+  </data>
 </root>

@@ -331,7 +331,7 @@ namespace Obi.Dialogs
 
                 MessageBox.Show(
                     ex.Message,
-                    "Error",
+                    Localizer.Message("import_phrase_error_caption"),
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
 
