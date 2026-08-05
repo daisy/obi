@@ -28,33 +28,33 @@
         /// </summary>
         private void InitializeComponent()
         {
-            txtLog = new System.Windows.Forms.TextBox();
-            progressBar = new System.Windows.Forms.ProgressBar();
+            m_LogTxt = new System.Windows.Forms.TextBox();
+            m_ProgressBar = new System.Windows.Forms.ProgressBar();
             m_btnCancel = new System.Windows.Forms.Button();
             label1 = new System.Windows.Forms.Label();
-            cmbModel = new System.Windows.Forms.ComboBox();
+            m_ModelCb = new System.Windows.Forms.ComboBox();
             m_btnStart = new System.Windows.Forms.Button();
             lblBookLanguage = new System.Windows.Forms.Label();
-            cmbBookLanguage = new System.Windows.Forms.ComboBox();
+            m_BookLanguageCb = new System.Windows.Forms.ComboBox();
             SuspendLayout();
             // 
-            // txtLog
+            // m_LogTxt
             // 
-            txtLog.Location = new System.Drawing.Point(32, 259);
-            txtLog.Multiline = true;
-            txtLog.Name = "txtLog";
-            txtLog.ReadOnly = true;
-            txtLog.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            txtLog.Size = new System.Drawing.Size(911, 209);
-            txtLog.TabIndex = 6;
+            m_LogTxt.Location = new System.Drawing.Point(32, 259);
+            m_LogTxt.Multiline = true;
+            m_LogTxt.Name = "m_LogTxt";
+            m_LogTxt.ReadOnly = true;
+            m_LogTxt.ScrollBars = System.Windows.Forms.ScrollBars.Both;
+            m_LogTxt.Size = new System.Drawing.Size(911, 209);
+            m_LogTxt.TabIndex = 6;
             // 
-            // progressBar
+            // m_ProgressBar
             // 
-            progressBar.AccessibleName = "Progress Bar";
-            progressBar.Location = new System.Drawing.Point(32, 145);
-            progressBar.Name = "progressBar";
-            progressBar.Size = new System.Drawing.Size(911, 37);
-            progressBar.TabIndex = 5;
+            m_ProgressBar.AccessibleName = "Progress Bar";
+            m_ProgressBar.Location = new System.Drawing.Point(32, 145);
+            m_ProgressBar.Name = "m_ProgressBar";
+            m_ProgressBar.Size = new System.Drawing.Size(911, 37);
+            m_ProgressBar.TabIndex = 5;
             // 
             // m_btnCancel
             // 
@@ -76,14 +76,14 @@
             label1.TabIndex = 1;
             label1.Text = "Select Whisper Model:";
             // 
-            // cmbModel
+            // m_ModelCb
             // 
-            cmbModel.AccessibleName = "Select Whisper Model";
-            cmbModel.FormattingEnabled = true;
-            cmbModel.Location = new System.Drawing.Point(250, 24);
-            cmbModel.Name = "cmbModel";
-            cmbModel.Size = new System.Drawing.Size(226, 28);
-            cmbModel.TabIndex = 2;
+            m_ModelCb.AccessibleName = "Select Whisper Model";
+            m_ModelCb.FormattingEnabled = true;
+            m_ModelCb.Location = new System.Drawing.Point(250, 24);
+            m_ModelCb.Name = "m_ModelCb";
+            m_ModelCb.Size = new System.Drawing.Size(226, 28);
+            m_ModelCb.TabIndex = 2;
             // 
             // m_btnStart
             // 
@@ -105,14 +105,14 @@
             lblBookLanguage.TabIndex = 3;
             lblBookLanguage.Text = "Book Language:";
             // 
-            // cmbBookLanguage
+            // m_BookLanguageCb
             // 
-            cmbBookLanguage.AccessibleName = "Select Book Language";
-            cmbBookLanguage.FormattingEnabled = true;
-            cmbBookLanguage.Location = new System.Drawing.Point(250, 70);
-            cmbBookLanguage.Name = "cmbBookLanguage";
-            cmbBookLanguage.Size = new System.Drawing.Size(226, 28);
-            cmbBookLanguage.TabIndex = 4;
+            m_BookLanguageCb.AccessibleName = "Select Book Language";
+            m_BookLanguageCb.FormattingEnabled = true;
+            m_BookLanguageCb.Location = new System.Drawing.Point(250, 70);
+            m_BookLanguageCb.Name = "m_BookLanguageCb";
+            m_BookLanguageCb.Size = new System.Drawing.Size(226, 28);
+            m_BookLanguageCb.TabIndex = 4;
             // 
             // ImportAudioUsingWhisper
             // 
@@ -120,14 +120,14 @@
             AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             CancelButton = m_btnCancel;
             ClientSize = new System.Drawing.Size(965, 572);
-            Controls.Add(cmbBookLanguage);
+            Controls.Add(m_BookLanguageCb);
             Controls.Add(lblBookLanguage);
             Controls.Add(m_btnStart);
-            Controls.Add(cmbModel);
+            Controls.Add(m_ModelCb);
             Controls.Add(label1);
             Controls.Add(m_btnCancel);
-            Controls.Add(txtLog);
-            Controls.Add(progressBar);
+            Controls.Add(m_LogTxt);
+            Controls.Add(m_ProgressBar);
             MaximizeBox = false;
             MinimizeBox = false;
             Name = "ImportAudioUsingWhisper";
@@ -138,13 +138,13 @@
 
         #endregion
 
-        private System.Windows.Forms.TextBox txtLog;
-        private System.Windows.Forms.ProgressBar progressBar;
+        private System.Windows.Forms.TextBox m_LogTxt;
+        private System.Windows.Forms.ProgressBar m_ProgressBar;
         private System.Windows.Forms.Button m_btnCancel;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.ComboBox cmbModel;
+        private System.Windows.Forms.ComboBox m_ModelCb;
         private System.Windows.Forms.Button m_btnStart;
         private System.Windows.Forms.Label lblBookLanguage;
-        private System.Windows.Forms.ComboBox cmbBookLanguage;
+        private System.Windows.Forms.ComboBox m_BookLanguageCb;
     }
 }

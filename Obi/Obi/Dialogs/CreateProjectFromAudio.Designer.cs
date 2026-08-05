@@ -48,11 +48,11 @@
             m_grpStartProcess.SuspendLayout();
             SuspendLayout();
             // 
-            // progressBar
+            // m_ProgressBar
             // 
             progressBar.AccessibleName = "Progress Bar";
             progressBar.Location = new System.Drawing.Point(21, 295);
-            progressBar.Name = "progressBar";
+            progressBar.Name = "m_ProgressBar";
             progressBar.Size = new System.Drawing.Size(911, 37);
             progressBar.TabIndex = 10;
             // 
@@ -78,11 +78,11 @@
             m_btnCancel.UseVisualStyleBackColor = true;
             m_btnCancel.Click += m_btnCancel_Click;
             // 
-            // txtLog
+            // m_LogTxt
             // 
             txtLog.Location = new System.Drawing.Point(21, 413);
             txtLog.Multiline = true;
-            txtLog.Name = "txtLog";
+            txtLog.Name = "m_LogTxt";
             txtLog.ReadOnly = true;
             txtLog.ScrollBars = System.Windows.Forms.ScrollBars.Both;
             txtLog.Size = new System.Drawing.Size(911, 209);

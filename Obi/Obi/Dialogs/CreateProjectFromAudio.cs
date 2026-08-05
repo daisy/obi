@@ -360,7 +360,7 @@ namespace Obi.Dialogs
                         .Token
                         .ThrowIfCancellationRequested();
 
-                    //txtLog.AppendText(
+                    //m_LogTxt.AppendText(
                     //    $"Processing chunk " +
                     //    $"{chunkIndex}/{chunks.Count}"
                     //    + Environment.NewLine);

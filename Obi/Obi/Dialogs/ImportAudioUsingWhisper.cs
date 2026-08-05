@@ -50,7 +50,7 @@ namespace Obi.Dialogs
             InitializeComponent();
 
 
-            cmbModel.DataSource = new List<WhisperModelItem>
+            m_ModelCb.DataSource = new List<WhisperModelItem>
                 {
                     new()
                     {
@@ -69,17 +69,17 @@ namespace Obi.Dialogs
                     }
                 };
 
-            cmbModel.DisplayMember = "DisplayName";
+            m_ModelCb.DisplayMember = "DisplayName";
 
-            cmbModel.SelectedIndex = 1;
+            m_ModelCb.SelectedIndex = 1;
 
-            cmbBookLanguage.DataSource = WhisperLanguages.Languages;
+            m_BookLanguageCb.DataSource = WhisperLanguages.Languages;
 
-            cmbBookLanguage.DisplayMember = nameof(WhisperLanguageItem.DisplayName);
+            m_BookLanguageCb.DisplayMember = nameof(WhisperLanguageItem.DisplayName);
 
-            cmbBookLanguage.ValueMember = nameof(WhisperLanguageItem.LanguageCode);
+            m_BookLanguageCb.ValueMember = nameof(WhisperLanguageItem.LanguageCode);
 
-            cmbBookLanguage.SelectedIndex = 0;
+            m_BookLanguageCb.SelectedIndex = 0;
 
             m_ImportAudioFilesInEachSection = importAudioFilesInEachSection;
             m_CreateSectionForEachPhrase = createSectionForEachPhrase;
@@ -109,7 +109,7 @@ namespace Obi.Dialogs
         }
         private void Log(string message)
         {
-            txtLog.AppendText(message + Environment.NewLine);
+            m_LogTxt.AppendText(message + Environment.NewLine);
 
             if (!string.IsNullOrEmpty(m_LogFilePath))
             {
@@ -137,20 +137,22 @@ namespace Obi.Dialogs
                 }
 
                 m_btnCancel.Enabled = true;
+                m_ModelCb.Enabled = false;
+                m_BookLanguageCb.Enabled = false;
 
-                txtLog.Clear();
+                m_LogTxt.Clear();
 
-                progressBar.Style = ProgressBarStyle.Continuous;
+                m_ProgressBar.Style = ProgressBarStyle.Continuous;
 
-                progressBar.Minimum = 0;
-                progressBar.Maximum = 100;
-                progressBar.Value = 0;
+                m_ProgressBar.Minimum = 0;
+                m_ProgressBar.Maximum = 100;
+                m_ProgressBar.Value = 0;
 
 
 
-                m_Model = ((WhisperModelItem)cmbModel.SelectedItem).Model;
+                m_Model = ((WhisperModelItem)m_ModelCb.SelectedItem).Model;
 
-                m_BookLanguage = ((WhisperLanguageItem)cmbBookLanguage.SelectedItem).LanguageCode;
+                m_BookLanguage = ((WhisperLanguageItem)m_BookLanguageCb.SelectedItem).LanguageCode;
 
 
                 Log("Transcribing audio......");
@@ -170,55 +172,55 @@ namespace Obi.Dialogs
                             if (message.Contains(
                                 "Loading WhisperX model"))
                             {
-                                progressBar.Style =
+                                m_ProgressBar.Style =
                                     ProgressBarStyle.Continuous;
 
-                                progressBar.Value = 10;
+                                m_ProgressBar.Value = 10;
                             }
                             else if (message.Contains(
                                 "Whisper model loaded"))
                             {
-                                progressBar.Value = 20;
+                                m_ProgressBar.Value = 20;
                             }
                             else if (message.Contains(
                                 "Loading audio"))
                             {
-                                progressBar.Value = 30;
+                                m_ProgressBar.Value = 30;
                             }
                             else if (message.Contains(
                                 "Audio loaded"))
                             {
-                                progressBar.Value = 40;
+                                m_ProgressBar.Value = 40;
                             }
                             else if (message.Contains(
                                 "Transcribing audio"))
                             {
-                                progressBar.Value = 50;
+                                m_ProgressBar.Value = 50;
                             }
                             else if (message.Contains(
                                 "Transcription completed"))
                             {
-                                progressBar.Value = 70;
+                                m_ProgressBar.Value = 70;
                             }
                             else if (message.Contains(
                                 "Loading alignment model"))
                             {
-                                progressBar.Value = 80;
+                                m_ProgressBar.Value = 80;
                             }
                             else if (message.Contains(
                                 "Alignment completed"))
                             {
-                                progressBar.Value = 85;
+                                m_ProgressBar.Value = 85;
                             }
                             else if (message.Contains(
                                 "Saving JSON"))
                             {
-                                progressBar.Value = 90;
+                                m_ProgressBar.Value = 90;
                             }
                             else if (message.Contains(
                                 "Completed"))
                             {
-                                progressBar.Value = 100;
+                                m_ProgressBar.Value = 100;
                             }
                         });
 
@@ -230,7 +232,7 @@ namespace Obi.Dialogs
                     await WhisperXInstallerService.InstallAsync(whisperProgress);
                 }
 
-                progressBar.Value = 0;
+                m_ProgressBar.Value = 0;
 
                 WhisperXService whisper = new();
                 m_XhtmlFilePathsDictionary = new Dictionary<string, string>();
@@ -307,14 +309,14 @@ namespace Obi.Dialogs
                     }
                 }
 
-                progressBar.Style =
+                m_ProgressBar.Style =
                     ProgressBarStyle.Continuous;
 
                 //lblStatus.Text =
                 //    "Completed";  
                 Log("Transcription Completed successfully");
 
-                progressBar.Value = 100;
+                m_ProgressBar.Value = 100;
                 Close();
 
 
@@ -351,7 +353,7 @@ namespace Obi.Dialogs
 
                 _cts = null;
 
-                progressBar.Style =
+                m_ProgressBar.Style =
                     ProgressBarStyle.Continuous;
             }
         }
@@ -360,7 +362,7 @@ namespace Obi.Dialogs
         {
             m_btnCancel.Enabled = false;
 
-            progressBar.Value = 0;
+            m_ProgressBar.Value = 0;
 
             Log("Cancelling...");
             _cts?.Cancel();
