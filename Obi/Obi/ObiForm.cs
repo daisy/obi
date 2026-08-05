@@ -76,6 +76,8 @@ namespace Obi
                 m_PreventSettingsUpdateOnClosing = false;
                 m_IsSaveActive = false;
                 m_DefaultSettings = Settings.GetDefaultSettings();
+               // temporarily removed New project from audio import menue item.
+                mFile_NewProjectFromAudioImportMenuItem.Visible = false;
             }
 
             /// <summary>
@@ -88,6 +90,8 @@ namespace Obi
                 OpenProject_Safe(path, null);
                 m_IsSaveActive = false;
                 m_DefaultSettings = Settings.GetDefaultSettings();
+               // temporarily removed New project from audio import menue item.
+               mFile_NewProjectFromAudioImportMenuItem.Visible = false;
             }
 
             #endregion
