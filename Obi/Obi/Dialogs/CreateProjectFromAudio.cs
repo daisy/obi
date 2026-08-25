@@ -22,12 +22,13 @@ namespace Obi.Dialogs
         private string m_SemanticXhtmlPath;
         private CancellationTokenSource? _cts;
         private string? m_MergedAudioPath;
-        private List<string> m_filePaths;
+        private List<string> m_FilePaths;
 
 
         private WhisperModel m_Model = WhisperModel.Large;
 
         private string m_BookLanguage = "auto";
+        private TranscriptionEngine m_TranscriptionEngine = TranscriptionEngine.Auto;
 
         private CancellationTokenSource? _cancellationTokenSource;
 
@@ -41,9 +42,12 @@ namespace Obi.Dialogs
 
         private readonly StructurePostProcessor _postProcessor;
 
+        private readonly TranscriptionCoordinator _transcriptionCoordinator;
         public CreateProjectFromAudio(string[] filesPathArray)
         {
             InitializeComponent();
+
+            _transcriptionCoordinator = new TranscriptionCoordinator(new WhisperXService(), new ParakeetService());
 
             _parser = new XhtmlPhraseParser();
 
@@ -61,18 +65,18 @@ namespace Obi.Dialogs
             _postProcessor = new StructurePostProcessor();
             if (filesPathArray != null)
             {
-                m_filePaths = new List<string>(filesPathArray);
+                m_FilePaths = new List<string>(filesPathArray);
             }
             else
             {
-                m_filePaths = new List<string>();
+                m_FilePaths = new List<string>();
             }
-            m_filePaths.Sort();
+            m_FilePaths.Sort();
             m_btnMoveUp.Enabled = false;
             m_btnMoveDown.Enabled = false;
             m_btnRemove.Enabled = false;
 
-            foreach (string str in m_filePaths)
+            foreach (string str in m_FilePaths)
             {
                 if (str != null)
                 {
@@ -92,7 +96,7 @@ namespace Obi.Dialogs
 
             OpenFileDialog select_File = new OpenFileDialog();
             select_File.Filter = Localizer.Message("audio_file_filter");
-            int index = m_filePaths.Count;
+            int index = m_FilePaths.Count;
             select_File.RestoreDirectory = true;
             select_File.Multiselect = true;
             if (select_File.ShowDialog() == DialogResult.OK)
@@ -102,7 +106,7 @@ namespace Obi.Dialogs
                 {
                     string nameOfFile = System.IO.Path.GetFileName(fileName);
                     if (nameOfFile != null) lstAudioFiles.Items.Add(nameOfFile);
-                    m_filePaths.Add(fileName);
+                    m_FilePaths.Add(fileName);
                 }
 
                 lstAudioFiles.SelectedIndex = -1;
@@ -141,6 +145,12 @@ namespace Obi.Dialogs
                 progressBar.Minimum = 0;
                 progressBar.Maximum = 100;
                 progressBar.Value = 0;
+
+                TranscriptionOptions transcriptionOptions = new()
+                {
+                    WhisperModel = m_Model,
+                    Language = m_BookLanguage
+                };
 
                 //lblStatus.Text =
                 //    "Transcribing audio...";
@@ -214,22 +224,129 @@ namespace Obi.Dialogs
                             }
                         });
 
-                if (!await WhisperXInstallerService
-                    .IsPythonEnvironmentInstalledAsync())
+                // should be deleted when implementing the new WhisperXService with TranscriptionCoordinator
+                //if (!await WhisperXInstallerService
+                //    .IsPythonEnvironmentInstalledAsync())
+                //{
+                //    txtLog.AppendText(
+                //        "Installing WhisperX..." +
+                //        Environment.NewLine);
+
+                //    await WhisperXInstallerService
+                //        .InstallAsync(
+                //            whisperProgress);
+                //}
+
+                // ==========================================================
+                // RESOLVE TRANSCRIPTION ENGINE
+                // ==========================================================
+
+                TranscriptionEngine effectiveEngine =
+                    m_TranscriptionEngine;
+
+
+                // ----------------------------------------------------------
+                // Explicit engine
+                // ----------------------------------------------------------
+
+                if (effectiveEngine != TranscriptionEngine.Auto)
                 {
                     txtLog.AppendText(
-                        "Installing WhisperX..." +
-                        Environment.NewLine);
+                        $"Selected engine: {effectiveEngine}");
+                }
 
-                    await WhisperXInstallerService
-                        .InstallAsync(
+
+                // ----------------------------------------------------------
+                // Auto engine
+                // ----------------------------------------------------------
+
+                else
+                {
+                    // ------------------------------------------------------
+                    // If language itself is Auto, WhisperX is temporarily
+                    // required only to determine the language.
+                    // ------------------------------------------------------
+
+                    bool languageIsAuto =
+                        string.IsNullOrWhiteSpace(
+                            m_BookLanguage)
+                        ||
+                        m_BookLanguage
+                            .Trim()
+                            .Equals(
+                                "auto",
+                                StringComparison.OrdinalIgnoreCase);
+
+
+                    if (languageIsAuto)
+                    {
+                        if (!await WhisperXInstallerService
+                            .IsPythonEnvironmentInstalledAsync())
+                        {
+                            txtLog.AppendText(
+                                "Installing WhisperX for " +
+                                "automatic language detection...");
+
+                            await WhisperXInstallerService
+                                .InstallAsync(
+                                    whisperProgress);
+                        }
+                    }
+
+
+                    effectiveEngine =
+                        await ResolveAutomaticEngineAsync(
+                            transcriptionOptions,
                             whisperProgress);
+
+
+                    txtLog.AppendText(
+                        $"Auto selected engine: " +
+                        $"{effectiveEngine}");
+                }
+
+
+                // ==========================================================
+                // PREPARE SELECTED ENGINE
+                // ==========================================================
+
+                if (effectiveEngine ==
+                    TranscriptionEngine.Whisper)
+                {
+                    if (!await WhisperXInstallerService
+                        .IsPythonEnvironmentInstalledAsync())
+                    {
+                        txtLog.AppendText("Installing WhisperX...");
+
+                        await WhisperXInstallerService
+                            .InstallAsync(
+                                whisperProgress);
+                    }
+                }
+
+
+                if (effectiveEngine ==
+                    TranscriptionEngine.Parakeet)
+                {
+                    if (!await ParakeetInstallerService
+                        .IsPythonEnvironmentInstalledAsync())
+                    {
+                        txtLog.AppendText(
+                            "Parakeet environment is not installed.");
+
+                        txtLog.AppendText(
+                            "Installing Parakeet...");
+
+                        await ParakeetInstallerService
+                            .InstallAsync(
+                                whisperProgress);
+                    }
                 }
 
                 progressBar.Value = 0;
 
-                WhisperXService whisper =
-                    new();
+                //WhisperXService whisper =
+                //    new();
 
 
                 // STEP 1:
@@ -237,23 +354,25 @@ namespace Obi.Dialogs
 
 
                 string mergedAudio =
-                    AudioMergeService.Merge(m_filePaths);
+                    AudioMergeService.Merge(m_FilePaths);
 
                 m_MergedAudioPath = mergedAudio;
-                var segments =
-                    await whisper.TranscribeAsync(
-                        mergedAudio,
-                        m_Model,
-                        m_BookLanguage,
-                        _cts.Token,
-                        whisperProgress);
+                //var segments =
+                //    await whisper.TranscribeAsync(
+                //        mergedAudio,
+                //        m_Model,
+                //        m_BookLanguage,
+                //        _cts.Token,
+                //        whisperProgress);
+
+                var segments = await _transcriptionCoordinator.TranscribeAsync(mergedAudio, effectiveEngine, transcriptionOptions, _cts.Token, whisperProgress);
 
                 // STEP 2:
                 // Generate XHTML path
                 string xhtmlPath =
                     Path.Combine(
                         Path.GetDirectoryName(
-                            m_filePaths[0])!,
+                            m_FilePaths[0])!,
                         "CombinedTranscription.xhtml");
 
                 // STEP 3:
@@ -550,14 +669,14 @@ namespace Obi.Dialogs
                         // List<string> filePaths = new List<string>(mfilePaths);
                         //object itemInList = filesPath[index];
 
-                        object itemInList = m_filePaths[index];
+                        object itemInList = m_FilePaths[index];
 
                         lstAudioFiles.Items.RemoveAt(index);
-                        m_filePaths.RemoveAt(index);
+                        m_FilePaths.RemoveAt(index);
 
 
                         lstAudioFiles.Items.Insert(index - 1, item);
-                        m_filePaths.Insert(index - 1, itemInList.ToString());
+                        m_FilePaths.Insert(index - 1, itemInList.ToString());
                         if ((tempIndexStore - 1) != -1)
                             lstAudioFiles.SelectedIndex = tempIndexStore - 1;
 
@@ -586,14 +705,14 @@ namespace Obi.Dialogs
                         int tempIndexStore = lstAudioFiles.SelectedIndex;
                         object item = lstAudioFiles.SelectedItem;
 
-                        object itemInList = m_filePaths[index];
+                        object itemInList = m_FilePaths[index];
                         lstAudioFiles.Items.RemoveAt(index);
 
-                        m_filePaths.RemoveAt(index);
+                        m_FilePaths.RemoveAt(index);
 
                         lstAudioFiles.Items.Insert(index + 1, item);
 
-                        m_filePaths.Insert(index + 1, itemInList.ToString());
+                        m_FilePaths.Insert(index + 1, itemInList.ToString());
                         //   if ((tempIndexStore+1) != lstManualArrange.Items.Count - 1)
                         lstAudioFiles.SelectedIndex = tempIndexStore + 1;
                     }
@@ -619,11 +738,11 @@ namespace Obi.Dialogs
                         object item = lstAudioFiles.SelectedItem;
                         int tempIndex = lstAudioFiles.SelectedIndex;
                         lstAudioFiles.Items.Remove(item);
-                        for (int i = 0; i < m_filePaths.Count; i++)
+                        for (int i = 0; i < m_FilePaths.Count; i++)
                         {
-                            if (System.IO.Path.GetFileName(m_filePaths[i]) == (string)item)
+                            if (System.IO.Path.GetFileName(m_FilePaths[i]) == (string)item)
                             {
-                                m_filePaths.RemoveAt(i);
+                                m_FilePaths.RemoveAt(i);
                                 break;
                             }
                         }
@@ -724,8 +843,8 @@ namespace Obi.Dialogs
             List<string> filenames = new List<string>(); // Contains file names
             Dictionary<String, String> fileNamesDictionary = new Dictionary<string, string>(); //used for storing filename as key and path as value
             List<string> tempDuplicateFileName = new List<string>(); //contains duplicate file names with path
-            m_filePaths.Sort();
-            foreach (string str in m_filePaths)
+            m_FilePaths.Sort();
+            foreach (string str in m_FilePaths)
             {
                 filenames.Add(System.IO.Path.GetFileName(str));
                 if (!fileNamesDictionary.ContainsKey(System.IO.Path.GetFileName(str)))
@@ -743,7 +862,7 @@ namespace Obi.Dialogs
             }
             filenames.Sort();
             tempDuplicateFileName.Sort();
-            int tempLength = m_filePaths.Count;
+            int tempLength = m_FilePaths.Count;
             List<string> tempList = new List<string>();
             foreach (string str in filenames)
             {
@@ -770,10 +889,10 @@ namespace Obi.Dialogs
 
             if (tempList.Count != 0)
             {
-                m_filePaths.Clear();
-                m_filePaths = tempList;
+                m_FilePaths.Clear();
+                m_FilePaths = tempList;
             }
-            foreach (string str in m_filePaths)
+            foreach (string str in m_FilePaths)
             {
                 if (str != null)
                 {
@@ -790,8 +909,8 @@ namespace Obi.Dialogs
             List<string> filenames = new List<string>(); // Contains file names
             Dictionary<String, String> fileNamesDictionary = new Dictionary<string, string>(); //used for storing filename as key and path as value
             List<string> tempDuplicateFileName = new List<string>(); //contains duplicate file names with path
-            m_filePaths.Sort();
-            foreach (string str in m_filePaths)
+            m_FilePaths.Sort();
+            foreach (string str in m_FilePaths)
             {
                 filenames.Add(System.IO.Path.GetFileName(str));
                 if (!fileNamesDictionary.ContainsKey(System.IO.Path.GetFileName(str)))
@@ -834,21 +953,21 @@ namespace Obi.Dialogs
             }
             if (tempList.Count != 0)
             {
-                m_filePaths.Clear();
-                m_filePaths = tempList;
+                m_FilePaths.Clear();
+                m_FilePaths = tempList;
             }
-            int totLength = m_filePaths.Count;
+            int totLength = m_FilePaths.Count;
 
             List<string> tempDescending = new List<string>();
             for (int i = totLength - 1; i >= 0; i--)
             {
-                tempDescending.Add(m_filePaths[i]);
+                tempDescending.Add(m_FilePaths[i]);
             }
 
-            m_filePaths = tempDescending;
+            m_FilePaths = tempDescending;
 
             lstAudioFiles.Items.Clear();
-            foreach (string str in m_filePaths)
+            foreach (string str in m_FilePaths)
             {
                 if (str != null)
                 {
@@ -858,6 +977,118 @@ namespace Obi.Dialogs
             m_btnMoveUp.Enabled = false;
             m_btnMoveDown.Enabled = false;
             m_btnRemove.Enabled = false;
+        }
+
+        private async Task<TranscriptionEngine>
+    ResolveAutomaticEngineAsync(
+        TranscriptionOptions transcriptionOptions,
+        IProgress<string> progress)
+        {
+            string language =
+                string.IsNullOrWhiteSpace(
+                    m_BookLanguage)
+                    ? "auto"
+                    : m_BookLanguage
+                        .Trim()
+                        .ToLowerInvariant();
+
+
+            // ----------------------------------------------------------
+            // Explicit language
+            // ----------------------------------------------------------
+
+            if (language != "auto")
+            {
+                if (ParakeetLanguages.SupportedCodes.Contains(
+                    language))
+                {
+                    progress.Report(
+                        $"Book language: {language}");
+
+                    progress.Report(
+                        "Auto selected Parakeet.");
+
+                    return TranscriptionEngine.Parakeet;
+                }
+
+
+                progress.Report(
+                    $"Book language '{language}' " +
+                    "is not supported by Parakeet.");
+
+                progress.Report(
+                    "Auto selected WhisperX.");
+
+                return TranscriptionEngine.Whisper;
+            }
+
+
+            // ----------------------------------------------------------
+            // Auto language + Auto engine
+            //
+            // We need to know the language before deciding whether
+            // Parakeet is appropriate.
+            // ----------------------------------------------------------
+
+            progress.Report(
+                "Book language: Auto Detect");
+
+            progress.Report(
+                "Detecting book language with WhisperX...");
+
+
+            WhisperXService whisperXService =
+                new WhisperXService();
+
+
+            string detectedLanguage =
+                await whisperXService.DetectLanguageAsync(
+                    m_FilePaths[0],
+                    m_Model,
+                    _cts!.Token,
+                    progress);
+
+
+            detectedLanguage =
+                detectedLanguage
+                    .Trim()
+                    .ToLowerInvariant();
+
+
+            // Store the detected language so that the actual
+            // transcription receives the correct language.
+            m_BookLanguage =
+                detectedLanguage;
+
+            transcriptionOptions.Language =
+                detectedLanguage;
+
+
+            progress.Report(
+                $"Book language detected: " +
+                $"{detectedLanguage}");
+
+
+            if (ParakeetLanguages.SupportedCodes.Contains(
+                detectedLanguage))
+            {
+                progress.Report(
+                    "Detected language is supported by Parakeet.");
+
+                progress.Report(
+                    "Auto selected Parakeet.");
+
+                return TranscriptionEngine.Parakeet;
+            }
+
+
+            progress.Report(
+                "Detected language is not supported by Parakeet.");
+
+            progress.Report(
+                "Auto selected WhisperX.");
+
+            return TranscriptionEngine.Whisper;
         }
     }
 }

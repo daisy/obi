@@ -257,7 +257,13 @@
     <Content Include="images\icons\media-seek-backward.png" />
     <Content Include="images\icons\media-seek-forward.png" />
     <Content Include="images\icons\nextpage.png" />
+    <Content Include="PythonBackend\parakeet_requirements.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="PythonBackend\requirements.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="PythonBackend\run_parakeet.py">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="PythonBackend\run_whisperx.py">
@@ -423,7 +429,9 @@
     <None Remove="ArnndnModels\sh.rnnn" />
     <None Remove="ArnndnModels\std.rnnn" />
     <None Remove="Dialogs\GoToPageOrPhrase.Designer.cs~RF231bd6b.TMP" />
+    <None Remove="PythonBackend\parakeet_requirements.txt" />
     <None Remove="PythonBackend\requirements.txt" />
+    <None Remove="PythonBackend\run_parakeet.py" />
     <None Remove="PythonBackend\run_whisperx.py" />
   </ItemGroup>
   <ItemGroup>

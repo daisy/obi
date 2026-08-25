@@ -48,6 +48,27 @@ namespace Obi.Services
                 "Scripts",
                 "python.exe");
 
+        public static string ParakeetEnvironment =>
+            Path.Combine(
+                LocalDataFolder,
+                "parakeet_env");
+
+        public static string ParakeetPythonExe =>
+            Path.Combine(
+                ParakeetEnvironment,
+                "Scripts",
+                "python.exe");
+
+        public static string ParakeetRequirements =>
+            Path.Combine(
+                PythonBackend,
+                "parakeet_requirements.txt");
+
+        public static string ParakeetScript =>
+            Path.Combine(
+                PythonBackend,
+                "run_parakeet.py");
+
         public static string Requirements => 
             Path.Combine(
                 PythonBackend,

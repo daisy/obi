@@ -4590,11 +4590,11 @@ SelectionChangedPlaybackEnabled = false;
             List<string> filePathsList = new List<string>();
             if (m_filePaths != null && m_filePaths.Length > 0)
             {
-                //string[] profileFileNames = new string[m_filePaths.Length];
+                //string[] profileFileNames = new string[m_FilePaths.Length];
                 for (int i = 0; i < m_filePaths.Length; i++)
                 {
                     filePathsList.Add(System.IO.Path.GetFileNameWithoutExtension(m_filePaths[i]));
-                    //   m_cb_SelectProfile.Items.Add(System.IO.Path.GetFileNameWithoutExtension(m_filePaths[i]));
+                    //   m_cb_SelectProfile.Items.Add(System.IO.Path.GetFileNameWithoutExtension(m_FilePaths[i]));
                 }
                 
                 if (filePathsList.Contains("Basic"))

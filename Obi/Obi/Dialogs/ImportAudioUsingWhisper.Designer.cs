@@ -37,6 +37,8 @@
             m_btnStart = new System.Windows.Forms.Button();
             lblBookLanguage = new System.Windows.Forms.Label();
             m_BookLanguageCb = new System.Windows.Forms.ComboBox();
+            m_TranscriptionEngineCb = new System.Windows.Forms.ComboBox();
+            lblTranscriptionEngine = new System.Windows.Forms.Label();
             SuspendLayout();
             // 
             // m_LogTxt
@@ -86,6 +88,17 @@
             m_BookLanguageCb.FormattingEnabled = true;
             m_BookLanguageCb.Name = "m_BookLanguageCb";
             // 
+            // m_TranscriptionEngineCb
+            // 
+            m_TranscriptionEngineCb.FormattingEnabled = true;
+            resources.ApplyResources(m_TranscriptionEngineCb, "m_TranscriptionEngineCb");
+            m_TranscriptionEngineCb.Name = "m_TranscriptionEngineCb";
+            // 
+            // lblTranscriptionEngine
+            // 
+            resources.ApplyResources(lblTranscriptionEngine, "lblTranscriptionEngine");
+            lblTranscriptionEngine.Name = "lblTranscriptionEngine";
+            // 
             // ImportAudioUsingWhisper
             // 
             resources.ApplyResources(this, "$this");
@@ -99,6 +112,8 @@
             Controls.Add(m_btnCancel);
             Controls.Add(m_LogTxt);
             Controls.Add(m_ProgressBar);
+            Controls.Add(m_TranscriptionEngineCb);
+            Controls.Add(lblTranscriptionEngine);
             MaximizeBox = false;
             MinimizeBox = false;
             Name = "ImportAudioUsingWhisper";
@@ -116,5 +131,7 @@
         private System.Windows.Forms.Button m_btnStart;
         private System.Windows.Forms.Label lblBookLanguage;
         private System.Windows.Forms.ComboBox m_BookLanguageCb;
+        private System.Windows.Forms.ComboBox m_TranscriptionEngineCb;
+        private System.Windows.Forms.Label lblTranscriptionEngine;
     }
 }

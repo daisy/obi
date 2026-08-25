@@ -1,38 +1,91 @@
 import os
 import sys
 import json
+import time
 
 # ------------------------------------------
 # Parse command line
 # ------------------------------------------
 
-batch_mode = len(sys.argv) > 1 and sys.argv[1] == "--batch"
+batch_mode = (
+    len(sys.argv) > 1
+    and sys.argv[1] == "--batch"
+)
 
-if batch_mode:
+detect_language_mode = (
+    len(sys.argv) > 1
+    and sys.argv[1] == "--detect-language"
+)
+
+
+if detect_language_mode:
+
+    if len(sys.argv) != 8:
+        print(
+            "Usage: "
+            "python run_whisperx.py "
+            "--detect-language "
+            "input_audio output_language.txt "
+            "model models_folder hf_cache nltk_data"
+        )
+
+        sys.exit(1)
+
+
+    detection_audio = sys.argv[2]
+
+    detection_output = sys.argv[3]
+
+    MODEL_NAME = sys.argv[4]
+
+    MODELS_DIR = sys.argv[5]
+
+    HF_CACHE = sys.argv[6]
+
+    NLTK_DATA_DIR = sys.argv[7]
+
+
+elif batch_mode:
 
     if len(sys.argv) != 8:
         print("Usage...")
+
         sys.exit(1)
 
+
     batch_file = sys.argv[2]
+
     MODEL_NAME = sys.argv[3]
+
     BOOK_LANGUAGE = sys.argv[4]
+
     MODELS_DIR = sys.argv[5]
+
     HF_CACHE = sys.argv[6]
+
     NLTK_DATA_DIR = sys.argv[7]
+
 
 else:
 
     if len(sys.argv) != 8:
         print("Usage...")
+
         sys.exit(1)
 
+
     input_audio = sys.argv[1]
+
     output_json = sys.argv[2]
+
     MODEL_NAME = sys.argv[3]
+
     BOOK_LANGUAGE = sys.argv[4]
+
     MODELS_DIR = sys.argv[5]
+
     HF_CACHE = sys.argv[6]
+
     NLTK_DATA_DIR = sys.argv[7]
 
 # ------------------------------------------
@@ -122,23 +175,152 @@ LANGUAGE_NAMES = {
 # LOAD MODEL
 # ---------------------------------------------------
 
-if BOOK_LANGUAGE == "auto":
-    print("Book Language: Auto Detect")
+if detect_language_mode:
+
+    print(
+        "WhisperX language detection mode")
+
+    print(
+        f"Model: {MODEL_NAME}")
+
+    model = whisperx.load_model(
+        MODEL_NAME,
+        device,
+        compute_type="float32")
+    print(
+    "WhisperX model type:",
+    type(model))
+
+    print(
+        "WhisperX model attributes:"
+    )
+
+    print(
+        [
+            name
+            for name in dir(model)
+            if "model" in name.lower()
+            or "language" in name.lower()
+            or "detect" in name.lower()
+        ]
+    )  
+    import inspect
+
+    print(
+        "detect_language signature:",
+        inspect.signature(
+            model.detect_language
+        )
+    )
+
 else:
-    display_name = LANGUAGE_NAMES.get(BOOK_LANGUAGE, BOOK_LANGUAGE)
-    print(f"Book Language: {display_name} (User Selected)")
 
-print("Loading WhisperX model...")
+    if BOOK_LANGUAGE == "auto":
 
-print(f"Model: {MODEL_NAME}")
+        print(
+            "Book Language: Auto Detect")
 
-model = whisperx.load_model(
-    MODEL_NAME,
-    device,
-    compute_type="float32",
-    language=BOOK_LANGUAGE if BOOK_LANGUAGE != "auto" else None)
+    else:
+
+        display_name = LANGUAGE_NAMES.get(
+            BOOK_LANGUAGE,
+            BOOK_LANGUAGE)
+
+        print(
+            f"Book Language: "
+            f"{display_name} (User Selected)")
+
+
+    print(
+        "Loading WhisperX model...")
+
+    print(
+        f"Model: {MODEL_NAME}")
+
+    model = whisperx.load_model(
+        MODEL_NAME,
+        device,
+        compute_type="float32",
+        language=
+            BOOK_LANGUAGE
+            if BOOK_LANGUAGE != "auto"
+            else None)
+
 
 print("Whisper model loaded")
+
+# ---------------------------------------------------
+# LANGUAGE DETECTION ONLY
+# ---------------------------------------------------
+
+if detect_language_mode:
+
+    print(
+        "WhisperX language detection mode"
+    )
+
+    print(
+        f"Audio: {detection_audio}"
+    )
+
+    print(
+        "Loading audio for language detection..."
+    )
+
+    audio = whisperx.load_audio(
+        detection_audio
+    )
+
+    # ---------------------------------------------------
+    # Only use the first 30 seconds.
+    # ---------------------------------------------------
+
+    sample_rate = 16000
+
+    max_samples = (
+        30 * sample_rate
+    )
+
+    audio_30s = audio[
+        :max_samples
+    ]
+
+    print(
+        "Detecting language from first 30 seconds..."
+    )
+
+    detection_start = time.perf_counter()
+
+    detected_language = model.detect_language(
+        audio_30s
+    )
+
+    detection_end = time.perf_counter()
+
+    print(
+        f"Language detection processing time: "
+        f"{detection_end - detection_start:.2f} seconds"
+    )
+
+    print(
+        f"Detected language: "
+        f"{detected_language}"
+    )
+    with open(
+        detection_output,
+        "w",
+        encoding="utf-8"
+    ) as f:
+
+        f.write(
+            detected_language
+        )
+
+    print(
+        "Language detection completed"
+    )
+
+    sys.exit(0)
 
 # ---------------------------------------------------
 # ALIGNMENT MODEL CACHE

@@ -43,11 +43,52 @@ namespace Obi.Dialogs
 
         private readonly StructurePostProcessor _postProcessor;
 
+        private readonly TranscriptionCoordinator _transcriptionCoordinator;
+
         private WhisperModel m_Model;
         private string m_BookLanguage = "auto";
+        private TranscriptionEngine m_TranscriptionEngine =  TranscriptionEngine.Auto;
         public ImportAudioUsingWhisper(List<string> filePaths, bool importAudioFilesInEachSection, bool createSectionForEachPhrase)
         {
             InitializeComponent();
+
+            _transcriptionCoordinator = new TranscriptionCoordinator(new WhisperXService(), new ParakeetService());
+
+            m_TranscriptionEngineCb.DataSource =
+    new List<TranscriptionEngineItem>
+    {
+        new()
+        {
+            Engine =
+                TranscriptionEngine.Auto,
+
+            DisplayName =
+                "Auto"
+        },
+
+        new()
+        {
+            Engine =
+                TranscriptionEngine.Parakeet,
+
+            DisplayName =
+                "Parakeet"
+        },
+
+        new()
+        {
+            Engine =
+                TranscriptionEngine.Whisper,
+
+            DisplayName =
+                "Whisper"
+        }
+    };
+
+            m_TranscriptionEngineCb.DisplayMember =
+                "DisplayName";
+
+            m_TranscriptionEngineCb.SelectedIndex = 0;
 
 
             m_ModelCb.DataSource = new List<WhisperModelItem>
@@ -139,6 +180,7 @@ namespace Obi.Dialogs
                 m_btnCancel.Enabled = true;
                 m_ModelCb.Enabled = false;
                 m_BookLanguageCb.Enabled = false;
+                m_TranscriptionEngineCb.Enabled = false;
 
                 m_LogTxt.Clear();
 
@@ -154,10 +196,18 @@ namespace Obi.Dialogs
 
                 m_BookLanguage = ((WhisperLanguageItem)m_BookLanguageCb.SelectedItem).LanguageCode;
 
+                m_TranscriptionEngine = ((TranscriptionEngineItem)m_TranscriptionEngineCb.SelectedItem).Engine;
+                TranscriptionOptions transcriptionOptions = new()
+                                                            {
+                                                                WhisperModel = m_Model,
+                                                                Language = m_BookLanguage
+                                                            };
+
 
                 Log("Transcribing audio......");
 
                 Log($"Whisper model: {m_Model}");
+                Log($"Transcription engine: " + $"{m_TranscriptionEngine}");
 
                 _cts =
                     new CancellationTokenSource();
@@ -224,17 +274,117 @@ namespace Obi.Dialogs
                             }
                         });
 
-                if (!await WhisperXInstallerService
-                    .IsPythonEnvironmentInstalledAsync())
-                {
-                    Log("Installing WhisperX...");
+                // ==========================================================
+                // RESOLVE TRANSCRIPTION ENGINE
+                // ==========================================================
 
-                    await WhisperXInstallerService.InstallAsync(whisperProgress);
+                TranscriptionEngine effectiveEngine =
+                    m_TranscriptionEngine;
+
+
+                // ----------------------------------------------------------
+                // Explicit engine
+                // ----------------------------------------------------------
+
+                if (effectiveEngine != TranscriptionEngine.Auto)
+                {
+                    Log(
+                        $"Selected engine: {effectiveEngine}");
+                }
+
+
+                // ----------------------------------------------------------
+                // Auto engine
+                // ----------------------------------------------------------
+
+                else
+                {
+                    // ------------------------------------------------------
+                    // If language itself is Auto, WhisperX is temporarily
+                    // required only to determine the language.
+                    // ------------------------------------------------------
+
+                    bool languageIsAuto =
+                        string.IsNullOrWhiteSpace(
+                            m_BookLanguage)
+                        ||
+                        m_BookLanguage
+                            .Trim()
+                            .Equals(
+                                "auto",
+                                StringComparison.OrdinalIgnoreCase);
+
+
+                    if (languageIsAuto)
+                    {
+                        if (!await WhisperXInstallerService
+                            .IsPythonEnvironmentInstalledAsync())
+                        {
+                            Log(
+                                "Installing WhisperX for " +
+                                "automatic language detection...");
+
+                            await WhisperXInstallerService
+                                .InstallAsync(
+                                    whisperProgress);
+                        }
+                    }
+
+
+                    effectiveEngine =
+                        await ResolveAutomaticEngineAsync(
+                            transcriptionOptions,
+                            whisperProgress);
+
+
+                    Log(
+                        $"Auto selected engine: " +
+                        $"{effectiveEngine}");
+                }
+
+
+                // ==========================================================
+                // PREPARE SELECTED ENGINE
+                // ==========================================================
+
+                if (effectiveEngine ==
+                    TranscriptionEngine.Whisper)
+                {
+                    if (!await WhisperXInstallerService
+                        .IsPythonEnvironmentInstalledAsync())
+                    {
+                        Log("Installing WhisperX...");
+
+                        await WhisperXInstallerService
+                            .InstallAsync(
+                                whisperProgress);
+                    }
+                }
+
+
+                if (effectiveEngine ==
+                    TranscriptionEngine.Parakeet)
+                {
+                    if (!await ParakeetInstallerService
+                        .IsPythonEnvironmentInstalledAsync())
+                    {
+                        Log(
+                            "Parakeet environment is not installed.");
+
+                        Log(
+                            "Installing Parakeet...");
+
+                        await ParakeetInstallerService
+                            .InstallAsync(
+                                whisperProgress);
+                    }
                 }
 
                 m_ProgressBar.Value = 0;
 
-                WhisperXService whisper = new();
+                //   WhisperXService whisper = new();
+
+
                 m_XhtmlFilePathsDictionary = new Dictionary<string, string>();
 
                 // STEP 1:
@@ -253,8 +403,7 @@ namespace Obi.Dialogs
 
                 if (m_ImportAudioFilesInEachSection || m_CreateSectionForEachPhrase)
                 {
-                    var batchResults =
-                        await whisper.TranscribeBatchAsync(m_FilePaths, m_Model, m_BookLanguage, _cts.Token, whisperProgress);
+                    var batchResults = await _transcriptionCoordinator.TranscribeBatchAsync(m_FilePaths, effectiveEngine, transcriptionOptions,_cts.Token,whisperProgress);
 
                     foreach (string filePath in m_FilePaths)
                     {
@@ -288,8 +437,7 @@ namespace Obi.Dialogs
                     //m_MergedAudioPath = mergedAudio;
 
                     {
-                        var segments =
-                            await whisper.TranscribeAsync(mergedAudio, m_Model, m_BookLanguage, _cts.Token, whisperProgress);
+                        var segments = await _transcriptionCoordinator.TranscribeAsync(mergedAudio, effectiveEngine, transcriptionOptions,_cts.Token,whisperProgress);
 
                         // STEP 2:
                         // Generate XHTML path
@@ -388,6 +536,118 @@ namespace Obi.Dialogs
             m_btnStart.Enabled = false;
             m_IsTranscribing = true;
             StartImportProcess();
+        }
+
+        private async Task<TranscriptionEngine>
+    ResolveAutomaticEngineAsync(
+        TranscriptionOptions transcriptionOptions,
+        IProgress<string> progress)
+        {
+            string language =
+                string.IsNullOrWhiteSpace(
+                    m_BookLanguage)
+                    ? "auto"
+                    : m_BookLanguage
+                        .Trim()
+                        .ToLowerInvariant();
+
+
+            // ----------------------------------------------------------
+            // Explicit language
+            // ----------------------------------------------------------
+
+            if (language != "auto")
+            {
+                if (ParakeetLanguages.SupportedCodes.Contains(
+                    language))
+                {
+                    progress.Report(
+                        $"Book language: {language}");
+
+                    progress.Report(
+                        "Auto selected Parakeet.");
+
+                    return TranscriptionEngine.Parakeet;
+                }
+
+
+                progress.Report(
+                    $"Book language '{language}' " +
+                    "is not supported by Parakeet.");
+
+                progress.Report(
+                    "Auto selected WhisperX.");
+
+                return TranscriptionEngine.Whisper;
+            }
+
+
+            // ----------------------------------------------------------
+            // Auto language + Auto engine
+            //
+            // We need to know the language before deciding whether
+            // Parakeet is appropriate.
+            // ----------------------------------------------------------
+
+            progress.Report(
+                "Book language: Auto Detect");
+
+            progress.Report(
+                "Detecting book language with WhisperX...");
+
+
+            WhisperXService whisperXService =
+                new WhisperXService();
+
+
+            string detectedLanguage =
+                await whisperXService.DetectLanguageAsync(
+                    m_FilePaths[0],
+                    m_Model,
+                    _cts!.Token,
+                    progress);
+
+
+            detectedLanguage =
+                detectedLanguage
+                    .Trim()
+                    .ToLowerInvariant();
+
+
+            // Store the detected language so that the actual
+            // transcription receives the correct language.
+            m_BookLanguage =
+                detectedLanguage;
+
+            transcriptionOptions.Language =
+                detectedLanguage;
+
+
+            progress.Report(
+                $"Book language detected: " +
+                $"{detectedLanguage}");
+
+
+            if (ParakeetLanguages.SupportedCodes.Contains(
+                detectedLanguage))
+            {
+                progress.Report(
+                    "Detected language is supported by Parakeet.");
+
+                progress.Report(
+                    "Auto selected Parakeet.");
+
+                return TranscriptionEngine.Parakeet;
+            }
+
+
+            progress.Report(
+                "Detected language is not supported by Parakeet.");
+
+            progress.Report(
+                "Auto selected WhisperX.");
+
+            return TranscriptionEngine.Whisper;
         }
     }
 }

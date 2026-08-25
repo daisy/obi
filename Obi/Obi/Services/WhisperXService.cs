@@ -17,9 +17,9 @@ using System.Text.RegularExpressions;
 
 namespace Obi.Services
 {
-    public class WhisperXService
+    public class WhisperXService : ITranscriptionService
     {
-        public async Task<List<TranscriptSegment>> TranscribeAsync(string audioFile, WhisperModel model, string bookLanguage, CancellationToken cancellationToken, IProgress<string>? progress = null)
+        public async Task<List<TranscriptSegment>> TranscribeAsync(string audioFile,TranscriptionOptions options,CancellationToken cancellationToken,IProgress<string>? progress = null)
         {
 
             string scriptPath =
@@ -37,8 +37,8 @@ namespace Obi.Services
           $"\"{scriptPath}\" " +
           $"\"{audioFile}\" " +
           $"\"{jsonOutput}\" " +
-          $"\"{GetModelName(model)}\" " +
-          $"\"{bookLanguage}\" " +
+          $"\"{GetModelName(options.WhisperModel)}\" " +
+          $"\"{options.Language}\" " +
           $"\"{ObiPaths.ModelsFolder}\" " +
           $"\"{ObiPaths.HuggingFaceFolder}\" " +
           $"\"{ObiPaths.NltkDataFolder}\"");
@@ -69,7 +69,7 @@ namespace Obi.Services
             return segments;
         }
 
-        public async Task<Dictionary<string, List<TranscriptSegment>>> TranscribeBatchAsync(List<string> audioFiles, WhisperModel model, string bookLanguage, CancellationToken cancellationToken, IProgress<string>? progress = null)
+        public async Task<Dictionary<string, List<TranscriptSegment>>> TranscribeBatchAsync(List<string> audioFiles,TranscriptionOptions options,CancellationToken cancellationToken, IProgress<string>? progress = null)
         {
 
             string scriptPath =
@@ -112,8 +112,8 @@ namespace Obi.Services
                     $"\"{scriptPath}\" " +
                     $"--batch " +
                     $"\"{jobsFile}\" " +
-                    $"\"{GetModelName(model)}\" " +
-                    $"\"{bookLanguage}\" " +
+                    $"\"{GetModelName(options.WhisperModel)}\" " +
+                    $"\"{options.Language}\" " +
                     $"\"{ObiPaths.ModelsFolder}\" " +
                     $"\"{ObiPaths.HuggingFaceFolder}\" " +
                     $"\"{ObiPaths.NltkDataFolder}\"");
@@ -139,6 +139,92 @@ namespace Obi.Services
             SafeDelete(jobsFile);
 
             return results;
+        }
+
+
+        public async Task<string> DetectLanguageAsync(
+    string audioFile,
+    WhisperModel model,
+    CancellationToken cancellationToken,
+    IProgress<string>? progress = null)
+        {
+            if (string.IsNullOrWhiteSpace(audioFile))
+            {
+                throw new ArgumentException(
+                    "Audio file is required.",
+                    nameof(audioFile));
+            }
+
+            if (!File.Exists(audioFile))
+            {
+                throw new FileNotFoundException(
+                    "Audio file was not found.",
+                    audioFile);
+            }
+
+
+            string scriptPath =
+                ObiPaths.WhisperScript;
+
+
+            string detectionOutput =
+                Path.Combine(
+                    Path.GetTempPath(),
+                    Guid.NewGuid() + "_language.txt");
+
+
+            try
+            {
+                ProcessStartInfo psi =
+                    await CreateProcessStartInfoAsync(
+                        $"\"{scriptPath}\" " +
+                        $"--detect-language " +
+                        $"\"{audioFile}\" " +
+                        $"\"{detectionOutput}\" " +
+                        $"\"{GetModelName(model)}\" " +
+                        $"\"{ObiPaths.ModelsFolder}\" " +
+                        $"\"{ObiPaths.HuggingFaceFolder}\" " +
+                        $"\"{ObiPaths.NltkDataFolder}\"");
+
+
+                await ExecuteWhisperProcessAsync(
+                    psi,
+                    cancellationToken,
+                    progress);
+
+
+                if (!File.Exists(detectionOutput))
+                {
+                    throw new Exception(
+                        "WhisperX language detection did not " +
+                        "produce an output file.");
+                }
+
+
+                string language =
+                    (await File.ReadAllTextAsync(
+                        detectionOutput,
+                        cancellationToken))
+                    .Trim()
+                    .ToLowerInvariant();
+
+
+                if (string.IsNullOrWhiteSpace(language))
+                {
+                    throw new Exception(
+                        "WhisperX did not return a detected language.");
+                }
+
+
+                progress?.Report(
+                    $"Detected book language: {language}");
+
+                return language;
+            }
+            finally
+            {
+                SafeDelete(detectionOutput);
+            }
         }
 
 
