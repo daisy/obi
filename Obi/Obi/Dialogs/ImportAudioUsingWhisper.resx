@@ -133,7 +133,7 @@
     <value>911, 209</value>
   </data>
   <data name="m_LogTxt.TabIndex" type="System.Int32, mscorlib">
-    <value>6</value>
+    <value>8</value>
   </data>
   <data name="&gt;&gt;m_LogTxt.Name" xml:space="preserve">
     <value>m_LogTxt</value>
@@ -157,7 +157,7 @@
     <value>911, 37</value>
   </data>
   <data name="m_ProgressBar.TabIndex" type="System.Int32, mscorlib">
-    <value>5</value>
+    <value>7</value>
   </data>
   <data name="&gt;&gt;m_ProgressBar.Name" xml:space="preserve">
     <value>m_ProgressBar</value>
@@ -181,7 +181,7 @@
     <value>168, 35</value>
   </data>
   <data name="m_btnCancel.TabIndex" type="System.Int32, mscorlib">
-    <value>8</value>
+    <value>10</value>
   </data>
   <data name="m_btnCancel.Text" xml:space="preserve">
     <value>&amp;Cancel</value>
@@ -208,7 +208,7 @@
     <value>157, 20</value>
   </data>
   <data name="label1.TabIndex" type="System.Int32, mscorlib">
-    <value>1</value>
+    <value>5</value>
   </data>
   <data name="label1.Text" xml:space="preserve">
     <value>Select Whisper Model:</value>
@@ -235,7 +235,7 @@
     <value>226, 28</value>
   </data>
   <data name="m_ModelCb.TabIndex" type="System.Int32, mscorlib">
-    <value>2</value>
+    <value>6</value>
   </data>
   <data name="&gt;&gt;m_ModelCb.Name" xml:space="preserve">
     <value>m_ModelCb</value>
@@ -259,7 +259,7 @@
     <value>168, 35</value>
   </data>
   <data name="m_btnStart.TabIndex" type="System.Int32, mscorlib">
-    <value>7</value>
+    <value>9</value>
   </data>
   <data name="m_btnStart.Text" xml:space="preserve">
     <value>&amp;Start</value>
@@ -286,7 +286,7 @@
     <value>115, 20</value>
   </data>
   <data name="lblBookLanguage.TabIndex" type="System.Int32, mscorlib">
-    <value>3</value>
+    <value>1</value>
   </data>
   <data name="lblBookLanguage.Text" xml:space="preserve">
     <value>Book Language:</value>
@@ -313,7 +313,7 @@
     <value>226, 28</value>
   </data>
   <data name="m_BookLanguageCb.TabIndex" type="System.Int32, mscorlib">
-    <value>4</value>
+    <value>2</value>
   </data>
   <data name="&gt;&gt;m_BookLanguageCb.Name" xml:space="preserve">
     <value>m_BookLanguageCb</value>
@@ -327,6 +327,9 @@
   <data name="&gt;&gt;m_BookLanguageCb.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
+  <data name="m_TranscriptionEngineCb.AccessibleName" xml:space="preserve">
+    <value>Select Transcription Engine</value>
+  </data>
   <data name="m_TranscriptionEngineCb.Location" type="System.Drawing.Point, System.Drawing">
     <value>289, 69</value>
   </data>
@@ -334,7 +337,7 @@
     <value>226, 28</value>
   </data>
   <data name="m_TranscriptionEngineCb.TabIndex" type="System.Int32, mscorlib">
-    <value>9</value>
+    <value>4</value>
   </data>
   <data name="&gt;&gt;m_TranscriptionEngineCb.Name" xml:space="preserve">
     <value>m_TranscriptionEngineCb</value>
@@ -355,7 +358,7 @@
     <value>202, 23</value>
   </data>
   <data name="lblTranscriptionEngine.TabIndex" type="System.Int32, mscorlib">
-    <value>10</value>
+    <value>3</value>
   </data>
   <data name="lblTranscriptionEngine.Text" xml:space="preserve">
     <value>Select Transcription Engine:</value>

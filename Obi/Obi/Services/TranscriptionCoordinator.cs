@@ -149,52 +149,94 @@ namespace Obi.Services
             IProgress<string>? progress)
         {
             // ------------------------------------------------------
-            // Explicit engine selection always wins.
+            // Normalize language once.
             // ------------------------------------------------------
-
-            if (requestedEngine != TranscriptionEngine.Auto)
-            {
-                return requestedEngine;
-            }
-
-
-            progress?.Report(
-                "Transcription engine: Auto");
-
 
             string language =
                 string.IsNullOrWhiteSpace(options.Language)
                     ? "auto"
-                    : options.Language.Trim().ToLowerInvariant();
+                    : options.Language
+                        .Trim()
+                        .ToLowerInvariant();
 
 
             // ------------------------------------------------------
-            // Auto language
+            // Explicit Parakeet selection
             //
-            // Parakeet v3 performs its own language detection and
-            // supports 25 languages.
+            // Parakeet must never be allowed to run with a language
+            // that it does not support.
             //
-            // Therefore Auto + Auto uses Parakeet.
+            // "auto" is allowed because Parakeet can perform its own
+            // language detection when explicitly selected.
             // ------------------------------------------------------
 
-            if (language == "auto")
+            if (requestedEngine ==
+                TranscriptionEngine.Parakeet)
             {
-                progress?.Report(
-                    "Book language: Auto Detect");
+                if (language != "auto" &&
+                    !ParakeetLanguages.SupportedCodes.Contains(
+                        language))
+                {
+                    throw new InvalidOperationException(
+                        $"Parakeet does not support the selected " +
+                        $"language '{language}'.");
+                }
 
-                progress?.Report(
-                    "Auto selected Parakeet " +
-                    "(built-in multilingual language detection).");
 
                 return TranscriptionEngine.Parakeet;
             }
 
 
             // ------------------------------------------------------
-            // Explicit language
+            // Explicit Whisper selection
+            // ------------------------------------------------------
+
+            if (requestedEngine ==
+                TranscriptionEngine.Whisper)
+            {
+                return TranscriptionEngine.Whisper;
+            }
+
+
+            // ------------------------------------------------------
+            // Auto engine
             //
-            // Prefer Parakeet when the selected language is one of
-            // the languages supported by Parakeet v3.
+            // Normally ImportAudioUsingWhisper resolves Auto + Auto
+            // before calling the coordinator.
+            //
+            // If Auto reaches this method with a concrete language,
+            // use Parakeet when supported and Whisper otherwise.
+            // ------------------------------------------------------
+
+            progress?.Report(
+                "Transcription engine: Auto");
+
+
+            if (language == "auto")
+            {
+                // --------------------------------------------------
+                // Defensive fallback.
+                //
+                // The normal Auto + Auto path is resolved by
+                // ImportAudioUsingWhisper.ResolveAutomaticEngineAsync()
+                // using WhisperX language detection.
+                //
+                // If the coordinator receives Auto + Auto directly,
+                // Parakeet remains the default Auto engine.
+                // --------------------------------------------------
+
+                progress?.Report(
+                    "Book language: Auto Detect");
+
+                progress?.Report(
+                    "Auto selected Parakeet.");
+
+                return TranscriptionEngine.Parakeet;
+            }
+
+
+            // ------------------------------------------------------
+            // Concrete language supported by Parakeet
             // ------------------------------------------------------
 
             if (ParakeetLanguages.SupportedCodes.Contains(
@@ -212,9 +254,7 @@ namespace Obi.Services
 
 
             // ------------------------------------------------------
-            // Language is not supported by Parakeet.
-            //
-            // WhisperX remains the fallback engine.
+            // Concrete language NOT supported by Parakeet
             // ------------------------------------------------------
 
             progress?.Report(

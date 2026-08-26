@@ -14,6 +14,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace Obi.Dialogs
 {
@@ -47,48 +48,22 @@ namespace Obi.Dialogs
 
         private WhisperModel m_Model;
         private string m_BookLanguage = "auto";
-        private TranscriptionEngine m_TranscriptionEngine =  TranscriptionEngine.Auto;
+        private TranscriptionEngine m_TranscriptionEngine = TranscriptionEngine.Auto;
+        private bool m_UpdatingLanguageEngineLists;
         public ImportAudioUsingWhisper(List<string> filePaths, bool importAudioFilesInEachSection, bool createSectionForEachPhrase)
         {
             InitializeComponent();
 
             _transcriptionCoordinator = new TranscriptionCoordinator(new WhisperXService(), new ParakeetService());
 
-            m_TranscriptionEngineCb.DataSource =
-    new List<TranscriptionEngineItem>
-    {
-        new()
-        {
-            Engine =
-                TranscriptionEngine.Auto,
-
-            DisplayName =
-                "Auto"
-        },
-
-        new()
-        {
-            Engine =
-                TranscriptionEngine.Parakeet,
-
-            DisplayName =
-                "Parakeet"
-        },
-
-        new()
-        {
-            Engine =
-                TranscriptionEngine.Whisper,
-
-            DisplayName =
-                "Whisper"
-        }
-    };
-
             m_TranscriptionEngineCb.DisplayMember =
-                "DisplayName";
+                nameof(TranscriptionEngineItem.DisplayName);
 
-            m_TranscriptionEngineCb.SelectedIndex = 0;
+            m_TranscriptionEngineCb.ValueMember =
+                nameof(TranscriptionEngineItem.Engine);
+
+            m_TranscriptionEngineCb.SelectedIndexChanged +=
+                m_TranscriptionEngineCb_SelectedIndexChanged;
 
 
             m_ModelCb.DataSource = new List<WhisperModelItem>
@@ -114,13 +89,14 @@ namespace Obi.Dialogs
 
             m_ModelCb.SelectedIndex = 1;
 
-            m_BookLanguageCb.DataSource = WhisperLanguages.Languages;
+            m_BookLanguageCb.DisplayMember =
+                nameof(WhisperLanguageItem.DisplayName);
 
-            m_BookLanguageCb.DisplayMember = nameof(WhisperLanguageItem.DisplayName);
+            m_BookLanguageCb.ValueMember =
+                nameof(WhisperLanguageItem.LanguageCode);
 
-            m_BookLanguageCb.ValueMember = nameof(WhisperLanguageItem.LanguageCode);
-
-            m_BookLanguageCb.SelectedIndex = 0;
+            m_BookLanguageCb.SelectedIndexChanged +=
+                m_BookLanguageCb_SelectedIndexChanged;
 
             m_ImportAudioFilesInEachSection = importAudioFilesInEachSection;
             m_CreateSectionForEachPhrase = createSectionForEachPhrase;
@@ -138,6 +114,11 @@ namespace Obi.Dialogs
             _builder = new SemanticXhtmlBuilder();
 
             _postProcessor = new StructurePostProcessor();
+
+            InitializeLanguageAndEngineSelections();
+
+            UpdateWhisperModelAvailability();
+
             if (filePaths != null)
             {
                 m_FilePaths = filePaths;
@@ -212,12 +193,299 @@ namespace Obi.Dialogs
                 _cts =
                     new CancellationTokenSource();
 
+                int parakeetChunkCount = 0;
 
                 IProgress<string> whisperProgress =
                     new Progress<string>(
                         message =>
                         {
                             Log(message);
+
+
+                            // ==========================================================
+                            // PARAKEET PROGRESS
+                            //
+                            // Parakeet reports:
+                            //
+                            // Number of chunks: 12
+                            // Parakeet chunk 1/12
+                            // Parakeet chunk 2/12
+                            // ...
+                            // Parakeet chunk 12/12
+                            //
+                            // We map the Parakeet phases to approximately:
+                            //
+                            //  0 - 15%   Model loading
+                            // 15 - 20%   Audio preparation
+                            // 20 - 85%   Chunk transcription
+                            // 85 - 92%   Chunk merging
+                            // 92 - 98%   Phrase building / cleanup
+                            // 98 - 100%  Completion
+                            // ==========================================================
+
+
+                            // ----------------------------------------------------------
+                            // Model / processor loading
+                            // ----------------------------------------------------------
+
+                            if (message.Contains(
+                                "Loading Parakeet processor"))
+                            {
+                                m_ProgressBar.Style =
+                                    ProgressBarStyle.Continuous;
+
+                                m_ProgressBar.Value = 5;
+
+                                return;
+                            }
+
+
+                            if (message.Contains(
+                                "Parakeet processor loaded"))
+                            {
+                                m_ProgressBar.Value = 10;
+
+                                return;
+                            }
+
+
+                            if (message.Contains(
+                                "Loading Parakeet model"))
+                            {
+                                m_ProgressBar.Value = 12;
+
+                                return;
+                            }
+
+
+                            if (message.Contains(
+                                "Parakeet model loaded"))
+                            {
+                                m_ProgressBar.Value = 15;
+
+                                return;
+                            }
+
+
+                            // ----------------------------------------------------------
+                            // Audio preparation
+                            // ----------------------------------------------------------
+
+                            if (message.Contains(
+                                "Preparing long-audio Parakeet transcription"))
+                            {
+                                m_ProgressBar.Value = 16;
+
+                                return;
+                            }
+
+
+                            if (message.Contains(
+                                "Converting audio to 16 kHz mono PCM"))
+                            {
+                                m_ProgressBar.Value = 18;
+                                    
+                                return;
+                            }
+
+
+                            // ----------------------------------------------------------
+                            // Number of chunks
+                            // ----------------------------------------------------------
+
+                            if (message.StartsWith(
+                                "Number of chunks:",
+                                StringComparison.OrdinalIgnoreCase))
+                            {
+                                string countText =
+                                    message.Substring(
+                                        "Number of chunks:".Length)
+                                    .Trim();
+
+
+                                if (int.TryParse(
+                                    countText,
+                                    out int count) &&
+                                    count > 0)
+                                {
+                                    parakeetChunkCount =
+                                        count;
+                                }
+
+
+                                m_ProgressBar.Value = 20;
+
+                                return;
+                            }
+
+
+                            // ----------------------------------------------------------
+                            // Individual chunk
+                            //
+                            // Example:
+                            //
+                            // Parakeet chunk 5/12
+                            // ----------------------------------------------------------
+
+                            if (message.StartsWith(
+                                "Parakeet chunk ",
+                                StringComparison.OrdinalIgnoreCase))
+                            {
+                                int slashIndex =
+                                    message.IndexOf('/');
+
+
+                                if (slashIndex > 0)
+                                {
+                                    string chunkNumberText =
+                                        message.Substring(
+                                            "Parakeet chunk ".Length,
+                                            slashIndex -
+                                            "Parakeet chunk ".Length)
+                                        .Trim();
+
+
+                                    string totalChunksText =
+                                        message.Substring(
+                                            slashIndex + 1)
+                                        .Trim();
+
+
+                                    if (int.TryParse(
+                                            chunkNumberText,
+                                            out int chunkNumber) &&
+                                        int.TryParse(
+                                            totalChunksText,
+                                            out int totalChunks) &&
+                                        chunkNumber >= 1 &&
+                                        totalChunks > 0)
+                                    {
+                                        parakeetChunkCount =
+                                            totalChunks;
+
+
+                                        double fraction =
+                                            (double)chunkNumber /
+                                            totalChunks;
+
+
+                                        int value =
+                                            20 +
+                                            (int)Math.Round(
+                                                fraction * 65.0);
+
+
+                                        value =
+                                            Math.Max(
+                                                20,
+                                                Math.Min(
+                                                    85,
+                                                    value));
+
+
+                                        m_ProgressBar.Value =
+                                            value;
+                                    }
+
+
+                                    return;
+                                }
+                            }
+
+
+                            // ----------------------------------------------------------
+                            // Chunk transcription activity
+                            //
+                            // Keep the current chunk progress while these messages
+                            // arrive. Do not reset the progress.
+                            // ----------------------------------------------------------
+
+                            if (message.Contains(
+                                "Preparing Parakeet input"))
+                            {
+                                return;
+                            }
+
+
+                            if (message.Contains(
+                                "Transcribing chunk"))
+                            {
+                                return;
+                            }
+
+
+                            if (message.Contains(
+                                "Chunk transcription completed"))
+                            {
+                                return;
+                            }
+
+
+                            if (message.Contains(
+                                "Decoding chunk"))
+                            {
+                                return;
+                            }
+
+
+                            // ----------------------------------------------------------
+                            // Merging
+                            // ----------------------------------------------------------
+
+                            if (message.Contains(
+                                "Merging chunk transcripts"))
+                            {
+                                m_ProgressBar.Value = 88;
+
+                                return;
+                            }
+
+
+                            if (message.Contains(
+                                "Checking for residual duplicate words"))
+                            {
+                                m_ProgressBar.Value = 90;
+
+                                return;
+                            }
+
+
+                            // ----------------------------------------------------------
+                            // Phrase construction
+                            // ----------------------------------------------------------
+
+                            if (message.Contains(
+                                "Building phrase segments"))
+                            {
+                                m_ProgressBar.Value = 92;
+
+                                return;
+                            }
+
+
+                            if (message.Contains(
+                                "Reconstructed words"))
+                            {
+                                m_ProgressBar.Value = 94;
+
+                                return;
+                            }
+
+
+                            if (message.Contains(
+                                "Remaining phrases after cleanup"))
+                            {
+                                m_ProgressBar.Value = 98;
+
+                                return;
+                            }
+
+
+                            // ==========================================================
+                            // WHISPERX PROGRESS
+                            //
+                            // Keep the existing WhisperX behavior unchanged.
+                            // ==========================================================
 
                             if (message.Contains(
                                 "Loading WhisperX model"))
@@ -226,51 +494,89 @@ namespace Obi.Dialogs
                                     ProgressBarStyle.Continuous;
 
                                 m_ProgressBar.Value = 10;
+
+                                return;
                             }
-                            else if (message.Contains(
+
+
+                            if (message.Contains(
                                 "Whisper model loaded"))
                             {
                                 m_ProgressBar.Value = 20;
+
+                                return;
                             }
-                            else if (message.Contains(
+
+
+                            if (message.Contains(
                                 "Loading audio"))
                             {
                                 m_ProgressBar.Value = 30;
+
+                                return;
                             }
-                            else if (message.Contains(
+
+
+                            if (message.Contains(
                                 "Audio loaded"))
                             {
                                 m_ProgressBar.Value = 40;
+
+                                return;
                             }
-                            else if (message.Contains(
+
+
+                            if (message.Contains(
                                 "Transcribing audio"))
                             {
                                 m_ProgressBar.Value = 50;
+
+                                return;
                             }
-                            else if (message.Contains(
+
+
+                            if (message.Contains(
                                 "Transcription completed"))
                             {
                                 m_ProgressBar.Value = 70;
+
+                                return;
                             }
-                            else if (message.Contains(
+
+
+                            if (message.Contains(
                                 "Loading alignment model"))
                             {
                                 m_ProgressBar.Value = 80;
+
+                                return;
                             }
-                            else if (message.Contains(
+
+
+                            if (message.Contains(
                                 "Alignment completed"))
                             {
                                 m_ProgressBar.Value = 85;
+
+                                return;
                             }
-                            else if (message.Contains(
+
+
+                            if (message.Contains(
                                 "Saving JSON"))
                             {
                                 m_ProgressBar.Value = 90;
+
+                                return;
                             }
-                            else if (message.Contains(
+
+
+                            if (message.Contains(
                                 "Completed"))
                             {
                                 m_ProgressBar.Value = 100;
+
+                                return;
                             }
                         });
 
@@ -536,6 +842,494 @@ namespace Obi.Dialogs
             m_btnStart.Enabled = false;
             m_IsTranscribing = true;
             StartImportProcess();
+        }
+
+
+        // ==========================================================
+        // LANGUAGE / ENGINE SELECTION
+        // ==========================================================
+
+        private void InitializeLanguageAndEngineSelections()
+        {
+            m_UpdatingLanguageEngineLists = true;
+
+            try
+            {
+                // --------------------------------------------------
+                // Initial engine list
+                // --------------------------------------------------
+
+                m_TranscriptionEngineCb.DataSource =
+                    CreateEngineItems(
+                        includeParakeet: true);
+
+                m_TranscriptionEngineCb.SelectedValue =
+                    TranscriptionEngine.Auto;
+
+
+                // --------------------------------------------------
+                // Initial language list
+                // --------------------------------------------------
+
+                m_BookLanguageCb.DataSource =
+                    CreateLanguageItems(
+                        includeAllLanguages: true);
+
+                m_BookLanguageCb.SelectedValue =
+                    "auto";
+
+
+                // --------------------------------------------------
+                // Initial internal values
+                // --------------------------------------------------
+
+                m_TranscriptionEngine =
+                    TranscriptionEngine.Auto;
+
+                m_BookLanguage =
+                    "auto";
+            }
+            finally
+            {
+                m_UpdatingLanguageEngineLists = false;
+            }
+        }
+
+
+        // ==========================================================
+        // CREATE ENGINE LIST
+        // ==========================================================
+
+        private static List<TranscriptionEngineItem>
+            CreateEngineItems(
+                bool includeParakeet)
+        {
+            var items =
+                new List<TranscriptionEngineItem>
+                {
+            new()
+            {
+                Engine =
+                    TranscriptionEngine.Auto,
+
+                DisplayName =
+                    "Auto"
+            }
+                };
+
+
+            if (includeParakeet)
+            {
+                items.Add(
+                    new TranscriptionEngineItem
+                    {
+                        Engine =
+                            TranscriptionEngine.Parakeet,
+
+                        DisplayName =
+                            "Parakeet"
+                    });
+            }
+
+
+            items.Add(
+                new TranscriptionEngineItem
+                {
+                    Engine =
+                        TranscriptionEngine.Whisper,
+
+                    DisplayName =
+                        "Whisper"
+                });
+
+
+            return items;
+        }
+
+
+        // ==========================================================
+        // CREATE LANGUAGE LIST
+        // ==========================================================
+
+        private static List<WhisperLanguageItem>
+            CreateLanguageItems(
+                bool includeAllLanguages)
+        {
+            if (includeAllLanguages)
+            {
+                return WhisperLanguages.Languages
+                    .ToList();
+            }
+
+
+            return WhisperLanguages.Languages
+                .Where(
+                    language =>
+                        language.LanguageCode
+                            .Equals(
+                                "auto",
+                                StringComparison.OrdinalIgnoreCase)
+                        ||
+                        ParakeetLanguages.SupportedCodes.Contains(
+                            language.LanguageCode
+                                .Trim()
+                                .ToLowerInvariant()))
+                .ToList();
+        }
+
+
+        // ==========================================================
+        // BOOK LANGUAGE CHANGED
+        // ==========================================================
+
+        private void m_BookLanguageCb_SelectedIndexChanged(
+            object? sender,
+            EventArgs e)
+        {
+            if (m_UpdatingLanguageEngineLists)
+                return;
+
+
+            if (m_BookLanguageCb.SelectedItem
+                is not WhisperLanguageItem selectedLanguage)
+            {
+                return;
+            }
+
+
+            string language =
+                string.IsNullOrWhiteSpace(
+                    selectedLanguage.LanguageCode)
+                    ? "auto"
+                    : selectedLanguage.LanguageCode
+                        .Trim()
+                        .ToLowerInvariant();
+
+
+            m_BookLanguage =
+                language;
+
+
+            // ------------------------------------------------------
+            // If a specific language is selected, determine whether
+            // Parakeet supports it.
+            // ------------------------------------------------------
+
+            bool parakeetSupported =
+                language == "auto"
+                ||
+                ParakeetLanguages.SupportedCodes.Contains(
+                    language);
+
+
+            // ------------------------------------------------------
+            // Hindi / unsupported language:
+            //
+            // Parakeet must disappear.
+            //
+            // If Parakeet was selected, switch to Whisper.
+            // ------------------------------------------------------
+
+            if (!parakeetSupported)
+            {
+                if (m_TranscriptionEngine ==
+                    TranscriptionEngine.Parakeet)
+                {
+                    SetEngineSelection(
+                        TranscriptionEngine.Whisper);
+                }
+
+
+                RefreshEngineList(
+                    includeParakeet: false);
+
+                return;
+            }
+
+
+            // ------------------------------------------------------
+            // Language is supported by Parakeet or Auto Detect.
+            //
+            // Restore all engines.
+            // ------------------------------------------------------
+
+            RefreshEngineList(
+                includeParakeet: true);
+        }
+
+
+        // ==========================================================
+        // TRANSCRIPTION ENGINE CHANGED
+        // ==========================================================
+
+        private void m_TranscriptionEngineCb_SelectedIndexChanged(
+            object? sender,
+            EventArgs e)
+        {
+            if (m_UpdatingLanguageEngineLists)
+                return;
+
+
+            if (m_TranscriptionEngineCb.SelectedItem
+                is not TranscriptionEngineItem selectedEngine)
+            {
+                return;
+            }
+
+
+            TranscriptionEngine engine =
+                selectedEngine.Engine;
+
+
+            m_TranscriptionEngine =
+                engine;
+
+            UpdateWhisperModelAvailability();
+
+            // ------------------------------------------------------
+            // Parakeet selected.
+            //
+            // Only Parakeet-supported languages + Auto Detect
+            // should be available.
+            // ------------------------------------------------------
+
+            if (engine ==
+                TranscriptionEngine.Parakeet)
+            {
+                string language =
+                    string.IsNullOrWhiteSpace(
+                        m_BookLanguage)
+                        ? "auto"
+                        : m_BookLanguage
+                            .Trim()
+                            .ToLowerInvariant();
+
+
+                bool supported =
+                    language == "auto"
+                    ||
+                    ParakeetLanguages.SupportedCodes.Contains(
+                        language);
+
+
+                // --------------------------------------------------
+                // If the current language is not supported,
+                // switch language to Auto Detect.
+                // --------------------------------------------------
+
+                if (!supported)
+                {
+                    SetLanguageSelection(
+                        "auto");
+                }
+
+
+                RefreshLanguageList(
+                    parakeetOnly: true);
+
+                return;
+            }
+
+
+            // ------------------------------------------------------
+            // Auto or Whisper:
+            //
+            // All Whisper-supported languages are available.
+            // ------------------------------------------------------
+
+            RefreshLanguageList(
+                parakeetOnly: false);
+        }
+
+        // ==========================================================
+        // UPDATE WHISPER MODEL AVAILABILITY
+        // ==========================================================
+
+        private void UpdateWhisperModelAvailability()
+        {
+            if (m_TranscriptionEngineCb.SelectedItem
+                is not TranscriptionEngineItem selectedEngine)
+            {
+                return;
+            }
+
+
+            m_ModelCb.Enabled =
+                selectedEngine.Engine !=
+                TranscriptionEngine.Parakeet;
+        }
+
+
+        // ==========================================================
+        // REFRESH ENGINE LIST
+        // ==========================================================
+
+        private void RefreshEngineList(
+            bool includeParakeet)
+        {
+            TranscriptionEngine selectedEngine =
+                m_TranscriptionEngine;
+
+
+            m_UpdatingLanguageEngineLists = true;
+
+            try
+            {
+                List<TranscriptionEngineItem> items =
+                    CreateEngineItems(
+                        includeParakeet);
+
+
+                m_TranscriptionEngineCb.DataSource =
+                    items;
+
+
+                // --------------------------------------------------
+                // Keep current selection if still available.
+                // Otherwise select Whisper.
+                // --------------------------------------------------
+
+                bool selectionExists =
+                    items.Any(
+                        item =>
+                            item.Engine ==
+                            selectedEngine);
+
+
+                if (selectionExists)
+                {
+                    m_TranscriptionEngineCb.SelectedValue =
+                        selectedEngine;
+                }
+                else
+                {
+                    m_TranscriptionEngine =
+                        TranscriptionEngine.Whisper;
+
+                    m_TranscriptionEngineCb.SelectedValue =
+                        TranscriptionEngine.Whisper;
+                }
+            }
+            finally
+            {
+                m_UpdatingLanguageEngineLists = false;
+            }
+        }
+
+
+        // ==========================================================
+        // REFRESH LANGUAGE LIST
+        // ==========================================================
+
+        private void RefreshLanguageList(
+            bool parakeetOnly)
+        {
+            string selectedLanguage =
+                string.IsNullOrWhiteSpace(
+                    m_BookLanguage)
+                    ? "auto"
+                    : m_BookLanguage
+                        .Trim()
+                        .ToLowerInvariant();
+
+
+            m_UpdatingLanguageEngineLists = true;
+
+            try
+            {
+                List<WhisperLanguageItem> languages =
+                    CreateLanguageItems(
+                        includeAllLanguages:
+                            !parakeetOnly);
+
+
+                m_BookLanguageCb.DataSource =
+                    languages;
+
+
+                bool selectionExists =
+                    languages.Any(
+                        language =>
+                            language.LanguageCode
+                                .Equals(
+                                    selectedLanguage,
+                                    StringComparison.OrdinalIgnoreCase));
+
+
+                if (selectionExists)
+                {
+                    m_BookLanguageCb.SelectedValue =
+                        selectedLanguage;
+                }
+                else
+                {
+                    m_BookLanguage =
+                        "auto";
+
+                    m_BookLanguageCb.SelectedValue =
+                        "auto";
+                }
+            }
+            finally
+            {
+                m_UpdatingLanguageEngineLists = false;
+            }
+        }
+
+
+        // ==========================================================
+        // SET ENGINE SELECTION
+        // ==========================================================
+
+        private void SetEngineSelection(
+            TranscriptionEngine engine)
+        {
+            m_UpdatingLanguageEngineLists = true;
+
+            try
+            {
+                m_TranscriptionEngine =
+                    engine;
+
+                m_TranscriptionEngineCb.SelectedValue =
+                    engine;
+            }
+            finally
+            {
+                m_UpdatingLanguageEngineLists = false;
+            }
+        }
+
+
+        // ==========================================================
+        // SET LANGUAGE SELECTION
+        // ==========================================================
+
+        private void SetLanguageSelection(
+            string language)
+        {
+            language =
+                string.IsNullOrWhiteSpace(language)
+                    ? "auto"
+                    : language
+                        .Trim()
+                        .ToLowerInvariant();
+
+
+            m_UpdatingLanguageEngineLists = true;
+
+            try
+            {
+                m_BookLanguage =
+                    language;
+
+                m_BookLanguageCb.SelectedValue =
+                    language;
+            }
+            finally
+            {
+                m_UpdatingLanguageEngineLists = false;
+            }
         }
 
         private async Task<TranscriptionEngine>

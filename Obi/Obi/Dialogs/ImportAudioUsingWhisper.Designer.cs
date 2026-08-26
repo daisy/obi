@@ -90,8 +90,8 @@
             // 
             // m_TranscriptionEngineCb
             // 
-            m_TranscriptionEngineCb.FormattingEnabled = true;
             resources.ApplyResources(m_TranscriptionEngineCb, "m_TranscriptionEngineCb");
+            m_TranscriptionEngineCb.FormattingEnabled = true;
             m_TranscriptionEngineCb.Name = "m_TranscriptionEngineCb";
             // 
             // lblTranscriptionEngine
