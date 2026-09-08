@@ -280,13 +280,13 @@
     <value>True</value>
   </data>
   <data name="lblBookLanguage.Location" type="System.Drawing.Point, System.Drawing">
-    <value>118, 21</value>
+    <value>118, 67</value>
   </data>
   <data name="lblBookLanguage.Size" type="System.Drawing.Size, System.Drawing">
     <value>115, 20</value>
   </data>
   <data name="lblBookLanguage.TabIndex" type="System.Int32, mscorlib">
-    <value>1</value>
+    <value>3</value>
   </data>
   <data name="lblBookLanguage.Text" xml:space="preserve">
     <value>Book Language:</value>
@@ -307,13 +307,13 @@
     <value>Select Book Language</value>
   </data>
   <data name="m_BookLanguageCb.Location" type="System.Drawing.Point, System.Drawing">
-    <value>289, 21</value>
+    <value>289, 67</value>
   </data>
   <data name="m_BookLanguageCb.Size" type="System.Drawing.Size, System.Drawing">
     <value>226, 28</value>
   </data>
   <data name="m_BookLanguageCb.TabIndex" type="System.Int32, mscorlib">
-    <value>2</value>
+    <value>4</value>
   </data>
   <data name="&gt;&gt;m_BookLanguageCb.Name" xml:space="preserve">
     <value>m_BookLanguageCb</value>
@@ -331,13 +331,13 @@
     <value>Select Transcription Engine</value>
   </data>
   <data name="m_TranscriptionEngineCb.Location" type="System.Drawing.Point, System.Drawing">
-    <value>289, 69</value>
+    <value>289, 15</value>
   </data>
   <data name="m_TranscriptionEngineCb.Size" type="System.Drawing.Size, System.Drawing">
     <value>226, 28</value>
   </data>
   <data name="m_TranscriptionEngineCb.TabIndex" type="System.Int32, mscorlib">
-    <value>4</value>
+    <value>2</value>
   </data>
   <data name="&gt;&gt;m_TranscriptionEngineCb.Name" xml:space="preserve">
     <value>m_TranscriptionEngineCb</value>
@@ -352,13 +352,13 @@
     <value>8</value>
   </data>
   <data name="lblTranscriptionEngine.Location" type="System.Drawing.Point, System.Drawing">
-    <value>43, 72</value>
+    <value>43, 18</value>
   </data>
   <data name="lblTranscriptionEngine.Size" type="System.Drawing.Size, System.Drawing">
     <value>202, 23</value>
   </data>
   <data name="lblTranscriptionEngine.TabIndex" type="System.Int32, mscorlib">
-    <value>3</value>
+    <value>1</value>
   </data>
   <data name="lblTranscriptionEngine.Text" xml:space="preserve">
     <value>Select Transcription Engine:</value>

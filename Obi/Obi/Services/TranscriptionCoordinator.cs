@@ -36,15 +36,12 @@ namespace Obi.Services
             CancellationToken cancellationToken,
             IProgress<string>? progress = null)
         {
-            TranscriptionEngine selectedEngine =
-                ResolveEngine(
-                    engine,
-                    options,
-                    progress);
-
-
-            switch (selectedEngine)
+            switch (engine)
             {
+                // --------------------------------------------------
+                // PARAKEET
+                // --------------------------------------------------
+
                 case TranscriptionEngine.Parakeet:
 
                     progress?.Report(
@@ -57,6 +54,10 @@ namespace Obi.Services
                             cancellationToken,
                             progress);
 
+
+                // --------------------------------------------------
+                // WHISPER
+                // --------------------------------------------------
 
                 case TranscriptionEngine.Whisper:
 
@@ -71,12 +72,31 @@ namespace Obi.Services
                             progress);
 
 
+                // --------------------------------------------------
+                // AUTO
+                //
+                // Auto is no longer exposed by the UI.
+                // It is retained in the enum only for compatibility
+                // with other parts of the project.
+                // --------------------------------------------------
+
+                case TranscriptionEngine.Auto:
+
+                    throw new InvalidOperationException(
+                        "Automatic transcription engine selection " +
+                        "is no longer supported.");
+
+
+                // --------------------------------------------------
+                // UNKNOWN
+                // --------------------------------------------------
+
                 default:
 
                     throw new ArgumentOutOfRangeException(
-                        nameof(selectedEngine),
-                        selectedEngine,
-                        "Invalid transcription engine selection.");
+                        nameof(engine),
+                        engine,
+                        "Unknown transcription engine.");
             }
         }
 
@@ -94,15 +114,12 @@ namespace Obi.Services
                 CancellationToken cancellationToken,
                 IProgress<string>? progress = null)
         {
-            TranscriptionEngine selectedEngine =
-                ResolveEngine(
-                    engine,
-                    options,
-                    progress);
-
-
-            switch (selectedEngine)
+            switch (engine)
             {
+                // --------------------------------------------------
+                // PARAKEET
+                // --------------------------------------------------
+
                 case TranscriptionEngine.Parakeet:
 
                     progress?.Report(
@@ -115,6 +132,10 @@ namespace Obi.Services
                             cancellationToken,
                             progress);
 
+
+                // --------------------------------------------------
+                // WHISPER
+                // --------------------------------------------------
 
                 case TranscriptionEngine.Whisper:
 
@@ -129,142 +150,32 @@ namespace Obi.Services
                             progress);
 
 
+                // --------------------------------------------------
+                // AUTO
+                //
+                // Auto is no longer exposed by the UI.
+                // It is retained in the enum only for compatibility
+                // with other parts of the project.
+                // --------------------------------------------------
+
+                case TranscriptionEngine.Auto:
+
+                    throw new InvalidOperationException(
+                        "Automatic transcription engine selection " +
+                        "is no longer supported.");
+
+
+                // --------------------------------------------------
+                // UNKNOWN
+                // --------------------------------------------------
+
                 default:
 
                     throw new ArgumentOutOfRangeException(
-                        nameof(selectedEngine),
-                        selectedEngine,
-                        "Invalid transcription engine selection.");
+                        nameof(engine),
+                        engine,
+                        "Unknown transcription engine.");
             }
-        }
-
-
-        // ==========================================================
-        // ENGINE RESOLUTION
-        // ==========================================================
-
-        private static TranscriptionEngine ResolveEngine(
-            TranscriptionEngine requestedEngine,
-            TranscriptionOptions options,
-            IProgress<string>? progress)
-        {
-            // ------------------------------------------------------
-            // Normalize language once.
-            // ------------------------------------------------------
-
-            string language =
-                string.IsNullOrWhiteSpace(options.Language)
-                    ? "auto"
-                    : options.Language
-                        .Trim()
-                        .ToLowerInvariant();
-
-
-            // ------------------------------------------------------
-            // Explicit Parakeet selection
-            //
-            // Parakeet must never be allowed to run with a language
-            // that it does not support.
-            //
-            // "auto" is allowed because Parakeet can perform its own
-            // language detection when explicitly selected.
-            // ------------------------------------------------------
-
-            if (requestedEngine ==
-                TranscriptionEngine.Parakeet)
-            {
-                if (language != "auto" &&
-                    !ParakeetLanguages.SupportedCodes.Contains(
-                        language))
-                {
-                    throw new InvalidOperationException(
-                        $"Parakeet does not support the selected " +
-                        $"language '{language}'.");
-                }
-
-
-                return TranscriptionEngine.Parakeet;
-            }
-
-
-            // ------------------------------------------------------
-            // Explicit Whisper selection
-            // ------------------------------------------------------
-
-            if (requestedEngine ==
-                TranscriptionEngine.Whisper)
-            {
-                return TranscriptionEngine.Whisper;
-            }
-
-
-            // ------------------------------------------------------
-            // Auto engine
-            //
-            // Normally ImportAudioUsingWhisper resolves Auto + Auto
-            // before calling the coordinator.
-            //
-            // If Auto reaches this method with a concrete language,
-            // use Parakeet when supported and Whisper otherwise.
-            // ------------------------------------------------------
-
-            progress?.Report(
-                "Transcription engine: Auto");
-
-
-            if (language == "auto")
-            {
-                // --------------------------------------------------
-                // Defensive fallback.
-                //
-                // The normal Auto + Auto path is resolved by
-                // ImportAudioUsingWhisper.ResolveAutomaticEngineAsync()
-                // using WhisperX language detection.
-                //
-                // If the coordinator receives Auto + Auto directly,
-                // Parakeet remains the default Auto engine.
-                // --------------------------------------------------
-
-                progress?.Report(
-                    "Book language: Auto Detect");
-
-                progress?.Report(
-                    "Auto selected Parakeet.");
-
-                return TranscriptionEngine.Parakeet;
-            }
-
-
-            // ------------------------------------------------------
-            // Concrete language supported by Parakeet
-            // ------------------------------------------------------
-
-            if (ParakeetLanguages.SupportedCodes.Contains(
-                language))
-            {
-                progress?.Report(
-                    $"Book language: {language}");
-
-                progress?.Report(
-                    "Auto selected Parakeet " +
-                    $"for language '{language}'.");
-
-                return TranscriptionEngine.Parakeet;
-            }
-
-
-            // ------------------------------------------------------
-            // Concrete language NOT supported by Parakeet
-            // ------------------------------------------------------
-
-            progress?.Report(
-                $"Book language '{language}' " +
-                "is not supported by Parakeet.");
-
-            progress?.Report(
-                "Auto selected WhisperX.");
-
-            return TranscriptionEngine.Whisper;
         }
     }
 }
