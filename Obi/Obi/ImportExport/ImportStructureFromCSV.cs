@@ -1,9 +1,14 @@
-﻿using System;
+﻿using Obi.Dialogs;
+using Obi.Models;
+using System;
 using System.Collections.Generic;
 using System.IO;
-using urakawa.command;
-using System.Windows.Forms;
 using System.Reflection;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+using urakawa.command;
+using Obi.Services;
+using System.Threading;
 
 namespace Obi.ImportExport
 {
@@ -25,6 +30,10 @@ namespace Obi.ImportExport
         private double m_Gap;
         private double m_LeadingSilence;
         private string m_audioFilesNotImported = string.Empty;
+        private PhraseDetectionMethod m_PhraseDetectionMethod = PhraseDetectionMethod.None;
+        // AI transcription settings
+        private TranscriptionSettings? m_TranscriptionSettings;
+        private TranscriptionCoordinator? m_TranscriptionCoordinator;
 
         public ImportStructureFromCSV()
         {
@@ -34,6 +43,11 @@ namespace Obi.ImportExport
         {
             m_Presentation = presentation;
             m_ProjectView = projectView;
+
+            // Reset settings for a new CSV import.
+            m_TranscriptionSettings = null;
+            m_IsPhraseDetectionSettingsShown = false;
+
             List<int> levelsList = new List<int>();
             List<string> sectionNames = new List<string>();
             List<int> pagesPerSection = new List<int>();
@@ -44,7 +58,38 @@ namespace Obi.ImportExport
             //pagesPerSection.Add(0);
             //pagesPerSection.Add(2);
             ReadListsFromCSVFile(levelsList, sectionNames, pagesPerSection, CSVFullPath);
-            CreateStructure(levelsList, sectionNames, pagesPerSection, m_audioFilePath);
+            if (m_ProjectView.ObiForm.Settings.Project_CSVImportPhraseDetection)
+            {
+                using (PhraseDetectionMethodDialog dialog = new PhraseDetectionMethodDialog())
+                {
+                    if (dialog.ShowDialog() != DialogResult.OK)
+                    {
+                        return;
+                    }
+
+                    m_PhraseDetectionMethod = dialog.SelectedMethod;
+                    if (m_PhraseDetectionMethod == PhraseDetectionMethod.AI)
+                    {
+                        using (TranscriptionSettingsDialog settingsDialog =
+                            new TranscriptionSettingsDialog())
+                        {
+                            if (settingsDialog.ShowDialog() != DialogResult.OK)
+                            {
+                                return;
+                            }
+
+                            m_TranscriptionSettings = settingsDialog.SelectedTranscriptionSettings;
+                        }
+                        m_TranscriptionCoordinator = new TranscriptionCoordinator(new WhisperXService(), new ParakeetService());
+                    }
+                }
+            }
+            else
+            {
+                m_PhraseDetectionMethod = PhraseDetectionMethod.None;
+            }
+
+            CreateStructureAsync(levelsList, sectionNames, pagesPerSection, m_audioFilePath).GetAwaiter().GetResult(); 
         }
 
         public List<string> AudioFilePaths
@@ -60,6 +105,18 @@ namespace Obi.ImportExport
             get
             {
                 return m_audioFilesNotImported;
+            }
+        }
+
+        public PhraseDetectionMethod PhraseDetectionMethod
+        {
+            get
+            {
+                return m_PhraseDetectionMethod;
+            }
+            set
+            {
+                m_PhraseDetectionMethod = value;
             }
         }
         private void ReadListsFromCSVFile(List<int> levelsList, List<string> sectionNamesList, List<int> pagesPerSection, string CSVFullPath)
@@ -260,7 +317,7 @@ namespace Obi.ImportExport
         }
 
 
-        private void CreateStructure(List<int> levelsList, List<string> sectionNamesList, List<int> pagesPerSection, List<string> audioFilePath)
+        private async Task CreateStructureAsync(List<int> levelsList, List<string> sectionNamesList, List<int> pagesPerSection, List<string> audioFilePath)
         {
             List<ObiNode> listOfSectionNodes = new List<ObiNode>();
             listOfSectionNodes.Add((ObiNode)m_Presentation.RootNode);
@@ -294,22 +351,22 @@ namespace Obi.ImportExport
 
                 if (m_AudioFilePath1.Count > i && m_AudioFilePath1[i] != null)
                 {
-                    ImportAudio(m_AudioFilePath1[i], section);
+                    await ImportAudioAsync(m_AudioFilePath1[i], section);
                 }
                 if (m_AudioFilePath2.Count > i && m_AudioFilePath2[i] != null)
                 {
-                    ImportAudio(m_AudioFilePath2[i], section);
+                    await ImportAudioAsync(m_AudioFilePath2[i], section);
                 }
                 if (m_AudioFilePath3.Count > i && m_AudioFilePath3[i] != null)
                 {
-                    ImportAudio(m_AudioFilePath3[i], section);
+                    await ImportAudioAsync(m_AudioFilePath3[i], section);
                 } if (m_AudioFilePath4.Count > i && m_AudioFilePath4[i] != null)
                 {
-                    ImportAudio(m_AudioFilePath4[i], section);
+                    await ImportAudioAsync(m_AudioFilePath4[i], section);
                 }
                 if (m_AudioFilePath5.Count > i && m_AudioFilePath5[i] != null)
                 {
-                    ImportAudio(m_AudioFilePath5[i], section);
+                    await ImportAudioAsync(m_AudioFilePath5[i], section);
                 }
                 if (pagesPerSection.Count > i && pagesPerSection[i] > 0)
                 {
@@ -329,7 +386,7 @@ namespace Obi.ImportExport
             }
         }
 
-        public void ImportAudio(string path,SectionNode sectionNode)
+        public async Task ImportAudioAsync(string path, SectionNode sectionNode)
         { 
              List<string> tempAudioFilePaths = new List<string>();
              string[] tempAudioFilePathsArray = new string[1];
@@ -349,7 +406,7 @@ namespace Obi.ImportExport
             if(tempAudioFilePathsArray.Length != 0)
               path = tempAudioFilePathsArray[0];
 
-            if (m_ProjectView.ObiForm.Settings.Project_CSVImportPhraseDetection && !m_IsPhraseDetectionSettingsShown)
+            if (m_PhraseDetectionMethod == PhraseDetectionMethod.Traditional && !m_IsPhraseDetectionSettingsShown)
             {
                 m_Threshold = (long)m_ProjectView.ObiForm.Settings.Audio_DefaultThreshold;
                 m_Gap = (double)m_ProjectView.ObiForm.Settings.Audio_DefaultGap;
@@ -367,13 +424,20 @@ namespace Obi.ImportExport
             {
                 if (path != string.Empty)
                 {
-                    PhraseNode phraseNode = m_Presentation.CreatePhraseNode(path);
-
-                    if (phraseNode != null)
-                        m_Presentation.Do(this.GetCommandForImportAudioFileInEachSection(phraseNode, sectionNode));
-                    if (m_ProjectView.ObiForm.Settings.Project_CSVImportPhraseDetection)
+                    if (m_PhraseDetectionMethod == PhraseDetectionMethod.AI)
                     {
-                        ApplyPhraseDetectionOnPhrase(phraseNode, m_Threshold, m_Gap, m_LeadingSilence);
+                        await ImportAIPhrasesAsync(path,sectionNode);
+                    }
+                    else
+                    {
+                        PhraseNode phraseNode = m_Presentation.CreatePhraseNode(path);
+
+                        if (phraseNode != null)
+                            m_Presentation.Do(this.GetCommandForImportAudioFileInEachSection(phraseNode, sectionNode));
+                        if (m_PhraseDetectionMethod == PhraseDetectionMethod.Traditional)
+                        {
+                            ApplyPhraseDetectionOnPhrase(phraseNode, m_Threshold, m_Gap, m_LeadingSilence);
+                        }
                     }
                 }
             }
@@ -399,6 +463,110 @@ namespace Obi.ImportExport
             urakawa.command.CompositeCommand phraseDetectionCommand = null;
             phraseDetectionCommand = Commands.Node.SplitAudio.GetPhraseDetectionCommand(m_ProjectView, phraseNode, threshold, gap, before, m_ProjectView.ObiForm.Settings.Audio_MergeFirstTwoPhrasesAfterPhraseDetection,m_Presentation);
             m_Presentation.Do(phraseDetectionCommand);
+        }
+
+        private async Task ImportAIPhrasesAsync(string audioFilePath, SectionNode sectionNode)
+        {
+            if (m_TranscriptionCoordinator == null || m_TranscriptionSettings == null)
+            {
+                throw new InvalidOperationException(
+                    "AI transcription settings are not initialized.");
+            }
+
+            if (m_TranscriptionSettings.Engine == TranscriptionEngine.Whisper)
+            {
+                if (!await WhisperXInstallerService.IsPythonEnvironmentInstalledAsync())
+                {
+                    await WhisperXInstallerService.InstallAsync();
+                }
+            }
+
+            if (m_TranscriptionSettings.Engine == TranscriptionEngine.Parakeet)
+            {
+                if (!await ParakeetInstallerService.IsPythonEnvironmentInstalledAsync())
+                {
+                    await ParakeetInstallerService.InstallAsync();
+                }
+            }
+
+            TranscriptionOptions transcriptionOptions = new TranscriptionOptions
+                {
+                    WhisperModel = m_TranscriptionSettings.WhisperModel,
+
+                    Language = m_TranscriptionSettings.Language
+                };
+
+            IProgress<string> progress =
+                new Progress<string>(
+                    message =>
+                    {
+                        Console.WriteLine(
+                            "AI transcription: " + message);
+                    });
+
+            List<TranscriptSegment> segments =
+                await m_TranscriptionCoordinator.TranscribeAsync(
+                    audioFilePath,
+                    m_TranscriptionSettings.Engine,
+                    transcriptionOptions,
+                    CancellationToken.None,
+                    progress);
+
+            if (segments == null ||
+                segments.Count == 0)
+            {
+                return;
+            }
+
+            string xhtmlPath =
+                Path.Combine(
+                    Path.GetDirectoryName(audioFilePath)!,
+                    Path.GetFileNameWithoutExtension(audioFilePath) +
+                    ".xhtml");
+
+            await XhtmlExportService.SaveAsync(
+                segments,
+                xhtmlPath);
+
+            ImportExport.ImportTranscript import =
+                new ImportExport.ImportTranscript(
+                    xhtmlPath,
+                    m_Presentation,
+                    m_ProjectView.ObiForm.Settings,
+                    audioFilePath);
+
+            import.DoWork();
+
+            List<PhraseNode> phrases =
+                import.Phrases;
+
+            if (phrases.Count == 0)
+            {
+                return;
+            }
+
+            CompositeCommand command =
+                m_Presentation.CreateCompositeCommand(
+                    Localizer.Message("import_phrases"));
+
+            int insertIndex = sectionNode.PhraseChildCount;
+
+            for (int i = 0; i < phrases.Count; i++)
+            {
+                Commands.Node.AddNode addCmd =
+                    new Commands.Node.AddNode(
+                        m_ProjectView,
+                        phrases[i],
+                        sectionNode,
+                        insertIndex + i,
+                        false);
+
+                command.ChildCommands.Insert(
+                    command.ChildCommands.Count,
+                    addCmd);
+            }
+
+            m_Presentation.Do(command);
         }
     }
 }

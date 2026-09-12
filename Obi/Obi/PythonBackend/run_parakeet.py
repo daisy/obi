@@ -348,6 +348,627 @@ def transcribe_chunk(
         decoded_text,
         token_timestamps)
 
+# =========================================================
+# FINAL TAIL RECOVERY
+# =========================================================
+
+def recover_final_tail(
+    audio,
+    audio_duration,
+    words):
+
+    # -----------------------------------------------------
+    # Configuration
+    #
+    # Recovery is deliberately limited to the final
+    # 30 seconds of the audio.
+    #
+    # We do NOT reprocess the complete recording.
+    # -----------------------------------------------------
+
+    FINAL_RECOVERY_WINDOW = 30.0
+
+    FINAL_RECOVERY_MIN_GAP = 3.0
+
+    INTERNAL_CONTEXT_BEFORE = 3.0
+    INTERNAL_CONTEXT_AFTER = 1.0
+
+    END_RECOVERY_DURATION = 12.0
+
+
+    if not words:
+
+        print(
+            "Final recovery skipped: "
+            "no existing words.")
+
+        return words
+
+
+    # -----------------------------------------------------
+    # Work with globally sorted words.
+    # -----------------------------------------------------
+
+    words = sorted(
+        words,
+        key=lambda x: (
+            float(x["start"]),
+            float(x["end"])
+        )
+    )
+
+
+    recovery_window_start = max(
+        0.0,
+        audio_duration
+        -
+        FINAL_RECOVERY_WINDOW
+    )
+
+
+    # =====================================================
+    # FIND LARGE GAPS IN THE FINAL 30 SECONDS
+    # =====================================================
+
+    recent_words = [
+        word
+        for word in words
+        if float(word["end"])
+        >=
+        recovery_window_start
+    ]
+
+
+    internal_gaps = []
+
+
+    # -----------------------------------------------------
+    # Check the gap before the first word inside the
+    # recovery window.
+    #
+    # This is useful if Parakeet completely missed speech
+    # near the beginning of the final 30 seconds.
+    # -----------------------------------------------------
+
+    if recent_words:
+
+        first_word_start = float(
+            recent_words[0]["start"]
+        )
+
+
+        if (
+            first_word_start
+            -
+            recovery_window_start
+            >=
+            FINAL_RECOVERY_MIN_GAP
+        ):
+
+            internal_gaps.append({
+
+                "gap_start":
+                    recovery_window_start,
+
+                "gap_end":
+                    first_word_start
+            })
+
+
+    # -----------------------------------------------------
+    # Check gaps between consecutive recognized words.
+    # -----------------------------------------------------
+
+    for previous, current in zip(
+        recent_words,
+        recent_words[1:]
+    ):
+
+        previous_end = float(
+            previous["end"]
+        )
+
+        current_start = float(
+            current["start"]
+        )
+
+
+        gap = (
+            current_start
+            -
+            previous_end
+        )
+
+
+        if gap >= FINAL_RECOVERY_MIN_GAP:
+
+            internal_gaps.append({
+
+                "gap_start":
+                    previous_end,
+
+                "gap_end":
+                    current_start
+            })
+
+
+    # =====================================================
+    # RECOVER INTERNAL GAPS
+    # =====================================================
+
+    for gap in internal_gaps:
+
+        gap_start = float(
+            gap["gap_start"]
+        )
+
+        gap_end = float(
+            gap["gap_end"]
+        )
+
+
+        # -------------------------------------------------
+        # Give Parakeet a small amount of fresh context
+        # before and after the missing region.
+        #
+        # For the known problem:
+        #
+        #     missing: 735.12 - 744.96
+        #
+        # this produces approximately:
+        #
+        #     732.12 - 745.96
+        #
+        # which is intentionally close to the isolated
+        # test that successfully recovered the missing
+        # speech.
+        # -------------------------------------------------
+
+        recovery_start = max(
+            0.0,
+            gap_start
+            -
+            INTERNAL_CONTEXT_BEFORE
+        )
+
+
+        recovery_end = min(
+            audio_duration,
+            gap_end
+            +
+            INTERNAL_CONTEXT_AFTER
+        )
+
+
+        if recovery_end <= recovery_start:
+
+            continue
+
+
+        print()
+        print("=" * 50)
+        print(
+            "Final-window internal gap recovery")
+        print(
+            f"Missing gap: "
+            f"{gap_start:.3f} - "
+            f"{gap_end:.3f} seconds")
+        print(
+            f"Recovery window: "
+            f"{recovery_start:.3f} - "
+            f"{recovery_end:.3f} seconds")
+        print(
+            f"Gap duration: "
+            f"{gap_end - gap_start:.3f} seconds")
+        print("=" * 50)
+
+
+        start_sample = int(
+            recovery_start
+            *
+            SAMPLE_RATE
+        )
+
+
+        end_sample = int(
+            recovery_end
+            *
+            SAMPLE_RATE
+        )
+
+
+        recovery_audio = (
+            audio[
+                start_sample:end_sample
+            ]
+        )
+
+
+        (
+            decoded_text,
+            token_timestamps
+        ) = transcribe_chunk(
+            recovery_audio,
+            recovery_start,
+            1,
+            1
+        )
+
+
+        recovery_words = reconstruct_words(
+            token_timestamps
+        )
+
+
+        recovery_words = (
+            add_global_word_timestamps(
+                recovery_words,
+                recovery_start
+            )
+        )
+
+
+        recovery_words = clean_words(
+            recovery_words
+        )
+
+
+        # -------------------------------------------------
+        # Keep only words which actually belong to the
+        # missing gap.
+        #
+        # Context before/after the gap is only there to
+        # help Parakeet decode the speech correctly.
+        # -------------------------------------------------
+
+        recovered_gap_words = []
+
+
+        for word in recovery_words:
+
+            word_start = float(
+                word["start"]
+            )
+
+            word_end = float(
+                word["end"]
+            )
+
+
+            if (
+                word_end > gap_start
+                and
+                word_start < gap_end
+            ):
+
+                recovered_gap_words.append(
+                    word
+                )
+
+
+        if not recovered_gap_words:
+
+            print(
+                "Internal gap recovery found "
+                "no new words.")
+
+            continue
+
+
+        print(
+            f"Internal gap recovery found "
+            f"{len(recovered_gap_words)} words."
+        )
+
+
+        print(
+            "Recovered text: "
+            +
+            " ".join(
+                word["word"]
+                for word
+                in recovered_gap_words
+            )
+        )
+
+
+        words.extend(
+            recovered_gap_words
+        )
+
+
+    # =====================================================
+    # RECOVER AUDIO AFTER THE LAST RECOGNIZED WORD
+    # =====================================================
+
+    words.sort(
+        key=lambda x: (
+            float(x["start"]),
+            float(x["end"])
+        )
+    )
+
+
+    last_word_end = float(
+        words[-1]["end"]
+    )
+
+
+    remaining_audio = (
+        audio_duration
+        -
+        last_word_end
+    )
+
+
+    # -----------------------------------------------------
+    # Only perform end recovery when there is a meaningful
+    # amount of unrecognized audio.
+    # -----------------------------------------------------
+
+    if (
+        remaining_audio
+        >=
+        FINAL_RECOVERY_MIN_GAP
+    ):
+
+        # -------------------------------------------------
+        # Adaptive final-end recovery.
+        #
+        # We deliberately do NOT use an audio-specific
+        # timestamp offset such as +0.762.
+        #
+        # Start with a 12-second fresh context and, if
+        # necessary, progressively shorten the context.
+        #
+        # Every recovery window ends at the actual end of
+        # the audio.
+        # -------------------------------------------------
+
+        RECOVERY_WINDOWS = (
+            12.0,
+            10.0,
+            8.0,
+            6.0
+        )
+
+
+        recovered = False
+
+
+        for recovery_duration in RECOVERY_WINDOWS:
+
+            recovery_start = max(
+                0.0,
+                audio_duration
+                -
+                recovery_duration
+            )
+
+
+            recovery_end = (
+                audio_duration
+            )
+
+
+            print()
+            print("=" * 50)
+            print(
+                "Adaptive final-end recovery")
+            print(
+                f"Existing transcript ends: "
+                f"{last_word_end:.3f} seconds")
+            print(
+                f"Audio ends: "
+                f"{audio_duration:.3f} seconds")
+            print(
+                f"Unrecognized tail: "
+                f"{remaining_audio:.3f} seconds")
+            print(
+                f"Recovery window: "
+                f"{recovery_start:.3f} - "
+                f"{recovery_end:.3f} seconds")
+            print(
+                f"Fresh context duration: "
+                f"{recovery_duration:.3f} seconds")
+            print("=" * 50)
+
+
+            start_sample = int(
+                recovery_start
+                *
+                SAMPLE_RATE
+            )
+
+
+            end_sample = int(
+                recovery_end
+                *
+                SAMPLE_RATE
+            )
+
+
+            recovery_audio = (
+                audio[
+                    start_sample:end_sample
+                ]
+            )
+
+
+            (
+                decoded_text,
+                token_timestamps
+            ) = transcribe_chunk(
+                recovery_audio,
+                recovery_start,
+                1,
+                1
+            )
+
+
+            recovery_words = reconstruct_words(
+                token_timestamps
+            )
+
+
+            recovery_words = (
+                add_global_word_timestamps(
+                    recovery_words,
+                    recovery_start
+                )
+            )
+
+
+            recovery_words = clean_words(
+                recovery_words
+            )
+
+
+            # -------------------------------------------------
+            # Keep only words which actually extend the
+            # existing transcript.
+            #
+            # The beginning of the recovery window is context.
+            # We only want genuinely new words after the point
+            # where the existing transcript stopped.
+            # -------------------------------------------------
+
+            new_end_words = []
+
+
+            for word in recovery_words:
+
+                if (
+                    float(word["start"])
+                    >=
+                    last_word_end
+                    -
+                    0.10
+                ):
+
+                    new_end_words.append(
+                        word
+                    )
+
+
+            if new_end_words:
+
+                print(
+                    f"Adaptive recovery found "
+                    f"{len(new_end_words)} new words."
+                )
+
+
+                print(
+                    "Recovered text: "
+                    +
+                    " ".join(
+                        word["word"]
+                        for word
+                        in new_end_words
+                    )
+                )
+
+
+                words.extend(
+                    new_end_words
+                )
+
+
+                recovered = True
+
+                break
+
+
+            print(
+                "No new words found. "
+                "Trying a shorter fresh context."
+            )
+
+
+        if not recovered:
+
+            print(
+                "Adaptive final-end recovery "
+                "found no new words."
+            )
+
+    else:
+
+        print(
+            "Final-end recovery not required.")
+
+
+    # =====================================================
+    # FINAL CLEANUP
+    # =====================================================
+
+
+    words.sort(
+    key=lambda x: (
+        float(x["start"]),
+        float(x["end"])
+    )
+    )
+
+    words = remove_residual_duplicates(
+        words
+    )
+
+    # Remove same-word overlaps introduced by recovery.
+    # This specifically handles cases where the original and
+    # recovery transcription contain the same word with a small
+    # timestamp overlap.
+    cleaned_words = []
+
+    for word in words:
+
+        if cleaned_words:
+
+            previous = cleaned_words[-1]
+
+            same_word = (
+                normalize_word(previous["word"])
+                ==
+                normalize_word(word["word"])
+            )
+
+            overlap = (
+                min(
+                    float(previous["end"]),
+                    float(word["end"])
+                )
+                -
+                max(
+                    float(previous["start"]),
+                    float(word["start"])
+                )
+            )
+
+            if same_word and overlap > 0:
+                # Keep the word with the longer time span.
+                previous_duration = (
+                    float(previous["end"])
+                    -
+                    float(previous["start"])
+                )
+
+                current_duration = (
+                    float(word["end"])
+                    -
+                    float(word["start"])
+                )
+
+                if current_duration > previous_duration:
+                    cleaned_words[-1] = word
+
+                continue
+
+        cleaned_words.append(word)
+
+    words = cleaned_words
+
+    return words
 
 # =========================================================
 # TOKEN -> WORD RECONSTRUCTION
@@ -2610,23 +3231,6 @@ if audio_duration <= CHUNK_SIZE:
 
 else:
 
-    total_chunks = int(
-        np.ceil(
-            (
-                audio_duration
-                -
-                CHUNK_OVERLAP
-            )
-            /
-            (
-                CHUNK_SIZE
-                -
-                CHUNK_OVERLAP
-            )
-        )
-    )
-
-
     print()
     print("=" * 50)
     print(
@@ -2640,40 +3244,458 @@ else:
     print(
         f"Chunk overlap: "
         f"{CHUNK_OVERLAP:.0f} seconds")
-    print(
-        f"Number of chunks: "
-        f"{total_chunks}")
     print("=" * 50)
 
 
-    chunk_results = []
+    # -----------------------------------------------------
+    # Silence-aware chunking configuration.
+    # -----------------------------------------------------
+
+    ASR_SILENCE_THRESHOLD_DB = -45.0
+    ASR_SILENCE_WINDOW = 0.10
+    ASR_MIN_SILENCE_DURATION = 1.00
+    ASR_BOUNDARY_SEARCH_BACK = 20.0
+    ASR_MIN_CHUNK_DURATION = 60.0
 
 
     # -----------------------------------------------------
-    # PROCESS CHUNKS
+    # Convert dBFS threshold to linear amplitude.
     # -----------------------------------------------------
 
-    for chunk_index in range(
-        total_chunks):
+    ASR_SILENCE_THRESHOLD = (
+        10.0
+        **
+        (
+            ASR_SILENCE_THRESHOLD_DB
+            /
+            20.0
+        )
+    )
 
-        chunk_start = (
-            chunk_index
-            *
-            (
-                CHUNK_SIZE
-                -
-                CHUNK_OVERLAP
+
+    # -----------------------------------------------------
+    # Find the latest sufficiently long silence inside the
+    # requested search range.
+    # -----------------------------------------------------
+
+    def find_silence_boundary(
+        search_start,
+        search_end
+    ):
+
+        window_samples = max(
+            1,
+            int(
+                ASR_SILENCE_WINDOW
+                *
+                SAMPLE_RATE
             )
         )
 
 
-        chunk_end = min(
+        required_windows = max(
+            1,
+            int(
+                np.ceil(
+                    ASR_MIN_SILENCE_DURATION
+                    /
+                    ASR_SILENCE_WINDOW
+                )
+            )
+        )
+
+
+        start_sample = int(
+            search_start
+            *
+            SAMPLE_RATE
+        )
+
+
+        end_sample = int(
+            search_end
+            *
+            SAMPLE_RATE
+        )
+
+
+        consecutive_silent_windows = 0
+
+        current_silence_start = None
+
+        latest_candidate = None
+
+
+        for sample_index in range(
+            start_sample,
+            end_sample,
+            window_samples
+        ):
+
+            window_end = min(
+                end_sample,
+                sample_index
+                +
+                window_samples
+            )
+
+
+            samples = audio[
+                sample_index:window_end
+            ]
+
+
+            if samples.size == 0:
+
+                continue
+
+
+            rms = float(
+                np.sqrt(
+                    np.mean(
+                        np.square(
+                            samples
+                        )
+                    )
+                )
+            )
+
+
+            if (
+                rms
+                <=
+                ASR_SILENCE_THRESHOLD
+            ):
+
+                if (
+                    consecutive_silent_windows
+                    ==
+                    0
+                ):
+
+                    current_silence_start = (
+                        sample_index
+                        /
+                        SAMPLE_RATE
+                    )
+
+
+                consecutive_silent_windows += 1
+
+
+                if (
+                    consecutive_silent_windows
+                    >=
+                    required_windows
+                ):
+
+                    silence_end = (
+                        window_end
+                        /
+                        SAMPLE_RATE
+                    )
+
+
+                    silence_duration = (
+                        silence_end
+                        -
+                        current_silence_start
+                    )
+
+
+                    latest_candidate = (
+                        current_silence_start,
+                        silence_end,
+                        silence_duration
+                    )
+
+            else:
+
+                consecutive_silent_windows = 0
+
+                current_silence_start = None
+
+
+        if latest_candidate is None:
+
+            return None
+
+
+        silence_start = (
+            latest_candidate[0]
+        )
+
+        silence_end = (
+            latest_candidate[1]
+        )
+
+        silence_duration = (
+            latest_candidate[2]
+        )
+
+
+        print(
+            f"  Silence candidate: "
+            f"{silence_start:.3f} - "
+            f"{silence_end:.3f} "
+            f"({silence_duration:.3f} sec)"
+        )
+
+
+        return silence_start
+
+
+    # =====================================================
+    # PHASE 1: PLAN SILENCE-AWARE CHUNKS
+    #
+    # IMPORTANT:
+    #
+    # No Parakeet inference is performed here.
+    #
+    # We first determine ALL actual chunk boundaries so
+    # that we know the exact total chunk count before
+    # transcription begins.
+    # =====================================================
+
+    planned_chunks = []
+
+    chunk_start = 0.0
+
+    chunk_index = 0
+
+
+    while chunk_start < audio_duration:
+
+        chunk_index += 1
+
+
+        # -------------------------------------------------
+        # Normal chunk boundary.
+        # -------------------------------------------------
+
+        nominal_chunk_end = min(
             audio_duration,
             chunk_start
             +
             CHUNK_SIZE
         )
 
+
+        chunk_end = (
+            nominal_chunk_end
+        )
+
+
+        # -------------------------------------------------
+        # For every chunk except the final chunk, look for
+        # a sufficiently long silence near the normal
+        # boundary.
+        # -------------------------------------------------
+
+        if (
+            nominal_chunk_end
+            <
+            audio_duration
+        ):
+
+            search_start = max(
+                chunk_start
+                +
+                ASR_MIN_CHUNK_DURATION,
+                nominal_chunk_end
+                -
+                ASR_BOUNDARY_SEARCH_BACK
+            )
+
+
+            search_end = (
+                nominal_chunk_end
+            )
+
+
+            silence_boundary = (
+                find_silence_boundary(
+                    search_start,
+                    search_end
+                )
+            )
+
+
+            if silence_boundary is not None:
+
+                if (
+                    silence_boundary
+                    -
+                    chunk_start
+                    >=
+                    ASR_MIN_CHUNK_DURATION
+                ):
+
+                    chunk_end = (
+                        silence_boundary
+                    )
+
+
+        # -------------------------------------------------
+        # Safety.
+        # -------------------------------------------------
+
+        if chunk_end <= chunk_start:
+
+            chunk_end = min(
+                audio_duration,
+                chunk_start
+                +
+                CHUNK_SIZE
+            )
+
+
+        print()
+        print(
+            f"Planning chunk "
+            f"{chunk_index}"
+        )
+
+        print(
+            f"  Start: "
+            f"{chunk_start:.3f} sec"
+        )
+
+        print(
+            f"  End: "
+            f"{chunk_end:.3f} sec"
+        )
+
+        print(
+            f"  Duration: "
+            f"{chunk_end - chunk_start:.3f} sec"
+        )
+
+
+        planned_chunks.append({
+
+            "index":
+                chunk_index,
+
+            "start":
+                chunk_start,
+
+            "end":
+                chunk_end
+        })
+
+
+        # -------------------------------------------------
+        # Finished?
+        # -------------------------------------------------
+
+        if chunk_end >= audio_duration:
+
+            break
+
+
+        # -------------------------------------------------
+        # Start next chunk with the existing overlap.
+        # -------------------------------------------------
+
+        next_chunk_start = (
+            chunk_end
+            -
+            CHUNK_OVERLAP
+        )
+
+
+        # -------------------------------------------------
+        # Safety: guarantee forward progress.
+        # -------------------------------------------------
+
+        if (
+            next_chunk_start
+            <=
+            chunk_start
+        ):
+
+            next_chunk_start = (
+                chunk_start
+                +
+                CHUNK_SIZE
+                -
+                CHUNK_OVERLAP
+            )
+
+
+        chunk_start = min(
+            next_chunk_start,
+            audio_duration
+        )
+
+
+    # -----------------------------------------------------
+    # Now the exact number of silence-aware chunks is known.
+    # -----------------------------------------------------
+
+    total_chunks = len(
+        planned_chunks
+    )
+
+
+    print()
+    print("=" * 50)
+    print(
+        "Silence-aware chunk planning completed")
+    print(
+        f"Number of chunks: "
+        f"{total_chunks}")
+    print("=" * 50)
+
+
+    # =====================================================
+    # PHASE 2: TRANSCRIBE PLANNED CHUNKS
+    # =====================================================
+
+    chunk_results = []
+
+
+    for planned_chunk in planned_chunks:
+
+        chunk_index = (
+            planned_chunk["index"]
+        )
+
+        chunk_start = (
+            planned_chunk["start"]
+        )
+
+        chunk_end = (
+            planned_chunk["end"]
+        )
+
+
+        print()
+        print(
+            f"Preparing chunk "
+            f"{chunk_index}/{total_chunks}"
+        )
+
+        print(
+            f"  Start: "
+            f"{chunk_start:.3f} sec"
+        )
+
+        print(
+            f"  End: "
+            f"{chunk_end:.3f} sec"
+        )
+
+        print(
+            f"  Duration: "
+            f"{chunk_end - chunk_start:.3f} sec"
+        )
+
+
+        # -------------------------------------------------
+        # Extract audio.
+        # -------------------------------------------------
 
         start_sample = int(
             chunk_start
@@ -2696,14 +3718,22 @@ else:
         )
 
 
+        # -------------------------------------------------
+        # Transcribe.
+        #
+        # IMPORTANT:
+        # The real total_chunks is now known.
+        # -------------------------------------------------
+
         (
             decoded_text,
             token_timestamps
         ) = transcribe_chunk(
             chunk_audio,
             chunk_start,
-            chunk_index + 1,
-            total_chunks)
+            chunk_index,
+            total_chunks
+        )
 
 
         # -------------------------------------------------
@@ -2711,7 +3741,8 @@ else:
         # -------------------------------------------------
 
         local_words = reconstruct_words(
-            token_timestamps)
+            token_timestamps
+        )
 
 
         # -------------------------------------------------
@@ -2721,25 +3752,28 @@ else:
         global_words = (
             add_global_word_timestamps(
                 local_words,
-                chunk_start)
+                chunk_start
+            )
         )
 
 
         global_words = clean_words(
-            global_words)
+            global_words
+        )
 
 
         global_tokens = (
             add_global_token_timestamps(
                 token_timestamps,
-                chunk_start)
+                chunk_start
+            )
         )
 
 
         chunk_results.append({
 
             "index":
-                chunk_index,
+                chunk_index - 1,
 
             "start":
                 chunk_start,
@@ -2759,7 +3793,7 @@ else:
 
 
     # -----------------------------------------------------
-    # MERGE WORDS
+    # Merge words
     # -----------------------------------------------------
 
     print()
@@ -2772,7 +3806,7 @@ else:
 
 
     # -----------------------------------------------------
-    # SAFETY CLEANUP
+    # Safety cleanup
     # -----------------------------------------------------
 
     print()
@@ -2801,6 +3835,19 @@ else:
     print(
         f"Residual duplicates removed: "
         f"{removed_count}")
+
+
+    # -----------------------------------------------------
+    # FINAL TAIL RECOVERY
+    #
+    # Only runs when the existing transcript stops several
+    # seconds before the actual end of the audio.
+    # -----------------------------------------------------
+
+    words = recover_final_tail(
+        audio,
+        audio_duration,
+        words)
 
 
     # -----------------------------------------------------
@@ -2924,6 +3971,8 @@ else:
 
     segments = build_segments(
         words)
+
+
 
 
 # =========================================================

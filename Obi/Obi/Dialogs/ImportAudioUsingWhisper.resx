@@ -385,7 +385,7 @@
     <value>965, 572</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
-    <value>Import Audio Using Whisper</value>
+    <value>Import Audio Using AI</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
     <value>ImportAudioUsingWhisper</value>

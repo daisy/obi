@@ -117,6 +117,12 @@
     <Compile Update="Dialogs\ObiConfiguration.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="Dialogs\PhraseDetectionMethodDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Dialogs\TranscriptionSettingsDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Content Update="Dialogs\ObiConfiguration.cs">
       <SubType>Form</SubType>
     </Content>
@@ -255,6 +261,9 @@
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Update="Dialogs\ExtendedMessageToAssociate.resx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Dialogs\TranscriptionSettingsDialog.resx">
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Update="messages.ar.resx">

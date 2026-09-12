@@ -50,6 +50,19 @@ namespace Obi.Dialogs
         private string m_BookLanguage = "en";
         private TranscriptionEngine m_TranscriptionEngine = TranscriptionEngine.Parakeet;
         private bool m_UpdatingLanguageEngineLists;
+
+        public TranscriptionSettings SelectedTranscriptionSettings
+        {
+            get
+            {
+                return new TranscriptionSettings
+                {
+                    Engine = m_TranscriptionEngine,
+                    Language = m_BookLanguage,
+                    WhisperModel = m_Model
+                };
+            }
+        }
         public ImportAudioUsingWhisper(List<string> filePaths, bool importAudioFilesInEachSection, bool createSectionForEachPhrase)
         {
             InitializeComponent();
@@ -89,11 +102,11 @@ namespace Obi.Dialogs
 
             m_ModelCb.SelectedIndex = 1;
 
-            m_BookLanguageCb.DisplayMember =
-                nameof(WhisperLanguageItem.DisplayName);
+            m_Model = ((WhisperModelItem)m_ModelCb.SelectedItem).Model;
 
-            m_BookLanguageCb.ValueMember =
-                nameof(WhisperLanguageItem.LanguageCode);
+            m_BookLanguageCb.DisplayMember = nameof(WhisperLanguageItem.DisplayName);
+
+            m_BookLanguageCb.ValueMember = nameof(WhisperLanguageItem.LanguageCode);
 
             m_BookLanguageCb.SelectedIndexChanged +=
                 m_BookLanguageCb_SelectedIndexChanged;
