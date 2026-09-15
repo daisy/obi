@@ -692,7 +692,7 @@ namespace Obi
                                                                          || Path.GetExtension(xhtmlPath).ToLower() == ".txt")
                                                                      {
                                                                          ImportExport.ImportStructureFromCSV csvImport = new Obi.ImportExport.ImportStructureFromCSV();
-                                                                         csvImport.ImportFromCSVFile(xhtmlPath, mSession.Presentation, mProjectView);
+                                                                         csvImport.ImportFromCSVFile(xhtmlPath, mSession.Presentation, mProjectView, progress1);
                                                                          audioFilePaths = csvImport.AudioFilePaths;
                                                                          audioFilesNotImportedDuringCSVImport = csvImport.AudioFilesNotImported;
                                                                          string DirectoryName = Path.GetDirectoryName(xhtmlPath);
@@ -762,7 +762,7 @@ namespace Obi
                                                                          || Path.GetExtension(xhtmlPath).ToLower() == ".txt")
                                                                      {
                                                                          ImportExport.ImportStructureFromCSV csvImport = new Obi.ImportExport.ImportStructureFromCSV();
-                                                                         csvImport.ImportFromCSVFile(xhtmlPath, mSession.Presentation, mProjectView);
+                                                                         csvImport.ImportFromCSVFile(xhtmlPath, mSession.Presentation, mProjectView, progress1);
                                                                          audioFilePaths = csvImport.AudioFilePaths;
                                                                          audioFilesNotImportedDuringCSVImport = csvImport.AudioFilesNotImported;
                                                                          string DirectoryName = Path.GetDirectoryName(xhtmlPath);

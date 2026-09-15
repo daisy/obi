@@ -34,12 +34,13 @@ namespace Obi.ImportExport
         // AI transcription settings
         private TranscriptionSettings? m_TranscriptionSettings;
         private TranscriptionCoordinator? m_TranscriptionCoordinator;
+        private CancellationTokenSource? m_CancellationTokenSource;
 
         public ImportStructureFromCSV()
         {
         }
 
-        public void ImportFromCSVFile(string CSVFullPath, ObiPresentation presentation, ProjectView.ProjectView projectView)
+        public void ImportFromCSVFile(string CSVFullPath, ObiPresentation presentation, ProjectView.ProjectView projectView, ProgressDialog progressDialog)
         {
             m_Presentation = presentation;
             m_ProjectView = projectView;
@@ -79,6 +80,19 @@ namespace Obi.ImportExport
                             }
 
                             m_TranscriptionSettings = settingsDialog.SelectedTranscriptionSettings;
+
+                            progressDialog.EnableLog(Path.Combine(ObiPaths.LogsFolder,"AI Transcription Log.txt"));
+
+                            progressDialog.Log("AI Phrase Detection selected.");
+
+                            progressDialog.Log("Transcription Engine: " + m_TranscriptionSettings.Engine.ToString());
+
+                            progressDialog.Log("Language: " + m_TranscriptionSettings.Language.ToString());
+
+                            if (m_TranscriptionSettings.Engine == TranscriptionEngine.Whisper)
+                            {
+                                progressDialog.Log("Whisper Model: " + m_TranscriptionSettings.WhisperModel.ToString());
+                            }
                         }
                         m_TranscriptionCoordinator = new TranscriptionCoordinator(new WhisperXService(), new ParakeetService());
                     }
@@ -89,7 +103,21 @@ namespace Obi.ImportExport
                 m_PhraseDetectionMethod = PhraseDetectionMethod.None;
             }
 
-            CreateStructureAsync(levelsList, sectionNames, pagesPerSection, m_audioFilePath).GetAwaiter().GetResult(); 
+            m_CancellationTokenSource = new CancellationTokenSource();
+
+            progressDialog.OperationCancelled +=  ProgressDialog_OperationCancelled;
+
+            try
+            {
+                CreateStructureAsync(levelsList, sectionNames, pagesPerSection, m_audioFilePath, progressDialog).GetAwaiter().GetResult();
+            }
+            finally
+            {
+                progressDialog.OperationCancelled -= ProgressDialog_OperationCancelled;
+
+                m_CancellationTokenSource?.Dispose();
+                m_CancellationTokenSource = null;
+            }
         }
 
         public List<string> AudioFilePaths
@@ -118,6 +146,11 @@ namespace Obi.ImportExport
             {
                 m_PhraseDetectionMethod = value;
             }
+        }
+
+        private void ProgressDialog_OperationCancelled(object sender, EventArgs e)
+        {
+            m_CancellationTokenSource?.Cancel();
         }
         private void ReadListsFromCSVFile(List<int> levelsList, List<string> sectionNamesList, List<int> pagesPerSection, string CSVFullPath)
         {
@@ -317,7 +350,7 @@ namespace Obi.ImportExport
         }
 
 
-        private async Task CreateStructureAsync(List<int> levelsList, List<string> sectionNamesList, List<int> pagesPerSection, List<string> audioFilePath)
+        private async Task CreateStructureAsync(List<int> levelsList, List<string> sectionNamesList, List<int> pagesPerSection, List<string> audioFilePath, ProgressDialog progressDialog)
         {
             List<ObiNode> listOfSectionNodes = new List<ObiNode>();
             listOfSectionNodes.Add((ObiNode)m_Presentation.RootNode);
@@ -351,22 +384,22 @@ namespace Obi.ImportExport
 
                 if (m_AudioFilePath1.Count > i && m_AudioFilePath1[i] != null)
                 {
-                    await ImportAudioAsync(m_AudioFilePath1[i], section);
+                    await ImportAudioAsync(m_AudioFilePath1[i], section, progressDialog);
                 }
                 if (m_AudioFilePath2.Count > i && m_AudioFilePath2[i] != null)
                 {
-                    await ImportAudioAsync(m_AudioFilePath2[i], section);
+                    await ImportAudioAsync(m_AudioFilePath2[i], section, progressDialog);
                 }
                 if (m_AudioFilePath3.Count > i && m_AudioFilePath3[i] != null)
                 {
-                    await ImportAudioAsync(m_AudioFilePath3[i], section);
+                    await ImportAudioAsync(m_AudioFilePath3[i], section, progressDialog);
                 } if (m_AudioFilePath4.Count > i && m_AudioFilePath4[i] != null)
                 {
-                    await ImportAudioAsync(m_AudioFilePath4[i], section);
+                    await ImportAudioAsync(m_AudioFilePath4[i], section, progressDialog);
                 }
                 if (m_AudioFilePath5.Count > i && m_AudioFilePath5[i] != null)
                 {
-                    await ImportAudioAsync(m_AudioFilePath5[i], section);
+                    await ImportAudioAsync(m_AudioFilePath5[i], section, progressDialog);
                 }
                 if (pagesPerSection.Count > i && pagesPerSection[i] > 0)
                 {
@@ -386,7 +419,7 @@ namespace Obi.ImportExport
             }
         }
 
-        public async Task ImportAudioAsync(string path, SectionNode sectionNode)
+        public async Task ImportAudioAsync(string path, SectionNode sectionNode, ProgressDialog progressDialog)
         { 
              List<string> tempAudioFilePaths = new List<string>();
              string[] tempAudioFilePathsArray = new string[1];
@@ -426,7 +459,10 @@ namespace Obi.ImportExport
                 {
                     if (m_PhraseDetectionMethod == PhraseDetectionMethod.AI)
                     {
-                        await ImportAIPhrasesAsync(path,sectionNode);
+                        progressDialog.Log("----------------------------------------");
+
+                        progressDialog.Log("Processing audio: " + Path.GetFileName(path));
+                        await ImportAIPhrasesAsync(path,sectionNode, progressDialog);
                     }
                     else
                     {
@@ -440,6 +476,10 @@ namespace Obi.ImportExport
                         }
                     }
                 }
+            }
+            catch (OperationCanceledException)
+            {
+                throw;
             }
             catch (Exception e)
             {
@@ -465,19 +505,30 @@ namespace Obi.ImportExport
             m_Presentation.Do(phraseDetectionCommand);
         }
 
-        private async Task ImportAIPhrasesAsync(string audioFilePath, SectionNode sectionNode)
+        private async Task ImportAIPhrasesAsync(string audioFilePath, SectionNode sectionNode, ProgressDialog progressDialog)
         {
             if (m_TranscriptionCoordinator == null || m_TranscriptionSettings == null)
             {
-                throw new InvalidOperationException(
-                    "AI transcription settings are not initialized.");
+                throw new InvalidOperationException("AI transcription settings are not initialized.");
             }
+
+            progressDialog.UpdateProgressBar(null,new System.ComponentModel.ProgressChangedEventArgs(0,null));
+
+            progressDialog.Log("Starting AI transcription...");
+
+            progressDialog.Log("Audio file: " + Path.GetFileName(audioFilePath));
 
             if (m_TranscriptionSettings.Engine == TranscriptionEngine.Whisper)
             {
                 if (!await WhisperXInstallerService.IsPythonEnvironmentInstalledAsync())
                 {
+                    progressDialog.Log("WhisperX environment not found.");
+
+                    progressDialog.Log("Installing WhisperX environment...");
+
                     await WhisperXInstallerService.InstallAsync();
+
+                    progressDialog.Log("WhisperX environment installation completed.");
                 }
             }
 
@@ -485,7 +536,13 @@ namespace Obi.ImportExport
             {
                 if (!await ParakeetInstallerService.IsPythonEnvironmentInstalledAsync())
                 {
+                    progressDialog.Log("Parakeet environment not found.");
+
+                    progressDialog.Log("Installing Parakeet environment...");
+
                     await ParakeetInstallerService.InstallAsync();
+
+                    progressDialog.Log("Parakeet environment installation completed.");
                 }
             }
 
@@ -495,78 +552,536 @@ namespace Obi.ImportExport
 
                     Language = m_TranscriptionSettings.Language
                 };
+            int parakeetChunkCount = 0;
 
             IProgress<string> progress =
-                new Progress<string>(
+               new SynchronousProgress<string>(
                     message =>
                     {
-                        Console.WriteLine(
-                            "AI transcription: " + message);
+                        Console.WriteLine("AI transcription: " + message);
+
+                        progressDialog.Log(message);
+
+                        // ==========================================================
+                        // PARAKEET PROGRESS
+                        //
+                        // 0 - 15%   Model / processor loading
+                        // 15 - 20%  Audio preparation
+                        // 20 - 85%  Chunk transcription
+                        // 85 - 92%  Chunk merging
+                        // 92 - 98%  Phrase building / cleanup
+                        // 98 - 100% Completion
+                        // ==========================================================
+
+                        if (message.Contains(
+                            "Loading Parakeet processor"))
+                        {
+                            progressDialog.UpdateProgressBar(
+                                null,
+                                new System.ComponentModel.ProgressChangedEventArgs(
+                                    5,
+                                    null));
+
+                            return;
+                        }
+
+
+                        if (message.Contains(
+                            "Parakeet processor loaded"))
+                        {
+                            progressDialog.UpdateProgressBar(
+                                null,
+                                new System.ComponentModel.ProgressChangedEventArgs(
+                                    10,
+                                    null));
+
+                            return;
+                        }
+
+
+                        if (message.Contains(
+                            "Loading Parakeet model"))
+                        {
+                            progressDialog.UpdateProgressBar(
+                                null,
+                                new System.ComponentModel.ProgressChangedEventArgs(
+                                    12,
+                                    null));
+
+                            return;
+                        }
+
+
+                        if (message.Contains(
+                            "Parakeet model loaded"))
+                        {
+                            progressDialog.UpdateProgressBar(
+                                null,
+                                new System.ComponentModel.ProgressChangedEventArgs(
+                                    15,
+                                    null));
+
+                            return;
+                        }
+
+
+                        // ----------------------------------------------------------
+                        // Audio preparation
+                        // ----------------------------------------------------------
+
+                        if (message.Contains(
+                            "Preparing long-audio Parakeet transcription"))
+                        {
+                            progressDialog.UpdateProgressBar(
+                                null,
+                                new System.ComponentModel.ProgressChangedEventArgs(
+                                    16,
+                                    null));
+
+                            return;
+                        }
+
+
+                        if (message.Contains(
+                            "Converting audio to 16 kHz mono PCM"))
+                        {
+                            progressDialog.UpdateProgressBar(
+                                null,
+                                new System.ComponentModel.ProgressChangedEventArgs(
+                                    18,
+                                    null));
+
+                            return;
+                        }
+
+
+                        // ----------------------------------------------------------
+                        // Number of chunks
+                        // ----------------------------------------------------------
+
+                        if (message.StartsWith(
+                            "Number of chunks:",
+                            StringComparison.OrdinalIgnoreCase))
+                        {
+                            string countText =
+                                message.Substring(
+                                    "Number of chunks:".Length)
+                                .Trim();
+
+                            if (int.TryParse(
+                                countText,
+                                out int count) &&
+                                count > 0)
+                            {
+                                parakeetChunkCount =
+                                    count;
+                            }
+
+                            progressDialog.UpdateProgressBar(
+                                null,
+                                new System.ComponentModel.ProgressChangedEventArgs(
+                                    20,
+                                    null));
+
+                            return;
+                        }
+
+
+                        // ----------------------------------------------------------
+                        // Individual chunk
+                        //
+                        // Example:
+                        //
+                        // Parakeet chunk 5/12
+                        // ----------------------------------------------------------
+
+                        if (message.StartsWith(
+                            "Parakeet chunk ",
+                            StringComparison.OrdinalIgnoreCase))
+                        {
+                            int slashIndex =
+                                message.IndexOf('/');
+
+                            if (slashIndex > 0)
+                            {
+                                string chunkNumberText =
+                                    message.Substring(
+                                        "Parakeet chunk ".Length,
+                                        slashIndex -
+                                        "Parakeet chunk ".Length)
+                                    .Trim();
+
+                                string totalChunksText =
+                                    message.Substring(
+                                        slashIndex + 1)
+                                    .Trim();
+
+                                if (int.TryParse(
+                                        chunkNumberText,
+                                        out int chunkNumber) &&
+                                    int.TryParse(
+                                        totalChunksText,
+                                        out int totalChunks) &&
+                                    chunkNumber >= 1 &&
+                                    totalChunks > 0)
+                                {
+                                    parakeetChunkCount =
+                                        totalChunks;
+
+                                    double fraction =
+                                        (double)chunkNumber /
+                                        totalChunks;
+
+                                    int value =
+                                        20 +
+                                        (int)Math.Round(
+                                            fraction * 65.0);
+
+                                    value =
+                                        Math.Max(
+                                            20,
+                                            Math.Min(
+                                                85,
+                                                value));
+
+                                    progressDialog.UpdateProgressBar(
+                                        null,
+                                        new System.ComponentModel.ProgressChangedEventArgs(
+                                            value,
+                                            null));
+                                }
+
+                                return;
+                            }
+                        }
+
+
+                        // ----------------------------------------------------------
+                        // Chunk activity
+                        //
+                        // Keep the current chunk progress while these messages
+                        // arrive.
+                        // ----------------------------------------------------------
+
+                        if (message.Contains(
+                            "Preparing Parakeet input"))
+                        {
+                            return;
+                        }
+
+
+                        if (message.Contains(
+                            "Transcribing chunk"))
+                        {
+                            return;
+                        }
+
+
+                        if (message.Contains(
+                            "Chunk transcription completed"))
+                        {
+                            return;
+                        }
+
+
+                        if (message.Contains(
+                            "Decoding chunk"))
+                        {
+                            return;
+                        }
+
+
+                        // ----------------------------------------------------------
+                        // Merging
+                        // ----------------------------------------------------------
+
+                        if (message.Contains(
+                            "Merging chunk transcripts"))
+                        {
+                            progressDialog.UpdateProgressBar(
+                                null,
+                                new System.ComponentModel.ProgressChangedEventArgs(
+                                    88,
+                                    null));
+
+                            return;
+                        }
+
+
+                        if (message.Contains(
+                            "Checking for residual duplicate words"))
+                        {
+                            progressDialog.UpdateProgressBar(
+                                null,
+                                new System.ComponentModel.ProgressChangedEventArgs(
+                                    90,
+                                    null));
+
+                            return;
+                        }
+
+
+                        // ----------------------------------------------------------
+                        // Phrase construction
+                        // ----------------------------------------------------------
+
+                        if (message.Contains(
+                            "Building phrase segments"))
+                        {
+                            progressDialog.UpdateProgressBar(
+                                null,
+                                new System.ComponentModel.ProgressChangedEventArgs(
+                                    92,
+                                    null));
+
+                            return;
+                        }
+
+
+                        if (message.Contains(
+                            "Reconstructed words"))
+                        {
+                            progressDialog.UpdateProgressBar(
+                                null,
+                                new System.ComponentModel.ProgressChangedEventArgs(
+                                    94,
+                                    null));
+
+                            return;
+                        }
+
+
+                        if (message.Contains(
+                            "Remaining phrases after cleanup"))
+                        {
+                            progressDialog.UpdateProgressBar(
+                                null,
+                                new System.ComponentModel.ProgressChangedEventArgs(
+                                    98,
+                                    null));
+
+                            return;
+                        }
+
+
+                        // ==========================================================
+                        // WHISPERX PROGRESS
+                        // ==========================================================
+
+                        if (message.Contains(
+                            "Loading WhisperX model"))
+                        {
+                            progressDialog.UpdateProgressBar(
+                                null,
+                                new System.ComponentModel.ProgressChangedEventArgs(
+                                    10,
+                                    null));
+
+                            return;
+                        }
+
+
+                        if (message.Contains(
+                            "Whisper model loaded"))
+                        {
+                            progressDialog.UpdateProgressBar(
+                                null,
+                                new System.ComponentModel.ProgressChangedEventArgs(
+                                    20,
+                                    null));
+
+                            return;
+                        }
+
+
+                        if (message.Contains(
+                            "Loading audio"))
+                        {
+                            progressDialog.UpdateProgressBar(
+                                null,
+                                new System.ComponentModel.ProgressChangedEventArgs(
+                                    30,
+                                    null));
+
+                            return;
+                        }
+
+
+                        if (message.Contains(
+                            "Audio loaded"))
+                        {
+                            progressDialog.UpdateProgressBar(
+                                null,
+                                new System.ComponentModel.ProgressChangedEventArgs(
+                                    40,
+                                    null));
+
+                            return;
+                        }
+
+
+                        if (message.Contains(
+                            "Transcribing audio"))
+                        {
+                            progressDialog.UpdateProgressBar(
+                                null,
+                                new System.ComponentModel.ProgressChangedEventArgs(
+                                    50,
+                                    null));
+
+                            return;
+                        }
+
+
+                        if (message.Contains(
+                            "Transcription completed"))
+                        {
+                            progressDialog.UpdateProgressBar(
+                                null,
+                                new System.ComponentModel.ProgressChangedEventArgs(
+                                    70,
+                                    null));
+
+                            return;
+                        }
+
+
+                        if (message.Contains(
+                            "Loading alignment model"))
+                        {
+                            progressDialog.UpdateProgressBar(
+                                null,
+                                new System.ComponentModel.ProgressChangedEventArgs(
+                                    80,
+                                    null));
+
+                            return;
+                        }
+
+
+                        if (message.Contains(
+                            "Alignment completed"))
+                        {
+                            progressDialog.UpdateProgressBar(
+                                null,
+                                new System.ComponentModel.ProgressChangedEventArgs(
+                                    85,
+                                    null));
+
+                            return;
+                        }
+
+
+                        if (message.Contains(
+                            "Saving JSON"))
+                        {
+                            progressDialog.UpdateProgressBar(
+                                null,
+                                new System.ComponentModel.ProgressChangedEventArgs(
+                                    90,
+                                    null));
+
+                            return;
+                        }
+
+
+                        if (message.Contains(
+                            "Completed"))
+                        {
+                            progressDialog.UpdateProgressBar(
+                                null,
+                                new System.ComponentModel.ProgressChangedEventArgs(
+                                    100,
+                                    null));
+
+                            return;
+                        }
                     });
 
-            List<TranscriptSegment> segments =
-                await m_TranscriptionCoordinator.TranscribeAsync(
-                    audioFilePath,
-                    m_TranscriptionSettings.Engine,
-                    transcriptionOptions,
-                    CancellationToken.None,
-                    progress);
+            List<TranscriptSegment> segments = await m_TranscriptionCoordinator.TranscribeAsync(audioFilePath,m_TranscriptionSettings.Engine,transcriptionOptions, m_CancellationTokenSource?.Token ?? CancellationToken.None,progress);
 
-            if (segments == null ||
-                segments.Count == 0)
+            if (m_CancellationTokenSource?.IsCancellationRequested == true)
             {
+                throw new OperationCanceledException(m_CancellationTokenSource.Token);
+            }
+
+            progressDialog.Log("Transcription returned " + (segments == null ? 0 : segments.Count) + " segments.");
+
+            if (segments == null || segments.Count == 0)
+            {
+                progressDialog.Log("No transcription segments were returned.");
                 return;
             }
 
-            string xhtmlPath =
-                Path.Combine(
-                    Path.GetDirectoryName(audioFilePath)!,
-                    Path.GetFileNameWithoutExtension(audioFilePath) +
-                    ".xhtml");
+            string xhtmlPath = Path.Combine( Path.GetDirectoryName(audioFilePath)!, Path.GetFileNameWithoutExtension(audioFilePath) + ".xhtml");
 
-            await XhtmlExportService.SaveAsync(
-                segments,
-                xhtmlPath);
+            progressDialog.Log("Saving transcription to XHTML...");
 
-            ImportExport.ImportTranscript import =
-                new ImportExport.ImportTranscript(
-                    xhtmlPath,
-                    m_Presentation,
-                    m_ProjectView.ObiForm.Settings,
-                    audioFilePath);
+            progressDialog.Log("XHTML file: " + Path.GetFileName(xhtmlPath));
+
+            if (m_CancellationTokenSource?.IsCancellationRequested == true)
+            {
+                throw new OperationCanceledException(m_CancellationTokenSource.Token);
+            }
+
+            await XhtmlExportService.SaveAsync(segments, xhtmlPath);
+
+            progressDialog.Log("XHTML transcription saved.");
+
+            ImportExport.ImportTranscript import = new ImportExport.ImportTranscript(xhtmlPath, m_Presentation, m_ProjectView.ObiForm.Settings, audioFilePath);
+
+            progressDialog.Log("Converting transcription into Obi phrases...");
+
+            if (m_CancellationTokenSource?.IsCancellationRequested == true)
+            {
+                throw new OperationCanceledException(m_CancellationTokenSource.Token);
+            }
 
             import.DoWork();
 
-            List<PhraseNode> phrases =
-                import.Phrases;
+            progressDialog.Log("Obi phrase conversion completed.");
+
+            List<PhraseNode> phrases = import.Phrases;
+
+            progressDialog.Log("Phrases created: " + phrases.Count);
 
             if (phrases.Count == 0)
             {
+                progressDialog.Log("No Obi phrases were created.");
                 return;
             }
 
-            CompositeCommand command =
-                m_Presentation.CreateCompositeCommand(
-                    Localizer.Message("import_phrases"));
+            CompositeCommand command = m_Presentation.CreateCompositeCommand(Localizer.Message("import_phrases"));
 
             int insertIndex = sectionNode.PhraseChildCount;
 
             for (int i = 0; i < phrases.Count; i++)
             {
-                Commands.Node.AddNode addCmd =
-                    new Commands.Node.AddNode(
-                        m_ProjectView,
-                        phrases[i],
-                        sectionNode,
-                        insertIndex + i,
-                        false);
+                Commands.Node.AddNode addCmd = new Commands.Node.AddNode(m_ProjectView, phrases[i], sectionNode, insertIndex + i, false);
 
-                command.ChildCommands.Insert(
-                    command.ChildCommands.Count,
-                    addCmd);
+                command.ChildCommands.Insert(command.ChildCommands.Count, addCmd);
             }
 
+            progressDialog.Log("Adding " +  phrases.Count + " phrases to the section...");
+
             m_Presentation.Do(command);
+
+            progressDialog.Log("Audio phrase import completed.");
+        }
+
+        private class SynchronousProgress<T> : IProgress<T>
+        {
+            private readonly Action<T> m_Action;
+
+            public SynchronousProgress(Action<T> action)
+            {
+                m_Action = action;
+            }
+
+            public void Report(T value)
+            {
+                m_Action(value);
+            }
         }
     }
 }

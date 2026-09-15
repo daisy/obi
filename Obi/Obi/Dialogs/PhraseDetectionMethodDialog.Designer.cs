@@ -37,6 +37,7 @@
             // 
             // m_LblPhraseDetectionMethod
             // 
+            m_LblPhraseDetectionMethod.AccessibleName = "Phrase Detection Method";
             m_LblPhraseDetectionMethod.AutoSize = true;
             m_LblPhraseDetectionMethod.Location = new System.Drawing.Point(146, 60);
             m_LblPhraseDetectionMethod.Name = "m_LblPhraseDetectionMethod";
@@ -52,7 +53,7 @@
             m_RadioTraditional.Size = new System.Drawing.Size(217, 24);
             m_RadioTraditional.TabIndex = 1;
             m_RadioTraditional.TabStop = true;
-            m_RadioTraditional.Text = "Traditional Phrase Detection";
+            m_RadioTraditional.Text = "&Traditional Phrase Detection";
             m_RadioTraditional.UseVisualStyleBackColor = true;
             // 
             // m_RadioAI
@@ -63,26 +64,28 @@
             m_RadioAI.Size = new System.Drawing.Size(160, 24);
             m_RadioAI.TabIndex = 2;
             m_RadioAI.TabStop = true;
-            m_RadioAI.Text = "AI Phrase Detection";
+            m_RadioAI.Text = "&AI Phrase Detection";
             m_RadioAI.UseVisualStyleBackColor = true;
             // 
             // m_BtnOK
             // 
+            m_BtnOK.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             m_BtnOK.Location = new System.Drawing.Point(109, 204);
             m_BtnOK.Name = "m_BtnOK";
             m_BtnOK.Size = new System.Drawing.Size(94, 29);
             m_BtnOK.TabIndex = 3;
-            m_BtnOK.Text = "OK";
+            m_BtnOK.Text = "&OK";
             m_BtnOK.UseVisualStyleBackColor = true;
             m_BtnOK.Click += m_BtnOK_Click;
             // 
             // m_BtnCancel
             // 
+            m_BtnCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             m_BtnCancel.Location = new System.Drawing.Point(277, 204);
             m_BtnCancel.Name = "m_BtnCancel";
             m_BtnCancel.Size = new System.Drawing.Size(94, 29);
             m_BtnCancel.TabIndex = 4;
-            m_BtnCancel.Text = "Cancel";
+            m_BtnCancel.Text = "&Cancel";
             m_BtnCancel.UseVisualStyleBackColor = true;
             m_BtnCancel.Click += m_BtnCancel_Click;
             // 
