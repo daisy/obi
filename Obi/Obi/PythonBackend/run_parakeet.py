@@ -2865,8 +2865,282 @@ def build_segments(words):
         # ========================================================
         # SENTENCE ITSELF EXCEEDS HARD MAX
         #
-        # We MUST split it.
+        # We normally need to split the sentence when it exceeds
+        # HARD_MAX_DURATION.
+        #
+        # HOWEVER:
+        #
+        # Do not create an unnatural tiny trailing phrase just
+        # to obey the 18-second target.
+        #
+        # Example:
+        #
+        #     "... that I hardly knew which was which."
+        #
+        # A boundary after "was" may be close to 18 seconds,
+        # but that would leave:
+        #
+        #     "which."
+        #
+        # as a tiny separate phrase.
+        #
+        # Similarly:
+        #
+        #     "... would have struck her to dust."
+        #
+        # must not become:
+        #
+        #     "... would have struck her to"
+        #     "dust."
+        #
+        # In these situations, allow the complete sentence to
+        # extend slightly beyond the preferred 18-second limit.
         # ========================================================
+
+        NATURAL_EXTENSION_MAX = 3.0
+
+        # --------------------------------------------------------
+        # First check whether keeping the complete sentence is
+        # still reasonably close to the preferred maximum.
+        #
+        # This is the most natural solution for audiobook
+        # segmentation.
+        # --------------------------------------------------------
+
+        if (
+            sentence_duration
+            <=
+            HARD_MAX_DURATION
+            +
+            NATURAL_EXTENSION_MAX
+        ):
+
+            segment = create_segment(
+                start_index,
+                sentence_end
+            )
+
+            if segment:
+                segments.append(segment)
+
+            start_index = (
+                sentence_end + 1
+            )
+
+            continue
+
+        # --------------------------------------------------------
+        # The sentence is substantially longer than the preferred
+        # maximum.
+        #
+        # We now need to split it.
+        #
+        # Search for a boundary, but reject a boundary which would
+        # leave only a tiny amount of speech before the sentence
+        # ends.
+        # --------------------------------------------------------
+
+        MIN_TRAILING_SENTENCE_DURATION = 3.0
+
+        forced_candidates = collect_boundaries(
+            start_index,
+            sentence_end - 1,
+            HARD_MAX_DURATION
+            +
+            NATURAL_EXTENSION_MAX
+        )
+
+        valid_forced_candidates = []
+
+        for candidate in forced_candidates:
+
+            candidate_index = (
+                candidate["index"]
+            )
+
+            trailing_duration = duration(
+                candidate_index + 1,
+                sentence_end
+            )
+
+            # ----------------------------------------------------
+            # Do not split if the remainder of the sentence would
+            # become a tiny phrase.
+            # ----------------------------------------------------
+
+            if (
+                trailing_duration
+                >=
+                MIN_TRAILING_SENTENCE_DURATION
+            ):
+
+                valid_forced_candidates.append(
+                    candidate
+                )
+
+        # --------------------------------------------------------
+        # Prefer a natural boundary which does NOT leave a tiny
+        # trailing fragment.
+        # --------------------------------------------------------
+
+        if valid_forced_candidates:
+
+            boundary_priority = {
+                "sentence": 6,
+                "semicolon": 5,
+                "colon": 4,
+                "dash": 3,
+                "comma": 2,
+                "pause": 1,
+            }
+
+            valid_forced_candidates.sort(
+                key=lambda candidate: (
+                    -boundary_priority.get(
+                        candidate["type"],
+                        0
+                    ),
+
+                    # Prefer a boundary reasonably close to the
+                    # target rather than one right at the limit.
+                    abs(
+                        candidate["duration"]
+                        -
+                        TARGET_DURATION
+                    ),
+
+                    # Prefer a stronger pause when other factors
+                    # are similar.
+                    -pause_after(
+                        candidate["index"]
+                    ),
+
+                    candidate["duration"]
+                )
+            )
+
+            forced_boundary = (
+                valid_forced_candidates[0]["index"]
+            )
+
+            segment = create_segment(
+                start_index,
+                forced_boundary
+            )
+
+            if segment:
+                segments.append(segment)
+
+            start_index = (
+                forced_boundary + 1
+            )
+
+            continue
+
+        # --------------------------------------------------------
+        # No acceptable boundary was found within the normal
+        # range.
+        #
+        # Before doing an absolute hard split, look slightly
+        # farther ahead for a natural boundary.
+        #
+        # This allows a sentence to grow a little when necessary
+        # instead of producing an unnatural one-word phrase.
+        # --------------------------------------------------------
+
+        EXTENDED_SEARCH_MAX = (
+            HARD_MAX_DURATION
+            +
+            6.0
+        )
+
+        extended_candidates = collect_boundaries(
+            start_index,
+            sentence_end - 1,
+            EXTENDED_SEARCH_MAX
+        )
+
+        valid_extended_candidates = []
+
+        for candidate in extended_candidates:
+
+            candidate_index = (
+                candidate["index"]
+            )
+
+            trailing_duration = duration(
+                candidate_index + 1,
+                sentence_end
+            )
+
+            if (
+                trailing_duration
+                >=
+                MIN_TRAILING_SENTENCE_DURATION
+            ):
+
+                valid_extended_candidates.append(
+                    candidate
+                )
+
+        if valid_extended_candidates:
+
+            boundary_priority = {
+                "sentence": 6,
+                "semicolon": 5,
+                "colon": 4,
+                "dash": 3,
+                "comma": 2,
+                "pause": 1,
+            }
+
+            # ----------------------------------------------------
+            # In extended mode, strongly prefer grammatical
+            # boundaries over exact duration.
+            # ----------------------------------------------------
+
+            valid_extended_candidates.sort(
+                key=lambda candidate: (
+                    -boundary_priority.get(
+                        candidate["type"],
+                        0
+                    ),
+
+                    # Prefer the earliest acceptable natural
+                    # boundary once we are already beyond the
+                    # preferred duration.
+                    candidate["duration"],
+
+                    -pause_after(
+                        candidate["index"]
+                    )
+                )
+            )
+
+            forced_boundary = (
+                valid_extended_candidates[0]["index"]
+            )
+
+            segment = create_segment(
+                start_index,
+                forced_boundary
+            )
+
+            if segment:
+                segments.append(segment)
+
+            start_index = (
+                forced_boundary + 1
+            )
+
+            continue
+
+        # --------------------------------------------------------
+        # No natural boundary can safely be found.
+        #
+        # Fall back to the existing hard-boundary selection.
+        # This is only used when absolutely necessary.
+        # --------------------------------------------------------
 
         forced_boundary = choose_boundary(
             start_index,
@@ -2885,7 +3159,10 @@ def build_segments(words):
             if segment:
                 segments.append(segment)
 
-            start_index = forced_boundary + 1
+            start_index = (
+                forced_boundary + 1
+            )
+
             continue
 
         # ========================================================
