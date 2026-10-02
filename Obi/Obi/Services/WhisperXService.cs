@@ -19,7 +19,7 @@ namespace Obi.Services
 {
     public class WhisperXService : ITranscriptionService
     {
-        public async Task<List<TranscriptSegment>> TranscribeAsync(string audioFile,TranscriptionOptions options,CancellationToken cancellationToken,IProgress<string>? progress = null)
+        public async Task<List<TranscriptSegment>> TranscribeAsync(string audioFile, TranscriptionOptions options, CancellationToken cancellationToken, IProgress<string>? progress = null)
         {
 
             string scriptPath =
@@ -30,7 +30,7 @@ namespace Obi.Services
                     Path.GetTempPath(),
                     Guid.NewGuid() + ".json");
 
-           // progress?.Report($"Book Language: {bookLanguage}");
+            // progress?.Report($"Book Language: {bookLanguage}");
 
             ProcessStartInfo psi =
              await CreateProcessStartInfoAsync(
@@ -41,7 +41,9 @@ namespace Obi.Services
           $"\"{options.Language}\" " +
           $"\"{ObiPaths.ModelsFolder}\" " +
           $"\"{ObiPaths.HuggingFaceFolder}\" " +
-          $"\"{ObiPaths.NltkDataFolder}\"");
+          $"\"{ObiPaths.NltkDataFolder}\"",
+          progress,
+          cancellationToken);
 
 
 
@@ -69,7 +71,7 @@ namespace Obi.Services
             return segments;
         }
 
-        public async Task<Dictionary<string, List<TranscriptSegment>>> TranscribeBatchAsync(List<string> audioFiles,TranscriptionOptions options,CancellationToken cancellationToken, IProgress<string>? progress = null)
+        public async Task<Dictionary<string, List<TranscriptSegment>>> TranscribeBatchAsync(List<string> audioFiles, TranscriptionOptions options, CancellationToken cancellationToken, IProgress<string>? progress = null)
         {
 
             string scriptPath =
@@ -105,7 +107,7 @@ namespace Obi.Services
                     }),
                 cancellationToken);
 
-        //    progress?.Report($"Book Language: {bookLanguage}");
+            //    progress?.Report($"Book Language: {bookLanguage}");
 
             ProcessStartInfo psi =
                 await CreateProcessStartInfoAsync(
@@ -116,7 +118,9 @@ namespace Obi.Services
                     $"\"{options.Language}\" " +
                     $"\"{ObiPaths.ModelsFolder}\" " +
                     $"\"{ObiPaths.HuggingFaceFolder}\" " +
-                    $"\"{ObiPaths.NltkDataFolder}\"");
+                    $"\"{ObiPaths.NltkDataFolder}\"",
+                    progress,
+                    cancellationToken);
 
 
 
@@ -184,7 +188,9 @@ namespace Obi.Services
                         $"\"{GetModelName(model)}\" " +
                         $"\"{ObiPaths.ModelsFolder}\" " +
                         $"\"{ObiPaths.HuggingFaceFolder}\" " +
-                        $"\"{ObiPaths.NltkDataFolder}\"");
+                        $"\"{ObiPaths.NltkDataFolder}\"",
+                        progress,
+                        cancellationToken);
 
 
                 await ExecuteWhisperProcessAsync(
@@ -254,7 +260,10 @@ namespace Obi.Services
         }
 
 
-        private async Task<ProcessStartInfo> CreateProcessStartInfoAsync(string arguments)
+        private async Task<ProcessStartInfo> CreateProcessStartInfoAsync(
+            string arguments,
+            IProgress<string>? progress,
+            CancellationToken cancellationToken)
         {
             string backendFolder =
                 ObiPaths.PythonBackend;
@@ -262,12 +271,9 @@ namespace Obi.Services
             string pythonExe =
                 ObiPaths.PythonExe;
 
-            if (!await WhisperXInstallerService
-                .IsPythonEnvironmentInstalledAsync())
-            {
-                throw new Exception(
-                    "WhisperX is not installed.");
-            }
+            await WhisperXInstallerService.EnsureWhisperReadyAsync(
+                progress,
+                cancellationToken);
 
             ProcessStartInfo psi =
                 new()
@@ -327,7 +333,7 @@ namespace Obi.Services
             Stopwatch stopwatch =
                 Stopwatch.StartNew();
 
-            using CancellationTokenSource heartbeatCts =  new();
+            using CancellationTokenSource heartbeatCts = new();
 
 
             process.OutputDataReceived +=
@@ -789,9 +795,9 @@ namespace Obi.Services
                 " + error);
             }
 
-            if (TryGetUnsupportedAlignmentLanguage(error,out string languageCode))
+            if (TryGetUnsupportedAlignmentLanguage(error, out string languageCode))
             {
-                string language =GetLanguageName(languageCode);
+                string language = GetLanguageName(languageCode);
 
                 return new Exception(
             $@"Unable to import audio

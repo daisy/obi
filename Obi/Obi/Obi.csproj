@@ -269,6 +269,9 @@
     <Content Include="PythonBackend\run_whisperx.py">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+	<Content Include="PythonBackend\nltk_data\**\*">
+		<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	</Content>
     <EmbeddedResource Include="images\icons\Preserve_Zoom_Checked.png" />
     <EmbeddedResource Include="images\icons\Preserve_Zoom_Unchecked.png" />
     <Content Include="images\icons\prevpage.png" />

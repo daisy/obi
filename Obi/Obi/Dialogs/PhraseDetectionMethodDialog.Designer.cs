@@ -100,7 +100,7 @@
             Controls.Add(m_RadioTraditional);
             Controls.Add(m_LblPhraseDetectionMethod);
             Name = "PhraseDetectionMethodDialog";
-            Text = "PhraseDetectionMethodDialog";
+            Text = "Phrase Detection Method";
             ResumeLayout(false);
             PerformLayout();
         }

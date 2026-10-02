@@ -113,10 +113,13 @@ if NLTK_DATA_DIR not in nltk.data.path:
     nltk.data.path.insert(0, NLTK_DATA_DIR)
 
 try:
-    nltk.data.find("tokenizers/punkt_tab")
-except LookupError:
-    print("Downloading NLTK punkt_tab...")
-    nltk.download("punkt_tab", download_dir=NLTK_DATA_DIR)
+    nltk.data.find("tokenizers/punkt_tab/english/")
+except LookupError as exc:
+    raise RuntimeError(
+        "The local NLTK punkt_tab resource is missing. "
+        f"Expected it under: {NLTK_DATA_DIR}\\tokenizers\\punkt_tab. "
+        "Repair or reinstall Obi so its bundled NLTK data is copied."
+    ) from exc
 
 # MUST be after environment variables
 import whisperx

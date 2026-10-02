@@ -597,37 +597,33 @@ namespace Obi.Dialogs
                 // PREPARE SELECTED ENGINE
                 // ==========================================================
 
-                if (m_TranscriptionEngine ==
-                    TranscriptionEngine.Whisper)
-                {
-                    if (!await WhisperXInstallerService
-                        .IsPythonEnvironmentInstalledAsync())
-                    {
-                        Log("Installing WhisperX...");
+                // WhisperX readiness is checked by WhisperXService
+                // immediately before launching the Python process.
+                //
+                // This avoids running EnsureWhisperReadyAsync twice.
 
-                        await WhisperXInstallerService
-                            .InstallAsync(
-                                whisperProgress);
-                    }
-                }
+                //if (m_TranscriptionEngine ==
+                //    TranscriptionEngine.Whisper)
+                //{
+                //    Log("Installing WhisperX...");
+
+                //    await WhisperXInstallerService
+                //        .EnsureWhisperReadyAsync(
+                //            whisperProgress,
+                //            _cts.Token);
+                //}
 
 
                 if (m_TranscriptionEngine ==
                     TranscriptionEngine.Parakeet)
                 {
-                    if (!await ParakeetInstallerService
-                        .IsPythonEnvironmentInstalledAsync())
-                    {
-                        Log(
-                            "Parakeet environment is not installed.");
+                    Log(
+                        "Checking Parakeet installation and dependencies...");
 
-                        Log(
-                            "Installing Parakeet...");
-
-                        await ParakeetInstallerService
-                            .InstallAsync(
-                                whisperProgress);
-                    }
+                    await ParakeetInstallerService
+                        .EnsureParakeetReadyAsync(
+                            whisperProgress,
+                            _cts.Token);
                 }
 
                 m_ProgressBar.Value = 0;
