@@ -38,6 +38,14 @@ namespace Obi.ImportExport
         protected List<TreeNode> TreenodesWithoutManagedAudioMediaData = new List<TreeNode>();
         private string m_AudioFilePath;
         private List<PhraseNode> m_Phrases;
+        private readonly Dictionary<XmlNode, PhraseClipBounds> m_PhraseClipBounds =
+            new Dictionary<XmlNode, PhraseClipBounds>();
+
+        private sealed class PhraseClipBounds
+        {
+            public double Start { get; set; }
+            public double? End { get; set; }
+        }
 
         public ImportTranscript(string nccPath, ObiPresentation presentation, Settings settings, string filePath)
         {
@@ -91,6 +99,11 @@ namespace Obi.ImportExport
                 XmlNode headNode = XmlDocumentHelper.GetFirstChildElementOrSelfWithName(nccDocument.DocumentElement, true, "head", nccDocument.DocumentElement.NamespaceURI);
                 PopulateMetadataFromNcc(headNode);
                 XmlNode bodyNode = XmlDocumentHelper.GetFirstChildElementOrSelfWithName(nccDocument.DocumentElement, true, "body", nccDocument.DocumentElement.NamespaceURI);
+
+                // Calculate contiguous audio clips before creating phrase nodes. The speech
+                // timestamps in XHTML remain unchanged; only the audio clip boundaries are
+                // expanded to preserve leading, inter-phrase, and trailing silence.
+                PreparePhraseClipBounds(bodyNode);
                 ParseNccDocument(bodyNode);
                 if (RequestCancellation) return;
                 reportProgress(20, "");
@@ -135,6 +148,69 @@ namespace Obi.ImportExport
             }
         }
 
+        private void PreparePhraseClipBounds(XmlNode bodyNode)
+        {
+            m_PhraseClipBounds.Clear();
+            List<XmlNode> phraseNodes = new List<XmlNode>();
+            CollectPhraseNodes(bodyNode, phraseNodes);
+
+            for (int i = 0; i < phraseNodes.Count; i++)
+            {
+                XmlNode phraseNode = phraseNodes[i];
+                XmlAttribute startAttribute = phraseNode.Attributes?["data-start"];
+                if (startAttribute == null || string.IsNullOrWhiteSpace(startAttribute.Value))
+                    continue;
+
+                double speechStart = Convert.ToDouble(startAttribute.Value);
+                double clipStart = i == 0 ? 0.0 : speechStart;
+                double? clipEnd = null;
+
+                // End each clip where the next phrase begins. This assigns the silence
+                // between phrases to the preceding phrase without duplicating any audio.
+                if (i + 1 < phraseNodes.Count)
+                {
+                    XmlAttribute nextStartAttribute = phraseNodes[i + 1].Attributes?["data-start"];
+                    if (nextStartAttribute != null && !string.IsNullOrWhiteSpace(nextStartAttribute.Value))
+                    {
+                        double nextSpeechStart = Convert.ToDouble(nextStartAttribute.Value);
+                        clipEnd = Math.Max(clipStart, nextSpeechStart);
+                    }
+                    else
+                    {
+                        // If a following phrase has no start time, fall back to this
+                        // phrase's speech end rather than creating an invalid clip.
+                        XmlAttribute endAttribute = phraseNode.Attributes?["data-end"];
+                        if (endAttribute != null && !string.IsNullOrWhiteSpace(endAttribute.Value))
+                            clipEnd = Math.Max(clipStart, Convert.ToDouble(endAttribute.Value));
+                    }
+                }
+
+                // A null end on the final phrase means the rest of the source audio.
+                m_PhraseClipBounds[phraseNode] = new PhraseClipBounds
+                {
+                    Start = clipStart,
+                    End = clipEnd
+                };
+            }
+        }
+
+        private void CollectPhraseNodes(XmlNode node, List<XmlNode> phraseNodes)
+        {
+            if (node == null) return;
+
+            if (node.NodeType == XmlNodeType.Element &&
+                (node.LocalName == "p" || node.LocalName == "span") &&
+                string.Equals(node.Attributes?["class"]?.Value, "phrase", StringComparison.Ordinal))
+            {
+                phraseNodes.Add(node);
+            }
+
+            foreach (XmlNode child in node.ChildNodes)
+            {
+                CollectPhraseNodes(child, phraseNodes);
+            }
+        }
+
         private void ParseNccDocument(XmlNode node)
         {
         //    string filePath = @"D:\Obi Books\The_Countries_New_Zealand.wav";
@@ -161,14 +237,30 @@ namespace Obi.ImportExport
                             if (classAttr == "phrase")
                             {
 
-                                string phraseStartTime = n.Attributes.GetNamedItem("data-start").Value;
-                                string phraseEndTime = n.Attributes.GetNamedItem("data-end").Value;
+                                XmlAttribute phraseStartAttribute = n.Attributes?["data-start"];
+                                XmlAttribute phraseEndAttribute = n.Attributes?["data-end"];
+                                string phraseStartTime = phraseStartAttribute?.Value;
+                                string phraseEndTime = phraseEndAttribute?.Value;
                                 if (phraseStartTime != null && phraseEndTime != null && m_AudioFilePath != null)
                                 {
                                     double start = Convert.ToDouble(phraseStartTime);
-
                                     double end = Convert.ToDouble(phraseEndTime);
-                                    XmlElement audio = AttachAudioToPhraseNode(m_AudioFilePath, start, end);
+
+                                    XmlElement audio;
+                                    if (m_PhraseClipBounds.TryGetValue(n, out PhraseClipBounds clipBounds))
+                                    {
+                                        if (clipBounds.End.HasValue)
+                                            audio = AttachAudioToPhraseNode(m_AudioFilePath, clipBounds.Start, clipBounds.End.Value);
+                                        else
+                                            audio = AttachAudioToPhraseNode(m_AudioFilePath, clipBounds.Start);
+                                    }
+                                    else
+                                    {
+                                        // Preserve the previous behavior for XHTML nodes that
+                                        // could not be included in the precomputed phrase list.
+                                        audio = AttachAudioToPhraseNode(m_AudioFilePath, start, end);
+                                    }
+
                                     PhraseNode phraseNode = CreatePhraseNodeFromAudioElement(m_CurrentSection, audio);
                                     m_Phrases.Add(phraseNode);
                                 }
@@ -728,12 +820,26 @@ namespace Obi.ImportExport
             //  mediaData.AudioDuration DOES NOT WORK BECAUSE DEPENDS ON WAVCLIPS LIST!!!
             WavClip wavClip = new WavClip(dataProv);
 
+            // If clip-end is omitted, this is an intentional open-ended clip (for
+            // example, the final phrase). Time.MaxValue is only a parsing default;
+            // do not treat it as a real requested end or raise a truncation warning.
             Time newClipE = clipE.Copy();
-            if (Math.Abs(newClipE.AsMilliseconds) > Math.Abs(wavClip.MediaDuration.AsMilliseconds))
+            bool hasExplicitClipEnd =
+                audioAttrClipEnd != null &&
+                !string.IsNullOrWhiteSpace(audioAttrClipEnd.Value);
+
+            if (!hasExplicitClipEnd)
             {
-                Console.WriteLine("clip adjusted. file size: " + wavClip.MediaDuration.AsMilliseconds + "; clip end: " + newClipE.AsMilliseconds);
+                newClipE = null;
+            }
+            else if (Math.Abs(newClipE.AsMilliseconds) >
+                     Math.Abs(wavClip.MediaDuration.AsMilliseconds))
+            {
+                Console.WriteLine("clip adjusted. file size: " +
+                    wavClip.MediaDuration.AsMilliseconds + "; clip end: " +
+                    newClipE.AsMilliseconds);
+
                 clipEndAdjustedToNull(clipB, newClipE, wavClip.MediaDuration, treeNode);
-                //newClipE = wavClip.MediaDuration;
                 newClipE = null;
             }
 
@@ -760,7 +866,16 @@ namespace Obi.ImportExport
         protected virtual void clipEndAdjustedToNull(Time clipB, Time clipE, Time duration, TreeNode treeNode)
         {
             double diff = clipE.AsMilliseconds - duration.AsMilliseconds;
-            if (diff > m_Settings.Project_ImportToleranceForAudioInMs && treeNode != null)
+
+            // Phrase clips may intentionally run to the end of the source audio. The
+            // truncation warning below is for EmptyNodes only; casting a PhraseNode here
+            // would throw when the final phrase uses an open-ended clip.
+            // Only standalone EmptyNodes use the truncation-warning annotations.
+            // PhraseNode derives from EmptyNode in this model, but its Index/role
+            // properties are not valid for this warning path during import.
+            if (diff > m_Settings.Project_ImportToleranceForAudioInMs &&
+                treeNode != null &&
+                treeNode.GetType() == typeof(EmptyNode))
             {
                 EmptyNode eNode = (EmptyNode)treeNode;
                 eNode.TODO = true;
@@ -809,6 +924,16 @@ namespace Obi.ImportExport
 
 
 
+
+        public XmlElement AttachAudioToPhraseNode(string audioFilePath, double start)
+        {
+            XmlDocument doc = new XmlDocument();
+            XmlElement audio = doc.CreateElement("audio");
+            audio.SetAttribute("src", audioFilePath);
+            audio.SetAttribute("clip-begin", $"npt={start:0.000}s");
+            // Intentionally omit clip-end: addAudioWav will clip to the real media end.
+            return audio;
+        }
 
         public XmlElement AttachAudioToPhraseNode(string audioFilePath, double start, double end)
         {
