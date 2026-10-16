@@ -608,6 +608,7 @@ namespace Obi.Dialogs
                 m_rdbPhraseDetectionOnImportedFiles.Enabled = false;
                 m_rdbPhraseDetectionOnImportedFiles.Checked = false;
                 m_rdbPhraseDetectionWhisper.Checked = false;
+                m_rdbPhraseDetectionWhisper.Enabled = false;
                 label1.Enabled = false;
             }
             else
@@ -615,6 +616,7 @@ namespace Obi.Dialogs
                 m_rdbSplitPhrasesOnImport.Enabled = true;
                 mPhraseSizeTextBox.Enabled = true;
                 m_rdbPhraseDetectionOnImportedFiles.Enabled = true;
+                m_rdbPhraseDetectionWhisper.Enabled = true;
                 label1.Enabled = true;
             }
         }
