@@ -2821,7 +2821,7 @@ namespace Obi.ProjectView
         {
             ImportAudioUsingWhisper createPhraseFromWhisper = null;
 
-            createPhraseFromWhisper = new ImportAudioUsingWhisper(paths, ImportAudioFilesInEachSection, createSectionForEachPhrase);
+            createPhraseFromWhisper = new ImportAudioUsingWhisper(paths, ImportAudioFilesInEachSection, createSectionForEachPhrase, this.ObiForm.Settings);
             createPhraseFromWhisper.ShowDialog();
             if (createPhraseFromWhisper != null && (createPhraseFromWhisper.XhtmlFilePathsDictionary == null ||  createPhraseFromWhisper.XhtmlFilePathsDictionary.Count == 0))
             {

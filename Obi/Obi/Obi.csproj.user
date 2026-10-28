@@ -263,6 +263,9 @@
     <EmbeddedResource Update="Dialogs\ExtendedMessageToAssociate.resx">
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Update="Dialogs\ImportFileSplitSize.ar.resx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Update="Dialogs\TranscriptionSettingsDialog.resx">
       <SubType>Designer</SubType>
     </EmbeddedResource>

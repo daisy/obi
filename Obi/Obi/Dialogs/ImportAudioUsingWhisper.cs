@@ -50,6 +50,7 @@ namespace Obi.Dialogs
         private string m_BookLanguage = "en";
         private TranscriptionEngine m_TranscriptionEngine = TranscriptionEngine.Parakeet;
         private bool m_UpdatingLanguageEngineLists;
+        private Settings m_Settings;
 
         public TranscriptionSettings SelectedTranscriptionSettings
         {
@@ -63,9 +64,10 @@ namespace Obi.Dialogs
                 };
             }
         }
-        public ImportAudioUsingWhisper(List<string> filePaths, bool importAudioFilesInEachSection, bool createSectionForEachPhrase)
+        public ImportAudioUsingWhisper(List<string> filePaths, bool importAudioFilesInEachSection, bool createSectionForEachPhrase, Settings settings)
         {
             InitializeComponent();
+            m_Settings = settings;
 
             _transcriptionCoordinator = new TranscriptionCoordinator(new WhisperXService(), new ParakeetService());
 
@@ -131,6 +133,8 @@ namespace Obi.Dialogs
             InitializeLanguageAndEngineSelections();
 
             UpdateWhisperModelAvailability();
+
+            m_ModelCb.SelectedIndex = m_Settings.AIModelSelected;
 
             if (filePaths != null)
             {
@@ -779,6 +783,9 @@ namespace Obi.Dialogs
 
         private void m_btnStart_Click(object sender, EventArgs e)
         {
+            m_Settings.AIEngineSelected = (TranscriptionEngine) m_TranscriptionEngineCb.SelectedValue;
+            m_Settings.AILanguageSelected = m_BookLanguageCb.SelectedValue.ToString();
+            m_Settings.AIModelSelected = m_ModelCb.SelectedIndex;
             m_btnStart.Enabled = false;
             m_IsTranscribing = true;
             StartImportProcess();
@@ -799,37 +806,46 @@ namespace Obi.Dialogs
                 // Engine list
                 // --------------------------------------------------
 
-                m_TranscriptionEngineCb.DataSource =
-                    CreateEngineItems();
+                m_TranscriptionEngineCb.DataSource =  CreateEngineItems();
 
-                m_TranscriptionEngineCb.SelectedValue =
-                    TranscriptionEngine.Parakeet;
+                m_TranscriptionEngineCb.SelectedValue = m_Settings.AIEngineSelected;
+       
 
-
-                // --------------------------------------------------
-                // Language list
-                //
-                // Initial engine is Parakeet, therefore only
-                // Parakeet-supported languages are shown.
-                // --------------------------------------------------
-
-                m_BookLanguageCb.DataSource =
-                    CreateLanguageItems(
-                        includeAllLanguages: false);
-
-                m_BookLanguageCb.SelectedValue =
-                    "en";
+    
 
 
                 // --------------------------------------------------
                 // Initial internal values
                 // --------------------------------------------------
+                if (m_TranscriptionEngineCb.SelectedValue != null)
+                {
+                    TranscriptionEngine engineSelected = (TranscriptionEngine)m_TranscriptionEngineCb.SelectedValue;
+                    m_TranscriptionEngine = engineSelected;
+                }
+                else
+                    m_TranscriptionEngine = TranscriptionEngine.Parakeet;
 
-                m_TranscriptionEngine =
-                    TranscriptionEngine.Parakeet;
 
-                m_BookLanguage =
-                    "en";
+                if (m_TranscriptionEngine == TranscriptionEngine.Parakeet)
+                {
+                    m_BookLanguageCb.DataSource = CreateLanguageItems(includeAllLanguages: false);
+                }
+                else
+                {                    
+                    m_BookLanguageCb.DataSource = CreateLanguageItems(includeAllLanguages: true);
+                }
+
+                m_BookLanguageCb.SelectedValue = m_Settings.AILanguageSelected;
+
+
+                if (m_BookLanguageCb.SelectedValue != null)
+                {
+                    m_BookLanguage = m_BookLanguageCb.SelectedValue.ToString();
+                }
+                else
+                {
+                    m_BookLanguage = "en";
+                }
             }
             finally
             {
@@ -983,8 +999,7 @@ namespace Obi.Dialogs
                 }
 
 
-                RefreshLanguageList(
-                    parakeetOnly: true);
+                RefreshLanguageList(parakeetOnly: true);
 
                 return;
             }
@@ -997,8 +1012,7 @@ namespace Obi.Dialogs
             // available.
             // ------------------------------------------------------
 
-            RefreshLanguageList(
-                parakeetOnly: false);
+            RefreshLanguageList(parakeetOnly: false);
         }
 
         // ==========================================================
@@ -1007,16 +1021,13 @@ namespace Obi.Dialogs
 
         private void UpdateWhisperModelAvailability()
         {
-            if (m_TranscriptionEngineCb.SelectedItem
-                is not TranscriptionEngineItem selectedEngine)
+            if (m_TranscriptionEngineCb.SelectedItem is not TranscriptionEngineItem selectedEngine)
             {
                 return;
             }
 
 
-            m_ModelCb.Enabled =
-                selectedEngine.Engine !=
-                TranscriptionEngine.Parakeet;
+            m_ModelCb.Enabled = selectedEngine.Engine != TranscriptionEngine.Parakeet;
         }
 
 

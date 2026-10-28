@@ -8,6 +8,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Drawing;
 using System.Collections.Generic;
+using Obi.Models;
 
 namespace Obi
 {
@@ -366,6 +367,15 @@ public bool Project_ImportNCCFileWithWindows1252Encoding ; // useful for importi
 
         [OptionalField]
         public bool SplitPhrasesWhisperAI;
+
+        [OptionalField]
+        public TranscriptionEngine AIEngineSelected;
+
+        [OptionalField]
+        public string AILanguageSelected;
+
+        [OptionalField]
+        public int AIModelSelected;
         protected static void InitializeDefaultSettings(Settings settings)
         {
             settings.Audio_Channels = 1;
@@ -529,6 +539,10 @@ public bool Project_ImportNCCFileWithWindows1252Encoding ; // useful for importi
             settings.AzureVoices = new List<string>();
             settings.Audio_TODOPSecialCase = false; 
             settings.SplitPhrasesWhisperAI = false;
+            // Obi 6.0 Beta 2
+            settings.AIEngineSelected = TranscriptionEngine.Parakeet;
+            settings.AILanguageSelected = "en";
+            settings.AIModelSelected = 1;
         }
 
         /// <summary>
