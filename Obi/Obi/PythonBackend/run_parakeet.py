@@ -10,6 +10,8 @@ from transformers import (
     AutoModel
 )
 
+from phrase_segmentation_language import is_sentence_ending_word
+
 
 # =========================================================
 # COMMAND LINE
@@ -1594,7 +1596,7 @@ def remove_residual_duplicates(
 # WORDS -> PHRASE SEGMENTS
 # =========================================================
 
-def build_segments(words):
+def build_segments(words, language_code=None):
     """
     Build natural audiobook-style phrase segments from Parakeet
     word timestamps.
@@ -1630,50 +1632,6 @@ def build_segments(words):
 
     COMMA_PAUSE = 0.35
     STRONG_PAUSE = 0.65
-
-    # ============================================================
-    # ABBREVIATIONS
-    # ============================================================
-
-    ABBREVIATIONS = {
-        "mr.",
-        "mrs.",
-        "ms.",
-        "miss.",
-        "dr.",
-        "prof.",
-        "sr.",
-        "jr.",
-        "st.",
-        "mt.",
-        "rev.",
-        "gen.",
-        "col.",
-        "lt.",
-        "sgt.",
-        "capt.",
-        "maj.",
-        "hon.",
-        "pres.",
-        "gov.",
-        "sen.",
-        "rep.",
-        "ave.",
-        "rd.",
-        "dept.",
-        "est.",
-        "fig.",
-        "no.",
-        "nos.",
-        "etc.",
-        "e.g.",
-        "i.e.",
-        "vs.",
-        "approx.",
-        "inc.",
-        "ltd.",
-        "co.",
-    }
 
     # ============================================================
     # CONTINUATION WORDS
@@ -1829,31 +1787,15 @@ def build_segments(words):
 
         return token[-1]
 
-    def is_abbreviation(word):
+    def is_sentence_end_word(word_index):
 
-        return (
-            normalize_word_text(word)
-            in ABBREVIATIONS
-        )
-
-    def is_sentence_end_word(word):
-
-        token = clean_word(word)
-
-        if not token:
-            return False
-
-        # IMPORTANT:
-        # "Mrs.", "Mr.", "Dr.", etc. are NOT sentence endings.
-        if is_abbreviation(token):
-            return False
-
-        punctuation = punctuation_of(token)
-
-        return punctuation in (
-            ".",
-            "!",
-            "?"
+        # Use the same language-aware abbreviation resource as WhisperX.
+        # This keeps segmentation policy independent from the ASR model.
+        return is_sentence_ending_word(
+            words,
+            word_index,
+            language_code,
+            (".", "!", "?")
         )
 
     def is_comma_word(word):
@@ -2088,7 +2030,7 @@ def build_segments(words):
         pause = pause_after(index)
 
         # Sentence ending
-        if is_sentence_end_word(word):
+        if is_sentence_end_word(index):
             return "sentence"
 
         # Semicolon
@@ -2662,9 +2604,7 @@ def build_segments(words):
             len(words)
         ):
 
-            if is_sentence_end_word(
-                words[index]["word"]
-            ):
+            if is_sentence_end_word(index):
 
                 sentence_end = index
                 break
@@ -3494,7 +3434,8 @@ if audio_duration <= CHUNK_SIZE:
 
 
     segments = build_segments(
-        words)
+        words,
+        BOOK_LANGUAGE)
 
 
     final_tokens = add_global_token_timestamps(
@@ -4247,7 +4188,8 @@ else:
 
 
     segments = build_segments(
-        words)
+        words,
+        BOOK_LANGUAGE)
 
 
 

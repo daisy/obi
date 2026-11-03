@@ -3,6 +3,8 @@ import sys
 import json
 import time
 
+from phrase_segmentation_language import is_sentence_ending_word
+
 # ------------------------------------------
 # Parse command line
 # ------------------------------------------
@@ -486,17 +488,6 @@ def transcribe_file(
                     ".", "!", "?", "。", "！", "？", "…"
                 )
 
-                # Periods in common English titles/abbreviations must not
-                # terminate a phrase. In particular, splitting after "Mr."
-                # separates the title from the person's name.
-                ENGLISH_NON_TERMINAL_ABBREVIATIONS = {
-                    "mr", "mrs", "ms", "miss", "dr", "prof",
-                    "rev", "fr", "sr", "jr", "st", "mt",
-                    "gen", "col", "maj", "capt", "cmdr",
-                    "lt", "sgt", "hon", "pres", "gov",
-                    "messrs", "mme", "mlle"
-                }
-
                 CLAUSE_ENDINGS = (
                     ",", ";", ":", "—", "–"
                 )
@@ -534,18 +525,15 @@ def transcribe_file(
                 def strip_closing_punctuation(token):
                     return clean_token(token).rstrip("\\\"'”’)]}")
 
-                def ends_sentence(token):
-                    cleaned = strip_closing_punctuation(token)
-
-                    # Do not treat a full stop in an English title as the
-                    # end of a sentence/phrase. Keep the title attached to
-                    # the following name (e.g. "Mr. Philotson").
-                    if is_english and cleaned.endswith("."):
-                        abbreviation = token_lower(cleaned)
-                        if abbreviation in ENGLISH_NON_TERMINAL_ABBREVIATIONS:
-                            return False
-
-                    return cleaned.endswith(SENTENCE_ENDINGS)
+                def ends_sentence(word_index):
+                    # Shared language-aware abbreviation handling is used
+                    # by every ASR backend, not just WhisperX.
+                    return is_sentence_ending_word(
+                        valid_word_segments,
+                        word_index,
+                        detected_language,
+                        SENTENCE_ENDINGS
+                    )
 
                 def ends_clause(token):
                     return strip_closing_punctuation(token).endswith(
@@ -722,7 +710,7 @@ def transcribe_file(
                     current_phrase.append(word)
 
                     # A complete sentence is always a preferred phrase end.
-                    should_break = ends_sentence(word["word"])
+                    should_break = ends_sentence(i)
 
                     # A genuine silence remains a reliable boundary in every
                     # supported language.
