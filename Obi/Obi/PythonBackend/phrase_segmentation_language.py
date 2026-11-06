@@ -64,7 +64,80 @@ NON_TERMINAL_ABBREVIATIONS: dict[str, set[tuple[str, ...]]] = {
         ("пр-т.",), ("им.",), ("акад.",), ("проф.",),
         ("доц.",), ("т.", "д."), ("т.", "п."), ("т.", "е."),
     },
+    # Additional languages supported by Parakeet TDT v3.
+    "bg": {
+        ("г.",), ("ул.",), ("бул.",), ("проф.",), ("д-р.",),
+        ("акад.",), ("т.", "н."),
+    },
+    "hr": {
+        ("g.",), ("ul.",), ("br.",), ("dr.",), ("prof.",),
+        ("mr.",), ("npr.",), ("tj.",), ("itd.",),
+    },
+    "cs": {
+        ("p.",), ("pan.",), ("pani.",), ("dr.",), ("prof.",),
+        ("ing.",), ("ul.",), ("č.",), ("např.",), ("atd.",),
+        ("tj.",), ("tzn.",),
+    },
+    "da": {
+        ("hr.",), ("fru.",), ("dr.",), ("prof.",), ("cand.",),
+        ("bl.a.",), ("dvs.",), ("fx.",), ("nr.",), ("osv.",),
+    },
+    "et": {
+        ("hr.",), ("pr.",), ("dr.",), ("prof.",), ("lk.",),
+        ("tn.",), ("nt.",), ("st.",), ("jne.",), ("vms.",),
+    },
+    "fi": {
+        ("k.",), ("t.",), ("p.",), ("prof.",), ("tri.",),
+        ("toht.",), ("esim.",), ("jne.",), ("ym.",), ("n:o.",),
+    },
+    "el": {
+        ("κ.",), ("π.",), ("δρ.",), ("καθ.",), ("αρ.",),
+        ("π.χ.",), ("κ.ά.",), ("κ.λπ.",), ("δηλ.",),
+    },
+    "hu": {
+        ("dr.",), ("ifj.",), ("id.",), ("prof.",), ("u.",),
+        ("sz.",), ("pl.",), ("stb.",), ("ill.",), ("kb.",),
+    },
+    "lv": {
+        ("g.",), ("iel.",), ("lpp.",), ("nr.",), ("prof.",),
+        ("dr.",), ("š.g.",), ("u.c.",), ("piem.",),
+    },
+    "lt": {
+        ("g.",), ("a.",), ("m.",), ("p.",), ("nr.",),
+        ("prof.",), ("dr.",), ("pvz.",), ("t. y.",), ("ir t. t.",),
+    },
+    "mt": {
+        ("dr.",), ("prof.",), ("mr.",), ("mrs.",), ("nru.",),
+        ("eż.",), ("ċċ.",),
+    },
+    "pl": {
+        ("pan.",), ("pani.",), ("dr.",), ("prof.",), ("inż.",),
+        ("ul.",), ("al.",), ("św.",), ("np.",), ("itd.",),
+        ("tj.",), ("tzn.",), ("r.",), ("nr.",),
+    },
+    "ro": {
+        ("dl.",), ("dna.",), ("dr.",), ("prof.",), ("ing.",),
+        ("str.",), ("nr.",), ("ș.a.",), ("etc.",),
+    },
+    "sk": {
+        ("p.",), ("pani.",), ("dr.",), ("prof.",), ("ing.",),
+        ("ul.",), ("č.",), ("napr.",), ("atď.",), ("t. j.",),
+    },
+    "sl": {
+        ("g.",), ("ga.",), ("dr.",), ("prof.",), ("mag.",),
+        ("ul.",), ("št.",), ("npr.",), ("itd.",), ("tj.",),
+    },
+    "sv": {
+        ("dr.",), ("prof.",), ("hr.",), ("fru.",), ("t.ex.",),
+        ("bl.a.",), ("m.m.",), ("d.v.s.",), ("nr.",),
+    },
+    "uk": {
+        ("м.",), ("вул.",), ("р.",), ("ст.",), ("ім.",),
+        ("проф.",), ("доц.",), ("акад.",), ("напр.",),
+        ("т.", "д."), ("т.", "п."), ("т.", "е."),
+    },
 }
+
 
 _CLOSING_CHARS = "\"'”’»)]}"
 _OPENING_CHARS = "\"'“‘«([{"
@@ -110,14 +183,14 @@ def is_non_terminal_abbreviation(
 
     # A single-letter initial before another token is not a sentence end.
     # This also handles initials in names such as "J. D. Vance".
-    if re.fullmatch(r"[^\\W\\d_]\\.", current, flags=re.UNICODE):
+    if re.fullmatch(r"[^\W\d_]\.", current, flags=re.UNICODE):
         return True
 
     # In German and other languages using this notation, a number followed by
     # a period can be an ordinal ("20. Jahrhundert"), not sentence-final
     # punctuation. Do not suppress a final transcript boundary: the
     # next-token requirement above is intentional.
-    if re.fullmatch(r"\\d+\\.", current):
+    if re.fullmatch(r"\d+\.", current):
         return True
 
     max_pattern_length = max((len(item) for item in patterns), default=1)
