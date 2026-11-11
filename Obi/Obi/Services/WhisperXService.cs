@@ -517,10 +517,10 @@ namespace Obi.Services
                                 w => w.Start)
                             : phrase.Start;
 
-                phraseStart =
-                        Math.Max(
-                            0,
-                            phraseStart - 0.15);
+                // Python already applies phrase-start padding. Do not subtract
+                // another 150 ms here; that can pull this phrase into the
+                // previous phrase's audio.
+                phraseStart = Math.Max(0, phraseStart);
 
                 double phraseEnd =
                         phrase.Words.Count > 0
@@ -572,121 +572,93 @@ namespace Obi.Services
                 segments.Add(segment);
             }
 
-            // Remove overlaps between adjacent phrases
-            for (int i = 0; i < segments.Count; i++)
+            // Keep the existing final-phrase extension, but do not expand each
+            // phrase toward the next phrase. That expansion can pull the prior
+            // phrase's end into the next phrase's speech.
+            if (segments.Count > 0)
             {
-                TranscriptSegment current =
-                    segments[i];
+                segments[^1].End = audioDuration;
+                progress?.Report(
+                    $"Last phrase extended to audio end: {audioDuration.TotalSeconds:F3}");
+            }
 
-                if (i < segments.Count - 1)
+            List<SilenceRegion> silences =
+                await AudioSilenceDetector.DetectAsync(audioFile);
+
+            progress?.Report($"Detected {silences.Count} silence regions");
+
+            foreach (var silenceRegion in silences)
+            {
+                progress?.Report(
+                    $"Silence: {silenceRegion.Start.TotalSeconds:F3} - " +
+                    $"{silenceRegion.End.TotalSeconds:F3}");
+            }
+
+            // Resolve each adjacent pair using word-aligned anchors. When a
+            // silence spans the boundary, place both phrase edges at its
+            // midpoint. Otherwise, fall back to the aligned word boundary and
+            // remove only the padded overlap, without moving into word speech.
+            for (int i = 0; i < segments.Count - 1; i++)
+            {
+                TranscriptSegment current = segments[i];
+                TranscriptSegment next = segments[i + 1];
+
+                TimeSpan currentWordEnd = current.Words.Count > 0
+                    ? TimeSpan.FromSeconds(current.Words.Max(w => w.End))
+                    : current.End;
+
+                TimeSpan nextWordStart = next.Words.Count > 0
+                    ? TimeSpan.FromSeconds(next.Words.Min(w => w.Start))
+                    : next.Start;
+
+                // Limit candidates to silence close to the actual speech gap.
+                // The small tolerance accommodates detector/alignment offsets.
+                TimeSpan searchStart = currentWordEnd - TimeSpan.FromMilliseconds(150);
+                TimeSpan searchEnd = nextWordStart + TimeSpan.FromMilliseconds(500);
+
+                SilenceRegion? silence = silences
+                    .Where(s => s.End >= searchStart && s.Start <= searchEnd)
+                    .OrderByDescending(s => (s.End - s.Start).TotalSeconds)
+                    .FirstOrDefault();
+
+                TimeSpan boundary;
+
+                if (silence != null && nextWordStart >= currentWordEnd)
                 {
-                    TranscriptSegment next =
-                        segments[i + 1];
+                    TimeSpan midpoint = silence.Start +
+                        ((silence.End - silence.Start) / 2);
 
-                    TimeSpan gap =
-                        next.Start - current.End;
+                    // Do not let a broad detected silence place the boundary
+                    // outside the actual gap between aligned words.
+                    boundary = midpoint < currentWordEnd
+                        ? currentWordEnd
+                        : midpoint > nextWordStart
+                            ? nextWordStart
+                            : midpoint;
 
-                    if (gap <= TimeSpan.Zero)
-                    {
-                        continue;
-                    }
-
-                    TimeSpan actualPadding =
-                        gap - TimeSpan.FromMilliseconds(20);
-
-                    if (actualPadding < TimeSpan.Zero)
-                    {
-                        actualPadding =
-                            TimeSpan.Zero;
-                    }
-
-                    // Allow up to 2 seconds padding
-                    if (actualPadding >
-                        TimeSpan.FromMilliseconds(500))
-                    {
-                        actualPadding =
-                            TimeSpan.FromMilliseconds(500);
-                    }
-
-                    current.End += actualPadding;
+                    progress?.Report(
+                        $"Boundary correction: {current.Text}\n" +
+                        $"Old End={current.End.TotalSeconds:F3}; " +
+                        $"Old Next Start={next.Start.TotalSeconds:F3}\n" +
+                        $"Silence={silence.Start.TotalSeconds:F3}-" +
+                        $"{silence.End.TotalSeconds:F3}; " +
+                        $"Boundary={boundary.TotalSeconds:F3}");
                 }
                 else
                 {
-                    // Last phrase should extend to end of audio
-                    current.End =
-                        audioDuration;
+                    // No suitable silence (or aligned words overlap): use the
+                    // previous phrase's last-word end. This trims only excess
+                    // phrase padding and preserves the aligned speech itself.
+                    boundary = currentWordEnd;
+
                     progress?.Report(
-                            $"Last phrase extended to audio end: " +
-                            $"{audioDuration.TotalSeconds:F3}");
-                }
-            }
-
-
-            List<SilenceRegion> silences =
-                await AudioSilenceDetector
-                    .DetectAsync(audioFile);
-
-            progress?.Report(
-                            $"Detected {silences.Count} silence regions");
-
-            foreach (var s in silences)
-            {
-                progress?.Report(
-                    $"Silence: " +
-                    $"{s.Start.TotalSeconds:F3} - " +
-                    $"{s.End.TotalSeconds:F3}");
-            }
-
-            for (int i = 0; i < segments.Count - 1; i++)
-            {
-                TranscriptSegment current =
-                    segments[i];
-
-                TranscriptSegment next =
-                    segments[i + 1];
-
-                SilenceRegion? silence =
-                    silences
-                        .Where(
-                            s =>
-                                s.Start >
-                                    current.End -
-                                    TimeSpan.FromSeconds(1)
-
-                                &&
-
-                                s.End <
-                                    next.Start +
-                                    TimeSpan.FromMilliseconds(500))
-                        .OrderByDescending(
-                            s =>
-                                (s.End - s.Start).TotalSeconds)
-                        .FirstOrDefault();
-
-                if (silence == null)
-                {
-                    progress?.Report(
-                            $"No silence found between:\n" +
-                            $"{current.Text}\n" +
-                            $"AND\n" +
-                            $"{next.Text}");
-                    continue;
+                        $"No suitable silence between phrases; using aligned " +
+                        $"word boundary {boundary.TotalSeconds:F3}:\n" +
+                        $"{current.Text}\nAND\n{next.Text}");
                 }
 
-                TimeSpan midpoint =
-                    silence.Start +
-                    ((silence.End - silence.Start) / 2);
-
-                progress?.Report(
-                            $"Boundary correction: " +
-                            $"{current.Text}\n" +
-                            $"Old End={current.End.TotalSeconds:F3}\n" +
-                            $"Old Next Start={next.Start.TotalSeconds:F3}\n" +
-                            $"Silence={silence.Start.TotalSeconds:F3}-{silence.End.TotalSeconds:F3}\n" +
-                            $"Midpoint={midpoint.TotalSeconds:F3}");
-
-                current.End = midpoint;
-
+                current.End = boundary;
+                next.Start = boundary;
             }
 
             foreach (var s in segments)
