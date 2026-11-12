@@ -623,7 +623,28 @@ namespace Obi.Services
 
                 TimeSpan boundary;
 
-                if (silence != null && nextWordStart >= currentWordEnd)
+                // Fine-tuning: if silence begins just after the next phrase's
+                // current start, move the shared phrase boundary to the silence
+                // start. Both phrase edges move together, so no interval of the
+                // source audio is omitted. This changes phrase ownership only;
+                // the source audio, transcript text, and word timestamps remain
+                // untouched. Keep this adjustment deliberately small.
+                TimeSpan silenceAfterNextStart =  silence != null? silence.Start - next.Start : TimeSpan.Zero;
+
+                if (silence != null && nextWordStart >= currentWordEnd &&  silenceAfterNextStart > TimeSpan.Zero && silenceAfterNextStart <= TimeSpan.FromMilliseconds(100))
+                {
+                    boundary = silence.Start;
+
+                    progress?.Report(
+                        $"Boundary moved to nearby silence start (audio preserved): {current.Text}\n" +
+                        $"Old End={current.End.TotalSeconds:F3}; " +
+                        $"Old Next Start={next.Start.TotalSeconds:F3}\n" +
+                        $"Silence={silence.Start.TotalSeconds:F3}-" +
+                        $"{silence.End.TotalSeconds:F3}; " +
+                        $"Adjustment={silenceAfterNextStart.TotalMilliseconds:F0} ms; " +
+                        $"New Boundary={boundary.TotalSeconds:F3}");
+                }
+                else if (silence != null && nextWordStart >= currentWordEnd)
                 {
                     TimeSpan midpoint = silence.Start +
                         ((silence.End - silence.Start) / 2);
