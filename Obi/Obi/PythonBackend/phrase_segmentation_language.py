@@ -169,9 +169,7 @@ def is_non_terminal_abbreviation(
     function supports both single-token and multi-token abbreviations.
     """
     key = language_key(language_code)
-    patterns = NON_TERMINAL_ABBREVIATIONS.get(key)
-    if not patterns:
-        return False
+    patterns = NON_TERMINAL_ABBREVIATIONS.get(key, set())
 
     word_list = words if isinstance(words, (list, tuple)) else list(words)
     if index < 0 or index >= len(word_list) - 1:
@@ -182,8 +180,14 @@ def is_non_terminal_abbreviation(
         return False
 
     # A single-letter initial before another token is not a sentence end.
-    # This also handles initials in names such as "J. D. Vance".
+    # This handles names written with separated initials, e.g. "J. D. Vance".
     if re.fullmatch(r"[^\W\d_]\.", current, flags=re.UNICODE):
+        return True
+
+    # Some ASR engines keep consecutive initials in one token ("J.D.").
+    # Protect two or more dotted initials as well as the spaced form above.
+    # This is language-independent and applies only when another token follows.
+    if re.fullmatch(r"(?:[^\W\d_]\.){2,}", current, flags=re.UNICODE):
         return True
 
     # In German and other languages using this notation, a number followed by
